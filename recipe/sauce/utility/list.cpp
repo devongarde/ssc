@@ -65,6 +65,10 @@ bool wblist::test_element (const html_version& v, nitpick& nits, const e_element
     {   const elem el (e);
         if (el.is_rdf ())
             nits.pick (nit_naughty_init, es_warning, ec_init, "RDF element ", quote (s), " in fussiness ", quote (ss));
+        if (el.is_rsl ())
+            nits.pick (nit_naughty_init, es_warning, ec_init, "RSL element ", quote (s), " in fussiness ", quote (ss));
+        if (el.is_rss ())
+            nits.pick (nit_naughty_init, es_warning, ec_init, "RSS element ", quote (s), " in fussiness ", quote (ss));
         else if (no_close && el.is_closed (v))
             nits.pick (nit_naughty_init, es_warning, ec_init, "closed element ", quote (s), " in fussiness ", quote (ss));
         else return true; }

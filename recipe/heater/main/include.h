@@ -62,8 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 20
-#define VERSION_STRING "0.2.20"
+#define VERSION_RELEASE 21
+#define VERSION_STRING "0.2.21"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -78,6 +78,9 @@ z
 #define COPYRIGHT_HTML_FULL "&copy;" NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME COPYRIGHT_BRADDR
 
 #define SSC_PUBLIC_KEY ""
+
+#define UPDATE_URL_1 "https://ssc.lu/ssc.ver.txt"
+#define UPDATE_URL_2 "https://dylanharris.org/ssc/ssc.ver.txt"
 
 #define DEFAULT_LINE_LENGTH 72
 #define DESCRIPTION_LENGTH 60
@@ -155,7 +158,7 @@ z
 #undef VS2019
 #undef VS2022
 #else // _MSC_VER
-#error ssc only builds with VS 2017 / 2019 / 2022.
+#error ssc only builds with VS 2019 / 2022.
 #endif // _MSC_VER
 
     // The MSVC linter is generally useful, but it has (had?) some serious problems.
@@ -601,6 +604,8 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 
 #define WEBMENTION "webmention"
 #define SEP "."
+#define WELL_KNOWN ".well-known"
+#define WELL_KNOWN_PATH "/" WELL_KNOWN "/"
 
 #define COLON_SLASH_SLASH "://"
 #define HTTP PR_HTTP COLON_SLASH_SLASH
@@ -961,9 +966,12 @@ typedef ::std::vector < bool > faux_vb_t;
 #define REPORT_SWASH              "Swash"
 #define REPORT_VIEW               "View"
 
+#define ATOMIC_EXT                "atom"
 #define CSS_EXT                   "css"
 #define HTML_EXT                  "html"
 #define JSONLD_EXT                "jld"
+#define RSL_EXT                   "rsl"
+#define RSS_EXT                   "rss"
 #define VTT_EXT                   "vtt"
 #define XHTML_EXT                 "xhtml"
 

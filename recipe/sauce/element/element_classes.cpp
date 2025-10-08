@@ -44,12 +44,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
                     a_onstalled, a_onstorage, a_onsubmit, a_onunload, a_onvisibilitychange, a_onwebkitanimationend, a_onwebkitanimationiteration, \
                     a_onwebkitanimationstart, a_onwebkittransitionend
 
+#define RDFa        a_about, a_content, a_datatype, a_inlist, a_prefix, a_property, a_rel, a_resource, a_rev, a_src, a_typeof, a_vocab
+
 #define ALIGNCHAR   a_align, a_char, a_charoff, a_valign
+#define ATOMIC      a_xmlbase, a_xmllang, a_xmlns
 #define BLUR        a_onfocus, a_onblur
 #define DINGBAT     a_dingbat, a_md, a_seqnum, a_skip, a_align, a_clear, a_nowrap
 #define KEYMOUSE    a_onclick, a_ondblclick, a_onkeydown, a_onkeypress, a_onkeyup, a_onmousedown, a_onmousemove, a_onmouseout, a_onmouseover, a_onmouseup
 #define RESERVED4   a_datafld, a_dataformatas, a_datasrc
-#define XHTML       a_role, a_xmlbase, a_xmlns, a_xmllang, a_xmlspace, RDFa
+#define XHTML       a_role, ATOMIC, a_xmlspace, RDFa
 
 #define MATH1UNIQUE a_other
 #define MATH1SHARED a_class, a_id, a_style
@@ -101,8 +104,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MATH4CTABLE MATH3TABLE, MATH4PRES, MATH4CBASE
 #define MATH4CSTYLE MATH1FONT, MATH4PRES, MATH4CBASE
 #define MATH4CORE   MATH1SHARED, MATH4CCOMMON
-
-#define RDFa        a_about, a_content, a_datatype, a_inlist, a_prefix, a_property, a_rel, a_resource, a_rev, a_src, a_typeof, a_vocab
 
 #define SVG_ANADD   a_additive, a_accumulate
 #define SVG_ANAT    a_attributename, a_attributetype
@@ -172,9 +173,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define X2_COMMON   a_autofocus, a_datawild, a_edit, a_media, a_tabindex, X2_CORE, X2_HYPER, X2_EMBED, X2_MAP, X2_EVENT
 #define X2          X2_COMMON, COMMON4
 #define XHTML2      X2_COMMON, X2_SOLO
-#define COMMON5     a_accesskey, a_contenteditable, a_contextmenu, a_draggable, a_hidden, a_inert, a_irrelevant, a_item, a_itemid, a_itemprop, \
-                    a_itemref, a_itemscope, a_itemtype, a_numberonce, a_ref, a_registrationmark, a_spellcheck, a_subject, \
-                    a_onsuspend, a_ontimeupdate, a_template, a_ontoggle, a_translate, a_onvolumechange, a_onwaiting, BLUR, X2, ONDO
+#define COMMON5     a_accesskey, a_contenteditable, a_contextmenu, a_draggable, a_headingoffset, a_headingreset, a_hidden, \
+                    a_inert, a_irrelevant, a_item, a_itemid, a_itemprop, a_itemref, a_itemscope, a_itemtype, a_numberonce, \
+                    a_ref, a_registrationmark, a_spellcheck, a_subject, a_onsuspend, a_ontimeupdate, a_template, a_ontoggle, \
+                    a_translate, a_onvolumechange, a_onwaiting, BLUR, X2, ONDO
 #define COMMON50    a_generator_unable, COMMON5
 #define COMMON51    a_oncopy, a_oncut, a_onpaste, a_onwheel, COMMON50
 #define COMMON52    a_onauxclick, a_onloadend, COMMON51
@@ -239,6 +241,27 @@ element_init_t ei [] =
     { elem_array, { a_align, a_coldef, a_labels, a_ldelim, a_rdelim, a_unknown } },
     { elem_article, { a_active, a_pubdate, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_aside, { a_active, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_atom_author, { ATOMIC, a_unknown } },
+    { elem_atom_category, { a_atom_label, a_atom_scheme, a_atom_term, ATOMIC, a_unknown } },
+    { elem_atom_content, { a_atom_src, a_atom_type, ATOMIC, a_unknown } },
+    { elem_atom_contributor, { ATOMIC, a_unknown } },
+    { elem_atom_email, { ATOMIC, a_unknown } },
+    { elem_atom_entry, { ATOMIC, a_unknown } },
+    { elem_atom_feed, { a_xmlns, ATOMIC, a_unknown } },
+    { elem_atom_generator, { a_atom_uri, a_atom_version, ATOMIC, a_unknown } },
+    { elem_atom_icon, { ATOMIC, a_unknown } },
+    { elem_atom_id, { ATOMIC, a_unknown } },
+    { elem_atom_link, { a_atom_href, a_atom_hreflang, a_atom_length, a_atom_rel, a_atom_type, ATOMIC, a_unknown } },
+    { elem_atom_logo, { ATOMIC, a_unknown } },
+    { elem_atom_name, { ATOMIC, a_unknown } },
+    { elem_atom_published, { ATOMIC, a_unknown } },
+    { elem_atom_rights, { a_atom_type, ATOMIC, a_unknown } },
+    { elem_atom_source, { ATOMIC, a_unknown } },
+    { elem_atom_subtitle, { a_atom_type, ATOMIC, a_unknown } },
+    { elem_atom_summary, { a_atom_type, ATOMIC, a_unknown } },
+    { elem_atom_title, { a_atom_type, ATOMIC, a_unknown } },
+    { elem_atom_updated, { ATOMIC, a_unknown } },
+    { elem_atom_uri, { ATOMIC, a_unknown } },
     { elem_atop, { a_unknown } },
     { elem_au, { LANGCLASS3, a_unknown } },
     { elem_audio, { a_autobuffer, a_autoplay, a_controls, a_crossorigin, a_currenttime, a_duration, a_loop, a_loopcount, a_loopend, a_loopstart,
@@ -721,6 +744,49 @@ element_init_t ei [] =
     { elem_root, { a_lang, MATH3DEFCOM, a_unknown } },
     { elem_row, { a_unknown } },
     { elem_rp, { METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_rsl, { a_xmlns, a_unknown } },
+    { elem_rsl_amount, { a_rsl_currency, a_unknown } },
+    { elem_rsl_content, { a_rsl_encrypted, a_rsl_lastmod, a_rsl_server, a_rsl_url, a_unknown } },
+    { elem_rsl_copyright, { a_rsl_contactemail, a_rsl_contacturl, a_rsl_type, a_unknown } },
+    { elem_rsl_custom, { a_unknown } },
+    { elem_rsl_legal, { a_rsl_type, a_unknown } },
+    { elem_rsl_licence, { a_unknown } },
+    { elem_rsl_payment, { a_rsl_type, a_unknown } },
+    { elem_rsl_permits, { a_rsl_type, a_unknown } },
+    { elem_rsl_prohibits, { a_rsl_type, a_unknown } },
+    { elem_rsl_schema, { a_unknown } },
+    { elem_rsl_standard, { a_unknown } },
+    { elem_rsl_terms, { a_unknown } },
+    { elem_rss, { a_rss_version, a_xmlns, a_unknown } },
+    { elem_rss_author, { a_unknown } },
+    { elem_rss_category, { a_rss_domain, a_unknown } },
+    { elem_rss_cloud, { a_rss_domain, a_rss_path, a_rss_port, a_rss_protocol, a_rss_registerprocedure, a_unknown } },
+    { elem_rss_comments, { a_unknown } },
+    { elem_rss_copyright, { a_unknown } },
+    { elem_rss_description, { a_unknown } },
+    { elem_rss_day, { a_unknown } },
+    { elem_rss_docs, { a_unknown } },
+    { elem_rss_enclosure, { a_rss_length, a_rss_type, a_rss_url, a_unknown } },
+    { elem_rss_generator, { a_unknown } },
+    { elem_rss_guid, { a_rss_ispermalink, a_unknown } },
+    { elem_rss_height, { a_unknown } },
+    { elem_rss_hour, { a_unknown } },
+    { elem_rss_image, { a_unknown } },
+    { elem_rss_item, { a_unknown } },
+    { elem_rss_language, { a_unknown } },
+    { elem_rss_lastbuilddate, { a_unknown } },
+    { elem_rss_link, { a_unknown } },
+    { elem_rss_managingeditor, { a_unknown } },
+    { elem_rss_pubdate, { a_unknown } },
+    { elem_rss_rating, { a_unknown } },
+    { elem_rss_skipdays, { a_unknown } },
+    { elem_rss_skiphours, { a_unknown } },
+    { elem_rss_source, { a_rss_url, a_unknown } },
+    { elem_rss_textinput, { a_unknown } },
+    { elem_rss_title, { a_unknown } },
+    { elem_rss_ttl, { a_unknown } },
+    { elem_rss_webmaster, { a_unknown } },
+    { elem_rss_width, { a_unknown } },
     { elem_rt, { METADATA, LIVING_STANDARD, a_unknown } },
     { elem_rtc, { METADATA, LIVING_STANDARD, a_unknown } },
     { elem_ruby, { METADATA, LIVING_STANDARD, a_unknown } },
@@ -907,8 +973,7 @@ void add_element_attributes (nitpick& nits, const vstr_t& v)
             nits.pick (nit_config_attribute, es_warning, ec_init, "apologies, but " PROG " does not support adding attributes in non-standard namespaces (yet)\n");
         else
         {   ::std::string ns;
-            namespaces_ptr ptr;
-            const e_attribute a = attr :: parse (nuts, context.html_ver (), ptr, args.at (1), ns);
+            const e_attribute a = attr :: parse (nuts, context.html_ver (), namespaces_ptr (), args.at (1), ns);
             if (a == a_error)
             {   nits.pick (nit_config_attribute, es_error, ec_init, "the attribute '", args.at (1), "' is not recognised\n"); }
             else element_add_attribute (el.get (), a); } } }

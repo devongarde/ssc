@@ -40,7 +40,7 @@ vavm_t avm;
 
 #define AVM_INIT(X) \
     for (int index = 0; havt_##X [index].tag_ != elem_error; ++index) \
-    {   PRESUME (havt_##X [index].tag_ == elem_##X, __FILE__, __LINE__); \
+    {   PRESUME_X (havt_##X [index].tag_ == elem_##X, __FILE__, __LINE__, ::boost::lexical_cast < ::std::string > (havt_##X [index].tag_) + ", " + ::boost::lexical_cast < ::std::string > (elem_##X)); \
         avm.at (havt_##X [index].tag_).insert (avm_t::value_type (havt_##X [index].a_, &havt_##X [index])); }
 
 void avm_init (nitpick& )
@@ -48,7 +48,10 @@ void avm_init (nitpick& )
         havt_a [], havt_abbr [], havt_abbrev [], havt_above [], havt_abs [], havt_abstract [], havt_acronym [], havt_access [], havt_action [], havt_added [], havt_addeventlistener [], havt_address [],
             havt_altglyph [], havt_altglyphdef [], havt_altglyphitem [], havt_and [], havt_animate [], havt_animatecolour [], havt_animatemotion [], havt_animatetransform [], havt_animation [], havt_annotation [],
             havt_annotation_xml [], havt_applet [], havt_apply [], havt_approx [], havt_arccos [], havt_arccosh [], havt_arccot [], havt_arccoth [], havt_arccsc [], havt_arccsch [], havt_arcsec [], havt_arcsech [],
-            havt_arcsin [], havt_arcsinh [], havt_arctan [], havt_arctanh [], havt_area [], havt_arg [], havt_array [], havt_article [], havt_aside [], havt_audio [], havt_au [],
+            havt_arcsin [], havt_arcsinh [], havt_arctan [], havt_arctanh [], havt_area [], havt_arg [], havt_array [], havt_article [], havt_aside [], havt_atom_author [], havt_atom_category [],
+            havt_atom_content [], havt_atom_contributor [], havt_atom_email [], havt_atom_entry [], havt_atom_feed [], havt_atom_generator [], havt_atom_icon [], havt_atom_id [], havt_atom_link [],
+            havt_atom_logo [], havt_atom_name [], havt_atom_published [], havt_atom_rights [], havt_atom_source [], havt_atom_subtitle [], havt_atom_summary [], havt_atom_title [], havt_atom_updated [],
+            havt_atom_uri [], havt_audio [], havt_au [],
         havt_b [], havt_bb [], havt_banner [], havt_bar [], havt_base [], havt_basefont [], havt_bdi [], havt_bdo [], havt_below [], havt_bgsound [], havt_big [], havt_bind [], havt_blockquote [],
             havt_blockcode [], havt_body [], havt_box [], havt_bq [], havt_br [], havt_bt [], havt_button [], havt_bvar [], havt_byline [],
         havt_calendar [], havt_canvas [], havt_caption [], havt_card [], havt_cartesianproduct [], havt_cbytes [], havt_ceiling [], havt_cerror [], havt_changed [], havt_ci [], havt_circle [], havt_cite [],
@@ -86,10 +89,12 @@ void avm_init (nitpick& )
             havt_plus [], havt_polygon [], havt_polyline [], havt_power [], havt_pre [], havt_prefetch [], havt_preventdefault [], havt_primes [], havt_product [], havt_progress [], havt_prototype [],
             havt_prsubset [],
         havt_q [], havt_quote [], havt_quotient [],
-        havt_radialgradient [], havt_range [], havt_rationals [], havt_rb [], havt_real [], havt_reals [], havt_rect [], havt_refcontent [], havt_reln [], havt_rem [], havt_removed [], havt_removeeventlistener [],
-            havt_render [], havt_root [], havt_rp [], havt_rt [], havt_rtc [], havt_ruby [], havt_rule [], havt_rdf_1 [], havt_rdf_2 [], havt_rdf_3 [], havt_rdf_4 [], havt_rdf_5 [], havt_rdf_6 [],
-            havt_rdf_7 [], havt_rdf_8 [], havt_rdf_9 [], havt_rdf_about [], havt_rdf_abouteach [], havt_rdf_abouteachprefix [], havt_rdf_alt [], havt_rdf_bag [], havt_rdf_bagid [], havt_rdf_datatype [],
-            havt_rdf_description [], havt_rdf_id [], havt_rdf_li [], havt_rdf_nodeid [], havt_rdf_parsetype [], havt_rdf_rdf [], havt_rdf_resource [], havt_rdf_seq [],
+        havt_radialgradient [], havt_range [], havt_rationals [], havt_rb [], havt_rdf_1 [], havt_rdf_2 [], havt_rdf_3 [], havt_rdf_4 [], havt_rdf_5 [], havt_rdf_6 [], havt_rdf_7 [], havt_rdf_8 [],
+            havt_rdf_9 [], havt_rdf_about [], havt_rdf_abouteach [], havt_rdf_abouteachprefix [], havt_rdf_alt [], havt_rdf_bag [], havt_rdf_bagid [], havt_rdf_datatype [], havt_rdf_description [],
+            havt_rdf_id [], havt_rdf_li [], havt_rdf_nodeid [], havt_rdf_parsetype [], havt_rdf_rdf [], havt_rdf_resource [], havt_rdf_seq [], havt_real [], havt_reals [], havt_rect [],
+            havt_refcontent [], havt_reln [], havt_rem [], havt_removed [], havt_removeeventlistener [], havt_render [], havt_root [], havt_rp [], havt_rsl [], havt_rsl_amount [], havt_rsl_content [],
+            havt_rsl_copyright [], havt_rsl_legal [], havt_rsl_payment [], havt_rsl_permits [], havt_rsl_prohibits [], havt_rss [], havt_rss_category [], havt_rss_cloud [], havt_rss_enclosure [],
+            havt_rss_guid [], havt_rss_source [], havt_rt [], havt_rtc [], havt_ruby [], havt_rule [],
         havt_s [], havt_samp [], havt_scalarproduct [], havt_script [], havt_search [], havt_sdev [], havt_sec [], havt_sech [], havt_section [], havt_select [], havt_selectedcontent [], havt_selector [],
             havt_semantics [], havt_sep [], havt_separator [], havt_set [], havt_setdiff [], havt_shadow [], havt_share [], havt_sidebar [], havt_sin [], havt_sinh [], havt_slot [], havt_small [],
             havt_solidcolour [], havt_source [], havt_span [], havt_spot [], havt_sqrt [], havt_stop [], havt_stoppropagation [], havt_strike [], havt_strong [], havt_style [], havt_sub [], havt_subset [],
@@ -148,6 +153,27 @@ void avm_init (nitpick& )
     AVM_INIT (array);
     AVM_INIT (article);
     AVM_INIT (aside);
+    AVM_INIT (atom_author);
+    AVM_INIT (atom_category);
+    AVM_INIT (atom_content);
+    AVM_INIT (atom_contributor);
+    AVM_INIT (atom_email);
+    AVM_INIT (atom_entry);
+    AVM_INIT (atom_feed);
+    AVM_INIT (atom_generator);
+    AVM_INIT (atom_icon);
+    AVM_INIT (atom_id);
+    AVM_INIT (atom_link);
+    AVM_INIT (atom_logo);
+    AVM_INIT (atom_name);
+    AVM_INIT (atom_published);
+    AVM_INIT (atom_rights);
+    AVM_INIT (atom_source);
+    AVM_INIT (atom_subtitle);
+    AVM_INIT (atom_summary);
+    AVM_INIT (atom_title);
+    AVM_INIT (atom_updated);
+    AVM_INIT (atom_uri);
     AVM_INIT (audio);
     AVM_INIT (au);
     AVM_INIT (b);
@@ -545,6 +571,24 @@ void avm_init (nitpick& )
     AVM_INIT (rdf_rdf);
     AVM_INIT (rdf_resource);
     AVM_INIT (rdf_seq);
+    AVM_INIT (rsl);
+    AVM_INIT (rsl_amount);
+    AVM_INIT (rsl_content);
+    AVM_INIT (rsl_copyright);
+    AVM_INIT (rsl_legal);
+    AVM_INIT (rsl_payment);
+    AVM_INIT (rsl_permits);
+    AVM_INIT (rsl_prohibits);
+    AVM_INIT (rss);
+    AVM_INIT (rss_category);
+    AVM_INIT (rss_cloud);
+    AVM_INIT (rss_enclosure);
+    AVM_INIT (rss_guid);
+    AVM_INIT (rss_source);
+    AVM_INIT (rt);
+    AVM_INIT (rtc);
+    AVM_INIT (ruby);
+    AVM_INIT (rule);
     AVM_INIT (s);
     AVM_INIT (samp);
     AVM_INIT (scalarproduct);

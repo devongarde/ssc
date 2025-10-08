@@ -49,8 +49,8 @@ struct symbol_entry < html_version, e_mimetype > mimetype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "application/applefile", mime_application_applefile, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/ATF", mime_application_ATF, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/ATFX", mime_application_ATFX, ns_default, MIME_APPLICATION },
-    { { HTML_4_0 }, { HTML_UNDEF }, "application/atom+xml", mime_application_atom_xml, ns_default, MIME_APPLICATION | MIME_XML },
-    { { HTML_4_0 }, { HTML_UNDEF }, "application/atomcat+xml", mime_application_atomcat_xml, ns_default, MIME_APPLICATION | MIME_XML },
+    { { HTML_ATOM }, { HTML_UNDEF }, "application/atom+xml", mime_application_atom_xml, ns_default, MIME_APPLICATION | MIME_XML },
+    { { HTML_4_0 }, { HTML_UNDEF }, "application/atomcat+xml", mime_application_atomcat_xml, ns_atom, MIME_APPLICATION | MIME_XML },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/atomdeleted+xml", mime_application_atomdeleted_xml, ns_default, MIME_APPLICATION | MIME_XML },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/atomicmail", mime_application_atomicmail, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/atomsvc+xml", mime_application_atomsvc_xml, ns_default, MIME_APPLICATION | MIME_XML },
@@ -341,6 +341,7 @@ struct symbol_entry < html_version, e_mimetype > mimetype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "application/rpki-publication", mime_application_rpki_publication, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/rpki-roa", mime_application_rpki_roa, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/rpki-updown", mime_application_rpki_updown, ns_default, MIME_APPLICATION },
+    { { HTML_RSL }, { HTML_UNDEF }, "application/rsl+xml", mime_application_rsl_xml, ns_default, MIME_APPLICATION | MIME_XML },
     { { HTML_4_01 }, { HTML_UNDEF }, "application/rss+xml", mime_application_rss_xml, ns_default, MIME_APPLICATION | MIME_XML },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/rtf", mime_application_rtf, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/rtploopback", mime_application_rtploopback, ns_default, MIME_APPLICATION },
@@ -1790,6 +1791,7 @@ struct symbol_entry < html_version, e_mimetype > mimetype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "text/RED", mime_text_RED, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/rfc822-headers", mime_text_rfc822_headers, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/richtext", mime_text_richtext, ns_default, MIME_TEXT },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "text/rsl", mime_text_rsl, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/rtf", mime_text_rtf, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/rtp-enc-aescm128", mime_text_rtp_enc_aescm128, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/rtploopback", mime_text_rtploopback, ns_default, MIME_TEXT },
@@ -2029,6 +2031,8 @@ struct symbol_entry < html_version, e_mimetype > mimetype_symbol_table [] =
     // microsoft (mostly RFCs that IANA seem to have missed)
     { { HTML_4_0 }, { HTML_UNDEF }, "application/news-message-id", mime_application_news_message_id, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-httpd-asp", mime_application_x_httpd_asp, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL | MIME_PAGE },
+    // RSL
+    { { HTML_SEP25 }, { HTML_UNDEF }, "application/rsl+xml", mime_application_rsl, ns_rsl, MIME_APPLICATION | MIME_UNOFFICIAL | MIME_SCRIPT },
     // other
     { { HTML_5_0 }, { HTML_UNDEF }, "application/7z", mime_application_7z, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
     { { HTML_5_0 }, { HTML_UNDEF }, "video/x-flv", mime_video_x_flv, ns_default, MIME_VIDEO | MIME_UNOFFICIAL },

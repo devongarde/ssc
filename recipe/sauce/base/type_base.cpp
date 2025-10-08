@@ -93,6 +93,7 @@ enum_name_t enum_name [] =
     { t_actiontype, "action type" },
     { t_actiontype2, "action type 2" },
     { t_additive, "additive" },
+    { t_advar, "advar" },
     { t_aesf, "aesf" },
     { t_aesfs, "aesfs" },
     { t_align, "align" },
@@ -138,6 +139,8 @@ enum_name_t enum_name [] =
     { t_ass, "ass" },
     { t_as_units, "as units" },
     { t_at_pos, "at pos" },
+    { t_atom_mime, "atom mime" },
+    { t_atom_type, "atom type" },
     { t_attr, "attr" },
     { t_attributename, "attribute name" },
     { t_attributetype, "attribute type" },
@@ -271,6 +274,7 @@ enum_name_t enum_name [] =
     { t_coords, "coords" },
     { t_corp, "corp" },
     { t_cors, "cors" },
+    { t_countries, "countries" },
     { t_country, "country" },
     { t_create_parent, "create parent" },
     { t_crossout, "crossout" },
@@ -1377,6 +1381,7 @@ enum_name_t enum_name [] =
     { t_points, "points" },
     { t_popover, "popover" },
     { t_popovertargetaction, "popovertargetaction" },
+    { t_port, "port" },
     { t_position, "position" },
     { t_position_lcrtcb, "position" },
     { t_position_lcr_len, "position lcr len" },
@@ -1424,6 +1429,7 @@ enum_name_t enum_name [] =
     { t_prism_rcv_opt, "prism rcv opt" },
     { t_prism_role, "prism role" },
     { t_prism_tablet_ad, "prism tablet ad" },
+    { t_protocol, "protocol" },
     { t_prs_action, "prs action" },
     { t_prs_duty, "prs duty" },
     { t_propagate, "propagate" },
@@ -1490,9 +1496,12 @@ enum_name_t enum_name [] =
     { t_resolution, "resolution" },
     { t_result, "result" },
     { t_reveal_trans, "reveal trans" },
+    { t_rfc822, "rfc822" },
+    { t_rfc822_zone, "rfc822 zone" },
     { t_rgbafn, "rgba fn" },
     { t_rgbfn, "rgb fn" },
     { t_role, "role" },
+    { t_robotic, "robotic" },
     { t_roles, "roles" },
     { t_roman_dsc, "roman dsc" },
     { t_root_url, "root url" },
@@ -1501,6 +1510,19 @@ enum_name_t enum_name [] =
     { t_rotate_upright, "rotate upright" },
     { t_row_column, "row column" },
     { t_rowscols, "rows cols" },
+    { t_rsl_copyright, "rsl copyright" },
+    { t_rsl_disclaimer, "rsl disclaimer" },
+    { t_rsl_legal, "rsl legal" },
+    { t_rsl_payment, "rsl payment" },
+    { t_rsl_permits, "rsl permits" },
+    { t_rsl_type, "rsl type" },
+    { t_rsl_usage, "rsl usage" },
+    { t_rsl_usages, "rsl usages" },
+    { t_rsl_user, "rsl user" },
+    { t_rsl_users, "rsl users" },
+    { t_rsl_warranty, "rsl warranty" },
+    { t_rss_protocol, "rss protocol" },
+    { t_rss_version, "rss version" },
     { t_rsvp, "rsvp" },
     { t_rules, "rules" },
     { t_safe_unsafe, "safe unsafe" },
@@ -1515,6 +1537,7 @@ enum_name_t enum_name [] =
     { t_scrolling, "scrolling" },
     { t_second, "second" },
     { t_semitone, "semitone" },
+    { t_security, "security" },
     { t_setback_offset, "setback offset" },
     { t_settype, "settype" },
     { t_severity, "severity" },
@@ -1704,6 +1727,8 @@ enum_name_t enum_name [] =
     { t_urifn_str, "uri str" },
     { t_urifn_xy, "uri fn xy" },
     { t_url, "url" },
+    { t_url_9309, "url 9309" },
+    { t_url_9309s, "url 9309s" },
     { t_url_n, "url n" },
     { t_urls, "urls" },
     { t_urltemplate, "url template" },
@@ -1753,6 +1778,7 @@ enum_name_t enum_name [] =
     { t_vunit, "v unit" },
     { t_vunits, "v units" },
     { t_wallclock, "wall clock" },
+    { t_wacky, "wacky" },
     { t_wanted, "wanted" },
     { t_week, "week" },
     { t_weekday_english_long, "weekday english long" },
@@ -1821,9 +1847,9 @@ void type_name_init (nitpick& nits)
     for (int i = 0; GSL_AT (enum_name, i).t_ != t_error; ++i)
     {   vtn.at (GSL_AT (enum_name, i).t_) = GSL_AT (enum_name, i).name_;
         mty.insert (msid_t::value_type (GSL_AT (enum_name, i).name_, GSL_AT (enum_name, i).t_)); }
-    for (int i = 0; i < t_error; ++i)
+    for (int i = 1; i < t_error; ++i)
         if (vtn.at (i).empty ())
-            nits.pick (nit_type_error, es_error, ec_program, "Missing type name at ", ::boost::lexical_cast < ::std::string > (i)); }
+            nits.pick (nit_type_error, es_error, ec_program, "Missing type name at ", ::boost::lexical_cast < ::std::string > (i), " (after ", vtn.at (i-1), ")"); }
 
 ::std::string type_name (const e_type e)
 {   PRESUME (e <= t_error, __FILE__, __LINE__);

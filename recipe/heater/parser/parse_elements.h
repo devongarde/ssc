@@ -36,10 +36,10 @@ class elements_node
     void repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, element_node* ancestor, const brac_element_ket& ket, const bool closing);
     void hook_up (element_node* current, element_node*& previous, element_node*& parent, const bool closure, const bool open);
     element_node* insert_closure (const html_version& v,  element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const bool presumed);
-    element_node* insert_non_closure (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const bool open);
+    element_node* insert_non_closure (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const bool open, const e_namespace autodeclare);
     element_node* insert_closed (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id);
-    element_node* insert_open (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id);
-    element_node* insert (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& idz);
+    element_node* insert_open (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const e_namespace autodeclare);
+    element_node* insert (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const e_namespace autodeclare);
     void knitting (element_node& current);
 public:
     DEFAULT_CONSTRUCTORS (elements_node);

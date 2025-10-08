@@ -8,7 +8,7 @@ PASS ../toast/other/ssi/ssi-comment.html
 
 PASS ../toast/other/ssi/ssi-config.html
 2 naughty_lang
-23 unrecognised_value ssi_syntax attribute_assignment unrecognised_value unrecognised_value unrecognised_value ssi_syntax attribute_assignment unrecognised_value unrecognised_value
+23 unrecognised_value ssi_syntax unrecognised_value unrecognised_value unrecognised_value unrecognised_value ssi_syntax unrecognised_value unrecognised_value unrecognised_value
 
 PASS ../toast/other/ssi/ssi-if.html
 2 naughty_lang

@@ -154,8 +154,9 @@ public:
     {   ::std::string res (base_name ());
         if (! unknown_)
             if (ns_req || (ns_ != INIT))
-                if (colonise) res = namespace_name (ns_) + ":" + res;
-                else res = namespace_name (ns_) + res;
+                if (res.find (':') == ::std::string::npos)
+                    if (colonise) res = namespace_name (ns_) + ":" + res;
+                    else res = namespace_name (ns_) + res;
         return res; }
     static VALUE starts_with (const ::std::string& s, ::std::string::size_type* ends_at = nullptr)
     {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);

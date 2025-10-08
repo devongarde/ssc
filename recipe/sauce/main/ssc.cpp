@@ -121,7 +121,6 @@ void init (nitpick& nits)
     microdata_init (nits);
     url::init (nits);
     wotsit_init (nits);
-    fetch_init ();
     server_t::init (nits);
     aria_init ();
 #ifdef DEBUG
@@ -135,7 +134,6 @@ void init (nitpick& nits)
 int ciao ()
 {   spell_free ();
     server_t::teardown ();
-    fetch_done ();
     return VALID_RESULT; }
 
 int cycle_finish ()
@@ -369,10 +367,13 @@ int cycle (nitpick& nits, const int argc, char** argv)
         if (context.output_time ().empty ()) macro -> set (nm_output_time, context.started ());
         else macro -> set (nm_output_time, context.output_time ());
         if (! macro -> is_template_loaded ()) macro -> load_template (nuts, html_default);
+        macro -> set (nm_ssc_update, context.update_info ());
         if ((context.todo () == do_simple) || context.yggdrisil ())
         {   if (context.yggdrisil ()) context.os () -> console (SIMPLE_TITLE);
             else context.os () -> console (FULL_TITLE);
-            nuts.merge (nits);
+            if (! context.update_info ().empty ())
+                context.os () -> console (context.update_info () + "\n");
+            nuts.merge (nits);                                       
             macro -> dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
             context.os () -> console (context.domsg ());
             context.os () -> aborting ();

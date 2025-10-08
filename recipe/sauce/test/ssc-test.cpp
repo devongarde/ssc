@@ -539,8 +539,7 @@ int check_exports (vstr_t& correct_export, vstr_t& created_export)
     return res; }
 
 bool compare_stats (const vstr_t& expected, const vstr_t& got, const ::std::string& name)
-{   if (expected.empty ())
-    {   /* if (verbose) ::std::cout << name << " has no stats\n"; */ return false; }
+{   if (expected.empty ()) return false;
     if (got.empty ())
     {   if (verbose) ::std::cout << name << " has unexpected stats\n"; return false; }
     vstr_t::const_iterator master = expected.cbegin ();

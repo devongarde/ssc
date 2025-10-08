@@ -49,7 +49,7 @@ bool decode_required_page (nitpick& nits, required_t& rq)
                 if (rq.rq_ == rqp_none) rq.rq_page_ = a.at (2); }
             if (a.size () > 3)
             {   if (! a.at (3).empty ())
-                {   const elem e (nits, html_default, namespaces_ptr (), a.at (3), false);
+                {   const elem e (nits, html_default, namespaces_ptr (), a.at (3), false, nullptr);
                     if (! e.invalid ()) rq.e_ = e.get ();
                     else res = false; }
                 if (a.size () > 4)

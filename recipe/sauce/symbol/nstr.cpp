@@ -20,13 +20,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "symbol/nstr.h"
+#include "main/args.h"
 
 // some from:
 // https://www.w3.org/TR/ttml-imsc1.0.1/#namespaces
 // https://www.informit.com/articles/article.aspx?p=31837&seqNum=10
 
 n_string_entry < e_namespace, 3 > namespace_name_entries [] =
-{   { { XHTML_1_0 }, { HTML_UNDEF }, ns_bibo, 0, { "bibo", HTTP PURL_ORG "g/ontology/bibo/", "bibliographic ontology" } }, // https://github.com/structureddynamics/Bibliographic-Ontology-BIBO/blob/master/bibo.owl
+{   { { HTML_ATOM }, { HTML_UNDEF }, ns_atom, NS_PRESUME, { NS_ATOM, NSL_ATOM, "feed validation service" } },
+    { { XHTML_1_0 }, { HTML_UNDEF }, ns_bibo, 0, { "bibo", HTTP PURL_ORG "g/ontology/bibo/", "bibliographic ontology" } }, // https://github.com/structureddynamics/Bibliographic-Ontology-BIBO/blob/master/bibo.owl
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_cc, 0, { "cc", HTTP CC "/ns#", "creative commons" } },
     { { HTML_CNT }, { HTML_UNDEF }, ns_cnt, 0, { "cnt", HTTP_W3 "/TR/Content-in-RDF/", "content in RDF" } },
     { { HTML_CNT }, { HTML_UNDEF }, ns_cnt, 0, { "cnt", HTTP_W3 "/2011/content#", "content in RDF" } },
@@ -126,6 +128,13 @@ n_string_entry < e_namespace, 3 > namespace_name_entries [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_rdf, 0, { "rdf", HTTP_W3 "/1999/02/22-rdf-syntax-ns#", "resource description framework" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_rdfa, 0, { "rdfa", HTTP_W3 "/ns/rdfa#", "Resource Description Framework in Attributes" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_rdfs, 0, { "rdfs", HTTP_W3 "/2000/01/rdf-schema#", "Resource Description Framework Schema" } },
+    { { HTML_RSL }, { HTML_UNDEF }, ns_rsl, NS_PRESUME, { NS_RSL, NSLS_RSL, "Really Simple Licensing" } },
+    { { HTML_RSS }, { HTML_UNDEF }, ns_rss, NS_PRESUME, { NS_RSS, NSL_RSS, "Really Simple Syndication" } },
+    { { HTML_RSS }, { HTML_UNDEF }, ns_rss, NS_PRESUME, { NS_RSS, NSLS_RSS, "Really Simple Syndication" } },
+    { { HTML_RSS }, { HTML_UNDEF }, ns_rss, 0, { NS_RSS, NSL_RSS "modules/content/", "Really Simple Syndication" } },
+    { { HTML_RSS }, { HTML_UNDEF }, ns_rss, 0, { NS_RSS, NSLS_RSS "modules/content/", "Really Simple Syndication" } },
+    { { HTML_RSS }, { HTML_UNDEF }, ns_rss, 0, { NS_RSS, NSL_RSS "modules/syndication/", "Really Simple Syndication" } },
+    { { HTML_RSS }, { HTML_UNDEF }, ns_rss, 0, { NS_RSS, NSLS_RSS "modules/syndication/", "Really Simple Syndication" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_saxon, 0, { "saxon", "http://icl.com/saxon", "Saxon XSLT Extensions" } }, // http://saxon.sourceforge.net/saxon6.5/extensions.html
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_smil, 0, { "smil", HTTP_W3 "/2001/SMIL20", "Synchronized Multimedia Integration Language" } },
     { { HTML_JAN13 }, { HTML_UNDEF }, ns_smpte, 0, { "smpte", "http://www.smpte-ra.org/schemas/2052-1/2013/smpte-tt", "Society of Motion Pictures and Television Engineers" } },
@@ -225,6 +234,7 @@ n_string_entry < e_protocol, 2 > protocol_name_entries [] =
     { { HTML_TAGS }, { HTML_UNDEF }, pr_dtn, 0, { "dtn", "disruption tolerant networking" } },
     { { HTML_TAGS }, { HTML_UNDEF }, pr_dvb, 0, { "dvb", "digital video broadcasting" } },
     { { HTML_TAGS }, { HTML_UNDEF }, pr_ed2k, 0, { "ed2k", "eDonkey 2000 resources" } },
+    { { HTML_TAGS }, { HTML_UNDEF }, pr_email, 0, { "email", "email" } },
     { { HTML_TAGS }, { HTML_UNDEF }, pr_example, 0, { "example", "example" } },
     { { HTML_TAGS }, { HTML_UNDEF }, pr_facetime, 0, { "facetime", "apple videoconference" } },
     { { HTML_TAGS }, { HTML_UNDEF }, pr_fax, 0, { "fax", "telefacsimile" } },
@@ -441,8 +451,8 @@ n_string_entry < e_ontology, 3 > ontology_name_entries [] =
     { { HTML_CNT }, { HTML_UNDEF }, s_cnt, 0, { "cnt", HTTPS_W3 "/TR/Content-in-RDF/", "content in RDF" } },
     { { HTML_CNT }, { HTML_UNDEF }, s_cnt, 0, { "cnt", HTTP_W3 "/2011/content#", "content in RDF" } },
     { { HTML_CNT }, { HTML_UNDEF }, s_cnt, 0, { "cnt", HTTPS_W3 "/2011/content#", "content in RDF" } },
-    { { HTML_CONTENT }, { HTML_UNDEF }, s_content, 0, { "content", HTTP PURL_ORG "/rss/1.0/modules/content/", "content (purl)" } },
-    { { HTML_CONTENT }, { HTML_UNDEF }, s_content, 0, { "content", HTTPS PURL_ORG "/rss/1.0/modules/content/", "content (purl)" } },
+    { { HTML_CONTENT }, { HTML_UNDEF }, s_content, 0, { "content", NSL_RSS "modules/content/", "RSS content" } },
+    { { HTML_CONTENT }, { HTML_UNDEF }, s_content, 0, { "content", NSLS_RSS "modules/content/", "RSS content" } },
     { { HTML_CROISSANT_0_2 }, { HTML_UNDEF }, s_croissant, 0, { "cr", HTTP "mlcommons.org/croissant/", "croissant dataset ontology" } },
     { { HTML_CROISSANT_0_2 }, { HTML_UNDEF }, s_croissant, 0, { "cr", HTTPS "mlcommons.org/croissant/", "croissant dataset ontology" } },
     { { HTML_ADOBE }, { HTML_UNDEF }, s_crs2, 0, { "crs", HTTP ADOBE_COM "/namespaces/camera-raw-settings/1.0/", "camera raw" } },
@@ -865,11 +875,17 @@ protocol_names_t protocol_names;
 ontology_names_t ontology_names;
 vsh_t rdfa_context;
 
+typedef n_string_table < e_namespace, ns_error, NAMESPACE_COUNT, 2 > namespace_names_t;
+typedef n_string_table < e_protocol, pr_error, PROTOCOL_COUNT, 1 > protocol_names_t;
+typedef n_string_table < e_ontology, s_error, ONTOLOGY_COUNT, 2 > ontology_names_t;
+extern namespace_names_t namespace_names, empty_namespace_names;
+extern protocol_names_t protocol_names;
+extern ontology_names_t ontology_names;
+
 void nstr_init (nitpick& nits)
 {   namespace_names.init (nits, &namespace_name_entries [0]);
     protocol_names.init (nits, &protocol_name_entries [0]);
     ontology_names.init (nits, &ontology_name_entries [0]); 
-
     for (::std::size_t u = 1; u < s_error; ++u)
         if ((ontology_names.flags (static_cast < e_ontology > (u)) & ONTOLOGY_PREFIX_CONTEXT) == ONTOLOGY_PREFIX_CONTEXT)
             rdfa_context.insert (static_cast < e_ontology > (u)); }

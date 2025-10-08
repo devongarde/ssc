@@ -35,6 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "coop/kew.h"
 #include "coop/knickers.h"
 #include "webpage/vtt.h"
+#include "parser/ads.h"
 
 external directory::external_;
 
@@ -251,11 +252,16 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
                 try
                 {   bool borked;
                     ::std::string content (read_text_file (nits, p, borked));
-                    if (! borked)
-                    {   const bool jld = is_jsonld (p.string ());
-                        if (jld) parse_json_ld (nits, context.html_ver (), content);
-                        if (! silenced) ss << nits.review (mac);
-                        if (! jld)
+                    if (! borked) // this next bit is a mess, sort it out
+                        if (is_jsonld (p.string ()))
+                            parse_json_ld (ss, mac, nits, context.html_ver (), content);
+                        else if (is_robotic (p.string ()))
+                            context.robbie ().parse (ss, mac, nits, sp, content, this);
+                        else if (is_sec_txt (p.string ()))
+                            context.security ().parse (ss, mac, nits, sp, content, this);
+                        else if (is_ads (p.string ()))
+                            context.con ().parse (ss, mac, nits, sp, content);
+                        else
                         {   page web (file, last_write (ndx), content, ndx, this);
                             try
                             {   if (web.invalid ())
@@ -277,7 +283,7 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
                                     web.css ().accumulate (nits); }
                                 web.cleanup (); }
                             catch (...)
-                            {   web.cleanup (); throw; } } } }
+                            {   web.cleanup (); throw; } } }
                 catch (const ::std::system_error& e)
                 {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("System error ") + e.what () + " when parsing " + sp); }
                 catch (const ::std::exception& e)
@@ -501,11 +507,29 @@ bool has_extension (const ::std::string& name, const sstr_t& extensions)
     if (ext.at (0) == '.') return be_it_there (extensions, ext.substr (1));
     return be_it_there (extensions, ext); }
 
+bool is_ads (const ::std::string& name)
+{   return ::boost::filesystem::path (name).filename ().string () == "ads.txt"; }
+
+bool is_atomic (const ::std::string& name)
+{   return has_extension (name, context.atomic_ext ()); }
+
 bool is_css (const ::std::string& name)
 {   return has_extension (name, context.css_extension ()); }
 
 bool is_jsonld (const ::std::string& name)
 {   return has_extension (name, context.jsonld_extension ()); }
+
+bool is_robotic (const ::std::string& name)
+{   return ::boost::filesystem::path (name).filename ().string () == "robots.txt"; }
+
+bool is_rsl (const ::std::string& name)
+{   return has_extension (name, context.rsl_ext ()); }
+
+bool is_rss (const ::std::string& name)
+{   return has_extension (name, context.rss_ext ()); }
+
+bool is_sec_txt (const ::std::string& name)
+{   return ::boost::filesystem::path (name).filename ().string () == "security.txt"; }
 
 bool is_vtt (const ::std::string& name)
 {   return has_extension (name, context.vtt_extension ()); }
@@ -513,8 +537,8 @@ bool is_vtt (const ::std::string& name)
 bool is_webpage (const ::std::string& name)
 {   return has_extension (name, context.extensions ()); }
 
-bool is_verifiable_file (const ::std::string& name)
-{   return is_webpage (name) || is_css (name) || is_jsonld (name) || is_vtt (name); }
+bool is_verifiable_file (const ::std::string& name) // I must do better here
+{   return is_webpage (name) || is_css (name) || is_vtt (name) || is_jsonld (name) || is_robotic (name) || is_rss (name) || is_atomic (name) || is_rsl (name) || is_sec_txt (name) || is_ads (name); }
 
 bool directory::shadow_folder (nitpick& nits) const
 {   PRESUME (context.shadow_any (), __FILE__, __LINE__);

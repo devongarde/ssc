@@ -1,0 +1,14 @@
+# gosh, a comment
+
+user-agent: tiddles
+disallow: /foo
+disallow: /baa
+disallow: /robots.txt
+
+user-agent: *
+disallow: /foo
+disallow: /baa
+disallow: *.gif$
+allow: /index.html?baz=quz
+allow: /foo/baa.html?%E3%83%84
+allow: /foo/*.shtml?%E3%83%84

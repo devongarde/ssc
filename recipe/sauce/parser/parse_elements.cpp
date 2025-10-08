@@ -192,7 +192,7 @@ element_node* elements_node::insert_family_tree (const html_version& v, element_
     PRESUME (current -> box () == this, __FILE__, __LINE__);
     return current; }
 
-element_node* elements_node::insert_non_closure (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const bool open)
+element_node* elements_node::insert_non_closure (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const bool open, const e_namespace autodeclare)
 {   PRESUME (parent != nullptr, __FILE__, __LINE__);
     element_node* current = nullptr;
     element_node* ancestor = find_permitted_parent (v, id, parent);
@@ -216,13 +216,13 @@ element_node* elements_node::insert_non_closure (const html_version& v, element_
     current = & ven_.back ();
     VERIFY_NOT_NULL (current, __FILE__, __LINE__);
     hook_up (current, previous, parent, false, open);
-    current -> parse_attributes (v, ket.eofe_, ket.end_);
+    current -> parse_attributes (v, ket.eofe_, ket.end_, autodeclare);
     PRESUME (current -> box () == this, __FILE__, __LINE__);
     PRESUME (current -> attributes ().box () == current, __FILE__, __LINE__);
     return current; }
 
 element_node* elements_node::insert_closed (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id)
-{   element_node* current = insert_non_closure (v, previous, parent, ket, id, false);
+{   element_node* current = insert_non_closure (v, previous, parent, ket, id, false, ns_default);
     if (current != nullptr)
     {   current -> closed_ = true;
         if (context.copy () > c_none)
@@ -250,16 +250,16 @@ element_node* elements_node::insert_closed (const html_version& v, element_node*
                 default : break; } }
     return current; }
 
-element_node* elements_node::insert_open (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id)
-{   return insert_non_closure (v, previous, parent, ket, id, true); }
+element_node* elements_node::insert_open (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const e_namespace autodeclare)
+{   return insert_non_closure (v, previous, parent, ket, id, true, autodeclare); }
 
-element_node* elements_node::insert (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id)
+element_node* elements_node::insert (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const e_namespace autodeclare)
 {   if (ket.closed_ || id.is_unclosed (v)) return insert_closed (v, previous, parent, ket, id);
     if (id.is_closed (v))
     {   if (v.xhtml ()) ket.nits_.pick (nit_xhtml_missing_slash, es_error, ec_element, "in ", v.report (), ", closed elements must use the <... /> syntax");
         return insert_closed (v, previous, parent, ket, id); }
     if (ket.closure_) return insert_closure (v, previous, parent, ket, id, false);
-    return insert_open (v, previous, parent, ket, id); }
+    return insert_open (v, previous, parent, ket, id, autodeclare); }
 
 void elements_node::parse (const html_version& v, bracs_ket& elements)
 {   ven_.clear ();
@@ -270,12 +270,12 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
     if (context.rdfa ()) document -> prepare_prefixes ();
     element_node* parent = document;
     element_node* previous = nullptr;
-    elem tst;
     for (auto e : elements.ve_)
     {   elem id;
+        e_namespace autodeclare = ns_default;
         bool bad_version = false;
         VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
-        const html_version ver (parent -> version_);
+        html_version ver (parent -> version_);
         switch (e.status_)
         {   case bk_asp :       id.reset (elem_faux_asp); break;
             case bk_cdata :     id.reset (elem_faux_cdata); break;
@@ -286,21 +286,26 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
                                 id.reset (elem_faux_char); break;
             case bk_doctype :   id.reset (elem_faux_doctype); break;
             case bk_node :      {   ::std::string mc (::std::string (e.start_, e.eofe_));
-                                    if (e.eofe_ < e.end_) attributes_node::process_attributes (e.nits_, ver, parent, e.eofe_, e.end_, e.line_);
-                                    tst.reset (e.nits_, html_0, parent -> namespaces (), mc, e.closure_);
-                                    id.reset (e.nits_, ver, parent -> namespaces (), mc, e.closure_);
+                                    nitpick nuts;
+                                    id.reset (nuts, ver, parent -> namespaces (), mc, e.closure_, &autodeclare);
                                     if (id.unknown ())
-                                    {   nitpick nuts;
-                                        tst.reset (nuts, html_0, parent -> namespaces (), mc, e.closure_);
+                                    {   const elem tst (nuts, html_0, parent -> namespaces (), mc, e.closure_, nullptr);
                                         bad_version = ! tst.unknown (); } 
-                                    else if (ver.xhtml ())
+                                    else if (autodeclare != ns_default)
+                                        if (namespace_names.from (autodeclare) > ver)
+                                            ver = namespace_names.from (autodeclare);
+                                    if (e.eofe_ < e.end_) attributes_node::process_attributes (e.nits_, ver, parent, e.eofe_, e.end_, e.line_, autodeclare);
+                                    id.reset (e.nits_, ver, parent -> namespaces (), mc, e.closure_, &autodeclare);
+                                    if (ver.xhtml () && ! id.unknown ())
                                     {   const ::std::string& naam (id.name ());
                                         if (parent -> version_.xhtml () && (naam != mc))
                                             if (mc.find (':') == ::std::string::npos)
                                                 if ((id.flags () & EP_NO_WHINGE) == 0)
                                                     if (naam.find_first_of (UPPERCASE) != ::std::string::npos)
-                                                        e.nits_.pick (nit_xhtml_element_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "element names must match case in ", v.report ());
-                                                    else e.nits_.pick (nit_xhtml_element_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "standard element names must be in lower case in ", v.report ()); } }
+                                                        e.nits_.pick (nit_xhtml_element_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element,
+                                                                        quote (mc), ": element names must match case in ", v.report ());
+                                                    else e.nits_.pick (nit_xhtml_element_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element,
+                                                                        quote (mc), ": standard element names must be in lower case in ", v.report ()); } }
                                 break;
             case bk_num :       id.reset (elem_faux_code); break;
             case bk_php :       id.reset (elem_faux_php); break;
@@ -329,7 +334,7 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
             if (v.xhtml () && compare_no_case (s, "base"))
                 e.nits_.pick (nit_requires_xhtml, es_comment, ec_element, "in XHTML, use <xml:base>, not <base>"); }
 
-        insert (ver, previous, parent, e, id); }
+        insert (ver, previous, parent, e, id, autodeclare); }
     report_missing_closures (v, parent, document);
     if (context.tell (es_splurge))
     {   VERIFY_NOT_NULL (document, __FILE__, __LINE__);

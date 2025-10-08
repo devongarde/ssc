@@ -108,6 +108,9 @@ PASS ../toast/living/oct25/4.3.11-8.html
 4 inserted_missing_parent inefficient h1_h6
 5 use_quote_code
 
+PASS ../toast/living/oct25/4.3.11-9.html
+2 inefficient
+
 PASS ../toast/living/oct25/4.3.12-1.html
 3 use_quote_code
 

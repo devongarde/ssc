@@ -237,6 +237,9 @@ template < > class type_master < t_accrual_policy > : public ENUM_N (accrual_pol
 template < > struct type_master < t_action > : ENUM_N (action)
 { using ENUM_N (action) :: enum_n; };
 
+template < > struct type_master < t_advar > : ENUM_N (advar)
+{ using ENUM_N (advar) :: enum_n; };
+
 template < > struct type_master < t_align3 > : ENUM_N (align3)
 { using ENUM_N (align3) :: enum_n; };
 
@@ -963,8 +966,32 @@ template < > struct type_master < t_rendering_in_tents > : ENUM_N (rendering_in_
 template < > struct type_master < t_report > : enum_n < t_report, e_report, e_nit_macro, nm_none >
 { using enum_n < t_report, e_report, e_nit_macro, nm_none > :: enum_n; };
 
+template < > struct type_master < t_rfc822_zone > : ENUM_N (rfc822_zone)
+{ using ENUM_N (rfc822_zone) :: enum_n; };
+
+template < > struct type_master < t_robotic > : ENUM_N (robotic)
+{ using ENUM_N (robotic) :: enum_n; };
+
 template < > struct type_master < t_role > : enum_n < t_role, e_aria_role >
 { using enum_n < t_role, e_aria_role > :: enum_n; };
+
+template < > struct type_master < t_rsl_disclaimer > : ENUM_N (rsl_disclaimer)
+{ using ENUM_N (rsl_disclaimer) :: enum_n; };
+
+template < > struct type_master < t_rsl_payment > : ENUM_N (rsl_payment)
+{ using ENUM_N (rsl_payment) :: enum_n; };
+
+template < > struct type_master < t_rsl_usage > : ENUM_N (rsl_usage)
+{ using ENUM_N (rsl_usage) :: enum_n; };
+
+template < > struct type_master < t_rsl_user > : ENUM_N (rsl_user)
+{ using ENUM_N (rsl_user) :: enum_n; };
+
+template < > struct type_master < t_rsl_warranty > : ENUM_N (rsl_warranty)
+{ using ENUM_N (rsl_warranty) :: enum_n; };
+
+template < > struct type_master < t_rss_version > : ENUM_N (rss_version)
+{ using ENUM_N (rss_version) :: enum_n; };
 
 template < > struct type_master < t_rules > : ENUM_N (rules)
 { using ENUM_N (rules) :: enum_n; };
@@ -974,6 +1001,9 @@ template < > struct type_master < t_sandbox > : ENUM_N (sandbox)
 
 template < > struct type_master < t_scei > : ENUM_N (scei)
 { using ENUM_N (scei) :: enum_n; };
+
+template < > struct type_master < t_security > : ENUM_N (security)
+{ using ENUM_N (security) :: enum_n; };
 
 template < > struct type_master < t_severity > : ENUM_N (severity)
 { using ENUM_N (severity) :: enum_n; };

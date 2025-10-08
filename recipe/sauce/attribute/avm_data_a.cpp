@@ -376,6 +376,107 @@ hav_t havt_aside [] =
     STANDARD_HTML5_ATTRIBUTES (elem_aside),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_atom_author [] =
+{   { { HTML_UNDEF }, { HTML_UNDEF }, elem_atom_author, a_unknown },
+    ATOM_STANDARD_ATTRIBUTES (elem_atom_author),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_category [] =
+{   { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_category, a_atom_label },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_category, a_atom_scheme },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_category, a_atom_term },
+    ATOM_STANDARD_ATTRIBUTES (elem_atom_category),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_content [] =
+{   { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_content, a_atom_src },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_content, a_atom_type },
+    ATOM_STANDARD_ATTRIBUTES (elem_atom_content),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_contributor [] =
+{   ATOM_STANDARD_ATTRIBUTES (elem_atom_contributor),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_email [] =
+{   ATOM_STANDARD_ATTRIBUTES (elem_atom_email),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_entry [] =
+{   ATOM_STANDARD_ATTRIBUTES (elem_atom_entry),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_feed [] =
+{   ATOM_STANDARD_ATTRIBUTES (elem_atom_feed),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_generator [] =
+{   { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_generator, a_atom_uri },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_generator, a_atom_version },
+    ATOM_STANDARD_ATTRIBUTES (elem_atom_generator),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_icon [] =
+{   ATOM_STANDARD_ATTRIBUTES (elem_atom_icon),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_id [] =
+{   ATOM_STANDARD_ATTRIBUTES (elem_atom_id),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_link [] =
+{   { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_link, a_atom_href },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_link, a_atom_hreflang },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_link, a_atom_length },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_link, a_atom_rel },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_link, a_atom_type },
+    ATOM_STANDARD_ATTRIBUTES (elem_atom_link),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_logo [] =
+{   ATOM_STANDARD_ATTRIBUTES (elem_atom_logo),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_name [] =
+{   ATOM_STANDARD_ATTRIBUTES (elem_atom_name),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_published [] =
+{   ATOM_STANDARD_ATTRIBUTES (elem_atom_published),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_rights [] =
+{   { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_rights, a_atom_type },
+    ATOM_STANDARD_ATTRIBUTES (elem_atom_rights),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_source [] =
+{   ATOM_STANDARD_ATTRIBUTES (elem_atom_source),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_subtitle [] =
+{   { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_subtitle, a_atom_type },
+    ATOM_STANDARD_ATTRIBUTES (elem_atom_subtitle),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_summary [] =
+{   { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_summary, a_atom_type },
+    ATOM_STANDARD_ATTRIBUTES (elem_atom_summary),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_title [] =
+{   { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_title, a_atom_type },
+    ATOM_STANDARD_ATTRIBUTES (elem_atom_title),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_updated [] =
+{   ATOM_STANDARD_ATTRIBUTES (elem_atom_updated),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_atom_uri [] =
+{   ATOM_STANDARD_ATTRIBUTES (elem_atom_uri),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_audio [] =
 {   { { HTML_JUL09 }, { HTML_JUN10 }, elem_audio, a_autobuffer },
     { { HTML_JUL07 }, { HTML_UNDEF }, elem_audio, a_autoplay },

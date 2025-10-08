@@ -34,5 +34,5 @@ PASS ../toast/stats/detail/md-ref.html
 
 GRAND
 Version:
-    HTML-5/20250801/SVG-2.1/MathML-core/CSS-1/WhatWG: 6 times
+    HTML-5/20251001/SVG-2.1/MathML-core/CSS-1/WhatWG: 6 times
 ===

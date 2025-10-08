@@ -110,11 +110,11 @@ PASS ../toast/HTML/5.2/html5-bad.html
 124 bad_id
 127 bad_for label_parentage label_parentage
 130 mime mime
-131 bad_datetime
-133 bad_datetime
-134 bad_datetime
-136 bad_datetime
-138 bad_datetime
+131 bad_year
+133 bad_year
+134 time_char
+136 bad_zone
+138 time_char
 141 sunk minmax
 142 minmax minmax minmax
 143 sunk minmax

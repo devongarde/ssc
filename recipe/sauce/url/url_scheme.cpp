@@ -27,8 +27,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 #include "css/flags.h"
 
-#define COLON_SLASH_SLASH "://"
-
 bool is_authority_local (const ::std::string& authority)
 {   if (authority.empty ()) return true;
     return be_it_there (context.site (), authority); }

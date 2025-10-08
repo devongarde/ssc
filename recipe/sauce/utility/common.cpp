@@ -553,3 +553,21 @@ bool is_plain_old_decimal (const ::std::string& ss)
     if ((l < llen) || (r < rlen))
         return res + report_diff (lhs, ls, llen, llen, rhs, rs, rlen, rlen, res.empty (), numeric);
     return res; }
+
+vstr_t lineate (const ::std::string& s)
+{   ::std::string l;
+    vstr_t res;
+    for (auto ch : s)
+        switch (ch)
+        {   case '\n' :
+            case '\r' : 
+            case '\v' :
+                res.push_back (l);
+                l.clear ();
+                break;
+            default :
+                if (ch >= ' ') l += ch;
+                break; }
+    if (! l.empty ())
+        res.push_back (l);
+    return res; }

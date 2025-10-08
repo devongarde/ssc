@@ -112,6 +112,74 @@ hav_t havt_rp [] =
 {   STANDARD_HTML5_ATTRIBUTES (elem_rp),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_rsl [] =
+{   { { HTML_RSL }, { HTML_UNDEF }, elem_rsl, a_xmlns },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_rsl_amount [] =
+{   { { HTML_RSL }, { HTML_UNDEF }, elem_rsl_amount, a_rsl_currency },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_rsl_content [] =
+{   { { HTML_RSL }, { HTML_UNDEF }, elem_rsl_content, a_rsl_encrypted },
+    { { HTML_RSL }, { HTML_UNDEF }, elem_rsl_content, a_rsl_lastmod },
+    { { HTML_RSL }, { HTML_UNDEF }, elem_rsl_content, a_rsl_server },
+    { { HTML_RSL, HV_REQUIRED }, { HTML_UNDEF }, elem_rsl_content, a_rsl_url },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_rsl_copyright [] =
+{   { { HTML_RSL }, { HTML_UNDEF }, elem_rsl_copyright, a_rsl_contactemail },
+    { { HTML_RSL }, { HTML_UNDEF }, elem_rsl_copyright, a_rsl_contacturl },
+    { { HTML_RSL }, { HTML_UNDEF }, elem_rsl_copyright, a_rsl_type },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_rsl_legal [] =
+{   { { HTML_RSL }, { HTML_UNDEF }, elem_rsl_legal, a_rsl_type },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_rsl_payment [] =
+{   { { HTML_RSL }, { HTML_UNDEF }, elem_rsl_payment, a_rsl_type },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_rsl_permits [] =
+{   { { HTML_RSL }, { HTML_UNDEF }, elem_rsl_permits, a_rsl_type },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_rsl_prohibits [] =
+{   { { HTML_RSL }, { HTML_UNDEF }, elem_rsl_prohibits, a_rsl_type },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_rss [] =
+{   { { HTML_RSS, HV_REQUIRED }, { HTML_UNDEF }, elem_rss, a_rss_version },
+    { { HTML_RSS }, { HTML_UNDEF }, elem_rss, a_xmlns },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_rss_category [] =
+{   { { HTML_RSS }, { HTML_UNDEF }, elem_rss_category, a_rss_domain },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_rss_cloud [] =
+{   { { HTML_RSS }, { HTML_UNDEF }, elem_rss_cloud, a_rss_domain },
+    { { HTML_RSS }, { HTML_UNDEF }, elem_rss_cloud, a_rss_path },
+    { { HTML_RSS }, { HTML_UNDEF }, elem_rss_cloud, a_rss_port },
+    { { HTML_RSS }, { HTML_UNDEF }, elem_rss_cloud, a_rss_protocol },
+    { { HTML_RSS }, { HTML_UNDEF }, elem_rss_cloud, a_rss_registerprocedure },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_rss_enclosure [] =
+{   { { HTML_RSS }, { HTML_UNDEF }, elem_rss_enclosure, a_rss_length },
+    { { HTML_RSS }, { HTML_UNDEF }, elem_rss_enclosure, a_rss_type },
+    { { HTML_RSS }, { HTML_UNDEF }, elem_rss_enclosure, a_rss_url },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_rss_guid [] =
+{   { { HTML_RSS }, { HTML_UNDEF }, elem_rss_guid, a_rss_ispermalink },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_rss_source [] =
+{   { { HTML_RSS, HV_REQUIRED }, { HTML_UNDEF }, elem_rss_source, a_rss_url },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_rt [] =
 {   STANDARD_HTML5_ATTRIBUTES (elem_rt),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

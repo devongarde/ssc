@@ -1097,7 +1097,7 @@ Property:
 Reference:
     HTML 4.0: once
     HTML 5.0: 8 times
-    HTML 5, Jul 23: thrice
+    HTML 5, Jun 23: thrice
 
 Statement:
     import: 8 times
@@ -1106,5 +1106,5 @@ Statement:
 
 Version:
     HTML-3.2/CSS-1: 10 times
-    HTML-5/20250801/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times
+    HTML-5/20251001/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times
 ===

@@ -705,9 +705,9 @@ PASS ../toast/SVG/1.2/prefetch02.svg
 0 title_required
 1 xhtml_5_0
 6 svg_version
-14 deprecated_value invalid_duration
-17 deprecated_value invalid_duration
-20 deprecated_value invalid_duration
+14 deprecated_value duration
+17 deprecated_value duration
+20 deprecated_value duration
 
 PASS ../toast/SVG/1.2/progrend01.svg
 0 title_required

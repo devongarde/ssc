@@ -87,6 +87,9 @@ void element::examine_script ()
                 case mime_application_ld_json :
                     jsld = context.jsonld ();
                     break;
+                case mime_application_rsl :
+                    pick (nit_script, es_comment, ec_element, "RSL is new, experimental, and probably unsupported by many systems");
+                    break;
                 default :
                     {   const flags_t flags = type_master < t_mime > :: flags (mt);
                         if ((flags & MIME_SCRIPT) == MIME_SCRIPT)

@@ -1,0 +1,10 @@
+<rsl xmlns="https://rslstandard.org/rsl">
+  <content url="/" server="https://rslcollective.org/api">
+    <license>
+      <payment type="inference">
+        <!-- Using content requires obtaining RSL Collective license -->
+        <standard>https://rslcollective.org/license</standard>
+      </payment>
+    </license>
+  </content>
+</rsl>

@@ -144,6 +144,12 @@ struct hav_t
     { { HTML_ARIA_1_3, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowindextext }, \
     { { HTML_ARIA_1_1, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowspan }
 
+#define ATOM_STANDARD_ATTRIBUTES(ELEM) \
+    { { HTML_ATOM }, { HTML_UNDEF }, ELEM, a_xmlbase }, \
+    { { HTML_ATOM }, { HTML_UNDEF }, ELEM, a_xmllang }, \
+    { { HTML_ATOM }, { HTML_UNDEF }, ELEM, a_xmlns }  // never mind the atom standard denies this is a common attribute, even though
+                                                        // many of the examples in the standard explicity use it
+
 #define MATH1_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS, MAF) \
     { { HTML_MATH1, 0, FLAGS, ( H2_MATH_1 | MAF ) }, { HTML_UNDEF }, ELEM, a_class }, \
     { { HTML_MATH1, 0, FLAGS, ( H2_MATH_1 | MAF ) }, { HTML_UNDEF }, ELEM, a_id }, \
@@ -975,6 +981,8 @@ struct hav_t
     { { HTML_JUL18, HV_NOT53, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_enterkeyhint }, \
     { { HTML_CSS_PART, 0, HE_NOT_SVG, 0, H3_CSS_SHADOW }, { HTML_UNDEF }, ELEM, a_exportparts }, \
     { { HTML_5_0, HV_W3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_generator_unable }, \
+    { { HTML_SEP25 }, { HTML_UNDEF }, ELEM, a_headingoffset }, \
+    { { HTML_SEP25 }, { HTML_UNDEF }, ELEM, a_headingreset }, \
     { { HTML_JAN09, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_hidden }, \
     { { HTML_JUL12, 0, HE_NOT_SVG }, { HTML_JUN14 }, ELEM, a_inert }, \
     { { HTML_APR22, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_inert }, \

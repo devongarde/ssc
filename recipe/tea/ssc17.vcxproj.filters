@@ -878,6 +878,21 @@
     <ClInclude Include="..\heater\parser\efficiency.h">
       <Filter>Heater\parser</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\url\wacky.h">
+      <Filter>Heater\url</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\parser\ads.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\parser\colonic.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\parser\robotic.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\parser\security.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1731,6 +1746,27 @@
     </ClCompile>
     <ClCompile Include="..\sauce\parser\efficiency.cpp">
       <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\compound\type_mimes.cpp">
+      <Filter>Sauce\compound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\url\wacky.cpp">
+      <Filter>Sauce\url</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\ads.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\colonic.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\robotic.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\security.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_rsl.cpp">
+      <Filter>Sauce\css_value</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

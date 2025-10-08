@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "main/context.h"
 
-void fetch_init ();
-void fetch_done ();
 bool fetch_test (nitpick& nits, const url& u, bool verify_ssl);
+bool fetch (nitpick& nits, const url& u, ::std::string& content, const ::boost::beast::http::verb& vrb = ::boost::beast::http::verb::get, const e_mimetype content_type = mime_text_html);
 bool fetch_page (nitpick& nits, const url& u, bool verify_ssl, ::std::string& content);

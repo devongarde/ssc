@@ -3,7 +3,7 @@
 PASS ../toast/microdata/schema-tuv/theatreevent.html
 12 use_quote_code
 19 no_such_folder url_not_found
-21 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+21 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 
 PASS ../toast/microdata/schema-tuv/touristattraction.html
 0 charset_mismatch charset_used charset_invalid
@@ -55,8 +55,8 @@ PASS ../toast/microdata/schema-tuv/tvepisode.html
 54 invalid_attribute_version wrong_version svg_rdf
 62 invalid_attribute_version wrong_version svg_rdf
 63 invalid_attribute_version wrong_version svg_rdf
-76 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
-77 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+76 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+77 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague rather_too_vague bad_year bad_year bad_year
 
 PASS ../toast/microdata/schema-tuv/tvseason.html
 54 invalid_attribute_version wrong_version svg_rdf

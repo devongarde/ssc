@@ -120,6 +120,9 @@ template < > struct type_master < t_context_menu > : tidy_string < t_context_men
         string_value < t_context_menu > :: status (s_invalid);
         return true; } };
 
+template < > struct type_master < t_countries > : type_at_least_one < t_countries, sz_comma, t_country >
+{ using type_at_least_one < t_countries, sz_comma, t_country > :: type_at_least_one; };
+
 template < > struct type_master < t_custom_element > : tidy_string < t_custom_element >
 {   using tidy_string < t_custom_element > :: tidy_string;
     static e_animation_type animation_type () noexcept { return at_none; }
@@ -695,3 +698,10 @@ template < > struct type_master < t_css_whitespace_2 > : tidy_string < t_css_whi
                 { nits.merge (nuts); return; } }
             if (test_value < t_css_whitespace > (nits, v, ss)) return; }
         tidy_string < t_css_whitespace_2 > :: status (s_invalid); } };
+
+template < > struct type_master < t_rsl_usages > : type_at_least_one < t_rsl_usages, sz_comma, t_rsl_usage >
+{ using type_at_least_one < t_rsl_usages, sz_comma, t_rsl_usage > :: type_at_least_one; };
+
+template < > struct type_master < t_rsl_users > : type_at_least_one < t_rsl_users, sz_comma, t_rsl_user >
+{ using type_at_least_one < t_rsl_users, sz_comma, t_rsl_user > :: type_at_least_one; };
+

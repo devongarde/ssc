@@ -1,0 +1,37 @@
+[
+	{
+		"MJR": 0,
+		"MNR": 2,
+		"REL": 21,
+		"VER": "0.2.21",
+		"NOTES": "https://ssc.lu/release-notes.shtml",
+		"SRC": "https://ssc.lu/src/ssc-0.2.21.tgz",
+		"DATE": "2025 09 30",
+		"MACX": "https://ssc.lu/bin/SSC-0.2.21-Mac-Intel.zip",
+		"MACA": "https://ssc.lu/bin/SSC-0.2.21-Mac-Arm.zip",
+		"WINX": "https://ssc.lu/bin/Install-SSC-0.2.21-Win-x64.msi",
+		"WINA": "https://ssc.lu/bin/Install-SSC-0.2.21-Win-a64.msi"
+	},
+	{
+		"MJR": 0,
+		"MNR": 2,
+		"REL": 20,
+		"VER": "0.2.20",
+		"NOTES": "https://ssc.lu/release-notes.shtml",
+		"SRC": "https://ssc.lu/src/ssc-0.2.20.tgz",
+		"DATE": "2025 08 30",
+		"MACX": "https://ssc.lu/bin/SSC-0.2.20-Mac-Intel.zip",
+		"MACA": "https://ssc.lu/bin/SSC-0.2.20-Mac-Arm.zip",
+		"WINX": "https://ssc.lu/bin/Install-SSC-0.2.20-Win-x64.msi",
+		"WINA": "https://ssc.lu/bin/Install-SSC-0.2.20-Win-a64.msi"
+	},
+	{
+		"MJR": 0,
+		"MNR": 2,
+		"REL": 0,
+		"VER": "0.2.0",
+		"NOTES": "https://ssc.lu/release-notes.shtml",
+		"SRC": "https://ssc.lu/src/ssc-0.2.0.tgz",
+		"DATE": "2024 06 08"
+	}
+]

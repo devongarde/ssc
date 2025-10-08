@@ -215,7 +215,7 @@ void element::examine_input ()
     const bool minlen_known = a_.known (a_minlength);
     if ((detail_daddy != nullptr) && (node_.version () >= html_aug25))
         if (! detailicious)
-            pick (nit_details, ed_aug25, "4.11.3.4 Using the input element to define a command", es_info, ec_attribute, "That <INPUT> TYPE is unsuitable with <DETAILS>");
+            pick (nit_details, ed_aug25, "4.11.3.4 Using the input element to define a command", es_info, ec_attribute, "That <INPUT> TYPE is not noted as suitable for use with <DETAILS>");
     if (i5 != i5_colour)
     {   if (a_.known (a_alpha))
             pick (nit_colourspace, ed_jul25, "4.10.5 The input element", es_error, ec_attribute, "ALPHA requires <INPUT> TYPE 'color'");

@@ -1,0 +1,15 @@
+<rss xmlns:rsl="https://rslstandard.org/rsl" version="2.0">
+  <channel>
+    <title>Datasets - UCI Machine Learning Repository</title>
+    <link>https://archive.ics.uci.edu/datasets</link>
+    <item>
+      <title>Iris dataset</title>
+      <link>https://archive.ics.uci.edu/dataset/53/iris</link>
+      <rsl:content url="https://archive.ics.uci.edu/public/53/iris.zip">
+        <rsl:license>
+          <rsl:payment type="free"/>
+        </rsl:license>
+      </rsl:content>
+    </item>
+  </channel>
+</rss>

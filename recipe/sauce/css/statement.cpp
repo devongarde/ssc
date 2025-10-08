@@ -43,13 +43,13 @@ void statement::parse_colour_profile (arguments& args, nitpick& nits, const int 
 {   if (args.v_.css_module (c_colour) < 5)
     {   if (args.snippet_)
             if (! args.eb_.test (elem_svg))
-            {   nits.pick (nit_css_svg, ed_svg_1_1, "12.3.4 The CSS @color-profile rule", es_warning, ec_css, "@color-profile expects an ancestral <SVG>, or CSS Colour 5");
+            {   nits.pick (nit_css_svg, ed_svg_1_1, "12.3.4 The CSS @color-profile rule", es_warning, ec_css, "@color-profile expects an ancestral <SVG>, or CSS Colour 5"); // dialect, standard
                 return; }
         if ((args.v_.svg_version () != sv_none) && (args.v_.svg_version () != sv_1_1))
-        {   nits.pick (nit_svg_version, ed_svg_1_1, "12.3.4 The CSS @color-profile rule", es_warning, ec_css, "@color-profile requires SVG 1.1 or CSS Colour 5");
+        {   nits.pick (nit_svg_version, ed_svg_1_1, "12.3.4 The CSS @color-profile rule", es_warning, ec_css, "@color-profile requires SVG 1.1 or CSS Colour 5"); // dialect, standard
             return; } }
     if ((to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
-        nits.pick (nit_css_syntax, es_error, ec_css, "expecting { property... } after @color-profile");
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting { property... } after @color-profile"); // dialect
     else
     {   PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
         if ((from != to) && (from > 0))
@@ -59,9 +59,9 @@ void statement::parse_colour_profile (arguments& args, nitpick& nits, const int 
                 {   ::std::string s (args.t_.at (i).val_);
                     if ((s.size () > 2) && (s.substr (0, 2) == "--"))
                         if (args.has_custom_prop (s))
-                            nits.pick (nit_css_custom, es_warning, ec_css, "@color-profile identifier ", s, " previously encountered");
+                            nits.pick (nit_css_custom, es_warning, ec_css, "@color-profile identifier ", s, " previously encountered"); // dialect
                         else
-                        {   nits.pick (nit_css_custom, es_info, ec_css, "noting @color-profile ", s);
+                        {   nits.pick (nit_css_custom, es_info, ec_css, "noting @color-profile ", s); // dialect
                             args.note_custom_prop (s); } } }
         fiddlesticks < statement > f (&args.st_, this);
         prop_.parse (args, args.t_.at (to).child_); } }
@@ -968,7 +968,7 @@ void statement::accumulate (stats_t* s) const
             res = "@charset ();";
             break;
         case css_colour_profile :
-            res = "@color-profile;";
+            res = "@color-profile;"; // dialect
             break;
         case css_counter_style :
             res = "@counter-style;";

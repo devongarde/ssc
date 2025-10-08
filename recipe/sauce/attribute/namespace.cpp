@@ -24,15 +24,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/namespace.h"
 
 ns_id examine_namespace (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, ::std::string& s, ::std::string& n)
-{   ::std::string ss = trim_the_lot_off (s);
-    if ((! ss.empty ()) && (v >= xhtml_1_0))
-    {   if ((ss.at (0) == ':') || (ss.at (ss.length () - 1) == ':'))
+{   s = trim_the_lot_off (s);
+    if ((! s.empty ()) && (v >= xhtml_1_0))
+    {   if ((s.at (0) == ':') || (s.at (s.length () - 1) == ':'))
         {   nits.pick (nit_bad_namespace, es_error, ec_namespace, quote (s), " is malformed");
             return ns_error; }
-        n = decolonise (ss);
+        n = decolonise (s);
         if (! n.empty ())
-        {   s = ss;
-            if (compare_complain (nits, v, n, XMLNS)) return ns_xmlns;
+        {   if (compare_complain (nits, v, n, XMLNS)) return ns_xmlns;
             const e_namespace standard_name = namespace_names.find (v, NAMESPACE_NAME, n, ! v.xhtml ());
             if ((standard_name != ns_error) && (standard_name != ns_default))
                 if ((namespace_names.flags (standard_name) & NS_PREDECLARED) == NS_PREDECLARED)
@@ -42,7 +41,7 @@ ns_id examine_namespace (nitpick& nits, const html_version& v, const namespaces_
                 if ((id != ns_error) && (id != ns_default)) return static_cast < ns_id > (id); }
             nits.pick (nit_bad_namespace, es_error, ec_namespace, quote (n), " has not been declared (using XMLNS)");
             return ns_error; } }
-    s = ss; n.clear ();
+    n.clear ();
     return ns_default; }
 
 e_status declare_namespace (nitpick& nits, const html_version& v, const ::std::string& ns, const ::std::string& value, const namespaces_ptr& namespaces, const bool vrai)
@@ -79,18 +78,19 @@ e_status declare_namespace (nitpick& nits, const html_version& v, const ::std::s
     const e_namespace standard_schema = namespace_names.find (v, NAMESPACE_SCHEMA, lc_schema, ! v.xhtml ());
     if (vrai)
     {   if ((id != 0) || (lf != 0))
-            if (lf == id) nits.pick (nit_duplicate_namespace, es_comment, ec_namespace, quote (xmlns), " has already been specified");
-            else
-            {   if (id != 0) nits.pick (nit_namespace_confusion, es_warning, ec_namespace, "namespace ", quote (xmlns), " was previously specified as ", quote (namespaces -> longform (namespace_names, id)));
-                if (lf != 0)
-                {   ::std::string osf = namespaces -> shortform (namespace_names, lf);
-                    if (! osf.empty ())
-                    {   const ident_t osf_id = namespaces -> find_shortform (v, namespace_names, osf, false);
-                        if ((osf_id != ns_default) && (osf_id != ns_error))
-                        {   const flags_t flags = namespace_names.flags (v, NAMESPACE_SCHEMA, lc_schema);
-                            if ((flags & NS_PREDECLARED) == 0)
-                                nits.pick (nit_namespace_confusion, es_warning, ec_namespace, quote (schema), " was previously specified with ", quote (osf));
-                            else nits.pick (nit_namespace_confusion, es_info, ec_namespace, quote (schema), " is specified with ", quote (osf), " by default"); } } } }
+            if ((lf != ns_rsl) &&  (lf != ns_atom))
+                if (lf == id) nits.pick (nit_duplicate_namespace, es_comment, ec_namespace, quote (xmlns), " has already been specified");
+                else
+                {   if (id != 0) nits.pick (nit_namespace_confusion, es_warning, ec_namespace, "namespace ", quote (xmlns), " was previously specified as ", quote (namespaces -> longform (namespace_names, id)));
+                    if (lf != 0)
+                    {   ::std::string osf = namespaces -> shortform (namespace_names, lf);
+                        if (! osf.empty ())
+                        {   const ident_t osf_id = namespaces -> find_shortform (v, namespace_names, osf, false);
+                            if ((osf_id != ns_default) && (osf_id != ns_error))
+                            {   const flags_t flags = namespace_names.flags (v, NAMESPACE_SCHEMA, lc_schema);
+                                if ((flags & NS_PREDECLARED) == 0)
+                                    nits.pick (nit_namespace_confusion, es_warning, ec_namespace, quote (schema), " was previously specified with ", quote (osf));
+                                else nits.pick (nit_namespace_confusion, es_info, ec_namespace, quote (schema), " is specified with ", quote (osf), " by default"); } } } }
         if ((standard_name != ns_default) && (standard_schema != ns_xhtml))
         {   const flags_t f = namespace_names.flags (v, NAMESPACE_SCHEMA, lc_schema);
             if ((f & NS_PRISM) == NS_PRISM)
@@ -98,10 +98,11 @@ e_status declare_namespace (nitpick& nits, const html_version& v, const ::std::s
             else if ((f & NS_CRAPNS) == NS_CRAPNS)
                 nits.pick (nit_bad_namespace, es_warning, ec_namespace, quote (lc_schema), " is incorrect, despite its occasional use.");
             if (standard_name != standard_schema)
-            {   if ((standard_name != ns_default) && (standard_name != ns_error))
-                    nits.pick (nit_contradictory_namespace, es_warning, ec_namespace, quote (xmlns), " is commonly associated with ", quote (namespace_names.get (standard_name, NAMESPACE_SCHEMA)), ", not ", quote (schema));
-                if ((standard_schema != ns_default) && (standard_schema != ns_error))
-                    nits.pick (nit_contradictory_namespace, es_warning, ec_namespace, quote (schema), " is commonly associated with ", quote (namespace_names.get (standard_schema, NAMESPACE_NAME)), ", not ", quote (xmlns)); } }
+                if (standard_schema != ns_rss)
+                {   if ((standard_name != ns_default) && (standard_name != ns_error))
+                        nits.pick (nit_contradictory_namespace, es_warning, ec_namespace, quote (xmlns), " is commonly associated with the ontology ", quote (namespace_names.get (standard_name, NAMESPACE_SCHEMA)), ", not ", quote (schema));
+                    if ((standard_schema != ns_default) && (standard_schema != ns_error))
+                        nits.pick (nit_contradictory_namespace, es_warning, ec_namespace, quote (schema), " is commonly associated with the namespace ", quote (namespace_names.get (standard_schema, NAMESPACE_NAME)), ", not ", quote (xmlns)); } }
         if (standard_schema == ns_error)
         {   if (standard_name == ns_default)
                 nits.pick (nit_unrecognised_namespace, es_catastrophic, ec_namespace, PROG " does not know about the default namespace ", quote (schema), ", so cannot properly verify its content");
@@ -123,3 +124,18 @@ e_status declare_namespace (nitpick& nits, const html_version& v, const ::std::s
     const ident_t ns_id = namespaces -> declare (v, namespace_names, lc_name, lc_schema);
     if (ns_id == ns_error) return s_invalid;
     return s_good; }
+
+void declare_known_namespace (const html_version& v, const namespaces_ptr& namespaces, const e_namespace autodeclare)
+{   VERIFY_NOT_NULL (namespaces.get (), __FILE__, __LINE__);
+    PRESUME (v >= xhtml_1_0, __FILE__, __LINE__);
+    PRESUME (autodeclare != ns_default, __FILE__, __LINE__);
+    PRESUME (autodeclare < ns_error, __FILE__, __LINE__);
+    const ::std::string name = namespace_names.get (autodeclare, NAMESPACE_NAME);
+    const ::std::string schema = namespace_names.get (autodeclare, NAMESPACE_SCHEMA);
+    ::std::string lc_name, lc_schema;
+    if (v.xhtml ())
+    {   lc_name = name; lc_schema = schema; }
+    else
+    {   lc_name = ::boost::to_lower_copy (name);
+        lc_schema = ::boost::to_lower_copy (schema); }
+    namespaces -> declare (v, namespace_names, lc_name, lc_schema); }

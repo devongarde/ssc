@@ -27,12 +27,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ::boost::asio::io_context ioc;
 ::boost::asio::ip::tcp::resolver resolver (ioc);
 
-void fetch_init ()
-{ }
-
-void fetch_done ()
-{ }
-
 static bool oh_dear (nitpick& nits, const url& u, const ::boost::beast::error_code& ec)
 {   switch (ec.value ())
     {   case ::boost::beast::errc::address_in_use :
@@ -129,16 +123,20 @@ static bool oh_dear (nitpick& nits, const url& u, const ::boost::beast::error_co
         case ::boost::beast::errc::connection_refused :
         case ::boost::beast::errc::operation_not_permitted :
         case ::boost::beast::errc::permission_denied :
-            nits.pick (nit_403, es_warning, ec_ip, ec.message (), " connecting to ", u.original ());
+            nits.pick (nit_403, es_warning, ec_ip, ec.message (), " connecting to ", u.original (), " (1)");
             break;
         case ::boost::beast::errc::no_such_file_or_directory :
+            nits.pick (nit_404, es_warning, ec_ip, ec.message (), " connecting to ", u.original (), " (no such file or directory)");
+            break;
         case ::boost::beast::errc::bad_address :
+            nits.pick (nit_404, es_warning, ec_ip, ec.message (), " connecting to ", u.original (), " (bad address)");
+            break;
         case ::boost::beast::errc::is_a_directory :
-            nits.pick (nit_404, es_warning, ec_ip, ec.message (), " connecting to ", u.original ());
+            nits.pick (nit_404, es_warning, ec_ip, ec.message (), " connecting to ", u.original (), " (is a directory)");
             break;
         case ::boost::beast::errc::stream_timeout :
         case ::boost::beast::errc::timed_out :
-            nits.pick (nit_408, es_info, ec_ip, ec.message (), " connecting to ", u.original ());
+            nits.pick (nit_408, es_info, ec_ip, ec.message (), " connecting to ", u.original (), " (3)");
             break;
         default :
             nits.pick (nit_http_error, es_error, ec_ip, "exception ", ec.message (), " accessing ", u.original ());
@@ -173,7 +171,7 @@ static bool process_status (nitpick& nits, const url& u, const ::boost::beast::h
             break; }
     return false; }
 
-static bool fetch (nitpick& nits, const url& u, const ::boost::beast::http::verb& vrb, ::std::string& content)
+bool fetch (nitpick& nits, const url& u, const ::boost::beast::http::verb& vrb, ::std::string& content, const e_mimetype content_type = mime_text_html)
 {   bool result = false;
     PRESUME (! u.invalid (), __FILE__, __LINE__);
     PRESUME (! u.domain ().empty (), __FILE__, __LINE__);
@@ -196,6 +194,7 @@ static bool fetch (nitpick& nits, const url& u, const ::boost::beast::http::verb
                 request.set (::boost::beast::http::field::host, dom);
 #endif // SULKINGSTRINGVIEW
                 request.set (::boost::beast::http::field::user_agent, SSC_USER_AGENT);
+                request.set (::boost::beast::http::field::content_type, enum_n < t_mime, e_mimetype > :: name (content_type));
                 ::boost::beast::http::write (streamer, request, ec);
                 if (ec) oh_dear (nits, u, ec);
                 else
@@ -247,3 +246,55 @@ bool fetch_page (nitpick& nits, const url& u, bool , ::std::string& content)
 bool fetch_test (nitpick& nits, const url& u, bool b)
 {   ::std::string s;
     return fetch_page (nits, u, b, s); } 
+
+#if 0
+bool fetch (nitpick& nits, const url& u, ::std::string& content, const ::boost::beast::http::verb& vrb, const e_mimetype content_type)
+{
+/*
+    // Our test endpoint for testing the json
+    const auto host = "postman-echo.com";
+    const auto target = "/post";
+
+    // The io_context is required for all I/O
+    net::io_context ioc;
+
+    // These objects perform our I/O
+    tcp::resolver resolver(ioc);
+    beast::tcp_stream stream(ioc);
+
+    // Look up the domain name
+    auto const results = resolver.resolve(host, "80");
+
+    // Make the connection on the IP address we get from a lookup
+    stream.connect(results);
+
+    // Set up an HTTP POST request message
+    http::request<json_body> req{http::verb::post, target, 11};
+    req.set(http::field::host, host);
+    req.set(http::field::user_agent, BOOST_BEAST_VERSION_STRING);
+    req.set(http::field::content_type, "application/json");
+    req.body() = {{"type", "test"}, {"content", "pure awesomeness"}};
+    req.prepare_payload();
+    // Send the HTTP request to the remote host
+    http::write(stream, req);
+    
+    // This buffer is used for reading and must be persisted
+    beast::flat_buffer buffer;
+
+    // Get the response
+    http::response<json_body> res;
+
+    // Receive the HTTP response
+    http::read(stream, buffer, res);
+
+    // Write the message to standard out
+    std::cout << res << std::endl;
+
+    // Gracefully close the socket
+    beast::error_code ec;
+    stream.socket().shutdown(tcp::socket::shutdown_both, ec);
+
+*/
+
+    return false; }
+#endif // 0

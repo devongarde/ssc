@@ -26,3 +26,4 @@ class element_node;
 
 ns_id examine_namespace (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, ::std::string& s, ::std::string& n);
 e_status declare_namespace (nitpick& nits, const html_version& v, const ::std::string& key, const ::std::string& value, const namespaces_ptr& namespaces, const bool vrai);
+void declare_known_namespace (const html_version& v, const namespaces_ptr& namespaces, const e_namespace autodeclare);

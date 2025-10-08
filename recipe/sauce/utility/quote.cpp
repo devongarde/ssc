@@ -138,9 +138,10 @@ void pushpush (vstr_t& res, vint_t* lines, const ::std::string& s, const int lin
 
 vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep, vint_t* lines, v_np* ticks)
 {   const bool blank = ((flags & UQ_BLANK) == UQ_BLANK);
+    const unsigned max = (flags & UQ_COUNT) >> UQ_DECOUNT;
     for (auto p : sep)
     {   PRESUME (! p.empty (), __FILE__, __LINE__);
-        PRESUME (p.find ("\\") == ::std::string::npos, __FILE__, __LINE__);
+//        PRESUME (p.find ("\\") == ::std::string::npos, __FILE__, __LINE__);
         if ((flags & UQ_SQ) == UQ_SQ) PRESUME (p.find ("'") == ::std::string::npos, __FILE__, __LINE__);
         if ((flags & UQ_DQ) == UQ_DQ) PRESUME (p.find ("\"") == ::std::string::npos, __FILE__, __LINE__);
         if ((flags & UQ_BS) == UQ_BS) PRESUME (p.find ("\\") == ::std::string::npos, __FILE__, __LINE__);
@@ -171,6 +172,7 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
     bool had_content = false;
     bool newline = false;
     int line = 0;
+    unsigned count = 0;
     nitpick nits;
     for (::std::string::const_iterator i = sb; i != se; ++i)
     {   bool extend = true;
@@ -419,14 +421,15 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                             if (p.at (n) != ' ') matches = p.at (n) == *(i + n);
                             else matches = ::std::iswspace (*(i + n));   
                         if (matches)
-                        {   if ((flags & UQ_TRIM) != UQ_TRIM) pushpush (res, lines, o, line, blank); 
-                            else pushpush (res, lines, trim_the_lot_off (o), line, blank);
-                            if ((flags & UQ_SEP) == UQ_SEP)
-                                if (((flags & UQ_UNIFY) == 0) || (res.size () == 0) || (res.at (res.size () - 1) != p))
-                                    pushpush (res, lines, p, line, blank);
-                            o.clear ();
-                            extend = had_content = false;
-                            break; } }
+                            if ((max == 0) || (++count < max))
+                            {   if ((flags & UQ_TRIM) != UQ_TRIM) pushpush (res, lines, o, line, blank); 
+                                else pushpush (res, lines, trim_the_lot_off (o), line, blank);
+                                if ((flags & UQ_SEP) == UQ_SEP)
+                                    if (((flags & UQ_UNIFY) == 0) || (res.size () == 0) || (res.at (res.size () - 1) != p))
+                                        pushpush (res, lines, p, line, blank);
+                                o.clear ();
+                                extend = had_content = false;
+                                break; } }
         if (extend)
         {   if ((flags & UQ_UNIFY) == UQ_UNIFY)
                 switch (state)

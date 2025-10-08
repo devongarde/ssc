@@ -26,21 +26,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 
 attribute_node::attribute_node (nitpick& nits, const html_version& v, attributes_node* box, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end,
-                                const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const bool normal)
+                                const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const bool normal, e_namespace& autodeclare)
     :   box_ (box)
 {   VERIFY_NOT_NULL (box_, __FILE__, __LINE__);
     has_key_ = has_value_ = true;
     key_ = ::std::string (name_start, name_end);
     value_ = ::std::string (value_start, value_end);
-    parse (nits, v, normal); }
+    parse (nits, v, normal, autodeclare); }
 
-attribute_node::attribute_node (nitpick& nits, const html_version& v, attributes_node* box, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const bool normal)
+attribute_node::attribute_node (nitpick& nits, const html_version& v, attributes_node* box, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end,
+                                const bool normal, e_namespace& autodeclare)
     :   box_ (box)
 {   VERIFY_NOT_NULL (box_, __FILE__, __LINE__);
     has_key_ = true;
     has_value_ = false;
     key_ = ::std::string (name_start, name_end);
-    parse (nits, v, normal); }
+    parse (nits, v, normal, autodeclare); }
 
 attribute_node::attribute_node (attributes_node* box)
     :   box_ (box)
@@ -64,7 +65,7 @@ void attribute_node::swap (attribute_node& an) noexcept
         res += quote (value_); }
     return res; }
 
-void attribute_node::parse (nitpick& nits, const html_version& v, const bool normal)
+void attribute_node::parse (nitpick& nits, const html_version& v, const bool normal, e_namespace& autodeclare)
 {   ::std::string ns;
     nitpick nuts;
     id_ = attr :: parse (nuts, v, namespaces (), key_, ns);
@@ -75,6 +76,11 @@ void attribute_node::parse (nitpick& nits, const html_version& v, const bool nor
                 if (context.naughty_test (ebox -> tag (), id_, value_))
                 {   nits.pick (nit_naughty_attribute, es_info, ec_naughty, "ignorance is strength: concealing ", quote (value_));
                     value_ = context.naughty_sub (ebox -> tag (), id_); } }
+    if (autodeclare != ns_default)
+    {   PRESUME (autodeclare < ns_error, __FILE__, __LINE__);
+        prepare_namespaces ();
+        declare_known_namespace (v, namespaces (), autodeclare);
+        autodeclare = ns_default; }
     switch (id_)
     {   case a_xmlns :
             if ((! normal) && has_key_ && has_value_)

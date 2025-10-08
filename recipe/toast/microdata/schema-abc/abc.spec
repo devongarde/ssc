@@ -34,10 +34,10 @@ PASS ../toast/microdata/schema-abc/aggregaterating-2.html
 49 use_quote_code
 
 PASS ../toast/microdata/schema-abc/alignmentobject.html
-17 invalid_attribute_version wrong_version svg_rdf invalid_duration invalid_duration
+17 invalid_attribute_version wrong_version svg_rdf duration duration
 63 track_missing
 68 incompatible_mime
-69 invalid_attribute_version wrong_version svg_rdf invalid_duration
+69 invalid_attribute_version wrong_version svg_rdf duration
 
 PASS ../toast/microdata/schema-abc/amusementpark.html
 0 charset_mismatch charset_used charset_invalid
@@ -90,19 +90,19 @@ PASS ../toast/microdata/schema-abc/audiobook.html
 
 PASS ../toast/microdata/schema-abc/audioobject.html
 13 script
-20 invalid_duration
+20 duration
 
 PASS ../toast/microdata/schema-abc/bankaccount.html
 0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/microdata/schema-abc/blogposting.html
 0 charset_mismatch charset_used charset_invalid
-13 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
-22 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+13 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+22 invalid_attribute_version wrong_version svg_rdf bad_year bad_year rather_too_vague rather_too_vague
 24 attribute_required naughty_alt
-29 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+29 invalid_attribute_version wrong_version svg_rdf bad_year bad_year rather_too_vague rather_too_vague
 30 attribute_required naughty_alt
-34 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+34 invalid_attribute_version wrong_version svg_rdf bad_year bad_year rather_too_vague rather_too_vague
 35 use_quote_code
 68 use_quote_code
 
@@ -140,7 +140,7 @@ PASS ../toast/microdata/schema-abc/book-2.html
 PASS ../toast/microdata/schema-abc/book-3.html
 8 url_id_unfound
 10 lonely_ampersand
-15 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
+15 invalid_attribute_version wrong_version svg_rdf bad_year bad_year rather_too_vague rather_too_vague
 28 no_such_folder url_not_found
 
 PASS ../toast/microdata/schema-abc/broadcastevent.html
@@ -149,10 +149,10 @@ PASS ../toast/microdata/schema-abc/broadcastevent.html
 35 invalid_attribute_version wrong_version svg_rdf
 53 invalid_attribute_version wrong_version svg_rdf
 58 invalid_attribute_version wrong_version svg_rdf
-70 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
-71 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+70 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+71 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague rather_too_vague bad_year bad_year bad_year
 81 use_quote_code
-85 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+85 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 87 use_quote_code
 
 PASS ../toast/microdata/schema-abc/broadcastfrequencyspecification.html
@@ -168,9 +168,9 @@ PASS ../toast/microdata/schema-abc/broadcastservice.html
 58 invalid_attribute_version wrong_version svg_rdf
 66 bad_property
 75 bad_property
-85 invalid_attribute_version wrong_version svg_rdf timezone
-114 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
-115 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+85 invalid_attribute_version wrong_version svg_rdf bad_zone
+114 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+115 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague rather_too_vague bad_year bad_year bad_year
 
 PASS ../toast/microdata/schema-abc/brokerageaccount.html
 0 charset_mismatch charset_used charset_invalid
@@ -279,14 +279,14 @@ PASS ../toast/microdata/schema-abc/creativework-2.html
 80 unrecognised_value
 82 unrecognised_value
 95 no_such_folder url_not_found
-102 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+102 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 127 no_such_folder url_not_found
 131 no_such_folder url_not_found
 136 no_such_folder url_not_found
 138 no_such_folder url_not_found
 146 use_quote_code
 153 no_such_folder url_not_found
-155 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+155 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 190 use_quote_code
 199 use_quote_code
 211 use_quote_code

@@ -35,8 +35,8 @@ PASS ../toast/type/httpequiv/index.html
 
 PASS ../toast/type/httpequiv/lastmodified.html
 2 naughty_lang
-6 bad_datetime
-7 bad_datetime
+6 time_char
+7 bad_weekday
 
 PASS ../toast/type/httpequiv/link.html
 2 naughty_lang

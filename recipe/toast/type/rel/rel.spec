@@ -4,7 +4,7 @@ PASS ../toast/type/rel/index.html
 2 naughty_lang
 
 PASS ../toast/type/rel/wclr.html
-9 url_not_found
+9 mime url_not_found
 12 no_such_folder url_not_found
 44 no_such_folder url_not_found
 48 no_such_folder url_not_found

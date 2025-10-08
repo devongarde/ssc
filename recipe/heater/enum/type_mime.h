@@ -71,7 +71,7 @@ template < > inline void enum_n < t_mime, e_mimetype > :: set_value (nitpick& ni
         return; }
     ::std::string::size_type pos = s.find ('/');
     if (pos == ::std::string::npos)
-    {   nits.pick (nit_mime, es_error, ec_type, "bad mime type");
+    {   nits.pick (nit_mime, es_error, ec_type, quote (s), ": bad mime type");
         enum_base < e_mimetype, t_mime > :: status (s_invalid); return; }
     if (s.substr (0, pos) == "example")  // don't complain about examples, just as example.org etc..
     {   nits.pick (nit_mime, es_info, ec_type, "avoid 'example' mime types on a live site");

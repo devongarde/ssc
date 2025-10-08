@@ -70,6 +70,11 @@ void element::pre_examine_element ()
         case elem_render :
             pick (nit_render, es_warning, ec_element, "With apologies, " PROG " does not understand <RENDER>");
             break;
+        case elem_rsl_copyright : examine_rsl_copyright (); break;
+        case elem_rsl_legal : examine_rsl_legal (); break;
+        case elem_rss_category : examine_rss_category (); break;
+        case elem_rss_cloud : examine_rss_cloud (); break;
+        case elem_rss_enclosure : examine_rss_enclosure (); break;
         case elem_sarcasm : examine_sarcasm (); break;
         case elem_section : examine_section (); break;
         case elem_share : examine_share (); break;
@@ -91,6 +96,27 @@ void element::post_examine_element ()
         case elem_apply : examine_equation (); break;
         case elem_article : examine_article (); break;
         case elem_aside : examine_aside (); break;
+        case elem_atom_author :
+        case elem_atom_contributor :
+            examine_atom_person ();
+            break;
+        case elem_atom_category : examine_atom_category (); break;
+        case elem_atom_content : examine_atom_content (); break;
+        case elem_atom_email : examine_atom_email (); break;
+        case elem_atom_feed : examine_atom_feed (); break;
+        case elem_atom_icon :
+        case elem_atom_logo :
+        case elem_atom_uri :
+            examine_atom_uri (); break;
+        case elem_atom_id : examine_atom_id (); break;
+        case elem_atom_link : examine_atom_link (); break;
+        case elem_atom_rights :
+        case elem_atom_subtitle :
+        case elem_atom_summary :
+        case elem_atom_title :
+            test_atom_text ();
+            break;
+        case elem_atom_updated : examine_atom_updated (); break;
         case elem_audio : examine_audio (); break;
         case elem_bind : examine_bind (); break;
         case elem_body : examine_body (); break;
@@ -204,6 +230,42 @@ void element::post_examine_element ()
         case elem_piecewise : examine_piecewise (); break;
         case elem_picture : examine_picture (); break;
         case elem_reln : examine_equation (); break;
+        case elem_rsl : examine_rsl (); break;
+        case elem_rsl_amount : examine_rsl_amount (); break;
+        case elem_rsl_content : examine_rsl_content (); break;
+        case elem_rsl_custom :
+        case elem_rsl_schema :
+        case elem_rsl_standard :
+        case elem_rsl_terms :
+            examine_rsl_standard (); break;
+        case elem_rsl_licence : examine_rsl_licence (); break;
+        case elem_rsl_payment : examine_rsl_payment (); break;
+        case elem_rsl_permits : examine_rsl_permits (); break;
+        case elem_rsl_prohibits : examine_rsl_prohibits (); break;
+        case elem_rss : examine_rss (); break;
+        case elem_rss_channel : examine_rss_channel (); break;
+        case elem_rss_day : examine_rss_day (); break;
+        case elem_rss_docs : examine_rss_docs (); break;
+        case elem_rss_height : examine_rss_height (); break;
+        case elem_rss_hour : examine_rss_hour (); break;
+        case elem_rss_image : examine_rss_image (); break;
+        case elem_rss_item : examine_rss_item (); break;
+        case elem_rss_language : examine_rss_language (); break;
+        case elem_rss_link : examine_rss_link (); break;
+        case elem_rss_lastbuilddate :
+        case elem_rss_pubdate :
+            examine_rss_date ();
+            break;
+        case elem_rss_managingeditor :
+        case elem_rss_webmaster :
+            examine_rss_email ();
+            break;
+        case elem_rss_skipdays : examine_rss_skipdays (); break;
+        case elem_rss_skiphours : examine_rss_skiphours (); break;
+        case elem_rss_source : examine_rss_source (); break;
+        case elem_rss_textinput : examine_rss_textinput (); break;
+        case elem_rss_url : examine_rss_url (); break;
+        case elem_rss_width : examine_rss_width (); break;
         case elem_ruby : examine_ruby (); break;
         case elem_script : examine_script (); break;
         case elem_select : examine_select (); break;
@@ -307,7 +369,7 @@ void element::examine_self (
         case elem_faux_cdata :
             only_parents ();
             if ((flags & EP_NOSPELL) == 0)
-                if (! ancestral_elements_.test (elem_style) && ! ancestral_elements_.test (elem_script))
+                if (! ancestral_elements_.any (no_spell_bitset))
                     page_ -> phrasal (lang, text ());
             break;
         case elem_faux_whitespace :
@@ -316,7 +378,7 @@ void element::examine_self (
         case elem_faux_char :
             only_parents ();
             if ((flags & EP_NOSPELL) == 0)
-                if (! ancestral_elements_.test (elem_style) && ! ancestral_elements_.test (elem_script))
+                if (! ancestral_elements_.any (no_spell_bitset))
                     page_ -> phrasal (lang, text (true));
             break;
         case elem_faux_code :
@@ -325,7 +387,7 @@ void element::examine_self (
         case elem_faux_text :
             only_parents ();
             if ((flags & EP_NOSPELL) == 0)
-                if (! ancestral_elements_.test (elem_style) && ! ancestral_elements_.test (elem_script))
+                if (! ancestral_elements_.any (no_spell_bitset))
                 {   ::std::string t (text (true));
                     if (! t.empty ())
                     {   if (t.at (0) == ' ') page_ -> phrasal (nits (), node_.version ());
@@ -369,7 +431,7 @@ void element::examine_self (
                 if (node_.version ().is_5 ())
                 {   if (a_.known (a_xmllang))
                         if (! a_.known (a_lang))
-                        {   if (! node_.version ().xhtml ())
+                        {   if (! node_.version ().xhtml () && ! node_.version ().is_atomic () && ! node_.version ().is_rss () && ! node_.version ().is_rsl ())
                                 if (node_.id ().is_svg () && (node_.version ().svg_version () == sv_1_1))
                                     if (a_.good (a_xmllang)) pick (nit_no_lang, es_info, ec_attribute, "to avoid a conflict between the SVG 1.1 and most HTML 5 specifications, add lang=", quote (a_.get_string (a_xmllang)));
                                     else pick (nit_no_lang, es_info, ec_attribute, "to avoid a conflict between the SVG 1.1 and most HTML 5 specifications, add a lang attribute");
@@ -558,7 +620,8 @@ void element::examine_children (const flags_t flags, const lingo& lang)
                     descendant_elements_ |= e -> node_.tag (); } } }
         while (make_sibling (e));
         for (element* p = child_; p != nullptr; p = p -> sibling_)
-            p -> sibling_elements_ = siblings; }
+            p -> sibling_elements_ = siblings; } 
+    if (context.tell (es_all)) context.os () -> console ("make_children ", elem::name (node_.tag ()), ": ", nameset (descendant_elements_), "\n");
     return res; }
 
 void element::verify_children ()
@@ -575,7 +638,8 @@ void element::verify ()
     late_examine_element (); }
 
 void element::verify_document ()
-{   page_ -> phrasal (nits (), node_.version ());
+{   if ((page_ -> count (elem_html) == 0) && (page_ -> count (elem_htmlplus) == 0) && (page_ -> count (elem_math) == 0) && (page_ -> count (elem_svg) == 0)) return;
+    page_ -> phrasal (nits (), node_.version ());
     const bool titled = (node_.version ().mjr () < 5) && (page_ -> count (elem_title) == 0);
     if (titled)
         pick (nit_title_required, ed_2, "5.2.1. Title", es_error, ec_element, "every document header must have <TITLE>");
@@ -626,7 +690,11 @@ void element::verify_document ()
             break;
         default :
             if (page_ -> count (elem_title) == 0)
-                pick (nit_title_required, ed_2, "5.2.1. Title", es_warning, ec_element, "the document header has no <TITLE>");
+            {   bool naughty = true;
+                if ((page_ -> count (elem_rsl) > 0) || (page_ -> count (elem_rss) > 0) || (page_ -> count (elem_atom_feed) > 0))
+                    naughty = false;
+                if (naughty)
+                    pick (nit_title_required, ed_2, "5.2.1. Title", es_warning, ec_element, "the document header has no <TITLE>"); }
             if (! page_ -> charset_defined ())
                 pick (nit_charset_redefined, ed_50, "4.2.5.5 Specifying the document's character encoding", es_comment, ec_element, "Consider specifying a charset in the document header");
             break; }

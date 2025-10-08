@@ -131,6 +131,9 @@ template < > struct type_master < t_aria_live > : three_value < t_aria_live, e_a
 template < > struct type_master < t_ass > : three_value < t_ass, e_ass, sz_alternate, sz_slide, sz_scroll >
 { using three_value < t_ass, e_ass, sz_alternate, sz_slide, sz_scroll > :: three_value; };
 
+template < > struct type_master < t_atom_type > : three_value < t_atom_type, e_atom_type, sz_html, sz_text, sz_xhtml >
+{ using three_value < t_atom_type, e_atom_type, sz_html, sz_text, sz_xhtml > :: three_value; };
+
 template < > struct type_master < t_attributetype > : three_value < t_attributetype, e_attributetype, sz_auto, sz_CSS, sz_XML >
 { using three_value < t_attributetype, e_attributetype, sz_auto, sz_CSS, sz_XML > :: three_value; };
 
@@ -424,6 +427,12 @@ template < > struct type_master < t_pri_img_setting > : three_value < t_pri_img_
 
 template < > struct type_master < t_restart > : three_value < t_restart, e_restart, sz_always, sz_whennotactive, sz_never >
 { using three_value < t_restart, e_restart, sz_always, sz_whennotactive, sz_never > :: three_value; };
+
+template < > struct type_master < t_rsl_permits > : three_value < t_rsl_permits, e_rsl_permits, sz_geo, sz_usage, sz_user >
+{ using three_value < t_rsl_permits, e_rsl_permits, sz_geo, sz_usage, sz_user > :: three_value; };
+
+template < > struct type_master < t_rss_protocol > : three_value < t_rss_protocol, e_rss_protocol, sz_http_post, sz_soap, sz_xml_rpc >
+{ using three_value < t_rss_protocol, e_rss_protocol, sz_http_post, sz_soap, sz_xml_rpc > :: three_value; };
 
 template < > struct type_master < t_rotate_upright > : three_value < t_rotate_upright, e_rotate_upright, sz_rotate_left, sz_rotate_right, sz_upright >
 { using three_value < t_rotate_upright, e_rotate_upright, sz_rotate_left, sz_rotate_right, sz_upright > :: three_value; };

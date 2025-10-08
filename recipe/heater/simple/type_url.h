@@ -23,6 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microdata/microdata_itemtype.h"
 #include "ontology/ontology_type.h"
 #include "enum/type_enum.h"
+#include "url/wacky.h"
+#include "symbol/nstr.h"
 
 class directory;
 class url;
@@ -160,6 +162,26 @@ template < > struct type_master < t_purls > : type_master < t_urls >
                     if (! u.is_http () || ! u.is_https ())
                         nits.pick (nit_empty_link, ed_aug25, "4.6.6 Hyperlink auditing", es_warning, ec_link, "a PING url which is neither http: nor https:, such as ", quote (u.get ()), ", will be ignored"); } };
 
+template < > struct type_master < t_wacky > : tidy_string < t_wacky >
+{   wacky_url wacky_;
+    using tidy_string < t_wacky > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_url; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_wacky > :: set_value (nits, v, s);
+        if (tidy_string < t_wacky > :: good ())
+            if (! wacky_.parse (nits, tidy_string < t_wacky > :: get_string ()))
+                tidy_string < t_wacky > :: status (s_invalid); } 
+    void swap (type_master < t_wacky >& t) noexcept
+    {   wacky_.swap (t.wacky_);
+        tidy_string < t_wacky > :: swap (t); }
+    void reset () noexcept
+    {   wacky_.reset ();
+        tidy_string < t_wacky > :: reset (); }
+    bool verify_url (nitpick& nits, const html_version& , element& )
+    {   if (! context.links ()) return true;
+        if (! tidy_string < t_wacky > :: good ()) return true;
+        return wacky_.verify (nits); } };
+
 template < > struct type_master < t_xmlurl > : type_master < t_url >
 {   using type_master < t_url > :: type_master;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -167,3 +189,15 @@ template < > struct type_master < t_xmlurl > : type_master < t_url >
         if (type_master < t_url > :: good () && ! v.xhtml ())
         {   nits.pick (nit_requires_xhtml, es_error, ec_type, quote (s), " is only valid in XHTML");
             type_base < url, t_url > :: status (s_invalid); } } };
+
+template < > struct type_master < t_protocol > : tidy_string < t_protocol >
+{   using tidy_string < t_protocol > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_protocol > :: set_value (nits, v, s);
+        if (! tidy_string < t_protocol > :: empty ())
+            if (tidy_string < t_protocol > :: good ())
+            {   const ::std::string& ss = tidy_string < t_protocol > :: get_string ();
+                const e_protocol prot = protocol_names.find (v, PROTOCOL_NAME, ss, ! v.xhtml ());
+                if ((prot != pr_error) && (prot != pr_other)) return; }
+        tidy_string < t_protocol > :: status (s_invalid);
+        nits.pick (nit_invalid_protocol, es_error, ec_type,  quote (s), ": invalid or unknown protocol"); } };

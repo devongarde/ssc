@@ -13,19 +13,22 @@
 <!--#set var="creator" value="dylan harris" -->
 <!--#set var="css" value="/plumbing/ignorance.css" -->
 <!--#set var="csp" value="default-src 'self' 'unsafe-inline' 'unsafe-eval'; form-action 'self' www.paypal.com; object-src 'none'; child-src 'none'; script-src 'none'; img-src 'self' https: creativecommons.org dylanharris.org *.facebook.com upload.wikimedia.org web.archive.org www.paypalobjects.com xkcd.com;" -->
-<!--#set var="date" value="August&nbsp;2025" -->
+<!--#set var="date" value="October&nbsp;2025" -->
 <!--#set var="description" value="the static site checker, https://ssc.lu/, is a static website nitpicker" -->
 <!--#set var="domain" value="ssc.lu" -->
 <!--#set var="email" value="mail@ssc.lu" -->
+<!--#set var="email2" value="mail@ssc.lu" -->
 <!--#set var="semail" value="mail&commat;ssc&period;lu" -->
+<!--#set var="semail2" value="mail&commat;dylanharris&period;org" -->
 <!--#set var="front" value="/index.shtml" -->
 <!--#set var="github" value="https://github.com/devongarde/ssc" -->
+<!--#set var="guestbook" value="http://users2.smartgb.com/g/g.php?a=s&i=g26-40607-6b" -->
 <!--#set var="home" value="/index.shtml" -->
 <!--#set var="hostland" value="luxembourg" -->
 <!--#set var="uhostland" value="The Grand Duchy of Luxembourg" -->
 <!--#set var="icon" value="/image/favicon.ico" -->
 <!--#set var="jurisdiction" value="https://luxcommons.lu/" -->
-<!--#set var="latest-HTML" value="Aug 2025" -->
+<!--#set var="latest-HTML" value="Oct 2025" -->
 <!--#set var="latest-CSS" value="2024" -->
 <!--#set var="legal" value="/legal.shtml" -->
 <!--#set var="licence" value="https://creativecommons.org/licenses/by-nc-sa/4.0/" -->
@@ -44,7 +47,7 @@
 <!--#set var="terms" value="/terms.shtml" -->
 <!--#set var="test" value="ssc-test" -->
 <!--#set var="stel" value="+352&nbsp;000&nbsp;000&nbsp;000" -->
-<!--#set var="version" value="0.2.20" -->
+<!--#set var="version" value="0.2.21" -->
 <!--#set var="webmeister" value="dylan&nbsp;harris" -->
 <!--#set var="swebmeister" value="dylan harris" -->
 <!--#set var="webssc" value="https://ssc.lu/" -->

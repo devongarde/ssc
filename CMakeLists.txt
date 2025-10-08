@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.24)
 set (FULLNAME "Static-Site-Checker")
-set (VER 0.2.20)
+set (VER 0.2.21)
 project (ssc VERSION ${VER} DESCRIPTION ${FULLNAME} LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 message (NOTICE "preparing " ${FULLNAME} " ${VER}" )
 
@@ -98,9 +98,10 @@ set (HEATERS
             ${H}/microformat/property_value.h ${H}/microformat/sibling.h
         ${H}/ontology/jsonld.h ${H}/ontology/ontology_hierarchy.h ${H}/ontology/ontology_name.h ${H}/ontology/ontology_property.h
             ${H}/ontology/ontology_structure.h ${H}/ontology/ontology_type.h ${H}/ontology/ontology_version.h
-        ${H}/parser/efficiency.h ${H}/parser/html_version.h ${H}/parser/jsonic.h ${H}/parser/parse_abb.h ${H}/parser/parse_attribute.h
-            ${H}/parser/parse_attributes.h ${H}/parser/parse_brac_ket.h ${H}/parser/parse_bracs_ket.h ${H}/parser/parse_element.h
-            ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h ${H}/parser/pattern.h ${H}/parser/text.h ${H}/parser/text-data.h
+        ${H}/parser/ads.h ${H}/parser/colonic.h ${H}/parser/efficiency.h ${H}/parser/html_version.h ${H}/parser/jsonic.h
+            ${H}/parser/parse_abb.h ${H}/parser/parse_attribute.h ${H}/parser/parse_attributes.h ${H}/parser/parse_brac_ket.h
+            ${H}/parser/parse_bracs_ket.h ${H}/parser/parse_element.h ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h
+            ${H}/parser/pattern.h ${H}/parser/robotic.h ${H}/parser/security.h ${H}/parser/text.h ${H}/parser/text-data.h
             ${H}/parser/xhtml_xml.h
         ${H}/rdf/rdf.h ${H}/rdf/rdfa_prop.h ${H}/rdf/rdfa_type.h
         ${H}/simple/simple.h ${H}/simple/type_autocomplete.h ${H}/simple/type_css.h ${H}/simple/type_currency.h
@@ -114,7 +115,7 @@ set (HEATERS
         ${H}/symbol/nstr.h ${H}/symbol/symbol.h ${H}/symbol/symbol_entry.h ${H}/symbol/symbol_key.h ${H}/symbol/symbol_store.h ${H}/symbol/symbol_table.h
         ${H}/type/type.h ${H}/type/type_csp.h
         ${H}/url/fetch.h ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h
-            ${H}/url/url_schemes.h
+            ${H}/url/url_schemes.h ${H}/url/wacky.h
         ${H}/utility/bigvector.h ${H}/utility/bitset.h ${H}/utility/byteorder.h ${H}/utility/cache.h ${H}/utility/common.h ${H}/utility/fileio.h
             ${H}/utility/filesystem.h ${H}/utility/lexical.h ${H}/utility/list.h ${H}/utility/quote.h ${H}/utility/ssl.h ${H}/utility/tuple.h
         ${H}/webpage/corpus.h ${H}/webpage/crosslink.h ${H}/webpage/directory.h ${H}/webpage/external.h ${H}/webpage/fileindex.h ${H}/webpage/headers.h
@@ -132,7 +133,7 @@ set (SAUCE
             ${S}/attribute/avm_data_x.cpp ${S}/attribute/avm_data_rdf.cpp ${S}/attribute/namespace.cpp
         ${S}/base/type_base.cpp ${S}/base/type_case.cpp ${S}/base/type_core.cpp ${S}/base/type_master.cpp
         ${S}/coop/fred.cpp ${S}/coop/kew.cpp ${S}/coop/knickers.cpp ${S}/coop/lox.cpp ${S}/coop/tls.cpp
-        ${S}/compound/type_csses.cpp ${S}/compound/type_varied.cpp
+        ${S}/compound/type_csses.cpp ${S}/compound/type_mimes.cpp ${S}/compound/type_varied.cpp
         ${S}/css/arguments.cpp ${S}/css/css.cpp ${S}/css/css_attribute.cpp ${S}/css/css_class.cpp ${S}/css/css_element.cpp ${S}/css/css_id.cpp
             ${S}/css/css_parse.cpp ${S}/css/css_state.cpp ${S}/css/decoration.cpp ${S}/css/descriptor.cpp ${S}/css/descriptor_constructor.cpp
             ${S}/css/descriptors.cpp ${S}/css/distilled.cpp ${S}/css/ffv.cpp ${S}/css/ffvs.cpp ${S}/css/fn.cpp ${S}/css/global.cpp ${S}/css/group.cpp
@@ -152,7 +153,7 @@ set (SAUCE
             ${S}/css/value_types_i_1.cpp ${S}/css/value_types_i_2.cpp ${S}/css/value_types_j_k.cpp ${S}/css/value_types_l_1.cpp ${S}/css/value_types_l_2.cpp
             ${S}/css/value_types_m_1.cpp ${S}/css/value_types_m_2.cpp ${S}/css/value_types_m_3.cpp ${S}/css/value_types_n.cpp
             ${S}/css/value_types_o.cpp ${S}/css/value_types_p_1.cpp ${S}/css/value_types_p_2.cpp ${S}/css/value_types_q_r.cpp
-            ${S}/css/value_types_r.cpp ${S}/css/value_types_s_1.cpp ${S}/css/value_types_s_2.cpp ${S}/css/value_types_svg_1.cpp
+            ${S}/css/value_types_r.cpp ${S}/css/value_types_rsl.cpp ${S}/css/value_types_s_1.cpp ${S}/css/value_types_s_2.cpp ${S}/css/value_types_svg_1.cpp
             ${S}/css/value_types_svg_2.cpp ${S}/css/value_types_t_1.cpp ${S}/css/value_types_t_2.cpp ${S}/css/value_types_u.cpp
             ${S}/css/value_types_v.cpp ${S}/css/value_types_v_w.cpp ${S}/css/value_types_x.cpp
             ${S}/css/value_types_x_z.cpp ${S}/css/weight.cpp 
@@ -174,9 +175,10 @@ set (SAUCE
             ${S}/microformat/microformats.cpp ${S}/microformat/property_value.cpp ${S}/microformat/sibling.cpp
         ${S}/ontology/jsonld.cpp ${S}/ontology/ontology_hierarchy.cpp ${S}/ontology/ontology_name.cpp ${S}/ontology/ontology_property.cpp
             ${S}/ontology/ontology_structure.cpp ${S}/ontology/ontology_type.cpp ${S}/ontology/ontology_version.cpp
-        ${S}/parser/efficiency.cpp ${S}/parser/html_version.cpp ${S}/parser/jsonic.cpp ${S}/parser/parse_attribute.cpp ${S}/parser/parse_attributes.cpp
-            ${S}/parser/parse_brac_ket.cpp ${S}/parser/parse_bracs_ket.cpp ${S}/parser/parse_element.cpp ${S}/parser/parse_elements.cpp
-            ${S}/parser/parse_ssi.cpp ${S}/parser/pattern.cpp ${S}/parser/text.cpp ${S}/parser/text-data.cpp ${S}/parser/xhtml_xml.cpp
+        ${S}/parser/ads.cpp ${S}/parser/colonic.cpp ${S}/parser/efficiency.cpp ${S}/parser/html_version.cpp ${S}/parser/jsonic.cpp
+            ${S}/parser/parse_attribute.cpp ${S}/parser/parse_attributes.cpp ${S}/parser/parse_brac_ket.cpp ${S}/parser/parse_bracs_ket.cpp 
+            ${S}/parser/parse_element.cpp ${S}/parser/parse_elements.cpp ${S}/parser/parse_ssi.cpp ${S}/parser/pattern.cpp ${S}/parser/robotic.cpp
+            ${S}/parser/security.cpp ${S}/parser/text.cpp ${S}/parser/text-data.cpp ${S}/parser/xhtml_xml.cpp
         ${S}/rdf/rdf.cpp ${S}/rdf/rdfa_prop.cpp ${S}/rdf/rdfa_type.cpp
         ${S}/simple/type_autocomplete.cpp ${S}/simple/type_basic.cpp ${S}/simple/type_css.cpp ${S}/simple/type_currency.cpp ${S}/simple/type_d.cpp
             ${S}/simple/type_httpequiv.cpp ${S}/simple/type_id.cpp ${S}/simple/type_jsonic.cpp ${S}/simple/type_intent.cpp ${S}/simple/type_layout.cpp
@@ -188,6 +190,7 @@ set (SAUCE
         ${S}/symbol/nstr.cpp ${S}/symbol/symbol.cpp
         ${S}/type/type.cpp ${S}/type/type_csp.cpp
         ${S}/url/fetch.cpp ${S}/url/url.cpp ${S}/url/url_parameters.cpp ${S}/url/url_protocol.cpp ${S}/url/url_sanitise.cpp ${S}/url/url_scheme.cpp
+            ${S}/url/wacky.cpp
         ${S}/utility/byteorder.cpp ${S}/utility/cache.cpp ${S}/utility/common.cpp ${S}/utility/fileio.cpp ${S}/utility/filesystem.cpp ${S}/utility/list.cpp
             ${S}/utility/quote.cpp
         ${S}/webpage/corpus.cpp ${S}/webpage/crosslink.cpp ${S}/webpage/directory.cpp ${S}/webpage/external.cpp ${S}/webpage/fileindex.cpp
@@ -320,7 +323,14 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set (MC ${CMAKE_BINARY_DIR}/${XAPP2}/Contents)
     set (Boost_USE_STATIC_LIBS ON)
     set (NOX "0")
-    if (${CMAKE_SYSTEM} MATCHES "Darwin-24")
+    if (${CMAKE_SYSTEM} MATCHES "Darwin-25")
+        set (TARGET_OS "Tahoe")
+        set (CDEF_PROD ${CDEF_PROD} CLEAN_SHAREDPTR_ARRAY ORDERED)
+        if (${ARCHITECTURE} MATCHES "x86_64")
+            set (NJ "1")
+        endif ()
+        set (SIGNING "1")
+    elseif (${CMAKE_SYSTEM} MATCHES "Darwin-24")
         set (TARGET_OS "Sequoia")
         set (CDEF_PROD ${CDEF_PROD} CLEAN_SHAREDPTR_ARRAY ORDERED)
         if (${ARCHITECTURE} MATCHES "x86_64")

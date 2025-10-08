@@ -781,6 +781,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H4_CSS_LS_AUG25    ( H4_CSS_2024 | H4_CSS_2024_1 | H4_CSS_2024_2 | H4_CSS_2024_3 | H4_CSS_FCS | H4_CSS_LIVING_STANDARD | H4_CSS_MATH_CORE | H4_CSS_OVERFLOW )
 
+#define H4_RSL              0x0000100000000000
+#define H4_RSS              0x0000200000000000
+#define H4_ATOM             0x0000400000000000
+#define H4_VTT              0x0000800000000000
+#define H4_RUBY             0x0001000000000000
+
+#define H4_NODOCTYPE        ( H4_RSL | H4_RSS | H4_ATOM )
+
 #define H4_ARIA_DP_1_0      0x0010000000000000
 #define H4_ARIA_DP_1_1      0x0020000000000000
 #define H4_ARIA_DP_1        ( H4_ARIA_DP_1_0 | H4_ARIA_DP_1_1 )
@@ -798,9 +806,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H4_ARIA_PARTIAL     0x0750000000000000
 #define H4_ARIA_FULL        0x0FF0000000000000
 
-#define H4_VTT              0x2000000000000000
-#define H4_LV_JAN25         0x4000000000000000
-#define H4_RUBY             0x8000000000000000
+#define H4_LV_JAN25         0x8000000000000000
 
 
 class html_version : public version
@@ -938,6 +944,9 @@ public:
     bool is_jsonld_10 () const noexcept { return (ext2 () & H2_JSONLD_1_0) == H2_JSONLD_1_0; }
     bool is_jsonld_11 () const noexcept { return (ext2 () & H2_JSONLD_1_1) == H2_JSONLD_1_1; }
     bool is_rdf () const noexcept { return (ext () & HE_RDF) != 0; }
+    bool is_atomic () const noexcept { return (ext4 () & H4_ATOM) != 0; }
+    bool is_rsl () const noexcept { return (ext4 () & H4_RSL) != 0; }
+    bool is_rss () const noexcept { return (ext4 () & H4_RSS) != 0; }
     bool is_rdf_dep () const noexcept { return (ext () & HE_RDF_DEP) != 0; }
     bool is_svg_1 () const noexcept { return (ext () & HE_SVG_1) != 0; }
     bool is_svg_10 () const noexcept { return (ext () & HE_SVG_10) == HE_SVG_10; }
@@ -975,6 +984,7 @@ public:
     bool is_plain_html () const noexcept;
     int xlink () const noexcept { return GSL_NARROW_CAST < int > ((ext () & XLINK_MASK) >> XLINK_SHIFT); }
     bool check_math_svg (nitpick& nits, const html_version& a, const ::std::string& x) const;
+    bool atom () const noexcept { return all_ext4 (H4_ATOM); }
     bool microdata () const noexcept { return any_ext (HE_MICRODATA); }
     bool mozilla () const noexcept { return any_ext (HE_MOZILLA); }
     bool netscape () const noexcept { return any_ext (HE_NETSCAPE); }
@@ -996,6 +1006,9 @@ public:
     bool opera () const noexcept { return any_ext (HE_OPERA); }
     bool out_of_scope () const noexcept { return all_flags (HV_OUTOFSCOPE); }
     bool reject () const noexcept { return all_flags (HV_REJECT); }
+    bool rsl () const noexcept { return any_ext4 (H4_RSL); }
+    bool rss () const noexcept { return all_ext4 (H4_RSS); }
+    bool toppled () const noexcept { return any_ext4 (H4_ATOM | H4_RSL | H4_RSS); }
     bool ruby () const noexcept { return any_ext4 (H4_RUBY); }
     bool clacks () const noexcept { return any_ext2 (H2_CLACKS); }
     bool required () const noexcept { return all_flags (HV_REQUIRED); }
@@ -1093,6 +1106,8 @@ const html_version html_aria_dp_1_1 (HTML_ARIA_DP_1_1);
 const html_version html_aria_graph (HTML_ARIA_GRAPH);
 const html_version html_aria_html (HTML_ARIA_HTML);
 
+const html_version html_atom (HTML_ATOM, 0, 0, 0, 0, H4_ATOM);
+
 const html_version html_css_1 (HTML_2_0, css_1);
 const html_version html_css_2_0 (HTML_3_2, css_2_0);
 const html_version html_css_2_1 (XHTML_1_0, css_2_1);
@@ -1110,6 +1125,10 @@ const html_version xhtml_math_2 (HTML_MATH2, css_2_1, HV_XHTML, 0, H2_MATH_2);
 const html_version html_math_3 (HTML_MATH3, css_2_1, 0, 0, H2_MATH_3);
 const html_version html_math_4 (HTML_MATH4, css_2_1, 0, 0, H2_MATH_4);
 const html_version html_math_core (HTML_MATH_CORE, css_2_1, 0, 0, H2_MATH_C, 0, H4_CSS_MATH_CORE);
+
+const html_version html_rsl (HTML_RSL, 0, 0, 0, 0, H4_RSL);
+
+const html_version html_rss (HTML_RSS, 0, 0, 0, 0, H4_RSS);
 
 const html_version xhtml_svg_1_0 (HTML_SVG10, css_2_0, HV_XHTML, HE_SVG_10);
 const html_version xhtml_svg_1_1 (HTML_SVG11, css_2_0, HV_XHTML, HE_SVG_11);
@@ -1337,6 +1356,8 @@ const html_version html_schema_28_1 (HTML_SCHEMA_28_1);
 const html_version html_schema_29_0 (HTML_SCHEMA_29_0);
 const html_version html_schema_29_1 (HTML_SCHEMA_29_1);
 const html_version html_schema_29_2 (HTML_SCHEMA_29_2);
+const html_version html_schema_29_3 (HTML_SCHEMA_29_3);
+const html_version html_schema_29_4 (HTML_SCHEMA_29_4);
 const html_version html_schema_30_0 (HTML_SCHEMA_30_0);
 const html_version html_sd (HTML_SD);
 const html_version html_sioc (HTML_SIOC);
@@ -1464,7 +1485,7 @@ const html_version html_5_0 (HTML_5_0, css_2010, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_1 (HTML_5_1, css_2015, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_2 (HTML_5_2, css_2017, HV_W3, HE_SVG_11, H2_MATH_3);
 const html_version html_5_3 (HTML_5_3, css_2018, HV_W3, HE_SVG_11, H2_MATH_3);
-const html_version html_current (html_aug25);
+const html_version html_current (html_oct25);
 const html_version html_default (html_current);
 const html_version html_max (HTML_DEC99, css_6, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_FULL_CSS_MASK, H3_FULL_CSS_MASK, H4_RUBY | H4_ARIA_FULL | H4_FULL_CSS_MASK);
 

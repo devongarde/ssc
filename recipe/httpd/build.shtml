@@ -62,8 +62,8 @@ and, except for Windows, a recent version of
 To build the GUI version, #define WX, and you&rsquo;ll
 need a recent version of <a href="https://wxwidgets.org/">wxWidgets</a> (this may change). 
 For signed output, install <a href="https://libressl.org/">libreSSL</a>, or an equivalent.
-Note that <a href="https://libressl.org/">libreSSL</a> is built into <a href="https://openbsd.org/">OpenBSD</a> and Windows 11.
-An Operating System&rsquo;s package manager often has appropriate versions ready to install.
+(Note that <a href="https://libressl.org/">libreSSL</a> is built into <a href="https://openbsd.org/">OpenBSD</a> and Windows 11.)
+Usually, an Operating System&rsquo;s package manager will often have an appropriate version ready to install.
 </p>
 
 <p>
@@ -230,8 +230,9 @@ for your build account in login.conf.
 <p>
 Certain versions of macos clang produce buggy code, whether or not
 optimisations are applied. Use an alternative compiler if you want
-a stable executable. I suspect this is really due to a bug in
-<a href="<!--#echo encoding="none" var="home" -->"><!--#echo encoding="none" var="short" --></a>, but I&rsquo;ve not been able to find it.
+a stable executable. I realise this is probably due to a bug in
+<a href="<!--#echo encoding="none" var="home" -->"><!--#echo encoding="none" var="short" --></a>,
+but I&rsquo;ve not been able to find it.
 </p>
 
 <h2>Testing</h2>

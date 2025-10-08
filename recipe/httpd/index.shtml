@@ -51,95 +51,41 @@ It should not be used on untrusted content; its parsers are
 
 <br>
 
-<details name="try" open>
-<summary>basic</summary>
+<p>
+SSC is a web SITE validator, but a little form like this can only verify a snippet of a file. That&rsquo;s not quite the same thing,
+but, well, it&rsquo;s a start.
+</p>
 
 <p>
 Paste an HTML snippet, hit <kbd>nitpick</kbd>.
 </p>
 
+<br>
+
 <form method=get action="/cgi-bin/dance">
+
+<details name="try" open>
+<summary>basic</summary>
 
 <p>
 <label>
 <textarea cols=80 maxlength=65535 required rows=8 name=html.snippet placeholder="paste X/HTML here">
 </textarea>
 </label>
-
-<br><br>
-
-<input type=hidden name=output.format value=stylesheet>
-<input type=hidden name=output.stylesheet value=/plumbing/ignorance.css>
-
-<button type=submit>
-nitpick
-</button>
 </p>
 
-</form>
-
 <br>
+
 </details>
 
-<details name="try" open>
+<details name="try">
 <summary>advanced</summary>
 
 <p>
-Paste an HTML snippet, review the options, &amp; hit submit.
-</p>
-
-<form method=get action="/cgi-bin/dance">
-
-<p>
 <label>
 <textarea cols=80 maxlength=65535 required rows=8 name=html.snippet placeholder="paste X/HTML here">
 </textarea>
 </label>
-
-<!--#comment PIVOT -->
-
-<br><br>
-
-<select name=css.version>
-<option></option>
-<option value=0>no &lt;STYLE&gt;</option>
-<option value=1>CSS 1</option>
-<option value=2.0>CSS 2.0</option>
-<option value=2.1>CSS 2.1</option>
-<option value=2.2>CSS 2.2 (draft)</option>
-<option value=2007>CSS 2007 snapshot</option>
-<option value=2010>CSS 2010 snapshot</option>
-<option value=2015>CSS 2015 core snapshot</option>
-<option value=2015+>CSS 2015 wibbly snapshot</option>
-<option value=2015++>CSS 2015 wibbly&ndash;wobbly snapshot</option>
-<option value=2017>CSS 2017 core snapshot</option>
-<option value=2017+>CSS 2017 wibbly snapshot</option>
-<option value=2017++>CSS 2017 wibbly&ndash;wobbly snapshot</option>
-<option value=2018>CSS 2018 core snapshot</option>
-<option value=2018+>CSS 2018 wibbly snapshot</option>
-<option value=2018++>CSS 2018 wibbly&ndash;wobbly snapshot</option>
-<option value=2020>CSS 2020 core snapshot</option>
-<option value=2020+>CSS 2020 wibbly snapshot</option>
-<option value=2020++>CSS 2020 wibbly&ndash;wobbly snapshot</option>
-<option value=2021>CSS 2021 core snapshot</option>
-<option value=2021+>CSS 2021 wibbly snapshot</option>
-<option value=2021++>CSS 2021 wibbly&ndash;wobbly snapshot</option>
-<option value=2022>CSS 2022 core snapshot</option>
-<option value=2022+>CSS 2022 wibbly snapshot</option>
-<option value=2022++>CSS 2022 wibbly&ndash;wobbly snapshot</option>
-<option value=2023>CSS 2023 core snapshot</option>
-<option value=2023+>CSS 2023 wibbly snapshot</option>
-<option value=2023++>CSS 2023 wibbly&ndash;wobbly snapshot</option>
-<option value=2024>CSS 2024 core snapshot</option>
-<option value=2024+>CSS 2024 wibbly snapshot</option>
-<option value=2024++>CSS 2024 wibbly&ndash;wobbly snapshot</option>
-<option value=2024+++>CSS 2024 weally&ndash;wibbly&ndash;wobbly snapshot</option>
-<option value=html5 selected>CSS per HTML5</option>
-<option value=3>All CSS level 3 modules</option>
-<option value=4>All CSS levels 3 &amp; 4 modules</option>
-<option value=5>All CSS levels 3, 4 &amp; 5 modules</option>
-<option value=6>All CSS modules</option>
-</select>
 
 <br><br>
 
@@ -245,6 +191,49 @@ Paste an HTML snippet, review the options, &amp; hit submit.
 
 <br><br>
 
+<select name=css.version>
+<option></option>
+<option value=0>no &lt;STYLE&gt;</option>
+<option value=1>CSS 1</option>
+<option value=2.0>CSS 2.0</option>
+<option value=2.1>CSS 2.1</option>
+<option value=2.2>CSS 2.2 (draft)</option>
+<option value=2007>CSS 2007 snapshot</option>
+<option value=2010>CSS 2010 snapshot</option>
+<option value=2015>CSS 2015 core snapshot</option>
+<option value=2015+>CSS 2015 wibbly snapshot</option>
+<option value=2015++>CSS 2015 wibbly&ndash;wobbly snapshot</option>
+<option value=2017>CSS 2017 core snapshot</option>
+<option value=2017+>CSS 2017 wibbly snapshot</option>
+<option value=2017++>CSS 2017 wibbly&ndash;wobbly snapshot</option>
+<option value=2018>CSS 2018 core snapshot</option>
+<option value=2018+>CSS 2018 wibbly snapshot</option>
+<option value=2018++>CSS 2018 wibbly&ndash;wobbly snapshot</option>
+<option value=2020>CSS 2020 core snapshot</option>
+<option value=2020+>CSS 2020 wibbly snapshot</option>
+<option value=2020++>CSS 2020 wibbly&ndash;wobbly snapshot</option>
+<option value=2021>CSS 2021 core snapshot</option>
+<option value=2021+>CSS 2021 wibbly snapshot</option>
+<option value=2021++>CSS 2021 wibbly&ndash;wobbly snapshot</option>
+<option value=2022>CSS 2022 core snapshot</option>
+<option value=2022+>CSS 2022 wibbly snapshot</option>
+<option value=2022++>CSS 2022 wibbly&ndash;wobbly snapshot</option>
+<option value=2023>CSS 2023 core snapshot</option>
+<option value=2023+>CSS 2023 wibbly snapshot</option>
+<option value=2023++>CSS 2023 wibbly&ndash;wobbly snapshot</option>
+<option value=2024>CSS 2024 core snapshot</option>
+<option value=2024+>CSS 2024 wibbly snapshot</option>
+<option value=2024++>CSS 2024 wibbly&ndash;wobbly snapshot</option>
+<option value=2024+++>CSS 2024 weally&ndash;wibbly&ndash;wobbly snapshot</option>
+<option value=html5 selected>CSS per HTML5</option>
+<option value=3>All CSS level 3 modules</option>
+<option value=4>All CSS levels 3 &amp; 4 modules</option>
+<option value=5>All CSS levels 3, 4 &amp; 5 modules</option>
+<option value=6>All CSS modules</option>
+</select>
+
+<br><br>
+
 <select name=general.verbose required>
 <option></option>
 <option value=1>Catastrophic Errors only</option>
@@ -254,26 +243,25 @@ Paste an HTML snippet, review the options, &amp; hit submit.
 <option value=5>Errors, Warnings, &amp; Information</option>
 <option value=6>Everything</option>
 </select>
+</p>
 
-<br><br>
+</details>
+
+<br>
 
 <input type=hidden name=output.format value=stylesheet>
 <input type=hidden name=output.stylesheet value=/plumbing/ignorance.css>
 
-<button type=reset>
-Reset
-</button>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
 <button type=submit>
-Submit
+nitpick
 </button>
-</p>
 
 </form>
 
-</details>
+<p>
+Remember, <!--#echo encoding="none" var="short" --> is a web SITE nitpicker, so this little
+piece of fluff can only hint its capabilities.
+</p>
 
 <h2>current downloads</h2>
 

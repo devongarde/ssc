@@ -5,7 +5,7 @@ PASS ../toast/microdata/schema-mno/map.html
 
 PASS ../toast/microdata/schema-mno/mediaobject.html
 13 script
-20 invalid_duration
+20 duration
 
 PASS ../toast/microdata/schema-mno/medicalguideline.html
 31 bad_itemid
@@ -78,11 +78,11 @@ PASS ../toast/microdata/schema-mno/musicalbum.html
 
 PASS ../toast/microdata/schema-mno/musicevent.html
 18 no_such_folder url_not_found
-25 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 50 no_such_folder url_not_found
 54 no_such_folder url_not_found
 59 no_such_folder url_not_found
 61 no_such_folder url_not_found
+25 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 
 PASS ../toast/microdata/schema-mno/musicgroup.html
 20 data_type
@@ -99,7 +99,7 @@ PASS ../toast/microdata/schema-mno/musicgroup.html
 65 url_not_found
 66 url_not_found url_not_found url_not_found url_not_found url_not_found url_not_found
 76 no_such_folder url_not_found
-83 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+83 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 108 no_such_folder url_not_found
 112 no_such_folder url_not_found
 117 no_such_folder url_not_found
@@ -145,29 +145,29 @@ PASS ../toast/microdata/schema-mno/offer-1.html
 78 no_such_folder url_not_found
 79 use_quote_code
 85 unrecognised_value
-86 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+86 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 89 unrecognised_value
 92 unrecognised_value
 94 unrecognised_value
 99 unrecognised_value
 101 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 106 unrecognised_value
-107 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+107 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 110 unrecognised_value
 114 unrecognised_value
 116 unrecognised_value
 121 unrecognised_value
 123 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 129 unrecognised_value
-130 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+130 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 133 unrecognised_value
-136 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
+136 invalid_attribute_version wrong_version svg_rdf bad_year bad_year
 137 unrecognised_value
 139 unrecognised_value
 144 unrecognised_value
 148 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 153 unrecognised_value
-154 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+154 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 157 unrecognised_value
 160 unrecognised_value
 162 unrecognised_value
@@ -221,7 +221,7 @@ PASS ../toast/microdata/schema-mno/organisation.html
 40 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 64 forgotten_name use_double_quote_code missing_open
 81 no_itemscope
-94 invalid_attribute_version wrong_version svg_rdf timezone
+94 invalid_attribute_version wrong_version svg_rdf bad_zone
 
 PASS ../toast/microdata/schema-mno/organisationrole.html
 14 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property

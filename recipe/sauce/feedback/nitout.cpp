@@ -388,7 +388,7 @@ vstr_t sections;
     "[config-foot]\n" \
     "\n" \
     "[doc-head]\n" \
-    "{{prog-fullname}} version {{prog-version}}\n" \
+    "{{prog-fullname}} version {{prog-version}}{{update-info: (:)}}\n" \
     "{{copyright-text}}\n" \
     "{{output-build}}{{output-operator:, :}}{{output-account: (:)}}{{output-time:, :}}\n" \
     "{{output-description}}" \
@@ -586,7 +586,7 @@ vstr_t sections;
     "</MAIN>\n" \
     "<HR>\n" \
     "<FOOTER class=\"smaller\">\n" \
-    "<A href=\"{{prog-addr}}\" class=\"ssc-name\">{{prog-fullname}}</A> version {{prog-version}} ({{compile-time}})<BR>\n" \
+    "<A href=\"{{prog-addr}}\" class=\"ssc-name\">{{prog-fullname}}</A> version {{prog-version}} {{compile-time}}{{update-info: (:)}}<BR>\n" \
     "<A href=\"{{copyright-addr}}\" class=\"ssc-copyright\">{{copyright-text}}</A><BR>\n" \
     "{{output-build}}{{output-operator:, :}}{{output-account: (:)}}{{output-time:, :}}\n" \
     "{{output-description:&ldquo;:&rdquo;}}\n" \
@@ -800,7 +800,7 @@ vstr_t sections;
     "</MAIN>\n" \
     "<HR/>\n" \
     "<FOOTER class=\"smaller\">\n" \
-    "<A href=\"{{prog-addr}}\" class=\"ssc-name\">{{prog-fullname}}</A> version {{prog-version}} ({{compile-time}})<BR/>\n" \
+    "<A href=\"{{prog-addr}}\" class=\"ssc-name\">{{prog-fullname}}</A> version {{prog-version}} {{compile-time}}{{update-info: (:)}}<BR/>\n" \
     "<A href=\"{{copyright-addr}}\" class=\"ssc-copyright\">{{copyright-text}}</A><BR>\n" \
     "{{output-build}}{{output-operator:, :}}{{output-account: (:)}}{{output-time:, :}}\n" \
     "{{output-description:&ldquo;:&rdquo;}}\n" \
@@ -996,7 +996,7 @@ vstr_t sections;
     "</MAIN>\n" \
     "<BR><HR>\n" \
     "<FOOTER class=\"smaller\">\n" \
-    "<A href=\"{{prog-addr}}\" class=\"ssc-name\">{{prog-fullname}}</A> version {{prog-version}} ({{compile-time}})<BR>\n" \
+    "<A href=\"{{prog-addr}}\" class=\"ssc-name\">{{prog-fullname}}</A> version {{prog-version}} {{compile-time}}{{update-info: (:)}}<BR>\n" \
     "<A href=\"{{copyright-addr}}\" class=\"ssc-copyright\">{{copyright-text}}</A><BR>\n" \
     "</FOOTER>\n" \
     "</BODY>\n" \

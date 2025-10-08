@@ -36,7 +36,7 @@ PASS ../toast/RDF/Prism-3.0/pim.rdf
 
 PASS ../toast/RDF/Prism-3.0/pmi.rdf
 1 xhtml_5_0
-6 dialect dialect dialect dialect
+6 dialect dialect
 21 bad_namespace
 24 bad_namespace
 37 attribute_unrecognised

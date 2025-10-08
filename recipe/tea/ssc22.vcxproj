@@ -186,6 +186,8 @@
     <ClInclude Include="..\heater\ontology\ontology_structure.h" />
     <ClInclude Include="..\heater\ontology\ontology_type.h" />
     <ClInclude Include="..\heater\ontology\ontology_version.h" />
+    <ClInclude Include="..\heater\parser\ads.h" />
+    <ClInclude Include="..\heater\parser\colonic.h" />
     <ClInclude Include="..\heater\parser\efficiency.h" />
     <ClInclude Include="..\heater\parser\html_version.h" />
     <ClInclude Include="..\heater\parser\jsonic.h" />
@@ -198,6 +200,8 @@
     <ClInclude Include="..\heater\parser\parse_elements.h" />
     <ClInclude Include="..\heater\parser\parse_ssi.h" />
     <ClInclude Include="..\heater\parser\pattern.h" />
+    <ClInclude Include="..\heater\parser\robotic.h" />
+    <ClInclude Include="..\heater\parser\security.h" />
     <ClInclude Include="..\heater\parser\text-data.h" />
     <ClInclude Include="..\heater\parser\text.h" />
     <ClInclude Include="..\heater\parser\xhtml_xml.h" />
@@ -253,6 +257,7 @@
     <ClInclude Include="..\heater\url\url_sanitise.h" />
     <ClInclude Include="..\heater\url\url_scheme.h" />
     <ClInclude Include="..\heater\url\url_schemes.h" />
+    <ClInclude Include="..\heater\url\wacky.h" />
     <ClInclude Include="..\heater\utility\bigvector.h" />
     <ClInclude Include="..\heater\utility\bitset.h" />
     <ClInclude Include="..\heater\utility\byteorder.h" />
@@ -475,6 +480,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\compound\type_mimes.cpp" />
     <ClCompile Include="..\sauce\compound\type_varied.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
@@ -875,6 +881,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_rsl.cpp" />
     <ClCompile Include="..\sauce\css\value_types_s_1.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
@@ -1267,6 +1274,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\parser\ads.cpp" />
+    <ClCompile Include="..\sauce\parser\colonic.cpp" />
     <ClCompile Include="..\sauce\parser\efficiency.cpp" />
     <ClCompile Include="..\sauce\parser\html_version.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
@@ -1318,6 +1327,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\parser\robotic.cpp" />
+    <ClCompile Include="..\sauce\parser\security.cpp" />
     <ClCompile Include="..\sauce\parser\text-data.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
@@ -1538,6 +1549,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\url\wacky.cpp" />
     <ClCompile Include="..\sauce\utility\byteorder.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
@@ -12313,6 +12325,7 @@
     <None Include="..\toast\living\oct25\4.3.11-6.html" />
     <None Include="..\toast\living\oct25\4.3.11-7.html" />
     <None Include="..\toast\living\oct25\4.3.11-8.html" />
+    <None Include="..\toast\living\oct25\4.3.11-9.html" />
     <None Include="..\toast\living\oct25\4.3.12-1.html" />
     <None Include="..\toast\living\oct25\4.3.12-2.html" />
     <None Include="..\toast\living\oct25\4.7.4.html" />
@@ -13025,6 +13038,9 @@
     <None Include="..\toast\other\abbr\abbr.conf" />
     <None Include="..\toast\other\abbr\abbr.spec" />
     <None Include="..\toast\other\abbr\index.html" />
+    <None Include="..\toast\other\ads\ads.conf" />
+    <None Include="..\toast\other\ads\ads.spec" />
+    <None Include="..\toast\other\ads\index.html" />
     <None Include="..\toast\other\base\bad-base-2.html" />
     <None Include="..\toast\other\base\bad-base-3.html" />
     <None Include="..\toast\other\base\bad-base.html" />
@@ -13097,7 +13113,6 @@
     <None Include="..\toast\other\lists\lists.spec" />
     <None Include="..\toast\other\live\2019.html" />
     <None Include="..\toast\other\live\404.shtml" />
-    <None Include="..\toast\other\live\feed-me.rss" />
     <None Include="..\toast\other\live\index.html" />
     <None Include="..\toast\other\live\index.shtml" />
     <None Include="..\toast\other\live\live.conf" />
@@ -13135,6 +13150,9 @@
     <None Include="..\toast\other\required\required.spec" />
     <None Include="..\toast\other\required\sub\index.html" />
     <None Include="..\toast\other\required\sub\other.html" />
+    <None Include="..\toast\other\robotic\index.html" />
+    <None Include="..\toast\other\robotic\robotic.conf" />
+    <None Include="..\toast\other\robotic\robotic.spec" />
     <None Include="..\toast\other\ruby\index.html" />
     <None Include="..\toast\other\ruby\ruby-2.html" />
     <None Include="..\toast\other\ruby\ruby-a.html" />
@@ -13147,6 +13165,12 @@
     <None Include="..\toast\other\safari\recordings.html" />
     <None Include="..\toast\other\safari\safari.conf" />
     <None Include="..\toast\other\safari\safari.spec" />
+    <None Include="..\toast\other\security\ackn.html" />
+    <None Include="..\toast\other\security\hiring.html" />
+    <None Include="..\toast\other\security\index.html" />
+    <None Include="..\toast\other\security\policy.html" />
+    <None Include="..\toast\other\security\security.conf" />
+    <None Include="..\toast\other\security\security.spec" />
     <None Include="..\toast\other\silenced\index.html" />
     <None Include="..\toast\other\silenced\silenced.conf" />
     <None Include="..\toast\other\silenced\silenced.spec" />
@@ -13476,6 +13500,22 @@
     <None Include="..\toast\RDF\prism-3.1\prs.rdf" />
     <None Include="..\toast\RDF\prism-3.1\rdf.conf" />
     <None Include="..\toast\RDF\prism-3.1\rdf.spec" />
+    <None Include="..\toast\RSS\0.91\ex-1.rss" />
+    <None Include="..\toast\RSS\0.91\ex-2.rss" />
+    <None Include="..\toast\RSS\0.91\ex-3.rss" />
+    <None Include="..\toast\RSS\0.91\index.html" />
+    <None Include="..\toast\RSS\0.91\rss.conf" />
+    <None Include="..\toast\RSS\0.91\rss.spec" />
+    <None Include="..\toast\RSS\0.92\ex-1.rss" />
+    <None Include="..\toast\RSS\0.92\index.html" />
+    <None Include="..\toast\RSS\0.92\rss.conf" />
+    <None Include="..\toast\RSS\0.92\rss.spec" />
+    <None Include="..\toast\RSS\2.0\feed-me.rss" />
+    <None Include="..\toast\RSS\2.0\index.html" />
+    <None Include="..\toast\RSS\2.0\rss.conf" />
+    <None Include="..\toast\RSS\2.0\rss.spec" />
+    <None Include="..\toast\RSS\2.0\2.0.rss" />
+    <None Include="..\toast\RSS\2.0\simple.rss" />
     <None Include="..\toast\shadow\comment\comment.conf" />
     <None Include="..\toast\shadow\comment\comment.spec" />
     <None Include="..\toast\shadow\comment\index.html" />
@@ -14391,6 +14431,11 @@
     <None Include="..\toast\SVG\2.1\viewport.xhtml" />
     <None Include="..\toast\SVG\2.1\white-space.html" />
     <None Include="..\toast\SVG\2.1\will-change.html" />
+    <None Include="..\toast\type\atom\atom.conf" />
+    <None Include="..\toast\type\atom\atom.spec" />
+    <None Include="..\toast\type\atom\brief.atom" />
+    <None Include="..\toast\type\atom\extensive.atom" />
+    <None Include="..\toast\type\atom\index.html" />
     <None Include="..\toast\type\colour\bad.html" />
     <None Include="..\toast\type\colour\colour.conf" />
     <None Include="..\toast\type\colour\colour.spec" />
@@ -14448,6 +14493,18 @@
     <None Include="..\toast\type\rfc6570\level-4.html" />
     <None Include="..\toast\type\rfc6570\rfc6570.conf" />
     <None Include="..\toast\type\rfc6570\rfc6570.spec" />
+    <None Include="..\toast\type\rsl\attr-collect.rsl" />
+    <None Include="..\toast\type\rsl\catalogue.rss" />
+    <None Include="..\toast\type\rsl\cc.rsl" />
+    <None Include="..\toast\type\rsl\embed.html" />
+    <None Include="..\toast\type\rsl\encrypted.rsl" />
+    <None Include="..\toast\type\rsl\index.html" />
+    <None Include="..\toast\type\rsl\link.html" />
+    <None Include="..\toast\type\rsl\paid.rsl" />
+    <None Include="..\toast\type\rsl\pay-collect.rsl" />
+    <None Include="..\toast\type\rsl\rsl.conf" />
+    <None Include="..\toast\type\rsl\rsl.spec" />
+    <None Include="..\toast\type\rsl\server.rsl" />
     <None Include="..\toast\type\sgml\bad.html" />
     <None Include="..\toast\type\sgml\dubious.html" />
     <None Include="..\toast\type\sgml\dubious2.html" />
@@ -15058,6 +15115,11 @@
     <Text Include="..\toast\coop\corrupt\README.txt" />
     <Text Include="..\toast\coop\corrupt\robots.txt" />
     <Text Include="..\toast\link\virtual\README.txt" />
+    <Text Include="..\toast\other\ads\ads.txt" />
+    <Text Include="..\toast\other\robotic\foo\README.txt" />
+    <Text Include="..\toast\other\robotic\robots.txt" />
+    <Text Include="..\toast\other\security\.well-known\security.txt" />
+    <Text Include="..\toast\other\security\pgp-key.txt" />
     <Text Include="..\toast\README.txt" />
     <Text Include="..\toast\shadow\update\README.txt" />
     <Text Include="..\toast\signing\sign-pw\password.txt" />
@@ -15316,7 +15378,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;ssl.lib;tls.lib;crypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;crypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>

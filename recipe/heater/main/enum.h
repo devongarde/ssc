@@ -37,6 +37,7 @@ typedef enum { at_toggle, at_statusline, at_tooltip, at_highlight } e_actiontype
 typedef enum { act_insert, act_update, act_delete, act_static, act_unknown } e_activity;
 typedef enum { ea_auto, ea_user } e_actuate;
 typedef enum { ad_replace, ad_sum } e_additive;
+typedef enum { adv_contact, adv_manager, adv_owner, adv_partner, adv_sub } e_advar;
 typedef enum { aesf_allow_end, aesf_space_first } e_aesf;
 typedef enum { a70_centre, a70_justify, a70_left, a70_right } e_align2070;
 typedef enum { ald_centre, ald_decimal, ald_left, ald_right } e_aligndec;
@@ -88,6 +89,7 @@ constexpr e_aria_role last_role = role_illegal;
 typedef enum { as_ascending, as_descending, as_none, as_other } e_aria_sort;
 typedef enum { as_audio, as_document, as_embed, as_fetch, as_font, as_image, as_object, as_script, as_style, as_track, as_video, as_worker } e_as;
 typedef enum { ass_alternative, ass_slide, ass_scroll } e_ass;
+typedef enum { att_text, att_html, att_xhtml } e_atom_type; // text first
 
 typedef enum
 {   a_unknown, a_custom,
@@ -99,10 +101,11 @@ typedef enum
         a_aria_current, a_aria_describedby, a_aria_description, a_aria_details, a_aria_disabled, a_aria_dropeffect, a_aria_errormessage, a_aria_expanded,
         a_aria_flowto, a_aria_grabbed, a_aria_haspopup, a_aria_hidden, a_aria_invalid, a_aria_keyshortcuts, a_aria_label, a_aria_labelledby, a_aria_level,
         a_aria_live, a_aria_modal, a_aria_multiline, a_aria_multiselectable, a_aria_orientation, a_aria_owns, a_aria_placeholder, a_aria_posinset,
-        a_aria_pressed, a_aria_readonly, a_aria_relevant, a_aria_required, a_aria_roledescription, a_aria_rowcount, a_aria_rowindex, a_aria_rowindextext, a_aria_rowspan,
-        a_aria_selected, a_aria_setsize, a_aria_sort, a_aria_valuemax, a_aria_valuemin, a_aria_valuenow, a_aria_valuetext, a_as, a_ascent, a_async, a_at,
-        a_attributename, a_attributetype, a_audio, a_audio_level, a_autobuffer, a_autocapitalise, a_autocomplete, a_autocorrect, a_autofocus,
-        a_autopictureinpicture, a_autoplay, a_autosubmit, a_axes, a_axis, a_azimuth,
+        a_aria_pressed, a_aria_readonly, a_aria_relevant, a_aria_required, a_aria_roledescription, a_aria_rowcount, a_aria_rowindex, a_aria_rowindextext,
+        a_aria_rowspan, a_aria_selected, a_aria_setsize, a_aria_sort, a_aria_valuemax, a_aria_valuemin, a_aria_valuenow, a_aria_valuetext, a_as, a_ascent,
+        a_async, a_at, a_atom_href, a_atom_hreflang, a_atom_label, a_atom_length, a_atom_rel, a_atom_scheme, a_atom_src, a_atom_term, a_atom_title,
+        a_atom_type, a_atom_uri, a_atom_version, a_attributename, a_attributetype, a_audio, a_audio_level, a_autobuffer, a_autocapitalise, a_autocomplete,
+        a_autocorrect, a_autofocus, a_autopictureinpicture, a_autoplay, a_autosubmit, a_axes, a_axis, a_azimuth,
     a_background, a_background_fill, a_balance, a_bandwidth, a_base, a_basefrequency, a_baseline, a_baseline_shift, a_baseprofile, a_bbox, a_begin,
         a_behaviour, a_below, a_bevelled, a_bgcolour, a_bias, a_blocking, a_border, a_bottommargin, a_box, a_bubbles, a_buffered, a_buffered_rendering, a_by,
     a_cache, a_calcmode, a_cancelable, a_cap_height, a_capture, a_cd, a_cdgroup, a_cell, a_cellpadding, a_cellspacing, a_challenge, a_char, a_charalign,
@@ -127,13 +130,13 @@ typedef enum
         a_frameborder, a_framespacing, a_from, a_full, a_function, a_fx, a_fy,
     a_g1, a_g2, a_generator_unable, a_glyph_orientation_vertical, a_glyphname, a_glyph_orientation_horizontal, a_glyphref, a_gradienttransform,
         a_gradientunits, a_groupalign, a_gutter,
-    a_handler, a_hanging, a_headers, a_height, a_hidden, a_high, a_horiz_adv_x, a_horiz_origin_x, a_horiz_origin_y, a_href, a_hreflang, a_hrefmedia,
-        a_hreftype, a_hspace, a_html, a_httpequiv, a_hyphens,
+    a_handler, a_hanging, a_headers, a_headingoffset, a_headingreset, a_height, a_hidden, a_high, a_horiz_adv_x, a_horiz_origin_x, a_horiz_origin_y,
+        a_href, a_hreflang, a_hrefmedia, a_hreftype, a_hspace, a_html, a_httpequiv, a_hyphens,
     a_icon, a_id, a_ideographic, a_idref, a_if, a_image_rendering, a_imagemap, a_imagesizes, a_imagesrcset, a_implements, a_importance,
         a_in, a_in2, a_incremental, a_indent, a_indentalign, a_indentalignfirst, a_indentalignlast, a_indentshift, a_indentshiftfirst,
         a_indentshiftlast, a_indenttarget, a_index, a_inert, a_infixlinebreakstyle, a_initialvisibility, a_inline_size, a_inlist,
-        a_inputmode, a_instanceof, a_integrity, a_intent, a_intercept, a_intrinsicsize, a_irrelevant, a_is, a_ismap, a_isolation, a_item, a_itemid,
-        a_itemprop, a_itemref, a_itemscope, a_itemtype, a_itstranslate,
+        a_inputmode, a_instanceof, a_integrity, a_intent, a_intercept, a_intrinsicsize, a_irrelevant, a_is, a_ismap, a_isolation,
+        a_item, a_itemid, a_itemprop, a_itemref, a_itemscope, a_itemtype, a_itstranslate,
     a_k, a_k1, a_k2, a_k3, a_k4, a_kernelmatrix, a_kernelunitlength, a_kerning, a_key, a_keyparams, a_keypoints, a_keysplines, a_keytimes,
         a_keytype, a_kind, a_knock_out,
     a_label, a_labels, a_lang, a_language, a_largeop, a_layout, a_ldelim, a_left, a_leftmargin, a_leftoverhang, a_length, a_lengthadjust,
@@ -166,14 +169,16 @@ typedef enum
         a_overflow, a_overflow_wrap, a_overlay, a_overlay_host, a_overline_position, a_overline_thickness,
     a_pagex, a_pagey, a_page_orientation, a_paint_order, a_panose_1, a_part, a_path, a_pathlength, a_pattern, a_patterncontentunits,
         a_patterntransform, a_patternunits, a_phase, a_ping, a_placeholder, a_plain, a_playbackorder, a_playcount, a_playsinline, a_pointer_events,
-        a_points, a_pointsatx, a_pointsaty, a_pointsatz, a_popover, a_popovertarget, a_popovertargetaction,
-        a_position, a_poster, a_prefetch, a_prefix, a_preload, a_preservealpha,
-        a_preserveaspectratio, a_prevfocus, a_primitiveunits, a_print, a_profile, a_prompt, a_propagate, a_property, a_pubdate, a_public,
+        a_points, a_pointsatx, a_pointsaty, a_pointsatz, a_popover, a_popovertarget, a_popovertargetaction, a_position, a_poster, a_prefetch, a_prefix,
+        a_preload, a_preservealpha, a_preserveaspectratio, a_prevfocus, a_primitiveunits, a_print, a_profile, a_prompt, a_propagate, a_property,
+        a_pubdate, a_public,
     a_r, a_radiogroup, a_radius, a_rdelim, a_rdf_about, a_rdf_datatype, a_rdf_id, a_rdf_nodeid, a_rdf_parsetype, a_rdf_resource, a_readonly, a_ref,
         a_referrerpolicy, a_refx, a_refy, a_registrationmark, a_rel, a_rendering_colour_space, a_rendering_in_tents, a_repeatcount, a_repeatdur,
         a_required, a_requiredextensions, a_requiredfeatures, a_requiredfonts, a_requiredformats, a_resource, a_restart, a_result, a_results, a_rev,
         a_reverse, a_reversed, a_rightmargin, a_rightoverhang, a_role, a_rotate, a_row, a_rowalign, a_rowgroup, a_rowlines, a_rows, a_rowspacing,
-        a_rowspan, a_rquote, a_rspace, a_rules, a_rx, a_ry,
+        a_rowspan, a_rquote, a_rspace, a_rsl_contactemail, a_rsl_contacturl, a_rsl_currency, a_rsl_encrypted, a_rsl_lastmod, a_rsl_server, a_rsl_type,
+        a_rsl_url, a_rss_domain, a_rss_ispermalink, a_rss_length, a_rss_path, a_rss_port, a_rss_protocol, a_rss_registerprocedure, a_rss_url,
+        a_rss_type, a_rss_version, a_rules, a_rx, a_ry,
     a_sandbox, a_scale, a_scheme, a_scope, a_scoped, a_script, a_scriptlevel, a_scriptminsize, a_scriptsizemultiplier, a_scrollamount, a_scrolldelay,
         a_scrolling, a_seamless, a_seed, a_seethru, a_select, a_selected, a_selection, a_separator, a_separators, a_seqnum, a_setback_offset,
         a_several, a_shadowinherit, a_shadowrootmode, a_shadowrootdelegatesfocus, a_shadowrootclonable, a_shadowrootserialisable,
@@ -311,9 +316,10 @@ typedef enum { cs_free, cs_loading, cs_empty, cs_content, cs_error } e_cache_sta
 typedef enum { cm_discrete, cm_linear, cm_paced, cm_spline } e_calcmode;
 typedef enum { ca_bottom, cap_left, ca_right, ca_top } e_captionalign;
 typedef enum { cv_user, cv_environment } ev_capture;
-typedef enum {  ec_undefined, ec_aria, ec_attribute, ec_browser, ec_cache, ec_corpus, ec_crc, ec_css, ec_directory, ec_element, ec_file, ec_fred, ec_html, ec_icu,
-                ec_incorrectness, ec_init, ec_io, ec_ip, ec_json, ec_link, ec_microdata, ec_microformat, ec_mime, ec_mql, ec_namespace, ec_naughty, ec_page, ec_parser,
-                ec_program, ec_rdfa, ec_regex, ec_rudeness, ec_schema, ec_shadow, ec_signing, ec_spell, ec_ssi, ec_tidyness, ec_type, ec_url, ec_utility, ec_vtt } e_category;
+typedef enum {  ec_undefined, ec_aria, ec_atom, ec_attribute, ec_browser, ec_cache, ec_con, ec_corpus, ec_crc, ec_css, ec_directory, ec_element, ec_file, ec_fred,
+                ec_html, ec_icu, ec_incorrectness, ec_init, ec_io, ec_ip, ec_json, ec_link, ec_microdata, ec_microformat, ec_mime, ec_mql, ec_namespace, ec_naughty,
+                ec_page, ec_parser, ec_program, ec_rdfa, ec_regex, ec_robotic, ec_rsl, ec_rss, ec_rudeness, ec_schema, ec_security, ec_shadow, ec_signing, ec_spell,
+                ec_ssi, ec_tidyness, ec_type, ec_url, ec_utility, ec_vtt } e_category;
 CONSTEXPR e_category last_category = ec_vtt;
 typedef enum { ccp_derivativeworks, ccp_distribution, ccp_reproduction } e_cc_permits;
 typedef enum { ccr_attribution, ccr_notice, ccr_sharealike, ccr_sourcecode } e_cc_requires;
@@ -1243,7 +1249,8 @@ typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32,
                 ed_doctype,
                 ed_clacks,
                 ed_vtt,
-                ed_rel,
+                ed_rel, ed_con, ed_robotic, ed_rsl, ed_rss, ed_atom,
+                ed_security,
                 ed_imaginary } e_doc;
 CONSTEXPR e_doc last_doc = ed_imaginary;
 typedef enum { dr_drop, dr_raise } e_drop_raise;
@@ -1274,7 +1281,11 @@ typedef enum {
         elem_address, elem_altglyph, elem_altglyphdef, elem_altglyphitem, elem_and, elem_animate, elem_animatecolour, elem_animatemotion,
         elem_animatetransform, elem_animation, elem_annotation, elem_annotation_xml, elem_applet, elem_apply, elem_approx, elem_arccos, elem_arcsin,
         elem_arctan, elem_arccosh, elem_arccot, elem_arccoth, elem_arccsc, elem_arccsch, elem_arcsec, elem_arcsech, elem_arcsinh, elem_arctanh,
-        elem_area, elem_arg, elem_array, elem_article, elem_aside, elem_atop, elem_au, elem_audio,
+        elem_area, elem_arg, elem_array, elem_article, elem_aside, 
+            elem_atom_author, elem_atom_category, elem_atom_content, elem_atom_contributor, elem_atom_email,
+            elem_atom_entry, elem_atom_feed, elem_atom_generator, elem_atom_icon, elem_atom_id, elem_atom_link, elem_atom_logo, elem_atom_name, elem_atom_published,
+            elem_atom_rights, elem_atom_source, elem_atom_subtitle, elem_atom_summary, elem_atom_title, elem_atom_updated, elem_atom_uri,
+        elem_atop, elem_au, elem_audio,
     elem_b, elem_bb, elem_banner, elem_bar, elem_base, elem_basefont, elem_bdi, elem_bdo, elem_below, elem_bgsound, elem_big, elem_bind, elem_blink,
         elem_blockcode, elem_blockquote, elem_body, elem_box, elem_bq, elem_br, elem_bt, elem_button, elem_bvar, elem_byline,
     elem_calendar, elem_canvas, elem_caption, elem_card, elem_cartesianproduct, elem_cbytes, elem_cdata, elem_ceiling, elem_centre,
@@ -1320,7 +1331,12 @@ typedef enum {
         elem_rdf_8, elem_rdf_9, elem_rdf_about, elem_rdf_abouteach, elem_rdf_abouteachprefix, elem_rdf_alt, elem_rdf_bag, elem_rdf_bagid, elem_rdf_datatype,
         elem_rdf_description, elem_rdf_id, elem_rdf_li, elem_rdf_nodeid, elem_rdf_parsetype, elem_rdf_rdf, elem_rdf_resource, elem_rdf_seq, elem_real,
         elem_reals, elem_rect, elem_refcontent, elem_reln, elem_rem, elem_removed, elem_removeeventlistener, elem_render, elem_right, elem_root, elem_row,
-        elem_rp, elem_rt, elem_rtc, elem_ruby, elem_rule,
+        elem_rp, elem_rsl, elem_rsl_amount, elem_rsl_content, elem_rsl_copyright, elem_rsl_custom, elem_rsl_legal, elem_rsl_licence, elem_rsl_payment,
+        elem_rsl_permits, elem_rsl_prohibits, elem_rsl_schema, elem_rsl_standard, elem_rsl_terms, elem_rss, elem_rss_author, elem_rss_category,
+        elem_rss_channel, elem_rss_cloud, elem_rss_comments, elem_rss_copyright, elem_rss_day, elem_rss_description, elem_rss_docs, elem_rss_enclosure,
+        elem_rss_generator, elem_rss_guid, elem_rss_height, elem_rss_hour, elem_rss_image, elem_rss_item, elem_rss_language, elem_rss_lastbuilddate, elem_rss_link, elem_rss_managingeditor, elem_rss_name, elem_rss_pubdate,
+        elem_rss_rating, elem_rss_skipdays, elem_rss_skiphours, elem_rss_source, elem_rss_textinput, elem_rss_title, elem_rss_ttl, elem_rss_url, elem_rss_webmaster,
+        elem_rss_width, elem_rt, elem_rtc, elem_ruby, elem_rule,
     elem_s, elem_samp, elem_sarcasm, elem_scalarproduct, elem_script, elem_sdev, elem_search, elem_sec, elem_sech, elem_section, elem_select,
         elem_selectedcontent, elem_selector, elem_semantics, elem_sep, elem_separator, elem_set, elem_setdiff, elem_shadow, elem_share, elem_sidebar,
         elem_sin, elem_sinh, elem_slot, elem_small, elem_solidcolour, elem_source, elem_spacer, elem_span, elem_spot, elem_sqrt, elem_standby, elem_stop,
@@ -2046,7 +2062,7 @@ typedef enum {
     mime_application_QSIG, mime_application_raptorfec, mime_application_rdap_json, mime_application_reginfo_xml, mime_application_relax_ng_compact_syntax, mime_application_remote_printing,
     mime_application_reputon_json, mime_application_resource_lists_diff_xml, mime_application_resource_lists_xml, mime_application_rfc_xml, mime_application_riscos,
     mime_application_rlmi_xml, mime_application_rls_services_xml, mime_application_rpki_ghostbusters, mime_application_rpki_manifest, mime_application_rpki_publication,
-    mime_application_rpki_roa, mime_application_rpki_updown, mime_application_rss_xml,
+    mime_application_rpki_roa, mime_application_rpki_updown, mime_application_rsl_xml, mime_application_rss_xml,
     mime_application_rtf, mime_application_rtploopback, mime_application_rtx, mime_application_samlassertion_xml,
     mime_application_samlmetadata_xml, mime_application_sbe, mime_application_sbml_xml, mime_application_scaip_xml, mime_application_scim_json, mime_application_scvp_cv_request,
     mime_application_scvp_cv_response, mime_application_scvp_vp_request, mime_application_scvp_vp_response, mime_application_sdp, mime_application_secevent_jwt,
@@ -2467,7 +2483,7 @@ typedef enum {
     mime_text_javascript13, mime_text_javascript14, mime_text_javascript15, mime_text_jcr_cnd, mime_text_jscript, mime_text_livescript,
     mime_text_markdown, mime_text_mizar, mime_text_n3, mime_text_parameters, mime_text_parityfec, mime_text_ping, mime_text_plain,
     mime_text_provenance_notation, mime_text_prs_fallenstein_rst, mime_text_prs_lines_tag, mime_text_prs_prop_logic, mime_text_raptorfec,
-    mime_text_RED, mime_text_rfc822_headers, mime_text_richtext, mime_text_rtf, mime_text_rtp_enc_aescm128, mime_text_rtploopback,
+    mime_text_RED, mime_text_rfc822_headers, mime_text_richtext, mime_text_rsl, mime_text_rtf, mime_text_rtp_enc_aescm128, mime_text_rtploopback,
     mime_text_rtx, mime_text_SGML, mime_text_strings, mime_text_t140, mime_text_tab_separated_values, mime_text_tcl, // HTML 4.01 spec example
     mime_text_troff, mime_text_turtle, mime_text_ulpfec, mime_text_uri_list, mime_text_vbscript, // HTML 4.01 spec example
     mime_text_vcard, mime_text_vnd_a, mime_text_vnd_abc, mime_text_vnd_ascii_art, mime_text_vnd_curl, mime_text_vnd_debian_copyright,
@@ -2523,6 +2539,9 @@ typedef enum {
     // microsoft (-ish)
     mime_application_news_message_id, mime_application_x_httpd_asp,
 
+    // RSL
+    mime_application_rsl,
+
     // other
     mime_application_7z, mime_video_x_flv,
 
@@ -2548,6 +2567,7 @@ typedef enum
 
 typedef enum
 {   ns_default,
+    ns_atom,
     ns_bibo,
     ns_cc, ns_cnt, ns_crs, ns_crs2,
     ns_dbp, ns_dbp_owl, ns_dbr, ns_dc, ns_dcterms, ns_dt,
@@ -2558,7 +2578,7 @@ typedef enum
     ns_math,
     ns_odd, ns_oex, ns_owl, ns_owlxml,
     ns_pam, ns_pamp, ns_pccm, ns_pcm, ns_pcv, ns_pdf, ns_photoshop, ns_pim, ns_pmi, ns_prism, ns_prism_ad, ns_prl, ns_prm, ns_prs,ns_psv, ns_ptr, ns_pur,
-    ns_rdf, ns_rdfa, ns_rdfs, ns_rddl,
+    ns_rdf, ns_rdfa, ns_rdfs, ns_rddl, ns_rsl, ns_rss,
     ns_saxon, ns_smil, ns_smpte, ns_spdx, ns_stdim, ns_stevt, ns_stfnt, ns_stjob, ns_stref, ns_stver, ns_svg,
     ns_tt, ns_ttf, ns_ttp, ns_tts,
     ns_v, ns_vcard,
@@ -2700,7 +2720,12 @@ typedef enum
     nit_picker, nit_security, nit_naughty_init, nit_naughty_element, nit_naughty_attribute, nit_naughty_microformat,
     nit_naughty_ontology, nit_naughty_type, nit_content_language, nit_inefficient, nit_h1_h6, nit_slash_gt, nit_url_template,
     nit_template_variable, nit_misplaced_rel, nit_rel_version, nit_rel_bad_element, nit_role_conflict, nit_inadvisable_element,
-    nit_bad_rowspan, nit_details,
+    nit_bad_rowspan, nit_details, nit_rss, nit_rsl_missing_child, nit_rsl_webpage, nit_rsl_overpopulation, nit_robotic,
+    nit_wacky, nit_rss_missing_child, nit_rss_missing_attribute, nit_con, nit_atom, nit_atom_repeated_child,
+    nit_atom_missing_child, nit_rfc822_zone, nit_time_space, nit_time_char, nit_time_digit, nit_bad_year, nit_bad_month,
+    nit_bad_week, nit_bad_date, nit_bad_day, nit_bad_hour, nit_bad_minute, nit_bad_second, nit_bad_kangeroo, nit_bad_microsecond,
+    nit_time_value, nit_bad_weekday, nit_bad_monthname, nit_bad_zone, nit_duration, nit_svg_duration, nit_rather_too_vague,
+    nit_local_datetime, nit_absolute_datetime, nit_bad_value,
 
     nit_incompatible,
 
@@ -2711,8 +2736,8 @@ typedef enum { nlt_none, nlt_html, nlt_pdf, nlt_txt, nlt_zip } e_nit_link_type;
 
 typedef enum
 {   nm_none,
-    nm_class_count, nm_class_decl_count, nm_class_decl_int, nm_class_int, nm_class_name, nm_class_title,
-        nm_compile_time, nm_config, nm_context_absolute_path, nm_context_account, nm_context_analysis, nm_context_article, nm_context_back, nm_context_body,
+    nm_class_count, nm_class_decl_count, nm_class_decl_int, nm_class_int, nm_class_name, nm_class_title, nm_compile_time, nm_config,
+        nm_context_absolute_path, nm_context_account, nm_context_analysis, nm_context_article, nm_context_atomic_exts, nm_context_back, nm_context_body,
         nm_context_build, nm_context_case, nm_context_cgi, nm_context_chrome, nm_context_classic, nm_context_clear, nm_context_comms,
         nm_context_config, nm_context_copy, nm_context_corpus, nm_context_crosslinks, nm_context_css, nm_context_css_background,
         nm_context_css_adjust, nm_context_advanced_layout, nm_context_css_anchor, nm_context_css_anchor_pos, nm_context_css_box_align,
@@ -2742,7 +2767,8 @@ typedef enum
         nm_context_output_description, nm_context_output_operator,
         nm_context_output_sign, nm_context_output_time, nm_context_opera, nm_context_password, nm_context_persisted, nm_context_private,
         nm_context_public, nm_context_rdfa, nm_context_rdf_version, nm_context_rel, nm_context_replace, nm_context_report, nm_context_rfc_1867,
-        nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070, nm_context_role, nm_context_root, nm_context_ruby,
+        nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070, nm_context_role, nm_context_root, nm_context_rsl_exts,
+        nm_context_rss_exts, nm_context_rss_version, nm_context_ruby,
         nm_context_safari, nm_context_server, nm_context_server_address_from, nm_context_server_address_to, nm_context_server_address,
         nm_context_server_port, nm_context_server_root, nm_context_schema, nm_context_ontology_version, nm_context_shadow_comment,
         nm_context_shadow_changed, nm_context_shadow_enable, nm_context_shadow_ignore, nm_context_shadow_persist, nm_context_shadow_root,
@@ -2777,11 +2803,12 @@ typedef enum
         nm_prog_webaddr,
     nm_query,
     nm_run_args, nm_run_catastrophe, nm_run_environment,
-    nm_stat_count, nm_stat_detail, nm_stat_int, nm_stat_name, nm_stat_subname, nm_stat_subcount, nm_stat_subdetail, nm_stat_subint, nm_stats_subtitle,
-        nm_stats_title, nm_stats_total,
+    nm_ssc_update, nm_stat_count, nm_stat_detail, nm_stat_int, nm_stat_name, nm_stat_subname, nm_stat_subcount, nm_stat_subdetail, nm_stat_subint,
+        nm_stats_subtitle, nm_stats_title, nm_stats_total,
     nm_tally_count, nm_tally_decl_count, nm_tally_decl_int, nm_tally_int, nm_tally_name, nm_tally_sum, nm_tally_title, nm_tally_total, nm_tally_use_count,
         nm_tally_use_int, nm_tally_use_sum, nm_tally_use_total,
         nm_time_duration, nm_time_finish, nm_time_start,
+    nm_update_info,
     nm_max } e_nit_macro;
 
 typedef enum
@@ -4844,7 +4871,7 @@ typedef enum
     sch_checkoutpage, sch_chemicalsubstance, sch_chequeinadvance, sch_childcare, sch_childrensevent, sch_chiropractic, sch_chooseaction, sch_church, sch_city, sch_civicstructure, sch_claim,
     sch_claimreview, sch_class, sch_cleaningfee, sch_clinician, sch_clip, sch_clothesshop, sch_cod, sch_code, sch_cohortstudy, sch_collection, sch_collectionpage, sch_collegeoruniversity,
     sch_comedyclub, sch_comedyevent, sch_comiccoverart, sch_comicissue, sch_comicseries, sch_comicstory, sch_comment, sch_commentaction, sch_commentpermission, sch_communicateaction,
-    sch_communityhealth, sch_compilationalbum, sch_completed, sch_completedactionstatus, sch_completedatafeed, sch_compoundpricespecification, sch_computerlanguage, sch_computershop,
+    sch_communityhealth, sch_compilationalbum, sch_completed, sch_completedactionstatus, sch_completedatafeed, sch_compoundpricespecification, sch_computerlanguage, sch_computershop, sch_conferenceevent,
     sch_confirmaction, sch_consortium, sch_constraintnode, sch_consumeaction, sch_contactpage, sch_contactpoint, sch_contactpointoption, sch_contagiousnesshealthaspect, sch_continent,
     sch_controlaction, sch_convenienceshop, sch_conversation, sch_cookaction, sch_coop, sch_cooperative, sch_corporation, sch_correctioncomment, sch_country, sch_course, sch_courseinstance,
     sch_courthouse, sch_coverart, sch_covidtestingfacility, sch_createaction, sch_creativework, sch_creativeworkseason, sch_creativeworkseries, sch_creditcard, sch_crematorium, sch_criticreview,
@@ -6263,11 +6290,11 @@ typedef enum
     sp_handlingtime, sp_hasadultconsideration, sp_hasbiochementitypart, sp_hasbiopolymersequence, sp_hasbroadcastchannel, sp_hascategorycode, sp_hascertification, sp_hascourse, sp_hascourseinstance,
     sp_hascredential, sp_hasdefinedterm, sp_hasdeliverymethod, sp_hasdigitaldocumentpermission, sp_hasdrivethroughservice, sp_hasenergyconsumptiondetails, sp_hasenergyefficiencycategory,
     sp_hasgs1digitallink, sp_hashealthaspect, sp_hasmap, sp_hasmeasurement, sp_hasmemberprogramme, sp_hasmenu, sp_hasmenuitem, sp_hasmenusection, sp_hasmerchantreturnpolicy, sp_hasmolecularfunction,
-    sp_hasoccupation, sp_hasoffercatalogue, sp_haspart, sp_haspos, sp_hasproductreturnpolicy, sp_hasrepresentation, sp_hasshippingservice, sp_hasstore, sp_hastierbenefit, sp_hastierrequirement,
-    sp_hastiers, sp_hasvariant, sp_headline, sp_healthcarereportingdata, sp_healthcondition, sp_healthplancoinsuranceoption, sp_healthplancoinsurancerate, sp_healthplancopay, sp_healthplancopayoption,
-    sp_healthplancostsharing, sp_healthplandrugoption, sp_healthplandrugtier, sp_healthplanid, sp_healthplanmarketingurl, sp_healthplannetworkid, sp_healthplannetworktier, sp_healthplanpharmacycategory,
-    sp_height, sp_highprice, sp_hiringorganisation, sp_holdingarchive, sp_homelocation, sp_hometeam, sp_honourificprefix, sp_honourificsuffix, sp_hospitalaffiliation, sp_hostingorganisation,
-    sp_hoursavailable, sp_howperformed, sp_httpmethod,
+    sp_hasoccupation, sp_hasoffercatalogue, sp_haspart, sp_hasparticipationoffer, sp_haspos, sp_hasproductreturnpolicy, sp_hasrepresentation, sp_hasshippingservice, sp_hassponsorshipoffer, sp_hasstore,
+    sp_hastierbenefit, sp_hastierrequirement, sp_hastiers, sp_hasvariant, sp_headline, sp_healthcarereportingdata, sp_healthcondition, sp_healthplancoinsuranceoption, sp_healthplancoinsurancerate,
+    sp_healthplancopay, sp_healthplancopayoption, sp_healthplancostsharing, sp_healthplandrugoption, sp_healthplandrugtier, sp_healthplanid, sp_healthplanmarketingurl, sp_healthplannetworkid,
+    sp_healthplannetworktier, sp_healthplanpharmacycategory, sp_height, sp_highprice, sp_hiringorganisation, sp_holdingarchive, sp_homelocation, sp_hometeam, sp_honourificprefix, sp_honourificsuffix,
+    sp_hospitalaffiliation, sp_hostingorganisation, sp_hoursavailable, sp_howperformed, sp_httpmethod,
 
     sp_iatacode, sp_identifier, sp_identifyingexam, sp_identifyingtest, sp_illustrator, sp_image, sp_imagingtechnique, sp_inalbum, sp_inbroadcastlineup, sp_incentives, sp_incentivecompensation,
     sp_inchi, sp_inchikey, sp_includedcomposition, sp_includeddatacatalog, sp_includedinhealthinsuranceplan, sp_includedriskfactor, sp_includesattraction, sp_includeshealthplanformulary,
@@ -6799,7 +6826,7 @@ typedef enum {
     pr_barian, pr_beshare, pr_bitcoin, pr_blob, pr_bolo,
     pr_callto, pr_cap, pr_chrome, pr_chrome_extension, pr_cid, pr_clsid, pr_coap, pr_coaps, pr_com_eventbrite_attendee, pr_content, pr_crid, pr_cvs,
     pr_dab, pr_data, pr_dav, pr_dict, pr_did, pr_dina_playsingle, pr_dina_playcontainer, pr_dns, pr_dntp, pr_doi, pr_drm, pr_dtn, pr_dvb,
-    pr_ed2k, pr_example,
+    pr_ed2k, pr_email, pr_example,
     pr_facetime, pr_fax, pr_feed, pr_file, pr_filesystem, pr_finger, pr_fish, pr_fm, pr_ftp, pr_ftps,
     pr_gemini, pr_geo, pr_gg, pr_git, pr_gizmoproject, pr_go, pr_gopher, pr_gtalk,
     pr_h323, pr_hcp, pr_http, pr_https,
@@ -7029,8 +7056,20 @@ typedef enum
 typedef enum { rqp_none, rqp_all, rqp_front, rqp_index } e_required_page;
 
 typedef enum { re_always, re_whennotactive, re_never } e_restart;
+typedef enum { e8z_other, e8z_a, e8z_gmt, e8z_cdt, e8z_cst, e8z_edt, e8z_est, e8z_m, e8z_mdt, e8z_mst, e8z_n, e8z_pdt, e8z_pst, e8z_ut, e8z_y, e8z_z } e_rfc822_zone;
+typedef enum { rob_context, rob_allow, rob_crawl_delay, rob_disallow, rob_licence, rob_sitemaps, rob_user_agent } e_robotic;
 typedef enum { ru_rotate_left, ru_rotate_right, ru_upright } e_rotate_upright;
 typedef enum { trc_column, trc_row } e_row_column;
+typedef enum { rcp_organisation, rcp_person } e_rsl_copyright;
+typedef enum { rsd_authority, rsd_no_infringement, rsd_no_malware, rsd_ownership, rsd_privacy_consent } e_rsl_disclaimer;
+typedef enum { rle_disclaimer, rle_warranty } e_rsl_legal;
+typedef enum { rpa_attribution, rpa_crawl, rpa_free, rpa_inference, rpa_purchase, rpa_subscription, rpa_training } e_rsl_payment;
+typedef enum { rpe_geo, rpe_usage, rpe_user } e_rsl_permits;
+typedef enum { rsa_all, rsa_ai_summarise, rsa_ai_use, rsa_search, rsa_train_ai, rsa_train_genai } e_rsl_usage;
+typedef enum { rss_commercial, rss_education, rss_government, rss_noncommercial, rss_personal } e_rsl_user;
+typedef enum { rsw_as_is, rsw_no_indemnity, rsw_no_liability, rsw_no_warranty } e_rsl_warranty;
+typedef enum { erp_http_post, erp_soap, erp_xml_rpc } e_rss_protocol;
+typedef enum { rv_error, rv_91, rv_92, rv_10, rv_20, rv_200, rv_201, rv_202, rv_203, rv_204, rv_205, rv_206, rv_207, rv_208, rv_209, rv_2010, rv_2011 } e_rss_version;
 typedef enum { rs_yes, rs_no, rs_maybe, rs_interested } e_rsvp;
 typedef enum { ru_none, ru_groups, ru_rows, ru_cols, ru_all } e_rules;
 typedef enum { su_safe, su_unsafe } e_safe_unsafe;
@@ -7039,10 +7078,11 @@ typedef enum {  sand_unknown, sand_adwua, sand_asabua, sand_atnbua, sand_atntcp,
 typedef enum { sc_interlace, sc_progressive } e_scan;
 typedef enum { scei_after, scei_before, scei_centre, scei_end, scei_start, scei_inherit } e_scei;
 
-#define SCHEMES pt_rfc3986, pt_rfc3986_ignore, pt_geo, pt_local, pt_news, pt_tel, pt_urn
+#define SCHEMES pt_rfc3986, pt_rfc3986_ignore, pt_email, pt_geo, pt_local, pt_news, pt_tel, pt_urn
 typedef enum { SCHEMES } e_scheme;
 
 typedef enum { s_auto, s_no, s_yes } e_scrolling;
+typedef enum { sec_context, sec_acknowledgements, sec_canonical, sec_contact, sec_csaf, sec_encryption, sec_expires, sec_hash, sec_hiring, sec_policy, sec_preflang, sec_version } e_security;
 typedef enum { st_normal, st_multiset } e_settype;
 typedef enum { es_undefined, es_catastrophic, es_abhorrent, es_error, es_warning, es_info, es_comment, es_debug, es_variable, es_structure, es_detail, es_splurge, es_all, es_silent, es_illegal } e_severity;
 CONSTEXPR e_severity last_severity = es_all;
@@ -7063,6 +7103,7 @@ typedef enum {  doc_unknown, doc_context, doc_html, doc_public, doc_system, doc_
                 doc_html32, doc_html30,
                 doc_html20, doc_html20_strict, doc_html20_int, doc_html21, doc_html21_strict, doc_html22, doc_html1, doc_html_tags,
                 doc_htmlplus, doc_sqopen, doc_sqclose,
+                doc_rss_91,
                 doc_compound_m, doc_compound_1_0, doc_compound_1_1 } e_sgml;
 CONSTEXPR e_sgml last_sgml = doc_compound_1_1;
 
@@ -7328,7 +7369,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
     t_4string, t_4string_ni, t_4x_0_to_6, t_4x_urational, t_4x_unsigned, \
     t_5x_unsigned, \
     t_a_b_c_d, t_a_v, t_abcfl, t_abfmt, t_about, t_absolute_url, t_accept, t_accrual_method, t_accrual_periodicity, t_accrual_policy, t_accumulate, \
-        t_accumulate0, t_accumulate1, t_accumulate2, t_aces, t_acm, t_acn, t_acn_2, t_action, t_actiontype, t_actiontype2, t_additive, t_aesf
+        t_accumulate0, t_accumulate1, t_accumulate2, t_aces, t_acm, t_acn, t_acn_2, t_action, t_actiontype, t_actiontype2, t_additive, t_advar, t_aesf
 #define SSC_TYPES_3_9_MAX t_aesf
 
 #define SSC_TYPES_A_1 \
@@ -7339,8 +7380,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_A_1_MAX t_aria_invalidity
 
 #define SSC_TYPES_A_2 \
-        t_aria_live, t_aria_popup, t_aria_relevant, t_aria_relevants, t_aria_sort, t_arxiv, t_as, t_ass, t_as_units, t_at_pos, t_attr, t_attributename, \
-        t_attributetype, t_attr_unit, t_audio_level, t_autocapitalise, t_auto_break, t_auto_contain, t_autocomplete, t_autocompletes, t_autocompletevaried, \
+        t_aria_live, t_aria_popup, t_aria_relevant, t_aria_relevants, t_aria_sort, t_arxiv, t_as, t_ass, t_as_units, t_at_pos, t_atom_mime, t_atom_type, t_attr, \
+        t_attributename, t_attributetype, t_attr_unit, t_audio_level, t_autocapitalise, t_auto_break, t_auto_contain, t_autocomplete, t_autocompletes, t_autocompletevaried, \
         t_auto_contain_cover, t_auto_first_last, t_auto_focus_scroll, t_auto_hidden_visible, t_auto_manual, t_auto_manual_none, t_auto_merge_separate, t_auto_none
 #define SSC_TYPES_A_2_MAX t_auto_none
 
@@ -7365,7 +7406,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_C_3 \
     t_container_condition, t_content_encoding,  t_content_encodings, t_content_type, t_context_menu, t_contents, t_controlslist, t_cookie, t_cookieid, t_cookies, \
-        t_coordinatesystem, t_coords, t_copy, t_corp, t_cors, t_country, t_cntype, t_create_parent, t_cr_fileproperty, t_crossout, \
+        t_coordinatesystem, t_coords, t_copy, t_corp, t_cors, t_countries, t_country, t_cntype, t_create_parent, t_cr_fileproperty, t_crossout, \
         t_crs_tonecurvename, t_crs_whitebalance, t_cs, t_csp, t_csp_ancestor, t_csp_directive, t_csp_keyword, t_csp_sauce, t_csp_source
 #define SSC_TYPES_C_3_MAX t_csp_source
 
@@ -7652,7 +7693,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_P_1 \
         t_percent_n, t_percents_nf, t_percents_flexible, t_percents_n, t_percent_or_neg, t_percent_or_not, t_permpol, t_phase, t_phase_x, t_pics, \
-        t_plus_1_7, t_plusstyle, t_pointer_events, t_points, t_popover, t_popovertargetaction, t_position, t_position_lcrtcb, t_position_lcr_len, \
+        t_plus_1_7, t_plusstyle, t_pointer_events, t_points, t_popover, t_popovertargetaction, t_port, t_position, t_position_lcrtcb, t_position_lcr_len, \
         t_position_lcrtcb_len, t_position_tcb_len, t_position_lr_len, t_position_lrtb_len, t_position_tb_len, t_positions, t_positive, t_positive_1_2
 #define SSC_TYPES_P_1_MAX t_positive_1_2
 
@@ -7664,7 +7705,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_P_3 \
         t_prism_genre, t_prism_icv, t_prism_issue_type, t_prism_pasv, t_prism_pcv, t_prism_pfv, t_prism_ptv, t_prism_rcv, t_prism_rcv_opt, \
-        t_prism_role, t_prism_tablet_ad, t_prs_action, t_prs_duty, t_propagate, t_pseudo, t_pseudonamedspace, t_pt, t_purls, \
+        t_prism_role, t_prism_tablet_ad, t_protocol, t_prs_action, t_prs_duty, t_propagate, t_pseudo, t_pseudonamedspace, t_pt, t_purls, \
     t_q, t_quote_style, \
     t_radial_1, t_radial_4, t_radial_ending, t_radial_size, t_rap, t_ratio, t_ratio_a, t_rational, t_rationals, t_rating, t_rdf_parsetype, t_rdfa_typeof
 #define SSC_TYPES_P_3_MAX t_rdfa_typeof
@@ -7676,14 +7717,20 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_Q_R_MAX t_refy
 
 #define SSC_TYPES_R \
-        t_regex, t_rel, t_rel_avoid, t_rel_css, t_rel_illegal, t_rel_obsolete, t_rendering_colour_space, t_rendering_in_tents, \
-        t_repeatcount, t_report, t_required_page, t_resolution, t_restart, t_result, t_reveal_trans, t_rgbafn, t_rgbfn, t_role, t_roles, t_roman_dsc, \
-        t_root_url, t_rotate,  t_rotate_anim, t_rotate_upright, t_row_column, t_rowscols, t_rsvp, t_rules
-#define SSC_TYPES_R_MAX t_rules
+        t_regex, t_rel, t_rel_avoid, t_rel_css, t_rel_illegal, t_rel_obsolete, t_rendering_colour_space, t_rendering_in_tents, t_repeatcount, t_report, \
+        t_required_page, t_resolution, t_restart, t_result, t_reveal_trans, t_rfc822, t_rfc822_zone, t_rgbafn, t_rgbfn, t_robotic, t_role, t_roles, \
+        t_roman_dsc, t_root_url, t_rotate, t_rotate_anim, t_rotate_upright, t_row_column, t_rowscols
+#define SSC_TYPES_R_MAX t_rowscols
+
+#define SSC_TYPES_RSL \
+        t_rsl_copyright, t_rsl_disclaimer, t_rsl_legal, t_rsl_payment, t_rsl_permits, t_rsl_type, t_rsl_usage, t_rsl_usages, t_rsl_user, t_rsl_users, \
+        t_rsl_warranty, t_rss_protocol, t_rss_version, \
+        t_rsvp, t_rules
+#define SSC_TYPES_RSL_MAX t_rules
 
 #define SSC_TYPES_S_1 \
-    t_safe_unsafe, t_sandbox, t_sandboxen, t_scale_down, t_scan, t_scei, t_scope, t_script, t_scrolling, t_second, t_semitone, t_setback_offset, t_settype, \
-        t_severity, t_sex, t_sgml, t_sha1, t_sha256, t_shadow, t_shape, t_shape3, t_shape4, t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, \
+    t_safe_unsafe, t_sandbox, t_sandboxen, t_scale_down, t_scan, t_scei, t_scope, t_script, t_scrolling, t_second, t_security, t_semitone, t_setback_offset, \
+        t_settype, t_severity, t_sex, t_sgml, t_sha1, t_sha256, t_shadow, t_shape, t_shape3, t_shape4, t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, \
         t_shape_fn_ellipse, t_shape_fn_polygon, t_shape_uri, t_shape_rendering, t_shape_rcp, t_shadowinherit, t_short, t_side, t_simple_neg, t_size, t_size3
 #define SSC_TYPES_S_1_MAX t_size3
 
@@ -7719,7 +7766,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_U \
         t_unsigned_byte, t_unsigned_short, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_unsigned_n, t_unsigneds, t_uplr, t_urange, t_urational, t_urationals, \
-        t_urifn, t_urifn_db, t_urifn_ni, t_urifn_str, t_urifn_xy, t_url, t_url_n, t_urls, t_urltemplate, t_url_temp_exp, t_user_modify, t_user_scalable, \
+        t_urifn, t_urifn_db, t_urifn_ni, t_urifn_str, t_urifn_xy, t_url, t_url_9309, t_url_9309s, t_url_n, t_urls, t_urltemplate, t_url_temp_exp, t_user_modify, \
+        t_user_scalable, \
     t_valign, t_valign3, t_valign_tmb, t_value, t_values, t_valuetype, t_valuetype2, t_vctelecomms, t_vector_effect, t_vector_effect_12, t_vector_effect_2
 #define SSC_TYPES_U_MAX t_vector_effect_2
 
@@ -7731,8 +7779,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_V_W \
         t_viewportscreen, t_visibility, t_visibility10, t_visibility11, t_vkind, t_vocab, t_vrel, t_vtt_token, t_vtype, t_vunit, t_vunits, \
-    t_wanted, t_wallclock, t_week, t_weekday_english_short, t_weekday_english_long, t_whitespace, t_width, t_wildcard, t_workertype, t_wrap, t_wrap3, \
-        t_writingmode, t_wxhs, t_wximgalign
+    t_wacky, t_wanted, t_wallclock, t_week, t_weekday_english_short, t_weekday_english_long, t_whitespace, t_width, t_wildcard, t_workertype, \
+        t_wrap, t_wrap3, t_writingmode, t_wxhs, t_wximgalign
 #define SSC_TYPES_V_W_MAX t_wximgalign
 
 #define SSC_TYPES_X \
@@ -7755,8 +7803,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
                     SSC_TYPES_CSS_S_1, SSC_TYPES_CSS_S_2, SSC_TYPES_CSS_S_3, SSC_TYPES_CSS_T_1, SSC_TYPES_CSS_T_2, SSC_TYPES_CSS_T_3, SSC_TYPES_CSS_U, \
                     SSC_TYPES_CSS_V, SSC_TYPES_CSS_W_Z,  SSC_TYPES_D, SSC_TYPES_E, SSC_TYPES_F_1, SSC_TYPES_F_2,  SSC_TYPES_G_H, SSC_TYPES_I_1, \
                     SSC_TYPES_I_2, SSC_TYPES_J_K, SSC_TYPES_L_1, SSC_TYPES_L_2, SSC_TYPES_M_1, SSC_TYPES_M_2, SSC_TYPES_M_3, SSC_TYPES_N, SSC_TYPES_O, \
-                    SSC_TYPES_P_1, SSC_TYPES_P_2, SSC_TYPES_P_3, SSC_TYPES_Q_R, SSC_TYPES_R, SSC_TYPES_S_1, SSC_TYPES_S_2, SSC_TYPES_SVG_1, SSC_TYPES_SVG_2, \
-                    SSC_TYPES_T_1, SSC_TYPES_T_2, SSC_TYPES_U, SSC_TYPES_V, SSC_TYPES_V_W, SSC_TYPES_X, SSC_TYPES_X_Z
+                    SSC_TYPES_P_1, SSC_TYPES_P_2, SSC_TYPES_P_3, SSC_TYPES_Q_R, SSC_TYPES_R, SSC_TYPES_RSL, SSC_TYPES_S_1, SSC_TYPES_S_2, SSC_TYPES_SVG_1, \
+                    SSC_TYPES_SVG_2, SSC_TYPES_T_1, SSC_TYPES_T_2, SSC_TYPES_U, SSC_TYPES_V, SSC_TYPES_V_W, SSC_TYPES_X, SSC_TYPES_X_Z
 
 typedef enum {
     t_unknown, SSC_TYPES, t_error } e_type;
@@ -7830,6 +7878,7 @@ typedef enum { xls_new, xls_replace } e_xlinkshow_a;
 typedef enum {  
     x_default,
     x_xhtml_1, x_xhtml_1_superseded, x_xhtml_11, x_xhtml_2, x_html,
+    x_atom,
     x_basic, x_bibo,
     x_cc, x_cnt, x_comments, x_crs, x_crs2,
     x_dbp, x_dbp_owl, x_dbr, x_dc, x_dc_terms, x_dt,
@@ -7839,7 +7888,7 @@ typedef enum {
     x_mathml,
     x_owl,
     x_pam, x_pamp, x_pccm, x_pcm, x_pcv, x_pdf, x_photoshop, x_pim, x_pmi, x_prism, x_prism_ad, x_prl, x_prm, x_prs, x_psv, x_ptr, x_pur,
-    x_rddl, x_rdf, x_rdfa, x_rdfs, x_rel, x_rng, x_rss,
+    x_rddl, x_rdf, x_rdfa, x_rdfs, x_rel, x_rng, x_rsl, x_rss,
     x_saxon, x_smil, x_soapenc11, x_soapenc12, x_spdx, x_stdim, x_stevt, x_stfnt, x_stjob, x_stref, x_stver, x_svg, x_syn,
     x_v, x_vcard1, x_vcard,
     x_wsdl11, x_wsdl12,

@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #ifdef NO_JSONIC
 inline void parse_json_ld (nitpick& , const html_version& , const ::std::string& , const e_charcode = cc_ansi) { }
+inline void parse_json_ld (::std::ostringstream& , mmac_t& , nitpick& , const html_version& , const ::std::string& , const e_charcode = cc_ansi) { }
 #else // NO_JSONIC
 #include "parser/jsonic.h"
 
@@ -131,7 +132,13 @@ public:
     explicit json_ld (const html_version& v) : v_ (v) { }
     json_ld (nitpick& nits, const html_version& v, const ::std::string& s, const e_charcode encoding = cc_ansi) : v_ (v)
     {   parse (nits, s, encoding); }
+    json_ld (::std::ostringstream& ss, mmac_t& mac, nitpick& nits, const html_version& v, const ::std::string& s, const e_charcode encoding = cc_ansi) : v_ (v)
+    {   parse (nits, s, encoding);
+        ss << nits.review (mac); }
     void parse (nitpick& nits, const ::std::string& s, const e_charcode encoding = cc_ansi); };
+
+inline void parse_json_ld (::std::ostringstream& ss, mmac_t& mac, nitpick& nits, const html_version& v, const ::std::string& s, const e_charcode encoding = cc_ansi)
+{   json_ld jld (ss, mac, nits, v, s, encoding); }
 
 inline void parse_json_ld (nitpick& nits, const html_version& v, const ::std::string& s, const e_charcode encoding = cc_ansi)
 {   json_ld jld (nits, v, s, encoding); }

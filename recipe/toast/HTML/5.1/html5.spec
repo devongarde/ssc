@@ -95,7 +95,7 @@ PASS ../toast/HTML/5.1/html5-bad.html
 81 inserted_missing_closure missing_close
 82 inserted_missing_closure
 85 use_quote_code
-89 bad_datetime use_datetime
+89 rather_too_vague use_datetime
 90 use_datetime
 93 bad_coords unrecognised_value
 94 url_not_found
@@ -111,7 +111,7 @@ PASS ../toast/HTML/5.1/html5-bad.html
 127 interactive interactive bad_form
 140 no_progress
 141 no_progress
-142 invalid_duration dur no_progress no_progress
+142 svg_duration dur no_progress no_progress
 149 fieldset_legend
 163 details_summary
 177 bad_ancestor

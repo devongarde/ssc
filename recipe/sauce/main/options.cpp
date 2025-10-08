@@ -164,6 +164,9 @@ options::options (const context_t& c)
     INSERT_BOOL (CORPUS, BODY, body);
     INSERT_BOOL (CORPUS, MAIN, main);
 
+    if (c.atomic_ext () != def.atomic_ext ())
+        INSERT_SSTR (ATOMIC, EXTENSION, atomic_ext);
+
     if (c.css_extension () != def.css_extension ())
         INSERT_SSTR (CSS, EXTENSION, css_extension);
     INSERT_BOOL (CSS, EXTERNAL, ext_css);
@@ -198,6 +201,7 @@ options::options (const context_t& c)
 #ifndef NO_FRED
     INSERT (::std::size_t, GENERAL, THREAD, fred);
 #endif // NO_FRED
+    INSERT_BOOL (GENERAL, UPDATE, vcs);
     INSERT_VSTR (GENERAL, URL_VAR, urlvar);
     INSERT_BOOL (GENERAL, VCS, vcs);
     INSERT_ENUM (t_severity, GENERAL, VERBOSE, verbose);
@@ -310,6 +314,13 @@ options::options (const context_t& c)
     INSERT_STRING (OUTPUT, TIME, output_time);
     INSERT_STRING (OUTPUT, USERNAME, username);
     INSERT_BOOL (OUTPUT, VERIFY, verify);
+
+    if (c.rsl_ext () != def.rsl_ext ())
+        INSERT_SSTR (RSL, EXTENSION, rsl_ext);
+
+    if (c.rss_ext () != def.rss_ext ())
+        INSERT_SSTR (RSS, EXTENSION, rss_ext);
+    INSERT_ENUM (t_rss_version, RSS, VERSION, rss_version);
 
     INSERT_BOOL (SHADOW, CHANGED, shadow_changed);
     INSERT_BOOL (SHADOW, COMMENT, shadow_comment);
@@ -433,6 +444,7 @@ options::options (const context_t& c)
     INSERT_VALID2 (accrual_periodicity, t_accrual_periodicity, e_accrual_periodicity);
     INSERT_VALID2 (accrual_policy, t_accrual_policy, e_accrual_policy);
     INSERT_VALID2 (action, t_action, e_action);
+    INSERT_VALID2 (advar, t_advar, e_advar);
     INSERT_VALID2 (align3, t_align3, e_align3);
     INSERT_VALID2 (alignplus, t_alignplus, e_alignplus);
     INSERT_VALID2 (as, t_as, e_as);
@@ -522,8 +534,16 @@ options::options (const context_t& c)
     INSERT_VALID2 (recipe_time, t_recipe_time, e_recipe_time);
     INSERT_VALID2 (referrer, t_referrer, e_referrer);
     INSERT_VALID2 (rendering_in_tents, t_rendering_in_tents, e_rendering_in_tents);
+    INSERT_VALID2 (robotic, t_robotic, e_robotic);
+    INSERT_VALID2 (rsl_disclaimer, t_rsl_disclaimer, e_rsl_disclaimer);
+    INSERT_VALID2 (rsl_payment, t_rsl_payment, e_rsl_payment);
+    INSERT_VALID2 (rsl_usage, t_rsl_usage, e_rsl_usage);
+    INSERT_VALID2 (rsl_user, t_rsl_user, e_rsl_user);
+    INSERT_VALID2 (rsl_warranty, t_rsl_warranty, e_rsl_warranty);
+    INSERT_VALID2 (rss_version, t_rss_version, e_rss_version);
     INSERT_VALID2 (rules, t_rules, e_rules);
     INSERT_VALID2 (sandbox, t_sandbox, e_sandbox);
+    INSERT_VALID2 (security, t_security, e_security);
     INSERT_VALID2 (shape7, t_shape7, e_shape7);
     INSERT_VALID2 (shape_rendering, t_shape_rendering, e_shape_rendering);
     INSERT_VALID2 (ssi, t_ssi, e_ssi);
@@ -849,9 +869,13 @@ void options::init (context_t& c)
 #ifndef NO_FRED
         (GENERAL THREAD ARGSEP THREAD_SW_, ::boost::program_options::value < int > () -> default_value  (def_fred), "Number of threads (default 1, zero for whatever is appropriate for the hardware).")
 #endif // NO_FRED
+        (GENERAL UPDATE, ::boost::program_options::bool_switch (), "Check for updates to " PROG ".")
+        (GENERAL DONT UPDATE, ::boost::program_options::bool_switch (), "Do not check for updates to " PROG ".")
         (GENERAL URL_VAR, ::boost::program_options::value < vstr_t > () -> composing (), "Set a URL template variable (see RFC 6570), format VAR=VAL; may be repeated.")
         (GENERAL VCS, ::boost::program_options::bool_switch (), "Exclude file and directory names associated with certain version control systems.")
         (GENERAL DONT VCS, ::boost::program_options::bool_switch (), "Do not exclude file and directory names associated with certain version control systems.")
+
+        (ATOMIC EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "atom files have this extension (default atom); may be repeated.")
 
         (CORPUS ARTICLE, ::boost::program_options::bool_switch (), "Prefer the content of <ARTICLE> when gather page corpus.")
         (CORPUS DONT ARTICLE, ::boost::program_options::bool_switch (), "Avoid the content of <ARTICLE> when gather page corpus.")
@@ -1097,6 +1121,11 @@ void options::init (context_t& c)
         (OUTPUT USERNAME, ::boost::program_options::value < ::std::string > (), "the operator of " PROG " (by default, obtained from the OS)")
         (OUTPUT VERIFY, ::boost::program_options::bool_switch (), "Verify signed output (requires --" OUTPUT PUBLIC " and --" OUTPUT SIGNATURE ")")
         (OUTPUT DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify signed output (verification cannot be blocked when signing)")
+
+        (RSL EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for RSL files (default rsl); may be repeated.")
+
+        (RSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for RSS files (default rss); may be repeated.")
+        (RSS VERSION, ::boost::program_options::value < ::std::string > (), "Presume this version of RSS (default 2.0).")
 
         (SHADOW CHANGED, ::boost::program_options::bool_switch (),
 #ifndef NOLYNX
@@ -1704,9 +1733,13 @@ void options::contextualise (context_t& c, nitpick& nits)
         if (var_.count (GENERAL MACROSTART)) c.macro_start (var_ [GENERAL MACROSTART].as < ::std::string > ());
         if (var_.count (GENERAL SILENCE)) c.silence (nits, var_ [GENERAL SILENCE].as < vstr_t > ());
         if (var_.count (GENERAL URL_VAR)) c.urlvar (var_ [GENERAL URL_VAR].as < vstr_t > ());
+        yea_nay (c, &context_t::update_check, nits, GENERAL UPDATE, GENERAL DONT UPDATE);
         yea_nay (c, &context_t::vcs, nits, GENERAL VCS, GENERAL DONT VCS);
 
         if (is_be (GENERAL YGGDRISIL)) c.yggdrisil (true);
+
+        if (var_.count (ATOMIC EXTENSION)) c.atomic_ext (var_ [ATOMIC EXTENSION].as < vstr_t > ());
+        else { vstr_t ex; ex.push_back (ATOMIC_EXT); c.atomic_ext (ex); }
 
         if (var_.count (CORPUS OUTPUT_)) c.corpus (nix_path_to_local (var_ [CORPUS OUTPUT_].as < ::std::string > ()));
         yea_nay (c, &context_t::article, nits, CORPUS ARTICLE, CORPUS DONT ARTICLE);
@@ -1934,6 +1967,16 @@ void options::contextualise (context_t& c, nitpick& nits)
         if (var_.count (OUTPUT TIME)) c.output_time (var_ [OUTPUT TIME].as < ::std::string > ());
         if (var_.count (OUTPUT USERNAME)) c.username (var_ [OUTPUT USERNAME].as < ::std::string > ());
         yea_nay (c, &context_t::verify, nits, OUTPUT VERIFY, OUTPUT DONT VERIFY);
+
+        if (var_.count (RSL EXTENSION)) c.rsl_ext (var_ [RSL EXTENSION].as < vstr_t > ());
+        else { vstr_t ex; ex.push_back (RSL_EXT); c.rsl_ext (ex); }
+
+        if (var_.count (RSS EXTENSION)) c.rss_ext (var_ [RSS EXTENSION].as < vstr_t > ());
+        else { vstr_t ex; ex.push_back (RSS_EXT); c.rss_ext (ex); }
+
+        if (var_.count (RSS VERSION))
+        {   const e_rss_version rsvp = examine_value < t_rss_version > (nits, html_tags, var_ [RSS VERSION].as < ::std::string > ());
+            if (rsvp != rv_error) c.rss_version (rsvp); }
 
         yea_nay (c, &context_t::shadow_changed, nits, SHADOW CHANGED, SHADOW DONT CHANGED);
         yea_nay (c, &context_t::shadow_comment, nits, SHADOW COMMENT, SHADOW DONT COMMENT);
@@ -2172,6 +2215,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         TEST_VAR (accrual_periodicity);
         TEST_VAR (accrual_policy);
         TEST_VAR (action);
+        TEST_VAR (advar);
         TEST_VAR (align3);
         TEST_VAR (alignplus);
         TEST_VAR (as);
@@ -2260,8 +2304,16 @@ void options::contextualise (context_t& c, nitpick& nits)
         TEST_VAR (recipe_time);
         TEST_VAR (referrer);
         TEST_VAR (rendering_in_tents);
+        TEST_VAR (robotic);
+        TEST_VAR (rsl_disclaimer);
+        TEST_VAR (rsl_payment);
+        TEST_VAR (rsl_usage);
+        TEST_VAR (rsl_user);
+        TEST_VAR (rsl_warranty);
+        TEST_VAR (rss_version);
         TEST_VAR (rules);
         TEST_VAR (sandbox);
+        TEST_VAR (security);
         TEST_VAR (shape7);
         TEST_VAR (shape_rendering);
         TEST_VAR (ssi);
@@ -2420,7 +2472,8 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     if (context.test ()) return res.str ();
 #endif // EXPAND_TEST
 
-    int corpus = 0, css = 0, env = 0, general = 0, html = 0, jsonld = 0, lynx = 0, math = 0, mf = 0, nitty = 0, ontology = 0, output = 0, shadow = 0,
+    int atomic = 0, corpus = 0, css = 0, env = 0, general = 0, html = 0, jsonld = 0, lynx = 0, math = 0, mf = 0,
+        nitty = 0, ontology = 0, output = 0, rsl = 0, rss = 0, shadow = 0,
         site = 0, ssc = 0, ssi = 0, stats = 0, svg = 0, validate = 0, vtt = 0;
 #ifndef NOSPELL
     int spell = 0;
@@ -2502,6 +2555,9 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
 
         try { if (var_ [HELP].as < bool > ()) res << HELP "\n"; } catch (...) { }
         try { if (var_ [VERSION].as < bool > ()) res << VERSION "\n"; } catch (...) { } }
+
+    RG (gr, res, vstr_t, ATOMIC, EXTENSION, atomic);
+    REOS (atomic, res);
 
     RB (gr, res, CORPUS, ARTICLE, corpus);
     RB (gr, res, CORPUS, BODY, corpus);
@@ -2639,6 +2695,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
 #ifndef NO_FRED
     RG (gr, res, int, GENERAL, THREAD, general);
 #endif // NO_FRED
+    RB (gr, res, GENERAL, UPDATE, general);
     RG (gr, res, vstr_t, GENERAL, URL_VAR, general);
     RB (gr, res, GENERAL, VCS, general);
     RB (gr, res, GENERAL, YGGDRISIL, general);
@@ -2758,6 +2815,13 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, ::std::string, OUTPUT, USERNAME, output);
     RB (gr, res, OUTPUT, VERIFY, output);
     REOS (output, res);
+
+    RG (gr, res, vstr_t, RSL, EXTENSION, rsl);
+    REOS (rsl, res);
+
+    RG (gr, res, vstr_t, RSS, EXTENSION, rss);
+    RG (gr, res, ::std::string, RSS, VERSION, rss);
+    REOS (rss, res);
 
     RB (gr, res, SHADOW, CHANGED, shadow);
     RB (gr, res, SHADOW, COMMENT, shadow);
@@ -2885,6 +2949,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RPT_VAR (gr, accrual_periodicity);
     RPT_VAR (gr, accrual_policy);
     RPT_VAR (gr, action);
+    RPT_VAR (gr, advar);
     RPT_VAR (gr, align3);
     RPT_VAR (gr, alignplus);
     RPT_VAR (gr, as);
@@ -2977,9 +3042,17 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RPT_VAR (gr, recipe_time);
     RPT_VAR (gr, referrer);
     RPT_VAR (gr, rendering_in_tents);
+    RPT_VAR (gr, robotic);
+    RPT_VAR (gr, rsl_disclaimer);
+    RPT_VAR (gr, rsl_payment);
+    RPT_VAR (gr, rsl_usage);
+    RPT_VAR (gr, rsl_user);
+    RPT_VAR (gr, rsl_warranty);
+    RPT_VAR (gr, rss_version);
     RPT_VAR (gr, rules);
     RPT_VAR (gr, sandbox);
     RPT_VAR (gr, schema);
+    RPT_VAR (gr, security);
     RPT_VAR (gr, shape7);
     RPT_VAR (gr, shape_rendering);
     RPT_VAR (gr, ssi);

@@ -53,6 +53,11 @@ public:
     const abbs_t* up () const noexcept { return up_; }
     ident_t maximum () const noexcept
     {   return vabb_.size () + offset_; }
+    bool has (const ident_t id) const
+    {   for (auto a : vabb_)
+            if (a.id_ == id) return true;
+        if (up_ == nullptr) return false;
+        return up_ -> has (id); }
     ident_t find_shortform (const html_version& v, const STANDARD& predefined, const ::std::string& shortform, const bool standard = true) const
     {   PRESUME (! shortform.empty (), __FILE__, __LINE__);
         msab_t::const_iterator i = shorts_.find (shortform);

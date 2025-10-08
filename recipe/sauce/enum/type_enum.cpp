@@ -100,6 +100,13 @@ struct symbol_entry < html_version, e_action > action_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, "event", av_event },
     { { HTML_UNDEF }, { HTML_UNDEF }, "service", av_service } };
 
+struct symbol_entry < html_version, e_advar > advar_symbol_table [] =
+{   { { HTML_AUG22 }, { HTML_UNDEF }, "contact", adv_contact },
+    { { HTML_AUG22 }, { HTML_UNDEF }, "managerdomain", adv_manager },
+    { { HTML_AUG22 }, { HTML_UNDEF }, "ownerdomain", adv_owner },
+    { { HTML_AUG22 }, { HTML_UNDEF }, "inventorypartnerdomain", adv_partner },
+    { { HTML_AUG22 }, { HTML_UNDEF }, "subdomain", adv_sub } };
+
 struct symbol_entry < html_version, e_align3 > align3_symbol_table [] =
 {   { { HTML_3_0 }, { HTML_UNDEF }, "top", a3_top },
     { { HTML_3_0 }, { HTML_UNDEF }, "middle", a3_middle },
@@ -3444,7 +3451,7 @@ struct symbol_entry < html_version, e_musickey > musickey_symbol_table [] =
 
 
 struct symbol_entry < html_version, e_myersbriggs > myersbriggs_symbol_table [] =
-        // why not the astrology stuff too?
+    // opportunistic conman bollox
 {   { { XHTML_1_0 }, { HTML_UNDEF }, "INFP", mb_INFP },
     { { XHTML_1_0 }, { HTML_UNDEF }, "ESFP", mb_ESFP },
     { { XHTML_1_0 }, { HTML_UNDEF }, "INTJ", mb_INTJ },
@@ -3478,7 +3485,8 @@ struct symbol_entry < html_version, e_namedspace > namedspace_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "veryverythickmathspace", nd_veryverythickmathspace } };
 
 struct symbol_entry < html_version, e_namespace > namespace_symbol_table [] =
-{   { { XHTML_1_0 }, { HTML_UNDEF }, "bibo", ns_bibo },
+{   { { HTML_JAN06 }, { HTML_UNDEF }, "atom", ns_atom },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "bibo", ns_bibo },
     { { XHTML_1_0 }, { HTML_UNDEF }, "cc", ns_cc },
     { { HTML_CNT }, { HTML_UNDEF }, "cnt", ns_cnt },
     { { XHTML_1_0 }, { HTML_UNDEF }, "crs", ns_crs },
@@ -3514,6 +3522,8 @@ struct symbol_entry < html_version, e_namespace > namespace_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "rdf", ns_rdf },
     { { XHTML_1_0 }, { HTML_UNDEF }, "rdfa", ns_rdfa },
     { { XHTML_1_0 }, { HTML_UNDEF }, "rdfs", ns_rdfs },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "rsl", ns_rsl },
+    { { XHTML_1_0 }, { HTML_UNDEF }, "rss", ns_rss },
     { { XHTML_1_0 }, { HTML_UNDEF }, "saxon", ns_saxon },
     { { XHTML_1_0 }, { HTML_UNDEF }, "smil", ns_smil },
     { { XHTML_1_0 }, { HTML_UNDEF }, "smpte", ns_smpte },
@@ -3551,6 +3561,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-account", nm_context_account },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-analysis", nm_context_analysis },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-article", nm_context_article },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-atom-exts", nm_context_atomic_exts },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-back", nm_context_back },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-body", nm_context_body },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-build", nm_context_build },
@@ -3710,6 +3721,9 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rfc-2070", nm_context_rfc_2070 },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-role", nm_context_role },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-root", nm_context_root },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-rsl-exts", nm_context_rsl_exts },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-rss-exts", nm_context_rss_exts },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-rss-version", nm_context_rss_version },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-ruby", nm_context_ruby },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-safari", nm_context_safari },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-schema", nm_context_schema },
@@ -3866,6 +3880,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "run-args", nm_run_args },
     { { HTML_TAGS }, { HTML_UNDEF }, "run-catastrophe", nm_run_catastrophe },
     { { HTML_TAGS }, { HTML_UNDEF }, "run-environment", nm_run_environment },
+    { { HTML_TAGS }, { HTML_UNDEF }, "ssc-update", nm_ssc_update },
     { { HTML_TAGS }, { HTML_UNDEF }, "stat-count", nm_stat_count },
     { { HTML_TAGS }, { HTML_UNDEF }, "stat-detail", nm_stat_detail },
     { { HTML_TAGS }, { HTML_UNDEF }, "stat-int", nm_stat_int },
@@ -3891,7 +3906,8 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "tally-use-total", nm_tally_use_total },
     { { HTML_TAGS }, { HTML_UNDEF }, "time-duration", nm_time_duration },
     { { HTML_TAGS }, { HTML_UNDEF }, "time-finish", nm_time_finish },
-    { { HTML_TAGS }, { HTML_UNDEF }, "time-start", nm_time_start } };
+    { { HTML_TAGS }, { HTML_UNDEF }, "time-start", nm_time_start },
+    { { HTML_TAGS }, { HTML_UNDEF }, "update-info", nm_update_info } };
 
 struct symbol_entry < html_version, e_nit_section > nit_section_symbol_table [] =
 {   { { HTML_TAGS }, { HTML_UNDEF }, "class", ns_class },
@@ -4820,6 +4836,86 @@ struct symbol_entry < html_version, e_rendering_in_tents > rendering_in_tents_sy
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "saturation", ri_saturation },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "absolute-colorimetric", ri_absolutecolourimetric } };
 
+struct symbol_entry < html_version, e_rfc822_zone > rfc822_zone_symbol_table [] =
+{   { { HTML_TAGS }, { HTML_UNDEF }, "a", e8z_a },
+    { { HTML_TAGS }, { HTML_UNDEF }, "gmt", e8z_gmt },
+    { { HTML_TAGS }, { HTML_UNDEF }, "cdt", e8z_cdt },
+    { { HTML_TAGS }, { HTML_UNDEF }, "cst", e8z_cst },
+    { { HTML_TAGS }, { HTML_UNDEF }, "edt", e8z_edt },
+    { { HTML_TAGS }, { HTML_UNDEF }, "est", e8z_est },
+    { { HTML_TAGS }, { HTML_UNDEF }, "m", e8z_m },
+    { { HTML_TAGS }, { HTML_UNDEF }, "mdt", e8z_mdt },
+    { { HTML_TAGS }, { HTML_UNDEF }, "mst", e8z_mst },
+    { { HTML_TAGS }, { HTML_UNDEF }, "n", e8z_n },
+    { { HTML_TAGS }, { HTML_UNDEF }, "pdt", e8z_pdt },
+    { { HTML_TAGS }, { HTML_UNDEF }, "pst", e8z_pst },
+    { { HTML_TAGS }, { HTML_UNDEF }, "ut", e8z_ut },
+    { { HTML_TAGS }, { HTML_UNDEF }, "y", e8z_y },
+    { { HTML_TAGS }, { HTML_UNDEF }, "z", e8z_z } };
+
+struct symbol_entry < html_version, e_robotic > robotic_symbol_table [] =
+{   { { HTML_TAGS }, { HTML_UNDEF }, "allow", rob_allow },
+    { { HTML_TAGS }, { HTML_UNDEF }, "crawl-delay", rob_crawl_delay }, // dialect
+    { { HTML_TAGS }, { HTML_UNDEF }, "disallow", rob_disallow },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "license", rob_licence },
+    { { HTML_TAGS }, { HTML_UNDEF }, "sitemaps", rob_sitemaps },
+    { { HTML_TAGS }, { HTML_UNDEF }, "user-agent", rob_user_agent } };
+
+struct symbol_entry < html_version, e_rsl_disclaimer > rsl_disclaimer_symbol_table [] =
+{   { { HTML_SEP25 }, { HTML_UNDEF }, "authority", rsd_authority },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "no-infringement", rsd_no_infringement }, // dialect
+    { { HTML_SEP25 }, { HTML_UNDEF }, "no-malware", rsd_no_malware },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "ownership", rsd_ownership },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "privacy-consent", rsd_privacy_consent } };
+
+struct symbol_entry < html_version, e_rsl_payment > rsl_payment_symbol_table [] =
+{   { { HTML_SEP25 }, { HTML_UNDEF }, "attribution", rpa_attribution },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "crawl", rpa_crawl },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "free", rpa_free },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "inference", rpa_inference },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "purchase", rpa_purchase },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "subscription", rpa_subscription },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "training", rpa_training } };
+
+struct symbol_entry < html_version, e_rsl_warranty > rsl_warranty_symbol_table [] =
+{   { { HTML_SEP25 }, { HTML_UNDEF }, "as-is", rsw_as_is },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "no-indemnity", rsw_no_indemnity }, // dialect
+    { { HTML_SEP25 }, { HTML_UNDEF }, "no-liability", rsw_no_liability },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "no-warranty", rsw_no_warranty } };
+
+struct symbol_entry < html_version, e_rsl_usage > rsl_usage_symbol_table [] =
+{   { { HTML_SEP25 }, { HTML_UNDEF }, "all", rsa_all },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "ai-summarize", rsa_ai_summarise }, // dialect
+    { { HTML_SEP25 }, { HTML_UNDEF }, "ai-use", rsa_ai_use },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "search", rsa_search },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "train-ai", rsa_train_ai },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "train-genai", rsa_train_genai } };
+
+struct symbol_entry < html_version, e_rsl_user > rsl_user_symbol_table [] =
+{   { { HTML_SEP25 }, { HTML_UNDEF }, "commercial", rss_commercial },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "education", rss_education },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "government", rss_government },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "non-commercial", rss_noncommercial },
+    { { HTML_SEP25 }, { HTML_UNDEF }, "personal", rss_personal } };
+
+struct symbol_entry < html_version, e_rss_version > rss_version_symbol_table [] =
+{   { { HTML_UNDEF }, { HTML_UNDEF }, "0.91", rv_91 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "0.92", rv_92 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "1.0", rv_10 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "2.0", rv_20 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "2.0.0", rv_200 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "2.0.1", rv_201 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "2.0.2", rv_202 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "2.0.3", rv_203 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "2.0.4", rv_204 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "2.0.5", rv_205 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "2.0.6", rv_206 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "2.0.7", rv_207 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "2.0.8", rv_208 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "2.0.9", rv_209 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "2.0.10", rv_2010 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "2.0.11", rv_2011 } };
+
 struct symbol_entry < html_version, e_rules > rules_symbol_table [] =
 {   { { HTML_2_0 }, { HTML_UNDEF }, "none", ru_none },
     { { HTML_2_0 }, { HTML_UNDEF }, "groups", ru_groups },
@@ -4851,6 +4947,19 @@ struct symbol_entry < html_version, e_scei > scei_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "end", scei_end },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "start", scei_start },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", scei_inherit } };
+
+struct symbol_entry < html_version, e_security > security_symbol_table [] =
+{   { { HTML_APR22 }, { HTML_UNDEF }, "acknowledgments", sec_acknowledgements },
+    { { HTML_APR22 }, { HTML_UNDEF }, "canonical", sec_canonical },
+    { { HTML_APR22 }, { HTML_UNDEF }, "contact", sec_contact },
+    { { HTML_FEB23 }, { HTML_UNDEF }, "CSAF", sec_csaf },
+    { { HTML_APR22 }, { HTML_UNDEF }, "encryption", sec_encryption },
+    { { HTML_APR22 }, { HTML_UNDEF }, "expires", sec_expires },
+    { { HTML_APR22 }, { HTML_UNDEF }, "hash", sec_hash },
+    { { HTML_APR22 }, { HTML_UNDEF }, "hiring", sec_hiring },
+    { { HTML_APR22 }, { HTML_UNDEF }, "policy", sec_policy },
+    { { HTML_APR22 }, { HTML_UNDEF }, "preferred-languages", sec_preflang },
+    { { HTML_APR22 }, { HTML_UNDEF }, "version", sec_version } };
 
 struct symbol_entry < html_version, e_severity > severity_symbol_table [] =
 {   { { HTML_TAGS }, { HTML_UNDEF }, CATASTROPHE, es_catastrophic },
@@ -6909,7 +7018,9 @@ struct symbol_entry < html_version, e_writingmode > writingmode_symbol_table [] 
     { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20, H2_CSS_SVG_1 }, { HTML_UNDEF }, "inherit", wm_inherit } };
 
 struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
-{   { { HTML_4_0 }, { HTML_UNDEF }, HTTP PURL_ORG "g/ontology/bibo/", x_bibo },
+{   { { HTML_4_0 }, { HTML_UNDEF }, NSL_ATOM, x_atom },
+    { { HTML_4_0 }, { HTML_UNDEF }, NSLS_ATOM, x_atom },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP PURL_ORG "g/ontology/bibo/", x_bibo },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTPS PURL_ORG "g/ontology/bibo/", x_bibo },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1999/xhtml", x_xhtml_1 },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/1999/xhtml", x_xhtml_1 },
@@ -6957,6 +7068,11 @@ struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_W3 "/ns/rdfa#", x_rdfa },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/2000/01/rdf-schema#", x_rdfs },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_W3 "/2000/01/rdf-schema#", x_rdfs },
+    { { HTML_4_0 }, { HTML_UNDEF }, NSLS_RSL, x_rsl },
+    { { HTML_4_0 }, { HTML_UNDEF }, NSL_RSS, x_rss },
+    { { HTML_4_0 }, { HTML_UNDEF }, NSLS_RSS, x_rss },
+    { { XHTML_1_0 }, { HTML_UNDEF }, NSL_RSS "modules/content/", x_rss },
+    { { XHTML_1_0 }, { HTML_UNDEF }, NSLS_RSS "modules/content/", x_rss },
     { { HTML_SPDX10 }, { HTML_UNDEF }, HTTP "spdx.org/rdf/terms#", x_spdx },
     { { HTML_SPDX10 }, { HTML_UNDEF }, HTTPS "spdx.org/rdf/terms#", x_spdx },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP SVG_2000, x_svg },
@@ -7023,12 +7139,10 @@ struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS PURL_ORG "/dc/elements/1.1/", x_dc },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP PURL_ORG "/vocab/relationship/", x_rel },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS PURL_ORG "/vocab/relationship/", x_rel },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP PURL_ORG "/rss/1.0/", x_rss },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS PURL_ORG "/rss/1.0/", x_rss },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP PURL_ORG "/net/rssmodules/blogcomments/", x_comments },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS PURL_ORG "/net/rssmodules/blogcomments/", x_comments },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTP PURL_ORG "/rss/1.0/modules/syndication/", x_syn },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS PURL_ORG "/rss/1.0/modules/syndication/", x_syn },
+    { { XHTML_1_0 }, { HTML_UNDEF }, NSL_RSS "modules/syndication/", x_syn },
+    { { XHTML_1_0 }, { HTML_UNDEF }, NSLS_RSS "modules/syndication/", x_syn },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP "relaxng.org/ns/structure/1.0/", x_rng },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS "relaxng.org/ns/structure/1.0/", x_rng },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/XMLSchema", x_xsd },
@@ -7241,6 +7355,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (accrual_periodicity);
     INIT_ENUM (accrual_policy);
     INIT_ENUM (action);
+    INIT_ENUM (advar);
     INIT_ENUM (align3);
     INIT_ENUM (alignment_baseline);
     INIT_ENUM (alignplus);
@@ -7472,9 +7587,18 @@ void enum_init (nitpick& nits)
     INIT_ENUM (referrer);
     INIT_ENUM (rendering_in_tents);
     INIT_FIXED_ENUM (report, rcb_max);
+    INIT_ENUM (rfc822_zone);
+    INIT_ENUM (robotic);
+    INIT_ENUM (rsl_disclaimer);
+    INIT_ENUM (rsl_payment);
+    INIT_ENUM (rsl_usage);
+    INIT_ENUM (rsl_user);
+    INIT_ENUM (rsl_warranty);
+    INIT_ENUM (rss_version);
     INIT_ENUM (rules);
     INIT_ENUM (sandbox);
     INIT_ENUM (scei);
+    INIT_ENUM (security);
     INIT_ENUM (severity);
     INIT_ENUM (shadow);
     INIT_ENUM (shape7);
@@ -7588,6 +7712,7 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (accrual_periodicity);
         RETURN_SIZE (accrual_policy);
         RETURN_SIZE (action);
+        RETURN_SIZE (advar);
         RETURN_SIZE (align3);
         RETURN_SIZE (alignment_baseline);
         RETURN_SIZE (alignplus);
@@ -7813,9 +7938,17 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (referrer);
         RETURN_SIZE (rendering_in_tents);
         case t_report : return rcb_max;
+        RETURN_SIZE (robotic);
+        RETURN_SIZE (rsl_disclaimer);
+        RETURN_SIZE (rsl_payment);
+        RETURN_SIZE (rsl_usage);
+        RETURN_SIZE (rsl_user);
+        RETURN_SIZE (rsl_warranty);
+        RETURN_SIZE (rss_version);
         RETURN_SIZE (rules);
         RETURN_SIZE (sandbox);
         RETURN_SIZE (scei);
+        RETURN_SIZE (security);
         RETURN_SIZE (severity);
         RETURN_SIZE (shadow);
         RETURN_SIZE (shape7);

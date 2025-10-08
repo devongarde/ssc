@@ -161,6 +161,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
     if (t <= SSC_TYPES_P_2_MAX) return test_typed_value < SSC_TYPES_P_2, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_Q_R_MAX) return test_typed_value < SSC_TYPES_Q_R, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_R_MAX) return test_typed_value < SSC_TYPES_R, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_RSL_MAX) return test_typed_value < SSC_TYPES_RSL, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_S_1_MAX) return test_typed_value < SSC_TYPES_S_1, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_S_2_MAX) return test_typed_value < SSC_TYPES_S_2, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_SVG_1_MAX) return test_typed_value < SSC_TYPES_SVG_1, t_unknown > :: test (nits, v, t, s);

@@ -38,6 +38,7 @@ element_bitset interactive_bitset_aug25 = empty_element_bitset;
 element_bitset label_bitset = empty_element_bitset;
 element_bitset listed_bitset = empty_element_bitset;
 element_bitset media_bitset = empty_element_bitset;
+element_bitset no_spell_bitset = empty_element_bitset;
 element_bitset non_standard_bitset = empty_element_bitset;
 element_bitset pure_faux_bitset = empty_element_bitset;
 element_bitset role_element_bitset = empty_element_bitset;
@@ -68,13 +69,13 @@ void state_init ()
     css_block_bitset = block_bitset | sectioning_bitset | non_standard_bitset | listed_bitset | header_bitset | block_replaced_bitset | elem_p | elem_div | elem_think | elem_ul | elem_ol | elem_hr | elem_form | elem_body;
     css_nonblock_bitset = ~css_block_bitset;
     css_noninline_bitset = ~inline_bitset;
+    no_spell_bitset = empty_element_bitset | elem_rss_docs | elem_rss_language | elem_rss_link | elem_script | elem_style;
     role_element_bitset =   empty_element_bitset | // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles 
                             elem_article | elem_aside | elem_dfn | elem_figure | elem_footer | elem_form |
                             elem_h1 | elem_h2 | elem_h2 | elem_h4 | elem_h5 | elem_h6 | elem_header | elem_hr |
                             elem_img | elem_li | elem_main | elem_meter | elem_nav | elem_ol | elem_picture | elem_search | elem_section |
                             elem_table | elem_tbody | elem_td | elem_tfoot | elem_thead | elem_tr | elem_ul;
-    rowgroup_bitset = empty_element_bitset | elem_tbody | elem_tfoot | elem_thead;
-}
+    rowgroup_bitset = empty_element_bitset | elem_tbody | elem_tfoot | elem_thead; }
 
 ::std::string nameset (const element_bitset& bs)
 {   ::std::string res;

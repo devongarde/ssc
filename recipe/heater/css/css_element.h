@@ -35,7 +35,7 @@ public:
     DEFAULT_CONSTRUCTORS (css_element);
     explicit css_element (const elem& e) : e_ (e) { }
     explicit css_element (const e_element e) : e_ (e) { }
-    explicit css_element (nitpick& nits, const html_version& v, const namespaces_ptr& ns, const ::std::string& x) : e_ (nits, v, ns, x, false) { }
+    explicit css_element (nitpick& nits, const html_version& v, const namespaces_ptr& ns, const ::std::string& x) : e_ (nits, v, ns, x, false, nullptr) { }
     css_element (arguments& args, const int from, const int to, const bool knotted = false)
     {   parse (args, from, to, knotted); }
     void parse (arguments& args, const int from, const int to, const bool knotted = false);

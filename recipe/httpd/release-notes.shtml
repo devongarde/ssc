@@ -22,6 +22,51 @@
 
 <h2>2025</h2>
 
+<h3>0.2.21</h3>
+
+<ul>
+<li>
+Living Standard October 2025
+</li>
+<li>
+analyse ads.txt
+</li>
+<li>
+analyse robots.txt
+</li>
+<li>
+partially analyse ATOM files
+</li>
+<li>
+partially analyse RSL files
+</li>
+<li>
+partially analyse RSS files
+</li>
+<li>
+analyse security.txt
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+download
+<A href="/bin/Install-SSC-0.2.21-Win-x64.msi" type="application/octet-stream" download>Windows 10/11 x64 installer</a>,
+<A href="/bin/Install-SSC-0.2.21-Win-a64.msi" type="application/octet-stream" download>Windows 10/11 ARM64 installer</a>,
+<A href="/bin/SSC-0.2.21-Mac-Arm.zip" type="application/zip" download>Mac ARM app (zipped)</a>,
+<A href="/bin/SSC-0.2.21-Mac-Intel.zip" type="application/zip" download>Mac Intel app (zipped)</a>,
+<A href="/src/ssc-0.2.21.tgz" type="application/gzip" download>source</a>.
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-09-30">25 9 30</time>
+</li>
+</ul>
+
+<h2>2025</h2>
+
 <h3>0.2.20</h3>
 
 <ul>
@@ -40,7 +85,7 @@ download
 <A href="/src/ssc-0.2.20.tgz" type="application/gzip" download>source</a>.
 </li>
 <li>
-released <time itemprop="datePublished" class="dt-published" datetime="2025-09-30">25 9 30</time>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-08-30">25 8 30</time>
 </li>
 </ul>
 

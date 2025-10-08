@@ -44,7 +44,8 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
         const char* ref_ = nullptr;
         bool dialect_ = false; };
     spellings word [] =
-    {   { "centre", d_johnson, "348" },
+    {   { "acknowledgement", d_collins, nullptr },
+        { "centre", d_johnson, "348" },
         { "color", d_none, nullptr, true },
         { "colour", d_johnson, "409" },
         { "organisation", d_none, nullptr },

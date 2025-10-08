@@ -166,6 +166,53 @@ parentage parent_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_article, elem_undefined, 0, EF_5_FLOW },
     { { HTML_JUL13 }, { HTML_JUN18 }, elem_aside, elem_main, DENY },
     { { HTML_JUL05 }, { HTML_UNDEF }, elem_aside, elem_undefined, 0, EF_5_FLOW },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_author, elem_atom_email },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_author, elem_atom_name },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_author, elem_atom_uri },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_content, elem_div },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_contributor, elem_atom_email },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_contributor, elem_atom_name },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_contributor, elem_atom_uri },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_author },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_category },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_contributor },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_content },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_id },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_link },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_published },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_rights },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_source },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_summary },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_title },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_updated },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_author },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_category },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_contributor },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_entry },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_generator },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_icon },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_id },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_link },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_logo },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_rights },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_subtitle },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_title },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_updated },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_rights, elem_div },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_source, elem_atom_category },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_source, elem_atom_contributor },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_source, elem_atom_generator },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_source, elem_atom_icon },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_source, elem_atom_id },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_source, elem_atom_link },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_source, elem_atom_logo },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_source, elem_atom_rights },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_source, elem_atom_subtitle },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_source, elem_atom_title },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_source, elem_atom_updated },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_subtitle, elem_div },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_summary, elem_div },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_title, elem_div },
     { { HTML_3_0 }, { HTML_3_0 }, elem_au, elem_undefined, 0, EF_3_TEXTIN },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_audio, elem_discard },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_audio, elem_handler },
@@ -454,7 +501,10 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_extensiondefs, elem_elementdef },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_extensiondefs, elem_defs },
     { { HTML_1_0, HV_NOTPLUS }, { HTML_UNDEF }, elem_faux_document, elem_html },
+    { { HTML_ATOM }, { HTML_UNDEF }, elem_faux_document, elem_atom_feed },
     { { HTML_RDF10 }, { HTML_UNDEF }, elem_faux_document, elem_rdf_rdf },
+    { { HTML_RSL }, { HTML_UNDEF }, elem_faux_document, elem_rsl },
+    { { HTML_RSS }, { HTML_UNDEF }, elem_faux_document, elem_rss },
     { { HTML_SVG10 }, { HTML_UNDEF }, elem_faux_document, elem_svg },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_faux_document, elem_math },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_faux_document, elem_faux_xml },
@@ -1240,6 +1290,9 @@ parentage parent_table [] =
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_li, elem_undefined },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_nodeid, elem_undefined },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_parsetype, elem_undefined },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_rdf, elem_atom_feed },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_rdf, elem_rsl },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_rdf, elem_rss },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_rdf, elem_undefined, 0, EF_RDF },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_resource, elem_undefined },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, elem_rdf_seq, elem_undefined, 0, EF_RDF },
@@ -1261,6 +1314,62 @@ parentage parent_table [] =
     { { HTML_3_0 }, { HTML_3_0 }, elem_row, elem_item },
     { { XHTML_1_1 }, { XHTML_2_0 }, elem_rp, elem_undefined, 0, EF_4_INLINE },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_rp, elem_undefined, 0, EF_5_PHRASE },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, elem_rsl, elem_rsl_content, EP_RSL },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, elem_rsl_content, elem_rsl_copyright, EP_RSL },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, elem_rsl_content, elem_rsl_licence, EP_RSL },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, elem_rsl_content, elem_rsl_schema, EP_RSL },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, elem_rsl_content, elem_rsl_schema, EP_RSL },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, elem_rsl_licence, elem_rsl_legal, EP_RSL },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, elem_rsl_licence, elem_rsl_payment, EP_RSL },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, elem_rsl_licence, elem_rsl_permits, EP_RSL },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, elem_rsl_licence, elem_rsl_prohibits, EP_RSL },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, elem_rsl_payment, elem_rsl_amount, EP_RSL },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, elem_rsl_payment, elem_rsl_custom, EP_RSL },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, elem_rsl_payment, elem_rsl_standard, EP_RSL },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss, elem_rss_channel, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss, elem_rss_item, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_category, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_cloud, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_copyright, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_description, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_docs, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_generator, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_image, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_item, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_language, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_lastbuilddate, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_link, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_managingeditor, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_pubdate, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_rating, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_skipdays, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_skiphours, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_textinput, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_title, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_ttl, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_webmaster, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_image, elem_rss_description, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_image, elem_rss_height, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_image, elem_rss_link, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_image, elem_rss_title, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_image, elem_rss_url, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_image, elem_rss_width, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_author, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_category, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_comments, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_description, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_enclosure, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_guid, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_link, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_pubdate, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_source, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_title, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_skipdays, elem_rss_day, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_skiphours, elem_rss_hour, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_textinput, elem_rss_description, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_textinput, elem_rss_name, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_textinput, elem_rss_link, EP_RSS },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_textinput, elem_rss_title, EP_RSS },
     { { XHTML_1_1 }, { XHTML_2_0 }, elem_rt, elem_ruby, DENY },
     { { XHTML_1_1 }, { XHTML_2_0 }, elem_rt, elem_undefined, 0, EF_4_INLINE },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_rt, elem_undefined, 0, EF_5_PHRASE },
@@ -1740,13 +1849,18 @@ bool is_permitted_parent (const html_version& v, const elem& self, const elem& p
         if (does_apply < html_version > (v, i -> second.first_, i -> second.last_))
             if ((i -> second.categories_ == 0) || ((self.categories () & i -> second.categories_) != 0))
                 return ((i -> second.flags_ & DENY) == 0);
+    if ((self.flags () & EP_CAN_BE_TOP) != 0) return ((parent.flags () & EP_HOLDS_ALL) != 0);
     return false; }
 
 e_element default_parent (const html_version& v, const elem& self, const elem& current_parent) noexcept
 {   if (v.mjr () == 0) return elem_faux_document;
     switch (self.get ())
-    {   case elem_html :
+    {   case elem_atom_feed :
+        case elem_html :
         case elem_htmlplus :
+        case elem_rdf_rdf :
+        case elem_rsl :
+        case elem_rss :
             return elem_faux_document;
         case elem_head :
         case elem_body :
@@ -1948,9 +2062,6 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
         case elem_vectorproduct :
         case elem_xor :
             return elem_apply;
-        case elem_annotation :
-        case elem_annotation_xml :
-            return elem_semantics;
         case elem_altglyph :
             return elem_glyph;
         case elem_altglyphdef :
@@ -1990,6 +2101,32 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
         case elem_use :
         case elem_xa :
             return elem_svg;
+        case elem_annotation :
+        case elem_annotation_xml :
+            return elem_semantics;
+        case elem_atom_author :
+        case elem_atom_category :
+        case elem_atom_contributor :
+        case elem_atom_content :
+        case elem_atom_id :
+        case elem_atom_link :
+        case elem_atom_published :
+        case elem_atom_rights :
+        case elem_atom_source :
+        case elem_atom_summary :
+        case elem_atom_title :
+        case elem_atom_updated :
+            return elem_atom_entry;
+        case elem_atom_email :
+        case elem_atom_name :
+        case elem_atom_uri :
+            return elem_atom_author;
+        case elem_atom_entry :
+        case elem_atom_generator :
+        case elem_atom_icon :
+        case elem_atom_logo :
+        case elem_atom_subtitle :
+            return elem_atom_feed;
         case elem_caption :
             if (current_parent.is_math ())
                 return elem_root;
@@ -2165,6 +2302,61 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
         case elem_rdf_parsetype :
         case elem_rdf_resource :
             return elem_rdf_rdf;
+        case elem_rsl_amount :
+        case elem_rsl_custom :
+        case elem_rsl_standard :
+            return elem_rsl_payment;
+        case elem_rsl_content :
+            return elem_rsl;
+        case elem_rsl_copyright :
+        case elem_rsl_licence :
+        case elem_rsl_schema :
+        case elem_rsl_terms :
+            return elem_rsl;
+        case elem_rsl_legal :
+        case elem_rsl_payment :
+        case elem_rsl_permits :
+        case elem_rsl_prohibits :
+            return elem_rsl_licence;
+        case elem_rss_author :
+        case elem_rss_comments :
+        case elem_rss_description :
+        case elem_rss_enclosure :
+        case elem_rss_guid :
+        case elem_rss_link :
+        case elem_rss_pubdate :
+        case elem_rss_source :
+        case elem_rss_title :
+            return elem_rss_item;
+        case elem_rss_category :
+        case elem_rss_cloud :
+        case elem_rss_copyright :
+        case elem_rss_docs :
+        case elem_rss_generator :
+        case elem_rss_image :
+        case elem_rss_language :
+        case elem_rss_lastbuilddate :
+        case elem_rss_managingeditor :
+        case elem_rss_rating :
+        case elem_rss_skipdays :
+        case elem_rss_skiphours :
+        case elem_rss_textinput :
+        case elem_rss_ttl :
+        case elem_rss_webmaster :
+            return elem_rss_channel;
+        case elem_rss_channel :
+        case elem_rss_item :
+            return elem_rss;
+        case elem_rss_day :
+            return elem_rss_skipdays;
+        case elem_rss_height :
+        case elem_rss_url :
+        case elem_rss_width :
+            return elem_rss_image;
+        case elem_rss_hour :
+            return elem_rss_skiphours;
+        case elem_rss_name :
+            return elem_rss_textinput;
         case elem_td :
         case elem_th :
             return elem_tr;

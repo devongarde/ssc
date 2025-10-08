@@ -43,6 +43,7 @@ extern element_bitset interactive_bitset_aug25;
 extern element_bitset label_bitset;
 extern element_bitset listed_bitset;
 extern element_bitset media_bitset;
+extern element_bitset no_spell_bitset;
 extern element_bitset non_standard_bitset;
 extern element_bitset pure_faux_bitset;
 extern element_bitset role_element_bitset;

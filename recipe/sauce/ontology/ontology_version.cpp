@@ -333,6 +333,8 @@ sh_t sh [] =  // latest first
     { role_schema, html_role },
     { rr_schema, html_rr },
     { schema_30_0, html_schema_30_0 },
+    { schema_29_4, html_schema_29_4 },
+    { schema_29_3, html_schema_29_3 },
     { schema_29_2, html_schema_29_2 },
     { schema_29_1, html_schema_29_1 },
     { schema_29_0, html_schema_29_0 },
@@ -665,7 +667,7 @@ vsv_t vsv = {
         schema_4, schema_5, schema_6, schema_7_00, schema_7_01, schema_7_02, schema_7_03, schema_7_04, schema_8, schema_9,
         schema_10, schema_11, schema_11_01, schema_12, schema_13, schema_14, schema_15, schema_16, schema_17, schema_18, schema_19,
         schema_20, schema_21, schema_22, schema_23, schema_24, schema_25, schema_26, schema_27, schema_27_01, schema_27_02,
-        schema_28_0, schema_28_1, schema_29_0, schema_29_1, schema_29_2, schema_30_0,
+        schema_28_0, schema_28_1, schema_29_0, schema_29_1, schema_29_2, schema_29_3, schema_29_4, schema_30_0,
     sd_schema,
     sioc_schema,
     sioc_services,
@@ -1182,13 +1184,13 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
     switch (mjr)
     {   case 0 : return (mnr > 0);
         case 1 : return true;
-        case 2 :
-        case 27 : return (mnr < 3);
+        case 2 : return (mnr < 3);
         case 3 : break;
         case 7 : return (mnr < 5);
         case 11 :
-        case 28 :
-        case 29 : return (mnr < 3);
+        case 28 : return (mnr < 2);
+        case 27 : return (mnr == 1) || (mnr == 2); 
+        case 29 : return (mnr < 5);
         default : return (mnr == 0); }
     switch (mnr)
     {   case 0 : return ((oflags & SV_NOT_30) == 0);
@@ -1204,13 +1206,15 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
         default : break; }
     return false; }
 template < > ontology_version ontology_detail < s_schema > :: from () noexcept { return ontology_version (s_schema, MIN_SCHEMA_ORG_MAJOR, MIN_SCHEMA_ORG_MINOR); }
-template < > int ontology_detail < s_schema > :: count () noexcept { return 87; }
+template < > int ontology_detail < s_schema > :: count () noexcept { return 89; }
 template < > ontology_version ontology_detail < s_schema > :: to () noexcept { return ontology_version (s_schema, MAX_SCHEMA_ORG_MAJOR, MAX_SCHEMA_ORG_MINOR); }
 template < > ::std::string ontology_detail < s_schema > :: ver (const unsigned short mjr, const unsigned short mnr)
 {   switch (mjr)
     {   case 7 :
         case 11 :
-        case 27 : return x_dot_oh_y (mjr, mnr);
+        case 27 :
+        case 28 :
+        case 29 : return x_dot_oh_y (mjr, mnr);
         default : break; }
     return x_dot_y (mjr, mnr); }
 template < > ::std::string ontology_detail < s_schema > :: name (const ::std::string s, const unsigned short mjr, const unsigned short mnr)

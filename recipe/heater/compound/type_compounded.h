@@ -354,3 +354,9 @@ template < > struct tnu_properties < true >
 {   static bool required (nitpick& nits, const ::std::string& ss)
     {   nits.pick (nit_bad_units, es_error, ec_type, quote (ss), ": units required");
         return true; } }; 
+
+template < > struct type_master < t_url_9309 > : public type_either_or < t_url_9309, t_wacky, t_url >
+{ using type_either_or < t_url_9309, t_wacky, t_url > :: type_either_or; };
+
+template < > struct type_master < t_url_9309s > : type_at_least_one < t_url_9309s, sz_comma, t_url_9309 >
+{ using type_at_least_one < t_url_9309s, sz_comma, t_url_9309 > :: type_at_least_one; };

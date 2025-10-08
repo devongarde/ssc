@@ -211,6 +211,7 @@
 ../toast/microformats/mf2/mf2.spec
 ../toast/microformats/rel/rel.spec
 ../toast/other/abbr/abbr.spec
+../toast/other/ads/ads.spec
 ../toast/other/base/base.spec
 ../toast/other/characters/chars.spec
 ../toast/other/clacks/clacks.spec
@@ -231,8 +232,10 @@
 ../toast/other/pattern/pattern.spec
 ../toast/other/permissions/permissions.spec
 ../toast/other/required/required.spec
+../toast/other/robotic/robotic.spec
 ../toast/other/ruby/ruby.spec
 ../toast/other/safari/safari.spec
+../toast/other/security/security.spec
 ../toast/other/simple/simple.spec
 ../toast/other/silenced/silenced.spec
 ../toast/other/ssi/ssi.spec
@@ -265,6 +268,9 @@
 ../toast/RDFa/vcard-3/rdfa.spec
 ../toast/RDFa/vcard-4/rdfa.spec
 ../toast/RDFa/xsd/rdfa.spec
+../toast/rss/0.91/rss.spec
+../toast/rss/0.92/rss.spec
+../toast/rss/2.0/rss.spec
 ../toast/shadow/comment/comment.spec
 ../toast/shadow/copy/copy.spec
 ../toast/shadow/copydiff/copydiff.spec
@@ -332,6 +338,7 @@
 ../toast/SVG/1.2-full/svg.spec
 ../toast/SVG/2.0/svg.spec
 ../toast/SVG/2.1/svg.spec
+../toast/type/atom/atom.spec
 ../toast/type/colour/colour.spec
 ../toast/type/custom/custom.spec
 ../toast/type/httpequiv/httpequiv.spec
@@ -340,6 +347,7 @@
 ../toast/type/mimetype/mimetype.spec
 ../toast/type/rel/rel.spec
 ../toast/type/rfc6570/rfc6570.spec
+../toast/type/rsl/rsl.spec
 ../toast/type/sgml/sgml.spec
 ../toast/type/url/url.spec
 ../toast/w3/3663/w3.spec

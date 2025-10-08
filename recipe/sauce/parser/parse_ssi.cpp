@@ -82,11 +82,11 @@ template < class ENUM, e_type TYPE > bool value (::std::string& ln, nitpick& nit
     return false; }
 
 template < class ENUM, e_type TYPE > bool attribute_assign (::std::string& ln, nitpick& nits, const html_version& v, ENUM& e, ::std::string& arg, const ::std::string& assign)
-{   vstr_t args (split_by_charset (assign, "="));
-    if (args.size () != 2)
+{   vstr_t args (uq2 (assign, UQ_2 | UQ_DQ | UQ_SQ | UQ_BS, "="));
+    if ((args.size () == 0) || args.at (0).empty ())
     {   set_ssi_context (ln, nits, es_error);
         nits.pick (nit_attribute_assignment, es_error, ec_ssi, "attribute assignment expected"); }
-    else if (value < ENUM, TYPE > (ln, nits, v, e, uq (args.at (0)), true))
+    else if (value < ENUM, TYPE > (ln, nits, v, e, args.at (0), true))
     {   arg = uq (args.at (1));
         return true; }
     return false; }

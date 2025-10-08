@@ -22,7 +22,7 @@ PASS ../toast/microdata/microformats/h-card.html
 13 missing_open
 
 PASS ../toast/microdata/microformats/h-cite.html
-9 bad_datetime use_datetime
+9 rather_too_vague use_datetime
 
 PASS ../toast/microdata/microformats/h-listing.html
 9 unrecognised_value

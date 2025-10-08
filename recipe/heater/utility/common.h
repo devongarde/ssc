@@ -330,3 +330,4 @@ public:
     bool invalid () const
     {   return xp_ == nullptr; } };
 
+vstr_t lineate (const ::std::string& s);

@@ -1,1 +1,4 @@
-../toast/conf/html/conf.spec
+../toast/signing/sign/sign.spec
+../toast/signing/verify/verify.spec
+../toast/signing/sign-pw/sign-pw.spec
+../toast/signing/verify-pw/verify-pw.spec

@@ -101,6 +101,13 @@ bool url::standard_extension (const e_mime_category mime) const
                 default: break; } } }
     return false; }
 
+bool url::verify (nitpick& nits, const html_version& v, const directory* const d)
+{   VERIFY_NOT_NULL (d, __FILE__, __LINE__);
+    if (! context.links ()) return true;
+    if (is_simple_id ()) return true; // verify_id will check the id is valid
+    if (is_local_reference () && ! has_absolute_path ()) return false;
+    return d -> verify_url (nits, v, *this); }
+
 bool url::verify (nitpick& nits, const html_version& v, element& e)
 {   if (! context.links ()) return true;
     if (is_simple_id ()) return true; // verify_id will check the id is valid

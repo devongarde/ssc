@@ -1,0 +1,8 @@
+<rsl xmlns="https://rslstandard.org/rsl">
+  <!-- Using content requires obtaining license from an OLP server -->
+  <content url="/videos" server="https://example-server.org/api">
+    <license>
+      ...
+    </license>
+  </content>
+</rsl>

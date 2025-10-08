@@ -33,7 +33,8 @@ attributes_node :: attributes_node (element_node* box)
 {   VERIFY_NOT_NULL (box_, __FILE__, __LINE__);
     va_.reserve (max_attrib); }
 
-void attributes_node::report_invalid (nitpick& nits, const html_version& v, const bool known, const ::std::string::const_iterator key_start, const ::std::string::const_iterator key_end, const elem& el) const
+void attributes_node::report_invalid (  nitpick& nits, const html_version& v, const bool known, const ::std::string::const_iterator key_start, const ::std::string::const_iterator key_end,
+                                        const elem& el) const
 {   ::std::string s (key_start, key_end);
     if (el.wild_attributes (v))
         if (s.find (':') != ::std::string::npos)
@@ -46,21 +47,21 @@ void attributes_node::report_invalid (nitpick& nits, const html_version& v, cons
         nits.pick (nit_attribute_unrecognised, es_warning, ec_attribute, "attribute ", quote (s), " is unrecognised (", v.report (), ")"); }
 
 void attributes_node::push_back_and_report (nitpick& nits, const html_version& v, sstr_t& keyed, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end,
-                                            const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const elem& el, const bool normal)
+                                            const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const elem& el, const bool normal, e_namespace& autodeclare)
 {   ::std::string x (name_start, name_end);
     if (keyed.find (x) == keyed.cend ()) keyed.insert (x);
     else if (normal) nits.pick (nit_attribute_repeated, es_warning, ec_attribute, "attribute ", x, " repeated");
     if (context.tell (es_detail)) nits.pick (nit_attribute_recognised, es_detail, ec_attribute, ::std::string ("found "), x, "=", quote (::std::string (value_start, value_end)));
-    va_.emplace_back (nits, v, this, name_start, name_end, value_start, value_end, normal);
+    va_.emplace_back (nits, v, this, name_start, name_end, value_start, value_end, normal, autodeclare);
     if (va_.back ().invalid () && normal) report_invalid (nits, v, attr :: exists (x), name_start, name_end, el); }
 
 void attributes_node::push_back_and_report (nitpick& nits, const html_version& v, sstr_t& keyed, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end,
-                                            const elem& el, const bool normal)
+                                            const elem& el, const bool normal, e_namespace& autodeclare)
 {   ::std::string x (name_start, name_end);
     if (keyed.find (x) == keyed.cend ()) keyed.insert (x);
     else if (normal) nits.pick (nit_attribute_repeated, es_warning, ec_attribute, "attribute ", x, " repeated");
     if (context.tell (es_detail)) nits.pick (nit_attribute_recognised, es_detail, ec_attribute, ::std::string ("found "), quote (x));
-    va_.emplace_back (nits, v, this, name_start, name_end, normal);
+    va_.emplace_back (nits, v, this, name_start, name_end, normal, autodeclare);
     if (va_.back ().invalid () && normal) report_invalid (nits, v, attr :: exists (x), name_start, name_end, el); }
 
 ::std::string attributes_node::rpt () const
@@ -68,7 +69,8 @@ void attributes_node::push_back_and_report (nitpick& nits, const html_version& v
     for (auto a : va_) res += a.rpt ();
     return res; }
 
-void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e, const int line, const elem& el, const bool normal)
+void attributes_node::parse (   nitpick& nits, const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e,
+                                const int line, const elem& el, const bool normal, const e_namespace autodeclare)
 {   VERIFY_NOT_NULL (box (), __FILE__, __LINE__);
     typedef enum
     {   s_dull,
@@ -88,6 +90,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
     va_.clear ();
     va_.reserve (max_attrib);
     nits.set_context (line, b, e);
+    e_namespace ns = autodeclare;
     for (::std::string::const_iterator i = b; i != e; ++i)
     {   auto ch = *i;
         bool newline = false;
@@ -140,7 +143,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                 switch (ch)
                 {   case ' ' :  break;
                     case '=' :  status = s_assign; break;
-                    default :   push_back_and_report (nits, v, keyed, key_start, key_end, el, normal);
+                    default :   push_back_and_report (nits, v, keyed, key_start, key_end, el, normal, ns);
                                 if (((ch >= 'A') && (ch <= 'Z')) || ((ch >= 'a') && (ch <= 'z')) || ((ch >= '0') && (ch <= '9')) || (ch == ':') || (ch == '-'))
                                 {   status = s_key; key_start = i; }
                                 else status = s_dull;
@@ -159,7 +162,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                 if (context.tell (es_all)) nits.pick (nit_all, es_all, ec_parser, "s_val ", ch);
                 switch (ch)
                 {   case ' ' :  status = s_dull;
-                                push_back_and_report (nits, v, keyed, key_start, key_end, value_start, i, el, normal);
+                                push_back_and_report (nits, v, keyed, key_start, key_end, value_start, i, el, normal, ns);
                                 break;
                     case 0x60 : if (! v.xhtml () && normal)
                                     nits.pick (nit_naked_grave, ed_jan10, "1.10.2 Syntax errors", es_error, ec_parser, "an attribute value must be quoted if it contains a naked grave accent (\"`\")");
@@ -175,7 +178,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                 if (newline) if (normal) nits.pick (nit_newline_in_string, es_warning, ec_parser, "newline in quoted attribute key");
                 switch (ch)
                 {   case '\'' : status = s_purgatory;
-                                push_back_and_report (nits, v, keyed, key_start, key_end, el, normal);
+                                push_back_and_report (nits, v, keyed, key_start, key_end, el, normal, ns);
                                 break;
                     default :   status = s_value_quote; value_start = i; break; }
                 break;
@@ -184,7 +187,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                 if (newline) if (normal) nits.pick (nit_newline_in_string, es_warning, ec_parser, "newline in quoted attribute key");
                 switch (ch)
                 {   case '"' :  status = s_purgatory;
-                                push_back_and_report (nits, v, keyed, key_start, key_end, el, normal);
+                                push_back_and_report (nits, v, keyed, key_start, key_end, el, normal, ns);
                                 break;
                     default :   status = s_value_double_quote; value_start = i; break; }
                 break;
@@ -199,7 +202,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                         if ((i+1 < e) && (*(i+1) == '\'')) ++i;
                         else
                         {   status = s_purgatory;
-                            push_back_and_report (nits, v, keyed, key_start, key_end, value_start, i, el, normal); }
+                            push_back_and_report (nits, v, keyed, key_start, key_end, value_start, i, el, normal, ns); }
                         break;
                     default :
                         break; }
@@ -215,7 +218,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                         if ((i+1 < e) && (*(i+1) == '"')) ++i;
                         else
                         {   status = s_purgatory;
-                            push_back_and_report (nits, v, keyed, key_start, key_end, value_start, i, el, normal); }
+                            push_back_and_report (nits, v, keyed, key_start, key_end, value_start, i, el, normal, ns); }
                         break;
                    default :
                         break; }
@@ -226,26 +229,27 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
                 break; } }
     switch (status)
     {   case s_key :
-            push_back_and_report (nits, v, keyed, key_start, e, el, normal);
+            push_back_and_report (nits, v, keyed, key_start, e, el, normal, ns);
             break;
         case s_val :
-            push_back_and_report (nits, v, keyed, key_start, key_end, value_start, e, el, normal);
+            push_back_and_report (nits, v, keyed, key_start, key_end, value_start, e, el, normal, ns);
             break;
         case s_key_quote :
         case s_key_double_quote :
             if (normal) nits.pick (nit_missing_close_quote, es_warning, ec_parser, "the attribute ", quote (::std::string (key_start, key_end)), " has no closing quote");
-            push_back_and_report (nits, v, keyed, key_start, e, el, normal);
+            push_back_and_report (nits, v, keyed, key_start, e, el, normal, ns);
             break;
         case s_value_double_quote :
         case s_value_quote :
             nits.pick (nit_missing_close_quote, es_warning, ec_parser, "the attribute ", quote (::std::string (key_start, key_end)), " has no closing quote");
-            push_back_and_report (nits, v, keyed, key_start, key_end, value_start, e, el, normal);
+            push_back_and_report (nits, v, keyed, key_start, key_end, value_start, e, el, normal, ns);
             break;
         default: break; } }
 
-void attributes_node::process_attributes (nitpick& nits, const html_version& v, element_node* box, const ::std::string::const_iterator b, const ::std::string::const_iterator e, const int line)
+void attributes_node::process_attributes (  nitpick& nits, const html_version& v, element_node* box, const ::std::string::const_iterator b, const ::std::string::const_iterator e,
+                                            const int line, const e_namespace autodeclare)
 {   attributes_node an (box);
-    an.parse (nits, v, b, e, line, elem (), false); }
+    an.parse (nits, v, b, e, line, elem (), false, autodeclare); }
 
 void attributes_node::manage_xmlns (nitpick& nits, html_version& v)
 {   nitpick knots;
@@ -254,15 +258,19 @@ void attributes_node::manage_xmlns (nitpick& nits, html_version& v)
         {   ::std::string ver (trim_the_lot_off (a.get_string ()));
             auto val = examine_value < t_xmlns > (knots, v, ver);
             switch (val)
-            {   case x_mathml : if (! v.math ()) v.set_ext2 (H2_MATH_1); break;
+            {   case x_atom : v = html_atom; break;
+                case x_mathml : if (! v.math ()) v.set_ext2 (H2_MATH_1); break;
+                case x_rsl : v = html_rsl; break;
+                case x_rss :
+                case x_syn : v = html_rss; break;
                 case x_svg : if (! v.svg ()) v.set_ext (HE_SVG_10); break;
-                case x_xlink : if (! v.xlink ()) v.set_ext (HE_XLINK_1_0); break;
                 case x_xhtml_1_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, quote (ver), " is non-standard (it was withdrawn before XHTML 1.0 was published)");
                     FALLTHROUGH;
                 case x_xhtml_1 : if (v.unknown ()) v = xhtml_1_0; break;
                 case x_xhtml_11 : if (v.unknown ()) v = xhtml_1_1; break;
                 case x_xhtml_2 : if (v.unknown ()) v = xhtml_2; break;
+                case x_xlink : if (! v.xlink ()) v.set_ext (HE_XLINK_1_0); break;
                 default : break; }
             break; } }
 

@@ -24,7 +24,6 @@ PASS ../toast/w3/12458/2342-opensp_type_X.html
 11 bad_id
 
 PASS ../toast/w3/12458/4476-svg_nodoctype.svg
-0 title_required
 1 presume_html_1 invalid_element_version attribute_unrecognised_here
 
 PASS ../toast/w3/12458/4848-html40-transitional_FPI-SI-mismatch.html
@@ -32,7 +31,6 @@ PASS ../toast/w3/12458/4848-html40-transitional_FPI-SI-mismatch.html
 2 html_contradictory
 
 PASS ../toast/w3/12458/5031-root_dash.xml
-0 title_required
 1 xhtml_1_1
 5 use_double_quote_code unknown_element
 6 unknown_element

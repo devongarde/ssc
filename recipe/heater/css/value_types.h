@@ -287,7 +287,7 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_colour >
         if (nets.worst () > es_error) { nits.merge (nets); return i; }
         i = value_fn < TYPE, cvf_colour, 1, 9, t_css_var, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_real_percent_n > :: check (args, start, to, nots);
         if (nots.worst () > es_error) { nits.merge (nots); return i; }
-        nits.pick (nit_css_value_fn, ed_css_colour_5, "4. Specifying Custom Color Spaces: the color() Function", es_error, ec_css, "invalid color()");
+        nits.pick (nit_css_value_fn, ed_css_colour_5, "4. Specifying Custom Color Spaces: the color() Function", es_error, ec_css, "invalid color()"); // dialect
         if (context.extra () || context.tell (es_debug))
         {   nits.merge (nuts);
             nits.merge (nets);

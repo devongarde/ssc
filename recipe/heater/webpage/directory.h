@@ -23,6 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/crosslink.h"
 #include "webpage/root.h"
 #include "element/state.h"
+#include "parser/robotic.h"
+#include "parser/security.h"
 
 class external;
 class url;
@@ -82,8 +84,14 @@ public:
     ::boost::filesystem::path get_shadow_path () const; };
 
 bool has_extension (const ::std::string& name, const sstr_t& extensions);
+bool is_ads (const ::std::string& name);
+bool is_atomic (const ::std::string& name);
 bool is_css (const ::std::string& name);
 bool is_jsonld (const ::std::string& name);
+bool is_robotic (const ::std::string& name);
+bool is_rsl (const ::std::string& name);
+bool is_rss (const ::std::string& name);
+bool is_sec_txt (const ::std::string& name);
 bool is_vtt (const ::std::string& name);
 bool is_webpage (const ::std::string& name);
 bool is_verifiable_file (const ::std::string& name);

@@ -23,6 +23,41 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/html_version.h"
 #include "feedback/nitpick.h"
 
+#define ABB_SHORTFORM 0
+#define ABB_LONGFORM ( ABB_SHORTFORM + 1 )
+
+#define NAMESPACE_NAME          ABB_SHORTFORM
+#define NAMESPACE_SCHEMA        ABB_LONGFORM
+#define NAMESPACE_DESCRIPTION ( NAMESPACE_SCHEMA + 1 )
+#define NAMESPACE_COUNT       ( NAMESPACE_DESCRIPTION + 1 )
+
+#define NS_DEFAULT          0x0000000000000001
+#define NS_DEPRECATED       0x0000000000000002
+#define NS_UNDECLARABLE     0x0000000000000004
+#define NS_PREDECLARED      0x0000000000000008
+#define NS_CRAPNS           0x0000000000000010
+#define NS_PRISM            0x0000000000000020
+#define NS_PRESUME          0x8000000000000000
+
+#define PROTOCOL_NAME           ABB_SHORTFORM
+#define PROTOCOL_DESCRIPTION  ( PROTOCOL_NAME + 1 )
+#define PROTOCOL_COUNT        ( PROTOCOL_DESCRIPTION + 1 )
+
+#define ONTOLOGY_NAME           ABB_SHORTFORM
+#define ONTOLOGY_CURIE          ABB_LONGFORM
+#define ONTOLOGY_DESCRIPTION  ( ONTOLOGY_CURIE + 1 )
+#define ONTOLOGY_COUNT        ( ONTOLOGY_DESCRIPTION + 1 )
+
+#define ONTOLOGY_PREFIX_CONTEXT   0x0000000000000001
+#define ONTOLOGY_BESPOKE          0x0000000000000002
+#define ONTOLOGY_CRAPSPEC         0x0000000000000004
+#define ONTOLOGY_CRAPNS           0x0000000000000010
+#define ONTOLOGY_PRISM            0x0000000000000020
+#define ONTOLOGY_EXAMPLE          0x0000000000000040
+#define ONTOLOGY_DPV_1_ONLY       0x0000000000000080
+#define SCHEME_WILDCARD           0x0000000000000100
+
+
 // ensure last entry id_ == ERR
 template < typename ENUM, ::std::size_t N > struct n_string_entry
 {   html_version from_, to_;
@@ -32,6 +67,9 @@ template < typename ENUM, ::std::size_t N > struct n_string_entry
 
 template < typename ENUM, ENUM ERROR_VALUE, ::std::size_t N, ::std::size_t INDICES > class n_string_table
 {   BOOST_STATIC_ASSERT (INDICES <= N);
+public:
+    typedef ssc_set < ENUM > s_ns;
+private:
     typedef ssc_mm < ::std::string, ::std::size_t > mnse_t;
     typedef ssc_map < ENUM, ::std::size_t > meid_t;
     typedef n_string_entry < ENUM, N > data_t;
@@ -68,6 +106,9 @@ private:
                 const data_t& d = data_ [pos -> second];
                 if (may_apply (v, d.from_, d.to_)) return pos -> second; }
         return cend (); }
+    s_ns& presume ()
+    {   static s_ns p;
+        return p; }
 public:
     void init (nitpick& nits, const n_string_entry < ENUM, N >* data)
     {   VERIFY_NOT_NULL (data, __FILE__, __LINE__);
@@ -87,7 +128,12 @@ public:
                     {   const ::std::string mix (data_ [max_].sz_ [n]);
                         const ::std::string low (::boost::to_lower_copy (mix));
                         mixed_.at (n).insert (typename mnse_t::value_type (mix, i -> second));
-                        lower_.at (n).insert (typename mnse_t::value_type (low, i -> second)); } } }
+                        lower_.at (n).insert (typename mnse_t::value_type (low, i -> second)); } }
+        for (max_ = 0; data_ [max_].id_ != ERROR_VALUE; ++max_)
+            if ((data_ [max_].flags_ & NS_PRESUME) == NS_PRESUME)
+                presume ().insert (data_ [max_].id_); }
+    const s_ns& presumed ()
+    {   return presume (); }
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
@@ -212,39 +258,6 @@ public:
     ::std::string after_start (const ::std::size_t n, const ::std::string& s, const bool lower) const
     {   if (lower) return after_start_lower (n, s);
         else return after_start_mixed (n, s); } };
-
-#define ABB_SHORTFORM 0
-#define ABB_LONGFORM ( ABB_SHORTFORM + 1 )
-
-#define NAMESPACE_NAME          ABB_SHORTFORM
-#define NAMESPACE_SCHEMA        ABB_LONGFORM
-#define NAMESPACE_DESCRIPTION ( NAMESPACE_SCHEMA + 1 )
-#define NAMESPACE_COUNT       ( NAMESPACE_DESCRIPTION + 1 )
-
-#define NS_DEFAULT          0x0000000000000001
-#define NS_DEPRECATED       0x0000000000000002
-#define NS_UNDECLARABLE     0x0000000000000004
-#define NS_PREDECLARED      0x0000000000000008
-#define NS_CRAPNS           0x0000000000000010
-#define NS_PRISM            0x0000000000000020
-
-#define PROTOCOL_NAME           ABB_SHORTFORM
-#define PROTOCOL_DESCRIPTION  ( PROTOCOL_NAME + 1 )
-#define PROTOCOL_COUNT        ( PROTOCOL_DESCRIPTION + 1 )
-
-#define ONTOLOGY_NAME           ABB_SHORTFORM
-#define ONTOLOGY_CURIE          ABB_LONGFORM
-#define ONTOLOGY_DESCRIPTION  ( ONTOLOGY_CURIE + 1 )
-#define ONTOLOGY_COUNT        ( ONTOLOGY_DESCRIPTION + 1 )
-
-#define ONTOLOGY_PREFIX_CONTEXT   0x0000000000000001
-#define ONTOLOGY_BESPOKE          0x0000000000000002
-#define ONTOLOGY_CRAPSPEC         0x0000000000000004
-#define ONTOLOGY_CRAPNS           0x0000000000000010
-#define ONTOLOGY_PRISM            0x0000000000000020
-#define ONTOLOGY_EXAMPLE          0x0000000000000040
-#define ONTOLOGY_DPV_1_ONLY       0x0000000000000080
-#define SCHEME_WILDCARD           0x0000000000000100
 
 typedef n_string_table < e_namespace, ns_error, NAMESPACE_COUNT, 2 > namespace_names_t;
 typedef n_string_table < e_protocol, pr_error, PROTOCOL_COUNT, 1 > protocol_names_t;

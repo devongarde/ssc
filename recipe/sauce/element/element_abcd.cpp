@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "element/element.h"
+#include "element/state.h"
 #include "attribute/attribute_classes.h"
 #include "webpage/page.h"
 
@@ -168,6 +169,182 @@ void element::examine_aside ()
 {   if (context.html_ver ().w3 () || (node_.version () < html_jul18))
         if (has_this_descendant (elem_main))
             pick (nit_no_main_kids, ed_50, "4.3.5 The aside element", es_warning, ec_element, "<ASIDE> can have no <MAIN> descendants"); }
+
+void element::test_atom_text ()
+{   if (a_.known (a_atom_type))
+        if (a_.good (a_atom_type))
+        {   nitpick nuts;
+            const ::std::string t (a_.get_string (a_atom_type));
+            if (test_value < t_atom_type > (nuts, node_.version (), t))
+            {   const e_atom_type eat = examine_value < t_atom_type > (nuts, node_.version (), t);
+                switch (eat)
+                {   case att_html :
+                        if (any (descendant_elements_, ~faux_bitset))
+                            pick (nit_atom, es_error, ec_atom, "when TYPE=html, there can be no descendent elements");
+                        break;
+                    case att_xhtml :
+                    {   int divs = 0;
+                        bool div_told = false, naughty_told = false, div_found = false;
+                        for (element* ch = child_; ch != nullptr; ch = ch -> sibling_)
+                            if (ch -> tag () == elem_div)
+                            {   div_found = true;
+                                if (! div_told)
+                                    if (++divs > 1)
+                                    {   pick (nit_atom, es_error, ec_atom, "when TYPE=xhtml, there can only ONE child <DIV>");
+                                        div_told = true; } }
+                            else if ((! naughty_told) && (! ch -> node_.is_closure ()) && (ch -> tag () > elem_custom) && (ch -> tag () < elem_error))
+                            {   pick (nit_atom, es_error, ec_atom, "<", elem::name (ch -> tag ()), ">: when TYPE=xhtml, there can be NO child elements but for one <DIV>");
+                                naughty_told = true; }
+                        if (! div_found)
+                            pick (nit_atom, es_error, ec_atom, "when TYPE=xhtml, there MUST be one <DIV> child element"); }
+                        break;
+                    default :
+                        break; } } } }
+
+void element::examine_atom_category ()
+{   if (! a_.known (a_atom_term))
+        pick (nit_atom, es_error, ec_atom, "<CATEGORY> requires the TERM attribute"); }
+
+void element::examine_atom_content ()
+{   test_atom_text ();
+    if (a_.known (a_atom_src))
+        if (! trim_the_lot_off (text ()).empty ())
+            pick (nit_atom, ed_atom, "4.1.3.2 The src attribute", es_error, ec_atom, "<CONTENT> must be empty if it has a SRC attribute"); }
+
+void element::examine_atom_email ()
+{   test_value < t_email > (nits (), node_.version (), trim_the_lot_off (text ()), this); }
+
+void element::examine_atom_feed ()
+{   bool author = false, gen = false, icon = false, id = false, logo = false, rights = false,
+        self = false, subtitle = false, title = false, updated = false;
+    bool naughty_feed = false;
+    for (element* e = child_; e != nullptr; e = e -> sibling_)
+        switch (e -> tag ())
+        {   case elem_atom_author :
+                author = true;
+                naughty_feed = false;
+                break;
+            case elem_atom_entry :
+                if (! author)
+                {   bool grandkid = false;
+                    for (element* f = e -> child_; f != nullptr; f = f -> sibling_)
+                        if (f -> tag () == elem_atom_author)
+                        {   grandkid = true; break; }
+                    if (! grandkid) naughty_feed = true; }
+                break;
+            case elem_atom_generator :
+                if (! gen) gen = true;
+                else pick (nit_atom_repeated_child, ed_atom, "4.1.1 atom feed", es_error, ec_atom, "descendent <GENERATOR> repeated");
+                break;
+            case elem_atom_icon:
+                if (! icon) icon = true;
+                else pick (nit_atom_repeated_child, ed_atom, "4.1.1 atom feed", es_error, ec_atom, "descendent <ICON> repeated");
+                break;
+            case elem_atom_id :
+                if (! id) id = true;
+                else pick (nit_atom_repeated_child, ed_atom, "4.1.1 atom feed", es_error, ec_atom, "descendent <ID> repeated");
+                break;
+            case elem_atom_link :
+                if (e -> a_.known (a_atom_rel))
+                    if (e -> a_.good (a_atom_rel))
+                    {   e_rel r = static_cast < e_rel > (a_.get_int (a_atom_rel));
+                        switch (r)
+                        {   case r_alternative :
+                            {   ::std::string t, l;
+                                if (a_.good (a_atom_type))
+                                    t = a_.get_string (a_atom_type);
+                                if (a_.good (a_atom_hreflang))
+                                    l = a_.get_string (a_atom_hreflang);
+                                if (! l.empty () && ! t.empty ())
+                                    for (element* f = parent_; f != nullptr; f = f -> sibling_)
+                                        if (f != this)
+                                            if (f -> tag () == elem_atom_link)
+                                            {   ::std::string t2, l2;
+                                                if (a_.good (a_atom_type))
+                                                    t2 = a_.get_string (a_atom_type);
+                                                if (a_.good (a_atom_hreflang))
+                                                    l2 = a_.get_string (a_atom_hreflang);
+                                                if (! l2.empty () && ! t2.empty ())
+                                                    if (compare_no_case (t, t2) && compare_no_case (l, l2))
+                                                    {   pick (nit_atom, ed_atom, "4.1.1 atom feed", es_error, ec_atom, "<FEED> child <LINK>s with REL=alternate, TYPE=", quote (t), " and HREFLANG=", quote (l), " repeated");
+                                                        break; } } }
+                                break;
+                            case r_self :
+                                self = true;
+                                break;
+                            default :
+                                break; } }
+                break;
+            case elem_atom_logo :
+                if (! logo) logo = true;
+                else pick (nit_atom_repeated_child, ed_atom, "4.1.1 atom feed", es_error, ec_atom, "descendent <LOGO> repeated");
+                break;
+            case elem_atom_rights :
+                if (! rights) rights = true;
+                else pick (nit_atom_repeated_child, ed_atom, "4.1.1 atom feed", es_error, ec_atom, "descendent <RIGHTS> repeated");
+                break;
+            case elem_atom_subtitle :
+                if (! subtitle) subtitle = true;
+                else pick (nit_atom_repeated_child, ed_atom, "4.1.1 atom feed", es_error, ec_atom, "descendent <SUBTITLE> repeated");
+                break;
+            case elem_atom_title :
+                if (! title) title = true;
+                else pick (nit_atom_repeated_child, ed_atom, "4.1.1 atom feed", es_error, ec_atom, "descendent <TITLE> repeated");
+                break;
+            case elem_atom_updated :
+                if (! updated) updated = true;
+                else pick (nit_atom_repeated_child, ed_atom, "4.1.1 atom feed", es_error, ec_atom, "descendent <UPDATED> repeated");
+                break;
+            default :
+                break; }
+    if (! id)
+        pick (nit_atom_missing_child, ed_atom, "4.1.1 atom feed", es_error, ec_atom, "<FEED> requires an <ID> descendent");
+    if (! self)
+        pick (nit_atom_missing_child, ed_atom, "4.1.1 atom feed", es_warning, ec_atom, "<FEED> should have a <LINK> descendent with ID=self");
+    if (! title)
+        pick (nit_atom_missing_child, ed_atom, "4.1.1 atom feed", es_error, ec_atom, "<FEED> requires a <TITLE> descendent");
+    if (! updated)
+        pick (nit_atom_missing_child, ed_atom, "4.1.1 atom feed", es_error, ec_atom, "<FEED> requires an <UPDATED> descendent");
+    if (naughty_feed && ! author)
+        pick (nit_atom_missing_child, ed_atom, "4.1.1 atom feed", es_error, ec_atom, "<FEED> requires an <AUTHOR> descendent, unless all <ENTRY>s themselves have <AUTHOR> descendents"); }
+
+void element::examine_atom_id ()
+{   const url u (nits (), node_.version (), trim_the_lot_off (text ())); }
+
+void element::examine_atom_link ()
+{   if (! a_.known (a_atom_href))
+        pick (nit_atom_missing_child, ed_atom, "4.1.7 atom link", es_error, ec_atom, "<LINK> requires HREF"); }
+
+void element::examine_atom_person ()
+{   bool email = false, name = false, uri = false;   
+    for (element* e = child_; e != nullptr; e = e -> sibling_)
+        switch (e -> tag ())
+        {   case elem_atom_email :
+                if (email)
+                    pick (nit_atom_repeated_child, ed_atom, "3.2 Person Constructions", es_error, ec_atom, "descendent <EMAIL> repeated");
+                else email = true;
+                break;
+            case elem_atom_name :
+                if (name)
+                    pick (nit_atom_repeated_child, ed_atom, "3.2 Person Constructions", es_error, ec_atom, "descendent <NAME> repeated");
+                else name = true;
+                break;
+            case elem_atom_uri :
+                if (uri)
+                    pick (nit_atom_repeated_child, ed_atom, "3.2 Person Constructions", es_error, ec_atom, "descendent <URI> repeated");
+                else uri = true;
+                break;
+            default :
+                break; }
+    if (! name)
+        pick (nit_atom_missing_child, ed_atom, "3.2 Person Constructions", es_error, ec_atom, "descendent <NAME> missing and required"); }
+
+void element::examine_atom_updated ()
+{   test_value < t_datetime_4 > (nits (), node_.version (), trim_the_lot_off (text ())); }
+
+void element::examine_atom_uri ()
+{   url u (nits (), node_.version (), trim_the_lot_off (text ()));
+    u.verify (nits (), node_.version (), *this); }
 
 void element::examine_audio ()
 {   if (! node_.version ().is_5 () && ! node_.version ().is_svg_12 ())

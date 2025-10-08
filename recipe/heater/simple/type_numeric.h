@@ -488,6 +488,9 @@ template < > struct type_master < t_m4_to_4 > : type_number_between < t_m4_to_4,
 template < > struct type_master < t_m50_to_100 > : type_integer_between < t_m50_to_100, short, -50, 100 >
 { using  type_integer_between < t_m50_to_100, short, -50, 100 > :: type_integer_between; };
 
+template < > struct type_master < t_port > : type_integer_between < t_port, int, 0, 65535 >
+{ using  type_integer_between < t_port, int, 0, 65535 > :: type_integer_between; };
+
 template < > struct type_master < t_real_1_up > : n_or_more < 1 >
 { using  n_or_more < 1 > :: n_or_more; };
 

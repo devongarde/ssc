@@ -39,10 +39,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EP_UNCLOSED1TP      0x0000000000070000
 #define EP_UNCLOSED2        0x0000000000080000
 
-#define EP_UNCLOSEDSVG12    0x0000000000200000
 #define EP_UNCLOSED12       0x00000000000A0000
 #define EP_UNCLOSED1P2      0x00000000000E0000
 
+#define EP_UNCLOSEDSVG12    0x0000000000100000
+#define EP_RSL              0x0000000000200000
+#define EP_RSS              0x0000000000400000
 #define EP_NOSPELL          0x0000000000800000
 
 #define EP_5_DYNAMIC        0x0000000001000000
@@ -78,6 +80,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EP_AI               0x0004000000000000
 #define EP_EXPERIMENTAL     0x0008000000000000
 
+#define EP_ATOM             0x0010000000000000
+#define EP_NODOCTYPE        0x0020000000000000
+
+// bleugh
+#define EP_CAN_BE_TOP       0x0040000000000000
 
 // categories
 
@@ -178,29 +185,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EF_X2_FLOW          ( EF_X2_STRUCT | EF_HEAD | EF_X2_TEXT )
 #define EF_X2_FLOWLIST      ( EF_X2_FLOW | EF_X2_LIST )
 
+typedef ssc_set < e_element > s_el;
+
 class elem : public symbol < html_version, e_element >
 {   static element_bitset ignored_;
+    static s_el s_nodoc_; 
     bool under_parse (nitpick& nits, const html_version& v, const ::std::string& el, const ident_t n);
-    bool parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x, const bool closure);
+    bool parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x, const bool closure, e_namespace* autodeclare);
+    void post_parse_validate (nitpick& nits);
 public:
     DEFAULT_CONSTRUCTORS (elem);
     elem (const html_version& v, const ::std::string& x) : symbol < html_version, e_element > (v, x) { }
     explicit elem (const e_element e) : symbol < html_version, e_element > (e) { }
-    elem (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x, const bool closure);
+    elem (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x, const bool closure, e_namespace* autodeclare);
     static void init (nitpick& nits);
     static void ignore (const e_element e) { ignored_.set (e); }
     static bool ignored (const e_element e) { return ignored_.test (e); }
     static void remove_any_extras ()
     {   eleanor f (lox_eleanor);
         symbol < html_version, e_element >::remove_any_extras (last_element_tag); }
+    static const s_el& nodoctype () { return s_nodoc_; }
     bool is_unclosed (const html_version& v) const noexcept;
     bool is_closed (const html_version& v) const noexcept;
+    bool is_atomic () const noexcept
+    {   return ((flags () & EP_ATOM) != 0); }
     bool is_css () const noexcept
     {   return ((categories () & EF_CSS) != 0); }
     bool is_math () const noexcept
     {   return ((categories () & (EF_MATH | EF_X_MATH)) != 0); }
     bool is_rdf () const noexcept
     {   return ((categories () & EF_RDF) != 0); }
+    bool is_rsl () const noexcept
+    {   return ((flags () & EP_RSL) != 0); }
+    bool is_rss () const noexcept
+    {   return ((flags () & EP_RSS) != 0); }
     bool is_svg () const noexcept
     {   return ((categories () & EF_SVG_CATMASK) != 0); }
     bool is_transparent (const html_version& v) const noexcept;
@@ -208,12 +226,12 @@ public:
     {   symbol < html_version, e_element > :: swap (e); }
     void reset () noexcept
     {   elem e; swap (e); }
-    void reset (const elem& e) noexcept
+    void reset (const elem& e)
     {   elem tmp (e); swap (tmp); }
     void reset (const html_version& v, const ::std::string& s)
     {   elem tmp (v, s); swap (tmp); }
-    void reset (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x, const bool closure)
-    {   elem tmp (nits, v, namespaces, x, closure);
+    void reset (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x, const bool closure, e_namespace* autodeclare)
+    {   elem tmp (nits, v, namespaces, x, closure, autodeclare);
         swap (tmp); }
     void reset (const e_element e)
     {   elem tmp (e);

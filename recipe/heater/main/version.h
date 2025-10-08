@@ -604,7 +604,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_SCHEMA_29_0  HTML_2025, ( HTML_MAR + HTML_24TH )
 #define HTML_SCHEMA_29_1  HTML_2025, ( HTML_APR + HTML_24TH )
 #define HTML_SCHEMA_29_2  HTML_2025, ( HTML_MAY + HTML_16TH )
-#define HTML_SCHEMA_30_0  HTML_2025, ( HTML_JUN + HTML_1ST )
+#define HTML_SCHEMA_29_3  HTML_2025, ( HTML_SEP + HTML_6TH )
+#define HTML_SCHEMA_29_4  HTML_2025, ( HTML_SEP + HTML_30TH )
+#define HTML_SCHEMA_30_0  HTML_2025, ( HTML_DEC + HTML_1ST )
 #define HTML_SCHEMA       HTML_SCHEMA_0
 #define HTML_SD         HTML_RDF10_CON
 #define HTML_SIOC       HTML_RDF10
@@ -655,6 +657,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define HTML_XLINK10    XHTML_1_0
 #define HTML_XLINK11    HTML_JUN10
+
+#define HTML_ATOM       HTML_JAN07
+#define HTML_RSL        HTML_SEP25
+#define HTML_RSS        HTML_XML
 
 class version
 {   unsigned short mjr_ = 0, mnr_ = 0;

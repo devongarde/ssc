@@ -398,6 +398,12 @@ template < > struct type_master < t_propagate > : two_value < t_propagate, e_pro
 template < > struct type_master < t_rect_round > : two_value < t_rect_round, e_rect_round, sz_rect, sz_round >
 { using two_value < t_rect_round, e_rect_round, sz_rect, sz_round > :: two_value; };
 
+template < > struct type_master < t_rsl_copyright > : two_value < t_rsl_copyright, e_rsl_copyright, sz_organisation, sz_person >
+{ using two_value < t_rsl_copyright, e_rsl_copyright, sz_organisation, sz_person > :: two_value; };
+
+template < > struct type_master < t_rsl_legal > : two_value < t_rsl_legal, e_rsl_legal, sz_disclaimer, sz_warranty >
+{ using two_value < t_rsl_legal, e_rsl_legal, sz_disclaimer, sz_warranty > :: two_value; };
+
 template < > struct type_master < t_row_column > : two_value < t_row_column, e_row_column, sz_column, sz_row >
 { using two_value < t_row_column, e_row_column, sz_column, sz_row > :: two_value; };
 

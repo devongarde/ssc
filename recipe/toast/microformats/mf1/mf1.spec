@@ -31,13 +31,13 @@ PASS ../toast/microformats/mf1/mf1-example.html
 58 protocol
 64 hcard_infer
 67 inserted_missing_closure
-95 bad_datetime
-99 bad_datetime
+95 absolute_datetime
+99 absolute_datetime
 105 unrecognised_value
-117 bad_datetime
+117 absolute_datetime
 121 inserted_missing_closure
 124 unrecognised_value
-126 bad_datetime
+126 absolute_datetime
 127 bad_money
 129 hcard_infer
 128 missing_open
@@ -76,7 +76,7 @@ PASS ../toast/microformats/mf1/mf1-example.html
 412 use_double_quote_code use_quote_code
 414 use_double_quote_code
 416 hcard_infer
-418 bad_datetime
+418 absolute_datetime
 423 hcard_infer hcard_infer
 449 hcard_infer
 454 no_tel

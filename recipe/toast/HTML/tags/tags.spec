@@ -4,7 +4,6 @@ PASS ../toast/HTML/tags/index.html
 1 presume_html_tags
 
 PASS ../toast/HTML/tags/tags-bad.html
-0 title_required
 1 presume_html_tags unknown_element unknown_element
 2 invalid_attribute_version wrong_version base_undefined
 5 code_unrecognised_here invalid_character_code

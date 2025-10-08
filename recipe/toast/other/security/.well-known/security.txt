@@ -1,0 +1,30 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Acknowledgements: https://ssc.lu/ackn.html
+
+Canonical: https://ssc.lu/.well-known/security.txt
+
+Contact: mailto:security@ssc.lu
+Contact: mailto:security%2Buri%2Bencoded@example.com
+Contact: tel:+352-201-555-0123
+Contact: https://ssc.lu/index.html
+
+Encryption: https://ssc.lu/pgp-key.txt
+Encryption: dns:5d2d37ab76d47d36._openpgpkey.ssc.lu?type=OPENPGPKEY
+Encryption: openpgp4fpr:5f2de5521c63a801ab59ccb603d49de44b29100f
+
+Expires: 2025-12-31T19:19:19z
+
+Hiring: https://ssc.lu/hirin.html
+
+Policy: https://ssc.lu/policy.html
+
+Preferred-Languages: en, de, fr, lb, nl
+
+Expires: 2025-12-31T19:19:19z
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v7.9
+
+[signature]
+-----END PGP SIGNATURE-----

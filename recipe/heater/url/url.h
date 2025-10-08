@@ -132,6 +132,7 @@ public:
     bool standard_extension (const e_mime_category mime = mc_text) const;
     bool deduced_path () const { return deduced_path_; }
     void deduced_path (const bool b) { deduced_path_ = b; }
+    bool verify (nitpick& nits, const html_version& v, const directory* const d);
     bool verify (nitpick& nits, const html_version& v, element& e);
     void verify_id (element& e); };
 

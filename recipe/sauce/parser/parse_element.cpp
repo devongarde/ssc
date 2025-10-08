@@ -128,10 +128,10 @@ void element_node::manage_reversioner ()
             break;
         default : break; } }
 
-void element_node::parse_attributes (const html_version& , const ::std::string::const_iterator b, const ::std::string::const_iterator e)
+void element_node::parse_attributes (const html_version& , const ::std::string::const_iterator b, const ::std::string::const_iterator e, const e_namespace autodeclare)
 {   PRESUME (va_.box () == nullptr, __FILE__, __LINE__);
     va_.box (this);
-    va_.parse (nits_, version_, b, e, line_, elem_, true);
+    va_.parse (nits_, version_, b, e, line_, elem_, true, autodeclare);
     if (version_.mjr () < 4) return;
     if (! va_.empty ())
     {   va_.manage_xmlns (nits (), version_);

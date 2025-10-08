@@ -270,7 +270,13 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_doctype : return "Doctype Declarations";
         case ed_clacks : return "X-Clacks-Overhead";
         case ed_vtt : return "Video Text Tracks";
-        case ed_rel : return "official rel registry"; }
+        case ed_rel : return "official rel registry";
+        case ed_con : return "ads.txt, iab.tech lab";
+        case ed_robotic : return "RFC 9309";
+        case ed_security : return "RFC 9116";
+        case ed_rsl : return "really simple licensing";
+        case ed_rss : return "really simple syndication";
+        case ed_atom : return "atom syndication"; }
     return "Unknown reference"; }
 
 ::std::string doc_ref (const e_doc doc)
@@ -399,7 +405,13 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_doctype : return "Doctype Declarations, July 2016, https://www.w3.org/QA/2002/04/valid-dtd-list.html";
         case ed_clacks : return "X-Clacks-Overhead / xclacksoverhead.org";
         case ed_vtt : return "WebVTT: The Web Video Text Tracks Format, April 2019, https://www.w3.org/TR/webvtt1/";
-        case ed_rel : return "official rel registry: existing rel values, https://microformats.org/"; }
+        case ed_rel : return "official rel registry: existing rel values, https://microformats.org/";
+        case ed_con : return "iab.tech lab, ads.txt, August 2022";
+        case ed_robotic : return "RFC 9309, Robots Exclusion Protocol, September 2022";
+        case ed_security : return "RFC 9116, Security Vulnerability Disclosure, April 2022";
+        case ed_rsl : return "Really Simple Licensing, September 2025 draft";
+        case ed_rss : return "Really Simple Syndication 2.0.11, March 2009";
+        case ed_atom : return "RFC 4287, Atom Syndication Format, December 2005"; }
     return "unknown reference"; }
 
 e_nit_link_type doc_link (const e_doc doc, ::std::string& link)
@@ -519,6 +531,12 @@ e_nit_link_type doc_link (const e_doc doc, ::std::string& link)
         case ed_rdfa : link = RDFSPEX "rdfa-core.1.1.3.pdf"; return nlt_pdf;
         case ed_rdfa_c : link = RDFSPEX "RDFa Core Initial Context.pdf"; return nlt_pdf;
         case ed_rel : link = "https://microformats.org/wiki/existing-rel-values"; return nlt_html;
+        case ed_con : link = "https://iabtechlab.com/wp-content/uploads/2022/04/Ads.txt-1.1.pdf"; return nlt_html;
+        case ed_robotic : link = "https://www.rfc-editor.org/rfc/rfc9309.html"; return nlt_html;
+        case ed_security : link = "https://www.rfc-editor.org/rfc/rfc9116.html"; return nlt_html;
+        case ed_rsl : link = NSLS_RSL; return nlt_html;
+        case ed_rss : link = "https://www.rssboard.org/rss-specification"; return nlt_html;
+        case ed_atom : link = "https://validator.w3.org/feed/docs/rfc4287.html"; return nlt_html;
         case ed_rfc_1867 : link = RFC "rfc1867.html"; return nlt_html;
         case ed_rfc_1980 : link = RFC "rfc1980.html"; return nlt_html;
         case ed_rfc_2616 : link = RFC "rfc2616.pdf"; return nlt_pdf;

@@ -113,6 +113,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SNIPPET_SW  SMPLSWTCH SNIPPET_SW_
 #define VERBOSE_SW  SMPLSWTCH VERBOSE_SW_
 
+#define ATOMIC_     "atom"
 #define CORPUS_     "corpus"
 #define CSS_        "css"
 #define ENVIRONMENT_ "environment"
@@ -127,6 +128,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NITS_       "nits"
 #define ONTOLOGY_   "ontology"
 #define OUTPUT_     "output"
+#define RSL_        "rsl"
+#define RSS_        "rss"
 #define SERVER_     "server"
 #define SP          "shadow"
 #define SHADOW_     SP
@@ -138,6 +141,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define VTT_        "vtt"
 #define WEBSITE_    "site"
 
+#define ATOMIC      ATOMIC_ JOIN
 #define BLACKLIST   BLACKLIST_ JOIN
 #define BLUELIST    BLUELIST_ JOIN
 #define CORPUS      CORPUS_ JOIN
@@ -154,6 +158,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NITS        NITS_ JOIN
 #define ONTOLOGY    ONTOLOGY_ JOIN
 #define OUTPUT      OUTPUT_ JOIN
+#define RSL         RSL_ JOIN
+#define RSS         RSS_ JOIN
 #define SERVER      SERVER_ JOIN
 #define SHADOW      SHADOW_ JOIN
 #define SPELL       SPELL_ JOIN
@@ -507,5 +513,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NIT_TEST        "TEST"
 #define NIT_TEXT        "TEXT"
 #define NIT_XHTML       "XHTML"
+
+#define ELEM_FEED       "feed"
+#define ELEM_RSL        "rsl"
+#define ELEM_RSS        "rss"
+#define MAX_NODOC_LEN   4
+
+#define NS_ATOM         "atom"
+#define NS_RSL          ELEM_RSL
+#define NS_RSS          ELEM_RSS
+#define NSL_ATOM        HTTP_W3 "/2005/Atom"
+#define NSLS_ATOM       HTTPS_W3 "/2005/Atom"
+#define NSLS_RSL        HTTPS "rslstandard.org/rsl"
+#define NSL_RSS         HTTP PURL_ORG "/rss/1.0/"
+#define NSLS_RSS        HTTPS PURL_ORG "/rss/1.0/"
+
 
 #define ARGLEN_MAX  4096

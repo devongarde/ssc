@@ -28,7 +28,7 @@ class bracs_ket
     ve_t ve_;
     int line_ = 0;
     nitpick form_;
-    void nodoctype (nitpick& nits, html_version& v, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i);
+    void nodoctype (nitpick& nits, html_version& v, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, bool foresee = false);
     void mixed_mess (nitpick& nits, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const char* item, const char* inside);
 public:
     void swap (bracs_ket& bk) noexcept

@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "base/type_master.h"
 
-bool acquire_global_datetime (const ::std::string& s, int& year, int& month, int& day, int& hour, int& minute, int& second);
+e_nit acquire_global_datetime (const ::std::string& s, int& year, int& month, int& day, int& hour, int& minute, int& second);
 bool verify_time_4 (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_time_5 (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_absolute (nitpick& nits, const html_version& v, const ::std::string& s);
@@ -38,6 +38,10 @@ bool verify_year (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_yearmonth (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_plain_date (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_coarse_time (nitpick& nits, const html_version& v, const ::std::string& s);
+e_nit verify_english_day_name (nitpick& nits, const html_version& v, const ::std::string& s);
+e_nit verify_english_month_name (nitpick& nits, const html_version& v, const ::std::string& s);
+bool verify_rfc822_zone (nitpick& nits, const html_version& v, const ::std::string& s);
+bool verify_rfc822 (nitpick& nits, const html_version& v, const ::std::string& s, bool longyear);
 time_t string_to_time (nitpick& nits, const ::std::string& s);
 
 template < > struct type_master < t_datetime_4 > : tidy_string < t_datetime_4 >
@@ -207,3 +211,11 @@ template < > struct type_master < t_second > : public numeric_value < t_second, 
         if (! numeric_value < t_second, unsigned int > :: good () || (value_ > 61))// leap seconds
         {   nits.pick (nit_second, es_error, ec_type, quote (s), " does not lie between 0 and 59 (inclusive)");
             numeric_value < t_second, unsigned int > :: status (s_invalid); } } };
+
+template < > struct type_master < t_rfc822 > : public tidy_string < t_rfc822 >
+{   using tidy_string < t_rfc822 > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_rfc822 > :: set_value (nits, v, s);
+        if (! tidy_string < t_rfc822 > :: good ()) return;
+        if (! verify_rfc822 (nits, v, tidy_string < t_rfc822 > :: get_string (), false))
+            tidy_string < t_rfc822 > :: status (s_invalid); } };

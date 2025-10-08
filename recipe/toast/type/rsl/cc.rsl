@@ -1,0 +1,11 @@
+<rsl xmlns="https://rslstandard.org/rsl">
+  <content url="/">
+    <license>
+      <permits type="usage">all</permits>
+      <payment type="attribution">
+        <!-- Content available under CC attribution license -->
+        <standard>https://creativecommons.org/licenses/by/4.0/</standard>
+      </payment>
+    </license>
+  </content>
+</rsl>

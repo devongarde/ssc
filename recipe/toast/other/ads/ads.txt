@@ -1,0 +1,5 @@
+tiddles.com, placeholder, DIRECT, placeholder
+example.edu, placeholder, RESELLER, placeholder
+ssc.lu, placeholder, SAUSAGE, placeholder
+contact=splat@example.edu
+subdomain=wombats.example.edu

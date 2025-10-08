@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifndef NO_JSONIC
 class jsonic
 {   ::boost::json::value value_;
+    bool valid_ = false;
     static ::std::string rpt_base (const ::boost::json::value& val, const int indent);
 public:
     jsonic () = default;
@@ -36,6 +37,7 @@ public:
     const ::boost::json::value& val () const noexcept { return value_; }
     ::boost::json::value& val () noexcept { return value_; }
     bool parse (nitpick& nits, const ::std::string& s, const e_charcode encoding);
+    bool invalid () const { return ! valid_; }
     static ::std::string rpt (const ::boost::json::value& val, const int indent = 0)
     {   return ::std::string (stt (indent), ' ') + rpt_base (val, indent); } };
 #endif // NO_JSONIC

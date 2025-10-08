@@ -32,7 +32,7 @@ version <!--#echo encoding="none" var="version" --><br>
 <h2>capabilities</h2>
 
 <p>
-<!--#echo encoding="none" var="short" --> analyses static X/HTML snippets, files and sites:
+<!--#echo encoding="none" var="short" --> analyses static websites at source:
 </p>
 
 <ul>
@@ -55,10 +55,10 @@ MathML 1 / 2 / 3 / core / 4-draft
 XHTML 1.0 / 1.1 / 2.0 / 5.x
 </li>
 <li>
-WebVTT
+ads.txt / robots.txt / security.txt / WebVTT
 </li>
 <li>
-a simple hint of JSON-LD
+most of ATOM / JSON-LD / RSL / RSS
 </li>
 <li>
 finds broken links
@@ -80,7 +80,7 @@ with opinions on:
 
 <ul>
 <li>
-standard english (ho ho) where dialect is required
+contradictory flavours/flavors of english
 </li>
 <li>
 legal but inefficient HTML
@@ -99,7 +99,7 @@ It does NOT:
 analyse or understand scripts
 </li>
 <li>
-apart from XHTML, analyse or understand anything XML
+except as noted above, analyse or understand anything XML
 </li>
 </ul>
 
@@ -262,6 +262,19 @@ unii: my preferred plural of unix: to my ears, both unixes and unices
 andor: andor <span lang="fr">sans ancienne</span>; land of Gift (<span lang="de">aber nicht das Gift</span>)
 </li>
 </ul>
+
+<h2>
+Security
+</h2>
+
+<p>
+Regarding the
+<a href="https://www.european-cyber-resilience-act.com/">EU&rsquo;s Cyber Resilience Act</a>,
+any security issues should be reported to
+<a href="mailto:<!--#echo encoding="none" var="email" -->"><!--#echo encoding="none" var="semail" --></a>, and cc&rsquo;ed to
+<a href="mailto:<!--#echo encoding="none" var="email2" -->"><!--#echo encoding="none" var=s"email2" --></a>.
+For a list of components used by SSC, please consult the source code.
+</p>
 
 <h2>
 See Also

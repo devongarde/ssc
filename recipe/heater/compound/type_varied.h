@@ -726,6 +726,24 @@ template < > struct type_master < t_rotate > : varied < t_rotate >
                 validate_type < type_master < t_rotate_anim > > (nits, v);
             else validate_type < type_master < t_reals > > (nits, v); } };
 
+template < > struct type_master < t_rsl_type > : varied < t_rsl_type >
+{   using varied < t_rsl_type > :: varied;
+    void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
+    {   if (good () || empty ())
+            switch (e.get ())
+            {   case elem_rsl_copyright :
+                    validate_type < type_master < t_rsl_copyright > > (nits, v); break;
+                case elem_rsl_legal :
+                    validate_type < type_master < t_rsl_legal > > (nits, v); break;
+                case elem_rsl_payment :
+                    validate_type < type_master < t_rsl_payment > > (nits, v); break;
+                case elem_rsl_permits :
+                case elem_rsl_prohibits :
+                    validate_type < type_master < t_rsl_permits > > (nits, v); break;
+                default :
+                    PRESUME (false, __FILE__, __LINE__);
+                    break; } } };
+
 template < > struct type_master < t_type > : varied < t_type >
 {   using varied < t_type > :: varied;
     static e_animation_type animation_type () noexcept { return at_other; }

@@ -69,7 +69,7 @@ public:
     void swap (element_node& en) noexcept;
     void reset ();
     void reset (const element_node& en);
-    void parse_attributes (const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e);
+    void parse_attributes (const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e, const e_namespace autodeclare);
     ::std::size_t attribute_count () const noexcept { return va_.size (); }
     ::std::string text (const bool simplify = false);
     ::std::string raw () const { return raw_; }

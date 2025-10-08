@@ -75,6 +75,14 @@ inline ::std::string uq (const ::std::string& str, const ::std::string& qs = ::s
 #define UQ_UNIFY    0x00040000
 #define UQ_BLANK    0x00080000
 
+#define UQ_1        0x00100000
+#define UQ_2        0x00200000
+#define UQ_3        0x00300000
+#define UQ_4        0x00400000
+#define UQ_COUNT    0x00F00000
+#define UQ_DECOUNT  20
+#define UQ_MAX(NNN) ((NNN) << UQ_DECOUNT)
+
 #define BS_NUMERIC  ( UQ_8 | UQ_10 | UQ_16 | UQ_36 )
 #define BS_MASK     ( UQ_BS | BS_NUMERIC )
 #define BS_FN       ( UQ_BS | UQ_SQ | UQ_DQ | UQ_ROUND | UQ_TRIM )

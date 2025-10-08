@@ -78,8 +78,16 @@ typedef enum
     s_grsq  // <! ... [
 } e_statemachine;
 
-void bracs_ket::nodoctype (nitpick& nits, html_version& v, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i)
+void bracs_ket::nodoctype (nitpick& nits, html_version& v, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, bool foresee)
 {   if (! v.unknown ()) return;
+    if (foresee)
+        if (compare_no_case (::std::string (i, i+strlen (ELEM_FEED)), ELEM_FEED))
+        { v = html_atom; return; }
+        else if (compare_no_case (::std::string (i, i+strlen (ELEM_RSL)), ELEM_RSL))
+        { v = html_rsl; return; }
+        else if (compare_no_case (::std::string (i, i+strlen (ELEM_RSS)), ELEM_RSS))
+        { v = html_rss; return; }
+    if (v.any_ext4 (H4_NODOCTYPE)) return;
     nits.set_context (line_, b, e, i);
     if (context.force_version ()) 
     {   v.reset (context.html_ver ());
@@ -298,7 +306,7 @@ html_version bracs_ket::parse (const ::std::string& content, const html_version&
                     case '&' :  nodoctype (nits, res, b, e, i);
                                 mixed_mess (nits, b, e, i, cc, elmt);
                                 doubleopen = false; status = s_amper; twas = i; collect = i; break;
-                    default :   doubleopen = false; nodoctype (nits, res, b, e, i);
+                    default :   doubleopen = false; nodoctype (nits, res, b, e, i, (i + MAX_NODOC_LEN) < e);
                                 if (((ch >= 'A') && (ch <= 'Z')) || ((ch >= 'a') && (ch <= 'z')) || (ch == '/'))
                                 {   status = s_element; collect = i; closure = false; }
                                 else status = s_dull; }

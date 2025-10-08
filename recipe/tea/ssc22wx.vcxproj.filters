@@ -143,18 +143,6 @@
     <Filter Include="Toast\Microdata\Schema-WXYZ">
       <UniqueIdentifier>{4f1e015e-9096-4d9d-9438-f0913716bd4a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\Microformat">
-      <UniqueIdentifier>{3e610ef2-0c04-4b8a-b4b6-bdf69807103f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Microformat\MF1">
-      <UniqueIdentifier>{a0fafa34-b5ce-496b-a18f-47edaa116283}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Microformat\MF2">
-      <UniqueIdentifier>{507fe785-e540-41df-929a-1af129e83eac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Microformat\Rel">
-      <UniqueIdentifier>{b041a2be-421c-496a-8165-4a6e0b3e7c3d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Stats">
       <UniqueIdentifier>{00eae897-832c-4491-9c68-0d0ee466cc57}</UniqueIdentifier>
     </Filter>
@@ -1488,6 +1476,18 @@
     <Filter Include="Toast\Other\lists">
       <UniqueIdentifier>{eb2efdd3-60f2-4e9d-8fe4-6aca90800b31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Microformats">
+      <UniqueIdentifier>{3e610ef2-0c04-4b8a-b4b6-bdf69807103f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microformats\MF1">
+      <UniqueIdentifier>{a0fafa34-b5ce-496b-a18f-47edaa116283}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microformats\MF2">
+      <UniqueIdentifier>{507fe785-e540-41df-929a-1af129e83eac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microformats\Rel">
+      <UniqueIdentifier>{b041a2be-421c-496a-8165-4a6e0b3e7c3d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -2284,6 +2284,21 @@
     </ClInclude>
     <ClInclude Include="..\heater\parser\efficiency.h">
       <Filter>Heater\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\parser\ads.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\parser\colonic.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\parser\robotic.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\parser\security.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\url\wacky.h">
+      <Filter>Heater\url</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3226,6 +3241,27 @@
     <ClCompile Include="..\sauce\parser\efficiency.cpp">
       <Filter>Sauce\parser</Filter>
     </ClCompile>
+    <ClCompile Include="..\sauce\parser\ads.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\colonic.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\robotic.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\security.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\url\wacky.cpp">
+      <Filter>Sauce\url</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_rsl.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\compound\type_mimes.cpp">
+      <Filter>Sauce\compound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\toast\stats\single\index.html">
@@ -3457,73 +3493,73 @@
       <Filter>Toast\XHTML\1.0</Filter>
     </None>
     <None Include="..\toast\microformats\rel\bad.html">
-      <Filter>Toast\Microformat\Rel</Filter>
+      <Filter>Toast\Microformats\Rel</Filter>
     </None>
     <None Include="..\toast\microformats\rel\dubious.html">
-      <Filter>Toast\Microformat\Rel</Filter>
+      <Filter>Toast\Microformats\Rel</Filter>
     </None>
     <None Include="..\toast\microformats\rel\good.html">
-      <Filter>Toast\Microformat\Rel</Filter>
+      <Filter>Toast\Microformats\Rel</Filter>
     </None>
     <None Include="..\toast\microformats\rel\index.html">
-      <Filter>Toast\Microformat\Rel</Filter>
+      <Filter>Toast\Microformats\Rel</Filter>
     </None>
     <None Include="..\toast\microformats\rel\rel.conf">
-      <Filter>Toast\Microformat\Rel</Filter>
+      <Filter>Toast\Microformats\Rel</Filter>
     </None>
     <None Include="..\toast\microformats\rel\rel.spec">
-      <Filter>Toast\Microformat\Rel</Filter>
+      <Filter>Toast\Microformats\Rel</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\index.html">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\mf2.conf">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\mf2.spec">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\mf2-bad.html">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\mf2-dubious.html">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\mf2-empty.html">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\mf2-example.html">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\mf2-good.html">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\mf2-infer.html">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf1\hcard-simple-bad.html">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </None>
     <None Include="..\toast\microformats\mf1\hcard-simple-deduce.html">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </None>
     <None Include="..\toast\microformats\mf1\hcard-simple-dubious.html">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </None>
     <None Include="..\toast\microformats\mf1\hcard-simple-good.html">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </None>
     <None Include="..\toast\microformats\mf1\index.html">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </None>
     <None Include="..\toast\microformats\mf1\mf1.conf">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </None>
     <None Include="..\toast\microformats\mf1\mf1.spec">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </None>
     <None Include="..\toast\microformats\mf1\mf1-example.html">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </None>
     <None Include="..\toast\microdata\schema-wxyz\index.html">
       <Filter>Toast\Microdata\Schema-WXYZ</Filter>
@@ -40977,10 +41013,10 @@
       <Filter>Toast\XHTML\1.0</Filter>
     </Image>
     <Image Include="..\toast\microformats\mf2\photo.jpg">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </Image>
     <Image Include="..\toast\microformats\mf1\photo.jpg">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </Image>
     <Image Include="..\toast\HTML\5.4\x.jpg">
       <Filter>Toast\HTML\2020-07</Filter>

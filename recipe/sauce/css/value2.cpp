@@ -101,6 +101,7 @@ int check_typed_identifier (arguments& args, nitpick& nits, const int start, con
     if (t <= SSC_TYPES_P_2_MAX) return property_by_type < SSC_TYPES_P_2, t_unknown > :: check (args, start, to, nits, t);
     if (t <= SSC_TYPES_Q_R_MAX) return property_by_type < SSC_TYPES_Q_R, t_unknown > :: check (args, start, to, nits, t);
     if (t <= SSC_TYPES_R_MAX) return property_by_type < SSC_TYPES_R, t_unknown > :: check (args, start, to, nits, t);
+    if (t <= SSC_TYPES_RSL_MAX) return property_by_type < SSC_TYPES_RSL, t_unknown > :: check (args, start, to, nits, t);
     if (t <= SSC_TYPES_S_1_MAX) return property_by_type < SSC_TYPES_S_1, t_unknown > :: check (args, start, to, nits, t);
     if (t <= SSC_TYPES_S_2_MAX) return property_by_type < SSC_TYPES_S_2, t_unknown > :: check (args, start, to, nits, t);
     if (t <= SSC_TYPES_SVG_1_MAX) return property_by_type < SSC_TYPES_SVG_1, t_unknown > :: check (args, start, to, nits, t);

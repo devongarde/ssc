@@ -74,6 +74,7 @@ struct symbol_entry < html_version, e_protocol > protocol_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "dtn", pr_dtn },
     { { HTML_TAGS }, { HTML_UNDEF }, "dvb", pr_dvb },
     { { HTML_TAGS }, { HTML_UNDEF }, "ed2k", pr_ed2k },
+    { { HTML_TAGS }, { HTML_UNDEF }, "email", pr_email },
     { { HTML_TAGS }, { HTML_UNDEF }, "example", pr_example },
     { { HTML_TAGS }, { HTML_UNDEF }, "facetime", pr_facetime },
     { { HTML_TAGS }, { HTML_UNDEF }, "fax", pr_fax },
@@ -318,6 +319,7 @@ protocol_server ps [] =
     { pr_dtn, pt_rfc3986_ignore },
     { pr_dvb, pt_rfc3986_ignore },
     { pr_ed2k, pt_rfc3986_ignore },
+    { pr_email, pt_email },
     { pr_example, pt_rfc3986_ignore },
     { pr_facetime, pt_rfc3986_ignore },
     { pr_fax, pt_rfc3986_ignore },
@@ -371,7 +373,7 @@ protocol_server ps [] =
     { pr_ldaps, pt_rfc3986_ignore },
     { pr_magnet, pt_rfc3986_ignore },
     { pr_mailserver, pt_rfc3986_ignore },
-    { pr_mailto, pt_rfc3986_ignore },
+    { pr_mailto, pt_email },
     { pr_maps, pt_rfc3986_ignore },
     { pr_market, pt_rfc3986_ignore },
     { pr_matrix, pt_rfc3986_ignore },
@@ -550,7 +552,7 @@ bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string&
         default_ = (colon == ::std::string::npos);
         if (default_)
         {   if (lc.find (AT) != ::std::string::npos)
-                nits.pick (nit_protocol, es_warning, ec_url, "if ", lc, " is to link an email address, use ", quote (::std::string (PR_MAILTO ":") + lc));
+                nits.pick (nit_protocol, es_warning, ec_url, "if ", lc, " is to link an email address, consider using ", quote (::std::string (PR_MAILTO ":") + lc));
             if ((lc.at (0) == '+') && (lc.find_first_not_of (TEL) == ::std::string::npos))
                 nits.pick (nit_protocol, es_warning, ec_url, "if ", lc, " is to link a phone number, use ", quote (::std::string (PR_TEL ":") + lc));
             set (v, current); }

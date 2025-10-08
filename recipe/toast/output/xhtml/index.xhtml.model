@@ -29,20 +29,19 @@ FOOTER,HEADER,LI,MAIN,P,PRE { color:#999999 }
 </HEADER>
 <MAIN>
 <H2 class="nit-section">/index.html</H2>
-<H3><SPAN class="nit-before">&lt;!DOCTYPE&nbsp;html&gt;&nbsp;</SPAN> <SPAN class="nit-mote">&lt;html&gt;</SPAN> <SPAN class="nit-after">&nbsp;&lt;head&gt;&nbsp;&lt;title&gt;XHTML&nbsp;outp...</SPAN></H3>
+<H3><SPAN class="nit-before">&lt;!DOCTYPE html&gt; </SPAN> <SPAN class="nit-mote">&lt;html&gt;</SPAN> <SPAN class="nit-after"> &lt;head&gt; &lt;title&gt;XHTML outp...</SPAN></H3>
 <P>
-<SPAN class="nit-warning">warning</SPAN>: <SPAN class="nit-explanation">use&nbsp;LANG&nbsp;on&nbsp;&lt;HTML&gt;&nbsp;to&nbsp;specify&nbsp;a&nbsp;default&nbsp;language</SPAN><BR/><SPAN class="nit-ref">4.1.1&nbsp;The&nbsp;html&nbsp;element</SPAN> <SPAN class="nit-doc">(HTML&nbsp;5.0,&nbsp;W3,&nbsp;Oct&nbsp;2014)</SPAN><BR/>
+<SPAN class="nit-warning">warning</SPAN>: <SPAN class="nit-explanation">use LANG on &lt;HTML&gt; to specify a default language</SPAN><BR/><SPAN class="nit-ref">4.1.1 The html element</SPAN> <SPAN class="nit-doc">(HTML 5.0, W3, Oct 2014)</SPAN><BR/>
 </P>
 <BR/><BR/>
-<A href="/index.html">Previous page</A>
 </MAIN>
 <HR/>
 <FOOTER class="smaller">
-<A href="https://ssc.lu/" class="ssc-name">Static&nbsp;Site&nbsp;Checker</A> version 0.2.20 (build)<BR/>
-<A href="https://dylanharris.org/" class="ssc-copyright">(c)&nbsp;2020-2025&nbsp;Dylan&nbsp;Harris</A><BR>
-dijnqs:wnd_x86:m64:1_87:w, testuser (testaccount), time
-&ldquo;desc&nbsp;pt.&nbsp;1
-desc&nbsp;pt.&nbsp;2&rdquo;
+<A href="https://ssc.lu/" class="ssc-name">Static Site Checker</A> version 0.2.21 build<BR/>
+<A href="https://dylanharris.org/" class="ssc-copyright">(c) 2020-2025 Dylan Harris</A><BR>
+dijns:wnd_x86:m64:1_87:w, testuser (testaccount), time
+&ldquo;desc pt. 1
+desc pt. 2&rdquo;
 </FOOTER>
 </BODY>
 </HTML>

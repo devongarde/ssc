@@ -5,13 +5,9 @@ PASS ../toast/RDF/Prism-2.1/index.html
 
 PASS ../toast/RDF/Prism-2.1/example.rdf
 1 xhtml_5_0
-8 unrecognised_namespace namespace_confusion unrecognised_namespace bad_namespace missing_close unrecognised_value
-16 xhtml_missing_slash link_rel_off xhtml_missing_slash link_rel_off
-32 inserted_missing_parent invalid_element_version math missing_close
-35 inserted_missing_parent orphan inserted_missing_closure orphan inserted_missing_closure missing_close naughty_lang inserted_missing_parent missing_close xhtml_missing_slash link_rel_off xhtml_missing_slash link_rel_off
-36 missing_open
-37 invalid_element_version
-38 long_title
-39 xhtml_missing_slash link_rel_off xhtml_missing_slash link_rel_off
-75 invalid_element_version
-76 missing_open
+8 namespace_confusion bad_namespace
+10 inserted_missing_parent missing_close attribute_required attribute_required attribute_barred
+25 attribute_barred rss_missing_child rss_missing_child rss_missing_child
+32 inserted_missing_parent missing_close attribute_barred
+37 attribute_barred
+76 inserted_missing_closure inserted_missing_closure

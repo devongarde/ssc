@@ -112,10 +112,10 @@ PASS ../toast/HTML/5.4/html5-bad.html
 94 missing_open
 97 saucy_source
 103 no_itemscope reputation bad_object disordered_param
-109 bad_datetime
+109 bad_year
 110 bad_autocomplete
-111 bad_autocomplete bad_datetime
-112 bad_autocomplete bad_datetime
+111 bad_autocomplete bad_year
+112 bad_autocomplete time_char
 113 solo sunk minmax
 114 minmax minmax
 116 bad_colour

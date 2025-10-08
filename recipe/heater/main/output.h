@@ -57,13 +57,13 @@ public:
     void enloggen (const bool b) noexcept { wx_ = b; }
 #endif // WX
 #ifndef SIGNING
-    void aborting () { }
+    void aborting () noexcept { }
     void consolidate (nitpick& nits, const ::boost::filesystem::path& , const ::boost::filesystem::path& , const ::std::string& , const ::boost::filesystem::path& )
     {   depre (nits); }
     bool done (nitpick& ) noexcept { return true; }
     bool verifying () const noexcept { return false; }
     bool signing () const noexcept { return false; }
-    bool sigout (nitpick& ) { return true; }
+    bool sigout (nitpick& ) noexcept { return true; }
 #else // SIGNING
     void aborting ();
     void consolidate (nitpick& nits, const ::boost::filesystem::path& pub, const ::boost::filesystem::path& pri, const ::std::string& pw, const ::boost::filesystem::path& signature);

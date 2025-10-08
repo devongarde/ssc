@@ -143,18 +143,6 @@
     <Filter Include="Toast\Microdata\Schema-WXYZ">
       <UniqueIdentifier>{4f1e015e-9096-4d9d-9438-f0913716bd4a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\Microformat">
-      <UniqueIdentifier>{3e610ef2-0c04-4b8a-b4b6-bdf69807103f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Microformat\MF1">
-      <UniqueIdentifier>{a0fafa34-b5ce-496b-a18f-47edaa116283}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Microformat\MF2">
-      <UniqueIdentifier>{507fe785-e540-41df-929a-1af129e83eac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Microformat\Rel">
-      <UniqueIdentifier>{b041a2be-421c-496a-8165-4a6e0b3e7c3d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Stats">
       <UniqueIdentifier>{00eae897-832c-4491-9c68-0d0ee466cc57}</UniqueIdentifier>
     </Filter>
@@ -1536,6 +1524,51 @@
     <Filter Include="Toast\Other\silenced\sub">
       <UniqueIdentifier>{605a6b6f-61fd-4d6d-a7e9-960f45b029ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Type\rsl">
+      <UniqueIdentifier>{0d0a0d2a-314f-4aa4-9e32-509082035b46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RSS">
+      <UniqueIdentifier>{3c7b1106-4111-47e4-a83e-938154a231e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RSS\0.91">
+      <UniqueIdentifier>{755ad06a-9b53-48e2-8179-52a653aecce6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RSS\0.92">
+      <UniqueIdentifier>{d4870028-665a-43f6-81cc-f544f3a536f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\robotic">
+      <UniqueIdentifier>{24623e09-3082-40d0-8acd-6003168e5c65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\security">
+      <UniqueIdentifier>{055ab0f3-55ca-4b36-86e2-e1e0ecc942d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\security\,well-known">
+      <UniqueIdentifier>{72b9324f-2e87-40c4-a8ee-e8052d23a225}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\robotic\foo">
+      <UniqueIdentifier>{f10993f4-19f5-46fe-afac-b0834cc16ae9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\ads">
+      <UniqueIdentifier>{58d22776-da3b-41e3-9722-3693f7f1028f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RSS\2.0">
+      <UniqueIdentifier>{e83f28eb-abec-490c-9cfd-92b4eef6c795}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Type\atom">
+      <UniqueIdentifier>{ab3c2a41-f133-4f7e-99fd-14acae0c0b3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microformats">
+      <UniqueIdentifier>{3e610ef2-0c04-4b8a-b4b6-bdf69807103f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microformats\MF1">
+      <UniqueIdentifier>{a0fafa34-b5ce-496b-a18f-47edaa116283}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microformats\MF2">
+      <UniqueIdentifier>{507fe785-e540-41df-929a-1af129e83eac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microformats\Rel">
+      <UniqueIdentifier>{b041a2be-421c-496a-8165-4a6e0b3e7c3d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -2250,6 +2283,21 @@
       <Filter>Heater\utility</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\parser\efficiency.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\parser\robotic.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\parser\colonic.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\url\wacky.h">
+      <Filter>Heater\url</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\parser\security.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\parser\ads.h">
       <Filter>Heater\parser</Filter>
     </ClInclude>
   </ItemGroup>
@@ -3112,6 +3160,27 @@
     <ClCompile Include="..\sauce\parser\efficiency.cpp">
       <Filter>Sauce\parser</Filter>
     </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_rsl.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\robotic.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\colonic.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\url\wacky.cpp">
+      <Filter>Sauce\url</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\security.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\ads.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\compound\type_mimes.cpp">
+      <Filter>Sauce\compound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\toast\stats\single\index.html">
@@ -3343,73 +3412,73 @@
       <Filter>Toast\XHTML\1.0</Filter>
     </None>
     <None Include="..\toast\microformats\rel\bad.html">
-      <Filter>Toast\Microformat\Rel</Filter>
+      <Filter>Toast\Microformats\Rel</Filter>
     </None>
     <None Include="..\toast\microformats\rel\dubious.html">
-      <Filter>Toast\Microformat\Rel</Filter>
+      <Filter>Toast\Microformats\Rel</Filter>
     </None>
     <None Include="..\toast\microformats\rel\good.html">
-      <Filter>Toast\Microformat\Rel</Filter>
+      <Filter>Toast\Microformats\Rel</Filter>
     </None>
     <None Include="..\toast\microformats\rel\index.html">
-      <Filter>Toast\Microformat\Rel</Filter>
+      <Filter>Toast\Microformats\Rel</Filter>
     </None>
     <None Include="..\toast\microformats\rel\rel.conf">
-      <Filter>Toast\Microformat\Rel</Filter>
+      <Filter>Toast\Microformats\Rel</Filter>
     </None>
     <None Include="..\toast\microformats\rel\rel.spec">
-      <Filter>Toast\Microformat\Rel</Filter>
+      <Filter>Toast\Microformats\Rel</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\index.html">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\mf2.conf">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\mf2.spec">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\mf2-bad.html">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\mf2-dubious.html">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\mf2-empty.html">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\mf2-example.html">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\mf2-good.html">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf2\mf2-infer.html">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </None>
     <None Include="..\toast\microformats\mf1\hcard-simple-bad.html">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </None>
     <None Include="..\toast\microformats\mf1\hcard-simple-deduce.html">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </None>
     <None Include="..\toast\microformats\mf1\hcard-simple-dubious.html">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </None>
     <None Include="..\toast\microformats\mf1\hcard-simple-good.html">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </None>
     <None Include="..\toast\microformats\mf1\index.html">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </None>
     <None Include="..\toast\microformats\mf1\mf1.conf">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </None>
     <None Include="..\toast\microformats\mf1\mf1.spec">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </None>
     <None Include="..\toast\microformats\mf1\mf1-example.html">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </None>
     <None Include="..\toast\microdata\schema-wxyz\index.html">
       <Filter>Toast\Microdata\Schema-WXYZ</Filter>
@@ -31119,9 +31188,6 @@
     <None Include="..\toast\other\live\plumbing\songlight.css">
       <Filter>Toast\Other\live\plumbing</Filter>
     </None>
-    <None Include="..\toast\other\live\feed-me.rss">
-      <Filter>Toast\Other\live</Filter>
-    </None>
     <None Include="..\toast\other\live\index.shtml">
       <Filter>Toast\Other\live</Filter>
     </None>
@@ -42936,6 +43002,144 @@
     <None Include="..\toast\other\silenced\silenced.spec">
       <Filter>Toast\Other\silenced</Filter>
     </None>
+    <None Include="..\toast\type\rsl\cc.rsl">
+      <Filter>Toast\Type\rsl</Filter>
+    </None>
+    <None Include="..\toast\type\rsl\index.html">
+      <Filter>Toast\Type\rsl</Filter>
+    </None>
+    <None Include="..\toast\type\rsl\paid.rsl">
+      <Filter>Toast\Type\rsl</Filter>
+    </None>
+    <None Include="..\toast\type\rsl\rsl.conf">
+      <Filter>Toast\Type\rsl</Filter>
+    </None>
+    <None Include="..\toast\type\rsl\rsl.spec">
+      <Filter>Toast\Type\rsl</Filter>
+    </None>
+    <None Include="..\toast\type\rsl\server.rsl">
+      <Filter>Toast\Type\rsl</Filter>
+    </None>
+    <None Include="..\toast\type\rsl\attr-collect.rsl">
+      <Filter>Toast\Type\rsl</Filter>
+    </None>
+    <None Include="..\toast\type\rsl\pay-collect.rsl">
+      <Filter>Toast\Type\rsl</Filter>
+    </None>
+    <None Include="..\toast\type\rsl\encrypted.rsl">
+      <Filter>Toast\Type\rsl</Filter>
+    </None>
+    <None Include="..\toast\RSS\0.91\index.html">
+      <Filter>Toast\RSS\0.91</Filter>
+    </None>
+    <None Include="..\toast\RSS\0.91\rss.conf">
+      <Filter>Toast\RSS\0.91</Filter>
+    </None>
+    <None Include="..\toast\RSS\0.91\rss.spec">
+      <Filter>Toast\RSS\0.91</Filter>
+    </None>
+    <None Include="..\toast\RSS\0.91\ex-1.rss">
+      <Filter>Toast\RSS\0.91</Filter>
+    </None>
+    <None Include="..\toast\RSS\0.91\ex-2.rss">
+      <Filter>Toast\RSS\0.91</Filter>
+    </None>
+    <None Include="..\toast\RSS\0.91\ex-3.rss">
+      <Filter>Toast\RSS\0.91</Filter>
+    </None>
+    <None Include="..\toast\RSS\0.92\ex-1.rss">
+      <Filter>Toast\RSS\0.92</Filter>
+    </None>
+    <None Include="..\toast\RSS\0.92\index.html">
+      <Filter>Toast\RSS\0.92</Filter>
+    </None>
+    <None Include="..\toast\RSS\0.92\rss.conf">
+      <Filter>Toast\RSS\0.92</Filter>
+    </None>
+    <None Include="..\toast\RSS\0.92\rss.spec">
+      <Filter>Toast\RSS\0.92</Filter>
+    </None>
+    <None Include="..\toast\type\rsl\embed.html">
+      <Filter>Toast\Type\rsl</Filter>
+    </None>
+    <None Include="..\toast\type\rsl\link.html">
+      <Filter>Toast\Type\rsl</Filter>
+    </None>
+    <None Include="..\toast\other\security\index.html">
+      <Filter>Toast\Other\security</Filter>
+    </None>
+    <None Include="..\toast\other\security\security.conf">
+      <Filter>Toast\Other\security</Filter>
+    </None>
+    <None Include="..\toast\other\security\security.spec">
+      <Filter>Toast\Other\security</Filter>
+    </None>
+    <None Include="..\toast\other\robotic\index.html">
+      <Filter>Toast\Other\robotic</Filter>
+    </None>
+    <None Include="..\toast\other\robotic\robotic.conf">
+      <Filter>Toast\Other\robotic</Filter>
+    </None>
+    <None Include="..\toast\other\robotic\robotic.spec">
+      <Filter>Toast\Other\robotic</Filter>
+    </None>
+    <None Include="..\toast\other\security\ackn.html">
+      <Filter>Toast\Other\security</Filter>
+    </None>
+    <None Include="..\toast\other\security\hiring.html">
+      <Filter>Toast\Other\security</Filter>
+    </None>
+    <None Include="..\toast\other\security\policy.html">
+      <Filter>Toast\Other\security</Filter>
+    </None>
+    <None Include="..\toast\other\ads\ads.conf">
+      <Filter>Toast\Other\ads</Filter>
+    </None>
+    <None Include="..\toast\other\ads\ads.spec">
+      <Filter>Toast\Other\ads</Filter>
+    </None>
+    <None Include="..\toast\other\ads\index.html">
+      <Filter>Toast\Other\ads</Filter>
+    </None>
+    <None Include="..\toast\RSS\2.0\index.html">
+      <Filter>Toast\RSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\RSS\2.0\rss.conf">
+      <Filter>Toast\RSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\RSS\2.0\rss.spec">
+      <Filter>Toast\RSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\RSS\2.0\2.0.rss">
+      <Filter>Toast\RSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\type\atom\atom.conf">
+      <Filter>Toast\Type\atom</Filter>
+    </None>
+    <None Include="..\toast\type\atom\atom.spec">
+      <Filter>Toast\Type\atom</Filter>
+    </None>
+    <None Include="..\toast\type\atom\brief.atom">
+      <Filter>Toast\Type\atom</Filter>
+    </None>
+    <None Include="..\toast\type\atom\extensive.atom">
+      <Filter>Toast\Type\atom</Filter>
+    </None>
+    <None Include="..\toast\type\atom\index.html">
+      <Filter>Toast\Type\atom</Filter>
+    </None>
+    <None Include="..\toast\living\oct25\4.3.11-9.html">
+      <Filter>Toast\Living\oct25</Filter>
+    </None>
+    <None Include="..\toast\RSS\2.0\simple.rss">
+      <Filter>Toast\RSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\RSS\2.0\feed-me.rss">
+      <Filter>Toast\RSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\type\rsl\catalogue.rss">
+      <Filter>Toast\Type\rsl</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -42957,10 +43161,10 @@
       <Filter>Toast\XHTML\1.0</Filter>
     </Image>
     <Image Include="..\toast\microformats\mf2\photo.jpg">
-      <Filter>Toast\Microformat\MF2</Filter>
+      <Filter>Toast\Microformats\MF2</Filter>
     </Image>
     <Image Include="..\toast\microformats\mf1\photo.jpg">
-      <Filter>Toast\Microformat\MF1</Filter>
+      <Filter>Toast\Microformats\MF1</Filter>
     </Image>
     <Image Include="..\toast\HTML\5.4\x.jpg">
       <Filter>Toast\HTML\2020-07</Filter>
@@ -43461,6 +43665,21 @@
     </Text>
     <Text Include="..\port\openbsd\README.txt">
       <Filter>Port\OpenBSD</Filter>
+    </Text>
+    <Text Include="..\toast\other\security\.well-known\security.txt">
+      <Filter>Toast\Other\security\,well-known</Filter>
+    </Text>
+    <Text Include="..\toast\other\security\pgp-key.txt">
+      <Filter>Toast\Other\security</Filter>
+    </Text>
+    <Text Include="..\toast\other\robotic\robots.txt">
+      <Filter>Toast\Other\robotic</Filter>
+    </Text>
+    <Text Include="..\toast\other\robotic\foo\README.txt">
+      <Filter>Toast\Other\robotic\foo</Filter>
+    </Text>
+    <Text Include="..\toast\other\ads\ads.txt">
+      <Filter>Toast\Other\ads</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

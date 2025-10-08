@@ -21,7 +21,7 @@ PASS ../toast/microdata/schema-pqrs/performancerole.html
 PASS ../toast/microdata/schema-pqrs/performingartstheatre.html
 12 use_quote_code
 19 no_such_folder url_not_found
-21 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+21 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 
 PASS ../toast/microdata/schema-pqrs/periodical.html
 0 charset_mismatch charset_used charset_invalid
@@ -40,7 +40,7 @@ PASS ../toast/microdata/schema-pqrs/person.html
 13 url_not_found
 28 use_quote_code
 43 no_such_folder url_not_found
-50 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+50 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 75 no_such_folder url_not_found
 79 no_such_folder url_not_found
 84 no_such_folder url_not_found
@@ -103,29 +103,29 @@ PASS ../toast/microdata/schema-pqrs/place.html
 31 url_not_found
 46 lonely_ampersand
 65 unrecognised_value
-66 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+66 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 69 unrecognised_value
 72 unrecognised_value
 74 unrecognised_value
 79 unrecognised_value
 81 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 86 unrecognised_value
-87 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+87 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 90 unrecognised_value
 94 unrecognised_value
 96 unrecognised_value
 101 unrecognised_value
 103 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 109 unrecognised_value
-110 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+110 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 113 unrecognised_value
-116 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
+116 invalid_attribute_version wrong_version svg_rdf bad_year bad_year
 117 unrecognised_value
 119 unrecognised_value
 124 unrecognised_value
 128 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 133 unrecognised_value
-134 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+134 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 137 unrecognised_value
 140 unrecognised_value
 142 unrecognised_value
@@ -135,8 +135,8 @@ PASS ../toast/microdata/schema-pqrs/place.html
 PASS ../toast/microdata/schema-pqrs/podcastepisode.html
 0 charset_mismatch charset_used charset_invalid
 11 unrecognised_value
-17 attribute_barred bad_datetime bad_datetime bad_datetime bad_datetime
-18 attribute_barred invalid_duration invalid_duration
+17 attribute_barred bad_year bad_year rather_too_vague rather_too_vague
+18 attribute_barred duration duration
 
 PASS ../toast/microdata/schema-pqrs/podcastseason.html
 11 unrecognised_value
@@ -155,29 +155,29 @@ PASS ../toast/microdata/schema-pqrs/postaladdress.html
 71 url_not_found
 86 lonely_ampersand
 106 unrecognised_value
-107 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+107 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 110 unrecognised_value
 113 unrecognised_value
 115 unrecognised_value
 120 unrecognised_value
 122 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 127 unrecognised_value
-128 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+128 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 131 unrecognised_value
 135 unrecognised_value
 137 unrecognised_value
 142 unrecognised_value
 144 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 150 unrecognised_value
-151 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+151 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 154 unrecognised_value
-157 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
+157 invalid_attribute_version wrong_version svg_rdf bad_year bad_year
 158 unrecognised_value
 160 unrecognised_value
 165 unrecognised_value
 169 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 174 unrecognised_value
-175 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+175 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 178 unrecognised_value
 181 unrecognised_value
 183 unrecognised_value
@@ -392,7 +392,7 @@ PASS ../toast/microdata/schema-pqrs/speakablespecification.html
 
 PASS ../toast/microdata/schema-pqrs/sportsevent.html
 12 use_quote_code
-16 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+16 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 18 use_quote_code
 
 PASS ../toast/microdata/schema-pqrs/sportsteam.html

@@ -4874,6 +4874,8 @@ microdata_structure ontology_structure [] =
     { { 1, 3 }, { 0, 0 }, sch_event, sp_eventstatus },
     { { 3, 1 }, { 0, 0 }, sch_event, sp_funder },
     { { 14, 0 }, { 0, 0 }, sch_event, sp_funding },
+    { { 29, 4 }, { 0, 0 }, sch_event, sp_hasparticipationoffer },
+    { { 29, 4 }, { 0, 0 }, sch_event, sp_hassponsorshipoffer },
     { { 2, 0 }, { 0, 0 }, sch_event, sp_inlanguage },
     { { 3, 1 }, { 0, 0 }, sch_event, sp_isaccessibleforfree },
     { { 0, 10 }, { 0, 0 }, sch_event, sp_location },
@@ -5716,9 +5718,9 @@ microdata_structure ontology_structure [] =
     { { 15, 0 }, { 0, 0 }, sch_offershippingdetails, sp_weight },
     { { 15, 0 }, { 0, 0 }, sch_offershippingdetails, sp_width },
 
-    { { 30, 0 }, { 0, 0 }, sch_onlinestore, sp_isstoreon },
+    { { 29, 3 }, { 0, 0 }, sch_onlinestore, sp_isstoreon },
 
-    { { 30, 0 }, { 0, 0 }, sch_onlinemarketplace, sp_hasstore },
+    { { 29, 3 }, { 0, 0 }, sch_onlinemarketplace, sp_hasstore },
 
     { { 0, 99 }, { 0, 0 }, sch_openinghoursspecification, sp_closes },
     { { 0, 99 }, { 0, 0 }, sch_openinghoursspecification, sp_dayofweek },

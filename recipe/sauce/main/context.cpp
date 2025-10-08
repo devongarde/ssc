@@ -29,6 +29,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/fileio.h"
 #include "parser/text.h"
 #include "coop/fred.h"
+#include "url/fetch.h"
+#include "parser/ads.h"
+#include "parser/jsonic.h"
+#include "parser/robotic.h"
+#include "parser/security.h"
+
+::std::string context_t::update_info_;
 
 context_t context;
 ustr_t context_t::validation_;
@@ -693,7 +700,8 @@ void context_t::check_consistency (nitpick& nits)
             return; }
     os_ -> depre (nits);
     tim_.init (version_, nits, naughty_, nice_, note_);
-    process_url_vars (nits); }
+    process_url_vars (nits);
+    check_for_update (nits); }
 
 void context_t::process_url_vars (nitpick& nits)
 {   for (auto s : url_var_)
@@ -733,3 +741,71 @@ void context_t::process_url_vars (nitpick& nits)
     if (! sauce) return ::std::string ();
     else if (! zeq) return var;
     return var + "="; }
+
+#ifdef NO_JSONIC
+void context_t::check_for_update (nitpick& ) // should be run in a separate thread
+{ }
+#else // NO_JSONIC
+void context_t::check_for_update (nitpick& nits) // should be run in a separate thread
+{   if (! update_info_.empty () || ! update_check_) return;
+    try
+    {   ::std::string content;
+        nitpick nuts;
+        url u (nuts, html_current, UPDATE_URL_1);
+        url u2 (nuts, html_current, UPDATE_URL_2);
+        update_info_.clear ();
+        if (! fetch_page (nuts, u, true, content))
+            if (! fetch_page (nuts, u2, true, content))
+            {   mac (nm_update_info, "");
+                return; }
+        if (! content.empty ())
+        {   jsonic j (nits, content, cc_utf8);
+            if (! j.invalid ())
+            {   ::boost::json::value v = j.val ();
+                if (v.kind () == ::boost::json::kind::array)
+                    for (::boost::json::array::const_iterator i = v.as_array ().cbegin (); i != v.as_array ().cend (); ++i)
+                        if ( i -> kind () == ::boost::json::kind::object)
+                        {   const ::std::int64_t mjr = i -> as_object ().at ("MJR").as_int64 ();
+                            const ::std::int64_t mnr = i -> as_object ().at ("MNR").as_int64 ();   
+                            const ::std::int64_t rel = i -> as_object ().at ("REL").as_int64 ();
+                            if (mjr < VERSION_MAJOR) continue;
+                            if ((mjr == VERSION_MAJOR) && (mnr < VERSION_MINOR)) continue;   
+                            if ((mjr == VERSION_MAJOR) && (mnr == VERSION_MINOR) && (rel <= VERSION_RELEASE)) continue;
+                            const ::std::string_view ver = i -> as_object ().at ("VER").as_string (); // I don't see the need to introduce string_view's riskiness here, but ...
+                            const ::std::string_view notes = i -> as_object ().at ("NOTES").as_string ();
+                            if (! ver.empty ())
+                            {   update_info_ += PROG " version ";
+                                update_info_ += ver; }
+                            else update_info_ = "An update to " PROG;
+                            update_info_ += "is available at ";
+                            if (notes.empty ()) update_info_ += WEBADDR;
+                            else update_info_ += notes;
+                            break; } } } }
+    catch (...)
+    {   update_info_.clear (); }
+    mac (nm_update_info, update_info_); }
+#endif // NO_JSONIC
+
+const robotic& context_t::robbie () const
+{   if (robbie_.get () == nullptr) robbie_ = robotic_ptr (new robotic ());
+    return *robbie_; }
+
+robotic& context_t::robbie ()
+{   if (robbie_.get () == nullptr) robbie_ = robotic_ptr (new robotic ());
+    return *robbie_; }
+
+const sec_txt& context_t::security () const
+{   if (security_.get () == nullptr) security_ = sec_ptr (new sec_txt ());
+    return *security_; }
+
+sec_txt& context_t::security ()
+{   if (security_.get () == nullptr) security_ = sec_ptr (new sec_txt ());
+    return *security_; }
+
+const ads& context_t::con () const
+{   if (ads_.get () == nullptr) ads_ = ads_ptr (new ads ());
+    return *ads_; }
+
+ads& context_t::con ()
+{   if (ads_.get () == nullptr) ads_ = ads_ptr (new ads ());
+    return *ads_; }

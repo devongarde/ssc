@@ -20,17 +20,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
-[[noreturn]] void throw_bad_dereference (const char* const var, const char* const fn, const ::std::size_t line);
-[[noreturn]] void throw_bad_presumption (const char* const var, const char* const fn, const ::std::size_t line);
-[[noreturn]] void ugly_presumption (const char* const var, const char* const fn, const ::std::size_t line);
-[[noreturn]] void graceful_crash (const char* const fn, const ::std::size_t line);
-[[noreturn]] void graceless_crash (const char* const fn, const ::std::size_t line) noexcept;
+[[noreturn]] void throw_bad_dereference (const char* const var, const char* const fn, const ::std::size_t line, const ::std::string& xtra = ::std::string ());
+[[noreturn]] void throw_bad_presumption (const char* const var, const char* const fn, const ::std::size_t line, const ::std::string& xtra = ::std::string ());
+[[noreturn]] void ugly_presumption (const char* const var, const char* const fn, const ::std::size_t line, const ::std::string& xtra = ::std::string ());
+[[noreturn]] void graceful_crash (const char* const fn, const ::std::size_t line, const ::std::string& xtra = ::std::string ());
+[[noreturn]] void graceless_crash (const char* const fn, const ::std::size_t line, const ::std::string& xtra = ::std::string ()) noexcept;
 
+#define VERIFY_NOT_NULL_X(PTR,FILE,LINE,XTRA) { if (nullptr == PTR) throw_bad_dereference (#PTR, FILE, LINE, XTRA); }
 #define VERIFY_NOT_NULL(PTR,FILE,LINE) { if (nullptr == PTR) throw_bad_dereference (#PTR, FILE, LINE); }
+#define VERIFY_NULL_X(PTR,FILE,LINE,XTRA) { if (nullptr != PTR) throw_bad_dereference (#PTR, FILE, LINE, XTRA); }
 #define VERIFY_NULL(PTR,FILE,LINE) { if (nullptr != PTR) throw_bad_dereference (#PTR, FILE, LINE); }
+#define PRESUME_X(WOT,FILE,LINE,XTRA) { if (! (WOT)) throw_bad_presumption (#WOT, FILE, LINE, XTRA); }
 #define PRESUME(WOT,FILE,LINE) { if (! (WOT)) throw_bad_presumption (#WOT, FILE, LINE); }
+#define UGLY_PRESUME_X(WOT,FILE,LINE,XTRA) { if (! (WOT)) ugly_presumption (#WOT, FILE, LINE, XTRA); }
 #define UGLY_PRESUME(WOT,FILE,LINE) { if (! (WOT)) ugly_presumption (#WOT, FILE, LINE); }
+#define GRACEFUL_CRASH_X(FILE,LINE,XTRA) { graceful_crash (FILE, LINE, XTRA); }
 #define GRACEFUL_CRASH(FILE,LINE) { graceful_crash (FILE, LINE); }
+#define GRACELESS_CRASH_X(FILE,LINE,XTRA) { graceless_crash (FILE, LINE, XTRA); }
 #define GRACELESS_CRASH(FILE,LINE) { graceless_crash (FILE, LINE); }
 
 #ifdef _MSC_VER

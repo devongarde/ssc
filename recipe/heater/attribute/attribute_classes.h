@@ -118,6 +118,18 @@ typedef typed_attribute < t_as, a_as > attr_as;
 typedef typed_attribute < t_real, a_ascent > attr_ascent;
 typedef typed_attribute < t_html_boolean, a_async > attr_async;
 typedef typed_attribute < t_integer, a_at > attr_at;
+typedef typed_attribute < t_url, a_atom_href > attr_atom_href;
+typedef typed_attribute < t_lang, a_atom_hreflang > attr_atom_hreflang;
+typedef typed_attribute < t_text, a_atom_label > attr_atom_label;
+typedef typed_attribute < t_unsigned, a_atom_length > attr_atom_length;
+typedef typed_attribute < t_rel, a_atom_rel > attr_atom_rel;
+typedef typed_attribute < t_url, a_atom_scheme > attr_atom_scheme;
+typedef typed_attribute < t_url, a_atom_src > attr_atom_src;
+typedef typed_attribute < t_text, a_atom_term > attr_atom_term;
+typedef typed_attribute < t_generic, a_atom_title > attr_atom_title;
+typedef typed_attribute < t_atom_mime, a_atom_type > attr_atom_type;
+typedef typed_attribute < t_url, a_atom_uri > attr_atom_uri;
+typedef typed_attribute < t_text, a_atom_version > attr_atom_version;
 typedef typed_attribute < t_attributename, a_attributename > attr_attributename;
 typedef typed_attribute < t_attributetype, a_attributetype > attr_attributetype;
 typedef typed_attribute < t_html_boolean, a_audio > attr_audio;
@@ -361,6 +373,8 @@ typedef typed_attribute < t_integer, a_gutter > attr_gutter;
 typedef typed_attribute < t_url, a_handler > attr_handler;
 typedef typed_attribute < t_real, a_hanging > attr_hanging;
 typedef typed_attribute < t_idrefs, a_headers > attr_headers;
+typedef typed_attribute < t_unsigned, a_headingoffset > attr_headingoffset;
+typedef typed_attribute < t_existential, a_headingreset > attr_headingreset;
 typedef typed_attribute < t_height, a_height > attr_height;
 typedef typed_attribute < t_hidden_ex, a_hidden > attr_hidden;
 typedef typed_attribute < t_real, a_high > attr_high;
@@ -774,6 +788,24 @@ typedef typed_attribute < t_rowscols, a_rows > attr_rows;
 typedef typed_attribute < t_vunits, a_rowspacing > attr_rowspacing;
 typedef typed_attribute < t_unsigned, a_rowspan > attr_rowspan;
 typedef typed_attribute < t_text, a_rquote > attr_rquote;
+typedef typed_attribute < t_email, a_rsl_contactemail > attr_rsl_contactemail;
+typedef typed_attribute < t_url, a_rsl_contacturl > attr_rsl_contacturl;
+typedef typed_attribute < t_currency, a_rsl_currency > attr_rsl_currency;
+typedef typed_attribute < t_bool, a_rsl_encrypted > attr_rsl_encrypted;
+typedef typed_attribute < t_datetime, a_rsl_lastmod > attr_rsl_lastmod;
+typedef typed_attribute < t_url, a_rsl_server > attr_rsl_server;
+typedef typed_attribute < t_rsl_type, a_rsl_type > attr_rsl_type;
+typedef typed_attribute < t_url_9309, a_rsl_url > attr_rsl_url;
+typedef typed_attribute < t_generic, a_rss_domain > attr_rss_domain;
+typedef typed_attribute < t_bool, a_rss_ispermalink > attr_rss_ispermalink;
+typedef typed_attribute < t_unsigned, a_rss_length > attr_rss_length;
+typedef typed_attribute < t_text, a_rss_path > attr_rss_path; // for procedure to dislike, not SSC
+typedef typed_attribute < t_port, a_rss_port > attr_rss_port;
+typedef typed_attribute < t_rss_protocol, a_rss_protocol > attr_rss_protocol;
+typedef typed_attribute < t_text, a_rss_registerprocedure > attr_rss_registerprocedure;
+typedef typed_attribute < t_mime, a_rss_type > attr_rss_type;
+typedef typed_attribute < t_url, a_rss_url > attr_rss_url;
+typedef typed_attribute < t_rss_version, a_rss_version > attr_rss_version;
 typedef typed_attribute < t_mathspace, a_rspace > attr_rspace;
 typedef typed_attribute < t_rules, a_rules > attr_rules;
 typedef typed_attribute < t_measure, a_rx > attr_rx;
@@ -1106,6 +1138,18 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_ascent, \
     attr_async, \
     attr_at, \
+    attr_atom_href, \
+    attr_atom_hreflang, \
+    attr_atom_label, \
+    attr_atom_length, \
+    attr_atom_rel, \
+    attr_atom_scheme, \
+    attr_atom_src, \
+    attr_atom_term, \
+    attr_atom_title, \
+    attr_atom_type, \
+    attr_atom_uri, \
+    attr_atom_version, \
     attr_attributename, \
     attr_attributetype, \
     attr_audio, \
@@ -1351,6 +1395,8 @@ const e_attribute last_1 = a_glyphref;
     attr_handler, \
     attr_hanging, \
     attr_headers, \
+    attr_headingoffset, \
+    attr_headingreset, \
     attr_height, \
     attr_hidden, \
     attr_high, \
@@ -1769,6 +1815,24 @@ const e_attribute last_2 = a_overlay_host;
     attr_rowspacing, \
     attr_rowspan, \
     attr_rquote, \
+    attr_rsl_contactemail, \
+    attr_rsl_contacturl, \
+    attr_rsl_currency, \
+    attr_rsl_encrypted, \
+    attr_rsl_lastmod, \
+    attr_rsl_server, \
+    attr_rsl_type, \
+    attr_rsl_url, \
+    attr_rss_domain, \
+    attr_rss_ispermalink, \
+    attr_rss_length, \
+    attr_rss_path, \
+    attr_rss_port, \
+    attr_rss_protocol, \
+    attr_rss_registerprocedure, \
+    attr_rss_type, \
+    attr_rss_url, \
+    attr_rss_version, \
     attr_rspace, \
     attr_rules, \
     attr_rx, \

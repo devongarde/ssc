@@ -78,6 +78,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "altGlyph", elem_altglyph, ns_default, EP_SET_XLINKCAT (se_glyph_alt), EF_SVG_TEXT },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "altGlyphDef", elem_altglyphdef },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "altGlyphItem", elem_altglyphitem },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "amount", elem_rsl_amount, ns_rsl, EP_RSL | EP_NO_WHINGE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "and", elem_and, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "animate", elem_animate, ns_default, EP_SET_XLINKCAT (se_animation), EF_SVG_ANIM },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "animateColor", elem_animatecolour, ns_default, EP_SET_XLINKCAT (se_animation), EF_SVG_ANIM },
@@ -106,9 +107,11 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_PLUS, HV_NOT2 }, { HTML_3_0 }, "array", elem_array, ns_default, 0, EF_MATH },
     { { HTML_JAN05 }, { HTML_UNDEF }, "article", elem_article, ns_default, 0, EF_5_FLOW | EF_5_SECTION | EF_5_PALPABLE },
     { { HTML_JUL05 }, { HTML_UNDEF }, "aside", elem_aside, ns_default, EP_SIMPLE, EF_5_FLOW | EF_5_SECTION | EF_5_PALPABLE },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "author", elem_atom_author, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_3_0 }, { HTML_3_0 }, "atop", elem_atop, ns_default, EP_CLOSED },
     { { HTML_3_0 }, { HTML_3_0 }, "au", elem_au, ns_default, 0, EF_3_MISC },
     { { HTML_SVG12 }, { HTML_UNDEF }, "audio", elem_audio, ns_default, EP_5_TRANSPARENT, EF_5_FLOW | EF_5_PHRASE | EF_5_EMBEDDED | EF_5_INTERACTIVE | EF_5_PALPABLE | EF_SVG2_GRAPH },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "author", elem_rss_author, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_1_0 }, { HTML_UNDEF }, "b", elem_b, ns_default, EP_WX, EF_EMPH | EF_FONT | EF_3_TEXT | EF_3_MATHVC | EF_32_FONT | EF_4_FONT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "Bag", elem_rdf_bag, ns_rdf, 0, EF_RDF },
     { { HTML_RDF10, 0, HE_RDF_DEP }, { HTML_UNDEF }, "bagID", elem_rdf_bagid, ns_rdf, 0, EF_RDF },
@@ -139,16 +142,20 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_PLUS, HV_RFC_1942 }, { HTML_UNDEF }, "caption", elem_caption, ns_default, EP_LAZY, EF_X2_STRUCT | EF_X2_LIST },
     { { XHTML_1_0 }, { HTML_UNDEF }, "card", elem_card, ns_default, EP_CLOSED | EP_ARGS_1 | EP_5_OPEN, EF_M_CONTENT | EF_5_FLOW | EF_5_SECTION | EF_5_PALPABLE },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "cartesianproduct", elem_cartesianproduct, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "category", elem_rss_category, ns_rss, EP_RSS | EP_NO_WHINGE | EP_CLOSED },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "category", elem_atom_category, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, "cbytes", elem_cbytes, ns_default, EP_SIMPLE, EF_M_CONTENT },
     { { HTML_2_0, HV_DEPRECATED23 }, { HTML_2_0 }, "cdata", elem_cdata },  // mentioned in RFC 2070
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "ceiling", elem_ceiling, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
     { { HTML_3_2 }, { XHTML_1_1 }, "center", elem_centre, ns_default, EP_WX, EF_32_BLOCK | EF_4_BLOCK },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, "cerror", elem_cerror, ns_default, 0, EF_M_CONTENT },
     { { HTML_PLUS }, { HTML_PLUS }, "changed", elem_changed, ns_default, EP_CLOSED, EF_TEXT },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "channel", elem_rss_channel, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_3_0 }, { HTML_3_0 }, "choose", elem_choose, ns_default, EP_CLOSED },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "ci", elem_ci, ns_default, 0, EF_M_CONTENT | EF_M_CONTINPRES },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM}, { HTML_UNDEF }, "circle", elem_circle, ns_default, 0, EF_S_G | EF_SVG_SHAPE | EF_SVG_GRAPH | EF_SVG2_GRAPH },
     { { HTML_1_0 }, { HTML_UNDEF }, "cite", elem_cite, ns_default, EP_WX, EF_EMPH | EF_PHRASE | EF_4_PHRASE | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "cloud", elem_rss_cloud, ns_rss, EP_RSS | EP_NO_WHINGE | EP_CLOSED },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM }, { HTML_UNDEF }, "clipPath", elem_clippath, ns_default, EP_SET_XLINKCAT (se_clippath) },
     { { HTML_PLUS }, { HTML_PLUS }, "cmd", elem_cmd, ns_default, 0, EF_EMPH },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "cn", elem_cn, ns_default, 0, EF_M_CONTENT | EF_M_CONTINPRES },
@@ -156,15 +163,21 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "codomain", elem_codomain, ns_default, EP_CLOSED, EF_M_CONTENT },
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 }, { HTML_UNDEF }, "col", elem_col, ns_default, EP_CLOSED },
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 }, { HTML_UNDEF }, "colgroup", elem_colgroup, ns_default, EP_LAZY },
-    { { HTML_SVG10, 0, HE_SVG_10_11, 0, 0, H4_CSS_COLOUR_5 }, { HTML_UNDEF }, "color-profile", elem_colour_profile, ns_default, EP_SET_XLINKCAT (se_icc_profile) },
+    { { HTML_SVG10, 0, HE_SVG_10_11, 0, 0, H4_CSS_COLOUR_5 }, { HTML_UNDEF }, "color-profile", elem_colour_profile, ns_default, EP_SET_XLINKCAT (se_icc_profile) }, // dialect
     { { HTML_JAN05 }, { HTML_DEC12 }, "command", elem_command, ns_default, EP_CLOSED, EF_METADATA | EF_5_FLOW | EF_5_PHRASE },
     { { HTML_JAN05 }, { HTML_DEC05 }, "commandset", elem_commandset, ns_default, 0, EF_METADATA | EF_5_FLOW | EF_5_PHRASE },
     { { HTML_1_0, HV_DEPRECATEDX10 | HE_IE | HE_NETSCAPE }, { HTML_1_0 }, "comment", elem_comment, ns_default, EP_XMP, EF_LIT },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "comments", elem_rss_comments, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "complexes", elem_complexes, ns_default, EP_CLOSED, EF_M_CONTENT | EF_M_CONTINPRES },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "compose", elem_compose, ns_default, EP_CLOSED, EF_M_CONTENT },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "condition", elem_condition, ns_default, 0, EF_M_CONTENT | EF_M_DQ },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "conjugate", elem_conjugate, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "content", elem_rsl_content, ns_rsl, EP_RSL | EP_NO_WHINGE },   
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "content", elem_atom_content, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_JAN05, 0, HE_WEBCOMP }, { HTML_UNDEF }, "content", elem_content, ns_default, EP_CLOSED },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "contributor", elem_atom_contributor, ns_atom, EP_ATOM | EP_NO_WHINGE },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "copyright", elem_rsl_copyright, ns_rsl, EP_RSL | EP_NO_WHINGE },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "copyright", elem_rss_copyright, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "cos", elem_cos, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "cosh", elem_cosh, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "cot", elem_cot, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
@@ -176,11 +189,13 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "csymbol", elem_csymbol, ns_default, 0, EF_M_CONTENT | EF_M_CONTINPRES },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "curl", elem_curl, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
     { { HTML_SVG10, 0, HE_SVG_10_11_FULL }, { HTML_UNDEF }, "cursor", elem_cursor, ns_default, EP_SET_XLINKCAT (se_image_file) },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "custom", elem_rsl_custom, ns_rsl, EP_RSL | EP_NO_WHINGE },
     { { HTML_JAN12 }, { HTML_UNDEF }, "data", elem_data, ns_default, EP_CLOSED | EP_5_OPEN, EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_JUL05 }, { HTML_DEC09 }, "datagrid", elem_datagrid, ns_default, 0, EF_5_FLOW },
     { { HTML_JAN07 }, { HTML_UNDEF }, "datalist", elem_datalist, ns_default, 0, EF_5_FLOW | EF_5_PHRASE },
     { { HTML_JAN08 }, { HTML_DEC08 }, "datatemplate", elem_datatemplate, ns_default, 0, EF_METADATA | EF_5_FLOW },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "datatype", elem_rdf_datatype, ns_rdf, 0, EF_RDF },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "day", elem_rss_day, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_TAGS }, { HTML_UNDEF }, "dd", elem_dd, ns_default, EP_LAZY | EP_UNCLOSED1T | EP_WX,  EF_X2_STRUCT | EF_X2_LIST },
     { { HTML_3_0 }, { HTML_3_0 }, "ddot", elem_ddot, ns_default, 0, EF_3_MATHVC },
     { { HTML_MATH1, 0, 0, H2_MATH_1_2_3 | H2_M3_DEPRECAT }, { HTML_UNDEF }, "declare", elem_declare, ns_default, 0, EF_M_CONTENT /*  | EF_M_CONTINPRES */ },
@@ -189,7 +204,8 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_3_0, HV_NOT32 }, { HTML_UNDEF }, "del", elem_del, ns_default, EP_5_TRANSPARENT, EF_3_MISC | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "degree", elem_degree, ns_default, 0, EF_M_CONTENT },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "desc", elem_desc, ns_default, 0, EF_S_G | EF_SVG_DESC },
-    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "Description", elem_rdf_description, ns_rdf , 0, EF_RDF },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "description", elem_rss_description, ns_rss, EP_RSS | EP_NO_WHINGE },
+    { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "Description", elem_rdf_description, ns_rdf, 0, EF_RDF },
     { { HTML_JAN07, HV_NOT50 }, { HTML_UNDEF }, "details", elem_details, ns_default, 0, EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "determinant", elem_determinant, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
     { { HTML_1_0 }, { HTML_UNDEF }, "dfn", elem_dfn, ns_default, 0, EF_EMPH | EF_3_MISC | EF_4_PHRASE | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
@@ -205,6 +221,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "divergence", elem_divergence, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "divide", elem_divide, ns_default, EP_CLOSED | EP_ARGS_2, EF_M_CONTENT },
     { { HTML_TAGS }, { HTML_UNDEF }, "dl", elem_dl, ns_default, EP_ONLYELEMENTS | EP_WX, EF_BODY | EF_LIST | EF_3_BLOCK | EF_32_BLOCK | EF_4_BLOCK | EF_X2_STRUCT | EF_X2_LIST | EF_5_FLOW | EF_5_PALPABLE },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "docs", elem_rss_docs, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "domain", elem_domain, ns_default, EP_CLOSED, EF_M_CONTENT },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "domainofapplication", elem_domainofapplication, ns_default, EP_CLOSED, EF_M_CONTENT | EF_M_DQ },
     { { HTML_3_0 }, { HTML_3_0 }, "dot", elem_dot, ns_default, 0, EF_3_MATHVC },
@@ -213,8 +230,11 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "elementDef", elem_elementdef },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "ellipse", elem_ellipse, ns_default, 0, EF_S_G | EF_SVG_SHAPE | EF_SVG_GRAPH | EF_SVG2_GRAPH },
     { { HTML_1_0 }, { HTML_UNDEF }, "em", elem_em, ns_default, EP_WX, EF_EMPH | EF_PHRASE | EF_4_PHRASE | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "email", elem_atom_email, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_JAN07 }, { HTML_UNDEF }, "embed", elem_embed, ns_default, EP_CLOSED | EP_5_WILDATTR, EF_5_FLOW | EF_5_PHRASE | EF_5_EMBEDDED | EF_5_INTERACTIVE | EF_5_PALPABLE },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "emptyset", elem_emptyset, ns_default, EP_CLOSED, EF_M_CONTENT | EF_M_CONTINPRES },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "enclosure", elem_rss_enclosure, ns_rss, EP_RSS | EP_NO_WHINGE | EP_CLOSED },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "entry", elem_atom_entry, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "eq", elem_eq, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "equivalent", elem_equivalent, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "eulergamma", elem_eulergamma, ns_default, EP_CLOSED, EF_M_CONTENT | EF_M_CONTINPRES },
@@ -237,6 +257,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "feDisplacementMap", elem_fedisplacementmap, ns_default, 0, EF_SVG_FILTER },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "feDistantLight", elem_fedistantlight, ns_default, 0, EF_SVG_FILTER },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "feDropShadow", elem_fedropshadow, ns_default, 0, EF_SVG_FILTER },
+    { { HTML_TAGS, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, ELEM_FEED, elem_atom_feed, ns_default, EP_CAN_BE_TOP | EP_ATOM | EP_NO_WHINGE | EP_NODOCTYPE }, // note bracs_ket::nodoctype, plus forced namespace below
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "feFlood", elem_feflood, ns_default, 0, EF_SVG_FILTER },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "feFuncA", elem_fefunca, ns_default, 0, EF_SVG_FILTER },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "feFuncB", elem_fefuncb, ns_default, 0, EF_SVG_FILTER },
@@ -288,11 +309,14 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "g", elem_g, ns_default, 0, EF_S_G | EF_SVG_STR | EF_SVG_CONTAIN },
     { { HTML_JAN05 }, { HTML_JUN06 }, "gauge", elem_gauge, ns_default, 0, EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "gcd", elem_gcd, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "generator", elem_rss_generator, ns_rss, EP_RSS | EP_NO_WHINGE },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "generator", elem_atom_generator, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "geq", elem_geq, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "glyph", elem_glyph, ns_default, 0, EF_SVG_CONTAIN },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "glyphRef", elem_glyphref },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "grad", elem_grad, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "gt", elem_gt, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "guid", elem_rss_guid, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { XHTML_2_0 }, { XHTML_2_0 }, "h", elem_h, ns_default, 0, EF_HEAD },
     { { HTML_TAGS }, { HTML_UNDEF }, "h1", elem_h1, ns_default, EP_WX, EF_HEAD | EF_4_BLOCK | EF_5_FLOW | EF_5_PALPABLE },
     { { HTML_TAGS }, { HTML_UNDEF }, "h2", elem_h2, ns_default, EP_WX, EF_HEAD | EF_4_BLOCK | EF_5_FLOW | EF_5_PALPABLE },
@@ -304,9 +328,11 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_3_0 }, { HTML_3_0 }, "hat", elem_hat, ns_default, 0, EF_3_MATHVC },
     { { HTML_1_0 }, { HTML_UNDEF }, "head", elem_head, ns_default, EP_LAZY },
     { { HTML_JAN05 }, { HTML_UNDEF }, "header", elem_header, ns_default, 0, EF_5_FLOW | EF_5_PALPABLE },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "height", elem_rss_height, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_JUL09, HV_WHATWG }, { HTML_UNDEF }, "hgroup", elem_hgroup, ns_default, 0, EF_HEAD | EF_5_FLOW },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "hint", elem_hint, ns_default, EP_SIMPLE, EF_SVG_DESC },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "hkern", elem_hkern, ns_default, EP_CLOSED | EP_UNCLOSEDSVG12 },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "hour", elem_rss_hour, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_TAGS, HV_DEPRECATEDX10 }, { HTML_1_0 }, "hp1", elem_hp1 },
     { { HTML_TAGS, HV_DEPRECATEDX10 }, { HTML_1_0 }, "hp2", elem_hp2 },
     { { HTML_TAGS, HV_DEPRECATEDX10 }, { HTML_1_0 }, "hp3", elem_hp3 },
@@ -317,11 +343,14 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_1_0, HV_NOTPLUS }, { HTML_UNDEF }, "html", elem_html, ns_default, EP_TOP | EP_LAZY | EP_WX }, // technically, EP_WX here is wrong, but, well, that'd be silly ( https://docs.wxwidgets.org/stable/overview_html.html )
     { { HTML_PLUS }, { HTML_PLUS }, "htmlplus", elem_htmlplus, ns_default, EP_TOP | EP_LAZY },
     { { HTML_1_0 }, { HTML_UNDEF }, "i", elem_i, ns_default, EP_WX, EF_EMPH | EF_FONT | EF_3_FONT | EF_32_FONT | EF_4_FONT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "icon", elem_atom_icon, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "ID", elem_rdf_id, ns_rdf, 0, EF_RDF },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "id", elem_atom_id, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "ident", elem_ident, ns_default, EP_CLOSED, EF_M_CONTENT },
     { { HTML_4_0 }, { HTML_UNDEF }, "iframe", elem_iframe, ns_default, 0, EF_4_SPECIAL | EF_5_FLOW | EF_5_PHRASE | EF_5_EMBEDDED | EF_5_INTERACTIVE | EF_5_PALPABLE | EF_SVG2_GRAPH },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, "ilayer", elem_ilayer },
     { { HTML_PLUS, HV_NOT2 | HV_NOT32, HE_ANIM }, { HTML_UNDEF }, "image", elem_image, ns_default, EP_CLOSED | EP_4_OPEN | EP_5_OPEN, EF_TEXT | EF_S_G | EF_SVG_GRAPH | EF_SVG_STR | EF_M_CONTENT },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "image", elem_rss_image, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "imaginary", elem_imaginary, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT | EF_M_CONTINPRES },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "imaginaryi", elem_imaginaryi, ns_default, EP_CLOSED, EF_M_CONTENT },
     { { HTML_1_0 }, { HTML_UNDEF }, "img", elem_img, ns_default, EP_CLOSED | EP_X2_OPEN | EP_5_DYNAMIC | EP_WX, EF_TEXT  | EF_SPECIAL | EF_4_SPECIAL | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_EMBEDDED | EF_5_INTERACTIVE | EF_5_PALPABLE | EF_5_FORM },
@@ -337,6 +366,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "inverse", elem_inverse, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
     { { HTML_TAGS, HV_DEPRECATED4 }, { XHTML_1_1 }, "isindex", elem_isindex, ns_default, EP_CLOSED, EF_32_BLOCK | EF_METADATA | EF_3_BLOCK | EF_4_BLOCK },
     { { HTML_PLUS, HV_NOT2 }, { HTML_3_0 }, "item", elem_item, ns_default, EP_CLOSED },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "item", elem_rss_item, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_1_0 }, { HTML_UNDEF }, "kbd", elem_kbd, ns_default, EP_WX, EF_EMPH | EF_PHRASE | EF_4_PHRASE | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_JUL09, HV_NOT52 | HV_NOT53 }, { HTML_JUN17 }, "keygen", elem_keygen, ns_default, EP_CLOSED, EF_5_FLOW | EF_5_PHRASE | EF_5_INTERACTIVE | EF_5_PALPABLE | EF_5_FORM },
     { { HTML_PLUS, HV_NOT234 | HV_NOTX1 }, { XHTML_2_0 }, "l", elem_l, ns_default, EP_CLOSED | EP_X2_OPEN, EF_X2_TEXT },
@@ -344,17 +374,23 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "lambda", elem_lambda, ns_default, 0, EF_M_CONTENT | EF_M_CONTINPRES },
     { { HTML_3_0 }, { HTML_3_0 }, "lang", elem_lang, ns_default, 0, EF_3_MISC },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "laplacian", elem_laplacian, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "language", elem_rss_language, ns_rss, EP_RSS | EP_NO_WHINGE },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "lastBuildDate", elem_rss_lastbuilddate, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_3_2 }, "layer", elem_layer },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "lcm", elem_lcm, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
     { { HTML_3_0 }, { HTML_3_0 }, "left", elem_left, ns_default, EP_CLOSED },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "legal", elem_rsl_legal, ns_rsl, EP_RSL | EP_NO_WHINGE },
     { { HTML_4_0 }, { HTML_UNDEF }, "legend", elem_legend },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "leq", elem_leq, ns_default, EP_CLOSED| EP_ARGS_2| EP_ARGS_MORE, EF_M_CONTENT },
     { { HTML_3_0 }, { HTML_3_0 }, "lh", elem_lh },
     { { HTML_TAGS }, { HTML_UNDEF }, "li", elem_li, ns_default, EP_LAZY | EP_UNCLOSED1T | EP_WX, EF_X2_STRUCT | EF_X2_LIST },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "li", elem_rdf_li, ns_rdf, 0, EF_RDF },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "license", elem_rsl_licence, ns_rsl, EP_RSL | EP_NO_WHINGE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "limit", elem_limit, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "line", elem_line, ns_default, 0, EF_S_G | EF_SVG_SHAPE | EF_SVG_GRAPH | EF_SVG2_GRAPH },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "linearGradient", elem_lineargradient, ns_default, EP_SET_XLINKCAT (se_gradient), EF_SVG_PSGRAD },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "link", elem_rss_link, ns_rss, EP_RSS | EP_NO_WHINGE },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "link", elem_atom_link, ns_atom, EP_ATOM | EP_NO_WHINGE | EP_CLOSED },
     { { HTML_1_0 }, { HTML_UNDEF }, "link", elem_link, ns_default, EP_CLOSED, EF_METADATA | EF_5_FLOW | EF_5_PHRASE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "list", elem_list, ns_default, 0, EF_M_CONTENT | EF_M_CONTINPRES },
     { { HTML_SVG12 }, { HTML_UNDEF }, "listener", elem_listener, ns_default, EP_CLOSED, EF_X2_STRUCT },
@@ -364,6 +400,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "ln", elem_ln, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "loc", elem_loc },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "log", elem_log, ns_default, EP_CLOSED | EP_ARGS_1 | EP_ARGS_MORE, EF_M_CONTENT },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "logo", elem_atom_logo, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "logbase", elem_logbase, ns_default, 0, EF_M_CONTENT },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "lowlimit", elem_lowlimit, ns_default, 0, EF_M_CONTENT | EF_M_DQ },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "lt", elem_lt, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
@@ -372,6 +409,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_JUL13 }, { HTML_UNDEF }, "main", elem_main, ns_default, 0, EF_5_FLOW | EF_5_PALPABLE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "maligngroup", elem_maligngroup, ns_default, EP_CLOSED, EF_M_PRESINCONTENT },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "malignmark", elem_malignmark, ns_default, EP_CLOSED, EF_M_PRESINCONTENT },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "managingEditor", elem_rss_managingeditor, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_2_0, HV_RFC_1980 | HV_NOT30  }, { HTML_UNDEF }, "map", elem_map, ns_default, EP_5_TRANSPARENT | EP_WX, EF_TEXT | EF_SPECIAL | EF_4_SPECIAL | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_PLUS }, { HTML_PLUS }, "margin", elem_margin, ns_default, 0, EF_MISC },
     { { HTML_JUL08 }, { HTML_UNDEF }, "mark", elem_mark, ns_default, 0, EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE | EF_SVG_CONTAIN },
@@ -436,6 +474,8 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_4_01 }, "multicol", elem_multicol },
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, "munder", elem_munder, ns_default, 0, EF_M_PRESINCONTENT },
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, "munderover", elem_munderover, ns_default, 0, EF_M_PRESINCONTENT },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "name", elem_rss_name, ns_rss, EP_RSS | EP_NO_WHINGE },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "name", elem_atom_name, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "naturalnumbers", elem_naturalnumbers, ns_default, EP_CLOSED, EF_M_CONTENT | EF_M_CONTINPRES },
     { { HTML_JUL05 }, { HTML_UNDEF }, "nav", elem_nav, ns_default, 0, EF_5_FLOW | EF_5_SECTION | EF_5_PALPABLE },
     { { HTML_JAN05 }, { HTML_JUN05 }, "navigation", elem_navigation, ns_default, 0, EF_5_FLOW | EF_5_SECTION | EF_5_PALPABLE },
@@ -474,7 +514,9 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "parseType", elem_rdf_parsetype, ns_rdf, 0, EF_RDF },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "partialdiff", elem_partialdiff, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_X_MATH | EF_M_CONTENT },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "path", elem_path, ns_default, 0, EF_S_G | EF_SVG_GRAPH | EF_SVG_SHAPE | EF_SVG2_GRAPH },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "payment", elem_rsl_payment, ns_rsl, EP_RSL | EP_NO_WHINGE },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "pattern", elem_pattern, ns_default, EP_SET_XLINKCAT (se_pattern), EF_S_G | EF_SVG_CONTAIN | EF_SVG_PSGRAD },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "permits", elem_rsl_permits, ns_rsl, EP_RSL | EP_NO_WHINGE },
     { { HTML_PLUS, HV_NOT2 }, { HTML_3_0 }, "person", elem_person, ns_default, 0, EF_EMPH | EF_3_MISC },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "pi", elem_pi, ns_default, EP_CLOSED, EF_M_CONTENT | EF_M_CONTINPRES },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "piece", elem_piece, ns_default, 0, EF_M_CONTENT | EF_M_CONTINPRES },
@@ -492,14 +534,18 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_PLUS }, { HTML_PLUS }, "printed", elem_printed, ns_default, 0, EF_EMPH },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "product", elem_product, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
     { { HTML_JUL06 }, { HTML_UNDEF }, "progress", elem_progress, ns_default, 0, EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "prohibits", elem_rsl_prohibits, ns_rsl, EP_RSL | EP_NO_WHINGE },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "prototype", elem_prototype },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "prsubset", elem_prsubset, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "pubDate", elem_rss_pubdate, ns_rss, EP_RSS | EP_NO_WHINGE },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "published", elem_atom_published, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_PLUS, HV_RFC_2070 | HV_NOT32 }, { HTML_UNDEF }, "q", elem_q, ns_default, 0, EF_TEXT | EF_EMPH | EF_3_MISC | EF_4_SPECIAL | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_PLUS }, { HTML_PLUS }, "quote", elem_quote, ns_default, 0, EF_BLOK },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "quotient", elem_quotient, ns_default, EP_CLOSED | EP_ARGS_2, EF_M_CONTENT },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "radialGradient", elem_radialgradient, ns_default, EP_SET_XLINKCAT (se_gradient), EF_SVG_PSGRAD },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "rationals", elem_rationals, ns_default, EP_CLOSED, EF_M_CONTENT | EF_M_CONTINPRES },
     { { HTML_3_0 }, { HTML_3_0 }, "range", elem_range, ns_default, EP_CLOSED },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "rating", elem_rss_rating, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { XHTML_1_1, HV_W3, 0, 0, 0, H4_RUBY }, { HTML_UNDEF }, "rb", elem_rb, ns_default },
     { { XHTML_1_1, 0, 0, 0, 0, H4_RUBY }, { XHTML_2_0 }, "rbc", elem_rbc },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "RDF", elem_rdf_rdf, ns_rdf, 0, EF_4_SPECIAL | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_EMBEDDED | EF_RDF | EF_METADATA },
@@ -514,9 +560,12 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_PLUS }, { HTML_PLUS }, "render", elem_render, ns_default, EP_CLOSED, EF_MISC | EF_METADATA },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "resource", elem_rdf_resource, ns_rdf, 0, EF_RDF },
     { { HTML_3_0 }, { HTML_3_0 }, "right", elem_right, ns_default, EP_CLOSED },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "rights", elem_atom_rights, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_3_0, HV_NOT4 | HV_NOT32 }, { HTML_UNDEF }, "root", elem_root, ns_default, EP_CLOSED | EP_PRE_X_OPEN | EP_ARGS_1 | EP_ARGS_2, EF_MATH | EF_M_CONTENT },
     { { HTML_3_0 }, { HTML_3_0 }, "row", elem_row },
     { { XHTML_1_1, 0, 0, 0, 0, H4_RUBY }, { HTML_UNDEF }, "rp", elem_rp, ns_default, EP_LAZY },
+    { { HTML_TAGS, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, ELEM_RSL, elem_rsl, ns_default, EP_CAN_BE_TOP | EP_RSL | EP_NO_WHINGE | EP_NODOCTYPE },  // note bracs_ket::nodoctype, plus forced namespace below 
+    { { HTML_TAGS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, ELEM_RSS, elem_rss, ns_default, EP_CAN_BE_TOP | EP_RSS | EP_NO_WHINGE | EP_NODOCTYPE },  // note bracs_ket::nodoctype, plus forced namespace below
     { { XHTML_1_1, 0, 0, 0, 0, H4_RUBY }, { HTML_UNDEF }, "rt", elem_rt, ns_default, EP_LAZY },
     { { XHTML_1_1, HV_W3, 0, 0, 0, H4_RUBY }, { HTML_UNDEF }, "rtc", elem_rtc, ns_default },
     { { XHTML_1_1, 0, 0, 0, 0, H4_RUBY }, { HTML_UNDEF }, "ruby", elem_ruby, ns_default, 0, EF_4_PHRASE | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
@@ -525,6 +574,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_1_0 }, { HTML_UNDEF }, "samp", elem_samp, ns_default, EP_WX, EF_EMPH | EF_PHRASE | EF_4_PHRASE | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_1_0 }, { HTML_UNDEF }, "sarcasm", elem_sarcasm, ns_default, EP_5_TRANSPARENT, EF_EMPH | EF_PHRASE | EF_4_PHRASE | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "scalarproduct", elem_scalarproduct, ns_default, EP_CLOSED | EP_ARGS_2, EF_M_CONTENT },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "schema", elem_rsl_schema, ns_rsl, EP_RSL | EP_NO_WHINGE },
     { { HTML_3_2 }, { HTML_UNDEF }, "script", elem_script, ns_default, EP_SET_XLINKCAT (se_script), EF_METADATA | EF_SPECIAL | EF_4_SPECIAL | EF_X2_STRUCT | EF_5_FLOW | EF_5_PHRASE | EF_5_SCRIPT },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "sdev", elem_sdev, ns_default, EP_CLOSED | EP_ARGS_1 | EP_ARGS_MORE, EF_M_CONTENT },
     { { HTML_APR23 }, { HTML_UNDEF }, "search", elem_search, ns_default, 0, EF_5_FLOW | EF_5_PALPABLE },
@@ -545,15 +595,20 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_JAN05 }, { HTML_JUN05 }, "sidebar", elem_sidebar, ns_default, 0, EF_5_FLOW | EF_5_SECTION | EF_5_PALPABLE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "sin", elem_sin, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "sinh", elem_sinh, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "skipDays", elem_rss_skipdays, ns_rss, EP_RSS | EP_NO_WHINGE },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "skipHours", elem_rss_skiphours, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_JUL16, HV_WHATWG }, { HTML_UNDEF }, "slot", elem_slot, ns_default, EP_5_TRANSPARENT, EF_5_FLOW | EF_5_PHRASE },
     { { HTML_3_0 }, { HTML_UNDEF }, "small", elem_small, ns_default, EP_WX, EF_3_FONT | EF_32_FONT | EF_4_FONT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, "solidColor", elem_solidcolour },
     { { HTML_JUL07 }, { HTML_UNDEF }, "source", elem_source, ns_default, EP_CLOSED },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "source", elem_rss_source, ns_rss, EP_RSS | EP_NO_WHINGE },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "source", elem_atom_source, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_2_0, 0, HE_NETSCAPE }, { HTML_4_01 }, "spacer", elem_spacer, ns_default, EP_SIMPLE },
     { { HTML_2_0, HV_RFC_2070 | HV_NOT3 }, { HTML_UNDEF }, "span", elem_span, ns_default, EP_WX, EF_TEXT | EF_PRE | EF_4_SPECIAL | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_3_0 }, { HTML_3_0 }, "spot", elem_spot, ns_default, EP_CLOSED },
     { { HTML_3_0 }, { HTML_3_0 }, "sqrt", elem_sqrt, ns_default, 0, EF_MATH },
     { { XHTML_2_0 }, { XHTML_2_0 }, "standby", elem_standby },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "standard", elem_rsl_standard, ns_rsl, EP_RSL | EP_NO_WHINGE },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "stop", elem_stop },
     { { XHTML_2_0 }, { XHTML_2_0 }, "stoppropagation", elem_stoppropagation, ns_default, EP_CLOSED },
     { { HTML_3_2, HV_DEPRECATED4 }, { HTML_4_01 }, "strike", elem_strike, ns_default, EP_WX, EF_32_FONT | EF_4_FONT },
@@ -561,8 +616,10 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_3_0 }, { HTML_UNDEF }, "style", elem_style, ns_default, EP_SIMPLE, EF_METADATA | EF_X2_STRUCT | EF_5_FLOW },
     { { HTML_PLUS, HV_RFC_2070 }, { HTML_UNDEF }, "sub", elem_sub, ns_default, EP_WX, EF_TEXT | EF_MATH | EF_EMPH | EF_3_TEXT | EF_32_FONT | EF_4_SPECIAL | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "subset", elem_subset, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "subtitle", elem_atom_subtitle, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "sum", elem_sum, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
     { { XHTML_2_0, HV_NOT50 }, { HTML_UNDEF }, "summary", elem_summary },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "summary", elem_atom_summary, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_PLUS, HV_RFC_2070 }, { HTML_UNDEF }, "sup", elem_sup, ns_default, EP_WX, EF_TEXT | EF_MATH | EF_EMPH | EF_3_TEXT | EF_32_FONT | EF_4_SPECIAL | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM_11_2 }, { HTML_UNDEF }, "svg", elem_svg, ns_default, 0, EF_4_SPECIAL | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_EMBEDDED | EF_S_G | EF_SVG_STR | EF_SVG_CONTAIN },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "switch", elem_switch, ns_default, EP_SVG_12_TRANS, EF_S_G | EF_SVG_CONTAIN },
@@ -578,8 +635,10 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_PLUS, HV_RFC_1942 }, { HTML_UNDEF }, "td", elem_td, ns_default, EP_LAZY | EP_UNCLOSEDPLUS | EP_WX },
     { { HTML_JUL13 }, { HTML_UNDEF }, "template", elem_template, ns_default, 0, EF_METADATA | EF_5_FLOW | EF_5_PHRASE | EF_5_SCRIPT },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "tendsto", elem_tendsto, ns_default, EP_CLOSED | EP_ARGS_2, EF_M_CONTENT | EF_M_CONTINPRES },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "terms", elem_rsl_terms, ns_rsl, EP_RSL | EP_NO_WHINGE },   
     { { HTML_3_0, HV_NOT32, HE_SVG | HE_SVG_OLD_H | HE_ANIM }, { HTML_UNDEF }, "text", elem_text, ns_default, 0, EF_S_G | EF_SVG_GRAPH | EF_SVG_TEXT | EF_SVG2_GRAPH },
     { { HTML_PLUS, HV_NOT2L1 | HV_NOTX2 }, { HTML_UNDEF }, "textarea", elem_textarea, ns_default, EP_NO_WHINGE, EF_MISC | EF_32_FORM | EF_4_FORM | EF_5_FLOW | EF_5_PHRASE | EF_5_INTERACTIVE | EF_5_PALPABLE | EF_5_FORM },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "textInput", elem_rss_textinput, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "textPath", elem_textpath, ns_default, EP_SET_XLINKCAT (se_path), EF_SVG_TEXT | EF_SVG2_GRAPH },
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 }, { HTML_UNDEF }, "tfoot", elem_tfoot },
     { { HTML_PLUS, HV_RFC_1942 }, { HTML_UNDEF }, "th", elem_th, ns_default, EP_LAZY | EP_UNCLOSEDPLUS | EP_WX },
@@ -588,6 +647,8 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_3_0 }, { HTML_3_0 }, "tilde", elem_tilde, ns_default, 0, EF_3_MATHVC },
     { { HTML_JAN07 }, { HTML_UNDEF }, "time", elem_time, ns_default, 0, EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "times", elem_times, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "title", elem_rss_title, ns_rss, EP_RSS | EP_NO_WHINGE },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "title", elem_atom_title, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_TAGS, 0, 0 }, { HTML_UNDEF }, "title", elem_title, ns_default, EP_SIMPLE | EP_WX, EF_METADATA | EF_X2_STRUCT | EF_X2_LIST | EF_X2_TEXT | EF_S_G | EF_SVG_DESC },
     { { HTML_PLUS, HV_RFC_1942 }, { HTML_UNDEF }, "tr", elem_tr, ns_default, EP_UNCLOSEDPLUS | EP_WX | EP_LAZY },
     { { HTML_JUL10 }, { HTML_UNDEF }, "track", elem_track, ns_default, EP_CLOSED },
@@ -599,10 +660,14 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "true", elem_true, ns_default, EP_CLOSED, EF_M_CONTENT | EF_M_CONTINPRES },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "tspan", elem_tspan, ns_default, EP_SVG_12_TRANS, EF_SVG_TEXT | EF_SVG2_GRAPH },
     { { HTML_1_0 }, { XHTML_1_1 }, "tt", elem_tt, ns_default, EP_WX, EF_EMPH | EF_FONT | EF_3_FONT | EF_32_FONT | EF_4_FONT },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "ttl", elem_rss_ttl, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_1_0, HV_DEPRECATED4 | HV_NOTX2 }, { HTML_UNDEF }, "u", elem_u, ns_default, EP_WX, EF_EMPH | EF_3_FONT | EF_32_FONT | EF_4_FONT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_TAGS, HV_DEPRECATED30 }, { HTML_UNDEF }, "ul", elem_ul, ns_default, EP_5_DYNAMIC | EP_WX, EF_3_LIST | EF_LL | EF_LIST | EF_32_BLOCK | EF_4_BLOCK | EF_X2_STRUCT | EF_X2_LIST | EF_5_FLOW | EF_5_PALPABLE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "union", elem_union, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "updated", elem_atom_updated, ns_atom, EP_ATOM | EP_NO_WHINGE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "uplimit", elem_uplimit, ns_default, 0, EF_M_CONTENT | EF_M_DQ },
+    { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "uri", elem_atom_uri, ns_atom, EP_ATOM | EP_NO_WHINGE },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "url", elem_rss_url, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "use", elem_use, ns_default, 0, EF_S_G | EF_SVG_STR | EF_SVG_GRAPH | EF_SVG2_GRAPH },
     { { HTML_1_0 }, { HTML_UNDEF }, "var", elem_var, ns_default, 0, EF_EMPH | EF_PHRASE | EF_4_PHRASE | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "variance", elem_variance, ns_default, EP_CLOSED | EP_ARGS_1 | EP_ARGS_MORE, EF_M_CONTENT },
@@ -628,6 +693,8 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "view", elem_view },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "vkern", elem_vkern, ns_default, EP_CLOSED },
     { { HTML_2_0, HV_NOT324XX }, { HTML_UNDEF }, "wbr", elem_wbr, ns_default, EP_CLOSED, EF_EMPH | EF_5_FLOW | EF_5_PHRASE },
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "webmaster", elem_rss_webmaster, ns_rss, EP_RSS | EP_NO_WHINGE }, 
+    { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "width", elem_rss_width, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "xa", elem_xa, ns_default, EP_SVG_12_TRANS, EF_S_G | EF_SVG_CONTAIN },
     { { HTML_2_0, 0, HE_IE }, { HTML_4_01 }, "xml", elem_xml, ns_default, EP_SIMPLE },
     { { HTML_TAGS, HV_DEPRECATED123 }, { HTML_3_2 }, "xmp", elem_xmp, ns_default, EP_SIMPLE | EP_XMP, EF_LIT },
@@ -635,35 +702,81 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
 
 e_element max_tag = last_element_tag;
 element_bitset elem::ignored_;
+s_el elem::s_nodoc_; 
 
-elem :: elem (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x, const bool closure)
-{   parse (nits, v, namespaces, x, closure); }
+elem :: elem (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x, const bool closure, e_namespace* autodeclare)
+{   parse (nits, v, namespaces, x, closure, autodeclare); }
 
 void elem::init (nitpick& nits)
-{   symbol < html_version, e_element > :: init (nits, elem_symbol_table, sizeof (elem_symbol_table) / sizeof (symbol_entry < html_version, e_element >), true); }
+{   symbol < html_version, e_element > :: init (nits, elem_symbol_table, sizeof (elem_symbol_table) / sizeof (symbol_entry < html_version, e_element >), true);
+    for (unsigned i = 0; i < max_tag; ++i)
+        if ((elem::flags (i) & EP_NODOCTYPE) == EP_NODOCTYPE)
+            s_nodoc_.insert (i); }
 
 bool elem::under_parse (nitpick& nits, const html_version& v, const ::std::string& el, const ident_t n)
 {   return symbol < html_version, e_element > :: parse (nits, v, el, n); }
 
-bool elem::parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x, const bool closure)
+void elem::post_parse_validate (nitpick& nits)
+{   if ((flags () & EP_EXPERIMENTAL) == EP_EXPERIMENTAL)
+        nits.pick (nit_experimental, es_warning, ec_element, "<", name (), "> is experimental, so unlikely to be properly supported by most browsers");
+    if ((flags () & EP_AI) == EP_AI)
+        nits.pick (nit_ai, es_warning, ec_element, "AI elements are not actually valid elements"); }
+
+bool elem::parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x, const bool closure, e_namespace* autodeclare)
 {   PRESUME (! x.empty (), __FILE__, __LINE__);
     const bool chwx = context.wx () && ! closure;
-    ::std::string el (x), n;
+    ::std::string el (x), n; // checks should apply AFTER identification
     first ().check_status (nits, el);
     ns (examine_namespace (nits, v, namespaces, el, n));
     if (el.empty ()) return false;
-    if ((flags () & EP_EXPERIMENTAL) == EP_EXPERIMENTAL)
-        nits.pick (nit_experimental, es_warning, ec_element, "<", el, "> is experimental, so unlikely to be properly supported by most browsers");
     if (chwx && (! n.empty ())) nits.pick (nit_wx, ed_wx, "Supported HTML Tags", es_warning, ec_element, "the wxWidgets HTML engine does not process namespaces");
-    if ((flags () & EP_AI) == EP_AI)
-    {   nits.pick (nit_ai, es_warning, ec_element, "AI elements are not actually valid elements");
-        return true; }
     nitpick knits;
+    if (ns () == ns_default)
+        if (namespaces != nullptr)
+        {   if (closure)
+            {   const elem tst (knits, v, namespaces_ptr (), x, true, nullptr);
+                switch (tst.get ())
+                {   case elem_atom_feed :
+                        under_parse (knits, v, el, ns_default);
+                        ns (ns_atom);
+                        post_parse_validate (nits);
+                        return true;
+                    case elem_rsl :
+                        under_parse (knits, v, el, ns_default);
+                        ns (ns_rsl);
+                        post_parse_validate (nits);
+                        return true;
+                    case elem_rss :
+                        under_parse (knits, v, el, ns_default);
+                        ns (ns_rss);
+                        post_parse_validate (nits);
+                        return true;
+                    default: break; } }
+            for (auto ens : namespace_names.presumed ())
+                if (namespaces -> has (ens))
+                    if (under_parse (knits, v, el, ens))
+                    {   nits.merge (knits);
+                        post_parse_validate (nits);
+                        return true; } }
     if (under_parse (knits, v, el, ns ()))
-    {   if (chwx)
+    {   if (ns () == ns_default)
+            switch (get ())
+            {   case elem_atom_feed :
+                    if (autodeclare != nullptr) *autodeclare = ns_atom;
+                    break;
+                case elem_rsl :
+                    if (autodeclare != nullptr) *autodeclare = ns_rsl;
+                    break;
+                case elem_rss :
+                    if (autodeclare != nullptr) *autodeclare = ns_rss;
+                    break;
+                default: break; }
+        if (chwx)
             if ((flags () & EP_WX) != EP_WX)
                 knits.pick (nit_wx, ed_wx, "Supported HTML Tags", es_warning, ec_element, "the wxWidgets HTML engine does not process <", el, ">");
-        nits.merge (knits); return true; }
+        nits.merge (knits);
+        post_parse_validate (nits);
+        return true; }
     if ((ns () == ns_svg) || (ns () == ns_math))
     {   elem e;
         nitpick nuts;
@@ -671,11 +784,15 @@ bool elem::parse (nitpick& nits, const html_version& v, const namespaces_ptr& na
             switch (ns ())
             {   case ns_svg :
                     if (e.is_svg ())
-                    {   under_parse (nits, v, el, ns_default); return true; }
+                    {   under_parse (nits, v, el, ns_default);
+                        post_parse_validate (nits);
+                        return true; }
                     break;
                 case ns_math :
                     if (e.is_math ())
-                    {   under_parse (nits, v, el, ns_default); return true; }
+                    {   under_parse (nits, v, el, ns_default);
+                        post_parse_validate (nits);
+                        return true; }
                     break;
         default : break; } }
     nits.merge (knits);

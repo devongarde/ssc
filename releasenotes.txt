@@ -3,6 +3,17 @@ static site checker
 https://ssc.lu/
 (c) 2020-2025 Dylan Harris
 
+0.2.21
+- Living Standard October 2025
+- analyse ads.txt
+- analyse robots.txt
+- partially analyse ATOM files
+- partially analyse RSL files
+- partially analyse RSS files
+- analyse security.txt
+- various bug fixes
+- underlying work
+
 0.2.20
 - better liaison between SSC and OpenBSD's httpd
 - underlying work

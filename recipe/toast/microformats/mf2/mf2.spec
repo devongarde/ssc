@@ -9,7 +9,7 @@ PASS ../toast/microformats/mf2/mf2-bad.html
 15 sex
 16 sex
 26 no_tel phone
-28 bad_datetime bad_datetime
+28 rather_too_vague rather_too_vague
 30 sex
 31 sex
 37 unrecognised_value
@@ -19,13 +19,13 @@ PASS ../toast/microformats/mf2/mf2-bad.html
 47 bad_money
 48 unrecognised_value
 52 bad_money
-57 bad_datetime
-58 invalid_duration
+57 rather_too_vague
+58 duration
 63 out_of_range
 64 out_of_range
 71 bad_rating
 72 bad_rating bad_rating
-73 bad_datetime
+73 rather_too_vague
 
 PASS ../toast/microformats/mf2/mf2-dubious.html
 2 naughty_lang
@@ -58,7 +58,7 @@ PASS ../toast/microformats/mf2/mf2-example.html
 69 hcard_infer hcard_infer
 77 no_such_folder url_not_found
 121 naughty_alt
-139 invalid_duration
+139 duration
 
 PASS ../toast/microformats/mf2/mf2-good.html
 2 naughty_lang

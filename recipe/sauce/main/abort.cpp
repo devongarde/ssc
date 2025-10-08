@@ -22,53 +22,54 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "main/output.h"
 
-::std::string file_line (const char* const fn, const ::std::size_t line)
+::std::string file_line (const char* const fn, const ::std::size_t line, const ::std::string& xtra)
 {   ::std::string msg (" in ");
     ::boost::filesystem::path p (fn);
     msg += p.filename ().string ();
     msg += " line ";
     msg += ::boost::lexical_cast < ::std::string > (line);
     msg += " (aborting)";
+    if (! xtra.empty ()) { msg += " ["; msg += xtra; msg += "]"; }
     return msg; }
 
-[[noreturn]] void throw_bad_dereference (const char* const var, const char* const fn, const ::std::size_t line)
+[[noreturn]] void throw_bad_dereference (const char* const var, const char* const fn, const ::std::size_t line, const ::std::string& xtra)
 {   ::std::string msg ("null dereference of ");
     msg += var;
-    msg += file_line (fn, line);
+    msg += file_line (fn, line, xtra);
     context.os () -> err ("\n", msg, "\n");
     throw ::std::runtime_error (msg); }
 
-[[noreturn]] void throw_bad_presumption (const char* const x, const char* const fn, const ::std::size_t line)
+[[noreturn]] void throw_bad_presumption (const char* const x, const char* const fn, const ::std::size_t line, const ::std::string& xtra)
 {   ::boost::filesystem::path p (fn);
     ::std::string msg ("presumption " );
     msg += quote (x);
     msg += ::std::string (" failed");
-    msg += file_line (fn, line);
+    msg += file_line (fn, line, xtra);
     context.os () -> err ("\n", msg, "\n");
     throw ::std::runtime_error (msg); }
 
-[[noreturn]] void ugly_presumption (const char* const x, const char* const fn, const ::std::size_t line)
+[[noreturn]] void ugly_presumption (const char* const x, const char* const fn, const ::std::size_t line, const ::std::string& xtra)
 {   try
     {   ::boost::filesystem::path p (fn);
         ::std::string msg ("presumption " );
         msg += quote (x);
         msg += ::std::string (" failed");
-        msg += file_line (fn, line);
+        msg += file_line (fn, line, xtra);
         context.os () -> err ("\n", msg, "\n"); }
     catch (...)
     {   context.os () -> err ("\nugly presumption cannot state its origin\n"); }
     ::std::terminate (); }
 
-[[noreturn]] void graceful_crash (const char* const fn, const ::std::size_t line)
+[[noreturn]] void graceful_crash (const char* const fn, const ::std::size_t line, const ::std::string& xtra)
 {   ::std::string msg ("inconsistent internal state");
-    msg += file_line (fn, line);
+    msg += file_line (fn, line, xtra);
     context.os () -> err ("\n", msg, "\n");
     throw ::std::runtime_error (msg); }
 
-[[noreturn]] void graceless_crash (const char* const fn, const ::std::size_t line) noexcept
+[[noreturn]] void graceless_crash (const char* const fn, const ::std::size_t line, const ::std::string& xtra) noexcept
 {   try
     {   ::std::string msg ("inconsistent internal state");
-        msg += file_line (fn, line);
+        msg += file_line (fn, line, xtra);
         context.os () -> err ("\n", msg, "\n"); }
     catch (...)
     {   try { context.os () -> err ("\ngraceless crash cannot state its origin\n"); } catch (...) { } }

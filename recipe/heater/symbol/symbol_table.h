@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "symbol/symbol_store.h"
 #include "symbol/symbol_key.h"
+#include "symbol/nstr.h"
 #include "main/output.h"
 
 template < typename CATEGORY > struct behaviour

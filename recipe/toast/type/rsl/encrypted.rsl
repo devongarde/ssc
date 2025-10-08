@@ -1,0 +1,9 @@
+<rsl xmlns="https://rslstandard.org/rsl">
+  <!-- Decrypting EPUB content requires obtaining a license key -->
+  <content url="/books/book1.epub.aes" encrypted="true"
+           server="https://example-server.org/api">
+    <license>
+      ...
+    </license>
+  </content>
+</rsl>

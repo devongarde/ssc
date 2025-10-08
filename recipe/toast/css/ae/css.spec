@@ -21,7 +21,7 @@ PASS ../toast/css/ae/oindex.html
 
 PASS ../toast/css/ae/parked.html
 4 unexpected_doctype_content
-10 bad_datetime
+10 bad_weekday
 32 url_not_found
 44 mixed_mess missing_open
 

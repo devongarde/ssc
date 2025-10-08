@@ -201,6 +201,8 @@
     <ClInclude Include="..\heater\ontology\ontology_structure.h" />
     <ClInclude Include="..\heater\ontology\ontology_type.h" />
     <ClInclude Include="..\heater\ontology\ontology_version.h" />
+    <ClInclude Include="..\heater\parser\ads.h" />
+    <ClInclude Include="..\heater\parser\colonic.h" />
     <ClInclude Include="..\heater\parser\efficiency.h" />
     <ClInclude Include="..\heater\parser\html_version.h" />
     <ClInclude Include="..\heater\parser\jsonic.h" />
@@ -213,6 +215,8 @@
     <ClInclude Include="..\heater\parser\parse_elements.h" />
     <ClInclude Include="..\heater\parser\parse_ssi.h" />
     <ClInclude Include="..\heater\parser\pattern.h" />
+    <ClInclude Include="..\heater\parser\robotic.h" />
+    <ClInclude Include="..\heater\parser\security.h" />
     <ClInclude Include="..\heater\parser\text-data.h" />
     <ClInclude Include="..\heater\parser\text.h" />
     <ClInclude Include="..\heater\parser\xhtml_xml.h" />
@@ -268,6 +272,7 @@
     <ClInclude Include="..\heater\url\url_sanitise.h" />
     <ClInclude Include="..\heater\url\url_scheme.h" />
     <ClInclude Include="..\heater\url\url_schemes.h" />
+    <ClInclude Include="..\heater\url\wacky.h" />
     <ClInclude Include="..\heater\utility\bigvector.h" />
     <ClInclude Include="..\heater\utility\bitset.h" />
     <ClInclude Include="..\heater\utility\byteorder.h" />
@@ -490,6 +495,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\compound\type_mimes.cpp" />
     <ClCompile Include="..\sauce\compound\type_varied.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
@@ -730,6 +736,7 @@
     <ClCompile Include="..\sauce\css\value_types_p_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_q_r.cpp" />
     <ClCompile Include="..\sauce\css\value_types_r.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_rsl.cpp" />
     <ClCompile Include="..\sauce\css\value_types_svg_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_svg_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_s_1.cpp" />
@@ -1204,6 +1211,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\parser\ads.cpp" />
+    <ClCompile Include="..\sauce\parser\colonic.cpp" />
     <ClCompile Include="..\sauce\parser\efficiency.cpp" />
     <ClCompile Include="..\sauce\parser\html_version.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
@@ -1255,6 +1264,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\parser\robotic.cpp" />
+    <ClCompile Include="..\sauce\parser\security.cpp" />
     <ClCompile Include="..\sauce\parser\text-data.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
@@ -1471,6 +1482,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\url\wacky.cpp" />
     <ClCompile Include="..\sauce\utility\byteorder.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>

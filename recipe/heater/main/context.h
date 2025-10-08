@@ -41,8 +41,8 @@ CONSTEXPR bool def_absolute_path = true, def_aria = true, def_article = false, d
     def_ruby = false, def_ontology = true, def_safari = false, def_serve = false, def_shadow_changed = false, def_shadow_comment = true,
     def_shadow_enable = false, def_shadow_space = true, def_shadow_ssi = true, def_sign = false, def_sloven = false, def_spec = false,
     def_special = true, def_spell = true, def_spell_deduced = false, def_ssi = true, def_ssi_exec_run = false, def_test = false,
-    def_unknown_class = true, def_update = false, def_valid = false, def_vcs = false, def_verify = false, def_versioned = false,
-    def_wx = false, def_yggdrisil = false;
+    def_unknown_class = true, def_update = false, def_update_check = true, def_valid = false, def_vcs = false, def_verify = false,
+    def_versioned = false, def_wx = false, def_yggdrisil = false;
 CONSTEXPR const char* const def_macrostart = "{{";
 CONSTEXPR const char* const def_macroend = "}}";
 CONSTEXPR const char* const def_path = DEF_DATAPATH;
@@ -54,7 +54,17 @@ CONSTEXPR long def_max_file_size = DMFS_BYTES;
 CONSTEXPR const char* const def_css_ext = CSS_EXT;
 CONSTEXPR const char* const def_html_ext = HTML_EXT;
 CONSTEXPR const char* const def_jsonld_ext = JSONLD_EXT;
+CONSTEXPR const char* const def_rsl_ext = RSL_EXT;
+CONSTEXPR const char* const def_rss_ext = RSS_EXT;
+CONSTEXPR const char* const def_rss_ver = "2.0";
 CONSTEXPR const char* const def_stylesheet = "stylesheet.css";
+
+class ads;
+class robotic;
+class sec_txt;
+typedef ::std::shared_ptr < ads > ads_ptr;
+typedef ::std::shared_ptr < robotic > robotic_ptr;
+typedef ::std::shared_ptr < sec_txt > sec_ptr;
 
 class context_t
 {   friend class options;
@@ -74,8 +84,9 @@ class context_t
                     shadow_comment_ = def_shadow_comment, shadow_enable_ = def_shadow_enable, shadow_space_ = def_shadow_space,
                     shadow_ssi_ = def_shadow_ssi, sign_ = def_sign, sloven_ = def_sloven, spec_ = def_spec, special_ = def_special,
                     spell_ = def_spell, spell_deduced_ = def_spell_deduced, ssi_ = def_ssi, ssi_exec_run_ = def_ssi_exec_run,
-                    test_ = def_test, unknown_class_ = def_unknown_class, update_ = def_update, verify_ = def_verify, valid_ = def_valid,
-                    vcs_ = def_vcs, versioned_ = def_versioned, wx_ = def_wx, yggdrisil_ = def_yggdrisil;
+                    test_ = def_test, unknown_class_ = def_unknown_class, update_ = def_update, update_check_ = def_update_check,
+                    verify_ = def_verify, valid_ = def_valid, vcs_ = def_vcs, versioned_ = def_versioned, wx_ = def_wx,
+                    yggdrisil_ = def_yggdrisil;
     ::std::size_t   fred_ = def_fred, title_ = def_htmltitle;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = def_mf;
@@ -83,16 +94,17 @@ class context_t
     long            max_file_size_ = def_max_file_size;
     e_severity      report_error_ = es_error, verbose_ = default_output;
     ::std::string   accept_, account_, build_, cache_, domsg_, export_root_, general_info_, help_, index_, lang_, macro_end_ = def_macroend,
-                    macro_start_ = def_macrostart, msg_, out_, out_copy_, output_format_, output_override_, output_time_, path_ = def_path, persisted_,
-                    root_, shadow_, shadow_persist_, snippet_, ssi_doc_args_, ssi_echomsg_, ssi_errmsg_, ssi_exec_text_, ssi_query_string_,
-                    ssi_timefmt_, ssi_user_name_, started_, stats_, svg_, username_, wx_snippet_, x_;
+                    macro_start_ = def_macrostart, msg_, out_, out_copy_, output_format_, output_override_, output_time_, path_ = def_path,
+                    persisted_, root_, shadow_, shadow_persist_, snippet_, ssi_doc_args_, ssi_echomsg_, ssi_errmsg_,
+                    ssi_exec_text_, ssi_query_string_, ssi_timefmt_, ssi_user_name_, started_, stats_, svg_, username_, wx_snippet_, x_;
     ::boost::filesystem::path   back_, config_, corpus_, def_conf_path_, def_conf_file_, home_, password_, private_, public_, proot_, signature_,
                                 spell_path_, stylesheet_ = def_stylesheet;
     static ::boost::filesystem::path cwd_;
-    sstr_t          css_ext_ = { CSS_EXT }, custom_elements_, extensions_ = { HTML_EXT }, jsonld_ext_, no_ex_check_ = { JSONLD_EXT }, site_, vtt_ext_ = { VTT_EXT };
+    sstr_t          atomic_ext_ = { ATOMIC_EXT }, css_ext_ = { CSS_EXT }, custom_elements_, extensions_ = { HTML_EXT }, jsonld_ext_, no_ex_check_ = { JSONLD_EXT },
+                    rsl_ext_ = { RSL_EXT }, rss_ext_ = { RSS_EXT }, site_, vtt_ext_ = { VTT_EXT };
     vstr_t          abhorrent_, attrib_, catastrophe_, cmd_, comment_, debug_, dict_, dlang_, elem_, elem_attrib_, environment_, error_, exclude_,
                     exports_, inform_, ignore_, jsonld_key_, jsonld_ont_, jsonld_val_, output_description_, naughty_, nice_, note_, pretend_, replace_, report_,
-                    shadow_ignore_, shadows_, silent_, spell_list_, spellings_, warning_, url_var_, virtuals_, vont_;
+                    shadow_ignore_, shadows_, silent_, spell_list_, spellings_, url_var_, virtuals_, vont_, warning_;
     ustr_t          uvar_;
     vvstr_t         vvext_;
     static ustr_t   validation_;
@@ -105,6 +117,11 @@ class context_t
     os_ptr          os_;
     wblist          tim_;
     vreg_t          silence_;
+    e_rss_version   rss_ver_ = rv_2011;
+    mutable ads_ptr         ads_;
+    mutable robotic_ptr     robbie_;
+    mutable sec_ptr         security_;
+    static ::std::string update_info_;
 #ifdef LEAK_SEEK
 public:
     static _CrtMemState ls_old_;
@@ -131,6 +148,7 @@ private:
     ::std::string summarise () const;
     void populate_jsonld_ont (const vstr_t& vs);
     void check_consistency (nitpick& nits);
+    void check_for_update (nitpick& nits);
 public:
     context_t () { init (); }
     context_t (nitpick& nits, const ::boost::filesystem::path& fn);
@@ -152,6 +170,7 @@ public:
     context_t& analysis (const e_analysis a) { anal_ = a; mac (nm_context_analysis, static_cast < int > (a)); return *this; }
     context_t& aria (const bool b) { aria_ = b; mac (nm_context_role, b); return *this; }
     context_t& article (const bool b) { article_ = b; mac (nm_context_article, b); return *this; }
+    context_t& atomic_ext (const vstr_t& s) { atomic_ext_ = vtos (s); mac (nm_context_atomic_exts, s); return *this; }
     context_t& attrib (const vstr_t& s) { attrib_ = s; return *this; }
     context_t& back (const ::boost::filesystem::path& s) { back_ = s; mac (nm_context_back, s); return *this; }
     context_t& body (const bool b) { body_ = b; mac (nm_context_body, b); return *this; }
@@ -276,6 +295,9 @@ public:
     context_t& rfc_2070 (const bool b) { rfc_2070_ = b; mac (nm_context_rfc_2070, b); return *this; }
     context_t& root (const ::std::string& s);
     context_t& rpt_opens (const bool b) noexcept { rpt_opens_ = b; return *this; }
+    context_t& rsl_ext (const vstr_t& s) { rsl_ext_ = vtos (s); mac (nm_context_rsl_exts, s); return *this; }
+    context_t& rss_ext (const vstr_t& s) { rss_ext_ = vtos (s); mac (nm_context_rss_exts, s); return *this; }
+    context_t& rss_version (const e_rss_version v) { rss_ver_ = v; mac < int > (nm_context_rss_version, v); return *this; }
     context_t& ruby (const bool b) { ruby_ = b; mac (nm_context_ruby, b); return *this; }
     context_t& safari (const bool b) { safari_ = b; mac (nm_context_safari, b); return *this; }
     context_t& serve (const bool b);
@@ -329,6 +351,7 @@ public:
     context_t& todo (const e_do e) noexcept { do_ = e; return *this; }
     context_t& unknown_class (const bool b) { unknown_class_ = b; mac (nm_context_unknown_class, b); return *this; }
     context_t& update (const bool b) noexcept { update_ = b; return *this; }
+    context_t& update_check (const bool b) noexcept { update_check_ = b; return *this; }
     context_t& urlvar (const vstr_t& s) { url_var_ = s; mac (nm_context_url_var, s); return *this; }
     context_t& username (const ::std::string& s) { username_ = s; return *this; }
     context_t& vcs (const bool b) { vcs_ = b; mac (nm_context_vcs, b); return *this; }
@@ -352,10 +375,13 @@ public:
     bool absolute_path () const noexcept { return absolute_path_; }
     const ::std::string accept () const { return accept_; }
     const ::std::string account () const { return account_; }
+    const ads& con () const;
+    ads& con ();
     e_analysis analysis () const noexcept { return anal_; }
     void apply_vcs (nitpick& nits);
     bool aria () const noexcept { return aria_; }
     bool article () const noexcept { return article_; }
+    const sstr_t atomic_ext () const { return atomic_ext_; }
     const vstr_t& attrib () const { return attrib_; }
     ::boost::filesystem::path back () const { return back_; }
     bool body () const noexcept { return body_; }
@@ -507,11 +533,18 @@ public:
     bool rfc_1942 () const noexcept { return rfc_1942_; }
     bool rfc_1980 () const noexcept { return rfc_1980_; }
     bool rfc_2070 () const noexcept { return rfc_2070_; }
+    const robotic& robbie () const;
+    robotic& robbie ();
     const ::std::string& root () const { return root_; }
     bool rpt_opens () const noexcept { return rpt_opens_; }
+    const sstr_t rsl_ext () const { return rsl_ext_; }
+    const sstr_t rss_ext () const { return rss_ext_; }
+    e_rss_version rss_version () const { return rss_ver_; }
     bool ruby () const noexcept { return ruby_; }
     const ::boost::filesystem::path& rootp () const { return proot_; }
     bool safari () const noexcept { return safari_; }
+    const sec_txt& security () const;
+    sec_txt& security ();
     bool serve () const noexcept { return serve_; }
     bool shadow_any () const noexcept { return shadow_pages (); }
     bool shadow_comment () const noexcept { return shadow_comment_; }
@@ -571,6 +604,8 @@ public:
     const vstr_t virtuals () const { return virtuals_; }
     const sstr_t vtt_extension () const { return vtt_ext_; }
     bool update () const noexcept { return update_; }
+    bool update_check () const noexcept { return update_check_; }
+    const ::std::string& update_info () const noexcept { return update_info_; }
     const vstr_t& urlvar () const { return url_var_; }
     ::std::string username () const { return username_; }
     bool vcs () const noexcept { return vcs_; }

@@ -300,6 +300,12 @@ void html_version::init (const unsigned short mjr)
             case 3 : res << "-1.1"; break;
             case 4 : res << "-2.0"; break;
             default : res << "-5"; } }
+    else if (known () && atom ())
+        res << "ATOM";
+    else if (known () && rsl ())
+        res << "RSL";
+    else if (known () && rss ())
+        res << "RSS";
     else
     {   res << "HTML";
         if (known ())
@@ -682,6 +688,9 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     note_parsed_version (nits, nit_html_tags, html_tags, "HTML Tags");
                         found_html = true;
                     break;
+                case doc_rss_91 :
+                    set_ext4 (H4_RSS);
+                    return true;
                 case doc_sqclose :
                     break;
                 case doc_sqopen :
@@ -1424,7 +1433,7 @@ bool html_version::test_extension () const noexcept
     return (has_svg () || has_math_not_core () || has_rdfa ()); }
 
 bool html_version::is_plain_html () const noexcept
-{   if (xhtml ()) return false;
+{   if (xhtml () || atom () || rdfa () || rsl () || rss ()) return false;
     return ! test_extension (); }
 
 bool html_version::requires_extension () const noexcept

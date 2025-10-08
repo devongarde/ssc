@@ -23,9 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class url;
 
-bool fetch (nitpick& nits,const html_version& v, const url& u, const ::boost::filesystem::path& file);
-bool fetch_http (nitpick& nits,const html_version& v, const url& u, const ::boost::filesystem::path& file);
-bool mention (nitpick& nits,const html_version& v, const url& source, const url& target, const url& server);
+bool fetch (nitpick& nits, const html_version& v, const url& u, const ::boost::filesystem::path& file);
+bool fetch_http (nitpick& nits, const html_version& v, const url& u, const ::boost::filesystem::path& file);
+bool mention (nitpick& nits, const html_version& v, const url& source, const url& target, const url& server);
 bool is_example_domain (const url& u);
 bool is_lan_domain (const url& u);
 bool is_special_domain (const url& u);
