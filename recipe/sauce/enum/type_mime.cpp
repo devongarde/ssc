@@ -1404,6 +1404,7 @@ struct symbol_entry < html_version, e_mimetype > mimetype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "application/wordperfect5.1", mime_application_wordperfect5_1, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/wsdl+xml", mime_application_wsdl_xml, ns_default, MIME_APPLICATION | MIME_XML },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/wspolicy+xml", mime_application_wspolicy_xml, ns_default, MIME_APPLICATION | MIME_XML },
+    { { HTML_RSS }, { HTML_UNDEF }, "application/x-bittorrent", mime_application_x_bittorrent, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-ecmascript", mime_application_x_ecmascript, ns_default, MIME_SCRIPT | MIME_APPLICATION },
     { { XHTML_2_0 }, { HTML_UNDEF }, "application/x-java-applet", mime_application_x_java_applet, ns_default, MIME_SCRIPT | MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-javascript", mime_application_x_javascript, ns_default, MIME_SCRIPT | MIME_APPLICATION },
@@ -2386,7 +2387,7 @@ bool report_flag_issues (nitpick& nits, const html_version& , const e_mimetype e
         res = true; }
     if ((f & MIME_WITHDRAWN) == MIME_WITHDRAWN)
     {   if ((f & MIME_VULNERABLE) == MIME_VULNERABLE)
-            nits.pick (nit_reputation, es_warning, ec_mime, "insecure, vulnerable media/file type ", quote (ref), " withdrawn");
+            nits.pick (nit_reputation, es_warning, ec_mime, "insecure, vulnerable media/file type ", quote (ref), " has been rightly withdrawn");
         else nits.pick (nit_reputation, es_info, ec_mime, "media/file type ", quote (ref), " is no longer valid");
         res = true; }
     else if ((f & MIME_VULNERABLE) == MIME_VULNERABLE)

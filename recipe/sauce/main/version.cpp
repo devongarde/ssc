@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 {   ::std::ostringstream res;
     res << static_cast < int > (mjr_);
     if (mnr_ != 0) res << "." << static_cast < int > (mnr_);
+    if (ao_ != ao_unknown) res << "/" << static_cast < int > (ao_);
     return res.str (); }
 
 ::std::string version::report () const
@@ -33,30 +34,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     if (flags_ != 0) res << "f" << ::std::hex << flags_;
     return res.str (); }
 
-bool operator == (const version& lhs, const version& rhs) noexcept
-{   if (lhs.unknown () || rhs.unknown ()) return false;
-    if (lhs.mjr () != rhs.mjr ()) return false;
+bool eq (const version& lhs, const version& rhs) noexcept
+{   if (lhs.mjr () != rhs.mjr ()) return false;
     return (lhs.mnr () == rhs.mnr ()); }
 
-bool operator != (const version& lhs, const version& rhs) noexcept
-{   if (lhs.unknown () || rhs.unknown ()) return false;
-    return ! (lhs == rhs); }
-
-bool operator < (const version& lhs, const version& rhs) noexcept
-{   if (lhs.unknown () || rhs.unknown ()) return false;
-    if (lhs.mjr () > rhs.mjr ()) return false;
+bool lt (const version& lhs, const version& rhs) noexcept
+{   if (lhs.mjr () > rhs.mjr ()) return false;
     if (lhs.mjr () < rhs.mjr ()) return true;
     return (lhs.mnr () < rhs.mnr ()); }
 
-bool operator > (const version& lhs, const version& rhs) noexcept
-{   if (lhs.unknown () || rhs.unknown ()) return false;
-    return ! (lhs < rhs) && ! (lhs == rhs); }
+bool comparable (const version& lhs, const version& rhs) noexcept
+{   return ((lhs.ao () == rhs.ao ()) && (! lhs.unknown ()) && (! rhs.unknown ())); }
 
-bool operator <= (const version& lhs, const version& rhs) noexcept
-{   if (lhs.unknown () || rhs.unknown ()) return false;
-    return ! (lhs > rhs); }
-
-bool operator >= (const version& lhs, const version& rhs) noexcept
-{   if (lhs.unknown () || rhs.unknown ()) return false;
-    return ! (lhs < rhs); }
-
+bool version::ml () const noexcept
+{   switch (ao_)
+    {   case ao_css :
+        case ao_json :
+        case ao_unknown :
+        case ao_vtt :
+            return false;
+        default :
+            break; }
+    return ao_ <= aox_xtm; }

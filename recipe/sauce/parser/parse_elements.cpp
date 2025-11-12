@@ -256,7 +256,7 @@ element_node* elements_node::insert_open (const html_version& v, element_node*& 
 element_node* elements_node::insert (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const e_namespace autodeclare)
 {   if (ket.closed_ || id.is_unclosed (v)) return insert_closed (v, previous, parent, ket, id);
     if (id.is_closed (v))
-    {   if (v.xhtml ()) ket.nits_.pick (nit_xhtml_missing_slash, es_error, ec_element, "in ", v.report (), ", closed elements must use the <... /> syntax");
+    {   if (v.xhtml ()) ket.nits_.pick (nit_xhtml_missing_slash, es_error, ec_element, "in ", v.report (), ", closed elements, such as <", id.name (), ">, must use the <... /> syntax");
         return insert_closed (v, previous, parent, ket, id); }
     if (ket.closure_) return insert_closure (v, previous, parent, ket, id, false);
     return insert_open (v, previous, parent, ket, id, autodeclare); }
@@ -292,9 +292,9 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
                                     {   const elem tst (nuts, html_0, parent -> namespaces (), mc, e.closure_, nullptr);
                                         bad_version = ! tst.unknown (); } 
                                     else if (autodeclare != ns_default)
-                                        if (namespace_names.from (autodeclare) > ver)
+                                        if (gt (namespace_names.from (autodeclare), ver))
                                             ver = namespace_names.from (autodeclare);
-                                    if (e.eofe_ < e.end_) attributes_node::process_attributes (e.nits_, ver, parent, e.eofe_, e.end_, e.line_, autodeclare);
+                                    if (e.eofe_ < e.end_) attributes_node::process_attributes (e.nits_, ver, parent, e.eofe_, e.end_, e.line_, autodeclare, id);
                                     id.reset (e.nits_, ver, parent -> namespaces (), mc, e.closure_, &autodeclare);
                                     if (ver.xhtml () && ! id.unknown ())
                                     {   const ::std::string& naam (id.name ());
@@ -325,7 +325,7 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
                             "Ignoring custom element <", ::std::string (s), ">");
                 else e.nits_.pick (nit_unknown_element, ed_jun23, "1.11.2: Cases that are likely to be typos", es_warning, ec_element,
                         PROG " does not know the element <", ::std::string (s), ">, so cannot verify it");
-            else if (bad_version) e.nits_.pick (nit_invalid_element_version, es_comment, ec_element, "<", ::std::string (s), "> is invalid in ", v.report ());
+            else if (bad_version) e.nits_.pick (nit_invalid_element_version, es_comment, ec_element, "<", ::std::string (s), "> is invalid in ", v.report (), " (2)");
             else if (custard)
                 e.nits_.pick (nit_unknown_element, ed_jun23, "1.11.2: Cases that are likely to be typos", es_comment, ec_element,
                       "Ignoring custom element <", ::std::string (s), ">");

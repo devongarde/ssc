@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+    
+    <meta charset="utf-8">
+    <title>
+     Real‑World CSS Techniques: Flexbox, Shadows, and Variables | 
+    cleberg.net
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Christian Cleberg &lt;hello@cleberg.net&gt;" >
+    <meta name="description" content="Just a blip of ones and zeroes." >
+    
+    <link rel="stylesheet" href="../styles.min.css" type="text/css">
+    <link rel="icon" type="image/x-icon" href="data:,">
+    
+<meta property="og:title" content="Real‑World CSS Techniques: Flexbox, Shadows, and Variables" />
+<meta property="og:url" content="https://cleberg.net/blog/useful-css.html" />
+
+<meta property="og:description" content="Practical guide on applying CSS rules and constructs such as flexbox, box shadows, and variable usage to achieve standard web styling and layout objectives." />
+ 
+    
+</head>
+<body>
+	<nav aria-label="site-nav" role="navigation">
+		<ul>
+			<li><a href="../index.html">Home</a></li>
+            <li><a href="../about/index.html">About</a></li>
+			<li><a href="index.html">Blog</a></li>
+			<li><a href="../services/index.html">Services</a></li>
+		</ul>
+	</nav>
+    <main>
+<article role="article">
+	<section class="post-metadata">
+		<h1>Real‑World CSS Techniques: Flexbox, Shadows, and Variables</h1>
+		
+		<time datetime='2019-01-07'
+			>Monday, January 07, 2019 00:00:00</time
+		>
+		
+	</section>
+	<section><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="useful-css.html#introduction-to-css">1. Introduction to CSS</a></li>
+<li><a href="useful-css.html#css-variables">2. CSS Variables</a></li>
+<li><a href="useful-css.html#css-box-shadows">3. CSS Box Shadows</a></li>
+<li><a href="useful-css.html#css-flexbox">4. CSS Flexbox</a></li>
+<li><a href="useful-css.html#even-more-css">5. Even More CSS</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-introduction-to-css" class="outline-2">
+<h2 id="introduction-to-css"><span class="section-number-2">1.</span> Introduction to CSS</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="https://en.wikipedia.org/wiki/CSS">CSS</a>, the language used to markup HTML code and make it "pretty", is one of the
+most effective ways to increase the attractiveness of a website. It can also
+lead to increased user engagement, retention, and satisfaction. In fact, there
+are whole career fields are dedicated to the improvement of user experiences,
+known as UI design and UX design.
+</p>
+
+<p>
+Some web developers are used to the common CSS properties, such as element
+sizing, fonts, colors, etc., but are not as well versed in less-used properties
+and values such as <code>flexbox</code>, <code>clip-path</code>, and <code>transform</code>. This article will
+provide some insight into the less-used and unique CSS properties.
+</p>
+</div>
+</div>
+<div id="outline-container-css-variables" class="outline-2">
+<h2 id="css-variables"><span class="section-number-2">2.</span> CSS Variables</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The first topic today is CSS variables. Variables are not often used by smaller
+developers. CSS variables allow you to give your website a well-defined
+structure, where you can easily reuse CSS properties throughout the project.
+</p>
+
+<p>
+You can use variables to define things, such as color palettes. Then, you can
+use these colors for backgrounds anywhere else in the HTML. This could be
+extended, where extra variables could be defined for <code>primary-text</code>,
+<code>quoted-text</code>, etc. Variables can also be used to define spacing (e.g. <code>32px</code> or
+<code>2rem</code>), which can then be applied to margins, padding, font sizes, and more.
+</p>
+
+<p>
+For example, here are some variables defined at the root of the website, which
+allows for any subsequent CSS rules to use those variables:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="font-weight: bold;">:root</span> {
+    <span style="font-weight: bold; font-style: italic;">--primary-color</span>: <span style="color: #ffffff; background-color: #000000;">black</span>;
+    <span style="font-weight: bold; font-style: italic;">--secondary-color</span>: <span style="color: #000000; background-color: #ffffff;">white</span>;
+}
+
+<span style="font-weight: bold;">body</span> {
+    <span style="font-weight: bold;">background-color</span>: var(<span style="font-weight: bold; font-style: italic;">--primary-color</span>);
+    <span style="font-weight: bold;">color</span>: var(<span style="font-weight: bold; font-style: italic;">--secondary-color</span>);
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-css-box-shadows" class="outline-2">
+<h2 id="css-box-shadows"><span class="section-number-2">3.</span> CSS Box Shadows</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Box shadows were once my mortal enemy. No matter how hard I tried, I just
+couldn't get them to work how I wanted. Because of this, my favorite discovery
+has been CSSMatic's <a href="https://www.cssmatic.com/box-shadow">box shadow generator</a>. It provides an excellent tool to
+generate box shadows using their simple sliders. Surprisingly, this is the
+reason I learned how box shadows work! You can use the sliders and watch how the
+CSS code changes in the image that is displayed. Through this, you should
+understand that the basic structure for box shadows is:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="font-weight: bold;">box-shadow</span>: inset horizontal vertical blur spread color;
+</pre>
+</div>
+
+<p>
+Now, let's look at some basic examples! You can copy and paste the following
+code into a site like CodePen or your own HTML files. Feel free to play around
+with the code, experiment, and learn.
+</p>
+
+<p>
+<b>Box Shadow #1</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="font-weight: bold;">div</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"shadow-examples"</span>&gt;
+    &lt;<span style="font-weight: bold;">div</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"box effect1"</span>&gt;
+        &lt;<span style="font-weight: bold;">h3</span>&gt;<span style="font-style: italic; text-decoration: underline;">Effect 1</span>&lt;/<span style="font-weight: bold;">h3</span>&gt;
+    &lt;/<span style="font-weight: bold;">div</span>&gt;
+&lt;/<span style="font-weight: bold;">div</span>&gt;
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="font-weight: bold;">.box h3</span> {
+    <span style="font-weight: bold;">text-align</span>: center;
+    <span style="font-weight: bold;">position</span>: relative;
+    <span style="font-weight: bold;">top</span>: 80px;
+}
+<span style="font-weight: bold;">.box</span> {
+    <span style="font-weight: bold;">width</span>: 70%;
+    <span style="font-weight: bold;">height</span>: 200px;
+    <span style="font-weight: bold;">background</span>: <span style="color: #000000; background-color: #fff;">#fff</span>;
+    <span style="font-weight: bold;">margin</span>: 40px auto;
+}
+<span style="font-weight: bold;">.effect1</span> {
+    <span style="font-weight: bold;">box-shadow</span>: 0 10px 6px -6px <span style="color: #ffffff; background-color: #777;">#777</span>;
+}
+</pre>
+</div>
+
+<p>
+<b>Box Shadow #2</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="font-weight: bold;">div</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"shadow-examples"</span>&gt;
+    &lt;<span style="font-weight: bold;">div</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"box effect2"</span>&gt;
+        &lt;<span style="font-weight: bold;">h3</span>&gt;<span style="font-style: italic; text-decoration: underline;">Effect 2</span>&lt;/<span style="font-weight: bold;">h3</span>&gt;
+    &lt;/<span style="font-weight: bold;">div</span>&gt;
+&lt;/<span style="font-weight: bold;">div</span>&gt;
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="font-weight: bold;">.box h3</span> {
+    <span style="font-weight: bold;">text-align</span>: center;
+    <span style="font-weight: bold;">position</span>: relative;
+    <span style="font-weight: bold;">top</span>: 80px;
+}
+<span style="font-weight: bold;">.box</span> {
+    <span style="font-weight: bold;">width</span>: 70%;
+    <span style="font-weight: bold;">height</span>: 200px;
+    <span style="font-weight: bold;">background</span>: <span style="color: #000000; background-color: #fff;">#fff</span>;
+    <span style="font-weight: bold;">margin</span>: 40px auto;
+}
+<span style="font-weight: bold;">.effect2</span> {
+    <span style="font-weight: bold;">box-shadow</span>: 10px 10px 5px -5px <span style="color: #ffffff; background-color: #000000;">rgba(0, 0, 0, 0.75)</span>;
+}
+</pre>
+</div>
+
+<p>
+Try these box shadows out on your own and see how changing each shadow value
+works.
+</p>
+</div>
+</div>
+<div id="outline-container-css-flexbox" class="outline-2">
+<h2 id="css-flexbox"><span class="section-number-2">4.</span> CSS Flexbox</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Now, let's move on to the best part of this article: flexbox. The flexbox is by
+far my favorite new toy. I originally stumbled across this solution after
+looking for more efficient ways of centering content horizontally AND
+vertically. I had used a few hack-ish methods before, but flexbox throws those
+out the window. The best part of it all is that flexbox is <i>dead simple</i>.
+</p>
+
+<p>
+Flexbox pertains to the parent div of any element. You want the parent to be the
+flexbox in which items are arranged to use the flex methods. It's easier to see
+this in action that explained, so let's see an example.
+</p>
+
+<p>
+<b>Flexbox</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="font-weight: bold;">div</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"flex-examples"</span>&gt;
+    &lt;<span style="font-weight: bold;">div</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"sm-box"</span>&gt;
+        &lt;<span style="font-weight: bold;">h3</span>&gt;<span style="font-style: italic; text-decoration: underline;">1</span>&lt;/<span style="font-weight: bold;">h3</span>&gt;
+    &lt;/<span style="font-weight: bold;">div</span>&gt;
+    &lt;<span style="font-weight: bold;">div</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"sm-box"</span>&gt;
+        &lt;<span style="font-weight: bold;">h3</span>&gt;<span style="font-style: italic; text-decoration: underline;">2</span>&lt;/<span style="font-weight: bold;">h3</span>&gt;
+    &lt;/<span style="font-weight: bold;">div</span>&gt;
+&lt;/<span style="font-weight: bold;">div</span>&gt;
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="font-weight: bold;">.flex-examples</span> {
+    <span style="font-weight: bold;">display</span>: flex;
+    <span style="font-weight: bold;">flex-wrap</span>: wrap;
+    <span style="font-weight: bold;">justify-content</span>: flex-start;
+    <span style="font-weight: bold;">align-items</span>: center;
+    <span style="font-weight: bold;">padding</span>: 10px;
+    <span style="font-weight: bold;">background-color</span>: <span style="color: #000000; background-color: #f2f2f2;">#f2f2f2</span>;
+}
+<span style="font-weight: bold;">.sm-box</span> {
+    <span style="font-weight: bold;">display</span>: flex;
+    <span style="font-weight: bold;">justify-content</span>: center;
+    <span style="font-weight: bold;">align-items</span>: center;
+    <span style="font-weight: bold;">width</span>: 20%;
+    <span style="font-weight: bold;">height</span>: 100px;
+    <span style="font-weight: bold;">background</span>: <span style="color: #000000; background-color: #fff;">#fff</span>;
+    <span style="font-weight: bold;">margin</span>: 40px 10px;
+}
+</pre>
+</div>
+
+<p>
+You may notice that we no longer need to use the <code>top</code> property for the <code>h3</code>
+elements in our code. This is because we set the display box to be a flex
+container for the small boxes, AND we made the small boxes flex containers for
+their elements (the h3 tags). Flex boxes can be nested like this to center
+content that is inside centered content.
+</p>
+
+<p>
+For the example above, we designated the <code>justify-content</code> property to be
+<code>flex-start</code> so that the boxes stack from the left side of the screen. This
+property can be changed to <code>center</code> to make the boxes appear in the center of
+the screen.
+</p>
+
+<p>
+For an interactive example, <a href="https://codepen.io/LandonSchropp/pen/KpzzGo">check out this CodePen</a> from <a href="https://codepen.io/LandonSchropp/">LandonScropp</a>. Resize the
+window with dice to see how they collapse and re-align.
+</p>
+</div>
+</div>
+<div id="outline-container-even-more-css" class="outline-2">
+<h2 id="even-more-css"><span class="section-number-2">5.</span> Even More CSS</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+For more inspiration, you can visit <a href="https://www.codepen.io">CodePen</a>, <a href="https://dribbble.com">Dribbble</a>, or <a href="https://uimovement.com">UI Movement</a> to browse
+the collections of many amazing web designers.
+</p>
+</div>
+</div>
+</section>
+	<blockquote><a href="mailto:hello@cleberg.net">Reply via email &rarr;</a></blockquote>
+</article>
+</main>
+	<footer>
+        <a href="https://stats.uptimerobot.com/OwOWs7HU0z">Status</a> &middot;
+        <a href="https://git.cleberg.net/cleberg.net.git" target="_blank"
+        rel="noopener">Source</a> &middot;
+        <a href="../feed.xml">RSS</a>
+	</footer>
+</body>
+</html>

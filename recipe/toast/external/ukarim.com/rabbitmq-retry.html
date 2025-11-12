@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">  
+    <title> Delayed retry with RabbitMQ </title>
+    <link rel="icon" href="data:,">
+    <style> ﻿html,body{padding:0;margin:0;background:#fff;font-size:18px;font-family:sans-serif;color:#223;line-height:1.4}header,main,footer{max-width:662px;margin:0 auto;padding:.5rem 1rem}header>:first-child,main>:first-child,footer>:first-child{margin-top:0}a{color:#00e;text-decoration:none}hr{height:0;border:solid 1px #d5d5d6}img{display:block;max-width:100%;margin:1em auto}ul{list-style-type:"›";padding-left:.4rem}ul li{margin:.5em 0;padding-left:.7rem}ul li::marker{font-weight:bold}code{white-space:pre;display:block;overflow-x:auto;padding:.5em;margin:.5em 0;border:solid 1px #d5d5d6}table{border-collapse:collapse;margin:1.5rem 0;word-break:break-word}table td,table th{border:1px solid #d5d5d6;text-align:start;padding:.5rem} </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <a href="index.html">Home page</a>
+          </li>
+          <li>
+            <a href="https://github.com/ukarim">Github profile</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main> <h1>Delayed retry with RabbitMQ</h1>
+<p><em>Dec 12, 2020</em></p>
+<p>Let's imagine an application with a listener which receives messages from RabbitMQ's
+queue. At that point application sends a http request to some API but it responds
+with 500 status. What to do? Well, sometimes it's ok, logging the error is enough.
+But sometimes application should retry this request later, when API will be available.</p>
+<p>So, here I want to show how delayed retry logic can be implemented using a RabbitMQ's
+features called <em>dead letter exchange</em> and <em>message expiration</em>.</p>
+<p><a href="https://www.rabbitmq.com/dlx.html">Dead letter exchange</a> is actually an ordinary
+exchange. It can be of any type and can be defined for any queue. If the queue has
+a messages expired due configured TTL then this messages will be routed to the
+dead-letter-exchange.</p>
+<p>I believe <a href="https://www.rabbitmq.com/ttl.html">message expiration</a> does not need
+explanation. It can be configured on queue level using <em>x-message-ttl</em>
+parameter or specified on per-message basis using message parameters. RabbitMQ
+server will try to remove messages at or shortly after their TTL-based expiry.</p>
+<p>I'm strongly recommend to read the official RabbitMQ docs about these topics
+after finishing this article.</p>
+<h2>Retry scheme</h2>
+<p>There is a diagram explaining the main idea
+<img src="assets/rabbitmq-retry.png" alt="Retry scheme with usage of dead letter exchange" /></p>
+<p>Example application can be found at <a href="https://github.com/ukarim/misc/tree/master/rabbitmqretry">github.com/misc/rabbitmqretry</a></p> </main>
+  </body>
+</html>
+

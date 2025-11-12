@@ -563,9 +563,9 @@ microdata_structure ontology_structure [] =
     { { s_cnt, 1, 0 }, { 0, 0 }, cnt_doctypedecl, cnt_systemid },
 
     // croissant
-    { { s_croissant, 0, 2 }, { 0, 2 }, cr_dataextraction, cp_csvcolumn },
-    { { s_croissant, 0, 2 }, { 0, 2 }, cr_dataextraction, cp_fileproperty },
-    { { s_croissant, 0, 2 }, { 0, 2 }, cr_dataextraction, cp_jsonpath },
+    { { s_croissant, 0, 2 }, { s_croissant, 0, 2 }, cr_dataextraction, cp_csvcolumn },
+    { { s_croissant, 0, 2 }, { s_croissant, 0, 2 }, cr_dataextraction, cp_fileproperty },
+    { { s_croissant, 0, 2 }, { s_croissant, 0, 2 }, cr_dataextraction, cp_jsonpath },
 
     { { s_croissant, 0, 2 }, { s_croissant, 0, 2 }, cr_datasource, cp_applytransform },
     { { s_croissant, 0, 2 }, { s_croissant, 0, 2 }, cr_datasource, cp_dataextraction },
@@ -613,9 +613,9 @@ microdata_structure ontology_structure [] =
     { { s_croissant, 0, 2 }, { 0, 0 }, cr_recordset, cp_key },
     { { s_croissant, 0, 2 }, { 0, 0 }, cr_recordset, cp_source },
 
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_reference, cp_field },
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_reference, cp_fileobject },
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_reference, cp_recordset },
+    { { s_croissant, 0, 2 }, { s_croissant, 1, 21 }, cr_reference, cp_field },
+    { { s_croissant, 0, 2 }, { s_croissant, 1, 21 }, cr_reference, cp_fileobject },
+    { { s_croissant, 1, 3 }, { s_croissant, 1, 21 }, cr_reference, cp_recordset },
 
     { { s_croissant, 1, 1 }, { 0, 0 }, cr_transform, cp_delimiter },
     { { s_croissant, 1, 1 }, { 0, 0 }, cr_transform, cp_jsonquery },
@@ -1175,6 +1175,7 @@ microdata_structure ontology_structure [] =
     { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, dpv_concept, dpv_hasexpirytime },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_concept, dpv_hasfee },
     { { s_dpv, 0, 40 }, { 0, 0 }, dpv_concept, dpv_hasfrequency },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_concept, dpv_hasfulfilmentstatus },
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_concept, dpv_hasgeographiccoverage },
     { { s_dpv, 0, 20 }, { 0, 0 }, dpv_concept, dpv_hashumaninvolvement },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_concept, dpv_hashumansubject },
@@ -1269,6 +1270,7 @@ microdata_structure ontology_structure [] =
     { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, dpv_concept, dpv_mitigatesrisk },
     { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, dpv_concept, dpv_range },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_concept, dcat_resource },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_concept, dpv_hasreusecompatibility },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, dpv_concept, dpv_storage },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_concept, dct_valid },
 
@@ -1287,9 +1289,11 @@ microdata_structure ontology_structure [] =
     { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, dpv_consent, dpv_withdrawalmethod },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, dpv_consent, dpv_withdrawaltime },
 
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_context, dpv_hasdeterrence },
     { { s_dpv, 0, 90 }, { 0, 0 }, dpv_context, dpv_hasobligation },
     { { s_dpv, 0, 90 }, { 0, 0 }, dpv_context, dpv_haspermission },
     { { s_dpv, 0, 90 }, { 0, 0 }, dpv_context, dpv_hasprohibition },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_context, dpv_hasrecommendation },
     { { s_dpv, 0, 90 }, { 0, 0 }, dpv_context, dpv_hasrule },
 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_contract, dpv_hascontractcontrol },
@@ -1307,6 +1311,8 @@ microdata_structure ontology_structure [] =
     { { s_dpv, 0, 40 }, { 0, 0 }, dpv_entity, dpv_hasrepresentative },
 
     { { s_dpv, 0, 50 }, { 0, 0 }, dpv_impact, dpv_hasimpacton },
+
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_jurisdiction, dpv_hasinversejurisdiction },
 
     { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, dpv_legalentity, dpv_hasaddress },
     { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, dpv_legalentity, dpv_hasname },
@@ -1366,7 +1372,7 @@ microdata_structure ontology_structure [] =
 
     { { s_dpv, 0, 40 }, { 0, 0 }, dpv_riskmitigationmeasure, dpv_mitigatesrisk },
 
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_rule, dpv_hasfulfillmentstatus },
+    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_rule, dpv_hasfulfilmentstatus },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_service, dpv_hasserviceconsumer },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_service, dpv_hasserviceprovider },
@@ -1400,6 +1406,7 @@ microdata_structure ontology_structure [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_technology, dpv_tech_hasmanufacturer },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_technology, dpv_tech_hasmarketavailabilitystatus },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_technology, dpv_tech_hasmodel },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_technology, dpv_tech_hasoperatingfactor },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_technology, dpv_tech_hasoutput },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_technology, dpv_tech_hasoutputaction },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_technology, dpv_tech_hasoutputdata },
@@ -4482,6 +4489,7 @@ microdata_structure ontology_structure [] =
     { { 0, 30 }, { 0, 0 }, sch_creativework, sp_datemodified },
     { { 0, 10 }, { 0, 0 }, sch_creativework, sp_datepublished },
     { { 0, 30 }, { 0, 0 }, sch_creativework, sp_discussionurl },
+    { { 29, 3 }, { 0, 0 }, sch_creativework, sp_displaylocation },
     { { 8, 0 }, { 0, 0 }, sch_creativework, sp_editeidr },
     { { 0, 10 }, { 0, 0 }, sch_creativework, sp_editor },
     { { 1, 0 }, { 0, 0 }, sch_creativework, sp_educationalalignment },
@@ -4590,13 +4598,34 @@ microdata_structure ontology_structure [] =
     { { s_croissant, 1, 5 }, { 0, 0 }, sch_dataset, dct_conformsto },
 //    { { s_croissant, 1, 5 }, { s_croissant, 1, 7 }, sch_dataset, dct_conformsto },
 //    { { s_croissant, 1, 101 }, { 0, 0 }, sch_dataset, dct_conformsto },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_annotationsperitem },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_annotatordemographics },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_datacollection },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_dataannotationanalysis },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_dataannotationplatform },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_dataannotationprotocol },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_databiases },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_datacollectionmissingdata },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_datacollectionrawdata },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_datacollectiontimeframe },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_datacollectiontype },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_datalimitations },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_datamanipulationprotocol },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_dataimputationprotocol },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_datapreprocessingprotocol },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_datareleasemaintenanceplan },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_datasocialimpact },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_datausecases },
+    { { s_croissant, 1, 22 }, { 0, 0 }, sch_dataset, cp_distribution },
     { { 2, 0 }, { 3, 0 }, sch_dataset, sp_datasettimeinterval },
     { { 1, 0 }, { 0, 0 }, sch_dataset, sp_distribution },
     { { 2, 0 }, { 0, 0 }, sch_dataset, sp_includeddatacatalog },
     { { s_croissant, 1, 3 }, { 0, 0 }, sch_dataset, cp_islivedataset },
     { { 3, 3 }, { 0, 0 }, sch_dataset, sp_issn },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_machineannotationtools },
     { { 3, 5 }, { 0, 0 }, sch_dataset, sp_measurementtechnique },
-    { { s_croissant, 1, 3 }, { 0, 0 }, sch_dataset, cp_recordset },
+    { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_personalsensitiveinformation },
+    { { s_croissant, 1, 3 }, { s_croissant, 1, 21 }, sch_dataset, cp_recordset },
     { { 1, 0 }, { 3, 0 }, sch_dataset, sp_spatial },
     { { 1, 0 }, { 1, 93 }, sch_dataset, sp_temporal },
     { { 3, 5 }, { 0, 0 }, sch_dataset, sp_variablemeasured },
@@ -5034,6 +5063,7 @@ microdata_structure ontology_structure [] =
     { { 3, 5 }, { 0, 0 }, sch_grant, sp_fundeditem },
     { { 3, 5 }, { 0, 0 }, sch_grant, sp_sponsor },
 
+    { { 29, 4 }, { 0, 0 }, sch_guide, sp_category },
     { { 5, 0 }, { 0, 0 }, sch_guide, sp_reviewaspect },
 
     { { 5, 0 }, { 0, 0 }, sch_healthtopiccontent, sp_hashealthaspect },
@@ -6081,6 +6111,7 @@ microdata_structure ontology_structure [] =
     { { 13, 0 }, { 0, 0 }, sch_product, sp_countryoflastprocessing },
     { { 0, 99 }, { 0, 0 }, sch_product, sp_depth },
     { { 2, 0 }, { 0, 0 }, sch_product, gr_depth },
+    { { 29, 3 }, { 0, 0 }, sch_product, sp_displaylocation },
     { { 14, 0 }, { 0, 0 }, sch_product, sp_funding },
     { { 3, 8 }, { 0, 0 }, sch_product, sp_gtin },
     { { 2, 0 }, { 0, 0 }, sch_product, sp_gtin12 },

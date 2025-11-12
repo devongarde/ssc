@@ -86,6 +86,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // bleugh
 #define EP_CAN_BE_TOP       0x0040000000000000
 
+#define EP_CCRSS            0x0200000000000000
+#define EP_MRSS             0x0400000000000000
+#define EP_TRACKBACK        0x0800000000000000
+
 // categories
 
 #define EF_DOCUMENT         0x0000000000000001

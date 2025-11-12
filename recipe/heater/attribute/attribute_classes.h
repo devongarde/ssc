@@ -531,6 +531,41 @@ typedef typed_attribute < t_mode, a_mode > attr_mode;
 typedef typed_attribute < t_bool, a_movablelimits > attr_movablelimits;
 typedef typed_attribute < t_mah, a_mozactionhint > attr_mozactionhint;
 typedef typed_attribute < t_existential, a_mozbrowser > attr_mozbrowser;
+typedef typed_attribute < t_text, a_mrss_algo > attr_mrss_algo;
+typedef typed_attribute < t_real, a_mrss_average > attr_mrss_average;
+typedef typed_attribute < t_unsigned, a_mrss_bitrate > attr_mrss_bitrate;
+typedef typed_attribute < t_unsigned, a_mrss_channels > attr_mrss_channels;
+typedef typed_attribute < t_unsigned, a_mrss_count > attr_mrss_count;
+typedef typed_attribute < t_currency, a_mrss_currency > attr_mrss_currency;
+typedef typed_attribute < t_text, a_mrss_description > attr_mrss_description;
+typedef typed_attribute < t_real, a_mrss_duration > attr_mrss_duration;
+typedef typed_attribute < t_mrss_ntp, a_mrss_end > attr_mrss_end;
+typedef typed_attribute < t_mrss_expression, a_mrss_expression > attr_mrss_expression;
+typedef typed_attribute < t_unsigned, a_mrss_favourites > attr_mrss_favourites;
+typedef typed_attribute < t_unsigned, a_mrss_filesize > attr_mrss_filesize;
+typedef typed_attribute < t_real, a_mrss_framerate > attr_mrss_framerate;
+typedef typed_attribute < t_height, a_mrss_height > attr_mrss_height;
+typedef typed_attribute < t_mrss_info, a_mrss_info > attr_mrss_info;
+typedef typed_attribute < t_bool, a_mrss_isdefault > attr_mrss_isdefault;
+typedef typed_attribute < t_lang, a_mrss_lang > attr_mrss_lang;
+typedef typed_attribute < t_unsigned, a_mrss_max > attr_mrss_max;
+typedef typed_attribute < t_mrss_medium, a_mrss_medium > attr_mrss_medium;
+typedef typed_attribute < t_unsigned, a_mrss_min > attr_mrss_min;
+typedef typed_attribute < t_text, a_mrss_name > attr_mrss_name;
+typedef typed_attribute < t_real, a_mrss_price > attr_mrss_price;
+typedef typed_attribute < t_generic, a_mrss_reason > attr_mrss_reason;
+typedef typed_attribute < t_allow_deny, a_mrss_relationship > attr_mrss_relationship;
+typedef typed_attribute < t_mrss_role, a_mrss_role > attr_mrss_role;
+typedef typed_attribute < t_real, a_mrss_samplingrate > attr_mrss_samplingrate;
+typedef typed_attribute < t_text, a_mrss_scheme > attr_mrss_scheme;
+typedef typed_attribute < t_mrss_ntp, a_mrss_start > attr_mrss_start;
+typedef typed_attribute < t_mrss_state, a_mrss_state > attr_mrss_state;
+typedef typed_attribute < t_mrss_status, a_mrss_status > attr_mrss_status;
+typedef typed_attribute < t_mrss_ntp, a_mrss_time > attr_mrss_time;
+typedef typed_attribute < t_mrss_type, a_mrss_type > attr_mrss_type;
+typedef typed_attribute < t_url, a_mrss_url > attr_mrss_url;
+typedef typed_attribute < t_unsigned, a_mrss_views > attr_mrss_views;
+typedef typed_attribute < t_width, a_mrss_width > attr_mrss_width;
 typedef typed_attribute < t_linethickness, a_mslinethickness > attr_mslinethickness;
 typedef typed_attribute < t_existential, a_multiple > attr_multiple;
 typedef typed_attribute < t_html_boolean, a_muted > attr_muted;
@@ -1553,6 +1588,41 @@ const e_attribute last_1 = a_glyphref;
     attr_movablelimits, \
     attr_mozactionhint, \
     attr_mozbrowser, \
+    attr_mrss_algo, \
+    attr_mrss_average, \
+    attr_mrss_bitrate, \
+    attr_mrss_channels, \
+    attr_mrss_count, \
+    attr_mrss_currency, \
+    attr_mrss_description, \
+    attr_mrss_duration, \
+    attr_mrss_end, \
+    attr_mrss_expression, \
+    attr_mrss_favourites, \
+    attr_mrss_filesize, \
+    attr_mrss_framerate, \
+    attr_mrss_height, \
+    attr_mrss_info, \
+    attr_mrss_isdefault, \
+    attr_mrss_lang, \
+    attr_mrss_max, \
+    attr_mrss_medium, \
+    attr_mrss_min, \
+    attr_mrss_name, \
+    attr_mrss_price, \
+    attr_mrss_reason, \
+    attr_mrss_relationship, \
+    attr_mrss_role, \
+    attr_mrss_samplingrate, \
+    attr_mrss_scheme, \
+    attr_mrss_start, \
+    attr_mrss_state, \
+    attr_mrss_status, \
+    attr_mrss_time, \
+    attr_mrss_type, \
+    attr_mrss_url, \
+    attr_mrss_views, \
+    attr_mrss_width, \
     attr_mslinethickness, \
     attr_multiple, \
     attr_muted, \

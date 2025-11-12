@@ -75,7 +75,7 @@ prop_indices find_prop_indices (nitpick& nits, const html_version& v, const vsh_
                 if (does_property_apply (sv, sp))
                     vsp.emplace_back (sp); } }
         if (! vsp.empty ()) return make_prop_indices (vsp);
-        knots.pick (nit_not_ontology_property, es_error, ec_schema, quote (name), " is invalid here"); }
+        knots.pick (nit_not_ontology_property, es_error, ec_schema, quote (name), " is invalid here (4)"); }
     if (! bespoke_permitted)
     {   nits.merge (knots);
         nits.pick (nit_bad_property, es_error, ec_rdfa, quote (name), " is not recognised");

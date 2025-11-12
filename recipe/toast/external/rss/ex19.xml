@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet title="XSL_formatting" type="text/xsl" href="/shared/bsp/xsl/rss/nolsol.xsl"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+    <channel>
+        <title><![CDATA[BBC News - World]]></title>
+        <description><![CDATA[BBC News - World]]></description>
+        <link>https://www.bbc.co.uk/news/</link>
+        <image>
+            <url>https://news.bbcimg.co.uk/nol/shared/img/bbc_news_120x60.gif</url>
+            <title>BBC News - World</title>
+            <link>https://www.bbc.co.uk/news/</link>
+        </image>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Tue, 05 Apr 2022 22:03:17 GMT</lastBuildDate>
+        <copyright><![CDATA[Copyright: (C) British Broadcasting Corporation, see http://news.bbc.co.uk/2/hi/help/rss/4498287.stm for terms and conditions of reuse.]]></copyright>
+        <language><![CDATA[en-gb]]></language>
+        <ttl>15</ttl>
+        <item>
+            <title><![CDATA[Rare Sumatran rhino gives birth after eight miscarriages]]></title>
+            <description><![CDATA[The critically endangered Sumatran rhino gave birth to a female calf in an Indonesian sanctuary.]]></description>
+            <link>https://www.bbc.co.uk/news/world-60993659?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-60993659</guid>
+            <pubDate>Tue, 05 Apr 2022 10:04:42 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Peru inflation: Civilians and police clash in Peru protests]]></title>
+            <description><![CDATA[Protests have taken place across Peru, as oil, gas and toll road prices rise.]]></description>
+            <link>https://www.bbc.co.uk/news/world-latin-america-60993655?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-latin-america-60993655</guid>
+            <pubDate>Tue, 05 Apr 2022 08:13:30 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: Many more cities like Bucha says President Zelensky]]></title>
+            <description><![CDATA[Volodymyr Zelensky addressed the UN Security Council for the first time since Russia invaded Ukraine.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-61002622?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-61002622</guid>
+            <pubDate>Tue, 05 Apr 2022 15:49:47 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: Rescuing vulnerable children from the front line]]></title>
+            <description><![CDATA[A BBC crew follows an ambulance team as medics evacuate 12 children from the city of Sumy.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60956242?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60956242</guid>
+            <pubDate>Mon, 04 Apr 2022 23:14:11 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: President Zelensky visits site of alleged atrocities in Bucha]]></title>
+            <description><![CDATA[The Ukrainian president says people have been found in barrels, having been strangled and tortured.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60989412?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60989412</guid>
+            <pubDate>Mon, 04 Apr 2022 16:33:50 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: Bucha massacre is a game changer - Ukraine foreign minister]]></title>
+            <description><![CDATA[Dmytro Kuleba told BBC HARDtalk that events in Bucha prove how much help Ukraine needs from the West.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60989413?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60989413</guid>
+            <pubDate>Mon, 04 Apr 2022 17:37:19 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Bondi Beach: Huge tides engulf Sydney's famous beach]]></title>
+            <description><![CDATA[Scenes of swells washing over Australia's most famous beach and its promenade have stunned locals.]]></description>
+            <link>https://www.bbc.co.uk/news/world-australia-60978502?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-australia-60978502</guid>
+            <pubDate>Mon, 04 Apr 2022 02:13:56 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Curious owl inspects TV weather station camera]]></title>
+            <description><![CDATA[The camera in Great Falls, Montana, captured the moment the bird peeked into its lens.]]></description>
+            <link>https://www.bbc.co.uk/news/world-us-canada-60989415?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-us-canada-60989415</guid>
+            <pubDate>Mon, 04 Apr 2022 19:50:29 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[The Ukrainian mother who had to bury her own son]]></title>
+            <description><![CDATA[Iryna Kostenko tells the BBC's Jeremy Bowen how Russian soldiers killed her 27-year-old son and took over her home.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60977889?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60977889</guid>
+            <pubDate>Sun, 03 Apr 2022 23:42:04 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: The women sharing their memories of Ukraine before the war]]></title>
+            <description><![CDATA[Four women who shared viral videos of Ukraine before the war speak to the BBC about those memories.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60843227?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60843227</guid>
+            <pubDate>Sun, 03 Apr 2022 23:14:32 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Rogue pastors, fake miracles and murder]]></title>
+            <description><![CDATA[Across Africa, extreme Christianity is threatening the faith of many.]]></description>
+            <link>https://www.bbc.co.uk/news/world-africa-60955345?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-africa-60955345</guid>
+            <pubDate>Sun, 03 Apr 2022 23:21:18 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: The popular politician who escaped a targeted missile strike]]></title>
+            <description><![CDATA[The social media-friendly Ukrainian governor Vitaliy Kim overslept while his office was destroyed.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60976917?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60976917</guid>
+            <pubDate>Sun, 03 Apr 2022 23:19:03 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Sri Lanka: Tear gas and water cannon used in Kandy]]></title>
+            <description><![CDATA[Protesters were mostly students, angry with their government's handling of the country's economy.]]></description>
+            <link>https://www.bbc.co.uk/news/world-asia-60977417?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-asia-60977417</guid>
+            <pubDate>Sun, 03 Apr 2022 18:46:33 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: Mum describes bomb crashing into her family home]]></title>
+            <description><![CDATA[Olena Selichzianowa says she pulled her twin boys beneath her to protect them from flying shrapnel.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60974086?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60974086</guid>
+            <pubDate>Sun, 03 Apr 2022 11:03:50 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Zelensky spokesman describes heartbreaking scenes in Ukraine]]></title>
+            <description><![CDATA[A spokesman for Ukraine's President Zelensky describes the discovery of mass graves.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60973124?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60973124</guid>
+            <pubDate>Sun, 03 Apr 2022 09:34:48 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Smoke rising in Ukrainian port city Odesa after strikes]]></title>
+            <description><![CDATA[Smoke is seen after explosions are heard in the strategic southern port city of Odesa on the Black Sea coast.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60972351?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60972351</guid>
+            <pubDate>Sun, 03 Apr 2022 07:41:06 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[War in Ukraine: Evidence grows of civilian killings in Bucha]]></title>
+            <description><![CDATA[The BBC's Jeremy Bowen reports on the growing evidence of civilian killings in Bucha, near Kyiv. His report contains some distressing images.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60968546?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60968546</guid>
+            <pubDate>Sat, 02 Apr 2022 22:14:36 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[War in Ukraine: Koko’s phone is your phone as she makes her way out]]></title>
+            <description><![CDATA[British-Zimbabwean student Korrine Sky documented her escape from Ukraine on her mobile phone.]]></description>
+            <link>https://www.bbc.co.uk/news/world-africa-60959467?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-africa-60959467</guid>
+            <pubDate>Sat, 02 Apr 2022 23:19:31 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukrainian refugee with Royal College of Music scholarship in visa limbo]]></title>
+            <description><![CDATA[Nadiia Chaichenko and her family fled their home in Kharkiv at the start of the war.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60955687?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60955687</guid>
+            <pubDate>Sat, 02 Apr 2022 23:20:57 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[The handshake in space that brought hope to the world]]></title>
+            <description><![CDATA[What happened when US astronauts met USSR cosmonauts in space]]></description>
+            <link>https://www.bbc.co.uk/news/stories-60931660?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/stories-60931660</guid>
+            <pubDate>Sat, 02 Apr 2022 23:07:09 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine: Why the cartoon Masyanya was banned in Russia]]></title>
+            <description><![CDATA[Masyanya is a YouTube cartoon star in Russia, but her episode on the Ukraine war has been banned.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60956241?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60956241</guid>
+            <pubDate>Fri, 01 Apr 2022 23:01:17 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Russian MP says Putin's plan for Ukraine hasn't been shared with their parliament]]></title>
+            <description><![CDATA[Maria Butina says Putin's plan wasn't shared with MPs, but the campaign is going "according to plan".]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60947272?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60947272</guid>
+            <pubDate>Thu, 31 Mar 2022 17:36:01 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[How do you do a face-to-face interview with Zelensky?]]></title>
+            <description><![CDATA[Zanny Minton Beddoes, editor-in-chief of The Economist, on how she interviewed Ukraine's president.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60947271?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60947271</guid>
+            <pubDate>Thu, 31 Mar 2022 17:09:44 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[WATCH: Missiles strike oil depot in Belgorod, Russia]]></title>
+            <description><![CDATA[Firefighters tackle a blaze at a facility near the Ukrainian border, which Moscow says was attacked.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60953243?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60953243</guid>
+            <pubDate>Fri, 01 Apr 2022 09:20:15 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: The Syrians signing up to fight for Russia]]></title>
+            <description><![CDATA[Recruits are being offered thousands of dollars to be deployed on the front line in Ukraine.]]></description>
+            <link>https://www.bbc.co.uk/news/world-middle-east-60931180?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-middle-east-60931180</guid>
+            <pubDate>Wed, 30 Mar 2022 14:10:55 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Dog saved by Ukrainian soldiers from abandoned home]]></title>
+            <description><![CDATA[The dog named Bavaria was found as soldiers inspected abandoned flats on the frontline near Kyiv.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60930068?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60930068</guid>
+            <pubDate>Wed, 30 Mar 2022 16:17:06 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[US astronaut and Russian cosmonauts return to Earth]]></title>
+            <description><![CDATA[They landed safely in Kazakhstan after leaving the International Space Station in a shared capsule.]]></description>
+            <link>https://www.bbc.co.uk/news/world-us-canada-60880633?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-us-canada-60880633</guid>
+            <pubDate>Wed, 30 Mar 2022 22:46:12 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Australia floods: Severe flooding strikes Australian east coast again]]></title>
+            <description><![CDATA[Home and business have been swamped, with residents forced to evacuate.]]></description>
+            <link>https://www.bbc.co.uk/news/world-australia-60928153?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-australia-60928153</guid>
+            <pubDate>Wed, 30 Mar 2022 13:08:55 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: Russian missile tears hole through Mykolaiv administrative building]]></title>
+            <description><![CDATA[Ukrainian authorities said at least seven people have died in the attack.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60920248?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60920248</guid>
+            <pubDate>Tue, 29 Mar 2022 15:51:48 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: Youngsters in Finland worried conflict could spread]]></title>
+            <description><![CDATA[In Finland, which borders Russia, some young people are worried the Ukraine conflict could spread.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60867684?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60867684</guid>
+            <pubDate>Wed, 30 Mar 2022 00:05:47 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine: Sheltering with monks in a Romanian monastery]]></title>
+            <description><![CDATA[The Ukrainian family who found shelter in a an unlikely place after fleeing Kharkiv.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60905198?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60905198</guid>
+            <pubDate>Tue, 29 Mar 2022 07:03:14 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[War in Ukraine: Amongst wreckage in Hostomel Airport near Kyiv]]></title>
+            <description><![CDATA[The BBC's Jeremy Bowen reports from the airport, some 10 miles from Kyiv, which holds the wreckage of the world's biggest cargo plane.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60968543?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60968543</guid>
+            <pubDate>Sat, 02 Apr 2022 15:21:22 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: Bringing up a baby among the bombs]]></title>
+            <description><![CDATA[More than 1.5 million children have fled Ukraine since the beginning of Russia's invasion, says the UN.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60903513?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60903513</guid>
+            <pubDate>Mon, 28 Mar 2022 23:01:21 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Shane Warne: Australians reflect on cricket legend and 'man of the people']]></title>
+            <description><![CDATA[Ahead of Warne's memorial service, ordinary Australians explain why his legacy transcends cricket.]]></description>
+            <link>https://www.bbc.co.uk/news/world-australia-60909634?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-australia-60909634</guid>
+            <pubDate>Tue, 29 Mar 2022 04:08:31 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Iran detainee Ashoori: ‘I should have been back earlier’]]></title>
+            <description><![CDATA[British-Iranian Ashoori, who was freed from prison in Iran, has spoken about his experience.]]></description>
+            <link>https://www.bbc.co.uk/news/uk-60907636?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/uk-60907636</guid>
+            <pubDate>Mon, 28 Mar 2022 22:31:18 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Best actor winner Will Smith took offence at a joke by presenter Chris Rock]]></title>
+            <description><![CDATA[The Oscars were halted momentarily when Will Smith took offence to a joke by presenter Chris Rock.]]></description>
+            <link>https://www.bbc.co.uk/news/entertainment-arts-60898250?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/entertainment-arts-60898250</guid>
+            <pubDate>Mon, 28 Mar 2022 05:52:05 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[War in Ukraine: Graphic protest by Russian artist Yevgenia Isayeva]]></title>
+            <description><![CDATA[Yevgenia Isayeva doused herself in fake blood and chanted, "my heart bleeds" in the solo protest.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60900595?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60900595</guid>
+            <pubDate>Mon, 28 Mar 2022 11:22:07 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: The drone pilots monitoring Russian troops]]></title>
+            <description><![CDATA[The BBC joins a Ukrainian defence unit carrying out aerial reconnaissance around Kyiv.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60878703?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60878703</guid>
+            <pubDate>Sun, 27 Mar 2022 00:01:17 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[War in Ukraine: Vladimir Putin cannot remain in power - Biden]]></title>
+            <description><![CDATA[A White House official says the US president was not calling for a regime change.]]></description>
+            <link>https://www.bbc.co.uk/news/world-us-canada-60889259?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-us-canada-60889259</guid>
+            <pubDate>Sat, 26 Mar 2022 20:28:32 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[War in Ukraine: Musicians perform emotional concert in Kharkiv metro station]]></title>
+            <description><![CDATA[Musicians performed the concert at a metro station in Kharkiv, being used as a makeshift shelter.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60889257?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60889257</guid>
+            <pubDate>Sat, 26 Mar 2022 18:23:42 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Sidney Poitier's daughter on his Oscars legacy]]></title>
+            <description><![CDATA[Sidney Poitier's daughter discusses the late Oscar winner's influence on civil rights and cinema.]]></description>
+            <link>https://www.bbc.co.uk/news/world-us-canada-60889260?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-us-canada-60889260</guid>
+            <pubDate>Sat, 26 Mar 2022 22:57:42 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Baby goats and gardens to help with hospital stress]]></title>
+            <description><![CDATA[How cuddling a goat in a garden helps US medical staff and patients.]]></description>
+            <link>https://www.bbc.co.uk/news/stories-60864113?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/stories-60864113</guid>
+            <pubDate>Sun, 27 Mar 2022 00:23:04 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Civilian deaths: Aerial video shows escaping father killed in Ukraine]]></title>
+            <description><![CDATA[Video captured by a Ukrainian aerial reconnaissance group appears to show Russian forces shooting at civilians.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60839787?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60839787</guid>
+            <pubDate>Sat, 26 Mar 2022 00:17:05 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: Ros Atkins on... Putin’s false ‘Nazi’ claims]]></title>
+            <description><![CDATA[Russia is spreading untruths about Nazis in Ukraine - one of Putin's justifications for his invasion.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60853404?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60853404</guid>
+            <pubDate>Sat, 26 Mar 2022 00:29:05 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Taylor Hawkins: Bogota festival crowd reacts to Foo Fighters drummer's death]]></title>
+            <description><![CDATA[The band had been due to perform at the Estereo Picnic festival in Bogota, Colombia, on Friday night.]]></description>
+            <link>https://www.bbc.co.uk/news/entertainment-arts-60885853?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/entertainment-arts-60885853</guid>
+            <pubDate>Sat, 26 Mar 2022 12:50:24 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Coda star and Oscar nominee inspires deaf children to dream big]]></title>
+            <description><![CDATA[Troy Kotsur is a star of CODA and the first deaf male actor ever to be nominated for an Oscar.]]></description>
+            <link>https://www.bbc.co.uk/news/entertainment-arts-60882714?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/entertainment-arts-60882714</guid>
+            <pubDate>Sat, 26 Mar 2022 02:32:48 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Surviving deadly tornadoes that tore through the southern US]]></title>
+            <description><![CDATA[People describe harrowing experiences trying to survive tornadoes that tore through the southern US.]]></description>
+            <link>https://www.bbc.co.uk/news/world-us-canada-60880628?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-us-canada-60880628</guid>
+            <pubDate>Fri, 25 Mar 2022 22:43:56 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[The ups and downs of teaching during Covid]]></title>
+            <description><![CDATA[From remote learning to the end of masking, Arielle has taught students throughout the pandemic.]]></description>
+            <link>https://www.bbc.co.uk/news/world-us-canada-60877832?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-us-canada-60877832</guid>
+            <pubDate>Fri, 25 Mar 2022 23:41:51 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Hazara: The female karate champions 'breaking out of the cage']]></title>
+            <description><![CDATA[Women from the Hazara community say the martial art helps them break out of the restrictions their community faces.]]></description>
+            <link>https://www.bbc.co.uk/news/world-asia-60827251?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-asia-60827251</guid>
+            <pubDate>Sat, 26 Mar 2022 00:28:44 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Poland hotel becomes triage centre for cancer patients]]></title>
+            <description><![CDATA[Hundreds of children with cancer have now been evacuated from Ukraine to continue treatment abroad.]]></description>
+            <link>https://www.bbc.co.uk/news/health-60861537?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/health-60861537</guid>
+            <pubDate>Fri, 25 Mar 2022 00:15:43 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: Return to Irpin, the town destroyed in the battle for Kyiv]]></title>
+            <description><![CDATA[The BBC's Jeremy Bowen returns to Irpin, where Ukrainian forces say they're pushing back Russians.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60867789?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60867789</guid>
+            <pubDate>Fri, 25 Mar 2022 00:53:01 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: The dangers faced by front line fighters in Kharkiv]]></title>
+            <description><![CDATA[A month into the war, Mark and Vlad, both 22, show the BBC the perils they face every day in Kharkiv.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60867786?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60867786</guid>
+            <pubDate>Thu, 24 Mar 2022 20:02:49 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Michael Bublé: Multi-Grammy winner on Bond themes, romantic gifts and new album]]></title>
+            <description><![CDATA[An egg poacher, a toaster and the washing up - just some ways Michael Bublé shows his romantic side.]]></description>
+            <link>https://www.bbc.co.uk/news/entertainment-arts-60861539?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/entertainment-arts-60861539</guid>
+            <pubDate>Fri, 25 Mar 2022 00:45:29 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Australia floods: 'We're resilient, but how about helping us?']]></title>
+            <description><![CDATA[Locals tell dramatic stories of survival and recovery, but accuse politicians of ignoring them.]]></description>
+            <link>https://www.bbc.co.uk/news/world-australia-60831476?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-australia-60831476</guid>
+            <pubDate>Fri, 25 Mar 2022 00:47:02 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: Smoke rises from Kyiv fuel depot Russia claims it has destroyed]]></title>
+            <description><![CDATA[Moscow says it targeted the largest remaining military fuel storage facility in Ukraine.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60877442?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60877442</guid>
+            <pubDate>Fri, 25 Mar 2022 13:40:11 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[What are sanctions and do they work?]]></title>
+            <description><![CDATA[Sanctions are used by countries as a diplomatic tool, but they don't always have their intended effect.]]></description>
+            <link>https://www.bbc.co.uk/news/60822489?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/60822489</guid>
+            <pubDate>Fri, 25 Mar 2022 00:20:32 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: Digging a grave for my stepfather, killed in Mariupol]]></title>
+            <description><![CDATA[Viktoria’s stepfather died when the car taking him to hospital was blown up during fighting in Mariupol.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60867785?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60867785</guid>
+            <pubDate>Thu, 24 Mar 2022 20:05:09 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[War in Ukraine: Explosion seen in Berdyansk as navy claims to destroy Russian ship]]></title>
+            <description><![CDATA[The Ukrainian navy says it has destroyed a Russian landing ship named the Orsk in the port city of Berdyansk.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60859384?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60859384</guid>
+            <pubDate>Thu, 24 Mar 2022 11:10:55 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[War in Ukraine: Zelensky calls on people to 'support freedom' and oppose Russia]]></title>
+            <description><![CDATA[Volodymyr Zelensky made his appeal in English, marking one month since Russia invaded Ukraine.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60858611?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60858611</guid>
+            <pubDate>Thu, 24 Mar 2022 07:33:04 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ukraine war: Destruction of cities shown from above]]></title>
+            <description><![CDATA[In the month since Russia's military invaded, it has laid waste to cities across Ukraine.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60854503?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60854503</guid>
+            <pubDate>Thu, 24 Mar 2022 00:06:23 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[The Ukrainian refugee who loves to laugh at school in Poland]]></title>
+            <description><![CDATA[Ten-year-old Yana started school in Poland three weeks ago, after fleeing the war in Ukraine.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60854502?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60854502</guid>
+            <pubDate>Thu, 24 Mar 2022 00:09:35 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[War in Ukraine: 'Pets are getting left at train stations']]></title>
+            <description><![CDATA[A photographer from the UK travels to western Ukraine to rescue pets displaced by war.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60848142?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60848142</guid>
+            <pubDate>Wed, 23 Mar 2022 10:27:59 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[US tornadoes: What the storm aftermath in Louisiana and Texas looks like]]></title>
+            <description><![CDATA[Homes are left destroyed by storms that tore through southern states, including Louisiana and Texas.]]></description>
+            <link>https://www.bbc.co.uk/news/world-us-canada-60854858?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-us-canada-60854858</guid>
+            <pubDate>Wed, 23 Mar 2022 17:56:54 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ash Barty: Australians react to world tennis number one's shock retirement]]></title>
+            <description><![CDATA[The BBC hears from tennis players in Brisbane, where world number one Ashleigh Barty regular trained.]]></description>
+            <link>https://www.bbc.co.uk/news/world-australia-60850780?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-australia-60850780</guid>
+            <pubDate>Wed, 23 Mar 2022 15:39:12 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Taliban schools U-turn 'a devastating day' for Afghan girls - Malala Yousafzai]]></title>
+            <description><![CDATA[The Taliban’s U-turn on girls' high schools is heartbreaking, the Nobel Peace Prize laureate says.]]></description>
+            <link>https://www.bbc.co.uk/news/world-asia-60853162?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-asia-60853162</guid>
+            <pubDate>Wed, 23 Mar 2022 17:24:33 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[WATCH: Ukrainian sailing club protest superyacht linked to Abramovich in Turkey]]></title>
+            <description><![CDATA[A Ukrainian sailing team protest against the arrival of a superyacht linked to Roman Abramovich in Turkey.]]></description>
+            <link>https://www.bbc.co.uk/news/world-europe-60836321?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-europe-60836321</guid>
+            <pubDate>Tue, 22 Mar 2022 11:56:12 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Driver in pick-up truck flipped by Texas tornado]]></title>
+            <description><![CDATA[Watch the moment the vehicle is tossed in the air by the twister as storms swept across Texas.]]></description>
+            <link>https://www.bbc.co.uk/news/world-us-canada-60799661?at_medium=RSS&amp;at_campaign=KARANGA</link>
+            <guid isPermaLink="false">https://www.bbc.co.uk/news/world-us-canada-60799661</guid>
+            <pubDate>Tue, 22 Mar 2022 17:20:24 GMT</pubDate>
+        </item>
+    </channel>
+</rss>

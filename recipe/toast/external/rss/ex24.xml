@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?> <rss version="2.0" xml:base="http://www.nasa.gov/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/"> <channel> <title>NASA Breaking News</title>
+ <description>A RSS news feed containing the latest NASA news articles and press releases.</description>
+ <link>http://www.nasa.gov/</link>
+ <atom:link rel="self" href="http://www.nasa.gov/rss/dyn/breaking_news.rss" />
+ <language>en-us</language>
+ <managingEditor>managingeditor@nasa.gov</managingEditor>
+ <webMaster>webmaster@nasa.gov</webMaster>
+ <docs>http://blogs.harvard.edu/tech/rss</docs>
+ <item> <title>NASA to Discuss Final Test Status Today Before Artemis Moon Mission</title>
+ <link>http://www.nasa.gov/press-release/nasa-to-discuss-final-test-status-today-before-artemis-moon-mission</link>
+ <description>NASA to Discuss Final Test Status Today Before Artemis Moon Mission</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/nhq202204040011.jpg?itok=HIRdKPmO" length="3551198" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-to-discuss-final-test-status-today-before-artemis-moon-mission</guid>
+ <pubDate>Tue, 05 Apr 2022 06:27 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>478570</dc:identifier>
+</item>
+ <item> <title>NASA to Provide Update Today on Last Major Artemis Test Before Launch</title>
+ <link>http://www.nasa.gov/press-release/nasa-to-provide-update-today-on-last-major-artemis-test-before-launch</link>
+ <description>NASA to Provide Update Today on Last Major Test Before Artemis Launch</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/artemis_i_wet_dress_rehearsal.jpg?itok=kGUiAGPW" length="22491211" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-to-provide-update-today-on-last-major-artemis-test-before-launch</guid>
+ <pubDate>Sun, 03 Apr 2022 11:57 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>478538</dc:identifier>
+</item>
+ <item> <title>NASA to Participate in Space Symposium, Broadcast Select Panels</title>
+ <link>http://www.nasa.gov/press-release/nasa-to-participate-in-space-symposium-broadcast-select-panels</link>
+ <description>NASA Deputy Administrator Pam Melroy and Associate Administrator Bob Cabana are among the agency’s speakers at the Space Foundation’s 37th Space Symposium from Tuesday, April 5 to Thursday, April 7 in Colorado Springs, Colo.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/51262927224_35ca38972c_k.jpg?itok=lxCfxBVC" length="546369" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-to-participate-in-space-symposium-broadcast-select-panels</guid>
+ <pubDate>Fri, 01 Apr 2022 16:50 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>478535</dc:identifier>
+</item>
+ <item> <title>NASA Astronaut to Discuss American Space Record in News Conference</title>
+ <link>http://www.nasa.gov/press-release/nasa-astronaut-to-discuss-american-space-record-in-news-conference</link>
+ <description>NASA astronaut Mark Vande Hei, back on Earth after breaking the record for the longest single spaceflight in history by an American, will participate in a virtual news conference at 10 a.m. EDT Tuesday, April 5, from the agency’s Johnson Space Center in Houston.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/iss065e335291_0.jpg?itok=aMXfrgYh" length="3446787" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-astronaut-to-discuss-american-space-record-in-news-conference</guid>
+ <pubDate>Fri, 01 Apr 2022 12:00 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>478513</dc:identifier>
+</item>
+ <item> <title>Coverage Set for Axiom Mission 1 Briefings, Events, Broadcast</title>
+ <link>http://www.nasa.gov/press-release/coverage-set-for-axiom-mission-1-briefings-events-broadcast</link>
+ <description>NASA and Axiom Space will provide coverage of the upcoming prelaunch and launch activities for Axiom Mission 1 (Ax-1), the first private astronaut mission to the International Space Station.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/51712323479_fca7ad570d_k.jpg?itok=ho8lbwW1" length="590356" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/coverage-set-for-axiom-mission-1-briefings-events-broadcast</guid>
+ <pubDate>Thu, 31 Mar 2022 09:06 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>478474</dc:identifier>
+</item>
+ <item> <title>Record-Setting NASA Astronaut, Crewmates Return from Space Station</title>
+ <link>http://www.nasa.gov/press-release/record-setting-nasa-astronaut-crewmates-return-from-space-station-0</link>
+ <description>After extending the record for the longest single spaceflight in history by an American to 355 days, NASA astronaut Mark Vande Hei returned to Earth on Wednesday, March 30, along with Roscosmos cosmonauts Anton Shkaplerov and Pyotr Dubrov.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/51971024308_eb88243a82_k.jpeg?itok=4hDL-INs" length="955605" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/record-setting-nasa-astronaut-crewmates-return-from-space-station-0</guid>
+ <pubDate>Wed, 30 Mar 2022 07:37 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>478449</dc:identifier>
+</item>
+ <item> <title>NASA Names Winners of Lunar Robotics Design Contest</title>
+ <link>http://www.nasa.gov/press-release/nasa-names-winners-of-lunar-robotics-design-contest</link>
+ <description>NASA has chosen two students as winners of the Lunabotics Junior Contest, a national competition for K-12 students featuring the agency’s Artemis missions.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/large_winner_collage.png?itok=0a676iaa" length="3669357" type="image/png" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-names-winners-of-lunar-robotics-design-contest</guid>
+ <pubDate>Tue, 29 Mar 2022 15:26 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>478438</dc:identifier>
+</item>
+ <item> <title>Declaración del administrador de la NASA sobre la solicitud de presupuesto del presidente para el año fiscal 2023</title>
+ <link>http://www.nasa.gov/press-release/declaraci-n-del-administrador-de-la-nasa-sobre-la-solicitud-de-presupuesto-del</link>
+ <description>El presupuesto del presidente para el año fiscal 2023 permitiría a la NASA mantener el liderazgo en innovación global de Estados Unidos y mantener a la NASA a la vanguardia de la exploración y el descubrimiento al regresar a la Luna con el programa Artemis, entre otros esfuerzos.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/nasa-logo-web-rgb_0.jpg?itok=mrBnB_c9" length="189751" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/declaraci-n-del-administrador-de-la-nasa-sobre-la-solicitud-de-presupuesto-del</guid>
+ <pubDate>Mon, 28 Mar 2022 13:53 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>478407</dc:identifier>
+</item>
+ <item> <title>NASA Administrator Statement on President’s FY 2023 Budget Request</title>
+ <link>http://www.nasa.gov/press-release/nasa-administrator-statement-on-presidents-fy-2023-budget-request</link>
+ <description>The President’s fiscal year 2023 budget would allow NASA to sustain America’s global innovation leadership and keep NASA at the forefront of exploration and discovery by returning to the Moon with the Artemis program, among other efforts.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/nasa_administrator_bill_nelson.jpg?itok=9TR9QFXn" length="342591" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-administrator-statement-on-presidents-fy-2023-budget-request</guid>
+ <pubDate>Mon, 28 Mar 2022 11:51 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>478402</dc:identifier>
+</item>
+ <item> <title>NASA to Provide Updates, Coverage for Final Test Ahead of Moon Mission</title>
+ <link>http://www.nasa.gov/press-release/nasa-to-provide-updates-coverage-for-final-test-ahead-of-moon-mission</link>
+ <description>NASA will hold a media teleconference at 1 p.m. EDT Tuesday, March 29, to discuss the upcoming final major test with the agency’s Mega Moon rocket and spacecraft at the launch pad ahead of the uncrewed Artemis I lunar mission.</description>
+ <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/ksc-20220321-ph-jbs01_0043_medium.jpeg?itok=JqoLBO0N" length="123161" type="image/jpeg" />
+ <guid isPermaLink="false">http://www.nasa.gov/press-release/nasa-to-provide-updates-coverage-for-final-test-ahead-of-moon-mission</guid>
+ <pubDate>Mon, 28 Mar 2022 09:29 EDT</pubDate>
+ <source url="http://www.nasa.gov/rss/dyn/breaking_news.rss">NASA Breaking News</source>
+ <dc:identifier>478395</dc:identifier>
+</item>
+</channel>
+</rss>

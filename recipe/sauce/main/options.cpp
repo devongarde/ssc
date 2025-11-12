@@ -305,11 +305,13 @@ options::options (const context_t& c)
     INSERT_STRING (OUTPUT, FORMAT, output_format);
     INSERT_PATH (OUTPUT, HOME, home);
     INSERT_STRING (OUTPUT, OVERRIDE, output_override);
+#ifdef SIGNING
     INSERT_PATH (OUTPUT, PASSWORD, password);
     INSERT_PATH (OUTPUT, PRIVATE, pri);
     INSERT_PATH (OUTPUT, PUBLIC, pub);
     INSERT_BOOL (OUTPUT, SIGN, sign);
     INSERT_PATH (OUTPUT, SIGNATURE, signature);
+#endif // SIGNING
     INSERT_PATH (OUTPUT, STYLESHEET, stylesheet);
     INSERT_STRING (OUTPUT, TIME, output_time);
     INSERT_STRING (OUTPUT, USERNAME, username);
@@ -336,7 +338,7 @@ options::options (const context_t& c)
     INSERT_VSTR (SHADOW, REPLACE, replace);
     INSERT_STRING (SHADOW, ROOT, shadow_root);
     INSERT_BOOL (SHADOW, SPACING, shadow_space);
-    INSERT_BOOL (SHADOW, SSI, shadow_ssi);
+    INSERT_BOOL (SHADOW, SSI_, shadow_ssi);
     INSERT_BOOL (SHADOW, UPDATE, update);
     INSERT_VSTR (SHADOW, VIRTUAL, shadows);
     INSERT_STRING (SHADOW, INDEX, index);
@@ -361,7 +363,7 @@ options::options (const context_t& c)
 #endif // HUNSPELL
 #endif // NOSPELL
 
-    INSERT_BOOL (SSI, SSI, ssi);
+    INSERT_BOOL (SSI, VERIFY, ssi);
     INSERT_TIME (SSI, DATETIME, ssi_date);
     INSERT_STRING (SSI, DOCARGS, ssi_doc_args);
     INSERT_STRING (SSI, ECHOMSG, ssi_echomsg);
@@ -801,6 +803,14 @@ void options::init (context_t& c)
         (NITS XXX, ::boost::program_options::value < ::std::string > (), "Output nits on cache usage from page names containing argument (empty for no report); may be combined with " NITS CACHE ".")
 
         (OUTPUT BUILD, ::boost::program_options::value < ::std::string > (), "Output this as the compile time rather than the actual compile time (used for testing).")
+#ifndef SIGNING
+        (OUTPUT PASSWORD, ::boost::program_options::value < ::std::string > (), "the file containing the password for the private key, if any (ignored, signing not available)")
+        (OUTPUT PRIVATE, ::boost::program_options::value < ::std::string > (), "the file containing the private key used for the signature (ignored, signing not available)")
+        (OUTPUT PUBLIC, ::boost::program_options::value < ::std::string > (), "the file containing the public key used to verify the signature (ignored, signing not available)")
+        (OUTPUT SIGN, ::boost::program_options::bool_switch (), "Sign the output (requires --" OUTPUT SIGNATURE ", --" OUTPUT PRIVATE ", and --" OUTPUT PUBLIC ") (ignored, signing not available)")
+        (OUTPUT DONT SIGN, ::boost::program_options::bool_switch (), "Do not sign the output (ignored, signing not available)")
+        (OUTPUT SIGNATURE, ::boost::program_options::value < ::std::string > (), "output the signature to this file (requires --" OUTPUT PRIVATE ") (ignored, signing not available)")
+#endif // SIGNING
         (OUTPUT TIME, ::boost::program_options::value < ::std::string > (), "The date/time when the output was produced (used for testing; default: now)")
 
 #ifdef NOSPELL
@@ -1110,13 +1120,17 @@ void options::init (context_t& c)
         (OUTPUT FORMAT, ::boost::program_options::value < ::std::string > (), "Produce output in this format: \"html\", \"stylesheet\", \"text\" (default), \"xhtml\", or a filename (see docs for layout).")
         (OUTPUT HOME, ::boost::program_options::value < ::std::string > (), "Add this link as home when reporting on snippet result.")
         (OUTPUT OVERRIDE ARGSEP OVRRD_SW_, ::boost::program_options::value < ::std::string > (), "Output nits in this format (overrides --" OUTPUT FORMAT "; for automation).")
+#ifdef SIGNING
         (OUTPUT PASSWORD, ::boost::program_options::value < ::std::string > (), "the file containing the password for the private key, if any")
         (OUTPUT PRIVATE, ::boost::program_options::value < ::std::string > (), "the file containing the private key used for the signature")
         (OUTPUT PUBLIC, ::boost::program_options::value < ::std::string > (), "the file containing the public key used to verify the signature")
+#endif // SIGNING
         (OUTPUT RPATH, ::boost::program_options::bool_switch (), "Output web address relative path of files scanned.")
+#ifdef SIGNING
         (OUTPUT SIGN, ::boost::program_options::bool_switch (), "Sign the output (requires --" OUTPUT SIGNATURE ", --" OUTPUT PRIVATE ", and --" OUTPUT PUBLIC ")")
         (OUTPUT DONT SIGN, ::boost::program_options::bool_switch (), "Do not sign the output")
         (OUTPUT SIGNATURE, ::boost::program_options::value < ::std::string > (), "output the signature to this file (requires --" OUTPUT PRIVATE ")")
+#endif // SIGNING
         (OUTPUT STYLESHEET, ::boost::program_options::value < ::std::string > (), "when reporting snippets using stylesheet format, use this stylesheet")
         (OUTPUT USERNAME, ::boost::program_options::value < ::std::string > (), "the operator of " PROG " (by default, obtained from the OS)")
         (OUTPUT VERIFY, ::boost::program_options::bool_switch (), "Verify signed output (requires --" OUTPUT PUBLIC " and --" OUTPUT SIGNATURE ")")
@@ -1158,8 +1172,8 @@ void options::init (context_t& c)
         (SHADOW ROOT, ::boost::program_options::value < ::std::string > (), "Shadow output root directory.")
         (SHADOW SPACING, ::boost::program_options::bool_switch (), "Merge whitespace on shadow pages. Without this option, nit line-numbers may not match shadow pages.")
         (SHADOW DONT SPACING, ::boost::program_options::bool_switch (), "Do not merge whitespace on shadow pages.")
-        (SHADOW SSI, ::boost::program_options::bool_switch (), "Resolve SSIs on shadow pages. Requires --" SSI VERIFY ".")
-        (SHADOW DONT SSI, ::boost::program_options::bool_switch (), "Do not resolve SSIs on shadow pages.")
+        (SHADOW SSI_, ::boost::program_options::bool_switch (), "Resolve SSIs on shadow pages. Requires --" SSI VERIFY ".")
+        (SHADOW DONT SSI_, ::boost::program_options::bool_switch (), "Do not resolve SSIs on shadow pages.")
         (SHADOW UPDATE, ::boost::program_options::bool_switch (), "Only examine changed pages, or pages with changed dependencies (requires --" SHADOW FICHIER ")")
         (SHADOW DONT UPDATE, ::boost::program_options::bool_switch (), "Examine all pages.")
         (SHADOW VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "Shadow virtual directory, syntax virtual=shadow; must correspond to --" WEBSITE VIRTUAL "; may be repeated.")
@@ -1183,7 +1197,7 @@ void options::init (context_t& c)
         (SPELL PATH, ::boost::program_options::value < ::std::string > (), "Path to (hunspell) dictionaries (ignored in Windows).")
 #endif // NOSPELL
 
-        (SSI VERIFY ARGSEP SSI_SW_, ::boost::program_options::bool_switch (), "Verify (simple) Server Side Includes. See also --" SHADOW SSI ".")
+        (SSI VERIFY ARGSEP SSI_SW_, ::boost::program_options::bool_switch (), "Verify (simple) Server Side Includes. See also --" SHADOW SSI_ ".")
         (SSI DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify Server Side Includes.")
         (SSI DATETIME, ::boost::program_options::value < ::std::string > () -> composing (), "The SSI date environment variables should return this value.")
         (SSI DOCARGS, ::boost::program_options::value < ::std::string > () -> composing (), "Set the SSI DOCUMENT_ARGS variable to this value.")
@@ -1959,11 +1973,13 @@ void options::contextualise (context_t& c, nitpick& nits)
         if (var_.count (OUTPUT DESCRIPTION)) c.output_description (var_ [OUTPUT DESCRIPTION].as < vstr_t > ());
         if (var_.count (OUTPUT FORMAT)) c.output_format (var_ [OUTPUT FORMAT].as < ::std::string > ());
         if (var_.count (OUTPUT HOME)) c.home (var_ [OUTPUT HOME].as < ::std::string > ());
+#ifdef SIGNING
         if (var_.count (OUTPUT PASSWORD)) c.password (absolute_name (var_ [OUTPUT PASSWORD].as < ::std::string > ()));
         if (var_.count (OUTPUT PRIVATE)) c.pri (absolute_name (var_ [OUTPUT PRIVATE].as < ::std::string > ()));
         if (var_.count (OUTPUT PUBLIC)) c.pub (absolute_name (var_ [OUTPUT PUBLIC].as < ::std::string > ()));
         yea_nay (c, &context_t::sign, nits, OUTPUT SIGN, OUTPUT DONT SIGN);
         if (var_.count (OUTPUT SIGNATURE)) c.signature (absolute_name (var_ [OUTPUT SIGNATURE].as < ::std::string > ()));
+#endif // SIGNING 
         if (var_.count (OUTPUT TIME)) c.output_time (var_ [OUTPUT TIME].as < ::std::string > ());
         if (var_.count (OUTPUT USERNAME)) c.username (var_ [OUTPUT USERNAME].as < ::std::string > ());
         yea_nay (c, &context_t::verify, nits, OUTPUT VERIFY, OUTPUT DONT VERIFY);
@@ -2006,7 +2022,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         if (var_.count (SHADOW REPLACE)) c.replace (var_ [SHADOW REPLACE].as < vstr_t > ());
         if (var_.count (SHADOW ROOT)) c.shadow_root (nix_path_to_local (var_ [SHADOW ROOT].as < ::std::string > ()));
         yea_nay (c, &context_t::shadow_space, nits, SHADOW SPACING, SHADOW DONT SPACING);
-        yea_nay (c, &context_t::shadow_ssi, nits, SHADOW SSI, SHADOW DONT SSI);
+        yea_nay (c, &context_t::shadow_ssi, nits, SHADOW SSI_, SHADOW DONT SSI_);
         yea_nay (c, &context_t::update, nits, SHADOW UPDATE, SHADOW DONT UPDATE);
         if (var_.count (SHADOW VIRTUAL)) c.shadows (var_ [SHADOW VIRTUAL].as < vstr_t > ());
 
@@ -2804,13 +2820,17 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, ::std::string, OUTPUT, FORMAT, output);
     RG (gr, res, ::std::string, OUTPUT, HOME, output);
     RG (gr, res, ::std::string, OUTPUT, OVERRIDE, output);
+#ifdef SIGNING
     RG (gr, res, ::std::string, OUTPUT, PASSWORD, output);
     RG (gr, res, ::std::string, OUTPUT, PRIVATE, output);
     RG (gr, res, ::std::string, OUTPUT, PUBLIC, output);
+#endif // SIGNING
     RB (gr, res, OUTPUT, RPATH, output);
+#ifdef SIGNING
     RB (gr, res, OUTPUT, SIGN, output);
     RG (gr, res, ::std::string, OUTPUT, SIGNATURE, output);
     RG (gr, res, ::std::string, OUTPUT, STYLESHEET, output);
+#endif // SIGNING
     RG (gr, res, ::std::string, OUTPUT, TIME, output);
     RG (gr, res, ::std::string, OUTPUT, USERNAME, output);
     RB (gr, res, OUTPUT, VERIFY, output);
@@ -2837,7 +2857,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, vstr_t, SHADOW, REPLACE, shadow);
     RG (gr, res, ::std::string, SHADOW, ROOT, shadow);
     RB (gr, res, SHADOW, SPACING, shadow);
-    RB (gr, res, SHADOW, SSI, shadow);
+    RB (gr, res, SHADOW, SSI_, shadow);
     RB (gr, res, SHADOW, UPDATE, shadow);
     RG (gr, res, vstr_t, SHADOW, VIRTUAL, shadow);
     REOS (shadow, res);

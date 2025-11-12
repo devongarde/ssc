@@ -6,35 +6,22 @@ PASS ../toast/RDFa/lrdw/lrdw.html
 8 reputation
 9 reputation
 12 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_confusion rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_confusion rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine
-20 not_ontology_property bad_property not_ontology_property bad_property bad_property
 102 ontology_domain
-156 not_ontology_property bad_property ontology_domain not_ontology_property bad_property
+156 ontology_domain
 255 ontology_domain
 318 ontology_domain
 320 not_ontology_property bad_property
 454 empty_link
-587 not_ontology_property bad_property
 808 attribute_unrecognised_here unrecognised_attribute
 812 attribute_unrecognised_here unrecognised_attribute
-826 not_ontology_property bad_property
-840 not_ontology_property bad_property not_ontology_property bad_property
 858 contradictory_expansion
 860 attribute_unrecognised_here unrecognised_attribute attribute_unrecognised_here unrecognised_attribute attribute_unrecognised_here unrecognised_attribute attribute_unrecognised_here unrecognised_attribute attribute_unrecognised_here unrecognised_attribute
-942 not_ontology_property bad_property
 1003 not_ontology_property bad_property
-1118 not_ontology_property bad_property
 1201 ontology_domain
 1202 ontology_domain
 1206 ontology_domain
-1382 not_ontology_property bad_property
-1386 not_ontology_property bad_property
-1436 not_ontology_property bad_property
-1451 not_ontology_property bad_property
-1553 not_ontology_property bad_property
-1601 not_ontology_property bad_property
 1851 reputation
 1924 no_such_folder url_not_found
-2017 not_ontology_property bad_property not_ontology_property bad_property
 2200 contradictory_expansion
 2314 no_such_folder url_not_found
 3611 ontology_domain
@@ -42,36 +29,33 @@ PASS ../toast/RDFa/lrdw/lrdw.html
 3779 no_such_folder url_not_found
 3803 no_such_folder url_not_found
 4632 no_such_folder url_not_found
-4680 ontology_domain not_ontology_property bad_property
-4682 ontology_domain not_ontology_property bad_property
-4684 ontology_domain not_ontology_property bad_property
-4686 ontology_domain not_ontology_property bad_property
-4688 ontology_domain not_ontology_property bad_property
-4686 ontology_domain not_ontology_property bad_property
-4695 ontology_domain not_ontology_property bad_property
-4697 ontology_domain not_ontology_property bad_property
-4717 ontology_domain not_ontology_property bad_property
-4719 ontology_domain not_ontology_property bad_property
-4721 ontology_domain not_ontology_property bad_property
-4723 ontology_domain not_ontology_property bad_property
-4725 ontology_domain not_ontology_property bad_property
-4727 ontology_domain not_ontology_property bad_property
-4729 ontology_domain not_ontology_property bad_property
-4731 ontology_domain not_ontology_property bad_property
+4680 ontology_domain
+4682 ontology_domain
+4684 ontology_domain
+4686 ontology_domain
+4688 ontology_domain
+4686 ontology_domain
+4695 ontology_domain
+4697 ontology_domain
+4717 ontology_domain
+4719 ontology_domain
+4721 ontology_domain
+4723 ontology_domain
+4725 ontology_domain
+4727 ontology_domain
+4729 ontology_domain
+4731 ontology_domain
 5132 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine
 5138 invalid_attribute_version wrong_version
-5182 not_ontology_property bad_property
 5253 track_missing
 5296 track_missing
 5328 track_missing
 5363 contradictory_expansion
-5373 not_ontology_property bad_property
 5380 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine invalid_attribute_version wrong_version svg_version
 5396 immeasurable
 5397 immeasurable
 5436 tabnab
 5443 track_missing
-5985 not_ontology_property bad_property
 6085 ontology_domain
 6087 ontology_domain
 6089 ontology_domain

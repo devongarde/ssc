@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+    
+    <meta charset="utf-8">
+    <title>
+     From Shared Hosting to VPS: Web Server Setup Made Easy | 
+    cleberg.net
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Christian Cleberg &lt;hello@cleberg.net&gt;" >
+    <meta name="description" content="Just a blip of ones and zeroes." >
+    
+    <link rel="stylesheet" href="../styles.min.css" type="text/css">
+    <link rel="icon" type="image/x-icon" href="data:,">
+    
+<meta property="og:title" content="From Shared Hosting to VPS: Web Server Setup Made Easy" />
+<meta property="og:url" content="https://cleberg.net/blog/vps-web-server.html" />
+
+<meta property="og:description" content="Instructional outline for setting up and maintaining a VPS environment configured for secure and scalable web hosting applications." />
+ 
+    
+</head>
+<body>
+	<nav aria-label="site-nav" role="navigation">
+		<ul>
+			<li><a href="../index.html">Home</a></li>
+            <li><a href="../about/index.html">About</a></li>
+			<li><a href="index.html">Blog</a></li>
+			<li><a href="../services/index.html">Services</a></li>
+		</ul>
+	</nav>
+    <main>
+<article role="article">
+	<section class="post-metadata">
+		<h1>From Shared Hosting to VPS: Web Server Setup Made Easy</h1>
+		
+		<time datetime='2021-03-30'
+			>Tuesday, March 30, 2021 00:00:00</time
+		>
+		
+	</section>
+	<section><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="vps-web-server.html#shared-hosting-vs-vps">1. Shared Hosting vs. VPS</a></li>
+<li><a href="vps-web-server.html#my-situation">2. My Situation</a></li>
+<li><a href="vps-web-server.html#getting-started-buying-a-vps">3. Getting Started: Buying a VPS</a></li>
+<li><a href="vps-web-server.html#configuring-dns-settings">4. Configuring DNS Settings</a></li>
+<li><a href="vps-web-server.html#server-updates-and-packages">5. Server Updates and Packages</a></li>
+<li><a href="vps-web-server.html#create-a-user-account">6. Create A User Account</a></li>
+<li><a href="vps-web-server.html#install-software">7. Install Software</a></li>
+<li><a href="vps-web-server.html#website-files-folders">8. Website Files &amp; Folders</a></li>
+<li><a href="vps-web-server.html#apache-configuration">9. Apache Configuration</a></li>
+<li><a href="vps-web-server.html#ssl-tls-certificates-serve-websites-over-https">10. SSL/TLS Certificates: Serve Websites Over HTTPS</a></li>
+<li><a href="vps-web-server.html#firewall-security">11. Firewall Security</a></li>
+<li><a href="vps-web-server.html#troubleshooting">12. Troubleshooting</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-shared-hosting-vs-vps" class="outline-2">
+<h2 id="shared-hosting-vs-vps"><span class="section-number-2">1.</span> Shared Hosting vs. VPS</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Choosing a place to host a website is one of the most confusing
+decisions for beginner web developers. Even for experienced web devs,
+choosing between different forms of web hosting can be a daunting
+choice.
+</p>
+
+<p>
+First, let's take a look at
+<a href="https://en.wikipedia.org/wiki/Shared_web_hosting_service">shared web
+hosting</a>. Shared web hosting is a product where you are purchasing a
+small piece of a web server that is being shared between many websites.
+As a result, the cost of shared hosting is extremely low. You won't have
+access to the server itself, which means you can't install your own
+software on the server, such as Docker. Usually, you are simply allowed
+to connect your domains to the server, set up domain security, and other
+small utilities.
+</p>
+
+<p>
+In contrast, a
+<a href="https://en.wikipedia.org/wiki/Virtual_private_server">virtual private
+server</a> (VPS) is a virtual machine that replicates the environment of
+having a dedicated server to yourself. You are able to control the
+virtual server's host names, base file system, package manager, etc.
+Another great upside of a VPS is that since it's virtual, the company
+providing the VPS can dynamically increase the disk size, RAM size, or
+number of CPUs at any time. However, the virtual server is still
+physically located on a server that is shared between multiple virtual
+servers.
+</p>
+
+<p>
+The choice between shared hosting and VPS mostly depends on your skill
+level with system administration. If you're comforting working on a
+server that is mostly left up to you (or you're willing to learn), then
+a VPS is usually a better option. However, shared hosting is a fantastic
+option for people who don't want to have to learn how to manage their
+server.
+</p>
+</div>
+</div>
+<div id="outline-container-my-situation" class="outline-2">
+<h2 id="my-situation"><span class="section-number-2">2.</span> My Situation</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+I had used shared hosting for approximately 5 years before trying my
+first VPS. I manage a homelab and have had success running a server and
+performing typical sysadmin duties, but I was still hesitant to get a
+VPS. One fear was that I always struggled to properly set up the
+networking part of a server - DNS and hostname configurations were not
+my friend.
+</p>
+
+<p>
+As a little bit of background, I originally used
+<a href="https://www.siteground.com">Siteground</a> for my initially shared
+hosting and stayed on that platform for at least a year. However, the UI
+was clunky, and I didn't like how they handled certain technical
+aspects, so I switched to <a href="https://www.namecheap.com">Namecheap</a>.
+Namecheap was great because it is the service I primarily use for
+purchasing domain names, which made it incredibly easy to link them to
+my hosting service. However, it was still mediocre shared hosting, and
+Namecheap is notorious for not letting you use
+<a href="https://letsencrypt.org">Let's Encrypt</a> to obtain free SSL/TLS
+certificates; Namecheap wants to make you purchase certificates through
+their store.
+</p>
+
+<p>
+Finally, I settled down with <a href="https://www.iwebfusion.net">iWebFusion</a>
+for about the last year of my shared hosting. This service was pretty
+great, came with free SSL/TLS, and I never had any complaints.
+</p>
+
+<p>
+However, I finally grew tired of not being able to install software on
+my own web server. I wanted to be able to try out things like
+<a href="https://postmill.xyz">Postmill</a> or <a href="https://matrix.org">Matrix</a>.
+This is possible with a VPS, so I decided to grab a new domain name to
+try it out.
+</p>
+</div>
+</div>
+<div id="outline-container-getting-started-buying-a-vps" class="outline-2">
+<h2 id="getting-started-buying-a-vps"><span class="section-number-2">3.</span> Getting Started: Buying a VPS</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The first step to moving over to a VPS is (you guessed it): finding a
+VPS provider. For my VPSs, I use <a href="https://1984hosting.com">1984</a> and
+prefer their services much more than any alternative, due to their
+location (Iceland), their <a href="https://1984hosting.com/GDPR/">privacy
+policy</a>, their respect for GDPR, and the ability to remain anonymous if
+you pay in Bitcoin or Monero.
+</p>
+
+<p>
+<a href="https://njal.la">Njalla</a> is another good, privacy-oriented option for
+VPS services.
+</p>
+
+<p>
+You'll have to decide what specifications you want on your VPS. For me,
+I only build and deploy low-resource HTML, PHP, and Python websites.
+This means I can survive on the smallest VPS: 1 CPU, 1GB of RAM, and
+25GB SSD for $5.00 per month.
+</p>
+
+<p>
+As noted above, the great thing about a VPS is you can request your
+provider to increase the resources at any time.
+</p>
+</div>
+</div>
+<div id="outline-container-configuring-dns-settings" class="outline-2">
+<h2 id="configuring-dns-settings"><span class="section-number-2">4.</span> Configuring DNS Settings</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Okay, so now let's get into some actual work that has to be done to get
+content moved from a shared host to a VPS. At this point, I'm assuming
+you have a shared host with website content that you can still access,
+and you've purchased a new VPS and can SSH into that server.
+</p>
+
+<p>
+The first change is minor, but it should be done immediately in order to
+get things moving: DNS settings. Go to wherever your DNS settings are
+handled. If your shared host also managed your DNS settings, you'll need
+to first move that DNS over to your new VPS provider. For me, I route my
+DNS through <a href="https://www.gandi.net">Gandi</a>.
+</p>
+
+<p>
+Once you know where your DNS settings are, go ahead and update the <code>A</code>
+records to match the public IP address of your VPS. For example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-txt">A         example.com     xxx.xxx.xxx.xxx
+A         subdomain       xxx.xxx.xxx.xxx
+CNAME     www             example.com.
+</pre>
+</div>
+
+<p>
+If you have any other records that require updates, such as MX or TXT
+records for a mail server, be sure to update those accordingly.
+Personally, I don't host my own mail server. I route all mail on my
+custom domains to <a href="https://www.migadu.com">Migadu</a>. Hosting your own
+email server can become complex quickly and is not for beginners.
+</p>
+
+<p>
+DNS changes can take up to 48 hours to propagate, so be sure to give it
+some time before assuming you've made an error.
+</p>
+</div>
+</div>
+<div id="outline-container-server-updates-and-packages" class="outline-2">
+<h2 id="server-updates-and-packages"><span class="section-number-2">5.</span> Server Updates and Packages</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Now that the DNS settings have been changed, let's set up our server
+while we wait for the DNS to propagate. First up is to ssh into your
+server. If you've signed up with a service like DigitalOcean, you can
+add your SSH key to your account and to your VPS droplet so that you
+don't need a password in order to SSH.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">ssh root@xxx.xxx.xxx.xxx
+</pre>
+</div>
+
+<p>
+The VPS that is used in this blog post runs Ubuntu 20.04 with an Apache
+web server. If you're working on a different operating system (OS) or
+want a different web server, such as Nginx, you'll have to use different
+commands to set it up.
+</p>
+
+<p>
+First, let's update and upgrade our server.
+</p>
+
+<p>
+<b>NOTE:</b> Since we have logged in to the server as <code>root</code> for now, we
+don't need to use the <code>sudo</code> modifier before our commands.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">apt update &amp;&amp; apt upgrade -y
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-create-a-user-account" class="outline-2">
+<h2 id="create-a-user-account"><span class="section-number-2">6.</span> Create A User Account</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+While being able to use <code>root</code> can be beneficial at times, you shouldn't
+use <code>root</code> unless you have to.
+</p>
+
+<p>
+So let's set up a new user in our system. The <code>-m</code> option below tells
+the OS to create a home directory for the new user.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">adduser USERNAME
+</pre>
+</div>
+
+<p>
+Now, create a password for that user.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">passwd USERNAME
+</pre>
+</div>
+
+<p>
+Finally, add the user to the sudoers file, so they can perform
+priveleged commands.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">usermod -a -G sudo USERNAME
+</pre>
+</div>
+
+<p>
+If you are using SSH keys and not passwords, you'll need to copy your
+SSH key from your local machine to the VPS. If you haven't disabled
+password-based SSH yet, the easiest way to do this is <code>ssh-copy-id</code> from
+your local computer (not from the VPS):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">ssh-copy-id testuser@xxx.xxx.xxx.xxx
+</pre>
+</div>
+
+<p>
+If you've disabled password-based SSH, you'll need to manually copy your
+SSH key into the <code>~/.ssh/authorized_keys</code> file.
+</p>
+</div>
+</div>
+<div id="outline-container-install-software" class="outline-2">
+<h2 id="install-software"><span class="section-number-2">7.</span> Install Software</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Our goal here is to host a web server, so the next step is to install
+the Apache web server and any other packages we need.
+</p>
+
+<p>
+From this point on, I will be logged in as a user (not <code>root</code>) and will
+need to use the <code>sudo</code> modifier for most commands.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt update; sudo apt upgrade -y; sudo apt autoremove -y
+sudo apt install apache2
+</pre>
+</div>
+
+<p>
+If you need other language support, such as PHP, you'll need to install
+that too.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt install libapache2-mod-php php-dom
+sudo a2enmod php
+sudo systemctl restart apache2
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-website-files-folders" class="outline-2">
+<h2 id="website-files-folders"><span class="section-number-2">8.</span> Website Files &amp; Folders</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Next up is to create the directories for the domain(s) we want to be
+hosted on this web server.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="font-weight: bold;">cd</span> /var/www
+sudo mkdir example.com
+</pre>
+</div>
+
+<p>
+We have a folder for <code>example.com</code> now, so let's add an <code>index.html</code>
+file and put it within a specific <code>public_html</code> folder. You don't need
+this <code>public_html</code> if you don't want it, but it helps with organizing
+items related to <code>example.com</code> that you don't want to publish to the
+internet.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="font-weight: bold;">cd</span> example.com
+sudo mkdir public_html &amp;&amp; <span style="font-weight: bold;">cd</span> public_html
+sudo nano index.html
+</pre>
+</div>
+
+<p>
+You can put anything you want in this <code>index.html</code> file. If you can't
+think of anything, paste this in there:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="font-weight: bold;">!DOCTYPE</span> html&gt;
+&lt;<span style="font-weight: bold;">html</span> <span style="font-weight: bold; font-style: italic;">lang</span>=<span style="font-style: italic;">"en"</span>&gt;
+    &lt;<span style="font-weight: bold;">head</span>&gt;
+        &lt;<span style="font-weight: bold;">meta</span> <span style="font-weight: bold; font-style: italic;">charset</span>=<span style="font-style: italic;">"utf-8"</span> /&gt;
+        &lt;<span style="font-weight: bold;">meta</span> <span style="font-weight: bold; font-style: italic;">name</span>=<span style="font-style: italic;">"viewport"</span> <span style="font-weight: bold; font-style: italic;">content</span>=<span style="font-style: italic;">"width=device-width, initial-scale=1"</span> /&gt;
+        &lt;<span style="font-weight: bold;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Hello, world!</span>&lt;/<span style="font-weight: bold;">title</span>&gt;
+    &lt;/<span style="font-weight: bold;">head</span>&gt;
+    &lt;<span style="font-weight: bold;">body</span>&gt;
+        &lt;<span style="font-weight: bold;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">Hello, world!</span>&lt;/<span style="font-weight: bold;">h1</span>&gt;
+    &lt;/<span style="font-weight: bold;">body</span>&gt;
+&lt;/<span style="font-weight: bold;">html</span>&gt;
+</pre>
+</div>
+
+<p>
+If you want something to be served at <code>example.com/page01/file.txt</code>,
+you'll have to create the <code>page01</code> directory under the <code>example.com</code>
+directory. For example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="font-weight: bold;">cd</span> /var/www/example.com/public_html
+sudo mkdir page01
+sudo nano file.txt
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-apache-configuration" class="outline-2">
+<h2 id="apache-configuration"><span class="section-number-2">9.</span> Apache Configuration</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+Now, let's set up the files that will tell the server where to find the
+files for <code>example.com</code>. We will copy the default configuration file and
+create our own.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="font-weight: bold;">cd</span> /etc/apache2/sites-available
+sudo cp 000-default.conf example.com.conf
+sudo nano example.com.conf
+</pre>
+</div>
+
+<p>
+This configuration file will have a few default lines, but you'll need
+to edit it to look similar to this (settings may change based on your
+personal needs):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-config">&lt;VirtualHost *:80&gt;
+    ServerAdmin your-email@email-provider.com
+    ServerName example.com
+    ServerAlias www.example.com
+    DocumentRoot /var/www/example.com/public_html
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</pre>
+</div>
+
+<p>
+Now, enable the configuration for your new site, disable the default
+configuration, and reload the web server.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo a2ensite example.com.conf
+sudo a2dissite 000-default.conf
+sudo systemctl reload apache2
+</pre>
+</div>
+
+<p>
+You can always run a test to make sure no errors or warnings are found
+in your configuration files.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo apache2ctl configtest
+</pre>
+</div>
+
+<p>
+Now, restart the web server entirely. After this, you should be able to
+browse to <code>http://example.com</code> and see the HTML content you provided
+earlier. Note that SSL/TLS has not been enabled yet, so you won't be
+able to use the secure version yet (<code>https://example.com</code>).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo systemctl restart apache2
+</pre>
+</div>
+
+<p>
+You can repeat this for as many websites as you need. Just create the
+domain folders in <code>/var/www/</code>, add the configuration file, enable the
+configuration, and restart <code>apache2</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-ssl-tls-certificates-serve-websites-over-https" class="outline-2">
+<h2 id="ssl-tls-certificates-serve-websites-over-https"><span class="section-number-2">10.</span> SSL/TLS Certificates: Serve Websites Over HTTPS</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+In order to serve secure content, you'll need to obtain SSL/TLS
+certificates. Luckily, there's a free tool called
+<a href="https://certbot.eff.org">Certbot</a> that helps us with the process.
+</p>
+
+<p>
+The first step is to install <code>snapd</code> and <code>core</code> for Ubuntu.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt install snapd
+sudo snap install core
+sudo snap refresh core
+</pre>
+</div>
+
+<p>
+Next, install the <code>certbot</code> snap package.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo snap install --classic certbot
+</pre>
+</div>
+
+<p>
+Execute the following command to ensure that the <code>certbot</code> command can
+be run.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo ln -s /snap/bin/certbot /usr/bin/certbot
+</pre>
+</div>
+
+<p>
+Finally, you can run <code>certbot</code> one of two ways:
+</p>
+
+<ol class="org-ol">
+<li>run it and let it alter your Apache configuration files automatically
+to enable HTTPS redirects.</li>
+<li>run it and only allow it to create certificates. You'll need to
+manually alter the config files to enable HTTPS redirects.</li>
+</ol>
+
+<p>
+Run certbot and allow automatic config changes:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo certbot --apache
+</pre>
+</div>
+
+<p>
+Run certbot for certificates only and don't allow it to alter config
+files:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo certbot certonly --apache
+</pre>
+</div>
+
+<p>
+The Certbot packages on your system come with a cron job or systemd
+timer that will renew your certificates automatically before they
+expire. You will not need to run Certbot again unless you change your
+configuration. You can test automatic renewal for your certificates by
+running this command:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo certbot renew --dry-run
+</pre>
+</div>
+
+<p>
+Now, test your domains by going to <code>https://example.com</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-firewall-security" class="outline-2">
+<h2 id="firewall-security"><span class="section-number-2">11.</span> Firewall Security</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+To enable better security on your server, you'll need to enable a basic
+firewall. For Ubuntu, we'll use
+<a href="https://cleberg.net/secure-your-network-with-the-uncomplicated-firewall/">the
+uncomplicated firewall</a>.
+</p>
+
+<p>
+Now, add the following rules to the firewall allow SSH, Apache, and
+HTTP(S) connections. If you need to, you can enable different ports for
+specifics applications, SFTP, etc.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow OpenSSH
+sudo ufw allow Apache
+sudo ufw allow proto tcp from any to any port 80,443
+</pre>
+</div>
+
+<p>
+Once you've added all the rules you need, enable the firewall.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo ufw enable
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-troubleshooting" class="outline-2">
+<h2 id="troubleshooting"><span class="section-number-2">12.</span> Troubleshooting</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+If you run into any issues during your VPS set-up, be sure to walk back
+through your actions and make sure you didn't miss any steps.
+</p>
+
+<p>
+Many websites have fantastic guides to setting up various web servers.
+This is one of the areas
+<a href="https://www.digitalocean.com/community/tutorials">where DigitalOcean
+shines</a>. For simpler or more Linux-oriented questions, I suggest using
+[Linuxize] (<a href="https://linuxize.com">https://linuxize.com</a>).
+</p>
+
+<p>
+If you're getting certain errors (e.g. <code>500 Internal Server Error</code>) and
+need to debug locally, you can view the <code>access.log</code> and <code>error.log</code>
+files in the <code>/var/log/apache/</code> directory.
+</p>
+</div>
+</div>
+</section>
+	<blockquote><a href="mailto:hello@cleberg.net">Reply via email &rarr;</a></blockquote>
+</article>
+</main>
+	<footer>
+        <a href="https://stats.uptimerobot.com/OwOWs7HU0z">Status</a> &middot;
+        <a href="https://git.cleberg.net/cleberg.net.git" target="_blank"
+        rel="noopener">Source</a> &middot;
+        <a href="../feed.xml">RSS</a>
+	</footer>
+</body>
+</html>

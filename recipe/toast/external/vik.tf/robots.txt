@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="vik's stuff">
+		<title>vik.tf</title>
+		<link rel="stylesheet" href="style.css?9">
+		<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+	</head>
+	<body>
+		<input type='checkbox' style='display: none' id="cb">
+		<label for="cb" id="button"></label>
+
+		<div id="menu">
+			<div id="anim-wrapper"><div id="anim">✪</div></div>
+			<div id="logo"><a href="https://vik.tf/robots.txt?">vik.tf</a></div>
+			<a href="https://vik.tf/robots.txt?">Accueil</a>
+      <a href="https://vik.tf/robots.txt?p=boutique">Boutique</a>
+			<a href="https://vik.tf/robots.txt?p=vikart">Kart electrique</a>
+		</div>
+
+		<div id="angle"></div>
+
+		<div id="content">
+			<h1>Pouet</h1>
+<p class="pre">
+Ici vous trouverez des choses utiles, mais surtout, des choses moins utiles.
+Cette page web fait moins de 3Kb ! Et le menu fonctionne sans javascript :)
+</p>
+
+<h1>Liens</h1>
+<p class="pre">
+<a href="https://github.com/vikbez">Github</a>
+<a href="https://www.linkedin.com/in/romaingay/">LinkedIn</a>
+<a href="https://www.youtube.com/user/vikbez/videos">Youtube</a>
+<p>
+
+<h1>Mail</h1>
+<p class="pre">
+<span>v<!-- hello
+--><span>@</span><!--
+-->42<!-- world
+--><span>.</span><!-- not
+-->am</span>
+<p>
+		</div>
+	</body>
+</html>

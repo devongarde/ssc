@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+    
+    <meta charset="utf-8">
+    <title>
+     Dynamic DNS Record Updates via Cloudflare API | 
+    cleberg.net
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Christian Cleberg &lt;hello@cleberg.net&gt;" >
+    <meta name="description" content="Just a blip of ones and zeroes." >
+    
+    <link rel="stylesheet" href="../../styles.min.css" type="text/css">
+    <link rel="icon" type="image/x-icon" href="data:,">
+    
+<meta property="og:title" content="Dynamic DNS Record Updates via Cloudflare API" />
+<meta property="og:url" content="https://cleberg.net/blog/cloudflare-dns-api.html" />
+
+<meta property="og:description" content="Command-line procedures to automate updating of DNS A and AAAA records by interfacing with the Cloudflare API, suitable for environments with variable IP addresses." />
+ 
+    
+</head>
+<body>
+	<nav aria-label="site-nav" role="navigation">
+		<ul>
+			<li><a href="../../index.html">Home</a></li>
+            <li><a href="../../about/index.html">About</a></li>
+			<li><a href="../index.html">Blog</a></li>
+			<li><a href="../../services/index.html">Services</a></li>
+		</ul>
+	</nav>
+    <main>
+<article role="article">
+	<section class="post-metadata">
+		<h1>Dynamic DNS Record Updates via Cloudflare API</h1>
+		
+		<time datetime='2022-03-23'
+			>Wednesday, March 23, 2022 00:00:00</time
+		>
+		
+	</section>
+	<section><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="index.html#ddns-dynamic-dns">1. DDNS: Dynamic DNS</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-ddns-dynamic-dns" class="outline-2">
+<h2 id="ddns-dynamic-dns"><span class="section-number-2">1.</span> DDNS: Dynamic DNS</h2>
+<div class="outline-text-2" id="text-ddns-dynamic-dns">
+<p>
+If you're hosting a service from a location with dynamic DNS (where your
+IP may change at any time), you must have a solution to update the DNS
+so that you can access your service even when the IP of the server
+changes.
+</p>
+
+<p>
+The process below uses the <a href="https://api.cloudflare.com/">Cloudflare
+API</a> to update DNS <code>A</code> and <code>AAAA</code> records with the server's current IP.
+If you use another DNS provider, you will have to find a way to update
+your DNS (or find a way to get a static IP).
+</p>
+
+<p>
+First, install <code>jq</code> since we will use it in the next script:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt install jq
+</pre>
+</div>
+
+<p>
+Next, create a location for your DDNS update scripts and open the first
+script:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">mkdir ~/ddns
+nano ~/ddns/update.sh
+</pre>
+</div>
+
+<p>
+The following <code>update.sh</code> script will take all of your domains and
+subdomains and check Cloudflare to see if the current <code>A</code> and <code>AAAA</code>
+records match your server's IP address. If not, it will update the
+records.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">file: update.sh</span>
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">!/bin/bash</span>
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Update TLDs</span>
+<span style="font-weight: bold; font-style: italic;">domains</span>=(example.com example.net)
+
+<span style="font-weight: bold;">for</span> domain<span style="font-weight: bold;"> in</span> <span style="font-style: italic;">"${domains[@]}"</span>
+<span style="font-weight: bold;">do</span>
+  <span style="font-weight: bold;">echo</span> -e <span style="font-style: italic;">"\nUpdating $domain..."</span>
+  <span style="font-weight: bold; font-style: italic;">zone_name</span>=$<span style="font-weight: bold; font-style: italic;">domain</span> /home/&lt;your-username&gt;/ddns/ddns.sh
+<span style="font-weight: bold;">done</span>
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Update subdomains for example.com</span>
+<span style="font-weight: bold; font-style: italic;">domain</span>=example.com
+<span style="font-weight: bold; font-style: italic;">subdomains</span>=(photos.example.com)
+
+<span style="font-weight: bold;">for</span> subdomain<span style="font-weight: bold;"> in</span> <span style="font-style: italic;">"${subdomains[@]}"</span>
+<span style="font-weight: bold;">do</span>
+  <span style="font-weight: bold;">echo</span> -e <span style="font-style: italic;">"\nUpdating $subdomain..."</span>
+  <span style="font-weight: bold; font-style: italic;">zone_name</span>=$<span style="font-weight: bold; font-style: italic;">domain</span>  <span style="font-weight: bold; font-style: italic;">dns_record</span>=$<span style="font-weight: bold; font-style: italic;">subdomain</span> /home/&lt;your-username&gt;/ddns/ddns.sh
+<span style="font-weight: bold;">done</span>
+</pre>
+</div>
+
+<p>
+Next, open up the <code>ddns.sh</code> script. Paste the following into the script
+and update the <code>api_token</code> and <code>email</code> variables.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nano ~/ddns/ddns.sh
+</pre>
+</div>
+
+<p>
+<b>Note</b>: If you want your DNS records to be proxied through Cloudflare,
+find and update the following snippet: <code>"proxied":false}"</code> to say <code>true</code>
+instead of <code>false</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">file: ddns.sh</span>
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">!/bin/bash</span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">based on https://gist.github.com/Tras2/cba88201b17d765ec065ccbedfb16d9a</span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">initial data; they need to be filled by the user</span>
+<span style="font-weight: bold; font-style: italic;">## </span><span style="font-weight: bold; font-style: italic;">API token</span>
+<span style="font-weight: bold; font-style: italic;">api_token</span>=&lt;YOUR_API_TOKEN&gt;
+<span style="font-weight: bold; font-style: italic;">## </span><span style="font-weight: bold; font-style: italic;">email address associated with the Cloudflare account</span>
+<span style="font-weight: bold; font-style: italic;">email</span>=&lt;YOUR_EMAIL&gt;
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">get the basic data</span>
+<span style="font-weight: bold; font-style: italic;">ipv4</span>=$(curl -s -X GET -4 https://ifconfig.co)
+<span style="font-weight: bold; font-style: italic;">ipv6</span>=$(curl -s -X GET -6 https://ifconfig.co)
+<span style="font-weight: bold; font-style: italic;">user_id</span>=$(curl -s -X GET <span style="font-style: italic;">"https://api.cloudflare.com/client/v4/user/tokens/verify"</span> <span style="font-style: italic;">\</span>
+               -H <span style="font-style: italic;">"Authorization: Bearer $api_token"</span> <span style="font-style: italic;">\</span>
+               -H <span style="font-style: italic;">"Content-Type:application/json"</span> <span style="font-style: italic;">\</span>
+          | jq -r <span style="font-style: italic;">'{"result"}[] | .id'</span>
+         )
+
+<span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"Your IPv4 is: $ipv4"</span>
+<span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"Your IPv6 is: $ipv6"</span>
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">check if the user API is valid and the email is correct</span>
+<span style="font-weight: bold;">if</span> [ $<span style="font-weight: bold; font-style: italic;">user_id</span> ]
+<span style="font-weight: bold;">then</span>
+    <span style="font-weight: bold; font-style: italic;">zone_id</span>=$(curl -s -X GET <span style="font-style: italic;">"https://api.cloudflare.com/client/v4/zones?name=$zone_name&amp;status=active"</span> <span style="font-style: italic;">\</span>
+                   -H <span style="font-style: italic;">"Content-Type: application/json"</span> <span style="font-style: italic;">\</span>
+                   -H <span style="font-style: italic;">"X-Auth-Email: $email"</span> <span style="font-style: italic;">\</span>
+                   -H <span style="font-style: italic;">"Authorization: Bearer $api_token"</span> <span style="font-style: italic;">\</span>
+              | jq -r <span style="font-style: italic;">'{"result"}[] | .[0] | .id'</span>
+             )
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">check if the zone ID is</span>
+    <span style="font-weight: bold;">if</span> [ $<span style="font-weight: bold; font-style: italic;">zone_id</span> ]
+    <span style="font-weight: bold;">then</span>
+        <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">check if there is any IP version 4</span>
+        <span style="font-weight: bold;">if</span> [ $<span style="font-weight: bold; font-style: italic;">ipv4</span> ]
+        <span style="font-weight: bold;">then</span>
+            <span style="font-weight: bold; font-style: italic;">dns_record_a_id</span>=$(curl -s -X GET <span style="font-style: italic;">"https://api.cloudflare.com/client/v4/zones/$zone_id/dns_records?type=A&amp;name=$dns_record"</span>  <span style="font-style: italic;">\</span>
+                                   -H <span style="font-style: italic;">"Content-Type: application/json"</span> <span style="font-style: italic;">\</span>
+                                   -H <span style="font-style: italic;">"X-Auth-Email: $email"</span> <span style="font-style: italic;">\</span>
+                                   -H <span style="font-style: italic;">"Authorization: Bearer $api_token"</span>
+                             )
+            <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">if the IPv6 exist</span>
+            <span style="font-weight: bold; font-style: italic;">dns_record_a_ip</span>=$(<span style="font-weight: bold;">echo</span> $<span style="font-weight: bold; font-style: italic;">dns_record_a_id</span> |  jq -r <span style="font-style: italic;">'{"result"}[] | .[0] | .content'</span>)
+            <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"The set IPv4 on Cloudflare (A Record) is:    $dns_record_a_ip"</span>
+            <span style="font-weight: bold;">if</span> [ $<span style="font-weight: bold; font-style: italic;">dns_record_a_ip</span> != $<span style="font-weight: bold; font-style: italic;">ipv4</span> ]
+            <span style="font-weight: bold;">then</span>
+                <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">change the A record</span>
+                curl -s -X PUT <span style="font-style: italic;">"https://api.cloudflare.com/client/v4/zones/$zone_id/dns_records/$(echo $dns_record_a_id | jq -r '{"result"}[] | .[0] | .id')"</span> <span style="font-style: italic;">\</span>
+                     -H <span style="font-style: italic;">"Content-Type: application/json"</span> <span style="font-style: italic;">\</span>
+                     -H <span style="font-style: italic;">"X-Auth-Email: $email"</span> <span style="font-style: italic;">\</span>
+                     -H <span style="font-style: italic;">"Authorization: Bearer $api_token"</span> <span style="font-style: italic;">\</span>
+                     --data <span style="font-style: italic;">"{"</span>type<span style="font-style: italic;">":"</span>A<span style="font-style: italic;">","</span>name<span style="font-style: italic;">":"</span>$<span style="font-weight: bold; font-style: italic;">dns_record</span><span style="font-style: italic;">","</span>content<span style="font-style: italic;">":"</span>$<span style="font-weight: bold; font-style: italic;">ipv4</span><span style="font-style: italic;">","</span>ttl<span style="font-style: italic;">":1,"</span>proxied<span style="font-style: italic;">":false}"</span> <span style="font-style: italic;">\</span>
+                | jq -r <span style="font-style: italic;">'.errors'</span>
+            <span style="font-weight: bold;">else</span>
+                <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"The current IPv4 and DNS record IPv4 are the same."</span>
+            <span style="font-weight: bold;">fi</span>
+        <span style="font-weight: bold;">else</span>
+            <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"Could not get your IPv4. Check if you have it; e.g. on https://ifconfig.co"</span>
+        <span style="font-weight: bold;">fi</span>
+
+        <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">check if there is any IP version 6</span>
+        <span style="font-weight: bold;">if</span> [ $<span style="font-weight: bold; font-style: italic;">ipv6</span> ]
+        <span style="font-weight: bold;">then</span>
+            <span style="font-weight: bold; font-style: italic;">dns_record_aaaa_id</span>=$(curl -s -X GET <span style="font-style: italic;">"https://api.cloudflare.com/client/v4/zones/$zone_id/dns_records?type=AAAA&amp;name=$dns_record"</span>  <span style="font-style: italic;">\</span>
+                                      -H <span style="font-style: italic;">"Content-Type: application/json"</span> <span style="font-style: italic;">\</span>
+                                      -H <span style="font-style: italic;">"X-Auth-Email: $email"</span> <span style="font-style: italic;">\</span>
+                                      -H <span style="font-style: italic;">"Authorization: Bearer $api_token"</span>
+                                )
+            <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">if the IPv6 exist</span>
+            <span style="font-weight: bold; font-style: italic;">dns_record_aaaa_ip</span>=$(<span style="font-weight: bold;">echo</span> $<span style="font-weight: bold; font-style: italic;">dns_record_aaaa_id</span> | jq -r <span style="font-style: italic;">'{"result"}[] | .[0] | .content'</span>)
+            <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"The set IPv6 on Cloudflare (AAAA Record) is: $dns_record_aaaa_ip"</span>
+            <span style="font-weight: bold;">if</span> [ $<span style="font-weight: bold; font-style: italic;">dns_record_aaaa_ip</span> != $<span style="font-weight: bold; font-style: italic;">ipv6</span> ]
+            <span style="font-weight: bold;">then</span>
+                <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">change the AAAA record</span>
+                curl -s -X PUT <span style="font-style: italic;">"https://api.cloudflare.com/client/v4/zones/$zone_id/dns_records/$(echo $dns_record_aaaa_id | jq -r '{"result"}[] | .[0] | .id')"</span> <span style="font-style: italic;">\</span>
+                     -H <span style="font-style: italic;">"Content-Type: application/json"</span> <span style="font-style: italic;">\</span>
+                     -H <span style="font-style: italic;">"X-Auth-Email: $email"</span> <span style="font-style: italic;">\</span>
+                     -H <span style="font-style: italic;">"Authorization: Bearer $api_token"</span> <span style="font-style: italic;">\</span>
+                     --data <span style="font-style: italic;">"{"</span>type<span style="font-style: italic;">":"</span>AAAA<span style="font-style: italic;">","</span>name<span style="font-style: italic;">":"</span>$<span style="font-weight: bold; font-style: italic;">dns_record</span><span style="font-style: italic;">","</span>content<span style="font-style: italic;">":"</span>$<span style="font-weight: bold; font-style: italic;">ipv6</span><span style="font-style: italic;">","</span>ttl<span style="font-style: italic;">":1,"</span>proxied<span style="font-style: italic;">":false}"</span> <span style="font-style: italic;">\</span>
+                | jq -r <span style="font-style: italic;">'.errors'</span>
+            <span style="font-weight: bold;">else</span>
+                <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"The current IPv6 and DNS record IPv6 are the same."</span>
+            <span style="font-weight: bold;">fi</span>
+        <span style="font-weight: bold;">else</span>
+            <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"Could not get your IPv6. Check if you have it; e.g. on https://ifconfig.co"</span>
+        <span style="font-weight: bold;">fi</span>
+    <span style="font-weight: bold;">else</span>
+        <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"There is a problem with getting the Zone ID. Check if the Zone Name is correct."</span>
+    <span style="font-weight: bold;">fi</span>
+<span style="font-weight: bold;">else</span>
+    <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"There is a problem with either the email or the password"</span>
+<span style="font-weight: bold;">fi</span>
+</pre>
+</div>
+
+<p>
+Once the script is saved and closed, make the scripts executable:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">chmod +x ~/ddns/ddns.sh
+chmod +x ~/ddns/update.sh
+</pre>
+</div>
+
+<p>
+You can test the script by running it manually:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">./update.sh
+</pre>
+</div>
+
+<p>
+To make sure the scripts run automatically, add it to the <code>cron</code> file so
+that it will run on a schedule. To do this, open the cron file:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">crontab -e
+</pre>
+</div>
+
+<p>
+In the cron file, paste the following at the bottom of the editor:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">*/5 ** ** ** ** bash /home/&lt;your_username&gt;/ddns/update.sh
+</pre>
+</div>
+</div>
+</div>
+</section>
+	<blockquote><a href="mailto:hello@cleberg.net">Reply via email &rarr;</a></blockquote>
+</article>
+</main>
+	<footer>
+        <a href="https://stats.uptimerobot.com/OwOWs7HU0z">Status</a> &middot;
+        <a href="https://git.cleberg.net/cleberg.net.git" target="_blank"
+        rel="noopener">Source</a> &middot;
+        <a href="../../feed.xml">RSS</a>
+	</footer>
+</body>
+</html>

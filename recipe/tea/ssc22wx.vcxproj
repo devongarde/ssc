@@ -730,7 +730,8 @@
     <ClCompile Include="..\sauce\css\value_types_m_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_m_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_m_3.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_n.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_m_n.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_n_o.cpp" />
     <ClCompile Include="..\sauce\css\value_types_o.cpp" />
     <ClCompile Include="..\sauce\css\value_types_p_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_p_2.cpp" />
@@ -14449,10 +14450,10 @@
     <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)wx\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)wx\</IntDir>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\$(Configuration)wx\</OutDir>
+    <IntDir>ssc22$(Platform)\$(Configuration)wx\</IntDir>
     <CustomBuildBeforeTargets>ResourceCompile</CustomBuildBeforeTargets>
-    <PreBuildEventUseInBuild />
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LeakSeek|x64'">
@@ -14463,10 +14464,10 @@
     <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)wx\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)wx\</IntDir>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\$(Configuration)wx\</OutDir>
+    <IntDir>ssc22$(Platform)\$(Configuration)wx\</IntDir>
     <CustomBuildBeforeTargets>ResourceCompile</CustomBuildBeforeTargets>
-    <PreBuildEventUseInBuild />
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -14474,29 +14475,29 @@
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(SSL)\include;$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_x64_dll;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(SSL)\lib</LibraryPath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)wx\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)wx\</IntDir>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\$(Configuration)wx\</OutDir>
+    <IntDir>ssc22$(Platform)\$(Configuration)wx\</IntDir>
     <CustomBuildBeforeTargets>ResourceCompile</CustomBuildBeforeTargets>
-    <PreBuildEventUseInBuild />
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(SSL)\include;$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(BOOST);$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
     <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_arm64_dll;$(LibraryPath);$(SSL)\lib</LibraryPath>
-    <IntDir>$(Platform)\$(Configuration)wx\</IntDir>
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)wx\</OutDir>
+    <IntDir>ssc22$(Platform)\$(Configuration)wx\</IntDir>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\$(Configuration)wx\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(SSL)\include;$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(BOOST);$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
     <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_arm64_dll;$(LibraryPath);$(SSL)\lib</LibraryPath>
-    <IntDir>$(Platform)\$(Configuration)wx\</IntDir>
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)wx\</OutDir>
+    <IntDir>ssc22$(Platform)\$(Configuration)wx\</IntDir>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\$(Configuration)wx\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(SSL)\include;$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(BOOST);$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
     <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_arm64_dll;$(LibraryPath);$(SSL)\lib</LibraryPath>
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)wx\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)wx\</IntDir>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\$(Configuration)wx\</OutDir>
+    <IntDir>ssc22$(Platform)\$(Configuration)wx\</IntDir>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnableManifest>true</VcpkgEnableManifest>
@@ -14532,12 +14533,10 @@
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc-wx.exe</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>help.bat</Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>
-      </Message>
+      <Message>Prepare help archive</Message>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>help.bat</Command>
@@ -14588,12 +14587,10 @@
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc-wx.exe</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>help.bat</Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>
-      </Message>
+      <Message>Prepare help archive</Message>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>help.bat</Command>
@@ -14653,12 +14650,10 @@
       <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>help.bat</Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>
-      </Message>
+      <Message>Prepare help archive</Message>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>help.bat</Command>
@@ -14713,6 +14708,12 @@
     <CustomBuildStep>
       <Message />
     </CustomBuildStep>
+    <PreBuildEvent>
+      <Command>help.bat</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Prepare help archive</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">
     <ClCompile>
@@ -14747,6 +14748,12 @@
       <Message>
       </Message>
     </CustomBuildStep>
+    <PreBuildEvent>
+      <Command>help.bat</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Prepare help archive</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
@@ -14782,6 +14789,12 @@
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>help.bat</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Prepare help archive</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

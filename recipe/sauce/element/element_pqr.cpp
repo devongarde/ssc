@@ -169,15 +169,23 @@ void element::examine_rsl_legal ()
 
 void element::examine_rsl_licence ()
 {   int pay = 0;
+    nitpick nuts;
+    bool who_cares = false;
     for (element* e = child_; e != nullptr; e = e -> sibling_)
         switch (e -> tag ())
-        {   case elem_rsl_payment : ++pay; break;
+        {   case elem_rsl_payment :
+                ++pay;
+                if (e -> a_.known (a_rsl_type))
+                    if (e -> a_.good (a_rsl_type))
+                        if (static_cast < e_rsl_payment > (e -> a_.get_int (a_rsl_type)) == rpa_free)
+                            who_cares = true;
+                break;
             default: break; }
     if (pay > 1)
         pick (nit_rsl_overpopulation, ed_rsl, "Element: <payment>", es_error, ec_rsl, "<license> may only have one <payment> child");
     const ::std::string txt = trim_the_lot_off (text ());
-    if (txt.empty ())
-        pick (nit_empty, ed_rsl, "Element: <license>", es_warning, ec_rsl, "That <license> is rather vague.");
+    if (txt.empty () && ! who_cares)
+        pick (nit_empty, ed_rsl, "Element: <license>", es_warning, ec_rsl, "That <license> text is rather vague.");
     else for (element* e = parent_; e != nullptr; e = e -> sibling_)
         if (e != this)
             if (e -> tag () == elem_rsl_licence)
@@ -228,6 +236,13 @@ void element::common_permits_prohibits (bool& geo, bool& usa, bool& use)
                 break;
             default :
                 break; } }
+
+void element::examine_realn (const unsigned x)
+{   vstr_t v (split_by_space (text ()));
+    if ((x > 0) && (x != v.size ()))
+        pick (nit_arg_count, es_error, ec_element, "Expecting ", x, " numbers");
+    for (auto s : v)
+        test_value < t_real > (nits (), node_.version (), s); }
 
 void element::examine_rsl_permits ()
 {   bool geo = false, usa = false, use = false;

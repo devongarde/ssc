@@ -52,7 +52,7 @@ template < > inline void enum_n < t_role, e_aria_role > :: verify_attribute (nit
 {   if (v >= html_5_0)
     {   const e_aria_role r = enum_base < e_aria_role, t_role > :: value_;
         if (is_default_role (v, e, r))
-            nits.pick (nit_default_role, es_error, ec_aria, "do not specify the default role");
+            nits.pick (nit_default_role, ed_aria_1_0, "8.4 Implicit WAI-ARIA Semantics", es_warning, ec_aria, "There's no need to specify the default role");
         else if (abstract_role_bitset.test (r))
             nits.pick (nit_bad_role, ed_aria_1_0, "5.2.1 Abstract Roles", es_error, ec_aria, "Content authors MUST NOT use abstract roles");
         else if (! is_permitted_role (v, e.get (), r))
@@ -80,7 +80,7 @@ template < > inline void enum_n < t_role, e_aria_role > :: set_value (nitpick& n
             const html_version f = symbol < html_version, e_aria_role > :: first ();
             if (! may_apply (v, f, symbol < html_version, e_aria_role > :: last ()))
             {   v.check_math_svg (nits, f, name ());
-                nits.pick (nit_wrong_version, es_error, ec_type, quote (pret), " is invalid here in ", v.report ()); }
+                nits.pick (nit_wrong_version, es_error, ec_type, quote (pret), " is invalid here in ", v.report (), " (4)"); }
             else if (f.reject ())
                 nits.pick (nit_rejected, es_error, ec_type, quote (pret), " is valid but incompatible with ", v.report ());
             else
@@ -91,5 +91,5 @@ template < > inline void enum_n < t_role, e_aria_role > :: set_value (nitpick& n
                 return; } }
         else
         {   check_identifier_spelling (nits, v, t);
-            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid here"); } }
+            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid here (1)"); } }
     enum_base < e_aria_role, t_role > :: status (s_invalid); }

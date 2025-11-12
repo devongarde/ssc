@@ -35,22 +35,23 @@ template < > inline void enum_n < t_namespace, e_namespace > :: set_value (nitpi
             enum_base < e_namespace, t_namespace > :: post_set_value (nits, v);
             return; }
         v.check_math_svg (nits, from, name ());
-        nits.pick (nit_wrong_version, es_error, ec_type, quote (pret), " is invalid here in ", v.report ()); }
+        nits.pick (nit_wrong_version, es_error, ec_type, quote (pret), " is invalid here in ", v.report (), " (1)"); }
     else
     {   check_identifier_spelling (nits, v, t);
-        nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid here"); }
+        nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid here (2)"); }
     enum_base < e_namespace, t_namespace > :: status (s_invalid); }
 
 template < > inline void enum_n < t_xmlns, e_xmlns > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   enum_base < e_xmlns, t_xmlns > :: original_ = s;
     ::std::string t (::boost::to_lower_copy (trim_the_lot_off (s)));
     html_version from, to;
+//    if (symbol < html_version, e_xmlns > :: parse (nits, v, t, enum_base < e_xmlns, t_xmlns > :: value_, ns_default, &from, &to))
     if (symbol < html_version, e_xmlns > :: parse (nits, v, t, enum_base < e_xmlns, t_xmlns > :: value_, ns_default, &from, &to))
     {   if (may_apply (v, from, to))
         {   enum_base < e_xmlns, t_xmlns > :: status (s_good);
             enum_base < e_xmlns, t_xmlns > :: post_set_value (nits, v);
             return; }
         v.check_math_svg (nits, from, name ());
-        nits.pick (nit_wrong_version, es_error, ec_type, quote (s), " is invalid here in ", v.report ()); }
-    else nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is invalid here");
+        nits.pick (nit_wrong_version, es_error, ec_type, quote (s), " is invalid here in ", v.report (), " (2)"); }
+    else nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is invalid here (3)");
     enum_base < e_xmlns, t_xmlns > :: status (s_invalid); }

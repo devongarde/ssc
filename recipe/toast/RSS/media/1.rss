@@ -1,0 +1,12 @@
+<rss version="2.0">
+  <channel>
+    <title>Title of page</title>
+    <link>http://www.foo.com</link>
+    <description>Description of page</description>
+    <item>
+      <title>Story about something</title>
+      <link>http://www.foo.com/item1.htm</link>
+      <enclosure url="http://www.foo.com/file.mov" length="320000" type="video/quicktime" />
+    </item>
+  </channel>
+</rss>

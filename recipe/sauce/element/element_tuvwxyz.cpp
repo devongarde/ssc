@@ -176,6 +176,9 @@ void element::examine_track ()
             if (a_.get_string (a_label).empty ())
                 pick (nit_empty, ed_50, "4.7.9 The track element", es_error, ec_element, "If LABEL is present, it cannot be empty"); } }
 
+void element::examine_trackback ()
+{   if (! text ().empty ()) test_value < t_url > (nits (), context.html_ver (), trim_the_lot_off (text ())); }
+
 void element::examine_ul ()
 {   if (context.analysis () == anal_original)
         only_elements ();

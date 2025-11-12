@@ -45,6 +45,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { XHTML_2_0 }, { XHTML_2_0 }, "activate", a_activate },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "actuate", a_xlinkactuate, ns_xlink },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "additive", a_additive },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "algo", a_mrss_algo, ns_mrss },
     { { HTML_1_0, HV_DEPRECATED4 }, { HTML_UNDEF }, "align", a_align },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "alignment-baseline", a_alignment_baseline, ns_default, AF_SVG2_PROPERTY },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "alignmentscope", a_alignmentscope },
@@ -138,6 +139,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_JAN05, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, "autopictureinpicture", a_autopictureinpicture },
     { { HTML_JAN05 }, { HTML_UNDEF }, "autoplay", a_autoplay },
     { { HTML_JAN06 }, { HTML_DEC08 }, "autosubmit", a_autosubmit },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "average", a_mrss_average, ns_mrss },
     { { HTML_2_0, HV_RFC_1942 }, { HTML_3_0 }, "axes", a_axes },
     { { HTML_2_0, HV_RFC_1942 }, { HTML_UNDEF }, "axis", a_axis },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "azimuth", a_azimuth },
@@ -158,6 +160,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "bevelled", a_bevelled },
     { { HTML_3_2, HV_DEPRECATED4 }, { HTML_UNDEF }, "bgcolor", a_bgcolour },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "bias", a_bias },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "bitrate", a_mrss_bitrate, ns_mrss },
     { { HTML_APR22 }, { HTML_UNDEF }, "blocking", a_blocking },
     { { HTML_PLUS, HV_RFC_1942 }, { HTML_UNDEF }, "border", a_border },
     { { HTML_3_2, HV_DEPRECATED4, HE_CHROME }, { HTML_4_01 }, "bottommargin", a_bottommargin },
@@ -177,6 +180,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_2_0, HV_RFC_1942 }, { HTML_UNDEF }, "cellpadding", a_cellpadding },
     { { HTML_2_0, HV_RFC_1942 }, { HTML_UNDEF }, "cellspacing", a_cellspacing },
     { { HTML_JAN05 }, { HTML_UNDEF }, "challenge", a_challenge },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "channels", a_mrss_channels, ns_mrss },
     { { HTML_2_0 }, { HTML_UNDEF }, "char", a_char },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, "charalign", a_charalign },
     { { HTML_2_0 }, { HTML_UNDEF }, "charoff", a_charoff },
@@ -232,10 +236,12 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, "controls", a_controls },
     { { HTML_JAN05, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, "controlslist", a_controlslist },
     { { HTML_2_0, HV_RFC_1980 }, { HTML_UNDEF }, "coords", a_coords },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "count", a_mrss_count, ns_mrss },
     { { XHTML_1_0, 0, HE_SVG_2 | HE_ANIM_2 }, { HTML_UNDEF }, "crossorigin", a_crossorigin },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, "crossout", a_crossout },
     { { HTML_JUL20, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, "csp", a_csp },
     { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "currency", a_rsl_currency, ns_rsl },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "currency", a_mrss_currency, ns_mrss },
     { { HTML_JAN05, 0, HE_BESPOKE }, { HTML_UNDEF }, "currenttime", a_currenttime },
     { { HTML_SVG10, 0, HE_SVG_10_11_FULL | HE_ANIM_10_11 }, { HTML_UNDEF }, "cursor", a_cursor, ns_default, AF_SVG2_PROPERTY | AP_SET_XLINKCAT (se_image_file) },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "cx", a_cx },
@@ -259,6 +265,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "denomalign", a_denomalign },
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, "depth", a_depth },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "descent", a_descent },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "description", a_mrss_description, ns_mrss },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "dh", a_dh },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "diffuseConstant", a_diffuseconstant },
     { { HTML_3_0 }, { HTML_3_0 }, "dingbat", a_dingbat },
@@ -280,6 +287,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_JAN11, 0, HE_SVG_2 }, { HTML_5_1 }, "dropzone", a_dropzone },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "dur", a_dur },
     { { HTML_JAN05, 0, HE_BESPOKE }, { HTML_UNDEF }, "duration", a_duration },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "duration", a_mrss_duration, ns_mrss },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "dw", a_dw },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "dx", a_dx },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "dy", a_dy },
@@ -294,6 +302,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "encrypted", a_rsl_encrypted, ns_rsl },
     { { HTML_2_0 }, { HTML_UNDEF }, "enctype", a_enctype },
     { { HTML_SVG10 }, { HTML_UNDEF }, "end", a_end },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "end", a_mrss_end, ns_mrss },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "endProgress", a_endprogress },
     { { HTML_JUL20 }, { HTML_UNDEF }, "enterkeyhint", a_enterkeyhint },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "equalcolumns", a_equalcolumns },
@@ -305,8 +314,10 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "exponent", a_exponent },
     { { HTML_CSS_PART, 0, HE_EXPERIMENTAL, 0, H3_CSS_SHADOW }, { HTML_UNDEF }, "exportparts", a_exportparts },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "externalResourcesRequired", a_externalresourcesrequired },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "expression", a_mrss_expression, ns_mrss },
     { { HTML_4_0 }, { HTML_UNDEF }, "face", a_face },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "fadeColor", a_fadecolour },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "favorites", a_mrss_favourites, ns_mrss },
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, "feColorMatrix", a_fecolourmatrix },
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, "feComposite", a_fecomposite },
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, "feGaussianblur", a_fegaussianblur },
@@ -314,6 +325,8 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, "fence", a_fence },
     { { HTML_APR23 }, { HTML_UNDEF }, "fetchpriority", a_fetchpriority },
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, "feTile", a_fetile },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "fileSize", a_mrss_filesize, ns_mrss },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "width", a_mrss_width, ns_mrss },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "fill", a_fill, ns_default, AF_SVG2_PROPERTY | AP_SET_XLINKCAT (se_paint_server) },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "fill-opacity", a_fill_opacity, ns_default, AF_SVG2_PROPERTY },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "fill-rule", a_fill_rule, ns_default, AF_SVG2_PROPERTY },
@@ -356,6 +369,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { XHTML_2_0, 0, HE_SVG_2 | HE_ANIM_2 }, { HTML_UNDEF }, "fr", a_fr },
     { { HTML_PLUS, HV_RFC_1942 }, { HTML_UNDEF }, "frame", a_frame },
     { { HTML_4_0 }, { HTML_UNDEF }, "frameborder", a_frameborder },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "framerate", a_mrss_framerate, ns_mrss },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "framespacing", a_framespacing },
     { { HTML_3_0 }, { HTML_UNDEF }, "from", a_from },
     { { XHTML_2_0 }, { XHTML_2_0 }, "full", a_full },
@@ -379,6 +393,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SEP25 }, { HTML_UNDEF }, "headingoffset", a_headingoffset },
     { { HTML_SEP25 }, { HTML_UNDEF }, "headingreset", a_headingreset },
     { { HTML_3_0, 0, HE_ANIM }, { HTML_UNDEF }, "height", a_height },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "height", a_mrss_height, ns_mrss },
     { { HTML_PLUS }, { HTML_UNDEF }, "hidden", a_hidden },
     { { HTML_JAN05 }, { HTML_UNDEF }, "high", a_high },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "horiz-adv-x", a_horiz_adv_x },
@@ -422,6 +437,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_PLUS }, { HTML_UNDEF }, INDEX, a_index },
     { { HTML_JUL12 }, { HTML_UNDEF }, "inert", a_inert },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, "infixlinebreakstyle", a_infixlinebreakstyle },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "info", a_mrss_info, ns_mrss },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, "initialVisibility", a_initialvisibility },
     { { HTML_SVG20, 0, HE_SVG_2 | HE_ANIM_2 }, { HTML_UNDEF }, "inline-size", a_inline_size, ns_default, AF_PROPERTY },
     { { HTML_RDF10, 0, HE_RDFA }, { HTML_UNDEF }, "inlist", a_inlist },
@@ -433,6 +449,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_4_01, 0, HE_CHROME }, { HTML_UNDEF }, "intrinsicsize", a_intrinsicsize },
     { { HTML_JUL07 }, { HTML_DEC08 }, "irrelevant", a_irrelevant },
     { { HTML_JUL16 }, { HTML_UNDEF }, "is", a_is },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "isDefault", a_mrss_isdefault, ns_mrss },
     { { HTML_PLUS }, { HTML_UNDEF }, "ismap", a_ismap },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "isolation", a_isolation },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "isPermaLink", a_rss_ispermalink, ns_rss },
@@ -463,6 +480,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_3_0 }, { HTML_3_0 }, "labels", a_labels },
     { { HTML_PLUS, HV_RFC_2070 | HV_RFC_1942 }, { HTML_UNDEF }, "lang", a_lang },
     { { XHTML_1_0 }, { HTML_UNDEF }, "lang", a_xmllang, ns_xhtml, AF_NOT_NAMESPACED },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "lang", a_mrss_lang, ns_mrss },
     { { HTML_4_0 }, { HTML_UNDEF }, "language", a_language },
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, "largeop", a_largeop },
     { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "lastmod", a_rsl_lastmod, ns_rsl },
@@ -523,6 +541,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4_C }, { HTML_UNDEF }, "mathsize", a_mathsize },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4_C }, { HTML_UNDEF }, "mathvariant", a_mathvariant },
     { { HTML_PLUS, HV_NOT234 }, { HTML_UNDEF }, "max", a_max },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "max", a_mrss_max, ns_mrss },
     { { HTML_2_0 }, { HTML_UNDEF }, "maxlength", a_maxlength },
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, "maxsize", a_maxsize },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "max-unit-scale", a_max_unit_scale },
@@ -534,10 +553,12 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, "mediagroup", a_mediagroup },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, "mediaSize", a_mediasize },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, "mediaTime", a_mediatime },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "medium", a_mrss_medium, ns_mrss },
     { { HTML_JAN05 }, { HTML_UNDEF }, "menu", a_menu },
     { { HTML_PLUS, 0, HE_ANIM_10_11_2 }, { HTML_UNDEF }, "method", a_method },
     { { HTML_1_0 }, { HTML_UNDEF }, "methods", a_methods },
     { { HTML_PLUS, HV_NOT2 }, { HTML_UNDEF }, "min", a_min },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "min", a_mrss_min, ns_mrss },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "minlabelspacing", a_minlabelspacing },
     { { HTML_JAN05 }, { HTML_UNDEF }, "minlength", a_minlength },
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, "minsize", a_minsize },
@@ -551,6 +572,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, "muted", a_muted },
     { { HTML_TAGS, HV_DEPRECATED23 }, { HTML_3_0 }, "n", a_n },
     { { HTML_TAGS, HV_DEPRECATED30 }, { HTML_UNDEF }, "name", a_name },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "name", a_mrss_name, ns_mrss },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "namespace", a_namespace },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "nargs", a_nargs },
     { { HTML_SVG12, 0, HE_SVG_12 | HE_ANIM_12 }, { HTML_UNDEF }, "nav-down", a_nav_down },
@@ -754,6 +776,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "preserveAlpha", a_preservealpha },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "preserveAspectRatio", a_preserveaspectratio },
     { { XHTML_2_0 }, { XHTML_2_0 }, "prevfocus", a_prevfocus },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "price", a_mrss_price, ns_mrss },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "primitiveUnits", a_primitiveunits },
     { { HTML_PLUS }, { HTML_PLUS }, "print", a_print },
     { { HTML_4_0 }, { HTML_DEC06 }, "profile", a_profile },
@@ -768,6 +791,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_11_2 }, { HTML_UNDEF }, "radius", a_radius },
     { { HTML_3_0 }, { HTML_3_0 }, "rdelim", a_rdelim },
     { { HTML_4_0 }, { HTML_UNDEF }, "readonly", a_readonly },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "reason", a_mrss_reason, ns_mrss },
     { { HTML_JAN08 }, { HTML_DEC08 }, "ref", a_ref },
     { { HTML_JUL16 }, { HTML_UNDEF }, "referrerpolicy", a_referrerpolicy },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "refX", a_refx },
@@ -776,6 +800,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_JAN08 }, { HTML_DEC08 }, "registrationmark", a_registrationmark },
     { { HTML_1_0, 0, HE_ANIM_12_2 }, { HTML_UNDEF }, "rel", a_rel },
     { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "rel", a_atom_rel, ns_atom },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "relationship", a_mrss_relationship, ns_mrss },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "rendering-color-space", a_rendering_colour_space, ns_default, AF_PROPERTY }, // dialect
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "rendering-intent", a_rendering_in_tents },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "repeatCount", a_repeatcount },
@@ -797,6 +822,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, "rightoverhang", a_rightoverhang },
     { { HTML_PLUS, HV_NOT234, HE_ANIM_12 }, { HTML_UNDEF }, "role", a_role },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "role", a_xlinkrole, ns_xlink },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "role", a_mrss_role, ns_mrss },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM | HE_LIMITED_2 }, { HTML_UNDEF }, "rotate", a_rotate },
     { { HTML_5_2, HV_W3 }, { HTML_UNDEF }, "row", a_row },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "rowalign", a_rowalign },
@@ -810,11 +836,13 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_2_0, HV_RFC_1942 }, { XHTML_2_0 }, "rules", a_rules },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "rx", a_rx },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "ry", a_ry },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "samplingrate", a_mrss_samplingrate, ns_mrss },
     { { HTML_JUL08 }, { HTML_UNDEF }, "sandbox", a_sandbox },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "scale", a_scale },
     { { XHTML_2_0 }, { HTML_UNDEF }, "schemaLocation", a_xsischemaloc, ns_xsi }, // was XHTML 2 only, but now found in MathML 4 spec
-    { { HTML_4_0 }, { XHTML_2_0 }, "scheme", a_scheme },
     { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "scheme", a_atom_scheme, ns_atom },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "scheme", a_mrss_scheme, ns_mrss },
+    { { HTML_4_0 }, { XHTML_2_0 }, "scheme", a_scheme },
     { { HTML_2_0, HV_NOT32 }, { HTML_UNDEF }, "scope", a_scope },
     { { HTML_4_0 }, { HTML_UNDEF }, "scoped", a_scoped },
     { { HTML_3_0 }, { HTML_3_0 }, "script", a_script },
@@ -880,6 +908,8 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "standalone", a_standalone },
     { { HTML_4_0 }, { HTML_UNDEF }, "standby", a_standby },
     { { HTML_3_2 }, { HTML_UNDEF }, "start", a_start },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "start", a_mrss_start, ns_mrss },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "state", a_mrss_state, ns_mrss },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "static", a_static, ns_default, AF_PROPERTY },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "startOffset", a_startoffset },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "startProgress", a_startprogress },
@@ -946,6 +976,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "text-overflow", a_text_overflow, ns_default, AF_SVG2_PROPERTY },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "text-rendering", a_text_rendering, ns_default, AF_SVG2_PROPERTY },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "textLength", a_textlength },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "time", a_mrss_time, ns_mrss },
     { { HTML_SVG12, 0, HE_SVG_12_2 }, { HTML_UNDEF }, "timelineBegin", a_timelinebegin },
     { { HTML_1_0 }, { HTML_UNDEF }, "title", a_title, ns_default, AF_SPELT },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "title", a_xlinktitle, ns_xlink },
@@ -971,6 +1002,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "type", a_rsl_type, ns_rsl },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "type", a_rss_type, ns_rss },
     { { HTML_SVG10, 0, HE_SVG_1 | HE_ANIM_12, H2_MATH_2_3_4 }, { HTML_UNDEF }, "type", a_xlinktype, ns_xlink },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "type", a_mrss_type, ns_mrss },
     { { HTML_JAN05 }, { HTML_UNDEF }, "typemustmatch", a_typemustmatch },
     { { HTML_RDF10, 0, HE_RDFA | HE_SVG_12 | HE_SVG_X2 | HE_ANIM_12 }, { HTML_UNDEF }, "typeof", a_typeof },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "u1", a_u1 },
@@ -987,6 +1019,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "uri", a_atom_uri, ns_atom },
     { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, "url", a_rsl_url, ns_rsl },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "url", a_rss_url, ns_rss },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "url", a_mrss_url, ns_mrss },
     { { HTML_1_0 }, { HTML_UNDEF }, "urn", a_urn },
     { { HTML_2_0, HV_RFC_1980 }, { HTML_UNDEF }, "usemap", a_usemap },
     { { HTML_2_0 }, { HTML_UNDEF }, "valign", a_valign },
@@ -1008,6 +1041,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "viewBox", a_viewbox },
     { { HTML_SVG12, 0, HE_SVG_12_2 | HE_ANIM_12_2 }, { HTML_UNDEF }, "viewport-fill", a_viewport_fill },
     { { HTML_SVG12, 0, HE_SVG_12 | HE_ANIM_12 }, { HTML_UNDEF }, "viewport-fill-opacity", a_viewport_fill_opacity },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "views", a_mrss_views, ns_mrss },
     { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, "viewTarget", a_viewtarget },
     { { HTML_AUG25, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, "virtualkeyboardpolicy", a_virtualkeyboardpolicy },
     { { HTML_2_0, HV_NOTX1, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "visibility", a_visibility, ns_default, AF_SVG2_PROPERTY },
@@ -1048,7 +1082,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
 void attr::init (nitpick& nits)
 {   symbol::init (nits, attribute_symbol_table, sizeof (attribute_symbol_table) / sizeof (symbol_entry < html_version, e_attribute >), true); }
 
-e_attribute attr::parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& key, ::std::string& decl)
+e_attribute attr::parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& key, ::std::string& decl, const e_namespace elem_ns)
 {   ::std::string lc (key), ns;
     nitpick nuts;
     const ns_id id (examine_namespace (nuts, v, namespaces, lc, ns));
@@ -1072,14 +1106,23 @@ e_attribute attr::parse (nitpick& nits, const html_version& v, const namespaces_
             break; }
     bool urk = lc.empty ();
     if (n == ns_default)
-        if (namespaces != nullptr)
-            for (auto ens : namespace_names.presumed ())
-                if (namespaces -> has (ens))
-                {   const symbol < html_version, e_attribute > ans (v, lc, ens);
-                    if (! ans.unknown ())
-                    {   n = static_cast < e_namespace > (ens);
-                        urk = false;
-                        break; } }
+    {   if (elem_ns != ns_default)
+        {   const symbol < html_version, e_attribute > ans (v, lc, elem_ns);
+            if (! ans.unknown ())
+            {   n = elem_ns;
+                urk = false; } }
+        if ((n == ns_default) && (namespaces != nullptr))
+        {   namespaces_t* nss = namespaces.get ();
+            while ((n == ns_default) && (nss != nullptr))
+            {   for (auto ens : namespace_names.presumed ())
+                    if (nss -> has (ens))
+                    {   const symbol < html_version, e_attribute > ans (v, lc, ens);
+                        if (! ans.unknown ())
+                        {   n = static_cast < e_namespace > (ens);
+                            urk = false;
+                            break; } }
+                if (n == ns_default)
+                    nss = nss -> up (); } } }
     if (urk)
     {   nits.merge (nuts);
         return a_unknown; }
@@ -1104,7 +1147,7 @@ e_attribute attr::parse (nitpick& nits, const html_version& v, const namespaces_
         if (! does_apply < html_version > (v, a.first (), a.last ()))
         {   const ::std::string k = quote (key);
             a.first ().check_status (nits, k);
-            nits.pick (nit_attribute_unrecognised_here, es_warning, ec_attribute, k, " is not valid in ", v.report ()); }
+            nits.pick (nit_attribute_unrecognised_here, es_warning, ec_attribute, k, " is not valid in ", context.html_ver ().report ()); }
         else return a.get (); }
     return a_unknown; }
 

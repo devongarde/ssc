@@ -710,6 +710,32 @@ template < > struct type_master < t_measure_or_more > : varied < t_measure_or_mo
                     default : break; }
             validate_type < type_master < t_measure > > (nits, v); } };
 
+template < > struct type_master < t_mrss_type > : varied < t_mrss_type >
+{   using varied < t_mrss_type > :: varied;
+    void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
+    {   if (good () || empty ())
+            switch (e.get ())
+            {   case elem_mrss_content :
+                case elem_mrss_licence :
+                case elem_mrss_peerlink :
+                case elem_mrss_subtitle :
+                    validate_type < type_master < t_mime > > (nits, v);
+                    break;
+                case elem_mrss_description :
+                case elem_mrss_text :
+                case elem_mrss_title :
+                    validate_type < type_master < t_plainhtml > > (nits, v);
+                    break;
+                case elem_mrss_price :
+                    validate_type < type_master < t_mrss_price_type > > (nits, v);
+                    break;
+                case elem_mrss_restriction :
+                    validate_type < type_master < t_mrss_reltype > > (nits, v);
+                    break;
+                default :
+                    PRESUME (false, __FILE__, __LINE__);
+                    break; } } };
+
 template < > struct type_master < t_num > : varied < t_num >
 {   using varied < t_num > :: varied;
     void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )

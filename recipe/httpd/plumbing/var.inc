@@ -47,7 +47,7 @@
 <!--#set var="terms" value="/terms.shtml" -->
 <!--#set var="test" value="ssc-test" -->
 <!--#set var="stel" value="+352&nbsp;000&nbsp;000&nbsp;000" -->
-<!--#set var="version" value="0.2.21" -->
+<!--#set var="version" value="0.2.22" -->
 <!--#set var="webmeister" value="dylan&nbsp;harris" -->
 <!--#set var="swebmeister" value="dylan harris" -->
 <!--#set var="webssc" value="https://ssc.lu/" -->

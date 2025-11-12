@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">  
+    <title> Компилируем класс вручную </title>
+    <link rel="icon" href="data:,">
+    <style> ﻿html,body{padding:0;margin:0;background:#fff;font-size:18px;font-family:sans-serif;color:#223;line-height:1.4}header,main,footer{max-width:662px;margin:0 auto;padding:.5rem 1rem}header>:first-child,main>:first-child,footer>:first-child{margin-top:0}a{color:#00e;text-decoration:none}hr{height:0;border:solid 1px #d5d5d6}img{display:block;max-width:100%;margin:1em auto}ul{list-style-type:"›";padding-left:.4rem}ul li{margin:.5em 0;padding-left:.7rem}ul li::marker{font-weight:bold}code{white-space:pre;display:block;overflow-x:auto;padding:.5em;margin:.5em 0;border:solid 1px #d5d5d6}table{border-collapse:collapse;margin:1.5rem 0;word-break:break-word}table td,table th{border:1px solid #d5d5d6;text-align:start;padding:.5rem} </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <a href="index.html">Home page</a>
+          </li>
+          <li>
+            <a href="https://github.com/ukarim">Github profile</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main> <h1>Компилируем класс вручную</h1>
+<p><em>10 янв 2024</em></p>
+<p>Возьмем для примера следующий класс</p>
+<pre><code>public final class Test {
+  public static void main(String[] args) {
+  }
+}
+</code></pre>
+<p>Попробуем &quot;скомпилировать его вручную&quot;, создав class-файл без компилятора javac.</p>
+<h2>Об обозначениях</h2>
+<p>В данной статье будем использовать шеснадцатиричную систему для отображения чисел и массивов байтов.
+Общеупотребительного префикса &quot;0x&quot; не будет, это надо иметь ввиду.</p>
+<p>Порядок байтов будет big-endian (от старшего к младшему). Поэтому, число 307 будет записано как 0133,
+а не 3301. Этот же порядок байтов используется и в самом class-файле (согласно спецификации).</p>
+<p>В статье, также будет встречаться следующие обозначения:</p>
+<ul>
+<li>u4 - unsigned 32-bit number (32-битное число без знака)</li>
+<li>u2 - unsigned 16-bit number (16-битное число без знака)</li>
+<li>u1 - unsigned 8-bit number (8-битное число без знака)</li>
+</ul>
+<h2>Формат class-файла</h2>
+<p>Формат class-файла описан в спецификации JVM, которую можно найти по ссылке
+<a href="https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html">The class File Format</a>. class-файл можно описать
+следующей структурой</p>
+<pre><code>ClassFile {
+  u4             magic;
+  u2             minor_version;
+  u2             major_version;
+  u2             constant_pool_count;
+  cp_info        constant_pool[constant_pool_count-1];
+  u2             access_flags;
+  u2             this_class;
+  u2             super_class;
+  u2             interfaces_count;
+  u2             interfaces[interfaces_count];
+  u2             fields_count;
+  field_info     fields[fields_count];
+  u2             methods_count;
+  method_info    methods[methods_count];
+  u2             attributes_count;
+  attribute_info attributes[attributes_count];
+}
+</code></pre>
+<p>Поле magic является константой и принимает значение <em>cafebabe</em>. Поля minor_version и major_version
+указывают на версию данного class-файла. Мы будем пытаться создать class-файл для Java 8. Для данной версии
+java minor_version = 0000 и major_version = 0034.</p>
+<p>Тут же, сразу и без дополнительных вычислений можно задать значения для полей: access_flags, interfaces_count,
+interfaces, fields_count, fields.</p>
+<p>access_flags - поле, указывающее на модификаторы доступа и тип содержимого в class-файле (обычный это класс,
+либо enum, interface или аннотация). Данное поле это битовая маска из значений из следующей таблицы</p>
+<table>
+<thead>
+<tr>
+<th>flag name</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACC_PUBLIC</td>
+<td>0x0001</td>
+<td>public класс</td>
+</tr>
+<tr>
+<td>ACC_FINAL</td>
+<td>0x0010</td>
+<td>final класс</td>
+</tr>
+<tr>
+<td>ACC_SUPER</td>
+<td>0x0020</td>
+<td>для спец. обработки вызова методов родителя при invokespecial</td>
+</tr>
+<tr>
+<td>ACC_INTERFACE</td>
+<td>0x0200</td>
+<td>это интерфейс</td>
+</tr>
+<tr>
+<td>ACC_ABSTRACT</td>
+<td>0x0400</td>
+<td>абстрактный класс</td>
+</tr>
+<tr>
+<td>ACC_SYNTHETIC</td>
+<td>0x1000</td>
+<td>synthetic; не присутствует в исходниках</td>
+</tr>
+<tr>
+<td>ACC_ANNOTATION</td>
+<td>0x2000</td>
+<td>это аннотация</td>
+</tr>
+<tr>
+<td>ACC_ENUM</td>
+<td>0x4000</td>
+<td>это enum</td>
+</tr>
+</tbody>
+</table>
+<p>Наш тестовый класс объявлен публичным и финальным, поэтому access_flag = (0001 | 0010) = 0011.</p>
+<p>Поля interfaces_count и fields_count будут равны 0000, т.к класс Test не имеет ни интерфейсов, ни
+полей класса. А массивы interfaces и fields будут пустыми.</p>
+<h2>Constant pool</h2>
+<p><em>constant_pool</em> это специальная таблица, хранящая в себе константы, на которые ссылаются остальные части
+class-файла. В этой статье для constant pool будет использоваться таблица следующего вида</p>
+<table>
+<thead>
+<tr>
+<th>constant pool index</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+</table>
+<p>В колонке value будет находится содержимое constant pool в бинарном виде (в hex формате). Далее в статье
+эта таблица будет наполняться различными значениями. Пока она пустая.</p>
+<p>Надо отметить, что constant pool индексируется с 1. Поэтому, когда constant pool будет полностью заполнен,
+поле <em>constant_pool_count</em> надо будет выставить в значение &quot;количество записей + 1&quot;.</p>
+<h2>this_class</h2>
+<p>Данное поле содержит в себе индекс в constant pool, где лежит структура типа</p>
+<pre><code>CONSTANT_Class_info {
+  u1 tag;
+  u2 name_index;
+}
+</code></pre>
+<p>содержащая описание текущего класса. Для данной структуры tag всегда равно значению 7. <em>name_index</em> это индекс
+в constant pool, где лежит структура типа</p>
+<pre><code>CONSTANT_Utf8_info {
+  u1 tag;
+  u2 length;
+  u1 bytes[length];
+}
+</code></pre>
+<p>, которая хранит в себе название данного класса. <em>tag</em> в CONSTANT_Utf8_info всегда равно 1.
+<em>length</em> это длина строки в байтах, а <em>bytes</em> содержит непосредственно строку в виде байтов.</p>
+<p>Наш класс называется Test. Для строки &quot;Test&quot; структура CONSTANT_Utf8_info будет выглядеть следующим
+образом:</p>
+<pre><code>CONSTANT_Utf8_info {
+  u1 tag = 01         // для CONSTANT_Utf8_info всегда равно 1
+  u2 length = 0004    // Строка Test в utf-8 это 4 байта
+  u1 bytes = 54657374 // Байты в utf-8
+}
+</code></pre>
+<p>или в виде hex-строки 01000454657374. А CONSTANT_Class_info для поля this_class будет выглядеть
+следующим образом:</p>
+<pre><code>CONSTANT_Class_info {
+  u1 tag        = 07   // для CONSTANT_Class_info всегда равно 7
+  u2 name_index = 0001 // структуру для строки Test поместим в constant pool под индексом 1
+}
+</code></pre>
+<p>В итоге в constant pool добавятся следующие записи</p>
+<table>
+<thead>
+<tr>
+<th>constant pool index</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>01000454657374</td>
+<td>CONSTANT_Utf8_info для строки Test</td>
+</tr>
+<tr>
+<td>2</td>
+<td>070001</td>
+<td>CONSTANT_Class_info для поля this_class</td>
+</tr>
+</tbody>
+</table>
+<p>Поле <em>this_class</em> в class-файле получит значение 0002.</p>
+<h2>super_class</h2>
+<p>Тут все также, как и с <em>this_class</em>, только данное поле содержит название родительского класса.
+Для класса Test это класс Object. Нужно будет повторить те же процедуры что и для поля <em>this_class</em>,
+только в этот раз в структуре CONSTANT_Utf8_info будет строка &quot;java/lang/Object&quot;. В результате всех
+манипуляций в constant pool появится две новых записи</p>
+<table>
+<thead>
+<tr>
+<th>constant pool index</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>0100106a6176612f6c616e672f4f626a656374</td>
+<td>CONSTANT_Utf8_info для строки java/lang/Object</td>
+</tr>
+<tr>
+<td>4</td>
+<td>070003</td>
+<td>CONSTANT_Class_info для поля super_class</td>
+</tr>
+</tbody>
+</table>
+<p>Поле super_class в итоге получит значение 0004.</p>
+<h2>Метод main</h2>
+<p>Класс Test имеет только один метод - main. Поэтому поле methods_count примет значение 0001. Массив methods
+будет содержать одну структуру вида</p>
+<pre><code>method_info {
+  u2             access_flags;
+  u2             name_index;
+  u2             descriptor_index;
+  u2             attributes_count;
+  attribute_info attributes[attributes_count];
+}
+</code></pre>
+<p>Поле access_flag это битовая маска из значений из следующей таблицы</p>
+<table>
+<thead>
+<tr>
+<th>flag name</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACC_PUBLIC</td>
+<td>0x0001</td>
+<td>метод объявлен как public</td>
+</tr>
+<tr>
+<td>ACC_PRIVATE</td>
+<td>0x0002</td>
+<td>метод объявлен как private</td>
+</tr>
+<tr>
+<td>ACC_PROTECTED</td>
+<td>0x0004</td>
+<td>метод объявлен как protected</td>
+</tr>
+<tr>
+<td>ACC_STATIC</td>
+<td>0x0008</td>
+<td>статичный метод</td>
+</tr>
+<tr>
+<td>ACC_FINAL</td>
+<td>0x0010</td>
+<td>метод объявлен как final</td>
+</tr>
+<tr>
+<td>ACC_SYNCHRONIZED</td>
+<td>0x0020</td>
+<td>метод объявлен с synchronized</td>
+</tr>
+<tr>
+<td>ACC_BRIDGE</td>
+<td>0x0040</td>
+<td>bridge метод сгенерированный компилятором</td>
+</tr>
+<tr>
+<td>ACC_VARARGS</td>
+<td>0x0080</td>
+<td>метод с varargs</td>
+</tr>
+<tr>
+<td>ACC_NATIVE</td>
+<td>0x0100</td>
+<td>метод объявлен как native</td>
+</tr>
+<tr>
+<td>ACC_ABSTRACT</td>
+<td>0x0400</td>
+<td>метод объявлен как abstract</td>
+</tr>
+<tr>
+<td>ACC_STRICT</td>
+<td>0x0800</td>
+<td>метод объявлен с strictfp</td>
+</tr>
+<tr>
+<td>ACC_SYNTHETIC</td>
+<td>0x1000</td>
+<td>synthetic метод; не присутствует в исходниках</td>
+</tr>
+</tbody>
+</table>
+<p>Метод main объявлен как public static. <em>access_flag</em> будет равен (0001 | 0008) = 0009.</p>
+<p><em>name_index</em> - это индекс в constant pool, который содержит уже знакомую структуру CONSTANT_Utf8_info
+с именем метода. Для строки &quot;main&quot; эта структура будет выглядеть как</p>
+<pre><code>CONSTANT_Utf8_info {
+  tag    = 01       // для CONSTANT_Utf8_info всегда равно 1
+  length = 0004     // Строка main в utf-8 это 4 байта
+  bytes  = 6d61696e // Байты в utf-8
+}
+</code></pre>
+<p>или в виде hex-строки 0100046d61696e. Эту структуру надо добавить в constant pool</p>
+<table>
+<thead>
+<tr>
+<th>constant pool index</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>0100046d61696e</td>
+<td>CONSTANT_Utf8_info для строки main</td>
+</tr>
+</tbody>
+</table>
+<p>В итоге, <em>name_index</em> получит значение 0005.</p>
+<p><em>descriptor_index</em> содержит индекс в constant pool, в котором хранится структура CONSTANT_Utf8_info
+с описанием метода в формате ({аргументы метода}){возвращаемый тип}. Аргументы и возвращаемый тип метода
+должны быть в специальном формате, который можно найти в спецификации в разделе &quot;4.3.3. Method Descriptors&quot;.
+Для нашего примера {аргументы метода} будет строкой &quot;[Ljava/lang/String;&quot;, а {возвращаемый тип} будет
+строкой &quot;V&quot;. Получается, что в CONSTANT_Utf8_info должна хранится строка &quot;([Ljava/lang/String;)V&quot;</p>
+<pre><code>CONSTANT_Utf8_info {
+  tag    = 01       // для CONSTANT_Utf8_info всегда равно 1
+  length = 0016     // Строка ([Ljava/lang/String;)V в utf-8 это 22 байта
+  bytes  = 285b4c6a6176612f6c616e672f537472696e673b2956 // Байты в utf-8
+}
+</code></pre>
+<p>или в ввиде hex-строки 010016285b4c6a6176612f6c616e672f537472696e673b2956. В constant pool появится
+новая запись</p>
+<table>
+<thead>
+<tr>
+<th>constant pool index</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6</td>
+<td>010016285b4c6a6176612f6c616e672f537472696e673b2956</td>
+<td>CONSTANT_Utf8_info для descriptor_index</td>
+</tr>
+</tbody>
+</table>
+<p><em>descriptor_index</em> получит значение 0006.</p>
+<p>В <em>attributes_count</em> мы выставим значение 0001, т.к добавим в аттрибуты метода только один аттрибут - Code.
+Аттрибут Code будет содержать в себе код метода. Общий вид аттрибута Code следующий</p>
+<pre><code>Code_attribute {
+  u2 attribute_name_index;
+  u4 attribute_length;
+  u2 max_stack;
+  u2 max_locals;
+  u4 code_length;
+  u1 code[code_length];
+  u2 exception_table_length;
+  {   u2 start_pc;
+      u2 end_pc;
+      u2 handler_pc;
+      u2 catch_type;
+  } exception_table[exception_table_length];
+  u2 attributes_count;
+  attribute_info attributes[attributes_count];
+}
+</code></pre>
+<p>attribute_name_index - это ссылка на constant pool, где содержится CONSTANT_Utf8_info с именем аттрибута (в нашем случае
+это строка &quot;Code&quot;).</p>
+<pre><code>CONSTANT_Utf8_info {
+  tag    = 01       // для CONSTANT_Utf8_info всегда равно 1
+  length = 0004     // Строка Code в utf-8 это 4 байта
+  bytes  = 436f6465 // Байты в utf-8
+}
+</code></pre>
+<p>В constant pool попадет новая запись под индексом 7</p>
+<table>
+<thead>
+<tr>
+<th>constant pool index</th>
+<th>value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td>010004436f6465</td>
+<td>CONSTANT_Utf8_info для строки &quot;Code&quot;</td>
+</tr>
+</tbody>
+</table>
+<p><em>attribute_name_index</em> будет иметь значение 0007.</p>
+<p>Чтобы задать значение для <em>attribute_length</em> необходимо сперва вычислить содержимое остальных полей.</p>
+<p><em>max_stack</em> примет значение 0000, т.к наш метод пустой и не будет использовать стек. А так как в методе будет только одна локальная переменная (аргумент метода), то <em>max_locals</em> примет значение 0001.</p>
+<p>Поле <em>code</em> хранит непосредственно инструкции JVM для метода. Наш метод main пустой и ничего не делает, но согласно
+спецификации, в список инструкции нужно добавить инструкцию <em>return = (0xb1)</em>.</p>
+<p>Поля <em>exception_table_length</em> и <em>attributes_count</em> мы выстами в значение 0000, т.к наш метод не содержит try-catch и ссылки на другие аттрибуты.</p>
+<p>Учитывая все это, поле <em>attribute_length</em> примет значение 0000000d, а весь аттрибут Code_attribute в бинарном виде
+будет выглядеть следующим образом</p>
+<pre><code>Code_attribute {
+  u2 attribute_name_index   = 0007
+  u4 attribute_length       = 0000000d
+  u2 max_stack              = 0000
+  u2 max_locals             = 0001
+  u4 code_length            = 00000001
+  u1 code                   = b1
+  u2 exception_table_length = 0000
+  xx exception_table        = 
+  u2 attributes_count       = 0000
+  attribute_info attributes = 
+}
+</code></pre>
+<p>В итоге method_info будет иметь следующий вид</p>
+<pre><code>method_info {
+  u2 access_flags           = 0009
+  u2 name_index             = 0005
+  u2 descriptor_index       = 0006
+  u2 attributes_count       = 0001
+  attribute_info attributes = 00070000000d0000000100000001b100000000
+}
+</code></pre>
+<p>а сам class-файл</p>
+<pre><code>ClassFile {
+  magic               = cafebabe
+  minor_version       = 0000
+  major_version       = 0034
+  constant_pool_count = 0008
+  constant_pool       = 010004546573740700010100106a6176612f6c616e672f4f626a6563740700030100046d61696e010016285b4c6a6176612f6c616e672f537472696e673b2956010004436f6465
+  access_flags        = 0011
+  this_class          = 0002
+  super_class         = 0004
+  interfaces_count    = 0000
+  interfaces[interfaces_count] = 
+  fields_count        = 0000
+  fields = 
+  methods_count       = 0001
+  methods             = 000900050006000100070000000d0000000100000001b100000000
+  attributes_count    = 0000
+  attributes = 
+}
+</code></pre>
+<p>Теперь необходимо создать файл с именем Test.class и записать туда следующий массив байтов:</p>
+<p style="word-break: break-word">
+cafebabe000000340008010004546573740700010100106a6176612f6c616e672f4f626a6563740700030100046d61696e010016285b4c6a6176612f6c616e672f537472696e673b2956010004436f6465001100020004000000000001000900050006000100070000000d0000000100000001b1000000000000
+</p>
+<h2>Создание class-файла</h2>
+<h3>Если есть утилита xxd</h3>
+<p>Необходимо создать файл Test.txt и записать туда получившуюся hex-строку (см. выше).
+Затем надо просто запустить команду:</p>
+<pre><code>xxd -r -p Test.txt /tmp/Test.class
+</code></pre>
+<h3>Если установлена java17</h3>
+<p>Если у вас установлена Java 17 и выше, то можно просто открыть jshell и выполнить следующие команды:</p>
+<pre><code>String hexStr = &quot;cafebabe00000034...0000&quot;
+
+java.nio.file.Files.write(java.nio.file.Paths.get(&quot;/tmp/Test.class&quot;), java.util.HexFormat.of().parseHex(hexStr))
+
+/exit
+</code></pre>
+<h3>Проверка и запуск</h3>
+<pre><code>java -cp /tmp Test
+</code></pre>
+<p>Т.к метод main был пустым, то ничего не должно произойти. Программа просто закончит свою работу и все.
+Тут главное, чтобы java не выдала ошибку.</p>
+<p>Интереснее будет вывод команды javap. Необходимо добавить флаги -v и -c, и утилита распечатает подробную
+инфомацию о class-файле:</p>
+<pre><code>javap -v -c /tmp/Test.class
+</code></pre> </main>
+  </body>
+</html>
+

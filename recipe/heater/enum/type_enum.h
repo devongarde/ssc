@@ -200,7 +200,7 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
         const html_version f = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: first ();
         if (! may_apply (v, f, symbol < html_version, ENUM, CATEGORY, INIT, LC > :: last ()))
         {   v.check_math_svg (nits, f, name ());
-            nits.pick (nit_wrong_version, es_error, ec_type, quote (s), " is invalid here in ", v.report ()); }
+            nits.pick (nit_wrong_version, es_error, ec_type, quote (s), " is invalid here in ", v.report (), " (3)"); }
         else if (! v.is_css_compatible (f.ext2 (), f.ext3 (), f.ext4 ()))
             nits.pick (nit_css_version, es_error, ec_type, quote (s), " is invalid here, but valid with, for example, CSS ", f.long_css_version_name ());
         else if (f.reject ())
@@ -815,6 +815,12 @@ template < > struct type_master < t_month_english_long > : ENUM_N (month_english
 
 template < > struct type_master < t_month_english_short > : ENUM_N (month_english_short)
 { using ENUM_N (month_english_short) :: enum_n; };
+
+template < > struct type_master < t_mrss_medium > : ENUM_N (mrss_medium)
+{ using ENUM_N (mrss_medium) :: enum_n; };
+
+template < > struct type_master < t_mrss_role > : ENUM_N (mrss_role)
+{ using ENUM_N (mrss_role) :: enum_n; };
 
 template < > struct type_master < t_musickey > : ENUM_N (musickey)
 { using ENUM_N (musickey) :: enum_n; };

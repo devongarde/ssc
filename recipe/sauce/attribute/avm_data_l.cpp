@@ -179,6 +179,7 @@ hav_t havt_list [] =
 hav_t havt_listener [] =
 {   { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_defaultaction },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_event },
+    { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_evevent }, // SVG 1.2 example is, IMHO, ambiguous
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_handler },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_observer },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_listener, a_phase },

@@ -38,9 +38,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 struct attr : symbol < html_version, e_attribute >
 {   DEFAULT_CONSTRUCTORS (attr);
-    attr (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x, ::std::string& ns)
-    {   set (v, parse (nits, v, namespaces, x, ns)); }
-    static e_attribute parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& key, ::std::string& decl);
+    attr (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x, ::std::string& ns, const e_namespace elem_ns = ns_default)
+    {   set (v, parse (nits, v, namespaces, x, ns, elem_ns)); }
+    static e_attribute parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& key, ::std::string& decl, const e_namespace elem_ns = ns_default);
     static void init (nitpick& nits);
     static bool is_versioner (const e_attribute a) { return (symbol < html_version, e_attribute > :: flags (a) & AF_REVERSIONER) == AF_REVERSIONER; }
     static bool spellcheck (const e_attribute a) { return (symbol < html_version, e_attribute > :: flags (a) & AF_SPELT) == AF_SPELT; }

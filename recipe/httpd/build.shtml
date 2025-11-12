@@ -23,7 +23,7 @@
 <a href="https://en.wikipedia.org/wiki/Unix">unii</a> with <a href="https://cmake.org/">CMake</a> and
 <a href="https://clang.llvm.org/">clang</a> or <a href="https://gcc.gnu.org/">gcc</a>
 for <a href="https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4661.html">C++ 17</a>
-or better, or <a href="https://visualstudio.microsoft.com/">Visual Studios 2017 / 2019 / 2022</a>
+or better, or <a href="https://visualstudio.microsoft.com/">Visual Studios 2017 / 2019 / 2022 / 2026</a>
 under <a href="https://en.wikipedia.org/wiki/Microsoft_Windows">Windows</a>. Over time, I have
 built &amp; tested it under various OSs on some amd64 &amp; arm64 architectures,
 including various flavours of Linux (but especially <a href="https://ubuntu.com/">Ubuntu</a>),
@@ -116,8 +116,8 @@ Alternatively, #define NOSPELL.
 
 <p>
 To build from <a href="https://visualstudio.microsoft.com/">Visual Studio</a>, navigate to <kbd>recipe/tea</kbd>, open the
-appropriate .sln file, then build. Only <a href="https://visualstudio.microsoft.com/">Visual Studios 2017, 2019 and
-2022</a> have been built &amp; tested for x64, and only <a href="https://visualstudio.microsoft.com/">2022</a> has been
+appropriate .sln file, then build. Only <a href="https://visualstudio.microsoft.com/">Visual Studios 2017, 2019,
+2022, and 2026</a> have been built &amp; tested for x64, and only <a href="https://visualstudio.microsoft.com/">2022</a> has been
 tested for arm64 under Windows 10 &amp; 11. Older versions for amd64 and
 i386 were tested on older versions of Windows.
 </p>
@@ -139,7 +139,7 @@ You will need <a href="https://cmake.org/">CMake</a> 3.24 or better. On <a href=
 <a href="https://refspecs.linuxfoundation.org/LSB_3.0.0/LSB-PDA/LSB-PDA/lsbrelease.html">lsb-release</a>.
 These can be found in most distributions&rsquo; standard
 packages. For macos, I used <a href="https://www.macports.org/">macports</a>,
-but <a href="https://brew.sh/">brew</a> should be good too.
+although <a href="https://brew.sh/">brew</a> should be good too.
 </p>
 
 <p>
@@ -323,7 +323,7 @@ Alternatives are available, although I&rsquo;ve not tested them. It is built int
 
 <p>
 This is only required if you make a GUI build. It can be found at
-<a href="https://wxwidgets.org">wxwidgets.org</a>. Note that it has not been tested for many of the systems
+<a href="https://wxwidgets.org">wxwidgets.org</a>. Note that ssc has not been tested on many of the systems
 supported by wxWidgets.
 </p>
 

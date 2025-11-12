@@ -1681,9 +1681,6 @@
     <ClCompile Include="..\sauce\css\value_types_m_3.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_n.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_o.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
@@ -1770,6 +1767,12 @@
     </ClCompile>
     <ClCompile Include="..\sauce\url\wacky.cpp">
       <Filter>Sauce\url</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_m_n.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_n_o.cpp">
+      <Filter>Sauce\css_value</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

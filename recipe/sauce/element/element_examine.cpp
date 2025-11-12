@@ -182,6 +182,19 @@ void element::post_examine_element ()
         case elem_font_face : examine_fontymacfontface (); break;
         case elem_footer : examine_footer (); break;
         case elem_form : examine_form (); break;
+        case elem_geo_lat :
+        case elem_geo_long: examine_geo (); break;
+        case elem_georss_box : examine_realn (4); break;
+        case elem_georss_point :
+        case elem_gml_lowercorner :
+        case elem_gml_pos :
+        case elem_gml_uppercorner : examine_realn (2); break;
+        case elem_georss_elev :
+        case elem_georss_floor :
+        case elem_georss_radius : examine_realn (1); break;
+        case elem_georss_line :
+        case elem_georss_polygon :
+        case elem_gml_poslist : examine_realn (0); break;
         case elem_h1:
         case elem_h2:
         case elem_h3:
@@ -216,6 +229,11 @@ void element::post_examine_element ()
                                 check_mscarries_pos ();
                                 break;
         case elem_mn : examine_mn (); break;
+        case elem_mrss_backlink : examine_mrss_backlink (); break;
+        case elem_mrss_keywords : examine_mrss_keywords (); break;
+        case elem_mrss_restriction : examine_mrss_restriction (); break;
+        case elem_mrss_sceneendtime :
+        case elem_mrss_scenestarttime : examine_mrss_time (); break;
         case elem_mstack : check_mscarries_pos (); break;
         case elem_msubsup :
         case elem_munderover : check_math_children (3); break;
@@ -276,6 +294,9 @@ void element::post_examine_element ()
         case elem_td : examine_td (); break;
         case elem_th : examine_th (); break;
         case elem_time : examine_time (); break;
+        case elem_trackback_about :
+        case elem_trackback_ping :
+            examine_trackback (); break;
         case elem_ul : examine_ul (); break;
         case elem_video : examine_video (); break;
         default : break; } }
@@ -405,8 +426,8 @@ void element::examine_self (
             break;
         default :
             if (is_standard_element (tag) && ! node_.is_closure ())
-            {   if (elem :: is_invalid_version (node_.version (), tag))
-                    pick (nit_invalid_element_version, es_error, ec_element, "<", elem :: name (tag), "> is invalid in ", node_.version ().report ());
+            {   if ((node_.id ().ns () == ns_default) && (elem :: is_invalid_version (node_.version (), tag)))
+                    pick (nit_invalid_element_version, es_error, ec_element, "<", elem :: name (tag), "> is invalid in ", node_.version ().report (), " (1)");
                 post_examine = true;
                 node_.version ().check_math_svg (node_.nits (), node_.id ().first () , node_.id ().name ());
                 const html_version hv = elem :: first_version (tag);
@@ -452,10 +473,16 @@ void element::examine_self (
 
                 if (node_.version ().is_4_or_more ()) verify_microdata ();
 
-                if (context.has_rdfa () && (node_.version () >= xhtml_1_0))
+                if (node_.version ().ml ())
                     if (    a_.known (a_vocab) || a_.known (a_about) || a_.known (a_content) || a_.known (a_datatype) || a_.known (a_inlist) ||
-                            a_.known (a_instanceof) || a_.known (a_prefix) || a_.known (a_property) || a_.known (a_resource) || a_.known (a_typeof))
-                        if ((flags & EF_NULL_DATATYPE) == EF_NULL_DATATYPE)
+                            a_.known (a_instanceof) || a_.known (a_prefix) || a_.known (a_property) || a_.known (a_resource) || a_.known (a_typeof) || a_.known (a_rel) || a_.known (a_rev))
+                        if (node_.version () < xhtml_1_0)
+                        {   if (! a_.known (a_content) && ! a_.known (a_rel) && ! a_.known (a_rev))
+                                pick (nit_rdfa, es_error, ec_rdfa, "RDFa attributes require XML or XHTML"); }
+                        else if (! context.has_rdfa ())
+                        {   if (! a_.known (a_content) && ! a_.known (a_rel) && ! a_.known (a_rev))
+                                pick (nit_rdfa, es_error, ec_rdfa, "RDFa attributes require an appropriate parental XMLNS declaration"); }
+                        else if ((flags & EF_NULL_DATATYPE) == EF_NULL_DATATYPE)
                             pick (nit_null_datatype, ed_rdfa, "6.3.1.3. XML Literals", es_comment, ec_rdfa, "RDFa attributes ignored when parent element has DATATYPE=\"\"");
                         else
                         {   if (a_.known (a_vocab)) examine_vocab ();
@@ -467,8 +494,9 @@ void element::examine_self (
                             if (a_.known (a_prefix)) examine_prefix ();
                             if (a_.known (a_property)) examine_property ();
                             if (a_.known (a_resource)) examine_resource ();
-                            if (a_.known (a_rel)) examine_rdfa_rel (a_.get_string (a_rel));
-                            if (a_.known (a_rev)) examine_rdfa_rev (a_.get_string (a_rev)); }
+                            if (node_.version ().rdf_version () != rdf_none)
+                            {   if (a_.known (a_rel)) examine_rdfa_rel (a_.get_string (a_rel));
+                                if (a_.known (a_rev)) examine_rdfa_rev (a_.get_string (a_rev)); } }
 
                 if (node_.version () >= html_aria_1_0)
                 {   if (a_.known (a_aria_checked)) examine_aria_checked ();

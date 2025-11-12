@@ -87,7 +87,8 @@ template < class ENUM, e_type TYPE > bool attribute_assign (::std::string& ln, n
     {   set_ssi_context (ln, nits, es_error);
         nits.pick (nit_attribute_assignment, es_error, ec_ssi, "attribute assignment expected"); }
     else if (value < ENUM, TYPE > (ln, nits, v, e, args.at (0), true))
-    {   arg = uq (args.at (1));
+    {   if (args.size () == 1) arg.clear ();
+        else arg = uq (args.at (1));
         return true; }
     return false; }
 

@@ -11,3 +11,8 @@ PASS ../toast/type/atom/extensive.atom
 
 PASS ../toast/type/atom/index.html
 2 naughty_lang
+
+PASS ../toast/type/atom/wikipedia.atom
+1 xhtml_1_0
+3 atom_missing_child
+29 protocol

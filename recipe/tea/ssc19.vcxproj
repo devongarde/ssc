@@ -391,7 +391,8 @@
     <ClCompile Include="..\sauce\css\value_types_m_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_m_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_m_3.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_n.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_m_n.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_n_o.cpp" />
     <ClCompile Include="..\sauce\css\value_types_o.cpp" />
     <ClCompile Include="..\sauce\css\value_types_p_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_p_2.cpp" />
@@ -637,16 +638,22 @@
     <ClangTidyChecks>
     </ClangTidyChecks>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <OutDir>$(SolutionDir)ssc19$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>ssc19$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ProjectDir)..\third;$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)ssc19$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>ssc19$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profile|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(CURL)/include;$(ProjectDir)..\third;$(BOOST)\..\GSL\include;$(BOOST)\..\hunspell\src\hunspell;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(HUNSPELL)\msvc\$(PlatformTarget)\$(Configuration);$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)ssc19$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>ssc19$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnableManifest>true</VcpkgEnableManifest>

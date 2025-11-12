@@ -62,8 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 21
-#define VERSION_STRING "0.2.21"
+#define VERSION_RELEASE 22
+#define VERSION_STRING "0.2.22"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -696,6 +696,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define PURL_ORG            "purl.org"
 #define PRISM_ORG           "prismstandard.org"
 #define RDFS_ORG            "rdfs.org"
+#define RSS_BOARD           "www.rssboard.org"
 #define SPECIAL_PRIVACY     "www.specialprivacy.eu"
 #define W3_ORG              "www.w3.org"
 #define W3ID_ORG            "w3id.org"

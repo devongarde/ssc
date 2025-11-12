@@ -382,6 +382,22 @@ void element::examine_mn ()
         else // given the text still appears in the spec, but such use of MN appears in the spec examples
             pick (nit_impure_mn, ed_math_3, "3.2.4.4 Numbers that should not be written using <mn> alone", es_comment, ec_element, "Given '", x.at (pos), "', <MN> alone may be unsuitable here"); }
 
+void element::examine_mrss_backlink ()
+{   test_value < t_url > (nits (), node_.version (), text (), this); }
+
+void element::examine_mrss_keywords ()
+{   vstr_t v = split_by_comma (text ());
+    if (v.size () > 10)
+        pick (nit_mrss, ed_mrss, "5.5. media:keywords", es_warning, ec_element, "Normally, there should be no more than 10 keywords."); }
+
+void element::examine_mrss_restriction ()
+{   vstr_t v = split_by_space (text ());
+    for (auto cntry : v)
+        test_value < t_country > (nits (), node_.version (), cntry, this); }
+
+void element::examine_mrss_time ()
+{   test_value < t_mrss_ntp > (nits (), node_.version (), text (), this); }
+
 void element::examine_mstyle ()
 {   if (node_.version ().math_version () < math_3) return;
     if (a_.known (a_background))

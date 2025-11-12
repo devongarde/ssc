@@ -1,0 +1,56 @@
+-Y 1 -7 original -f ../toast/external/rdf/ext.conf
+
+PASS ../toast/external/rdf/ex1.xml
+1 xhtml_1_1
+7 namespace_confusion unrecognised_namespace namespace_confusion contradictory_namespace unrecognised_namespace unrecognised_value unrecognised_value
+8 inserted_missing_parent missing_close attribute_required attribute_required
+12 unknown_element unknown_element
+14 unknown_element unknown_element
+15 unknown_element unknown_element
+18 unknown_element
+22 unknown_element
+26 no_such_folder url_not_found
+29 use_quote_code
+30 unknown_element unknown_element
+31 unknown_element unknown_element
+32 unknown_element
+33 unknown_element
+35 inserted_missing_closure
+
+PASS ../toast/external/rdf/ex2.xml
+1 xhtml_1_1
+8 inserted_missing_parent missing_close attribute_required attribute_required
+17 rss_missing_child rss_missing_child rss_missing_child
+19 unknown_element
+25 unknown_element
+27 rss_missing_child rss_missing_child rss_missing_child rss_missing_child
+30 inserted_missing_parent missing_close
+60 use_quote_code
+65 inserted_missing_closure inserted_missing_closure
+
+PASS ../toast/external/rdf/ex3.xml
+1 xhtml_1_1
+8 unrecognised_namespace unrecognised_namespace unrecognised_value unrecognised_value inserted_missing_parent missing_close attribute_required attribute_required
+13 unknown_element use_quote_code unknown_element
+14 unknown_element unknown_element
+15 unknown_element use_quote_code unknown_element
+17 unknown_element unknown_element
+18 unknown_element unknown_element
+19 unknown_element unknown_element
+20 unknown_element unknown_element
+22 rss_missing_child rss_missing_child rss_missing_child
+24 unknown_element
+29 unknown_element
+31 rss_missing_child rss_missing_child rss_missing_child rss_missing_child
+35 inserted_missing_parent missing_close
+45 unknown_element
+48 unknown_element
+49 unknown_element use_quote_code unknown_element
+51 unknown_element unknown_element
+52 unknown_element use_quote_code unknown_element
+53 unknown_element unknown_element
+61 use_quote_code
+69 inserted_missing_closure inserted_missing_closure
+
+PASS ../toast/external/rdf/index.html
+2 naughty_lang

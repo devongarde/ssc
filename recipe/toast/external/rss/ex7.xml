@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- The root RSS element must include declaration of used namespaces. -->
+<rss
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:media="http://search.yahoo.com/mrss/"
+  xmlns:mi="http://schemas.ingestion.microsoft.com/common/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:dcterms="http://purl.org/dc/terms/" version="2.0">
+  <channel>
+    <title>Feed title</title>
+    <link>https://www.contoso.com/sports</link>
+    <description>Feed description</description>
+    <lastBuildDate>01 Oct 2017 13:00:00 GMT</lastBuildDate>
+
+    <!-- each individual video is provided in a single <item> -->
+    <item>
+      <!-- REQUIRED: You need to specify a <guid> which will be used to uniquely
+        identify the feed item across all other content items coming in your feeds. -->
+      <guid isPermaLink="false">723435</guid>
+
+      <!-- REQUIRED: video title must be provided -->
+      <title>Video title</title>
+
+      <!-- 
+          REQUIRED: <pubDate> is used to keep track of when the item is published.
+          In case no "modified/updated date" is provided, pubDate is also used
+          ﻿to keep track of updates.
+          Dates must be expressed using RFC 3339 or RFC 822 date formats.
+
+          examples:
+          Wed, 04 Oct 2017 15:00:00 +0200
+          2017-10-04T08:00:00-05:00
+         -->
+      <pubDate>01 Oct 2017 13:00:00 GMT</pubDate>
+
+      <!-- Use the <dcterms:modified> element to indicate when was the last time
+           ﻿this item was updated.
+           If this field is not provided,
+           ﻿pubDate will be assumed to be updated with every new version-->
+      <dcterms:modified>2017-10-10T10:00:00+0100</dcterms:modified>
+
+      <!-- REQUIRED: Web URL points to the page hosting the video on
+           the publisher's site. -->
+      <link>https://v3spec.msn.com/articleid=2836489202/</link>
+
+      <!-- RECOMMENDED: Use dc:creator in RSS to specify author name. -->
+      <dc:creator>Video author</dc:creator>
+      
+      <!-- RECOMMENDED: Subtitle can be specified in <dcterms:alternative> -->
+      <dcterms:alternative>Article subtitle</dcterms:alternative>
+
+      <!-- Use this element if you want to override the default 1-year expiration.
+           ﻿Date formats should follow W3C-DTF https://www.w3.org/TR/NOTE-datetime 
+           Currently, we only support specifying "end" as the expiration date
+           and "start" will be ignored.
+﻿
+           Note: If the "start" is specified, it will be taken as
+          ﻿ the published date time. 
+           And we are checking if the publish time is older than 1 year.
+
+           You can use this element to takedown a piece of content,
+           ﻿by specifying an "end" date in the past.
+           ﻿See the takedown example at the end of this example.
+      --> 
+      
+      <dcterms:valid>start=2016-10-01T10:00:00+0100; end=2018-10-02T10:00:00+0100; scheme=W3C-DTF</dcterms:valid>
+
+      <!-- Alternatively, you may use special element 'mi:expirationDate' to specify
+           expiration date. You can use any of the formats supported in 'pubDate'. -->      <mi:expirationDate>2018-10-02T13:00:00.52Z</mi:expirationDate>
+
+      <!-- RECOMMENDED: video abstract/description. If not specified here,
+           ﻿it should be specified at <media:description> of the video -->
+      <description>Video description</description>
+
+      <!-- RECOMMENDED: Provide keywords associated with this document -->
+      <media:keywords>keyword1,keyword2,keyword3</media:keywords>
+
+      <!-- RECOMMENDED: Use <category> element at the item level to tag the document
+  ﻿         with the category it belongs to. 
+           Multiple tags are allowed, each under a separate <category>.
+       -->
+      <category>News</category>
+      <category>Sports</category>
+
+      <!-- use <media:content> element to supply the video metadata. -->
+      <!-- REQUIRED: video URL must be specified with file extension this way -->
+      <media:content duration="512" type="video/mp4" medium="video" url="https://v3spec.msn.com/video.mp4">
+
+        <!-- REQUIRED: video thumbnail is required for 3PP videos
+             ﻿and recommended for 1PP-->
+        <media:thumbnail url="https://v3spec.msn.com/image.jpg" height="480" width="853" />
+
+        <!-- this element will override the title specified on the item level -->
+        <media:title>Video title</media:title>
+
+        <!-- If specified, this element will override the description specified on
+             the item level. -->
+        <media:description>Video description</media:description>
+
+        <!-- RECOMMENDED: video attribution / copyright -->
+        <media:credit>Joe Gargery/Fabrikam Videos</media:credit>
+
+        <!-- Closed Captions might be required by law in the target markets. -->
+        <!-- You may use the `<media:subtitle>` element to provide an external
+            ﻿ Timed Text format file based on W3C Timed Text format.
+            ﻿ Only [TTML 1](https://www.w3.org/TR/ttml1) is currently supported. -->
+        <media:subTitle 
+          type="application/ttml" 
+          lang="en" 
+          href="https://www.contols.org/closedcaptions.ttml" />
+      </media:content>
+    </item>
+  </channel>
+</rss>

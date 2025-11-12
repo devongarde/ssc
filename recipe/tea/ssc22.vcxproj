@@ -695,6 +695,7 @@
     <ClCompile Include="..\sauce\css\value_types_css_d.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_e.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_f_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_m_n.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_s_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_t_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_u.cpp" />
@@ -800,11 +801,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_m_n.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_c_2.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
@@ -859,7 +855,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_n.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_m_n.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_n_o.cpp" />
     <ClCompile Include="..\sauce\css\value_types_o.cpp" />
     <ClCompile Include="..\sauce\css\value_types_p_1.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
@@ -3331,6 +3328,47 @@
     <None Include="..\toast\css\songlight\index.html" />
     <None Include="..\toast\css\songlight\songlight.css" />
     <None Include="..\toast\css\songlight\yukontoast.css" />
+    <None Include="..\toast\external\1kb.lejtzen.dev\ext.conf" />
+    <None Include="..\toast\external\1kb.lejtzen.dev\ext.spec" />
+    <None Include="..\toast\external\1kb.lejtzen.dev\index.html" />
+    <None Include="..\toast\external\atom\ext.conf" />
+    <None Include="..\toast\external\atom\ext.spec" />
+    <None Include="..\toast\external\atom\index.html" />
+    <None Include="..\toast\external\cleberg.net\blog\cloudflare-dns-api\index.html" />
+    <None Include="..\toast\external\cleberg.net\blog\ditching-cloudflare\index.html" />
+    <None Include="..\toast\external\cleberg.net\blog\useful-css.html" />
+    <None Include="..\toast\external\cleberg.net\blog\vaporwave-vs-outrun.html" />
+    <None Include="..\toast\external\cleberg.net\blog\video-game-sales.html" />
+    <None Include="..\toast\external\cleberg.net\blog\visual-recognition.html" />
+    <None Include="..\toast\external\cleberg.net\blog\vps-web-server.html" />
+    <None Include="..\toast\external\cleberg.net\blog\website-redesign.html" />
+    <None Include="..\toast\external\cleberg.net\blog\wireguard-lan.html" />
+    <None Include="..\toast\external\cleberg.net\blog\zfs.html" />
+    <None Include="..\toast\external\cleberg.net\blog\zork.html" />
+    <None Include="..\toast\external\cleberg.net\ext.conf" />
+    <None Include="..\toast\external\cleberg.net\ext.spec" />
+    <None Include="..\toast\external\cleberg.net\index.html" />
+    <None Include="..\toast\external\cleberg.net\now\index.html" />
+    <None Include="..\toast\external\cleberg.net\salary.csv" />
+    <None Include="..\toast\external\cleberg.net\salary\index.html" />
+    <None Include="..\toast\external\cleberg.net\services\index.html" />
+    <None Include="..\toast\external\cleberg.net\styles.min.css" />
+    <None Include="..\toast\external\rdf\ext.conf" />
+    <None Include="..\toast\external\rdf\ext.spec" />
+    <None Include="..\toast\external\rdf\index.html" />
+    <None Include="..\toast\external\rss\ext.conf" />
+    <None Include="..\toast\external\rss\ext.spec" />
+    <None Include="..\toast\external\rss\index.html" />
+    <None Include="..\toast\external\ukarim.com\classfile.html" />
+    <None Include="..\toast\external\ukarim.com\ext.conf" />
+    <None Include="..\toast\external\ukarim.com\ext.spec" />
+    <None Include="..\toast\external\ukarim.com\index.html" />
+    <None Include="..\toast\external\ukarim.com\irodov.html" />
+    <None Include="..\toast\external\ukarim.com\rabbitmq-retry.html" />
+    <None Include="..\toast\external\vik.tf\ext.conf" />
+    <None Include="..\toast\external\vik.tf\ext.spec" />
+    <None Include="..\toast\external\vik.tf\index.html" />
+    <None Include="..\toast\external\vik.tf\style.css" />
     <None Include="..\toast\HTML\1.0\html1-bad.html" />
     <None Include="..\toast\HTML\1.0\html1-bad2.html" />
     <None Include="..\toast\HTML\1.0\html1-good.html" />
@@ -13516,6 +13554,20 @@
     <None Include="..\toast\RSS\2.0\rss.spec" />
     <None Include="..\toast\RSS\2.0\2.0.rss" />
     <None Include="..\toast\RSS\2.0\simple.rss" />
+    <None Include="..\toast\RSS\cc\cc.conf" />
+    <None Include="..\toast\RSS\cc\cc.spec" />
+    <None Include="..\toast\RSS\cc\index.rss" />
+    <None Include="..\toast\RSS\media\1.rss" />
+    <None Include="..\toast\RSS\media\2.rss" />
+    <None Include="..\toast\RSS\media\3.rss" />
+    <None Include="..\toast\RSS\media\4.rss" />
+    <None Include="..\toast\RSS\media\5.rss" />
+    <None Include="..\toast\RSS\media\6.rss" />
+    <None Include="..\toast\RSS\media\media.conf" />
+    <None Include="..\toast\RSS\media\media.spec" />
+    <None Include="..\toast\RSS\trackback\index.rss" />
+    <None Include="..\toast\RSS\trackback\trackback.conf" />
+    <None Include="..\toast\RSS\trackback\trackback.spec" />
     <None Include="..\toast\shadow\comment\comment.conf" />
     <None Include="..\toast\shadow\comment\comment.spec" />
     <None Include="..\toast\shadow\comment\index.html" />
@@ -14436,6 +14488,7 @@
     <None Include="..\toast\type\atom\brief.atom" />
     <None Include="..\toast\type\atom\extensive.atom" />
     <None Include="..\toast\type\atom\index.html" />
+    <None Include="..\toast\type\atom\wikipedia.atom" />
     <None Include="..\toast\type\colour\bad.html" />
     <None Include="..\toast\type\colour\colour.conf" />
     <None Include="..\toast\type\colour\colour.spec" />
@@ -15114,6 +15167,10 @@
     <Text Include="..\toast\conf\sites\wordlist.txt" />
     <Text Include="..\toast\coop\corrupt\README.txt" />
     <Text Include="..\toast\coop\corrupt\robots.txt" />
+    <Text Include="..\toast\external\cleberg.net\gpg.txt" />
+    <Text Include="..\toast\external\cleberg.net\robots.txt" />
+    <Text Include="..\toast\external\README.txt" />
+    <Text Include="..\toast\external\vik.tf\robots.txt" />
     <Text Include="..\toast\link\virtual\README.txt" />
     <Text Include="..\toast\other\ads\ads.txt" />
     <Text Include="..\toast\other\robotic\foo\README.txt" />
@@ -15134,6 +15191,48 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\toast\coop\corrupt\sitemap.xml" />
+    <Xml Include="..\toast\external\atom\ex1.xml" />
+    <Xml Include="..\toast\external\atom\ex2.xml" />
+    <Xml Include="..\toast\external\atom\ex3.xml" />
+    <Xml Include="..\toast\external\atom\ex4.xml" />
+    <Xml Include="..\toast\external\atom\ex5.xml" />
+    <Xml Include="..\toast\external\atom\ex6.xml" />
+    <Xml Include="..\toast\external\atom\ex7.xml" />
+    <Xml Include="..\toast\external\atom\ex8.xml" />
+    <Xml Include="..\toast\external\rdf\ex1.xml" />
+    <Xml Include="..\toast\external\rdf\ex2.xml" />
+    <Xml Include="..\toast\external\rdf\ex3.xml" />
+    <Xml Include="..\toast\external\rss\ex1.xml" />
+    <Xml Include="..\toast\external\rss\ex10.xml" />
+    <Xml Include="..\toast\external\rss\ex11.xml" />
+    <Xml Include="..\toast\external\rss\ex12.xml" />
+    <Xml Include="..\toast\external\rss\ex13.xml" />
+    <Xml Include="..\toast\external\rss\ex14.xml" />
+    <Xml Include="..\toast\external\rss\ex15.xml" />
+    <Xml Include="..\toast\external\rss\ex16.xml" />
+    <Xml Include="..\toast\external\rss\ex17.xml" />
+    <Xml Include="..\toast\external\rss\ex18.xml" />
+    <Xml Include="..\toast\external\rss\ex19.xml" />
+    <Xml Include="..\toast\external\rss\ex2.xml" />
+    <Xml Include="..\toast\external\rss\ex20.xml" />
+    <Xml Include="..\toast\external\rss\ex21.xml" />
+    <Xml Include="..\toast\external\rss\ex22.xml" />
+    <Xml Include="..\toast\external\rss\ex23.xml" />
+    <Xml Include="..\toast\external\rss\ex24.xml" />
+    <Xml Include="..\toast\external\rss\ex25.xml" />
+    <Xml Include="..\toast\external\rss\ex26.xml" />
+    <Xml Include="..\toast\external\rss\ex27.xml" />
+    <Xml Include="..\toast\external\rss\ex28.xml" />
+    <Xml Include="..\toast\external\rss\ex29.xml" />
+    <Xml Include="..\toast\external\rss\ex3.xml" />
+    <Xml Include="..\toast\external\rss\ex30.xml" />
+    <Xml Include="..\toast\external\rss\ex31.xml" />
+    <Xml Include="..\toast\external\rss\ex4.xml" />
+    <Xml Include="..\toast\external\rss\ex5.xml" />
+    <Xml Include="..\toast\external\rss\ex6.xml" />
+    <Xml Include="..\toast\external\rss\ex7.xml" />
+    <Xml Include="..\toast\external\rss\ex8.xml" />
+    <Xml Include="..\toast\external\rss\ex9.xml" />
     <Xml Include="..\toast\w3\12458\5031-root_dash.xml" />
     <Xml Include="..\toast\w3\imnop\plane20-char.xml" />
     <Xml Include="..\toast\w3\text\textxml_html401.xml" />
@@ -15295,6 +15394,8 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <RunCodeAnalysis>false</RunCodeAnalysis>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>ssc22$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LeakSeek|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -15305,6 +15406,8 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <RunCodeAnalysis>false</RunCodeAnalysis>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>ssc22$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -15312,6 +15415,8 @@
     <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(SSL)\lib</LibraryPath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <RunCodeAnalysis>false</RunCodeAnalysis>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>ssc22$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -15343,14 +15448,20 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(SSL)\include;$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(BOOST)</IncludePath>
     <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(SSL)\lib</LibraryPath>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>ssc22$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(SSL)\include;$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(BOOST)</IncludePath>
     <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(SSL)\lib</LibraryPath>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>ssc22$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(SSL)\include;$(WindowsSDK_IncludePath);$(GSL)\include;$(BOOST)</IncludePath>
     <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(SSL)\lib</LibraryPath>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>ssc22$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnableManifest>true</VcpkgEnableManifest>
@@ -15387,10 +15498,12 @@
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>help.bat</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>Prepare help archive</Message>
+      <Message>
+      </Message>
     </PreBuildEvent>
     <ResourceCompile>
       <Culture>0x0009</Culture>
@@ -15426,10 +15539,12 @@
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>help.bat</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PreBuildEvent>
-      <Message>Prepare help archive</Message>
+      <Message>
+      </Message>
     </PreBuildEvent>
     <ResourceCompile>
       <Culture>0x0009</Culture>
@@ -15475,6 +15590,14 @@
     <ResourceCompile>
       <Culture>0x0009</Culture>
     </ResourceCompile>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>
+      </Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>

@@ -45,15 +45,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)ssc17$(Platform)\test-$(Configuration)\</OutDir>
+    <IntDir>ssc17$(Platform)\test-$(Configuration)\</IntDir>
     <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)ssc17$(Platform)\test-$(Configuration)\</OutDir>
+    <IntDir>ssc17$(Platform)\test-$(Configuration)\</IntDir>
     <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>

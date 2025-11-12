@@ -36,11 +36,7 @@ PASS ../toast/RDFa/1.1.3/rdf6-example.html
 PASS ../toast/RDFa/1.1.3/rdf7-example.html
 2 naughty_lang
 13 not_ontology_property bad_property not_ontology_property bad_property bad_property
-14 not_ontology_property bad_property
 15 not_ontology_property bad_property not_ontology_property bad_property bad_property
-20 not_ontology_property bad_property not_ontology_property bad_property bad_property
-21 not_ontology_property bad_property not_ontology_property bad_property bad_property
-24 not_ontology_property bad_property not_ontology_property bad_property bad_property
 31 naughty_alt
 44 not_ontology_property bad_property not_ontology_property bad_property bad_property
 45 not_ontology_property bad_property
@@ -76,45 +72,32 @@ PASS ../toast/RDFa/1.1.3/rdf11-example.xhtml
 
 PASS ../toast/RDFa/1.1.3/rdf12-example.html
 2 naughty_lang
-33 not_ontology_property bad_property
-48 not_ontology_property bad_property
 49 not_ontology_property bad_property not_ontology_property bad_property bad_property
 54 not_ontology_property bad_property
 55 not_ontology_property bad_property not_ontology_property bad_property bad_property
 61 not_ontology_property bad_property not_ontology_property bad_property bad_property
-62 not_ontology_property bad_property
 64 not_ontology_property bad_property not_ontology_property bad_property bad_property
 69 not_ontology_property bad_property not_ontology_property bad_property bad_property
 72 not_ontology_property bad_property not_ontology_property bad_property bad_property
 78 not_ontology_property bad_property not_ontology_property bad_property bad_property
-79 not_ontology_property bad_property
 80 not_ontology_property bad_property not_ontology_property bad_property bad_property
 86 not_ontology_property bad_property not_ontology_property bad_property bad_property
-87 not_ontology_property bad_property
 88 not_ontology_property bad_property not_ontology_property bad_property bad_property
-89 not_ontology_property bad_property not_ontology_property bad_property bad_property
-93 not_ontology_property bad_property
 96 not_ontology_property bad_property not_ontology_property bad_property bad_property
-100 not_ontology_property bad_property
 103 not_ontology_property bad_property not_ontology_property bad_property bad_property
-107 not_ontology_property bad_property
 109 not_ontology_property bad_property not_ontology_property bad_property bad_property
 115 not_ontology_property bad_property not_ontology_property bad_property bad_property
 
 PASS ../toast/RDFa/1.1.3/rdf13-example.html
 2 naughty_lang
 13 not_ontology_property bad_property not_ontology_property bad_property bad_property
-14 not_ontology_property bad_property
 18 not_ontology_property bad_property not_ontology_property bad_property bad_property
 22 not_ontology_property bad_property not_ontology_property bad_property bad_property
-23 not_ontology_property bad_property
 25 not_ontology_property bad_property not_ontology_property bad_property bad_property
 30 not_ontology_property bad_property not_ontology_property bad_property bad_property
 33 not_ontology_property bad_property not_ontology_property bad_property bad_property
-37 not_ontology_property bad_property not_ontology_property bad_property bad_property
 46 not_ontology_property bad_property not_ontology_property bad_property bad_property
 50 not_ontology_property bad_property not_ontology_property bad_property bad_property
-55 not_ontology_property bad_property
 57 not_ontology_property bad_property not_ontology_property bad_property bad_property
 
 PASS ../toast/RDFa/1.1.3/rdf14-example.html
@@ -159,7 +142,6 @@ PASS ../toast/RDFa/1.1.3/rdf19-example.html
 
 PASS ../toast/RDFa/1.1.3/rdfa-bad.html
 2 naughty_lang
-15 not_ontology_property bad_property
 19 prefix_odd
 21 prefix_format rdfa_confusion prefix_format
 23 prefix_format

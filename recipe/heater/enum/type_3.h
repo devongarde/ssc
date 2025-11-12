@@ -401,6 +401,12 @@ template < > struct type_master < t_mf_class > : three_value < t_mf_class, e_mf_
 template < > struct type_master < t_mf_status > : three_value < t_mf_status, e_mf_status, sz_tentative, sz_confirmed, sz_cancelled >
 { using three_value < t_mf_status, e_mf_status, sz_tentative, sz_confirmed, sz_cancelled > :: three_value; };
 
+template < > struct type_master < t_mrss_expression > : three_value < t_mrss_expression, e_mrss_expression, sz_full, sz_nonstop, sz_sample >
+{ using three_value < t_mrss_expression, e_mrss_expression, sz_full, sz_nonstop, sz_sample > :: three_value; };
+
+template < > struct type_master < t_mrss_state > : three_value < t_mrss_state, e_mrss_state, sz_active, sz_blocked, sz_deleted >
+{ using three_value < t_mrss_state, e_mrss_state, sz_active, sz_blocked, sz_deleted > :: three_value; };
+
 template < > struct type_master < t_nsd > : three_value < t_nsd, e_nsd, sz_none, sz_spaced, sz_dashed >
 { using three_value < t_nsd, e_nsd, sz_none, sz_spaced, sz_dashed > :: three_value; };
 

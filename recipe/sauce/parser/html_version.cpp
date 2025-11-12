@@ -29,7 +29,7 @@ CONSTEXPR ::std::size_t doctype_len = 7;
 const char* docdot = "<!DOCTYPE ...>";
 
 html_version::html_version (const ::boost::gregorian::date& d)
-        :   version (0, 0, HV_WHATWG), ext_ (NOFLAGS), ext2_ (NOFLAGS), ext3_ (NOFLAGS), ext4_ (NOFLAGS)
+        :   version (0, 0, HV_WHATWG, ao_html), ext_ (NOFLAGS), ext2_ (NOFLAGS), ext3_ (NOFLAGS), ext4_ (NOFLAGS)
 {   if (d.is_not_a_date ()) { reset (html_1); return; }
     int y = d.year ();
     if ((y > 100) && (y < 2000)) { reset (html_1); return; }
@@ -87,7 +87,7 @@ html_version::html_version (const ::boost::gregorian::date& d)
         default : css_version (css_2025); break; } }
 
 html_version::html_version (const boost::gregorian::date& d, const flags_t flags, const flags_t extensions, const flags_t e2, const flags_t e3, const flags_t e4)
-        :   version (0, 0, flags | HV_WHATWG), ext_ (extensions), ext2_ (e2), ext3_ (e3), ext4_ (e4)
+        :   version (0, 0, flags | HV_WHATWG, ao_html), ext_ (extensions), ext2_ (e2), ext3_ (e3), ext4_ (e4)
 {   if (d.is_not_a_date ()) { reset (html_1); return; }
     int y = d.year ();
     if ((y > 100) && (y < 2000)) { reset (html_1); return; }
@@ -128,7 +128,7 @@ html_version::html_version (const boost::gregorian::date& d, const flags_t flags
     {   if (no_ext3 (H3_CSS_MASK)) set_ext3 (H3_CSS_3);
         if (no_ext4 (H4_CSS_MASK)) set_ext4 (H4_CSS_3); } }
 
-html_version::html_version (nitpick& nits, const ::std::string& ss)
+html_version::html_version (nitpick& nits, const ::std::string& ss) : version (ao_html)
 {   if (! ss.empty ())
     {   ::std::string s (trim_the_lot_off (ss));
         bool xhtml = false;
@@ -488,7 +488,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
     {   nits.pick (nit_html_unrecognised, es_error, ec_parser, "Document type not specified. This does not appear to be an HTML file. Abandoning verification");
         return false; }
     for (auto s : keywords)
-        if (! s.empty ())  // should never happen, but ...
+        if (! s.empty ())  // empty should never happen, but ...
         {   if (sq_brac_ket)
             {   if (s != "]") continue;  // broken by nesting, if it's permitted
                 sq_brac_ket = false; }
@@ -2283,7 +2283,9 @@ bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::c
     return res; }
 
 bool does_html_apply (const html_version& v, const html_version& from, const html_version& to)
-{   if (! from.unknown () && (v < from)) return false;
+{   if (from.ao () != to.ao ()) return true;
+    if (from.ao () != ao_html) return true;
+    if (! from.unknown () && (v < from)) return false;
     if (! to.unknown () && (v > to)) return false;
     if (context.microformats () && from.is_mf ()) return true;
     if (from.requires_extension ())

@@ -1,0 +1,939 @@
+-Y 1 -7 original -f ../toast/external/cleberg.net/ext.conf
+
+PASS ../toast/external/cleberg.net/about/index.html
+22 default_role
+26 url_not_found
+31 default_role
+34 use_quote_code
+40 use_quote_code
+43 use_quote_code
+50 unrecognised_value
+64 unrecognised_value
+76 url_not_found
+
+PASS ../toast/external/cleberg.net/index.html
+1 missing_close inserted_missing_parent missing_close inserted_missing_parent inserted_missing_closure missing_close default_role inserted_missing_closure inserted_missing_closure url_not_found inserted_missing_closure missing_close inserted_missing_closure use_quote_code
+2 url_not_found
+3 url_not_found
+4 url_not_found
+6 url_not_found
+
+PASS ../toast/external/cleberg.net/styles.min.css
+1 css_version css_syntax css_version
+
+PASS ../toast/external/cleberg.net/blog/cloudflare-dns-api/index.html
+6 long_title
+17 attribute_unrecognised_here unrecognised_attribute nahtch
+18 attribute_unrecognised_here unrecognised_attribute nahtch
+20 attribute_unrecognised_here unrecognised_attribute nahtch
+25 default_role
+29 url_not_found
+34 default_role
+35 unrecognised_value
+51 unrecognised_value
+52 unrecognised_value
+53 unrecognised_value
+59 use_quote_code
+66 use_quote_code
+72 unrecognised_value
+73 unrecognised_value unrecognised_value
+82 unrecognised_value
+83 unrecognised_value unrecognised_value
+93 use_quote_code
+95 unrecognised_value
+96 unrecognised_value unrecognised_value
+102 use_double_quote_code
+104 use_double_quote_code
+112 use_double_quote_code
+114 use_double_quote_code
+125 unrecognised_value
+126 unrecognised_value unrecognised_value
+132 use_double_quote_code
+136 unrecognised_value
+137 unrecognised_value unrecognised_value
+149 use_double_quote_code
+150 use_double_quote_code
+151 use_double_quote_code
+152 use_quote_code use_double_quote_code
+155 use_double_quote_code
+156 use_double_quote_code
+161 use_double_quote_code use_double_quote_code
+162 use_double_quote_code
+163 use_double_quote_code
+164 use_double_quote_code
+165 use_quote_code use_double_quote_code
+173 use_double_quote_code use_double_quote_code
+174 use_double_quote_code
+175 use_double_quote_code
+176 use_double_quote_code
+179 use_quote_code use_double_quote_code
+180 use_double_quote_code
+184 use_double_quote_code use_quote_code
+185 use_double_quote_code
+186 use_double_quote_code
+187 use_double_quote_code
+188 use_double_quote_code use_double_quote_code use_double_quote_code use_double_quote_code use_double_quote_code use_double_quote_code use_double_quote_code use_double_quote_code use_double_quote_code
+189 use_quote_code
+191 use_double_quote_code
+194 use_double_quote_code
+200 use_double_quote_code use_double_quote_code
+201 use_double_quote_code
+202 use_double_quote_code
+203 use_double_quote_code
+206 use_quote_code use_double_quote_code
+207 use_double_quote_code
+211 use_double_quote_code use_quote_code
+212 use_double_quote_code
+213 use_double_quote_code
+214 use_double_quote_code
+215 use_double_quote_code use_double_quote_code use_double_quote_code use_double_quote_code use_double_quote_code use_double_quote_code use_double_quote_code use_double_quote_code use_double_quote_code
+216 use_quote_code
+218 use_double_quote_code
+221 use_double_quote_code
+224 use_double_quote_code
+227 use_double_quote_code
+236 unrecognised_value
+237 unrecognised_value unrecognised_value
+246 unrecognised_value
+247 unrecognised_value unrecognised_value
+256 unrecognised_value
+257 unrecognised_value unrecognised_value
+265 unrecognised_value
+266 unrecognised_value unrecognised_value
+279 url_not_found
+
+PASS ../toast/external/cleberg.net/blog/ditching-cloudflare/index.html
+6 long_title
+17 attribute_unrecognised_here unrecognised_attribute nahtch
+18 attribute_unrecognised_here unrecognised_attribute nahtch
+20 attribute_unrecognised_here unrecognised_attribute nahtch
+25 default_role
+29 url_not_found
+34 default_role
+35 unrecognised_value
+51 use_quote_code
+59 unrecognised_value
+60 unrecognised_value
+61 unrecognised_value
+85 use_quote_code
+98 unrecognised_value
+99 unrecognised_value
+100 unrecognised_value
+104 use_quote_code
+121 unrecognised_value
+122 unrecognised_value
+123 unrecognised_value
+128 use_quote_code
+134 use_quote_code
+139 unrecognised_value
+140 unrecognised_value use_quote_code
+141 unrecognised_value
+157 unrecognised_value
+158 unrecognised_value
+159 unrecognised_value
+164 use_quote_code
+177 unrecognised_value
+178 unrecognised_value
+179 unrecognised_value
+186 use_quote_code
+191 use_quote_code
+202 url_not_found
+
+PASS ../toast/external/cleberg.net/blog/useful-css.html
+6 long_title
+17 attribute_unrecognised_here unrecognised_attribute nahtch
+18 attribute_unrecognised_here unrecognised_attribute nahtch
+20 attribute_unrecognised_here unrecognised_attribute nahtch
+25 default_role
+29 url_not_found
+34 default_role
+35 unrecognised_value
+55 unrecognised_value
+56 unrecognised_value
+57 unrecognised_value
+64 use_double_quote_code
+74 unrecognised_value
+75 unrecognised_value
+76 unrecognised_value
+96 unrecognised_value
+97 unrecognised_value unrecognised_value
+110 unrecognised_value
+111 unrecognised_value
+112 unrecognised_value
+116 use_quote_code
+123 unrecognised_value
+124 unrecognised_value unrecognised_value
+132 use_quote_code
+138 unrecognised_value
+139 unrecognised_value unrecognised_value use_double_quote_code
+140 use_double_quote_code
+147 unrecognised_value
+148 unrecognised_value unrecognised_value
+169 unrecognised_value
+170 unrecognised_value unrecognised_value use_double_quote_code
+171 use_double_quote_code
+178 unrecognised_value
+179 unrecognised_value unrecognised_value
+202 unrecognised_value
+203 unrecognised_value
+204 unrecognised_value
+210 use_quote_code
+217 use_quote_code
+223 unrecognised_value
+224 unrecognised_value unrecognised_value use_double_quote_code
+225 use_double_quote_code
+228 use_double_quote_code
+235 unrecognised_value
+236 unrecognised_value unrecognised_value
+277 unrecognised_value
+278 unrecognised_value
+279 unrecognised_value
+294 url_not_found
+
+PASS ../toast/external/cleberg.net/blog/vaporwave-vs-outrun.html
+6 long_title
+17 attribute_unrecognised_here unrecognised_attribute nahtch
+18 attribute_unrecognised_here unrecognised_attribute nahtch
+20 attribute_unrecognised_here unrecognised_attribute nahtch
+25 default_role
+29 url_not_found
+34 default_role
+35 unrecognised_value
+66 unrecognised_value
+67 unrecognised_value
+68 unrecognised_value
+77 use_quote_code
+79 use_quote_code
+82 unrecognised_value
+85 unrecognised_value
+89 unrecognised_value
+90 unrecognised_value
+91 unrecognised_value
+93 unrecognised_value
+96 unrecognised_value
+102 use_quote_code
+104 use_quote_code
+127 unrecognised_value
+128 unrecognised_value
+129 unrecognised_value
+135 use_quote_code
+138 unrecognised_value
+139 unrecognised_value
+140 unrecognised_value
+147 unrecognised_value
+148 unrecognised_value
+149 unrecognised_value
+170 use_quote_code
+174 unrecognised_value
+175 unrecognised_value
+176 unrecognised_value
+178 unrecognised_value
+181 unrecognised_value
+187 use_quote_code
+192 unrecognised_value id_exists
+193 id_exists unrecognised_value
+194 unrecognised_value
+201 unrecognised_value id_exists
+202 id_exists unrecognised_value
+203 unrecognised_value
+210 use_quote_code
+219 unrecognised_value id_exists
+220 id_exists unrecognised_value
+221 unrecognised_value
+234 unrecognised_value
+237 unrecognised_value
+243 use_quote_code
+246 unrecognised_value
+249 unrecognised_value
+253 unrecognised_value
+256 unrecognised_value
+261 unrecognised_value
+262 unrecognised_value
+263 unrecognised_value
+269 use_quote_code
+280 url_not_found
+
+PASS ../toast/external/cleberg.net/blog/video-game-sales.html
+6 long_title
+17 attribute_unrecognised_here unrecognised_attribute nahtch
+18 attribute_unrecognised_here unrecognised_attribute nahtch
+20 attribute_unrecognised_here unrecognised_attribute nahtch
+25 default_role
+29 url_not_found
+34 default_role
+35 unrecognised_value
+59 unrecognised_value
+60 unrecognised_value
+61 unrecognised_value
+71 unrecognised_value
+75 use_quote_code
+90 unrecognised_value
+91 unrecognised_value
+92 unrecognised_value
+93 unrecognised_value
+94 unrecognised_value unrecognised_value
+101 use_quote_code
+108 unrecognised_value
+109 unrecognised_value
+110 unrecognised_value
+111 unrecognised_value
+112 unrecognised_value unrecognised_value
+113 use_quote_code
+118 unrecognised_value
+119 unrecognised_value unrecognised_value
+128 unrecognised_value
+129 unrecognised_value
+130 unrecognised_value
+131 unrecognised_value
+132 unrecognised_value unrecognised_value
+133 use_quote_code use_quote_code
+137 unrecognised_value
+138 unrecognised_value unrecognised_value
+139 use_quote_code use_quote_code
+143 unrecognised_value
+144 unrecognised_value unrecognised_value
+145 use_quote_code use_quote_code
+149 unrecognised_value
+150 unrecognised_value unrecognised_value
+152 use_quote_code
+155 use_quote_code
+156 use_quote_code
+157 use_quote_code
+158 use_quote_code
+159 use_quote_code
+162 use_quote_code
+163 use_quote_code
+165 use_quote_code
+166 use_quote_code
+167 use_quote_code
+168 use_quote_code
+169 use_quote_code
+176 unrecognised_value
+177 unrecognised_value
+178 unrecognised_value
+179 unrecognised_value
+180 unrecognised_value unrecognised_value
+181 use_quote_code
+197 use_quote_code
+202 unrecognised_value
+203 unrecognised_value unrecognised_value use_quote_code
+204 use_double_quote_code use_double_quote_code
+208 unrecognised_value
+209 unrecognised_value unrecognised_value use_quote_code
+211 use_quote_code
+217 unrecognised_value
+218 unrecognised_value
+219 unrecognised_value
+240 use_quote_code
+251 url_not_found
+
+PASS ../toast/external/cleberg.net/blog/visual-recognition.html
+6 long_title
+17 attribute_unrecognised_here unrecognised_attribute nahtch
+18 attribute_unrecognised_here unrecognised_attribute nahtch
+20 attribute_unrecognised_here unrecognised_attribute nahtch
+25 default_role
+29 url_not_found
+34 default_role
+35 unrecognised_value
+55 unrecognised_value
+56 unrecognised_value
+57 unrecognised_value
+59 use_quote_code
+67 use_quote_code
+71 unrecognised_value
+72 unrecognised_value
+73 unrecognised_value
+76 use_quote_code
+78 unrecognised_value
+95 unrecognised_value
+96 unrecognised_value
+97 unrecognised_value
+100 use_quote_code
+106 unrecognised_value
+107 unrecognised_value unrecognised_value use_double_quote_code use_double_quote_code
+116 unrecognised_value
+117 unrecognised_value unrecognised_value use_double_quote_code use_double_quote_code
+118 use_double_quote_code
+119 use_double_quote_code use_double_quote_code
+125 use_quote_code
+127 unrecognised_value
+128 unrecognised_value unrecognised_value
+145 use_quote_code
+147 unrecognised_value
+148 unrecognised_value unrecognised_value use_quote_code use_double_quote_code
+154 use_quote_code
+157 unrecognised_value
+158 unrecognised_value unrecognised_value
+160 use_double_quote_code use_double_quote_code
+161 use_double_quote_code use_double_quote_code
+164 use_double_quote_code use_double_quote_code
+165 use_double_quote_code use_double_quote_code
+168 use_double_quote_code use_double_quote_code
+169 use_double_quote_code use_double_quote_code
+172 use_double_quote_code use_double_quote_code
+173 use_double_quote_code use_double_quote_code
+176 use_double_quote_code use_double_quote_code
+177 use_double_quote_code use_double_quote_code
+180 use_double_quote_code use_double_quote_code
+181 use_double_quote_code use_double_quote_code
+193 use_quote_code
+200 unrecognised_value
+201 unrecognised_value unrecognised_value
+205 use_double_quote_code
+206 use_double_quote_code
+210 use_quote_code
+211 use_double_quote_code
+212 use_double_quote_code
+213 use_double_quote_code use_double_quote_code use_double_quote_code use_double_quote_code
+214 use_double_quote_code use_double_quote_code use_double_quote_code use_double_quote_code
+215 use_double_quote_code use_double_quote_code use_double_quote_code
+217 use_double_quote_code use_double_quote_code use_double_quote_code use_double_quote_code
+218 use_double_quote_code
+220 use_double_quote_code use_double_quote_code
+225 unrecognised_value
+226 unrecognised_value
+227 unrecognised_value
+234 use_quote_code
+253 unrecognised_value
+254 unrecognised_value unrecognised_value
+270 unrecognised_value
+271 unrecognised_value
+272 unrecognised_value
+305 url_not_found
+
+PASS ../toast/external/cleberg.net/blog/vps-web-server.html
+6 long_title
+17 attribute_unrecognised_here unrecognised_attribute nahtch
+18 attribute_unrecognised_here unrecognised_attribute nahtch
+20 attribute_unrecognised_here unrecognised_attribute nahtch
+25 default_role
+29 url_not_found
+34 default_role
+35 unrecognised_value
+62 unrecognised_value
+63 unrecognised_value
+64 unrecognised_value
+74 use_quote_code
+82 use_quote_code
+95 use_quote_code
+104 use_quote_code
+107 unrecognised_value
+108 unrecognised_value
+109 unrecognised_value
+124 use_quote_code
+129 use_quote_code
+149 unrecognised_value
+150 unrecognised_value
+151 unrecognised_value
+171 use_quote_code
+179 unrecognised_value
+180 unrecognised_value
+181 unrecognised_value
+187 use_quote_code
+194 use_quote_code
+202 unrecognised_value
+203 unrecognised_value unrecognised_value
+213 use_quote_code
+220 use_quote_code
+223 unrecognised_value
+224 unrecognised_value
+225 unrecognised_value
+232 use_quote_code
+234 unrecognised_value
+235 unrecognised_value unrecognised_value
+244 use_quote_code
+248 use_quote_code
+252 use_quote_code
+255 unrecognised_value
+256 unrecognised_value unrecognised_value
+261 unrecognised_value
+262 unrecognised_value
+263 unrecognised_value
+266 use_quote_code
+270 use_quote_code
+274 unrecognised_value
+275 unrecognised_value unrecognised_value
+283 unrecognised_value
+284 unrecognised_value unrecognised_value
+293 unrecognised_value
+294 unrecognised_value unrecognised_value
+301 use_quote_code
+305 unrecognised_value
+306 unrecognised_value unrecognised_value
+312 use_quote_code
+316 unrecognised_value
+317 unrecognised_value
+318 unrecognised_value
+329 unrecognised_value
+330 unrecognised_value unrecognised_value
+338 use_quote_code
+340 unrecognised_value
+341 unrecognised_value unrecognised_value
+348 unrecognised_value
+349 unrecognised_value
+350 unrecognised_value
+356 unrecognised_value
+357 unrecognised_value unrecognised_value
+363 use_quote_code
+365 use_quote_code
+366 use_quote_code
+368 use_quote_code
+370 unrecognised_value
+371 unrecognised_value unrecognised_value
+380 use_quote_code
+382 unrecognised_value
+383 unrecognised_value unrecognised_value
+384 use_double_quote_code
+386 use_double_quote_code
+387 use_double_quote_code use_double_quote_code
+399 use_quote_code
+403 unrecognised_value
+404 unrecognised_value unrecognised_value
+411 unrecognised_value
+412 unrecognised_value
+413 unrecognised_value
+416 use_quote_code
+420 unrecognised_value
+421 unrecognised_value unrecognised_value
+431 use_quote_code
+433 unrecognised_value
+434 unrecognised_value unrecognised_value
+450 unrecognised_value
+451 unrecognised_value unrecognised_value
+462 unrecognised_value
+463 unrecognised_value unrecognised_value
+471 use_quote_code
+474 unrecognised_value
+475 unrecognised_value unrecognised_value
+486 unrecognised_value
+487 unrecognised_value
+488 unrecognised_value
+492 use_quote_code
+499 unrecognised_value
+500 unrecognised_value unrecognised_value
+510 unrecognised_value
+511 unrecognised_value unrecognised_value
+520 unrecognised_value
+521 unrecognised_value unrecognised_value
+529 unrecognised_value
+533 use_quote_code
+540 unrecognised_value
+541 unrecognised_value unrecognised_value
+548 use_quote_code
+550 unrecognised_value
+551 unrecognised_value unrecognised_value
+563 unrecognised_value
+564 unrecognised_value unrecognised_value
+573 unrecognised_value
+574 unrecognised_value
+575 unrecognised_value
+579 use_quote_code
+589 unrecognised_value
+590 unrecognised_value unrecognised_value
+600 use_quote_code
+602 unrecognised_value
+603 unrecognised_value unrecognised_value
+608 unrecognised_value
+609 unrecognised_value
+610 unrecognised_value
+614 use_quote_code
+625 use_quote_code
+639 url_not_found
+
+PASS ../toast/external/cleberg.net/blog/website-redesign.html
+6 long_title
+17 attribute_unrecognised_here unrecognised_attribute nahtch
+18 attribute_unrecognised_here unrecognised_attribute nahtch
+20 attribute_unrecognised_here unrecognised_attribute nahtch
+25 default_role
+29 url_not_found
+34 default_role
+35 unrecognised_value
+57 unrecognised_value
+58 unrecognised_value
+59 unrecognised_value
+66 use_quote_code
+75 use_quote_code
+79 use_quote_code
+86 unrecognised_value
+87 unrecognised_value
+88 unrecognised_value
+91 use_quote_code
+102 use_quote_code
+109 use_quote_code
+117 use_double_quote_code use_quote_code
+124 use_quote_code
+127 use_double_quote_code
+129 use_double_quote_code
+141 unrecognised_value
+142 unrecognised_value
+143 unrecognised_value
+145 unrecognised_value
+146 unrecognised_value
+147 unrecognised_value
+154 use_quote_code
+171 use_quote_code
+183 url_not_found
+
+PASS ../toast/external/cleberg.net/blog/wireguard-lan.html
+6 long_title
+17 attribute_unrecognised_here unrecognised_attribute nahtch
+18 attribute_unrecognised_here unrecognised_attribute nahtch
+20 attribute_unrecognised_here unrecognised_attribute nahtch
+25 default_role
+29 url_not_found
+34 default_role
+35 unrecognised_value
+56 unrecognised_value
+57 unrecognised_value
+58 unrecognised_value
+61 use_quote_code
+72 unrecognised_value
+73 unrecognised_value unrecognised_value
+79 unrecognised_value
+80 unrecognised_value
+81 unrecognised_value
+86 unrecognised_value
+87 unrecognised_value unrecognised_value
+105 use_quote_code
+106 use_quote_code
+112 unrecognised_value
+113 unrecognised_value
+114 unrecognised_value
+117 use_quote_code
+122 use_quote_code
+125 use_quote_code
+127 unrecognised_value
+128 unrecognised_value unrecognised_value
+135 use_quote_code
+137 unrecognised_value
+138 unrecognised_value unrecognised_value
+153 use_quote_code
+156 unrecognised_value
+157 unrecognised_value unrecognised_value
+160 use_double_quote_code
+162 use_double_quote_code
+167 use_double_quote_code
+168 use_double_quote_code use_double_quote_code
+169 use_double_quote_code
+170 use_double_quote_code use_double_quote_code
+174 use_double_quote_code
+181 use_quote_code
+183 unrecognised_value
+184 unrecognised_value unrecognised_value
+193 unrecognised_value
+194 unrecognised_value unrecognised_value
+202 unrecognised_value
+203 unrecognised_value unrecognised_value
+224 unrecognised_value
+225 unrecognised_value unrecognised_value
+232 use_quote_code
+234 unrecognised_value
+235 unrecognised_value unrecognised_value
+249 url_not_found
+
+PASS ../toast/external/cleberg.net/blog/zfs.html
+6 long_title
+17 attribute_unrecognised_here unrecognised_attribute nahtch
+18 attribute_unrecognised_here unrecognised_attribute nahtch
+20 attribute_unrecognised_here unrecognised_attribute nahtch
+25 default_role
+29 url_not_found
+34 default_role
+35 unrecognised_value
+74 unrecognised_value
+79 unrecognised_value
+80 unrecognised_value
+81 unrecognised_value
+86 unrecognised_value
+87 unrecognised_value unrecognised_value
+95 unrecognised_value
+96 unrecognised_value unrecognised_value
+104 unrecognised_value
+105 unrecognised_value
+106 unrecognised_value
+117 unrecognised_value
+132 unrecognised_value
+133 unrecognised_value
+134 unrecognised_value
+136 use_quote_code
+140 unrecognised_value
+141 unrecognised_value unrecognised_value
+150 unrecognised_value
+151 unrecognised_value unrecognised_value
+167 use_quote_code
+169 unrecognised_value
+170 unrecognised_value unrecognised_value
+177 use_quote_code
+180 unrecognised_value
+181 unrecognised_value unrecognised_value
+190 unrecognised_value
+191 unrecognised_value unrecognised_value
+198 unrecognised_value
+199 unrecognised_value unrecognised_value
+220 unrecognised_value
+221 unrecognised_value unrecognised_value
+230 unrecognised_value
+231 unrecognised_value
+232 unrecognised_value
+239 unrecognised_value
+240 unrecognised_value unrecognised_value
+245 use_quote_code
+249 unrecognised_value
+250 unrecognised_value unrecognised_value
+263 unrecognised_value
+264 unrecognised_value unrecognised_value
+273 unrecognised_value
+274 unrecognised_value
+275 unrecognised_value
+285 unrecognised_value
+286 unrecognised_value unrecognised_value
+298 use_quote_code
+300 unrecognised_value
+311 unrecognised_value
+312 unrecognised_value unrecognised_value
+317 use_quote_code
+363 unrecognised_value
+364 unrecognised_value unrecognised_value
+375 unrecognised_value
+376 unrecognised_value unrecognised_value
+387 unrecognised_value
+388 unrecognised_value
+389 unrecognised_value
+406 unrecognised_value
+407 unrecognised_value unrecognised_value
+417 unrecognised_value
+418 unrecognised_value unrecognised_value
+427 unrecognised_value
+428 unrecognised_value
+429 unrecognised_value
+431 use_quote_code
+436 unrecognised_value
+437 unrecognised_value unrecognised_value use_quote_code
+445 unrecognised_value
+446 unrecognised_value unrecognised_value
+453 unrecognised_value
+454 unrecognised_value
+455 unrecognised_value
+460 unrecognised_value
+461 unrecognised_value unrecognised_value
+469 unrecognised_value
+470 unrecognised_value unrecognised_value
+477 unrecognised_value
+478 unrecognised_value
+479 unrecognised_value
+480 unrecognised_value
+499 url_not_found
+
+PASS ../toast/external/cleberg.net/blog/zork.html
+6 long_title
+17 attribute_unrecognised_here unrecognised_attribute nahtch
+18 attribute_unrecognised_here unrecognised_attribute nahtch
+20 attribute_unrecognised_here unrecognised_attribute nahtch
+25 default_role
+29 url_not_found
+34 default_role
+35 unrecognised_value
+55 unrecognised_value
+56 unrecognised_value
+57 unrecognised_value
+60 use_quote_code
+65 unrecognised_value
+66 unrecognised_value
+67 unrecognised_value
+86 unrecognised_value
+87 unrecognised_value
+88 unrecognised_value
+97 unrecognised_value
+100 unrecognised_value
+108 unrecognised_value
+109 unrecognised_value
+110 unrecognised_value
+116 use_quote_code
+119 use_quote_code
+127 use_quote_code use_double_quote_code
+134 use_quote_code
+143 unrecognised_value
+144 unrecognised_value
+145 unrecognised_value
+153 use_quote_code
+157 use_quote_code
+169 url_not_found
+
+PASS ../toast/external/cleberg.net/now/index.html
+17 attribute_unrecognised_here unrecognised_attribute nahtch
+18 attribute_unrecognised_here unrecognised_attribute nahtch
+23 default_role
+27 url_not_found
+32 default_role
+33 unrecognised_value
+55 unrecognised_value
+56 unrecognised_value
+57 unrecognised_value
+58 unrecognised_value
+65 unrecognised_value
+66 unrecognised_value
+67 unrecognised_value
+72 use_quote_code use_double_quote_code
+74 unrecognised_value
+76 unrecognised_value
+81 unrecognised_value
+88 unrecognised_value
+89 unrecognised_value
+90 unrecognised_value
+91 unrecognised_value
+93 use_quote_code
+99 unrecognised_value
+100 unrecognised_value
+101 unrecognised_value
+102 unrecognised_value
+103 use_quote_code
+119 url_not_found
+
+PASS ../toast/external/cleberg.net/salary/index.html
+22 default_role
+26 url_not_found
+31 default_role
+43 unrecognised_value
+44 unrecognised_value
+45 unrecognised_value
+51 use_quote_code
+64 use_quote_code
+74 unrecognised_value
+75 unrecognised_value
+76 unrecognised_value
+89 attribute_unrecognised_here bad_border unrecognised_attribute invalid_attribute_version wrong_version invalid_attribute_version wrong_version invalid_attribute_version wrong_version invalid_attribute_version wrong_version
+93 unrecognised_value
+95 unrecognised_value
+97 unrecognised_value
+99 unrecognised_value
+103 unrecognised_value
+104 unrecognised_value
+105 unrecognised_value
+106 unrecognised_value
+111 unrecognised_value
+112 unrecognised_value
+113 unrecognised_value
+114 unrecognised_value
+118 unrecognised_value
+119 unrecognised_value
+120 unrecognised_value
+121 unrecognised_value
+125 unrecognised_value
+126 unrecognised_value
+127 unrecognised_value
+128 unrecognised_value
+132 unrecognised_value
+133 unrecognised_value
+134 unrecognised_value
+135 unrecognised_value
+139 unrecognised_value
+140 unrecognised_value
+141 unrecognised_value
+142 unrecognised_value
+146 unrecognised_value
+147 unrecognised_value
+148 unrecognised_value
+149 unrecognised_value
+153 unrecognised_value
+154 unrecognised_value
+155 unrecognised_value
+156 unrecognised_value
+160 unrecognised_value
+161 unrecognised_value
+162 unrecognised_value
+163 unrecognised_value
+167 unrecognised_value
+168 unrecognised_value
+169 unrecognised_value
+170 unrecognised_value
+174 unrecognised_value
+175 unrecognised_value
+176 unrecognised_value
+177 unrecognised_value
+181 unrecognised_value
+182 unrecognised_value
+183 unrecognised_value
+184 unrecognised_value
+188 unrecognised_value
+189 unrecognised_value
+190 unrecognised_value
+191 unrecognised_value
+201 unrecognised_value
+202 unrecognised_value
+203 unrecognised_value
+207 use_quote_code
+210 unrecognised_value
+213 unrecognised_value
+219 use_quote_code
+239 url_not_found
+
+PASS ../toast/external/cleberg.net/services/index.html
+22 default_role
+26 url_not_found
+31 default_role
+42 unrecognised_value
+43 unrecognised_value
+44 unrecognised_value
+45 attribute_unrecognised_here bad_border unrecognised_attribute invalid_attribute_version wrong_version invalid_attribute_version wrong_version invalid_attribute_version wrong_version invalid_attribute_version wrong_version
+49 unrecognised_value
+51 unrecognised_value
+55 unrecognised_value
+56 unrecognised_value
+61 unrecognised_value
+62 unrecognised_value
+66 unrecognised_value
+67 unrecognised_value
+71 unrecognised_value
+72 unrecognised_value
+76 unrecognised_value
+77 unrecognised_value
+81 unrecognised_value
+82 unrecognised_value
+86 unrecognised_value
+87 unrecognised_value
+91 unrecognised_value
+92 unrecognised_value
+96 unrecognised_value
+97 unrecognised_value
+101 unrecognised_value
+102 unrecognised_value
+106 unrecognised_value
+107 unrecognised_value
+111 unrecognised_value
+112 unrecognised_value
+118 unrecognised_value
+119 unrecognised_value
+120 unrecognised_value
+121 attribute_unrecognised_here bad_border unrecognised_attribute invalid_attribute_version wrong_version invalid_attribute_version wrong_version invalid_attribute_version wrong_version invalid_attribute_version wrong_version
+125 unrecognised_value
+127 unrecognised_value
+131 unrecognised_value
+132 unrecognised_value
+137 unrecognised_value
+138 unrecognised_value
+142 unrecognised_value
+143 unrecognised_value
+147 unrecognised_value
+148 unrecognised_value
+152 unrecognised_value
+153 unrecognised_value
+157 unrecognised_value
+158 unrecognised_value
+162 unrecognised_value
+163 unrecognised_value
+167 unrecognised_value
+168 unrecognised_value use_quote_code
+172 unrecognised_value
+173 unrecognised_value
+177 unrecognised_value
+178 unrecognised_value
+182 unrecognised_value
+183 unrecognised_value
+187 unrecognised_value
+188 unrecognised_value
+192 unrecognised_value
+193 unrecognised_value
+210 url_not_found
+

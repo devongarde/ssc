@@ -45,66 +45,84 @@ vavm_t avm;
 
 void avm_init (nitpick& )
 {   extern hav_t    
-        havt_a [], havt_abbr [], havt_abbrev [], havt_above [], havt_abs [], havt_abstract [], havt_acronym [], havt_access [], havt_action [], havt_added [], havt_addeventlistener [], havt_address [],
-            havt_altglyph [], havt_altglyphdef [], havt_altglyphitem [], havt_and [], havt_animate [], havt_animatecolour [], havt_animatemotion [], havt_animatetransform [], havt_animation [], havt_annotation [],
-            havt_annotation_xml [], havt_applet [], havt_apply [], havt_approx [], havt_arccos [], havt_arccosh [], havt_arccot [], havt_arccoth [], havt_arccsc [], havt_arccsch [], havt_arcsec [], havt_arcsech [],
-            havt_arcsin [], havt_arcsinh [], havt_arctan [], havt_arctanh [], havt_area [], havt_arg [], havt_array [], havt_article [], havt_aside [], havt_atom_author [], havt_atom_category [],
-            havt_atom_content [], havt_atom_contributor [], havt_atom_email [], havt_atom_entry [], havt_atom_feed [], havt_atom_generator [], havt_atom_icon [], havt_atom_id [], havt_atom_link [],
-            havt_atom_logo [], havt_atom_name [], havt_atom_published [], havt_atom_rights [], havt_atom_source [], havt_atom_subtitle [], havt_atom_summary [], havt_atom_title [], havt_atom_updated [],
-            havt_atom_uri [], havt_audio [], havt_au [],
-        havt_b [], havt_bb [], havt_banner [], havt_bar [], havt_base [], havt_basefont [], havt_bdi [], havt_bdo [], havt_below [], havt_bgsound [], havt_big [], havt_bind [], havt_blockquote [],
-            havt_blockcode [], havt_body [], havt_box [], havt_bq [], havt_br [], havt_bt [], havt_button [], havt_bvar [], havt_byline [],
-        havt_calendar [], havt_canvas [], havt_caption [], havt_card [], havt_cartesianproduct [], havt_cbytes [], havt_ceiling [], havt_cerror [], havt_changed [], havt_ci [], havt_circle [], havt_cite [],
-            havt_clippath [], havt_cmd [], havt_cn [], havt_code [], havt_col [], havt_colgroup [], havt_colour_profile [], havt_command [], havt_commandset [], havt_complexes [], havt_compose [],
-            havt_condition [], havt_comment [], havt_conjugate [], havt_content [], havt_cos [], havt_cosh [], havt_cot [], havt_coth [], havt_credit [], havt_cs [], havt_csc [], havt_csch [], havt_csymbol [],
-            havt_curl [], havt_cursor [], havt_custom [],
-        havt_data [], havt_datagrid [], havt_datalist [], havt_datatemplate [], havt_dd [], havt_ddot [], havt_declare [], havt_definition_src [], havt_defs [], havt_degree [], havt_del [], havt_desc [],
-            havt_details [], havt_determinant [], havt_device [], havt_devicecolour [], havt_dfn [], havt_di [], havt_dialogue [], havt_diff [], havt_dir [], havt_discard [], havt_dispatchevent [], havt_div [],
-            havt_divergence [], havt_divide [], havt_dl [], havt_domain [], havt_domainofapplication [], havt_dot [], havt_dt [],
-        havt_element [], havt_elementdef [], havt_ellipse [], havt_em [], havt_embed [], havt_emptyset [], havt_eq [], havt_equivalent [], havt_eulergamma [], havt_event_source [], havt_eventsource [],
-            havt_exists [], havt_exp [], havt_exponentiale [], havt_extensiondefs [],
-        havt_factorial [], havt_factorof [], havt_false [], havt_feblend [], havt_fecolourmatrix [], havt_fecomponenttransfer [], havt_fecomposite [], havt_feconvolvematrix [], havt_fediffuselighting [],
-            havt_fedisplacementmap [], havt_fedistantlight [], havt_fedropshadow [], havt_feflood [], havt_fefunca [], havt_fefuncb [], havt_fefuncg [], havt_fefuncr [], havt_fegaussianblur [], havt_feimage [],
-            havt_femerge [], havt_femergenode [], havt_femorphology [], havt_fencedframe [], havt_feoffset [], havt_fepointlight [], havt_fespecularlighting [], havt_fespotlight [], havt_fetile [], havt_feturbulence [],
-            havt_fieldset [], havt_fig [], havt_figcaption [], havt_figure [], havt_filter [], havt_flowdiv [], havt_flowimage [], havt_flowline [], havt_flowpara [], havt_flowref [], havt_flowregion [],
-            havt_flowregionbreak [], havt_flowregionexclude [], havt_flowroot [], havt_flowspan [], havt_flowtref [], havt_floor [], havt_fn [], havt_font [], havt_font_face [], havt_font_face_format [],
-            havt_font_face_name [], havt_font_face_src [], havt_font_face_uri [], havt_footer [], havt_footnote [], havt_forall [], havt_foreignobject [], havt_form [], havt_frame [], havt_frameset [],
-        havt_g [], havt_gauge [], havt_gcd [], havt_geq [], havt_glyph [], havt_glyphref [], havt_grad [], havt_gt [],
+        havt_a [], havt_abbr [], havt_abbrev [], havt_above [], havt_abs [], havt_abstract [], havt_acronym [], havt_access [], havt_action [], havt_added [], havt_addeventlistener [],
+            havt_address [], havt_altglyph [], havt_altglyphdef [], havt_altglyphitem [], havt_and [], havt_animate [], havt_animatecolour [], havt_animatemotion [], havt_animatetransform [],
+            havt_animation [], havt_annotation [], havt_annotation_xml [], havt_applet [], havt_apply [], havt_approx [], havt_arccos [], havt_arccosh [], havt_arccot [], havt_arccoth [],
+            havt_arccsc [], havt_arccsch [], havt_arcsec [], havt_arcsech [], havt_arcsin [], havt_arcsinh [], havt_arctan [], havt_arctanh [], havt_area [], havt_arg [], havt_array [],
+            havt_article [], havt_aside [], havt_atom_author [], havt_atom_category [], havt_atom_content [], havt_atom_contributor [], havt_atom_email [], havt_atom_entry [],
+            havt_atom_feed [], havt_atom_generator [], havt_atom_icon [], havt_atom_id [], havt_atom_link [], havt_atom_logo [], havt_atom_name [], havt_atom_published [], havt_atom_rights [],
+            havt_atom_source [], havt_atom_subtitle [], havt_atom_summary [], havt_atom_title [], havt_atom_updated [], havt_atom_uri [], havt_audio [], havt_au [],
+        havt_b [], havt_bb [], havt_banner [], havt_bar [], havt_base [], havt_basefont [], havt_bdi [], havt_bdo [], havt_below [], havt_bgsound [], havt_big [], havt_bind [],
+            havt_blockquote [], havt_blockcode [], havt_body [], havt_box [], havt_bq [], havt_br [], havt_bt [], havt_button [], havt_bvar [], havt_byline [],
+        havt_calendar [], havt_canvas [], havt_caption [], havt_card [], havt_cartesianproduct [], havt_cbytes [], havt_ceiling [], havt_cerror [], havt_changed [], havt_ci [],
+            havt_circle [], havt_cite [], havt_clippath [], havt_cmd [], havt_cn [], havt_code [], havt_col [], havt_colgroup [], havt_colour_profile [], havt_command [], havt_commandset [],
+            havt_complexes [], havt_compose [], havt_condition [], havt_comment [], havt_conjugate [], havt_content [], havt_cos [], havt_cosh [], havt_cot [], havt_coth [], havt_credit [],
+            havt_cs [], havt_csc [], havt_csch [], havt_csymbol [], havt_curl [], havt_cursor [], havt_custom [],
+        havt_data [], havt_datagrid [], havt_datalist [], havt_datatemplate [], havt_dd [], havt_ddot [], havt_declare [], havt_definition_src [], havt_defs [], havt_degree [], havt_del [],
+            havt_desc [], havt_details [], havt_determinant [], havt_device [], havt_devicecolour [], havt_dfn [], havt_di [], havt_dialogue [], havt_diff [], havt_dir [], havt_discard [],
+            havt_dispatchevent [], havt_div [], havt_divergence [], havt_divide [], havt_dl [], havt_domain [], havt_domainofapplication [], havt_dot [], havt_dt [],
+        havt_element [], havt_elementdef [], havt_ellipse [], havt_em [], havt_embed [], havt_emptyset [], havt_eq [], havt_equivalent [], havt_eulergamma [], havt_event_source [],
+            havt_eventsource [], havt_exists [], havt_exp [], havt_exponentiale [], havt_extensiondefs [],
+        havt_factorial [], havt_factorof [], havt_false [], havt_feblend [], havt_fecolourmatrix [], havt_fecomponenttransfer [], havt_fecomposite [], havt_feconvolvematrix [],
+            havt_fediffuselighting [], havt_fedisplacementmap [], havt_fedistantlight [], havt_fedropshadow [], havt_feflood [], havt_fefunca [], havt_fefuncb [], havt_fefuncg [],
+            havt_fefuncr [], havt_fegaussianblur [], havt_feimage [], havt_femerge [], havt_femergenode [], havt_femorphology [], havt_fencedframe [], havt_feoffset [], havt_fepointlight [],
+            havt_fespecularlighting [], havt_fespotlight [], havt_fetile [], havt_feturbulence [], havt_fieldset [], havt_fig [], havt_figcaption [], havt_figure [], havt_filter [],
+            havt_flowdiv [], havt_flowimage [], havt_flowline [], havt_flowpara [], havt_flowref [], havt_flowregion [], havt_flowregionbreak [], havt_flowregionexclude [], havt_flowroot [],
+            havt_flowspan [], havt_flowtref [], havt_floor [], havt_fn [], havt_font [], havt_font_face [], havt_font_face_format [], havt_font_face_name [], havt_font_face_src [],
+            havt_font_face_uri [], havt_footer [], havt_footnote [], havt_forall [], havt_foreignobject [], havt_form [], havt_frame [], havt_frameset [],
+        havt_g [], havt_gauge [], havt_gcd [], havt_geo_lat [], havt_geo_long [], havt_geo_point [], havt_georss_box [], havt_georss_elev [], havt_georss_featurename [],
+            havt_georss_featuretypetag [], havt_georss_floor [], havt_georss_line [], havt_georss_point [], havt_georss_polygon [], havt_georss_radius [], havt_georss_relationshiptag [],
+            havt_georss_where [], havt_geq [], havt_glyph [], havt_glyphref [], havt_grad [], havt_gt [],
         havt_h [], havt_handler [], havt_hat [], havt_head [], havt_header [], havt_hgroup [], havt_hint [], havt_hkern [], havt_hr [], havt_html [], havt_htmlplus [],
-        havt_i [], havt_ident [], havt_iframe [], havt_ilayer [], havt_image [], havt_imaginary [], havt_imaginaryi [], havt_img [], havt_implies [], havt_in [], havt_infinity [], havt_input [],
-            havt_ins [], havt_int [], havt_integers [], havt_intersect [], havt_interval [], havt_inverse [], havt_isindex [], havt_item [],
+        havt_i [], havt_ident [], havt_iframe [], havt_ilayer [], havt_image [], havt_imaginary [], havt_imaginaryi [], havt_img [], havt_implies [], havt_in [], havt_infinity [],
+            havt_input [], havt_ins [], havt_int [], havt_integers [], havt_intersect [], havt_interval [], havt_inverse [], havt_isindex [], havt_item [],
         havt_kbd [], havt_keygen [],
-        havt_l [], havt_label [], havt_lambda [], havt_laplacian [], havt_layer [], havt_lcm [], havt_legend [], havt_leq [], havt_lh [], havt_li [], havt_limit [], havt_line [], havt_lineargradient [],
-            havt_link [], havt_list [], havt_listener [], havt_listing [], havt_lit [], havt_ln [], havt_loc [], havt_log [], havt_logbase [], havt_lowlimit [], havt_lt [],
-        havt_m [], havt_maction [], havt_maligngroup [], havt_malignmark [], havt_main [], havt_map [], havt_margin [], havt_mark [], havt_marker [], havt_marquee [], havt_mask [], havt_math [],
-            havt_matrix [], havt_matrixrow [], havt_max [], havt_mean [], havt_median [], havt_menclose [], havt_menu [], havt_menubar [], havt_menuitem [], havt_menulabel [], havt_merror [], havt_meta [],
-            havt_metadata [], havt_meter [], havt_mfenced [], havt_mfrac [], havt_mglyph [], havt_mh [], havt_mi [], havt_min [], havt_minus [], havt_missingglyph [], havt_mlabeledtr [], havt_mlongdiv [],
-            havt_mmultiscripts [], havt_mn [], havt_mo [], havt_mode [], havt_moment [], havt_momentabout [], havt_mover [], havt_mpadded [], havt_mpath [], havt_mphantom [], havt_mprescripts [], havt_mroot [],
-            havt_mrow [], havt_ms [], havt_mscarries [], havt_mscarry [], havt_msgroup [], havt_msline [], havt_mspace [], havt_msqrt [], havt_msrow [], havt_mstack [], havt_mstyle [], havt_msub [],
-            havt_msubsup [], havt_msup [], havt_mtable [], havt_mtd [], havt_mtext [], havt_mtr [], havt_munder [], havt_munderover [],
-        havt_naturalnumbers [], havt_nav [], havt_navigation [], havt_neq [], havt_nest [], havt_nextid [], havt_nl [], havt_noframes [], havt_none [], havt_noscript [], havt_not [], havt_note [], havt_notanumber [],
-            havt_notin [], havt_notprsubset [], havt_notsubset [],
+        havt_l [], havt_label [], havt_lambda [], havt_laplacian [], havt_layer [], havt_lcm [], havt_legend [], havt_leq [], havt_lh [], havt_li [], havt_limit [], havt_line [],
+            havt_lineargradient [], havt_link [], havt_list [], havt_listener [], havt_listing [], havt_lit [], havt_ln [], havt_loc [], havt_log [], havt_logbase [], havt_lowlimit [],
+            havt_lt [],
+        havt_m [], havt_maction [], havt_maligngroup [], havt_malignmark [], havt_main [], havt_map [], havt_margin [], havt_mark [], havt_marker [], havt_marquee [], havt_mask [],
+            havt_math [], havt_matrix [], havt_matrixrow [], havt_max [], havt_mean [], havt_median [], havt_menclose [], havt_menu [], havt_menubar [], havt_menuitem [], havt_menulabel [],
+            havt_merror [], havt_meta [], havt_metadata [], havt_meter [], havt_mfenced [], havt_mfrac [], havt_mglyph [], havt_mh [], havt_mi [], havt_min [], havt_minus [],
+            havt_missingglyph [], havt_mlabeledtr [], havt_mlongdiv [], havt_mmultiscripts [], havt_mn [], havt_mo [], havt_mode [], havt_moment [], havt_momentabout [], havt_mover [],
+            havt_mpadded [], havt_mpath [], havt_mphantom [], havt_mprescripts [], havt_mroot [], havt_mrow [], havt_mrss_adult [], havt_mrss_backlink [], havt_mrss_backlinks [],
+            havt_mrss_category [], havt_mrss_comment [], havt_mrss_comments [], havt_mrss_community [], havt_mrss_content [], havt_mrss_copyright [], havt_mrss_credit [],
+            havt_mrss_description [], havt_mrss_embed [], havt_mrss_group [], havt_mrss_hash [], havt_mrss_keywords [], havt_mrss_licence [], havt_mrss_location [], havt_mrss_param [],
+            havt_mrss_peerlink [], havt_mrss_player [], havt_mrss_price [], havt_mrss_rating [], havt_mrss_response [], havt_mrss_responses [], havt_mrss_restriction [], havt_mrss_rights [],
+            havt_mrss_scene [], havt_mrss_scenedescription [], havt_mrss_sceneendtime [], havt_mrss_scenes [], havt_mrss_scenestarttime [], havt_mrss_scenetitle [], havt_mrss_starrating [],
+            havt_mrss_statistics [], havt_mrss_status [], havt_mrss_subtitle [], havt_mrss_thumbnail [], havt_mrss_text [], havt_mrss_title [], 
+        havt_ms [], havt_mscarries [],
+            havt_mscarry [], havt_msgroup [], havt_msline [], havt_mspace [], havt_msqrt [], havt_msrow [], havt_mstack [], havt_mstyle [], havt_msub [], havt_msubsup [], havt_msup [],
+            havt_mtable [], havt_mtd [], havt_mtext [], havt_mtr [], havt_munder [], havt_munderover [],
+        havt_naturalnumbers [], havt_nav [], havt_navigation [], havt_neq [], havt_nest [], havt_nextid [], havt_nl [], havt_noframes [], havt_none [], havt_noscript [], havt_not [],
+            havt_note [], havt_notanumber [], havt_notin [], havt_notprsubset [], havt_notsubset [],
         havt_object [], havt_ol [], havt_optgroup [], havt_option [], havt_or [], havt_otherwise [], havt_outerproduct [], havt_output [], havt_overlay [],
-        havt_p [], havt_page [], havt_pageset [], havt_param [], havt_partialdiff [], havt_path [], havt_pattern [], havt_person [], havt_pi [], havt_picture [], havt_piece [], havt_piecewise [],
-            havt_plus [], havt_polygon [], havt_polyline [], havt_power [], havt_pre [], havt_prefetch [], havt_preventdefault [], havt_primes [], havt_product [], havt_progress [], havt_prototype [],
-            havt_prsubset [],
+        havt_p [], havt_page [], havt_pageset [], havt_param [], havt_partialdiff [], havt_path [], havt_pattern [], havt_person [], havt_pi [], havt_picture [], havt_piece [],
+            havt_piecewise [], havt_plus [], havt_polygon [], havt_polyline [], havt_power [], havt_pre [], havt_prefetch [], havt_preventdefault [], havt_primes [], havt_product [],
+            havt_progress [], havt_prototype [], havt_prsubset [],
         havt_q [], havt_quote [], havt_quotient [],
-        havt_radialgradient [], havt_range [], havt_rationals [], havt_rb [], havt_rdf_1 [], havt_rdf_2 [], havt_rdf_3 [], havt_rdf_4 [], havt_rdf_5 [], havt_rdf_6 [], havt_rdf_7 [], havt_rdf_8 [],
-            havt_rdf_9 [], havt_rdf_about [], havt_rdf_abouteach [], havt_rdf_abouteachprefix [], havt_rdf_alt [], havt_rdf_bag [], havt_rdf_bagid [], havt_rdf_datatype [], havt_rdf_description [],
-            havt_rdf_id [], havt_rdf_li [], havt_rdf_nodeid [], havt_rdf_parsetype [], havt_rdf_rdf [], havt_rdf_resource [], havt_rdf_seq [], havt_real [], havt_reals [], havt_rect [],
-            havt_refcontent [], havt_reln [], havt_rem [], havt_removed [], havt_removeeventlistener [], havt_render [], havt_root [], havt_rp [], havt_rsl [], havt_rsl_amount [], havt_rsl_content [],
-            havt_rsl_copyright [], havt_rsl_legal [], havt_rsl_payment [], havt_rsl_permits [], havt_rsl_prohibits [], havt_rss [], havt_rss_category [], havt_rss_cloud [], havt_rss_enclosure [],
-            havt_rss_guid [], havt_rss_source [], havt_rt [], havt_rtc [], havt_ruby [], havt_rule [],
-        havt_s [], havt_samp [], havt_scalarproduct [], havt_script [], havt_search [], havt_sdev [], havt_sec [], havt_sech [], havt_section [], havt_select [], havt_selectedcontent [], havt_selector [],
-            havt_semantics [], havt_sep [], havt_separator [], havt_set [], havt_setdiff [], havt_shadow [], havt_share [], havt_sidebar [], havt_sin [], havt_sinh [], havt_slot [], havt_small [],
-            havt_solidcolour [], havt_source [], havt_span [], havt_spot [], havt_sqrt [], havt_stop [], havt_stoppropagation [], havt_strike [], havt_strong [], havt_style [], havt_sub [], havt_subset [],
-            havt_sum [], havt_summary [], havt_sup [], havt_svg [], havt_switch [], havt_symbol [],
-        havt_t [], havt_tab [], havt_tabbox [], havt_table [], havt_tan [], havt_tanh [], havt_tbody [], havt_tbreak [], havt_td [], havt_template [], havt_tendsto [], havt_text [], havt_textarea [],
-            havt_textpath [], havt_tfoot [], havt_th [], havt_thead [], havt_tilde [], havt_time [], havt_times [], havt_title [], havt_tr [], havt_track [], havt_traitdef [], havt_transformer [],
-            havt_transition [], havt_transpose [], havt_tref [], havt_true [], havt_tspan [], havt_tt [],
+        havt_radialgradient [], havt_range [], havt_rationals [], havt_rb [], havt_rdf_1 [], havt_rdf_2 [], havt_rdf_3 [], havt_rdf_4 [], havt_rdf_5 [], havt_rdf_6 [], havt_rdf_7 [],
+            havt_rdf_8 [], havt_rdf_9 [], havt_rdf_about [], havt_rdf_abouteach [], havt_rdf_abouteachprefix [], havt_rdf_alt [], havt_rdf_bag [], havt_rdf_bagid [], havt_rdf_datatype [],
+            havt_rdf_description [], havt_rdf_id [], havt_rdf_li [], havt_rdf_nodeid [], havt_rdf_parsetype [], havt_rdf_rdf [], havt_rdf_resource [], havt_rdf_seq [], havt_real [],
+            havt_reals [], havt_rect [], havt_refcontent [], havt_reln [], havt_rem [], havt_removed [], havt_removeeventlistener [], havt_render [], havt_root [], havt_rp [], havt_rsl [],
+            havt_rsl_amount [], havt_rsl_content [], havt_rsl_copyright [], havt_rsl_custom [], havt_rsl_legal [], havt_rsl_licence [], havt_rsl_payment [],
+            havt_rsl_permits [], havt_rsl_prohibits [], havt_rsl_schema [], havt_rsl_standard [], havt_rsl_terms [], havt_rss [], havt_rss_author [],
+            havt_rss_category [], havt_rss_channel [], havt_rss_cloud [], havt_rss_comments [], havt_rss_copyright [], havt_rss_day [], havt_rss_description [],
+            havt_rss_docs [], havt_rss_enclosure [], havt_rss_generator [], havt_rss_guid [], havt_rss_height [], havt_rss_hour [], havt_rss_image [],
+            havt_rss_item [], havt_rss_language [], havt_rss_lastbuilddate [], havt_rss_link [], havt_rss_managingeditor [], havt_rss_pubdate [], havt_rss_rating [],
+            havt_rss_skipdays [], havt_rss_skiphours [], havt_rss_source [], havt_rss_textinput [], havt_rss_title [], havt_rss_ttl [], havt_rss_webmaster [],
+            havt_rss_width [], havt_rt [], havt_rtc [], havt_ruby [], havt_rule [],
+        havt_s [], havt_samp [], havt_scalarproduct [], havt_script [], havt_search [], havt_sdev [], havt_sec [], havt_sech [], havt_section [], havt_select [], havt_selectedcontent [],
+            havt_selector [], havt_semantics [], havt_sep [], havt_separator [], havt_set [], havt_setdiff [], havt_shadow [], havt_share [], havt_sidebar [], havt_sin [], havt_sinh [],
+            havt_slot [], havt_small [], havt_solidcolour [], havt_source [], havt_span [], havt_spot [], havt_sqrt [], havt_stop [], havt_stoppropagation [], havt_strike [],
+            havt_strong [], havt_style [], havt_sub [], havt_subset [], havt_sum [], havt_summary [], havt_sup [], havt_svg [], havt_switch [], havt_symbol [],
+        havt_t [], havt_tab [], havt_tabbox [], havt_table [], havt_tan [], havt_tanh [], havt_tbody [], havt_tbreak [], havt_td [], havt_template [], havt_tendsto [], havt_text [],
+            havt_textarea [], havt_textpath [], havt_tfoot [], havt_th [], havt_thead [], havt_tilde [], havt_time [], havt_times [], havt_title [], havt_tr [], havt_track [],
+            havt_trackback_about [], havt_trackback_ping [], havt_traitdef [], havt_transformer [], havt_transition [], havt_transpose [], havt_tref [], havt_true [], havt_tspan [],
+            havt_tt [],
         havt_u [], havt_ul [], havt_union [], havt_uplimit [], havt_use [],
-        havt_var [], havt_variance [], havt_veaffine [], havt_vec [], havt_vector [], havt_vectoreffect [], havt_vectorproduct [], havt_veexclude [], havt_vefill [], havt_vejoin [], havt_veintersect [],
-            havt_vemarker [], havt_vepath [], havt_vepathref [], havt_vereverse [], havt_vesetback [], havt_vestroke [], havt_vestrokepath [], havt_veunion [], havt_video [], havt_view [], havt_vkern [],
+        havt_var [], havt_variance [], havt_veaffine [], havt_vec [], havt_vector [], havt_vectoreffect [], havt_vectorproduct [], havt_veexclude [], havt_vefill [], havt_vejoin [],
+            havt_veintersect [], havt_vemarker [], havt_vepath [], havt_vepathref [], havt_vereverse [], havt_vesetback [], havt_vestroke [], havt_vestrokepath [], havt_veunion [],
+            havt_video [], havt_view [], havt_vkern [],
         havt_wbr [],
         havt_xa [], havt_xmp [], havt_xor [];
 
@@ -116,8 +134,8 @@ void avm_init (nitpick& )
     AVM_INIT (above);
     AVM_INIT (abs);
     AVM_INIT (abstract);
-    AVM_INIT (acronym);
     AVM_INIT (access);
+    AVM_INIT (acronym);
     AVM_INIT (action);
     AVM_INIT (added);
     AVM_INIT (addeventlistener);
@@ -174,22 +192,22 @@ void avm_init (nitpick& )
     AVM_INIT (atom_title);
     AVM_INIT (atom_updated);
     AVM_INIT (atom_uri);
-    AVM_INIT (audio);
     AVM_INIT (au);
+    AVM_INIT (audio);
     AVM_INIT (b);
-    AVM_INIT (bb);
     AVM_INIT (banner);
     AVM_INIT (bar);
     AVM_INIT (base);
     AVM_INIT (basefont);
+    AVM_INIT (bb);
     AVM_INIT (bdi);
     AVM_INIT (bdo);
     AVM_INIT (below);
     AVM_INIT (bgsound);
     AVM_INIT (big);
     AVM_INIT (bind);
-    AVM_INIT (blockquote);
     AVM_INIT (blockcode);
+    AVM_INIT (blockquote);
     AVM_INIT (body);
     AVM_INIT (box);
     AVM_INIT (bq);
@@ -219,10 +237,10 @@ void avm_init (nitpick& )
     AVM_INIT (colour_profile);
     AVM_INIT (command);
     AVM_INIT (commandset);
+    AVM_INIT (comment);
     AVM_INIT (complexes);
     AVM_INIT (compose);
     AVM_INIT (condition);
-    AVM_INIT (comment);
     AVM_INIT (conjugate);
     AVM_INIT (content);
     AVM_INIT (cos);
@@ -317,6 +335,7 @@ void avm_init (nitpick& )
     AVM_INIT (figcaption);
     AVM_INIT (figure);
     AVM_INIT (filter);
+    AVM_INIT (floor);
     AVM_INIT (flowdiv);
     AVM_INIT (flowimage);
     AVM_INIT (flowline);
@@ -328,7 +347,6 @@ void avm_init (nitpick& )
     AVM_INIT (flowroot);
     AVM_INIT (flowspan);
     AVM_INIT (flowtref);
-    AVM_INIT (floor);
     AVM_INIT (fn);
     AVM_INIT (font);
     AVM_INIT (font_face);
@@ -349,6 +367,20 @@ void avm_init (nitpick& )
     AVM_INIT (geq);
     AVM_INIT (glyph);
     AVM_INIT (glyphref);
+    AVM_INIT (geo_lat);
+    AVM_INIT (geo_long);
+    AVM_INIT (geo_point);
+    AVM_INIT (georss_box);
+    AVM_INIT (georss_elev);
+    AVM_INIT (georss_featurename);
+    AVM_INIT (georss_featuretypetag);
+    AVM_INIT (georss_floor);
+    AVM_INIT (georss_line);
+    AVM_INIT (georss_point);
+    AVM_INIT (georss_polygon);
+    AVM_INIT (georss_radius);
+    AVM_INIT (georss_relationshiptag);
+    AVM_INIT (georss_where);
     AVM_INIT (grad);
     AVM_INIT (gt);
     AVM_UNSAFE_INIT (h);
@@ -410,9 +442,9 @@ void avm_init (nitpick& )
     AVM_INIT (lt);
     AVM_INIT (m);
     AVM_INIT (maction);
+    AVM_INIT (main);
     AVM_INIT (maligngroup);
     AVM_INIT (malignmark);
-    AVM_INIT (main);
     AVM_INIT (map);
     AVM_INIT (margin);
     AVM_INIT (mark);
@@ -457,6 +489,45 @@ void avm_init (nitpick& )
     AVM_INIT (mprescripts);
     AVM_INIT (mroot);
     AVM_INIT (mrow);
+    AVM_INIT (mrss_adult);
+    AVM_INIT (mrss_backlink);
+    AVM_INIT (mrss_backlinks);
+    AVM_INIT (mrss_category);
+    AVM_INIT (mrss_comment);
+    AVM_INIT (mrss_comments);
+    AVM_INIT (mrss_community);
+    AVM_INIT (mrss_content);
+    AVM_INIT (mrss_copyright);
+    AVM_INIT (mrss_credit);
+    AVM_INIT (mrss_description);
+    AVM_INIT (mrss_embed);
+    AVM_INIT (mrss_group);
+    AVM_INIT (mrss_hash);
+    AVM_INIT (mrss_keywords);
+    AVM_INIT (mrss_licence);
+    AVM_INIT (mrss_location);
+    AVM_INIT (mrss_param);
+    AVM_INIT (mrss_peerlink);
+    AVM_INIT (mrss_player);
+    AVM_INIT (mrss_price);
+    AVM_INIT (mrss_rating);
+    AVM_INIT (mrss_response);
+    AVM_INIT (mrss_responses);
+    AVM_INIT (mrss_restriction);
+    AVM_INIT (mrss_rights);
+    AVM_INIT (mrss_scene);
+    AVM_INIT (mrss_scenedescription);
+    AVM_INIT (mrss_sceneendtime);
+    AVM_INIT (mrss_scenes);
+    AVM_INIT (mrss_scenestarttime);
+    AVM_INIT (mrss_scenetitle);
+    AVM_INIT (mrss_starrating);
+    AVM_INIT (mrss_statistics);
+    AVM_INIT (mrss_status);
+    AVM_INIT (mrss_subtitle);
+    AVM_INIT (mrss_thumbnail);
+    AVM_INIT (mrss_text);
+    AVM_INIT (mrss_title);
     AVM_INIT (ms);
     AVM_INIT (mscarries);
     AVM_INIT (mscarry);
@@ -487,8 +558,8 @@ void avm_init (nitpick& )
     AVM_INIT (none);
     AVM_INIT (noscript);
     AVM_INIT (not);
-    AVM_INIT (note);
     AVM_INIT (notanumber);
+    AVM_INIT (note);
     AVM_INIT (notin);
     AVM_INIT (notprsubset);
     AVM_INIT (notsubset);
@@ -532,21 +603,6 @@ void avm_init (nitpick& )
     AVM_INIT (range);
     AVM_INIT (rationals);
     AVM_INIT (rb);
-    AVM_INIT (real);
-    AVM_INIT (reals);
-    AVM_INIT (rect);
-    AVM_INIT (refcontent);
-    AVM_INIT (reln);
-    AVM_INIT (rem);
-    AVM_INIT (removed);
-    AVM_INIT (removeeventlistener);
-    AVM_INIT (render);
-    AVM_INIT (root);
-    AVM_INIT (rp);
-    AVM_INIT (rt);
-    AVM_INIT (rtc);
-    AVM_INIT (ruby);
-    AVM_INIT (rule);
     AVM_INIT (rdf_1);
     AVM_INIT (rdf_2);
     AVM_INIT (rdf_3);
@@ -571,20 +627,61 @@ void avm_init (nitpick& )
     AVM_INIT (rdf_rdf);
     AVM_INIT (rdf_resource);
     AVM_INIT (rdf_seq);
+    AVM_INIT (real);
+    AVM_INIT (reals);
+    AVM_INIT (rect);
+    AVM_INIT (refcontent);
+    AVM_INIT (reln);
+    AVM_INIT (rem);
+    AVM_INIT (removed);
+    AVM_INIT (removeeventlistener);
+    AVM_INIT (render);
+    AVM_INIT (root);
+    AVM_INIT (rp);
     AVM_INIT (rsl);
     AVM_INIT (rsl_amount);
     AVM_INIT (rsl_content);
     AVM_INIT (rsl_copyright);
+    AVM_INIT (rsl_custom);
     AVM_INIT (rsl_legal);
+    AVM_INIT (rsl_licence);
     AVM_INIT (rsl_payment);
     AVM_INIT (rsl_permits);
     AVM_INIT (rsl_prohibits);
+    AVM_INIT (rsl_schema);
+    AVM_INIT (rsl_standard);
+    AVM_INIT (rsl_terms);
     AVM_INIT (rss);
+    AVM_INIT (rss_author);
     AVM_INIT (rss_category);
+    AVM_INIT (rss_channel);
     AVM_INIT (rss_cloud);
+    AVM_INIT (rss_comments);
+    AVM_INIT (rss_copyright);
+    AVM_INIT (rss_day);
+    AVM_INIT (rss_description);
+    AVM_INIT (rss_docs);
     AVM_INIT (rss_enclosure);
+    AVM_INIT (rss_generator);
     AVM_INIT (rss_guid);
+    AVM_INIT (rss_height);
+    AVM_INIT (rss_hour);
+    AVM_INIT (rss_image);
+    AVM_INIT (rss_item);
+    AVM_INIT (rss_language);
+    AVM_INIT (rss_lastbuilddate);
+    AVM_INIT (rss_link);
+    AVM_INIT (rss_managingeditor);
+    AVM_INIT (rss_pubdate);
+    AVM_INIT (rss_rating);
+    AVM_INIT (rss_skipdays);
+    AVM_INIT (rss_skiphours);
     AVM_INIT (rss_source);
+    AVM_INIT (rss_textinput);
+    AVM_INIT (rss_title);
+    AVM_INIT (rss_ttl);
+    AVM_INIT (rss_webmaster);
+    AVM_INIT (rss_width);
     AVM_INIT (rt);
     AVM_INIT (rtc);
     AVM_INIT (ruby);
@@ -654,6 +751,8 @@ void avm_init (nitpick& )
     AVM_INIT (title);
     AVM_INIT (tr);
     AVM_INIT (track);
+    AVM_INIT (trackback_about);
+    AVM_INIT (trackback_ping);
     AVM_INIT (traitdef);
     AVM_INIT (transformer);
     AVM_INIT (transition);
@@ -676,8 +775,8 @@ void avm_init (nitpick& )
     AVM_INIT (vectorproduct);
     AVM_INIT (veexclude);
     AVM_INIT (vefill);
-    AVM_INIT (vejoin);
     AVM_INIT (veintersect);
+    AVM_INIT (vejoin);
     AVM_INIT (vemarker);
     AVM_INIT (vepath);
     AVM_INIT (vepathref);

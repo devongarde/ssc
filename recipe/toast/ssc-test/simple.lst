@@ -1,4 +1,1 @@
-../toast/signing/sign/sign.spec
-../toast/signing/verify/verify.spec
-../toast/signing/sign-pw/sign-pw.spec
-../toast/signing/verify-pw/verify-pw.spec
+../toast/shadow/ssi/ssi.spec

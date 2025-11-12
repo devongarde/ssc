@@ -353,6 +353,10 @@ microdata_hierachy ontology_hierarchy [] =
     // data privacy
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_academicresearch, dpv_s_edu_researchmanagement },
 
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_acceptablerule, dpv_obligation },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_acceptablerule, dpv_permission },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_acceptablerule, dpv_recommendation },
+
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_accesscontrolmethod, dpv_physicalaccesscontrolmethod },
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_accesscontrolmethod, dpv_usagecontrol },
 
@@ -494,13 +498,15 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_collectedpersonaldata, dpv_observedpersonaldata },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_collectedpersonaldata, dpv_providedpersonaldata },
 
-    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_commercialpurpose, dpv_commercialresearch },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_confidentialdata, dpv_commerciallyconfidentialdata },
 
     { { s_dpv, 0, 20 }, { s_dpv, 0, 20 }, dpv_commercialinterest, dpv_marketing },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 20 }, dpv_commercialinterest, dpv_selldatatothirdparties },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 20 }, dpv_commercialinterest, dpv_sellinsightsfromdata },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 20 }, dpv_commercialinterest, dpv_sellproductstodatasubject },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 20 }, dpv_commercialinterest, dpv_selltargettedadvertisements },
+
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_commercialpurpose, dpv_commercialresearch },
 
     { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, dpv_communication, dpv_emailcontent },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, dpv_communication, dpv_socialmediacommunication },
@@ -567,6 +573,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_concept, dpv_eu_ehds_wellnessappmanufacturer },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_confidentialdata, dpv_intellectualpropertydata },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_confidentialdata, dpv_professionalconfidentialdata },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_confidentialdata, dpv_statisticallyconfidentialdata },
 
     { { s_dpv, 0, 90 }, { 0, 0 }, dpv_conformancestatus, dpv_conformant },
@@ -735,6 +742,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_contractualclause, dpv_contractjurisdictionclause }, 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_contractualclause, dpv_contractpreamble }, 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_contractualclause, dpv_contractterminationclause }, 
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_contractualclause, dpv_p7012_datadeletionterm }, 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_contractualclause, dpv_p7012_datasharingterm }, 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_contractualclause, dpv_p7012_deonticinterpretationterm }, 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_contractualclause, dpv_p7012_portabilityterm },
@@ -1332,7 +1340,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_damage, dpv_risk_violationstatutoryobligations },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_data, dpv_collecteddata },
-    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_data, dpv_commerciallyconfidentialdata },
+    { { s_dpv, 2, 0 }, { 2, 1 }, dpv_data, dpv_commerciallyconfidentialdata },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_data, dpv_confidentialdata },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_data, dpv_tech_content },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_data, dpv_ai_data }, 
@@ -1348,6 +1356,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_data, dpv_syntheticdata },
     { { s_dpv, 2, 0 }, { s_dpv, 2, 0 }, dpv_data, dpv_eu_aiact_testingdata },
     { { s_dpv, 2, 0 }, { s_dpv, 2, 0 }, dpv_data, dpv_eu_aiact_trainingdata },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_data, dpv_uncategoriseddata },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_data, dpv_unstructureddata },
     { { s_dpv, 1, 0 }, { 0, 0 }, dpv_data, dpv_unverifieddata },
     { { s_dpv, 2, 0 }, { s_dpv, 2, 0 }, dpv_data, dpv_eu_aiact_validationdata },
     { { s_dpv, 1, 0 }, { 0, 0 }, dpv_data, dpv_verifieddata },
@@ -1396,7 +1406,29 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_dataprocessorcontract, dpv_controllerprocessoragreement },
 
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_at_dpa_at, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_be_dpa_be, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_bg_dpa_bg, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_cz_dpa_cz, },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_eu_gdpr_dataprotectionauthority },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de_bb, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de_be, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de_by_non_public, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de_by_public, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de_hb, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de_he, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de_hh, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de_mv, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de_ni, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de_nw, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de_rp, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de_sh, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de_sl, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de_sn, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de_st, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_de_dpa_de_th, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_dk_dpa_dk, },
     { { s_dpv, 0, 50 }, { s_dpv, 1, 0 }, dpv_dataprotectionauthority, dpv_legal_dpa_at, },
     { { s_dpv, 0, 50 }, { s_dpv, 1, 0 }, dpv_dataprotectionauthority, dpv_legal_dpa_be, },
     { { s_dpv, 0, 50 }, { s_dpv, 1, 0 }, dpv_dataprotectionauthority, dpv_legal_dpa_bg, },
@@ -1444,6 +1476,34 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 1, 0 }, { s_dpv, 1, 0 }, dpv_dataprotectionauthority, dpv_legal_dpa_usnv },
     { { s_dpv, 1, 0 }, { s_dpv, 1, 0 }, dpv_dataprotectionauthority, dpv_legal_dpa_usut },
     { { s_dpv, 1, 0 }, { s_dpv, 1, 0 }, dpv_dataprotectionauthority, dpv_legal_dpa_usvc },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_ee_dpa_ee, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_es_dpa_es, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_fi_dpa_fi, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_fr_dpa_fr, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_gr_dpa_gr, },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_hk_dpa_hk },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_hr_dpa_hr, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_hu_dpa_hu, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_ie_dpa_ie, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_it_dpa_it, },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_kr_dpa_kr },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_lt_dpa_lt, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_lu_dpa_lu, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_lv_dpa_lv, },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_mo_dpa_mo, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_mt_dpa_mt, },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_my_dpa_my, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_nl_dpa_nl, },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_ph_dpa_ph, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_pl_dpa_pl, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_pt_dpa_pt, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_ro_dpa_ro, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_se_dpa_se, },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_sg_dpa_sg, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_sl_dpa_sl, },
+    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_sk_dpa_sk },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_th_dpa_th, },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_tw_dpa_tw, },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataqualitymanagement, dpv_dataqualityassessment },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataqualitymanagement, dpv_dataqualityimprovement },
@@ -1513,7 +1573,6 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_datatransferlegalbasis, dpv_eu_dga_a5_12_adequacy_decision },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_datatransferlegalbasis, dpv_eu_dga_a5_9_transfer_permission },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_datatransferlegalbasis, dpv_eu_gdpr_a462c },
-
     { { s_dpv, 0, 30 }, { s_dpv, 1, 0 }, dpv_datatransferlegalbasis, dpv_gdpr_a453 },
     { { s_dpv, 0, 30 }, { 0, 0 }, dpv_datatransferlegalbasis, dpv_eu_gdpr_a462a },
     { { s_dpv, 0, 30 }, { 0, 0 }, dpv_datatransferlegalbasis, dpv_eu_gdpr_a462b },
@@ -1937,7 +1996,11 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_humansubject, dpv_visitor },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_humansubject, dpv_vulnerablehuman },
 
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_purpose, dpv_eu_aiact_biometricidentityverification },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_hybridpublicprivatespace, dpv_privatelyoperatedpublicspace },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_hybridpublicprivatespace, dpv_privatelyownedpublicspace },
+
+    { { s_dpv, 2, 1 }, { s_dpv, 2, 1 }, dpv_identityverification, dpv_eu_aiact_biometricidentityverification },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_identityverification, dpv_eu_aiact_biometricverification },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_identityverification, dpv_s_edu_studentidentityverification },
 
     { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, dpv_identifying, dpv_biometric },
@@ -1960,7 +2023,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_impact, dpv_risk_impacttorights },
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_impact, dpv_risk_privacyimpact },
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_impact, dpv_risk_reputationandtrustimpact },
-    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_impact, dpv_eu_aiact_seriousincident },
+    { { s_dpv, 2, 0 }, { s_dpv, 2, 1 }, dpv_impact, dpv_eu_aiact_seriousincident },
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_impact, dpv_risk_socialdisadvantage },
 
     { { s_dpv, 0, 30 }, { 0, 0 }, dpv_impactassessment, dpv_datatransferimpactassessment },
@@ -2013,6 +2076,11 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_involvementstatus, dpv_notinvolved },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_involvementstatus, dpv_passivelyinvolved },
 
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_jurisdiction, dpv_country },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_jurisdiction, dpv_economicunion },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_jurisdiction, dpv_inversejurisdiction },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_jurisdiction, dpv_supranationalunion },
+
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_justification, dpv_eu_gdpr_databreachjustification },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_justification, dpv_just_delayjustification },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_justification, dpv_just_exercisejustification },
@@ -2056,24 +2124,44 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_law, dpv_legal_ie_dpa_ie },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_law, dpv_legal_gb_dpa_gb },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_gr_dpa_gr },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_hk_dpa_hk },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_hk_law_pdpq },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_hr_dpa_hr },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_hu_dpa_hu },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_law, dpv_legal_in_dpa_in },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_is_dpa_is },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_it_dpa_it },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_jp_law_appi },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_kr_dpa_kr },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_kr_law_cia },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_kr_law_lia },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_kr_law_pipa },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_li_dpa_li },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_lt_dpa_lt },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_lu_dpa_lu },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_lv_dpa_lv },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_mo_dpa_mo, },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_mo_law_pdpa, },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_mt_dpa_mt },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_my_dpa_my, },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_my_law_pdpa, },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_nl_dpa_nl },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_no_dpa_no },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_ph_dpa_ph, },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_ph_law_dpa, },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_pl_dpa_pl },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_pt_dpa_pt },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_ro_dpa_ro },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_se_dpa_se },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_sg_dpa_sg, },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_sg_law_pdpa, },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_sl_dpa_sl },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_law, dpv_legal_sk_dpa_sk },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_th_dpa_th, },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_th_law_pdpa, },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_th_law_tdpn, },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_tw_dpa_tw, },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_law, dpv_legal_tw_law_pdpa, },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_law, dpv_legal_us_dpa_us_ca },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_law, dpv_legal_us_dpa_us_co },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_law, dpv_legal_us_dpa_us_ct },
@@ -2285,22 +2373,27 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 1, 0 }, { 0, 0 }, dpv_locallocation, dpv_publiclocation },
     { { s_dpv, 0, 90 }, { s_dpv, 0, 90 }, dpv_locallocation, dpv_publiclylocation },
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_locallocation, dpv_withindevice },
-    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_locallocation, dpv_withinphysicalenvironment },
-    { { s_dpv, 2, 0 }, { 0, 0 }, dpv_locallocation, dpv_withinvirtualenvironment },
+    { { s_dpv, 2, 0 }, { s_dpv, 2, 1 }, dpv_locallocation, dpv_withinphysicalenvironment },
+    { { s_dpv, 2, 0 }, { s_dpv, 2, 1 }, dpv_locallocation, dpv_withinvirtualenvironment },
 
     { { s_dpv, 0, 90 }, { s_dpv, 1, 0 }, dpv_location, dpv_city },
-    { { s_dpv, 0, 10 }, { 0, 0 }, dpv_location, dpv_country },
+    { { s_dpv, 0, 10 }, { s_dpv, 2, 1 }, dpv_location, dpv_country },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_location, dpv_tech_deploymentlocation },
-    { { s_dpv, 0, 40 }, { 0, 0 }, dpv_location, dpv_economicunion },
+    { { s_dpv, 0, 40 }, { s_dpv, 2, 1 }, dpv_location, dpv_economicunion },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, dpv_location, dpv_gpscoordinate },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_location, dpv_jurisdiction },
     { { s_dpv, 0, 82 }, { 0, 0 }, dpv_location, dpv_locationlocality },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_location, dpv_p7012_p7012endpoint },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_location, dpv_processinglocation },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_location, dpv_privatespace },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_location, dpv_publicspace },
     { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, dpv_location, dpv_region },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, dpv_location, dpv_roomnumber },
     { { s_dpv, 0, 41 }, { s_dpv, 1, 0 }, dpv_location, dpv_storagelocation },
-    { { s_dpv, 0, 40 }, { 0, 0 }, dpv_location, dpv_supranationalunion },
+    { { s_dpv, 0, 40 }, { s_dpv, 2, 1 }, dpv_location, dpv_supranationalunion },
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_location, dpv_tech_technologyusagelocation },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_location, dpv_withinphysicalenvironment },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_location, dpv_withinvirtualenvironment },
 
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_locationfixture, dpv_decentralisedlocations },
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_locationfixture, dpv_federatedlocations },
@@ -2410,6 +2503,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_notificationstatus, dpv_notificationongoing },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_notificationstatus, dpv_notificationplanned },
 
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_obligation, dpv_p7012_datadeletiononrequest }, 
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_obligation, dpv_p7012_datadeletionrequired }, 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_obligation, dpv_p7012_datatransparencyrequired },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_obligation, dpv_p7012_partytransparencyrequired },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_obligation, dpv_p7012_portabilitynotrequired },
@@ -2620,6 +2715,14 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_privacynotice, dpv_consentnotice },
 
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_privatelyownedspace, dpv_privatelyownedpublicspace },
+
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_privatespace, dpv_hybridpublicprivatespace },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_privatespace, dpv_privatecommunalspace },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_privatespace, dpv_personalspace },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_privatespace, dpv_privatelyownedspace },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_privatespace, dpv_semiprivatespace },
+
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_process, dpv_p7012_agreementnegotiation },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_process, dpv_p7012_agreementnegotiationrequest },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_process, dpv_nonpersonaldataprocess },
@@ -2634,6 +2737,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 20 }, { 0, 0 }, dpv_processing, dpv_organise },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_processing, dpv_eu_gdpr_crossborderprocessing },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_processing, dpv_eu_gdpr_processoring },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_processing, dpv_ai_modeltraining },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_processing, dpv_store },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_processing, dpv_transfer },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_processing, dpv_transform },
@@ -2741,12 +2845,17 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, dpv_publiclife, dpv_religion },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, dpv_publiclife, dpv_socialstatus },
 
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_publiclyaccessiblespace, dpv_privatelyoperatedpublicspace },
+
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_publicregisterofentities, dpv_eu_dga_daoregister },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_publicregisterofentities, dpv_eu_dga_daoregistereu },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_publicregisterofentities, dpv_eu_dga_daoregisternational },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_publicregisterofentities, dpv_eu_dga_dispregister },
 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_publicsectorbody, dpv_eu_dga_publicsectorbody },
+
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_publicspace, dpv_hybridpublicprivatespace },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_publicspace, dpv_publiclyownedspace },
 
     { { s_dpv, 0, 30 }, { 0, 0 }, dpv_purpose, dpv_accountmanagement },
     { { s_dpv, 2, 0 }, { s_dpv, 2, 0 }, dpv_purpose, dpv_eu_aiact_biometricidentityverification },
@@ -2791,7 +2900,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_recipient, dpv_eu_gdpr_recipient },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_recipient, dpv_thirdparty },
 
-    { { s_dpv, 1, 0 }, { 0, 0 }, dpv_record, dpv_rightexerciserecord },
+    { { s_dpv, 1, 0 }, { s_dpv, 2, 1 }, dpv_record, dpv_rightexerciserecord },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_recordsofactivities, dpv_eu_dga_dataaltruismannualreport },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_recordsofactivities, dpv_eu_dga_dataaltruismrecord },
@@ -2800,6 +2909,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_recordsofactivities, dpv_dataprocessingrecord },
     { { s_dpv, 0, 30 }, { s_dpv, 0, 90 }, dpv_recordsofactivities, dpv_dataprocessingrecords },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_recordsofactivities, dpv_eu_gdpr_databreachregister },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_recordsofactivities, dpv_rightexerciserecord },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_recordsofactivities, dpv_risk_incidentregister },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_recordsofactivities, dpv_risk_incidentreport },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_recordsofactivities, dpv_securityincidentrecord },
@@ -2960,6 +3070,10 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_researchanddevelopment, dpv_s_hth_researchdevelopment },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_researchanddevelopment, dpv_scientificresearch },
 
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_reusecompatibility, dpv_compatibilityunknown },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_reusecompatibility, dpv_primaryuse },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_reusecompatibility, dpv_secondaryuse },
+
     { { s_dpv, 0, 90 }, { s_dpv, 0, 90 }, dpv_reviewimpactassessment, dpv_reviewimpactassessmentadequacy },
     { { s_dpv, 0, 90 }, { s_dpv, 0, 90 }, dpv_reviewimpactassessment, dpv_reviewimpactassessmentconformance },
 
@@ -3035,6 +3149,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_risklevel, dpv_risk_3risklevels },
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_risklevel, dpv_risk_5risklevels },
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_risklevel, dpv_risk_7risklevels },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_risklevel, dpv_eu_aiact_risklevel },
 
     { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, dpv_riskmanagementprocedure, dpv_privacybydesign },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, dpv_riskmanagementprocedure, dpv_regularityofrecertification },
@@ -3052,21 +3167,28 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_riskmitigationmeasure, dpv_risk_incidentmitigationmeasure },
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_riskmitigationmeasure, dpv_risk_sharerisk },
 
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_rule, dpv_acceptablerule },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_rule, dpv_p7012_agreementpreference },
-    { { s_dpv, 0, 90 }, { 0, 0 }, dpv_rule, dpv_obligation },
-    { { s_dpv, 0, 90 }, { 0, 0 }, dpv_rule, dpv_permission },
-    { { s_dpv, 0, 90 }, { 0, 0 }, dpv_rule, dpv_prohibition },
+    { { s_dpv, 0, 90 }, { s_dpv, 2, 1 }, dpv_rule, dpv_obligation },
+    { { s_dpv, 0, 90 }, { s_dpv, 2, 1 }, dpv_rule, dpv_permission },
+    { { s_dpv, 0, 90 }, { s_dpv, 2, 1 }, dpv_rule, dpv_prohibition },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_rule, dpv_unacceptablerule },
 
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_rulefulfilled, dpv_deterrencefollowed },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_rulefulfilled, dpv_obligationfulfilled },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_rulefulfilled, dpv_permissionutilised },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_rulefulfilled, dpv_prohibitionfulfilled },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_rulefulfilled, dpv_prohibitionunviolated },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_rulefulfilled, dpv_recommendationfollowed },
 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_rulefulfilmentStatus, dpv_rulefulfilled },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_rulefulfilmentStatus, dpv_ruleunfulfilled },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_rulefulfilmentStatus, dpv_ruleviolated },
 
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_ruleunfulfilled, dpv_deterrencenotfollowed },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_ruleunfulfilled, dpv_obligationunfulfilled },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_ruleunfulfilled, dpv_permissionnotutilised },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_ruleunfulfilled, dpv_recommendationnotfollowed },
 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_ruleviolated, dpv_obligationviolated },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_ruleviolated, dpv_prohibitionviolated },
@@ -3273,6 +3395,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_status, dpv_publicintereststatus },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_status, dpv_tech_provisionstatus },
     { { s_dpv, 1, 0 }, { 0, 0 }, dpv_status, dpv_requeststatus },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_status, dpv_reusecompatibility },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_status, dpv_rulefulfilmentStatus },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_status, dpv_tech_technologystatus },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_status, dpv_vitalintereststatus },
@@ -3382,6 +3505,9 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, dpv_transactional, dpv_tax },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, dpv_transactional, dpv_transaction },
 
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_unacceptablerule, dpv_deterrence },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_unacceptablerule, dpv_prohibition },
+
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_unintended, dpv_entityunintendedinvolvement },
 
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_use, dpv_access },
@@ -3392,6 +3518,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_use, dpv_profiling },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_use, dpv_retrieve },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_use, dpv_tracking },
+    { { s_dpv, 2, 2 }, { 0, 0 }, dpv_use, dpv_ai_trainingtechnique },
 
     { { s_dpv, 0, 30 }, { 0, 0 }, dpv_vendormanagement, dpv_vendorpayment },
     { { s_dpv, 0, 30 }, { 0, 0 }, dpv_vendormanagement, dpv_vendorrecordsmanagement },
@@ -3478,7 +3605,9 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_capability, dpv_ai_humanorientedcapability }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_capability, dpv_ai_informationretrieval }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_capability, dpv_ai_languagecapability },
- 
+
+//    { { s_dpv_ai, 2, 2 }, { 0, 0 }, dpv_ai_cognitivebias, dpv_ai_automationbias }, 
+
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_computervision, dpv_ai_imagerecognition }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_computervision, dpv_ai_objectrecognition },
  
@@ -3490,9 +3619,11 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_data, dpv_ai_validationdata },
  
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_databias, dpv_ai_dataaggregationbias }, 
-    { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_databias, dpv_ai_datalabelsandlabellingprocessbias }, 
+    { { s_dpv_ai, 2, 2 }, { 0, 0 }, dpv_ai_databias, dpv_ai_datalabellingprocessbias }, 
+    { { s_dpv_ai, 2, 1 }, { s_dpv_ai, 2, 1 }, dpv_ai_databias, dpv_ai_datalabelsandlabellingprocessbias }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_databias, dpv_ai_distributedtrainingbias }, 
-    { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_databias, dpv_ai_missingfeaturesandlabelsbias }, 
+    { { s_dpv_ai, 2, 2 }, { 0, 0 }, dpv_ai_databias, dpv_ai_missingfeaturesandlabelsbias }, 
+    { { s_dpv_ai, 2, 1 }, { s_dpv_ai, 2, 1 }, dpv_ai_databias, dpv_ai_missingfeaturesbias }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_databias, dpv_ai_nonrepresentativesamplingbias }, 
 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_datarisk, dpv_ai_inputdatarisk }, 
@@ -3560,7 +3691,9 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_lifecyclestage, dpv_ai_validationstage }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_lifecyclestage, dpv_ai_verificationstage },
  
+    { { s_dpv_ai, 2, 2 }, { 0, 0 }, dpv_ai_machinelearning, dpv_ai_decisiontree }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_machinelearning, dpv_ai_deeplearning }, 
+    { { s_dpv_ai, 2, 2 }, { 0, 0 }, dpv_ai_technique, dpv_ai_geneticalgorithm }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_machinelearning, dpv_ai_neuralnetwork }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_machinelearning, dpv_ai_reinforcementlearning }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_machinelearning, dpv_ai_semisupervisedlearning }, 
@@ -3608,17 +3741,18 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_statisticaltechnique, dpv_ai_bayesianestimation }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_statisticaltechnique, dpv_ai_bayesiannetwork }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_statisticaltechnique, dpv_ai_bayesianoptimisation }, 
-    { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_statisticaltechnique, dpv_ai_decisiontree }, 
+    { { s_dpv_ai, 2, 1 }, { s_dpv_ai, 2, 1 }, dpv_ai_statisticaltechnique, dpv_ai_decisiontree }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_statisticaltechnique, dpv_ai_optimisationmethod }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_statisticaltechnique, dpv_ai_searchmethod },
  
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_technique, dpv_ai_audioprocessing }, 
-    { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_technique, dpv_ai_geneticalgorithm }, 
+    { { s_dpv_ai, 2, 1 }, { s_dpv_ai, 2, 2 }, dpv_ai_technique, dpv_ai_geneticalgorithm }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_technique, dpv_ai_knowledgetechnique }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_technique, dpv_ai_logictechnique }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_technique, dpv_ai_machinelearning }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_technique, dpv_ai_reasoningtechnique }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_technique, dpv_ai_statisticaltechnique },
+    { { s_dpv_ai, 2, 2 }, { 0, 0 }, dpv_ai_technique, dpv_ai_trainingtechnique },
 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_testingdata, dpv_eu_aiact_testingdata },
  
@@ -3665,6 +3799,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_aioperator, dpv_eu_aiact_aideployer },
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_aioperator, dpv_eu_aiact_aidistributor },
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_aioperator, dpv_eu_aiact_aiimporter },
+    { { s_dpv_eu_aiact, 2, 2 }, { 0, 0 }, dpv_eu_aiact_aioperator, dpv_eu_aiact_aiprovider },
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_aioperator, dpv_eu_aiact_authorisedrepresentative },
 
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_aiprovider, dpv_eu_aiact_downstreamaiprovider },
@@ -3701,8 +3836,21 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_remotebiometricidentificationsystem, dpv_eu_aiact_postremotebiometricidentificationsystem },
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_remotebiometricidentificationsystem, dpv_eu_aiact_realtimeremotebiometricidentificationsystem },
 
-    { { s_dpv_eu_aiact, 2, 1 }, { 0, 0 }, dpv_eu_aiact_risk, dpv_eu_aiact_systemicriskforeu },
+    { { s_dpv_eu_aiact, 2, 2 }, { 0, 0 }, dpv_eu_aiact_risk, dpv_eu_aiact_systemicrisk },
+    { { s_dpv_eu_aiact, 2, 1 }, { s_dpv_eu_aiact, 2, 1 }, dpv_eu_aiact_risk, dpv_eu_aiact_systemicriskforeu },
     { { s_dpv_eu_aiact, 2, 0 }, { s_dpv_eu_aiact, 2, 0 }, dpv_eu_aiact_risk, dpv_eu_aiact_systemicriskatunionlevel },
+
+    { { s_dpv_eu_aiact, 2, 2 }, { 0, 0 }, dpv_eu_aiact_risklevel, dpv_eu_aiact_risklevelpermitted },
+    { { s_dpv_eu_aiact, 2, 2 }, { 0, 0 }, dpv_eu_aiact_risklevel, dpv_eu_aiact_risklevelprohibited },
+
+    { { s_dpv_eu_aiact, 2, 2 }, { 0, 0 }, dpv_eu_aiact_risklevelhigh, dpv_eu_aiact_risklevelhighannexi },
+    { { s_dpv_eu_aiact, 2, 2 }, { 0, 0 }, dpv_eu_aiact_risklevelhigh, dpv_eu_aiact_risklevelhighannexiii },
+
+    { { s_dpv_eu_aiact, 2, 2 }, { 0, 0 }, dpv_eu_aiact_risklevelnothigh, dpv_eu_aiact_risklevelminimal },
+    { { s_dpv_eu_aiact, 2, 2 }, { 0, 0 }, dpv_eu_aiact_risklevelnothigh, dpv_eu_aiact_riskleveltransparencyrequired },
+
+    { { s_dpv_eu_aiact, 2, 2 }, { 0, 0 }, dpv_eu_aiact_risklevelpermitted, dpv_eu_aiact_risklevelhigh },
+    { { s_dpv_eu_aiact, 2, 2 }, { 0, 0 }, dpv_eu_aiact_risklevelpermitted, dpv_eu_aiact_risklevelnothigh },
 
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_servicesupplystatus, dpv_eu_aiact_notputintoservice },
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_servicesupplystatus, dpv_eu_aiact_putintoservice },
@@ -4123,11 +4271,11 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_eu_rights, 2, 1 }, { 0, 0 }, dpv_eu_rights_a8_protectionofpersonaldataimpact, dpv_eu_rights_a8_unfulfilled },
     { { s_dpv_eu_rights, 2, 1 }, { 0, 0 }, dpv_eu_rights_a8_protectionofpersonaldataimpact, dpv_eu_rights_a8_violated },
 
-//    { { s_dpv_gdpr, 0, 30 }, { s_dpv_gdpr, 1, 0 }, dpv_gdpr_a462b, dpv_gdpr_a462b },
+    { { s_dpv_gdpr, 0, 30 }, { s_dpv_gdpr, 1, 0 }, dpv_gdpr_a462b, dpv_gdpr_a462b, MH_CIRCULAR },
 
-//    { { s_dpv_gdpr, 0, 30 }, { s_dpv_gdpr, 1, 0 }, dpv_gdpr_a462c, dpv_gdpr_a462c },
+    { { s_dpv_gdpr, 0, 30 }, { s_dpv_gdpr, 1, 0 }, dpv_gdpr_a462c, dpv_gdpr_a462c, MH_CIRCULAR },
 
-//    { { s_dpv_gdpr, 0, 30 }, { s_dpv_gdpr, 1, 0 }, dpv_gdpr_a462d, dpv_gdpr_a462d },
+    { { s_dpv_gdpr, 0, 30 }, { s_dpv_gdpr, 1, 0 }, dpv_gdpr_a462d, dpv_gdpr_a462d, MH_CIRCULAR },
 
     { { s_dpv_gdpr, 0, 81 }, { s_dpv_gdpr, 1, 0 }, dpv_gdpr_a61a, dpv_gdpr_a61aexplicitconsent },
     { { s_dpv_gdpr, 0, 81 }, { s_dpv_gdpr, 1, 0 }, dpv_gdpr_a61a, dpv_gdpr_a61anonexplicitconsent },
@@ -4246,7 +4394,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_just, 2, 0 }, { 0, 0 }, dpv_just_legalprocessimpaired, dpv_just_legalclaimestablishmentimpaired },
     { { s_dpv_just, 2, 0 }, { 0, 0 }, dpv_just_legalprocessimpaired, dpv_just_legalclaimexerciseimpaired },
     { { s_dpv_just, 2, 0 }, { 0, 0 }, dpv_just_legalprocessimpaired, dpv_just_legallyexempted },
-//    { { s_dpv_just, 2, 1 }, { 0, 0 }, dpv_just_legalprocessimpaired, dpv_just_legalprocessimpaired },
+    { { s_dpv_just, 2, 1 }, { 0, 0 }, dpv_just_legalprocessimpaired, dpv_just_legalprocessimpaired, MH_CIRCULAR },
     { { s_dpv_just, 2, 0 }, { 0, 0 }, dpv_just_legalprocessimpaired, dpv_just_nationalsecurityimpaired },
     { { s_dpv_just, 2, 0 }, { 0, 0 }, dpv_just_legalprocessimpaired, dpv_just_nonfulfilmentjustification, MH_CIRCULAR }, // circular
     { { s_dpv_just, 2, 0 }, { 0, 0 }, dpv_just_legalprocessimpaired, dpv_just_officialauthorityexerciseimpaired },
@@ -5042,6 +5190,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_cn, dpv_loc_cn_xz },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_cn, dpv_loc_cn_yn },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_cn, dpv_loc_cn_zj },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_cn, dpv_loc_hk },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_cn, dpv_loc_mo },
 
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_co, dpv_loc_co_ama },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_co, dpv_loc_co_ant },
@@ -5670,6 +5820,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_loc, 2, 0 }, { 0, 0 }, dpv_loc_eu28, dpv_loc_si },
     { { s_dpv_loc, 2, 0 }, { 0, 0 }, dpv_loc_eu28, dpv_loc_sk }, 
 
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_fi, dpv_loc_ax },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_fi, dpv_loc_fi_01 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_fi, dpv_loc_fi_02 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_fi, dpv_loc_fi_03 },
@@ -5702,6 +5853,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_fm, dpv_loc_fm_yap },
 
 
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_fr, dpv_loc_bl },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_fr, dpv_loc_fr_01 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_fr, dpv_loc_fr_02 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_fr, dpv_loc_fr_03 },
@@ -5804,6 +5956,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_fr, dpv_loc_fr_972 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_fr, dpv_loc_fr_973 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_fr, dpv_loc_fr_974 },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_fr, dpv_loc_fr_976 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_fr, dpv_loc_fr_ara },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_fr, dpv_loc_fr_b },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_fr, dpv_loc_fr_bfc },
@@ -5838,6 +5991,17 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_fr, dpv_loc_fr_tf },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_fr, dpv_loc_fr_v },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_fr, dpv_loc_fr_wf },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_fr, dpv_loc_gf },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_fr, dpv_loc_gp },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_fr, dpv_loc_mf },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_fr, dpv_loc_mq },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_fr, dpv_loc_nc },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_fr, dpv_loc_pf },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_fr, dpv_loc_pm },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_fr, dpv_loc_re },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_fr, dpv_loc_tf },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_fr, dpv_loc_wf },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_fr, dpv_loc_yt },
 
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_ga, dpv_loc_ga_1 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_ga, dpv_loc_ga_2 },
@@ -7855,9 +8019,13 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_ni, dpv_loc_ni_ri },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_ni, dpv_loc_ni_sj },
 
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_nl, dpv_loc_aw },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_nl, dpv_loc_bq },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_nl, dpv_loc_cw },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_nl, dpv_loc_nl_aw },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_nl, dpv_loc_nl_bq1 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_nl, dpv_loc_nl_bq2 },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_nl, dpv_loc_nl_bq3 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_nl, dpv_loc_nl_cw },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_nl, dpv_loc_nl_dr },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_nl, dpv_loc_nl_fl },
@@ -7872,6 +8040,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_nl, dpv_loc_nl_ut },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_nl, dpv_loc_nl_ze },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_nl, dpv_loc_nl_zh },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_nl, dpv_loc_sx },
 
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_no, dpv_loc_no_03 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_no, dpv_loc_no_04 },
@@ -7902,6 +8071,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_no, dpv_loc_no_54 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_no, dpv_loc_no_55 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_no, dpv_loc_no_56 },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_no, dpv_loc_sj },
 
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_np, dpv_loc_np_1 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_np, dpv_loc_np_2 },
@@ -9183,6 +9353,11 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_um, dpv_loc_um_89 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_um, dpv_loc_um_95 },
 
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_us, dpv_loc_as },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_us, dpv_loc_gu },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_us, dpv_loc_mp },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_us, dpv_loc_pr },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_us, dpv_loc_um },
     { { s_dpv_loc, 2, 0 }, { 0, 0 }, dpv_loc_us, dpv_loc_us_ak },
     { { s_dpv_loc, 2, 0 }, { 0, 0 }, dpv_loc_us, dpv_loc_us_al },
     { { s_dpv_loc, 2, 0 }, { 0, 0 }, dpv_loc_us, dpv_loc_us_ar },
@@ -9240,6 +9415,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_loc, 2, 0 }, { 0, 0 }, dpv_loc_us, dpv_loc_us_wi },
     { { s_dpv_loc, 2, 0 }, { 0, 0 }, dpv_loc_us, dpv_loc_us_wv },
     { { s_dpv_loc, 2, 0 }, { 0, 0 }, dpv_loc_us, dpv_loc_us_wy },
+    { { s_dpv_loc, 2, 2 }, { 0, 0 }, dpv_loc_us, dpv_loc_vi },
 
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_uy, dpv_loc_uy_ar },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_uy, dpv_loc_uy_ca },
@@ -9381,7 +9557,6 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_wf, dpv_loc_wf_al },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_wf, dpv_loc_wf_sg },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_wf, dpv_loc_wf_uv },
-
 
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_ye, dpv_loc_ye_ab },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_ye, dpv_loc_ye_ad },
@@ -10496,6 +10671,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_p7012, 2, 1 }, { 0, 0 }, dpv_p7012_agentrequestbehaviour, dpv_p7012_agentdisallowsrequests }, 
 
     { { s_dpv_p7012, 2, 1 }, { 0, 0 }, dpv_p7012_agreement, dpv_p7012_sd_by }, 
+    { { s_dpv_p7012, 2, 2 }, { 0, 0 }, dpv_p7012_agreement, dpv_p7012_tpr }, 
 
     { { s_dpv_p7012, 2, 1 }, { 0, 0 }, dpv_p7012_agreementnegotiationstatus, dpv_p7012_agreementaccepted }, 
     { { s_dpv_p7012, 2, 1 }, { 0, 0 }, dpv_p7012_agreementnegotiationstatus, dpv_p7012_agreementnegotiationclarificationrequired },
@@ -10517,6 +10693,10 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_p7012, 2, 1 }, { 0, 0 }, dpv_p7012_conflictresolutionterm, dpv_p7012_resolveonlywithincontext },
     { { s_dpv_p7012, 2, 1 }, { 0, 0 }, dpv_p7012_conflictresolutionterm, dpv_p7012_resolvepreferringpermission },
     { { s_dpv_p7012, 2, 1 }, { 0, 0 }, dpv_p7012_conflictresolutionterm, dpv_p7012_resolvepreferringprohibition },
+
+    { { s_dpv_p7012, 2, 2 }, { 0, 0 }, dpv_p7012_datadeletionterm, dpv_p7012_datadeletionnotrequired }, 
+    { { s_dpv_p7012, 2, 2 }, { 0, 0 }, dpv_p7012_datadeletionterm, dpv_p7012_datadeletiononrequest }, 
+    { { s_dpv_p7012, 2, 2 }, { 0, 0 }, dpv_p7012_datadeletionterm, dpv_p7012_datadeletionrequired }, 
 
     { { s_dpv_p7012, 2, 1 }, { 0, 0 }, dpv_p7012_datasharingterm, dpv_p7012_sharingdataallowed }, 
     { { s_dpv_p7012, 2, 1 }, { 0, 0 }, dpv_p7012_datasharingterm, dpv_p7012_sharingdatadisallowed }, 
@@ -10595,6 +10775,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_p7012, 2, 1 }, { 0, 0 }, dpv_p7012_sharingdatadisallowed, dpv_p7012_sharingdatanonanonymised3pdisallowed }, 
     { { s_dpv_p7012, 2, 1 }, { 0, 0 }, dpv_p7012_sharingdatadisallowed, dpv_p7012_sharingdatanonanonymiseddisallowed }, 
 
+    { { s_dpv_p7012, 2, 2 }, { 0, 0 }, dpv_p7012_tpr, dpv_p7012_tpr_identity_ref }, 
+
     { { s_dpv_p7012, 2, 1 }, { 0, 0 }, dpv_p7012_trackingallowed, dpv_p7012_tracking2pallowed }, 
     { { s_dpv_p7012, 2, 1 }, { 0, 0 }, dpv_p7012_trackingallowed, dpv_p7012_trackingwithoutfpallowed }, 
     { { s_dpv_p7012, 2, 1 }, { 0, 0 }, dpv_p7012_trackingallowed, dpv_p7012_trackingwithoutpiiallowed }, 
@@ -10624,22 +10806,37 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv_pd, 0, 70 }, { 0, 0 }, dpv_pd_age_range, dpv_pd_age_exact },
 
-    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_attitude },
-    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_authenticationhistory },
-    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_browsingbehaviour },
-    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_calllog },
-    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_demeanour },
-    { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_behavioural, dpv_eu_ehds_lifestyledata },
-    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_linkclicked },
-    { { s_dpv_pd, 0, 80 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_performanceatwork },
-    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_personality },
-    { { s_dpv_pd, 0, 80 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_reliability },
-    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_serviceconsumptionbehaviour },
-    { { s_dpv_pd, 1, 0 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_vehicleusage },
-    { { s_dpv_pd, 0, 80 }, { s_dpv_pd, 0, 90 }, dpv_pd_behavioural, dpv_pd_vehicleusagedata },
-    { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_behavioural, dpv_eu_ehds_wellnessdata },
+    { { s_dpv_pd, 0, 40 }, { s_dpv_pd, 2, 1 }, dpv_pd_behavioral, dpv_pd_attitude },
+    { { s_dpv_pd, 0, 40 }, { s_dpv_pd, 2, 1 }, dpv_pd_behavioral, dpv_pd_authenticationhistory },
+    { { s_dpv_pd, 0, 40 }, { s_dpv_pd, 2, 1 }, dpv_pd_behavioral, dpv_pd_browsingbehaviour },
+    { { s_dpv_pd, 0, 40 }, { s_dpv_pd, 2, 1 }, dpv_pd_behavioral, dpv_pd_calllog },
+    { { s_dpv_pd, 0, 40 }, { s_dpv_pd, 2, 1 }, dpv_pd_behavioral, dpv_pd_demeanor },
+    { { s_dpv_pd, 2, 1 }, { s_dpv_pd, 2, 1 }, dpv_pd_behavioral, dpv_eu_ehds_lifestyledata },
+    { { s_dpv_pd, 0, 40 }, { s_dpv_pd, 2, 1 }, dpv_pd_behavioral, dpv_pd_linkclicked },
+    { { s_dpv_pd, 0, 80 }, { s_dpv_pd, 2, 1 }, dpv_pd_behavioral, dpv_pd_performanceatwork },
+    { { s_dpv_pd, 0, 40 }, { s_dpv_pd, 2, 1 }, dpv_pd_behavioral, dpv_pd_personality },
+    { { s_dpv_pd, 0, 80 }, { s_dpv_pd, 2, 1 }, dpv_pd_behavioral, dpv_pd_reliability },
+    { { s_dpv_pd, 0, 40 }, { s_dpv_pd, 2, 1 }, dpv_pd_behavioral, dpv_pd_serviceconsumptionbehavior },
+    { { s_dpv_pd, 1, 0 }, { s_dpv_pd, 2, 1 }, dpv_pd_behavioral, dpv_pd_vehicleusage },
+    { { s_dpv_pd, 0, 80 }, { s_dpv_pd, 0, 90 }, dpv_pd_behavioral, dpv_pd_vehicleusagedata },
+    { { s_dpv_pd, 2, 1 }, { s_dpv_pd, 2, 1 }, dpv_pd_behavioral, dpv_eu_ehds_wellnessdata },
+
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_attitude },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_authenticationhistory },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_browsingbehaviour },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_calllog },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_demeanour },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_eu_ehds_lifestyledata },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_linkclicked },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_performanceatwork },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_personality },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_reliability },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_serviceconsumptionbehaviour },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_vehicleusage },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_eu_ehds_wellnessdata },
 
     { { s_dpv_pd, 2, 0 }, { 0, 0 }, dpv_pd_biometric, dpv_eu_aiact_biometric },
+    { { s_dpv_pd, 2, 0 }, { 0, 0 }, dpv_pd_biometric, dpv_eu_aiact_biometricdata },
     { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_biometric, dpv_eu_gdpr_biometricdata },
     { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_biometric, dpv_pd_facialexpression },
     { { s_dpv_pd, 0, 80 }, { 0, 0 }, dpv_pd_biometric, dpv_pd_facialprint },
@@ -10673,7 +10870,8 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_criminal, dpv_pd_criminalcharge },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_criminal, dpv_pd_criminalconviction },
-    { { s_dpv_pd, 0, 90 }, { 0, 0 }, dpv_pd_criminal, dpv_pd_criminaloffence },
+    { { s_dpv_pd, 0, 90 }, { s_dpv_pd, 2, 1 }, dpv_pd_criminal, dpv_pd_criminaloffense },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_criminal, dpv_pd_criminaloffence },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_criminal, dpv_pd_criminalpardon },
 
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_demographic, dpv_pd_geographic },
@@ -10701,7 +10899,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_pd, 0, 40 }, { s_dpv_pd, 0, 60 }, dpv_pd_ethnicity, dpv_pd_language },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_ethnicity, dpv_pd_race },
 
-    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_external, dpv_pd_behavioural },
+    { { s_dpv_pd, 0, 40 }, { s_dpv_pd, 2, 1 }, dpv_pd_external, dpv_pd_behavioral },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_external, dpv_pd_behavioural },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_external, dpv_pd_demographic },
     { { s_dpv_pd, 2, 0 }, { 0, 0 }, dpv_pd_external, dpv_pd_citizenship },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_external, dpv_pd_ethnicity },
@@ -10724,9 +10923,13 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_familystructure, dpv_pd_parent },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_familystructure, dpv_pd_sibling },
 
-    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_favourite, dpv_pd_favouritecolour },
-    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_favourite, dpv_pd_favouritefood },
-    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_favourite, dpv_pd_favouritemusic },
+    { { s_dpv_pd, 0, 40 }, { s_dpv_pd, 2, 1 }, dpv_pd_favorite, dpv_pd_favoritecolor },
+    { { s_dpv_pd, 0, 40 }, { s_dpv_pd, 2, 1 }, dpv_pd_favorite, dpv_pd_favoritefood },
+    { { s_dpv_pd, 0, 40 }, { s_dpv_pd, 2, 1 }, dpv_pd_favorite, dpv_pd_favoritemusic },
+
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_favourite, dpv_pd_favouritecolour },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_favourite, dpv_pd_favouritefood },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_favourite, dpv_pd_favouritemusic },
 
     { { s_dpv_pd, 0, 80 }, { 0, 0 }, dpv_pd_financial, dpv_pd_financialstatus },
     { { s_dpv_pd, 0, 70 }, { 0, 0 }, dpv_pd_financial, dpv_pd_insurance },
@@ -10824,14 +11027,16 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_physicalcharacteristic, dpv_pd_age },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_physicalcharacteristic, dpv_pd_gender },
-    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_physicalcharacteristic, dpv_pd_haircolour },
-    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_physicalcharacteristic, dpv_pd_height },
+    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_physicalcharacteristic, dpv_pd_haircolor },
+    { { s_dpv_pd, 0, 40 }, { s_dpv_pd, 2, 1 }, dpv_pd_physicalcharacteristic, dpv_pd_haircolour },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_physicalcharacteristic, dpv_pd_height },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_physicalcharacteristic, dpv_pd_piercing },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_physicalcharacteristic, dpv_pd_skintone },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_physicalcharacteristic, dpv_pd_tattoo },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_physicalcharacteristic, dpv_pd_weight },
 
-    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_preference, dpv_pd_favourite },
+    { { s_dpv_pd, 0, 40 }, { s_dpv_pd, 2, 1 }, dpv_pd_preference, dpv_pd_favorite },
+    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_preference, dpv_pd_favourite },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_preference, dpv_pd_intention },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_preference, dpv_pd_interest },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_preference, dpv_pd_opinion },
@@ -10864,6 +11069,10 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_publiclife, dpv_pd_religion },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_publiclife, dpv_pd_socialstatus },
 
+    { { s_dpv_pd, 2, 1 }, { s_dpv_pd, 2, 1 }, dpv_pd_serviceconsumptionbehavior, dpv_pd_tvviewingbehavior },
+
+    { { s_dpv_pd, 2, 2 }, { s_dpv_pd, 0, 0 }, dpv_pd_serviceconsumptionbehaviour, dpv_pd_tvviewingbehaviour },
+
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_sexual, dpv_pd_fetish },
     { { s_dpv_pd, 0, 40 }, { s_dpv_pd, 1, 0 }, dpv_pd_sexual, dpv_pd_proclivitie },
     { { s_dpv_pd, 2, 0 }, { 0, 0 }, dpv_pd_sexual, dpv_pd_proclivity },
@@ -10882,7 +11091,7 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv_pd, 0, 80 }, { s_dpv_pd, 0, 90 }, dpv_pd_socialmediadata, dpv_pd_publiclyavailablesocialmediadata },
 
-    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_socialnetwork, dpv_pd_acquantaince },
+    { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_socialnetwork, dpv_pd_acquaintance },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_socialnetwork, dpv_pd_association },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_socialnetwork, dpv_pd_connection },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_socialnetwork, dpv_pd_friend },
@@ -11115,6 +11324,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_datarisk, dpv_risk_datainaccurate },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_datarisk, dpv_risk_dataincomplete },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_datarisk, dpv_risk_datainconsistent },
+    { { s_dpv_risk, 2, 2 }, { 0, 0 }, dpv_risk_datarisk, dpv_risk_dataloss },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_datarisk, dpv_risk_datamisclassified },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_datarisk, dpv_risk_datamisinterpretation },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_datarisk, dpv_risk_datanoise },
@@ -11297,6 +11507,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_risk, 2, 0 }, { 0, 0 }, dpv_risk_incident, dpv_risk_deliberateincident },
     { { s_dpv_risk, 2, 0 }, { 0, 0 }, dpv_risk_incident, dpv_risk_environmentalincident },
     { { s_dpv_risk, 2, 0 }, { 0, 0 }, dpv_risk_incident, dpv_risk_integrityincident },
+    { { s_dpv_risk, 2, 2 }, { 0, 0 }, dpv_risk_incident, dpv_eu_aiact_seriousincident },
 
     { { s_dpv_risk, 2, 0 }, { 0, 0 }, dpv_risk_incidentassessmentreport, dpv_eu_gdpr_databreachongoingreport },
     { { s_dpv_risk, 2, 0 }, { 0, 0 }, dpv_risk_incidentassessmentreport, dpv_eu_gdpr_databreachpreliminaryreport },
@@ -11578,13 +11789,20 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_renumeration, dpv_risk_payment },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_renumeration, dpv_risk_reward },
 
-    { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_losecredibility },
-    { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_losecustomerconfidence },
-    { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_losegoodwill },
-    { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_losenegotiatingcapacity },
-    { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_loseopportunity },
-    { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_losereputation },
-    { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_losetrust },
+    { { s_dpv_risk, 2, 2 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_credibilityloss },
+    { { s_dpv_risk, 2, 2 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_customerconfidenceloss },
+    { { s_dpv_risk, 2, 2 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_goodwillloss },
+    { { s_dpv_risk, 2, 1 }, { s_dpv_risk, 2, 1 }, dpv_risk_reputationalrisk, dpv_risk_losecredibility },
+    { { s_dpv_risk, 2, 1 }, { s_dpv_risk, 2, 1 }, dpv_risk_reputationalrisk, dpv_risk_losecustomerconfidence },
+    { { s_dpv_risk, 2, 1 }, { s_dpv_risk, 2, 1 }, dpv_risk_reputationalrisk, dpv_risk_losegoodwill },
+    { { s_dpv_risk, 2, 1 }, { s_dpv_risk, 2, 1 }, dpv_risk_reputationalrisk, dpv_risk_losenegotiatingcapacity },
+    { { s_dpv_risk, 2, 1 }, { s_dpv_risk, 2, 1 }, dpv_risk_reputationalrisk, dpv_risk_loseopportunity },
+    { { s_dpv_risk, 2, 1 }, { s_dpv_risk, 2, 1 }, dpv_risk_reputationalrisk, dpv_risk_losereputation },
+    { { s_dpv_risk, 2, 1 }, { s_dpv_risk, 2, 1 }, dpv_risk_reputationalrisk, dpv_risk_losetrust },
+    { { s_dpv_risk, 2, 2 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_negotiatingcapacityloss },
+    { { s_dpv_risk, 2, 2 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_opportunityloss },
+    { { s_dpv_risk, 2, 2 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_reputationalloss },
+    { { s_dpv_risk, 2, 2 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_trustloss },
 
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_resolutioncontrol, dpv_risk_recoverycontrol },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_resolutioncontrol, dpv_risk_remeditationcontrol },
@@ -11799,7 +12017,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_servicerelatedconsequence, dpv_risk_identityverificationfailure },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_servicerelatedconsequence, dpv_risk_inabilitytoenterintocontract },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_servicerelatedconsequence, dpv_risk_inabilitytoestablishlegalclaims },
-    { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_servicerelatedconsequence, dpv_risk_inabilitytofulfilllegalobligations },
+    { { s_dpv_risk, 2, 1 }, { s_dpv_risk, 2, 1 }, dpv_risk_servicerelatedconsequence, dpv_risk_inabilitytofulfilllegalobligations },
+    { { s_dpv_risk, 2, 2 }, { 0, 0 }, dpv_risk_servicerelatedconsequence, dpv_risk_inabilitytofulfillegalobligations },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_servicerelatedconsequence, dpv_risk_inabilitytoprocesspayments },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_servicerelatedconsequence, dpv_risk_inabilitytoprotectvitalinterests },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_servicerelatedconsequence, dpv_risk_inabilitytoprovidehealthcare },
@@ -11849,7 +12068,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_substitutioncontrol, dpv_risk_changeimpact },
 
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_taskexecutionrisk, dpv_risk_taskexecutionincorrect },
-    { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_taskexecutionrisk, dpv_risk_taskommitted },
+    { { s_dpv_risk, 2, 1 }, { s_dpv_risk, 2, 1 }, dpv_risk_taskexecutionrisk, dpv_risk_taskommitted },
+    { { s_dpv_risk, 2, 2 }, { 0, 0 }, dpv_risk_taskexecutionrisk, dpv_risk_taskomitted },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_taskexecutionrisk, dpv_risk_tasktimingincorrect },
 
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_technicalriskconcept, dpv_risk_bias },
@@ -11909,7 +12129,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_s_edu, 2, 1 }, { 0, 0 }, dpv_s_edu_studentadmissionmanagement, dpv_s_edu_studentadmissionscreening },
     { { s_dpv_s_edu, 2, 1 }, { 0, 0 }, dpv_s_edu_studentadmissionmanagement, dpv_s_edu_studentcourserecommendation },
     { { s_dpv_s_edu, 2, 1 }, { 0, 0 }, dpv_s_edu_studentadmissionmanagement, dpv_s_edu_studenteligibilityassessment },
-    { { s_dpv_s_edu, 2, 1 }, { 0, 0 }, dpv_s_edu_studentadmissionmanagement, dpv_s_edu_studentenrollmentmanagement },
+    { { s_dpv_s_edu, 2, 1 }, { s_dpv_s_edu, 2, 1 }, dpv_s_edu_studentadmissionmanagement, dpv_s_edu_studentenrollmentmanagement },
+    { { s_dpv_s_edu, 2, 2 }, { 0, 0 }, dpv_s_edu_studentadmissionmanagement, dpv_s_edu_studentenrolmentmanagement },
     { { s_dpv_s_edu, 2, 1 }, { 0, 0 }, dpv_s_edu_studentadmissionmanagement, dpv_s_edu_studentfeesmanagement },
     { { s_dpv_s_edu, 2, 1 }, { 0, 0 }, dpv_s_edu_studentadmissionmanagement, dpv_s_edu_studentfinancialbenefitsmanagement },
     { { s_dpv_s_edu, 2, 1 }, { 0, 0 }, dpv_s_edu_studentadmissionmanagement, dpv_s_edu_studentinstituterecommendation },
@@ -12275,7 +12496,8 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv_s_ps, 2, 1 }, { 0, 0 }, dpv_s_ps_socialwelfaremanagement, dpv_s_ps_socialassistancemanagement },
     { { s_dpv_s_ps, 2, 1 }, { 0, 0 }, dpv_s_ps_socialwelfaremanagement, dpv_s_ps_socialwelfareeligibilityassessment },
-    { { s_dpv_s_ps, 2, 1 }, { 0, 0 }, dpv_s_ps_socialwelfaremanagement, dpv_s_ps_socialwelfareenrollmentmanagement },
+    { { s_dpv_s_ps, 2, 1 }, { s_dpv_s_ps, 2, 1 }, dpv_s_ps_socialwelfaremanagement, dpv_s_ps_socialwelfareenrollmentmanagement },
+    { { s_dpv_s_ps, 2, 2 }, { 0, 0 }, dpv_s_ps_socialwelfaremanagement, dpv_s_ps_socialwelfareenrolmentmanagement },
     { { s_dpv_s_ps, 2, 1 }, { 0, 0 }, dpv_s_ps_socialwelfaremanagement, dpv_s_ps_socialwelfareriskassessment },
 
     { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_action, dpv_tech_inputaction }, 
@@ -12314,7 +12536,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_tech, 2, 0 }, { s_dpv_tech, 2, 0 }, dpv_tech_capability, dpv_eu_aiact_biometricidentification },
     { { s_dpv_tech, 2, 0 }, { s_dpv_tech, 2, 0 }, dpv_tech_capability, dpv_eu_aiact_deepfake },
     { { s_dpv_tech, 2, 0 }, { s_dpv_tech, 2, 0 }, dpv_tech_capability, dpv_eu_aiact_emotionrecognition },
-    { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_capability, dpv_eu_aiact_highimpactcapabilityingpaimodels },
+    { { s_dpv_tech, 2, 0 }, { s_dpv_tech, 2, 1 }, dpv_tech_capability, dpv_eu_aiact_highimpactcapabilityingpaimodels },
+    { { s_dpv_tech, 2, 2 }, { 0, 0 }, dpv_tech_capability, dpv_eu_aiact_highimpactcapabilitygpaimodel },
 
     { { s_dpv_tech, 2, 0 }, { s_dpv_tech, 2, 0 }, dpv_tech_cloudservice, dpv_tech_caas },
     { { s_dpv_tech, 2, 0 }, { s_dpv_tech, 2, 0 }, dpv_tech_cloudservice, dpv_tech_iaas },
@@ -13239,7 +13462,6 @@ microdata_hierachy ontology_hierarchy [] =
     // geo
 //    { { s_geo, 1, 0 }, { 0, 0 }, fs_spatialthing, fs_object },
 //    { { s_geo, 1, 0 }, { 0, 0 }, fs_spatialthing, fs_place },
-
 
     // good relations
     { { s_gr, 1, 0 }, { 0, 0 }, gr_businessentitytype, gr_business },
@@ -15251,6 +15473,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 0, 99 }, { 0, 0 }, sch_enumeration, sch_businessfunction },
     { { 9, 0 }, { 0, 0 }, sch_enumeration, sch_carusagetype },
     { { 25, 0 }, { 0, 0 }, sch_enumeration, sch_certificationstatusenumeration },
+    { { s_croissant, 1, 22 }, { 0, 0 }, sch_enumeration, cr_contentextractionenumeration },
     { { 1, 3 }, { 0, 0 }, sch_enumeration, sch_contactpointoption },
     { { 0, 99 }, { 0, 0 }, sch_enumeration, sch_dayofweek }, 
     { { 0, 99 }, { 0, 0 }, sch_enumeration, sch_deliverymethod },
@@ -15262,6 +15485,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 10, 0 }, { 0, 0 }, sch_enumeration, sch_energyefficiencyenumeration },
     { { 7, 0 }, { 0, 0 }, sch_enumeration, sch_eventattendancemodeenumeration },
     { { 1, 3 }, { 8, 0 }, sch_enumeration, sch_eventstatustype },
+    { { s_croissant, 1, 22 }, { 0, 0 }, sch_enumeration, cr_filepropertyenumeration },
     { { 14, 0 }, { 0, 0 }, sch_enumeration, sch_gameavailabilityenumeration },
     { { 1, 92 }, { 0, 0 }, sch_enumeration, sch_gameplaymode },
     { { 1, 92 }, { 8, 0 }, sch_enumeration, sch_gameserverstatus },
@@ -15311,6 +15535,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 12, 0 }, { 0, 0 }, sch_enumeration, sch_sizegroupenumeration },
     { { 12, 0 }, { 0, 0 }, sch_enumeration, sch_sizesystemenumeration },
     { { 0, 95 }, { 0, 0 }, sch_enumeration, sch_speciality },
+    { { s_croissant, 1, 22 }, { 0, 0 }, sch_enumeration, cr_split },
     { { 9, 0 }, { 0, 0 }, sch_enumeration, sch_statusenumeration },
     { { 28, 0 }, { 0, 0 }, sch_enumeration, sch_tierbenefitenumeration },
     { { 0, 99 }, { 0, 0 }, sch_enumeration, sch_warrantyscope },
@@ -15343,6 +15568,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 8, 0 }, { 0, 0 }, sch_event, sch_hackathon },
     { { 0, 10 }, { 0, 0 }, sch_event, sch_literaryevent },
     { { 0, 10 }, { 0, 0 }, sch_event, sch_musicevent },
+    { { 29, 4 }, { 0, 0 }, sch_event, sch_performingartsevent },
     { { 1, 3 }, { 0, 0 }, sch_event, sch_publicationevent },
     { { 0, 10 }, { 0, 0 }, sch_event, sch_saleevent },
     { { 2, 0 }, { 0, 0 }, sch_event, sch_screeningevent },
@@ -15495,6 +15721,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 1, 20 }, { 0, 0 }, sch_intangible, sch_entrypoint },
     { { 3, 9 }, { 0, 0 }, sch_intangible, sch_educationoccupationprogramme },
     { { 0, 10 }, { 0, 0 }, sch_intangible, sch_enumeration },
+    { { s_croissant, 1, 22 }, { 0, 0 }, sch_intangible, cr_extract },
     { { s_croissant, 0, 2 }, { 0, 0 }, sch_intangible, cr_field },
     { { s_croissant, 1, 3 }, { 0, 0 }, sch_intangible, cr_fileset },
     { { 1, 20 }, { 3, 3 }, sch_intangible, sch_flight },
@@ -15546,6 +15773,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 0, 10 }, { 0, 0 }, sch_intangible, sch_structuredvalue },
     { { 1, 20 }, { 0, 0 }, sch_intangible, sch_ticket },
     { { 1, 20 }, { 3, 3 }, sch_intangible, sch_traintrip },
+    { { s_croissant, 1, 22 }, { 0, 0 }, sch_intangible, cr_transform },
     { { 3, 4 }, { 0, 0 }, sch_intangible, sch_trip },
     { { 3, 7 }, { 0, 0 }, sch_intangible, sch_virtuallocation },
     { { 1, 2 }, { 0, 0 }, sch_interactaction, sch_befriendaction },
@@ -15896,7 +16124,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 0, 95 }, { 0, 0 }, sch_medicinesystem, sch_homeopathic }, // magic
     { { 0, 95 }, { 0, 0 }, sch_medicinesystem, sch_osteopathic }, // well...
     { { 0, 95 }, { 0, 0 }, sch_medicinesystem, sch_traditionalchinese }, // magic and environmental harm
-    { { 0, 95 }, { 0, 0 }, sch_medicinesystem, sch_westernconventional },  // empirical (reality based)
+    { { 0, 95 }, { 0, 0 }, sch_medicinesystem, sch_westernconventional },  // empirical (reality based; yay scotland)
     { { 6, 0 }, { 0, 0 }, sch_merchantreturnenumeration, sch_merchantreturnfinitereturnwindow  },
     { { 6, 0 }, { 0, 0 }, sch_merchantreturnenumeration, sch_merchantreturnnotpermitted  },
     { { 6, 0 }, { 0, 0 }, sch_merchantreturnenumeration, sch_merchantreturnunlimitedwindow  },
@@ -16312,6 +16540,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 1, 0 }, { 0, 0 }, sch_techarticle, sch_apireference },
     { { s_croissant, 1, 6 }, { 0, 0 }, sch_text, cr_boundingbox },
     { { 2, 0 }, { 0, 0 }, sch_text, sch_cssselectortype },
+    { { s_croissant, 1, 22 }, { 0, 0 }, sch_url, cr_format },
     { { 2, 0 }, { 0, 0 }, sch_text, sch_pronounceabletext },
     { { 0, 10 }, { 0, 0 }, sch_text, sch_url },
     { { 2, 0 }, { 0, 0 }, sch_text, sch_xpathtype },
@@ -16362,13 +16591,14 @@ microdata_hierachy ontology_hierarchy [] =
     { { 3, 4 }, { 0, 0 }, sch_trip, sch_flight },
     { { 3, 5 }, { 0, 0 }, sch_trip, sch_touristtrip },
     { { 3, 4 }, { 0, 0 }, sch_trip, sch_traintrip },
-    { { 1, 2 }, { 0, 0 }, sch_updateaction, sch_addaction },
-    { { 1, 2 }, { 0, 0 }, sch_updateaction, sch_deleteaction },
-    { { 1, 2 }, { 0, 0 }, sch_updateaction, sch_replaceaction },
     { { 9, 0 }, { 0, 0 }, sch_uknonprofittype, sch_charitableincorporatedorganization },
     { { 9, 0 }, { 0, 0 }, sch_uknonprofittype, sch_limitedbyguaranteecharity },
     { { 9, 0 }, { 0, 0 }, sch_uknonprofittype, sch_uktrust },
     { { 9, 0 }, { 0, 0 }, sch_uknonprofittype, sch_unincorporatedassociationcharity },
+    { { 1, 2 }, { 0, 0 }, sch_updateaction, sch_addaction },
+    { { 1, 2 }, { 0, 0 }, sch_updateaction, sch_deleteaction },
+    { { 1, 2 }, { 0, 0 }, sch_updateaction, sch_replaceaction },
+    { { s_croissant, 1, 22 }, { 0, 0 }, sch_url, cr_datatype },
     { { 1, 2 }, { 0, 0 }, sch_useaction, sch_wearaction },
     { { 0, 10 }, { 3, 4 }, sch_userinteraction, sch_userblocks },
     { { 0, 10 }, { 3, 4 }, sch_userinteraction, sch_usercheckins },
@@ -16881,6 +17111,131 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { 0, 0 }, { 0, 0 }, ont_illegal, ont_illegal } };
 
+static e_ontology_type aot_non [] =
+{    dpv_loc_non_ad, dpv_loc_non_ae, dpv_loc_non_ag, dpv_loc_non_ai, dpv_loc_non_al, dpv_loc_non_am, dpv_loc_non_ao, dpv_loc_non_aq, dpv_loc_non_ar,
+        dpv_loc_non_as, dpv_loc_non_at, dpv_loc_non_au, dpv_loc_non_aw, dpv_loc_non_ax, dpv_loc_non_az,
+    dpv_loc_non_ba, dpv_loc_non_bb, dpv_loc_non_bd, dpv_loc_non_be, dpv_loc_non_bf, dpv_loc_non_bg, dpv_loc_non_bh, dpv_loc_non_bi, dpv_loc_non_bj,
+        dpv_loc_non_bl, dpv_loc_non_bm, dpv_loc_non_bn, dpv_loc_non_bo, dpv_loc_non_bq, dpv_loc_non_br, dpv_loc_non_bs, dpv_loc_non_bt, dpv_loc_non_bv,
+        dpv_loc_non_bw, dpv_loc_non_by, dpv_loc_non_bz,
+    dpv_loc_non_ca, dpv_loc_non_cc, dpv_loc_non_cd, dpv_loc_non_cf, dpv_loc_non_cg, dpv_loc_non_ch, dpv_loc_non_ci, dpv_loc_non_ck, dpv_loc_non_cl,
+        dpv_loc_non_cm, dpv_loc_non_cn, dpv_loc_non_co, dpv_loc_non_cr, dpv_loc_non_cu, dpv_loc_non_cv, dpv_loc_non_cw, dpv_loc_non_cx, dpv_loc_non_cy,
+        dpv_loc_non_cz,
+    dpv_loc_non_de, dpv_loc_non_dj, dpv_loc_non_dk, dpv_loc_non_dm, dpv_loc_non_do, dpv_loc_non_dz,
+    dpv_loc_non_ec, dpv_loc_non_ee, dpv_loc_non_eea, dpv_loc_non_eea30, dpv_loc_non_eea31, dpv_loc_non_eg, dpv_loc_non_eh, dpv_loc_non_er, dpv_loc_non_es,
+        dpv_loc_non_et, dpv_loc_non_eu, dpv_loc_non_eu27, dpv_loc_non_eu28,
+    dpv_loc_non_fi, dpv_loc_non_fj, dpv_loc_non_fk, dpv_loc_non_fm, dpv_loc_non_fo, dpv_loc_non_fr,
+    dpv_loc_non_ga, dpv_loc_non_gb, dpv_loc_non_gd, dpv_loc_non_ge, dpv_loc_non_gf, dpv_loc_non_gg, dpv_loc_non_gh, dpv_loc_non_gi, dpv_loc_non_gl,
+        dpv_loc_non_gm, dpv_loc_non_gn, dpv_loc_non_gp, dpv_loc_non_gq, dpv_loc_non_gr, dpv_loc_non_gs, dpv_loc_non_gt, dpv_loc_non_gu, dpv_loc_non_gw,
+        dpv_loc_non_gy,
+    dpv_loc_non_hk, dpv_loc_non_hm, dpv_loc_non_hn, dpv_loc_non_hr, dpv_loc_non_ht, dpv_loc_non_hu,
+    dpv_loc_non_id, dpv_loc_non_ie, dpv_loc_non_il, dpv_loc_non_im, dpv_loc_non_in, dpv_loc_non_io, dpv_loc_non_iq, dpv_loc_non_ir, dpv_loc_non_is,
+        dpv_loc_non_it,
+    dpv_loc_non_je, dpv_loc_non_jm, dpv_loc_non_jo, dpv_loc_non_jp,
+    dpv_loc_non_ke, dpv_loc_non_kg, dpv_loc_non_kh, dpv_loc_non_ki, dpv_loc_non_km, dpv_loc_non_kn, dpv_loc_non_kp, dpv_loc_non_kr, dpv_loc_non_kw,
+        dpv_loc_non_ky, dpv_loc_non_kz,
+    dpv_loc_non_la, dpv_loc_non_lb, dpv_loc_non_lc, dpv_loc_non_li, dpv_loc_non_lk, dpv_loc_non_lr, dpv_loc_non_ls, dpv_loc_non_lt, dpv_loc_non_lu,
+        dpv_loc_non_lv, dpv_loc_non_ly,
+    dpv_loc_non_ma, dpv_loc_non_mc, dpv_loc_non_md, dpv_loc_non_me, dpv_loc_non_mf, dpv_loc_non_mg, dpv_loc_non_mh, dpv_loc_non_mk, dpv_loc_non_ml,
+        dpv_loc_non_mm, dpv_loc_non_mn, dpv_loc_non_mo, dpv_loc_non_mp, dpv_loc_non_mq, dpv_loc_non_mr, dpv_loc_non_ms, dpv_loc_non_mt, dpv_loc_non_mu,
+        dpv_loc_non_mv, dpv_loc_non_mw, dpv_loc_non_mx, dpv_loc_non_my, dpv_loc_non_mz,
+    dpv_loc_non_na, dpv_loc_non_nc, dpv_loc_non_ne, dpv_loc_non_nf, dpv_loc_non_ng, dpv_loc_non_ni, dpv_loc_non_nl, dpv_loc_non_no, dpv_loc_non_np,
+        dpv_loc_non_nr, dpv_loc_non_nu, dpv_loc_non_nz,
+    dpv_loc_non_om,
+    dpv_loc_non_pa, dpv_loc_non_pe, dpv_loc_non_pf, dpv_loc_non_pg, dpv_loc_non_ph, dpv_loc_non_pk, dpv_loc_non_pl, dpv_loc_non_pm, dpv_loc_non_pn,
+        dpv_loc_non_pr, dpv_loc_non_ps, dpv_loc_non_pt, dpv_loc_non_pw, dpv_loc_non_py,
+    dpv_loc_non_qa,
+    dpv_loc_non_re, dpv_loc_non_ro, dpv_loc_non_rs, dpv_loc_non_ru, dpv_loc_non_rw,
+    dpv_loc_non_sa, dpv_loc_non_sb, dpv_loc_non_sc, dpv_loc_non_sd, dpv_loc_non_se, dpv_loc_non_sg, dpv_loc_non_sh, dpv_loc_non_si, dpv_loc_non_sj,
+        dpv_loc_non_sk, dpv_loc_non_sl, dpv_loc_non_sm, dpv_loc_non_sn, dpv_loc_non_so, dpv_loc_non_sr, dpv_loc_non_ss, dpv_loc_non_st, dpv_loc_non_sv,
+        dpv_loc_non_sx, dpv_loc_non_sy, dpv_loc_non_sz,
+    dpv_loc_non_tc, dpv_loc_non_td, dpv_loc_non_tf, dpv_loc_non_tg, dpv_loc_non_th, dpv_loc_non_tj, dpv_loc_non_tk, dpv_loc_non_tl, dpv_loc_non_tm,
+        dpv_loc_non_tn, dpv_loc_non_to, dpv_loc_non_tr, dpv_loc_non_tt, dpv_loc_non_tv, dpv_loc_non_tw, dpv_loc_non_tz,
+    dpv_loc_non_ua, dpv_loc_non_ug, dpv_loc_non_um, dpv_loc_non_us, dpv_loc_non_uy, dpv_loc_non_uz,
+    dpv_loc_non_va, dpv_loc_non_vc, dpv_loc_non_ve, dpv_loc_non_vg, dpv_loc_non_vi, dpv_loc_non_vn, dpv_loc_non_vu,
+    dpv_loc_non_wf, dpv_loc_non_ws,
+    dpv_loc_non_ye, dpv_loc_non_yt,
+    dpv_loc_non_za, dpv_loc_non_zm, dpv_loc_non_zw, 
+    ont_context };
+static e_ontology_type aot_nonable [] =
+{   dpv_loc_ad, dpv_loc_ae, dpv_loc_ag, dpv_loc_ai, dpv_loc_al, dpv_loc_am, dpv_loc_ao, dpv_loc_aq, dpv_loc_ar, dpv_loc_as, dpv_loc_at,
+        dpv_loc_au, dpv_loc_aw, dpv_loc_ax, dpv_loc_az,
+    dpv_loc_ba, dpv_loc_bb, dpv_loc_bd, dpv_loc_be, dpv_loc_bf, dpv_loc_bg, dpv_loc_bh, dpv_loc_bi, dpv_loc_bj, dpv_loc_bl, dpv_loc_bm,
+        dpv_loc_bn, dpv_loc_bo, dpv_loc_bq, dpv_loc_br, dpv_loc_bs, dpv_loc_bt, dpv_loc_bv, dpv_loc_bw, dpv_loc_by, dpv_loc_bz,
+    dpv_loc_ca, dpv_loc_cc, dpv_loc_cd, dpv_loc_cf, dpv_loc_cg, dpv_loc_ch, dpv_loc_ci, dpv_loc_ck, dpv_loc_cl, dpv_loc_cm, dpv_loc_cn,
+        dpv_loc_co, dpv_loc_cr, dpv_loc_cu, dpv_loc_cv, dpv_loc_cw, dpv_loc_cx, dpv_loc_cy, dpv_loc_cz,
+    dpv_loc_de, dpv_loc_dj, dpv_loc_dk, dpv_loc_dm, dpv_loc_do, dpv_loc_dz,
+    dpv_loc_ec, dpv_loc_ee, dpv_loc_eea, dpv_loc_eea30, dpv_loc_eea31, dpv_loc_eg, dpv_loc_eh, dpv_loc_er, dpv_loc_es, dpv_loc_et,
+        dpv_loc_eu, dpv_loc_eu27, dpv_loc_eu28,
+    dpv_loc_fi, dpv_loc_fj, dpv_loc_fk, dpv_loc_fm, dpv_loc_fo, dpv_loc_fr,
+    dpv_loc_ga, dpv_loc_gb, dpv_loc_gd, dpv_loc_ge, dpv_loc_gf, dpv_loc_gg, dpv_loc_gh, dpv_loc_gi, dpv_loc_gl, dpv_loc_gm, dpv_loc_gn,
+        dpv_loc_gp, dpv_loc_gq, dpv_loc_gr, dpv_loc_gs, dpv_loc_gt, dpv_loc_gu, dpv_loc_gw, dpv_loc_gy,
+    dpv_loc_hk, dpv_loc_hm, dpv_loc_hn, dpv_loc_hr, dpv_loc_ht, dpv_loc_hu,
+    dpv_loc_id, dpv_loc_ie, dpv_loc_il, dpv_loc_im, dpv_loc_in, dpv_loc_io, dpv_loc_iq, dpv_loc_ir, dpv_loc_is, dpv_loc_it,
+    dpv_loc_je, dpv_loc_jm, dpv_loc_jo, dpv_loc_jp,
+    dpv_loc_ke, dpv_loc_kg, dpv_loc_kh, dpv_loc_ki, dpv_loc_km, dpv_loc_kn, dpv_loc_kp, dpv_loc_kr, dpv_loc_kw, dpv_loc_ky, dpv_loc_kz,
+    dpv_loc_la, dpv_loc_lb, dpv_loc_lc, dpv_loc_li, dpv_loc_lk, dpv_loc_lr, dpv_loc_ls, dpv_loc_lt, dpv_loc_lu, dpv_loc_lv, dpv_loc_ly,
+    dpv_loc_ma, dpv_loc_mc, dpv_loc_md, dpv_loc_me, dpv_loc_mf, dpv_loc_mg, dpv_loc_mh, dpv_loc_mk, dpv_loc_ml, dpv_loc_mm, dpv_loc_mn,
+        dpv_loc_mo, dpv_loc_mp, dpv_loc_mq, dpv_loc_mr, dpv_loc_ms, dpv_loc_mt, dpv_loc_mu, dpv_loc_mv, dpv_loc_mw, dpv_loc_mx, dpv_loc_my,
+        dpv_loc_mz,
+    dpv_loc_na, dpv_loc_nc, dpv_loc_ne, dpv_loc_nf, dpv_loc_ng, dpv_loc_ni, dpv_loc_nl, dpv_loc_no, dpv_loc_np, dpv_loc_nr, dpv_loc_nu,
+        dpv_loc_nz,
+    dpv_loc_om,
+    dpv_loc_pa, dpv_loc_pe, dpv_loc_pf, dpv_loc_pg, dpv_loc_ph, dpv_loc_pk, dpv_loc_pl, dpv_loc_pm, dpv_loc_pn, dpv_loc_pr, dpv_loc_ps,
+        dpv_loc_pt, dpv_loc_pw, dpv_loc_py,
+    dpv_loc_qa,
+    dpv_loc_re, dpv_loc_ro, dpv_loc_rs, dpv_loc_ru, dpv_loc_rw,
+    dpv_loc_sa, dpv_loc_sb, dpv_loc_sc, dpv_loc_sd, dpv_loc_se, dpv_loc_sg, dpv_loc_sh, dpv_loc_si, dpv_loc_sj, dpv_loc_sk, dpv_loc_sl,
+        dpv_loc_sm, dpv_loc_sn, dpv_loc_so, dpv_loc_sr, dpv_loc_ss, dpv_loc_st, dpv_loc_sv, dpv_loc_sx, dpv_loc_sy, dpv_loc_sz,
+    dpv_loc_tc, dpv_loc_td, dpv_loc_tf, dpv_loc_tg, dpv_loc_th, dpv_loc_tj, dpv_loc_tk, dpv_loc_tl, dpv_loc_tm, dpv_loc_tn, dpv_loc_to,
+        dpv_loc_tr, dpv_loc_tt, dpv_loc_tv, dpv_loc_tw, dpv_loc_tz,
+    dpv_loc_ua, dpv_loc_ug, dpv_loc_um, dpv_loc_us, dpv_loc_uy, dpv_loc_uz,
+    dpv_loc_va, dpv_loc_vc, dpv_loc_ve, dpv_loc_vg, dpv_loc_vi, dpv_loc_vn, dpv_loc_vu,
+    dpv_loc_wf, dpv_loc_ws,
+    dpv_loc_ye, dpv_loc_yt,
+    dpv_loc_za, dpv_loc_zm, dpv_loc_zw, 
+    ont_context };
+static e_ontology_type aot_nonned [] =
+{   dpv_loc_ad, dpv_loc_ae, dpv_loc_ag, dpv_loc_ai, dpv_loc_al, dpv_loc_am, dpv_loc_ao, dpv_loc_aq, dpv_loc_ar, dpv_loc_as, dpv_loc_at,
+        dpv_loc_au, dpv_loc_aw, dpv_loc_ax, dpv_loc_az,
+    dpv_loc_ba, dpv_loc_bb, dpv_loc_bd, dpv_loc_be, dpv_loc_bf, dpv_loc_bg, dpv_loc_bh, dpv_loc_bi, dpv_loc_bj, dpv_loc_bl, dpv_loc_bm,
+        dpv_loc_bn, dpv_loc_bo, dpv_loc_bq, dpv_loc_br, dpv_loc_bs, dpv_loc_bt, dpv_loc_bv, dpv_loc_bw, dpv_loc_by, dpv_loc_bz,
+    dpv_loc_ca, dpv_loc_cc, dpv_loc_cd, dpv_loc_cf, dpv_loc_cg, dpv_loc_ch, dpv_loc_ci, dpv_loc_ck, dpv_loc_cl, dpv_loc_cm, dpv_loc_cn,
+        dpv_loc_co, dpv_loc_cr, dpv_loc_cu, dpv_loc_cv, dpv_loc_cw, dpv_loc_cx, dpv_loc_cy, dpv_loc_cz,
+    dpv_loc_de, dpv_loc_dj, dpv_loc_dk, dpv_loc_dm, dpv_loc_do, dpv_loc_dz,
+    dpv_loc_ec, dpv_loc_ee, dpv_loc_eg, dpv_loc_eh, dpv_loc_er, dpv_loc_es, dpv_loc_et,
+    dpv_loc_fi, dpv_loc_fj, dpv_loc_fk, dpv_loc_fm, dpv_loc_fo, dpv_loc_fr,
+    dpv_loc_ga, dpv_loc_gb, dpv_loc_gd, dpv_loc_ge, dpv_loc_gf, dpv_loc_gg, dpv_loc_gh, dpv_loc_gi, dpv_loc_gl, dpv_loc_gm, dpv_loc_gn,
+        dpv_loc_gp, dpv_loc_gq, dpv_loc_gr, dpv_loc_gs, dpv_loc_gt, dpv_loc_gu, dpv_loc_gw, dpv_loc_gy,
+    dpv_loc_hk, dpv_loc_hm, dpv_loc_hn, dpv_loc_hr, dpv_loc_ht, dpv_loc_hu,
+    dpv_loc_id, dpv_loc_ie, dpv_loc_il, dpv_loc_im, dpv_loc_in, dpv_loc_io, dpv_loc_iq, dpv_loc_ir, dpv_loc_is, dpv_loc_it,
+    dpv_loc_je, dpv_loc_jm, dpv_loc_jo, dpv_loc_jp,
+    dpv_loc_ke, dpv_loc_kg, dpv_loc_kh, dpv_loc_ki, dpv_loc_km, dpv_loc_kn, dpv_loc_kp, dpv_loc_kr, dpv_loc_kw, dpv_loc_ky, dpv_loc_kz,
+    dpv_loc_la, dpv_loc_lb, dpv_loc_lc, dpv_loc_li, dpv_loc_lk, dpv_loc_lr, dpv_loc_ls, dpv_loc_lt, dpv_loc_lu, dpv_loc_lv, dpv_loc_ly,
+    dpv_loc_ma, dpv_loc_mc, dpv_loc_md, dpv_loc_me, dpv_loc_mf, dpv_loc_mg, dpv_loc_mh, dpv_loc_mk, dpv_loc_ml, dpv_loc_mm, dpv_loc_mn,
+        dpv_loc_mo, dpv_loc_mp, dpv_loc_mq, dpv_loc_mr, dpv_loc_ms, dpv_loc_mt, dpv_loc_mu, dpv_loc_mv, dpv_loc_mw, dpv_loc_mx, dpv_loc_my,
+        dpv_loc_mz,
+    dpv_loc_na, dpv_loc_nc, dpv_loc_ne, dpv_loc_nf, dpv_loc_ng, dpv_loc_ni, dpv_loc_nl, dpv_loc_no, dpv_loc_np, dpv_loc_nr, dpv_loc_nu,
+        dpv_loc_nz,
+    dpv_loc_om,
+    dpv_loc_pa, dpv_loc_pe, dpv_loc_pf, dpv_loc_pg, dpv_loc_ph, dpv_loc_pk, dpv_loc_pl, dpv_loc_pm, dpv_loc_pn, dpv_loc_pr, dpv_loc_ps,
+        dpv_loc_pt, dpv_loc_pw, dpv_loc_py,
+    dpv_loc_qa,
+    dpv_loc_re, dpv_loc_ro, dpv_loc_rs, dpv_loc_ru, dpv_loc_rw,
+    dpv_loc_sa, dpv_loc_sb, dpv_loc_sc, dpv_loc_sd, dpv_loc_se, dpv_loc_sg, dpv_loc_sh, dpv_loc_si, dpv_loc_sj, dpv_loc_sk, dpv_loc_sl,
+        dpv_loc_sm, dpv_loc_sn, dpv_loc_so, dpv_loc_sr, dpv_loc_ss, dpv_loc_st, dpv_loc_sv, dpv_loc_sx, dpv_loc_sy, dpv_loc_sz,
+    dpv_loc_tc, dpv_loc_td, dpv_loc_tf, dpv_loc_tg, dpv_loc_th, dpv_loc_tj, dpv_loc_tk, dpv_loc_tl, dpv_loc_tm, dpv_loc_tn, dpv_loc_to,
+        dpv_loc_tr, dpv_loc_tt, dpv_loc_tv, dpv_loc_tw, dpv_loc_tz,
+    dpv_loc_ua, dpv_loc_ug, dpv_loc_um, dpv_loc_us, dpv_loc_uy, dpv_loc_uz,
+    dpv_loc_va, dpv_loc_vc, dpv_loc_ve, dpv_loc_vg, dpv_loc_vi, dpv_loc_vn, dpv_loc_vu,
+    dpv_loc_wf, dpv_loc_ws,
+    dpv_loc_ye, dpv_loc_yt,
+    dpv_loc_za, dpv_loc_zm, dpv_loc_zw, 
+    ont_context };
+
+constexpr ::std::size_t max_nonsense = sizeof (aot_nonable) * sizeof (aot_nonned);
+static microdata_hierachy nonsense [max_nonsense];
+static ::std::size_t nonsense_on_toast = 0;
+
 typedef ::std::multimap < e_ontology_type, microdata_hierachy* > vmap_t;
 typedef ::std::multimap < e_ontology_type, e_ontology_type > vss_t;
 vmap_t hierarchy;
@@ -16904,7 +17259,98 @@ void hierarchy_init (nitpick& nits)
                         if (overlap (ontology_hierarchy [x].from_, ontology_hierarchy [x].to_, vi -> second -> from_, vi -> second -> to_))
                             nits.pick (nit_ontology_hierarchy, es_catastrophic, ec_schema, "multiple generalisations for ", sch::name (ontology_hierarchy [x].specific_), " (", ontology_hierarchy [x].specific_, ")");
         if (context.tell (es_all)) nits.pick (nit_all, es_all, ec_schema, sch::name (ontology_hierarchy [x].general_), " : ", sch::name (ontology_hierarchy [x].specific_)); 
-        generalisations.emplace (vss_t::value_type (ontology_hierarchy [x].specific_, ontology_hierarchy [x].general_)); } }
+        generalisations.emplace (vss_t::value_type (ontology_hierarchy [x].specific_, ontology_hierarchy [x].general_)); }
+    PRESUME (sizeof (aot_non) == sizeof (aot_nonable), __FILE__, __LINE__);
+    for (int i = 0; aot_nonable [i] != ont_context; ++i)
+        for (int j = 0; aot_nonned [j] != ont_context; ++j)
+            if (aot_nonable [i] != aot_nonned [j])
+            {   switch (aot_non [i])
+                {   case dpv_loc_eea31 :
+                        if (aot_nonned [j] == dpv_loc_gb)
+                            continue;
+                        FALLTHROUGH;
+                    case dpv_loc_eea :
+                    case dpv_loc_eea30 :
+                        switch (aot_nonned [j])
+                        {   case dpv_loc_at :
+                            case dpv_loc_be :
+                            case dpv_loc_bg :
+                            case dpv_loc_cy :
+                            case dpv_loc_cz :
+                            case dpv_loc_de :
+                            case dpv_loc_dk :
+                            case dpv_loc_ee :
+                            case dpv_loc_es :
+                            case dpv_loc_fi :
+                            case dpv_loc_fr :
+                            case dpv_loc_gr :
+                            case dpv_loc_hr :
+                            case dpv_loc_hu :
+                            case dpv_loc_ie :
+                            case dpv_loc_is :
+                            case dpv_loc_it :
+                            case dpv_loc_lt :
+                            case dpv_loc_lu :
+                            case dpv_loc_lv :
+                            case dpv_loc_mt :
+                            case dpv_loc_nl :
+                            case dpv_loc_no :
+                            case dpv_loc_pl :
+                            case dpv_loc_pt :
+                            case dpv_loc_ro :
+                            case dpv_loc_se :
+                            case dpv_loc_si :
+                            case dpv_loc_sk :
+                                continue;
+                            default : break; }
+                        break;
+                    case dpv_loc_eu28 :
+                        if (aot_nonned [j] == dpv_loc_gb)
+                            continue;
+                        FALLTHROUGH;
+                    case dpv_loc_eu :
+                    case dpv_loc_eu27 :
+                        switch (aot_nonned [j])
+                        {   case dpv_loc_at :
+                            case dpv_loc_be :
+                            case dpv_loc_bg :
+                            case dpv_loc_cy :
+                            case dpv_loc_cz :
+                            case dpv_loc_de :
+                            case dpv_loc_dk :
+                            case dpv_loc_ee :
+                            case dpv_loc_es :
+                            case dpv_loc_fi :
+                            case dpv_loc_fr :
+                            case dpv_loc_gr :
+                            case dpv_loc_hr :
+                            case dpv_loc_hu :
+                            case dpv_loc_ie :
+                            case dpv_loc_it :
+                            case dpv_loc_lt :
+                            case dpv_loc_lu :
+                            case dpv_loc_lv :
+                            case dpv_loc_mt :
+                            case dpv_loc_nl :
+                            case dpv_loc_pl :
+                            case dpv_loc_pt :
+                            case dpv_loc_ro :
+                            case dpv_loc_se :
+                            case dpv_loc_si :
+                            case dpv_loc_sk :
+                                continue;
+                            default : break; }
+                        break;
+                    default : break; }
+                nonsense [nonsense_on_toast].from_ = dpv_loc_2_0;
+                nonsense [nonsense_on_toast].to_ = dpv_loc_2_3;
+                nonsense [nonsense_on_toast].general_ = aot_non [i];
+                nonsense [nonsense_on_toast].specific_ = aot_nonned [j];
+                nonsense [nonsense_on_toast].flags_ = 0;
+                hierarchy.insert (vmap_t::value_type (aot_non [i], &nonsense [nonsense_on_toast]));
+                generalisations.emplace (aot_nonned [j], aot_non [i]);
+                ++nonsense_on_toast;
+                PRESUME (nonsense_on_toast < max_nonsense, __FILE__, __LINE__); } }
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER

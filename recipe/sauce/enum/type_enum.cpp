@@ -3434,6 +3434,36 @@ struct symbol_entry < html_version, e_month_english_long > month_english_long_sy
     { { HTML_TAGS }, { HTML_UNDEF }, "november", mel_nov },
     { { HTML_TAGS }, { HTML_UNDEF }, "december", mel_dec } };
 
+struct symbol_entry < html_version, e_mrss_medium > mrss_medium_symbol_table [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, "audio", mrm_audio },
+    { { HTML_MRSS }, { HTML_UNDEF }, "document", mrm_document },
+    { { HTML_MRSS }, { HTML_UNDEF }, "executable", mrm_executable },
+    { { HTML_MRSS }, { HTML_UNDEF }, "image", mrm_image },
+    { { HTML_MRSS }, { HTML_UNDEF }, "video", mrm_video } };
+
+struct symbol_entry < html_version, e_mrss_role > mrss_role_symbol_table [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, "actor", mrro_actor },
+    { { HTML_MRSS }, { HTML_UNDEF }, "anchor person", mrro_anchor_person },
+    { { HTML_MRSS }, { HTML_UNDEF }, "author", mrro_author },
+    { { HTML_MRSS }, { HTML_UNDEF }, "choreographer", mrro_choreographer },
+    { { HTML_MRSS }, { HTML_UNDEF }, "composer", mrro_composer },
+    { { HTML_MRSS }, { HTML_UNDEF }, "conductor", mrro_conductor },
+    { { HTML_MRSS }, { HTML_UNDEF }, "director", mrro_director },
+    { { HTML_MRSS }, { HTML_UNDEF }, "editor", mrro_editor },
+    { { HTML_MRSS }, { HTML_UNDEF }, "graphic designer", mrro_graphic_designer },
+    { { HTML_MRSS }, { HTML_UNDEF }, "grip", mrro_grip },
+    { { HTML_MRSS }, { HTML_UNDEF }, "illustrator", mrro_illustrator },
+    { { HTML_MRSS }, { HTML_UNDEF }, "lyricist", mrro_lyricist },
+    { { HTML_MRSS }, { HTML_UNDEF }, "music arranger", mrro_music_arranger },
+    { { HTML_MRSS }, { HTML_UNDEF }, "music group", mrro_music_group },
+    { { HTML_MRSS }, { HTML_UNDEF }, "musician", mrro_musician },
+    { { HTML_MRSS }, { HTML_UNDEF }, "orchestra", mrro_orchestra },
+    { { HTML_MRSS }, { HTML_UNDEF }, "performer", mrro_performer },
+    { { HTML_MRSS }, { HTML_UNDEF }, "photographer", mrro_photographer },
+    { { HTML_MRSS }, { HTML_UNDEF }, "producer", mrro_producer },
+    { { HTML_MRSS }, { HTML_UNDEF }, "reporter", mrro_reporter },
+    { { HTML_MRSS }, { HTML_UNDEF }, "vocalist", mrro_vocalist } };
+
 struct symbol_entry < html_version, e_musickey > musickey_symbol_table [] =
 {   { { HTML_ADOBE }, { HTML_UNDEF }, "A", mk_a },
     { { HTML_ADOBE }, { HTML_UNDEF }, "A#", mk_asharp },
@@ -3449,9 +3479,7 @@ struct symbol_entry < html_version, e_musickey > musickey_symbol_table [] =
     { { HTML_ADOBE }, { HTML_UNDEF }, "G", mk_g },
     { { HTML_ADOBE }, { HTML_UNDEF }, "G#", mk_gsharp } };
 
-
 struct symbol_entry < html_version, e_myersbriggs > myersbriggs_symbol_table [] =
-    // opportunistic conman bollox
 {   { { XHTML_1_0 }, { HTML_UNDEF }, "INFP", mb_INFP },
     { { XHTML_1_0 }, { HTML_UNDEF }, "ESFP", mb_ESFP },
     { { XHTML_1_0 }, { HTML_UNDEF }, "INTJ", mb_INTJ },
@@ -3489,6 +3517,7 @@ struct symbol_entry < html_version, e_namespace > namespace_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "bibo", ns_bibo },
     { { XHTML_1_0 }, { HTML_UNDEF }, "cc", ns_cc },
     { { HTML_CNT }, { HTML_UNDEF }, "cnt", ns_cnt },
+    { { HTML_CCRSS }, { HTML_UNDEF }, "creativecommons", ns_ccrss },
     { { XHTML_1_0 }, { HTML_UNDEF }, "crs", ns_crs },
     { { XHTML_1_0 }, { HTML_UNDEF }, "dbp", ns_dbp },
     { { XHTML_1_0 }, { HTML_UNDEF }, "dbp_owl", ns_dbp_owl },
@@ -3513,6 +3542,7 @@ struct symbol_entry < html_version, e_namespace > namespace_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "ittxi", ns_ittxi },
     { { XHTML_1_0 }, { HTML_UNDEF }, "ittxt", ns_ittxt },
     { { XHTML_1_0 }, { HTML_UNDEF }, "math", ns_math },
+    { { HTML_MRSS }, { HTML_UNDEF }, "mrss", ns_mrss },
     { { XHTML_1_0 }, { HTML_UNDEF }, "odd", ns_odd },
     { { XHTML_1_0 }, { HTML_UNDEF }, "oex", ns_oex },
     { { XHTML_1_0 }, { HTML_UNDEF }, "owl", ns_owl },
@@ -3529,6 +3559,7 @@ struct symbol_entry < html_version, e_namespace > namespace_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "smpte", ns_smpte },
     { { HTML_SPDX10 }, { HTML_UNDEF }, "spdx", ns_spdx },
     { { XHTML_1_0 }, { HTML_UNDEF }, "svg", ns_svg },
+    { { HTML_TRACKBACK }, { HTML_UNDEF }, "trackback", ns_trackback },
     { { XHTML_1_0 }, { HTML_UNDEF }, "tt", ns_tt },
     { { XHTML_1_0 }, { HTML_UNDEF }, "ttf", ns_ttf },
     { { XHTML_1_0 }, { HTML_UNDEF }, "ttp", ns_ttp },
@@ -7036,6 +7067,8 @@ struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
     { { XHTML_2_0 }, { HTML_UNDEF }, HTTPS_W3 "/2004/xhtml", x_xhtml_2 },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP CC "/ns#", x_cc },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTPS CC "/ns#", x_cc },
+    { { HTML_4_0 }, { HTML_UNDEF }, NSL_CCRSS, x_ccrss },
+    { { HTML_4_0 }, { HTML_UNDEF }, NSLS_CCRSS, x_ccrss },
     { { HTML_CNT }, { HTML_UNDEF }, HTTP_W3 "/TR/Content-in-RDF/", x_cnt },
     { { HTML_CNT }, { HTML_UNDEF }, HTTPS_W3 "/TR/Content-in-RDF/", x_cnt },
     { { HTML_CNT }, { HTML_UNDEF }, HTTP_W3 "/2011/content#", x_cnt },
@@ -7054,8 +7087,24 @@ struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, HTTPS DEFAULT_DOMAIN "/", x_ex },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP XCOM "/foaf/0.1/", x_foaf },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTPS XCOM "/foaf/0.1/", x_foaf },
+    { { HTML_GEO }, { HTML_UNDEF }, HTTP_W3 "/2003/01/geo/wgs84_pos#", x_geo },
+    { { HTML_GEO }, { HTML_UNDEF }, HTTPS_W3 "/2003/01/geo/wgs84_pos#", x_geo },
+    { { HTML_GEORSS }, { HTML_UNDEF }, HTTP "www.georss.org/georss", x_georss },
+    { { HTML_GEORSS }, { HTML_UNDEF }, HTTPS "www.georss.org/georss", x_georss },
+    { { HTML_GML }, { HTML_UNDEF }, HTTP "www.opengis.net/gml", x_gml },
+    { { HTML_GML }, { HTML_UNDEF }, HTTPS "www.opengis.net/gml", x_gml },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP_W3 "/1998/math/mathml", x_mathml },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS_W3 "/1998/math/mathml", x_mathml },
+    { { HTML_4_0 }, { HTML_UNDEF }, NSL_MRSS, x_mrss },
+    { { HTML_4_0 }, { HTML_UNDEF }, NSLS_MRSS, x_mrss },
+    { { HTML_4_0 }, { HTML_UNDEF }, NSL_MRSS "/", x_mrss },
+    { { HTML_4_0 }, { HTML_UNDEF }, NSLS_MRSS "/", x_mrss },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP "search.yahoo.com/mrss/", x_mrss },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS "search.yahoo.com/mrss/", x_mrss },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP "video.search.yahoo.com/mrss", x_mrss },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS "video.search.yahoo.com/mrss", x_mrss },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTP "video.search.yahoo.com/mrss/", x_mrss },
+    { { HTML_4_0 }, { HTML_UNDEF }, HTTPS "video.search.yahoo.com/mrss/", x_mrss },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/2002/07/owl/#", x_owl },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_W3 "/2002/07/owl/#", x_owl },
     { { HTML_PTR }, { HTML_UNDEF }, HTTP_W3 "/2009/pointers#", x_ptr },
@@ -7081,6 +7130,8 @@ struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_W3 "/tr/rec-mathml-19980407", x_svg },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/graphics/svg/svg-19990706.dtd", x_svg },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_W3 "/graphics/svg/svg-19990706.dtd", x_svg },
+    { { HTML_4_0 }, { HTML_UNDEF }, NSL_TRACKBACK, x_trackback },
+    { { HTML_4_0 }, { HTML_UNDEF }, NSLS_TRACKBACK, x_trackback },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTP_W3 "/2001/vcard-rdf/3.0#", x_vcard1 },
     { { HTML_4_0 }, { HTML_UNDEF }, HTTPS_W3 "/2001/vcard-rdf/3.0#", x_vcard1 },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP "rdf.data-vocabulary.org/#", x_v },
@@ -7536,6 +7587,8 @@ void enum_init (nitpick& nits)
     INIT_ENUM (mf_tel);
     INIT_ENUM (month_english_long);
     INIT_ENUM (month_english_short);
+    INIT_ENUM (mrss_medium);
+    INIT_ENUM (mrss_role);
     INIT_ENUM (musickey);
     INIT_ENUM (myersbriggs);
     INIT_ENUM (namedspace);

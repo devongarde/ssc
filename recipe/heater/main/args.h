@@ -527,6 +527,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NSLS_RSL        HTTPS "rslstandard.org/rsl"
 #define NSL_RSS         HTTP PURL_ORG "/rss/1.0/"
 #define NSLS_RSS        HTTPS PURL_ORG "/rss/1.0/"
-
+#define NSL_CCRSS       HTTP "backend.userland.com/creativeCommonsRssModule"
+#define NSLS_CCRSS      HTTPS "backend.userland.com/creativeCommonsRssModule"
+#define NSL_MRSS        HTTP RSS_BOARD "/media-rss"
+#define NSLS_MRSS       HTTPS RSS_BOARD "/media-rss"
+#define NSL_TRACKBACK   HTTP "madskills.com/public/xml/rss/module/trackback/"
+#define NSLS_TRACKBACK  HTTPS "madskills.com/public/xml/rss/module/trackback/"
 
 #define ARGLEN_MAX  4096

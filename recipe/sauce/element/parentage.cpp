@@ -174,17 +174,34 @@ parentage parent_table [] =
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_contributor, elem_atom_name },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_contributor, elem_atom_uri },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_author },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_atom_entry, elem_georss_box },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_category },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_contributor },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_content },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_atom_entry, elem_mrss_content, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_atom_entry, elem_mrss_group, EP_MRSS },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_atom_entry, elem_georss_elev },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_atom_entry, elem_georss_featurename },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_atom_entry, elem_georss_featuretypetag },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_atom_entry, elem_georss_floor },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_id },
+    { { HTML_GEO }, { HTML_UNDEF }, elem_atom_entry, elem_geo_lat },
+    { { HTML_CCRSS, 0, 0, 0, 0, H4_CCRSS }, { HTML_UNDEF }, elem_atom_entry, elem_ccrss_licence, EP_CCRSS },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_atom_entry, elem_georss_line },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_link },
+    { { HTML_GEO }, { HTML_UNDEF }, elem_atom_entry, elem_geo_long },
+    { { HTML_GEO }, { HTML_UNDEF }, elem_atom_entry, elem_geo_point },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_atom_entry, elem_georss_point },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_atom_entry, elem_georss_polygon },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_published },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_atom_entry, elem_georss_radius },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_atom_entry, elem_georss_relationshiptag },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_rights },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_source },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_summary },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_title },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_entry, elem_atom_updated },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_atom_entry, elem_georss_where },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_author },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_category },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_contributor },
@@ -192,6 +209,7 @@ parentage parent_table [] =
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_generator },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_icon },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_id },
+    { { HTML_CCRSS, 0, 0, 0, 0, H4_CCRSS }, { HTML_UNDEF }, elem_atom_feed, elem_ccrss_licence, EP_CCRSS },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_link },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_logo },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_feed, elem_atom_rights },
@@ -497,9 +515,12 @@ parentage parent_table [] =
     { { HTML_4_0 }, { XHTML_1_1 }, elem_em, elem_undefined, 0, EF_4_INLINE },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_em, elem_undefined, 0, EF_X2_TEXT },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_em, elem_undefined, 0, EF_5_PHRASE },
+    { { HTML_GML }, { HTML_UNDEF }, elem_gml_envelope, elem_gml_lowercorner },
+    { { HTML_GML }, { HTML_UNDEF }, elem_gml_envelope, elem_gml_uppercorner },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_extensiondefs, elem_script },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_extensiondefs, elem_elementdef },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_extensiondefs, elem_defs },
+    { { HTML_GML }, { HTML_UNDEF }, elem_gml_exterior, elem_gml_linearring },
     { { HTML_1_0, HV_NOTPLUS }, { HTML_UNDEF }, elem_faux_document, elem_html },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_faux_document, elem_atom_feed },
     { { HTML_RDF10 }, { HTML_UNDEF }, elem_faux_document, elem_rdf_rdf },
@@ -748,6 +769,8 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12_20 }, { HTML_SVG20 }, elem_g, elem_video },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_g, elem_view },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_g, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD | EF_SVG_STR },
+    { { HTML_GEO }, { HTML_UNDEF }, elem_geo_point, elem_geo_lat },
+    { { HTML_GEO }, { HTML_UNDEF }, elem_geo_point, elem_geo_long },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyph, elem_a },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyph, elem_altglyph },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyph, elem_clippath },
@@ -876,10 +899,10 @@ parentage parent_table [] =
     { { HTML_4_0 }, { XHTML_1_1 }, elem_kbd, elem_undefined, 0, EF_4_INLINE },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_kbd, elem_undefined, 0, EF_X2_TEXT },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_kbd, elem_undefined, 0, EF_5_PHRASE },
+    { { HTML_PLUS }, { HTML_PLUS }, elem_l, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
     { { HTML_5_2 }, { HTML_UNDEF }, elem_lambda, elem_undefined, 0, EF_M_DQ },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_lambda, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_3_0 }, { HTML_UNDEF }, elem_lang, elem_undefined, 0, EF_3_TEXTIN },
-    { { HTML_PLUS }, { HTML_PLUS }, elem_l, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_label, elem_label, DENY },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_label, elem_undefined, 0, EF_4_INLINE },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_label, elem_undefined, 0, EF_5_PHRASE },
@@ -918,6 +941,8 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_lineargradient, elem_switch },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_lineargradient, elem_undefined, 0, EF_SVG_DESC },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_lineargradient, elem_undefined, 0, EF_SVG_DESC | EF_SVG_ANIM },
+    { { HTML_GML }, { HTML_UNDEF }, elem_gml_linearring, elem_gml_poslist },
+    { { HTML_GML }, { HTML_UNDEF }, elem_gml_linestring, elem_gml_poslist },
     { { HTML_5_2 }, { HTML_UNDEF }, elem_list, elem_undefined, 0, EF_M_DQ },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_list, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_listing, elem_undefined },
@@ -1066,6 +1091,74 @@ parentage parent_table [] =
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_mphantom, elem_undefined, 0, EF_M_PRESEXPR },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_mroot, elem_undefined, 0, EF_M_PRESEXPR },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_mrow, elem_undefined, 0, EF_M_PRESEXPR },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_backlinks, elem_mrss_backlink, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_comments, elem_mrss_comment, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_community, elem_mrss_starrating, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_community, elem_mrss_statistics, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_community, elem_mrss_tags, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_adult, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_backlinks, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_category, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_comments, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_community, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_copyright, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_credit, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_description, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_embed, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_hash, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_keywords, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_licence, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_location, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_peerlink, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_player, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_price, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_rating, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_responses, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_restriction, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_rights, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_scenes, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_status, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_subtitle, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_text, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_thumbnail, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_mrss_title, EP_MRSS },
+//    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_content, elem_dct_valid, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_embed, elem_mrss_param, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_adult, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_backlinks, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_category, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_comments, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_community, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_content, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_copyright, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_credit, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_description, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_embed, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_hash, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_keywords, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_licence, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_location, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_peerlink, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_player, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_price, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_rating, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_responses, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_restriction, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_rights, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_scenes, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_status, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_subtitle, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_text, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_thumbnail, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_mrss_title, EP_MRSS },
+//    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_group, elem_dct_valid, EP_MRSS },
+    { { HTML_GEORSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_location, elem_georss_where, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_responses, elem_mrss_response, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_scene, elem_mrss_scenedescription, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_scene, elem_mrss_sceneendtime, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_scene, elem_mrss_scenestarttime, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_scene, elem_mrss_scenetitle, EP_MRSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_scenes, elem_mrss_scene, EP_MRSS },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_ms, elem_malignmark },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, elem_ms, elem_mglyph },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mscarries, elem_mscarry },
@@ -1198,6 +1291,7 @@ parentage parent_table [] =
     { { HTML_JUL14, HV_NOT50 }, { HTML_UNDEF }, elem_picture, elem_script },
     { { HTML_JUL14, HV_NOT50 }, { HTML_UNDEF }, elem_picture, elem_template },
     { { HTML_TAGS }, { HTML_UNDEF }, elem_plaintext, elem_undefined },
+    { { HTML_GML }, { HTML_UNDEF }, elem_gml_point, elem_gml_pos },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polyline, elem_clippath },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_polyline, elem_discard },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_polyline, elem_handler },
@@ -1218,6 +1312,7 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_polygon, elem_switch },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_polygon, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polygon, elem_undefined, 0, EF_SVG_PSGRAD },
+    { { HTML_GML }, { HTML_UNDEF }, elem_gml_polygon, elem_gml_exterior },
     { { HTML_1_0 }, { HTML_2_0 }, elem_pre, elem_a },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_pre, elem_applet, DENY },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_pre, elem_basefont, DENY },
@@ -1339,6 +1434,7 @@ parentage parent_table [] =
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_language, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_lastbuilddate, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_link, EP_RSS },
+    { { HTML_CCRSS, 0, 0, 0, 0, H4_CCRSS }, { HTML_UNDEF }, elem_rss_channel, elem_ccrss_licence, EP_CCRSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_managingeditor, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_pubdate, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_rating, EP_RSS },
@@ -1348,22 +1444,96 @@ parentage parent_table [] =
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_title, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_ttl, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_channel, elem_rss_webmaster, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_adult, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_backlinks, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_category, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_comments, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_community, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_copyright, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_credit, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_description, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_embed, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_hash, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_keywords, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_licence, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_location, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_peerlink, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_player, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_price, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_rating, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_responses, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_restriction, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_rights, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_scenes, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_status, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_subtitle, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_text, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_thumbnail, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_mrss_title, EP_RSS },
+//    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_channel, elem_dct_valid, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_image, elem_rss_description, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_image, elem_rss_height, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_image, elem_rss_link, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_image, elem_rss_title, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_image, elem_rss_url, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_image, elem_rss_width, EP_RSS },
+    { { HTML_TRACKBACK, 0, 0, 0, 0, H4_TRACKBACK }, { HTML_UNDEF }, elem_rss_item, elem_trackback_about, EP_TRACKBACK },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_author, EP_RSS },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_rss_item, elem_georss_box },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_category, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_comments, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_description, EP_RSS },
+    { { HTML_RSL, 0, 0, 0, 0, H4_RSL }, { HTML_UNDEF }, elem_rss_item, elem_rsl_content, EP_RSL }, // not defined but appears in official examples
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_adult, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_backlinks, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_category, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_comments, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_community, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_content, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_copyright, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_credit, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_description, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_embed, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_hash, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_keywords, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_licence, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_location, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_peerlink, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_player, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_price, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_rating, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_responses, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_restriction, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_rights, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_scenes, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_status, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_subtitle, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_text, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_thumbnail, EP_RSS },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_title, EP_RSS },
+//    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_dct_valid, EP_MRSS },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_rss_item, elem_georss_elev },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_enclosure, EP_RSS },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_rss_item, elem_georss_featurename },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_rss_item, elem_georss_featuretypetag },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_rss_item, elem_georss_floor },
+    { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_rss_item, elem_mrss_group, EP_MRSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_guid, EP_RSS },
+    { { HTML_GEO }, { HTML_UNDEF }, elem_rss_item, elem_geo_lat },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_rss_item, elem_georss_line },
+    { { HTML_GEO }, { HTML_UNDEF }, elem_rss_item, elem_geo_long },
+    { { HTML_CCRSS, 0, 0, 0, 0, H4_CCRSS }, { HTML_UNDEF }, elem_rss_item, elem_ccrss_licence, EP_CCRSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_link, EP_RSS },
+    { { HTML_TRACKBACK, 0, 0, 0, 0, H4_TRACKBACK }, { HTML_UNDEF }, elem_rss_item, elem_trackback_ping, EP_TRACKBACK },
+    { { HTML_GEO }, { HTML_UNDEF }, elem_rss_item, elem_geo_point },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_rss_item, elem_georss_point },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_rss_item, elem_georss_polygon },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_pubdate, EP_RSS },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_rss_item, elem_georss_radius },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_rss_item, elem_georss_relationshiptag },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_source, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_item, elem_rss_title, EP_RSS },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_rss_item, elem_georss_where },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_skipdays, elem_rss_day, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_skiphours, elem_rss_hour, EP_RSS },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, elem_rss_textinput, elem_rss_description, EP_RSS },
@@ -1732,8 +1902,17 @@ parentage parent_table [] =
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_view, elem_style },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_view, elem_undefined, 0, EF_SVG_DESC },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_view, elem_undefined, 0, EF_SVG_DESC | EF_SVG_ANIM },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_georss_where, elem_gml_envelope },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_georss_where, elem_gml_linestring },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_georss_where, elem_gml_point },
+    { { HTML_GEORSS }, { HTML_UNDEF }, elem_georss_where, elem_gml_polygon },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_xa, elem_loc },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_xa, elem_undefined, EP_SVG_12_TRANS },
+
+    /*
+ elem_gml_envelope, elem_gml_exterior, elem_gml_linearring, elem_gml_lowercorner, elem_gml_linestring, elem_gml_point,
+        elem_gml_pos, elem_gml_poslist, elem_gml_polygon, elem_gml_uppercorner   
+    */
 
     { { HTML_3_2 }, { HTML_UNDEF }, elem_undefined, elem_area, DENY },
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_undefined, elem_faux_document, DENY },
@@ -2145,6 +2324,8 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
         case elem_elementdef :
         case elem_defs :
             return elem_extensiondefs;
+        case elem_gml_exterior :
+            return elem_gml_polygon;
         case elem_feblend :
         case elem_fecomposite :
         case elem_fecolourmatrix :
@@ -2210,6 +2391,8 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
             if (v.has_math ()) return elem_apply;
             if (v.has_svg ()) return elem_svg;
             break;
+        case elem_gml_linearring :
+            return elem_gml_exterior;
         case elem_loc :
             return elem_xa;
         case elem_text :
@@ -2232,6 +2415,14 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
         case elem_over :
         case elem_right :
             return elem_box;
+        case elem_gml_envelope :
+        case elem_gml_linestring :
+        case elem_gml_point :
+        case elem_gml_polygon :
+            return elem_georss_where;
+        case elem_gml_lowercorner :
+        case elem_gml_uppercorner :
+            return elem_gml_envelope;
         case elem_mtd:
             return elem_mtr;
         case elem_mtr:
@@ -2245,6 +2436,9 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
         case elem_tfoot :
         case elem_thead :
             return elem_table;
+        case elem_geo_lat :
+        case elem_geo_long :
+            return elem_geo_point;
         case elem_legend :
             return elem_fieldset;
         case elem_of :
@@ -2262,6 +2456,52 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
             return elem_ul;
         case elem_mh :
             return elem_form;
+        case elem_mrss_adult :
+        case elem_mrss_backlinks :
+        case elem_mrss_category :
+        case elem_mrss_comments :
+        case elem_mrss_community :
+        case elem_mrss_copyright :
+        case elem_mrss_credit :
+        case elem_mrss_description :
+        case elem_mrss_embed :
+        case elem_mrss_hash :
+        case elem_mrss_keywords :
+        case elem_mrss_licence :
+        case elem_mrss_location :
+        case elem_mrss_peerlink :
+        case elem_mrss_player :
+        case elem_mrss_price :
+        case elem_mrss_rating :
+        case elem_mrss_responses :
+        case elem_mrss_restriction :
+        case elem_mrss_rights :
+        case elem_mrss_scenes :
+        case elem_mrss_status :
+        case elem_mrss_subtitle :
+        case elem_mrss_text :
+        case elem_mrss_thumbnail :
+        case elem_mrss_title :
+            return elem_mrss_content;
+        case elem_mrss_backlink :
+            return elem_mrss_backlinks;
+        case elem_mrss_comment :
+            return elem_mrss_comments;
+        case elem_mrss_param :
+            return elem_mrss_embed;
+        case elem_mrss_response :
+            return elem_mrss_responses;
+        case elem_mrss_scene :
+            return elem_mrss_scenes;
+        case elem_mrss_scenedescription :
+        case elem_mrss_sceneendtime :
+        case elem_mrss_scenestarttime :
+        case elem_mrss_scenetitle :
+            return elem_mrss_scene;
+        case elem_mrss_starrating :
+        case elem_mrss_statistics :
+        case elem_mrss_tags :
+            return elem_mrss_community;
         case elem_nest :
             return elem_rule;
         case elem_noframes :
@@ -2280,6 +2520,10 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
         case elem_param :
             if (v.is_3 ()) return elem_applet;
             return elem_object;
+        case elem_gml_pos :
+            return elem_gml_point;
+        case elem_gml_poslist :
+            return elem_gml_linestring;
         case elem_prototype :
         case elem_traitdef :
         case elem_transformer :
@@ -2319,14 +2563,30 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
         case elem_rsl_prohibits :
             return elem_rsl_licence;
         case elem_rss_author :
+        case elem_georss_box :
         case elem_rss_comments :
+        case elem_mrss_content :
         case elem_rss_description :
+        case elem_georss_elev :
         case elem_rss_enclosure :
+        case elem_georss_featurename :
+        case elem_georss_featuretypetag :
+        case elem_georss_floor :
+        case elem_mrss_group :
         case elem_rss_guid :
+        case elem_georss_line :
         case elem_rss_link :
+        case elem_geo_point :
+        case elem_georss_point :
+        case elem_georss_polygon :
         case elem_rss_pubdate :
+        case elem_georss_radius :
+        case elem_georss_relationshiptag: 
         case elem_rss_source :
         case elem_rss_title :
+        case elem_trackback_about :
+        case elem_trackback_ping :
+        case elem_georss_where :
             return elem_rss_item;
         case elem_rss_category :
         case elem_rss_cloud :
@@ -2336,6 +2596,7 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
         case elem_rss_image :
         case elem_rss_language :
         case elem_rss_lastbuilddate :
+        case elem_ccrss_licence :
         case elem_rss_managingeditor :
         case elem_rss_rating :
         case elem_rss_skipdays :

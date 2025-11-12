@@ -117,6 +117,14 @@ hav_t havt_track [] =
     STANDARD_HTML5_ATTRIBUTES(elem_track),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_trackback_about [] =
+{   { { HTML_TRACKBACK }, { HTML_UNDEF }, elem_trackback_about, a_rdf_resource },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_trackback_ping [] =
+{   { { HTML_TRACKBACK }, { HTML_UNDEF }, elem_trackback_ping, a_rdf_resource },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_traitdef [] =
 {   { { HTML_SVG12, HV_REQUIRED, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_traitdef, a_name },
     { { HTML_SVG12, HV_REQUIRED, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_traitdef, a_namespace },

@@ -56,7 +56,7 @@ public:
     void manage_xmlns (nitpick& nits, html_version& v);
     bool empty () const noexcept { return va_.size () == 0; }
     static void process_attributes (nitpick& nits, const html_version& v, element_node* box, const ::std::string::const_iterator b, const ::std::string::const_iterator e,
-                                    const int line, const e_namespace autodeclare);
+                                    const int line, const e_namespace autodeclare, const elem& el);
     void parse (nitpick& nits, const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e,
                 const int line, const elem& el, const bool normal, const e_namespace autodeclare);
     const element_node* box () const noexcept { return box_; }

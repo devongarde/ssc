@@ -967,6 +967,9 @@ const nitname nitnames [] =
     { nit_local_datetime, "local_datetime" },
     { nit_absolute_datetime, "absolute_datetime" },
     { nit_bad_value, "bad_value" },
+    { nit_cc, "cc" },
+    { nit_mrss, "mrss" },
+    { nit_rdfa, "rdfa" },
 
     { nit_incompatible, "incompatible" },
 

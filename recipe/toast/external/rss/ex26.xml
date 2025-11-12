@@ -1,0 +1,1192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:nyt="http://www.nytimes.com/namespaces/rss/2.0" version="2.0">
+  <channel>
+    <title>NYT &gt; Top Stories</title>
+    <link>https://www.nytimes.com</link>
+    <atom:link href="https://sample-feeds.rowanmanning.com/real-world/c5e0e65569698bc9792cddb93cca6c68/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <description></description>
+    <language>en-us</language>
+    <copyright>Copyright 2022 The New York Times Company</copyright>
+    <lastBuildDate>Tue, 05 Apr 2022 22:06:19 +0000</lastBuildDate>
+    <pubDate>Tue, 05 Apr 2022 22:04:52 +0000</pubDate>
+    <image>
+      <title>NYT &gt; Top Stories</title>
+      <url>https://static01.nyt.com/images/misc/NYT_logo_rss_250x40.png</url>
+      <link>https://www.nytimes.com</link>
+    </image>
+    <item>
+      <title>US Blocks Russia’s Access to Dollars for Bond Payments</title>
+      <link>https://www.nytimes.com/2022/04/05/business/russia-debt-dollars.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/business/russia-debt-dollars.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/business/russia-debt-dollars.html" rel="standout"></atom:link>
+      <description>The U.S. Treasury tightened its restrictions on Russian financial transactions on Monday, when more than half a billion dollars in bond payments were due.</description>
+      <dc:creator>Alan Rappeport and Eshe Nelson</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 21:46:13 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Embargoes and Sanctions</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Credit and Debt</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States International Relations</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Russian Invasion of Ukraine (2022)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Treasury Department</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Russia</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Ukraine</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Currency</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Ruble (Currency)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">US Dollar (Currency)</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/06/business/05russia-debt-print/05russia-debt-moth.jpg" width="151"></media:content>
+      <media:credit>Stefani Reynolds for The New York Times</media:credit>
+      <media:description>The Treasury Department said its move would create additional problems for Russia’s financial system. </media:description>
+    </item>
+    <item>
+      <title>Up-Close Ukraine Atrocity Photographs Touch a Global Nerve</title>
+      <link>https://www.nytimes.com/2022/04/05/world/europe/russia-ukraine-war-atrocities.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/world/europe/russia-ukraine-war-atrocities.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/world/europe/russia-ukraine-war-atrocities.html" rel="standout"></atom:link>
+      <description>The apparent execution of Ukrainian civilians by retreating Russian forces, their bodies strewn in streets and yards, has focused attention on what constitutes crimes in war.</description>
+      <dc:creator>Rick Gladstone</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 15:53:57 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Russian Invasion of Ukraine (2022)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Civilian Casualties</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">War Crimes, Genocide and Crimes Against Humanity</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Defense and Military Forces</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Russia</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Ukraine</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Bucha (Ukraine)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Chernihiv (Ukraine)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Kyiv (Ukraine)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Mykolaiv (Ukraine)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Kharkiv (Ukraine)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Mariupol (Ukraine)</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/04/world/04ukraine-atrocities/04ukraine-atrocities-moth-v2.jpg" width="151"></media:content>
+      <media:credit>Daniel Berehulak for The New York Times</media:credit>
+      <media:description>Tatyana Petrovna, 72, in the garden of a Bucha home where the bodies of three civilians lay on Monday.</media:description>
+    </item>
+    <item>
+      <title>In the rubble of a town near Kyiv, many are missing and feared dead.</title>
+      <link>https://www.nytimes.com/live/2022/04/05/world/ukraine-russia-war/ukraine-airstrikes-borodyanka</link>
+      <guid isPermaLink="true">https://www.nytimes.com/live/2022/04/05/world/ukraine-russia-war/ukraine-airstrikes-borodyanka</guid>
+      <atom:link href="https://www.nytimes.com/live/2022/04/05/world/ukraine-russia-war/ukraine-airstrikes-borodyanka" rel="standout"></atom:link>
+      <description></description>
+      <dc:creator>Carlotta Gall</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 20:38:38 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Russian Invasion of Ukraine (2022)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">War Crimes, Genocide and Crimes Against Humanity</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Borodyanka (Ukraine)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Russia</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Ukraine</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/multimedia/05ukraine-blog-borodyanka-topart/05ukraine-blog-borodyanka-topart-moth.jpg" width="151"></media:content>
+      <media:credit>Photographs by Ivor Prickett for The New York Times</media:credit>
+      <media:description>A gaping hole in a large apartment building of Borodyanka, Ukraine, laid bare its destruction after weeks of bombardment and fighting. Below, residents crowded a pick-up truck distributing aid after their town was recaptured by Ukrainian forces.</media:description>
+    </item>
+    <item>
+      <title>After Russian advances, U.S., Britain and Australia expand partnership to develop hypersonic missiles.</title>
+      <link>https://www.nytimes.com/live/2022/04/05/world/ukraine-russia-war/after-russian-advances-us-britain-and-australia-expand-partnership-to-develop-hypersonic-missiles</link>
+      <guid isPermaLink="true">https://www.nytimes.com/live/2022/04/05/world/ukraine-russia-war/after-russian-advances-us-britain-and-australia-expand-partnership-to-develop-hypersonic-missiles</guid>
+      <atom:link href="https://www.nytimes.com/live/2022/04/05/world/ukraine-russia-war/after-russian-advances-us-britain-and-australia-expand-partnership-to-develop-hypersonic-missiles" rel="standout"></atom:link>
+      <description></description>
+      <dc:creator>Julian E. Barnes</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 21:06:46 +0000</pubDate>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/world/05ukraine-blog-hypersonic01/05ukraine-blog-hypersonic01-moth.jpg" width="151"></media:content>
+      <media:credit>Richard Wainwright/EPA, via Shutterstock</media:credit>
+      <media:description>An Australian Collins class submarine, front, and a British nuclear-powered attack sub in Perth last year.</media:description>
+    </item>
+    <item>
+      <title>Some Ukrainian Refugees Are Returning Home, Despite the Risks</title>
+      <link>https://www.nytimes.com/2022/04/05/world/europe/ukraine-refugee-war-return.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/world/europe/ukraine-refugee-war-return.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/world/europe/ukraine-refugee-war-return.html" rel="standout"></atom:link>
+      <description>A growing number of families, convinced the war could last for years, have decided that facing danger at home is better than life as a refugee.</description>
+      <dc:creator>Jane Arraf</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 18:23:12 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Ukraine</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Russia</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Russian Invasion of Ukraine (2022)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">War and Armed Conflicts</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Refugees and Displaced Persons</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Stations and Terminals (Passenger)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Czech Republic</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Europe</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Lviv (Ukraine)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Poland</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/world/05ukraine-returnees-1/05ukraine-returnees-1-moth.jpg" width="151"></media:content>
+      <media:credit>Mauricio Lima for The New York Times</media:credit>
+      <media:description>Homecoming: Mariia Seniuk, left, with her two daughters, arriving from Szczecin, Poland, at the main bus terminal in Lviv, Ukraine. “Home is home,” she said.</media:description>
+    </item>
+    <item>
+      <title>The ‘next pivotal battle’ in Ukraine? Sloviansk, military analysts say.</title>
+      <link>https://www.nytimes.com/live/2022/04/05/world/ukraine-russia-war/the-next-pivotal-battle-in-ukraine-sloviansk-military-analysts-say</link>
+      <guid isPermaLink="true">https://www.nytimes.com/live/2022/04/05/world/ukraine-russia-war/the-next-pivotal-battle-in-ukraine-sloviansk-military-analysts-say</guid>
+      <atom:link href="https://www.nytimes.com/live/2022/04/05/world/ukraine-russia-war/the-next-pivotal-battle-in-ukraine-sloviansk-military-analysts-say" rel="standout"></atom:link>
+      <description>A new report says Russia needs to seize the city or its campaign to capture eastern Ukraine “will likely fail.”</description>
+      <dc:creator>Cora Engelbrecht</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 21:26:13 +0000</pubDate>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/world/05ukraine-blog-Slovyansk/merlin_201489255_1243cf74-1079-4fa8-9570-b715ef757a5e-moth.jpg" width="151"></media:content>
+      <media:credit>Andriy Andriyenko/Associated Press</media:credit>
+      <media:description>Members of the Ukrainian National Guard patrolling a square in Sloviansk in early February.</media:description>
+    </item>
+    <item>
+      <title>Hackers’ Fake Claims of Ukrainian Surrender Aren’t Fooling Anyone. So What’s Their Goal?</title>
+      <link>https://www.nytimes.com/2022/04/05/us/politics/ukraine-russia-hackers.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/us/politics/ukraine-russia-hackers.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/us/politics/ukraine-russia-hackers.html" rel="standout"></atom:link>
+      <description>Experts say the hackers’ intentions might not be to actually trick anyone, but to erode confidence in Ukrainian media outlets and institutions.</description>
+      <dc:creator>Kate Conger</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 20:03:33 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Ukraine</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Russian Invasion of Ukraine (2022)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Cyberwarfare and Defense</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Computer Security</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Rumors and Misinformation</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">News and News Media</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Zelensky, Volodymyr</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Facebook Inc</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Russia</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Belarus</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">War and Armed Conflicts</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/us/politics/05dc-surrender-hacks-1/merlin_204706437_35e7a841-c793-463c-81a9-68a69cc23de3-moth.jpg" width="151"></media:content>
+      <media:credit>Daniel Berehulak for The New York Times</media:credit>
+      <media:description>Ukrainian soldiers in Irpin last week. Since Russia’s invasion began, hackers have repeatedly broken into the social media accounts and broadcasting systems of trusted information sources in Ukraine.</media:description>
+    </item>
+    <item>
+      <title>Russians’ Flight Suits Weren’t a Political Statement, NASA Astronaut Says</title>
+      <link>https://www.nytimes.com/2022/04/05/science/russian-astronauts-flight-suits-ukraine-flag.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/science/russian-astronauts-flight-suits-ukraine-flag.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/science/russian-astronauts-flight-suits-ukraine-flag.html" rel="standout"></atom:link>
+      <description>The Russians were “kind of blindsided,” that people thought they were making a political statement, Mark Vande Hei said. But the suits matched the colors of the university they all attended.</description>
+      <dc:creator>Kenneth Chang</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 17:41:30 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Vande Hei, Mark</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Russian Invasion of Ukraine (2022)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">International Space Station</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Russia</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Space and Astronomy</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Ukraine</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/multimedia/05ukraine-blog-astronauts-topart/05ukraine-blog-astronauts-topart-moth.jpg" width="151"></media:content>
+      <media:credit>Roscosmos, via Associated Press</media:credit>
+      <media:description>Three Russian astronauts wore flight suits that included the colors of the Ukrainian flag when they arrived at the International Space Station in March.</media:description>
+    </item>
+    <item>
+      <title>Oklahoma Lawmakers Approve Near-Total Ban on Abortion</title>
+      <link>https://www.nytimes.com/2022/04/05/us/oklahoma-abortion-ban.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/us/oklahoma-abortion-ban.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/us/oklahoma-abortion-ban.html" rel="standout"></atom:link>
+      <description>The measure is part of a wave of stringent abortion restrictions enacted by legislators in Republican-led states.</description>
+      <dc:creator>Michael Levenson</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 22:04:52 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Abortion</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Law and Legislation</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">State Legislatures</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Pregnancy and Childbirth</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Women and Girls</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Republican Party</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Stitt, Kevin</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Oklahoma</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/multimedia/05xp-oklahoma/05xp-oklahoma-moth.jpg" width="151"></media:content>
+      <media:credit>Sarah Phipps/The Oklahoman, via Associated Press</media:credit>
+      <media:description>Supporters of abortion rights rallied in front of the State Capitol in Oklahoma City on Tuesday.</media:description>
+    </item>
+    <item>
+      <title>The US Economy Is Booming. Why Are Economists Worrying About a Recession?</title>
+      <link>https://www.nytimes.com/2022/04/05/business/economy/recession-economy.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/business/economy/recession-economy.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/business/economy/recession-economy.html" rel="standout"></atom:link>
+      <description>There is little sign that a recession is imminent. But sky-high demand and supply shortages are testing the economy’s limits.</description>
+      <dc:creator>Ben Casselman</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 09:00:22 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Economy</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Recession and Depression</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Inflation (Economics)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Federal Reserve System</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Coronavirus (2019-nCoV)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Prices (Fares, Fees and Rates)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Interest Rates</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Labor and Jobs</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Unemployment</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Wages and Salaries</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/04/business/04econ-recession01/04econ-recession01-moth.jpg" width="151"></media:content>
+      <media:credit>Gabby Jones for The New York Times</media:credit>
+      <media:description>The rapid rebound in consumer spending has overwhelmed supply chains, driving up prices.</media:description>
+    </item>
+    <item>
+      <title>Ukraine War Reverberates in Europe’s Factories and Warehouses</title>
+      <link>https://www.nytimes.com/2022/04/05/business/europe-exports-russia.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/business/europe-exports-russia.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/business/europe-exports-russia.html" rel="standout"></atom:link>
+      <description>European companies that relied on Russian customers are suffering collateral damage from the invasion of Ukraine and Western sanctions.</description>
+      <dc:creator>Liz Alderman</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 17:27:36 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Economic Conditions and Trends</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Supply Chain</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">International Trade and World Market</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Embargoes and Sanctions</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Russian Invasion of Ukraine (2022)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Factories and Manufacturing</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Shopping and Retail</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Europe</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Russia</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Ukraine</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/03/business/00eurobiz-1/00eurobiz-1-moth.jpg" width="151"></media:content>
+      <media:credit>Clara Vannucci for The New York Times</media:credit>
+      <media:description>Raimondo Amaranti, left, overseeing the making of ballerina slippers intended for Russia at the Italian shoemaker Sergio Amaranti.</media:description>
+    </item>
+    <item>
+      <title>Truck Drivers’ On-the-Job Training Can Be Costly if They Quit</title>
+      <link>https://www.nytimes.com/2022/04/05/business/economy/trucker-training.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/business/economy/trucker-training.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/business/economy/trucker-training.html" rel="standout"></atom:link>
+      <description>Freight haulers draw rookie drivers by promising to get them licensed. The obligation that follows, one lawyer says, amounts to indentured servitude.</description>
+      <dc:creator>Sarah Butrymowicz and Meredith Kolodner</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 15:00:14 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Trucks and Trucking</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Debt Collection</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Wages and Salaries</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Labor and Jobs</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Suits and Litigation (Civil)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Drivers Licenses</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Vocational Training</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Hechinger Report, The</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/06/business/00JPtrucker-training2-print/00trucker-training01-moth.jpg" width="151"></media:content>
+      <media:credit>Sean Rayford for The New York Times</media:credit>
+      <media:description>Each year, thousands of people sign up for training with some of the biggest freight haulers. Nine in 10 drivers leave their jobs within a year at large carriers.</media:description>
+    </item>
+    <item>
+      <title>France’s Far Right Turn</title>
+      <link>https://www.nytimes.com/2022/03/31/magazine/new-french-right.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/03/31/magazine/new-french-right.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/03/31/magazine/new-french-right.html" rel="standout"></atom:link>
+      <description>A rising nationalist faction has grown its coalition by appealing to Catholic identity and anti-immigrant sentiment — and reshaped the country’s race for president.</description>
+      <dc:creator>Elisabeth Zerofsky</dc:creator>
+      <pubDate>Sun, 03 Apr 2022 03:39:26 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Elections</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Nationalism (Theory and Philosophy)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Personal Profile</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Muslims and Islam</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Zemmour, Eric</category>
+      <category domain=""></category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Le Pen, Marine</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Macron, Emmanuel (1977- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">National Rally (France)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">National Front (France)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">France</category>
+    </item>
+    <item>
+      <title>For Macron, France’s Troubled Industries Hit Home</title>
+      <link>https://www.nytimes.com/2022/04/05/world/europe/macron-france-election-amiens.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/world/europe/macron-france-election-amiens.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/world/europe/macron-france-election-amiens.html" rel="standout"></atom:link>
+      <description>President Emmanuel Macron vowed an economic revival, but as he seeks re-election, a Potemkin factory in the town where he was raised shows just how hard that can be.</description>
+      <dc:creator>Norimitsu Onishi</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 20:03:09 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Layoffs and Job Reductions</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Labor and Jobs</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Yellow Vests Movement</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Economic Conditions and Trends</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Elections</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Organized Labor</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Unemployment</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Factories and Manufacturing</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Whirlpool Corporation</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">National Front (France)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Le Pen, Marine</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Macron, Emmanuel (1977- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">France</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Amiens (France)</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/03/23/world/xxFRANCE-AMIENS10/xxFRANCE-AMIENS10-moth.jpg" width="151"></media:content>
+      <media:credit>Dmitry Kostyukov for The New York Times</media:credit>
+      <media:description>The site of the Whirlpool plant in Amiens, France. Mr. Macron promised to save the factory, and his government poured millions in subsidies toward its reinvention.</media:description>
+    </item>
+    <item>
+      <title>Jewish Man’s Death Near Paris Fuels Outrage on Election Eve</title>
+      <link>https://www.nytimes.com/2022/04/05/world/europe/jewish-death-france-election.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/world/europe/jewish-death-france-election.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/world/europe/jewish-death-france-election.html" rel="standout"></atom:link>
+      <description>Newly surfaced video shows the man, who was hit by a tram in February, fleeing an assault. It has fueled suspicions of an antisemitic motive days before France’s presidential vote.</description>
+      <dc:creator>Aurelien Breeden</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 18:25:07 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">France</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Paris (France)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Jews and Judaism</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Anti-Semitism</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Assaults</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Halimi, Sarah (d 2017)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Zemmour, Eric</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Macron, Emmanuel (1977- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Le Pen, Marine</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/world/05france-1/05france-1-moth.jpg" width="151"></media:content>
+      <media:credit>Thomas Samson/Agence France-Presse — Getty Images</media:credit>
+      <media:description>The prosecutor in the case, Éric Mathais, said his office was questioning witnesses in the death of Jérémy Cohen but that it had not yet determined what had motivated the assault.</media:description>
+    </item>
+    <item>
+      <title>Tiger Woods Says He Intends to Play the Masters</title>
+      <link>https://www.nytimes.com/2022/04/05/sports/golf/tiger-woods-masters.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/sports/golf/tiger-woods-masters.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/sports/golf/tiger-woods-masters.html" rel="standout"></atom:link>
+      <description>Woods, who sustained significant leg injuries in a single-car crash in February 2021, has played several practice rounds at Augusta National this week.</description>
+      <dc:creator>Bill Pennington and Alan Blinder</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 21:11:48 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Golf</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Masters Golf Tournament</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Woods, Tiger</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/multimedia/05masters-tiger-play6/05masters-tiger-play6-moth.jpg" width="151"></media:content>
+      <media:credit>Doug Mills/The New York Times</media:credit>
+      <media:description>Tiger Woods on his way to the first tee during a practice round at Augusta National Golf Club on Monday.</media:description>
+    </item>
+    <item>
+      <title>Reliving How Tiger Woods Won the 1997 Masters</title>
+      <link>https://www.nytimes.com/2022/04/04/sports/golf/tiger-woods-1997-masters.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/04/sports/golf/tiger-woods-1997-masters.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/04/sports/golf/tiger-woods-1997-masters.html" rel="standout"></atom:link>
+      <description>Tiger Woods was not supposed to win the 1997 Masters, but when he did, by 12 strokes — one of 20 Masters records he set in that tournament — he remade the game and catapulted himself to stardom.</description>
+      <dc:creator>Bill Pennington</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 15:36:10 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Golf</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Masters Golf Tournament</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Woods, Tiger</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Augusta National Golf Club</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Azinger, Paul</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Faldo, Nick</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Montgomerie, Colin</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Nantz, Jim</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/04/sports/04masters-1997-alt/04masters-1997-alt-moth-v3.jpg" width="151"></media:content>
+      <media:credit>Steve Munday/Allsport via Getty Images</media:credit>
+    </item>
+    <item>
+      <title>Masters Invitations Endure as a Signature Detail for the Tournament</title>
+      <link>https://www.nytimes.com/2022/04/05/sports/golf/masters-invitations.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/sports/golf/masters-invitations.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/sports/golf/masters-invitations.html" rel="standout"></atom:link>
+      <description>Putting and chipping aside, a crucial step on the journey to winning a coveted green jacket is making sure to R.S.V.P.</description>
+      <dc:creator>Alan Blinder and Doug Mills</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 20:59:34 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Golf</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Masters Golf Tournament</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Augusta National Golf Club</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Player, Gary</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Woods, Tiger</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Faldo, Nick</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Snead, Sam</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Watson, Tom</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Nicklaus, Jack</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/06/sports/05masters-invitations1-print/05masters-invitations2-moth.jpg" width="151"></media:content>
+    </item>
+    <item>
+      <title>Antiques Dealer Vito Giallo, Who Worked for Andy Warhol, Unearths His Gems</title>
+      <link>https://www.nytimes.com/2022/04/05/style/nyc-antiques-vito-giallo-warhol.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/style/nyc-antiques-vito-giallo-warhol.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/style/nyc-antiques-vito-giallo-warhol.html" rel="standout"></atom:link>
+      <description>Vito Giallo, 91, looks back at a life full of treasures.</description>
+      <dc:creator>Kate Dwyer</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 21:40:24 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Warhol, Andy</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Catbird (Brooklyn, NY, Retailer)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Giallo, Vito</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Antiques</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Personal Profile</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/03/15/fashion/00GIALLO-1/00GIALLO-1-moth.jpg" width="151"></media:content>
+      <media:credit>Todd Heisler/The New York Times</media:credit>
+    </item>
+    <item>
+      <title>Molly Shannon, of Saturday Night Live, Has a New Memoir, “Hello Molly!”</title>
+      <link>https://www.nytimes.com/2022/04/05/books/molly-shannon-book.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/books/molly-shannon-book.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/books/molly-shannon-book.html" rel="standout"></atom:link>
+      <description>In a new memoir, “Hello, Molly!”, Shannon — the “Saturday Night Live” alumna — recounts her comedy career and the devastating family tragedy that changed her life.</description>
+      <dc:creator>Dave Itzkoff</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 21:39:43 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Personal Profile</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Books and Literature</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Comedy and Humor</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Shannon, Molly</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">White, Mike (1970- )</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/01/obituaries/00mollyshannon-image1/00mollyshannon-image1-moth.jpg" width="151"></media:content>
+      <media:credit>Chantal Anderson for The New York Times</media:credit>
+      <media:description>Molly Shannon is known for her plucky, determined characters — a spirit that’s vivid in her new memoir.</media:description>
+    </item>
+    <item>
+      <title>Rags-to-Riches Stories Are Actually Kind of Disturbing</title>
+      <link>https://www.nytimes.com/2022/04/05/magazine/billionaire-books.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/magazine/billionaire-books.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/magazine/billionaire-books.html" rel="standout"></atom:link>
+      <description>From Horatio Alger and E.L. James to T. Boone Pickens and Charles Koch, books by and about the ultrawealthy reveal some of our darkest American fantasies.</description>
+      <dc:creator>Lydia Kiesling</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 20:30:26 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">High Net Worth Individuals</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Writing and Writers</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Books and Literature</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Income Inequality</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Koch, Charles G</category>
+    </item>
+    <item>
+      <title>Ke Huy Quan: From Short Round to Romantic Lead After Four Long Decades</title>
+      <link>https://www.nytimes.com/2022/04/05/movies/ke-huy-quan-everything-everywhere.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/movies/ke-huy-quan-everything-everywhere.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/movies/ke-huy-quan-everything-everywhere.html" rel="standout"></atom:link>
+      <description>A child star in the 1980s, he hit a dry patch and turned to stunt work in the 2000s. Now he has returned to acting in a part that blends his action and drama chops.</description>
+      <dc:creator>Robert Ito</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 13:00:11 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Movies</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Personal Profile</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_ttl">Everything Everywhere All at Once (Movie)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Quan, Ke Huy</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/10/arts/10Ke-Huy-Quan1/10Ke-Huy-Quan1-moth.jpg" width="151"></media:content>
+      <media:credit>Jennelle Fong for The New York Times</media:credit>
+      <media:description>“I didn’t grow up wanting to be an actor,” Ke Huy Quan said. When he was older and determined to act, “there were just not a lot of offers.”</media:description>
+    </item>
+    <item>
+      <title>For 25 Years, My Dad Helped Build Weapons of Death</title>
+      <link>https://www.nytimes.com/2022/04/05/opinion/vietnam-refugees-factories-us-military.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/opinion/vietnam-refugees-factories-us-military.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/opinion/vietnam-refugees-factories-us-military.html" rel="standout"></atom:link>
+      <description>My father fled Vietnam only to spend the rest of his life in American factories helping shore up the same military that had set our family adrift.</description>
+      <dc:creator>Thuy Linh Tu</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 18:39:07 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Vietnam War</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Vietnamese-Americans</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Defense and Military Forces</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Factories and Manufacturing</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Labor and Jobs</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Connecticut</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">War and Armed Conflicts</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Refugees and Displaced Persons</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/opinion/sunday/05tu/05tu-moth-v3.jpg" width="151"></media:content>
+      <media:credit>Lys Bui</media:credit>
+    </item>
+    <item>
+      <title>Why Are  Adults Falling for the ‘Furries’ Myth?</title>
+      <link>https://www.nytimes.com/2022/04/04/opinion/furries-culture-war.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/04/opinion/furries-culture-war.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/04/opinion/furries-culture-war.html" rel="standout"></atom:link>
+      <description>The culture war is also a generational war. </description>
+      <dc:creator>Michelle Goldberg</dc:creator>
+      <pubDate>Mon, 04 Apr 2022 23:43:31 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Homosexuality and Bisexuality</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Transgender and Transsexuals</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Education (K-12)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Rumors and Misinformation</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Social Media</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Florida</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">United States</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/04/opinion/04goldberg1/04goldberg1-moth.jpg" width="151"></media:content>
+      <media:credit>Octavio Jones/Reuters</media:credit>
+      <media:description>High school students in Tampa, Fla., protesting the so-called Don’t Say Gay bill.</media:description>
+    </item>
+    <item>
+      <title>After the Pandemic, I Want My Life to Be Less Convenient</title>
+      <link>https://www.nytimes.com/2022/04/05/opinion/pandemic-home-going-out.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/opinion/pandemic-home-going-out.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/opinion/pandemic-home-going-out.html" rel="standout"></atom:link>
+      <description>The pandemic turned many of us into hermits. It’s time to go out again.</description>
+      <dc:creator>Michal Leibowitz</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 18:47:08 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Habits and Routines (Behavior)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Quarantine (Life and Culture)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Delivery Services</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Shopping and Retail</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Restaurants</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Supermarkets and Grocery Stores</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/opinion/05leiibowitz/05leiibowitz-moth-v2.jpg" width="151"></media:content>
+      <media:credit>Cari Vander Yacht</media:credit>
+    </item>
+    <item>
+      <title>Amazon Fought Workers Trying to Unionize, and It Backfired</title>
+      <link>https://www.nytimes.com/2022/04/05/opinion/amazon-labor-union-staten-island.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/opinion/amazon-labor-union-staten-island.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/opinion/amazon-labor-union-staten-island.html" rel="standout"></atom:link>
+      <description>The successful organization of a warehouse in Staten Island offers a real glimmer of hope for the American working class.</description>
+      <dc:creator>Jamelle Bouie</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 18:19:17 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Labor and Jobs</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Workplace Hazards and Violations</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Economy</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Organized Labor</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Warehouses</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Race and Ethnicity</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Amazon Labor Union</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Staten Island (NYC)</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/multimedia/05bouie_2/05bouie_2-moth.jpg" width="151"></media:content>
+      <media:credit>DeSean McClinton-Holland for The New York Times</media:credit>
+      <media:description>The Amazon Labor Union organizing committee celebrating its victory. </media:description>
+    </item>
+    <item>
+      <title>College Became the Default. Let’s Rethink That.</title>
+      <link>https://www.nytimes.com/2022/04/05/opinion/college-high-school.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/opinion/college-high-school.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/opinion/college-high-school.html" rel="standout"></atom:link>
+      <description>Imagine a world that gave high schoolers more options.</description>
+      <dc:creator>John McWhorter</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 17:30:26 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">internal-sub-only-nl</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Obama, Barack</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Podcasts</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Rutgers, The State University of New Jersey</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Colleges and Universities</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Education (K-12)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">World War II (1939-45)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Bard College</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">National Public Radio</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/opinion/05mcwhorter/05mcwhorter-moth.jpg" width="151"></media:content>
+      <media:credit>Delcan and Co.</media:credit>
+    </item>
+    <item>
+      <title>Putin’s War Has Started a Global Food Crisis</title>
+      <link>https://www.nytimes.com/2022/04/05/opinion/ukraine-war-food-crisis.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/opinion/ukraine-war-food-crisis.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/opinion/ukraine-war-food-crisis.html" rel="standout"></atom:link>
+      <description>These are the countries that will be most affected by rising food prices.</description>
+      <dc:creator>Sara Menker and Rajiv Shah</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 09:00:13 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Ukraine</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Sudan</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Russia</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Afghanistan</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Africa</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Russian Invasion of Ukraine (2022)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Food</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">War and Armed Conflicts</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">International Trade and World Market</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Wheat</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Food Insecurity</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Agriculture and Farming</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Global Warming</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">World Food Program</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/us/-promo-1649160587858/-promo-1649160587858-moth.png" width="151"></media:content>
+    </item>
+    <item>
+      <title>A Viral Case Against Crypto, Explored</title>
+      <link>https://www.nytimes.com/2022/04/05/opinion/ezra-klein-podcast-dan-olson.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/opinion/ezra-klein-podcast-dan-olson.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/opinion/ezra-klein-podcast-dan-olson.html" rel="standout"></atom:link>
+      <description>The video essayist Dan Olson explains the dangers lurking in the culture and ideology that surround digital currency.</description>
+      <dc:creator>‘The Ezra Klein Show’</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 20:10:41 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">audio-neutral-informative</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Winkelmann, Mike (Beeple)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Nonfungible Tokens (NFTs)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Blockchain (Technology)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Computers and the Internet</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Bitcoin (Currency)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Finances</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/opinion/05eks-olson-main/05eks-olson-main-moth.jpg" width="151"></media:content>
+      <media:credit>Photograph courtesy of Dan Olson</media:credit>
+    </item>
+    <item>
+      <title>Inside Shanghai’s Covid-19 Lockdown</title>
+      <link>https://www.nytimes.com/2022/04/05/opinion/shanghai-china-covid-lockdown.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/opinion/shanghai-china-covid-lockdown.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/opinion/shanghai-china-covid-lockdown.html" rel="standout"></atom:link>
+      <description>What it’s like to lock down after two years free of Covid worries.</description>
+      <dc:creator>Juli Min</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 09:00:12 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Coronavirus (2019-nCoV)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">China</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Shanghai (China)</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/opinion/05Min1/05Min1-moth.jpg" width="151"></media:content>
+      <media:credit>Hector Retamal/Agence France-Presse &amp;mdash; Getty Images</media:credit>
+      <media:description>A worker walking next to barriers separating buildings from the street during Covid-19 lockdowns in Shanghai on March 30.</media:description>
+    </item>
+    <item>
+      <title>Can Congressional Democrats Make a Deal on Covid Spending With Mitt Romney?</title>
+      <link>https://www.nytimes.com/2022/04/05/opinion/romney-manchin-senate-covid.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/opinion/romney-manchin-senate-covid.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/opinion/romney-manchin-senate-covid.html" rel="standout"></atom:link>
+      <description>It’s time to stop slathering so much attention on Joe Manchin.</description>
+      <dc:creator>Michelle Cottle</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 12:37:19 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Economy</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Manchin, Joe III</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Romney, Mitt</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Democratic Party</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Republican Party</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Senate</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Law and Legislation</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">United States</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Coronavirus (2019-nCoV)</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/06/opinion/00cottle1/00cottle1-moth.jpg" width="151"></media:content>
+      <media:credit>Stefani Reynolds for The New York Times</media:credit>
+    </item>
+    <item>
+      <title>The Ruble Has Bounced Back. What Does That Mean?</title>
+      <link>https://www.nytimes.com/2022/04/04/opinion/ruble-value.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/04/opinion/ruble-value.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/04/opinion/ruble-value.html" rel="standout"></atom:link>
+      <description>Russia’s financial position is stronger in the short term than many expected.</description>
+      <dc:creator>Peter Coy</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 16:26:16 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">internal-sub-only-nl</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Ruble (Currency)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Russia</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Economic Conditions and Trends</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Russian Invasion of Ukraine (2022)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Central Bank of Russia</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/04/opinion/04coy/04coy-moth.png" width="151"></media:content>
+      <media:credit>Illustration by The New York Times; photograph via CSA Images/Getty</media:credit>
+    </item>
+    <item>
+      <title>Ditch the Oil, and the Petro-Dictators Too</title>
+      <link>https://www.nytimes.com/2022/04/05/opinion/letters/oil-russia-climate-change.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/opinion/letters/oil-russia-climate-change.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/opinion/letters/oil-russia-climate-change.html" rel="standout"></atom:link>
+      <description>Responses to a column by Thomas L. Friedman. Also: The true patriots; Covid choices of strangers; wildflowers.</description>
+      <pubDate>Tue, 05 Apr 2022 15:25:58 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Russian Invasion of Ukraine (2022)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Energy Efficiency</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Alternative and Renewable Energy</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Greenhouse Gas Emissions</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Putin, Vladimir V</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Zelensky, Volodymyr</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Trump, Donald J</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Coronavirus (2019-nCoV)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Flowers and Plants</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Friedman, Thomas L</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/03/29/multimedia/29friedman_1/29friedman_1-moth.jpg" width="151"></media:content>
+      <media:credit>Felipe Trueba/EPA, via Shutterstock</media:credit>
+      <media:description>  </media:description>
+    </item>
+    <item>
+      <title>A Small Earthquake on Staten Island</title>
+      <link>https://www.nytimes.com/2022/04/04/opinion/amazon-union-staten-island.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/04/opinion/amazon-union-staten-island.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/04/opinion/amazon-union-staten-island.html" rel="standout"></atom:link>
+      <description>Why a pro-union vote at Amazon may be a big deal.</description>
+      <dc:creator>Paul Krugman</dc:creator>
+      <pubDate>Mon, 04 Apr 2022 23:00:07 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Labor and Jobs</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Organized Labor</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Income Inequality</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Amazon.com Inc</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Republican Party</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Staten Island (NYC)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">United States</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Economy</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/04/opinion/04krugman1/04krugman1-moth.jpg" width="151"></media:content>
+      <media:credit>DeSean McClinton-Holland for The New York Times</media:credit>
+      <media:description>Union supporters marched outside the Amazon warehouse on Staten Island two weeks ago.</media:description>
+    </item>
+    <item>
+      <title>California’s Drought Is Worse Than We Thought</title>
+      <link>https://www.nytimes.com/2022/04/04/opinion/environment/california-drought-wildfires.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/04/opinion/environment/california-drought-wildfires.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/04/opinion/environment/california-drought-wildfires.html" rel="standout"></atom:link>
+      <description>Our tools for managing water in the West are growing more inaccurate.</description>
+      <dc:creator>Andrew Schwartz</dc:creator>
+      <pubDate>Mon, 04 Apr 2022 20:35:30 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Water</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Drought</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Global Warming</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Wildfires</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Snow and Snowstorms</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Rain</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">California</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Sierra Nevada Region (US)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Western States (US)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Research</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/opinion/04schwartz/04schwartz-moth.jpg" width="151"></media:content>
+      <media:credit>Sally Deng</media:credit>
+    </item>
+    <item>
+      <title>Americans on Medicaid Could Soon Lose Health Insurance</title>
+      <link>https://www.nytimes.com/2022/04/04/opinion/covid-medicaid-loss.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/04/opinion/covid-medicaid-loss.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/04/opinion/covid-medicaid-loss.html" rel="standout"></atom:link>
+      <description>Millions of Americans may lose their Medicaid coverage.</description>
+      <dc:creator>Elisabeth Rosenthal</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 21:13:27 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Coronavirus (2019-nCoV)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Medicaid</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Patient Protection and Affordable Care Act (2010)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">States (US)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">United States</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/04/opinion/04Rosenthal/04Rosenthal-moth.jpg" width="151"></media:content>
+      <media:credit>Sam Island</media:credit>
+    </item>
+    <item>
+      <title>The Kids Are Right About Email, Too</title>
+      <link>https://www.nytimes.com/2022/04/04/opinion/email-overload.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/04/opinion/email-overload.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/04/opinion/email-overload.html" rel="standout"></atom:link>
+      <description>It is now just a way to be at the beck and call of anyone, and any robot, with an internet connection.</description>
+      <dc:creator>Margaret Renkl</dc:creator>
+      <pubDate>Mon, 04 Apr 2022 09:00:09 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">E-Mail</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Work-Life Balance</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Millennial Generation</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Generation Z</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/04/multimedia/04renkl_3/04renkl_3-moth.jpg" width="151"></media:content>
+      <media:credit>Carla Ciuffo for The New York Times</media:credit>
+    </item>
+    <item>
+      <title>Gardening Advice, Homelessness Solutions and Questions About Charter Schools</title>
+      <link>https://www.nytimes.com/2022/04/04/opinion/gardening-homelessness-charter-schools.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/04/opinion/gardening-homelessness-charter-schools.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/04/opinion/gardening-homelessness-charter-schools.html" rel="standout"></atom:link>
+      <description>Readers weigh in.</description>
+      <dc:creator>Jay Caspian Kang</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 01:56:41 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Gardens and Gardening</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Homeless Persons</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Public and Subsidized Housing</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">California</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Charter Schools</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Real Estate and Housing (Residential)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">internal-sub-only-nl</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/04/opinion/04kang/04kang-moth.jpg" width="151"></media:content>
+      <media:credit>Alberto Miranda</media:credit>
+    </item>
+    <item>
+      <title>How Can the World Respond to Russian Atrocities? Weapons and Sanctions</title>
+      <link>https://www.nytimes.com/2022/04/05/briefing/russian-atrocities-bucha-ukraine-sanctions.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/briefing/russian-atrocities-bucha-ukraine-sanctions.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/briefing/russian-atrocities-bucha-ukraine-sanctions.html" rel="standout"></atom:link>
+      <description>How can the world respond to Russian atrocities?</description>
+      <dc:creator>David Leonhardt</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 20:38:00 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">internal-storyline-no</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">War and Armed Conflicts</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Arms Trade</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Embargoes and Sanctions</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Defense and Military Forces</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Bucha (Ukraine)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Kyiv (Ukraine)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Ukraine</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Zelensky, Volodymyr</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Putin, Vladimir V</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Biden, Joseph R Jr</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/multimedia/05-the-morning-promo/05-the-morning-bucha-moth.jpg" width="151"></media:content>
+      <media:credit>Ivor Prickett for The New York Times</media:credit>
+      <media:description>Destruction in Bucha, Ukraine, on Sunday.</media:description>
+    </item>
+    <item>
+      <title>How the War in Ukraine is Creating a Global Food Crisis</title>
+      <link>https://www.nytimes.com/2022/04/05/podcasts/the-daily/ukraine-russia-food-supply.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/podcasts/the-daily/ukraine-russia-food-supply.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/podcasts/the-daily/ukraine-russia-food-supply.html" rel="standout"></atom:link>
+      <description>Russia’s invasion has severely disrupted how the world feeds itself.</description>
+      <dc:creator>Michael Barbaro, Asthaa Chaturvedi, Rob Szypko, Rachel Quester, Michael Johnson, Liz O. Baylen, Chelsea Daniel, Dan Powell, Marion Lozano and Chris Wood</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 10:59:22 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">War and Armed Conflicts</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Food</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Shortages</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Russian Invasion of Ukraine (2022)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Food Insecurity</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Ukraine</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Russia</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">audio-neutral-informative</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/podcasts/05daily-1/05DAILY-ukraine-grain-audio-app-moth-v4.jpg" width="151"></media:content>
+      <media:credit>Photo: Valentyn Ogirenko/Reuters</media:credit>
+      <media:description>A crop field in Ukraine. Since the invasion last month, wheat prices have increased by 21 percent, barley by 33 percent and some fertilizers by 40 percent.</media:description>
+    </item>
+    <item>
+      <title>Life in an E.R. During Covid</title>
+      <link>https://www.nytimes.com/2022/04/01/books/review/podcast-thomas-fisher-emergency-ancestor-trouble-maud-newton.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/01/books/review/podcast-thomas-fisher-emergency-ancestor-trouble-maud-newton.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/01/books/review/podcast-thomas-fisher-emergency-ancestor-trouble-maud-newton.html" rel="standout"></atom:link>
+      <description>Thomas Fisher talks about “The Emergency,” and Maud Newton discusses “Ancestor Trouble.”</description>
+      <pubDate>Sat, 02 Apr 2022 00:21:43 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Books and Literature</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_ttl">The Emergency: A Year of Healing and Heartbreak in a Chicago ER (Book)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_ttl">Ancestor Trouble: A Reckoning and a Reconciliation (Book)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Fisher, Thomas (Doctor)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Newton, Maud</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/03/22/books/21BOOKFISHER2/21BOOKFISHER2-moth.jpg" width="151"></media:content>
+      <media:credit>Jeff Sciortino</media:credit>
+      <media:description>Thomas Fisher, the author of “The Emergency: A Year of Healing and Heartbreak in a Chicago ER.”</media:description>
+    </item>
+    <item>
+      <title>Nutrition Tips for Runners: Your Questions, Answered</title>
+      <link>https://www.nytimes.com/2022/04/03/sports/running-nutrition-questions.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/03/sports/running-nutrition-questions.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/03/sports/running-nutrition-questions.html" rel="standout"></atom:link>
+      <description>What’s the real benefit in refueling soon after a run? Can eating mid-run help speed recovery? Your nutrition questions, answered.</description>
+      <dc:creator>Talya Minsberg</dc:creator>
+      <pubDate>Sun, 03 Apr 2022 14:47:01 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Running</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Diet and Nutrition</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Food</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Marathon Running</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/04/multimedia/02running-newsletter-PRINT/02running-newsletter-moth.jpg" width="151"></media:content>
+      <media:credit>Joshua Bright for The New York Times</media:credit>
+      <media:description>Bananas may be the breakfast of choice for many runners. But there are plenty of other options, too. </media:description>
+    </item>
+    <item>
+      <title>Ivanka Trump Testifies to House Panel Investigating Jan. 6 Attack</title>
+      <link>https://www.nytimes.com/2022/04/05/us/politics/ivanka-trump-jan-6.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/us/politics/ivanka-trump-jan-6.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/us/politics/ivanka-trump-jan-6.html" rel="standout"></atom:link>
+      <description>The former president’s daughter and adviser was in the West Wing with him as a pro-Trump mob stormed the Capitol. She is said to have tried to persuade him to call off the rioters.</description>
+      <dc:creator>Luke Broadwater</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 19:27:13 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Trump, Ivanka</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Trump, Donald J</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Storming of the US Capitol (Jan, 2021)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Presidential Election of 2020</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Project: Democracy</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/us/politics/00dc-invanka/merlin_176288961_5f1d4ae0-80c4-4eca-884d-e660d8e7413b-moth.jpg" width="151"></media:content>
+      <media:credit>Anna Moneymaker for The New York Times</media:credit>
+      <media:description>The schedule for Ivanka Trump’s testimony comes days after her husband, Jared Kushner, sat for an interview with the panel.</media:description>
+    </item>
+    <item>
+      <title>Louis C.K.’s Grammy Victory Leads to Backlash</title>
+      <link>https://www.nytimes.com/2022/04/05/arts/television/louis-ck-grammy-backlash.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/arts/television/louis-ck-grammy-backlash.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/arts/television/louis-ck-grammy-backlash.html" rel="standout"></atom:link>
+      <description>Some comedians are questioning how the Recording Academy saw fit to bestow an award to someone who had admitted to sexual misconduct.</description>
+      <dc:creator>Melena Ryzik</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 18:34:58 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Television</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">#MeToo Movement</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Music</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Grammy Awards</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Comedy and Humor</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Recording Academy</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">C K, Louis</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Sexual Harassment</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Women and Girls</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/06/arts/05louisck/05louisck-moth.jpg" width="151"></media:content>
+      <media:credit>Laura Cavanaugh/FilmMagic, via Getty Images</media:credit>
+      <media:description>Louis C.K. in 2016.</media:description>
+    </item>
+    <item>
+      <title>Elon Musk Joins Twitter Board</title>
+      <link>https://www.nytimes.com/2022/04/04/business/twitter-elon-musk-directors.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/04/business/twitter-elon-musk-directors.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/04/business/twitter-elon-musk-directors.html" rel="standout"></atom:link>
+      <description>After becoming Twitter’s largest shareholder, Elon Musk, Tesla’s chief executive, is joining the social media company’s board of directors.</description>
+      <dc:creator>Lauren Hirsch</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 19:17:40 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Tesla Motors Inc</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Twitter</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Dorsey, Jack</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Musk, Elon</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Social Media</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Appointments and Executive Changes</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/business/05musk-twitter/merlin_203173107_fd16596f-443b-4f91-a515-7cb68654abf0-moth.jpg" width="151"></media:content>
+      <media:credit>Miguel Roberts/The Brownsville Herald, via Associated Press</media:credit>
+      <media:description>Elon Musk is joining Twitter’s board after buying a big stake in the company.</media:description>
+    </item>
+    <item>
+      <title>Severe Weather in the South:  What to Know About the Forecast</title>
+      <link>https://www.nytimes.com/2022/04/05/us/severe-weather-forecast-south.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/us/severe-weather-forecast-south.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/us/severe-weather-forecast-south.html" rel="standout"></atom:link>
+      <description>A tornado touched down in South Carolina on Tuesday afternoon as nearly five million people across a large swath of the Southeast remained under an enhanced risk of severe weather.</description>
+      <dc:creator>Derrick Bryson Taylor and Johnny Diaz</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 21:34:21 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Rain</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Tornadoes</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Wind</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Alabama</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Florida</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Fort Worth (Tex)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Georgia</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">South Carolina</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Texas</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/multimedia/05xp-severe-weather1/05xp-severe-weather1-moth.jpg" width="151"></media:content>
+      <media:credit>Elias Valverde Ii/The Dallas Morning News, via Associated Press</media:credit>
+    </item>
+    <item>
+      <title>Fred Upton, House Republican Who Voted to Impeach Trump, Will Retire</title>
+      <link>https://www.nytimes.com/2022/04/05/us/politics/fred-upton-congress-retirement.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/us/politics/fred-upton-congress-retirement.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/us/politics/fred-upton-congress-retirement.html" rel="standout"></atom:link>
+      <description>Mr. Upton is the fourth House Republican who supported impeaching former President Donald Trump to decline to run for re-election.</description>
+      <dc:creator>Shane Goldmacher</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 16:54:08 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Upton, Fred</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Michigan</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Elections, House of Representatives</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Retirement</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">United States Politics and Government</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Republican Party</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Trump, Donald J</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Impeachment</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/us/politics/05pol-upton/05pol-upton-moth.jpg" width="151"></media:content>
+      <media:credit>Anna Moneymaker/The New York Times</media:credit>
+      <media:description>Representative Fred Upton was facing a difficult primary campaign against Representative Bill Huizenga, who has been endorsed by former President Donald J. Trump.</media:description>
+    </item>
+    <item>
+      <title>E.P.A. to Propose Restrictions on Asbestos</title>
+      <link>https://www.nytimes.com/2022/04/05/climate/epa-asbestos-ban.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/climate/epa-asbestos-ban.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/climate/epa-asbestos-ban.html" rel="standout"></atom:link>
+      <description>The agency aims to ban the manufacturing and import of a type of asbestos that is used in brake pads, gaskets and other automotive products and is linked to cancer.</description>
+      <dc:creator>Lisa Friedman</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 18:16:49 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Global Warming</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Greenhouse Gas Emissions</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Asbestos</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Hazardous and Toxic Substances</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Chemicals</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Mesothelioma</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Environmental Protection Agency</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Regan, Michael S (1976- )</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/climate/05cli-asbestos/05cli-asbestos-moth.jpg" width="151"></media:content>
+      <media:credit>Jim Wilson/The New York Times</media:credit>
+      <media:description>Workers removed asbestos-laden debris exposed by the Tubbs Fire in Santa Rosa, Calif., in 2017.</media:description>
+    </item>
+    <item>
+      <title>Stolen Darwin Notebooks, Missing for Decades, Are Returned</title>
+      <link>https://www.nytimes.com/2022/04/05/world/europe/charles-darwin-notebooks-cambridge-library.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/world/europe/charles-darwin-notebooks-cambridge-library.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/world/europe/charles-darwin-notebooks-cambridge-library.html" rel="standout"></atom:link>
+      <description>The two notebooks were anonymously returned to the Cambridge University Library 22 years after they went missing. A note addressed to the librarian read: “Happy Easter.”</description>
+      <dc:creator>Daniel Victor</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 17:35:50 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Darwin, Charles Robert</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Archives and Records</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Libraries and Librarians</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Cambridge University</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/multimedia/05xp-darwin/05xp-darwin-moth.jpg" width="151"></media:content>
+      <media:credit>Cambridge University Library</media:credit>
+      <media:description>One of the returned notebooks included Charles Darwin’s famous “tree of life” drawing, which maps out how related species could diverge from a common ancestor.</media:description>
+    </item>
+    <item>
+      <title>Ann Sarnoff, Warner Bros. Chief, Is Set to Leave </title>
+      <link>https://www.nytimes.com/2022/04/05/business/ann-sarnoff-warner-bros.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/business/ann-sarnoff-warner-bros.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/business/ann-sarnoff-warner-bros.html" rel="standout"></atom:link>
+      <description>Ms. Sarnoff became the first woman to hold the job in 2019, but Discovery’s C.E.O. is expected to take over at least some of her role himself.</description>
+      <dc:creator>Brooks Barnes</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 21:56:59 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Movies</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Appointments and Executive Changes</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Television</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Cable Television</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Mergers, Acquisitions and Divestitures</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Media</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Warner Brothers</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Warner Brothers Pictures</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Warner Media LLC</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Warner Bros Discovery</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Home Box Office</category>
+    </item>
+    <item>
+      <title>More Evidence Bolsters Durham’s Case Against Democratic-Linked Lawyer</title>
+      <link>https://www.nytimes.com/2022/04/05/us/politics/durham-sussmann-trump.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/us/politics/durham-sussmann-trump.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/us/politics/durham-sussmann-trump.html" rel="standout"></atom:link>
+      <description>Separately, defense lawyers asked a judge to block the Trump-era special counsel from making the Steele dossier a focus of next month’s trial.</description>
+      <dc:creator>Charlie Savage</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 19:45:24 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Russian Interference in 2016 US Elections and Ties to Trump Associates</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Alfa Group Consortium</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Democratic Party</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Federal Bureau of Investigation</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Justice Department</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Trump Organization</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Baker, James A (Attorney)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Barr, William P</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Mueller, Robert S III</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Durham, John H</category>
+    </item>
+    <item>
+      <title>MLB Approves PitchCom to Limit Sign Stealing</title>
+      <link>https://www.nytimes.com/2022/04/05/sports/baseball/pitchcom-sign-stealing.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/sports/baseball/pitchcom-sign-stealing.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/sports/baseball/pitchcom-sign-stealing.html" rel="standout"></atom:link>
+      <description>PitchCom devices will let catchers communicate secretly with pitchers and up to three fielders during games.</description>
+      <dc:creator>David Waldstein</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 20:55:50 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Baseball</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Cheating</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Major League Baseball</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/06/multimedia/05mlb-pitchcom-print/05mlb-pitchcom1-moth.jpg" width="151"></media:content>
+      <media:credit>Charlie Riedel/Associated Press</media:credit>
+      <media:description>Major League Baseball has attempted to address sign stealing by allowing teams to use PitchCom, a communications device that lets catchers communicate with pitchers during the game.</media:description>
+    </item>
+    <item>
+      <title>Anti-Abortion Activists Claim They Had 115 Fetuses From Clinic</title>
+      <link>https://www.nytimes.com/2022/04/05/us/fetus-anti-abortion-home-washington.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/us/fetus-anti-abortion-home-washington.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/us/fetus-anti-abortion-home-washington.html" rel="standout"></atom:link>
+      <description>A medical waste disposal company denied their account. Most of the fetuses were buried in secret, the activists said, but they kept five that were later seized by the police in Washington, D.C.</description>
+      <dc:creator>Michael Levenson</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 20:47:39 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Demonstrations, Protests and Riots</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Abortion</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Handy, Lauren (1993- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Terry, Randall A</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Metropolitan Police Department (DC)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Operation Rescue</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/multimedia/05xp-clinic-lauren/05xp-clinic-lauren-moth.jpg" width="151"></media:content>
+      <media:credit>Anna Moneymaker/Getty Images</media:credit>
+      <media:description>The anti-abortion activist Lauren Handy spoke at a news conference on Tuesday about the five fetuses that the police in Washington, D.C., seized from her home last week.</media:description>
+    </item>
+    <item>
+      <title>How to Prepare for BA.2, the Omicron Subvariant</title>
+      <link>https://www.nytimes.com/2022/03/30/well/live/ba2-omicron-covid.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/03/30/well/live/ba2-omicron-covid.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/03/30/well/live/ba2-omicron-covid.html" rel="standout"></atom:link>
+      <description>Taking these seven steps now can lower your risk and minimize the disruption to your family’s life.</description>
+      <dc:creator>Tara Parker-Pope and Knvul Sheikh</dc:creator>
+      <pubDate>Mon, 04 Apr 2022 12:45:49 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Coronavirus Omicron Variant</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Coronavirus (2019-nCoV)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Coronavirus Risks and Safety Concerns</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Service</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Disease Rates</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Masks</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Pulse Oximetry</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Vaccination and Immunization</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Drugs (Pharmaceuticals)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Tests (Medical)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">United States</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/well/30well-surge-plan1/30well-surge-plan1-moth.jpg" width="151"></media:content>
+      <media:credit>John Macdougall/Agence France-Presse &amp;mdash; Getty Images</media:credit>
+    </item>
+    <item>
+      <title>Covid Vaccines for Kids Are  Dividing Divorced Parents</title>
+      <link>https://www.nytimes.com/2022/04/04/well/covid-vaccine-divorced-parents.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/04/well/covid-vaccine-divorced-parents.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/04/well/covid-vaccine-divorced-parents.html" rel="standout"></atom:link>
+      <description>For some parents who share custody, the Covid vaccine has created a minefield of issues that initial divorce decrees could not have anticipated.</description>
+      <dc:creator>Debra Kamin</dc:creator>
+      <pubDate>Mon, 04 Apr 2022 14:13:00 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Children and Childhood</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Child Custody and Support</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Vaccination and Immunization</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Coronavirus (2019-nCoV)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Parenting</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Family Courts</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/well/16Vaccine-Custody/16Vaccine-Custody-moth.jpg" width="151"></media:content>
+      <media:credit>Charlotte Fu</media:credit>
+    </item>
+    <item>
+      <title>What to Do When There Is a Tornado Warning</title>
+      <link>https://www.nytimes.com/article/tornado-safety-tips.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/article/tornado-safety-tips.html</guid>
+      <atom:link href="https://www.nytimes.com/article/tornado-safety-tips.html" rel="standout"></atom:link>
+      <description>A tornado warning demands instant action. Here’s what to do if one comes your way, and how you can prepare in advance.</description>
+      <dc:creator>Amanda Holpuch</dc:creator>
+      <pubDate>Wed, 23 Mar 2022 18:36:47 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Tornadoes</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Service</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Accidents and Safety</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Weather</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Automobiles</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Mobile Homes and Trailers</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">National Weather Service</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/03/23/multimedia/00xp-tornado-explanier/00xp-tornado-explanier-moth.jpg" width="151"></media:content>
+      <media:credit>Joseph Rushmore for The New York Times</media:credit>
+      <media:description>Locust Grove, Okla., in 2019. Severe storms in the area brought about several tornado warnings.</media:description>
+    </item>
+    <item>
+      <title>How Men’s Bodies Change When They Become Fathers</title>
+      <link>https://www.nytimes.com/2020/04/15/parenting/baby/fatherhood-mens-bodies.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2020/04/15/parenting/baby/fatherhood-mens-bodies.html</guid>
+      <atom:link href="https://www.nytimes.com/2020/04/15/parenting/baby/fatherhood-mens-bodies.html" rel="standout"></atom:link>
+      <description>Hint: They don’t just get “dad bods.”</description>
+      <dc:creator>Anna Machin</dc:creator>
+      <pubDate>Thu, 24 Jun 2021 13:39:08 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Parenting</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Testosterone</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Hormones</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Babies and Infants</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Brain</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Pregnancy and Childbirth</category>
+    </item>
+    <item>
+      <title>What’s the Best Advice You’ve Received About Motherhood?</title>
+      <link>https://www.nytimes.com/2022/04/04/well/family/motherhood-advice.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/04/well/family/motherhood-advice.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/04/well/family/motherhood-advice.html" rel="standout"></atom:link>
+      <description>Your response may be used in an upcoming story.</description>
+      <dc:creator>Melonyce McAfee</dc:creator>
+      <pubDate>Mon, 04 Apr 2022 17:20:38 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Parenting</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Service</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Mother&#39;s Day</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">internal-open-access</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/01/well/well-mothersday-callout/well-mothersday-callout-moth.jpg" width="151"></media:content>
+      <media:credit>Zerb Mellish for The New York Times</media:credit>
+    </item>
+    <item>
+      <title>Review: ‘The Trayvon Generation,’ by Elizabeth Alexander</title>
+      <link>https://www.nytimes.com/2022/03/31/books/elizabeth-alexander-the-trayvon-generation.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/03/31/books/elizabeth-alexander-the-trayvon-generation.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/03/31/books/elizabeth-alexander-the-trayvon-generation.html" rel="standout"></atom:link>
+      <description>“The Trayvon Generation” traces the influences of racism and violence on American culture today.</description>
+      <dc:creator>Mitchell S. Jackson</dc:creator>
+      <pubDate>Thu, 31 Mar 2022 16:30:39 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Alexander, Elizabeth (1962- )</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Books and Literature</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Poetry and Poets</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Black People</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_ttl">The Trayvon Generation (Book)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Discrimination</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/03/21/books/review/00JACKSON/00JACKSON-moth.jpg" width="151"></media:content>
+      <media:credit>Dawoud Bey. Courtesy: Sean Kelly, New York.</media:credit>
+      <media:description>“I call the young people who grew up in the past 25 years the Trayvon Generation,” Elizabeth Alexander writes — including the women in Dawoud Bey’s “Martina and Rhonda, Chicago, Ill.,” 1993.</media:description>
+    </item>
+    <item>
+      <title>Restaurant Review: Mena in TriBeCa</title>
+      <link>https://www.nytimes.com/2022/04/05/dining/mena-review-victoria-blamey.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/dining/mena-review-victoria-blamey.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/dining/mena-review-victoria-blamey.html" rel="standout"></atom:link>
+      <description>The former chef of Chumley’s wasn’t put on this earth to cook bar food, as she proves with her striking new place in TriBeCa.</description>
+      <dc:creator>Pete Wells</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 14:38:34 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Restaurants</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Chefs</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Mena (Manhattan, NY, Restaurant)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Chumley&#39;s (Manhattan, NY, Bar)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Gotham (Manhattan, NY, Restaurant)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Blamey, Victoria</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">TriBeCa (Manhattan, NY)</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/06/dining/06rest-mena1/05rest-mena1-moth.jpg" width="151"></media:content>
+      <media:credit>Rachel Vanni for The New York Times</media:credit>
+    </item>
+    <item>
+      <title>Louis Head Inspired New Rule for Optioning Players to Minors</title>
+      <link>https://www.nytimes.com/2022/04/05/sports/baseball/louis-head-miami-marlins.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/sports/baseball/louis-head-miami-marlins.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/sports/baseball/louis-head-miami-marlins.html" rel="standout"></atom:link>
+      <description>Head was optioned to the minors 12 times by Tampa Bay in 2021, setting a record and inspiring a new rule. Now in Miami, he just might stick around.</description>
+      <dc:creator>Tyler Kepner</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 13:00:10 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Baseball</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Miami Marlins</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Tampa Bay Rays</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Content Type: Personal Profile</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Head, Louis (1990- )</category>
+    </item>
+    <item>
+      <title>Love and Scandal, Buried for Years at an Elite Boarding School</title>
+      <link>https://www.nytimes.com/2022/04/05/books/review/jonathan-galassi-school-days.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/books/review/jonathan-galassi-school-days.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/books/review/jonathan-galassi-school-days.html" rel="standout"></atom:link>
+      <description>In Jonathan Galassi’s “School Days,” a sexual harassment investigation uncovers long-buried memories of desire and abuse.</description>
+      <dc:creator>Jeremy Lybarger</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 09:00:04 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Books and Literature</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_ttl">School Days (Book)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Galassi, Jonathan</category>
+      <media:content height="151" medium="image" url="https://static01.nyt.com/images/2022/04/05/books/05lybarger-image/05lybarger-image-moth.jpg" width="151"></media:content>
+      <media:credit>Gamma-Keystone via Getty Images</media:credit>
+      <media:description>Jonathan Galassi’s novel “School Days” explores desire and abuse at an elite boarding school.</media:description>
+    </item>
+    <item>
+      <title>An E-Commerce Site for Ukrainian Fashion</title>
+      <link>https://www.nytimes.com/2022/04/05/style/an-e-commerce-site-for-ukrainian-fashion.html</link>
+      <guid isPermaLink="true">https://www.nytimes.com/2022/04/05/style/an-e-commerce-site-for-ukrainian-fashion.html</guid>
+      <atom:link href="https://www.nytimes.com/2022/04/05/style/an-e-commerce-site-for-ukrainian-fashion.html" rel="standout"></atom:link>
+      <description>Angel for Fashion hopes to bring Ukrainian designs to customers all over the world — except Russia.</description>
+      <dc:creator>Shane O’Neill</dc:creator>
+      <pubDate>Tue, 05 Apr 2022 15:59:39 +0000</pubDate>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_org">Angel for Fashion</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Fashion and Apparel</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Russian Invasion of Ukraine (2022)</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">Relocation of Business</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_per">Sidary, Jen</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Ukraine</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/nyt_geo">Russia</category>
+      <category domain="http://www.nytimes.com/namespaces/keywords/des">E-Commerce</category>
+    </item>
+  </channel>
+</rss>

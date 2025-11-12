@@ -33,12 +33,12 @@ class attribute_node
     bool has_value_ = false;
     e_attribute id_ = a_unknown;
     attributes_node* box_ = nullptr;
-    void parse (nitpick& nits, const html_version& v, const bool normal, e_namespace& autodeclare);
+    void parse (nitpick& nits, const html_version& v, const bool normal, e_namespace& autodeclare, const e_namespace elem_ns);
 public:
     attribute_node () = default;
     attribute_node (nitpick& nits, const html_version& v, attributes_node* box, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end,
-                    const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const bool xmlns, e_namespace& autodeclare);
-    attribute_node (nitpick& nits, const html_version& v, attributes_node* box, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const bool xmlns, e_namespace& autodeclare);
+                    const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const bool xmlns, e_namespace& autodeclare, const e_namespace elem_ns);
+    attribute_node (nitpick& nits, const html_version& v, attributes_node* box, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const bool xmlns, e_namespace& autodeclare, const e_namespace elem_ns);
     attribute_node (const attribute_node& an) = default;
     attribute_node (attribute_node&& an) = default;
     explicit attribute_node (attributes_node* box);

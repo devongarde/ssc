@@ -285,11 +285,20 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
                             catch (...)
                             {   web.cleanup (); throw; } } }
                 catch (const ::std::system_error& e)
-                {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("System error ") + e.what () + " when parsing " + sp); }
+                {   if (context.tell (es_error))
+                    {   ::std::string splat (::std::string ("System error ") + e.what () + " when parsing " + sp);   
+                        mac.emplace (nm_page_error, splat);
+                        context.os () -> err (splat) ; } }
                 catch (const ::std::exception& e)
-                {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("Exception ") + e.what () + " when parsing " + sp); }
+                {   if (context.tell (es_error))
+                    {   ::std::string splat (::std::string ("Exception ") + e.what () + " when parsing " + sp);
+                        mac.emplace (nm_page_error, splat);
+                        context.os () -> err (splat) ; } }
                 catch (...)
-                {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("Unknown exception when parsing ") + sp); }
+                {   if (context.tell (es_error))
+                    {   ::std::string splat (::std::string ("Unknown exception when parsing ") + sp);
+                        mac.emplace (nm_page_error, splat);
+                        context.os () -> err (splat) ; } }
                 if (! ss.str ().empty ())
                 {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
                     context.os () -> out (macro -> apply (ns_page_head, mac), ss.str (), macro -> apply (ns_page_foot, mac)); }

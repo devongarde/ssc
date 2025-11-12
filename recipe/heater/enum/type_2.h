@@ -106,6 +106,9 @@ template < > struct type_master < t_aesf > : two_value < t_aesf, e_aesf, sz_allo
 template < > struct type_master < t_all_none > : two_value < t_all_none, e_bool, sz_all, sz_none >
 { using two_value < t_all_none, e_bool, sz_all, sz_none > :: two_value; };
 
+template < > struct type_master < t_allow_deny > : two_value < t_allow_deny, e_allow_deny, sz_allow, sz_deny >
+{ using two_value < t_allow_deny, e_allow_deny, sz_allow, sz_deny > :: two_value; };
+
 template < > struct type_master < t_allow_force > : two_value < t_allow_force, e_allow_force, sz_allow_end, sz_force_end >
 { using two_value < t_allow_force, e_allow_force, sz_allow_end, sz_force_end > :: two_value; };
 
@@ -153,7 +156,6 @@ template < > struct type_master < t_colourspace > : two_value < t_colourspace, e
 
 template < > struct type_master < t_compact_normal > : two_value < t_compact_normal, e_compact_normal, sz_compact, sz_normal >
 { using two_value < t_compact_normal, e_compact_normal, sz_compact, sz_normal > :: two_value; };
-
 
 template < > struct type_master < t_compositing > : two_value < t_compositing, e_compositing, sz_normal, sz_knockout >
 { using two_value < t_compositing, e_compositing, sz_normal, sz_knockout > :: two_value; };
@@ -344,6 +346,12 @@ template < > struct type_master < t_meetslice > : two_value < t_meetslice, e_mee
 template < > struct type_master < t_morphology_operator > : two_value < t_morphology_operator, e_morphology_operator, sz_dilate, sz_erode >
 { using two_value < t_morphology_operator, e_morphology_operator, sz_dilate, sz_erode > :: two_value; };
 
+template < > struct type_master < t_mrss_info > : two_value < t_mrss_info, e_mrss_info, sz_package, sz_subscription >
+{ using two_value < t_mrss_info, e_mrss_info, sz_package, sz_subscription > :: two_value; };
+
+template < > struct type_master < t_mrss_status > : two_value < t_mrss_status, e_mrss_status, sz_official, sz_usercreated >
+{ using two_value < t_mrss_status, e_mrss_status, sz_official, sz_usercreated > :: two_value; };
+
 template < > struct type_master < t_n_s > : two_value < t_n_s, e_n_s, sz_n, sz_s >
 { using two_value < t_n_s, e_n_s, sz_n, sz_s > :: two_value; };
 
@@ -382,6 +390,9 @@ template < > struct type_master < t_overlay > : two_value < t_overlay, e_overlay
 
 template < > struct type_master < t_over_under > : two_value < t_over_under, e_over_under, sz_over, sz_under >
 { using two_value < t_over_under, e_over_under, sz_over, sz_under > :: two_value; };
+
+template < > struct type_master < t_plainhtml > : two_value < t_plainhtml, e_plainhtml, sz_plain, sz_html >
+{ using two_value < t_plainhtml, e_plainhtml,  sz_plain, sz_html > :: two_value; };
 
 template < > struct type_master < t_pri_img_orientation > : two_value < t_pri_img_orientation, e_pri_img_orientation, sz_horizontal, sz_vertical >
 { using two_value < t_pri_img_orientation, e_pri_img_orientation, sz_horizontal, sz_vertical > :: two_value; };

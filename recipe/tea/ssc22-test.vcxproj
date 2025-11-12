@@ -142,15 +142,15 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib</LibraryPath>
-    <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\test-$(Configuration)\</OutDir>
+    <IntDir>ssc22$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LeakSeek|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib</LibraryPath>
-    <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\test-$(Configuration)\</OutDir>
+    <IntDir>ssc22$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -172,22 +172,22 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL);$(ICU_ROOT)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_arm64);$(WindowsSDK_LibraryPath_arm64)</LibraryPath>
-    <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\test-$(Configuration)\</OutDir>
+    <IntDir>ssc22$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL);$(ICU_ROOT)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_arm64);$(WindowsSDK_LibraryPath_arm64)</LibraryPath>
-    <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\test-$(Configuration)\</OutDir>
+    <IntDir>ssc22$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib</LibraryPath>
-    <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\test-$(Configuration)\</OutDir>
+    <IntDir>ssc22$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -201,8 +201,8 @@
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL);$(ICU_ROOT)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_arm64);$(WindowsSDK_LibraryPath_arm64)</LibraryPath>
-    <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)ssc22$(Platform)\test-$(Configuration)\</OutDir>
+    <IntDir>ssc22$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnableManifest>true</VcpkgEnableManifest>

@@ -276,6 +276,8 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_security : return "RFC 9116";
         case ed_rsl : return "really simple licensing";
         case ed_rss : return "really simple syndication";
+        case ed_ccrss : return "Creative Commons RSS";
+        case ed_mrss : return "Media RSS";
         case ed_atom : return "atom syndication"; }
     return "Unknown reference"; }
 
@@ -411,6 +413,8 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_security : return "RFC 9116, Security Vulnerability Disclosure, April 2022";
         case ed_rsl : return "Really Simple Licensing, September 2025 draft";
         case ed_rss : return "Really Simple Syndication 2.0.11, March 2009";
+        case ed_ccrss : return "Creative Commons Namespace for RSS, June 2023";
+        case ed_mrss : return "Media RSS Specification 1.5.1, December 2009";
         case ed_atom : return "RFC 4287, Atom Syndication Format, December 2005"; }
     return "unknown reference"; }
 
@@ -472,7 +476,12 @@ e_nit_link_type doc_link (const e_doc doc, ::std::string& link)
         case ed_aria_graphics : link = ARIASPEX "aria-graph-1.0.pdf"; return nlt_pdf;
         case ed_aria_html : link = ARIASPEX "aria-html-1.0.pdf"; return nlt_pdf;
         case ed_aria_mdn : link = "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles"; return nlt_html;
+        case ed_atom : link = "https://validator.w3.org/feed/docs/rfc4287.html"; return nlt_html;
+        case ed_ccrss : link = "https://www.rssboard.org/creative-commons"; return nlt_html;
         case ed_clacks : link = "https://xclacksoverhead.org/"; return nlt_html;
+        case ed_con : link = "https://iabtechlab.com/wp-content/uploads/2022/04/Ads.txt-1.1.pdf"; return nlt_html;
+        case ed_cr_4 : link = CSSSPEX "css-conditional-rules-4-feb22"; return nlt_pdf;  
+        case ed_cr_5 : link = CSSSPEX "css-conditional-rules-5-dec21"; return nlt_pdf;  
         case ed_csp : link = "csp/csp3.pdf"; return nlt_pdf;
         case ed_css_1 : link = CSSSPEX "css-1-apr08.pdf"; return nlt_pdf;
         case ed_css_20 : link = CSSSPEX "css-2.0-may98.pdf"; return nlt_pdf;
@@ -482,8 +491,6 @@ e_nit_link_type doc_link (const e_doc doc, ::std::string& link)
         case ed_css_cascade_4 : link = CSSSPEX "css-cascading-inheritance-4-jan22.pdf"; return nlt_pdf; 
         case ed_css_cascade_5 : link = CSSSPEX "css-cascading-inheritance-5-jan22.pdf"; return nlt_pdf; 
         case ed_css_cascade_6 : link = CSSSPEX "css-cascading-inheritance-6-mar23.pdf"; return nlt_pdf; 
-        case ed_cr_4 : link = CSSSPEX "css-conditional-rules-4-feb22"; return nlt_pdf;  
-        case ed_cr_5 : link = CSSSPEX "css-conditional-rules-5-dec21"; return nlt_pdf;  
         case ed_css_colour_3 : link = CSSSPEX "css-colour-3-jan22.pdf"; return nlt_pdf;  
         case ed_css_colour_4 : link = CSSSPEX "css-colour-4-nov22.pdf"; return nlt_pdf;  
         case ed_css_colour_5 : link = CSSSPEX "css-colour-5-jun22.pdf"; return nlt_pdf;  
@@ -525,18 +532,13 @@ e_nit_link_type doc_link (const e_doc doc, ::std::string& link)
         case ed_mimetype : link = "mime/media-types.txt"; return nlt_txt;
         case ed_mozilla : link = "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta"; return nlt_html;
         case ed_mql : link = "media/media-queries.pdf"; return nlt_pdf;
+        case ed_mrss : link = "https://www.rssboard.org/media-rss"; return nlt_html;
         case ed_owasp : link = "https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html"; return nlt_html;
         case ed_plus : link = "https://www.w3.org/MarkUp/HTMLPlus/htmlplus_1.html"; return nlt_html;
         case ed_prism_1 : link = ONTSPEX "PRISM1.0.pdf"; return nlt_pdf;
         case ed_rdfa : link = RDFSPEX "rdfa-core.1.1.3.pdf"; return nlt_pdf;
         case ed_rdfa_c : link = RDFSPEX "RDFa Core Initial Context.pdf"; return nlt_pdf;
         case ed_rel : link = "https://microformats.org/wiki/existing-rel-values"; return nlt_html;
-        case ed_con : link = "https://iabtechlab.com/wp-content/uploads/2022/04/Ads.txt-1.1.pdf"; return nlt_html;
-        case ed_robotic : link = "https://www.rfc-editor.org/rfc/rfc9309.html"; return nlt_html;
-        case ed_security : link = "https://www.rfc-editor.org/rfc/rfc9116.html"; return nlt_html;
-        case ed_rsl : link = NSLS_RSL; return nlt_html;
-        case ed_rss : link = "https://www.rssboard.org/rss-specification"; return nlt_html;
-        case ed_atom : link = "https://validator.w3.org/feed/docs/rfc4287.html"; return nlt_html;
         case ed_rfc_1867 : link = RFC "rfc1867.html"; return nlt_html;
         case ed_rfc_1980 : link = RFC "rfc1980.html"; return nlt_html;
         case ed_rfc_2616 : link = RFC "rfc2616.pdf"; return nlt_pdf;
@@ -547,6 +549,10 @@ e_nit_link_type doc_link (const e_doc doc, ::std::string& link)
         case ed_rfc_7231 : link = RFC "rfc7231.pdf"; return nlt_pdf;
         case ed_rfc_7234 : link = RFC "rfc7234.pdf"; return nlt_pdf;
         case ed_rfc_8288 : link = RFC "rfc8288.pdf"; return nlt_pdf;
+        case ed_robotic : link = "https://www.rfc-editor.org/rfc/rfc9309.html"; return nlt_html;
+        case ed_rsl : link = NSLS_RSL; return nlt_html;
+        case ed_rss : link = HTTPS RSS_BOARD "/rss-specification"; return nlt_html;
+        case ed_security : link = "https://www.rfc-editor.org/rfc/rfc9116.html"; return nlt_html;
         case ed_so_11 : link = ONTSPEX "schemas-11.0.zip"; return nlt_zip;
         case ed_svg_1_0 : link = SVGSPEX "svg.pdf"; return nlt_pdf;
         case ed_svg_1_1 : link = SVGSPEX "svg11.pdf"; return nlt_pdf;

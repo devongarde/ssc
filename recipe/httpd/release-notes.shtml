@@ -22,6 +22,43 @@
 
 <h2>2025</h2>
 
+<h3>0.2.22</h3>
+
+<ul>
+<li>
+RSS media, trackback, and creativecommons namespaces
+</li>
+<li>
+GEORSS and GML namespaces
+</li>
+<li>
+DPV ontology 2.2
+</li>
+<li>
+croissant ontology 1.22
+</li>
+<li>
+tentative support for visual studio 2026
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+download
+<A href="/bin/Install-SSC-0.2.22-Win-x64.msi" type="application/octet-stream" download>Windows 10/11 x64 installer</a>,
+<A href="/bin/Install-SSC-0.2.22-Win-a64.msi" type="application/octet-stream" download>Windows 10/11 ARM64 installer</a>,
+<A href="/bin/SSC-0.2.22-Mac-Arm.zip" type="application/zip" download>Mac ARM app (zipped)</a>,
+<A href="/bin/SSC-0.2.22-Mac-Intel.zip" type="application/zip" download>Mac Intel app (zipped)</a>,
+<A href="/src/ssc-0.2.22.tgz" type="application/gzip" download>source</a>.
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-11-14">25 11 14</time>
+</li>
+</ul>
+
 <h3>0.2.21</h3>
 
 <ul>
@@ -64,8 +101,6 @@ download
 released <time itemprop="datePublished" class="dt-published" datetime="2025-09-30">25 9 30</time>
 </li>
 </ul>
-
-<h2>2025</h2>
 
 <h3>0.2.20</h3>
 

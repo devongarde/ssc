@@ -117,6 +117,12 @@
 ../toast/css/reader/css.spec
 ../toast/css/simple/css.spec
 ../toast/css/songlight/css.spec
+../toast/external/1kb.lejtzen.dev/ext.spec
+../toast/external/cleberg.net/ext.spec
+../toast/external/rdf/ext.spec
+../toast/external/rss/ext.spec
+../toast/external/ukarim.com/ext.spec
+../toast/external/vik.tf/ext.spec
 ../toast/HTML/1.0/html1.spec
 ../toast/HTML/2.0/html2.spec
 ../toast/HTML/3.0/html3.spec
@@ -271,6 +277,9 @@
 ../toast/rss/0.91/rss.spec
 ../toast/rss/0.92/rss.spec
 ../toast/rss/2.0/rss.spec
+../toast/rss/cc/cc.spec
+../toast/rss/media/media.spec
+../toast/rss/trackback/trackback.spec
 ../toast/shadow/comment/comment.spec
 ../toast/shadow/copy/copy.spec
 ../toast/shadow/copydiff/copydiff.spec

@@ -310,6 +310,9 @@ void element::examine_form ()
                         else
                             rk -> pick (nit_lonely_radio, ed_50, "4.10.5.1.13 Radio Button state", es_error, ec_element, "radio buttons require company; there must be multiple <INPUT> TYPE=radio with NAME ", quote (n)); } } } } }
 
+void element::examine_geo ()
+{   test_value < t_real > (nits (), node_.version (), text (), this); }
+
 void element::examine_h123456 ()
 {   if (node_.version ().mjr () < 5) return;
     check_ancestors (tag (), empty_element_bitset | elem_address | elem_dt);

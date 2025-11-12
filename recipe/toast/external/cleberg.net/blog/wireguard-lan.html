@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+    
+    <meta charset="utf-8">
+    <title>
+     Enabling Local Network Access with Mullvad WireGuard Configs | 
+    cleberg.net
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Christian Cleberg &lt;hello@cleberg.net&gt;" >
+    <meta name="description" content="Just a blip of ones and zeroes." >
+    
+    <link rel="stylesheet" href="../styles.min.css" type="text/css">
+    <link rel="icon" type="image/x-icon" href="data:,">
+    
+<meta property="og:title" content="Enabling Local Network Access with Mullvad WireGuard Configs" />
+<meta property="og:url" content="https://cleberg.net/blog/wireguard-lan.html" />
+
+<meta property="og:description" content="Detailed procedure to modify Mullvad Wireguard VPN configuration files and iptables rules to allow Local Area Network access while maintaining VPN connectivity." />
+ 
+    
+</head>
+<body>
+	<nav aria-label="site-nav" role="navigation">
+		<ul>
+			<li><a href="../index.html">Home</a></li>
+            <li><a href="../about/index.html">About</a></li>
+			<li><a href="index.html">Blog</a></li>
+			<li><a href="../services/index.html">Services</a></li>
+		</ul>
+	</nav>
+    <main>
+<article role="article">
+	<section class="post-metadata">
+		<h1>Enabling Local Network Access with Mullvad WireGuard Configs</h1>
+		
+		<time datetime='2023-07-12'
+			>Wednesday, July 12, 2023 00:00:00</time
+		>
+		
+	</section>
+	<section><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="wireguard-lan.html#download-configuration-files-from-mullvad">1. Download Configuration Files from Mullvad</a>
+<ul>
+<li><a href="wireguard-lan.html#configuration-file-layout">1.1. Configuration File Layout</a></li>
+</ul>
+</li>
+<li><a href="wireguard-lan.html#editing-the-configuration-files">2. Editing the Configuration Files</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-download-configuration-files-from-mullvad" class="outline-2">
+<h2 id="download-configuration-files-from-mullvad"><span class="section-number-2">1.</span> Download Configuration Files from Mullvad</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+To begin, you'll need
+<a href="https://mullvad.net/account/wireguard-config">Wireguard configuration
+files from Mullvad</a>. You can choose any of the options as you download
+them. For example, I enabled the kill switch, selected all countries,
+and selected a few content filters.
+</p>
+
+<p>
+Once downloaded, unzip the files and move them to the Wireguard folder
+on your system.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="font-weight: bold;">cd</span> ~/Downloads
+unzip mullvad_wireguard_linux_all_all.zip
+doas mv *.conf /etc/wireguard/
+</pre>
+</div>
+</div>
+<div id="outline-container-configuration-file-layout" class="outline-3">
+<h3 id="configuration-file-layout"><span class="section-number-3">1.1.</span> Configuration File Layout</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The default configuration files will look something like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-conf">[<span style="font-weight: bold; text-decoration: underline;">Interface</span>]
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Device: &lt;redacted&gt;</span>
+<span style="font-weight: bold; font-style: italic;">PrivateKey</span> = &lt;redacted&gt;
+<span style="font-weight: bold; font-style: italic;">Address</span> = &lt;redacted&gt;
+<span style="font-weight: bold; font-style: italic;">DNS</span> = &lt;redacted&gt;
+<span style="font-weight: bold; font-style: italic;">PostUp</span> = iptables -I OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL -j REJECT &amp;&amp; ip6tables -I OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL -j REJECT
+<span style="font-weight: bold; font-style: italic;">PreDown</span> = iptables -D OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL -j REJECT &amp;&amp; ip6tables -D OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL -j REJECT
+
+[<span style="font-weight: bold; text-decoration: underline;">Peer</span>]
+<span style="font-weight: bold; font-style: italic;">PublicKey</span> = &lt;redacted&gt;
+<span style="font-weight: bold; font-style: italic;">AllowedIPs</span> = &lt;redacted&gt;
+<span style="font-weight: bold; font-style: italic;">Endpoint</span> = &lt;redacted&gt;
+</pre>
+</div>
+
+<blockquote>
+<p>
+Note: If you didn't select the kill switch option, you won't see the
+<code>PostUp</code> and <code>PreDown</code> lines. In this case, you'll need to modify the
+script below to simply append those lines to the <code>[Interface]</code> block.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-editing-the-configuration-files" class="outline-2">
+<h2 id="editing-the-configuration-files"><span class="section-number-2">2.</span> Editing the Configuration Files</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Once you have the files, you'll need to edit them and replace the
+<code>PostUp</code> and <code>PreDown</code> lines to enable LAN access.
+</p>
+
+<p>
+I recommend that you do this process as root, since you'll need to be
+able to access files in <code>/etc/wireguard</code>, which are generally owned by
+root. You can also try using <code>sudo</code> or <code>doas</code>, but I didn't test that
+scenario so you may need to adjust, as necessary.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">su
+</pre>
+</div>
+
+<p>
+Create the Python file that we'll be using to update the Wireguard
+configuration files.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nano replace.py
+</pre>
+</div>
+
+<p>
+Within the Python file, copy and paste the logic below. This script will
+open a directory, loop through every configuration file within the
+directory, and replace the <code>PostUp</code> and <code>PreDown</code> lines with the new
+LAN-enabled iptables commands.
+</p>
+
+<blockquote>
+<p>
+Note: If your LAN is on a subnet other than <code>192.168.1.0/24</code>, you'll
+need to update the Python script below appropriately.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> os
+<span style="font-weight: bold;">import</span> fileinput
+
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"--- starting ---"</span>)
+
+<span style="font-weight: bold;">dir</span> = <span style="font-style: italic;">"/etc/wireguard/"</span>
+
+<span style="font-weight: bold;">for</span> <span style="font-weight: bold;">file</span> <span style="font-weight: bold;">in</span> os.listdir(<span style="font-weight: bold;">dir</span>):
+    <span style="font-weight: bold;">print</span>(os.path.join(<span style="font-weight: bold;">dir</span>, <span style="font-weight: bold;">file</span>))
+    <span style="font-weight: bold;">for</span> line <span style="font-weight: bold;">in</span> fileinput.<span style="font-weight: bold;">input</span>(os.path.join(<span style="font-weight: bold;">dir</span>, <span style="font-weight: bold;">file</span>), inplace=<span style="font-weight: bold; text-decoration: underline;">True</span>):
+        <span style="font-weight: bold;">if</span> <span style="font-style: italic;">"PostUp"</span> <span style="font-weight: bold;">in</span> line:
+            <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"PostUp = iptables -I OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL ! -d 192.168.1.0/24 -j REJECT &amp;&amp; ip6tables -I OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL -j REJECT"</span>)
+        <span style="font-weight: bold;">elif</span> <span style="font-style: italic;">"PreDown"</span> <span style="font-weight: bold;">in</span> line:
+            <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"PreDown = iptables -D OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL ! -d 192.168.1.0/24 -j REJECT &amp;&amp; ip6tables -D OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL -j REJECT"</span>)
+        <span style="font-weight: bold;">else</span>:
+            <span style="font-weight: bold;">print</span>(line, end=<span style="font-style: italic;">""</span>)
+
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"--- done ---"</span>)
+</pre>
+</div>
+
+<p>
+Once you're done, save and close the file. You can now run the Python
+script and watch as each file is updated.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">python3 replace.py
+</pre>
+</div>
+
+<p>
+To confirm it worked, you can <code>cat</code> one of the configuration files to
+inspect the new logic and connect to one to test it out.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">cat /etc/wireguard/us-chi-wg-001.conf
+</pre>
+</div>
+
+<p>
+The configuration files should now look like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-conf">[<span style="font-weight: bold; text-decoration: underline;">Interface</span>]
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Device: &lt;redacted&gt;</span>
+<span style="font-weight: bold; font-style: italic;">PrivateKey</span> = &lt;redacted&gt;
+<span style="font-weight: bold; font-style: italic;">Address</span> = &lt;redacted&gt;
+<span style="font-weight: bold; font-style: italic;">DNS</span> = &lt;redacted&gt;
+<span style="font-weight: bold; font-style: italic;">PostUp</span> = iptables -I OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL ! -d 192.168.1.0/24 -j REJECT &amp;&amp; ip6tables -I OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL -j REJECT
+<span style="font-weight: bold; font-style: italic;">PreDown</span> = iptables -D OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL ! -d 192.168.1.0/24 -j REJECT &amp;&amp; ip6tables -D OUTPUT ! -o %i -m mark ! --mark $(wg show %i fwmark) -m addrtype ! --dst-type LOCAL -j REJECT
+
+[<span style="font-weight: bold; text-decoration: underline;">Peer</span>]
+<span style="font-weight: bold; font-style: italic;">PublicKey</span> = &lt;redacted&gt;
+<span style="font-weight: bold; font-style: italic;">AllowedIPs</span> = &lt;redacted&gt;
+<span style="font-weight: bold; font-style: italic;">Endpoint</span> = &lt;redacted&gt;
+</pre>
+</div>
+
+<p>
+If you connect to a Wireguard interface, such as <code>us-chi-wg-001</code>, you
+can test your SSH functionality and see that it works even while on the
+VPN.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">wg-quick up us-chi-wg-001
+ssh user@lan-host
+</pre>
+</div>
+
+<p>
+To confirm your VPN connection, you can curl Mullvad's connection API:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">curl https://am.i.mullvad.net/connected
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">You are connected to Mullvad (server us-chi-wg-001). Your IP address is &lt;redacted&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+</section>
+	<blockquote><a href="mailto:hello@cleberg.net">Reply via email &rarr;</a></blockquote>
+</article>
+</main>
+	<footer>
+        <a href="https://stats.uptimerobot.com/OwOWs7HU0z">Status</a> &middot;
+        <a href="https://git.cleberg.net/cleberg.net.git" target="_blank"
+        rel="noopener">Source</a> &middot;
+        <a href="../feed.xml">RSS</a>
+	</footer>
+</body>
+</html>

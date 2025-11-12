@@ -1,9 +1,7 @@
 -Y 1 -f ../toast/type/rsl/rsl.conf
 
 PASS ../toast/type/rsl/catalogue.rss
-1 unrecognised_namespace
 2 rss_missing_child
-10 slash_gt
 
 PASS ../toast/type/rsl/embed.html
 2 naughty_lang

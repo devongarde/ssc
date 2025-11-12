@@ -308,6 +308,12 @@ template < > struct type_master < t_mf_availability > : four_value < t_mf_availa
 template < > struct type_master < t_mf_category > : four_value < t_mf_category, e_mf_category, sz_meeting, sz_appointment, sz_conference, sz_expo >
 { using four_value < t_mf_category, e_mf_category, sz_meeting, sz_appointment, sz_conference, sz_expo > :: four_value; };
 
+template < > struct type_master < t_mrss_price_type > : four_value < t_mrss_price_type, e_mrss_price_type, sz_package, sz_purchase, sz_rent, sz_subscription >
+{ using four_value < t_mrss_price_type, e_mrss_price_type, sz_package, sz_purchase, sz_rent, sz_subscription > :: four_value; };
+
+template < > struct type_master < t_mrss_reltype > : four_value < t_mrss_reltype, e_mrss_reltype, sz_country, sz_deny, sz_sharing, sz_uri >
+{ using four_value < t_mrss_reltype, e_mrss_reltype, sz_country, sz_deny, sz_sharing, sz_uri > :: four_value; };
+
 template < > struct type_master < t_paint_order > : four_value < t_paint_order, e_paint_order, sz_normal, sz_fill, sz_stroke, sz_markers >
 { using four_value < t_paint_order, e_paint_order, sz_normal, sz_fill, sz_stroke, sz_markers > :: four_value; };
 

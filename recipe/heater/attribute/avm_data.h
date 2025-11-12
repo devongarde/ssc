@@ -144,12 +144,6 @@ struct hav_t
     { { HTML_ARIA_1_3, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowindextext }, \
     { { HTML_ARIA_1_1, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowspan }
 
-#define ATOM_STANDARD_ATTRIBUTES(ELEM) \
-    { { HTML_ATOM }, { HTML_UNDEF }, ELEM, a_xmlbase }, \
-    { { HTML_ATOM }, { HTML_UNDEF }, ELEM, a_xmllang }, \
-    { { HTML_ATOM }, { HTML_UNDEF }, ELEM, a_xmlns }  // never mind the atom standard denies this is a common attribute, even though
-                                                        // many of the examples in the standard explicity use it
-
 #define MATH1_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS, MAF) \
     { { HTML_MATH1, 0, FLAGS, ( H2_MATH_1 | MAF ) }, { HTML_UNDEF }, ELEM, a_class }, \
     { { HTML_MATH1, 0, FLAGS, ( H2_MATH_1 | MAF ) }, { HTML_UNDEF }, ELEM, a_id }, \
@@ -312,8 +306,7 @@ struct hav_t
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, ELEM, a_rdf_parsetype }, \
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, ELEM, a_rdf_resource }
 
-#define RDFA_ATTRIBUTES_EX(ELEM,FLAGS) \
-    RDF_ATTRIBUTES (ELEM), \
+#define RDFA_ATTRIBUTES(ELEM,FLAGS) \
     { { HTML_RDF10, 0, FLAGS }, { HTML_UNDEF }, ELEM, a_about }, \
     { { HTML_RDF10, 0, FLAGS }, { HTML_UNDEF }, ELEM, a_content }, \
     { { HTML_RDF10, 0, FLAGS }, { HTML_UNDEF }, ELEM, a_datatype }, \
@@ -322,6 +315,10 @@ struct hav_t
     { { HTML_RDF10, 0, FLAGS }, { HTML_UNDEF }, ELEM, a_resource }, \
     { { HTML_RDF10, 0, FLAGS }, { HTML_UNDEF }, ELEM, a_rev }, \
     { { HTML_RDF10, 0, FLAGS }, { HTML_UNDEF }, ELEM, a_typeof }
+
+#define RDFA_ATTRIBUTES_EX(ELEM,FLAGS) \
+    RDF_ATTRIBUTES (ELEM), \
+    RDFA_ATTRIBUTES (ELEM,FLAGS)
 
 #define RDFA_STANDARD_ATTRIBUTES(ELEM) \
     RDF_ATTRIBUTES (ELEM), \
@@ -338,6 +335,17 @@ struct hav_t
     { { HTML_RDF10, 0, HE_RDFA | HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_src }, \
     { { HTML_RDF10, 0, HE_RDFA | HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_typeof }, \
     { { HTML_RDF10, 0, HE_RDFA | HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_vocab }
+
+// the ATOM standard denies XMLNS is a common attribute, yet many of the examples in that standard explicity use it
+#define ATOM_STANDARD_ATTRIBUTES(ELEM) \
+    { { HTML_ATOM }, { HTML_UNDEF }, ELEM, a_xmlbase }, \
+    { { HTML_ATOM }, { HTML_UNDEF }, ELEM, a_xmllang }, \
+    { { HTML_ATOM }, { HTML_UNDEF }, ELEM, a_xmlns }, \
+    RDFA_ATTRIBUTES (ELEM, HE_RDFA)
+
+// RDFa_META
+#define RDFa_META_ATTRIBUTES(ELEM) \
+    RDFA_ATTRIBUTES_EX (ELEM, HE_RDFA)
 
 #define SVG_ANIMATION_EVENT_ATTRIBUTES_EX(ELEM,VER) \
     { { HTML_SVG10, 0, VER }, { HTML_UNDEF }, ELEM, a_onbegin }, \

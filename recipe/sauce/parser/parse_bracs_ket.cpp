@@ -120,7 +120,7 @@ void faux_xmp_check (brac_element_ket& current, e_element& xmp_tag, bool& xmp_mo
         x = i + 1; } }
 
 void check_character (nitpick& nits, const html_version& v, const ::std::string::const_iterator e, ::std::string::const_iterator& i)
-{   if (v >= html_4_0)
+{   if (v.ml () && gt (v, html_4_0))
     {   switch (*i)
         {   case '\'' :
                 nits.pick (nit_use_quote_code, ed_4, "24 Character entity references in HTML 4.0", es_info, ec_parser, "consider replacing single quotes and apostrophes with character codes (e.g. '&lsquo;', '&rsquo;', etc.)");

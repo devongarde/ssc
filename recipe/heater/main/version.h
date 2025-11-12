@@ -165,8 +165,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_JUN06  HTML_2006, (HTML_JUN + HTML_30TH)
 #define HTML_JUL06  HTML_2006, HTML_JUL
 #define HTML_OCT06  HTML_2006, HTML_OCT
+#define HTML_NOV06  HTML_2006, HTML_NOV
 #define HTML_DEC06  HTML_2006, (HTML_DEC + HTML_31ST)
 #define HTML_JAN07  HTML_2007, HTML_JAN
+#define HTML_APR07  HTML_2007, HTML_APR
 #define HTML_JUN07  HTML_2007, (HTML_JUN + HTML_31ST)
 #define HTML_JUL07  HTML_2007, HTML_JUL
 #define HTML_OCT07  HTML_2007, HTML_OCT
@@ -315,15 +317,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_AUG25  HTML_2025, HTML_AUG
 #define HTML_SEP25  HTML_2025, HTML_SEP
 #define HTML_OCT25  HTML_2025, HTML_OCT
+#define HTML_NOV25  HTML_2025, HTML_NOV
+#define HTML_DEC25  HTML_2025, HTML_DEC
 #define HTML_DEC99  HTML_2099, (HTML_DEC + HTML_31ST)
 
 #define HTML_5_EARLIEST_YEAR    HTML_2005
 #define HTML_5_EARLIEST_MONTH   1
 
 #define HTML_LATEST_YEAR        HTML_2025
-#define HTML_LATEST_MONTH       10
+#define HTML_LATEST_MONTH       11
 
-#define HTML_CURRENT            HTML_AUG25
+#define HTML_CURRENT            HTML_NOV25
 
 #define HTML_UNDEF      0, 0
 
@@ -335,6 +339,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_ARIA_DP_1_1 HTML_FEB25
 #define HTML_ARIA_GRAPH HTML_OCT18
 #define HTML_ARIA_HTML   HTML_FEB25
+
+#define CSP_1 HTML_2012, (HTML_NOV + 7)
+#define CSP_2 HTML_2016, (HTML_DEC + 7)
+#define CSP_3 HTML_2018, (HTML_OCT + 7)
 
 #define HTML_CSS        HTML_2_0
 #define HTML_CSS_PART   HTML_NOV18
@@ -380,11 +388,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_AS_1_0     HTML_RDF10_CON
 #define HTML_AS_2_0     HTML_2017, HTML_MAY
 #define HTML_AS         HTML_AS_1_0
+#define HTML_ATOM       XHTML_1_0
 #define HTML_BFO        HTML_2015, HTML_JUN
 #define HTML_BIBO       HTML_RDF11
 #define HTML_BIRO       HTML_2013, HTML_MAY
 #define HTML_BOOK       HTML_OG_2012
 #define HTML_CC         HTML_2008, HTML_MAR
+#define HTML_CCRSS      HTML_JUL23
 #define HTML_CITO       HTML_2018, HTML_FEB
 #define HTML_CONTENT    HTML_RDF10
 #define HTML_CROISSANT_0_2  HTML_AUG23
@@ -414,7 +424,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_CROISSANT_1_19  HTML_JUL25
 #define HTML_CROISSANT_1_20  HTML_JUL25
 #define HTML_CROISSANT_1_21  HTML_AUG25
-#define MAX_MINOR_CROISSANT_1 21
+#define HTML_CROISSANT_1_22  HTML_SEP25
+#define MAX_MINOR_CROISSANT_1 22
 #define HTML_CROISSANT_1_100 HTML_FEB25
 #define HTML_CROISSANT_1_101 HTML_SEP25
 #define HTML_CSVW       HTML_JAN16
@@ -436,6 +447,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_DDI        HTML_RDF10_CON
 #define HTML_DQV        HTML_RDF10_CON
 #define HTML_DESC_BY    HTML_RDF10
+#define HTML_DPV_2_3    HTML_NOV25
+#define HTML_DPV_2_2    HTML_SEP25
 #define HTML_DPV_2_1    HTML_MAR25
 #define HTML_DPV_2_0    HTML_AUG24
 #define HTML_DPV_1      HTML_DEC22
@@ -469,6 +482,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_FAUX       HTML_RDF10
 #define HTML_FOAF       HTML_RDF10
 #define HTML_FRBR       HTML_RDF10
+#define HTML_GEO        HTML_MAR06
+#define HTML_GEORSS     HTML_APR07
+#define HTML_GML        HTML_JUL05
 #define HTML_GR         HTML_RDF10
 #define HTML_GRDDL      HTML_RDF10_CON
 #define HTML_GS10       HTML_JAN15
@@ -488,6 +504,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_LOCN       HTML_RDF10_CON
 #define HTML_MA         HTML_RDF10_CON
 #define HTML_MF         HTML_RDF10
+#define HTML_MRSS       HTML_JAN10
 #define HTML_MUSIC      HTML_OG_2012
 #define HTML_OA         HTML_RDF10_CON
 #define HTML_ODRL       HTML_RDF10
@@ -517,6 +534,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_RIF        HTML_JAN07
 #define HTML_ROLE       HTML_RDF10_CON
 #define HTML_RR         HTML_RDF10_CON
+#define HTML_RSL        HTML_SEP25
+#define HTML_RSS        HTML_XML
 #define HTML_SCHEMA_0     HTML_JUN11
 #define HTML_SCHEMA_JUN11 HTML_2011, ( HTML_JUN + HTML_6TH )
 #define HTML_SCHEMA_JUL11 HTML_2011, HTML_JUL
@@ -624,6 +643,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_SOSA       HTML_RDF10_CON
 #define HTML_TAXO       HTML_RDF10
 #define HTML_TIME       HTML_RDF10_CON
+#define HTML_TRACKBACK  HTML_NOV06
 #define HTML_V          HTML_RDF10_CON
 #define HTML_VANN_1_0   HTML_RDF10
 #define HTML_VANN_1_1   HTML_JAN06
@@ -658,31 +678,38 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_XLINK10    XHTML_1_0
 #define HTML_XLINK11    HTML_JUN10
 
-#define HTML_ATOM       HTML_JAN07
-#define HTML_RSL        HTML_SEP25
-#define HTML_RSS        HTML_XML
 
 class version
 {   unsigned short mjr_ = 0, mnr_ = 0;
     flags_t flags_ = NOFLAGS;
+    e_apples_oranges ao_ = ao_unknown;
 public:
-    version () : mjr_ (0), mnr_ (0), flags_ (NOFLAGS) { }
-    version (const unsigned short mjr, const unsigned short mnr, const flags_t flags = NOFLAGS) noexcept
-        :   mjr_ (mjr), mnr_ (mnr), flags_ (flags) { }
+    version () : mjr_ (0), mnr_ (0), flags_ (NOFLAGS), ao_ (ao_unknown) { }
+    explicit version (const e_apples_oranges ao) : mjr_ (0), mnr_ (0), flags_ (NOFLAGS), ao_ (ao) { }
+    version (const unsigned short mjr, const unsigned short mnr, const flags_t flags = NOFLAGS, const e_apples_oranges ao = ao_html) noexcept
+        :   mjr_ (mjr), mnr_ (mnr), flags_ (flags), ao_ (ao) { }
     DEFAULT_COPY_CONSTRUCTORS (version);
     ~version () = default;
     void swap (version& v) noexcept
     {   ::std::swap (mjr_, v.mjr_);
         ::std::swap (mnr_, v.mnr_);
-        ::std::swap (flags_, v.flags_); }
+        ::std::swap (flags_, v.flags_);
+        ::std::swap (ao_, v.ao_); }
     void reset () noexcept { version v; swap (v); }
     void reset (const version& v) noexcept { version vv (v); swap (vv); }
     void set_mjr (const unsigned short mjr, const unsigned short mnr = 0) noexcept
     {   mjr_ = mjr; mnr_ = mnr; }
-    bool unknown () const noexcept { return (mjr_ == 0) && (mnr_ == 0); }
+    bool unknown () const noexcept { return (ao_ == ao_unknown) || ((mjr_ == 0) && (mnr_ == 0)); }
     bool known () const noexcept { return ! unknown (); }
     unsigned short mjr () const noexcept { return mjr_; }
     unsigned short mnr () const noexcept { return mnr_; }
+    e_apples_oranges ao () const noexcept { return ao_; }
+    bool ml () const noexcept;
+    void ao (const e_apples_oranges ao) noexcept { ao_ = ao; }
+    bool is_namespace_ao () const
+    {   return (ao_ >= first_ao_namespace) && (ao_ <= last_ao_namespace); }
+    bool is_ontology_ao () const
+    {   return (ao_ >= first_ao_ontology) && (ao_ <= last_ao_ontology); }
     void set_flags (const flags_t u) noexcept { flags_ |= u; }
     void reset_flags (const flags_t u) noexcept { flags_ &= ~u; }
     bool all_flags (const flags_t u) const noexcept { return ((flags_ & u) == u); }
@@ -693,16 +720,26 @@ public:
     ::std::string name () const;
     ::std::string report () const; };
 
-bool operator == (const version& lhs, const version& rhs) noexcept;
-bool operator != (const version& lhs, const version& rhs) noexcept;
-bool operator < (const version& lhs, const version& rhs) noexcept;
-bool operator > (const version& lhs, const version& rhs) noexcept;
-bool operator <= (const version& lhs, const version& rhs) noexcept;
-bool operator >= (const version& lhs, const version& rhs) noexcept;
+bool eq (const version& lhs, const version& rhs) noexcept;
+bool lt (const version& lhs, const version& rhs) noexcept;
+inline bool ne (const version& lhs, const version& rhs) noexcept { return ! eq (lhs, rhs); }
+inline bool gt (const version& lhs, const version& rhs) noexcept { return ! lt (lhs, rhs) && ! eq (lhs, rhs); }
+inline bool le (const version& lhs, const version& rhs) noexcept { return ! gt (lhs, rhs); }
+inline bool ge (const version& lhs, const version& rhs) noexcept { return ! lt (lhs, rhs); }
+
+bool comparable (const version& lhs, const version& rhs) noexcept;
+
+inline bool operator == (const version& lhs, const version& rhs) noexcept { return (comparable (lhs, rhs) && eq (lhs, rhs)); }
+inline bool operator != (const version& lhs, const version& rhs) noexcept { return (comparable (lhs, rhs) && ne (lhs, rhs)); }
+inline bool operator < (const version& lhs, const version& rhs) noexcept { return (comparable (lhs, rhs) && lt (lhs, rhs)); }
+inline bool operator > (const version& lhs, const version& rhs) noexcept { return (comparable (lhs, rhs) && gt (lhs, rhs)); }
+inline bool operator <= (const version& lhs, const version& rhs) noexcept { return (comparable (lhs, rhs) && le (lhs, rhs)); }
+inline bool operator >= (const version& lhs, const version& rhs) noexcept { return (comparable (lhs, rhs) && ge (lhs, rhs)); }
 
 template < class V > inline bool does_apply (const V& v, const V& from, const V& to) MSVC_NOEXCEPT
-{   if (! from.unknown () && (v < from)) return false;
-    if (! to.unknown () && (v > to)) return false;
+{   if (! comparable (v, from)) return true;
+    if (! from.unknown () && lt (v, from)) return false;
+    if (! to.unknown () && gt (v, to)) return false;
     return true; }
 
 #ifdef _MSC_VER

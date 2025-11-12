@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- The root RSS elements must include declaration of used namespaces. -->
+<rss
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:media="http://search.yahoo.com/mrss/"
+  xmlns:mi="http://schemas.ingestion.microsoft.com/common/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:dcterms="http://purl.org/dc/terms/"
+  version="2.0">
+  <channel>
+    <title>Slideshow Group Title</title>
+    <link>https://www.contoso.com/Slideshow-Group-Link/</link>
+    <description>This is a group of slideshows.</description>
+    <lastBuildDate>01 Oct 2017 13:00:00 GMT</lastBuildDate>
+
+    <!-- each individual slideshow is provided in a single <item> -->
+    <item>
+
+      <!-- REQUIRED: You need to specify a <guid> which will be used to uniquely
+        identify the feed item across all other content items coming in your feeds. -->
+      <guid isPermaLink="false">207073</guid>
+
+      <!-- REQUIRED: slideshow title must be provided -->
+      <title>Get the facts. Your Vision. Your Cloud</title>
+
+      <!-- REQUIRED: <pubDate> is used to keep track of when the item is published.
+           In case no "modified/updated date" is provided, pubDate is also used
+           ﻿to keep track of updates.
+           Dates must be expressed using RFC 3339 or RFC 822 date formats.
+
+           examples:
+           Wed, 04 Oct 2017 15:00:00 +0200
+           2017-10-04T08:00:00-05:00
+         -->
+      <pubDate>01 Oct 2017 13:00:00 GMT</pubDate>
+
+      <!-- Use the <dcterms:modified> element to indicate when was the last time
+           this item was updated.
+           If this field is not provided, pubDate will be assumed to be updated
+          ﻿ with every new version-->
+      <dcterms:modified>2017-10-10T10:00:00+0100</dcterms:modified>
+
+      <!-- RECOMMENDED: Use dc:creator in RSS to specify author name. -->
+      <dc:creator>Joe Gargery</dc:creator>
+
+      <!-- RECOMMENDED: Subtitle can be specified in <dcterms:alternative> -->
+      <dcterms:alternative>Article subtitle</dcterms:alternative>
+
+      <!-- Use this element if you want to override the default 1-year expiration.
+          ﻿ Date formats should follow W3C-DTF https://www.w3.org/TR/NOTE-datetime 
+           Currently, we only support specifying "end" as the expiration date
+           and "start" will be ignored.
+           Note: If the "start" is specified, it will be taken as
+           ﻿the published date time.
+           ﻿And we are checking if the publish time is older than 1 year.
+
+           You can use this element to takedown a piece of content,
+           ﻿by specifying an "end" date in the past.
+           See the takedown example at the end of this example.
+      -->
+      <dcterms:valid>start=2016-10-01T10:00:00+0100; end=2018-10-02T10:00:00+0100; scheme=W3C-DTF</dcterms:valid>
+
+      <!-- Alternatively, you may use special element 'mi:expirationDate'
+           ﻿to specify expiration date. You can use any of the formats supported
+           ﻿in 'pubDate'. -->
+      <mi:expirationDate>2018-10-02T13:00:00.52Z</mi:expirationDate>
+
+      <!-- 
+          The “short title” value, also known as a “Web Headline” is used when
+          displaying content on compact settings. 
+          The value in this field should be 40 characters or less.' -->
+      <mi:shortTitle>Short Title</mi:shortTitle>
+
+      <!-- RECOMMENDED: Provide keywords associated with this document -->
+      <media:keywords>keyword1,keyword2,keyword3</media:keywords>
+
+      <!-- RECOMMENDED: Use <category> element at the item level to tag the document
+           with the category it belongs to. 
+           Multiple tags are allowed, each under a separate <category>.
+       -->
+      <category>News</category>
+      <category>Sports</category>
+      
+      <!-- Slideshow description/abstract is specified in the description tag.
+           ﻿The description will be shown in the Promo Cards -->
+      <description><![CDATA[ Slideshow description ]]></description>
+
+      <!-- each slide is expressed using a <media:content> element -->
+
+      <!-- REQUIRED: slide image url must be specified in media content element url -->
+      <media:content url="https://v3spec.msn.com/image1.jpg" type="image/jpeg" medium="image">
+
+        <!-- RECOMMENDED: Provide image attribution in media:credit.
+             Recommended format is: Photographer name/Agency name.
+             If not provided, will fallback to "Provided by [PUBLISHER NAME]"
+          -->
+        <media:credit>Joe Gargery/Fabrikam Images</media:credit>
+
+        <!-- REQUIRED: slide title must be provided in the following element -->
+        <media:title>Choose from more than 100 services</media:title>
+
+        <!-- RECOMMENDED: alt text for slide image-->
+        <media:text>Azure has over 100 services to choose from.</media:text>
+
+        <!-- RECOMMENDED: slide caption should be added in the description element.
+           ﻿HTML is allowed in this field when you wrap content within a CDATA structure. -->
+        <media:description>
+            <![CDATA[
+            <p>
+              Engage users in richer ways by building native mobile apps, responsive web apps, or next-generation experiences 
+              like bots and mixed reality. Quickly solve the toughest challenges and get your app up and running with minimal 
+              effort through seamless integration with the Visual Studio family of tools and more than 100 turn-key Azure services.
+            </p>
+            ]]>
+        </media:description>
+
+        <!-- RECOMMENDED: additional slide image metadata -->
+        <mi:focalRegion>
+          <mi:x1>120</mi:x1>
+          <mi:y1>120</mi:y1>
+          <mi:x2>400</mi:x2>
+          <mi:y2>400</mi:y2>
+        </mi:focalRegion>
+        <mi:hasSyndicationRights>1</mi:hasSyndicationRights>
+        <mi:licenseId>698525</mi:licenseId>
+        <mi:licensorName>Licensor name</mi:licensorName>
+      </media:content>
+
+      <!-- a second slide -->
+      <media:content url="https://v3spec.msn.com/image2.jpg" type="image/jpeg" medium="image">
+        <media:credit>Joe Gargery/Fabrikam Images</media:credit>
+        <media:title>Slide 2 title</media:title>
+        <media:text>Slide 2 alt-text</media:text>        
+      </media:content>
+
+      <!--To specify "related links" you must declare the atom namespace and
+          use the Atom's Link element-->
+
+      <!-- Links MUST have valid "href" and "title" attribute values.-->
+      <atom:link rel="related" type="text/html" href="https://v3spec.msn.com/news/prop_irs_1.html" title="New IRS proposal">
+
+        <!-- REQUIRED: you must provide a thumbnail image with the link -->
+        <media:thumbnail url="https://v3spec.msn.com/image2.jpg"  />
+      </atom:link>
+      <atom:link rel="related" type="text/html" href="https://v3spec.msn.com/news/prop_irs_2.html" title="New IRS proposal">
+        <media:thumbnail url="https://v3spec.msn.com/image2.jpg" />
+      </atom:link>
+      <atom:link rel="related" type="text/html" href="https://v3spec.msn.com/news/prop_irs_3.html" title="New IRS proposal">
+        <media:thumbnail url="https://v3spec.msn.com/image3.jpg" />
+      </atom:link>
+    </item>
+  </channel>
+</rss>

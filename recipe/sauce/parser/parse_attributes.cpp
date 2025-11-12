@@ -52,7 +52,7 @@ void attributes_node::push_back_and_report (nitpick& nits, const html_version& v
     if (keyed.find (x) == keyed.cend ()) keyed.insert (x);
     else if (normal) nits.pick (nit_attribute_repeated, es_warning, ec_attribute, "attribute ", x, " repeated");
     if (context.tell (es_detail)) nits.pick (nit_attribute_recognised, es_detail, ec_attribute, ::std::string ("found "), x, "=", quote (::std::string (value_start, value_end)));
-    va_.emplace_back (nits, v, this, name_start, name_end, value_start, value_end, normal, autodeclare);
+    va_.emplace_back (nits, v, this, name_start, name_end, value_start, value_end, normal, autodeclare, static_cast < e_namespace > (el.ns ()));
     if (va_.back ().invalid () && normal) report_invalid (nits, v, attr :: exists (x), name_start, name_end, el); }
 
 void attributes_node::push_back_and_report (nitpick& nits, const html_version& v, sstr_t& keyed, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end,
@@ -61,7 +61,7 @@ void attributes_node::push_back_and_report (nitpick& nits, const html_version& v
     if (keyed.find (x) == keyed.cend ()) keyed.insert (x);
     else if (normal) nits.pick (nit_attribute_repeated, es_warning, ec_attribute, "attribute ", x, " repeated");
     if (context.tell (es_detail)) nits.pick (nit_attribute_recognised, es_detail, ec_attribute, ::std::string ("found "), quote (x));
-    va_.emplace_back (nits, v, this, name_start, name_end, normal, autodeclare);
+    va_.emplace_back (nits, v, this, name_start, name_end, normal, autodeclare, static_cast < e_namespace > (el.ns ()));
     if (va_.back ().invalid () && normal) report_invalid (nits, v, attr :: exists (x), name_start, name_end, el); }
 
 ::std::string attributes_node::rpt () const
@@ -247,9 +247,9 @@ void attributes_node::parse (   nitpick& nits, const html_version& v, const ::st
         default: break; } }
 
 void attributes_node::process_attributes (  nitpick& nits, const html_version& v, element_node* box, const ::std::string::const_iterator b, const ::std::string::const_iterator e,
-                                            const int line, const e_namespace autodeclare)
+                                            const int line, const e_namespace autodeclare, const elem& el)
 {   attributes_node an (box);
-    an.parse (nits, v, b, e, line, elem (), false, autodeclare); }
+    an.parse (nits, v, b, e, line, el, false, autodeclare); }
 
 void attributes_node::manage_xmlns (nitpick& nits, html_version& v)
 {   nitpick knots;
@@ -258,18 +258,21 @@ void attributes_node::manage_xmlns (nitpick& nits, html_version& v)
         {   ::std::string ver (trim_the_lot_off (a.get_string ()));
             auto val = examine_value < t_xmlns > (knots, v, ver);
             switch (val)
-            {   case x_atom : v = html_atom; break;
+            {   case x_atom : if (v < html_atom) v = html_atom; break;
+                case x_ccrss : if (v < html_ccrss) v = html_ccrss; v.set_ext4 (H4_CCRSS); break;
                 case x_mathml : if (! v.math ()) v.set_ext2 (H2_MATH_1); break;
-                case x_rsl : v = html_rsl; break;
+                case x_mrss : if (v < html_mrss) v = html_mrss; v.set_ext4 (H4_MRSS); break;
+                case x_rsl : if (v < html_rsl) v = html_rsl; v.set_ext4 (H4_RSL); break;
                 case x_rss :
-                case x_syn : v = html_rss; break;
+                case x_syn : if (v < html_rss) v = html_rss; v.set_ext4 (H4_RSS); break;
                 case x_svg : if (! v.svg ()) v.set_ext (HE_SVG_10); break;
+                case x_trackback : if (v < html_trackback) v = html_trackback; v.set_ext4 (H4_TRACKBACK); break;
                 case x_xhtml_1_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, quote (ver), " is non-standard (it was withdrawn before XHTML 1.0 was published)");
                     FALLTHROUGH;
-                case x_xhtml_1 : if (v.unknown ()) v = xhtml_1_0; break;
-                case x_xhtml_11 : if (v.unknown ()) v = xhtml_1_1; break;
-                case x_xhtml_2 : if (v.unknown ()) v = xhtml_2; break;
+                case x_xhtml_1 : if (v.unknown () || (v < xhtml_1_0)) v = xhtml_1_0; break;
+                case x_xhtml_11 : if (v.unknown () || (v < xhtml_1_1)) v = xhtml_1_1; break;
+                case x_xhtml_2 : if (v.unknown () || (v < xhtml_2)) v = xhtml_2; break;
                 case x_xlink : if (! v.xlink ()) v.set_ext (HE_XLINK_1_0); break;
                 default : break; }
             break; } }

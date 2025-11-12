@@ -25,7 +25,6 @@ PASS ../toast/RDFa/gr/example-1.html
 348 ontology_domain
 352 ontology_domain
 360 unknown_protocol no_itemscope
-362 not_ontology_property bad_property
 405 requires_itemscope
 408 use_quote_code
 411 url_not_found

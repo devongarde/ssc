@@ -203,6 +203,7 @@ class element
     void examine_button ();
     void examine_card ();
     void examine_caption ();
+    void examine_ccrss_licence ();
     void examine_command ();
     void examine_col ();
     void examine_colgroup ();
@@ -232,6 +233,7 @@ class element
     void examine_fontymacfontface ();
     void examine_footer ();
     void examine_form ();
+    void examine_geo ();
     void examine_h123456 ();
     void examine_header ();
     void examine_hgroup ();
@@ -255,6 +257,10 @@ class element
     void examine_meter ();
     void examine_mglyph ();
     void examine_mn ();
+    void examine_mrss_backlink ();
+    void examine_mrss_keywords ();
+    void examine_mrss_restriction ();
+    void examine_mrss_time ();
     void examine_mstyle ();
     void examine_mtable ();
     void examine_mtr ();
@@ -268,6 +274,7 @@ class element
     void examine_picture ();
     void examine_piecewise ();
     void examine_progress ();
+    void examine_realn (const unsigned x = 0);
     void examine_reln ();
     void examine_rsl ();
     void examine_rsl_amount ();
@@ -320,6 +327,7 @@ class element
     void examine_time ();
     void examine_title ();
     void examine_track ();
+    void examine_trackback ();
     void examine_ul ();
     void examine_video ();
     ::std::string text (const bool simplify = false) const { return node_.text (simplify); }

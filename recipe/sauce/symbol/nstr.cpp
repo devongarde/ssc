@@ -32,6 +32,8 @@ n_string_entry < e_namespace, 3 > namespace_name_entries [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_cc, 0, { "cc", HTTP CC "/ns#", "creative commons" } },
     { { HTML_CNT }, { HTML_UNDEF }, ns_cnt, 0, { "cnt", HTTP_W3 "/TR/Content-in-RDF/", "content in RDF" } },
     { { HTML_CNT }, { HTML_UNDEF }, ns_cnt, 0, { "cnt", HTTP_W3 "/2011/content#", "content in RDF" } },
+    { { HTML_CCRSS }, { HTML_UNDEF }, ns_ccrss, 0, { "creativeCommons", NSL_CCRSS, "creative commons for RSS" } },
+    { { HTML_CCRSS }, { HTML_UNDEF }, ns_ccrss, 0, { "creativeCommons", NSLS_CCRSS, "creative commons for RSS" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_crs, 0, { "crs", HTTP OGC "/crs", "common reporting standard" } }, // https://www.oecd.org/tax/exchange-of-tax-information/common-reporting-standard-xml-schema-user-guide-for-tax-administrations-june-2019.pdf
     { { HTML_ADOBE }, { HTML_UNDEF }, ns_crs2, 0, { "crs", HTTP ADOBE_COM "/namespaces/camera-raw-settings/1.0/", "camera raw" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_dbp, 0, { "dbp", HTTP DBPEDIA "/property/", "dbpedia" } },  // https://www.dbpedia.org/
@@ -51,6 +53,12 @@ n_string_entry < e_namespace, 3 > namespace_name_entries [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, ns_fn, 0, { "fn", HTTP_W3 "/2005/xpath-functions", "XPath functions" } },  // http://xmlns.com/foaf/spec/
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_fo, 0, { "fo", HTTP_W3 "/1999/XSL/Format", "XSL Formatting Objects" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_foaf, 0, { "foaf", HTTP XCOM "/foaf/0.1/", "friend of a friend" } },  // http://xmlns.com/foaf/spec/
+    { { HTML_GEO }, { HTML_UNDEF }, ns_geo, 0, { "geo", HTTP_W3 "/2003/01/geo/wgs84_pos#", "W3 Geo" } },
+    { { HTML_GEO }, { HTML_UNDEF }, ns_geo, 0, { "geo", HTTPS_W3 "/2003/01/geo/wgs84_pos#", "W3 Geoe" } },
+    { { HTML_GEORSS }, { HTML_UNDEF }, ns_georss, 0, { "georss", HTTP "www.georss.org/georss", "Geographically Encoded Objects for RSS" } },
+    { { HTML_GEORSS }, { HTML_UNDEF }, ns_georss, 0, { "georss", HTTPS "www.georss.org/georss", "Geographically Encoded Objects for RSS" } },
+    { { HTML_GML }, { HTML_UNDEF }, ns_gml, 0, { "gml", HTTP "www.opengis.net/gml", "Geography Markup Language" } },
+    { { HTML_GML }, { HTML_UNDEF }, ns_gml, 0, { "gml", HTTPS "www.opengis.net/gml", "Geography Markup Language" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_html, NS_DEFAULT, { "html", HTTP_W3 "/1999/html", "hypertext markup language"  } },  // http://xmlns.com/foaf/spec/
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_ims, 0, { "ims", "http://www.imsglobal.org/xsd/imsmd_v1p2", "IMS Global Learning Consortium"  } },  // http://xmlns.com/foaf/spec/
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_ims, 0, { "ims", "http://www.imsglobal.org/xsd/imsmd_v1p2p2", "IMS Global Learning Consortium"  } },  // http://xmlns.com/foaf/spec/
@@ -73,6 +81,16 @@ n_string_entry < e_namespace, 3 > namespace_name_entries [] =
     { { HTML_MATH1 }, { HTML_UNDEF }, ns_math, 0, { "math", HTTP_W3 "/1998/Math/MathML", "mathML" } },
     { { HTML_MATH1 }, { HTML_UNDEF }, ns_math, 0, { "m", HTTP_W3 "/1998/Math/MathML", "mathML" } },
     { { HTML_MATH1 }, { HTML_UNDEF }, ns_math, 0, { "mml", HTTP_W3 "/1998/Math/MathML", "mathML" } },
+    { { HTML_MRSS }, { HTML_UNDEF }, ns_mrss, 0, { "media", HTTP "video.search.yahoo.com/mrss/", "Media for Really Simple Syndication" } },
+    { { HTML_MRSS }, { HTML_UNDEF }, ns_mrss, 0, { "media", HTTPS "video.search.yahoo.com/mrss/", "Media for Really Simple Syndication" } },
+    { { HTML_MRSS }, { HTML_UNDEF }, ns_mrss, 0, { "media", HTTP "video.search.yahoo.com/mrss", "Media for Really Simple Syndication" } },
+    { { HTML_MRSS }, { HTML_UNDEF }, ns_mrss, 0, { "media", HTTPS "video.search.yahoo.com/mrss", "Media for Really Simple Syndication" } },
+    { { HTML_MRSS }, { HTML_UNDEF }, ns_mrss, 0, { "media", HTTP "search.yahoo.com/mrss/", "Media for Really Simple Syndication" } },
+    { { HTML_MRSS }, { HTML_UNDEF }, ns_mrss, 0, { "media", HTTPS "search.yahoo.com/mrss/", "Media for Really Simple Syndication" } },
+    { { HTML_MRSS }, { HTML_UNDEF }, ns_mrss, 0, { "media", NSL_MRSS, "Media for Really Simple Syndication" } },
+    { { HTML_MRSS }, { HTML_UNDEF }, ns_mrss, 0, { "media", NSLS_MRSS, "Media for Really Simple Syndication" } },
+    { { HTML_MRSS }, { HTML_UNDEF }, ns_mrss, 0, { "media", NSL_MRSS "/", "Media for Really Simple Syndication" } },
+    { { HTML_MRSS }, { HTML_UNDEF }, ns_mrss, 0, { "media", NSLS_MRSS "/", "Media for Really Simple Syndication" } },
     { { HTML_OWL10 }, { HTML_UNDEF }, ns_odd, 0, { "odd", "http://odrl.net/1.0/ODRL-DD", "Open Digital Rights Language" } },
     { { HTML_OWL10 }, { HTML_UNDEF }, ns_oex, 0, { "oex", "http://odrl.net/1.0/ODRL-EX", "Open Digital Rights Language" } },
     { { HTML_OWL10 }, { HTML_UNDEF }, ns_owl, 0, { "owl", HTTP_W3 "/2002/07/owl#", "Web Ontology Language 1.0" } }, // http://xmlns.com/foaf/spec/ too
@@ -147,6 +165,9 @@ n_string_entry < e_namespace, 3 > namespace_name_entries [] =
     { { HTML_ADOBE }, { HTML_UNDEF }, ns_stref, 0, { "stref", HTTP ADOBE_COM "/namespaces/xap/1.0/sType/ResourceRef#", "XMP Reference" } },
     { { HTML_ADOBE }, { HTML_UNDEF }, ns_stver, 0, { "stver", HTTP ADOBE_COM "/namespaces/xap/1.0/sType/Version#", "XMP Version" } },
     { { HTML_SVG10 }, { HTML_UNDEF }, ns_svg, 0, { "svg", HTTP SVG_2000, "scalable vector graphics" } },
+    { { HTML_TRACKBACK }, { HTML_UNDEF }, ns_trackback, 0, { "trackback", NSL_TRACKBACK, "RSS trackback" } },
+    { { HTML_TRACKBACK }, { HTML_UNDEF }, ns_trackback, 0, { "trackback", NSLS_TRACKBACK, "RSS trackback" } },
+    { { HTML_TTML }, { HTML_UNDEF }, ns_tt, 0, { "tt", HTTP_W3 "/ns/ttml", "timed text markup language" } }, // https://en.wikipedia.org/wiki/Internationalization_Tag_Set
     { { HTML_TTML }, { HTML_UNDEF }, ns_tt, 0, { "tt", HTTP_W3 "/ns/ttml", "timed text markup language" } }, // https://en.wikipedia.org/wiki/Internationalization_Tag_Set
     { { HTML_TTML }, { HTML_UNDEF }, ns_ttf, 0, { "ttf", HTTP_W3 "/ns/ttml#parameter", "timed text markup language" } }, // https://en.wikipedia.org/wiki/Internationalization_Tag_Set
     { { HTML_TTML }, { HTML_UNDEF }, ns_ttp, 0, { "ttp", HTTP_W3 "/ns/ttml#styling", "timed text markup language" } }, // https://en.wikipedia.org/wiki/Internationalization_Tag_Set
@@ -526,25 +547,34 @@ n_string_entry < e_ontology, 3 > ontology_name_entries [] =
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_fr, 0, { "legal-fr", HTTPS W3ID_ORG "/dpv/legal/fr#", "data privacy vocabulary (legal_fr)" } },
     { { HTML_AUG24 }, { HTML_UNDEF }, s_dpv_legal_gb, 0, { "legal-gb", HTTPS W3ID_ORG "/dpv/legal/gb#", "data privacy vocabulary (legal_gb)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_gr, 0, { "legal-gr", HTTPS W3ID_ORG "/dpv/legal/gr#", "data privacy vocabulary (legal_gr)" } },
+    { { HTML_SEP25 }, { HTML_UNDEF }, s_dpv_legal_hk, 0, { "legal-hk", HTTPS W3ID_ORG "/dpv/legal/hk#", "data privacy vocabulary (legal_hk)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_hr, 0, { "legal-hr", HTTPS W3ID_ORG "/dpv/legal/hr#", "data privacy vocabulary (legal_hr)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_hu, 0, { "legal-hu", HTTPS W3ID_ORG "/dpv/legal/hu#", "data privacy vocabulary (legal_hu)" } },
     { { HTML_AUG24 }, { HTML_UNDEF }, s_dpv_legal_ie, 0, { "legal-ie", HTTPS W3ID_ORG "/dpv/legal/ie#", "data privacy vocabulary (legal_ie)" } },
     { { HTML_AUG24 }, { HTML_UNDEF }, s_dpv_legal_in, 0, { "legal-in", HTTPS W3ID_ORG "/dpv/legal/in#", "data privacy vocabulary (legal_in)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_is, 0, { "legal-is", HTTPS W3ID_ORG "/dpv/legal/is#", "data privacy vocabulary (legal_is)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_it, 0, { "legal-it", HTTPS W3ID_ORG "/dpv/legal/it#", "data privacy vocabulary (legal_it)" } },
+    { { HTML_SEP25 }, { HTML_UNDEF }, s_dpv_legal_jp, 0, { "legal-jp", HTTPS W3ID_ORG "/dpv/legal/jp#", "data privacy vocabulary (legal_jp)" } },
+    { { HTML_SEP25 }, { HTML_UNDEF }, s_dpv_legal_kr, 0, { "legal-kr", HTTPS W3ID_ORG "/dpv/legal/kr#", "data privacy vocabulary (legal_kr)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_li, 0, { "legal-li", HTTPS W3ID_ORG "/dpv/legal/li#", "data privacy vocabulary (legal_li)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_lt, 0, { "legal-lt", HTTPS W3ID_ORG "/dpv/legal/lt#", "data privacy vocabulary (legal_lt)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_lu, 0, { "legal-lu", HTTPS W3ID_ORG "/dpv/legal/lu#", "data privacy vocabulary (legal_lu)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_lv, 0, { "legal-lv", HTTPS W3ID_ORG "/dpv/legal/lv#", "data privacy vocabulary (legal_lv)" } },
+    { { HTML_SEP25 }, { HTML_UNDEF }, s_dpv_legal_mo, 0, { "legal-mo", HTTPS W3ID_ORG "/dpv/legal/mo#", "data privacy vocabulary (legal_mo)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_mt, 0, { "legal-mt", HTTPS W3ID_ORG "/dpv/legal/mt#", "data privacy vocabulary (legal_mt)" } },
+    { { HTML_SEP25 }, { HTML_UNDEF }, s_dpv_legal_my, 0, { "legal-my", HTTPS W3ID_ORG "/dpv/legal/my#", "data privacy vocabulary (legal_my)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_nl, 0, { "legal-nl", HTTPS W3ID_ORG "/dpv/legal/nl#", "data privacy vocabulary (legal_nl)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_no, 0, { "legal-no", HTTPS W3ID_ORG "/dpv/legal/no#", "data privacy vocabulary (legal_no)" } },
+    { { HTML_SEP25 }, { HTML_UNDEF }, s_dpv_legal_ph, 0, { "legal-ph", HTTPS W3ID_ORG "/dpv/legal/ph#", "data privacy vocabulary (legal_ph)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_pl, 0, { "legal-pl", HTTPS W3ID_ORG "/dpv/legal/pl#", "data privacy vocabulary (legal_pl)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_pt, 0, { "legal-pt", HTTPS W3ID_ORG "/dpv/legal/pt#", "data privacy vocabulary (legal_pt)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_ro, 0, { "legal-ro", HTTPS W3ID_ORG "/dpv/legal/ro#", "data privacy vocabulary (legal_ro)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_se, 0, { "legal-se", HTTPS W3ID_ORG "/dpv/legal/se#", "data privacy vocabulary (legal_se)" } },
+    { { HTML_SEP25 }, { HTML_UNDEF }, s_dpv_legal_sg, 0, { "legal-sg", HTTPS W3ID_ORG "/dpv/legal/sg#", "data privacy vocabulary (legal_sg)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_sl, 0, { "legal-sl", HTTPS W3ID_ORG "/dpv/legal/sl#", "data privacy vocabulary (legal_sl)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_legal_sk, 0, { "legal-sk", HTTPS W3ID_ORG "/dpv/legal/sk#", "data privacy vocabulary (legal_sk)" } },
+    { { HTML_SEP25 }, { HTML_UNDEF }, s_dpv_legal_th, 0, { "legal-th", HTTPS W3ID_ORG "/dpv/legal/th#", "data privacy vocabulary (legal_th)" } },
+    { { HTML_SEP25 }, { HTML_UNDEF }, s_dpv_legal_tw, 0, { "legal-tw", HTTPS W3ID_ORG "/dpv/legal/tw#", "data privacy vocabulary (legal_tw)" } },
     { { HTML_AUG24 }, { HTML_UNDEF }, s_dpv_legal_us, 0, { "legal-us", HTTPS W3ID_ORG "/dpv/legal/us#", "data privacy vocabulary (legal_us)" } },
     { { HTML_OCT20 }, { HTML_UNDEF }, s_dpv_nace, ONTOLOGY_DPV_1_ONLY, { "dpv-nace", HTTP_W3 "/ns/dpv-nace#", "data privacy vocabulary (NACE)" } },
     { { HTML_OCT20 }, { HTML_UNDEF }, s_dpv_nace, ONTOLOGY_DPV_1_ONLY, { "dpv-nace", HTTPS_W3 "/ns/dpv-nace#", "data privacy vocabulary (NACE)" } },

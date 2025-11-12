@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- The root RSS element must include declaration of used namespaces. -->
+<rss version="2.0"
+  xmlns:media="https://search.yahoo.com/mrss/"
+  xmlns:mi="https://schemas.ingestion.microsoft.com/common/"
+  xmlns:dc="https://purl.org/dc/elements/1.1/"
+  xmlns:content="https://purl.org/rss/1.0/modules/content/"
+  xmlns:dcterms="https://purl.org/dc/terms/" 
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+
+  <channel>
+    <title>Feed title</title>
+    <link>https://www.contoso.com/sports</link>
+    <description>Feed description</description>
+    <lastBuildDate>01 Oct 2017 13:00:00 GMT</lastBuildDate>
+
+    <!-- you can either use Media RSS or iTunes namespace to set audio properties -->
+
+    <!-- Example 1: using Media RSS -->
+    <item>
+      <!-- REQUIRED: You need to specify a <guid> which will be used to uniquely
+        identify the feed item across all other content items coming in your feeds. -->
+      <guid isPermaLink="false">723435</guid>
+
+      <!-- REQUIRED: audio title must be provided -->
+      <title>Example audio using Media RSS</title>
+
+      <!-- 
+          REQUIRED: <pubDate> is used to keep track of when the item is published.
+          In case no "modified/updated date" is provided, pubDate is also used
+          ﻿to keep track of updates.
+          Dates must be expressed using RFC 3339 or RFC 822 date formats.
+
+          examples:
+          Wed, 04 Oct 2018 15:00:00 +0200
+          2018-10-04T08:00:00-05:00
+          -->
+      <pubDate>01 Oct 2018 13:00:00 GMT</pubDate>
+
+      <!-- Use the <dcterms:modified> element to indicate when was the last time this
+           item was updated.
+           If this field is not provided, pubDate will be assumed to be updated
+           with every new version -->
+      <dcterms:modified>2018-10-10T10:00:00+0100</dcterms:modified>
+
+      <!-- REQUIRED: Web URL points to the page hosting the video on the
+           ﻿publisher's﻿ site. -->
+      <link>https://v3spec.msn.com/audioid=2836489202/</link>
+
+      <!-- Use this element if you want to override the default 1-year expiration.
+           ﻿Date formats should follow W3C-DTF https://www.w3.org/TR/NOTE-datetime 
+           Currently, we only support specifying "end" as the expiration date
+           and "start" will be ignored.
+           Note: If the "start" is specified, it will be taken as
+           ﻿the published date time. And we are checking if the publish time is older
+           than 1 year.
+
+           You can use this element to takedown a piece of content,
+           ﻿by specifying an "end" date in the past.
+           ﻿See the takedown example at the end of this example.
+      -->
+      <dcterms:valid>start=2016-10-01T10:00:00+0100; end=2018-10-02T10:00:00+0100; scheme=W3C-DTF</dcterms:valid>
+
+      <!-- RECOMMENDED: audio abstract/description. If not specified here,
+           ﻿it should be specified at <media:description> of the audio -->
+      <description>Audio description</description>
+
+      <!-- use <media:content> element to supply the Audio metadata. -->
+      <!-- REQUIRED: audio URL must be specified in the url attribute -->
+      <media:content url="https://contoso.com/audio/sample.mp3" duration="512" type="audio/mpeg" medium="audio">
+
+        <!-- RECOMMENDED: audio thumbnail image -->
+        <media:thumbnail url="https://v3spec.msn.com/image.jpg" height="480" width="853" />
+
+        <!-- this element will override the title specified on the item level -->
+        <media:title>Example audio using Media RSS</media:title>
+
+        <!-- If specified, this element will override the description specified on
+             the item level. -->
+        <media:description>Audio description</media:description>
+
+        <!-- RECOMMENDED: audio attribution / copyright -->
+        <media:credit>Joe Gargery/Fabrikam Videos</media:credit>
+      </media:content>
+    </item>
+
+   <!-- Example 2: using iTunes namespace -->
+    <item>      
+      <!-- REQUIRED audio stream id-->
+      <guid isPermaLink="false">723435</guid>
+      <!-- REQUIRED: audio stream title -->
+      <title>Example audio using iTunes namespace</title>
+      <!-- REQUIRED: publication date -->
+      <pubDate>01 Oct 2018 13:00:00 GMT</pubDate>
+      <link>https://v3spec.msn.com/audioid=2836489202/</link>
+      
+      <dcterms:modified>2018-10-10T10:00:00+0100</dcterms:modified>      
+      <dcterms:valid>start=2016-10-01T10:00:00+0100; end=2018-10-02T10:00:00+0100; scheme=W3C-DTF</dcterms:valid>      
+      <description>Audio description</description>
+
+      <itunes:title>Audio stream title</itunes:title>
+      <itunes:author>Provider name</itunes:author>
+      <itunes:subtitle>Audio stream subtitle</itunes:subtitle>
+      <itunes:summary>
+            <![CDATA[audio stream description]]>
+      </itunes:summary>
+      <itunes:duration>110</itunes:duration>
+      <!-- REQUIRED: audio URL specified within the <enclosure> element -->
+      <enclosure url="https://contoso.com/audio/sample.mp3" type="audio/mpeg" />
+    </item>
+  </channel>
+</rss>

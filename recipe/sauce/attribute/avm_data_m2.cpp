@@ -57,6 +57,224 @@ hav_t havt_mrow [] =
     STANDARD_MATH_CORE_ATTRIBUTES (elem_mrow),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_mrss_adult [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_adult),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_backlink [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_backlink),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_backlinks [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_backlinks),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_category [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_category, a_mrss_scheme },
+    RDFa_META_ATTRIBUTES (elem_mrss_category),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_comment [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_comment),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_comments [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_comments),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_community [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_community),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_content [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_content, a_mrss_bitrate },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_content, a_mrss_channels },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_content, a_mrss_duration },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_content, a_mrss_expression },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_content, a_mrss_filesize },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_content, a_mrss_framerate },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_content, a_mrss_height },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_content, a_mrss_isdefault },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_content, a_mrss_lang },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_content, a_mrss_medium },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_content, a_mrss_samplingrate },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_content, a_mrss_type },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_content, a_mrss_url },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_content, a_mrss_width },
+    RDFa_META_ATTRIBUTES (elem_mrss_content),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_copyright [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_copyright, a_mrss_url },
+    RDFa_META_ATTRIBUTES (elem_mrss_copyright),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_credit [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_credit, a_mrss_role },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_credit, a_mrss_scheme },
+    RDFa_META_ATTRIBUTES (elem_mrss_credit),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_description [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_description, a_mrss_type },
+    RDFa_META_ATTRIBUTES (elem_mrss_description),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_embed [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_embed, a_mrss_height },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_embed, a_mrss_url },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_embed, a_mrss_width },
+    RDFa_META_ATTRIBUTES (elem_mrss_embed),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_group [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_group),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_hash [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_hash, a_mrss_algo },
+    RDFa_META_ATTRIBUTES (elem_mrss_hash),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_keywords [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_keywords),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_licence [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_licence, a_mrss_type },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_licence, a_href },
+    RDFa_META_ATTRIBUTES (elem_mrss_licence),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_location [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_location, a_mrss_description },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_location, a_mrss_end },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_location, a_mrss_start },
+    RDFa_META_ATTRIBUTES (elem_mrss_location),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_param [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_param, a_mrss_name },
+    RDFa_META_ATTRIBUTES (elem_mrss_param),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_peerlink [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_peerlink, a_mrss_type },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_peerlink, a_href },
+    RDFa_META_ATTRIBUTES (elem_mrss_peerlink),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_player [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_player, a_mrss_height },
+    { { HTML_MRSS, HV_REQUIRED }, { HTML_UNDEF }, elem_mrss_player, a_mrss_url },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_player, a_mrss_width },
+    RDFa_META_ATTRIBUTES (elem_mrss_player),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_price [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_price, a_mrss_currency },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_price, a_mrss_info },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_price, a_mrss_price },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_price, a_mrss_type },
+    RDFa_META_ATTRIBUTES (elem_mrss_price),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_rating [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_rating, a_mrss_scheme },
+    RDFa_META_ATTRIBUTES (elem_mrss_rating),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_response [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_response),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_responses [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_responses),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_rights [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_rights, a_mrss_status },
+    RDFa_META_ATTRIBUTES (elem_mrss_rights),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_restriction [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_restriction, a_mrss_relationship },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_restriction, a_mrss_type },
+    RDFa_META_ATTRIBUTES (elem_mrss_restriction),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_scene [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_scene),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_scenedescription [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_scenedescription),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_sceneendtime [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_sceneendtime),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_scenes [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_scenes),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_scenestarttime [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_scenestarttime),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_scenetitle [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_scenetitle),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_starrating [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_starrating, a_mrss_average },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_starrating, a_mrss_count },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_starrating, a_mrss_max },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_starrating, a_mrss_min },
+    RDFa_META_ATTRIBUTES (elem_mrss_starrating),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_statistics [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_statistics, a_mrss_favourites },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_statistics, a_mrss_views },
+    RDFa_META_ATTRIBUTES (elem_mrss_statistics),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_status [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_status, a_mrss_reason },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_status, a_mrss_state },
+    RDFa_META_ATTRIBUTES (elem_mrss_status),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_subtitle [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_subtitle, a_mrss_type },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_subtitle, a_mrss_lang },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_subtitle, a_href },
+    RDFa_META_ATTRIBUTES (elem_mrss_subtitle),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_thumbnail [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_thumbnail, a_mrss_height },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_thumbnail, a_mrss_time },
+    { { HTML_MRSS, HV_REQUIRED }, { HTML_UNDEF }, elem_mrss_thumbnail, a_mrss_url },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_thumbnail, a_mrss_width },
+    RDFa_META_ATTRIBUTES (elem_mrss_thumbnail),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_text [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_text, a_mrss_end },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_text, a_mrss_lang },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_text, a_mrss_start },
+    { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_text, a_mrss_type },
+    RDFa_META_ATTRIBUTES (elem_mrss_text),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_mrss_title [] =
+{   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_title, a_mrss_type },
+    RDFa_META_ATTRIBUTES (elem_mrss_title),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_ms [] =
 {   { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_ms, a_lquote },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_ms, a_rquote },

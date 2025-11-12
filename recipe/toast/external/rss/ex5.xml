@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Default character encoding for feed documents is UTF-8 -->
+
+<!-- The root RSS element must include declaration of used namespaces. -->
+<rss xmlns:atom="http://www.w3.org/2005/Atom"
+    xmlns:media="http://search.yahoo.com/mrss/"
+    xmlns:mi="http://schemas.ingestion.microsoft.com/common/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    version="2.0">
+
+  <channel>
+    <title>Lifestyle</title>
+    <description>channel description</description>
+    <language>en-us</language>
+    <link>https://v3spec.msn.com/lifestyle</link>
+
+    <!-- each individual article is enclosed in a single <item> -->
+    <item>
+      <!-- REQUIRED: You need to specify a <guid> which will be used to uniquely
+          identify the feed item across all other content items coming in your feeds. -->
+      <guid isPermaLink="false">477648</guid>
+
+      <!-- REQUIRED: title must be provided inside the <title> element -->
+      <title><![CDATA[High-definition video encoding and streaming]]></title>
+
+      <!-- 
+         REQUIRED: <pubDate> is used to keep track of when the item is published.
+         In case no "modified/updated date" is provided, pubDate is also used to keep
+         track of updates. 
+         Dates must be expressed using RFC 3339 or RFC 822 date formats.
+
+         examples:
+         Wed, 04 Oct 2017 15:00:00 +0200
+         2017-10-04T08:00:00-05:00
+         -->
+      <pubDate>2017-10-04T08:00:00-05:00</pubDate>
+
+      <!-- Use the <dcterms:modified> element to indicate when was the last time
+           this item was updated.
+           If this field is not provided, 
+           ﻿pubDate will be used for both Published and Updated dates -->
+      <dcterms:modified>2017-10-10T10:00:00+0100</dcterms:modified>
+
+      <!-- REQUIRED: Web URL points to the document on publisher's site. -->
+      <link>https://v3spec.msn.com/articleid=2836489202/</link>
+
+      <!-- RECOMMENDED: Use <dc:creator> in RSS to specify author name. -->
+      <dc:creator>Joe Gargery</dc:creator>
+
+      <!-- RECOMMENDED: Subtitle can be specified in <dcterms:alternative> -->
+      <dcterms:alternative>Article subtitle</dcterms:alternative>
+
+      <!-- Use this element if you want to override the default 1-year expiration.
+           Date formats should follow W3C-DTF https://www.w3.org/TR/NOTE-datetime 
+           Currently, we only support specifying "end" as the expiration date
+           and "start" will be ignored.
+﻿
+           Note: If the "start" is specified, 
+           ﻿it will be taken as the published date time.
+           And we are checking if the publish time is older than 1 year.
+
+           You can use this element to takedown a piece of content,
+           ﻿by specifying an "end" date in the past.
+           ﻿See the takedown example at the end of this example.
+      -->
+      <dcterms:valid>start=2016-10-01T10:00:00+0100; end=2018-10-02T10:00:00+0100; scheme=W3C-DTF</dcterms:valid>
+
+      <!-- Alternatively, you may use special element 'mi:expirationDate' ﻿to specify
+           expiration date. You can use any of the formats supported in 'pubDate'. -->
+      <mi:expirationDate>2018-10-02T13:00:00.52Z</mi:expirationDate>
+
+      <!-- The “short title” value, also known as a “Web Headline” ﻿is used when
+           ﻿displaying content on compact settings.
+           ﻿The value in this field should be 40 characters or less. -->
+      <mi:shortTitle>Short Title</mi:shortTitle>
+
+      <!-- RECOMMENDED: Provide keywords associated with this document -->
+      <media:keywords>keyword1,keyword2,keyword3</media:keywords>
+
+      <!-- RECOMMENDED: Use <category> element at the item level to tag the document
+           ﻿with the category it belongs to. 
+          Multiple tags are allowed, each under a separate <category>.
+       -->
+      <category>News</category>
+      <category>Sports</category>
+
+      <!-- RECOMMENDED: <description> is used to specify article abstract.
+           You can only provide plain text in this element. -->
+      <description>
+       <![CDATA[
+        Article description should be plain text, no HTML is allowed
+        ]]>
+      </description>
+
+      <!-- 
+          REQUIRED: Article body must be  HTML formatted. It is highly recommended
+          you use the CDATA structure to provide article content under <content:encoded>,
+          otherwise HTML tags must be escaped. 
+          
+          NOTE: You can either use CDATA or escaped HTML, but not both,
+          ﻿otherwise the content will not be unescaped.
+          -->
+      <content:encoded>
+
+        <!-- An example of a body that contains references to an inline image and video
+             within the HTML. -->
+        <![CDATA[
+
+            <img src="https://v3spec.msn.com/_files/assets/azure1.jpg" alt="Image title here." title="Image title"
+              data-portal-copyright="Joe Gargery/Fabrikam Images" data-has-syndication-rights="1" data-license-id="698526"
+              data-licensor-name="Licensor name" data-focal-region="x1:246,y1:140,x2:246,y2:140" />
+                        
+            <p>
+             Media Services enables you to encode your media files into formats that can be played on a wide variety of browsers and devices.  
+             For example, you might want to stream your content in Apple's HLS or MPEG DASH formats. Before streaming, you should encode your high-quality 
+             digital media file. For encoding guidance, see <a href="encoding-concept" data-linktype="relative-path">Encoding concept</a>.  
+             This tutorial uploads a local video file and encodes the uploaded file. You can also encode content that you make accessible via a HTTPS URL.  
+             For more information, see <a href="job-input-from-http-how-to" data-linktype="relative-path">Create a job input from an HTTP(s) URL</a>. 
+            </p>
+            
+            <p> Here is an example of an embedded 1PP video using the 'video' tag</p>
+            <video id="8172818" title="an inline video" poster="https://v3spec.msn.com/videothumbnail.jpg" data-description="this is a sample inline video" data-portal-copyright="Joe Gargery/Fabrikam Videos"> 
+              <source src="https://v3spec.msn.com/video.mp4" type="video/mp4"></source>
+            </video>
+
+            <p> And here is an example of an embedded 3PP YouTube video using 'iframe' </p>
+            <iframe width="100%" height="100%" frameborder="0" allowfullscreen="true"
+              src="https://www.youtube.com/embed/XnZ_J3l_0z4?rel=0" >
+            </iframe>
+
+            <p> You can also embed an inline slideshow using html as below.</p>
+            <div class="slideshow">
+              <cite>Slideshow author</cite>
+              <title>Slideshow title</title>
+              <figure>
+                <img src="https://v3spec.msn.com/image1.jpg" title="slide 1 title" />
+                <figcaption>slide 1 caption
+                  <span class="copyright">slide 1 copyrights</span>
+                </figcaption>
+              </figure>
+              <figure>
+                <img src="https://v3spec.msn.com/image2.jpg" title="slide 2 title" />
+                <figcaption>slide 2 caption
+                  <span class="copyright">Joe Gargery/Fabrikam Images</span>
+                </figcaption>
+              </figure>
+            </div>
+            ]]>
+      </content:encoded>
+
+      <!-- Here is another example how to add images to content using
+           the media:content tag. -->  
+      <!-- 
+          REQUIRED: URL must be provided for media elements.
+          ﻿It is also used to uniquely identify the video.
+          NOTE: you need to specify the medium and set to "image" or "video" depending
+          on the content type OR the 'type' attribute must indicate a valid video
+          or image content type.
+          --> 
+      <media:content url="https://v3spec.msn.com/image1.jpg" type="image/jpeg" medium="image">
+        <!-- RECOMMENDED: Provide image attribution in media:credit.
+             Recommended format is: Photographer name/Agency name.
+             If not provided, will fallback to "Provided by [PUBLISHER NAME]"
+          -->
+        <media:credit>Joe Gargery/Fabrikam Images</media:credit>
+
+        <!-- RECOMMENDED: image title -->
+        <media:title>Image title</media:title>
+
+        <!-- RECOMMENDED: Use the media:text tag to specify alt-text -->
+        <media:text>Image alt-text</media:text>
+
+        <!-- RECOMMENDED: You may use Microsoft Ingestion namespace to provide
+            ﻿ focal region information -->
+        <mi:focalRegion>
+          <mi:x1>120</mi:x1>
+          <mi:y1>120</mi:y1>
+          <mi:x2>400</mi:x2>
+          <mi:y2>400</mi:y2>
+        </mi:focalRegion>
+
+        <!-- Following 3 fields are used to specify image rights. -->
+        <!-- Image Syndication Rights are required for auto publish. 
+             If you have Syndication Rights for your images,
+             ﻿this field will default to True.
+﻿
+             If you do not have Syndication Rights for images there are two options: 
+               Case 1: Do not send the images unless you can provide the required
+                       ﻿information in Case 2
+               Case 2: You’ve licensed the image from one of the image providers listed
+                       in Appendix I. 
+         -->
+        <mi:hasSyndicationRights>1</mi:hasSyndicationRights>
+        <mi:licenseId>698525</mi:licenseId>
+        <mi:licensorName>Licensor name</mi:licensorName>
+      </media:content>
+
+      <!-- you can also use the media:content tag to add videos to content -->
+      <!-- 
+          REQUIRED: URL must be provided for media elements. 
+          It is also used to uniquely identify the video.
+          NOTE: you need to specify the medium and set to "image" or "video" depending
+          on the content type OR the 'type' attribute must indicate a valid video
+         ﻿ or image content type.
+      -->
+      <media:content url="https://v3spec.msn.com/video.mp4" duration="91" type="video/mp4" medium="video">
+        <!-- REQUIRED: a unique video identifier is required if this is a 3PP video
+             (other than YouTube and Daily Motion) -->
+        <guid>218736</guid>
+        <!-- REQUIRED: video image thumbnail is required if the video is 3PP
+             (except YouTube) -->
+        <media:thumbnail url="https://v3spec.msn.com/image.jpg"/>
+
+        <!-- REQUIRED: video title must be supplied. -->
+        <media:title>Video title</media:title>
+
+        <!-- RECOMMENDED: provides a description/abstract to the video -->
+        <media:description>Video description</media:description>
+        
+        <!-- RECOMMENDED: attribution/copyrights for the video content -->
+        <media:credit>Joe Gargery/Fabrikam Videos</media:credit>
+
+        <!-- Closed Captions might be required by law in the target markets. -->
+        <!-- You may use the `<media:subtitle>` element to provide 
+             ﻿an external Timed Text format file based on W3C Timed Text format. 
+             Only [TTML 1](https://www.w3.org/TR/ttml1) is currently supported. -->
+        <media:subTitle 
+          type="application/ttml" 
+          lang="en" 
+          href="https://www.contols.org/closedcaptions.ttml" />
+       </media:content>
+      </media:content>
+
+      <!-- An article might also contain an inline slideshow, use <media:group>
+           for this purpose -->
+      <!-- Note that in the case of embedded slideshow, the slideshow title and 
+           description will be the same as the parent article's unless you explicitly
+           provide them. --> 
+      <media:group>
+        <!-- Inline slideshow title. If you do not specify a title for inline slideshow,
+﻿             the slideshow will be ingested with the same title
+           ﻿  of the parent article. -->
+        <media:title>Slideshow title</media:title>
+
+        <!-- Inline slideshow author. Similar to title, if you do not specify an author,
+﻿             the slideshow will be ingested with the same author
+             ﻿of the parent article. -->
+        <media:credit role="author">Slideshow author</media:credit>
+
+        <!-- Each slide is provided as a separate <media:content> element -->
+        <media:content url="https://v3spec.msn.com/image1.jpg" type="image/jpeg" medium="image">
+          <!-- RECOMMENDED: slide image attribution / copyrights -->
+          <media:credit>Joe Gargery/Fabrikam Images</media:credit>
+
+          <!-- REQUIRED: slide title must be provided in the following element -->
+          <media:title>Slide 1 title</media:title>
+
+          <!-- RECOMMENDED: alt text for slide image-->
+          <media:text>Slide 1 alt-text</media:text>
+
+          <!-- RECOMMENDED: slide description should be added in the description element.
+﻿               HTML is allowed in this field when you wrap content
+               within a CDATA structure. --> 
+          <media:description>
+            <![CDATA[
+              <p>Slide 1 description</p>
+            ]]>
+          </media:description>
+
+          <!-- RECOMMENDED: additional slide image metadata -->
+          <mi:focalRegion>
+            <mi:x1>245</mi:x1>
+            <mi:y1>145</mi:y1>
+            <mi:x2>520</mi:x2>
+            <mi:y2>320</mi:y2>
+          </mi:focalRegion>
+          <mi:hasSyndicationRights>1</mi:hasSyndicationRights>
+          <mi:licenseId>698525</mi:licenseId>
+          <mi:licensorName>Licensor name</mi:licensorName>
+        </media:content>
+
+        <!-- a second slide -->
+        <media:content url="https://v3spec.msn.com/image2.jpg" type="image/jpeg" medium="image">
+          <media:credit>Joe Gargery/Fabrikam Images</media:credit>
+          <media:title>Slide 2 title</media:title>
+          <media:text>Slide 2 alt-text</media:text>
+          <media:description>Slide 2 description</media:description>          
+        </media:content>
+      </media:group>
+
+      <!--To specify "related links" you must declare the atom namespace and
+          use the Atom's Link element-->
+
+      <!-- Links MUST have valid "href" and "title" attribute values.-->
+      <atom:link rel="related" type="text/html" href="https://v3spec.msn.com/news/prop_irs_1.html" title="New IRS proposal">
+        <!-- REQUIRED: you must provide a thumbnail image with the link -->
+        <media:thumbnail url="https://v3spec.msn.com/related_link_thumbnail1.jpg"  />
+      </atom:link>
+      <atom:link rel="related" type="text/html" href="https://v3spec.msn.com/news/prop_irs_2.html" title="New IRS proposal">
+        <media:thumbnail url="https://v3spec.msn.com/related_link_thumbnail2.jpg" />
+      </atom:link>
+      <atom:link rel="related" type="text/html" href="https://v3spec.msn.com/news/prop_irs_3.html" title="New IRS proposal">
+        <media:thumbnail url="https://v3spec.msn.com/related_link_thumbnail3.jpg" />
+      </atom:link>
+    </item>
+  </channel>
+</rss>

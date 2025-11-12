@@ -7,9 +7,10 @@ https://ssc.lu/
 Introduction
 ============
 SSC can be built on various unii with CMake and clang or gcc for C++ 17
-or better, or Visual Studios 2017 / 2019 / 2022 under Windows. I have
-built & tested it in various OSs on some amd64 & arm64 architectures,
-including various flavours of Linux, MacOS, OpenBSD, and Windows.
+or better, or Visual Studios 2017 / 2019 / 2022 / 2026 under Windows. I
+have built & tested it in various OSs on some amd64 & arm64
+architectures, including various flavours of Linux, MacOS, OpenBSD, and
+Windows.
 
 Although ssc builds with some older compilers on some older systems,
 not all features are available.
@@ -30,9 +31,9 @@ under Windows, a recent copy of ICU4C (https://icu-project.org/) (or
 define NOICU). If you want to experiment with the still-in-development
 GUI version, you'll also need a recent version of WX. If you want its
 output signed, or to verify such a signature, you'll need LibreSSL
-(https://www.libressl.org/, built into Windows 11 and OpenBSD).
-Usually, an Operating System's package manager will have an appropriate
-version ready to install.
+(https://www.libressl.org/, built into OpenBSD and recent versions of
+Windows). Usually, an Operating System's package manager will have an
+appropriate version ready to install.
 
 You may need to set these environment variables:
 - BOOST: if you're not using your operating system's packaged flavour
@@ -67,17 +68,12 @@ wxWidgets
 Why use this ancient behemoth given the good number of somewhat less
 archaic C++ GUI libraries? The requirements were: (i) Open Source;
 (ii) supports Windows/MacOS/Linux/OpenBSD. Of those libraries I found,
-only wxWidgets was documented to support OpenBSD. 
+only wxWidgets is documented to support OpenBSD. 
 
 Polylingualism
 --------------
 ssc is written for coders. HTML/etc. code is based on English, so
 ssc's GUI text is similarly monolingual.
-
-Unstable
---------
-The GUI will evolve rapidly over the coming few months, so expect it to
-change significantly.
 
 
 Building
@@ -86,10 +82,10 @@ Building
 Windows
 -------
 To build from Visual Studio, navigate to recipe/tea, open the
-appropriate .sln file, then build. Only Visual Studios 2017, 2019 and
-2022 have been built & tested for amd64 (x64), and only 2022 has been
-tested for arm64 under Windows 10 & 11. Older versions for amd64 and
-i386 were tested on older versions of Windows.
+appropriate .sln file, then build. Only Visual Studios 2017, 2019,
+2022, and 2026 have been built & tested for amd64 (x64), and only 2022
+has been tested for arm64 under Windows 10 & 11. Older versions for
+amd64 and i386 were tested on older versions of Windows.
 
 On low memory machines, disable the /MP switch.
 
@@ -228,5 +224,5 @@ Alternatives are available, although I've not tested them.
 wxWidgets
 ---------
 This is only required if you make a GUI build. It can be found at
-wxwidgets.org. Note that it has not been tested for many of the systems
-supported by wxWidgets.
+wxwidgets.org. Note that ssc has not been tested on many of the
+systems supported by wxWidgets.

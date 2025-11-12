@@ -1,0 +1,138 @@
+-Y 1 -7 original -f ../toast/external/atom/ext.conf
+
+PASS ../toast/external/atom/ex1.xml
+1 xhtml_5_0
+2 atom_missing_child
+
+PASS ../toast/external/atom/ex2.xml
+1 xhtml_5_0
+
+PASS ../toast/external/atom/ex3.xml
+1 xhtml_5_0
+5 unrecognised_namespace attribute_barred unrecognised_value atom_missing_child atom_missing_child
+6 unrecognised_value attribute_barred
+9 unknown_element
+11 unknown_element
+15 unknown_element
+17 unknown_element
+18 attribute_unrecognised unrecognised_attribute
+22 unknown_element unknown_element
+23 unknown_element
+25 unknown_element
+34 unrecognised_value unknown_rel attribute_barred
+38 unrecognised_value unknown_rel attribute_barred
+40 unknown_element unknown_element
+41 unknown_element unknown_element
+42 unknown_element unknown_element
+45 unknown_element unknown_element
+46 protocol
+50 unknown_element unknown_element
+51 protocol
+55 unknown_element unknown_element
+56 protocol
+58 unrecognised_value attribute_barred
+63 attribute_barred
+
+PASS ../toast/external/atom/ex4.xml
+1 xhtml_5_0
+4 atom_missing_child
+13 mime
+39 mime
+46 protocol
+50 unknown_element unknown_element
+51 protocol
+55 unknown_element unknown_element
+56 protocol
+
+PASS ../toast/external/atom/ex5.xml
+1 xhtml_5_0
+3 atom_missing_child
+29 protocol
+
+PASS ../toast/external/atom/ex6.xml
+1 xhtml_5_0
+
+PASS ../toast/external/atom/ex7.xml
+1 xhtml_5_0
+2 atom_missing_child
+19 use_quote_code use_quote_code
+29 use_quote_code use_quote_code
+35 use_quote_code
+39 use_quote_code use_double_quote_code use_quote_code
+45 use_quote_code
+49 use_quote_code use_double_quote_code use_double_quote_code use_double_quote_code use_quote_code
+55 use_quote_code
+59 use_quote_code use_double_quote_code use_double_quote_code use_double_quote_code use_quote_code
+65 use_quote_code
+69 use_quote_code use_double_quote_code use_quote_code
+79 use_quote_code use_double_quote_code use_quote_code
+85 use_quote_code
+89 use_quote_code use_double_quote_code use_double_quote_code use_quote_code
+99 use_quote_code use_quote_code
+109 use_quote_code use_quote_code
+119 use_quote_code use_quote_code
+125 use_quote_code
+129 use_quote_code use_double_quote_code use_quote_code
+139 use_quote_code use_quote_code
+149 use_quote_code use_double_quote_code use_double_quote_code use_quote_code
+159 use_quote_code use_quote_code
+169 use_quote_code use_double_quote_code use_double_quote_code use_quote_code
+179 use_quote_code use_quote_code
+189 use_quote_code use_quote_code
+199 use_quote_code use_double_quote_code use_quote_code
+209 use_quote_code use_quote_code
+219 use_quote_code use_double_quote_code use_quote_code
+229 use_quote_code use_double_quote_code use_double_quote_code use_quote_code
+239 use_quote_code use_double_quote_code use_quote_code
+249 use_quote_code use_quote_code
+
+PASS ../toast/external/atom/ex8.xml
+1 xhtml_5_0
+2 atom_missing_child
+15 inserted_missing_parent
+16 inserted_missing_closure
+33 inserted_missing_parent
+34 inserted_missing_closure
+51 inserted_missing_parent
+52 inserted_missing_closure
+68 inserted_missing_parent
+69 inserted_missing_closure
+84 inserted_missing_parent
+85 inserted_missing_closure
+100 inserted_missing_parent
+101 inserted_missing_closure
+116 inserted_missing_parent
+117 inserted_missing_closure
+145 inserted_missing_parent
+146 inserted_missing_closure
+157 naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave
+167 inserted_missing_parent
+168 inserted_missing_closure
+185 inserted_missing_parent
+186 inserted_missing_closure
+206 inserted_missing_parent
+207 inserted_missing_closure
+220 naughty_grave naughty_grave naughty_grave naughty_grave
+232 inserted_missing_parent
+233 inserted_missing_closure
+262 inserted_missing_parent
+263 inserted_missing_closure
+278 inserted_missing_parent
+279 inserted_missing_closure
+294 inserted_missing_parent
+295 inserted_missing_closure
+315 inserted_missing_parent
+316 inserted_missing_closure
+328 naughty_grave naughty_grave
+338 inserted_missing_parent
+339 inserted_missing_closure
+368 inserted_missing_parent
+369 inserted_missing_closure
+384 inserted_missing_parent
+385 inserted_missing_closure
+394 naughty_grave naughty_grave
+404 inserted_missing_parent
+405 inserted_missing_closure
+
+PASS ../toast/external/atom/index.html
+2 naughty_lang

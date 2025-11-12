@@ -37,9 +37,9 @@ FOOTER,HEADER,LI,MAIN,P,PRE { color:#999999 }
 </MAIN>
 <HR/>
 <FOOTER class="smaller">
-<A href="https://ssc.lu/" class="ssc-name">Static Site Checker</A> version 0.2.21 build<BR/>
+<A href="https://ssc.lu/" class="ssc-name">Static Site Checker</A> version 0.2.22 build<BR/>
 <A href="https://dylanharris.org/" class="ssc-copyright">(c) 2020-2025 Dylan Harris</A><BR>
-dijns:wnd_x86:m64:1_87:w, testuser (testaccount), time
+dijnqs:wnd_x86:m64:1_87:w, testuser (testaccount), time
 &ldquo;desc pt. 1
 desc pt. 2&rdquo;
 </FOOTER>

@@ -25,8 +25,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "symbol/nstr.h"
 #include "utility/common.h"
 
+#define DPV_X_SH_222(XXX) \
+    { dpv_##XXX##_2_3, html_dpv_2_3 }, \
+    { dpv_##XXX##_2_2, html_dpv_2_2 }
+
 #define DPV_X_SH_221(XXX) \
-    { dpv_##XXX##_2_1, html_dpv_2_1 }, \
+    DPV_X_SH_222 (XXX), \
+    { dpv_##XXX##_2_1, html_dpv_2_1 }
+
+#define DPV_X_SH_220(XXX) \
+    DPV_X_SH_221 (XXX), \
     { dpv_##XXX##_2_0, html_dpv_2_0 }
 
 #define DPV_X_SH_80(XXX) \
@@ -74,6 +82,7 @@ sh_t sh [] =  // latest first
     { creative_commons, html_cc },
     { croissant_1_101, html_croissant_1_101 },
     { croissant_1_100, html_croissant_1_100 },
+    { croissant_1_22, html_croissant_1_22 },
     { croissant_1_21, html_croissant_1_21 },
     { croissant_1_20, html_croissant_1_20 },
     { croissant_1_19, html_croissant_1_19 },
@@ -124,7 +133,9 @@ sh_t sh [] =  // latest first
     { doap_schema, html_rdf_1_0 },
     { data_quality, html_rdf_1_0_con },
     { described_by, html_rdf_1_0 },
-    { dpv_2_1, html_dpv_2_1},
+    { dpv_2_3, html_dpv_2_3 },
+    { dpv_2_2, html_dpv_2_2 },
+    { dpv_2_1, html_dpv_2_1 },
     { dpv_2_0, html_dpv_2_0 },
     { dpv_1_0, html_dpv_1 },
     { dpv_0_9, html_dpv_09 },
@@ -140,68 +151,77 @@ sh_t sh [] =  // latest first
     { dpv_0_3, html_dpv_03 },
     { dpv_0_2, html_dpv_02 },
     { dpv_0_1, html_dpv_01 },
-    DPV_X_SH_221 (ai),
-    DPV_X_SH_221 (eu_aiact),
-    DPV_X_SH_221 (eu_dga),
-     { dpv_eu_ehds_2_1, html_dpv_2_1 },
-    DPV_X_SH_221 (eu_gdpr),
-    DPV_X_SH_221 (eu_nis2),
-    DPV_X_SH_221 (eu_rights),
+    DPV_X_SH_220 (ai),
+    DPV_X_SH_220 (eu_aiact),
+    DPV_X_SH_220 (eu_dga),
+    DPV_X_SH_221 (eu_ehds),
+    DPV_X_SH_220 (eu_gdpr),
+    DPV_X_SH_220 (eu_nis2),
+    DPV_X_SH_220 (eu_rights),
     DPV_X_SH_40 (gdpr),
     { dpv_gdpr_0_3, html_dpv_03 },
     { dpv_gdpr_0_2, html_dpv_02 },
     { dpv_gdpr_0_1, html_dpv_01 },
-    DPV_X_SH_221 (just),
+    DPV_X_SH_220 (just),
     DPV_X_SH_50 (legal),
-    { dpv_legal_at_2_1, html_dpv_2_1 },
-    { dpv_legal_be_2_1, html_dpv_2_1 },
-    { dpv_legal_bg_2_1, html_dpv_2_1 },
-    { dpv_legal_cy_2_1, html_dpv_2_1 },
-    { dpv_legal_cz_2_1, html_dpv_2_1 },
-    DPV_X_SH_221 (legal_de),
-    { dpv_legal_dk_2_1, html_dpv_2_1 },
-    { dpv_legal_ee_2_1, html_dpv_2_1 },
-    { dpv_legal_es_2_1, html_dpv_2_1 },
-    DPV_X_SH_221 (legal_eu),
-    { dpv_legal_fi_2_1, html_dpv_2_1 },
-    { dpv_legal_fr_2_1, html_dpv_2_1 },
-    DPV_X_SH_221 (legal_gb),
-    { dpv_legal_gr_2_1, html_dpv_2_1 },
-    { dpv_legal_hr_2_1, html_dpv_2_1 },
-    { dpv_legal_hu_2_1, html_dpv_2_1 },
-    DPV_X_SH_221 (legal_ie),
-    DPV_X_SH_221 (legal_in),
-    { dpv_legal_is_2_1, html_dpv_2_1 },
-    { dpv_legal_it_2_1, html_dpv_2_1 },
-    { dpv_legal_li_2_1, html_dpv_2_1 },
-    { dpv_legal_lt_2_1, html_dpv_2_1 },
-    { dpv_legal_lu_2_1, html_dpv_2_1 },
-    { dpv_legal_lv_2_1, html_dpv_2_1 },
-    { dpv_legal_mt_2_1, html_dpv_2_1 },
-    { dpv_legal_nl_2_1, html_dpv_2_1 },
-    { dpv_legal_no_2_1, html_dpv_2_1 },
-    { dpv_legal_pl_2_1, html_dpv_2_1 },
-    { dpv_legal_pt_2_1, html_dpv_2_1 },
-    { dpv_legal_ro_2_1, html_dpv_2_1 },
-    { dpv_legal_se_2_1, html_dpv_2_1 },
-    { dpv_legal_sl_2_1, html_dpv_2_1 },
-    { dpv_legal_sk_2_1, html_dpv_2_1 },
-    DPV_X_SH_221 (legal_us),
-    DPV_X_SH_221 (loc),
+    DPV_X_SH_221 (legal_at),
+    DPV_X_SH_221 (legal_be),
+    DPV_X_SH_221 (legal_bg),
+    DPV_X_SH_221 (legal_cy),
+    DPV_X_SH_221 (legal_cz),
+    DPV_X_SH_220 (legal_de),
+    DPV_X_SH_221 (legal_dk),
+    DPV_X_SH_221 (legal_ee),
+    DPV_X_SH_221 (legal_es),
+    DPV_X_SH_220 (legal_eu),
+    DPV_X_SH_221 (legal_fi),
+    DPV_X_SH_221 (legal_fr),
+    DPV_X_SH_220 (legal_gb),
+    DPV_X_SH_221 (legal_gr),
+    DPV_X_SH_222 (legal_hk),
+    DPV_X_SH_221 (legal_hr),
+    DPV_X_SH_221 (legal_hu),
+    DPV_X_SH_220 (legal_ie),
+    DPV_X_SH_220 (legal_in),
+    DPV_X_SH_221 (legal_is),
+    DPV_X_SH_221 (legal_it),
+    DPV_X_SH_222 (legal_jp),
+    DPV_X_SH_222 (legal_kr),
+    DPV_X_SH_221 (legal_li),
+    DPV_X_SH_221 (legal_lt),
+    DPV_X_SH_221 (legal_lu),
+    DPV_X_SH_221 (legal_lv),
+    DPV_X_SH_222 (legal_mo),
+    DPV_X_SH_221 (legal_mt),
+    DPV_X_SH_222 (legal_my),
+    DPV_X_SH_221 (legal_nl),
+    DPV_X_SH_221 (legal_no),
+    DPV_X_SH_222 (legal_ph),
+    DPV_X_SH_221 (legal_pl),
+    DPV_X_SH_221 (legal_pt),
+    DPV_X_SH_221 (legal_ro),
+    DPV_X_SH_221 (legal_se),
+    DPV_X_SH_222 (legal_sg),
+    DPV_X_SH_221 (legal_sl),
+    DPV_X_SH_221 (legal_sk),
+    DPV_X_SH_222 (legal_th),
+    DPV_X_SH_222 (legal_tw),
+    DPV_X_SH_220 (legal_us),
+    DPV_X_SH_220 (loc),
     { dpv_nace_schema, html_dpv_01 },
-    { dpv_p7012_2_1, html_dpv_2_1 },
-    DPV_X_SH_221 (pd),
+    DPV_X_SH_221 (p7012),
+    DPV_X_SH_220 (pd),
     DPV_X_SH_40 (pd),
     DPV_X_SH_80 (rights),
     { dpv_risk_2_0, html_dpv_2_0 },
     DPV_X_SH_80 (risk),
-    { dpv_s_edu_2_1, html_dpv_2_1 },
-    { dpv_s_fin_2_1, html_dpv_2_1 },
-    { dpv_s_hth_2_1, html_dpv_2_1 },
-    { dpv_s_inf_2_1, html_dpv_2_1 },
-    { dpv_s_law_2_1, html_dpv_2_1 },
-    { dpv_s_ps_2_1, html_dpv_2_1 },
-    DPV_X_SH_221 (tech),
+    DPV_X_SH_221 (s_edu),
+    DPV_X_SH_221 (s_fin),
+    DPV_X_SH_221 (s_hth),
+    DPV_X_SH_221 (s_inf),
+    DPV_X_SH_221 (s_law),
+    DPV_X_SH_221 (s_ps),
+    DPV_X_SH_220 (tech),
     DPV_X_SH_80 (tech),
     { duv_schema, html_rdf_1_0_con },
     { earl_schema, html_rdf_1_0_con },
@@ -303,6 +323,11 @@ sh_t sh [] =  // latest first
     { pur_2_1, html_prism_2_1 },
     { data_cube, html_rdf_1_0_con },
     { rai_1_100, html_rai_1_100 },
+    { rai_1_22, html_rai_1_22 },
+    { rai_1_21, html_rai_1_21 },
+    { rai_1_20, html_rai_1_20 },
+    { rai_1_19, html_rai_1_19 },
+    { rai_1_18, html_rai_1_18 },
     { rai_1_17, html_rai_1_17 },
     { rai_1_16, html_rai_1_16 },
     { rai_1_15, html_rai_1_15 },
@@ -486,8 +511,8 @@ sh_t sh [] =  // latest first
     { xsd_1_0, html_xsd_1_0 },
     { error_schema, html_0 } };
 
-#define DPV_X_VSV221(XXX) \
-    dpv_##XXX##_2_0, dpv_##XXX##_2_1
+#define DPV_X_SH_2XX(XXX) \
+    dpv_##XXX##_2_0, dpv_##XXX##_2_1, dpv_##XXX##_2_2, dpv_##XXX##_2_3
 
 #define DPV_X_VSV80(XXX) \
     dpv_##XXX##_0_8_0, dpv_##XXX##_0_8_1, dpv_##XXX##_0_8_2, dpv_##XXX##_0_9, dpv_##XXX##_1_0
@@ -499,10 +524,10 @@ sh_t sh [] =  // latest first
     dpv_##XXX##_0_4_0, dpv_##XXX##_0_4_1, dpv_##XXX##_0_4_2, DPV_X_VSV50 (XXX)
 
 #define DPV_X_80_PLUS(XXX) \
-    DPV_X_VSV80 (XXX), DPV_X_VSV221 (XXX)
+    DPV_X_VSV80 (XXX), DPV_X_SH_2XX (XXX)
 
 #define DPV_X_40_PLUS(XXX) \
-    DPV_X_VSV40 (XXX), DPV_X_VSV221 (XXX)
+    DPV_X_VSV40 (XXX), DPV_X_SH_2XX (XXX)
 
 vsv_t vsv = {
     adms_1_0, adms_2_0,
@@ -519,7 +544,7 @@ vsv_t vsv = {
     croissant_0_2, croissant_0_3, croissant_0_4, croissant_0_6, croissant_0_8,
         croissant_1_0, croissant_1_1, croissant_1_2, croissant_1_3, croissant_1_4,  croissant_1_5, croissant_1_6, croissant_1_7, croissant_1_8, croissant_1_9,
             croissant_1_10, croissant_1_11, croissant_1_12, croissant_1_13, croissant_1_14, croissant_1_15, croissant_1_16, croissant_1_17, croissant_1_18, croissant_1_19,
-            croissant_1_20, croissant_1_21, 
+            croissant_1_20, croissant_1_21, croissant_1_22, 
         croissant_1_100, croissant_1_101,
     creative_commons,
     crs2_schema,
@@ -541,35 +566,35 @@ vsv_t vsv = {
     disco_schema,
     doap_schema,
     dpv_0_1, dpv_0_2, dpv_0_3, dpv_0_4_0, dpv_0_4_1, dpv_0_4_2, dpv_0_5, dpv_0_6, dpv_0_7, dpv_0_8_0,
-        dpv_0_8_1, dpv_0_8_2, dpv_0_9, dpv_1_0, dpv_2_0, dpv_2_1,
-    DPV_X_VSV221 (ai),
-    DPV_X_VSV221 (eu_aiact),
-    DPV_X_VSV221 (eu_dga),
+        dpv_0_8_1, dpv_0_8_2, dpv_0_9, dpv_1_0, dpv_2_0, dpv_2_1, dpv_2_2, dpv_2_3,
+    DPV_X_SH_2XX (ai),
+    DPV_X_SH_2XX (eu_aiact),
+    DPV_X_SH_2XX (eu_dga),
     dpv_eu_ehds_2_1,
-    DPV_X_VSV221 (eu_gdpr),
-    DPV_X_VSV221 (eu_nis2),
-    DPV_X_VSV221 (eu_rights),
+    DPV_X_SH_2XX (eu_gdpr),
+    DPV_X_SH_2XX (eu_nis2),
+    DPV_X_SH_2XX (eu_rights),
     DPV_X_VSV40 (gdpr), dpv_gdpr_0_3, dpv_gdpr_0_2, dpv_gdpr_0_1,
-    DPV_X_VSV221 (just),
+    DPV_X_SH_2XX (just),
     DPV_X_VSV50 (legal),
     dpv_legal_at_2_1,
     dpv_legal_be_2_1,
     dpv_legal_bg_2_1,
     dpv_legal_cy_2_1,
     dpv_legal_cz_2_1,
-    DPV_X_VSV221 (legal_de),
+    DPV_X_SH_2XX (legal_de),
     dpv_legal_dk_2_1,
     dpv_legal_ee_2_1,
     dpv_legal_es_2_1,
-    DPV_X_VSV221 (legal_eu),
+    DPV_X_SH_2XX (legal_eu),
     dpv_legal_fi_2_1,
     dpv_legal_fr_2_1,
-    DPV_X_VSV221 (legal_gb),
+    DPV_X_SH_2XX (legal_gb),
     dpv_legal_gr_2_1,
     dpv_legal_hr_2_1,
     dpv_legal_hu_2_1,
-    DPV_X_VSV221 (legal_ie),
-    DPV_X_VSV221 (legal_in),
+    DPV_X_SH_2XX (legal_ie),
+    DPV_X_SH_2XX (legal_in),
     dpv_legal_is_2_1,
     dpv_legal_it_2_1,
     dpv_legal_li_2_1,
@@ -585,8 +610,8 @@ vsv_t vsv = {
     dpv_legal_se_2_1,
     dpv_legal_sl_2_1,
     dpv_legal_sk_2_1,
-    DPV_X_VSV221 (legal_us),
-    DPV_X_VSV221 (loc),
+    DPV_X_SH_2XX (legal_us),
+    DPV_X_SH_2XX (loc),
     dpv_nace_schema,
     dpv_p7012_2_1,
     DPV_X_40_PLUS (pd),
@@ -647,7 +672,8 @@ vsv_t vsv = {
     psv_1_0,
     ptr_schema,
     pur_2_1, pur_3_0,
-    rai_1_3, rai_1_4, rai_1_5, rai_1_6, rai_1_7, rai_1_8, rai_1_9, rai_1_10, rai_1_11, rai_1_12, rai_1_13, rai_1_14, rai_1_15, rai_1_16, rai_1_17, rai_1_100,
+    rai_1_3, rai_1_4, rai_1_5, rai_1_6, rai_1_7, rai_1_8, rai_1_9, rai_1_10, rai_1_11, rai_1_12, rai_1_13, rai_1_14, rai_1_15, rai_1_16, rai_1_17,
+        rai_1_18, rai_1_19, rai_1_20, rai_1_21, rai_1_21, rai_1_100,
     rdf_1_0_schema, rdf_1_1_1_schema, rdf_1_1_2_schema, rdf_1_1_3_schema,
     rdfa_1_0_schema, rdfa_1_1_1_schema, rdfa_1_1_2_schema, rdfa_1_1_3_schema,
     rdfg_schema,
@@ -721,6 +747,215 @@ typedef ::std::multimap < e_ontology, sh_t* > mss_t;
 mss_t mss;
 ::std::array < ontology_version, s_error > va;
 
+e_apples_oranges ontology_to_apples_oranges (const e_ontology root) noexcept
+{   switch (root)
+    {   case s_adms : return aoo_adms;
+        case s_article : return aoo_article;
+        case s_as : return aoo_as;
+        case s_bfo : return aoo_bfo;
+        case s_bibo : return aoo_bibo;
+        case s_biro : return aoo_biro;
+        case s_book : return aoo_book;
+        case s_cc : return aoo_cc;
+        case s_cito : return aoo_cito;
+        case s_cnt : return aoo_cnt;
+        case s_content : return aoo_content;
+        case s_croissant :
+        case s_rai : return aoo_croissant;
+        case s_crs2 : return aoo_crs2;
+        case s_csvw : return aoo_csvw;
+        case s_ctag : return aoo_ctag;
+        case s_daq : return aoo_daq;
+        case s_dbd : return aoo_dbd;
+        case s_dbo : return aoo_dbo;
+        case s_dbp : return aoo_dbp;
+        case s_dbp_owl : return aoo_dbp_owl;
+        case s_dbr : return aoo_dbr;
+        case s_dc :
+        case s_dcam :
+        case s_dcat :
+        case s_dcmi :
+        case s_dct : return aoo_dc;
+        case s_ddi : return aoo_ddi;
+        case s_doap : return aoo_doap;
+        case s_dpv : return aoo_dpv;
+        case s_dpv_ai : 
+        case s_dpv_eu_aiact : 
+        case s_dpv_eu_dga : 
+        case s_dpv_eu_ehds : 
+        case s_dpv_eu_gdpr : 
+        case s_dpv_eu_nis2 : 
+        case s_dpv_eu_rights : 
+        case s_dpv_gdpr : 
+        case s_dpv_just : 
+        case s_dpv_legal : 
+        case s_dpv_legal_at : 
+        case s_dpv_legal_be : 
+        case s_dpv_legal_bg : 
+        case s_dpv_legal_cy : 
+        case s_dpv_legal_cz : 
+        case s_dpv_legal_de : 
+        case s_dpv_legal_dk : 
+        case s_dpv_legal_ee : 
+        case s_dpv_legal_es : 
+        case s_dpv_legal_eu : 
+        case s_dpv_legal_fi : 
+        case s_dpv_legal_fr : 
+        case s_dpv_legal_gb : 
+        case s_dpv_legal_gr : 
+        case s_dpv_legal_hk : 
+        case s_dpv_legal_hr : 
+        case s_dpv_legal_hu : 
+        case s_dpv_legal_ie : 
+        case s_dpv_legal_in : 
+        case s_dpv_legal_is : 
+        case s_dpv_legal_it : 
+        case s_dpv_legal_jp : 
+        case s_dpv_legal_kr : 
+        case s_dpv_legal_li : 
+        case s_dpv_legal_lt : 
+        case s_dpv_legal_lu : 
+        case s_dpv_legal_lv : 
+        case s_dpv_legal_mo : 
+        case s_dpv_legal_mt : 
+        case s_dpv_legal_my : 
+        case s_dpv_legal_nl : 
+        case s_dpv_legal_no : 
+        case s_dpv_legal_ph : 
+        case s_dpv_legal_pl : 
+        case s_dpv_legal_pt : 
+        case s_dpv_legal_ro : 
+        case s_dpv_legal_se : 
+        case s_dpv_legal_sg : 
+        case s_dpv_legal_sl : 
+        case s_dpv_legal_sk : 
+        case s_dpv_legal_th : 
+        case s_dpv_legal_tw : 
+        case s_dpv_legal_us : 
+        case s_dpv_loc : 
+        case s_dpv_nace : 
+        case s_dpv_p7012 : 
+        case s_dpv_pd : 
+        case s_dpv_rights : 
+        case s_dpv_risk : 
+        case s_dpv_s_edu : 
+        case s_dpv_s_fin : 
+        case s_dpv_s_hth : 
+        case s_dpv_s_inf : 
+        case s_dpv_s_law : 
+        case s_dpv_s_ps : 
+        case s_dpv_tech : return aoo_dpv;
+        case s_dqv : return aoo_dqv;
+        case s_describedby : return aoo_describedby;
+        case s_duv : return aoo_duv;
+        case s_earl : return aoo_earl;
+        case s_event : return aoo_event;
+        case s_example : return aoo_example;
+        case s_exif :
+        case s_exifex : return aoo_exif;
+        case s_fabio : return aoo_fabio;
+        case s_foaf : return aoo_foaf;
+        case s_frbr : return aoo_frbr;
+        case s_gr : return aoo_gr;
+        case s_grddl : return aoo_grddl;
+        case s_gs1 : return aoo_gs1;
+        case s_ical : return aoo_ical;
+        case s_icaltzd : return aoo_icaltzd;
+        case s_jsonld : return aoo_jsonld;
+        case s_ldp : return aoo_ldp;
+        case s_licence : return aoo_licence;
+        case s_locn : return aoo_locn;
+        case s_ma : return aoo_ma;
+        case s_microformats : return aoo_microformats;
+        case s_music : return aoo_music;
+        case s_oa : return aoo_oa;
+        case s_odrl : return aoo_odrl;
+        case s_og : return aoo_og;
+        case s_org : return aoo_org;
+        case s_owl : return aoo_owl;
+        case s_pam : return aoo_pam;
+        case s_pamp : return aoo_pamp;
+        case s_pcm : return aoo_pcm;
+        case s_pcmm : return aoo_pcmm;
+        case s_pcv : return aoo_pcv;
+        case s_pdf : return aoo_pdf;
+        case s_photoshop : return aoo_photoshop;
+        case s_pim : return aoo_pim;
+        case s_pmi : return aoo_pmi;
+        case s_poetry : return aoo_poetry;
+        case s_prism :
+        case s_prism_ad : return aoo_prism;
+        case s_prl : return aoo_prl;
+        case s_prm : return aoo_prm;
+        case s_profile : return aoo_profile;
+        case s_prov : return aoo_prov;
+        case s_prs : return aoo_prs;
+        case s_psv : return aoo_psv;
+        case s_ptr : return aoo_ptr;
+        case s_pur : return aoo_pur;
+        case s_qb : return aoo_qb;
+        case s_rdf :
+        case s_rdfa :
+        case s_rdfg :
+        case s_rdfs : return aoo_rdf;
+        case s_rev : return aoo_rev;
+        case s_rif : return aoo_rif;
+        case s_role : return aoo_role;
+        case s_rr : return aoo_rr;
+        case s_schema : return aoo_schema;
+        case s_sd : return aoo_sd;
+        case s_sioc :
+        case s_sioc_s :
+        case s_sioc_t : return aoo_sioc;
+        case s_skos : return aoo_skos;
+        case s_skosxl : return aoo_skosxl;
+        case s_spdx : return aoo_spdx;
+        case s_stdim : return aoo_stdim;
+        case s_stevt : return aoo_stevt;
+        case s_stfnt : return aoo_stfnt;
+        case s_stjob : return aoo_stjob;
+        case s_stref : return aoo_stref;
+        case s_stver : return aoo_stver;
+        case s_sosa : return aoo_sosa;
+        case s_spl : return aoo_spl;
+        case s_ssn : return aoo_ssn;
+        case s_svd : return aoo_svd;
+        case s_svdu : return aoo_svdu;
+        case s_svl : return aoo_svl;
+        case s_svpu : return aoo_svpu;
+        case s_svpr : return aoo_svpr;
+        case s_svr : return aoo_svr;
+        case s_taxo : return aoo_taxo;
+        case s_tiff : return aoo_tiff;
+        case s_time : return aoo_time;
+        case s_v : return aoo_v;
+        case s_vann : return aoo_vann;
+        case s_vcard : return aoo_vcard;
+        case s_video : return aoo_video;
+        case s_void : return aoo_void;
+        case s_wdr : return aoo_wdr;
+        case s_wdrs : return aoo_wdrs;
+        case s_website : return aoo_website;
+        case s_whatwg : return aoo_whatwg;
+        case s_wikidata : return aoo_wikidata;
+        case s_xhv : return aoo_xhv;
+        case s_xml : return aoo_xml;
+        case s_xmp : return aoo_xmp;
+        case s_xmpbj : return aoo_xmpbj;
+        case s_xmpdm : return aoo_xmpdm;
+        case s_xmpg : return aoo_xmpg;
+        case s_xmpgimg : return aoo_xmpgimg;
+        case s_xmpidq : return aoo_xmpidq;
+        case s_xmpmm : return aoo_xmpmm;
+        case s_xmprights : return aoo_xmprights;
+        case s_xmptpg : return aoo_xmptpg;
+        case s_xsd : return aoo_xsd;
+        case s_none :
+        case s_faux : return ao_unknown;
+        case s_error : return ao_error;
+        default : break; }
+    GRACELESS_CRASH (__FILE__, __LINE__); }
+
 bool set_default_ontology_version (const e_ontology es, unsigned short mjr, unsigned short mnr)
 {   PRESUME (es < s_error, __FILE__, __LINE__);
     if (! is_valid_ontology_version (es, mjr, mnr, NOFLAGS, NOFLAGS)) return false;
@@ -737,7 +972,7 @@ ontology_version corresponding_ontology_version (const e_ontology es, const html
     PRESUME (! mss.empty (), __FILE__, __LINE__);
     for (mss_t::const_iterator i = mss.find (es); (i != mss.cend ()) && (i -> first == es); ++i)
     {   sh_t& x = *(i -> second);
-        if (v >= x.html_)
+        if (ge (v, x.html_))
             return x.ontology_; }
     return error_schema; }
 
@@ -822,13 +1057,13 @@ template < > bool ontology_detail < s_croissant > :: is_this_valid (const unsign
                     break; }
             break;
         case 1 :
-            return (mnr <= MAX_MINOR_CROISSANT_1) || (mnr == 100);
+            return (mnr <= MAX_MINOR_CROISSANT_1) || (mnr == 100) || (mnr == 101);
         default :
             break; }
     return false; }
 template < > ontology_version ontology_detail < s_croissant > :: from () noexcept { return ontology_version (s_croissant, 0, 2); }
-template < > int ontology_detail < s_croissant > :: count () noexcept { return 26; }
-template < > ontology_version ontology_detail < s_croissant > :: to () noexcept { return ontology_version (s_croissant, 1, 100); }
+template < > int ontology_detail < s_croissant > :: count () noexcept { return 27; }
+template < > ontology_version ontology_detail < s_croissant > :: to () noexcept { return ontology_version (s_croissant, 1, 101); }
 
 template < > bool ontology_detail < s_dc > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mjr != 1) return false;
@@ -887,19 +1122,26 @@ bool is_dpv_valid (const unsigned short mjr, const unsigned short mnr, const uns
 #define DETAIL_DPV2(ONT) \
     template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t oflags) noexcept \
     {   if ((mjr == 2) && (mnr == 0)) return ((oflags & OV_DPV_NOT_4020) == 0); \
-        return (mjr == 2) && (mnr < 2); } \
+        return (mjr == 2) && (mnr <= 3); } \
     template < > ontology_version ontology_detail < ONT > :: from () noexcept { return ontology_version (ONT, 2, 0); } \
-    template < > int ontology_detail < ONT > :: count () noexcept { return 2; } \
-    template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 1); }
+    template < > int ontology_detail < ONT > :: count () noexcept { return 3; } \
+    template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 3); }
 
 #define DETAIL_DPV21(ONT) \
     template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept \
-    {   return (mjr == 2) && (mnr == 1); } \
+    {   return (mjr == 2) && (mnr >= 1) && (mnr <= 3); } \
     template < > ontology_version ontology_detail < ONT > :: from () noexcept { return ontology_version (ONT, 2, 1); } \
-    template < > int ontology_detail < ONT > :: count () noexcept { return 1; } \
-    template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 1); }
+    template < > int ontology_detail < ONT > :: count () noexcept { return 2; } \
+    template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 3); }
 
-DETAIL_DPV (s_dpv, 10, 16, 2, 1)
+#define DETAIL_DPV22(ONT) \
+    template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept \
+    {   return (mjr == 2) && (mnr >= 2) && (mnr <= 3); } \
+    template < > ontology_version ontology_detail < ONT > :: from () noexcept { return ontology_version (ONT, 2, 2); } \
+    template < > int ontology_detail < ONT > :: count () noexcept { return 1; } \
+    template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 3); }
+
+DETAIL_DPV (s_dpv, 10, 16, 2, 3)
 DETAIL_DPV2 (s_dpv_ai);
 DETAIL_DPV2 (s_dpv_eu_aiact);
 DETAIL_DPV2 (s_dpv_eu_dga);
@@ -924,23 +1166,30 @@ DETAIL_DPV21 (s_dpv_legal_fi);
 DETAIL_DPV21 (s_dpv_legal_fr);
 DETAIL_DPV2 (s_dpv_legal_gb);
 DETAIL_DPV21 (s_dpv_legal_gr);
+DETAIL_DPV22 (s_dpv_legal_hk);
 DETAIL_DPV21 (s_dpv_legal_hr);
 DETAIL_DPV21 (s_dpv_legal_hu);
 DETAIL_DPV21 (s_dpv_legal_ie);
 DETAIL_DPV2 (s_dpv_legal_in);
 DETAIL_DPV21 (s_dpv_legal_is);
 DETAIL_DPV21 (s_dpv_legal_it);
+DETAIL_DPV22 (s_dpv_legal_jp);
+DETAIL_DPV22 (s_dpv_legal_kr);
 DETAIL_DPV21 (s_dpv_legal_li);
 DETAIL_DPV21 (s_dpv_legal_lt);
 DETAIL_DPV21 (s_dpv_legal_lu);
 DETAIL_DPV21 (s_dpv_legal_lv);
+DETAIL_DPV22 (s_dpv_legal_mo);
 DETAIL_DPV21 (s_dpv_legal_mt);
+DETAIL_DPV22 (s_dpv_legal_my);
 DETAIL_DPV21 (s_dpv_legal_nl);
 DETAIL_DPV21 (s_dpv_legal_no);
+DETAIL_DPV22 (s_dpv_legal_ph);
 DETAIL_DPV21 (s_dpv_legal_pl);
 DETAIL_DPV21 (s_dpv_legal_pt);
 DETAIL_DPV21 (s_dpv_legal_ro);
 DETAIL_DPV21 (s_dpv_legal_se);
+DETAIL_DPV22 (s_dpv_legal_sg);
 DETAIL_DPV21 (s_dpv_legal_sl);
 DETAIL_DPV21 (s_dpv_legal_sk);
 DETAIL_DPV21 (s_dpv_legal_us);
@@ -952,17 +1201,17 @@ template < > int ontology_detail < s_dpv_nace > :: count () noexcept { return 14
 template < > ontology_version ontology_detail < s_dpv_nace > :: to () noexcept { return ontology_version (s_dpv_nace, 1, 0); }
 
 DETAIL_DPV2 (s_dpv_loc);          
-DETAIL_DPV (s_dpv_pd, 40, 12, 2, 1)
+DETAIL_DPV (s_dpv_pd, 40, 12, 2, 3)
 DETAIL_DPV21 (s_dpv_p7012);
 DETAIL_DPV (s_dpv_rights, 80, 5, 1, 1)
-DETAIL_DPV (s_dpv_risk, 80, 6, 2, 1)
+DETAIL_DPV (s_dpv_risk, 80, 6, 2, 3)
 DETAIL_DPV21 (s_dpv_s_edu);
 DETAIL_DPV21 (s_dpv_s_fin);
 DETAIL_DPV21 (s_dpv_s_hth);
 DETAIL_DPV21 (s_dpv_s_inf);
 DETAIL_DPV21 (s_dpv_s_law);
 DETAIL_DPV21 (s_dpv_s_ps);
-DETAIL_DPV (s_dpv_tech, 80, 6, 2, 1)
+DETAIL_DPV (s_dpv_tech, 80, 6, 2, 3)
 
 template < > bool ontology_detail < s_error > :: is_this_valid (const unsigned short , const unsigned short , const flags_t , const flags_t ) noexcept
 {   return false; }
@@ -1160,10 +1409,10 @@ template < > ontology_version ontology_detail < s_pur > :: to () noexcept { retu
 template < > bool ontology_detail < s_rai > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mjr != 1) return false;
     if ((mnr >= 3) && (mnr <= MAX_MINOR_CROISSANT_1)) return true;
-    return (mnr == 100); }
+    return (mnr == 100) || (mnr == 101); }
 template < > ontology_version ontology_detail < s_rai > :: from () noexcept { return ontology_version (s_rai, 1, 3); }
-template < > int ontology_detail < s_rai > :: count () noexcept { return 17; }
-template < > ontology_version ontology_detail < s_rai > :: to () noexcept { return ontology_version (s_rai, 1, 100); }
+template < > int ontology_detail < s_rai > :: count () noexcept { return 22; }
+template < > ontology_version ontology_detail < s_rai > :: to () noexcept { return ontology_version (s_rai, 1, 101); }
 
 template < > bool ontology_detail < s_rdf > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t) noexcept
 {   if (mjr != 1) return false;

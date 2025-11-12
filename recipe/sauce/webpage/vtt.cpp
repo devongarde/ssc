@@ -41,7 +41,7 @@ bool operator < (const vtt_timestamp& from, const vtt_timestamp& to)
 
 vtt_t::vtt_t (nitpick& nits, const html_version& v, const ::std::string& content, css_group& css)
     : nits_ (nits), v_ (v), b_ (content.cbegin ()), e_ (content.cend ()), i_ (b_), w_ (b_), z_ (e_), css_ (css)
-{   if (v_ < html_vtt_14)
+{   if (lt  (v_, html_vtt_14))
         nits_.pick (nit_version, ed_vtt, "W3C First Public Working Draft 13 November 2014", es_error, ec_vtt, "WebVTT files postdate ", v_.name ());
     else if (content.empty ())
         nits_.pick (nit_empty, ed_vtt, "4.1. WebVTT file structure", es_error, ec_vtt, "a valid WebVTT file cannot be empty");
@@ -331,7 +331,7 @@ void vtt_t::process_cue (const int i)
                     if (vs.size () == 1) test_value < t_percent_or_neg > (lines_.at (gather_from_).nits_, v_, value);
                     else
                     {   test_value < t_percent_or_neg > (lines_.at (gather_from_).nits_, v_, vs.at (0));
-                        if (v_ >= html_vtt_15) test_value < t_ces > (lines_.at (gather_from_).nits_, v_, vs.at (1));
+                        if (ge (v_, html_vtt_15)) test_value < t_ces > (lines_.at (gather_from_).nits_, v_, vs.at (1));
                         else test_value < t_ems > (lines_.at (gather_from_).nits_, v_, vs.at (1)); }
                     break;
                 case vtk_position :
@@ -340,8 +340,8 @@ void vtt_t::process_cue (const int i)
                     if (vs.size () == 1) test_value < t_percent_or_neg > (lines_.at (gather_from_).nits_, v_, value);
                     else
                     {   test_value < t_percent_or_neg > (lines_.at (gather_from_).nits_, v_, vs.at (0));
-                        if (v_ >= html_vtt_16) test_value < t_clllr > (lines_.at (gather_from_).nits_, v_, vs.at (1));
-                        else if (v_ >= html_vtt_15) test_value < t_ces > (lines_.at (gather_from_).nits_, v_, vs.at (1));
+                        if (ge (v_,html_vtt_16)) test_value < t_clllr > (lines_.at (gather_from_).nits_, v_, vs.at (1));
+                        else if (ge (v_, html_vtt_15)) test_value < t_ces > (lines_.at (gather_from_).nits_, v_, vs.at (1));
                         else test_value < t_ems > (lines_.at (gather_from_).nits_, v_, vs.at (1)); }
                     break;
                 case vtk_region_lc :
@@ -386,7 +386,7 @@ void vtt_t::process_cue (const int i)
     gather_ = vg_nowt; }
 
 void vtt_t::prepare_common (const int i, const char* sz, e_vtt_gathering g, e_nit ne, const html_version& v)
-{   if (v > v_)
+{   if (gt (v, v_))
         lines_.at (i).nits_.pick (nit_version, es_error, ec_vtt, "", sz, " postdates ", v_.name ());
     if (status_ != vs_prologue)
         lines_.at (i).nits_.pick (ne, ed_vtt, "4.1. WebVTT file structure", es_error, ec_vtt, "", sz, "s must precede cues");

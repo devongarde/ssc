@@ -285,7 +285,6 @@ PASS ../toast/css/2.0/css-9-8-2.html
 PASS ../toast/css/2.0/css-9-8-3.html
 0 charset_mismatch charset_used
 23 url_not_found
-31 use_double_quote_code
 
 PASS ../toast/css/2.0/css-9-9.html
 0 charset_mismatch charset_used

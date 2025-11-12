@@ -69,15 +69,16 @@ int get_ontology_version_count (const e_ontology es) noexcept;
 bool is_faux_schema (const e_ontology es) noexcept;
 bool is_valid_ontology_version (const e_ontology root, const unsigned short mjr, const unsigned short mnr, const flags_t flags, const flags_t oflags) noexcept;
 bool is_ontology_deprecated (const e_ontology root, const unsigned short mjr, const unsigned short mnr, const flags_t flags, const flags_t oflags) noexcept;
+e_apples_oranges ontology_to_apples_oranges (const e_ontology root) noexcept;
 
 struct ontology_version : public version
 {   flags_t oflags_ = NOFLAGS;
     DEFAULT_CONSTRUCTORS (ontology_version);
     ontology_version (const unsigned short mjr, const unsigned short mnr, const flags_t sf = NOFLAGS, const flags_t osf = NOFLAGS) noexcept
-        :   version (mjr, mnr, sf), oflags_ ((static_cast < flags_t > (s_schema) << SV_ROOT_SHIFT) | (osf & SV_FLAG_MASK))
+        :   version (mjr, mnr, sf, aoo_schema), oflags_ ((static_cast < flags_t > (s_schema) << SV_ROOT_SHIFT) | (osf & SV_FLAG_MASK))
     { }
     ontology_version (const e_ontology root, const unsigned short mjr, const unsigned short mnr, const flags_t sf = NOFLAGS, const flags_t osf = NOFLAGS) noexcept
-        :   version (mjr, mnr, sf), oflags_ ((static_cast < flags_t > (root) << SV_ROOT_SHIFT) | (osf & SV_FLAG_MASK))
+        :   version (mjr, mnr, sf, ontology_to_apples_oranges (root)), oflags_ ((static_cast < flags_t > (root) << SV_ROOT_SHIFT) | (osf & SV_FLAG_MASK))
     { }
     ontology_version (const html_version& v);
     static void init (nitpick& nits);
@@ -169,6 +170,7 @@ const ontology_version croissant_1_18 (s_croissant, 1, 18);
 const ontology_version croissant_1_19 (s_croissant, 1, 19);
 const ontology_version croissant_1_20 (s_croissant, 1, 20);
 const ontology_version croissant_1_21 (s_croissant, 1, 21);
+const ontology_version croissant_1_22 (s_croissant, 1, 22);
 const ontology_version croissant_1_100 (s_croissant, 1, 100);
 const ontology_version croissant_1_101 (s_croissant, 1, 101);
 
@@ -205,9 +207,17 @@ const ontology_version disco_schema (s_ddi, 1, 0);
 
 const ontology_version doap_schema (s_doap, 1, 0);
 
-#define DPV_X_VERSION221(XXX) \
+#define DPV_X_VERSION22(XXX) \
+const ontology_version dpv_##XXX##_2_2 (s_dpv_##XXX, 2, 2); \
+const ontology_version dpv_##XXX##_2_3 (s_dpv_##XXX, 2, 3)
+
+#define DPV_X_VERSION21(XXX) \
+const ontology_version dpv_##XXX##_2_1 (s_dpv_##XXX, 2, 1); \
+DPV_X_VERSION22 (XXX)
+
+#define DPV_X_VERSION20(XXX) \
 const ontology_version dpv_##XXX##_2_0 (s_dpv_##XXX, 2, 0); \
-const ontology_version dpv_##XXX##_2_1 (s_dpv_##XXX, 2, 1);
+DPV_X_VERSION21 (XXX)
 
 #define DPV_X_VERSION80(XXX) \
 const ontology_version dpv_##XXX##_0_8_0 (s_dpv_##XXX, 0, 80); \
@@ -244,69 +254,80 @@ const ontology_version dpv_0_9 (s_dpv, 0, 90);
 const ontology_version dpv_1_0 (s_dpv, 1, 0);
 const ontology_version dpv_2_0 (s_dpv, 2, 0);
 const ontology_version dpv_2_1 (s_dpv, 2, 1);
-DPV_X_VERSION221 (eu_aiact);
-const ontology_version dpv_eu_ehds_2_1 (s_dpv_eu_ehds, 2, 1);
-DPV_X_VERSION221 (eu_dga);
-DPV_X_VERSION221 (eu_gdpr);
-DPV_X_VERSION221 (eu_nis2);
-DPV_X_VERSION221 (eu_rights);
+const ontology_version dpv_2_2 (s_dpv, 2, 2);
+const ontology_version dpv_2_3 (s_dpv, 2, 3);
+DPV_X_VERSION20 (eu_aiact);
+DPV_X_VERSION21 (eu_ehds);
+DPV_X_VERSION20 (eu_dga);
+DPV_X_VERSION20 (eu_gdpr);
+DPV_X_VERSION20 (eu_nis2);
+DPV_X_VERSION20 (eu_rights);
 const ontology_version dpv_gdpr_0_1 (s_dpv_gdpr, 0, 10);
 const ontology_version dpv_gdpr_0_2 (s_dpv_gdpr, 0, 20);
 const ontology_version dpv_gdpr_0_3 (s_dpv_gdpr, 0, 30);
 DPV_X_VERSION40 (gdpr);
-DPV_X_VERSION221 (ai);
-DPV_X_VERSION221 (just);
+DPV_X_VERSION20 (ai);
+DPV_X_VERSION20 (just);
 DPV_X_VERSION50 (legal);
-const ontology_version dpv_legal_at_2_1 (s_dpv_legal_at, 2, 1);
-const ontology_version dpv_legal_be_2_1 (s_dpv_legal_be, 2, 1);
-const ontology_version dpv_legal_bg_2_1 (s_dpv_legal_bg, 2, 1);
-const ontology_version dpv_legal_cy_2_1 (s_dpv_legal_cy, 2, 1);
-const ontology_version dpv_legal_cz_2_1 (s_dpv_legal_cz, 2, 1);
-DPV_X_VERSION221 (legal_de);
-const ontology_version dpv_legal_dk_2_1 (s_dpv_legal_dk, 2, 1);
-const ontology_version dpv_legal_ee_2_1 (s_dpv_legal_ee, 2, 1);
-const ontology_version dpv_legal_es_2_1 (s_dpv_legal_es, 2, 1);
-DPV_X_VERSION221 (legal_eu);
-const ontology_version dpv_legal_fi_2_1 (s_dpv_legal_fi, 2, 1);
-const ontology_version dpv_legal_fr_2_1 (s_dpv_legal_fr, 2, 1);
-DPV_X_VERSION221 (legal_gb);
-const ontology_version dpv_legal_gr_2_1 (s_dpv_legal_gr, 2, 1);
-const ontology_version dpv_legal_hr_2_1 (s_dpv_legal_hr, 2, 1);
-const ontology_version dpv_legal_hu_2_1 (s_dpv_legal_hu, 2, 1);
-DPV_X_VERSION221 (legal_ie);
-DPV_X_VERSION221 (legal_in);
-DPV_X_VERSION221 (legal_is);
-DPV_X_VERSION221 (legal_it);
-DPV_X_VERSION221 (legal_li);
-DPV_X_VERSION221 (legal_lt);
-DPV_X_VERSION221 (legal_lu);
-DPV_X_VERSION221 (legal_lv);
-DPV_X_VERSION221 (legal_mt);
-DPV_X_VERSION221 (legal_nl);
-DPV_X_VERSION221 (legal_no);
-DPV_X_VERSION221 (legal_pl);
-DPV_X_VERSION221 (legal_pt);
-DPV_X_VERSION221 (legal_ro);
-DPV_X_VERSION221 (legal_se);
-DPV_X_VERSION221 (legal_sl);
-DPV_X_VERSION221 (legal_sk);
-DPV_X_VERSION221 (legal_us);
-DPV_X_VERSION221 (loc);
+DPV_X_VERSION21 (legal_at);
+DPV_X_VERSION21 (legal_be);
+DPV_X_VERSION21 (legal_bg);
+DPV_X_VERSION21 (legal_cy);
+DPV_X_VERSION21 (legal_cz);
+DPV_X_VERSION20 (legal_de);
+DPV_X_VERSION21 (legal_dk);
+DPV_X_VERSION21 (legal_ee);
+DPV_X_VERSION21 (legal_es);
+DPV_X_VERSION20 (legal_eu);
+DPV_X_VERSION21 (legal_fi);
+DPV_X_VERSION21 (legal_fr);
+DPV_X_VERSION20 (legal_gb);
+DPV_X_VERSION21 (legal_gr);
+DPV_X_VERSION22 (legal_hk);
+DPV_X_VERSION21 (legal_hr);
+DPV_X_VERSION21 (legal_hu);
+DPV_X_VERSION20 (legal_ie);
+DPV_X_VERSION20 (legal_in);
+DPV_X_VERSION20 (legal_is);
+DPV_X_VERSION20 (legal_it);
+DPV_X_VERSION22 (legal_jp);
+DPV_X_VERSION22 (legal_kr);
+DPV_X_VERSION20 (legal_li);
+DPV_X_VERSION20 (legal_lt);
+DPV_X_VERSION20 (legal_lu);
+DPV_X_VERSION20 (legal_lv);
+DPV_X_VERSION22 (legal_mo);
+DPV_X_VERSION20 (legal_mt);
+DPV_X_VERSION22 (legal_my);
+DPV_X_VERSION20 (legal_nl);
+DPV_X_VERSION20 (legal_no);
+DPV_X_VERSION22 (legal_ph);
+DPV_X_VERSION20 (legal_pl);
+DPV_X_VERSION20 (legal_pt);
+DPV_X_VERSION20 (legal_ro);
+DPV_X_VERSION20 (legal_se);
+DPV_X_VERSION22 (legal_sg);
+DPV_X_VERSION20 (legal_sl);
+DPV_X_VERSION20 (legal_sk);
+DPV_X_VERSION22 (legal_th);
+DPV_X_VERSION22 (legal_tw);
+DPV_X_VERSION20 (legal_us);
+DPV_X_VERSION20 (loc);
 const ontology_version dpv_nace_schema (s_dpv_nace, 0, 10);
-const ontology_version dpv_p7012_2_1 (s_dpv_p7012, 2, 1);
+DPV_X_VERSION21 (p7012);
 DPV_X_VERSION40 (pd);
-DPV_X_VERSION221 (pd);
+DPV_X_VERSION20 (pd);
 DPV_X_VERSION80 (rights);
 DPV_X_VERSION80 (risk);
-DPV_X_VERSION221 (risk);
-const ontology_version dpv_s_edu_2_1 (s_dpv_s_edu, 2, 1);
-const ontology_version dpv_s_fin_2_1 (s_dpv_s_fin, 2, 1);
-const ontology_version dpv_s_hth_2_1 (s_dpv_s_hth, 2, 1);
-const ontology_version dpv_s_inf_2_1 (s_dpv_s_inf, 2, 1);
-const ontology_version dpv_s_law_2_1 (s_dpv_s_law, 2, 1);
-const ontology_version dpv_s_ps_2_1 (s_dpv_s_ps, 2, 1);
+DPV_X_VERSION20 (risk);
+DPV_X_VERSION21 (s_edu);
+DPV_X_VERSION21 (s_fin);
+DPV_X_VERSION21 (s_hth);
+DPV_X_VERSION21 (s_inf);
+DPV_X_VERSION21 (s_law);
+DPV_X_VERSION21 (s_ps);
 DPV_X_VERSION80 (tech);
-DPV_X_VERSION221 (tech);
+DPV_X_VERSION20 (tech);
 
 const ontology_version duv_schema (s_duv, 1, 0);
 
@@ -475,6 +496,11 @@ const ontology_version rai_1_14 (s_rai, 1, 14);
 const ontology_version rai_1_15 (s_rai, 1, 15);
 const ontology_version rai_1_16 (s_rai, 1, 16);
 const ontology_version rai_1_17 (s_rai, 1, 17);
+const ontology_version rai_1_18 (s_rai, 1, 18);
+const ontology_version rai_1_19 (s_rai, 1, 19);
+const ontology_version rai_1_20 (s_rai, 1, 20);
+const ontology_version rai_1_21 (s_rai, 1, 21);
+const ontology_version rai_1_22 (s_rai, 1, 22);
 const ontology_version rai_1_100 (s_rai, 1, 100);
 
 const ontology_version rdf_1_0_schema (s_rdf, 1, 0);

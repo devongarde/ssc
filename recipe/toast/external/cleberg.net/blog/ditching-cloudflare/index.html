@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+    
+    <meta charset="utf-8">
+    <title>
+     Migrating from Cloudflare to Njalla: A Privacy-Focused DNS and Domain Management Transition | 
+    cleberg.net
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Christian Cleberg &lt;hello@cleberg.net&gt;" >
+    <meta name="description" content="Just a blip of ones and zeroes." >
+    
+    <link rel="stylesheet" href="../../styles.min.css" type="text/css">
+    <link rel="icon" type="image/x-icon" href="data:,">
+    
+<meta property="og:title" content="Migrating from Cloudflare to Njalla: A Privacy-Focused DNS and Domain Management Transition" />
+<meta property="og:url" content="https://cleberg.net/blog/ditching-cloudflare.html" />
+
+<meta property="og:description" content="Evaluation and procedural explanation for migrating DNS management services from Cloudflare to Njalla, with emphasis on privacy controls and domain registration mechanics." />
+ 
+    
+</head>
+<body>
+	<nav aria-label="site-nav" role="navigation">
+		<ul>
+			<li><a href="../../index.html">Home</a></li>
+            <li><a href="../../about/index.html">About</a></li>
+			<li><a href="../index.html">Blog</a></li>
+			<li><a href="../../services/index.html">Services</a></li>
+		</ul>
+	</nav>
+    <main>
+<article role="article">
+	<section class="post-metadata">
+		<h1>Migrating from Cloudflare to Njalla: A Privacy-Focused DNS and Domain Management Transition</h1>
+		
+		<time datetime='2022-06-01'
+			>Wednesday, June 01, 2022 00:00:00</time
+		>
+		
+	</section>
+	<section><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="index.html#registrar">1. Registrar</a></li>
+<li><a href="index.html#dns">2. DNS</a>
+<ul>
+<li><a href="index.html#dynamic-dns-updates">2.1. Dynamic DNS Updates</a></li>
+<li><a href="index.html#njalla-s-dns-tool">2.2. Njalla's DNS Tool</a></li>
+</ul>
+</li>
+<li><a href="index.html#tunnel">3. Tunnel</a></li>
+<li><a href="index.html#access">4. Access</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-registrar" class="outline-2">
+<h2 id="registrar"><span class="section-number-2">1.</span> Registrar</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+After spending a year or so using Cloudflare for DNS only - no proxying
+or applications - I spent the last few months using Cloudflare Tunnels
+and Cloudflare Access to protect my self-hosted websites and
+applications via their proxy traffic model.
+</p>
+
+<p>
+However, I have never liked using Cloudflare due to their increasingly
+large share of control over web traffic, as well as their business model
+of being a MITM for all of your traffic.
+</p>
+
+<p>
+So, as of today, I have switched over to <a href="https://njal.la">Njalla</a> as
+my registrar and DNS manager. I was able to easily transfer my domains
+over rapidly, with only one domain taking more than 15-30 minutes to
+propagate.
+</p>
+
+<p>
+<del>I do still have two domains sitting at Cloudflare for the moment while
+I decide if they're worth the higher rates (one domain is 30€ and the
+other is 45€).</del>
+</p>
+
+<blockquote>
+<p>
+<b>Update (2022.06.03)</b>: I ended up transferring my final two domains over
+to Njalla, clearing my Cloudflare account of personal data, and deleting
+the Cloudflare account entirely. <i>I actually feel relieved to have moved
+on to a provider I trust.</i>
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-dns" class="outline-2">
+<h2 id="dns"><span class="section-number-2">2.</span> DNS</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+As noted above, I'm using Njalla exclusively for DNS configurations on
+my domains.
+</p>
+
+<p>
+However, the transfer process was not ideal. As soon as the domains
+transferred over, I switched the nameservers from Cloudflare to Njalla
+and lost most of the associated DNS records. So, the majority of the
+time spent during the migration was simply re-typing all the DNS records
+back in one-by-one.
+</p>
+
+<p>
+This would be much simpler if I were able to edit the plain-text format
+of the DNS configuration. I was able to do that at a past registrar
+(perhaps it was <a href="https://gandi.net/">Gandi.net</a>?) and it made life a
+lot easier.
+</p>
+</div>
+<div id="outline-container-dynamic-dns-updates" class="outline-3">
+<h3 id="dynamic-dns-updates"><span class="section-number-3">2.1.</span> Dynamic DNS Updates</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+I have built an easy Python script to run (or set-up in <code>cron</code> to run
+automatically) that will check my server's IPv4 and IPv6, compare it to
+Njalla, and update the DNS records if they don't match. You can see the
+full script and process in my other post: <a href="https://cleberg.net/njalla-dns-api/">Updating
+Dynamic DNS with Njalla API</a>.
+</p>
+
+<p>
+I haven't used this other method, but I do know that you can create
+<code>Dynamic</code> DNS records with Njalla that
+<a href="https://njal.la/docs/ddns/">work for updating dynamic subdomains</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-njalla-s-dns-tool" class="outline-3">
+<h3 id="njalla-s-dns-tool"><span class="section-number-3">2.2.</span> Njalla's DNS Tool</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+One neat upside to Njalla is that they have a
+<a href="https://check.njal.la/dns/">DNS lookup tool</a> that provides a lot of
+great information for those of you (AKA: me) who hate using the <code>dig</code>
+command.
+</p>
+
+<p>
+This was very useful for monitoring a couple of my transferred domains
+to see when the changes in nameservers, records, and DNSSEC went into
+effect.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-tunnel" class="outline-2">
+<h2 id="tunnel"><span class="section-number-2">3.</span> Tunnel</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Cloudflare Tunnel is a service that acts as a reverse-proxy (hosted on
+Cloudflare's servers) and allowed me to mask the private IP address of
+the server hosting my various websites and apps.
+</p>
+
+<p>
+However, as I was moving away from Cloudflare, I was not able to find a
+suitable replacement that was both inexpensive and simple. So, I simply
+went back to hosting <a href="https://cleberg.net/blog/set-up-nginx-reverse-proxy/">my own
+reverse proxy with Nginx</a>. With the recent additions of Unifi hardware
+in my server/network rack, I am much more protected against spam and
+malicious attacks at the network edge than I was before I switched to
+Cloudflare.
+</p>
+</div>
+</div>
+<div id="outline-container-access" class="outline-2">
+<h2 id="access"><span class="section-number-2">4.</span> Access</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Cloudflare Access, another app I used in combination with Cloudflare
+Tunnel, provided an authentication screen that required you to enter
+valid credentials before Cloudflare would forward you to the actual
+website or app (if the website/app has their own authentication, you'd
+then have to authenticate a second time).
+</p>
+
+<p>
+I did not replace this service with anything since I only host a handful
+of non-sensitive apps that don't require duplicate authentication.
+</p>
+</div>
+</div>
+</section>
+	<blockquote><a href="mailto:hello@cleberg.net">Reply via email &rarr;</a></blockquote>
+</article>
+</main>
+	<footer>
+        <a href="https://stats.uptimerobot.com/OwOWs7HU0z">Status</a> &middot;
+        <a href="https://git.cleberg.net/cleberg.net.git" target="_blank"
+        rel="noopener">Source</a> &middot;
+        <a href="../../feed.xml">RSS</a>
+	</footer>
+</body>
+</html>

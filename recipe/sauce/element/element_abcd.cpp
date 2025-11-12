@@ -472,6 +472,12 @@ void element::examine_card ()
         if (has_child ())
             pick (nit_bad_card, es_error, ec_element, "<CARD> has no children"); } }
 
+void element::examine_ccrss_licence ()
+{   const ::std::string& txt (text ());
+    if (txt.find (CC) == ::std::string::npos)
+        pick (nit_cc, ed_ccrss, "1. Introduction", es_info, ec_element, "Expecting a Creative Commons licence here");
+    test_value < t_url > (nits (), context.html_ver (), trim_the_lot_off (txt)); }
+
 void element::examine_command ()
 {   if (a_.known (a_command))
     {   attribute_bitset bs = empty_attribute_bitset | a_type | a_label | a_title | a_hidden | a_icon | a_disabled | a_checked | a_radiogroup | a_default;

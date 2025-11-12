@@ -43,6 +43,62 @@ hav_t havt_gcd [] =
 {   MATH3_DEFS_ATTRIBUTES (elem_gcd),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_geo_lat [] =
+{   RDFa_META_ATTRIBUTES (elem_geo_lat),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_geo_long [] =
+{   RDFa_META_ATTRIBUTES (elem_geo_long),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_geo_point [] =
+{   RDFa_META_ATTRIBUTES (elem_geo_point),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_georss_box [] =
+{   RDFa_META_ATTRIBUTES (elem_georss_box),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_georss_elev [] =
+{   RDFa_META_ATTRIBUTES (elem_georss_elev),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_georss_featurename [] =
+{   RDFa_META_ATTRIBUTES (elem_georss_featurename),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_georss_featuretypetag [] =
+{   RDFa_META_ATTRIBUTES (elem_georss_featuretypetag),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_georss_floor [] =
+{   RDFa_META_ATTRIBUTES (elem_georss_floor),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_georss_line [] =
+{   RDFa_META_ATTRIBUTES (elem_georss_line),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_georss_point [] =
+{   RDFa_META_ATTRIBUTES (elem_georss_point),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_georss_polygon [] =
+{   RDFa_META_ATTRIBUTES (elem_georss_polygon),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_georss_radius [] =
+{   RDFa_META_ATTRIBUTES (elem_georss_radius),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_georss_relationshiptag [] =
+{   RDFa_META_ATTRIBUTES (elem_georss_relationshiptag),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_georss_where [] =
+{   RDFa_META_ATTRIBUTES (elem_georss_where),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_geq [] =
 {   MATH3_DEFS_ATTRIBUTES (elem_geq),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+    
+    <meta charset="utf-8">
+    <title>
+     How to Use IBM Watson Visual Recognition API for Image Analysis | 
+    cleberg.net
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Christian Cleberg &lt;hello@cleberg.net&gt;" >
+    <meta name="description" content="Just a blip of ones and zeroes." >
+    
+    <link rel="stylesheet" href="../styles.min.css" type="text/css">
+    <link rel="icon" type="image/x-icon" href="data:,">
+    
+<meta property="og:title" content="How to Use IBM Watson Visual Recognition API for Image Analysis" />
+<meta property="og:url" content="https://cleberg.net/blog/visual-recognition.html" />
+
+<meta property="og:description" content="Technical overview and application instructions for using IBM Watson Visual Recognition service, with focus on API configuration, image input processing, and classification output handling." />
+ 
+    
+</head>
+<body>
+	<nav aria-label="site-nav" role="navigation">
+		<ul>
+			<li><a href="../index.html">Home</a></li>
+            <li><a href="../about/index.html">About</a></li>
+			<li><a href="index.html">Blog</a></li>
+			<li><a href="../services/index.html">Services</a></li>
+		</ul>
+	</nav>
+    <main>
+<article role="article">
+	<section class="post-metadata">
+		<h1>How to Use IBM Watson Visual Recognition API for Image Analysis</h1>
+		
+		<time datetime='2020-09-01'
+			>Tuesday, September 01, 2020 00:00:00</time
+		>
+		
+	</section>
+	<section><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="visual-recognition.html#what-is-ibm-watson">1. What is IBM Watson?</a></li>
+<li><a href="visual-recognition.html#prerequisites">2. Prerequisites</a></li>
+<li><a href="visual-recognition.html#calling-the-ibm-watson-visual-recognition-api">3. Calling the IBM Watson Visual Recognition API</a></li>
+<li><a href="visual-recognition.html#the-results">4. The Results</a></li>
+<li><a href="visual-recognition.html#discussion">5. Discussion</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-what-is-ibm-watson" class="outline-2">
+<h2 id="what-is-ibm-watson"><span class="section-number-2">1.</span> What is IBM Watson?</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+If you've never heard of <a href="https://www.ibm.com/watson">Watson</a>, this service is a suite of enterprise-ready AI
+services, applications, and tooling provided by IBM. Watson contains quite a few
+useful tools for data scientists and students, including the subject of this
+post today: visual recognition.
+</p>
+
+<p>
+If you'd like to view the official documentation for the Visual Recognition API,
+visit the <a href="https://cloud.ibm.com/apidocs/visual-recognition/visual-recognition-v3?code=python">API Docs</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-prerequisites" class="outline-2">
+<h2 id="prerequisites"><span class="section-number-2">2.</span> Prerequisites</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+To be able to use Watson Visual Recognition, you'll need the following:
+</p>
+
+<ol class="org-ol">
+<li>Create a free account on <a href="https://www.ibm.com/cloud/watson-studio">IBM Watson Studio</a>.</li>
+<li>Add the <a href="https://www.ibm.com/cloud/watson-visual-recognition">Watson Visual Recognition</a> service to your IBM Watson account.</li>
+<li>Get your API key and URL. To do this, first go to the <a href="https://dataplatform.cloud.ibm.com/home2?context=cpdaas">profile dashboard</a> for
+your IBM account and click on the Watson Visual Recognition service you
+created. This will be listed in the section titled <b>Your services</b>. Then
+click the <b>Credentials</b> tab and open the <b>Auto-generated credentials</b>
+dropdown. Copy your API key and URL so that you can use them in the Python
+script later.</li>
+<li><b>[Optional]</b> While not required, you can also create the Jupyter Notebook for
+this project right inside <a href="https://www.ibm.com/cloud/watson-studio">Watson Studio</a>. Watson Studio will save your
+notebooks inside an organized project and allow you to use their other
+integrated products, such as storage containers, AI models, documentation,
+external sharing, etc.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-calling-the-ibm-watson-visual-recognition-api" class="outline-2">
+<h2 id="calling-the-ibm-watson-visual-recognition-api"><span class="section-number-2">3.</span> Calling the IBM Watson Visual Recognition API</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Okay, now let's get started.
+</p>
+
+<p>
+To begin, we need to install the proper Python package for IBM Watson.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">pip install --upgrade --user <span style="font-style: italic;">"ibm-watson&gt;=4.5.0"</span>
+</pre>
+</div>
+
+<p>
+Next, we need to specify the API key, version, and URL given to us when we
+created the Watson Visual Recognition service.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">apikey</span> = <span style="font-style: italic;">"&lt;your-apikey&gt;"</span>
+<span style="font-weight: bold; font-style: italic;">version</span> = <span style="font-style: italic;">"2018-03-19"</span>
+<span style="font-weight: bold; font-style: italic;">url</span> = <span style="font-style: italic;">"&lt;your-url&gt;"</span>
+</pre>
+</div>
+
+<p>
+Now, let's import the necessary libraries and authenticate our service.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> json
+<span style="font-weight: bold;">from</span> ibm_watson <span style="font-weight: bold;">import</span> VisualRecognitionV3
+<span style="font-weight: bold;">from</span> ibm_cloud_sdk_core.authenticators <span style="font-weight: bold;">import</span> IAMAuthenticator
+
+<span style="font-weight: bold; font-style: italic;">authenticator</span> = IAMAuthenticator(apikey)
+<span style="font-weight: bold; font-style: italic;">visual_recognition</span> = VisualRecognitionV3(
+  version=version,
+  authenticator=authenticator
+)
+
+visual_recognition.set_service_url(url)
+</pre>
+</div>
+
+<p>
+<b>[Optional]</b> If you'd like to tell the API not to use any data to improve their
+products, set the following header.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">visual_recognition.set_default_headers({<span style="font-style: italic;">'x-watson-learning-opt-out'</span>: <span style="font-style: italic;">"true"</span>})
+</pre>
+</div>
+
+<p>
+Now we have our API all set and ready to go. For this example, I'm going to
+include a <code>dict</code> of photos to load as we test out the API.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">data</span> = [
+  {
+    <span style="font-style: italic;">"title"</span>: <span style="font-style: italic;">"Grizzly Bear"</span>,
+    <span style="font-style: italic;">"url"</span>: <span style="font-style: italic;">"https://example.com/photos/image1.jpg"</span>
+  },
+  {
+    <span style="font-style: italic;">"title"</span>: <span style="font-style: italic;">"Nature Lake"</span>,
+    <span style="font-style: italic;">"url"</span>: <span style="font-style: italic;">"https://example.com/photos/image2.jpg"</span>
+  },
+  {
+    <span style="font-style: italic;">"title"</span>: <span style="font-style: italic;">"Welcome Sign"</span>,
+    <span style="font-style: italic;">"url"</span>: <span style="font-style: italic;">"https://example.com/photos/image3.jpg"</span>
+  },
+  {
+    <span style="font-style: italic;">"title"</span>: <span style="font-style: italic;">"Honey Badger"</span>,
+    <span style="font-style: italic;">"url"</span>: <span style="font-style: italic;">"https://example.com/photos/image4.jpg"</span>
+  },
+  {
+    <span style="font-style: italic;">"title"</span>: <span style="font-style: italic;">"Grand Canyon Lizard"</span>,
+    <span style="font-style: italic;">"url"</span>: <span style="font-style: italic;">"https://example.com/photos/image5.jpg"</span>
+  },
+  {
+    <span style="font-style: italic;">"title"</span>: <span style="font-style: italic;">"Castle"</span>,
+    <span style="font-style: italic;">"url"</span>: <span style="font-style: italic;">"https://example.com/photos/image6.jpg"</span>
+  }
+]
+</pre>
+</div>
+
+<p>
+Now that we've set up our libraries and have the photos ready, let's create a
+loop to call the API for each image. The code below shows a loop that calls the
+URL of each image and sends it to the API, requesting results with at least 60%
+confidence. The results are output to the console with dotted lines separating
+each section.
+</p>
+
+<p>
+In the case of an API error, the codes and explanations are output to the
+console.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">from</span> ibm_watson <span style="font-weight: bold;">import</span> ApiException
+
+<span style="font-weight: bold;">for</span> x <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(<span style="font-weight: bold;">len</span>(data)):
+<span style="font-weight: bold;">try</span>:
+   <span style="font-weight: bold; font-style: italic;">url</span> = data[x][<span style="font-style: italic;">"url"</span>]
+   <span style="font-weight: bold; font-style: italic;">images_filename</span> = data[x][<span style="font-style: italic;">"title"</span>]
+   <span style="font-weight: bold; font-style: italic;">classes</span> = visual_recognition.classify(
+       url=url,
+       images_filename=images_filename,
+       threshold=<span style="font-style: italic;">'0.6'</span>,
+       owners=[<span style="font-style: italic;">"IBM"</span>]).get_result()
+   <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"-----------------------------------------------"</span>)
+   <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"Image Title: "</span>, data[x][<span style="font-style: italic;">"title"</span>], <span style="font-style: italic;">"</span><span style="font-weight: bold; text-decoration: underline;">\n</span><span style="font-style: italic;">"</span>)
+   <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"Image URL: "</span>, data[x][<span style="font-style: italic;">"url"</span>], <span style="font-style: italic;">"</span><span style="font-weight: bold; text-decoration: underline;">\n</span><span style="font-style: italic;">"</span>)
+   <span style="font-weight: bold; font-style: italic;">classification_results</span> = classes[<span style="font-style: italic;">"images"</span>][0][<span style="font-style: italic;">"classifiers"</span>][0][<span style="font-style: italic;">"classes"</span>]
+   <span style="font-weight: bold;">for</span> result <span style="font-weight: bold;">in</span> classification_results:
+       <span style="font-weight: bold;">print</span>(result[<span style="font-style: italic;">"class"</span>], <span style="font-style: italic;">"("</span>, result[<span style="font-style: italic;">"score"</span>], <span style="font-style: italic;">")"</span>)
+   <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"-----------------------------------------------"</span>)
+<span style="font-weight: bold;">except</span> ApiException <span style="font-weight: bold;">as</span> ex:
+   <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"Method failed with status code "</span> + <span style="font-weight: bold;">str</span>(ex.code) + <span style="font-style: italic;">": "</span> + ex.message)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-the-results" class="outline-2">
+<h2 id="the-results"><span class="section-number-2">4.</span> The Results</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Here we can see the full result set of our function above. If you view each of
+the URLs that we sent to the API, you'll be able to see that it was remarkably
+accurate. To be fair, these are clear high-resolution, clear photos shot with a
+professional camera. In reality, you will most likely be processing images that
+are lower quality and may have a lot of noise in the photo.
+</p>
+
+<p>
+However, we can clearly see the benefit of being able to call this API instead
+of attempting to write our own image recognition function. Each of the
+classifications returned was a fair description of the image.
+</p>
+
+<p>
+If you wanted to restrict the results to those that are at least 90% confident
+or greater, you would simply adjust the <code>threshold</code> in the
+<code>visual_recognition.classify()</code> function.
+</p>
+
+<p>
+When your program runs, it should show the output below for each photo you
+provide.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-txt">----------------------------------------------------------------
+Image Title:  Grizzly Bear
+Image URL: https://example.com/photos/image1.jpg
+
+brown bear ( 0.944 )
+bear ( 1 )
+carnivore ( 1 )
+mammal ( 1 )
+animal ( 1 )
+Alaskan brown bear ( 0.759 )
+greenishness color ( 0.975 )
+----------------------------------------------------------------
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-discussion" class="outline-2">
+<h2 id="discussion"><span class="section-number-2">5.</span> Discussion</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Now, this was a very minimal implementation of the API. We simply supplied some
+images and looked to see how accurate the results were. However, you could
+implement this type of API into many machine learning (ML) models.
+</p>
+
+<p>
+For example, you could be working for a company that scans their warehouses or
+inventory using drones. Would you want to pay employees to sit there and watch
+drone footage all day in order to identify or count things in the video?
+Probably not. Instead, you could use a classification system similar to this one
+in order to train your machine learning model to correctly identify items that
+the drones show through video. More specifically, you could have your machine
+learning model watch a drone fly over a field of sheep in order to count how
+many sheep are living in that field.
+</p>
+
+<p>
+There are many ways to implement machine learning functionality, but hopefully
+this post helped inspire some deeper thought about the tools that can help
+propel us further into the future of machine learning and AI.
+</p>
+</div>
+</div>
+</section>
+	<blockquote><a href="mailto:hello@cleberg.net">Reply via email &rarr;</a></blockquote>
+</article>
+</main>
+	<footer>
+        <a href="https://stats.uptimerobot.com/OwOWs7HU0z">Status</a> &middot;
+        <a href="https://git.cleberg.net/cleberg.net.git" target="_blank"
+        rel="noopener">Source</a> &middot;
+        <a href="../feed.xml">RSS</a>
+	</footer>
+</body>
+</html>

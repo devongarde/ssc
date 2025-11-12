@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -386,7 +386,8 @@
     <ClCompile Include="..\sauce\css\value_types_m_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_m_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_m_3.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_n.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_m_n.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_n_o.cpp" />
     <ClCompile Include="..\sauce\css\value_types_o.cpp" />
     <ClCompile Include="..\sauce\css\value_types_p_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_p_2.cpp" />
@@ -613,6 +614,8 @@
     <LibraryWPath>$(WindowsSDK_MetadataPath);</LibraryWPath>
     <SourcePath>$(VC_SourcePath);</SourcePath>
     <ExcludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(VC_ExecutablePath_x64);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(FxCopDir);$(MSBuild_ExecutablePath);$(VC_LibraryPath_x64);$(SystemRoot)</ExcludePath>
+    <OutDir>$(SolutionDir)ssc17$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>ssc17$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)..\third</IncludePath>
@@ -622,6 +625,8 @@
     <LibraryWPath>$(WindowsSDK_MetadataPath);</LibraryWPath>
     <SourcePath>$(VC_SourcePath);</SourcePath>
     <ExcludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(VC_ExecutablePath_x64);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(FxCopDir);$(MSBuild_ExecutablePath);$(VC_LibraryPath_x64);$(SystemRoot)</ExcludePath>
+    <IntDir>ssc17$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)ssc17$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnableManifest>true</VcpkgEnableManifest>

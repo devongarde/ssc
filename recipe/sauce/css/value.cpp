@@ -189,7 +189,8 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     int test_value_fns_m_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_m_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_m_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_n (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_m_n (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_n_o (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_o (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_p_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_p_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
@@ -260,7 +261,8 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     if (t <= SSC_TYPES_M_1_MAX) return test_value_fns_m_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_M_2_MAX) return test_value_fns_m_2 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_M_3_MAX) return test_value_fns_m_3 (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_N_MAX) return test_value_fns_n (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_M_N_MAX) return test_value_fns_m_n (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_N_O_MAX) return test_value_fns_n_o (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_O_MAX) return test_value_fns_o (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_P_1_MAX) return test_value_fns_p_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_P_2_MAX) return test_value_fns_p_2 (args, start, to, nits, t, fn, id);

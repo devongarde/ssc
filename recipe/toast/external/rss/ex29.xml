@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:webfeeds="http://webfeeds.org/rss/1.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Eugen Rochko</title>
+    <description>Public posts from @Gargron@mastodon.social</description>
+    <link>https://mastodon.social/@Gargron</link>
+    <image>
+      <url>https://files.mastodon.social/accounts/avatars/000/000/001/original/dc4286ceb8fab734.jpg</url>
+      <title>Eugen Rochko</title>
+      <link>https://mastodon.social/@Gargron</link>
+    </image>
+    <lastBuildDate>Wed, 01 Mar 2023 20:23:36 +0000</lastBuildDate>
+    <webfeeds:icon>https://files.mastodon.social/accounts/avatars/000/000/001/original/dc4286ceb8fab734.jpg</webfeeds:icon>
+    <generator>Mastodon v4.1.0</generator>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109949892433321784</guid>
+      <link>https://mastodon.social/@Gargron/109949892433321784</link>
+      <pubDate>Wed, 01 Mar 2023 20:23:36 +0000</pubDate>
+      <description>&lt;p&gt;mastodon.social is now entirely served from our new &lt;a href="https://mastodon.social/tags/Kubernetes" class="mention hashtag" rel="tag"&gt;#&lt;span&gt;Kubernetes&lt;/span&gt;&lt;/a&gt; cluster 🎉&lt;/p&gt;</description>
+      <category>kubernetes</category>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109943079995353881</guid>
+      <link>https://mastodon.social/@Gargron/109943079995353881</link>
+      <pubDate>Tue, 28 Feb 2023 15:31:06 +0000</pubDate>
+      <description>&lt;p&gt;We&amp;#39;ve had over 1.3K candidates apply to the 3 open positions at Mastodon so far, which is very exciting, but getting through them as such a small team is taking its time. Getting somewhere though!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109919714032366048</guid>
+      <link>https://mastodon.social/@Gargron/109919714032366048</link>
+      <pubDate>Fri, 24 Feb 2023 12:28:50 +0000</pubDate>
+      <description>&lt;p&gt;Got a wedding date 😎&lt;/p&gt;</description>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109889416185879447</guid>
+      <link>https://mastodon.social/@Gargron/109889416185879447</link>
+      <pubDate>Sun, 19 Feb 2023 04:03:41 +0000</pubDate>
+      <description>&lt;p&gt;Post editing is now available for testing in our iOS app&amp;#39;s TestFlight!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109850453803755145</guid>
+      <link>https://mastodon.social/@Gargron/109850453803755145</link>
+      <pubDate>Sun, 12 Feb 2023 06:55:03 +0000</pubDate>
+      <description>&lt;p&gt;I haven’t had much time to post because the last 3 months have been absolutely wild in terms of workload. But I’m very excited about how this platform is growing.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109827568949419926</guid>
+      <link>https://mastodon.social/@Gargron/109827568949419926</link>
+      <pubDate>Wed, 08 Feb 2023 05:55:07 +0000</pubDate>
+      <description>&lt;p&gt;As promised, mastodon.online infrastructure upgraded and is now easier to scale, mastodon.social is next on the list. Our mod team grows as well!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109822738794400635</guid>
+      <link>https://mastodon.social/@Gargron/109822738794400635</link>
+      <pubDate>Tue, 07 Feb 2023 09:26:45 +0000</pubDate>
+      <description>&lt;p&gt;I know that there&amp;#39;s been intermittent stability issues with mastodon.social and mastodon.online recently. We&amp;#39;re working on improving our infrastructure to address this.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109810124734718299</guid>
+      <link>https://mastodon.social/@Gargron/109810124734718299</link>
+      <pubDate>Sun, 05 Feb 2023 03:58:50 +0000</pubDate>
+      <description>&lt;p&gt;Delicious!&lt;/p&gt;</description>
+      <media:content url="https://files.mastodon.social/media_attachments/files/109/810/124/471/341/410/original/a85a711cac14979c.jpeg" type="image/jpeg" fileSize="649824" medium="image">
+        <media:rating scheme="urn:simple">nonadult</media:rating>
+        <media:description type="plain">Food in Korean restaurant on top of table</media:description>
+      </media:content>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109786290644576574</guid>
+      <link>https://mastodon.social/@Gargron/109786290644576574</link>
+      <pubDate>Tue, 31 Jan 2023 22:57:30 +0000</pubDate>
+      <description>&lt;p&gt;mastodon.social, mastodon.online and joinmastodon.org were hit by a DDoS yesterday, thankfully joinmastodon.org was already behind Fastly so it didn&amp;#39;t have any impact on it. We&amp;#39;ve now moved mastodon.online behind Fastly and will do the same with mastodon.social soon.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109781614426817079</guid>
+      <link>https://mastodon.social/@Gargron/109781614426817079</link>
+      <pubDate>Tue, 31 Jan 2023 03:08:17 +0000</pubDate>
+      <description>&lt;p&gt;A number of folks have reached out to us over the past few months asking how they could help Mastodon out. Unfortunately, we haven&amp;#39;t had the capacity to accept those kind offers at the time.&lt;/p&gt;&lt;p&gt;If you&amp;#39;re interested in getting involved as a volunteer, please fill out this form (and share it around!) so we know who could help with what. (There is plenty that needs doing!)&lt;/p&gt;&lt;p&gt;&lt;a href="https://joinmastodon.typeform.com/to/PdqUZCAg" target="_blank" rel="nofollow noopener noreferrer"&gt;&lt;span class="invisible"&gt;https://&lt;/span&gt;&lt;span class="ellipsis"&gt;joinmastodon.typeform.com/to/P&lt;/span&gt;&lt;span class="invisible"&gt;dqUZCAg&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109781490892884305</guid>
+      <link>https://mastodon.social/@Gargron/109781490892884305</link>
+      <pubDate>Tue, 31 Jan 2023 02:36:52 +0000</pubDate>
+      <description>&lt;p&gt;I believe mastodon.social might be under a DDoS attack currently, investigating. Sorry for the inconvenience!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109752869525918351</guid>
+      <link>https://mastodon.social/@Gargron/109752869525918351</link>
+      <pubDate>Thu, 26 Jan 2023 01:18:05 +0000</pubDate>
+      <description>&lt;p&gt;The only reason we&amp;#39;re able to hire more folks is because of your support. Mastodon is a non-profit supported entirely by crowdfunding. If you like what we&amp;#39;re doing or the servers we provide, consider supporting us on Patreon:&lt;/p&gt;&lt;p&gt;&lt;a href="https://www.patreon.com/mastodon" target="_blank" rel="nofollow noopener noreferrer"&gt;&lt;span class="invisible"&gt;https://www.&lt;/span&gt;&lt;span class=""&gt;patreon.com/mastodon&lt;/span&gt;&lt;span class="invisible"&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109752585671341892</guid>
+      <link>https://mastodon.social/@Gargron/109752585671341892</link>
+      <pubDate>Thu, 26 Jan 2023 00:05:53 +0000</pubDate>
+      <description>&lt;p&gt;There are over 700 applications for the open positions at Mastodon. Thankfully we&amp;#39;re now joined by &lt;span class="h-card"&gt;&lt;a href="https://mastodon.social/@inganomads" class="u-url mention"&gt;@&lt;span&gt;inganomads&lt;/span&gt;&lt;/a&gt;&lt;/span&gt; to help us with the hiring process. And Claire is now full-time!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109745931739360983</guid>
+      <link>https://mastodon.social/@Gargron/109745931739360983</link>
+      <pubDate>Tue, 24 Jan 2023 19:53:42 +0000</pubDate>
+      <description>&lt;p&gt;Checking out &lt;span class="h-card"&gt;&lt;a href="https://tapbots.social/@ivory" class="u-url mention"&gt;@&lt;span&gt;ivory&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109734444153824593</guid>
+      <link>https://mastodon.social/@Gargron/109734444153824593</link>
+      <pubDate>Sun, 22 Jan 2023 19:12:16 +0000</pubDate>
+      <description>&lt;p&gt;I started working on Mastodon when I was 23, and now I&amp;#39;m 30&lt;/p&gt;</description>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109733933922153776</guid>
+      <link>https://mastodon.social/@Gargron/109733933922153776</link>
+      <pubDate>Sun, 22 Jan 2023 17:02:30 +0000</pubDate>
+      <description>&lt;p&gt;It's my birthday &lt;img rel="emoji" draggable="false" width="16" height="16" class="emojione" style="width: 1.1em; height: 1.1em; object-fit: contain; vertical-align: middle; margin: -.2ex .15em .2ex" alt=":catjam:" title=":catjam:" src="https://files.mastodon.social/custom_emojis/images/000/224/097/original/d9c5e447581399a9.gif"&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109722256853094329</guid>
+      <link>https://mastodon.social/@Gargron/109722256853094329</link>
+      <pubDate>Fri, 20 Jan 2023 15:32:52 +0000</pubDate>
+      <description>&lt;p&gt;New picture for the website! Photographed by Peter Petzka.&lt;/p&gt;</description>
+      <media:content url="https://files.mastodon.social/media_attachments/files/109/722/222/976/767/598/original/c4d57fc4988f5bfa.png" type="image/png" fileSize="1375434" medium="image">
+        <media:rating scheme="urn:simple">nonadult</media:rating>
+        <media:description type="plain">A photo of me in formal attire (red tie, brown jacket)</media:description>
+      </media:content>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109721635392299425</guid>
+      <link>https://mastodon.social/@Gargron/109721635392299425</link>
+      <pubDate>Fri, 20 Jan 2023 12:54:50 +0000</pubDate>
+      <description>&lt;p&gt;Next update of our iOS app will have home screen widgets (among other things)! It’s not a super crucial thing but I’m looking forward to it.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109669334253114110</guid>
+      <link>https://mastodon.social/@Gargron/109669334253114110</link>
+      <pubDate>Wed, 11 Jan 2023 07:13:58 +0000</pubDate>
+      <description>&lt;p&gt;Wow, already 178 job applications&lt;/p&gt;</description>
+    </item>
+    <item>
+      <guid isPermaLink="true">https://mastodon.social/@Gargron/109663072573730112</guid>
+      <link>https://mastodon.social/@Gargron/109663072573730112</link>
+      <pubDate>Tue, 10 Jan 2023 04:41:32 +0000</pubDate>
+      <description>&lt;p&gt;Mastodon bumps up the active user count when a user logs on, including right after sign up. I’m not surprised the monthly active user number is coming down a bit, there’s no service out there that has 100% retention on new sign ups.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
