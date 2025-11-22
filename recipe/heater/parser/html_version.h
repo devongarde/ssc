@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -23,8 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "ontology/ontology_version.h"
 
-#define LATEST_HTML_STR "Aug 2025"
-#define LATEST_CSS_STR  "2024"
+#define LATEST_HTML_STR "Dec 2025"
+#define LATEST_CSS_STR  "2025"
 
 #define HV_LEVEL1       0x0000000000000001
 #define HV_LEVEL2       0x0000000000000002
@@ -478,11 +478,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_2024_2     ( H2_CSS_FRAG_3 )
 #define H2_CSS_2024_3     ( H2_CSS_ANIM_3 | H2_CSS_CASCADE_5 | H2_CSS_COND_RULE_4 | H2_CSS_FONT_4 | H2_CSS_SELECTOR_4 )
 #define H2_CSS_2025       ( H2_CSS_2024 )
-#define H2_CSS_2025_1     ( H2_CSS_2024_1 )
-#define H2_CSS_2025_2     ( H2_CSS_2024_2 )
-#define H2_CSS_2025_3     ( H2_CSS_2024_3 )
+#define H2_CSS_2025_1     ( H2_CSS_MEDIA_4 | H2_CSS_CASCADE_5 | H2_CSS_COND_RULE_4 )
+#define H2_CSS_2025_2     ( H2_CSS_FRAG_3 )
+#define H2_CSS_2025_3     ( H2_CSS_ANIM_3 | H2_CSS_CASCADE_5 | H2_CSS_COND_RULE_4 | H2_CSS_FONT_4 | H2_CSS_SELECTOR_4 )
 
-#define H2_CSS_LS_AUG25   ( H2_CSS_2024 | H2_CSS_2024_1 | H2_CSS_2024_2 | H2_CSS_2024_3 | H2_CSS_MEDIA | H2_CSS_UI )
+#define H2_CSS_LS_2024   ( H2_CSS_2024 | H2_CSS_2024_1 | H2_CSS_2024_2 | H2_CSS_2024_3 | H2_CSS_MEDIA | H2_CSS_UI )
+#define H2_CSS_LS_2025   ( H2_CSS_2025 | H2_CSS_2025_1 | H2_CSS_2025_2 | H2_CSS_2025_3 | H2_CSS_MEDIA | H2_CSS_UI )
 
 #define H3_CSS_HYPERLINK      0x0000000000000001
 #define H3_CSS_MULTI_COL      0x0000000000000002
@@ -666,11 +667,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_2024_3     ( H3_CSS_ADJUST | H3_CSS_ANCHOR | H3_CSS_BOX_SIZING | H3_CSS_FILTER | H3_CSS_LIST | H3_CSS_LOGIC | H3_CSS_MOTION | H3_CSS_POSITION | \
                             H3_CSS_TRANSFORM_4 | H3_CSS_WC )
 #define H3_CSS_2025       ( H3_CSS_2024 )
-#define H3_CSS_2025_1     ( H3_CSS_2024_1 )
-#define H3_CSS_2025_2     ( H3_CSS_2024_2 )
-#define H3_CSS_2025_3     ( H3_CSS_2024_3 )
+#define H3_CSS_2025_1     ( H3_CSS_ADJUST )
+#define H3_CSS_2025_2     ( H3_CSS_BOX_ALIGN | H3_CSS_DISPLAY | H3_CSS_MASKING | H3_CSS_SCROLLBAR | H3_CSS_SHAPE_3 | H3_CSS_SNAP | H3_CSS_SPEECH | H3_CSS_TEXT_3 | \
+                            H3_CSS_TEXTDEC_3 | H3_CSS_WRITING_4 )
+#define H3_CSS_2025_3     ( H3_CSS_ANCHOR | H3_CSS_BOX_SIZING | H3_CSS_FILTER | H3_CSS_LIST | H3_CSS_LOGIC | H3_CSS_MOTION | H3_CSS_POSITION | \
+                            H3_CSS_TRANSFORM_4 | H3_CSS_WC | H3_CSS_CONTAIN_4 )
 
-#define H3_CSS_LS_AUG25   ( H3_CSS_2024 | H3_CSS_2024_1 | H3_CSS_2024_2 | H3_CSS_2024_3 | H3_CSS_CONTAIN | H3_CSS_RUBY | H3_CSS_SCOPE | H3_CSS_SHAPE | H3_CSS_TEXT | H3_CSS_TEXTDEC )
+#define H3_CSS_LS_2024   ( H3_CSS_2024 | H3_CSS_2024_1 | H3_CSS_2024_2 | H3_CSS_2024_3 | H3_CSS_CONTAIN | H3_CSS_RUBY | H3_CSS_SCOPE | H3_CSS_SHAPE | H3_CSS_TEXT | H3_CSS_TEXTDEC )
+#define H3_CSS_LS_2025   ( H3_CSS_2025 | H3_CSS_2025_1 | H3_CSS_2025_2 | H3_CSS_2025_3 | H3_CSS_CONTAIN | H3_CSS_RUBY | H3_CSS_SCOPE | H3_CSS_SHAPE | H3_CSS_TEXT | H3_CSS_TEXTDEC )
 
 #define H4_CSS_COLOUR_3     0x0000000000000001  
 #define H4_CSS_COLOUR_4     0x0000000000000002  
@@ -736,12 +740,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H4_CSS_SAFE_2022    0x0000000001000000
 #define H4_CSS_SAFE_2023    0x0000000002000000
 #define H4_CSS_SAFE_2024    0x0000000004000000
+#define H4_CSS_SAFE_2025    0x0000000008000000
 #define H4_CSS_SAFE_TO_20 ( H4_CSS_SAFE_2020 | H4_CSS_SAFE_2018 )
 #define H4_CSS_SAFE_TO_21 ( H4_CSS_SAFE_TO_20 | H4_CSS_SAFE_2021 )
 #define H4_CSS_SAFE_TO_22 ( H4_CSS_SAFE_TO_21 | H4_CSS_SAFE_2022 )
 #define H4_CSS_SAFE_TO_23 ( H4_CSS_SAFE_TO_22 | H4_CSS_SAFE_2023 )
 #define H4_CSS_SAFE_TO_24 ( H4_CSS_SAFE_TO_23 | H4_CSS_SAFE_2024 )
-#define H4_CSS_SAFE         0x0000000007E00000
+#define H4_CSS_SAFE_TO_25 ( H4_CSS_SAFE_TO_24 | H4_CSS_SAFE_2025 )
+#define H4_CSS_SAFE         0x000000000FE00000
 
 // leave some bits for future years' CSS safety matches
 #define H4_CSS_VER_MASK     0x0000000FF0000000
@@ -774,12 +780,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H4_CSS_2024_1     ( 0 )
 #define H4_CSS_2024_2     ( 0 )
 #define H4_CSS_2024_3     ( H4_CSS_TRANSITION_3 )
-#define H4_CSS_2025       ( H4_CSS_2024 | H4_CSS_COLOUR_5 )
-#define H4_CSS_2025_1     ( H4_CSS_2024_1 )
-#define H4_CSS_2025_2     ( H4_CSS_2024_2 )
-#define H4_CSS_2025_3     ( H4_CSS_2024_3 )
+#define H4_CSS_2025       ( H4_CSS_2024 | H4_CSS_SAFE_2025 )
+#define H4_CSS_2025_1     ( 0 )
+#define H4_CSS_2025_2     ( 0 )
+#define H4_CSS_2025_3     ( H4_CSS_TRANSITION_3 )
 
-#define H4_CSS_LS_AUG25    ( H4_CSS_2024 | H4_CSS_2024_1 | H4_CSS_2024_2 | H4_CSS_2024_3 | H4_CSS_FCS | H4_CSS_LIVING_STANDARD | H4_CSS_MATH_CORE | H4_CSS_OVERFLOW )
+#define H4_CSS_LS_2024    ( H4_CSS_2024 | H4_CSS_2024_1 | H4_CSS_2024_2 | H4_CSS_2024_3 | H4_CSS_FCS | H4_CSS_LIVING_STANDARD | H4_CSS_MATH_CORE | H4_CSS_OVERFLOW )
+#define H4_CSS_LS_2025    ( H4_CSS_2025 | H4_CSS_2025_1 | H4_CSS_2025_2 | H4_CSS_2025_3 | H4_CSS_FCS | H4_CSS_LIVING_STANDARD | H4_CSS_MATH_CORE | H4_CSS_OVERFLOW )
 
 #define H4_RSL              0x0000100000000000
 #define H4_RSS              0x0000200000000000
@@ -1251,13 +1258,19 @@ const html_version html_exifex_2_3 (aoo_exif, HTML_EXIF_2_3);
 const html_version html_exifex_2_31 (aoo_exif, HTML_EXIF_2_31);
 const html_version html_exifex_2_32 (aoo_exif, HTML_EXIF_2_32);
 const html_version html_exifex_3_0 (aoo_exif, HTML_EXIF_3_0);
-const html_version html_gs10 (aoo_gs1, HTML_GS10);
-const html_version html_gs11 (aoo_gs1, HTML_GS11);
-const html_version html_gs12 (aoo_gs1, HTML_GS12);
-const html_version html_gs13 (aoo_gs1, HTML_GS13);
-const html_version html_gs14 (aoo_gs1, HTML_GS14);
-const html_version html_gs15 (aoo_gs1, HTML_GS15);
-const html_version html_gs151 (aoo_gs1, HTML_GS151);
+const html_version html_gs1_0 (aoo_gs1, HTML_GS1_0);
+const html_version html_gs1_1 (aoo_gs1, HTML_GS1_1);
+const html_version html_gs1_2 (aoo_gs1, HTML_GS1_2);
+const html_version html_gs1_3 (aoo_gs1, HTML_GS1_3);
+const html_version html_gs1_4 (aoo_gs1, HTML_GS1_4);
+const html_version html_gs1_5 (aoo_gs1, HTML_GS1_5);
+const html_version html_gs1_6 (aoo_gs1, HTML_GS1_6);
+const html_version html_gs1_7 (aoo_gs1, HTML_GS1_7);
+const html_version html_gs1_8 (aoo_gs1, HTML_GS1_8);
+const html_version html_gs1_9 (aoo_gs1, HTML_GS1_9);
+const html_version html_gs1_10 (aoo_gs1, HTML_GS1_10);
+const html_version html_gs1_11 (aoo_gs1, HTML_GS1_11);
+const html_version html_gs1_16 (aoo_gs1, HTML_GS1_16);
 const html_version html_owl_1_0 (aoo_owl, HTML_OWL10);
 const html_version html_owl_1_1 (aoo_owl, HTML_OWL11);
 const html_version html_owl_2_0 (aoo_owl, HTML_OWL20);
@@ -1459,29 +1472,29 @@ const html_version html_jul16 (HTML_JUL16, css_2015, HV_WHATWG, HE_MICRODATA | H
 const html_version html_nov16 (HTML_NOV16, css_2015, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3, 0, H4_ARIA_1_0);
 const html_version html_jan17 (HTML_JAN17, css_2017, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3, 0, H4_ARIA_1_0);
 const html_version html_jul17 (HTML_JUL17, css_2017, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3, 0, H4_ARIA_1_0);
-const html_version html_jan18 (HTML_JAN18, css_2018, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3, 0, H4_ARIA_1_1);
-const html_version html_jul18 (HTML_OCT18, css_2018, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3, 0, H4_ARIA_1_1);
-const html_version html_oct18 (HTML_JUL18, css_2018, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_jan18 (HTML_JAN18, css_2017, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3, 0, H4_ARIA_1_1);
+const html_version html_jul18 (HTML_OCT18, css_2017, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3, 0, H4_ARIA_1_1);
+const html_version html_oct18 (HTML_JUL18, css_2017, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3, 0, H4_ARIA_FEW);
 const html_version html_jan19 (HTML_JAN19, css_2018, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3, 0, H4_ARIA_FEW);
 const html_version html_jul19 (HTML_JUL19, css_2018, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_jan20 (HTML_JAN20, css_2020, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_jul20 (HTML_JUL20, css_2020, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_may20 (HTML_MAY20, css_2020, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_oct20 (HTML_OCT20, css_2020, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_jan21 (HTML_JAN21, css_2021, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_feb21 (HTML_FEB21, css_2021, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_apr21 (HTML_APR21, css_2021, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_jul21 (HTML_JUL21, css_2021, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_oct21 (HTML_OCT21, css_2021, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_nov21 (HTML_NOV21, css_2021, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_jan22 (HTML_JAN22, css_2022, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_feb22 (HTML_FEB22, css_2022, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_mar22 (HTML_MAR22, css_2022, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_apr22 (HTML_APR22, css_2022, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_may22 (HTML_MAY22, css_2022, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_jul22 (HTML_JUL22, css_2022, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_aug22 (HTML_AUG22, css_2022, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
-const html_version html_sep22 (HTML_SEP22, css_2022, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_jan20 (HTML_JAN20, css_2018, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_jul20 (HTML_JUL20, css_2018, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_may20 (HTML_MAY20, css_2018, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_oct20 (HTML_OCT20, css_2018, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_jan21 (HTML_JAN21, css_2020, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_feb21 (HTML_FEB21, css_2020, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_apr21 (HTML_APR21, css_2020, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_jul21 (HTML_JUL21, css_2020, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_oct21 (HTML_OCT21, css_2020, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_nov21 (HTML_NOV21, css_2020, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_jan22 (HTML_JAN22, css_2021, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_feb22 (HTML_FEB22, css_2021, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_mar22 (HTML_MAR22, css_2021, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_apr22 (HTML_APR22, css_2021, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_may22 (HTML_MAY22, css_2021, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_jul22 (HTML_JUL22, css_2021, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_aug22 (HTML_AUG22, css_2021, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
+const html_version html_sep22 (HTML_SEP22, css_2021, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
 const html_version html_oct22 (HTML_OCT22, css_2022, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
 const html_version html_nov22 (HTML_NOV22, css_2022, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
 const html_version html_dec22 (HTML_DEC22, css_2022, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
@@ -1489,26 +1502,27 @@ const html_version html_jan23 (HTML_JAN23, css_2023, HV_WHATWG, HE_MICRODATA | H
 const html_version html_apr23 (HTML_APR23, css_2023, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_FEW);
 const html_version html_jul23 (HTML_JUL23, css_2023, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_PARTIAL);
 const html_version html_oct23 (HTML_OCT23, css_2023, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3, 0, H4_ARIA_PARTIAL);
-const html_version html_jan24 (HTML_JAN24, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_ARIA_PARTIAL);
-const html_version html_apr24 (HTML_APR24, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_ARIA_PARTIAL);
-const html_version html_may24 (HTML_MAY24, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_PARTIAL);
-const html_version html_jul24 (HTML_JUL24, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_PARTIAL);
+const html_version html_jan24 (HTML_JAN24, css_2023, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_ARIA_PARTIAL);
+const html_version html_apr24 (HTML_APR24, css_2023, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_ARIA_PARTIAL);
+const html_version html_may24 (HTML_MAY24, css_2023, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_PARTIAL);
+const html_version html_jul24 (HTML_JUL24, css_2023, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_PARTIAL);
 const html_version html_oct24 (HTML_OCT24, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_PARTIAL);
-const html_version html_jan25 (HTML_JAN25, css_2025, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_PARTIAL);
-const html_version html_feb25 (HTML_FEB25, css_2025, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL);
-const html_version html_mar25 (HTML_MAR25, css_2025, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL);
-const html_version html_apr25 (HTML_APR25, css_2025, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL);
-const html_version html_may25 (HTML_MAY25, css_2025, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL);
-const html_version html_jun25 (HTML_JUN25, css_2025, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL | H4_CSS_MATH_CORE);
-const html_version html_jul25 (HTML_JUL25, css_2025, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL | H4_CSS_MATH_CORE);
-const html_version html_aug25 (HTML_AUG25, css_ls_aug25, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_AUG25, H3_CSS_LS_AUG25, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_AUG25);
-const html_version html_sep25 (HTML_SEP25, css_ls_aug25, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_AUG25, H3_CSS_LS_AUG25, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_AUG25);
-const html_version html_oct25 (HTML_OCT25, css_ls_aug25, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_AUG25, H3_CSS_LS_AUG25, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_AUG25);
+const html_version html_jan25 (HTML_JAN25, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_PARTIAL);
+const html_version html_feb25 (HTML_FEB25, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL);
+const html_version html_mar25 (HTML_MAR25, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL);
+const html_version html_apr25 (HTML_APR25, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL);
+const html_version html_may25 (HTML_MAY25, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL);
+const html_version html_jun25 (HTML_JUN25, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL | H4_CSS_MATH_CORE);
+const html_version html_jul25 (HTML_JUL25, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL | H4_CSS_MATH_CORE);
+const html_version html_aug25 (HTML_AUG25, css_ls_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_2024, H3_CSS_LS_2024, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_2024);
+const html_version html_sep25 (HTML_SEP25, css_ls_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_2024, H3_CSS_LS_2024, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_2024);
+const html_version html_oct25 (HTML_OCT25, css_ls_2025, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_2025, H3_CSS_LS_2025, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_2025);
+const html_version html_dec25 (HTML_DEC25, css_ls_2025, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_2025, H3_CSS_LS_2025, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_2025);
 const html_version html_5_0 (HTML_5_0, css_2010, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_1 (HTML_5_1, css_2015, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_2 (HTML_5_2, css_2017, HV_W3, HE_SVG_11, H2_MATH_3);
 const html_version html_5_3 (HTML_5_3, css_2018, HV_W3, HE_SVG_11, H2_MATH_3);
-const html_version html_current (html_oct25);
+const html_version html_current (html_dec25);
 const html_version html_default (html_current);
 const html_version html_max (HTML_DEC99, css_6, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_FULL_CSS_MASK, H3_FULL_CSS_MASK, H4_RUBY | H4_ARIA_FULL | H4_FULL_CSS_MASK);
 

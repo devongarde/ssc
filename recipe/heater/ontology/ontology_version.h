@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -368,13 +368,19 @@ const ontology_version good_relations (s_gr, 1, 0);
 
 const ontology_version grddl_schema (s_grddl, 1, 0);
 
-const ontology_version gs1_10 (s_gs1, 1, 0);
-const ontology_version gs1_11 (s_gs1, 1, 1);
-const ontology_version gs1_12 (s_gs1, 1, 2);
-const ontology_version gs1_13 (s_gs1, 1, 3);
-const ontology_version gs1_14 (s_gs1, 1, 4);
-const ontology_version gs1_15 (s_gs1, 1, 5);
-const ontology_version gs1_151 (s_gs1, 1, 51);
+const ontology_version gs1_0 (s_gs1, 1, 0);
+const ontology_version gs1_1 (s_gs1, 1, 1);
+const ontology_version gs1_2 (s_gs1, 1, 2);
+const ontology_version gs1_3 (s_gs1, 1, 3);
+const ontology_version gs1_4 (s_gs1, 1, 4);
+const ontology_version gs1_5 (s_gs1, 1, 5);
+const ontology_version gs1_6 (s_gs1, 1, 6);
+const ontology_version gs1_7 (s_gs1, 1, 7);
+const ontology_version gs1_8 (s_gs1, 1, 8);
+const ontology_version gs1_9 (s_gs1, 1, 9);
+const ontology_version gs1_10 (s_gs1, 1, 10);
+const ontology_version gs1_11 (s_gs1, 1, 11);
+const ontology_version gs1_16 (s_gs1, 1, 16);
 
 const ontology_version ical_schema (s_ical, 1, 0);
 
@@ -712,8 +718,10 @@ const ontology_version xmp_tpg (s_xmptpg, 1, 0);
 const ontology_version xsd_1_0 (s_xsd, 1, 0);
 const ontology_version xsd_1_1 (s_xsd, 1, 1);
 
+#ifdef WX
 typedef ::std::vector < ontology_version > vsv_t;
-extern vsv_t vsv;
+typedef ::std::unique_ptr < vsv_t > vsv_u;
+#endif // WX
 
 bool overlap (const ontology_version& lhs_from, const ontology_version& lhs_to, const ontology_version& rhs_from, const ontology_version& rhs_to);
 bool does_ontology_apply (const ontology_version& v, const ontology_version& from, const ontology_version& to) MSVC_NOEXCEPT;

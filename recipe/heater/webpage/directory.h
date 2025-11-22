@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -66,7 +66,7 @@ public:
     bool offsite () const noexcept { return offsite_; }
     bool scan (nitpick* ticks, const ::std::string& site);
     void examine (nitpick* ticks, dir_ptr me_me_me) const;
-    void examine_page (nitpick* ticks, const ::std::string& file) const;
+    void examine_page (nitpick* ticks, const ::std::string& file, const e_verifiable_file vf) const;
     uint64_t url_size (nitpick& nits, const url& u) const;
     ::std::time_t url_last_write_time (nitpick& nits, const url& u) const;
     ::std::string load_url (nitpick& nits, const url& u, bool& borked, ::std::time_t* updated = nullptr) const;
@@ -83,16 +83,4 @@ public:
     ::boost::filesystem::path get_export_path (nitpick& nits, const ::std::string& item) const;
     ::boost::filesystem::path get_shadow_path () const; };
 
-bool has_extension (const ::std::string& name, const sstr_t& extensions);
-bool is_ads (const ::std::string& name);
-bool is_atomic (const ::std::string& name);
-bool is_css (const ::std::string& name);
-bool is_jsonld (const ::std::string& name);
-bool is_robotic (const ::std::string& name);
-bool is_rsl (const ::std::string& name);
-bool is_rss (const ::std::string& name);
-bool is_sec_txt (const ::std::string& name);
-bool is_vtt (const ::std::string& name);
-bool is_webpage (const ::std::string& name);
-bool is_verifiable_file (const ::std::string& name);
 ::std::size_t integrate_virtuals (paths_root& virt, vd_t& dirs);

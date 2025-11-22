@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -623,7 +623,7 @@ struct symbol_entry < html_version, e_css_property > css_property_symbol_table [
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC_4 }, { HTML_UNDEF }, "text-decoration-skip-self", ec_text_decoration_skip_self },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC_4 }, { HTML_UNDEF }, "text-decoration-skip-spaces", ec_text_decoration_skip_spaces },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "text-decoration-style", ec_text_decoration_style },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC_4 }, { HTML_UNDEF }, "text-decoration-thickness", ec_text_decoration_thickness },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC_4, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "text-decoration-thickness", ec_text_decoration_thickness },
     { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "text-definition", ec_text_definition },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "text-emphasis", ec_text_emphasis },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "text-emphasis-color", ec_text_emphasis_colour },
@@ -641,8 +641,8 @@ struct symbol_entry < html_version, e_css_property > css_property_symbol_table [
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "text-spacing", ec_text_spacing, ns_default, CF_EXPECT_KEYWORDS },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "text-spacing-trim", ec_text_spacing_trim, ns_default, CF_EXPECT_KEYWORDS },
     { { HTML_CSS, 0, 0, H2_CSS, H3_NOT_PRINT | H3_CSS_TEXT }, { HTML_UNDEF }, "text-transform", ec_text_transform, ns_default, CF_EXPECT_KEYWORDS },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC_4 }, { HTML_UNDEF }, "text-underline-offset", ec_text_underline_offset },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "text-underline-position", ec_text_underline_position },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC_4, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "text-underline-offset", ec_text_underline_offset },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "text-underline-position", ec_text_underline_position },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "text-wrap", ec_text_wrap, ns_default, CF_EXPECT_KEYWORDS },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "text-wrap-mode", ec_text_wrap_mode },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "text-wrap-style", ec_text_wrap_style },

@@ -1,7 +1,16 @@
 ﻿RELEASE NOTES
 static site checker
-https://ssc.lu/
-(c) 2020-2025 Dylan Harris
+https://dylanharris.org/ssc/
+(c) 2020-2026 Dylan Harris
+
+0.2.23
+- Visual Studio 2026
+- Macos Tahoe
+- OpenBSD 7.8
+- CSS 2025 snapshot
+- GS1 ontology version 1.5.1 folded into 1.5
+- added GS1 ontology versions 1.6 to 1.11, 1.16
+- underlying work
 
 0.2.22
 - RSS media, trackback, and creativecommons namespaces

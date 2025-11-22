@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -317,7 +317,8 @@ public:
     {   VERIFY_NOT_NULL (x, __FILE__, __LINE__);
         xp_ = x; }
     COPY_MOVE (fcn_dtor);
-    ~fcn_dtor () { shut_up (); }
+    ~fcn_dtor ()
+    {   try { shut_up (); } catch (...) { } }
     void reset ()
     {   shut_up (); 
         xp_ = nullptr; }

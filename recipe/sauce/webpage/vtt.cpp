@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -203,7 +203,7 @@ void vtt_t::open_cue_payload (const int x, const e_vtt_token tkn, const vstr_t& 
             if (space.size () < 2)
                 lines_.at (x).nits_.pick (nit_vtt_annotation, ed_vtt, "4.4. WebVTT cue settings", es_error, ec_vtt, "lang requires a language");
             else 
-            {   test_value < t_lang > (lines_.at (x).nits_, v_, space.at (2));
+            {   test_value < t_lang > (lines_.at (x).nits_, v_, space.at (1));
                 if (space.size () > 2)
                     lines_.at (x).nits_.pick (nit_vtt_annotation, ed_vtt, "4.4. WebVTT cue settings", es_error, ec_vtt, "lang requires one language only"); }
             break;

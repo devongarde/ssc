@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -60,7 +60,7 @@ e_inputtype5 element::get_input_type () const
 
 void element::examine_input ()
 {   if (node_.version ().mjr () < 5) return;
-    element* detail_daddy = get_ancestor (elem_details);
+    const element* detail_daddy = get_ancestor (elem_details);
     element* form_daddy = get_ancestor (elem_form);
     CONSTEXPR unsigned it_text_search = (1 << static_cast < unsigned > (i5_search)) + (1 << static_cast < unsigned > (i5_text));
     CONSTEXPR unsigned it_url_tel = (1 << static_cast < unsigned > (i5_tel)) + (1 << static_cast < unsigned > (i5_url));

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ public:
     explicit ads (::std::ostringstream& ss, mmac_t& mac, nitpick& nits, const ::std::string& site_path, const ::std::string& content)
     {   parse (ss, mac, nits, site_path, content); }
     bool parse (nitpick& nits, const ::std::string& site_path, const ::std::string& content);
-    bool parse (::std::ostringstream& ss, mmac_t& mac, nitpick& nits, const ::std::string& site_path, const ::std::string& content)
+    bool parse (::std::ostringstream& ss, const mmac_t& mac, nitpick& nits, const ::std::string& site_path, const ::std::string& content)
     {   const bool res = parse (nits, site_path, content);
         review (ss, mac, nits);
         return res; }

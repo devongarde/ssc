@@ -16,6 +16,14 @@
 <!--#echo encoding="none" var="title" -->
 </h1>
 
+<h2>change of address</h2>
+
+<p>
+The <!--#echo encoding="none" var="title" --> website is moving to:<b2>
+    <a href="https://dylanharris.org/ssc/usage.shtml">https://dylanharris.org/ssc</a><br>
+This site is no longer maintained, and will soon be turned into a toad.
+</p>
+
 <h2>Running <!--#echo encoding="none" var="short" --></h2>
 
 <p>
@@ -76,7 +84,7 @@ delicious&lt;/A&gt;<br>thing.&lt;/P&gt;
 <p>
 The word <!--#echo encoding="none" var="short" --> spots is &ldquo;Taostd&rdquo;. It knows there&rsquo;s a word to check when
 it gets to the end of the word, e.g. at the space that follows it. In
-this case, the word is interrupted by rather a lot of HTML, which is
+this case, the word is contaminated by rather a lot of HTML, which is
 ignored when checking spelling. Because the intervening HTML is so
 long, crossing a number of lines, and <!--#echo encoding="none" var="short" --> reports small snippets of
 HTML per issue (to avoid spouting too much verbiage), it will not show

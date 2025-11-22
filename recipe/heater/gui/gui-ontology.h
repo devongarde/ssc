@@ -1,6 +1,6 @@
 ﻿/*                                                                 ,
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -60,6 +60,7 @@ class ontology_t : public d1_t < wx_ontology >
     bool verify_ = false;
     bool exp_ = false, mf1_ = false, mf2_ = false, prt_ = false, vfy_ = false;
     ::boost::filesystem::path path_;
+    static vsv_u vsv_u_;
     vsv_t vsv_;
     vint_t vov_;
     void general_enable (const bool e);
@@ -83,6 +84,7 @@ public:
     void OnVersion (wxCommandEvent& e);
     bool TransferDataToWindow ();
     bool TransferDataFromWindow ();
+    static void begone () { vsv_u_.reset (); }
     bool invalid_panel () const { return d1_t :: invalid_panel () || (panel_ == nullptr) || check_verify_ == nullptr || pick_export_ == nullptr || column_version_ == nullptr || choice_version_ == nullptr; }
     void create_controls (wxWindow *parent);
     bool create_panel (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL | wxNO_BORDER);

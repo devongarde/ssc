@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -763,7 +763,9 @@ void context_t::check_for_update (nitpick& nits) // should be run in a separate 
             if (! j.invalid ())
             {   ::boost::json::value v = j.val ();
                 if (v.kind () == ::boost::json::kind::array)
-                    for (::boost::json::array::const_iterator i = v.as_array ().cbegin (); i != v.as_array ().cend (); ++i)
+                    for (   ::boost::json::array::const_iterator i = v.as_array ().cbegin ();
+                            (i != nullptr) && (i != v.as_array ().cend ());
+                            ++i)
                         if ( i -> kind () == ::boost::json::kind::object)
                         {   const ::std::int64_t mjr = i -> as_object ().at ("MJR").as_int64 ();
                             const ::std::int64_t mnr = i -> as_object ().at ("MNR").as_int64 ();   
@@ -809,3 +811,62 @@ const ads& context_t::con () const
 ads& context_t::con ()
 {   if (ads_.get () == nullptr) ads_ = ads_ptr (new ads ());
     return *ads_; }
+
+bool context_t::has_extension (const ::std::string& name, const sstr_t& extensions) const
+{   ::std::string ext (::boost::filesystem::path (name).extension ().string ());
+    if (ext.empty ()) return false;
+    if (ext.at (0) == '.') return be_it_there (extensions, ext.substr (1));
+    return be_it_there (extensions, ext); }
+
+bool context_t::is_ads (const ::std::string& name) const
+{   return ::boost::filesystem::path (name).filename ().string () == "ads.txt"; }
+
+bool context_t::is_atomic (const ::std::string& name) const
+{   return has_extension (name, atomic_ext ()); }
+
+bool context_t::is_css (const ::std::string& name) const
+{   return has_extension (name, css_extension ()); }
+
+bool context_t::is_jsonld (const ::std::string& name) const
+{   return has_extension (name, jsonld_extension ()); }
+
+bool context_t::is_robotic (const ::std::string& name) const
+{   return ::boost::filesystem::path (name).filename ().string () == "robots.txt"; }
+
+bool context_t::is_rsl (const ::std::string& name) const
+{   return has_extension (name, rsl_ext ()); }
+
+bool context_t::is_rss (const ::std::string& name) const
+{   return has_extension (name, rss_ext ()); }
+
+bool context_t::is_sec_txt (const ::std::string& name) const
+{   return ::boost::filesystem::path (name).filename ().string () == "security.txt"; }
+
+bool context_t::is_vtt (const ::std::string& name) const
+{   return has_extension (name, vtt_extension ()); }
+
+bool context_t::is_webpage (const ::std::string& name) const
+{   return has_extension (name, extensions ()); }
+
+e_verifiable_file context_t::verifiable_file_type (const ::std::string& name) const
+{   if (is_webpage (name))
+        return vf_markup;
+    if (is_css (name))
+        return vf_css;
+    if (is_atomic (name))
+        return atomic_verify () ? vf_atomic : vf_none;
+    if (is_jsonld (name))
+        return jsonld () ? vf_jsonld : vf_none;
+    if (is_vtt (name))
+        return load_vtt () ? vf_vtt : vf_none;
+    if (is_rsl (name))
+        return rsl_verify () ? vf_rsl : vf_none;
+    if (is_rss (name))
+        return rss_verify () ? vf_rss : vf_none;
+    if (is_robotic (name))
+        return robtxt () ? vf_robotic : vf_none;
+    if (is_ads (name))
+        return adstxt () ? vf_ads : vf_none;
+    if (is_sec_txt (name))
+        return sectxt () ? vf_security : vf_none;
+    return vf_none; }

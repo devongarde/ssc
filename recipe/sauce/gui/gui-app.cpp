@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "gui/gui-app.h"
 #include "gui/gui-screen.h"
 #include "gui/gui-frame.h"
+#include "gui/gui-ontology.h"
 #include "gui/gui-welcome.h"
 #include "type/type.h"
 #include "../../tea/resource.h"
@@ -253,6 +254,7 @@ int app_t::OnExit ()
 {   if (help_ != nullptr)
     {   delete help_;
         help_ = nullptr; }
+    ontology_t::begone ();
     app = nullptr;
     frame_ = nullptr;
     fred.done ();

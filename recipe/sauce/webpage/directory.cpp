@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -209,14 +209,14 @@ bool directory::add_to_content (nitpick* ticks, const ::boost::filesystem::direc
     p = join_site_paths (p, f);
     if (is_normal_file (qp))
     {   if (context.dodedu ()) get_crc (*ticks, ndx);
-        if (is_css (f))
+        if (context.is_css (f))
             return priority_.insert (value_t (f, nullptr)).second;
         return content_.insert (value_t (f, nullptr)).second; }
     if (enfolded)
     {   dir_ptr dp (new directory (ticks, f, ndx, this, p, false)); 
         if (content_.insert (value_t (f, dp)).second)
 #ifndef NO_FRED
-        {   q.push (q_entry (ticks, dp, st_scan));
+        {   q.push (q_entry (ticks, dp, st_scan, vf_directory));
             return true; } }
 #else // NO_FRED
         return dp -> scan (ticks, p); }
@@ -227,10 +227,10 @@ bool directory::add_to_content (nitpick* ticks, const ::boost::filesystem::direc
     nits.pick (nit_cannot_scan, es_warning, ec_directory, "Cannot scan ", quote (p));
     return false; }
 
-void directory::examine_page (nitpick* ticks, const ::std::string& file) const
+void directory::examine_page (nitpick* ticks, const ::std::string& file, const e_verifiable_file vf) const
 {   nitpick nits;
     knickers k (nits, ticks);
-    if (! is_verifiable_file (file))
+    if (vf == vf_none)
     {   PRESUME (context.shadow_files (), __FILE__, __LINE__);
         shadow_file (nits, file); }
     else
@@ -252,38 +252,39 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
                 try
                 {   bool borked;
                     ::std::string content (read_text_file (nits, p, borked));
-                    if (! borked) // this next bit is a mess, sort it out
-                        if (is_jsonld (p.string ()))
-                            parse_json_ld (ss, mac, nits, context.html_ver (), content);
-                        else if (is_robotic (p.string ()))
-                            context.robbie ().parse (ss, mac, nits, sp, content, this);
-                        else if (is_sec_txt (p.string ()))
-                            context.security ().parse (ss, mac, nits, sp, content, this);
-                        else if (is_ads (p.string ()))
-                            context.con ().parse (ss, mac, nits, sp, content);
-                        else
-                        {   page web (file, last_write (ndx), content, ndx, this);
-                            try
-                            {   if (web.invalid ())
-                                {   if (! silenced) ss << web.nits ().review (mac); }
-                                else
-                                {   web.examine ();
-                                    web.verify_locale (p);
-                                    web.validate ();
-                                    web.mf_write (p);
-                                    web.lynx ();
-                                    if (context.shadow_pages ())
-                                        if (web.dot_css () || web.dot_vtt ()) shadow_file (nits, file);
-                                        else web.shadow (nits, get_shadow_path () / file);
+                    if (! borked)
+                        switch (vf)
+                        {   case vf_ads : context.con ().parse (ss, mac, nits, sp, content); break;
+                            case vf_jsonld : parse_json_ld (ss, mac, nits, context.html_ver (), content); break;
+                            case vf_robotic : context.robbie ().parse (ss, mac, nits, sp, content, this); break;
+                            case vf_security : context.security ().parse (ss, mac, nits, sp, content, this); break;
+                            case vf_none :
+                            case vf_directory :
+                            case vf_error : GRACEFUL_CRASH (__FILE__, __LINE__); break;
+                            default :
+                            {   page web (file, last_write (ndx), content, ndx, vf, this);
+                                try
+                                {   if (web.invalid ())
+                                    {   if (! silenced) ss << web.nits ().review (mac); }
+                                    else
+                                    {   web.examine ();
+                                        web.verify_locale (p);
+                                        web.validate ();
+                                        web.mf_write (p);
+                                        web.lynx ();
+                                        if (context.shadow_pages ())
+                                            if (web.dot_css () || web.dot_vtt ()) shadow_file (nits, file);
+                                            else web.shadow (nits, get_shadow_path () / file);
+                                        if (! silenced)
+                                        {   ss << web.review (mac);
+                                            ss << web.report (); } }
                                     if (! silenced)
-                                    {   ss << web.review (mac);
-                                        ss << web.report (); } }
-                                if (! silenced)
-                                {   web.nits ().accumulate (nits);
-                                    web.css ().accumulate (nits); }
-                                web.cleanup (); }
-                            catch (...)
-                            {   web.cleanup (); throw; } } }
+                                    {   web.nits ().accumulate (nits);
+                                        web.css ().accumulate (nits); }
+                                    web.cleanup (); }
+                                    catch (...)
+                                    {   web.cleanup (); throw; } }
+                                    break; } }
                 catch (const ::std::system_error& e)
                 {   if (context.tell (es_error))
                     {   ::std::string splat (::std::string ("System error ") + e.what () + " when parsing " + sp);   
@@ -314,27 +315,29 @@ void directory::examine (nitpick* ticks, dir_ptr me_me_me) const
     for (auto i : priority_)
     {   PRESUME (i.second == nullptr, __FILE__, __LINE__);
         shadowed.emplace ((get_shadow_path () / i.first).string ());
-        if (context.shadow_files () || is_verifiable_file (i.first))
+        const e_verifiable_file vf = context.verifiable_file_type (i.first);
+        if ((vf != vf_none) || context.shadow_files ())
 #ifdef NO_FRED
-            examine_page (ticks, i.first); }
+            examine_page (ticks, i.first, vf); }
 #else // NO_FRED
-            q.rude (q_entry (ticks, me_me_me, st_priority, i.first)); }
+            q.rude (q_entry (ticks, me_me_me, st_priority, vf, i.first)); }
     ::std::this_thread::yield ();
 #endif // NO_FRED
     for (auto i : content_)
         if (i.second != nullptr) 
 #ifndef NO_FRED
-            q.push (q_entry (ticks, i.second, st_folder));
+            q.push (q_entry (ticks, i.second, st_folder, vf_directory));
 #else // NO_FRED
             examine (ticks, i.second);
 #endif // NO_FRED
         else
         {   shadowed.emplace ((get_shadow_path () / i.first).string ());
-            if (context.shadow_files () || is_verifiable_file (i.first))
+            const e_verifiable_file vf = context.verifiable_file_type (i.first);
+            if ((vf != vf_none) || context.shadow_files ())
 #ifndef NO_FRED
-                q.rude (q_entry (ticks, me_me_me, st_file, i.first)); }
+                q.rude (q_entry (ticks, me_me_me, st_file, vf, i.first)); }
 #else // NO_FRED
-                examine_page (ticks, i.first)); }
+                examine_page (ticks, i.first, vf)); }
 #endif // NO_FRED
     ::std::this_thread::yield ();
     if (context.shadow_files ())
@@ -509,45 +512,6 @@ bool directory::integrate_virtual (const ::std::string& site, path_root_ptr& dis
         if (! vd.at (0) -> integrate_virtual (virt.at (n) -> get_site_path (), virt.at (n), vd.at (n)))
             return n; }
     return 0; }
-
-bool has_extension (const ::std::string& name, const sstr_t& extensions)
-{   ::std::string ext (::boost::filesystem::path (name).extension ().string ());
-    if (ext.empty ()) return false;
-    if (ext.at (0) == '.') return be_it_there (extensions, ext.substr (1));
-    return be_it_there (extensions, ext); }
-
-bool is_ads (const ::std::string& name)
-{   return ::boost::filesystem::path (name).filename ().string () == "ads.txt"; }
-
-bool is_atomic (const ::std::string& name)
-{   return has_extension (name, context.atomic_ext ()); }
-
-bool is_css (const ::std::string& name)
-{   return has_extension (name, context.css_extension ()); }
-
-bool is_jsonld (const ::std::string& name)
-{   return has_extension (name, context.jsonld_extension ()); }
-
-bool is_robotic (const ::std::string& name)
-{   return ::boost::filesystem::path (name).filename ().string () == "robots.txt"; }
-
-bool is_rsl (const ::std::string& name)
-{   return has_extension (name, context.rsl_ext ()); }
-
-bool is_rss (const ::std::string& name)
-{   return has_extension (name, context.rss_ext ()); }
-
-bool is_sec_txt (const ::std::string& name)
-{   return ::boost::filesystem::path (name).filename ().string () == "security.txt"; }
-
-bool is_vtt (const ::std::string& name)
-{   return has_extension (name, context.vtt_extension ()); }
-
-bool is_webpage (const ::std::string& name)
-{   return has_extension (name, context.extensions ()); }
-
-bool is_verifiable_file (const ::std::string& name) // I must do better here
-{   return is_webpage (name) || is_css (name) || is_vtt (name) || is_jsonld (name) || is_robotic (name) || is_rss (name) || is_atomic (name) || is_rsl (name) || is_sec_txt (name) || is_ads (name); }
 
 bool directory::shadow_folder (nitpick& nits) const
 {   PRESUME (context.shadow_any (), __FILE__, __LINE__);

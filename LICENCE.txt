@@ -1,5 +1,5 @@
-ssc, static site checker, https://ssc.lu/
-copyright (c) 2020-2025 dylan harris
+ssc, static site checker, https://dylanharris.org/ssc/
+copyright (c) 2020-2026 dylan harris
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

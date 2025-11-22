@@ -23520,7 +23520,7 @@
     <None Include="..\toast\json-ld\1.0\5-4-3.jld">
       <Filter>Toast\JSON-LD\1.0</Filter>
     </None>
-    <None Include="..\toast\json-ld\1.0\advanced.jsonld">
+    <None Include="..\toast\json-ld\1.0\advanced.html">
       <Filter>Toast\JSON-LD\1.0</Filter>
     </None>
     <None Include="..\toast\json-ld\1.0\basic-2.jld">

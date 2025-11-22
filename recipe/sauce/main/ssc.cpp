@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -259,7 +259,7 @@ int examine (nitpick& nits)
                         if (vd.at (n) -> empty ())
                             nuts.pick (nit_no_content, es_comment, ec_init, virt.at (n) -> get_disk_path (), " has no content.");
 #ifndef NO_FRED
-                        else q.push (q_entry (&nits, vd.at (n), st_folder));
+                        else q.push (q_entry (&nits, vd.at (n), st_folder, vf_directory));
                     trundle (); } }
             nits.merge (nuts);
             fred.await ();

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -159,13 +159,14 @@ options::options (const context_t& c)
         INSERT_ENV (SERVER_PROTOCOL, env_server_protocol);
         INSERT_ENV (SERVER_SOFTWARE, env_server_software); }  
 
+    if (c.atomic_ext () != def.atomic_ext ())
+        INSERT_SSTR (ATOMIC, EXTENSION, atomic_ext);
+    INSERT_BOOL (ATOMIC, VERIFY, atomic_verify);
+
     INSERT_PATH (CORPUS, OUTPUT_, corpus);
     INSERT_BOOL (CORPUS, ARTICLE, article);
     INSERT_BOOL (CORPUS, BODY, body);
     INSERT_BOOL (CORPUS, MAIN, main);
-
-    if (c.atomic_ext () != def.atomic_ext ())
-        INSERT_SSTR (ATOMIC, EXTENSION, atomic_ext);
 
     if (c.css_extension () != def.css_extension ())
         INSERT_SSTR (CSS, EXTENSION, css_extension);
@@ -180,6 +181,7 @@ options::options (const context_t& c)
         if (def.css_module (m) != c.css_module (m))
             insert < int > (css + type_master < t_css_module > :: name (m), c.css_module (m)); }
 
+    INSERT_BOOL (GENERAL, ADS, adstxt);
     INSERT_BOOL (GENERAL, CGI, cgi);
     INSERT_BOOL (GENERAL, CLASS, unknown_class);
     INSERT_BOOL (GENERAL, CLASSIC, classic);
@@ -195,7 +197,9 @@ options::options (const context_t& c)
     INSERT_STRING (GENERAL, OUTPUT_, out_name);
     INSERT_BOOL (GENERAL, PROGRESS, progress);
     INSERT_BOOL (GENERAL, RDFA, rdfa);
+    INSERT_BOOL (GENERAL, ROBOTS, robtxt);
     INSERT_BOOL (GENERAL, RPT, rpt_opens);
+    INSERT_BOOL (GENERAL, SECURITY, sectxt);
     INSERT_VREG (GENERAL, SILENCE, silence);
     INSERT_BOOL (GENERAL, TEST, test);
 #ifndef NO_FRED
@@ -319,9 +323,11 @@ options::options (const context_t& c)
 
     if (c.rsl_ext () != def.rsl_ext ())
         INSERT_SSTR (RSL, EXTENSION, rsl_ext);
+    INSERT_BOOL (RSL, VERIFY, rsl_verify);
 
     if (c.rss_ext () != def.rss_ext ())
         INSERT_SSTR (RSS, EXTENSION, rss_ext);
+    INSERT_BOOL (RSS, VERIFY, rss_verify);
     INSERT_ENUM (t_rss_version, RSS, VERSION, rss_version);
 
     INSERT_BOOL (SHADOW, CHANGED, shadow_changed);
@@ -847,6 +853,8 @@ void options::init (context_t& c)
     ;
 
     primary_.add_options ()
+        (GENERAL ADS, ::boost::program_options::bool_switch (), "Verify .well-known/ads.txt.")
+        (GENERAL DONT ADS, ::boost::program_options::bool_switch (), "Do not verify ads.txt.")
         (GENERAL CGI ARGSEP CGI_SW_, ::boost::program_options::bool_switch (), "Process HTML snippets (for OpenBSD's httpd <FORM METHOD=GET ...>; disables most features).")
         (GENERAL DONT CGI, ::boost::program_options::bool_switch (), "Process a local static website.")
         (GENERAL CLASS, ::boost::program_options::bool_switch (), "Report unrecognised classes (requires CSS).")
@@ -872,6 +880,10 @@ void options::init (context_t& c)
         (GENERAL DONT PROGRESS, ::boost::program_options::bool_switch (), "Don't be quite so noisy.")
         (GENERAL RDFA, ::boost::program_options::bool_switch (), "Check RDFa attributes.")
         (GENERAL DONT RDFA, ::boost::program_options::bool_switch (), "Do not check RDFa attributes.")
+        (GENERAL ROBOTS, ::boost::program_options::bool_switch (), "Verify /robots.txt.")
+        (GENERAL DONT ROBOTS, ::boost::program_options::bool_switch (), "Do not verify /robots.txt.")
+        (GENERAL SECURITY, ::boost::program_options::bool_switch (), "Verify .well-known/security.txt.")
+        (GENERAL DONT SECURITY, ::boost::program_options::bool_switch (), "Do not verify .well-known/security.txt.")
         (GENERAL SILENCE, ::boost::program_options::value < vstr_t > () -> composing (), "Process files and directories which match this name, but do not report their nits.")
         (GENERAL SPEC ARGSEP SPEC_SW_, ::boost::program_options::bool_switch (), "Reset default values of most switches to false.")
         (GENERAL TEST ARGSEP TEST_SW_, ::boost::program_options::bool_switch (), "Output in format useful for automated tests.")
@@ -886,6 +898,8 @@ void options::init (context_t& c)
         (GENERAL DONT VCS, ::boost::program_options::bool_switch (), "Do not exclude file and directory names associated with certain version control systems.")
 
         (ATOMIC EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "atom files have this extension (default atom); may be repeated.")
+        (ATOMIC VERIFY, ::boost::program_options::bool_switch (), "verify atom files.")
+        (ATOMIC DONT VERIFY, ::boost::program_options::bool_switch (), "verify atom files.")
 
         (CORPUS ARTICLE, ::boost::program_options::bool_switch (), "Prefer the content of <ARTICLE> when gather page corpus.")
         (CORPUS DONT ARTICLE, ::boost::program_options::bool_switch (), "Avoid the content of <ARTICLE> when gather page corpus.")
@@ -950,7 +964,7 @@ void options::init (context_t& c)
         (CSS PRESENT, ::boost::program_options::value < int > (), "CSS Presentation Levels level (0 or 3).")
         (CSS PRINT, ::boost::program_options::bool_switch (), "Notify if some CSS conflicts with the CSS Print Profile.")
         (CSS DONT PRINT, ::boost::program_options::bool_switch (), "No not notify CSS Print Profile matters.")
-        (CSS PSEUDO, ::boost::program_options::value < int > (), "CSS Pseudo-Elements level (0 or 4).")
+        (CSS PSEUDO, ::boost::program_options::value < int > (), "CSS Pseudo-Elements level (0, 3, or 4).")
         (CSS REGION, ::boost::program_options::value < int > (), "CSS Regions level (0 or 3).")
         (CSS RHYTHM, ::boost::program_options::value < int > (), "CSS Rhythmic Sizing level (0 or 3).")
         (CSS ROUND, ::boost::program_options::value < int > (), "CSS Round Display level (0 or 3).")
@@ -1108,9 +1122,9 @@ void options::init (context_t& c)
         (ONTOLOGY DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export ontology data.")
         (ONTOLOGY PRETTY, ::boost::program_options::bool_switch (), "Output pretty JSON.")
         (ONTOLOGY DONT PRETTY, ::boost::program_options::bool_switch (), "Output ugly JSON.")
+        (ONTOLOGY ROOT, ::boost::program_options::value < ::std::string > (), "Ontology export root directory (requires --" ONTOLOGY EXPORT ").")
         (ONTOLOGY VERIFY ARGSEP MDATA_SW_, ::boost::program_options::bool_switch (), "Check ontology (" PROG " only understands certain ontologies).")
         (ONTOLOGY DONT VERIFY, ::boost::program_options::bool_switch (), "Do not check ontology data.")
-        (ONTOLOGY ROOT, ::boost::program_options::value < ::std::string > (), "Ontology export root directory (requires --" ONTOLOGY EXPORT ").")
         (ONTOLOGY VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "Export virtual directory content, syntax virtual=directory. Must correspond to --" WEBSITE VIRTUAL ".")
 
         (OUTPUT APATH, ::boost::program_options::bool_switch (), "Output local filesystem path of files scanned.")
@@ -1137,8 +1151,12 @@ void options::init (context_t& c)
         (OUTPUT DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify signed output (verification cannot be blocked when signing)")
 
         (RSL EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for RSL files (default rsl); may be repeated.")
+        (RSL VERIFY, ::boost::program_options::bool_switch (), "Verify signed output (requires --" OUTPUT PUBLIC " and --" OUTPUT SIGNATURE ")")
+        (RSL DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify signed output (verification cannot be blocked when signing)")
 
         (RSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for RSS files (default rss); may be repeated.")
+        (RSS VERIFY, ::boost::program_options::bool_switch (), "Verify signed output (requires --" OUTPUT PUBLIC " and --" OUTPUT SIGNATURE ")")
+        (RSS DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify signed output (verification cannot be blocked when signing)")
         (RSS VERSION, ::boost::program_options::value < ::std::string > (), "Presume this version of RSS (default 2.0).")
 
         (SHADOW CHANGED, ::boost::program_options::bool_switch (),
@@ -1158,9 +1176,9 @@ void options::init (context_t& c)
                                                                     "'hard' (links), 'soft' (links), "
 #endif // NOLYNX
                                                                     "'pages', 'all', 'dedu' (deduplicate), 'report'.")
-        (SHADOW FICHIER, ::boost::program_options::value < ::std::string > (), "File for persisting deduplication and update data.")
         (SHADOW ENABLE, ::boost::program_options::bool_switch (), "Enable shadowing (set by all other SHADOW options).")
         (SHADOW DONT ENABLE, ::boost::program_options::bool_switch (), "Disable shadowing.")
+        (SHADOW FICHIER, ::boost::program_options::value < ::std::string > (), "File for persisting deduplication and update data.")
         (SHADOW IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore files with this extension; may be repeated.")
         (SHADOW INFO, ::boost::program_options::bool_switch (), "Insert the generation time in a comment at the top of shadowed pages (after --" SHADOW MSG ").")
         (SHADOW DONT INFO, ::boost::program_options::bool_switch (), "Do not insert the generation time in a comment at the top of shadowed pages.")
@@ -1197,8 +1215,6 @@ void options::init (context_t& c)
         (SPELL PATH, ::boost::program_options::value < ::std::string > (), "Path to (hunspell) dictionaries (ignored in Windows).")
 #endif // NOSPELL
 
-        (SSI VERIFY ARGSEP SSI_SW_, ::boost::program_options::bool_switch (), "Verify (simple) Server Side Includes. See also --" SHADOW SSI_ ".")
-        (SSI DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify Server Side Includes.")
         (SSI DATETIME, ::boost::program_options::value < ::std::string > () -> composing (), "The SSI date environment variables should return this value.")
         (SSI DOCARGS, ::boost::program_options::value < ::std::string > () -> composing (), "Set the SSI DOCUMENT_ARGS variable to this value.")
         (SSI ECHOMSG, ::boost::program_options::value < ::std::string > () -> composing (), "Set the initial SSI default echo message (by default, " DEFAULT_ECHOMSG ").")
@@ -1210,6 +1226,8 @@ void options::init (context_t& c)
         (SSI QUERYSTRING, ::boost::program_options::value < ::std::string > () -> composing (), "Set the SSI QUERY_STRING_UNESCAPED variable to this value.")
         (SSI TIMEFMT, ::boost::program_options::value < ::std::string > () -> composing (), "Set the SSI TIMEFMT variable to this value.")
         (SSI USERNAME, ::boost::program_options::value < ::std::string > () -> composing (), "Set the SSI USER_NAME variable to this value.")
+        (SSI VERIFY ARGSEP SSI_SW_, ::boost::program_options::bool_switch (), "Verify (simple) Server Side Includes. See also --" SHADOW SSI_ ".")
+        (SSI DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify Server Side Includes.")
 
         (STATS ABBR, ::boost::program_options::bool_switch (), "Output abbr report.")
         (STATS DONT ABBR, ::boost::program_options::bool_switch (), "Do not output abbr report.")
@@ -1610,11 +1628,11 @@ void options::contextualise (context_t& c, nitpick& nits)
     yea_nay (c, &context_t::spec, nits, NITS SPEC, NITS DONT SPEC);
 
     if (c.test () || is_be (GENERAL SPEC))
-        c.article (false).body (false).cased (false).classic (false).crosslinks (false).example (false).external (false).ext_css (false).forwarded (false)
-            .icu (true).info (false).jsonld (false).links (false).load_css (true).load_vtt (true).main (false).md_export (false).mf_verify (false)
-            .microdata (false).nids (true).nits (false).nits_nits_nits (true).not_root (false).once (false).ontology (true).presume_tags (false)
-            .progress (false).rdfa (false).rel (false).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false)
-            .serve (false).shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).sign (false)
+        c.adstxt (false).article (false).atomic_verify (false).body (false).cased (false).classic (false).crosslinks (false).example (false).external (false).ext_css (false)
+            .forwarded (false).icu (true).info (false).jsonld (false).links (false).load_css (true).load_vtt (true).main (false).md_export (false).mf_verify (false)
+            .microdata (false).nids (true).nits (false).nits_nits_nits (true).not_root (false).once (false).ontology (true).presume_tags (false).progress (false).rdfa (false)
+            .rel (false).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).robtxt (false).rpt_opens (false).rsl_verify (false).rss_verify (false)
+            .sectxt (false).serve (false).shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).sign (false)
             .spell (false).ssi (false).stats (rcb_page, false).stats (rcb_summary, false).unknown_class (false).update (false).verify (false);
 
 #ifndef NO_FRED
@@ -1723,13 +1741,16 @@ void options::contextualise (context_t& c, nitpick& nits)
     if (var_.count (VALIDATION DONT MICRODATAARG)) c.microdata (false);
 
     if (! c.cgi ())
-    {   yea_nay (c, &context_t::unknown_class, nits, GENERAL CLASS, GENERAL DONT CLASS);
+    {   yea_nay (c, &context_t::adstxt, nits, GENERAL ADS, GENERAL DONT ADS);
+        yea_nay (c, &context_t::unknown_class, nits, GENERAL CLASS, GENERAL DONT CLASS);
         yea_nay (c, &context_t::classic, nits, GENERAL CLASSIC, GENERAL DONT CLASSIC);
         yea_nay (c, &context_t::comms, nits, GENERAL DONT COMMS, GENERAL COMMS);
         yea_nay (c, &context_t::excl_def_excl, nits, GENERAL EDE, GENERAL DONT EDE);
         yea_nay (c, &context_t::progress, nits, GENERAL PROGRESS, GENERAL DONT PROGRESS);
         yea_nay (c, &context_t::rdfa, nits, GENERAL RDFA, GENERAL DONT RDFA);
+        yea_nay (c, &context_t::robtxt, nits, GENERAL ROBOTS, GENERAL DONT ROBOTS);
         yea_nay (c, &context_t::rpt_opens, nits, GENERAL RPT, GENERAL DONT RPT);
+        yea_nay (c, &context_t::sectxt, nits, GENERAL SECURITY, GENERAL DONT SECURITY);
         c.persisted (path_in_context (nix_path_to_local (var_ [GENERAL FICHIER].as < ::std::string > ())));
 
         CONSTEXPR long meg = 1024*1024;
@@ -1752,6 +1773,7 @@ void options::contextualise (context_t& c, nitpick& nits)
 
         if (is_be (GENERAL YGGDRISIL)) c.yggdrisil (true);
 
+        yea_nay (c, &context_t::atomic_verify, nits, ATOMIC VERIFY, ATOMIC DONT VERIFY);
         if (var_.count (ATOMIC EXTENSION)) c.atomic_ext (var_ [ATOMIC EXTENSION].as < vstr_t > ());
         else { vstr_t ex; ex.push_back (ATOMIC_EXT); c.atomic_ext (ex); }
 
@@ -1851,6 +1873,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_viewport, n, nits, CSS VIEWPORT, "Viewport", 3);
         process_css_level (c, c_will_change, n, nits, CSS WC, "Will Change", 3);
         process_css_level (c, c_writing_mode, n, nits, CSS WRITING, "Writing Mode", 4);
+
         if (var_.count (HTML ANALYSIS))
         {   const ::std::string av = var_ [HTML ANALYSIS].as < ::std::string > ();
             int e = 0;
@@ -1984,9 +2007,11 @@ void options::contextualise (context_t& c, nitpick& nits)
         if (var_.count (OUTPUT USERNAME)) c.username (var_ [OUTPUT USERNAME].as < ::std::string > ());
         yea_nay (c, &context_t::verify, nits, OUTPUT VERIFY, OUTPUT DONT VERIFY);
 
+        yea_nay (c, &context_t::rsl_verify, nits, RSL VERIFY, RSL DONT VERIFY);
         if (var_.count (RSL EXTENSION)) c.rsl_ext (var_ [RSL EXTENSION].as < vstr_t > ());
         else { vstr_t ex; ex.push_back (RSL_EXT); c.rsl_ext (ex); }
 
+        yea_nay (c, &context_t::rss_verify, nits, RSS VERIFY, RSS DONT VERIFY);
         if (var_.count (RSS EXTENSION)) c.rss_ext (var_ [RSS EXTENSION].as < vstr_t > ());
         else { vstr_t ex; ex.push_back (RSS_EXT); c.rss_ext (ex); }
 
@@ -2371,7 +2396,6 @@ void options::contextualise (context_t& c, nitpick& nits)
         TEST_VAR (xmpdm_video_pixeldepth);
 #undef TEST_VAR
         }
-    c.consolidate_jsonld ();
     var_.clear ();
     env_var_.clear (); }
 
@@ -2573,6 +2597,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
         try { if (var_ [VERSION].as < bool > ()) res << VERSION "\n"; } catch (...) { } }
 
     RG (gr, res, vstr_t, ATOMIC, EXTENSION, atomic);
+    RB (gr, res, ATOMIC, VERIFY, atomic);
     REOS (atomic, res);
 
     RB (gr, res, CORPUS, ARTICLE, corpus);
@@ -2688,6 +2713,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
             res << ENVIRONMENT QUERY_STRING ": " << qs << "\n            : " << query_to_switches (qs) << "\n"; }
         REOS (env, res); }
 
+    RB (gr, res, GENERAL, ADS, general);
     RB (gr, res, GENERAL, CGI, general);
     RB (gr, res, GENERAL, CLASS, general);
     RB (gr, res, GENERAL, CLASSIC, general);
@@ -2704,7 +2730,9 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, GENERAL, MAXFILESIZE, general);
     RB (gr, res, GENERAL, PROGRESS, general);
     RB (gr, res, GENERAL, RDFA, general);
+    RB (gr, res, GENERAL, ROBOTS, general);
     RB (gr, res, GENERAL, RPT, general);
+    RB (gr, res, GENERAL, SECURITY, general);
     RG (gr, res, vreg_t, GENERAL, SILENCE, general);
     RB (gr, res, GENERAL, SPEC, general);
     RB (gr, res, GENERAL, TEST, general);
@@ -2837,9 +2865,11 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     REOS (output, res);
 
     RG (gr, res, vstr_t, RSL, EXTENSION, rsl);
+    RB (gr, res, RSL, VERIFY, rsl);
     REOS (rsl, res);
 
     RG (gr, res, vstr_t, RSS, EXTENSION, rss);
+    RB (gr, res, RSS, VERIFY, rss);
     RG (gr, res, ::std::string, RSS, VERSION, rss);
     REOS (rss, res);
 

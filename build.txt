@@ -1,7 +1,7 @@
 BUILD NOTES
 static site checker
-https://ssc.lu/
-(c) 2020-2025 Dylan Harris
+https://dylanharris.org/ssc/
+(c) 2020-2026 Dylan Harris
 
 
 Introduction

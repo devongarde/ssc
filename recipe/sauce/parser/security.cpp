@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@ bool sec_txt::parse (nitpick& nits, const ::std::string& site_path, const ::std:
     if (::boost::filesystem::path (site_path).parent_path ().string () != "/" WELL_KNOWN)
     {   nits.pick (nit_robotic, ed_security, "3. Location of security.txt", es_error, ec_robotic, "security.txt should be in " WELL_KNOWN_PATH);
         return false; }
+    if (! context.sectxt ()) return true;
     c_.parse (s);
     bool con = false, lang = false, exp = false;
     for (vi_colic i = c_.l_.begin (); i != c_.l_.end (); ++i)
@@ -83,7 +84,7 @@ bool sec_txt::parse (nitpick& nits, const ::std::string& site_path, const ::std:
         nits.pick (nit_security, ed_security, "2.5.5 Expires", es_error, ec_security, "Expires is required and missing");
     return true; }
 
-void sec_txt::review (::std::ostringstream& ss, mmac_t& mac, nitpick& nits)
+void sec_txt::review (::std::ostringstream& ss, const mmac_t& mac, nitpick& nits)
 {   ss << nits.review (mac);
     for (vic_colic i = c_.l_.cbegin (); i != c_.l_.cend (); ++i)
     {   ss << i -> nits_.review (mac);

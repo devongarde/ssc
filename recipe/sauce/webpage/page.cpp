@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -41,19 +41,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DOCTYPE_LC "<!doctype"
 #define DOCDOT DOCTYPE " ... >"
 
-void page::init (const ::std::string& name, ::std::string& content, const fileindex_t x)
+void page::init (const ::std::string& name, ::std::string& content, const fileindex_t x, const e_verifiable_file vf)
 {   req_.resize (required_count ());
     ids_.ndx (x);
     names_.ndx (x, false);
     const ::std::string& xx = context.x ();
     if (! xx.empty ()) xxx_ = find_no_case (name, xx) != ::std::string::npos;
-    if (is_css (name))
+    if (vf == vf_css)
     {   dot_css_ = true;
         if (context.load_css () && (context.css_version () >= css_1))
         {   css_.parse_file (nits_, namespaces_ptr (), url (nits (), context.html_ver (), get_site_path ()), true, true, true);
             stats_.mark (context.html_ver ()); }
         stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ())); }
-    else if (is_vtt (name))
+    else if (vf == vf_vtt)
     {   dot_vtt_ = true;
         if (context.load_vtt ())
         {   vtt_ = ptr_vtt (new vtt_t (nits_, context.html_ver (), content, css ()));   
@@ -61,17 +61,10 @@ void page::init (const ::std::string& name, ::std::string& content, const filein
         stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ())); }
     else parse (content); }
 
-page::page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t x, const directory* d)
+page::page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t x, const e_verifiable_file vf, const directory* d)
     :   name_ (name), directory_ (d), updated_ (updated), css_ (*this)
 {   VERIFY_NOT_NULL (d, __FILE__, __LINE__);
-    init (name, content, x); }
-
-page::page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, const directory* d)
-    :   name_ (name), directory_ (d), updated_ (updated), css_ (*this)
-{   VERIFY_NOT_NULL (d, __FILE__, __LINE__);
-    const fileindex_t x (get_fileindex (d -> get_disk_path (nits, name)));
-    directory_ = d;
-    init (name, content, x); }
+    init (name, content, x, vf); }
 
 page::page (const ::std::string& content, const bool outsider)
     :   css_ (*this)

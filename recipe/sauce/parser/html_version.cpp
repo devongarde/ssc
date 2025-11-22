@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -104,7 +104,7 @@ html_version::html_version (const boost::gregorian::date& d, const flags_t flags
             if (mjr () <= HTML_2010) set_ext2 (H2_MATH_1);
             else if (mjr () <= HTML_2014) set_ext2 (H2_MATH_2);
             else if (mjr () <= HTML_2020) set_ext2 (H2_MATH_3);
-            else if (mjr () <= HTML_2024) set_ext2 (H2_MATH_C);
+            else if (mjr () <= HTML_2025) set_ext2 (H2_MATH_C);
             else set_ext2 (H2_MATH_4);
     if (no_ext (SVG_MASK))
         if (mjr () >= 4)
@@ -946,6 +946,12 @@ e_css_version html_version::css_version () const noexcept
     else if (has_this_css (H2_CSS_5_FULL, H3_CSS_5_FULL, H4_CSS_5_FULL)) css_ = css_5;
     else if (has_this_css (H2_CSS_4_FULL, H3_CSS_4_FULL, H4_CSS_4_FULL)) css_ = css_4;
     else if (has_this_css (H2_CSS_3_FULL, H3_CSS_3_FULL, H4_CSS_3_FULL)) css_ = css_3;
+    else if (has_this_css (H2_CSS_LS_2025, H3_CSS_LS_2025, H4_CSS_LS_2025)) css_ = css_ls_2025;
+    else if (has_this_css (H2_CSS_2025_3, H3_CSS_2025_3, H4_CSS_2025_3)) css_ = css_2025_3;
+    else if (has_this_css (H2_CSS_2025_2, H3_CSS_2025_2, H4_CSS_2025_2)) css_ = css_2025_2;
+    else if (has_this_css (H2_CSS_2025_1, H3_CSS_2025_1, H4_CSS_2025_1)) css_ = css_2025_1;
+    else if (has_this_css (H2_CSS_2025, H3_CSS_2025, H4_CSS_2025)) css_ = css_2025;
+    else if (has_this_css (H2_CSS_LS_2024, H3_CSS_LS_2024, H4_CSS_LS_2024)) css_ = css_ls_2024;
     else if (has_this_css (H2_CSS_2024_3, H3_CSS_2024_3, H4_CSS_2024_3)) css_ = css_2024_3;
     else if (has_this_css (H2_CSS_2024_2, H3_CSS_2024_2, H4_CSS_2024_2)) css_ = css_2024_2;
     else if (has_this_css (H2_CSS_2024_1, H3_CSS_2024_1, H4_CSS_2024_1)) css_ = css_2024_1;
@@ -1025,7 +1031,12 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     else if (compare_css (H2_CSS_5, H3_CSS_5, H4_CSS_5, e2, e3, e4)) res = big_small_start (b, "5", "level 5");
     else if (compare_css (H2_CSS_4, H3_CSS_4, H4_CSS_4, e2, e3, e4)) res = big_small_start (b, "4", "level 4");
     else if (compare_css (H2_CSS_3, H3_CSS_3, H4_CSS_3, e2, e3, e4)) res = big_small_start (b, "3", "level 3");
-    else if (compare_css (H2_CSS_LS_AUG25, H3_CSS_LS_AUG25, H4_CSS_LS_AUG25, e2, e3, e4)) res = big_small_start (b, "HTML5", "HTML5 CSS");
+    else if (compare_css (H2_CSS_LS_2025, H3_CSS_LS_2025, H4_CSS_LS_2025, e2, e3, e4)) res = big_small_start (b, "5/25", "HTML5 CSS/25");
+    else if (compare_css (H2_CSS_2025_3, H3_CSS_2025_3, H4_CSS_2025_3, e2, e3, e4)) res = big_small_start (b, "25+++", "2025+++ snapshot");
+    else if (compare_css (H2_CSS_2025_2, H3_CSS_2025_2, H4_CSS_2025_2, e2, e3, e4)) res = big_small_start (b, "25++", "2025++ snapshot");
+    else if (compare_css (H2_CSS_2025_1, H3_CSS_2025_1, H4_CSS_2025_1, e2, e3, e4)) res = big_small_start (b, "25+", "2025+ snapshot");
+    else if (compare_css (H2_CSS_2025, H3_CSS_2025, H4_CSS_2025, e2, e3, e4)) res = big_small_start (b, "25", "2025 snapshot");
+    else if (compare_css (H2_CSS_LS_2024, H3_CSS_LS_2024, H4_CSS_LS_2024, e2, e3, e4)) res = big_small_start (b, "5/24", "HTML5 CSS/24");
     else if (compare_css (H2_CSS_2024_3, H3_CSS_2024_3, H4_CSS_2024_3, e2, e3, e4)) res = big_small_start (b, "24+++", "2024+++ snapshot");
     else if (compare_css (H2_CSS_2024_2, H3_CSS_2024_2, H4_CSS_2024_2, e2, e3, e4)) res = big_small_start (b, "24++", "2024++ snapshot");
     else if (compare_css (H2_CSS_2024_1, H3_CSS_2024_1, H4_CSS_2024_1, e2, e3, e4)) res = big_small_start (b, "24+", "2024+ snapshot");
@@ -1287,9 +1298,13 @@ void html_version::css_version (const e_css_version v) noexcept
                             set_ext3 (H3_CSS_2025 | H3_CSS_2025_1 | H3_CSS_2025_2 | H3_CSS_2025_3);
                             set_ext4 (H4_CSS_2025 | H4_CSS_2025_1 | H4_CSS_2025_2 | H4_CSS_2025_3);
                             break;
-        case css_ls_aug25 : set_ext2 (H2_CSS_LS_AUG25);
-                            set_ext3 (H3_CSS_LS_AUG25);
-                            set_ext4 (H4_CSS_LS_AUG25);
+        case css_ls_2024 :  set_ext2 (H2_CSS_LS_2024);
+                            set_ext3 (H3_CSS_LS_2024);
+                            set_ext4 (H4_CSS_LS_2024);
+                            break;
+        case css_ls_2025 :  set_ext2 (H2_CSS_LS_2025);
+                            set_ext3 (H3_CSS_LS_2025);
+                            set_ext4 (H4_CSS_LS_2025);
                             break;
         default :           break; }
     set_ext4 (H4_CSS_VER_MASK, v, H4_CSS_VER_SHIFT); }
@@ -2465,8 +2480,9 @@ bool has_css_crossover (const e_css_version c, const html_version& lhs, const ht
         case css_2024_2 : return has_css_crossover (lhs, rhs, H2_CSS_2024_2, H3_CSS_2024_2, H4_CSS_2024_2);
         case css_2024_3 : return has_css_crossover (lhs, rhs, H2_CSS_2024_3, H3_CSS_2024_3, H4_CSS_2024_3);
         case css_2025 : return has_css_crossover (lhs, rhs, H2_CSS_2025, H3_CSS_2025, H4_CSS_2025);
+        case css_ls_2024 : return has_css_crossover (lhs, rhs, H2_CSS_LS_2024, H3_CSS_LS_2024, H4_CSS_LS_2024);
         case css_2025_1 : return has_css_crossover (lhs, rhs, H2_CSS_2025_1, H3_CSS_2025_1, H4_CSS_2025_1);
         case css_2025_2 : return has_css_crossover (lhs, rhs, H2_CSS_2025_2, H3_CSS_2025_2, H4_CSS_2025_2);
         case css_2025_3 : return has_css_crossover (lhs, rhs, H2_CSS_2025_3, H3_CSS_2025_3, H4_CSS_2025_3);
-        case css_ls_aug25 : return has_css_crossover (lhs, rhs, H2_CSS_LS_AUG25, H3_CSS_LS_AUG25, H4_CSS_LS_AUG25);
+        case css_ls_2025 : return has_css_crossover (lhs, rhs, H2_CSS_LS_2025, H3_CSS_LS_2025, H4_CSS_LS_2025);
         default : return false; } } 

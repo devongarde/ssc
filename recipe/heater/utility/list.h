@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -40,15 +40,15 @@ class wblist
 {   szreg_t naughty_, nice_;
     misd_t  dim_;
     bool communal_ = false, elemental_ = false, attributal_ = false, microformulaic_ = false, ontological_ = false, typical_ = false;
-    ::std::size_t get_n (const e_element e) const
+    ::std::size_t get_n (const e_element e) const noexcept
     {   return (static_cast < ::std::size_t > (fus_element) << naughty_type_shift) + (static_cast < ::std::size_t > (e) << naughty_elem_shift); }
-    ::std::size_t get_n (const e_element e, const e_attribute a) const
+    ::std::size_t get_n (const e_element e, const e_attribute a) const noexcept
     {   return (static_cast < ::std::size_t > (fus_attribute) << naughty_type_shift) + (static_cast < ::std::size_t > (e) << naughty_elem_shift) + a; }
-    ::std::size_t get_n (const e_ontology_property p) const
+    ::std::size_t get_n (const e_ontology_property p) const noexcept
     {   return (static_cast < ::std::size_t > (fus_ontology) << naughty_type_shift) + static_cast < ::std::size_t > (p); }
-    ::std::size_t get_n (const e_property c) const
+    ::std::size_t get_n (const e_property c) const noexcept
     {   return (static_cast < ::std::size_t > (fus_microformat) << naughty_type_shift) + static_cast < ::std::size_t > (c); }
-    ::std::size_t get_n (const e_type t) const
+    ::std::size_t get_n (const e_type t) const noexcept
     {   return (static_cast < ::std::size_t > (fus_type) << naughty_type_shift) + static_cast < ::std::size_t > (t); }
     ::std::string inner_sub (::std::size_t n) const;
     void init_nn (const html_version& v, nitpick& nits, szreg_t& reg, const ::std::string& s);
@@ -58,7 +58,7 @@ class wblist
     bool inner_test (const ::std::size_t n, const ::std::string& s) const;
 public:
     void init (const html_version& v, nitpick& nits, const vstr_t& naughty, const vstr_t& nice, const vstr_t& note);
-    bool empty () const
+    bool empty () const noexcept
     {   return naughty_.empty () && nice_.empty (); }
     bool test (const ::std::string& s) const
     {   if (! communal_) return false;

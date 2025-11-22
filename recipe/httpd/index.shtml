@@ -18,6 +18,14 @@
 
 <img alt=event class="mw50 inline_illustration_right" src="/image/ssc-msgdb-wi-c1.jpg" title="riff on name">
 
+<h2>change of address</h2>
+
+<p>
+The <!--#echo encoding="none" var="title" --> website is moving to:<b2>
+    <a href="https://dylanharris.org/ssc/index.shtml">https://dylanharris.org/ssc</a><br>
+This site is no longer maintained, and will soon be turned into a toad.
+</p>
+
 <h2>introduction</h2>
 
 <p>
@@ -149,7 +157,7 @@ Paste an HTML snippet, hit <kbd>nitpick</kbd>.
 <option value="2025/01/01">HTML 5 Living Standard January 2025</option>
 <option value="2025/04/01">HTML 5 Living Standard April 2025</option>
 <option value="2025/07/01">HTML 5 Living Standard July 2025</option>
-<option value="2025/08/01" selected>HTML 5 Living Standard August 2025</option>
+<option value="2025/10/01" selected>HTML 5 Living Standard October 2025</option>
 <option value="2005/07/01">WebApps January 2005</option>
 <option value="2005/01/01">WebApps July 2005</option>
 <option value="2006/07/01">WebApps January 2006</option>
@@ -225,6 +233,10 @@ Paste an HTML snippet, hit <kbd>nitpick</kbd>.
 <option value=2024+>CSS 2024 wibbly snapshot</option>
 <option value=2024++>CSS 2024 wibbly&ndash;wobbly snapshot</option>
 <option value=2024+++>CSS 2024 weally&ndash;wibbly&ndash;wobbly snapshot</option>
+<option value=2025>CSS 2025 core snapshot</option>
+<option value=2025+>CSS 2025 wibbly snapshot</option>
+<option value=2025++>CSS 2025 wibbly&ndash;wobbly snapshot</option>
+<option value=2025+++>CSS 2025 weally&ndash;wibbly&ndash;wobbly snapshot</option>
 <option value=html5 selected>CSS per HTML5</option>
 <option value=3>All CSS level 3 modules</option>
 <option value=4>All CSS levels 3 &amp; 4 modules</option>

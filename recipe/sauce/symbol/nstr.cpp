@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -632,8 +632,10 @@ n_string_entry < e_ontology, 3 > ontology_name_entries [] =
     { { HTML_GR }, { HTML_UNDEF }, s_gr, 0, { "gr", HTTPS PURL_ORG "/goodrelations/v1#", "good relations" } },
     { { HTML_GRDDL }, { HTML_UNDEF }, s_grddl, ONTOLOGY_PREFIX_CONTEXT, { "grddl", HTTP_W3 "/2003/g/data-view#", "gleaning resource descriptions from dialects of languages" } },
     { { HTML_GRDDL }, { HTML_UNDEF }, s_grddl, 0, { "grddl", HTTPS_W3 "/2003/g/data-view#", "gleaning resource descriptions from dialects of languages" } },
-    { { HTML_GS15 }, { HTML_UNDEF }, s_gs1, 1, { "gs1", HTTP "gs1.org/voc/", "global standards" } },
-    { { HTML_GS15 }, { HTML_UNDEF }, s_gs1, 1, { "gs1", HTTPS "gs1.org/voc/", "global standards" } },
+    { { HTML_GS1_5 }, { HTML_UNDEF }, s_gs1, 1, { "gs1", HTTP "gs1.org/voc/", "global standards" } },
+    { { HTML_GS1_5 }, { HTML_UNDEF }, s_gs1, 1, { "gs1", HTTPS "gs1.org/voc/", "global standards" } },
+    { { HTML_GS1_16 }, { HTML_UNDEF }, s_gs1, 1, { "gs1", HTTP "www.gs1.org/voc/", "global standards" } },
+    { { HTML_GS1_16 }, { HTML_UNDEF }, s_gs1, 1, { "gs1", HTTPS "www.gs1.org/voc/", "global standards" } },
     { { HTML_ICAL }, { HTML_UNDEF }, s_ical, ONTOLOGY_PREFIX_CONTEXT, { "ical", HTTP_W3 "/2002/12/cal/ical#", "i calendar" } },
     { { HTML_ICAL }, { HTML_UNDEF }, s_ical, 0, { "ical", HTTPS_W3 "/2002/12/cal/ical#", "i calendar" } },
     { { HTML_ICALTZD }, { HTML_UNDEF }, s_icaltzd, 0, { "icaltzd", HTTP_W3 "/2002/12/cal/icaltzd#", "i calendar timezoned" } },
@@ -712,8 +714,8 @@ n_string_entry < e_ontology, 3 > ontology_name_entries [] =
     { { HTML_PRISM_3_0 }, { HTML_UNDEF }, s_pmi, 0, { "pmi", HTTPS PRISM_ORG "/namespaces/pmi/3.0/", "prism images" } },
     { { HTML_PRISM_3_1 }, { HTML_UNDEF }, s_pmi, 0, { "pmi", HTTP PRISM_ORG "/namespaces/pmi/3.1/", "prism images" } },
     { { HTML_PRISM_3_1 }, { HTML_UNDEF }, s_pmi, 0, { "pmi", HTTPS PRISM_ORG "/namespaces/pmi/3.1/", "prism images" } },
-    { { HTML_POETRY }, { HTML_UNDEF }, s_poetry, ONTOLOGY_BESPOKE, { "poetry", HTTP DYLANHARRIS_ORG "/ontology/", "poetry" } },
-    { { HTML_POETRY }, { HTML_UNDEF }, s_poetry, ONTOLOGY_BESPOKE, { "poetry", HTTPS DYLANHARRIS_ORG "/ontology/", "poetry" } },
+    { { HTML_POETRY }, { HTML_UNDEF }, s_poetry, ONTOLOGY_BESPOKE, { "poetry", HTTP SCRUFF_DOMAIN "/ontology/", "poetry" } },
+    { { HTML_POETRY }, { HTML_UNDEF }, s_poetry, ONTOLOGY_BESPOKE, { "poetry", HTTPS SCRUFF_DOMAIN "/ontology/", "poetry" } },
     { { HTML_PRISM_1_0 }, { HTML_UNDEF }, s_prism, 0, { "prism", HTTP PRISM_ORG "/namespaces/basic/1.0/", "prism 1.0" } },
     { { HTML_PRISM_1_0 }, { HTML_UNDEF }, s_prism, 0, { "prism", HTTPS PRISM_ORG "/namespaces/basic/1.0/", "prism 1.0" } },
     { { HTML_PRISM_1_0 }, { HTML_UNDEF }, s_prism, ONTOLOGY_CRAPNS | ONTOLOGY_PRISM, { "prism", HTTP PRISM_ORG "/namespaces/1.0/basic/", "prism 1.0" } },

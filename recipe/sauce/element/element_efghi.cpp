@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -337,6 +337,8 @@ void element::examine_h123456 ()
             case elem_h6 :
                 if ((previous_h_ == elem_none) || ((previous_h_ >= elem_h1) && (previous_h_ <= elem_h4)))
                     pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H6> should really be a descendant of <H5>, not <", elem::name (previous_h_), ">");
+                break;
+            default :
                 break; }
         previous_h_ = tag (); }
     else if (node_.version () < html_jan08)

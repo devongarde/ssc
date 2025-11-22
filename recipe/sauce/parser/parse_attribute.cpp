@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -71,7 +71,7 @@ void attribute_node::parse (nitpick& nits, const html_version& v, const bool nor
     id_ = attr :: parse (nuts, v, namespaces (), key_, ns, elem_ns);
     if (context.lists ())
         if (box_ != nullptr)
-        {   element_node* ebox = box_ -> box ();
+        {   const element_node* const ebox = box_ -> box ();
             if (ebox != nullptr)
                 if (context.naughty_test (ebox -> tag (), id_, value_))
                 {   nits.pick (nit_naughty_attribute, es_info, ec_naughty, "ignorance is strength: concealing ", quote (value_));

@@ -1311,7 +1311,7 @@ PASS ../toast/living/jan25/menu.html
 9 url_not_found
 
 PASS ../toast/living/jan25/meta-2.html
-6 css_version css_syntax css_version
+6 css_version bad_media
 8 refresh_zero url_not_found
 
 PASS ../toast/living/jan25/meter.html

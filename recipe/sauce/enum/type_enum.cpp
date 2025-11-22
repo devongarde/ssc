@@ -1,6 +1,6 @@
 ﻿/*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -922,7 +922,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "fullscreen", efn_fullscreen },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4, 0, H4_VTT }, { HTML_UNDEF }, "future", efn_future },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, H3_CSS_PSEUDO }, { HTML_UNDEF }, "grammar-error", efn_grammar_error },
-    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_N_ARGS }, { HTML_UNDEF }, "has", efn_has },
+    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_N_ARGS, 0, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "has", efn_has },
     { { HTML_AUG25, 0, 0, H2_CSS_1_ARG, 0, H4_CSS_ARG_OPTIONAL | H4_CSS_LIVING_STANDARD }, { HTML_UNDEF }, "heading", efn_heading },
     { { HTML_CSS, 0, 0, H2_CSS_COCO | H2_CSS_1_ARG, H3_CSS_HIGHLIGHT }, { HTML_UNDEF }, "highlight", efn_highlight },
     { { HTML_AUG25, 0, 0, 0, 0, H4_CSS_FCS }, { HTML_UNDEF }, "high-value", efn_high_value },
@@ -934,7 +934,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "in-range", efn_in_range },
     { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE }, { HTML_UNDEF }, "inset", efn_inset },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "invalid", efn_invalid },
-    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_N_ARGS }, { HTML_UNDEF }, "is", efn_is },
+    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_N_ARGS, 0, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "is", efn_is },
     { { HTML_CSS, 0, 0, H2_CSS_1_2_ARGS, H3_NOT_TV, H4_CSS_SAFE_2018 }, { HTML_UNDEF }, "lang", efn_lang },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "last-child", efn_last_child },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "last-of-type", efn_last_of_type },
@@ -1005,7 +1005,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_COCO | H2_CSS_1_ARG, H3_CSS_VIEW }, { HTML_UNDEF }, "view-transition-image-pair", efn_view_transition_image_pair },
     { { HTML_CSS, 0, 0, H2_CSS_1_2 | H2_CSS_SELECTOR }, { HTML_UNDEF }, "visited", efn_visited },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "volume-locked", efn_volume_locked },
-    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_N_ARGS }, { HTML_UNDEF }, "where", efn_where },
+    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_N_ARGS, 0, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "where", efn_where },
     { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE }, { HTML_UNDEF }, "xywh", efn_xywh } };
 
 struct symbol_entry < html_version, e_css_font_display > css_font_display_symbol_table [] =
@@ -1937,14 +1937,14 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE }, { HTML_UNDEF }, "repeating-radial-gradient", cvf_repeating_radial_gradient },
     { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE }, { HTML_UNDEF }, "rect", cvf_rect },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "rem", cvf_rem },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM_4 }, { HTML_UNDEF }, "rotate", cvf_rotate },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM_4, H4_CSS_SAFE_2021 }, { HTML_UNDEF }, "rotate", cvf_rotate },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM_4 }, { HTML_UNDEF }, "rotate3d", cvf_rotate3d },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM_4 }, { HTML_UNDEF }, "rotateX", cvf_rotatex },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM_4 }, { HTML_UNDEF }, "rotateY", cvf_rotatey },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM_4 }, { HTML_UNDEF }, "rotateZ", cvf_rotatez },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "round", cvf_round },
     { { HTML_CSS, 0, 0, 0, H3_CSS_FILTER }, { HTML_UNDEF }, "saturate", cvf_saturate },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "scale", cvf_scale },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM, H4_CSS_SAFE_2021 }, { HTML_UNDEF }, "scale", cvf_scale },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM_4 }, { HTML_UNDEF }, "scale3d", cvf_scale3d },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "scaleX", cvf_scalex },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "scaleY", cvf_scaley },
@@ -1972,7 +1972,7 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "target-counters", cvf_target_counters },
     { { HTML_CSS, 0, 0, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "target-text", cvf_target_text },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "tech", cvf_tech },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "translate", cvf_translate },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM, H4_CSS_SAFE_2021 }, { HTML_UNDEF }, "translate", cvf_translate },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM_4 }, { HTML_UNDEF }, "translate3d", cvf_translate3d },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "translateX", cvf_translatex },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "translateY", cvf_translatey },
@@ -2056,7 +2056,9 @@ struct symbol_entry < html_version, e_css_version > css_version_symbol_table [] 
     { { HTML_TAGS }, { HTML_UNDEF }, "2025++", css_2025_2 },
     { { HTML_TAGS }, { HTML_UNDEF }, "25+++", css_2025_3 },
     { { HTML_TAGS }, { HTML_UNDEF }, "2025+++", css_2025_3 },
-    { { HTML_TAGS }, { HTML_UNDEF }, "html5", css_ls_aug25 } };
+    { { HTML_TAGS }, { HTML_UNDEF }, "html5/24", css_ls_2024 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "html5/25", css_ls_2025 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "html5", css_ls_2025 } };
 
 struct symbol_entry < html_version, e_css_vertical_align > css_vertical_align_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "inherit", ecva_inherit },
@@ -3590,9 +3592,11 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "config", nm_config },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-absolute-path", nm_context_absolute_path },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-account", nm_context_account },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-ads", nm_context_ads },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-analysis", nm_context_analysis },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-article", nm_context_article },
-    { { HTML_TAGS }, { HTML_UNDEF }, "context-atom-exts", nm_context_atomic_exts },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-atom-exts", nm_context_atom_exts },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-atom-ver", nm_context_atom_ver },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-back", nm_context_back },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-body", nm_context_body },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-build", nm_context_build },
@@ -3750,15 +3754,19 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rfc-1942", nm_context_rfc_1942 },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rfc-1980", nm_context_rfc_1980 },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rfc-2070", nm_context_rfc_2070 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-robots", nm_context_robots },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-role", nm_context_role },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-root", nm_context_root },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rsl-exts", nm_context_rsl_exts },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-rsl-verify", nm_context_rsl_ver },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rss-exts", nm_context_rss_exts },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-rss-verify", nm_context_rss_ver },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rss-version", nm_context_rss_version },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-ruby", nm_context_ruby },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-safari", nm_context_safari },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-schema", nm_context_schema },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-schema-version", nm_context_ontology_version },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-security", nm_context_security },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-server", nm_context_server },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-server-accept-from", nm_context_server_address_from },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-server-accept-to", nm_context_server_address_to },
@@ -5112,8 +5120,8 @@ struct symbol_entry < html_version, e_stress > stress_symbol_table [] =
     { { HTML_CSS, 0, 0, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "strong", str_strong } };
 
 struct symbol_entry < html_version, e_supports > supports_symbol_table [] =
-{   { { HTML_CSS, 0, 0, H2_CSS_COND_RULE_5 }, { HTML_UNDEF }, "font-format", su_font_format },
-    { { HTML_CSS, 0, 0, H2_CSS_COND_RULE_5 }, { HTML_UNDEF }, "font-tech", su_font_tech },
+{   { { HTML_CSS, 0, 0, H2_CSS_COND_RULE_5, 0, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "font-format", su_font_format },
+    { { HTML_CSS, 0, 0, H2_CSS_COND_RULE_5, 0, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "font-tech", su_font_tech },
     { { HTML_CSS, 0, 0, H2_CSS_COND_RULE_45 }, { HTML_UNDEF }, "selector", su_selector } };
 
 struct symbol_entry < html_version, e_svg_align > svg_align_symbol_table [] =

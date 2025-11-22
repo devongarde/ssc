@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -174,6 +174,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define ABBR        "abbreviation"
 #define ABHORRENT   "abhorrent"
+#define ADS         "ads"
 #define APATH       "absolute-path"
 #define ACCEPT      "accept"
 #define ACCOUNT     "account"
@@ -273,9 +274,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EXTRA       "extra"
 #define FBL         "fbl"
 #define FICHIER     "file"
-#define FILTER      "filter"
 #define FF          "ff"
 #define FILL        "fill"
+#define FILTER      "filter"
 #define FLOAT       "float"
 #define FONT        "font"
 #define FONT_FAMILY "font-family"
@@ -394,8 +395,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define RFC1980     "rfc1980"
 #define RFC2070     "rfc2070"
 #define RHYTHM      "rhythm"
-#define ROUND       "round"
+#define ROBOTS      "robots"
 #define ROOT        "root"
+#define ROUND       "round"
 #define RPT         "rpt"
 #define RUBY        "ruby"
 #define SAFARI      "safari"
@@ -403,6 +405,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SCROLL_ANIM "scroll-anim"
 #define SCROLLBAR   "scrollbar"
 #define SDA         "sda"
+#define SECURITY    "security"
 #define SENDER      "sender"
 #define SELECTED    "selected"
 #define SELECTOR    "selector"

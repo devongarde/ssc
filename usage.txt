@@ -1,7 +1,7 @@
 USAGE NOTES
 static site checker
-https://ssc.lu/
-(c) 2020-2025 Dylan Harris
+https://dylanharris.org/ssc/
+(c) 2020-2026 Dylan Harris
 
 
 Running SSC
@@ -40,7 +40,7 @@ delicious</A> thing.</P>
 
 The word ssc spots is "Taostd". It knows there's a word to check when
 it gets to the end of the word, e.g. at the space that follows it. In
-this case, the word is interrupted by rather a lot of HTML, which is
+this case, the word is contaminated by rather a lot of HTML, which is
 ignored when checking spelling. Because the intervening HTML is so
 long, crossing a number of lines, and ssc reports small snippets of
 HTML per issue (to avoid spouting too much verbiage), it will not show
@@ -353,7 +353,7 @@ root=~/www/live
 file=~/www/live.ndx
 ignore=inc
 info=
-msg=arts & ego (c) 1978-2025 dylan harris
+msg=arts & ego (c) 1978-2026 dylan harris
 
 [site]
 domain=dylanharris.org

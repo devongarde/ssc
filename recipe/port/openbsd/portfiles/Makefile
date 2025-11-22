@@ -1,18 +1,18 @@
 COMMENT=        opinionated static (web)site nitpicker
 
-V=              0.2.22
+V=              0.2.23
 DISTNAME=       ssc-v$V
 PKGNAME=        ssc-$V
 
 CATEGORIES=     www
-HOMEPAGE=       https://ssc.lu/
+HOMEPAGE=       https://dylanharris.org/ssc/
 MAINTAINER=     Dylan Harris <mail@dylanharris.org>
 
 # GPLv3 only
 PERMIT_PACKAGE= yes
 
 SITES=          https://github.com/devongarde/ssc/releases/download/v${V}-alpha/
-SITES.alt=      https://ssc.lu/src/
+SITES.alt=      https://dylanharris.org/ssc/src/
 EXTRACT_SUFX=   .tgz
 
 COMPILER=       base-clang \

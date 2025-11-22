@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -88,13 +88,13 @@ private:
     key_use < PUBKEY, XYZ, FN_CTX > public_;
     key_use < PRIKEY, XYZ, FN_CTX > private_;
     const bool signing_ = false;
-    void private_init (pri_ptr& pri)
+    void private_init (const pri_ptr& pri)
     {   if (pri)
             if (! private_.invalid ())
                 if (EVP_DigestSignInit (private_.data (), nullptr, (*CODE) (), nullptr, pri -> data ()) != 1)
                 {   nits_.pick (nit_ssl_sulking, es_error, ec_signing, "SSL verification failure: is the private key valid?");
                     private_.reset (); } }
-    void public_init (pub_ptr& pub)
+    void public_init (const pub_ptr& pub)
     {   if (pub)
             if (! public_.invalid ())
             {   if (EVP_DigestVerifyInit (public_.data (), nullptr, (*CODE) (), nullptr, pub -> data ()) == 1) return;
@@ -107,7 +107,7 @@ public:
         public_init (pub); }
     explicit signature_stream (pub_ptr& pub) : public_ (pub), private_ (nullptr), signing_ (false)
     {   public_init (pub); }
-    void process (fstr_p& fos)
+    void process (const fstr_p& fos)
     {   PRESUME (fos -> is_open (), __FILE__, __LINE__);
         PRESUME (fos -> good () || fos -> eof (), __FILE__, __LINE__);
         if (! invalid ())
@@ -207,9 +207,9 @@ public:
             if (sz > 0)
                 return write_binary_file (ss_ -> nits (), f, sig, sz); }
         return false; }
-    bool success () const noexcept
+    bool success () const
     {   return ! invalid () && ss_ -> success (); }
-    bool signing () const noexcept
+    bool signing () const
     {   return ! invalid () && ss_ -> signing (); }
     const nitpick& nits () const
     {   PRESUME (! invalid (), __FILE__, __LINE__);

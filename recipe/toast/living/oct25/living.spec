@@ -690,6 +690,7 @@ PASS ../toast/living/oct25/15.html
 33 wrong_parent inefficient
 
 PASS ../toast/living/oct25/15.css
+0 html
 26 bad_media
 216 abandoned
 224 abandoned

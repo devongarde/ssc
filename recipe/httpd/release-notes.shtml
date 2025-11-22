@@ -16,11 +16,57 @@
 <!--#echo encoding="none" var="title" -->
 </h1>
 
+<h2>change of address</h2>
+
+<p>
+The <!--#echo encoding="none" var="title" --> website is moving to:<b2>
+    <a href="https://dylanharris.org/ssc/release-notes.shtml">https://dylanharris.org/ssc</a><br>
+This site is no longer maintained, and will soon be turned into a toad.
+</p>
+
 <div class="column">
 
 <div class="column-unit">
 
 <h2>2025</h2>
+
+<h3>0.2.23</h3>
+
+<ul>
+<li>
+Visual Studio 2026
+</li>
+<li>
+Macos Tahoe
+</li>
+<li>
+OpenBSD 7.8
+</li>
+<li>
+CSS 2025 snapshots
+</li>
+<li>
+GS1 ontology version 1.5.1 folded into 1.5.
+</li>
+<li>
+added GS1 ontology versions 1.6 to 1.11, 1.16
+</li>
+<li>
+underlying work
+</li>
+<li>
+download
+<A href="/bin/Install-SSC-0.2.23-Win-x64.msi" type="application/octet-stream" download>Windows 10/11 x64 installer</a>,
+<A href="/bin/Install-SSC-0.2.23-Win-a64.msi" type="application/octet-stream" download>Windows 10/11 ARM64 installer</a>,
+<A href="/bin/SSC-0.2.23-Mac-Arm.zip" type="application/zip" download>Mac ARM app (zipped)</a>,
+<A href="/bin/SSC-0.2.23-Mac-Intel.zip" type="application/zip" download>Mac Intel app (zipped)</a>,
+<A href="/src/ssc-0.2.23.tgz" type="application/gzip" download>source</a>.
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-12-24">25 12 24</time>
+</li>
+</ul>
+
 
 <h3>0.2.22</h3>
 
@@ -91,10 +137,6 @@ underlying work
 </li>
 <li>
 download
-<A href="/bin/Install-SSC-0.2.21-Win-x64.msi" type="application/octet-stream" download>Windows 10/11 x64 installer</a>,
-<A href="/bin/Install-SSC-0.2.21-Win-a64.msi" type="application/octet-stream" download>Windows 10/11 ARM64 installer</a>,
-<A href="/bin/SSC-0.2.21-Mac-Arm.zip" type="application/zip" download>Mac ARM app (zipped)</a>,
-<A href="/bin/SSC-0.2.21-Mac-Intel.zip" type="application/zip" download>Mac Intel app (zipped)</a>,
 <A href="/src/ssc-0.2.21.tgz" type="application/gzip" download>source</a>.
 </li>
 <li>
@@ -113,10 +155,6 @@ underlying work
 </li>
 <li>
 download
-<A href="/bin/Install-SSC-0.2.20-Win-x64.msi" type="application/octet-stream" download>Windows 10/11 x64 installer</a>,
-<A href="/bin/Install-SSC-0.2.20-Win-a64.msi" type="application/octet-stream" download>Windows 10/11 ARM64 installer</a>,
-<A href="/bin/SSC-0.2.20-Mac-Arm.zip" type="application/zip" download>Mac ARM app (zipped)</a>,
-<A href="/bin/SSC-0.2.20-Mac-Intel.zip" type="application/zip" download>Mac Intel app (zipped)</a>,
 <A href="/src/ssc-0.2.20.tgz" type="application/gzip" download>source</a>.
 </li>
 <li>
@@ -145,10 +183,6 @@ underlying work
 </li>
 <li>
 download
-<A href="/bin/Install-SSC-0.2.19-Win-x64.msi" type="application/octet-stream" download>Windows 10/11 x64 installer</a>,
-<A href="/bin/Install-SSC-0.2.19-Win-a64.msi" type="application/octet-stream" download>Windows 10/11 ARM64 installer</a>,
-<A href="/bin/SSC-0.2.19-Mac-Arm.zip" type="application/zip" download>Mac ARM app (zipped)</a>,
-<A href="/bin/SSC-0.2.19-Mac-Intel.zip" type="application/zip" download>Mac Intel app (zipped)</a>,
 <A href="/src/ssc-0.2.19.tgz" type="application/gzip" download>source</a>.
 </li>
 <li>
@@ -350,10 +384,6 @@ underlying work
 </li>
 <li>
 download
-<A href="/bin/Install-SSC-v0.2.12-Win-x64.msi" type="application/octet-stream" download>Windows 10/11 x64 installer</a>,
-<A href="/bin/Install-SSC-v0.2.12-Win-a64.msi" type="application/octet-stream" download>Windows 10/11 ARM64 installer</a>,
-<A href="/bin/SSC-v0.2.12-Mac-Arm.zip" type="application/zip" download>Mac ARM app (zipped)</a>,
-<A href="/bin/SSC-v0.2.12-Mac-Intel.zip" type="application/zip" download>Mac Intel app (zipped)</a>,
 <A href="/src/ssc-0.2.12.tgz" type="application/gzip" download>source</a>.
 </li>
 <li>
@@ -3403,6 +3433,17 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-10-2
 </li>
 </ul>
 
+</div><div class="column-unit"><h3>0.0.57</h3>
+
+<ul>
+<li>
+<A href="/src/ssc-v57-sauce.zip" type="application/zip" download>download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2020-10-23">20 10 23</time>
+</li>
+</ul>
+
 </div><div class="column-unit"><h3>0.0.55</h3>
 
 <ul>
@@ -3422,6 +3463,17 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-10-2
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-04-20">20 4 20</time>
+</li>
+</ul>
+
+</div><div class="column-unit"><h3>0.0.1</h3>
+
+<ul>
+<li>
+<A href="/src/ssc-v0.0.1.zip" type="application/zip" download>download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2020-03-20">20 3 20</time>
 </li>
 </ul>
 

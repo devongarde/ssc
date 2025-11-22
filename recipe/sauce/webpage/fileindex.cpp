@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -765,7 +765,7 @@ void dedu (nitpick& nits) // presumes run between scan and examine phases
 	for (fileindex_t i = 0; i < vx.size (); ++i)
 	{   index_t& x = vx.at (i);
 		if ((x.flags_ & (FX_DIR | FX_BORKED | FX_SCANNED)) == 0)
-			if (! is_verifiable_file (x.site_path ()))
+			if (context.verifiable_file_type (x.site_path ()) == vf_none)
 			{   bool dup = false;
 				crc_t crc = get_crc (nits, i);
 				if (crc == crc_initrem) continue;

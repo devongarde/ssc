@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -110,7 +110,9 @@ void element::examine_script ()
         bool imports = false, scopes = false, integrity = false;
         bool good = (v.kind () == ::boost::json::kind::object);
         if (good)
-            for (::boost::json::object::const_iterator i = v.as_object ().cbegin (); good && (i != v.as_object ().cend ()); ++i)
+            for (   ::boost::json::object::const_iterator i = v.as_object ().cbegin ();
+                    (good && (i != v.as_object ().cend () && i != nullptr));
+                    ++i)
             {   const char* k = i -> key_c_str ();
                 if (compare_no_case ("imports", k))
                     if (imports) good = false;
@@ -213,11 +215,11 @@ void element::examine_select ()
 
 void element::examine_selectedcontent ()
 {   if (node_.version ().is_5 ())
-    {   element* pbutt = get_ancestor (elem_button);
+    {   const element* const pbutt = get_ancestor (elem_button);
         if (pbutt == nullptr)
             pick (nit_bad_selectedcontent, ed_aug25, "4.10.17 The selectedcontent element", es_error, ec_element, "<SELECTEDCONTENT> should have a <BUTTON> ancestor");
         else
-        {   element* psel = pbutt -> get_ancestor (elem_select);
+        {   const element* const psel = pbutt -> get_ancestor (elem_select);
             if (psel == nullptr)
                 pick (nit_bad_selectedcontent, ed_aug25, "4.10.17 The selectedcontent element", es_error, ec_element, "the <BUTTON> ancestor of <SELECTEDCONTENT> should itself be a child of a <SELECT>"); } } }
 
@@ -259,7 +261,7 @@ void element::examine_source ()
                 if (! s -> node_.is_closure ())
                     switch (s -> tag ())
                     {   case elem_source : type_media = true; break;
-                        case elem_img : type_media = s -> own_attributes_.test (a_srcset);
+                        case elem_img : type_media = s -> own_attributes_.test (a_srcset); break;
                         default : break; }
             if (type_media)
             {   if (! a_.known (a_type))

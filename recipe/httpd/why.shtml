@@ -16,6 +16,14 @@
 <!--#echo encoding="none" var="title" -->
 </h1>
 
+<h2>change of address</h2>
+
+<p>
+The <!--#echo encoding="none" var="title" --> website is moving to:<b2>
+    <a href="https://dylanharris.org/ssc/why.shtml">https://dylanharris.org/ssc</a><br>
+This site is no longer maintained, and will soon be turned into a toad.
+</p>
+
 <p>
 Why did I make the static site checker? Aren&rsquo;t there a lot of other HTML validators around?
 When I checked a few years ago; I couldn&rsquo;t find a web site validator, only web page validators.

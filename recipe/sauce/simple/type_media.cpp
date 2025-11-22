@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -58,17 +58,17 @@ struct symbol_entry < html_version, e_media > media_symbol_table [] =
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "device-aspect-ratio", md_device_aspect_ratio, ns_default, CF_MEDIA_PROPERTY | CF_DEPRECATED_45 },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "device-height", md_device_height, ns_default, CF_MEDIA_PROPERTY | CF_DEPRECATED_45 },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "device-width", md_device_width, ns_default, CF_MEDIA_PROPERTY | CF_DEPRECATED_45 },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "display-mode", md_display_mode, ns_default, CF_MEDIA_PROPERTY },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5, 0, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "display-mode", md_display_mode, ns_default, CF_MEDIA_PROPERTY },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "dpcm", md_dpcm, ns_default, CF_MEDIA_UNIT },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "dpi", md_dpi, ns_default, CF_MEDIA_UNIT },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "dynamic-range", md_dynamic_range, ns_default, CF_MEDIA_PROPERTY },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5, 0, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "dynamic-range", md_dynamic_range, ns_default, CF_MEDIA_PROPERTY },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "em", md_em, ns_default, CF_MEDIA_UNIT },
     { { HTML_4_0, 0, 0, H2_CSS_2 | H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "embossed", md_embossed, ns_default, CF_MEDIA_DEVICE },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "enabled", md_enabled, ns_default, CF_MEDIA_VALUE },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "environment-blending", md_environment_blending, ns_default, CF_MEDIA_PROPERTY },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "fast", md_fast, ns_default, CF_MEDIA_VALUE },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "fine", md_fine, ns_default, CF_MEDIA_VALUE },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "forced-colors", md_forced_colours, ns_default, CF_MEDIA_PROPERTY },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5, 0, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "forced-colors", md_forced_colours, ns_default, CF_MEDIA_PROPERTY },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "fullscreen", md_fullscreen, ns_default, CF_MEDIA_VALUE },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "grid", md_grid, ns_default, CF_MEDIA_PROPERTY },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "height", md_height, ns_default, CF_MEDIA_PROPERTY },
@@ -127,11 +127,11 @@ struct symbol_entry < html_version, e_media > media_symbol_table [] =
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "pointer", md_pointer, ns_default, CF_MEDIA_PROPERTY },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "portrait", md_portrait, ns_default, CF_MEDIA_VALUE },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "(+ve number)", md_positive },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "prefers-color-scheme", md_prefers_colour_scheme, ns_default, CF_MEDIA_PROPERTY },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "prefers-contrast", md_prefers_contrast, ns_default, CF_MEDIA_PROPERTY },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5, 0, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "prefers-color-scheme", md_prefers_colour_scheme, ns_default, CF_MEDIA_PROPERTY },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5, 0, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "prefers-contrast", md_prefers_contrast, ns_default, CF_MEDIA_PROPERTY },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "prefers-reduced-data", md_prefers_reduced_data, ns_default, CF_MEDIA_PROPERTY },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "prefers-reduced-motion", md_prefers_reduced_motion, ns_default, CF_MEDIA_PROPERTY },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "prefers-reduced-transparency", md_prefers_reduced_transparency, ns_default, CF_MEDIA_PROPERTY },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5, 0, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "prefers-reduced-motion", md_prefers_reduced_motion, ns_default, CF_MEDIA_PROPERTY },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5, 0, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "prefers-reduced-transparency", md_prefers_reduced_transparency, ns_default, CF_MEDIA_PROPERTY },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_2 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "print", md_print, ns_default, CF_MEDIA_DEVICE },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "progressive", md_progressive, ns_default, CF_MEDIA_VALUE },
     { { HTML_4_0, 0, 0, H2_CSS_2 | H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "projection", md_projection, ns_default, CF_MEDIA_DEVICE },

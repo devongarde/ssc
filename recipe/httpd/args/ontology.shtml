@@ -103,7 +103,7 @@ To specific a specific version of an ontology, use X.Y, for example:<br>
 <tr><td>ontology.dcterms</td> <td>1.0,1.1</td></tr>
 <tr><td>ontology.ddi</td> <td>1.0</td></tr>
 <tr><td>ontology.doap</td> <td>1.0</td></tr>
-<tr><td>ontology.dpv*</td> <td>0.1-2.1 (see below)</td></tr>
+<tr><td>ontology.dpv*</td> <td>0.1-2.2 (see below)</td></tr>
 <tr><td>ontology.dqv</td> <td>1.0</td></tr>
 <tr><td>ontology.describedby</td> <td>1.0</td></tr>
 <tr><td>ontology.duv</td> <td>1.0</td></tr>
@@ -115,7 +115,7 @@ To specific a specific version of an ontology, use X.Y, for example:<br>
 <tr><td>ontology.frbr_core</td> <td>1.0</td></tr>
 <tr><td>ontology.gr</td> <td>1.0</td></tr>
 <tr><td>ontology.grddl</td> <td>1.0</td></tr>
-<tr><td>ontology.gs1</td> <td>1.1-1.5</td></tr>
+<tr><td>ontology.gs1</td> <td>1.0-1.16</td></tr>
 <tr><td>ontology.ical</td> <td>1.0</td></tr>
 <tr><td>ontology.icaltzd</td> <td>1.0</td></tr>
 <tr><td>ontology.jsonld</td> <td>1.0,1.1</td></tr>
@@ -159,7 +159,7 @@ To specific a specific version of an ontology, use X.Y, for example:<br>
 <tr><td>ontology.rif</td> <td>1.0</td></tr>
 <tr><td>ontology.role</td> <td>1.0</td></tr>
 <tr><td>ontology.rr</td> <td>1.0</td></tr>
-<tr><td>ontology.schema.org</td> <td>0.10-29.2 (see below)</td></tr>
+<tr><td>ontology.schema.org</td> <td>0.10-29.3 (see below)</td></tr>
 <tr><td>ontology.sd</td> <td>1.0</td></tr>
 <tr><td>ontology.sioc</td> <td>1.0</td></tr>
 <tr><td>ontology.sioc_s</td> <td>1.0</td></tr>
@@ -291,42 +291,44 @@ BFO (Basic Format Ontology) versions should be
                             <tr><td>0.82</td> <td>0.8.2</td></tr>
                             <tr><td>0.90</td> <td>0.9</td></tr>
                             <tr><td>1.0</td> <td>1</td></tr>
-                            <tr><td>2.0</td> <td>2</td></tr>
+                            <tr><td>2.0</td> <td>2.0</td></tr>
+                            <tr><td>2.1</td> <td>2.1</td></tr>
+                            <tr><td>2.2</td> <td>2.2</td></tr>
                         </table>
 <p>
 The data privacy ontology versions:
 </p>
 <table>
-                            <tr><td>ai</td> <td>2.0,2.1</td></tr>
-                            <tr><td>dpv</td> <td>0.1&ndash;2.1</td></tr>
-                            <tr><td>eu-aiact</td> <td>2.0,2.1</td></tr>
-                            <tr><td>eu-dga</td> <td>2.0,2.1</td></tr>
-                            <tr><td>eu-ehds</td> <td>2.1</td></tr>
-                            <tr><td>eu-gdpr</td> <td>2.0,2.1</td></tr>
-                            <tr><td>eu-nis2</td> <td>2.0,2.1</td></tr>
-                            <tr><td>eu-rights</td> <td>2.0,2.1</td></tr>
+                            <tr><td>ai</td> <td>2.0-2.2</td></tr>
+                            <tr><td>dpv</td> <td>0.1&ndash;2.2</td></tr>
+                            <tr><td>eu-aiact</td> <td>2.0-2.2</td></tr>
+                            <tr><td>eu-dga</td> <td>2.0-2.2</td></tr>
+                            <tr><td>eu-ehds</td> <td>2.1,2.2</td></tr>
+                            <tr><td>eu-gdpr</td> <td>2.0-2.2</td></tr>
+                            <tr><td>eu-nis2</td> <td>2.0-2.2</td></tr>
+                            <tr><td>eu-rights</td> <td>2.0-2.2</td></tr>
                             <tr><td>gdpr</td> <td>0.1&ndash;1</td></tr>
-                            <tr><td>justifications</td> <td>2.0,2.1</td></tr>
+                            <tr><td>justifications</td> <td>2.0-2.2</td></tr>
                             <tr><td>legal</td> <td>0.5&ndash;1</td></tr>
-                            <tr><td>legal-de</td> <td>2.0,2.1</td></tr>
-                            <tr><td>legal-eu</td> <td>2.0,2.1</td></tr>
-                            <tr><td>legal-gb</td> <td>2.0,2.1</td></tr>
-                            <tr><td>legal-ie</td> <td>2.0,2.1</td></tr>
-                            <tr><td>legal-in</td> <td>2.0,2.1</td></tr>
-                            <tr><td>legal-us</td> <td>2.0,2.1</td></tr>
-                            <tr><td>legal-*</td> <td>2.1</td></tr>
-                            <tr><td>loc</td> <td>2.0,2.1</td></tr>
+                            <tr><td>legal-de</td> <td>2.0-2.2</td></tr>
+                            <tr><td>legal-eu</td> <td>2.0-2.2</td></tr>
+                            <tr><td>legal-gb</td> <td>2.0-2.2</td></tr>
+                            <tr><td>legal-ie</td> <td>2.0-2.2</td></tr>
+                            <tr><td>legal-in</td> <td>2.0-2.2</td></tr>
+                            <tr><td>legal-us</td> <td>2.0-2.2</td></tr>
+                            <tr><td>legal-*</td> <td>2.1,2.2</td></tr>
+                            <tr><td>loc</td> <td>2.0-2.2</td></tr>
                             <tr><td>nace</td> <td>0.1&ndash;1</td></tr>
-                            <tr><td>p7012</td> <td>2.1</td></tr>
-                            <tr><td>pd</td> <td>0.4&ndash;2.1</td></tr>
-                            <tr><td>rights-eu</td> <td>0.8&ndash;2.1</td></tr>
-                            <tr><td>risk</td> <td>0.8-2.1</td></tr>
-                            <tr><td>dpv-sector-education</td> <td>2.1</td></tr>
-                            <tr><td>dpv-sector-finance</td> <td>2.1</td></tr>
-                            <tr><td>dpv-sector-health</td> <td>2.1</td></tr>
-                            <tr><td>dpv-sector-infra</td> <td>2.1</td></tr>
-                            <tr><td>dpv-sector-law</td> <td>2.1</td></tr>
-                            <tr><td>tech</td> <td>0.8&ndash;2.1</td></tr>
+                            <tr><td>p7012</td> <td>2.1,2.2</td></tr>
+                            <tr><td>pd</td> <td>0.4&ndash;2.2</td></tr>
+                            <tr><td>rights-eu</td> <td>0.8&ndash;2.2</td></tr>
+                            <tr><td>risk</td> <td>0.8-2.2</td></tr>
+                            <tr><td>dpv-sector-education</td> <td>2.1,2.2</td></tr>
+                            <tr><td>dpv-sector-finance</td> <td>2.1,2.2</td></tr>
+                            <tr><td>dpv-sector-health</td> <td>2.1,2.2</td></tr>
+                            <tr><td>dpv-sector-infra</td> <td>2.1,2.2</td></tr>
+                            <tr><td>dpv-sector-law</td> <td>2.1,2.2</td></tr>
+                            <tr><td>tech</td> <td>0.8&ndash;2.2</td></tr>
 </table>
 
 <p>
@@ -415,7 +417,7 @@ Most versions of schema (schema.org) should be
                         <tr><td>27.1</td> <td>27.01</td></tr>
                         <tr><td>27.2</td> <td>27.02</td></tr>
                         <tr><td>&hellip;</td> <td>&hellip;</td></tr>
-                        <tr><td>29.2</td> <td>as version number</td></tr>
+                        <tr><td>29.3</td> <td>as version number</td></tr>
                         </table>
 
 <h3>vCard</h3>

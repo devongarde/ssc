@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -59,6 +59,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_2023   23
 #define HTML_2024   24
 #define HTML_2025   25
+#define HTML_2026   26
 #define HTML_2099   99
 
 #define MAJOR_TAGS   0
@@ -319,15 +320,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_OCT25  HTML_2025, HTML_OCT
 #define HTML_NOV25  HTML_2025, HTML_NOV
 #define HTML_DEC25  HTML_2025, HTML_DEC
+#define HTML_JAN26  HTML_2026, HTML_JAN
 #define HTML_DEC99  HTML_2099, (HTML_DEC + HTML_31ST)
 
 #define HTML_5_EARLIEST_YEAR    HTML_2005
 #define HTML_5_EARLIEST_MONTH   1
 
-#define HTML_LATEST_YEAR        HTML_2025
-#define HTML_LATEST_MONTH       11
+#define HTML_LATEST_YEAR        HTML_2026
+#define HTML_LATEST_MONTH       1
 
-#define HTML_CURRENT            HTML_NOV25
+#define HTML_CURRENT            HTML_DEC25
 
 #define HTML_UNDEF      0, 0
 
@@ -487,13 +489,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_GML        HTML_JUL05
 #define HTML_GR         HTML_RDF10
 #define HTML_GRDDL      HTML_RDF10_CON
-#define HTML_GS10       HTML_JAN15
-#define HTML_GS11       HTML_DEC16
-#define HTML_GS12       HTML_DEC17
-#define HTML_GS13       HTML_FEB20
-#define HTML_GS14       HTML_FEB21
-#define HTML_GS15       HTML_MAR21
-#define HTML_GS151      HTML_SEP21
+#define HTML_GS1_0      HTML_JAN15
+#define HTML_GS1_1      HTML_DEC16
+#define HTML_GS1_2      HTML_DEC17
+#define HTML_GS1_3      HTML_FEB20
+#define HTML_GS1_4      HTML_FEB21
+#define HTML_GS1_5      HTML_MAR21
+#define HTML_GS1_6      HTML_SEP22
+#define HTML_GS1_7      HTML_OCT22
+#define HTML_GS1_8      HTML_JAN23
+#define HTML_GS1_9      HTML_APR24
+#define HTML_GS1_10     HTML_MAY24
+#define HTML_GS1_11     HTML_JUN24
+#define HTML_GS1_16     HTML_AUG25
 #define HTML_ICAL       HTML_RDF10_CON
 #define HTML_ICALTZD    HTML_RDF10_CON
 #define HTML_JSONLD_1_0 HTML_JAN14
@@ -685,7 +693,7 @@ class version
     e_apples_oranges ao_ = ao_unknown;
 public:
     version () : mjr_ (0), mnr_ (0), flags_ (NOFLAGS), ao_ (ao_unknown) { }
-    explicit version (const e_apples_oranges ao) : mjr_ (0), mnr_ (0), flags_ (NOFLAGS), ao_ (ao) { }
+    explicit version (const e_apples_oranges ao) noexcept : mjr_ (0), mnr_ (0), flags_ (NOFLAGS), ao_ (ao) { }
     version (const unsigned short mjr, const unsigned short mnr, const flags_t flags = NOFLAGS, const e_apples_oranges ao = ao_html) noexcept
         :   mjr_ (mjr), mnr_ (mnr), flags_ (flags), ao_ (ao) { }
     DEFAULT_COPY_CONSTRUCTORS (version);
@@ -706,9 +714,9 @@ public:
     e_apples_oranges ao () const noexcept { return ao_; }
     bool ml () const noexcept;
     void ao (const e_apples_oranges ao) noexcept { ao_ = ao; }
-    bool is_namespace_ao () const
+    bool is_namespace_ao () const noexcept
     {   return (ao_ >= first_ao_namespace) && (ao_ <= last_ao_namespace); }
-    bool is_ontology_ao () const
+    bool is_ontology_ao () const noexcept
     {   return (ao_ >= first_ao_ontology) && (ao_ <= last_ao_ontology); }
     void set_flags (const flags_t u) noexcept { flags_ |= u; }
     void reset_flags (const flags_t u) noexcept { flags_ &= ~u; }

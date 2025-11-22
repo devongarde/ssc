@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -67,11 +67,10 @@ class page
     e_required_page rq_type_ = rqp_none;
     ptr_vtt vtt_;
     friend class tag;
-    void init (const ::std::string& name, ::std::string& content, const fileindex_t x);
+    void init (const ::std::string& name, ::std::string& content, const fileindex_t x, const e_verifiable_file vf);
 public:
     DEFAULT_CONSTRUCTORS_NO_DESTRUCTORS (page);
-    page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, const directory* d = nullptr);
-    page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t ndx, const directory* d = nullptr);
+    page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t ndx, const e_verifiable_file vf, const directory* d = nullptr);
     explicit page (const ::std::string& content, const bool outsider = false);
     ~page () { cleanup (); }
     void swap (page& p);

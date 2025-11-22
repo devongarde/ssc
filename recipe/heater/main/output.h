@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -46,11 +46,11 @@ class outstream
     ::boost::filesystem::path pub_, pri_, sig_;
 #endif // SIGNING
     ::std::string ensane (const ::std::string& s) const;
-    static void dup () noexcept;
+    static void dup ();
 public:
     outstream () = default;
     NO_COPY_NO_MOVE (outstream);
-    ~outstream () { dup (); }
+    ~outstream () { try { dup (); } catch (...) { } }
     void init (nitpick& nits, const ::std::string& s);
     const ::std::string& name () const noexcept { return name_; }
 #ifdef WX

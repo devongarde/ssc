@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -42,12 +42,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
             return res + quote (val.as_string ().c_str ()) + "\n";
         case ::boost::json::kind::array :
             res += "ARRAY\n";
-            for (::boost::json::array::const_iterator i = val.as_array ().cbegin (); i != val.as_array ().cend (); ++i)
+            for (   ::boost::json::array::const_iterator i = val.as_array ().cbegin ();
+                    (i != nullptr) && (i != val.as_array ().cend ());
+                    ++i)
                 res += rpt (*i, indent+1);
             break;
         case ::boost::json::kind::object :
             res += "OBJECT\n";
-            for (::boost::json::object::const_iterator i = val.as_object ().cbegin (); i != val.as_object ().cend (); ++i)
+            for (   ::boost::json::object::const_iterator i = val.as_object ().cbegin ();
+                    (i != nullptr) && (i != val.as_object ().cend ());
+                    ++i)
             {   const ::std::string::size_type dent = static_cast < ::std::string::size_type > (indent) + 1;
                 res += ::std::string (dent*2, ' ');
                 res += quote (i -> key_c_str ());

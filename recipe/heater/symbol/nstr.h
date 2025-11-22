@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -195,7 +195,7 @@ public:
         for ( ; pos < max_; ++pos)
         {   const data_t& d = data_ [pos];
             if (d.id_ != id) break;
-            if (compare_no_case (s, d.sz_ [n])) return d.flags_; }
+            if (compare_no_case (s, GSL_AT (d.sz_, n))) return d.flags_; }
         return 0; }
     ENUM starts_with_lower (const ::std::size_t n, const ::std::string& s, ::std::string::size_type* ends_at = nullptr) const
     {   ::std::string ss (::boost::to_lower_copy (s));

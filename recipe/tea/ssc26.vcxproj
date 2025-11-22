@@ -3554,7 +3554,7 @@
     <None Include="..\toast\json-ld\1.0\5-4-1.jld" />
     <None Include="..\toast\json-ld\1.0\5-4-2.jld" />
     <None Include="..\toast\json-ld\1.0\5-4-3.jld" />
-    <None Include="..\toast\json-ld\1.0\advanced.jsonld" />
+    <None Include="..\toast\json-ld\1.0\advanced.html" />
     <None Include="..\toast\json-ld\1.0\basic-10.jld" />
     <None Include="..\toast\json-ld\1.0\basic-11.jld" />
     <None Include="..\toast\json-ld\1.0\basic-12.jld" />

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -907,7 +907,7 @@ bool verify_yearmonth (nitpick& nits, const html_version& , const ::std::string&
     return false; }
 
 bool verify_local_datetime (nitpick& nits, const html_version& , const ::std::string& s)
-{   e_nit n;
+{   e_nit n = nit_off;
     if (s.find_first_of ("Zz") != ::std::string::npos) n = nit_bad_zone;
     else n = verify_local_datetime (s);
     if (n == nit_free) return true;

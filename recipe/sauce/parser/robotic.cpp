@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 bool robotic::parse (nitpick& nits, const ::std::string& site_path, const ::std::string& s, const directory* const d)
 {   if (! is_in_root (nits, site_path, "robots.txt")) return false;
+    if (! context.robtxt ()) return true;
     c_.parse (s);
     if (context.tell (es_all))
         context.os () -> out (c_.rpt ());
@@ -65,7 +66,7 @@ bool robotic::parse (nitpick& nits, const ::std::string& site_path, const ::std:
                 break; } }
     return true; }
 
-void robotic::review (::std::ostringstream& ss, mmac_t& mac, nitpick& nits)
+void robotic::review (::std::ostringstream& ss, const mmac_t& mac, nitpick& nits)
 {   ss << nits.review (mac);
     for (vic_colic i = c_.l_.cbegin (); i != c_.l_.cend (); ++i)
     {   ss << i -> nits_.review (mac);

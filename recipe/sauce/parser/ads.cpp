@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -31,7 +31,8 @@ bool is_domain_connected (const ::std::string& s)
     return false; }
 
 bool ad_rec::parse (const ::std::string& l, const unsigned line)
-{   nits_.set_context (line, l);
+{   if (! context.adstxt ()) return true;
+    nits_.set_context (line, l);
     vstr_t args = split_by_comma (l);   
     if (args.size () < 3)
         nits_.pick (nit_con, ed_con, "3.3. The Data Record", es_error, ec_con, "expecting three or four comma separated values");

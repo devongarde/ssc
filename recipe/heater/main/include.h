@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -51,36 +51,36 @@ z
 
 */
 
-#define SSC_LU "ssc.lu"
-#define DYLANHARRIS_ORG "dylanharris.org"
+#define SSC_DOMAIN "dylanharris.org"
+#define SCRUFF_DOMAIN "dylanharris.org"
 
 #define PROG "ssc"
 #define TESTPROG PROG "-test"
 #define FULLNAME "Static Site Checker"
 #define FORMALNAME "The " FULLNAME
-#define WEBADDR "https://" SSC_LU "/"
+#define WEBADDR "https://" SSC_DOMAIN "/"
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 22
-#define VERSION_STRING "0.2.22"
+#define VERSION_RELEASE 23
+#define VERSION_STRING "0.2.23"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
 #define COPYRIGHT_FORENAME "Dylan"
 #define COPYRIGHT_SURNAME "Harris"
-#define COPYRIGHT_YEAR "2020-2025"
+#define COPYRIGHT_YEAR "2020-2026"
 #define COPYRIGHT_TEXT COPYRIGHT_SYMBOL " " COPYRIGHT_YEAR " " COPYRIGHT_FORENAME " " COPYRIGHT_SURNAME
 #define COPYRIGHT_HTML "&copy;" NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME
-#define COPYRIGHT_WEBADDR "https://" DYLANHARRIS_ORG "/"
+#define COPYRIGHT_WEBADDR "https://" SCRUFF_DOMAIN "/"
 #define COPYRIGHT_BRADDR " (" COPYRIGHT_WEBADDR ")"
 #define COPYRIGHT COPYRIGHT_TEXT COPYRIGHT_BRADDR
 #define COPYRIGHT_HTML_FULL "&copy;" NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME COPYRIGHT_BRADDR
 
 #define SSC_PUBLIC_KEY ""
 
-#define UPDATE_URL_1 "https://ssc.lu/ssc.ver.txt"
-#define UPDATE_URL_2 "https://dylanharris.org/ssc/ssc.ver.txt"
+#define UPDATE_URL_1 "https://" SSC_DOMAIN "/ssc/ssc.ver"
+#define UPDATE_URL_2 "https://ssc.lu/ssc.ver"
 
 #define DEFAULT_LINE_LENGTH 72
 #define DESCRIPTION_LENGTH 60

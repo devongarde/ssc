@@ -1,6 +1,6 @@
 ﻿/*                                                                 ,
 ssc (static site checker)
-Copyright (c) 2020-2025 Dylan Harris
+Copyright (c) 2020-2026 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -86,8 +86,8 @@ struct label_spin_t
     spin_t spin_;
     bool TransferDataToWindow ();
     bool TransferDataFromWindow ();
-    void value (const int v) { spin_.value (v); }
-    int value () const { return spin_.value (); }
+    void value (const int v) noexcept { spin_.value (v); }
+    int value () const noexcept { return spin_.value (); }
     bool concoct (wxWindow *mummy, wxBoxSizer* pen, const int id, const ::std::string& label, const ::std::string& def = ::std::string (), const int init = 0, const int mini = 0, const int maxi = 75);
     void enable (const bool b) { label_.enable (b); spin_.enable (b); }
     bool invalid () const noexcept { return spin_.invalid () || box_.invalid () || label_.invalid (); } };
