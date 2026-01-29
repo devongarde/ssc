@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN -moz-orient- tests</title>
+<style>
+.sid
+{   /* Keyword values */
+    -moz-orient: inline;
+
+    /* Global values */
+    -moz-orient: inherit;
+    -moz-orient: initial;
+    -moz-orient: revert;
+    -moz-orient: revert-layer;
+    -moz-orient: unset; }
+.vert {
+  -moz-orient: vertical;
+  width: 16px;
+  height: 150px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN -moz-orient- Tests</h1>
+
+<p>The following progress meter is horizontal (the default):</p>
+<progress max="100" value="75"></progress>
+
+<p>The following progress meter is vertical:</p>
+<progress class="vert" max="100" value="75"></progress>
+
+</body>
+</html>

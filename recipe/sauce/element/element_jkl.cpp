@@ -152,7 +152,7 @@ void element::examine_link ()
         if (node_.version () >= html_jul20)
             if (! has_href && ! has_imagesrcset)
                 pick (nit_link, ed_jul20, "4.2.4 The link element", es_warning, ec_attribute, "<LINK> requires HREF or IMAGESRCSET"); }
-    if ((context.analysis () < anal_aug25))
+    if (context.analysis () < anal_aug25)
     {   if (has_rel)
         {   ::std::string content (a_.get_string (a_rel));
             if (content.empty ())

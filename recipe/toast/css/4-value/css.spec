@@ -6,7 +6,6 @@ PASS ../toast/css/4-value/index.html
 
 PASS ../toast/css/4-value/css-3.css
 0 html
-4 css_value_fn css_value_fn css_colour
 10 css_value_fn
 
 PASS ../toast/css/4-value/css-4.css
@@ -15,10 +14,6 @@ PASS ../toast/css/4-value/css-4.css
 2 url_not_found
 10 svg_version
 12 css_colour css_colour css_colour
-16 naughty_content
-17 naughty_content
-18 naughty_content
-19 naughty_content
 
 PASS ../toast/css/4-value/css-6.css
 0 html
@@ -29,7 +24,6 @@ PASS ../toast/css/4-value/css-7.css
 
 PASS ../toast/css/4-value/css-9.css
 0 html
-4 naughty_content
 
 PASS ../toast/css/4-value/css-10.css
 0 html

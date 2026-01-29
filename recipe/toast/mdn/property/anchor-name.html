@@ -1,0 +1,81 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN anchor-name tests</title>
+<style>
+.sid {
+/* Single values */
+anchor-name: none;
+anchor-name: --name;
+
+/* Multiple values */
+anchor-name: --name, --another-name;
+
+/* Global values */
+anchor-name: inherit;
+anchor-name: initial;
+anchor-name: revert;
+anchor-name: revert-layer;
+anchor-name: unset;
+
+}
+.anchor {
+  anchor-name: --my-anchor;
+}
+.anchor {
+  anchor-name: --anchor1, --anchor2;
+}
+
+.infobox {
+  position: fixed;
+}
+
+#infobox1 {
+  position-anchor: --anchor1;
+  left: anchor(right);
+  align-self: anchor-center;
+  margin-left: 10px;
+}
+
+#infobox2 {
+  position-anchor: --anchor2;
+  bottom: anchor(top);
+  justify-self: anchor-center;
+  margin-bottom: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN anchor-name Tests</h1>
+
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+  incididunt ut labore et dolore magna aliqua. Dui nunc mattis enim ut tellus
+  elementum sagittis vitae et.
+</p>
+
+<div class="anchor">⚓︎</div>
+
+<div class="infobox">
+  <p>This is an information box.</p>
+</div>
+
+<p>
+  Nisi quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus. In arcu
+  cursus euismod quis viverra nibh cras pulvinar. Vulputate ut pharetra sit amet
+  aliquam.
+</p>
+
+<p>
+  Malesuada nunc vel risus commodo viverra maecenas accumsan lacus. Vel elit
+  scelerisque mauris pellentesque pulvinar pellentesque habitant morbi
+  tristique. Porta lorem mollis aliquam ut porttitor. Turpis cursus in hac
+  habitasse platea dictumst quisque. Dolor sit amet consectetur adipiscing elit.
+  Ornare lectus sit amet est placerat. Nulla aliquet porttitor lacus luctus
+  accumsan.
+</p>
+
+</body>
+</html>

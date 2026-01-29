@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN corner-top-shape tests</title>
+<style>
+.sid {
+/* Single keyword value set for both corners */
+corner-top-shape: notch;
+corner-top-shape: squircle;
+
+/* Single superellipse() value set for both corners */
+corner-top-shape: superellipse(3);
+corner-top-shape: superellipse(-1.5);
+
+/* Left-hand corner, right-hand corner */
+corner-top-shape: notch squircle;
+corner-top-shape: notch superellipse(-1.5);
+
+/* Global values */
+corner-top-shape: inherit;
+corner-top-shape: initial;
+corner-top-shape: revert;
+corner-top-shape: revert-layer;
+corner-top-shape: unset;
+}
+
+div {
+  box-shadow: 1px 1px 3px gray;
+  border-radius: 60px;
+  corner-top-shape: scoop notch;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN corner-top-shape Tests</h1>
+
+<div></div>
+
+</body>
+</html>

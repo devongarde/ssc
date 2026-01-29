@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/bitset.h"
 
 typedef ssc_bitset < e_css_property, ec_error > property_bitset;
-extern const property_bitset empty_property_bitset;
+
+extern const property_bitset    empty_property_bitset;
 
 inline bool any (const property_bitset& lhs, const property_bitset& rhs)
 {   const property_bitset tst (lhs & rhs);

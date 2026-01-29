@@ -3,11 +3,23 @@ static site checker
 https://dylanharris.org/ssc/
 (c) 2020-2026 Dylan Harris
 
+0.2.24
+- CSS Compositing 4
+- CSS Easing 4
+- noted additional bespoke elements and attributes
+- updated CSS Anchor Positioning to dec 25 draft
+- Living Standard jan 2026
+- dropped Windows 10
+- website moved to https://dylanharris.org/ssc/
+- various bug fixes
+- underlying work
+
 0.2.23
 - Visual Studio 2026
 - Macos Tahoe
 - OpenBSD 7.8
 - CSS 2025 snapshot
+- schema.org 29.4
 - GS1 ontology version 1.5.1 folded into 1.5
 - added GS1 ontology versions 1.6 to 1.11, 1.16
 - underlying work

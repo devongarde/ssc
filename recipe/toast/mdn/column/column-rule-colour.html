@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN column-rule-colour tests</title>
+<style>
+.sid {
+/* <color> values */
+column-rule-color: red;
+column-rule-color: rgb(192 56 78);
+column-rule-color: transparent;
+column-rule-color: hsl(0 100% 50% / 60%);
+
+/* Global values */
+column-rule-color: inherit;
+column-rule-color: initial;
+column-rule-color: revert;
+column-rule-color: revert-layer;
+column-rule-color: unset;
+}
+
+p {
+  column-count: 3;
+  column-rule-style: solid;
+  column-rule-color: blue;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN column-rule-colour Tests</h1>
+
+<p>
+  This is a bunch of text split into three columns. The `column-rule-color`
+  property is used to change the color of the line that is drawn between
+  columns. Don't you think that's wonderful?
+</p>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN column-span tests</title>
+<style>
+.sid {
+
+/* Keyword values */
+column-span: none;
+column-span: all;
+
+/* Global values */
+column-span: inherit;
+column-span: initial;
+column-span: revert;
+column-span: revert-layer;
+column-span: unset;
+}
+
+article {
+  columns: 3;
+}
+
+h2 {
+  column-span: all;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN column-span Tests</h1>
+
+<article>
+  <h2>Header spanning all of the columns</h2>
+  <p>
+    The h2 should span all the columns. The rest of the text should be
+    distributed among the columns.
+  </p>
+  <p>
+    This is a bunch of text split into three columns using the CSS `columns`
+    property. The text is equally distributed over the columns.
+  </p>
+  <p>
+    This is a bunch of text split into three columns using the CSS `columns`
+    property. The text is equally distributed over the columns.
+  </p>
+  <p>
+    This is a bunch of text split into three columns using the CSS `columns`
+    property. The text is equally distributed over the columns.
+  </p>
+  <p>
+    This is a bunch of text split into three columns using the CSS `columns`
+    property. The text is equally distributed over the columns.
+  </p>
+</article>
+
+</body>
+</html>

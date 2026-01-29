@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN -webkit-mask-box-image- tests</title>
+<style>
+.sid
+{   /* default */
+    -webkit-mask-box-image: none;
+
+    /* image */
+    -webkit-mask-box-image: url("image.png");
+
+    /* image edge-offset */
+    -webkit-mask-box-image: url("image.png") 10 20 20 10;
+    -webkit-mask-box-image: url("image.png") 10px 20px 20px 10px;
+
+    /* image repeat-style */
+    -webkit-mask-box-image: url("image.png") space repeat;
+
+    /* image edge-offset repeat-style */
+    -webkit-mask-box-image: url("image.png") 10px 20px 20px 10px space repeat;
+
+    /* Global values */
+    -webkit-mask-box-image: inherit;
+    -webkit-mask-box-image: initial;
+    -webkit-mask-box-image: revert;
+    -webkit-mask-box-image: revert-layer;
+    -webkit-mask-box-image: unset; }
+
+.example-one {
+  -webkit-mask-box-image: url("mask.png");
+}
+
+.example-two {
+  -webkit-mask-box-image: url("logo.png") 100px 100px 0px 0px round round;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN -webkit-mask-box-image- Tests</h1>
+
+</body>
+</html>

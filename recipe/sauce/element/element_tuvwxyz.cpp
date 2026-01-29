@@ -190,4 +190,6 @@ void element::examine_video ()
         pick (nit_invalid_element_version, es_error, ec_element, "<VIDEO> requires HTML 5 or SVG 1.2");
     else
     {   examine_media_element (elem_video, "4.7.6 The video element", "<VIDEO>", MIME_VIDEO);
-        if (a_.known (a_autoplay)) pick (nit_autoplay, es_abhorrent, ec_rudeness, "AUTOPLAY on <VIDEO> is unspeakably rude"); } }
+        if (a_.known (a_autoplay)) pick (nit_autoplay, es_abhorrent, ec_rudeness, "AUTOPLAY on <VIDEO> is unspeakably rude");
+        if (a_.known (a_elementtiming) && ! a_.known (a_poster))
+            pick (nit_et, ed_mdn, "elementtiming", es_warning, ec_element, "Here, ELEMENTTIMING applies to a POSTER image, so it might be useful to define one"); } }

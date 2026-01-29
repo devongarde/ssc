@@ -1,0 +1,17 @@
+﻿:root {
+  --bounce: linear(
+    /* Start to 1st bounce */
+    0, 0.063, 0.25, 0.563, 1 36.4%,
+    /* 1st to 2nd bounce */
+    0.812, 0.75, 0.813, 1 72.7%,
+    /* 2nd to 3rd bounce */
+    0.953, 0.938, 0.953, 1 90.9%,
+    /* 3rd bounce to end */
+    0.984, 1 100% 100%
+  );
+}
+
+.example {
+  animation-timing-function: var(--bounce);
+}
+

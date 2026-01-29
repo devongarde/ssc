@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border tests</title>
+<style>
+.sid {
+/* style */
+border: solid;
+
+/* width | style */
+border: 2px dotted;
+
+/* style | color */
+border: outset #ff3333;
+
+/* width | style | color */
+border: medium dashed green;
+
+/* Global values */
+border: inherit;
+border: initial;
+border: revert;
+border: revert-layer;
+border: unset;
+}
+
+div {
+  border: 0.5rem outset pink;
+  outline: 0.5rem solid khaki;
+  box-shadow: 0 0 0 2rem skyblue;
+  border-radius: 12px;
+  font: bold 1rem sans-serif;
+  margin: 2rem;
+  padding: 1rem;
+  outline-offset: 0.5rem;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border Tests</h1>
+
+<div>I have a border, an outline, and a box shadow! Amazing, isn't it?</div>
+
+</body>
+</html>

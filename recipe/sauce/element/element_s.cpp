@@ -36,7 +36,7 @@ void element::examine_script ()
     check_ancestors (elem_script, element_bitset (elem_script));
     bool datablock = false, module = false, jsld = false;
 #ifndef NO_JSONIC
-    bool importmap = false;
+    bool importmap = false, speculationrules = false;
 #endif // NO_JSONIC
     if (! a_.known (a_type) || a_.empty (a_type))
         pick (nit_script, ed_50, "4.11.1 The script element", es_comment, ec_element, "this should be treated as ECMAscript / Javascript");
@@ -83,6 +83,9 @@ void element::examine_script ()
                 case mime_faux_importmap :
                     importmap = true;
                     break;
+                case mime_faux_speculationrules :
+                    speculationrules = true;
+                    break;
 #endif // NO_JSONIC
                 case mime_application_ld_json :
                     jsld = context.jsonld ();
@@ -127,6 +130,19 @@ void element::examine_script ()
         if (! good)
             pick (nit_bad_script, ed_aug25, "48.1.5.2 Import maps", es_warning, ec_element,
                 "An importmap is a JSON object with three optional keys: IMPORTS, SCOPES, INTEGRITY"); }
+    if (speculationrules)
+    {   const jsonic j (nits (), text (), cc_utf8);
+        const ::boost::json::value& v = j.val ();
+        bool good = (v.kind () == ::boost::json::kind::object);
+        if (good)
+            for (   ::boost::json::object::const_iterator i = v.as_object ().cbegin ();
+                    (good && (i != v.as_object ().cend () && i != nullptr));
+                    ++i)
+            {   const char* k = i -> key_c_str ();
+                good = test_value < t_speculationrules > (nits (), node_.version (), k, this); }
+        if (! good)
+            pick (nit_bad_script, ed_mdn, "speculationrules", es_warning, ec_element,
+                "Speculationrules requires a JSON object with specific keys"); }
 #endif // NO_JSONIC
     if (module)
     {   if (a_.known (a_charset) && (node_.version () <= html_5_3))

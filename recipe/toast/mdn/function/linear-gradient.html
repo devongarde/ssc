@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN linear-gradient tests</title>
+<style>
+.sid {
+/* A gradient with a single color of red */
+    background: linear-gradient(red);
+
+/* A gradient tilted 45 degrees,
+   starting blue and finishing red */
+    background: linear-gradient(45deg, blue, red);
+
+/* A gradient going from the bottom right to the top left corner,
+   starting blue and finishing red */
+    background: linear-gradient(to left top, blue, red);
+
+/* Interpolation in rectangular color space */
+    background: linear-gradient(in oklab, blue, red);
+
+/* Interpolation in polar color space */
+    background: linear-gradient(in hsl, blue, red);
+
+/* Interpolation in polar color space
+  with longer hue interpolation method */
+    background: linear-gradient(in hsl longer hue, blue, red);
+
+/* Color stop: A gradient going from the bottom to top,
+   starting blue, turning green at 40% of its length,
+   and finishing red */
+    background: linear-gradient(0deg, blue, green 40%, red);
+
+/* Color hint: A gradient going from the left to right,
+   starting red, getting to the midpoint color
+   10% of the way across the length of the gradient,
+   taking the rest of the 90% of the length to change to blue */
+    background: linear-gradient(.25turn, red, 10%, blue);
+
+/* Multi-position color stop: A gradient tilted 45 degrees,
+   with a red bottom-left half and a blue top-right half,
+   with a hard line where the gradient changes from red to blue */
+    background: linear-gradient(45deg, red 0 50%, blue 50% 100%);
+
+    background: linear-gradient(red, orange, yellow, green, blue);
+    background: linear-gradient(red 0%, orange 25%, yellow 50%, green 75%, blue 100%);
+
+    background: linear-gradient(red 10%, 30%, blue 90%);
+
+    background: linear-gradient(red 40%, yellow 30%, blue 65%);
+
+    background: linear-gradient(red 0%, orange 10%, orange 30%, yellow 50%, yellow 70%, green 90%, green 100%);
+    background: linear-gradient(red, orange 10% 30%, yellow 50% 70%, green 90%);
+    background: linear-gradient(red 0%, orange 10% 30%, yellow 50% 70%, green 90% 100%);
+}
+
+body {
+  background: linear-gradient(45deg, red, blue);
+}
+
+body {
+  background: linear-gradient(135deg, orange 60%, cyan);
+}
+
+body {
+  background: linear-gradient(90deg in oklab, blue, red);
+}
+
+.shorter {
+  background: linear-gradient(90deg in hsl shorter hue, red, blue);
+}
+
+.longer {
+  background: linear-gradient(90deg in hsl longer hue, red, blue);
+}
+
+body {
+  background: linear-gradient(
+    to right,
+    red 20%,
+    orange 20% 40%,
+    yellow 40% 60%,
+    green 60% 80%,
+    blue 80%
+  );
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN linear-gradient Tests</h1>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN type-checkbox tests</title>
+<style>
+p,
+label {
+  font:
+    1rem "Fira Sans",
+    sans-serif;
+}
+
+input {
+  margin: 0.4rem;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+form {
+  width: 600px;
+  margin: 0 auto;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+fieldset {
+  background: cyan;
+  border: 5px solid blue;
+}
+
+legend {
+  padding: 10px;
+  background: blue;
+  color: cyan;
+}
+</style>
+<script>
+const overall = document.querySelector("#enchantment");
+const ingredients = document.querySelectorAll("ul input");
+
+overall.addEventListener("click", (e) => {
+  e.preventDefault();
+});
+
+for (const ingredient of ingredients) {
+  ingredient.addEventListener("click", updateDisplay);
+}
+
+function updateDisplay() {
+  let checkedCount = 0;
+  for (const ingredient of ingredients) {
+    if (ingredient.checked) {
+      checkedCount++;
+    }
+  }
+
+  if (checkedCount === 0) {
+    overall.checked = false;
+    overall.indeterminate = false;
+  } else if (checkedCount === ingredients.length) {
+    overall.checked = true;
+    overall.indeterminate = false;
+  } else {
+    overall.checked = false;
+    overall.indeterminate = true;
+  }
+    }
+
+const otherCheckbox = document.querySelector("#other");
+const otherText = document.querySelector("#otherValue");
+otherText.style.visibility = "hidden";
+
+otherCheckbox.addEventListener("change", () => {
+  if (otherCheckbox.checked) {
+    otherText.style.visibility = "visible";
+    otherText.value = "";
+  } else {
+    otherText.style.visibility = "hidden";
+  }
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN type-checkbox Tests</h1>
+
+<fieldset>
+  <legend>Choose your monster's features:</legend>
+
+  <div>
+    <input type="checkbox" id="scales" name="scales" checked />
+    <label for="scales">Scales</label>
+  </div>
+
+  <div>
+    <input type="checkbox" id="horns" name="horns" />
+    <label for="horns">Horns</label>
+  </div>
+</fieldset>
+
+<form>
+  <div>
+    <input
+      type="checkbox"
+      id="subscribeNews"
+      name="subscribe"
+      value="newsletter" />
+    <label for="subscribeNews">Subscribe to newsletter?</label>
+  </div>
+  <div>
+    <button type="submit">Subscribe</button>
+  </div>
+</form>
+
+<fieldset>
+  <legend>Choose your interests</legend>
+  <div>
+    <input type="checkbox" id="coding" name="interest" value="coding" />
+    <label for="coding">Coding</label>
+  </div>
+  <div>
+    <input type="checkbox" id="music" name="interest" value="music" />
+    <label for="music">Music</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Choose your interests</legend>
+  <div>
+    <input type="checkbox" id="coding" name="interest" value="coding" checked />
+    <label for="coding">Coding</label>
+  </div>
+  <div>
+    <input type="checkbox" id="music" name="interest" value="music" />
+    <label for="music">Music</label>
+  </div>
+</fieldset>
+
+<form>
+  <fieldset>
+    <legend>Complete the recipe</legend>
+    <div>
+      <input type="checkbox" id="enchantment" name="enchantment" />
+      <label for="enchantment">Enchantment table</label>
+      <ul>
+        <li>
+          <input type="checkbox" id="book" name="ingredient" value="book" />
+          <label for="book">Book</label>
+        </li>
+        <li>
+          <input
+            type="checkbox"
+            id="diamonds"
+            name="ingredient"
+            value="diamonds" />
+          <label for="diamonds">Diamonds (x2)</label>
+        </li>
+        <li>
+          <input
+            type="checkbox"
+            id="obsidian"
+            name="ingredient"
+            value="obsidian" />
+          <label for="obsidian">Obsidian (x4)</label>
+        </li>
+      </ul>
+    </div>
+  </fieldset>
+</form>
+
+<form>
+  <fieldset>
+    <legend>Choose your interests</legend>
+    <div>
+      <label>
+        <input type="checkbox" id="coding" name="interest" value="coding" />
+        Coding
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="checkbox" id="music" name="interest" value="music" />
+        Music
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="checkbox" id="art" name="interest" value="art" />
+        Art
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="checkbox" id="sports" name="interest" value="sports" />
+        Sports
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="checkbox" id="cooking" name="interest" value="cooking" />
+        Cooking
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="checkbox" id="other" name="interest" value="other" />
+        Other
+      </label>
+      <input
+        type="text"
+        id="otherValue"
+        name="other"
+        aria-label="Other interest" />
+    </div>
+    <div>
+      <button type="submit">Submit form</button>
+    </div>
+  </fieldset>
+</form>
+
+</body>
+</html>

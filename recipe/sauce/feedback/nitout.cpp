@@ -1200,7 +1200,7 @@ bool macro_t::is_template_loaded ()
 void macro_t::init ()
 {   PRESUME (fred.relaxed (), __FILE__, __LINE__);
     mmac_.emplace (nm_prog_abbrev, PROG);
-    mmac_.emplace (nm_copy_addr, COPYRIGHT_WEBADDR);
+    mmac_.emplace (nm_copy_addr, WEBADDR);
     mmac_.emplace (nm_copy_html, COPYRIGHT_HTML);
     mmac_.emplace (nm_copy_text, COPYRIGHT_TEXT);
     mmac_.emplace (nm_prog_fullname, FULLNAME);

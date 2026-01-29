@@ -39,6 +39,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NS_PRISM            0x0000000000000020
 #define NS_PRESUME          0x8000000000000000
 
+#define PORT_NAME               ABB_SHORTFORM
+#define PORT_NUMBER           ( PORT_NAME + 1 )
+#define PORT_DESCRIPTION      ( PORT_NUMBER + 1 )
+#define PORT_COUNT            ( PORT_DESCRIPTION + 1 )
+
 #define PROTOCOL_NAME           ABB_SHORTFORM
 #define PROTOCOL_DESCRIPTION  ( PROTOCOL_NAME + 1 )
 #define PROTOCOL_COUNT        ( PROTOCOL_DESCRIPTION + 1 )
@@ -260,9 +265,11 @@ public:
         else return after_start_mixed (n, s); } };
 
 typedef n_string_table < e_namespace, ns_error, NAMESPACE_COUNT, 2 > namespace_names_t;
+typedef n_string_table < e_port_name, port_error, PORT_COUNT, 1 > port_names_t;
 typedef n_string_table < e_protocol, pr_error, PROTOCOL_COUNT, 1 > protocol_names_t;
 typedef n_string_table < e_ontology, s_error, ONTOLOGY_COUNT, 2 > ontology_names_t;
 extern namespace_names_t namespace_names, empty_namespace_names;
+extern port_names_t port_names;
 extern protocol_names_t protocol_names;
 extern ontology_names_t ontology_names;
 

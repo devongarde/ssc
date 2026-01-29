@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-image tests</title>
+<style>
+.sid {
+/* source | slice */
+border-image: linear-gradient(red, blue) 27;
+
+/* source | slice | repeat */
+border-image: url("/images/border.png") 27 space;
+
+/* source | slice | width */
+border-image: linear-gradient(red, blue) 27 / 35px;
+
+/* source | slice | width | outset | repeat */
+border-image: url("/images/border.png") 27 23 / 50px 30px / 1rem round space;
+
+/* Global values */
+border-image: inherit;
+border-image: initial;
+border-image: revert;
+border-image: revert-layer;
+border-image: unset;
+}
+
+#bitmap {
+  width: 200px;
+  background-color: #ffffaa;
+  border: 36px solid orange;
+  margin: 30px;
+  padding: 10px;
+
+  border-image: url("border.png") 27 / 36px 28px 18px 8px / 18px 14px 9px 4px
+    round;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-image Tests</h1>
+
+<div id="bitmap">
+  This element is surrounded by a bitmap-based border image!
+</div>
+
+</body>
+</html>

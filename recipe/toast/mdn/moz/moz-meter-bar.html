@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN -moz-meter-bar- tests</title>
+<style>
+meter {
+  height: 20px;
+  width: 200px;
+  vertical-align: -0.4rem;
+}
+
+.styled {
+  appearance: none;
+}
+
+.styled::-moz-meter-bar {
+  background: lime;
+  box-shadow: 0 2px 3px grey inset;
+  border-radius: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN -moz-meter-bar- Tests</h1>
+
+Normal: <meter min="0" max="10" value="6">Score 6/10</meter>
+<br />
+Styled: &nbsp;&nbsp;<meter class="styled" min="0" max="10" value="6">
+  Score 6/10
+</meter>
+
+</body>
+</html>

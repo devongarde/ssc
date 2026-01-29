@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN -moz-float-edge- tests</title>
+<style>
+.sid
+{   /* Keyword values */
+    -moz-float-edge: content-box;
+    -moz-float-edge: margin-box;
+
+    /* Global values */
+    -moz-float-edge: inherit;
+    -moz-float-edge: initial;
+    -moz-float-edge: unset; }
+.box {
+  display: block;
+  height: 5px;
+  margin: 0.5em auto;
+  color: gray;
+  -moz-float-edge: margin-box;
+  box-sizing: border-box;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN -moz-float-edge- Tests</h1>
+
+<div class="box">
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+</div>
+
+
+</body>
+</html>

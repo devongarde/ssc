@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN column-gap tests</title>
+<style>
+.sid {
+/* Keyword value */
+column-gap: normal;
+
+/* <length> values */
+column-gap: 3px;
+column-gap: 2.5em;
+
+/* <percentage> value */
+column-gap: 3%;
+
+/* Global values */
+column-gap: inherit;
+column-gap: initial;
+column-gap: revert;
+column-gap: revert-layer;
+column-gap: unset;
+}
+
+.flexbox {
+  display: flex;
+  flex-flow: row wrap;
+  height: 100px;
+  column-gap: 20px;
+}
+
+.flexbox > div {
+  border: 1px solid green;
+  background-color: lime;
+  flex: 200px;
+}
+div:nth-of-type(3n) {
+  flex: 300px;
+}
+
+#grid {
+  display: grid;
+  height: 100px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 100px;
+  column-gap: 20px;
+}
+
+#grid > div {
+  border: 1px solid green;
+  background-color: lime;
+}
+
+.content-box {
+  column-count: 3;
+  column-gap: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN column-gap Tests</h1>
+
+<div class="flexbox">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<div id="grid">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<p class="content-box">
+  This is some multi-column text with a 40px column gap created with the CSS
+  `column-gap` property. Don't you think that's fun and exciting? I sure do!
+</p>
+
+</body>
+</html>

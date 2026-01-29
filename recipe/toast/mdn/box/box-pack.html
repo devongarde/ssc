@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN box-pack tests</title>
+<style>
+.sid {
+/* Keyword values */
+box-pack: start;
+box-pack: center;
+box-pack: end;
+box-pack: justify;
+
+/* Global values */
+box-pack: inherit;
+box-pack: initial;
+box-pack: unset;
+}
+
+div.example {
+  border-style: solid;
+
+  display: -moz-box; /* Mozilla */
+  display: -webkit-box; /* WebKit */
+
+  /* Make this box taller than the children,
+     so there is room for the box-pack */
+  height: 300px;
+  /* Make this box wide enough to show the contents
+     are centered horizontally */
+  width: 300px;
+
+  /* Children should be oriented vertically */
+  -moz-box-orient: vertical; /* Mozilla */
+  -webkit-box-orient: vertical; /* WebKit */
+
+  /* Align children to the horizontal center of this box */
+  -moz-box-align: center; /* Mozilla */
+  -webkit-box-align: center; /* WebKit */
+
+  /* Pack children to the bottom of this box */
+  -moz-box-pack: end; /* Mozilla */
+  -webkit-box-pack: end; /* WebKit */
+}
+
+div.example p {
+  /* Make children narrower than their parent,
+     so there is room for the box-align */
+  width: 200px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN box-pack Tests</h1>
+
+<div class="example">
+  <p>I will be second from the bottom of div.example, centered horizontally.</p>
+  <p>I will be on the bottom of div.example, centered horizontally.</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN background tests</title>
+<style>
+.sid {
+/* Using a <background-color> */
+background: green;
+
+/* Using a <bg-image> and <repeat-style> */
+background: url("test.jpg") repeat-y;
+
+/* Using a <visual-box> and <'background-color'> */
+background: border-box red;
+
+/* A single image, centered and scaled */
+background: no-repeat center/80% url("../img/image.png");
+
+/* Global values */
+background: inherit;
+background: initial;
+background: revert;
+background: revert-layer;
+background: unset;
+}
+.warning {
+  background: pink;
+}
+
+.top-banner {
+  background: url("star-solid.gif") #9999ff repeat-y fixed;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN background Tests</h1>
+
+<p class="top-banner">
+  Starry sky<br />
+  Twinkle twinkle<br />
+  Starry sky
+</p>
+<p class="warning">Here is a paragraph</p>
+<p></p>
+
+</body>
+</html>

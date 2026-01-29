@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN align-items tests</title>
+<style>
+.sid {
+/* Basic keywords */
+align-items: normal;
+align-items: stretch;
+
+/* Positional alignment */
+/* align-items does not take left and right values */
+align-items: center;
+align-items: start;
+align-items: end;
+align-items: flex-start;
+align-items: flex-end;
+align-items: self-start;
+align-items: self-end;
+align-items: anchor-center;
+
+/* Baseline alignment */
+align-items: baseline;
+align-items: first baseline;
+align-items: last baseline;
+
+/* Overflow alignment (for positional alignment only) */
+align-items: safe center;
+align-items: unsafe center;
+
+/* Global values */
+align-items: inherit;
+align-items: initial;
+align-items: revert;
+align-items: revert-layer;
+align-items: unset;
+}
+.flex,
+.grid {
+  height: 200px;
+  width: 500px;
+  align-items: initial; /* Change the value in the live sample */
+  border: solid 5px transparent;
+  gap: 3px;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #8c8c9f;
+  border-color: magenta;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 100px);
+  background-color: #9f8c8c;
+  border-color: slateblue;
+}
+
+#item1 {
+  background-color: #8cffa0;
+  min-height: 30px;
+}
+
+#item2 {
+  background-color: #a0c8ff;
+  min-height: 50px;
+}
+
+#item3 {
+  background-color: #ffa08c;
+  min-height: 40px;
+}
+
+#item4 {
+  background-color: #ffff8c;
+  min-height: 60px;
+}
+
+#item5 {
+  background-color: #ff8cff;
+  min-height: 70px;
+}
+
+#item6 {
+  background-color: #8cffff;
+  min-height: 50px;
+  font-size: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN align-items Tests</h1>
+
+<div id="container" class="flex">
+  <div id="item1">1</div>
+  <div id="item2">2</div>
+  <div id="item3">3</div>
+  <div id="item4">4<br />line 2</div>
+  <div id="item5">5</div>
+  <div id="item6">6</div>
+</div>
+
+</body>
+</html>

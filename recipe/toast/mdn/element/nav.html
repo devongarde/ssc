@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN NAV tests</title>
+<style>
+nav {
+  border-bottom: 1px solid black;
+}
+
+.crumbs ol {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.crumb {
+  display: inline-block;
+}
+
+.crumb a::after {
+  display: inline-block;
+  color: black;
+  content: ">";
+  font-size: 80%;
+  font-weight: bold;
+  padding: 0 3px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN NAV Tests</h1>
+
+<nav class="crumbs">
+  <ol>
+    <li class="crumb"><a href="#">Bikes</a></li>
+    <li class="crumb"><a href="#">BMX</a></li>
+    <li class="crumb">Jump Bike 3000</li>
+  </ol>
+</nav>
+
+<h1>Jump Bike 3000</h1>
+<p>
+  This BMX bike is a solid step into the pro world. It looks as legit as it
+  rides and is built to polish your skills.
+</p>
+
+<nav class="menu">
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<nav>
+  <h2>Navigation</h2>
+  <p>
+    You are on my home page. To the north lies <a href="/blog">my blog</a>, from
+    whence the sounds of battle can be heard. To the east you can see a large
+    mountain, upon which many <a href="/school">school papers</a> are littered.
+    Far up this mountain you can spy a little figure who appears to be me,
+    desperately scribbling a <a href="/school/thesis">thesis</a>.
+  </p>
+  <p>
+    To the west are several exits. One fun-looking exit is labeled
+    <a href="https://games.example.com/">"games"</a>. Another more
+    boring-looking exit is labeled <a href="https://isp.example.net/">ISP™</a>.
+  </p>
+  <p>
+    To the south lies a dark and dank <a href="/about">contacts page</a>.
+    Cobwebs cover its disused entrance, and at one point you see a rat run
+    quickly out of the page.
+  </p>
+</nav>
+
+</body>
+</html>

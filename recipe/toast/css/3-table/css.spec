@@ -22,13 +22,10 @@ PASS ../toast/css/3-table/css-10.css
 49 unrecognised_value pseud
 53 unrecognised_value pseud
 53 unrecognised_value pseud
-54 unrecognised_value
 56 unrecognised_value pseud
 56 unrecognised_value pseud
-57 unrecognised_value
 61 unrecognised_value pseud
 61 unrecognised_value pseud
-62 unrecognised_value
 66 unrecognised_value pseud
 66 unrecognised_value pseud
 70 unrecognised_value pseud

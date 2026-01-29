@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN hidden tests</title>
+<style>
+p {
+  background: #ffe8d4;
+  border: 1px solid #f69d3c;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+div {
+  height: 40px;
+  width: 300px;
+  border: 5px dashed black;
+  margin: 1rem 0;
+  padding: 1rem;
+  font-size: 2rem;
+}
+
+div#until-found-box {
+  color: red;
+  border: 5px dotted red;
+  background-color: lightgray;
+}
+</style>
+<script>
+const untilFound = document.querySelector("#until-found-box");
+untilFound.addEventListener(
+  "beforematch",
+  () => (untilFound.textContent = "I've been revealed!"),
+);
+</script>
+</head>
+
+<body>
+
+<h1>MDN hidden Tests</h1>
+
+<p>
+  This content should be read right now, as it is important. I am so glad you
+  are able to find it!
+</p>
+
+<p hidden>
+  This content is not relevant to this page right now, so should not be seen.
+  Nothing to see here. Nada.
+</p>
+
+<span hidden>I'm hidden</span>
+<span hidden="">I'm also hidden</span>
+<span hidden="hidden">I'm hidden too!</span>
+<span hidden="bananas">I'm equally as hidden!</span>
+
+<span hidden="until-found">I'm hidden until found</span>
+
+<div hidden>
+  <script>
+    console.warn("Boo! I'm hidden *and* running!");
+  </script>
+</div>
+
+<div>I'm not hidden</div>
+<div hidden>I'm hiding!</div>
+<div>I'm not hidden, either</div>
+
+<a href="#until-found-box">Go to hidden content</a>
+
+<div>I'm not hidden</div>
+<div id="until-found-box" hidden="until-found">Hidden until found</div>
+<div>I'm hidden</div>
+
+</body>
+</html>

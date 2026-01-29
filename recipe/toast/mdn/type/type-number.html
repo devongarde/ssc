@@ -1,0 +1,196 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN type-number tests</title>
+<style>
+label {
+  display: block;
+  font:
+    1rem "Fira Sans",
+    sans-serif;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+
+#number {
+  width: 3em;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+input:invalid + span::after {
+  content: "✖";
+  padding-left: 5px;
+}
+
+input:valid + span::after {
+  content: "✓";
+  padding-left: 5px;
+}
+
+div {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+input[type="number"] {
+  width: 100px;
+}
+
+input + span {
+  padding-right: 30px;
+}
+
+input:invalid + span::after {
+  position: absolute;
+  content: "✖";
+  padding-left: 5px;
+}
+
+input:valid + span::after {
+  position: absolute;
+  content: "✓";
+  padding-left: 5px;
+}
+</style>
+<script>
+const metersInputGroup = document.querySelector(".metersInputGroup");
+const feetInputGroup = document.querySelector(".feetInputGroup");
+const metersInput = document.querySelector("#meters");
+const feetInput = document.querySelector("#feet");
+const inchesInput = document.querySelector("#inches");
+const switchBtn = document.querySelector('input[type="button"]');
+
+feetInputGroup.style.display = "none"; // Hide feet/inches inputs initially
+
+switchBtn.addEventListener("click", () => {
+  if (switchBtn.getAttribute("class") === "meters") {
+    switchBtn.setAttribute("class", "feet");
+    switchBtn.value = "Enter height in meters";
+
+    metersInputGroup.style.display = "none";
+    feetInputGroup.style.display = "block";
+
+    feetInput.setAttribute("required", "");
+    inchesInput.setAttribute("required", "");
+    metersInput.removeAttribute("required");
+
+    metersInput.value = "";
+  } else {
+    switchBtn.setAttribute("class", "meters");
+    switchBtn.value = "Enter height in feet and inches";
+
+    metersInputGroup.style.display = "block";
+    feetInputGroup.style.display = "none";
+
+    feetInput.removeAttribute("required");
+    inchesInput.removeAttribute("required");
+    metersInput.setAttribute("required", "");
+
+    feetInput.value = "";
+    inchesInput.value = "";
+  }
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN type-number Tests</h1>
+
+<label for="tentacles">Number of tentacles (10-100):</label>
+
+<input type="number" id="tentacles" name="tentacles" min="10" max="100" />
+
+<input id="number" type="number" value="42" />
+
+<input type="text" inputmode="numeric" pattern="\d*" />
+
+<label for="ticketNum">Number of tickets you would like to buy:</label>
+<input id="ticketNum" type="number" name="ticketNum" value="0" />
+
+<input type="number" placeholder="Multiple of 10" />
+
+<input type="number" placeholder="multiple of 10" step="10" />
+
+<input type="number" placeholder="multiple of 10" step="10" min="0" max="100" />
+
+<input type="number" placeholder="1.0" step="0.01" min="0" max="10" />
+
+<input
+  type="number"
+  placeholder="x10"
+  step="10"
+  min="0"
+  max="100"
+  id="number" />
+
+<input id="ticketNum" type="number" name="ticketNum" list="defaultNumbers" />
+<span class="validity"></span>
+
+<datalist id="defaultNumbers">
+  <option value="10045678"></option>
+  <option value="103421"></option>
+  <option value="11111111"></option>
+  <option value="12345678"></option>
+  <option value="12999922"></option>
+</datalist>
+
+<form>
+  <div>
+    <label for="balloons">Number of balloons to order (multiples of 10):</label>
+    <input
+      id="balloons"
+      type="number"
+      name="balloons"
+      step="10"
+      min="0"
+      max="100"
+      required />
+    <span class="validity"></span>
+  </div>
+  <div>
+    <input type="submit" />
+  </div>
+</form>
+
+<form>
+  <div class="metersInputGroup">
+    <label for="meters">Enter your height — meters:</label>
+    <input
+      id="meters"
+      type="number"
+      name="meters"
+      step="0.01"
+      min="0"
+      placeholder="e.g. 1.78"
+      required />
+    <span class="validity"></span>
+  </div>
+  <div class="feetInputGroup">
+    <span>Enter your height — </span>
+    <label for="feet">feet:</label>
+    <input id="feet" type="number" name="feet" min="0" step="1" />
+    <span class="validity"></span>
+    <label for="inches">inches:</label>
+    <input id="inches" type="number" name="inches" min="0" max="11" step="1" />
+    <span class="validity"></span>
+  </div>
+  <div>
+    <input
+      type="button"
+      class="meters"
+      value="Enter height in feet and inches" />
+  </div>
+  <div>
+    <input type="submit" value="Submit form" />
+  </div>
+</form>
+
+</body>
+</html>

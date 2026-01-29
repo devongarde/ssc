@@ -1,0 +1,9 @@
+{
+  "@id": "amanda",
+  "name": "Amanda",
+  "band": {
+    "@id": "b",
+    "name": "Jazz Band",
+    "size": 12
+  }
+}

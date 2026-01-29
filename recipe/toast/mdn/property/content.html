@@ -1,0 +1,203 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN B tests</title>
+<style>
+.sid {
+/* Keywords that cannot be combined with other values */
+content: normal;
+content: none;
+
+/* <content-replacement>: <image> values */
+content: url("http://www.example.com/test.png");
+content: linear-gradient(#e66465, #9198e5);
+content: image-set("image1x.png" 1x, "image2x.png" 2x);
+
+/* speech output: alternative text after a "/"  */
+content: url("../img/test.png") / "This is the alt text";
+
+/* <string> value */
+content: "unparsed text";
+
+/* <counter> values, optionally with <list-style-type> */
+content: counter(chapter_counter);
+content: counter(chapter_counter, upper-roman);
+content: counters(section_counter, ".");
+content: counters(section_counter, ".", decimal-leading-zero);
+
+/* attr() value linked to the HTML attribute value */
+content: attr(href);
+
+/* <quote> values */
+content: open-quote;
+content: close-quote;
+content: no-open-quote;
+content: no-close-quote;
+
+/* <content-list>: a list of content values. 
+Several values can be used simultaneously */
+content: "prefix" url("http://www.example.com/test.png");
+content: "prefix" url("/img/test.png") "suffix" / "Alt text";
+content: open-quote counter(chapter_counter);
+
+/* Global values */
+content: inherit;
+content: initial;
+content: revert;
+content: revert-layer;
+content: unset;
+}
+.topic-games::before {
+  content: "🎮 " / "games";
+}
+
+.topic-weather::before {
+  content: "⛅ " / "cloudy";
+}
+
+.topic-hot::before {
+  content: url("/shared-assets/images/examples/fire.png") / "On fire";
+  margin-right: 6px;
+}
+
+.new-entry::after {
+  content: " New!"; /* The leading space creates separation
+                       between the DOM node's content and the generated content
+                       being added. */
+  color: red;
+}
+
+q {
+  color: blue;
+}
+
+q::before,
+q::after {
+  font-size: larger;
+  color: red;
+  background: #cccccc;
+}
+
+q::before {
+  content: open-quote;
+}
+
+q::after {
+  content: close-quote;
+}
+
+ol {
+  counter-reset: items;
+  margin-left: 2em;
+}
+li {
+  counter-increment: items;
+}
+li::marker {
+  content: "item " counters(items, ".", numeric) ": ";
+}
+
+a[href^="https://"]::after {
+  content: " (URL: " attr(href) ")";
+  color: darkgreen;
+}
+
+a::before {
+  content: url("https://mozorg.cdn.mozilla.net/media/img/favicon.ico") /
+    " MOZILLA: ";
+}
+
+#replaced {
+  content: url("mdn.svg");
+}
+
+/* will not show if element replacement is supported */
+div::after {
+  content: " (" attr(id) ")";
+}
+
+div {
+  border: 1px solid;
+  background-color: #cccccc;
+  min-height: 100px;
+  min-width: 100px;
+}
+
+#replaced {
+  content: repeating-linear-gradient(blue 0, orange 10%) /
+    "Gradients and alt text are supported";
+}
+
+#replaced {
+  content: image-set(
+    "1x.png" 1x,
+    "2x.png" 2x
+  ) / "DPI";
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN B Tests</h1>
+
+<p class="topic-games">Game News: A new inFamous is not planned</p>
+
+<p class="topic-weather">
+  Weather for Today: Heat, violent storms and twisters
+</p>
+
+<p class="topic-hot">Trending Article: Must-watch videos of the week</p>
+
+<h2>Paperback Best Sellers</h2>
+<ol>
+  <li>Political Thriller</li>
+  <li class="new-entry">Halloween Stories</li>
+  <li>My Biography</li>
+  <li class="new-entry">Vampire Romance</li>
+</ol>
+
+<p>
+  According to Sir Tim Berners-Lee,
+  <q cite="http://www.w3.org/People/Berners-Lee/FAQ.html#Internet">
+    I was lucky enough to invent the Web at the time when the Internet already
+    existed - and had for a decade and a half.
+  </q>
+  We must understand that there is nothing fundamentally wrong with building on
+  the contributions of others.
+</p>
+<p lang="fr-fr">
+  Mais c'est Magritte qui a dit,
+  <q lang="fr-fr"> Ceci n'est pas une pipe. </q>.
+</p>
+
+<ol>
+  <li>Dogs</li>
+  <li>Cats</li>
+  <li>
+    Birds
+    <ol>
+      <li>Owls</li>
+      <li>Ducks</li>
+      <li>Flightless</li>
+    </ol>
+  </li>
+  <li>Marsupials</li>
+</ol>
+
+<ul>
+  <li><a href="https://mozilla.com">Mozilla</a></li>
+  <li><a href="/">MDN</a></li>
+  <li><a href="https://openwebdocs.org">OpenWebDocs</a></li>
+</ul>
+
+<a href="https://www.mozilla.org/en-US/">Mozilla Home Page</a>
+
+<div id="replaced">This content is replaced!</div>
+
+<div id="replaced">I disappear</div>
+
+<div id="replaced">I disappear!</div>
+
+</body>
+</html>

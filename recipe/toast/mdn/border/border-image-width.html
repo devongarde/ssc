@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-image-width tests</title>
+<style>
+.sid {
+/* Keyword value */
+border-image-width: auto;
+
+/* <length> value */
+border-image-width: 1rem;
+
+/* <percentage> value */
+border-image-width: 25%;
+
+/* <number> value */
+border-image-width: 3;
+
+/* top and bottom | left and right */
+border-image-width: 2em 3em;
+
+/* top | left and right | bottom */
+border-image-width: 5% 15% 10%;
+
+/* top | right | bottom | left */
+border-image-width: 5% 2em 10% auto;
+
+/* Global values */
+border-image-width: inherit;
+border-image-width: initial;
+border-image-width: revert;
+border-image-width: revert-layer;
+border-image-width: unset;
+}
+
+p {
+  border: 20px solid;
+  border-image: url("border.png") 30 round;
+  border-image-width: 16px;
+  padding: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-image-width Tests</h1>
+
+<p>
+  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+  eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+  voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
+  kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+</p>
+
+</body>
+</html>

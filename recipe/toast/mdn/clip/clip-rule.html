@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN clip-rule tests</title>
+<style>
+.sid {
+/* Keywords */
+clip-rule: nonzero;
+clip-rule: evenodd;
+
+/* Global values */
+clip-rule: inherit;
+clip-rule: initial;
+clip-rule: revert;
+clip-rule: revert-layer;
+clip-rule: unset;
+}
+
+#star1 path {
+  clip-rule: evenodd;
+}
+
+#star2 path {
+  clip-rule: nonzero;
+}
+
+#star3 path {
+  fill: none;
+  stroke: black;
+  stroke-width: 1;
+}
+
+div {
+  height: 200px;
+  width: 200px;
+  background-image: conic-gradient(
+    at center,
+    rebeccapurple,
+    green,
+    lightblue,
+    rebeccapurple
+  );
+}
+
+div:first-of-type {
+  clip-path: url("#star1");
+}
+div:last-of-type {
+  clip-path: url("#star2");
+}
+
+#star1 path {
+  clip-rule: evenodd;
+}
+#star2 path {
+  clip-rule: nonzero;
+}
+
+#clipper1 {
+  clip-rule: nonzero;
+}
+#clipper2 {
+  clip-rule: evenodd;
+}
+
+#clipper1 {
+  clip-rule: nonzero;
+}
+#clipper2 {
+  clip-rule: evenodd;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN clip-rule Tests</h1>
+
+<div></div>
+<div></div>
+
+<svg>
+  <clipPath id="star1">
+    <path d="M50,0 21,90 98,35 2,35 79,90z" />
+  </clipPath>
+  <rect clip-path="url(#star1)" width="95" height="95" />
+</svg>
+
+<svg>
+  <clipPath id="star2">
+    <path d="M50,0 21,90 98,35 2,35 79,90z" />
+  </clipPath>
+  <rect clip-path="url(#star2)" width="95" height="95" />
+</svg>
+
+<svg id="star3">
+  <path d="M50,0 21,90 98,35 2,35 79,90z" />
+</svg>
+
+<svg height="0" width="0">
+  <defs>
+    <clipPath id="star1">
+      <path d="M100,0 42,180 196,70 4,70 158,180z" />
+    </clipPath>
+    <clipPath id="star2">
+      <path d="M100,0 42,180 196,70 4,70 158,180z" />
+    </clipPath>
+  </defs>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50">
+  <g stroke="#112233" fill="#bbccdd">
+    <!-- basic rectangle and clipping path visualization follow -->
+    <rect x="10" y="10" width="30" height="30" />
+    <path
+      d="M 65,5 l 20,20 -20,20 -20,-20 20,-20 m 0,10 l 10,10 -10,10 -10,-10 10,-10 z"
+      fill="none"
+      stroke-width="0.5" />
+    <!-- rectangles to be clipped follow -->
+    <rect x="110" y="10" width="30" height="30" clip-path="url(#clipper1)" />
+    <rect x="160" y="10" width="30" height="30" clip-path="url(#clipper2)" />
+  </g>
+  <!-- clipping paths follow -->
+  <clipPath id="clipper1" clipPathUnits="objectBoundingBox">
+    <path
+      d="M 0.5 -0.15 l 0.65 0.65 -0.65,0.65 -0.65,-0.65 0.65,-0.65 m 0,0.33 l 0.33,0.33 -0.33,0.33 -0.33,-0.33 0.33,-0.33 z"
+      clip-rule="evenodd" />
+  </clipPath>
+  <clipPath id="clipper2" clipPathUnits="objectBoundingBox">
+    <path
+      d="M 0.5 -0.15 l 0.65 0.65 -0.65,0.65 -0.65,-0.65 0.65,-0.65 m 0,0.33 l 0.33,0.33 -0.33,0.33 -0.33,-0.33 0.33,-0.33 z"
+      clip-rule="nonzero" />
+  </clipPath>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50">
+  <g stroke="#112233" fill="#bbccdd">
+    <!-- basic rectangle and clipping path visualization follow -->
+    <rect x="10" y="10" width="30" height="30" />
+    <path
+      d="M 65,5 l 20,20 -20,20 -20,-20 20,-20 m 0,10 l 10,10 -10,10 -10,-10 10,-10 z"
+      fill="none"
+      stroke-width="0.5" />
+    <!-- rectangles to be clipped follow -->
+    <rect x="110" y="10" width="30" height="30" clip-path="url(#clipper1)" />
+    <rect x="160" y="10" width="30" height="30" clip-path="url(#clipper2)" />
+  </g>
+  <!-- clipping paths follow -->
+  <clipPath id="clipper1" clipPathUnits="objectBoundingBox">
+    <path
+      d="M 0.5 -0.15 l 0.65 0.65 -0.65,0.65 -0.65,-0.65 0.65,-0.65 m 0,0.33 l -0.33,0.33 0.33,0.33 0.33,-0.33 -0.33,-0.33 z" />
+  </clipPath>
+  <clipPath id="clipper2" clipPathUnits="objectBoundingBox">
+    <path
+      d="M 0.5 -0.15 l 0.65 0.65 -0.65,0.65 -0.65,-0.65 0.65,-0.65 m 0,0.33 l 0.33,0.33 -0.33,0.33 -0.33,-0.33 0.33,-0.33 z" />
+  </clipPath>
+</svg>
+
+</body>
+</html>

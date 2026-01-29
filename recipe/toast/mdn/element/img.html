@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN IMG tests</title>
+<style>
+.fit-picture {
+  width: 250px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN IMG Tests</h1>
+
+<img
+  class="fit-picture"
+  src="/shared-assets/images/examples/grapefruit-slice.jpg"
+  alt="Grapefruit slice atop a pile of other slices" />
+
+<img
+  src="image-file.png"
+  alt="My image file description"
+  attributionsrc="https://a.example/register-source
+                     https://b.example/register-source" />
+
+<img
+  loading="lazy"
+  width="200"
+  height="200"
+  sizes="auto, (max-width: 30em) 100vw, (max-width: 50em) 50vw, calc(33vw - 100px)"
+  srcset="
+    swing-200.jpg   200w,
+    swing-400.jpg   400w,
+    swing-800.jpg   800w,
+    swing-1600.jpg 1600w
+  "
+  src="swing-400.jpg"
+  alt="Kettlebell Swing" />
+
+<img alt="image" src="penguin.jpg" />
+
+<img alt="A Penguin on a beach." src="penguin.jpg" />
+
+<img src="mdn.svg" alt="MDN" role="img" />
+
+<img src="/shared-assets/images/examples/favicon144.png" alt="MDN" />
+
+<a href="https://developer.mozilla.org">
+  <img
+    src="/shared-assets/images/examples/favicon144.png"
+    alt="Visit the MDN site" />
+
+<img
+  src="/shared-assets/images/examples/favicon72.png"
+  alt="MDN"
+  srcset="/shared-assets/images/examples/favicon144.png 2x" />
+
+<img
+  src="clock-demo-200px.png"
+  alt="The time is 12:45."
+  srcset="clock-demo-200px.png 200w, clock-demo-400px.png 400w"
+  sizes="(width <= 600px) 200px, 50vw" />
+
+</a>
+</body>
+</html>

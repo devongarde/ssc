@@ -149,7 +149,9 @@ public:
             nits_.pick (nit_signature_key, es_debug, ec_signing, "verify data: ", private_.data_count (), ", signature: ", sig_sz_); }
         catch (...)
         {   success_ = false; } }
-    const void_ptr signature (::std::size_t* sz = nullptr) const { if (sz != nullptr) *sz = sig_sz_; return signature_; }
+    const void_ptr signature (::std::size_t* sz = nullptr) const
+    {   if (sz != nullptr) *sz = sig_sz_;
+        return signature_; }
     void signature (void_ptr ptr, const ::std::size_t sz) // unclean
     try
     {   sig_sz_ = sz;

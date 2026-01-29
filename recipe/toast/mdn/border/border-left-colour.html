@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-left-colour tests</title>
+<style>
+.sid {
+/* <color> values */
+border-left-color: red;
+border-left-color: #ffbb00;
+border-left-color: rgb(255 0 0);
+border-left-color: hsl(100deg 50% 25% / 75%);
+border-left-color: currentColor;
+border-left-color: transparent;
+
+/* Global values */
+border-left-color: inherit;
+border-left-color: initial;
+border-left-color: revert;
+border-left-color: revert-layer;
+border-left-color: unset;
+}
+
+.my-box {
+  border: solid 0.3em gold;
+  border-left-color: red;
+  width: auto;
+}
+
+.red-text {
+  color: red;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-left-colour Tests</h1>
+
+<div class="my-box">
+  <p>
+    This is a box with a border around it. Note which side of the box is
+    <span class="red-text">red</span>.
+  </p>
+</div>
+
+</body>
+</html>

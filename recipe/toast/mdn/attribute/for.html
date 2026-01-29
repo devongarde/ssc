@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN for tests</title>
+<style>
+label[for="paragraph"] {
+  color: rebeccapurple;
+}
+
+#result {
+  text-align: center;
+}
+
+#result-label {
+  font-size: 16pt;
+}
+
+#result-label,
+#output {
+  display: block;
+}
+</style>
+<script>
+const firstNameEl = document.getElementById("first");
+const lastNameEl = document.getElementById("last");
+const outputEl = document.getElementById("output");
+
+function updateOutput() {
+  const value = `${firstNameEl.value} ${lastNameEl.value}`;
+  outputEl.innerText = value;
+}
+
+updateOutput();
+firstNameEl.addEventListener("input", updateOutput);
+lastNameEl.addEventListener("input", updateOutput);
+</script>
+</head>
+
+<body>
+
+<h1>MDN for Tests</h1>
+
+<p>
+  <label>First Name (no "for" attribute):</label>
+  <input id="first" type="text" value="Jane" />
+</p>
+<p>
+  <label for="last">Last Name (w/ "for" attribute):</label>
+  <input id="last" type="text" value="Doe" />
+</p>
+<p id="result">
+  <strong id="result-label">Full Name:</strong>
+  <output for="first last" aria-labelledby="result-label" id="output"></output>
+</p>
+
+<label for="username">Your name</label> <input type="text" id="username" />
+
+<input type="range" id="b" name="b" value="50" /> +
+<input type="number" id="a" name="a" value="10" /> =
+<output name="result" for="a b">60</output>
+
+</body>
+</html>

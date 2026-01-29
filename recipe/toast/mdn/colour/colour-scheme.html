@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN colour-scheme tests</title>
+<style>
+.sid {
+color-scheme: normal;
+color-scheme: light;
+color-scheme: dark;
+color-scheme: light dark;
+color-scheme: only light;
+
+/* Global values */
+color-scheme: inherit;
+color-scheme: initial;
+color-scheme: revert;
+color-scheme: revert-layer;
+color-scheme: unset;
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+header {
+  color-scheme: only light;
+}
+main {
+  color-scheme: light dark;
+}
+footer {
+  color-scheme: only dark;
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: light) {
+  .element {
+    color: black;
+    background-color: white;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .element {
+    color: white;
+    background-color: black;
+  }
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+.element {
+  color: light-dark(black, white);
+  background-color: light-dark(white, black);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN colour-scheme Tests</h1>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN position-try-fallbacks tests</title>
+<style>
+.sid {
+/* protection of sanity */
+anchor-name : --custom-try-option;
+anchor-name : --custom-try-option1;
+anchor-name : --custom-try-option2;
+
+/* Default value: no try fallback options */
+position-try-fallbacks: none;
+
+/* Single try option */
+position-try-fallbacks: flip-block;
+position-try-fallbacks: top;
+position-try-fallbacks: --custom-try-option;
+
+/* Multiple value combination option */
+position-try-fallbacks: flip-block flip-inline;
+
+/* Multiple values */
+position-try-fallbacks: flip-block, flip-inline;
+position-try-fallbacks: top, right, bottom;
+position-try-fallbacks: --custom-try-option1, --custom-try-option2;
+position-try-fallbacks:
+  flip-block,
+  flip-inline,
+  flip-block flip-inline;
+position-try-fallbacks:
+  flip-block,
+  --custom-try-option,
+  --custom-try-option flip-inline,
+  right;
+
+/* Global values */
+position-try-fallbacks: inherit;
+position-try-fallbacks: initial;
+position-try-fallbacks: revert;
+position-try-fallbacks: revert-layer;
+position-try-fallbacks: unset;
+}
+
+body {
+  width: 1500px;
+  height: 500px;
+}
+
+.anchor {
+  anchor-name: --my-anchor;
+  margin: 100px 350px;
+}
+
+.infobox {
+  position: fixed;
+  position-anchor: --my-anchor;
+  position-area: top left;
+
+  position-try-fallbacks: flip-block, flip-inline;
+  position-try: flip-block, flip-inline;
+}
+
+.infobox {
+  position: fixed;
+  position-anchor: --my-anchor;
+  position-area: top left;
+
+  position-try:
+    flip-block,
+    flip-inline,
+    flip-block flip-inline;
+  position-try-fallbacks:
+    flip-block,
+    flip-inline,
+    flip-block flip-inline;
+}
+
+.infobox {
+  position: fixed;
+  position-anchor: --my-anchor;
+  position-area: top left;
+
+  position-try:
+    top, top right, right,
+    bottom right, bottom,
+    bottom left, left;
+
+  position-try-fallbacks:
+    top, top right, right,
+    bottom right, bottom,
+    bottom left, left;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN position-try-fallbacks Tests</h1>
+
+<div class="anchor">⚓︎</div>
+
+<div class="infobox">
+  <p>This is an information box.</p>
+</div>
+
+</body>
+</html>

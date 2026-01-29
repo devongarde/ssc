@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN nonce tests</title>
+<style>
+script[nonce~="whatever"] {
+  background: url("https://example.com/nonce?whatever");
+}
+</style>
+<script nonce="8IBTHwOdqNKAWeKl7plt8g==">
+import crypto from "node:crypto";
+
+crypto.randomBytes(16).toString("base64");
+// '8IBTHwOdqNKAWeKl7plt8g=='
+</script>
+
+</head>
+
+<body>
+
+<h1>MDN nonce Tests</h1>
+
+<p>
+Note: whoever defined this attribute was, I sincerely hope, too naïve to know what the word actually means.
+</p>
+
+</body>
+</html>

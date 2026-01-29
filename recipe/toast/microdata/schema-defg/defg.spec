@@ -80,7 +80,7 @@ PASS ../toast/microdata/schema-defg/event.html
 136 unrecognised_value
 137 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 140 unrecognised_value
-143 invalid_attribute_version wrong_version svg_rdf bad_year bad_year
+143 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year
 144 unrecognised_value
 146 unrecognised_value
 151 unrecognised_value

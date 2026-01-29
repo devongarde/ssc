@@ -49,7 +49,7 @@ template < > struct type_master < t_angle > : type_master < t_real >
         else
         {   type_master < t_real > :: set_value (nits, v, ss);
             if (good ())
-                if ((value_ >= max) || (value_ <= (-1 * static_cast < double> (max))))
+                if ((value_ > max) || (value_ < (-1 * static_cast < double> (max))))
                     if (v.has_svg ()) nits.pick (nit_angle, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (s), " should closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
                     else if (v.has_css ()) nits.pick (nit_angle, ed_css_20, "4.3.7 Angles", es_error, ec_type, quote (s), " should be closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
                     else nits.pick (nit_angle,es_error, ec_type, quote (s), " should be closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
@@ -277,6 +277,7 @@ template < > struct type_master < t_glyphnames > : public string_vector < t_glyp
 template < > struct type_master < t_icccolour > : tidy_string < t_icccolour >
 {   using tidy_string < t_icccolour > :: tidy_string;
     static e_animation_type animation_type () noexcept { return at_colour; }
+    static bool is_colourful () { return true; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_icccolour > :: set_value (nits, v, s);
         if (tidy_string < t_icccolour > :: empty ())

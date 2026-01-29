@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN container-type tests</title>
+<style>
+.sid {
+/* Keyword values */
+container-type: normal;
+container-type: size;
+container-type: inline-size;
+container-type: scroll-state;
+
+/* Two values */
+container-type: size scroll-state;
+
+/* Global Values */
+container-type: inherit;
+container-type: initial;
+container-type: revert;
+container-type: revert-layer;
+container-type: unset;
+}
+
+.container {
+  container-type: inline-size;
+  width: 300px;
+  height: 120px;
+}
+
+.wide {
+  width: 500px;
+}
+
+@container (width > 400px) {
+  .card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN container-type Tests</h1>
+
+<div class="container">
+  <div class="card">
+    <h3>Normal card</h3>
+    <div class="content">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua.
+    </div>
+  </div>
+</div>
+
+<div class="container wide">
+  <div class="card">
+    <h3>Wider card</h3>
+    <div class="content">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua.
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

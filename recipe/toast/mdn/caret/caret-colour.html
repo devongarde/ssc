@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN caret-colour tests</title>
+<style>
+.sid {
+/* Keyword values */
+caret-color: auto;
+caret-color: transparent;
+caret-color: currentColor;
+
+/* <color> values */
+caret-color: red;
+caret-color: #5729e9;
+caret-color: rgb(0 200 0);
+caret-color: hsl(228deg 4% 24% / 80%);
+
+/* Global values */
+caret-color: inherit;
+caret-color: initial;
+caret-color: revert;
+caret-color: revert-layer;
+caret-color: unset;
+}
+
+input {
+  caret-color: auto;
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+input.custom {
+  caret-color: orange;
+}
+
+p.custom {
+  caret-color: green;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN caret-colour Tests</h1>
+
+<input value="This field uses a default caret." size="64" />
+<input class="custom" value="I have a custom caret color!" size="64" />
+<p contenteditable class="custom">
+  This paragraph can be edited, and its caret has a custom color as well!
+</p>
+
+</body>
+</html>

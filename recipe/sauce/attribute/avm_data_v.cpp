@@ -185,6 +185,7 @@ hav_t havt_video [] =
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_video, a_transout },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_video, a_type },
     { { HTML_JAN08 }, { HTML_UNDEF }, elem_video, a_width },
+    { { HTML_SEP12 }, { HTML_UNDEF }, elem_video, a_x_webkit_airplay },
     SVG_ANIMATION_TIMING_ATTRIBUTES (elem_video),
     SVG_BOX_ATTRIBUTES (elem_video),
     SVG_CONDITIONAL_ATTRIBUTES (elem_video),

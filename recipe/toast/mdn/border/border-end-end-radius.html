@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-end-end-radius tests</title>
+<style>
+.sid {
+/* <length> values */
+/* With one value the corner will be a circle */
+border-end-end-radius: 10px;
+border-end-end-radius: 1em;
+
+/* With two values the corner will be an ellipse */
+border-end-end-radius: 1em 2em;
+
+/* Global values */
+border-end-end-radius: inherit;
+border-end-end-radius: initial;
+border-end-end-radius: revert;
+border-end-end-radius: revert-layer;
+border-end-end-radius: unset;
+}
+
+div {
+  background-color: rebeccapurple;
+  width: 120px;
+  height: 120px;
+  border-end-end-radius: 10px;
+}
+
+.exampleText {
+  writing-mode: vertical-rl;
+  padding: 10px;
+  background-color: white;
+  border-end-end-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-end-end-radius Tests</h1>
+
+<div>
+  <p class="exampleText">Example</p>
+</div>
+
+</body>
+</html>

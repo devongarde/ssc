@@ -38,6 +38,7 @@ typedef typed_attribute < t_actiontype, a_actiontype > attr_actiontype;
 typedef typed_attribute < t_existential, a_active > attr_active;
 typedef typed_attribute < t_bool, a_activate > attr_activate;
 typedef typed_attribute < t_additive, a_additive > attr_additive;
+typedef typed_attribute < t_allow_deny, a_airplay > attr_airplay;
 typedef typed_attribute < t_align, a_align > attr_align;
 typedef typed_attribute < t_alignment_baseline, a_alignment_baseline > attr_alignment_baseline;
 typedef typed_attribute < t_bools, a_alignmentscope > attr_alignmentscope;
@@ -132,6 +133,7 @@ typedef typed_attribute < t_url, a_atom_uri > attr_atom_uri;
 typedef typed_attribute < t_text, a_atom_version > attr_atom_version;
 typedef typed_attribute < t_attributename, a_attributename > attr_attributename;
 typedef typed_attribute < t_attributetype, a_attributetype > attr_attributetype;
+typedef typed_attribute < t_urls, a_attributionsrc > attr_attributionsrc;
 typedef typed_attribute < t_html_boolean, a_audio > attr_audio;
 typedef typed_attribute < t_audio_level, a_audio_level > attr_audio_level;
 typedef typed_attribute < t_html_boolean, a_autobuffer > attr_autobuffer;
@@ -165,6 +167,8 @@ typedef typed_attribute < t_blocking, a_blocking > attr_blocking;
 typedef typed_attribute < t_border, a_border > attr_border;
 typedef typed_attribute < t_unsigned, a_bottommargin > attr_bottommargin;
 typedef typed_attribute < t_existential, a_box > attr_box;
+typedef typed_attribute < t_existential, a_browsingtopics > attr_browsingtopics;
+// a_browsingtopics
 typedef typed_attribute < t_existential, a_bubbles > attr_bubbles;
 typedef typed_attribute < t_text, a_buffered > attr_buffered;
 typedef typed_attribute < t_buffered_rendering, a_buffered_rendering > attr_buffered_rendering;
@@ -233,6 +237,7 @@ typedef typed_attribute < t_existential, a_continue > attr_continue;
 typedef typed_attribute < t_html_boolean, a_controls > attr_controls;
 typedef typed_attribute < t_controlslist, a_controlslist > attr_controlslist;
 typedef typed_attribute < t_coords, a_coords > attr_coords;
+typedef typed_attribute < t_coords, a_credentialless > attr_credentialless;
 typedef typed_attribute < t_cors, a_crossorigin > attr_crossorigin;
 typedef typed_attribute < t_crossout, a_crossout > attr_crossout;
 typedef typed_attribute < t_csp, a_csp > attr_csp;
@@ -248,6 +253,7 @@ typedef typed_attribute < t_url, a_datasrc > attr_datasrc;
 typedef typed_attribute < t_data, a_datawild > attr_datastar;
 typedef typed_attribute < t_curie, a_datatype > attr_datatype;
 typedef typed_attribute < t_datetime, a_datetime > attr_datetime;
+typedef typed_attribute < t_char, a_decimalcharacter > attr_decimalcharacter;
 typedef typed_attribute < t_char, a_decimalpoint > attr_decimalpoint;
 typedef typed_attribute < t_existential, a_declare > attr_declare;
 typedef typed_attribute < t_decoding, a_decoding > attr_decoding;
@@ -284,6 +290,7 @@ typedef typed_attribute < t_edgemode, a_edgemode > attr_edgemode;
 typedef typed_attribute < t_edit, a_edit > attr_edit;
 typedef typed_attribute < t_editable, a_editable > attr_editable;
 typedef typed_attribute < t_effect, a_effect > attr_effect;
+typedef typed_attribute < t_text, a_elementtiming > attr_elementtiming;
 typedef typed_attribute < t_angle_a, a_elevation > attr_elevation;
 typedef typed_attribute < t_text, a_encoding > attr_encoding;
 typedef typed_attribute < t_enctype, a_enctype > attr_enctype;
@@ -421,6 +428,7 @@ typedef typed_attribute < t_generic, a_instanceof > attr_instanceof;
 typedef typed_attribute < t_text, a_integrity > attr_integrity;
 typedef typed_attribute < t_intent, a_intent > attr_intent;
 typedef typed_attribute < t_real, a_intercept > attr_intercept;
+typedef typed_attribute < t_idref, a_interestfor > attr_interestfor;
 typedef typed_attribute < t_text, a_intrinsicsize > attr_intrinsicsize;
 typedef typed_attribute < t_html_boolean, a_irrelevant > attr_irrelevant;
 typedef typed_attribute < t_is, a_is > attr_is;
@@ -531,6 +539,8 @@ typedef typed_attribute < t_mode, a_mode > attr_mode;
 typedef typed_attribute < t_bool, a_movablelimits > attr_movablelimits;
 typedef typed_attribute < t_mah, a_mozactionhint > attr_mozactionhint;
 typedef typed_attribute < t_existential, a_mozbrowser > attr_mozbrowser;
+typedef typed_attribute < t_existential, a_moz_opaque > attr_moz_opaque;
+// a_moz_opaque
 typedef typed_attribute < t_text, a_mrss_algo > attr_mrss_algo;
 typedef typed_attribute < t_real, a_mrss_average > attr_mrss_average;
 typedef typed_attribute < t_unsigned, a_mrss_bitrate > attr_mrss_bitrate;
@@ -650,6 +660,9 @@ typedef typed_attribute < t_script, a_onformdata > attr_onformdata;
 typedef typed_attribute < t_script, a_onforminput > attr_onforminput;
 typedef typed_attribute < t_script, a_onfullscreenchange > attr_onfullscreenchange;
 typedef typed_attribute < t_script, a_onfullscreenerror > attr_onfullscreenerror;
+typedef typed_attribute < t_script, a_ongesturechange > attr_ongesturechange;
+typedef typed_attribute < t_script, a_ongestureend > attr_ongestureend;
+typedef typed_attribute < t_script, a_ongesturestart > attr_ongesturestart;
 typedef typed_attribute < t_script, a_onhashchange > attr_onhashchange;
 typedef typed_attribute < t_script, a_oninput > attr_oninput;
 typedef typed_attribute < t_script, a_oninvalid > attr_oninvalid;
@@ -696,6 +709,8 @@ typedef typed_attribute < t_script, a_onreset > attr_onreset;
 typedef typed_attribute < t_script, a_onresize > attr_onresize;
 typedef typed_attribute < t_script, a_onscroll > attr_onscroll;
 typedef typed_attribute < t_script, a_onscrollend > attr_onscrollend;
+typedef typed_attribute < t_script, a_onscrollsnapchange > attr_onscrollsnapchange;
+typedef typed_attribute < t_script, a_onscrollsnapchanging > attr_onscrollsnapchanging;
 typedef typed_attribute < t_script, a_onsecuritypolicyviolation > attr_onsecuritypolicyviolation;
 typedef typed_attribute < t_script, a_onseeking > attr_onseeking;
 typedef typed_attribute < t_script, a_onselect > attr_onselect;
@@ -718,6 +733,10 @@ typedef typed_attribute < t_script, a_onwaiting > attr_onwaiting;
 typedef typed_attribute < t_script, a_onwebkitanimationend > attr_onwebkitanimationend;
 typedef typed_attribute < t_script, a_onwebkitanimationiteration > attr_onwebkitanimationiteration;
 typedef typed_attribute < t_script, a_onwebkitanimationstart > attr_onwebkitanimationstart;
+typedef typed_attribute < t_script, a_onwebkitmouseforcechanged > attr_onwebkitmouseforcechanged;
+typedef typed_attribute < t_script, a_onwebkitmouseforcedown > attr_onwebkitmouseforcedown;
+typedef typed_attribute < t_script, a_onwebkitmouseforceup > attr_onwebkitmouseforceup;
+typedef typed_attribute < t_script, a_onwebkitmouseforcewillbegin > attr_onwebkitmouseforcewillbegin;
 typedef typed_attribute < t_script, a_onwebkittransitionend > attr_onwebkittransitionend;
 typedef typed_attribute < t_script, a_onwheel > attr_onwheel;
 typedef typed_attribute < t_script, a_onzoom > attr_onzoom;
@@ -772,6 +791,7 @@ typedef typed_attribute < t_preserveaspectratio, a_preserveaspectratio > attr_pr
 typedef typed_attribute < t_idref, a_prevfocus > attr_prevfocus;
 typedef typed_attribute < t_coordinatesystem, a_primitiveunits > attr_primitiveunits;
 typedef typed_attribute < t_print, a_print > attr_print;
+typedef typed_attribute < t_generic, a_privatetoken > attr_privatetoken;
 typedef typed_attribute < t_urls, a_profile > attr_profile;
 typedef typed_attribute < t_generic, a_prompt > attr_prompt;
 typedef typed_attribute < t_propagate, a_propagate > attr_propagate;
@@ -1068,6 +1088,7 @@ typedef typed_attribute < t_xmlns, a_xmlns > attr_xmlns;
 typedef typed_attribute < t_generic, a_xref > attr_xref;
 typedef typed_attribute < t_xmlspace, a_xmlspace > attr_xmlspace;
 typedef typed_attribute < t_url, a_xsischemaloc > attr_xsischemaloc;
+typedef typed_attribute < t_allow_deny, a_x_webkit_airplay > attr_x_webkit_airplay;
 typedef typed_attribute < t_measure, a_y1 > attr_y1;
 typedef typed_attribute < t_measure, a_y2 > attr_y2;
 typedef typed_attribute < t_measure_or_more, a_y > attr_y;
@@ -1093,6 +1114,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_active, \
     attr_activate, \
     attr_additive, \
+    attr_airplay, \
     attr_align, \
     attr_alignment_baseline, \
     attr_alignmentscope, \
@@ -1187,6 +1209,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_atom_version, \
     attr_attributename, \
     attr_attributetype, \
+    attr_attributionsrc, \
     attr_audio, \
     attr_audio_level, \
     attr_autobuffer, \
@@ -1219,6 +1242,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_border, \
     attr_bottommargin, \
     attr_box, \
+    attr_browsingtopics, \
     attr_bubbles, \
     attr_buffered, \
     attr_buffered_rendering, \
@@ -1285,6 +1309,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_controls, \
     attr_controlslist, \
     attr_coords, \
+    attr_credentialless, \
     attr_crossorigin, \
     attr_crossout, \
     attr_csp, \
@@ -1300,6 +1325,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_datastar, \
     attr_datatype, \
     attr_datetime, \
+    attr_decimalcharacter, \
     attr_decimalpoint, \
     attr_declare, \
     attr_decoding, \
@@ -1336,6 +1362,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_edit, \
     attr_editable, \
     attr_effect, \
+    attr_elementtiming, \
     attr_elevation, \
     attr_encoding, \
     attr_enctype, \
@@ -1478,6 +1505,7 @@ const e_attribute last_1 = a_glyphref;
     attr_integrity, \
     attr_intent, \
     attr_intercept, \
+    attr_interestfor, \
     attr_intrinsicsize, \
     attr_irrelevant, \
     attr_is, \
@@ -1588,6 +1616,7 @@ const e_attribute last_1 = a_glyphref;
     attr_movablelimits, \
     attr_mozactionhint, \
     attr_mozbrowser, \
+    attr_moz_opaque, \
     attr_mrss_algo, \
     attr_mrss_average, \
     attr_mrss_bitrate, \
@@ -1707,6 +1736,9 @@ const e_attribute last_1 = a_glyphref;
     attr_onforminput, \
     attr_onfullscreenchange, \
     attr_onfullscreenerror, \
+    attr_ongesturechange, \
+    attr_ongestureend, \
+    attr_ongesturestart, \
     attr_onhashchange, \
     attr_oninput, \
     attr_oninvalid, \
@@ -1753,6 +1785,8 @@ const e_attribute last_1 = a_glyphref;
     attr_onresize, \
     attr_onscroll, \
     attr_onscrollend, \
+    attr_onscrollsnapchange, \
+    attr_onscrollsnapchanging, \
     attr_onsecuritypolicyviolation, \
     attr_onseeking, \
     attr_onselect, \
@@ -1775,6 +1809,10 @@ const e_attribute last_1 = a_glyphref;
     attr_onwebkitanimationend, \
     attr_onwebkitanimationiteration, \
     attr_onwebkitanimationstart, \
+    attr_onwebkitmouseforcechanged, \
+    attr_onwebkitmouseforcedown, \
+    attr_onwebkitmouseforceup, \
+    attr_onwebkitmouseforcewillbegin, \
     attr_onwebkittransitionend, \
     attr_onwheel, \
     attr_onzoom, \
@@ -1834,6 +1872,7 @@ const e_attribute last_2 = a_overlay_host;
     attr_prevfocus, \
     attr_primitiveunits, \
     attr_print, \
+    attr_privatetoken, \
     attr_profile, \
     attr_prompt, \
     attr_propagate, \
@@ -2130,6 +2169,7 @@ const e_attribute last_2 = a_overlay_host;
     attr_xmlspace, \
     attr_xref, \
     attr_xsischemaloc, \
+    attr_x_webkit_airplay, \
     attr_y1, \
     attr_y2, \
     attr_y, \

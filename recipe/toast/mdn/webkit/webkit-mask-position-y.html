@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN -webkit-mask-position-y- tests</title>
+<style>
+.sid
+{   /* Keyword values */
+    -webkit-mask-position-y: top;
+    -webkit-mask-position-y: center;
+    -webkit-mask-position-y: bottom;
+
+    /* <percentage> values */
+    -webkit-mask-position-y: 100%;
+    -webkit-mask-position-y: -50%;
+
+    /* <length> values */
+    -webkit-mask-position-y: 50px;
+    -webkit-mask-position-y: -1cm;
+
+    /* Multiple values */
+    -webkit-mask-position-y:
+      50px,
+      25%,
+      -3em;
+
+    /* Global values */
+    -webkit-mask-position-y: inherit;
+    -webkit-mask-position-y: initial;
+    -webkit-mask-position-y: revert;
+    -webkit-mask-position-y: revert-layer;
+    -webkit-mask-position-y: unset; }
+
+.exampleOne {
+  -webkit-mask-image: url("mask.png");
+  -webkit-mask-position-y: bottom;
+}
+
+.exampleTwo {
+  -webkit-mask-image: url("mask.png");
+  -webkit-mask-position-y: 25%;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN -webkit-mask-position-y- Tests</h1>
+
+<p>
+the MDN example (above) explicitly notes multiple values, but the formal syntax
+(at https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/-webkit-mask-position-y)
+specifically excludes them.
+</p>
+
+</body>
+</html>

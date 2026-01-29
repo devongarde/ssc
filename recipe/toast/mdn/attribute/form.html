@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN form tests</title>
+</head>
+
+<body>
+
+<h1>MDN form Tests</h1>
+
+<form id="externalForm"></form>
+<form id="internalForm">
+  <label for="username">Username:</label>
+  <input form="externalForm" type="text" name="username" id="username" />
+</form>
+
+<form id="exampleForm"></form>
+
+<fieldset form="exampleForm">
+  <legend>Login information</legend>
+  <label
+    >Username: <input form="exampleForm" type="text" name="username"
+  /></label>
+  <label>Password: <input type="password" name="password" /></label>
+</fieldset>
+
+<form id="calcForm">
+  <label>First number: <input id="a" value="2" type="number" /></label>
+  <label>Second number: <input id="b" value="3" type="number" /></label>
+  <label>Sum: <output name="result" for="a b" form="calcForm">5</output></label>
+</form>
+
+<form id="loginForm">
+  <label>Username: <input type="text" name="username" /></label>
+</form>
+
+<label
+  >Password: <input form="loginForm" type="password" name="password"
+/></label>
+<label>
+  Choose an option:
+  <select form="loginForm" name="options">
+    <option value="A">A</option>
+    <option value="B">B</option>
+  </select>
+</label>
+<label
+  >Description:
+  <textarea form="loginForm" rows="4" name="description">
+Hello, World!</textarea
+  >
+</label>
+<button form="loginForm" type="submit" name="submitLogin" value="Login">
+  Submit
+</button>
+
+<form id="targetForm">
+  <input type="text" name="targetInput" />
+</form>
+<form id="parentForm">
+  <button form="targetForm" type="submit" name="submitTarget" value="Target">
+    Submit target form
+  </button>
+</form>
+
+</body>
+</html>

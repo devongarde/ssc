@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "css/typed_property.h"
 #include "css/arguments.h"
+#include "css/css_state.h"
 
 class descriptor
 {   property_v_ptr dsc_;
@@ -35,7 +36,7 @@ public:
     void validate (arguments& args);
     void accumulate (stats_t* , const element_bitset& ) const;
     void shadow (::std::stringstream& ss, arguments& args);
-    const ::std::string name () const { return name_; } 
+    const ::std::string name () const { return name_; }
     ::std::string rpt () const; };
 
 typedef ::std::vector < descriptor > vdsc_t;

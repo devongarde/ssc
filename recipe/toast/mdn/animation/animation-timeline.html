@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN animation-timeline tests</title>
+<style>
+.sid
+{
+/* Keyword */
+animation-timeline: none;
+animation-timeline: auto;
+
+/* Named timeline */
+animation-timeline: --timeline_name;
+
+/* Anonymous scroll progress timeline */
+animation-timeline: scroll();
+animation-timeline: scroll(x root);
+
+/* Anonymous view progress timeline */
+animation-timeline: view();
+animation-timeline: view(inline);
+animation-timeline: view(x 200px auto);
+
+/* Multiple values */
+animation-timeline: --progress-bar-timeline, --carousel-timeline;
+animation-timeline: auto, view(20% 80%), none, scroll(inline nearest);
+
+/* Global values */
+animation-timeline: inherit;
+animation-timeline: initial;
+animation-timeline: revert;
+animation-timeline: revert-layer;
+animation-timeline: unset;
+}
+
+article {
+  display: flex;
+  gap: 10px;
+  text-align: center;
+}
+section {
+  background-color: beige;
+  padding: 20px;
+}
+section::after {
+  content: attr(id);
+  display: block;
+}
+div {
+  height: 100px;
+  width: 100px;
+  background-color: magenta;
+  animation: rotate 2s infinite alternate linear;
+}
+@keyframes rotate {
+  to {
+    rotate: 1turn;
+  }
+}
+
+#none div {
+  animation-timeline: none;
+}
+#auto div {
+  animation-timeline: auto;
+}
+
+#container {
+  display: flex;
+  width: 300px;
+  border: 1px solid;
+
+  overflow-x: scroll;
+  scroll-timeline-axis: inline;
+  scroll-timeline-name: --square-timeline;
+}
+
+.stretcher {
+  flex: 0 0 200px;
+}
+
+#shape {
+  background-color: deeppink;
+  width: 100px;
+  height: 100px;
+  border-radius: 25px;
+  corner-shape: notch;
+
+  animation: rotateAnimation 1ms linear 2 alternate;
+  animation-timeline: --square-timeline;
+}
+
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#shape {
+  animation-timeline: scroll(inline nearest);
+}
+
+@keyframes animationEffect {
+  0% {
+    opacity: 0;
+    scale: 0;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.animatedElement {
+  animation: animationEffect 1ms linear;
+}
+
+.self {
+  view-timeline-name: --selfScrollerElement;
+  animation-timeline: --selfScrollerElement;
+}
+.container {
+  view-timeline-name: --parentScrollerElement;
+}
+.parent {
+  animation-timeline: --parentScrollerElement;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN animation-timeline Tests</h1>
+
+<article>
+  <section id="none">
+    <div></div>
+  </section>
+  <section id="auto">
+    <div></div>
+  </section>
+  <section id="default">
+    <div></div>
+  </section>
+</article>
+
+<div id="container">
+  <div class="stretcher"></div>
+  <div class="stretcher">
+    <div id="shape"></div>
+  </div>
+  <div class="stretcher"></div>
+</div>
+
+<div class="animatedElement self">SELF</div>
+<div class="animatedElement parent">PARENT</div>
+
+</body>
+</html>

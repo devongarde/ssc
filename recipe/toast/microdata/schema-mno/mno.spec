@@ -161,7 +161,7 @@ PASS ../toast/microdata/schema-mno/offer-1.html
 129 unrecognised_value
 130 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 133 unrecognised_value
-136 invalid_attribute_version wrong_version svg_rdf bad_year bad_year
+136 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year
 137 unrecognised_value
 139 unrecognised_value
 144 unrecognised_value

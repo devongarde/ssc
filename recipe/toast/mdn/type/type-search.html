@@ -1,0 +1,132 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN type-search tests</title>
+<style>
+label {
+  display: block;
+  font:
+    1rem "Fira Sans",
+    sans-serif;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+
+input:invalid ~ span::after {
+  content: "✖";
+  padding-left: 5px;
+  position: absolute;
+}
+
+input:valid ~ span::after {
+  content: "✓";
+  padding-left: 5px;
+  position: absolute;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN type-search Tests</h1>
+
+<label for="site-search">Search the site:</label>
+<input type="search" id="site-search" name="q" />
+
+<button>Search</button>
+
+<form>
+  <div>
+    <input type="search" id="mySearch" name="q" />
+    <button>Search</button>
+  </div>
+</form>
+
+<form>
+  <div>
+    <input
+      type="search"
+      id="mySearch"
+      name="q"
+      placeholder="Search the site…" />
+    <button>Search</button>
+  </div>
+</form>
+
+<search>
+  <form>
+    <div>
+      <input
+        type="search"
+        id="mySearch"
+        name="q"
+        placeholder="Search the site…"
+        aria-label="Search through site content" />
+      <button>Search</button>
+    </div>
+  </form>
+</search>
+
+<form>
+  <div>
+    <input
+      type="search"
+      id="mySearch"
+      name="q"
+      placeholder="Search the site…"
+      size="30" />
+    <button>Search</button>
+  </div>
+
+<form>
+  <div>
+    <input
+      type="search"
+      id="mySearch"
+      name="q"
+      placeholder="Search the site…"
+      required />
+    <button>Search</button>
+    <span class="validity"></span>
+  </div>
+</form>
+
+<form>
+  <div>
+    <label for="mySearch">Search for user</label>
+    <input
+      type="search"
+      id="mySearch"
+      name="q"
+      placeholder="User IDs are 4–8 characters in length"
+      required
+      size="30"
+      minlength="4"
+      maxlength="8" />
+    <button>Search</button>
+    <span class="validity"></span>
+  </div>
+</form>
+
+<form>
+  <div>
+    <label for="mySearch">Search for product by ID:</label>
+    <input
+      type="search"
+      id="mySearch"
+      name="q"
+      placeholder="two letters followed by four numbers"
+      required
+      size="30"
+      pattern="[A-z]{2}[0-9]{4}" />
+    <button>Search</button>
+    <span class="validity"></span>
+  </div>
+</form>
+
+</form>
+</body>
+</html>

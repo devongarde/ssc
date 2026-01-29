@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN contain tests</title>
+<style>
+.sid {
+/* Keyword values */
+contain: none;
+contain: strict;
+contain: content;
+contain: size;
+contain: inline-size;
+contain: layout;
+contain: style;
+contain: paint;
+
+/* Multiple keywords */
+contain: size paint;
+contain: size layout paint;
+contain: inline-size layout;
+
+/* Global values */
+contain: inherit;
+contain: initial;
+contain: revert;
+contain: revert-layer;
+contain: unset;
+}
+
+div {
+  width: 100px;
+  height: 100px;
+  background: red;
+  margin: 10px;
+  font-size: 20px;
+}
+
+.contain-paint {
+  contain: paint;
+}
+
+.card {
+  width: 70%;
+  height: 90px;
+}
+
+.fixed {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  background: coral;
+}
+
+.float {
+  float: left;
+  margin: 10px;
+  background: aquamarine;
+}
+
+.contain-layout {
+  contain: layout;
+}
+
+body {
+  counter-reset: list-items;
+}
+
+li::before {
+  counter-increment: list-items;
+  content: counter(list-items) ": ";
+}
+
+.container {
+  contain: style;
+}
+
+body {
+  quotes: "[" "]" "‹" "›";
+}
+.open-quote::before {
+  content: open-quote;
+}
+
+.close-quote::after {
+  content: close-quote;
+}
+
+.contain-style {
+  contain: style;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN contain Tests</h1>
+
+<div class="contain-paint">
+  <p>This text will be clipped to the bounds of the box.</p>
+</div>
+<div>
+  <p>This text will not be clipped to the bounds of the box.</p>
+</div>
+
+<div class="card contain-layout">
+  <h2>Card 1</h2>
+  <div class="fixed"><p>Fixed box 1</p></div>
+  <div class="float"><p>Float box 1</p></div>
+</div>
+<div class="card">
+  <h2>Card 2</h2>
+  <div class="fixed"><p>Fixed box 2</p></div>
+  <div class="float"><p>Float box 2</p></div>
+</div>
+<div class="card">
+  <h2>Card 3</h2>
+  <!-- ... -->
+</div>
+
+<ul>
+  <li>Item A</li>
+  <li>Item B</li>
+  <li class="container">Item C</li>
+  <li>Item D</li>
+  <li>Item E</li>
+</ul>
+
+<!-- With style containment -->
+<span class="open-quote">
+  outer
+  <span class="contain-style">
+    <span class="open-quote">inner</span>
+  </span>
+</span>
+<span class="close-quote">close</span>
+<br />
+<!-- Without containment -->
+<span class="open-quote">
+  outer
+  <span>
+    <span class="open-quote">inner</span>
+  </span>
+</span>
+<span class="close-quote">close</span>
+
+</body>
+</html>

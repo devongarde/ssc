@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN container-name tests</title>
+<style>
+.sid {
+container-name: none;
+
+/* A single name */
+container-name: my-layout;
+
+/* Multiple names */
+container-name: my-page-layout my-component-library;
+
+/* Global Values */
+container-name: inherit;
+container-name: initial;
+container-name: revert;
+container-name: revert-layer;
+container-name: unset;
+}
+
+.post-meta {
+  container-type: inline-size;
+}
+
+.post-excerpt {
+  container-type: inline-size;
+  container-name: excerpt;
+}
+
+@container excerpt (width >= 400px) {
+  p {
+    visibility: hidden;
+  }
+}
+
+@container (width >= 400px) {
+  p {
+    font-size: 2rem;
+  }
+}
+
+.post-meta {
+  container-type: inline-size;
+  container-name: meta card;
+}
+
+@container meta (width <= 500px) {
+  p {
+    visibility: hidden;
+  }
+}
+
+@container card (width <= 200px) {
+  h2 {
+    font-size: 1.5em;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN container-name Tests</h1>
+
+<div class="card">
+  <div class="post-meta">
+    <h2>Card title</h2>
+    <p>My post details.</p>
+  </div>
+  <div class="post-excerpt">
+    <p>
+      A preview of my <a href="https://example.com">blog post</a> about cats.
+    </p>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN caption-side tests</title>
+<style>
+.sid {
+/* Directional values */
+caption-side: top;
+caption-side: bottom;
+
+/* Global values */
+caption-side: inherit;
+caption-side: initial;
+caption-side: revert;
+caption-side: revert-layer;
+caption-side: unset;
+}
+
+.top caption {
+  caption-side: top;
+}
+
+.bottom caption {
+  caption-side: bottom;
+}
+
+table {
+  border: 1px solid red;
+}
+
+td {
+  border: 1px solid blue;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN caption-side Tests</h1>
+
+<table class="top">
+  <caption>
+    Caption ABOVE the table
+  </caption>
+  <tbody>
+    <tr>
+      <td>Some data</td>
+      <td>Some more data</td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+
+<table class="bottom">
+  <caption>
+    Caption BELOW the table
+  </caption>
+  <tbody>
+    <tr>
+      <td>Some data</td>
+      <td>Some more data</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

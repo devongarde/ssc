@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN background-colour tests</title>
+<style>
+.sid {
+/* Keyword values */
+background-color: red;
+background-color: indigo;
+
+/* Hexadecimal value */
+background-color: #bbff00; /* Fully opaque */
+background-color: #bf0; /* Fully opaque shorthand */
+background-color: #11ffee00; /* Fully transparent */
+background-color: #1fe0; /* Fully transparent shorthand */
+background-color: #11ffeeff; /* Fully opaque */
+background-color: #1fef; /* Fully opaque shorthand */
+
+/* RGB value */
+background-color: rgb(255 255 128); /* Fully opaque */
+background-color: rgb(117 190 218 / 50%); /* 50% transparent */
+
+/* HSL value */
+background-color: hsl(50 33% 25%); /* Fully opaque */
+background-color: hsl(50 33% 25% / 75%); /* 75% opaque, i.e. 25% transparent */
+
+/* Special keyword values */
+background-color: currentColor;
+background-color: transparent;
+
+/* Global values */
+background-color: inherit;
+background-color: initial;
+background-color: revert;
+background-color: revert-layer;
+background-color: unset;
+}
+.example-one {
+  background-color: transparent;
+}
+
+.example-two {
+  background-color: rgb(153 102 153);
+  color: rgb(255 255 204);
+}
+
+.example-three {
+  background-color: #777799;
+  color: white;
+}
+
+table {
+  border-collapse: collapse;
+  border: solid black 1px;
+  width: 250px;
+  height: 150px;
+}
+td {
+  border: solid 1px black;
+}
+#r1 {
+  background-color: lightblue;
+}
+#c12 {
+  background-color: cyan;
+}
+#r2 {
+  background-color: grey;
+}
+#r3 {
+  background-color: olive;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN background-colour Tests</h1>
+
+<div class="example-one">Lorem ipsum dolor sit amet, consectetuer</div>
+
+<div class="example-two">Lorem ipsum dolor sit amet, consectetuer</div>
+
+<div class="example-three">Lorem ipsum dolor sit amet, consectetuer</div>
+
+<table>
+  <tbody>
+    <tr id="r1">
+      <td id="c11">11</td>
+      <td id="c12">12</td>
+      <td id="c13">13</td>
+    </tr>
+    <tr id="r2">
+      <td id="c21">21</td>
+      <td id="c22">22</td>
+      <td id="c23">23</td>
+    </tr>
+    <tr id="r3">
+      <td id="c31">31</td>
+      <td id="c32">32</td>
+      <td id="c33">33</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

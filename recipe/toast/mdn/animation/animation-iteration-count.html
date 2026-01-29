@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN animation-iteration-count tests</title>
+<style>
+.sid
+{
+/* Keyword value */
+animation-iteration-count: infinite;
+
+/* <number> values */
+animation-iteration-count: 3;
+animation-iteration-count: 2.4;
+
+/* Multiple values */
+animation-iteration-count: 2, 0, infinite;
+
+/* Global values */
+animation-iteration-count: inherit;
+animation-iteration-count: initial;
+animation-iteration-count: revert;
+animation-iteration-count: revert-layer;
+animation-iteration-count: unset;
+}
+
+.box {
+  background-color: rebeccapurple;
+  border-radius: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+.box:hover {
+  animation-name: rotate;
+  animation-duration: 0.7s;
+  animation-iteration-count: 10;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN animation-iteration-count Tests</h1>
+
+<div class="box"></div>
+
+</body>
+</html>

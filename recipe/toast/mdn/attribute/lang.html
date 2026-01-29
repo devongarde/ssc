@@ -1,0 +1,128 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN lang tests</title>
+<style>
+p::before {
+  padding-right: 5px;
+}
+
+[lang="en-GB"]::before {
+  content: "(In British English) ";
+}
+
+[lang="fr"]::before {
+  content: "(In French) ";
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN lang Tests</h1>
+
+<p>This paragraph is English, but the language is not specifically defined.</p>
+
+<p lang="en-GB">This paragraph is defined as British English.</p>
+
+<p lang="fr">Ce paragraphe est défini en français.</p>
+
+<div class="dropdown-container language-menu">
+  <button
+    id="header-language-menu"
+    type="button"
+    class="dropdown-menu-label"
+    aria-haspopup="true"
+    aria-owns="language-menu"
+    aria-label="Current language is English. Choose your preferred language.">
+    English
+    <span class="dropdown-arrow-down" aria-hidden="true">▼</span>
+  </button>
+  <ul
+    id="language-menu"
+    class="dropdown-menu-items right show"
+    aria-expanded="true"
+    role="menu">
+    <li role="menuitem">
+      <a
+        href="/ca/docs/Web/HTML/Reference/Global_attributes/lang"
+        title="Catalan">
+        <bdi lang="ca">Català</bdi>
+      </a>
+    </li>
+    <li role="menuitem">
+      <a
+        href="/de/docs/Web/HTML/Reference/Global_attributes/lang"
+        title="German">
+        <bdi lang="de">Deutsch</bdi>
+      </a>
+    </li>
+    <li role="menuitem">
+      <a
+        href="/es/docs/Web/HTML/Reference/Global_attributes/lang"
+        title="Spanish">
+        <bdi lang="es">Español</bdi>
+      </a>
+    </li>
+    <li role="menuitem">
+      <a
+        href="/fr/docs/Web/HTML/Reference/Global_attributes/lang"
+        title="French">
+        <bdi lang="fr">Français</bdi>
+      </a>
+    </li>
+    <li role="menuitem">
+      <a
+        href="/ja/docs/Web/HTML/Reference/Global_attributes/lang"
+        title="Japanese">
+        <bdi lang="ja">日本語</bdi>
+      </a>
+    </li>
+    <li role="menuitem">
+      <a
+        href="/ko/docs/Web/HTML/Reference/Global_attributes/lang"
+        title="Korean">
+        <bdi lang="ko">한국어</bdi>
+      </a>
+    </li>
+    <li role="menuitem">
+      <a
+        href="/pt-BR/docs/Web/HTML/Reference/Global_attributes/lang"
+        title="Portuguese (Brazilian)">
+        <bdi lang="pt-BR">Português (do&nbsp;Brasil)</bdi>
+      </a>
+    </li>
+    <li role="menuitem">
+      <a
+        href="/ru/docs/Web/HTML/Reference/Global_attributes/lang"
+        title="Russian">
+        <bdi lang="ru">Русский</bdi>
+      </a>
+    </li>
+    <li role="menuitem">
+      <a
+        href="/uk/docs/Web/HTML/Reference/Global_attributes/lang"
+        title="Ukrainian">
+        <bdi lang="uk">Українська</bdi>
+      </a>
+    </li>
+    <li role="menuitem">
+      <a
+        href="/zh-CN/docs/Web/HTML/Reference/Global_attributes/lang"
+        title="Chinese (Simplified)">
+        <bdi lang="zh-Hans">中文 (简体)</bdi>
+      </a>
+    </li>
+    <li>
+      <a
+        href="/en-US/docs/Web/HTML/Reference/Global_attributes/lang"
+        rel="nofollow"
+        id="translations-add">
+        Add a translation
+      </a>
+    </li>
+  </ul>
+</div>
+
+</body>
+</html>

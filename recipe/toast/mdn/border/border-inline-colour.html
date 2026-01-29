@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-inline-colour tests</title>
+<style>
+.sid {
+border-inline-color: yellow;
+border-inline-color: #f5f6f7;
+
+/* Global values */
+border-inline-color: inherit;
+border-inline-color: initial;
+border-inline-color: revert;
+border-inline-color: revert-layer;
+border-inline-color: unset;
+}
+
+div {
+  background-color: yellow;
+  width: 120px;
+  height: 120px;
+}
+
+.exampleText {
+  writing-mode: vertical-lr;
+  border: 10px solid blue;
+  border-inline-color: red;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-inline-colour Tests</h1>
+
+<div>
+  <p class="exampleText">Example text</p>
+</div>
+
+</body>
+</html>

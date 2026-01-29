@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN -- tests</title>
+<style>
+.sid {
+--some-keyword: left;
+--some-color: #123456;
+--some-complex-value: 3px 6px rgb(20 32 54);
+}
+:root {
+  --first-color: #1166ff;
+  --second-color: #ffff77;
+}
+
+#firstParagraph {
+  background-color: var(--first-color);
+  color: var(--second-color);
+}
+
+#secondParagraph {
+  background-color: var(--second-color);
+  color: var(--first-color);
+}
+
+#container {
+  --first-color: #229900;
+}
+
+#thirdParagraph {
+  background-color: var(--first-color);
+  color: var(--second-color);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN -- Tests</h1>
+
+<p id="firstParagraph">
+  This paragraph should have a blue background and yellow text.
+</p>
+<p id="secondParagraph">
+  This paragraph should have a yellow background and blue text.
+</p>
+<div id="container">
+  <p id="thirdParagraph">
+    This paragraph should have a green background and yellow text.
+  </p>
+</div>
+
+</body>
+</html>

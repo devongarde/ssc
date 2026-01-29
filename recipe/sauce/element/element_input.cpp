@@ -88,6 +88,8 @@ void element::examine_input ()
     switch (i5)
     {   case i5_button :
             detailicious = true;
+            if (node_.version ().is_5 () && (context.analysis () >= anal_dec25))
+                pick (nit_input_type, es_info, ec_attribute, "Consider using <BUTTON> instead of <INPUT TYPE=button ...>");
             break;
         case i5_checkbox :
             detailicious = true;
@@ -120,7 +122,7 @@ void element::examine_input ()
                 if (a_.known (a_multiple))
                 {   type_master < t_emails > e;
                     e.set_value (nits (), node_.version (), val); }
-                else if (val.find (','))
+                else if (val.find (',') != ::std::string::npos)
                     pick (nit_bad_email, ed_50, "4.10.5.1.5 E-mail state", es_error, ec_attribute, "when <INPUT> MULTIPLE is omitted, VALUE may only contain one email address, not a comma separated list" );
                 else
                 {   type_master < t_email > e;
@@ -176,6 +178,10 @@ void element::examine_input ()
             detailicious = true;
             break;
         case i5_search :
+            if ((node_.version () >= html_apr23) && (context.analysis () >= anal_dec25))
+                if (! ancestral_elements_.test (elem_search))
+                    pick (nit_input_type, es_warning, ec_attribute, "Expecting an ancestral <SEARCH> element when <INPUT> TYPE is set to 'search'");
+            FALLTHROUGH;
         case i5_text :
             if (a_.known (a_value))
                 if (a_.get_string (a_value).find_first_of ("\x0A\x0D") != ::std::string::npos)
@@ -251,7 +257,7 @@ void element::examine_input ()
             pick (nit_input_bad_mix, ed_53, "4.10.5 The input element", es_warning, ec_element, "AUTOCOMPLETE is ignored by type ", quote (n));
     if (a_.known (a_autocapitalise) && ((t & (it_text_search | it_url | it_email | it_password)) == 0))
         pick (nit_input_bad_mix, ed_53, "4.10.5 The input element", es_warning, ec_element, "AUTOCAPITALIZE (sic) is ignored by type ", quote (n));
-    if (a_.known (a_capture) && ((t & it_check_radio) == 0))
+    if (a_.known (a_capture) && ((t & it_file) == 0))
         pick (nit_input_bad_mix, ed_53, "4.10.5 The input element", es_warning, ec_element, "CAPTURE is ignored by type ", quote (n));
     if (a_.known (a_checked) && ((t & it_check_radio) == 0))
         pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "CHECKED is ignored by type ", quote (n));

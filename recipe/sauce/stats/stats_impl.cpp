@@ -331,7 +331,6 @@ const char* str_name [] =
 ::std::string stats::category_report () const
 {   mmac_t table = mac_title (REPORT_CAREGORY);
     ::std::string res;
-    res += saybe (table, category_.at (ec_html), "HTML");
     res += saybe (table, category_.at (ec_con), "Ads");
     res += saybe (table, category_.at (ec_aria), "Aria");
     res += saybe (table, category_.at (ec_atom), "Atom");
@@ -372,6 +371,7 @@ const char* str_name [] =
     res += saybe (table, category_.at (ec_signing), "Signing");
     res += saybe (table, category_.at (ec_spell), "Spelling");
     res += saybe (table, category_.at (ec_ssi), "SSI");
+    res += saybe (table, category_.at (ec_ssl), "SSL");
     res += saybe (table, category_.at (ec_fred), "Thread");
     res += saybe (table, category_.at (ec_tidyness), "Tidyness");
     res += saybe (table, category_.at (ec_type), "Type");

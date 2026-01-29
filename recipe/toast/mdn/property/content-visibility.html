@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN content-visibility tests</title>
+<style>
+.sid {
+/* Keyword values */
+content-visibility: visible;
+content-visibility: hidden;
+content-visibility: auto;
+
+/* Global values */
+content-visibility: inherit;
+content-visibility: initial;
+content-visibility: revert;
+content-visibility: revert-layer;
+content-visibility: unset;
+}
+
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+p {
+  contain-intrinsic-size: 0 1.1em;
+  border: dotted 2px;
+}
+
+.hidden > p {
+  content-visibility: hidden;
+}
+
+.visible > p {
+  content-visibility: visible;
+}
+
+div {
+  font-size: 1.6rem;
+  padding: 20px;
+  border: 3px solid red;
+  border-radius: 20px;
+  width: 480px;
+
+  content-visibility: hidden;
+}
+
+/* Animation classes */
+
+.show {
+  animation: show 0.7s ease-in forwards;
+}
+
+.hide {
+  animation: hide 0.7s ease-out forwards;
+}
+
+/* Animation keyframes */
+
+@keyframes show {
+  0% {
+    content-visibility: hidden;
+    color: transparent;
+  }
+
+  100% {
+    content-visibility: visible;
+    color: black;
+  }
+}
+
+@keyframes hide {
+  0% {
+    content-visibility: visible;
+    color: black;
+  }
+
+  100% {
+    content-visibility: hidden;
+    color: transparent;
+  }
+}
+</style>
+<script>
+const divElem = document.querySelector("div");
+const htmlElem = document.querySelector(":root");
+
+htmlElem.addEventListener("click", showHide);
+document.addEventListener("keydown", showHide);
+
+function showHide() {
+  if (divElem.classList.contains("show")) {
+    divElem.classList.remove("show");
+    divElem.classList.add("hide");
+  } else {
+    divElem.classList.remove("hide");
+    divElem.classList.add("show");
+  }
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN content-visibility Tests</h1>
+
+<section>
+  <!-- Content for each section… -->
+</section>
+<section>
+  <!-- Content for each section… -->
+</section>
+<section>
+  <!-- Content for each section… -->
+</section>
+<!-- … -->
+
+<div class="hidden">
+  <button class="toggle">Show</button>
+  <p>
+    This content is initially hidden and can be shown by clicking the button.
+  </p>
+</div>
+<div class="visible">
+  <button class="toggle">Hide</button>
+  <p>
+    This content is initially visible and can be hidden by clicking the button.
+  </p>
+</div>
+
+<p>
+  Click anywhere on the screen or press any key to toggle the
+  <code>&lt;div&gt;</code> content between hidden and showing.
+</p>
+
+<div>
+  This is a <code>&lt;div&gt;</code> element that animates between
+  <code>content-visibility: hidden;</code>and
+  <code>content-visibility: visible;</code>. We've also animated the text color
+  to create a smooth animation effect.
+</div>
+
+</body>
+</html>

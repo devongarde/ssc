@@ -227,7 +227,9 @@ void property::accumulate (stats_t* s, const element_bitset& e) const
 void property::validate (arguments& args)
 {   if ((from_ > 0) && ! val_.empty ())
     {   nitpick& nits = args.t_.at (from_).nits_;
-        args.validate (nits, flags_, type_master < t_css_property >::name (static_cast < e_css_property > (prop_ -> get ())), val_); }
+        if (prop_.get () != nullptr)
+            args.validate (nits, flags_, type_master < t_css_property >::name (static_cast < e_css_property > (prop_ -> get ())), val_);
+        else args.validate (nits, flags_, type_master < t_css_property >::name (ec_unknown), val_);  }
     w_.validate (args);
     if (prop_.get () != nullptr) prop_ -> validate (args); }
 

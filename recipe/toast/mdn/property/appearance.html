@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN appearance tests</title>
+<style>
+.sid {
+/* CSS Basic User Interface Module Level 4 values */
+appearance: none;
+appearance: auto;
+appearance: menulist-button;
+appearance: textfield;
+appearance: base-select;
+
+/* Global values */
+appearance: inherit;
+appearance: initial;
+appearance: revert;
+appearance: revert-layer;
+appearance: unset;
+
+/* <compat-auto> values have the same effect as 'auto' */
+appearance: button;
+appearance: checkbox;
+}
+.text {
+  appearance: textfield;
+}
+[type="checkbox"] {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  background: red;
+}
+input:checked,
+.none {
+  appearance: none;
+}
+.baseSelect,
+::picker(select) {
+  appearance: base-select;
+}
+.menulistButton {
+  appearance: menulist-button;
+}
+label {
+  display: block;
+}
+select {
+  border: 1px solid red;
+  background-color: orange;
+}
+
+::picker(select) {
+  background-color: yellow;
+  border: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN appearance Tests</h1>
+
+<p>
+  <label>Enter a number: <input type="number" min="0" max="10" /></label>
+</p>
+<p>
+  <label
+    >Enter a number: <input type="number" min="0" max="10" class="text"
+  /></label>
+</p>
+
+<label><input type="checkbox" /> Default unchecked </label>
+<label><input type="checkbox" checked /> Default checked </label>
+
+<hr />
+
+<label><input type="radio" name="radio" /> Default unchecked </label>
+<label><input type="radio" name="radio" checked /> Default checked </label>
+
+<hr />
+
+<label
+  >Unstyled select
+  <select>
+    <option>Option 1</option>
+    <option>Option 2</option>
+  </select>
+</label>
+
+<label
+  >Styled select
+  <select class="none">
+    <option>Option 1</option>
+    <option>Option 2</option>
+  </select>
+</label>
+
+<label for="ice-cream1"
+  >Default flavor:
+  <select id="ice-cream1">
+    <option>Asparagus</option>
+    <option>Dulce de leche</option>
+    <option>Pistachio, rum raisin, and coffee</option>
+  </select>
+</label>
+<label for="ice-cream2"
+  >Base select flavor:
+  <select id="ice-cream2" class="baseSelect">
+    <option>Asparagus</option>
+    <option>Dulce de leche</option>
+    <option>Pistachio, rum raisin, and coffee</option>
+  </select>
+</label>
+<label for="ice-cream3"
+  >Menulist button flavor:
+  <select id="ice-cream3" class="menulistButton">
+    <option>Asparagus</option>
+    <option>Dulce de leche</option>
+    <option>Pistachio, rum raisin, and coffee</option>
+  </select>
+</label>
+
+</body>
+</html>

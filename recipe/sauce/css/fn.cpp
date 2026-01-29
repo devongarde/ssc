@@ -95,6 +95,7 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                     vsl_.emplace_back (new selector (args, b, ket, true));
                 break;
             case efn_dir :
+            case efn_moz_locale_dir :
                 test_value < t_ltr_rtl > (nits, context.html_ver (), param);
                 return;
             case efn_heading :

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-image-slice tests</title>
+<style>
+.sid {
+/* All sides */
+border-image-slice: 30%;
+
+/* top and bottom | left and right */
+border-image-slice: 10% 30%;
+
+/* top | left and right | bottom */
+border-image-slice: 30 30% 45;
+
+/* top | right | bottom | left */
+border-image-slice: 7 12 14 5;
+
+/* Using the `fill` keyword */
+border-image-slice: 10% fill;
+border-image-slice: fill 10%;
+
+/* Global values */
+border-image-slice: inherit;
+border-image-slice: initial;
+border-image-slice: revert;
+border-image-slice: revert-layer;
+border-image-slice: unset;
+
+border-width: 30px;
+border-image-slice: 30;
+}
+
+.wrapper {
+  width: 400px;
+  height: 300px;
+}
+
+div > div {
+  width: 300px;
+  height: 200px;
+  border-width: 30px;
+  border-style: solid;
+  border-image: url("/shared-assets/images/examples/border-diamonds.png");
+  border-image-slice: 30;
+  border-image-repeat: round;
+}
+
+li {
+  display: flex;
+  place-content: center;
+}
+</style>
+<script>
+const widthSlider = document.getElementById("width");
+const sliceSlider = document.getElementById("slice");
+const widthOutput = document.getElementById("width-output");
+const sliceOutput = document.getElementById("slice-output");
+const divElem = document.querySelector("div > div");
+
+widthSlider.addEventListener("input", () => {
+  const newValue = `${widthSlider.value}px`;
+  divElem.style.borderWidth = newValue;
+  widthOutput.textContent = newValue;
+});
+
+sliceSlider.addEventListener("input", () => {
+  const newValue = sliceSlider.value;
+  divElem.style.borderImageSlice = newValue;
+  sliceOutput.textContent = newValue;
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN border-image-slice Tests</h1>
+
+<div class="wrapper">
+  <div></div>
+</div>
+
+<ul>
+  <li>
+    <label for="width">slide to adjust <code>border-width</code></label>
+    <input type="range" min="10" max="45" id="width" />
+    <output id="width-output">30px</output>
+  </li>
+  <li>
+    <label for="slice">slide to adjust <code>border-image-slice</code></label>
+    <input type="range" min="10" max="45" id="slice" />
+    <output id="slice-output">30</output>
+  </li>
+</ul>
+
+</body>
+</html>

@@ -18,7 +18,7 @@ PASS ../toast/css/3-compositing/css-3-3.html
 
 PASS ../toast/css/3-compositing/css-3-4.html
 2 naughty_lang
-5 css_version unrecognised_value
+5 css_version
 
 PASS ../toast/css/3-compositing/index.html
 2 naughty_lang

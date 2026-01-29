@@ -1,6 +1,6 @@
-@import "songlight.css";
+@import url(songlight.css);
 
 body
 {   background-color: white; border-color: white; }
 
-.biggerscreen,.mediumscreen,.weescreen { background-color: white; }
+.decentscreen,.biggerscreen,.mediumscreen,.weescreen { background-color: white; }

@@ -1,0 +1,133 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN position-anchor tests</title>
+<style>
+.sid {
+position-anchor: auto;
+position-anchor: none;
+position-anchor: --anchor-name;
+
+/* Global values */
+position-anchor: inherit;
+position-anchor: initial;
+position-anchor: revert;
+position-anchor: revert-layer;
+position-anchor: unset;
+}
+
+input::-webkit-slider-thumb {
+  anchor-name: --thumb;
+}
+
+output {
+  position-anchor: --thumb;
+  position: absolute;
+  left: anchor(right);
+  bottom: anchor(top);
+}
+
+#anchor1 {
+  anchor-name: --my-anchor1, --my-anchor2;
+}
+
+#infobox1 {
+  position-anchor: --my-anchor1;
+  position: fixed;
+  left: anchor(right);
+  align-self: anchor-center;
+  margin-left: 10px;
+}
+
+#infobox2 {
+  position-anchor: --my-anchor2;
+  position: fixed;
+  bottom: anchor(top);
+  justify-self: anchor-center;
+  margin-bottom: 15px;
+}
+</style>
+<script>
+const input = document.querySelector("input");
+const output = document.querySelector("output");
+
+input.addEventListener("input", (event) => {
+output.innerText = `${input.value}`;
+});
+
+// Get references to the two select menus
+const select1 = document.querySelector("#anchor1-anchor-select");
+const select2 = document.querySelector("#anchor2-anchor-select");
+// Store references to all the anchors in a NodeList (array-like)
+const anchors = document.querySelectorAll("#anchor-container > div");
+
+// Set the same change event handler on both select menus
+select1.addEventListener("change", updateAnchorNames);
+select2.addEventListener("change", updateAnchorNames);
+
+function updateAnchorNames() {
+// Remove all anchor names from all anchors
+for (const anchor of anchors) {
+anchor.style.anchorName = "none";
+}
+
+// convert the select menu values to numbers, and remove one to
+// make them match the selected anchors' index positions in the NodeList
+const value1 = Number(select1.value) - 1;
+const value2 = Number(select2.value) - 1;
+
+if (value1 === value2) {
+// If the chosen anchors are both the same, set both anchor
+// names on the same anchor
+anchors[value1].style.anchorName = "--my-anchor1, --my-anchor2";
+} else {
+// If they are not the same, set the anchor names separately
+// on each selected anchor
+anchors[value1].style.anchorName = "--my-anchor1";
+anchors[value2].style.anchorName = "--my-anchor2";
+}
+
+</script>
+</head>
+
+<body>
+
+<h1>MDN position-anchor Tests</h1>
+
+<label for="slider">Change the value:</label>
+<input type="range" min="0" max="100" value="25" id="slider" />
+<output>25</output>
+
+<div id="anchor-container">
+  <div class="anchor" id="anchor1">⚓︎</div>
+  <div class="anchor" id="anchor2">⚓︎</div>
+  <div class="anchor" id="anchor3">⚓︎</div>
+  <div class="anchor" id="anchor4">⚓︎</div>
+</div>
+
+<div class="infobox" id="infobox1">
+  <form>
+    <label for="anchor1-anchor-select">Place infobox on:</label>
+    <select id="anchor1-anchor-select">
+      <option value="1">Anchor 1</option>
+      <option value="2">Anchor 2</option>
+      <option value="3">Anchor 3</option>
+      <option value="4">Anchor 4</option>
+    </select>
+  </form>
+</div>
+
+<div class="infobox" id="infobox2">
+  <form>
+    <label for="anchor2-anchor-select">Place infobox on:</label>
+    <select id="anchor2-anchor-select">
+      <option value="1">Anchor 1</option>
+      <option value="2">Anchor 2</option>
+      <option value="3">Anchor 3</option>
+      <option value="4">Anchor 4</option>
+    </select>
+  </form>
+</div>
+
+</body>
+</html>

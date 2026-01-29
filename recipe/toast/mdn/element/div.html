@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN DIV tests</title>
+<style>
+.warning {
+  border: 10px ridge red;
+  background-color: yellow;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.warning img {
+  width: 100%;
+}
+
+.warning p {
+  font: small-caps bold 1.2rem sans-serif;
+  text-align: center;
+}
+
+.shadowbox {
+  width: 15em;
+  border: 1px solid #333333;
+  box-shadow: 8px 8px 5px #444444;
+  padding: 8px 12px;
+  background-image: linear-gradient(180deg, white, #dddddd 40%, #cccccc);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN DIV Tests</h1>
+
+<div class="warning">
+  <img
+    src="/shared-assets/images/examples/leopard.jpg"
+    alt="An intimidating leopard." />
+  <p>Beware of the leopard</p>
+</div>
+
+<div>
+  <p>
+    Any kind of content here. Such as &lt;p&gt;, &lt;table&gt;. You name it!
+  </p>
+</div>
+
+<div class="shadowbox">
+  <p>Here's a very interesting note displayed in a lovely shadowed box.</p>
+</div>
+
+</body>
+</html>

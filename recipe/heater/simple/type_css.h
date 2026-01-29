@@ -35,10 +35,12 @@ e_status set_css_inherit_value (nitpick& nits, const html_version& v, const ::st
 e_status set_css_nth_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_css_unicode_from_to_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_css_unicode_wildcard_value (nitpick& nits, const html_version& v, const ::std::string& s);
-e_status set_fn_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box);
+e_status set_fn_calc_args_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box);
+e_status set_fn_trans_args_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box);
 e_status set_region_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box);
 e_status set_stn_value (nitpick& nits, const html_version& v, const vstr_t& vs, element* box);
 e_status set_vtn_value (nitpick& nits, const html_version& v, const vstr_t& vs, element* box);
+e_status test_css_anchor (nitpick& nits, const e_status st, const html_version& v, const ::std::string& ss);
 
 template < > struct type_master < t_css > : public tidy_string < t_css >
 {   using tidy_string < t_css > :: tidy_string;
@@ -49,6 +51,22 @@ template < > struct type_master < t_css > : public tidy_string < t_css >
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
     {   if (! tidy_string < t_css > :: good ()) return true;
         return ! process_css (nits, v, tidy_string < t_css > :: get_string (), e); } };
+
+template < > struct type_master < t_css_anchor_id > : public tidy_string < t_css_anchor_id >
+{   using tidy_string < t_css_anchor_id > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_anchor_id > :: set_value (nits, v, trim_the_lot_off (s));
+        tidy_string < t_css_anchor_id > :: status (test_css_anchor (nits, tidy_string < t_css_anchor_id > :: status (), v, s)); } };
+
+template < > struct type_master < t_css_anchor_idref > : public tidy_string < t_css_anchor_idref >
+{   using tidy_string < t_css_anchor_idref > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_anchor_idref > :: set_value (nits, v, trim_the_lot_off (s));
+        tidy_string < t_css_anchor_idref > :: status (test_css_anchor (nits, tidy_string < t_css_anchor_idref > :: status (), v, s)); }
+    void argue (nitpick& nits, arguments* a)
+    {   void validate_anchor_idref (nitpick& nits, type_master < t_css_anchor_idref >& cai, arguments& args, const ::std::string& s);  // typed_property.cpp
+        if ((a != nullptr) && tidy_string < t_css_anchor_idref > :: good ())
+            validate_anchor_idref (nits, *this, *a, tidy_string < t_css_anchor_idref > :: get_string ()); } };
 
 template < > struct type_master < t_css_all > : public tidy_string < t_css_all >
 {   using tidy_string < t_css_all > :: tidy_string;
@@ -79,7 +97,7 @@ template < > struct type_master < t_css_bespoke > : public tidy_string < t_css_b
     {   tidy_string < t_css_bespoke > :: set_value (nits, v, s);
         tidy_string < t_css_bespoke > :: status (s_good); }
     void verify_attribute (nitpick& nits, const html_version& , const elem& , element* , const ::std::string& attnam)
-    {   nits.pick (nit_css_bespoke, es_warning, ec_type, "bespoke properties, such as ", attnam, ", are processed neither by " PROG " nor all browsers"); } };
+    {   nits.pick (nit_css_bespoke, es_warning, ec_type, "bespoke properties, such as ", attnam, ", are processed neither by " PROG " nor many browsers"); } };
 
 template < > struct type_master < t_css_content_name > : public tidy_string < t_css_content_name >
 {   using tidy_string < t_css_content_name > :: tidy_string;
@@ -208,19 +226,32 @@ template < > struct type_master < t_css_unicode_wildcard > : public tidy_string 
     {   tidy_string < t_css_unicode_wildcard > :: set_value (nits, v, s);
         tidy_string < t_css_unicode_wildcard > :: status (set_css_unicode_wildcard_value (nits, v, tidy_string < t_css_unicode_wildcard > :: get_string ())); } };
 
-template < > struct type_master < t_fn > : public tidy_string < t_fn >
-{   using tidy_string < t_fn > :: tidy_string;
-    bool boing_ = false;
+template < > struct type_master < t_css_fn_calc_args > : public tidy_string < t_css_fn_calc_args >
+{   using tidy_string < t_css_fn_calc_args > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_fn > :: set_value (nits, v, s);
+    {   tidy_string < t_css_fn_calc_args > :: set_value (nits, v, s);
         if ((v.css_version () <= css_2_2) && ! v.css_any_3_4_5_6 ())
         {   nits.pick (nit_css_version, es_error, ec_type, "CSS level 3 or better required");
             status (s_invalid); }
-        else if (tidy_string < t_fn > :: empty ())
+        else if (tidy_string < t_css_fn_calc_args > :: empty ())
+            nits.pick (nit_empty, es_warning, ec_type, "rather a minimalistic calculation"); }
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
+    {   if (tidy_string < t_css_fn_calc_args > :: good ())
+            tidy_string < t_css_fn_calc_args > :: status (set_fn_calc_args_value (nits, v, tidy_string < t_css_fn_calc_args > :: get_string (), e));
+        return false; } };
+
+template < > struct type_master < t_css_fn_trans_args > : public tidy_string < t_css_fn_trans_args >
+{   using tidy_string < t_css_fn_trans_args > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_fn_trans_args > :: set_value (nits, v, s);
+        if ((v.css_version () <= css_2_2) && ! v.css_any_3_4_5_6 ())
+        {   nits.pick (nit_css_version, es_error, ec_type, "CSS level 3 or better required");
+            status (s_invalid); }
+        else if (tidy_string < t_css_fn_trans_args > :: empty ())
             nits.pick (nit_empty, es_warning, ec_type, "rather a minimalistic transform"); }
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
-    {   if (tidy_string < t_fn > :: good ())
-            tidy_string < t_fn > :: status (set_fn_value (nits, v, tidy_string < t_fn > :: get_string (), e));
+    {   if (tidy_string < t_css_fn_trans_args > :: good ())
+            tidy_string < t_css_fn_trans_args > :: status (set_fn_trans_args_value (nits, v, tidy_string < t_css_fn_trans_args > :: get_string (), e));
         return false; } };
 
 template < > struct type_master < t_css_region_id > : public tidy_string < t_css_region_id >
@@ -236,3 +267,12 @@ template < > struct type_master < t_css_region_id > : public tidy_string < t_css
             if (set_region_value (nits, v, tidy_string < t_css_region_id > :: get (), e) == s_good)
                 return false;
         return true; } };
+
+template < > struct type_master < t_custom_property > : tidy_string < t_custom_property >
+{   using tidy_string < t_custom_property > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_custom; }
+    static bool is_colourful () { return true; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_value < t_custom_property > :: set_value (nits, v, s);
+        if (s.empty ()) string_value < t_custom_property > :: status (s_empty);
+        else string_value < t_custom_property > :: status (s_good); } };

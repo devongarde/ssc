@@ -34,15 +34,15 @@ template < > struct type_master < t_measure > : tidy_string < t_measure > // ver
                 return;
         tidy_string < t_measure > :: status (s_invalid); } };
 
-template < > struct type_master < t_css_length > : tidy_string < t_css_length >
-{   using tidy_string < t_css_length > :: tidy_string;
+template < > struct type_master < t_css_length_base > : tidy_string < t_css_length_base >
+{   using tidy_string < t_css_length_base > :: tidy_string;
     static e_animation_type animation_type () noexcept { return at_length; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_css_length > :: set_value (nits, v, s);
-        if (tidy_string < t_css_length > :: good ())
-            if (set_css_measure_value (nits, v, tidy_string < t_css_length > :: get_string (), false))
+    {   tidy_string < t_css_length_base > :: set_value (nits, v, s);
+        if (tidy_string < t_css_length_base > :: good ())
+            if (set_css_measure_value (nits, v, tidy_string < t_css_length_base > :: get_string (), false))
                 return;
-        tidy_string < t_css_length > :: status (s_invalid); } };
+        tidy_string < t_css_length_base > :: status (s_invalid); } };
 
 template < > struct type_master < t_css_length_abs > : tidy_string < t_css_length_abs >
 {   using tidy_string < t_css_length_abs > :: tidy_string;

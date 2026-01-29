@@ -1,0 +1,35 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN id tests</title>
+<style>
+#exciting {
+  background: linear-gradient(to bottom, #ffe8d4, #f69d3c);
+  border: 1px solid dimgrey;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 1px black;
+}
+
+#exciting::before {
+  content: "ℹ️";
+  margin-right: 5px;
+}
+</style>
+<script>
+const content = window.preamble.textContent;
+</script>
+</head>
+
+<body>
+
+<h1>MDN id Tests</h1>
+
+<p>A normal, boring paragraph. Try not to fall asleep.</p>
+
+<p id="exciting">The most exciting paragraph on the page. One of a kind!</p>
+
+<p id="preamble"></p>
+
+</body>
+</html>

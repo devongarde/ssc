@@ -55,6 +55,9 @@ template < e_type T, class SZ, int F, e_type A, e_type... B > struct type_all_fl
     static bool is_numeric ()
     {   if ( type_master < A > :: is_numeric ()) return true;
         return type_all_flagged_of < T, SZ, F, B... > :: is_numeric (); }
+    static bool is_colourful ()
+    {   if ( type_master < A > :: is_colourful ()) return true;
+        return type_all_flagged_of < T, SZ, F, B... > :: is_colourful (); }
     static e_animation_type animation_type () noexcept
     {   const e_animation_type a = type_master < A > :: animation_type ();
         if (a != at_none) return a;
@@ -133,6 +136,9 @@ template < e_type T, class SZ, int F, e_type A, e_type... B > struct type_all_fl
     {   return type_all_flagged_of < T, SZ, F, B... > :: box (); }
     void box (element* b) noexcept
     {   type_all_flagged_of < T, SZ, F, B... > :: box (b); }
+    void argue (nitpick& nits, arguments* a)
+    {   if (! val_.unknown ()) val_.argue (nits, a);
+        else type_all_flagged_of < T, SZ, F, B... > :: argue (nits, a); }
     void validate ()
     {   if (! val_.unknown ()) val_.validate ();
         else type_all_flagged_of < T, SZ, F, B... > :: validate (); }
@@ -264,6 +270,9 @@ template < e_type T, class SZ, int F, e_type A > struct type_all_flagged_of < T,
     {   return string_vector < T, SZ, F > :: box (); }
     void box (element* b) noexcept
     {   string_vector < T, SZ, F > :: box (b); }
+    void argue (nitpick& nits, arguments* a)
+    {   if (! val_.unknown ()) val_.argue (nits, a);
+        string_vector < T, SZ, F > :: argue (nits, a); }
     void validate ()
     {   if (! val_.unknown ()) val_.validate ();
         string_vector < T, SZ, F > :: validate (); }

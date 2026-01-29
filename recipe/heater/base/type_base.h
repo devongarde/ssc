@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "url/url.h"
 #include "feedback/nitpick.h"
 
+struct arguments;
 class directory;
 class html_version;
 class elem;
@@ -53,6 +54,7 @@ public:
     static e_type get_type () noexcept { return E; }
     static bool is_relational () noexcept { return false; }
     static bool is_url () noexcept { return false; }
+    static bool is_colourful () noexcept { return false; }
     static bool is_existential () noexcept { return false; }
     static bool is_numeric () noexcept { return false; }
     static ::std::size_t extra_values () noexcept { return 0; }
@@ -96,6 +98,7 @@ public:
     element* box () noexcept { return box_; }
     element* box () const noexcept { return box_; }
     void box (element* b) noexcept { box_ = b; }
+    void argue (nitpick& , arguments* ) { }
     void validate () { }
     void accumulate (stats_t*) const { }
     void accumulate (stats_t* , const element_bitset& ) const { }

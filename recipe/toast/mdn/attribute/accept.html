@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN accept tests</title>
+<style>
+label {
+  display: block;
+  margin-top: 1rem;
+}
+
+input {
+  margin-bottom: 1rem;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN accept Tests</h1>
+
+<label for="movie">Choose a movie to upload:</label>
+
+<input type="file" id="movie" name="movie" accept="video/*" />
+
+<label for="poster">Choose a poster:</label>
+
+<input type="file" id="poster" name="poster" accept="image/png, image/jpeg" />
+
+<input
+  type="file"
+  id="docpicker"
+  accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+
+<input type="file" id="soundFile" accept="audio/*" />
+<input type="file" id="videoFile" accept="video/*" />
+<input type="file" id="imageFile" accept="image/*" />
+
+<p>
+  <label for="soundFile">Select an audio file:</label>
+  <input type="file" id="soundFile" accept="audio/*" />
+</p>
+<p>
+  <label for="videoFile">Select a video file:</label>
+  <input type="file" id="videoFile" accept="video/*" />
+</p>
+<p>
+  <label for="imageFile">Select some images:</label>
+  <input type="file" id="imageFile" accept="image/*" multiple />
+</p>
+
+<input type="file" accept="image/*,.pdf" />
+
+<form method="post" enctype="multipart/form-data">
+  <div>
+    <label for="file">Choose file to upload</label>
+    <input type="file" id="file" name="file" multiple />
+  </div>
+  <div>
+    <button>Submit</button>
+  </div>
+</form>
+
+<form method="post" enctype="multipart/form-data">
+  <div>
+    <label for="profile_pic">Choose file to upload</label>
+    <input
+      type="file"
+      id="profile_pic"
+      name="profile_pic"
+      accept=".jpg, .jpeg, .png" />
+  </div>
+  <div>
+    <button>Submit</button>
+  </div>
+</form>
+
+</body>
+</html>

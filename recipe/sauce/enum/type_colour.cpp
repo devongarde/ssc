@@ -75,8 +75,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     { { VERSION }, { HTML_UNDEF }, "ghostwhite", PREFIX ## ghostwhite }, \
     { { VERSION }, { HTML_UNDEF }, "gold", PREFIX ## gold }, \
     { { VERSION }, { HTML_UNDEF }, "goldenrod", PREFIX ## goldenrod }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "gray", PREFIX ## grey }, \
+    { { HTML_2_0 }, { HTML_UNDEF }, "gray", PREFIX ## gray }, \
     { { HTML_2_0 }, { HTML_UNDEF }, "green", PREFIX ## green }, \
+    { { VERSION }, { HTML_UNDEF }, "grey", PREFIX ## grey }, \
     { { VERSION }, { HTML_UNDEF }, "greenyellow", PREFIX ## greenyellow }, \
     { { VERSION }, { HTML_UNDEF }, "honeydew", PREFIX ## honeydew }, \
     { { VERSION }, { HTML_UNDEF }, "hotpink", PREFIX ## hotpink }, \
@@ -140,7 +141,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     { { VERSION }, { HTML_UNDEF }, "plum", PREFIX ## plum }, \
     { { VERSION }, { HTML_UNDEF }, "powderblue", PREFIX ## powderblue }, \
     { { HTML_2_0 }, { HTML_UNDEF }, "purple", PREFIX ## purple }, \
-    { { VERSION }, { HTML_UNDEF }, "rebeccapurple ", PREFIX ## rebeccapurple  }, \
+    { { VERSION }, { HTML_UNDEF }, "rebeccapurple", PREFIX ## rebeccapurple  }, \
     { { HTML_2_0 }, { HTML_UNDEF }, "red", PREFIX ## red }, \
     { { VERSION }, { HTML_UNDEF }, "rosybrown", PREFIX ## rosybrown }, \
     { { VERSION }, { HTML_UNDEF }, "royalblue", PREFIX ## royalblue }, \
@@ -162,7 +163,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     { { HTML_2_0 }, { HTML_UNDEF }, "teal", PREFIX ## teal }, \
     { { VERSION }, { HTML_UNDEF }, "thistle", PREFIX ## thistle }, \
     { { VERSION }, { HTML_UNDEF }, "tomato", PREFIX ## tomato }, \
-    { { HTML_MATH2, 0, 0, H2_MATH_2 }, { HTML_UNDEF }, "transparent", PREFIX ## transparent }, \
+    { { HTML_MATH2 }, { HTML_UNDEF }, "transparent", PREFIX ## transparent }, \
     { { VERSION }, { HTML_UNDEF }, "turquoise", PREFIX ## turquoise }, \
     { { VERSION }, { HTML_UNDEF }, "violet", PREFIX ## violet }, \
     { { VERSION }, { HTML_UNDEF }, "wheat", PREFIX ## wheat }, \
@@ -217,8 +218,23 @@ struct symbol_entry < html_version, e_css_colour > css_colour_symbol_table [] =
     { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "selecteditem", csc_selecteditem },
     { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "selecteditemtext", csc_selecteditemtext },
     { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "visitedtext", csc_visitedtext },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "currentcolor", csc_currentcolour },
 
-    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "currentcolor", csc_currentcolour } };
+    { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-activehyperlinktext", csc_moz_activehyperlinktext },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-hyperlinktext", csc_moz_hyperlinktext },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-visitedhyperlinktext", csc_moz_visitedhyperlinktext },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-buttonhoverface", csc_moz_buttonhoverface },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-buttonhovertext", csc_moz_buttonhovertext },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-default-background-color", csc_moz_default_background_colour },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-default-color", csc_moz_default_colour },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-cellhighlight", csc_moz_cellhighlight },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-cellhighlighttext", csc_moz_cellhighlighttext },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-field", csc_moz_field },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-fieldtext", csc_moz_fieldtext },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-dialog", csc_moz_dialog },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-dialogtext", csc_moz_dialogtext },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-menuhover", csc_moz_menuhover },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-menuhovertext", csc_moz_menuhovertext } };
 
 struct symbol_entry < html_version, e_fixedcolour > fixedcolour_symbol_table [] =
 {    STANDARD_COLOURS (fc_, HTML_SVG10) };

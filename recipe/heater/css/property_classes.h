@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "css/typed_property.h"
 
-typedef typed_property < t_generic, ec_custom > prop_custom;
+typedef typed_property < t_custom_property, ec_custom > prop_custom;
 
 typedef typed_property < t_css_colour_a, ec_accent_colour > prop_accent_colour;
 typedef typed_property < t_css_addsyms, ec_additive_symbols > prop_additive_symbols;
@@ -30,24 +30,28 @@ typedef typed_property < t_css_box_alignitems_ns, ec_align_items > prop_align_it
 typedef typed_property < t_css_box_alignself_acs, ec_align_self > prop_align_self;
 typedef typed_property < t_alignment_baseline, ec_alignment_baseline > prop_alignment_baseline;
 typedef typed_property < t_css_all_2, ec_all > prop_all;
+typedef typed_property < t_generic, ec_all_space_treatment > prop_all_space_treatment;
 typedef typed_property < t_generic, ec_altglyph > prop_altglyph;
 typedef typed_property < t_generic, ec_anchor_default > prop_anchor_default;
-typedef typed_property < t_generic, ec_anchor_name > prop_anchor_name;
+typedef typed_property < t_css_anchor_none, ec_anchor_name > prop_anchor_name;
+typedef typed_property < t_css_anchor_idref_na, ec_anchor_scope > prop_anchor_scope;
 typedef typed_property < t_generic, ec_anchor_scroll > prop_anchor_scroll;
-typedef typed_property < t_css_animation, ec_animation > prop_animation;
-typedef typed_property < t_css_anim_comp, ec_animation_composition > prop_animation_composition;
+typedef typed_property < t_css_animations, ec_animation > prop_animation;
+typedef typed_property < t_css_anim_comps, ec_animation_composition > prop_animation_composition;
 typedef typed_property < t_datetime, ec_animation_delay > prop_animation_delay;
-typedef typed_property < t_css_anim_dir, ec_animation_direction > prop_animation_direction;
-typedef typed_property < t_datetime, ec_animation_duration > prop_animation_duration;
-typedef typed_property < t_css_anim_fill_mode, ec_animation_fill_mode > prop_animation_fill_mode;
-typedef typed_property < t_unsigned, ec_animation_iteration_count > prop_animation_iteration_count;
+typedef typed_property < t_datetime, ec_animation_delay_end > prop_animation_delay_end;
+typedef typed_property < t_datetime, ec_animation_delay_start > prop_animation_delay_start;
+typedef typed_property < t_css_anim_dirs, ec_animation_direction > prop_animation_direction;
+typedef typed_property < t_datetime_autos, ec_animation_duration > prop_animation_duration;
+typedef typed_property < t_css_anim_fill_modes, ec_animation_fill_mode > prop_animation_fill_mode;
+typedef typed_property < t_css_anim_iter_count, ec_animation_iteration_count > prop_animation_iteration_count;
 typedef typed_property < t_css_anim_name, ec_animation_name > prop_animation_name;
-typedef typed_property < t_css_anim_play_state, ec_animation_play_state > prop_animation_play_state;
+typedef typed_property < t_css_anim_play_states, ec_animation_play_state > prop_animation_play_state;
 typedef typed_property < t_css_anim_range_2s, ec_animation_range > prop_animation_range;
 typedef typed_property < t_css_anim_ranges, ec_animation_range_end > prop_animation_range_end;
 typedef typed_property < t_css_anim_ranges, ec_animation_range_start > prop_animation_range_start;
 typedef typed_property < t_css_anim_timeline, ec_animation_timeline > prop_animation_timeline;
-typedef typed_property < t_generic, ec_animation_timing_function > prop_animation_timing_function;
+typedef typed_property < t_css_atfs, ec_animation_timing_function > prop_animation_timing_function;
 typedef typed_property < t_css_appearance, ec_appearance > prop_appearance;
 typedef typed_property < t_real, ec_ascent > prop_ascent;
 typedef typed_property < t_percent_flexible, ec_ascent_override > prop_ascent_override;
@@ -55,23 +59,34 @@ typedef typed_property < t_ratio_a, ec_aspect_ratio > prop_aspect_ratio;
 typedef typed_property < t_real_i, ec_audio_level > prop_audio_level;
 typedef typed_property < t_css_azimuth, ec_azimuth > prop_azimuth;
 
+typedef typed_property < t_generic, ec_background_break > prop_background_break;
+typedef typed_property < t_generic, ec_backdrop_filter > prop_backdrop_filter;
 typedef typed_property < t_visibility10, ec_backface_visibility > prop_backface_visibility;
 typedef typed_property < t_css_background, ec_background > prop_background;
 typedef typed_property < t_css_background_attachments, ec_background_attachment > prop_background_attachment;
-typedef typed_property < t_css_blend_mode, ec_background_blend_mode > prop_background_blend_mode;
+typedef typed_property < t_css_blend_modes, ec_background_blend_mode > prop_background_blend_mode;
 typedef typed_property < t_css_background_boxes, ec_background_clip > prop_background_clip;
 typedef typed_property < t_css_col, ec_background_colour > prop_background_colour;
-typedef typed_property < t_css_image, ec_background_image > prop_background_image;
+typedef typed_property < t_css_image_background, ec_background_image > prop_background_image;
+typedef typed_property < t_generic, ec_background_image_transform > prop_background_image_transform;
 typedef typed_property < t_css_background_boxes, ec_background_origin > prop_background_origin;
-typedef typed_property < t_css_background_position_3, ec_background_position > prop_background_position;
+typedef typed_property < t_css_background_position_3s, ec_background_position > prop_background_position;
+typedef typed_property < t_css_background_position_3, ec_background_position_x > prop_background_position_x;
+typedef typed_property < t_css_background_position_3, ec_background_position_y > prop_background_position_y;
+typedef typed_property < t_generic, ec_background_quantity > prop_background_quantity;
 typedef typed_property < t_css_background_repeat_3, ec_background_repeat > prop_background_repeat;
 typedef typed_property < t_css_background_sizes, ec_background_size > prop_background_size;
+typedef typed_property < t_generic, ec_background_spacing > prop_background_spacing;
 typedef typed_property < t_real, ec_baseline > prop_baseline;
 typedef typed_property < t_svg_baselineshift, ec_baseline_shift > prop_baseline_shift;
 typedef typed_property < t_auto_first_last, ec_baseline_source > prop_baseline_source;
 typedef typed_property < t_css_base_palette, ec_base_palette > prop_base_palette;
 typedef typed_property < t_generic, ec_bbox > prop_bbox;
 typedef typed_property < t_text_na, ec_block_ellipsis > prop_block_ellipsis;
+typedef typed_property < t_generic, ec_bikeshedding > prop_bikeshedding;
+typedef typed_property < t_generic, ec_bleed > prop_bleed;
+typedef typed_property < t_generic, ec_block_overflow > prop_block_overflow;
+typedef typed_property < t_generic, ec_block_progression > prop_block_progression;
 typedef typed_property < t_css_length_amm, ec_block_size > prop_block_size;
 typedef typed_property < t_css_block_step, ec_block_step > prop_block_step;
 typedef typed_property < t_aces, ec_block_step_align > prop_block_step_align;
@@ -81,6 +96,7 @@ typedef typed_property < t_css_length_n, ec_block_step_size > prop_block_step_si
 typedef typed_property < t_css_content_base, ec_bookmark_label > prop_bookmark_label;
 typedef typed_property < t_integer_n, ec_bookmark_level > prop_bookmark_level;
 typedef typed_property < t_closed_open, ec_bookmark_state > prop_bookmark_state;
+typedef typed_property < t_generic, ec_bookmark_target > prop_bookmark_target;
 typedef typed_property < t_css_border_wsc_i, ec_border > prop_border;
 typedef typed_property < t_css_column_rule, ec_border_block > prop_border_block;
 typedef typed_property < t_css_cols_2, ec_border_block_colour > prop_border_block_colour;
@@ -101,6 +117,7 @@ typedef typed_property < t_css_length_2, ec_border_bottom_right_radius > prop_bo
 typedef typed_property < t_css_border_style, ec_border_bottom_style > prop_border_bottom_style;
 typedef typed_property < t_css_border_measure, ec_border_bottom_width > prop_border_bottom_width;
 typedef typed_property < t_display_none_parent, ec_border_boundary > prop_border_boundary;
+typedef typed_property < t_generic, ec_border_break > prop_border_break;
 typedef typed_property < t_css_border_collapse, ec_border_collapse > prop_border_collapse;
 typedef typed_property < t_css_cols, ec_border_colour > prop_border_colour;
 typedef typed_property < t_css_length_2, ec_border_end_end_radius > prop_border_end_end_radius;
@@ -110,6 +127,7 @@ typedef typed_property < t_css_length_4, ec_border_image_outset > prop_border_im
 typedef typed_property < t_css_border_images_repeat, ec_border_image_repeat > prop_border_image_repeat;
 typedef typed_property < t_css_border_image_slice, ec_border_image_slice > prop_border_image_slice;
 typedef typed_property < t_css_border_image_src, ec_border_image_source > prop_border_image_source;
+typedef typed_property < t_generic, ec_border_image_transform > prop_border_image_transform;
 typedef typed_property < t_css_lengths_a, ec_border_image_width > prop_border_image_width;
 typedef typed_property < t_css_column_rule, ec_border_inline > prop_border_inline;
 typedef typed_property < t_css_cols_2, ec_border_inline_colour > prop_border_inline_colour;
@@ -127,6 +145,7 @@ typedef typed_property < t_css_border_wsc_i, ec_border_left > prop_border_left;
 typedef typed_property < t_css_col, ec_border_left_colour > prop_border_left_colour;
 typedef typed_property < t_css_border_style, ec_border_left_style > prop_border_left_style;
 typedef typed_property < t_css_border_measure, ec_border_left_width > prop_border_left_width;
+typedef typed_property < t_generic, ec_border_length > prop_border_length;
 typedef typed_property < t_css_border_radius, ec_border_radius > prop_border_radius;
 typedef typed_property < t_css_border_wsc_i, ec_border_right > prop_border_right;
 typedef typed_property < t_css_col, ec_border_right_colour > prop_border_right_colour;
@@ -143,13 +162,23 @@ typedef typed_property < t_css_length_2, ec_border_top_right_radius > prop_borde
 typedef typed_property < t_css_border_style, ec_border_top_style > prop_border_top_style;
 typedef typed_property < t_css_border_measure, ec_border_top_width > prop_border_top_width;
 typedef typed_property < t_css_borders_measure_l, ec_border_width > prop_border_width;
-typedef typed_property < t_css_length_ai, ec_bottom > prop_bottom;
+typedef typed_property < t_css_length_aia, ec_bottom > prop_bottom;
+typedef typed_property < t_bcess, ec_box_align > prop_box_align;
+typedef typed_property < t_generic, ec_box_break > prop_box_break;
 typedef typed_property < t_css_break_box, ec_box_decoration_break > prop_box_decoration_break;
+typedef typed_property < t_css_box_direction, ec_box_direction > prop_box_direction;
 typedef typed_property < t_real, ec_box_flex > prop_box_flex;
+typedef typed_property < t_integer, ec_box_flex_group > prop_box_flex_group;
+typedef typed_property < t_generic, ec_box_height > prop_box_height;
+typedef typed_property < t_multiple_single, ec_box_lines > prop_box_lines;
+typedef typed_property < t_integer, ec_box_ordinal_group > prop_box_ordinal_group;
 typedef typed_property < t_css_box_orient, ec_box_orient > prop_box_orient;
+typedef typed_property < t_css_box_pack, ec_box_pack > prop_box_pack;
 typedef typed_property < t_css_box_shadows_n, ec_box_shadow > prop_box_shadow;
 typedef typed_property < t_css_box_sizing, ec_box_sizing > prop_box_sizing;
 typedef typed_property < t_css_box_snap, ec_box_snap > prop_box_snap;
+typedef typed_property < t_generic, ec_box_suppress > prop_box_suppress;
+typedef typed_property < t_generic, ec_box_width > prop_box_width;
 typedef typed_property < t_css_break, ec_break_after > prop_break_after;
 typedef typed_property < t_css_break, ec_break_before > prop_break_before;
 typedef typed_property < t_css_break_inside, ec_break_inside > prop_break_inside;
@@ -158,11 +187,13 @@ typedef typed_property < t_buffered_rendering, ec_buffered_rendering > prop_buff
 typedef typed_property < t_real, ec_cap_height > prop_cap_height;
 typedef typed_property < t_tblri, ec_caption_side > prop_caption_side;
 typedef typed_property < t_css_caret, ec_caret > prop_caret;
+typedef typed_property < t_auto_manual, ec_caret_animation > prop_caret_animation;
 typedef typed_property < t_css_colour_a, ec_caret_colour > prop_caret_colour;
 typedef typed_property < t_css_caret_shape, ec_caret_shape > prop_caret_shape;
 typedef typed_property < t_real, ec_centre_line > prop_centre_line;
 typedef typed_property < t_generic, ec_chains > prop_chains;
 typedef typed_property < t_css_clear, ec_clear > prop_clear;
+typedef typed_property < t_generic, ec_clear_after > prop_clear_after;
 typedef typed_property < t_css_rect_ai, ec_clip > prop_clip;
 typedef typed_property < t_url_n, ec_clippath > prop_clippath;
 typedef typed_property < t_css_clip_path, ec_clip_path > prop_clip_path;
@@ -175,6 +206,8 @@ typedef typed_property < t_colour_interpolation, ec_colour_interpolation_filters
 typedef typed_property < t_svg_colour_profile, ec_colour_profile > prop_colour_profile;
 typedef typed_property < t_colour_rendering, ec_colour_rendering > prop_colour_rendering;
 typedef typed_property < t_colour_schemes_n, ec_colour_scheme > prop_colour_scheme;
+typedef typed_property < t_generic, ec_column_break_after > prop_column_break_after;
+typedef typed_property < t_generic, ec_column_break_before > prop_column_break_before;
 typedef typed_property < t_unsigned_1_more_a, ec_column_count > prop_column_count;
 typedef typed_property < t_css_column_fill, ec_column_fill > prop_column_fill;
 typedef typed_property < t_measure_ni, ec_column_gap > prop_column_gap;
@@ -195,12 +228,14 @@ typedef typed_property < t_css_container, ec_container > prop_container;
 typedef typed_property < t_css_container_name, ec_container_name > prop_container_name;
 typedef typed_property < t_css_container_type, ec_container_type > prop_container_type;
 typedef typed_property < t_css_content_x, ec_content > prop_content;
+typedef typed_property < t_generic, ec_content_order > prop_content_order;
 typedef typed_property < t_auto_hidden_visible, ec_content_visibility > prop_content_visibility;
 typedef typed_property < t_generic, ec_context > prop_context;
 typedef typed_property < t_css_continue, ec_continue > prop_continue;
 typedef typed_property < t_css_counter_set, ec_counter_increment > prop_counter_increment;
 typedef typed_property < t_css_counter_set, ec_counter_reset > prop_counter_reset;
 typedef typed_property < t_css_counter_set, ec_counter_set > prop_counter_set;
+typedef typed_property < t_generic, ec_crop > prop_crop;
 typedef typed_property < t_css_cues, ec_cue > prop_cue;
 typedef typed_property < t_css_cue, ec_cue_after > prop_cue_after;
 typedef typed_property < t_css_cue, ec_cue_before > prop_cue_before;
@@ -208,7 +243,7 @@ typedef typed_property < t_css_cursor, ec_cursor > prop_cursor;
 typedef typed_property < t_measure, ec_cx > prop_cx;
 typedef typed_property < t_measure, ec_cy > prop_cy;
 
-typedef typed_property < t_measure, ec_d > prop_d;
+typedef typed_property < t_measure_in, ec_d > prop_d;
 typedef typed_property < t_css_url, ec_definition_src > prop_definition_src;
 typedef typed_property < t_real, ec_descent > prop_descent;
 typedef typed_property < t_percent_flexible, ec_descent_override > prop_descent_override;
@@ -216,6 +251,7 @@ typedef typed_property < t_svg_direction, ec_direction > prop_direction;
 typedef typed_property < t_css_display_1, ec_display > prop_display;
 typedef typed_property < t_display_align, ec_display_align > prop_display_align;
 typedef typed_property < t_dominantbaseline, ec_dominant_baseline > prop_dominant_baseline;
+typedef typed_property < t_generic, ec_dynamic_range_limit > prop_dynamic_range_limit;
 
 typedef typed_property < t_css_elevation, ec_elevation > prop_elevation;
 typedef typed_property < t_css_empty_cells, ec_empty_cells > prop_empty_cells;
@@ -264,6 +300,7 @@ typedef typed_property < t_auto_none, ec_font_optical_sizing > prop_font_optical
 typedef typed_property < t_css_palette_nld, ec_font_palette > prop_font_palette;
 typedef typed_property < t_css_font_size_4, ec_font_size > prop_font_size;
 typedef typed_property < t_real_ni, ec_font_size_adjust > prop_font_size_adjust;
+typedef typed_property < t_css_font_smooth, ec_font_smooth > prop_font_smooth;
 typedef typed_property < t_css_font_stretch, ec_font_stretch > prop_font_stretch;
 typedef typed_property < t_css_font_style_a, ec_font_style > prop_font_style;
 typedef typed_property < t_font_synthesis_n, ec_font_synthesis > prop_font_synthesis;
@@ -323,13 +360,13 @@ typedef typed_property < t_css_initial_letter_wrap, ec_initial_letter_wrap > pro
 typedef typed_property < t_css_length_amm, ec_inline_size > prop_inline_size;
 typedef typed_property < t_normal_stretch, ec_inline_sizing > prop_inline_sizing;
 typedef typed_property < t_auto_none, ec_input_security > prop_input_security;
-typedef typed_property < t_css_lengths_a_l, ec_inset > prop_inset;
-typedef typed_property < t_css_length_a2, ec_inset_block > prop_inset_block;
-typedef typed_property < t_css_length_ai, ec_inset_block_end > prop_inset_block_end;
-typedef typed_property < t_css_length_ai, ec_inset_block_start > prop_inset_block_start;
-typedef typed_property < t_css_length_a2, ec_inset_inline > prop_inset_inline;
-typedef typed_property < t_css_length_ai, ec_inset_inline_end > prop_inset_inline_end;
-typedef typed_property < t_css_length_ai, ec_inset_inline_start > prop_inset_inline_start;
+typedef typed_property < t_css_lengths_aa_l, ec_inset > prop_inset;
+typedef typed_property < t_css_length_aa2, ec_inset_block > prop_inset_block;
+typedef typed_property < t_css_length_aia, ec_inset_block_end > prop_inset_block_end;
+typedef typed_property < t_css_length_aia, ec_inset_block_start > prop_inset_block_start;
+typedef typed_property < t_css_length_aa2, ec_inset_inline > prop_inset_inline;
+typedef typed_property < t_css_length_aia, ec_inset_inline_end > prop_inset_inline_end;
+typedef typed_property < t_css_length_aia, ec_inset_inline_start > prop_inset_inline_start;
 typedef typed_property < t_css_isolation, ec_isolation > prop_isolation;
 
 typedef typed_property < t_css_box_justify_n, ec_justify_content > prop_justify_content;
@@ -339,7 +376,7 @@ typedef typed_property < t_css_box_justself, ec_justify_self > prop_justify_self
 typedef typed_property < t_measure_ai, ec_kerning > prop_kerning;
 
 typedef typed_property < t_benrs, ec_leading_trim > prop_leading_trim;
-typedef typed_property < t_css_length_ai, ec_left > prop_left;
+typedef typed_property < t_css_length_aia, ec_left > prop_left;
 typedef typed_property < t_css_length_n, ec_letter_spacing > prop_letter_spacing;
 typedef typed_property < t_css_col, ec_lighting_colour > prop_lighting_colour;
 typedef typed_property < t_css_line_break, ec_line_break > prop_line_break;
@@ -415,7 +452,7 @@ typedef typed_property < t_css_length_amm, ec_min_height > prop_min_height;
 typedef typed_property < t_css_length_amm, ec_min_inline_size > prop_min_inline_size;
 typedef typed_property < t_lzz, ec_min_intrinsic_sizing > prop_min_intrinsic_sizing;
 typedef typed_property < t_css_length_amm, ec_min_width > prop_min_width;
-typedef typed_property < t_css_blend_mode, ec_mix_blend_mode > prop_mix_blend_mode;
+typedef typed_property < t_css_mix_blend_mode, ec_mix_blend_mode > prop_mix_blend_mode;
 
 typedef typed_property < t_text, ec_name > prop_name;
 typedef typed_property < t_css_kdb_nav, ec_nav_down > prop_nav_down;
@@ -497,8 +534,14 @@ typedef typed_property < t_css_place_self, ec_place_self > prop_place_self;
 typedef typed_property < t_css_play_during, ec_play_during > prop_play_during;
 typedef typed_property < t_pointer_events, ec_pointer_events > prop_pointer_events;
 typedef typed_property < t_css_position, ec_position > prop_position;
+typedef typed_property < t_css_anchor_idref_na, ec_position_anchor > prop_position_anchor;
+typedef typed_property < t_css_position_area_n, ec_position_area > prop_position_area;
 typedef typed_property < t_generic, ec_position_fallback > prop_position_fallback;
 typedef typed_property < t_generic, ec_position_fallback_bounds > prop_position_fallback_bounds;
+typedef typed_property < t_css_position_try, ec_position_try > prop_position_try;
+typedef typed_property < t_css_try_fallbacks, ec_position_try_fallbacks > prop_position_try_fallbacks;
+typedef typed_property < t_css_try_size, ec_position_try_order > prop_position_try_order;
+typedef typed_property < t_css_position_visibility, ec_position_visibility > prop_position_visibility;
 typedef typed_property < t_text, ec_prefix > prop_prefix;
 typedef typed_property < t_integer_is, ec_presentation_level > prop_presentation_level;
 typedef typed_property < t_economy_exact, ec_print_colour_adjust > prop_print_colour_adjust;
@@ -514,7 +557,7 @@ typedef typed_property < t_css_pauses, ec_rest > prop_rest;
 typedef typed_property < t_css_pause, ec_rest_after > prop_rest_after;
 typedef typed_property < t_css_pause, ec_rest_before > prop_rest_before;
 typedef typed_property < t_real_i, ec_richness > prop_richness;
-typedef typed_property < t_css_length_ai, ec_right > prop_right;
+typedef typed_property < t_css_length_aia, ec_right > prop_right;
 typedef typed_property < t_css_rotate, ec_rotate > prop_rotate;
 typedef typed_property < t_measure_ni, ec_row_gap > prop_row_gap;
 typedef typed_property < t_centre_space, ec_ruby_align > prop_ruby_align;
@@ -652,6 +695,7 @@ typedef typed_property < t_css_text_resizes, ec_text_overflow > prop_text_overfl
 typedef typed_property < t_text_rendering, ec_text_rendering > prop_text_rendering;
 typedef typed_property < t_css_text_resize, ec_text_resize > prop_text_resize;
 typedef typed_property < t_css_box_shadows_n, ec_text_shadow > prop_text_shadow;
+typedef typed_property < t_css_length_an, ec_text_size_adjust > prop_text_size_adjust;
 typedef typed_property < t_css_text_spacing_nan, ec_text_spacing > prop_text_spacing;
 typedef typed_property < t_css_tst, ec_text_spacing_trim > prop_text_spacing_trim;
 typedef typed_property < t_css_text_transform_n, ec_text_transform > prop_text_transform;
@@ -661,14 +705,14 @@ typedef typed_property < t_css_text_wrap, ec_text_wrap > prop_text_wrap;
 typedef typed_property < t_generic, ec_text_wrap_mode > prop_text_wrap_mode;
 typedef typed_property < t_generic, ec_text_wrap_style > prop_text_wrap_style;
 typedef typed_property < t_css_stn_n, ec_timeline_scope > prop_timeline_scope;
-typedef typed_property < t_css_length_ai, ec_top > prop_top;
+typedef typed_property < t_css_length_aia, ec_top > prop_top;
 typedef typed_property < t_real, ec_topline > prop_topline;
 typedef typed_property < t_css_transform_n, ec_transform > prop_transform;
 typedef typed_property < t_css_transform_box, ec_transform_box > prop_transform_box;
 typedef typed_property < t_css_transform_origins, ec_transform_origin > prop_transform_origin;
 typedef typed_property < t_css_transform_style, ec_transform_style > prop_transform_style;
-typedef typed_property < t_generic, ec_transition > prop_transition;
-typedef typed_property < t_generic, ec_transition_behaviour > prop_transition_behaviour;
+typedef typed_property < t_css_transitions, ec_transition > prop_transition;
+typedef typed_property < t_allow_ad_n, ec_transition_behaviour > prop_transition_behaviour;
 typedef typed_property < t_css_durations, ec_transition_delay > prop_transition_delay;
 typedef typed_property < t_css_durations, ec_transition_duration > prop_transition_duration;
 typedef typed_property < t_css_trans_props_n, ec_transition_property > prop_transition_property;
@@ -731,38 +775,6 @@ typedef typed_property < t_integer_ai, ec_z_index > prop_z_index;
 typedef typed_property < t_css_length, ec_zoom > prop_zoom;
 
 typedef typed_property < t_unknown, ec_unknown > prop_unknown;
-
-typedef typed_property < t_generic, ec_all_space_treatment > prop_all_space_treatment;
-typedef typed_property < t_datetime, ec_animation_delay_end > prop_animation_delay_end;
-typedef typed_property < t_datetime, ec_animation_delay_start > prop_animation_delay_start;
-typedef typed_property < t_generic, ec_background_break > prop_background_break;
-typedef typed_property < t_generic, ec_background_image_transform > prop_background_image_transform;
-typedef typed_property < t_generic, ec_background_quantity > prop_background_quantity;
-typedef typed_property < t_generic, ec_background_spacing > prop_background_spacing;
-typedef typed_property < t_generic, ec_bikeshedding > prop_bikeshedding;
-typedef typed_property < t_generic, ec_bleed > prop_bleed;
-typedef typed_property < t_generic, ec_block_overflow > prop_block_overflow;
-typedef typed_property < t_generic, ec_block_progression > prop_block_progression;
-typedef typed_property < t_generic, ec_bookmark_target > prop_bookmark_target;
-typedef typed_property < t_generic, ec_border_break > prop_border_break;
-typedef typed_property < t_generic, ec_border_image_transform > prop_border_image_transform;
-typedef typed_property < t_generic, ec_border_length > prop_border_length;
-typedef typed_property < t_generic, ec_box_align > prop_box_align;
-typedef typed_property < t_generic, ec_box_break > prop_box_break;
-typedef typed_property < t_generic, ec_box_direction > prop_box_direction;
-typedef typed_property < t_generic, ec_box_flex_group > prop_box_flex_group;
-typedef typed_property < t_generic, ec_box_height > prop_box_height;
-typedef typed_property < t_generic, ec_box_lines > prop_box_lines;
-typedef typed_property < t_generic, ec_box_ordinal_group > prop_box_ordinal_group;
-typedef typed_property < t_generic, ec_box_pack > prop_box_pack;
-typedef typed_property < t_generic, ec_box_suppress > prop_box_suppress;
-typedef typed_property < t_generic, ec_box_width > prop_box_width;
-typedef typed_property < t_generic, ec_caret_animation > prop_caret_animation;
-typedef typed_property < t_generic, ec_clear_after > prop_clear_after;
-typedef typed_property < t_generic, ec_column_break_after > prop_column_break_after;
-typedef typed_property < t_generic, ec_column_break_before > prop_column_break_before;
-typedef typed_property < t_generic, ec_content_order > prop_content_order;
-typedef typed_property < t_generic, ec_crop > prop_crop;
 typedef typed_property < t_generic, ec_display_box > prop_display_box;
 typedef typed_property < t_generic, ec_display_extras > prop_display_extras;
 typedef typed_property < t_generic, ec_display_inside > prop_display_inside;
@@ -949,7 +961,7 @@ typedef typed_property < t_generic, ec_target_name > prop_target_name;
 typedef typed_property < t_generic, ec_target_new > prop_target_new;
 typedef typed_property < t_generic, ec_target_position > prop_target_position;
 typedef typed_property < t_generic, ec_text_align_first > prop_text_align_first;
-typedef typed_property < t_generic, ec_text_blink > prop_text_blink;
+typedef typed_property < t_blink_none, ec_text_blink > prop_text_blink;
 typedef typed_property < t_generic, ec_text_block_indent > prop_text_block_indent;
 typedef typed_property < t_generic, ec_text_combine > prop_text_combine;
 typedef typed_property < t_generic, ec_text_combine_horizontal > prop_text_combine_horizontal;
@@ -960,7 +972,7 @@ typedef typed_property < t_generic, ec_text_first_indent > prop_text_first_inden
 typedef typed_property < t_generic, ec_text_justify_trim > prop_text_justify_trim;
 typedef typed_property < t_generic, ec_text_kashida_space > prop_text_kashida_space;
 typedef typed_property < t_generic, ec_text_line_through > prop_text_line_through;
-typedef typed_property < t_generic, ec_text_line_through_color > prop_text_line_through_color;
+typedef typed_property < t_generic, ec_text_line_through_colour > prop_text_line_through_colour;
 typedef typed_property < t_generic, ec_text_line_through_mode > prop_text_line_through_mode;
 typedef typed_property < t_generic, ec_text_line_through_style > prop_text_line_through_style;
 typedef typed_property < t_generic, ec_text_line_through_width > prop_text_line_through_width;
@@ -968,7 +980,7 @@ typedef typed_property < t_generic, ec_text_outline > prop_text_outline;
 typedef typed_property < t_generic, ec_text_overflow_ellipsis > prop_text_overflow_ellipsis;
 typedef typed_property < t_generic, ec_text_overflow_mode > prop_text_overflow_mode;
 typedef typed_property < t_generic, ec_text_overline > prop_text_overline;
-typedef typed_property < t_generic, ec_text_overline_color > prop_text_overline_color;
+typedef typed_property < t_generic, ec_text_overline_colour > prop_text_overline_colour;
 typedef typed_property < t_generic, ec_text_overline_mode > prop_text_overline_mode;
 typedef typed_property < t_generic, ec_text_overline_style > prop_text_overline_style;
 typedef typed_property < t_generic, ec_text_overline_width > prop_text_overline_width;
@@ -978,7 +990,7 @@ typedef typed_property < t_generic, ec_text_space_collapse > prop_text_space_col
 typedef typed_property < t_generic, ec_text_space_trim > prop_text_space_trim;
 typedef typed_property < t_generic, ec_text_trim > prop_text_trim;
 typedef typed_property < t_generic, ec_text_underline > prop_text_underline;
-typedef typed_property < t_generic, ec_text_underline_color > prop_text_underline_color;
+typedef typed_property < t_generic, ec_text_underline_colour > prop_text_underline_colour;
 typedef typed_property < t_generic, ec_text_underline_mode > prop_text_underline_mode;
 typedef typed_property < t_generic, ec_text_underline_style > prop_text_underline_style;
 typedef typed_property < t_generic, ec_text_underline_width > prop_text_underline_width;
@@ -998,119 +1010,125 @@ typedef typed_property < t_generic, ec_wrap_padding > prop_wrap_padding;
 
 typedef typed_property < t_generic, ec_align_tracks > prop_align_tracks;
 
+typedef typed_property < t_bcess, ec_apple_box_align > prop_apple_box_align;
+
 typedef typed_property < t_css_bespoke, ec_epub_text_decoration > prop_epub_text_decoration;
 typedef typed_property < t_css_bespoke, ec_epub_text_emphasis > prop_epub_text_emphasis;
 typedef typed_property < t_css_bespoke, ec_epub_text_emphasis_colour > prop_epub_text_emphasis_colour;
 typedef typed_property < t_css_bespoke, ec_epub_text_emphasis_style > prop_epub_text_emphasis_style;
 typedef typed_property < t_css_bespoke, ec_epub_word_break > prop_epub_word_break;
 typedef typed_property < t_css_bespoke, ec_epub_writing_mode > prop_epub_writing_mode;
-typedef typed_property < t_css_bespoke, ec_moz_animation > prop_moz_animation;
-typedef typed_property < t_css_bespoke, ec_moz_animation_delay > prop_moz_animation_delay;
-typedef typed_property < t_css_bespoke, ec_moz_animation_direction > prop_moz_animation_direction;
-typedef typed_property < t_css_bespoke, ec_moz_animation_duration > prop_moz_animation_duration;
-typedef typed_property < t_css_bespoke, ec_moz_animation_fill_mode > prop_moz_animation_fill_mode;
-typedef typed_property < t_css_bespoke, ec_moz_animation_iteration_count > prop_moz_animation_iteration_count;
-typedef typed_property < t_css_bespoke, ec_moz_animation_name > prop_moz_animation_name;
-typedef typed_property < t_css_bespoke, ec_moz_animation_play_state > prop_moz_animation_play_state;
-typedef typed_property < t_css_bespoke, ec_moz_animation_timing_function > prop_moz_animation_timing_function;
-typedef typed_property < t_css_bespoke, ec_moz_appearance > prop_moz_appearance;
-typedef typed_property < t_css_bespoke, ec_moz_backface_visibility > prop_moz_backface_visibility;
-typedef typed_property < t_css_bespoke, ec_moz_background_clip > prop_moz_background_clip;
-typedef typed_property < t_css_bespoke, ec_moz_background_inline_policy > prop_moz_background_inline_policy;
-typedef typed_property < t_css_bespoke, ec_moz_background_origin > prop_moz_background_origin;
-typedef typed_property < t_css_bespoke, ec_moz_background_size > prop_moz_background_size;
-typedef typed_property < t_css_bespoke, ec_moz_binding > prop_moz_binding;
-typedef typed_property < t_css_bespoke, ec_moz_border_bottom_colours > prop_moz_border_bottom_colours;
-typedef typed_property < t_css_bespoke, ec_moz_border_end > prop_moz_border_end;
-typedef typed_property < t_css_bespoke, ec_moz_border_end_colour > prop_moz_border_end_colour;
-typedef typed_property < t_css_bespoke, ec_moz_border_end_style > prop_moz_border_end_style;
-typedef typed_property < t_css_bespoke, ec_moz_border_end_width > prop_moz_border_end_width;
-typedef typed_property < t_css_bespoke, ec_moz_border_image > prop_moz_border_image;
-typedef typed_property < t_css_bespoke, ec_moz_border_left_colours > prop_moz_border_left_colours;
-typedef typed_property < t_css_bespoke, ec_moz_border_right_colours > prop_moz_border_right_colours;
-typedef typed_property < t_css_bespoke, ec_moz_border_start > prop_moz_border_start;
-typedef typed_property < t_css_bespoke, ec_moz_border_start_colour > prop_moz_border_start_colour;
-typedef typed_property < t_css_bespoke, ec_moz_border_start_style > prop_moz_border_start_style;
-typedef typed_property < t_css_bespoke, ec_moz_border_start_width > prop_moz_border_start_width;
-typedef typed_property < t_css_bespoke, ec_moz_border_top_colours > prop_moz_border_top_colours;
-typedef typed_property < t_css_bespoke, ec_moz_box_align > prop_moz_box_align;
-typedef typed_property < t_css_bespoke, ec_moz_box_direction > prop_moz_box_direction;
-typedef typed_property < t_css_bespoke, ec_moz_box_flex > prop_moz_box_flex;
-typedef typed_property < t_css_bespoke, ec_moz_box_ordinal_group > prop_moz_box_ordinal_group;
-typedef typed_property < t_css_bespoke, ec_moz_box_orient > prop_moz_box_orient;
-typedef typed_property < t_css_bespoke, ec_moz_box_pack > prop_moz_box_pack;
-typedef typed_property < t_css_bespoke, ec_moz_box_sizing > prop_moz_box_sizing;
-typedef typed_property < t_css_bespoke, ec_moz_column_count > prop_moz_column_count;
-typedef typed_property < t_css_bespoke, ec_moz_column_fill > prop_moz_column_fill;
-typedef typed_property < t_css_bespoke, ec_moz_column_gap > prop_moz_column_gap;
-typedef typed_property < t_css_bespoke, ec_moz_column_rule > prop_moz_column_rule;
-typedef typed_property < t_css_bespoke, ec_moz_column_rule_colour > prop_moz_column_rule_colour;
-typedef typed_property < t_css_bespoke, ec_moz_column_rule_style > prop_moz_column_rule_style;
-typedef typed_property < t_css_bespoke, ec_moz_column_rule_width > prop_moz_column_rule_width;
-typedef typed_property < t_css_bespoke, ec_moz_column_width > prop_moz_column_width;
-typedef typed_property < t_css_bespoke, ec_moz_context_properties > prop_moz_context_properties;
-typedef typed_property < t_css_bespoke, ec_moz_float_edge > prop_moz_float_edge;
-typedef typed_property < t_css_bespoke, ec_moz_font_feature_settings > prop_moz_font_feature_settings;
-typedef typed_property < t_css_bespoke, ec_moz_font_language_override > prop_moz_font_language_override;
-typedef typed_property < t_css_bespoke, ec_moz_force_broken_image_icon > prop_moz_force_broken_image_icon;
-typedef typed_property < t_css_bespoke, ec_moz_hyphens > prop_moz_hyphens;
-typedef typed_property < t_css_bespoke, ec_moz_image_region > prop_moz_image_region;
-typedef typed_property < t_css_bespoke, ec_moz_margin_end > prop_moz_margin_end;
-typedef typed_property < t_css_bespoke, ec_moz_margin_start > prop_moz_margin_start;
-typedef typed_property < t_css_bespoke, ec_moz_opacity > prop_moz_opacity;
-typedef typed_property < t_css_bespoke, ec_moz_orient > prop_moz_orient;
-typedef typed_property < t_css_bespoke, ec_moz_osx_font_smoothing > prop_moz_osx_font_smoothing;
-typedef typed_property < t_css_bespoke, ec_moz_outline > prop_moz_outline;
-typedef typed_property < t_css_bespoke, ec_moz_outline_colour > prop_moz_outline_colour;
-typedef typed_property < t_css_bespoke, ec_moz_outline_offset > prop_moz_outline_offset;
-typedef typed_property < t_css_bespoke, ec_moz_outline_radius > prop_moz_outline_radius;
-typedef typed_property < t_css_bespoke, ec_moz_outline_radius_bottomleft > prop_moz_outline_radius_bottomleft;
-typedef typed_property < t_css_bespoke, ec_moz_outline_radius_bottomright > prop_moz_outline_radius_bottomright;
-typedef typed_property < t_css_bespoke, ec_moz_outline_radius_topleft > prop_moz_outline_radius_topleft;
-typedef typed_property < t_css_bespoke, ec_moz_outline_radius_topright > prop_moz_outline_radius_topright;
-typedef typed_property < t_css_bespoke, ec_moz_outline_style > prop_moz_outline_style;
-typedef typed_property < t_css_bespoke, ec_moz_outline_width > prop_moz_outline_width;
-typedef typed_property < t_css_bespoke, ec_moz_padding_end > prop_moz_padding_end;
-typedef typed_property < t_css_bespoke, ec_moz_padding_start > prop_moz_padding_start;
-typedef typed_property < t_css_bespoke, ec_moz_perspective > prop_moz_perspective;
-typedef typed_property < t_css_bespoke, ec_moz_perspective_origin > prop_moz_perspective_origin;
-typedef typed_property < t_css_bespoke, ec_moz_stack_sizing > prop_moz_stack_sizing;
-typedef typed_property < t_css_bespoke, ec_moz_tab_size > prop_moz_tab_size;
-typedef typed_property < t_css_bespoke, ec_moz_text_align_last > prop_moz_text_align_last;
-typedef typed_property < t_css_bespoke, ec_moz_text_decoration_colour > prop_moz_text_decoration_colour;
-typedef typed_property < t_css_bespoke, ec_moz_text_decoration_line > prop_moz_text_decoration_line;
-typedef typed_property < t_css_bespoke, ec_moz_text_decoration_style > prop_moz_text_decoration_style;
-typedef typed_property < t_css_bespoke, ec_moz_text_size_adjust > prop_moz_text_size_adjust;
-typedef typed_property < t_css_bespoke, ec_moz_transform > prop_moz_transform;
-typedef typed_property < t_css_bespoke, ec_moz_transform_origin > prop_moz_transform_origin;
-typedef typed_property < t_css_bespoke, ec_moz_transform_style > prop_moz_transform_style;
-typedef typed_property < t_css_bespoke, ec_moz_transition > prop_moz_transition;
-typedef typed_property < t_css_bespoke, ec_moz_transition_delay > prop_moz_transition_delay;
-typedef typed_property < t_css_bespoke, ec_moz_transition_duration > prop_moz_transition_duration;
-typedef typed_property < t_css_bespoke, ec_moz_transition_property > prop_moz_transition_property;
-typedef typed_property < t_css_bespoke, ec_moz_transition_timing_function > prop_moz_transition_timing_function;
-typedef typed_property < t_css_bespoke, ec_moz_user_focus > prop_moz_user_focus;
-typedef typed_property < t_css_bespoke, ec_moz_user_input > prop_moz_user_input;
-typedef typed_property < t_css_bespoke, ec_moz_user_modify > prop_moz_user_modify;
-typedef typed_property < t_css_bespoke, ec_moz_user_select > prop_moz_user_select;
-typedef typed_property < t_css_bespoke, ec_moz_window_dragging > prop_moz_window_dragging;
-typedef typed_property < t_css_bespoke, ec_moz_window_shadow > prop_moz_window_shadow;
+
+typedef typed_property < t_bcess, ec_khtml_box_align > prop_khtml_box_align;
+
+typedef typed_property < t_css_animations, ec_moz_animation > prop_moz_animation;
+typedef typed_property < t_datetime, ec_moz_animation_delay > prop_moz_animation_delay;
+typedef typed_property < t_css_anim_dirs, ec_moz_animation_direction > prop_moz_animation_direction;
+typedef typed_property < t_datetime_autos, ec_moz_animation_duration > prop_moz_animation_duration;
+typedef typed_property < t_css_anim_fill_modes, ec_moz_animation_fill_mode > prop_moz_animation_fill_mode;
+typedef typed_property < t_css_anim_iter_count, ec_moz_animation_iteration_count > prop_moz_animation_iteration_count;
+typedef typed_property < t_css_anim_name, ec_moz_animation_name > prop_moz_animation_name;
+typedef typed_property < t_css_anim_play_states, ec_moz_animation_play_state > prop_moz_animation_play_state;
+typedef typed_property < t_css_atfs, ec_moz_animation_timing_function > prop_moz_animation_timing_function;
+typedef typed_property < t_css_appearance, ec_moz_appearance > prop_moz_appearance;
+typedef typed_property < t_visibility10, ec_moz_backface_visibility > prop_moz_backface_visibility;
+typedef typed_property < t_css_background_boxes, ec_moz_background_clip > prop_moz_background_clip;
+typedef typed_property < t_css_break_box, ec_moz_background_inline_policy > prop_moz_background_inline_policy;
+typedef typed_property < t_css_background_boxes, ec_moz_background_origin > prop_moz_background_origin;
+typedef typed_property < t_css_background_sizes, ec_moz_background_size > prop_moz_background_size;
+typedef typed_property < t_css_url, ec_moz_binding > prop_moz_binding;
+typedef typed_property < t_css_cols, ec_moz_border_bottom_colours > prop_moz_border_bottom_colours;
+typedef typed_property < t_css_column_rule, ec_moz_border_end > prop_moz_border_end;
+typedef typed_property < t_css_col, ec_moz_border_end_colour > prop_moz_border_end_colour;
+typedef typed_property < t_css_border_style, ec_moz_border_end_style > prop_moz_border_end_style;
+typedef typed_property < t_css_border_measure, ec_moz_border_end_width > prop_moz_border_end_width;
+typedef typed_property < t_css_border_measure, ec_moz_border_image > prop_moz_border_image;
+typedef typed_property < t_css_cols, ec_moz_border_left_colours > prop_moz_border_left_colours;
+typedef typed_property < t_css_cols, ec_moz_border_right_colours > prop_moz_border_right_colours;
+typedef typed_property < t_css_column_rule, ec_moz_border_start > prop_moz_border_start;
+typedef typed_property < t_css_col, ec_moz_border_start_colour > prop_moz_border_start_colour;
+typedef typed_property < t_css_border_style, ec_moz_border_start_style > prop_moz_border_start_style;
+typedef typed_property < t_css_border_measure, ec_moz_border_start_width > prop_moz_border_start_width;
+typedef typed_property < t_css_cols, ec_moz_border_top_colours > prop_moz_border_top_colours;
+typedef typed_property < t_bcess, ec_moz_box_align > prop_moz_box_align;
+typedef typed_property < t_css_box_direction, ec_moz_box_direction > prop_moz_box_direction;
+typedef typed_property < t_fixedpoint, ec_moz_box_flex > prop_moz_box_flex;
+typedef typed_property < t_integer, ec_moz_box_ordinal_group > prop_moz_box_ordinal_group;
+typedef typed_property < t_css_box_orient, ec_moz_box_orient > prop_moz_box_orient;
+typedef typed_property < t_css_box_pack, ec_moz_box_pack > prop_moz_box_pack;
+typedef typed_property < t_css_box_sizing, ec_moz_box_sizing > prop_moz_box_sizing;
+typedef typed_property < t_unsigned_1_more_a, ec_moz_column_count > prop_moz_column_count;
+typedef typed_property < t_css_column_fill, ec_moz_column_fill > prop_moz_column_fill;
+typedef typed_property < t_measure_ni, ec_moz_column_gap > prop_moz_column_gap;
+typedef typed_property < t_css_column_rule, ec_moz_column_rule > prop_moz_column_rule;
+typedef typed_property < t_css_col, ec_moz_column_rule_colour > prop_moz_column_rule_colour;
+typedef typed_property < t_css_border_style, ec_moz_column_rule_style > prop_moz_column_rule_style;
+typedef typed_property < t_css_border_measure, ec_moz_column_rule_width > prop_moz_column_rule_width;
+typedef typed_property < t_measure_a, ec_moz_column_width > prop_moz_column_width;
+typedef typed_property < t_css_context_properties, ec_moz_context_properties > prop_moz_context_properties;
+typedef typed_property < t_css_content_cm_box, ec_moz_float_edge > prop_moz_float_edge;
+typedef typed_property < t_css_font_feature_settings, ec_moz_font_feature_settings > prop_moz_font_feature_settings;
+typedef typed_property < t_lang_n, ec_moz_font_language_override > prop_moz_font_language_override;
+typedef typed_property < t_0_to_1, ec_moz_force_broken_image_icon > prop_moz_force_broken_image_icon;
+typedef typed_property < t_auto_manual_none, ec_moz_hyphens > prop_moz_hyphens;
+typedef typed_property < t_css_rect_ai, ec_moz_image_region > prop_moz_image_region;
+typedef typed_property < t_measure_ai, ec_moz_margin_end > prop_moz_margin_end;
+typedef typed_property < t_measure_ai, ec_moz_margin_start > prop_moz_margin_start;
+typedef typed_property < t_opacity, ec_moz_opacity > prop_moz_opacity;
+typedef typed_property < t_bihv, ec_moz_orient > prop_moz_orient;
+typedef typed_property < t_css_font_smooth, ec_moz_osx_font_smoothing > prop_moz_osx_font_smoothing;
+typedef typed_property < t_css_outline_i, ec_moz_outline > prop_moz_outline;
+typedef typed_property < t_css_col, ec_moz_outline_colour > prop_moz_outline_colour;
+typedef typed_property < t_measure_i, ec_moz_outline_offset > prop_moz_outline_offset;
+typedef typed_property < t_css_length_4, ec_moz_outline_radius > prop_moz_outline_radius;
+typedef typed_property < t_css_length, ec_moz_outline_radius_bottomleft > prop_moz_outline_radius_bottomleft;
+typedef typed_property < t_css_length, ec_moz_outline_radius_bottomright > prop_moz_outline_radius_bottomright;
+typedef typed_property < t_css_length, ec_moz_outline_radius_topleft > prop_moz_outline_radius_topleft;
+typedef typed_property < t_css_length, ec_moz_outline_radius_topright > prop_moz_outline_radius_topright;
+typedef typed_property < t_css_outline_style, ec_moz_outline_style > prop_moz_outline_style;
+typedef typed_property < t_css_border_width_i, ec_moz_outline_width > prop_moz_outline_width;
+typedef typed_property < t_measure_i, ec_moz_padding_end > prop_moz_padding_end;
+typedef typed_property < t_measure_i, ec_moz_padding_start > prop_moz_padding_start;
+typedef typed_property < t_css_length_n, ec_moz_perspective > prop_moz_perspective;
+typedef typed_property < t_position, ec_moz_perspective_origin > prop_moz_perspective_origin;
+typedef typed_property < t_ign_stf, ec_moz_stack_sizing > prop_moz_stack_sizing;
+typedef typed_property < t_css_length_abs_r, ec_moz_tab_size > prop_moz_tab_size;
+typedef typed_property < t_css_text_align_last, ec_moz_text_align_last > prop_moz_text_align_last;
+typedef typed_property < t_blink_none, ec_moz_text_blink > prop_moz_text_blink;
+typedef typed_property < t_css_col, ec_moz_text_decoration_colour > prop_moz_text_decoration_colour;
+typedef typed_property < t_css_textdec_line, ec_moz_text_decoration_line > prop_moz_text_decoration_line;
+typedef typed_property < t_css_textdec_style, ec_moz_text_decoration_style > prop_moz_text_decoration_style;
+typedef typed_property < t_css_length_an, ec_moz_text_size_adjust > prop_moz_text_size_adjust;
+typedef typed_property < t_css_transform_n, ec_moz_transform > prop_moz_transform;
+typedef typed_property < t_css_transform_origins, ec_moz_transform_origin > prop_moz_transform_origin;
+typedef typed_property < t_css_transform_style, ec_moz_transform_style > prop_moz_transform_style;
+typedef typed_property < t_css_transitions, ec_moz_transition > prop_moz_transition;
+typedef typed_property < t_css_durations, ec_moz_transition_delay > prop_moz_transition_delay;
+typedef typed_property < t_css_durations, ec_moz_transition_duration > prop_moz_transition_duration;
+typedef typed_property < t_css_trans_props_n, ec_moz_transition_property > prop_moz_transition_property;
+typedef typed_property < t_css_easing_fns, ec_moz_transition_timing_function > prop_moz_transition_timing_function;
+typedef typed_property < t_inn, ec_moz_user_focus > prop_moz_user_focus;
+typedef typed_property < t_auto_none, ec_moz_user_input > prop_moz_user_input;
+typedef typed_property < t_user_modify, ec_moz_user_modify > prop_moz_user_modify;
+typedef typed_property < t_css_user_select, ec_moz_user_select > prop_moz_user_select;
+typedef typed_property < t_drag_nodrag, ec_moz_window_dragging > prop_moz_window_dragging;
+typedef typed_property < t_css_win_shad, ec_moz_window_shadow > prop_moz_window_shadow;
 typedef typed_property < t_css_bespoke, ec_webkit_align_content > prop_webkit_align_content;
 typedef typed_property < t_css_bespoke, ec_webkit_align_items > prop_webkit_align_items;
 typedef typed_property < t_css_bespoke, ec_webkit_align_self > prop_webkit_align_self;
 typedef typed_property < t_css_bespoke, ec_webkit_alt > prop_webkit_alt;
-typedef typed_property < t_css_bespoke, ec_webkit_animation > prop_webkit_animation;
-typedef typed_property < t_css_bespoke, ec_webkit_animation_delay > prop_webkit_animation_delay;
-typedef typed_property < t_css_bespoke, ec_webkit_animation_direction > prop_webkit_animation_direction;
-typedef typed_property < t_css_bespoke, ec_webkit_animation_duration > prop_webkit_animation_duration;
-typedef typed_property < t_css_bespoke, ec_webkit_animation_fill_mode > prop_webkit_animation_fill_mode;
-typedef typed_property < t_css_bespoke, ec_webkit_animation_iteration_count > prop_webkit_animation_iteration_count;
-typedef typed_property < t_css_bespoke, ec_webkit_animation_name > prop_webkit_animation_name;
-typedef typed_property < t_css_bespoke, ec_webkit_animation_play_state > prop_webkit_animation_play_state;
-typedef typed_property < t_css_bespoke, ec_webkit_animation_timing_function > prop_webkit_animation_timing_function;
+typedef typed_property < t_css_animations, ec_webkit_animation > prop_webkit_animation;
+typedef typed_property < t_datetime, ec_webkit_animation_delay > prop_webkit_animation_delay;
+typedef typed_property < t_css_anim_dirs, ec_webkit_animation_direction > prop_webkit_animation_direction;
+typedef typed_property < t_datetime_autos, ec_webkit_animation_duration > prop_webkit_animation_duration;
+typedef typed_property < t_css_anim_fill_modes, ec_webkit_animation_fill_mode > prop_webkit_animation_fill_mode;
+typedef typed_property < t_css_anim_iter_count, ec_webkit_animation_iteration_count > prop_webkit_animation_iteration_count;
+typedef typed_property < t_css_anim_name, ec_webkit_animation_name > prop_webkit_animation_name;
+typedef typed_property < t_css_anim_play_states, ec_webkit_animation_play_state > prop_webkit_animation_play_state;
+typedef typed_property < t_css_atfs, ec_webkit_animation_timing_function > prop_webkit_animation_timing_function;
 typedef typed_property < t_css_bespoke, ec_webkit_animation_trigger > prop_webkit_animation_trigger;
-typedef typed_property < t_css_bespoke, ec_webkit_app_region > prop_webkit_app_region;
-typedef typed_property < t_css_bespoke, ec_webkit_appearance > prop_webkit_appearance;
+typedef typed_property < t_drag_nodrag, ec_webkit_app_region > prop_webkit_app_region;
+typedef typed_property < t_css_appearance, ec_webkit_appearance > prop_webkit_appearance;
 typedef typed_property < t_css_bespoke, ec_webkit_aspect_ratio > prop_webkit_aspect_ratio;
 typedef typed_property < t_css_bespoke, ec_webkit_backdrop_filter > prop_webkit_backdrop_filter;
 typedef typed_property < t_css_bespoke, ec_webkit_backface_visibility > prop_webkit_backface_visibility;
@@ -1118,49 +1136,49 @@ typedef typed_property < t_css_bespoke, ec_webkit_background_clip > prop_webkit_
 typedef typed_property < t_css_bespoke, ec_webkit_background_composite > prop_webkit_background_composite;
 typedef typed_property < t_css_bespoke, ec_webkit_background_origin > prop_webkit_background_origin;
 typedef typed_property < t_css_bespoke, ec_webkit_background_size > prop_webkit_background_size;
-typedef typed_property < t_css_bespoke, ec_webkit_border_after > prop_webkit_border_after;
-typedef typed_property < t_css_bespoke, ec_webkit_border_after_colour > prop_webkit_border_after_colour;
-typedef typed_property < t_css_bespoke, ec_webkit_border_after_style > prop_webkit_border_after_style;
-typedef typed_property < t_css_bespoke, ec_webkit_border_after_width > prop_webkit_border_after_width;
-typedef typed_property < t_css_bespoke, ec_webkit_border_before > prop_webkit_border_before;
-typedef typed_property < t_css_bespoke, ec_webkit_border_before_colour > prop_webkit_border_before_colour;
-typedef typed_property < t_css_bespoke, ec_webkit_border_before_style > prop_webkit_border_before_style;
-typedef typed_property < t_css_bespoke, ec_webkit_border_before_width > prop_webkit_border_before_width;
+typedef typed_property < t_css_column_rules, ec_webkit_border_after > prop_webkit_border_after;
+typedef typed_property < t_css_cols, ec_webkit_border_after_colour > prop_webkit_border_after_colour;
+typedef typed_property < t_css_border_styles_l, ec_webkit_border_after_style > prop_webkit_border_after_style;
+typedef typed_property < t_css_borders_measure_l, ec_webkit_border_after_width > prop_webkit_border_after_width;
+typedef typed_property < t_css_column_rules, ec_webkit_border_before > prop_webkit_border_before;
+typedef typed_property < t_css_cols, ec_webkit_border_before_colour > prop_webkit_border_before_colour;
+typedef typed_property < t_css_border_styles_l, ec_webkit_border_before_style > prop_webkit_border_before_style;
+typedef typed_property < t_css_borders_measure_l, ec_webkit_border_before_width > prop_webkit_border_before_width;
 typedef typed_property < t_css_bespoke, ec_webkit_border_bottom_left_radius > prop_webkit_border_bottom_left_radius;
 typedef typed_property < t_css_bespoke, ec_webkit_border_bottom_right_radius > prop_webkit_border_bottom_right_radius;
-typedef typed_property < t_css_bespoke, ec_webkit_border_end > prop_webkit_border_end;
-typedef typed_property < t_css_bespoke, ec_webkit_border_end_colour > prop_webkit_border_end_colour;
-typedef typed_property < t_css_bespoke, ec_webkit_border_end_style > prop_webkit_border_end_style;
-typedef typed_property < t_css_bespoke, ec_webkit_border_end_width > prop_webkit_border_end_width;
+typedef typed_property < t_css_column_rules, ec_webkit_border_end > prop_webkit_border_end;
+typedef typed_property < t_css_cols, ec_webkit_border_end_colour > prop_webkit_border_end_colour;
+typedef typed_property < t_css_border_styles_l, ec_webkit_border_end_style > prop_webkit_border_end_style;
+typedef typed_property < t_css_borders_measure_l, ec_webkit_border_end_width > prop_webkit_border_end_width;
 typedef typed_property < t_css_bespoke, ec_webkit_border_fit > prop_webkit_border_fit;
 typedef typed_property < t_css_bespoke, ec_webkit_border_horizontal_spacing > prop_webkit_border_horizontal_spacing;
 typedef typed_property < t_css_bespoke, ec_webkit_border_image > prop_webkit_border_image;
 typedef typed_property < t_css_bespoke, ec_webkit_border_radius > prop_webkit_border_radius;
-typedef typed_property < t_css_bespoke, ec_webkit_border_start > prop_webkit_border_start;
-typedef typed_property < t_css_bespoke, ec_webkit_border_start_colour > prop_webkit_border_start_colour;
-typedef typed_property < t_css_bespoke, ec_webkit_border_start_style > prop_webkit_border_start_style;
-typedef typed_property < t_css_bespoke, ec_webkit_border_start_width > prop_webkit_border_start_width;
+typedef typed_property < t_css_column_rules, ec_webkit_border_start > prop_webkit_border_start;
+typedef typed_property < t_css_cols, ec_webkit_border_start_colour > prop_webkit_border_start_colour;
+typedef typed_property < t_css_border_styles_l, ec_webkit_border_start_style > prop_webkit_border_start_style;
+typedef typed_property < t_css_borders_measure_l, ec_webkit_border_start_width > prop_webkit_border_start_width;
 typedef typed_property < t_css_bespoke, ec_webkit_border_top_left_radius > prop_webkit_border_top_left_radius;
 typedef typed_property < t_css_bespoke, ec_webkit_border_top_right_radius > prop_webkit_border_top_right_radius;
 typedef typed_property < t_css_bespoke, ec_webkit_border_vertical_spacing > prop_webkit_border_vertical_spacing;
-typedef typed_property < t_css_bespoke, ec_webkit_box_align > prop_webkit_box_align;
+typedef typed_property < t_bcess, ec_webkit_box_align > prop_webkit_box_align;
 typedef typed_property < t_css_bespoke, ec_webkit_box_decoration_break > prop_webkit_box_decoration_break;
-typedef typed_property < t_css_bespoke, ec_webkit_box_direction > prop_webkit_box_direction;
-typedef typed_property < t_css_bespoke, ec_webkit_box_flex > prop_webkit_box_flex;
-typedef typed_property < t_css_bespoke, ec_webkit_box_flex_group > prop_webkit_box_flex_group;
-typedef typed_property < t_css_bespoke, ec_webkit_box_lines > prop_webkit_box_lines;
-typedef typed_property < t_css_bespoke, ec_webkit_box_ordinal_group > prop_webkit_box_ordinal_group;
-typedef typed_property < t_css_bespoke, ec_webkit_box_orient > prop_webkit_box_orient;
-typedef typed_property < t_css_bespoke, ec_webkit_box_pack > prop_webkit_box_pack;
-typedef typed_property < t_css_bespoke, ec_webkit_box_reflect > prop_webkit_box_reflect;
+typedef typed_property < t_css_box_direction, ec_webkit_box_direction > prop_webkit_box_direction;
+typedef typed_property < t_fixedpoint, ec_webkit_box_flex > prop_webkit_box_flex;
+typedef typed_property < t_integer, ec_webkit_box_flex_group > prop_webkit_box_flex_group;
+typedef typed_property < t_multiple_single, ec_webkit_box_lines > prop_webkit_box_lines;
+typedef typed_property < t_integer, ec_webkit_box_ordinal_group > prop_webkit_box_ordinal_group;
+typedef typed_property < t_css_box_orient, ec_webkit_box_orient > prop_webkit_box_orient;
+typedef typed_property < t_css_box_pack, ec_webkit_box_pack > prop_webkit_box_pack;
+typedef typed_property < t_css_box_reflect, ec_webkit_box_reflect > prop_webkit_box_reflect;
 typedef typed_property < t_css_bespoke, ec_webkit_box_shadow > prop_webkit_box_shadow;
 typedef typed_property < t_css_bespoke, ec_webkit_box_sizing > prop_webkit_box_sizing;
 typedef typed_property < t_css_bespoke, ec_webkit_clip_path > prop_webkit_clip_path;
 typedef typed_property < t_css_bespoke, ec_webkit_colour_correction > prop_webkit_colour_correction;
 typedef typed_property < t_css_bespoke, ec_webkit_column_axis > prop_webkit_column_axis;
-typedef typed_property < t_css_bespoke, ec_webkit_column_break_after > prop_webkit_column_break_after;
-typedef typed_property < t_css_bespoke, ec_webkit_column_break_before > prop_webkit_column_break_before;
-typedef typed_property < t_css_bespoke, ec_webkit_column_break_inside > prop_webkit_column_break_inside;
+typedef typed_property < t_css_break, ec_webkit_column_break_after > prop_webkit_column_break_after;
+typedef typed_property < t_css_break, ec_webkit_column_break_before > prop_webkit_column_break_before;
+typedef typed_property < t_css_break_inside, ec_webkit_column_break_inside > prop_webkit_column_break_inside;
 typedef typed_property < t_css_bespoke, ec_webkit_column_count > prop_webkit_column_count;
 typedef typed_property < t_css_bespoke, ec_webkit_column_fill > prop_webkit_column_fill;
 typedef typed_property < t_css_bespoke, ec_webkit_column_gap > prop_webkit_column_gap;
@@ -1185,10 +1203,10 @@ typedef typed_property < t_css_bespoke, ec_webkit_flex_shrink > prop_webkit_flex
 typedef typed_property < t_css_bespoke, ec_webkit_flex_wrap > prop_webkit_flex_wrap;
 typedef typed_property < t_css_bespoke, ec_webkit_flow_from > prop_webkit_flow_from;
 typedef typed_property < t_css_bespoke, ec_webkit_flow_into > prop_webkit_flow_into;
-typedef typed_property < t_css_bespoke, ec_webkit_font_feature_settings > prop_webkit_font_feature_settings;
+typedef typed_property < t_css_font_feature_settings, ec_webkit_font_feature_settings > prop_webkit_font_feature_settings;
 typedef typed_property < t_css_bespoke, ec_webkit_font_kerning > prop_webkit_font_kerning;
 typedef typed_property < t_css_bespoke, ec_webkit_font_size_delta > prop_webkit_font_size_delta;
-typedef typed_property < t_css_bespoke, ec_webkit_font_smoothing > prop_webkit_font_smoothing;
+typedef typed_property < t_css_font_smooth, ec_webkit_font_smoothing > prop_webkit_font_smoothing;
 typedef typed_property < t_css_bespoke, ec_webkit_font_variant_ligatures > prop_webkit_font_variant_ligatures;
 typedef typed_property < t_css_bespoke, ec_webkit_grid > prop_webkit_grid;
 typedef typed_property < t_css_bespoke, ec_webkit_grid_area > prop_webkit_grid_area;
@@ -1211,14 +1229,14 @@ typedef typed_property < t_css_bespoke, ec_webkit_grid_template_areas > prop_web
 typedef typed_property < t_css_bespoke, ec_webkit_grid_template_columns > prop_webkit_grid_template_columns;
 typedef typed_property < t_css_bespoke, ec_webkit_grid_template_rows > prop_webkit_grid_template_rows;
 typedef typed_property < t_css_bespoke, ec_webkit_highlight > prop_webkit_highlight;
-typedef typed_property < t_css_bespoke, ec_webkit_hyphenate_character > prop_webkit_hyphenate_character;
+typedef typed_property < t_text_a, ec_webkit_hyphenate_character > prop_webkit_hyphenate_character;
 typedef typed_property < t_css_bespoke, ec_webkit_hyphenate_charset > prop_webkit_hyphenate_charset;
 typedef typed_property < t_css_bespoke, ec_webkit_hyphenate_limit_after > prop_webkit_hyphenate_limit_after;
 typedef typed_property < t_css_bespoke, ec_webkit_hyphenate_limit_before > prop_webkit_hyphenate_limit_before;
 typedef typed_property < t_css_bespoke, ec_webkit_hyphenate_limit_lines > prop_webkit_hyphenate_limit_lines;
 typedef typed_property < t_css_bespoke, ec_webkit_hyphens > prop_webkit_hyphens;
 typedef typed_property < t_css_bespoke, ec_webkit_image_set > prop_webkit_image_set;
-typedef typed_property < t_css_bespoke, ec_webkit_initial_letter > prop_webkit_initial_letter;
+typedef typed_property < t_css_initial_letter_n, ec_webkit_initial_letter > prop_webkit_initial_letter;
 typedef typed_property < t_css_bespoke, ec_webkit_justify_content > prop_webkit_justify_content;
 typedef typed_property < t_css_bespoke, ec_webkit_justify_items > prop_webkit_justify_items;
 typedef typed_property < t_css_bespoke, ec_webkit_justify_self > prop_webkit_justify_self;
@@ -1237,8 +1255,8 @@ typedef typed_property < t_css_bespoke, ec_webkit_margin_before > prop_webkit_ma
 typedef typed_property < t_css_bespoke, ec_webkit_margin_before_collapse > prop_webkit_margin_before_collapse;
 typedef typed_property < t_css_bespoke, ec_webkit_margin_bottom_collapse > prop_webkit_margin_bottom_collapse;
 typedef typed_property < t_css_bespoke, ec_webkit_margin_collapse > prop_webkit_margin_collapse;
-typedef typed_property < t_css_bespoke, ec_webkit_margin_end > prop_webkit_margin_end;
-typedef typed_property < t_css_bespoke, ec_webkit_margin_start > prop_webkit_margin_start;
+typedef typed_property < t_measure_ai, ec_webkit_margin_end > prop_webkit_margin_end;
+typedef typed_property < t_measure_ai, ec_webkit_margin_start > prop_webkit_margin_start;
 typedef typed_property < t_css_bespoke, ec_webkit_margin_top_collapse > prop_webkit_margin_top_collapse;
 typedef typed_property < t_css_bespoke, ec_webkit_marquee > prop_webkit_marquee;
 typedef typed_property < t_css_bespoke, ec_webkit_marquee_direction > prop_webkit_marquee_direction;
@@ -1248,6 +1266,9 @@ typedef typed_property < t_css_bespoke, ec_webkit_marquee_speed > prop_webkit_ma
 typedef typed_property < t_css_bespoke, ec_webkit_marquee_style > prop_webkit_marquee_style;
 typedef typed_property < t_css_bespoke, ec_webkit_mask > prop_webkit_mask;
 typedef typed_property < t_css_bespoke, ec_webkit_mask_attachment > prop_webkit_mask_attachment;
+typedef typed_property < t_css_mask_border_outsets, ec_webkit_mask_border_outset > prop_webkit_mask_border_outset;
+typedef typed_property < t_css_mask_border_repeats, ec_webkit_mask_border_repeat > prop_webkit_mask_border_repeat;
+typedef typed_property < t_css_val_fn_n, ec_webkit_mask_border_source > prop_webkit_mask_border_source;
 typedef typed_property < t_css_bespoke, ec_webkit_mask_box_image > prop_webkit_mask_box_image;
 typedef typed_property < t_css_bespoke, ec_webkit_mask_box_image_outset > prop_webkit_mask_box_image_outset;
 typedef typed_property < t_css_bespoke, ec_webkit_mask_box_image_repeat > prop_webkit_mask_box_image_repeat;
@@ -1255,15 +1276,15 @@ typedef typed_property < t_css_bespoke, ec_webkit_mask_box_image_slice > prop_we
 typedef typed_property < t_css_bespoke, ec_webkit_mask_box_image_source > prop_webkit_mask_box_image_source;
 typedef typed_property < t_css_bespoke, ec_webkit_mask_box_image_width > prop_webkit_mask_box_image_width;
 typedef typed_property < t_css_bespoke, ec_webkit_mask_clip > prop_webkit_mask_clip;
-typedef typed_property < t_css_bespoke, ec_webkit_mask_composite > prop_webkit_mask_composite;
+typedef typed_property < t_css_mask_composites, ec_webkit_mask_composite > prop_webkit_mask_composite;
 typedef typed_property < t_css_bespoke, ec_webkit_mask_image > prop_webkit_mask_image;
-typedef typed_property < t_css_bespoke, ec_webkit_mask_origin > prop_webkit_mask_origin;
-typedef typed_property < t_css_bespoke, ec_webkit_mask_position > prop_webkit_mask_position;
-typedef typed_property < t_css_bespoke, ec_webkit_mask_position_x > prop_webkit_mask_position_x;
-typedef typed_property < t_css_bespoke, ec_webkit_mask_position_y > prop_webkit_mask_position_y;
-typedef typed_property < t_css_bespoke, ec_webkit_mask_repeat > prop_webkit_mask_repeat;
-typedef typed_property < t_css_bespoke, ec_webkit_mask_repeat_x > prop_webkit_mask_repeat_x;
-typedef typed_property < t_css_bespoke, ec_webkit_mask_repeat_y > prop_webkit_mask_repeat_y;
+typedef typed_property < t_css_coord_boxen, ec_webkit_mask_origin > prop_webkit_mask_origin;
+typedef typed_property < t_positions, ec_webkit_mask_position > prop_webkit_mask_position;
+typedef typed_property < t_refxs, ec_webkit_mask_position_x > prop_webkit_mask_position_x;
+typedef typed_property < t_refys, ec_webkit_mask_position_y > prop_webkit_mask_position_y;
+typedef typed_property < t_css_background_repeats, ec_webkit_mask_repeat > prop_webkit_mask_repeat;
+typedef typed_property < t_css_mask_repeats, ec_webkit_mask_repeat_x > prop_webkit_mask_repeat_x;
+typedef typed_property < t_css_mask_repeats, ec_webkit_mask_repeat_y > prop_webkit_mask_repeat_y;
 typedef typed_property < t_css_bespoke, ec_webkit_mask_size > prop_webkit_mask_size;
 typedef typed_property < t_css_bespoke, ec_webkit_mask_source_type > prop_webkit_mask_source_type;
 typedef typed_property < t_css_bespoke, ec_webkit_match_nearest_mail_blockquote_colour > prop_webkit_match_nearest_mail_blockquote_colour;
@@ -1276,10 +1297,10 @@ typedef typed_property < t_css_bespoke, ec_webkit_nbsp_mode > prop_webkit_nbsp_m
 typedef typed_property < t_css_bespoke, ec_webkit_opacity > prop_webkit_opacity;
 typedef typed_property < t_css_bespoke, ec_webkit_order > prop_webkit_order;
 typedef typed_property < t_css_bespoke, ec_webkit_overflow_scrolling > prop_webkit_overflow_scrolling;
-typedef typed_property < t_css_bespoke, ec_webkit_padding_after > prop_webkit_padding_after;
-typedef typed_property < t_css_bespoke, ec_webkit_padding_before > prop_webkit_padding_before;
-typedef typed_property < t_css_bespoke, ec_webkit_padding_end > prop_webkit_padding_end;
-typedef typed_property < t_css_bespoke, ec_webkit_padding_start > prop_webkit_padding_start;
+typedef typed_property < t_measure_i, ec_webkit_padding_after > prop_webkit_padding_after;
+typedef typed_property < t_measure_i, ec_webkit_padding_before > prop_webkit_padding_before;
+typedef typed_property < t_measure_i, ec_webkit_padding_end > prop_webkit_padding_end;
+typedef typed_property < t_measure_i, ec_webkit_padding_start > prop_webkit_padding_start;
 typedef typed_property < t_css_bespoke, ec_webkit_perspective > prop_webkit_perspective;
 typedef typed_property < t_css_bespoke, ec_webkit_perspective_origin > prop_webkit_perspective_origin;
 typedef typed_property < t_css_bespoke, ec_webkit_perspective_origin_x > prop_webkit_perspective_origin_x;
@@ -1297,7 +1318,7 @@ typedef typed_property < t_css_bespoke, ec_webkit_shape_inside > prop_webkit_sha
 typedef typed_property < t_css_bespoke, ec_webkit_shape_margin > prop_webkit_shape_margin;
 typedef typed_property < t_css_bespoke, ec_webkit_shape_outside > prop_webkit_shape_outside;
 typedef typed_property < t_css_bespoke, ec_webkit_svg_shadow > prop_webkit_svg_shadow;
-typedef typed_property < t_css_bespoke, ec_webkit_tap_highlight_colour > prop_webkit_tap_highlight_colour;
+typedef typed_property < t_css_col, ec_webkit_tap_highlight_colour > prop_webkit_tap_highlight_colour;
 typedef typed_property < t_css_bespoke, ec_webkit_text_colour_decoration > prop_webkit_text_colour_decoration;
 typedef typed_property < t_css_bespoke, ec_webkit_text_combine > prop_webkit_text_combine;
 typedef typed_property < t_css_bespoke, ec_webkit_text_decoration_line > prop_webkit_text_decoration_line;
@@ -1308,18 +1329,18 @@ typedef typed_property < t_css_bespoke, ec_webkit_text_emphasis > prop_webkit_te
 typedef typed_property < t_css_bespoke, ec_webkit_text_emphasis_colour > prop_webkit_text_emphasis_colour;
 typedef typed_property < t_css_bespoke, ec_webkit_text_emphasis_position > prop_webkit_text_emphasis_position;
 typedef typed_property < t_css_bespoke, ec_webkit_text_emphasis_style > prop_webkit_text_emphasis_style;
-typedef typed_property < t_css_bespoke, ec_webkit_text_fill_colour > prop_webkit_text_fill_colour;
+typedef typed_property < t_css_col, ec_webkit_text_fill_colour > prop_webkit_text_fill_colour;
 typedef typed_property < t_css_bespoke, ec_webkit_text_justify > prop_webkit_text_justify;
 typedef typed_property < t_css_bespoke, ec_webkit_text_orientation > prop_webkit_text_orientation;
-typedef typed_property < t_css_bespoke, ec_webkit_text_security > prop_webkit_text_security;
+typedef typed_property < t_dsc2, ec_webkit_text_security > prop_webkit_text_security;
 typedef typed_property < t_css_bespoke, ec_webkit_text_size_adjust > prop_webkit_text_size_adjust;
-typedef typed_property < t_css_bespoke, ec_webkit_text_stroke > prop_webkit_text_stroke;
-typedef typed_property < t_css_bespoke, ec_webkit_text_stroke_colour > prop_webkit_text_stroke_colour;
-typedef typed_property < t_css_bespoke, ec_webkit_text_stroke_width > prop_webkit_text_stroke_width;
+typedef typed_property < t_css_border_width_col, ec_webkit_text_stroke > prop_webkit_text_stroke;
+typedef typed_property < t_css_col, ec_webkit_text_stroke_colour > prop_webkit_text_stroke_colour;
+typedef typed_property < t_css_border_measure, ec_webkit_text_stroke_width > prop_webkit_text_stroke_width;
 typedef typed_property < t_css_bespoke, ec_webkit_text_underline_position > prop_webkit_text_underline_position;
 typedef typed_property < t_css_bespoke, ec_webkit_text_zoom > prop_webkit_text_zoom;
-typedef typed_property < t_css_bespoke, ec_webkit_touch_callout > prop_webkit_touch_callout;
-typedef typed_property < t_css_bespoke, ec_webkit_transform > prop_webkit_transform;
+typedef typed_property < t_default_none, ec_webkit_touch_callout > prop_webkit_touch_callout;
+typedef typed_property < t_css_transform_n, ec_webkit_transform > prop_webkit_transform;
 typedef typed_property < t_css_bespoke, ec_webkit_transform_2d > prop_webkit_transform_2d;
 typedef typed_property < t_css_bespoke, ec_webkit_transform_3d > prop_webkit_transform_3d;
 typedef typed_property < t_css_bespoke, ec_webkit_transform_origin > prop_webkit_transform_origin;
@@ -1544,32 +1565,21 @@ typedef typed_property < t_css_bespoke, ec_mso_yfti_irow > prop_mso_yfti_irow;
 typedef typed_property < t_css_bespoke, ec_mso_yfti_lastrow > prop_mso_yfti_lastrow;
 typedef typed_property < t_css_bespoke, ec_mso_yfti_tbllook > prop_mso_yfti_tbllook;
 
-typedef typed_property < t_css_bespoke, ec_o_table_baseline > prop_o_table_baseline;
-typedef typed_property < t_css_bespoke, ec_o_text_overflow > prop_o_text_overflow;
-typedef typed_property < t_css_bespoke, ec_o_transform > prop_o_transform;
-typedef typed_property < t_css_bespoke, ec_o_transform_origin > prop_o_transform_origin;
-typedef typed_property < t_css_bespoke, ec_o_transition > prop_o_transition;
-typedef typed_property < t_css_bespoke, ec_o_transition_delay > prop_o_transition_delay;
-typedef typed_property < t_css_bespoke, ec_o_transition_duration > prop_o_transition_duration;
-typedef typed_property < t_css_bespoke, ec_o_transition_property > prop_o_transition_property;
-typedef typed_property < t_css_bespoke, ec_o_transition_timing_function > prop_o_transition_timing_function;
-typedef typed_property < t_css_bespoke, ec_o_tab_size > prop_o_tab_size;
-
 typedef typed_property < t_css_bespoke, ec_apple_dashboard_region > prop_apple_dashboard_region;
 typedef typed_property < t_css_bespoke, ec_epub_caption_side > prop_epub_caption_side;
 typedef typed_property < t_css_bespoke, ec_epub_hyphens > prop_epub_hyphens;
 typedef typed_property < t_css_bespoke, ec_epub_text_combine > prop_epub_text_combine;
 typedef typed_property < t_css_bespoke, ec_epub_text_orientation > prop_epub_text_orientation;
 typedef typed_property < t_css_bespoke, ec_epub_text_transform > prop_epub_text_transform;
-typedef typed_property < t_css_bespoke, ec_ms_animation > prop_ms_animation;
-typedef typed_property < t_css_bespoke, ec_ms_animation_delay > prop_ms_animation_delay;
-typedef typed_property < t_css_bespoke, ec_ms_animation_direction > prop_ms_animation_direction;
-typedef typed_property < t_css_bespoke, ec_ms_animation_duration > prop_ms_animation_duration;
-typedef typed_property < t_css_bespoke, ec_ms_animation_fill_mode > prop_ms_animation_fill_mode;
-typedef typed_property < t_css_bespoke, ec_ms_animation_iteration_count > prop_ms_animation_iteration_count;
-typedef typed_property < t_css_bespoke, ec_ms_animation_name > prop_ms_animation_name;
-typedef typed_property < t_css_bespoke, ec_ms_animation_play_state > prop_ms_animation_play_state;
-typedef typed_property < t_css_bespoke, ec_ms_animation_timing_function > prop_ms_animation_timing_function;
+typedef typed_property < t_css_animations, ec_ms_animation > prop_ms_animation;
+typedef typed_property < t_datetime, ec_ms_animation_delay > prop_ms_animation_delay;
+typedef typed_property < t_css_anim_dirs, ec_ms_animation_direction > prop_ms_animation_direction;
+typedef typed_property < t_datetime_autos, ec_ms_animation_duration > prop_ms_animation_duration;
+typedef typed_property < t_css_anim_fill_modes, ec_ms_animation_fill_mode > prop_ms_animation_fill_mode;
+typedef typed_property < t_css_anim_iter_count, ec_ms_animation_iteration_count > prop_ms_animation_iteration_count;
+typedef typed_property < t_css_anim_name, ec_ms_animation_name > prop_ms_animation_name;
+typedef typed_property < t_css_anim_play_states, ec_ms_animation_play_state > prop_ms_animation_play_state;
+typedef typed_property < t_css_atfs, ec_ms_animation_timing_function > prop_ms_animation_timing_function;
 typedef typed_property < t_css_bespoke, ec_ms_block_progression > prop_ms_block_progression;
 typedef typed_property < t_css_bespoke, ec_ms_content_zoom_chaining > prop_ms_content_zoom_chaining;
 typedef typed_property < t_css_bespoke, ec_ms_content_zoom_limit > prop_ms_content_zoom_limit;
@@ -1618,6 +1628,7 @@ typedef typed_property < t_css_bespoke, ec_ms_transition_duration > prop_ms_tran
 typedef typed_property < t_css_bespoke, ec_ms_transition_property > prop_ms_transition_property;
 typedef typed_property < t_css_bespoke, ec_ms_transition_timing_function > prop_ms_transition_timing_function;
 typedef typed_property < t_css_bespoke, ec_ms_wrap_margin > prop_ms_wrap_margin;
+typedef typed_property < t_css_animations, ec_o_animation > prop_o_animation;
 typedef typed_property < t_css_bespoke, ec_o_border_image > prop_o_border_image;
 typedef typed_property < t_css_bespoke, ec_o_device_pixel_ratio > prop_o_device_pixel_ratio;
 typedef typed_property < t_css_bespoke, ec_o_focus_opacity > prop_o_focus_opacity;
@@ -1628,7 +1639,8 @@ typedef typed_property < t_css_bespoke, ec_o_object_fit > prop_o_object_fit;
 typedef typed_property < t_css_bespoke, ec_o_object_position > prop_o_object_position;
 typedef typed_property < t_css_bespoke, ec_o_tab_size > prop_o_tab_size;
 typedef typed_property < t_css_bespoke, ec_o_table_baseline > prop_o_table_baseline;
-typedef typed_property < t_css_bespoke, ec_o_transform > prop_o_transform;
+typedef typed_property < t_css_bespoke, ec_o_text_overflow > prop_o_text_overflow;
+typedef typed_property < t_css_transform_n, ec_o_transform > prop_o_transform;
 typedef typed_property < t_css_bespoke, ec_o_transform_origin > prop_o_transform_origin;
 typedef typed_property < t_css_bespoke, ec_o_transition > prop_o_transition;
 typedef typed_property < t_css_bespoke, ec_o_transition_delay > prop_o_transition_delay;
@@ -1659,11 +1671,14 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_align_content, \
     prop_align_items, \
     prop_align_self, \
+    prop_align_tracks, \
     prop_alignment_baseline, \
     prop_all, \
+    prop_all_space_treatment, \
     prop_altglyph, \
     prop_anchor_default, \
     prop_anchor_name, \
+    prop_anchor_scope, \
     prop_anchor_scroll, \
     prop_animation, \
     prop_animation_composition, \
@@ -1687,23 +1702,34 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_aspect_ratio, \
     prop_audio_level, \
     prop_azimuth, \
+    prop_backdrop_filter, \
     prop_backface_visibility, \
     prop_background, \
     prop_background_attachment, \
     prop_background_blend_mode, \
+    prop_background_break, \
     prop_background_clip, \
     prop_background_colour, \
     prop_background_image, \
     prop_background_origin, \
     prop_background_position, \
+    prop_background_position_x, \
+    prop_background_position_y, \
     prop_background_repeat, \
     prop_background_size, \
+    prop_background_image_transform, \
+    prop_background_quantity, \
+    prop_background_spacing, \
     prop_baseline, \
     prop_baseline_shift, \
     prop_baseline_source, \
     prop_base_palette, \
     prop_bbox, \
+    prop_bikeshedding, \
+    prop_bleed, \
     prop_block_ellipsis, \
+    prop_block_overflow, \
+    prop_block_progression, \
     prop_block_size, \
     prop_block_step, \
     prop_block_step_align, \
@@ -1713,6 +1739,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_bookmark_label, \
     prop_bookmark_level, \
     prop_bookmark_state, \
+    prop_bookmark_target, \
     prop_border, \
     prop_border_block, \
     prop_border_block_colour, \
@@ -1726,6 +1753,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_border_block_start_width, \
     prop_border_block_style, \
     prop_border_block_width, \
+    prop_border_break, \
     prop_border_bottom, \
     prop_border_bottom_colour, \
     prop_border_bottom_left_radius, \
@@ -1742,6 +1770,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_border_image_repeat, \
     prop_border_image_slice, \
     prop_border_image_source, \
+    prop_border_image_transform, \
     prop_border_image_width, \
     prop_border_inline, \
     prop_border_inline_colour, \
@@ -1759,6 +1788,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_border_left_colour, \
     prop_border_left_style, \
     prop_border_left_width, \
+    prop_border_length, \
     prop_border_radius, \
     prop_border_right, \
     prop_border_right_colour, \
@@ -1776,12 +1806,22 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_border_top_width, \
     prop_border_width, \
     prop_bottom, \
+    prop_box_align, \
+    prop_box_break, \
     prop_box_decoration_break, \
+    prop_box_direction, \
     prop_box_flex, \
+    prop_box_flex_group, \
+    prop_box_height, \
+    prop_box_lines, \
+    prop_box_ordinal_group, \
     prop_box_orient, \
+    prop_box_pack, \
     prop_box_shadow, \
     prop_box_sizing, \
     prop_box_snap, \
+    prop_box_suppress, \
+    prop_box_width, \
     prop_break_after, \
     prop_break_before, \
     prop_break_inside, \
@@ -1789,11 +1829,13 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_cap_height, \
     prop_caption_side, \
     prop_caret, \
+    prop_caret_animation, \
     prop_caret_colour, \
     prop_caret_shape, \
     prop_centre_line, \
     prop_chains, \
     prop_clear, \
+    prop_clear_after, \
     prop_clip, \
     prop_clippath, \
     prop_clip_path, \
@@ -1805,6 +1847,8 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_colour_profile, \
     prop_colour_rendering, \
     prop_colour_scheme, \
+    prop_column_break_after, \
+    prop_column_break_before, \
     prop_column_count, \
     prop_column_fill, \
     prop_column_gap, \
@@ -1825,12 +1869,14 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_container_name, \
     prop_container_type, \
     prop_content, \
+    prop_content_order, \
     prop_content_visibility, \
     prop_context, \
     prop_continue, \
     prop_counter_increment, \
     prop_counter_reset, \
     prop_counter_set, \
+    prop_crop, \
     prop_cue, \
     prop_cue_after, \
     prop_cue_before, \
@@ -1846,6 +1892,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_display_align, \
     prop_dominant_baseline, \
     prop_elevation, \
+    prop_dynamic_range_limit, \
     prop_empty_cells, \
     prop_enable_background, \
     prop_epub_text_decoration, \
@@ -1897,6 +1944,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_font_palette, \
     prop_font_size, \
     prop_font_size_adjust, \
+    prop_font_smooth, \
     prop_font_stretch, \
     prop_font_style, \
     prop_font_synthesis, \
@@ -1966,6 +2014,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_justify_items, \
     prop_justify_self, \
     prop_kerning, \
+    prop_khtml_box_align, \
     prop_leading_trim, \
     prop_left, \
     prop_letter_spacing, \
@@ -2120,8 +2169,14 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_play_during, \
     prop_pointer_events, \
     prop_position, \
+    prop_position_anchor, \
+    prop_position_area, \
     prop_position_fallback, \
     prop_position_fallback_bounds, \
+    prop_position_try, \
+    prop_position_try_fallbacks, \
+    prop_position_try_order, \
+    prop_position_visibility, \
     prop_prefix, \
     prop_presentation_level, \
     prop_print_colour_adjust, \
@@ -2424,6 +2479,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_moz_stack_sizing, \
     prop_moz_tab_size, \
     prop_moz_text_align_last, \
+    prop_moz_text_blink, \
     prop_moz_text_decoration_colour, \
     prop_moz_text_decoration_line, \
     prop_moz_text_decoration_style, \
@@ -2595,6 +2651,9 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_webkit_marquee_style, \
     prop_webkit_mask, \
     prop_webkit_mask_attachment, \
+    prop_webkit_mask_border_outset, \
+    prop_webkit_mask_border_repeat, \
+    prop_webkit_mask_border_source, \
     prop_webkit_mask_box_image, \
     prop_webkit_mask_box_image_outset, \
     prop_webkit_mask_box_image_repeat, \
@@ -2900,14 +2959,6 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
 #define LAST_CSS_4_PROP ec_o_text_overflow
 
 #define CSS_PROPERTIES_5 \
-    prop_o_transform, \
-    prop_o_transform_origin, \
-    prop_o_transition, \
-    prop_o_transition_delay, \
-    prop_o_transition_duration, \
-    prop_o_transition_property, \
-    prop_o_transition_timing_function, \
-    prop_o_tab_size, \
     prop_apple_dashboard_region, \
     prop_epub_caption_side, \
     prop_epub_hyphens, \
@@ -2971,6 +3022,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_ms_transition_property, \
     prop_ms_transition_timing_function, \
     prop_ms_wrap_margin, \
+    prop_o_animation, \
     prop_o_border_image, \
     prop_o_device_pixel_ratio, \
     prop_o_focus_opacity, \
@@ -2988,6 +3040,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_o_transition_duration, \
     prop_o_transition_property, \
     prop_o_transition_timing_function, \
+    prop_o_tab_size, \
     prop_wap_accesskey, \
     prop_wap_input_format, \
     prop_wap_input_required, \
@@ -3008,38 +3061,6 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
 #define LAST_CSS_5_PROP ec_xv_voice_volume
 
 #define CSS_PROPERTIES_6 \
-    prop_align_tracks, \
-    prop_all_space_treatment, \
-    prop_animation_delay_end, \
-    prop_animation_delay_start, \
-    prop_background_break, \
-    prop_background_image_transform, \
-    prop_background_quantity, \
-    prop_background_spacing, \
-    prop_bikeshedding, \
-    prop_bleed, \
-    prop_block_overflow, \
-    prop_block_progression, \
-    prop_bookmark_target, \
-    prop_border_break, \
-    prop_border_image_transform, \
-    prop_border_length, \
-    prop_box_align, \
-    prop_box_break, \
-    prop_box_direction, \
-    prop_box_flex_group, \
-    prop_box_height, \
-    prop_box_lines, \
-    prop_box_ordinal_group, \
-    prop_box_pack, \
-    prop_box_suppress, \
-    prop_box_width, \
-    prop_caret_animation, \
-    prop_clear_after, \
-    prop_column_break_after, \
-    prop_column_break_before, \
-    prop_content_order, \
-    prop_crop, \
     prop_display_box, \
     prop_display_extras, \
     prop_display_inside, \
@@ -3237,7 +3258,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_text_justify_trim, \
     prop_text_kashida_space, \
     prop_text_line_through, \
-    prop_text_line_through_color, \
+    prop_text_line_through_colour, \
     prop_text_line_through_mode, \
     prop_text_line_through_style, \
     prop_text_line_through_width, \
@@ -3245,17 +3266,19 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_text_overflow_ellipsis, \
     prop_text_overflow_mode, \
     prop_text_overline, \
-    prop_text_overline_color, \
+    prop_text_overline_colour, \
     prop_text_overline_mode, \
     prop_text_overline_style, \
     prop_text_overline_width, \
     prop_text_replace, \
     prop_text_script, \
+    prop_text_shadow, \
+    prop_text_size_adjust, \
     prop_text_space_collapse, \
     prop_text_space_trim, \
     prop_text_trim, \
     prop_text_underline, \
-    prop_text_underline_color, \
+    prop_text_underline_colour, \
     prop_text_underline_mode, \
     prop_text_underline_style, \
     prop_text_underline_width, \

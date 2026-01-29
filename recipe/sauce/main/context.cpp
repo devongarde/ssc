@@ -40,6 +40,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 context_t context;
 ustr_t context_t::validation_;
 ::boost::filesystem::path context_t::cwd_;
+
 #ifdef LEAK_SEEK
 _CrtMemState context_t::ls_old_;
 #endif // LEAK_SEEK
@@ -202,8 +203,14 @@ context_t& context_t::path (const ::std::string& s)
 
 int context_t::parameters (nitpick& nits, const vstr_t& vs)
 {   options o (*this, nits, vs);
-    if (todo () == do_booboo) return ERROR_STATE;
-    if ((todo () != do_examine) && (todo () != do_cgi)) return STOP_OK;
+    switch (todo ())
+    {   case do_booboo :
+            return ERROR_STATE;
+        case do_examine :
+        case do_cgi :
+            break;
+        default :
+            return STOP_OK; }
 #ifdef DARWIN
     if (context.excl_def_excl ()) excludable_filenames.insert (".DS_Store");
 #endif // DARWIN
@@ -436,7 +443,7 @@ bool context_t::pretended (const ::std::string& s) const
 context_t& context_t::fred (const ::std::size_t i)
 {   const ::std::size_t nmt = fred_t::no_more_than (); // <=> :-(
     if (i > nmt) fred_ = nmt;
-    else if (i > 0) fred_ = i;
+    else if (i >= MIN_FRED) fred_ = i;
     else fred_ = fred_t::suggested ();
     mac (nm_context_info, fred_);
     return *this; }
@@ -479,7 +486,6 @@ bool context_t::stats_any () const
 {   for (auto b : rpt_)
         if (b) return true;
     return false; }
-
 
 context_t& context_t::stats (const e_report r, const bool b)
 {   rpt_.at (r) = b;
@@ -680,24 +686,25 @@ context_t& context_t::custom_elements (nitpick& nits, const vstr_t& sss)
 
 void context_t::check_consistency (nitpick& nits)
 {   if (anal_ == anal_default)
-        if (html_ver () >= html_aug25) anal_ = anal_aug25;
+        if (html_ver () >= html_dec25) anal_ = anal_dec25;
+        else if (html_ver () >= html_aug25) anal_ = anal_aug25;
         else anal_ = anal_original;
+#ifdef SIGNING
     if (context.sign () || context.verify ())
-        if (signature_.empty ())
+        if (output_signature_.empty ())
         {   nits.pick (nit_signature_key, es_error, ec_init, "signing andor verifying require a signature file");
             valid_ = false; }
-        else if (public_.empty ()) 
+        else if (output_public_.empty ()) 
         {   nits.pick (nit_signature_key, es_error, ec_init, "a signature needs a public key");
             valid_ = false; }
-        else if (password_.empty ())
-        {   os_ -> consolidate (nits, public_, private_, ::std::string (), signature_);
-            return; }
+        else if (output_password_.empty ())
+            os_ -> consolidate (nits, output_public_, output_private_, ::std::string (), output_signature_);
         else
         {   bool borked = true;
-            const ::std::string pw = read_text_file (nits, password_, borked);
+            const ::std::string pw = read_text_file (nits, output_password_, borked);
             if (! borked)
-                os_ -> consolidate (nits, public_, private_, pw, signature_);
-            return; }
+                os_ -> consolidate (nits, output_public_, output_private_, pw, output_signature_); }
+#endif // SIGNING
     os_ -> depre (nits);
     tim_.init (version_, nits, naughty_, nice_, note_);
     process_url_vars (nits);

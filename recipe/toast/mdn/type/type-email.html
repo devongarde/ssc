@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN type-email tests</title>
+<style>
+label {
+  display: block;
+  font:
+    1rem "Fira Sans",
+    sans-serif;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN type-email Tests</h1>
+
+<label for="email">Enter your example.com email:</label>
+
+<input type="email" id="email" pattern=".+@example\.com" size="30" required />
+
+<input id="emailAddress" type="email" />
+
+<input id="emailAddress" type="email" multiple />
+
+<input type="email" placeholder="sophie@example.com" />
+
+<input type="email" size="15" />
+
+<input type="email" size="32" minlength="3" maxlength="64" />
+
+<input type="email" value="default@example.com" />
+
+<input type="email" size="40" list="defaultEmails" />
+
+<datalist id="defaultEmails">
+  <option value="jbond007@mi6.defence.gov.uk"></option>
+  <option value="jbourne@unknown.net"></option>
+  <option value="nfury@shield.org"></option>
+  <option value="tony@starkindustries.com"></option>
+  <option value="hulk@grrrrrrrr.arg"></option>
+</datalist>
+
+<form>
+  <div class="emailBox">
+    <label for="emailAddress">Your email address</label><br />
+    <input
+      id="emailAddress"
+      type="email"
+      size="64"
+      maxlength="64"
+      required
+      placeholder="username@beststartupever.com"
+      pattern=".+@beststartupever\.com"
+      title="Please provide only a Best Startup Ever corporate email address" />
+  </div>
+
+  <div class="messageBox">
+    <label for="message">Request</label><br />
+    <textarea
+      id="message"
+      cols="80"
+      rows="8"
+      required
+      placeholder="My shoes are too tight, and I have forgotten how to dance."></textarea>
+  </div>
+  <input type="submit" value="Send Request" />
+</form>
+
+<label for="emailAddress">Email</label><br />
+<input
+  id="emailAddress"
+  type="email"
+  placeholder="user@example.gov"
+  list="defaultEmails"
+  size="64"
+  maxlength="256"
+  multiple />
+
+<datalist id="defaultEmails">
+  <option value="jbond007@mi6.defence.gov.uk"></option>
+  <option value="jbourne@unknown.net"></option>
+  <option value="nfury@shield.org"></option>
+  <option value="tony@starkindustries.com"></option>
+  <option value="hulk@grrrrrrrr.arg"></option>
+</datalist>
+
+</body>
+</html>

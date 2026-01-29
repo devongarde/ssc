@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN -moz-image-rect- tests</title>
+<style>
+#container {
+  width: 267px;
+  height: 272px;
+  top: 100px;
+  left: 100px;
+  position: absolute;
+  font-size: 16px;
+  text-shadow: white 0px 0px 6px;
+  text-align: center;
+}
+#box1 {
+  background-image: -moz-image-rect(url("firefox.png"), 0%, 50%, 50%, 0%);
+  width: 133px;
+  height: 136px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+}
+#box2 {
+  background-image: -moz-image-rect(url("firefox.png"), 0%, 100%, 50%, 50%);
+  width: 133px;
+  height: 136px;
+  left: 133px;
+  top: 0px;
+  position: absolute;
+}
+#box3 {
+  background-image: -moz-image-rect(url("firefox.png"), 50%, 50%, 100%, 0%);
+  width: 133px;
+  height: 136px;
+  left: 0px;
+  top: 136px;
+  position: absolute;
+}
+#box4 {
+  background-image: -moz-image-rect(url("firefox.png"), 50%, 100%, 100%, 50%);
+  width: 133px;
+  height: 136px;
+  left: 133px;
+  top: 136px;
+  position: absolute;
+}
+</style>
+<script>
+function rotate() {
+  let prevStyle = window
+    .getComputedStyle(document.getElementById("box4"), null)
+    .getPropertyValue("background-image");
+
+  // Now that we've saved the last one, start rotating
+  for (let i = 1; i <= 4; i++) {
+    const curId = `box${i}`;
+
+    // Shift the background images
+    const curStyle = window
+      .getComputedStyle(document.getElementById(curId), null)
+      .getPropertyValue("background-image");
+    document.getElementById(curId).style.backgroundImage = prevStyle;
+    prevStyle = curStyle;
+  }
+}
+
+document.getElementById("container").addEventListener("click", rotate);
+</script>
+</head>
+
+<body>
+
+<h1>MDN -moz-image-rect- Tests</h1>
+
+<div id="container">
+  <div id="box1">Top left</div>
+  <div id="box2">Top right</div>
+  <div id="box3">Bottom left</div>
+  <div id="box4">Bottom right</div>
+</div>
+</body>
+</html>

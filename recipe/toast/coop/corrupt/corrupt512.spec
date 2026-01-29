@@ -17,12 +17,10 @@ PASS ../toast/coop/corrupt/plumbing/songshade.css
 1 css_version
 9 empty empty empty empty content
 19 css_bespoke
-41 css_bespoke
+41 abandoned mozilla bespoke_obsolete
 42 css_bespoke
 43 css_bespoke
-104 css_bespoke
-104 css_bespoke
-104 css_bespoke
+104 bespoke_obsolete mozilla bespoke_obsolete bespoke_obsolete
 
 PASS ../toast/coop/corrupt/w/weak.shtml
 178 character_code

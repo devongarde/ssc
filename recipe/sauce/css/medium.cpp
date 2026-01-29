@@ -143,7 +143,8 @@ bool medium_t::value_expected (const e_media prop, e_type& t, bool& length, bool
         case md_forced_colours :
             t = t_forced_colours;
             return true;
-       case md_grid :
+        case md_grid :
+        case md_moz_windows_glass :
             t = t_zero_or_one;
             return true;
         case md_inverted_colours :
@@ -151,9 +152,13 @@ bool medium_t::value_expected (const e_media prop, e_type& t, bool& length, bool
             return true;
         case md_max_resolution :
         case md_min_resolution :
+        case md_moz_device_pixel_ratio :
         case md_resolution :
             t = t_unsigned;
             dpi = true;
+            return true;
+        case md_moz_platform :
+            t = t_generic;
             return true;
         case md_nav_controls :
             t = t_nav_controls;
@@ -554,6 +559,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                 case md_colour_index :
                 case md_grid :
                 case md_monochrome :
+                case md_moz_windows_glass :
                     check_feature_compatibility (nits, device, m.m_);
                     arged = value_expected (m.m_, t, len, ratio, dpi);
                     want_val = discrete = rator = colonised = false;
@@ -750,6 +756,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                     break;
                 case md_min_resolution :
                 case md_max_resolution :
+                case md_moz_device_pixel_ratio :
                 case md_resolution :
                     resolved = true;
                     check_feature_compatibility (nits, device, m.m_);
@@ -788,6 +795,9 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                             nits.pick (nit_illegal_value, es_error, ec_mql, quote (commas.at (comma)), ": not expecting an integer here");
                             res = false;
                             break; }
+                    break;
+                case md_moz_platform:
+                    res = argled = arged = true;
                     break;
                 case md_no_preference :
                     if ((t != t_media_prefers) && (t != t_media_prefers_2))

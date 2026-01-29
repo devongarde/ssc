@@ -43,7 +43,7 @@ arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, c
 {   ns_.reset (new namespaces_t ());
     ns_ -> up (namespaces.get ()); }
 
-bool arguments::prep_for_make (nitpick& nits, const int , int& b, const int to, int& var, int& bang, e_token& p, bool& xs, bool& xk, bool& xn, bool& xi, bool& fn, bool& clean, int& kc, ::std::string& val)
+bool arguments::prep_for_make (nitpick& , const int , int& b, const int to, int& var, int& bang, e_token& p, bool& xs, bool& xk, bool& xn, bool& xi, bool& fn, bool& clean, int& kc, ::std::string& val)
 {   int pre = to, rc = 0;
     var = b;
     bang = token_find (t_, ct_bang, b, to, &pre);
@@ -70,12 +70,6 @@ bool arguments::prep_for_make (nitpick& nits, const int , int& b, const int to, 
             b = c;
             ++kc; }
     val = trim_the_lot_off (val);
-    if (val.length () >= 5)
-        if (val.at (0) == '-')
-            if (    ((val.length () >= 6) && (val.substr (1, 5) == "khtml")) ||
-                    ((val.length () >= 5) && (val.substr (1, 4) == "atsc")))
-            {   nits.pick (nit_bespoke_property, es_warning, ec_css, quote (val), ": apologies, but " PROG " cannot verify the bespoke");
-                return false; }
     return true; }
 
 void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string& s) const
@@ -100,9 +94,9 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
     else if ((f & CF_MUST_PALETTE) == CF_MUST_PALETTE)
     {   if ((st_ == nullptr) || (st_ -> get () != css_font_palette_values))
             nits.pick (nit_naughty_page, es_error, ec_css, s, " requires @font-palette-values"); }
-    if ((f & CF_BEF_AFT) == CF_BEF_AFT)
+    if (((f & CF_BEF_AFT) == CF_BEF_AFT) && (context.css_module (c_conditional_rule) < 3))
         if ((ss_ == nullptr) || (! ss_ -> bef_aft ()))
-            if ((st_ == nullptr) || ((st_ -> get () < css_content_ok) || (context.css_module (c_conditional_rule) < 3)))
+            if ((st_ == nullptr) || (st_ -> get () < css_content_ok))
                 if (context.css_version () > css_2_2)
                     nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with ::before andor ::after");
                 else nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with :before andor :after"); }

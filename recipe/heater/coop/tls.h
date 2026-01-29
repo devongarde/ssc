@@ -20,7 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
-typedef enum { sii_fn, sii_hush, sii_max } e_statii;
 CONSTEXPR ::std::size_t max_statii = static_cast < ::std::size_t > (sii_max);
 
 #ifdef NO_FRED

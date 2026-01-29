@@ -5,7 +5,7 @@ PASS ../toast/css/1/basic.css
 4 css_colour
 7 dialect
 9 unrecognised_value
-10 unrecognised_value unrecognised_value unrecognised_value
+10 unrecognised_value
 11 css_colour
 12 unrecognised_value
 18 css_version css_dubious
@@ -106,7 +106,7 @@ PASS ../toast/css/1/import.css
 7 dialect
 8 selector
 9 unrecognised_value
-10 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
+10 unrecognised_value unrecognised_value unrecognised_value
 11 css_colour
 12 unrecognised_value
 18 css_version css_dubious

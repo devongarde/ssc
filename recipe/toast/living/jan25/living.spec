@@ -2532,9 +2532,7 @@ PASS ../toast/living/jan25/tables.css
 168 css_version
 169 css_version
 170 css_version
-171 unrecognised_value
 177 css_version css_version
 178 css_version css_version
-179 unrecognised_value
 185 css_namespace
 197 css_namespace

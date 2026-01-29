@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN animation-range-end tests</title>
+<style>
+.sid
+{
+/* Keyword or length percentage value */
+animation-range-end: normal;
+animation-range-end: 80%;
+animation-range-end: 700px;
+
+/* Named timeline range value */
+animation-range-end: cover;
+animation-range-end: contain;
+animation-range-end: cover 80%;
+animation-range-end: contain 700px;
+
+/* Global values */
+animation-range-end: inherit;
+animation-range-end: initial;
+animation-range-end: revert;
+animation-range-end: revert-layer;
+animation-range-end: unset;
+}
+
+.animatedElement {
+  background-color: deeppink;
+  animation: appear 1ms linear;
+  animation-timeline: view();
+  animation-range-end: exit 25%;
+}
+
+@keyframes appear {
+  from {
+    background-color: rebeccapurple;
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    background-color: darkturquoise;
+    opacity: 0.75;
+    transform: scaleX(0.75);
+  }
+}
+
+:has(:checked) .animatedElement {
+  animation-fill-mode: forwards;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN animation-range-end Tests</h1>
+
+<div class="animatedElement"></div>
+
+<label>
+  <input type="checkbox" /> Add <code>animation-fill-mode: forwards;</code>
+</label>
+
+</body>
+</html>

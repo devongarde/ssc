@@ -25,7 +25,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "feedback/nitout.h"
 #include "coop/lox.h"
+#ifdef WX
 #include "gui/gui-app.h"
+#endif // WX
 #include "utility/fileio.h"
 
 void outstream::dup ()

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN box-decoration-break tests</title>
+<style>
+.sid {
+/* Keyword values */
+box-decoration-break: slice;
+box-decoration-break: clone;
+
+/* Global values */
+box-decoration-break: inherit;
+box-decoration-break: initial;
+box-decoration-break: revert;
+box-decoration-break: revert-layer;
+box-decoration-break: unset;
+}
+
+span {
+  background: linear-gradient(to bottom right, yellow, green);
+  box-shadow:
+    8px 8px 10px 0px deeppink,
+    -5px -5px 5px 0px blue,
+    5px 5px 15px 0px yellow;
+}
+
+#clone {
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+span {
+  display: block;
+  background: linear-gradient(to bottom right, yellow, green);
+  box-shadow:
+    inset 8px 8px 10px 0px deeppink,
+    inset -5px -5px 5px 0px blue,
+    inset 5px 5px 15px 0px yellow;
+}
+#base {
+  width: 33%;
+}
+.columns {
+  columns: 3;
+}
+
+.clone {
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN box-decoration-break Tests</h1>
+
+<p>
+  <span>The<br />quick<br />orange fox</span>
+</p>
+<p>
+  <span id="clone">The<br />quick<br />orange fox</span>
+</p>
+
+<div id="base">
+  <span>The<br />quick<br />orange fox</span>
+</div>
+<br />
+
+<h2>'box-decoration-break: slice'</h2>
+<div class="columns">
+  <span>The<br />quick<br />orange fox</span>
+</div>
+
+<h2>'box-decoration-break: clone'</h2>
+<div class="columns">
+  <span class="clone">The<br />quick<br />orange fox</span>
+</div>
+
+</body>
+</html>

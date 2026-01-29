@@ -10,8 +10,6 @@ PASS ../toast/css/3-view/css-1.css
 PASS ../toast/css/3-view/css-5.css
 0 html
 2 vtn
-48 unrecognised_value unrecognised_value
-49 unrecognised_value unrecognised_value
 
 PASS ../toast/css/3-view/index.html
 2 naughty_lang

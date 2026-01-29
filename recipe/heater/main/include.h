@@ -51,35 +51,42 @@ z
 
 */
 
-#define SSC_DOMAIN "dylanharris.org"
 #define SCRUFF_DOMAIN "dylanharris.org"
+#define EMAIL_BAH "ssc@" SCRUFF_DOMAIN
 
 #define PROG "ssc"
 #define TESTPROG PROG "-test"
 #define FULLNAME "Static Site Checker"
+#define LCFULLNAME "static site checker"
 #define FORMALNAME "The " FULLNAME
-#define WEBADDR "https://" SSC_DOMAIN "/"
+#define WEBADDR "https://" SCRUFF_DOMAIN "/" PROG "/"
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 23
-#define VERSION_STRING "0.2.23"
+#define VERSION_RELEASE 24
+#define VERSION_STRING "0.2.24"
+
+#define BUILD_YEAR              "2026"
+#define BUILD_MONTH             "Jan"
+#define BUILD_DAY_ISH BUILD_YEAR "-01-01"
+#define LATEST_CSS              "2025"
 
 #define NBSP "&nbsp;"
+#define COPYRIGHT_AMP "&copy;"
 #define COPYRIGHT_SYMBOL "(c)"
 #define COPYRIGHT_FORENAME "Dylan"
 #define COPYRIGHT_SURNAME "Harris"
-#define COPYRIGHT_YEAR "2020-2026"
-#define COPYRIGHT_TEXT COPYRIGHT_SYMBOL " " COPYRIGHT_YEAR " " COPYRIGHT_FORENAME " " COPYRIGHT_SURNAME
-#define COPYRIGHT_HTML "&copy;" NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME
-#define COPYRIGHT_WEBADDR "https://" SCRUFF_DOMAIN "/"
-#define COPYRIGHT_BRADDR " (" COPYRIGHT_WEBADDR ")"
+#define COPYRIGHT_NAME COPYRIGHT_FORENAME " " COPYRIGHT_SURNAME
+#define COPYRIGHT_YEAR "2020-" BUILD_YEAR
+#define COPYRIGHT_TEXT COPYRIGHT_SYMBOL " " COPYRIGHT_YEAR " " COPYRIGHT_NAME
+#define COPYRIGHT_HTML COPYRIGHT_AMP NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME
+#define COPYRIGHT_BRADDR " (" WEBADDR ")"
 #define COPYRIGHT COPYRIGHT_TEXT COPYRIGHT_BRADDR
-#define COPYRIGHT_HTML_FULL "&copy;" NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME COPYRIGHT_BRADDR
+#define COPYRIGHT_HTML_FULL COPYRIGHT_AMP NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME COPYRIGHT_BRADDR
 
 #define SSC_PUBLIC_KEY ""
 
-#define UPDATE_URL_1 "https://" SSC_DOMAIN "/ssc/ssc.ver"
+#define UPDATE_URL_1 WEBADDR "ssc.ver"
 #define UPDATE_URL_2 "https://ssc.lu/ssc.ver"
 
 #define DEFAULT_LINE_LENGTH 72
@@ -87,6 +94,10 @@ z
 
 #define DEFAULT_MAX_FILE_SIZE 4
 #define DMFS_BYTES (DEFAULT_MAX_FILE_SIZE * 1024 * 1024)
+
+#define DEFAULT_PORT    10438
+#define DEFAULT_PORT_S  "10438"
+#define DEFAULT_ADDRESS "127.0.0.1"
 
 #ifdef __clang__
 #pragma clang diagnostic push
@@ -128,37 +139,31 @@ z
 #endif // WIN32
 
 // https://docs.microsoft.com/en-us/cpp/preprocessor/predefined-macros?view=msvc-170
-#if _MSC_VER >= 1930
+#if _MSC_VER >= 1950
 #pragma warning (disable : 26812)
 #define _WIN32_WINNT 0x0A00 // 10
 #define WINICU
 #define GETUSERNAMEEX
-#ifndef VS2022
+#define VS2026
+#elif _MSC_VER >= 1930
+#pragma warning (disable : 26812)
+#define _WIN32_WINNT 0x0A00 // 10
+#define WINICU
+#define GETUSERNAMEEX
 #define VS2022
-#endif // VS2022
-#undef VS2019
-#undef VS2017
 #elif _MSC_VER >= 1920
 #define WINICU
 #define _WIN32_WINNT 0x0A00 // 10
-#ifndef VS2019
 #define VS2019
-#endif // VS2019
-#undef VS2022
-#undef VS2017
 #elif _MSC_VER >= 1910
 #define NOICU
 #define _WIN32_WINNT 0x0603 // 8.1
 #define SMALLINT
 #define NOMERGE
 #define SULKINGSTRINGVIEW
-#ifndef VS2017
 #define VS2017
-#endif // VS2017
-#undef VS2019
-#undef VS2022
 #else // _MSC_VER
-#error ssc only builds with VS 2019 / 2022.
+#error ssc only builds with VS 2019 / 2022 / 2026.
 #endif // _MSC_VER
 
     // The MSVC linter is generally useful, but it has (had?) some serious problems.
@@ -279,6 +284,9 @@ z
 #define SIGNCHAR
 #endif // SIGNING
 
+#define MIN_FRED 1
+#define MIN_FRED_S "1"
+
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -306,10 +314,9 @@ z
 #include <cstdlib>
 #include <ctime>
 #include <functional>
-#include <iostream>
 #include <locale>
 #include <memory>
-#include <set>
+#include <queue>
 #ifndef NO_FRED
 #include <shared_mutex>
 #endif // NO_FRED
@@ -327,10 +334,6 @@ z
 #ifdef _MSC_VER
 #include <direct.h>
 #endif // _MSC_VER
-
-#if defined (NO_FRED) || defined (FUDDYDUDDY) || defined (VS2017) || defined (VS2019)
-#define NOSERV
-#endif // ...
 
 #ifndef NOICU
 #ifdef WINICU
@@ -436,7 +439,11 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #endif // ORDERED
 
 #include <boost/asio.hpp>
+#include <boost/asio/ssl.hpp>
 #include <boost/beast.hpp>
+#ifdef SIGNING
+#include <boost/beast/websocket/ssl.hpp>
+#endif // SIGNING
 #include <boost/chrono.hpp>
 #include <boost/date_time.hpp>
 #include <boost/format.hpp>
@@ -743,6 +750,8 @@ typedef ::std::basic_stringstream < char32_t > stringstream32;
 typedef ssc_map < ::std::size_t, sstr_t > szreg_t;
 typedef ::std::unique_ptr < ::std::fstream > fstr_p;
 typedef ::std::vector < ::boost::regex > vreg_t;
+typedef ::std::string const cstr;
+typedef ::std::shared_ptr < cstr > cstr_p;
 
 #ifdef _MSC_VER
 #pragma warning (push, 3)
@@ -835,17 +844,18 @@ typedef ::std::vector < bool > faux_vb_t;
 // #define EXPAND_TEST "t"
 
 #define BUILD_INFO   DBG_STATUS FUDDY ICU_CHAR JSNIC LEAKY NPS_GEN SIGNCHAR SPELT UGLY_TEXT WXS ":" TARGET_OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
-#define BASE_TITLE   FULLNAME " v" VERSION_STRING EDITION " (" WEBADDR ")\n"
+#define SSC_VERSION  FULLNAME " v" VERSION_STRING EDITION
+#define BASE_TITLE   SSC_VERSION " (" WEBADDR ")\n"
 #define SIMPLE_TITLE BASE_TITLE COPYRIGHT_TEXT "\n"
-#define FULL_TITLE_1 BASE_TITLE COPYRIGHT "\n"
-#define FULL_TITLE_2 "[" __DATE__ " " __TIME__  "] [" BUILD_INFO "]" "\n"
-#define FULL_TITLE   FULL_TITLE_1 FULL_TITLE_2
+#define FT_INFO      "[" __DATE__ " " __TIME__  "] [" BUILD_INFO "]" "\n"
+#define FULL_TITLE   SIMPLE_TITLE FT_INFO
 #define TEST_TITLE   FULLNAME " v" VERSION_STRING EDITION "\n(" __DATE__ " " __TIME__ ")\n" WEBADDR "\n" COPYRIGHT "\n\n"
+#define HTTP_ID      PROG "/" VERSION_STRING " (" BUILD_INFO ")"
 
 #ifdef FIBBING_AGENT
-#define SSC_USER_AGENT   "Mozilla/5.0"
+#define SSC_USER_AGENT "Mozilla/5.0"
 #else // FIBBING_AGENT
-#define SSC_USER_AGENT PROG "/" VERSION_STRING " (" BUILD_INFO ") " BOOST_BEAST_VERSION_STRING
+#define SSC_USER_AGENT HTTP_ID
 #endif // FIBBING_AGENT
 
 #define TYPE_HELP "Type '" PROG " -h' for help."
@@ -988,12 +998,17 @@ typedef ::std::vector < bool > faux_vb_t;
 #define RREPERTOIRES              "Directories"
 #endif // DARWIN
 
-#define STOP_NOW -1
-#define VALID_RESULT 0
-#define STOP_OK 1
-#define NOTHING_TO_DO 2
-#define ERROR_STATE 3
-#define CATASTROPHIC_STATE 4
+#define STOP_NOW            -1
+#define VALID_RESULT        0
+#define STOP_OK             1
+#define NOTHING_TO_DO       2
+#define ERROR_STATE         3
+#define CATASTROPHIC_STATE  4
+
+#define DEFAULT_TIMEOUT     30
+#define DEFAULT_TIMEOUT_S   "30"
+#define MIN_TIMEOUT         4
+#define MIN_TIMEOUT_S       "4"
 
 #include "main/enum.h"
 

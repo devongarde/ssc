@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-block-end tests</title>
+<style>
+.sid {
+border-block-end: 1px;
+border-block-end: 2px dotted;
+border-block-end: medium dashed blue;
+
+/* Global values */
+border-block-end: inherit;
+border-block-end: initial;
+border-block-end: revert;
+border-block-end: revert-layer;
+border-block-end: unset;
+}
+
+div {
+  background-color: yellow;
+  width: 120px;
+  height: 120px;
+}
+
+.exampleText {
+  writing-mode: vertical-rl;
+  border-block-end: 5px dashed blue;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-block-end Tests</h1>
+
+<div>
+  <p class="exampleText">Example text</p>
+</div>
+
+</body>
+</html>

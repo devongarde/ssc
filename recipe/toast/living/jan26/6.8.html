@@ -1,0 +1,68 @@
+﻿<!doctype html>
+<html lang=en>
+ <head>
+  <title>6.8</title>
+ </head>
+
+ <body>
+     <h1>6.8</h1>
+
+     <form method=POST>
+         <fieldset>
+             <legend>New article</legend>
+             <textarea name=article>&lt;p>Hello world.&lt;/p></textarea>
+         </fieldset>
+         <p><button>Publish</button></p>
+     </form>
+
+     <form method=POST>
+         <fieldset>
+             <legend>New article</legend>
+             <textarea id=textarea name=article>&lt;p>Hello world.&lt;/p></textarea>
+             <div id=div style="white-space: pre-wrap" hidden><p>Hello world.</p></div>
+             <script>
+   let textarea = document.getElementById("textarea");
+   let div = document.getElementById("div");
+   textarea.hidden = true;
+   div.hidden = false;
+   div.contentEditable = "true";
+   div.oninput = (e) => {
+     textarea.value = div.innerHTML;
+   };
+             </script>
+         </fieldset>
+         <p><button>Publish</button></p>
+     </form>
+
+     <style style=white-space:pre contenteditable>
+         html {
+             margin: .2em;
+             font-size: 2em;
+             color: lime;
+             background: purple
+         }
+
+         head, title, style {
+             display: block
+         }
+
+         body {
+             display: none
+         }
+     </style>
+
+     <div contenteditable="true">
+         <span spellcheck="false" id="a">Hell</span><em>o!</em>
+     </div>
+
+     <p spellcheck="true">
+         <label>Name: <input spellcheck=" false" id="b"></label>
+     </p>
+
+     <form autocorrect="off">
+         <input type="search">
+         <textarea autocorrect="on"></textarea>
+     </form>
+
+</body>
+</html>

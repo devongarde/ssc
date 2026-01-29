@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN type-importmap tests</title>
+<script type="importmap">
+  // JSON object defining import
+</script>
+<script>
+import { name as circleName } from "https://example.com/shapes/circle.js";
+import { name as squareName, draw } from "./modules/shapes/square.js";
+import { name as circleName } from "circle";
+import { name as squareName, draw } from "square";
+import { name as circleName } from "shapes/circle.js";
+</script>
+<script type="importmap">
+  {
+    "imports": {
+      "circle": "https://example.com/shapes/circle.js",
+      "square": "./modules/shapes/square.js"
+    }
+  }
+</script>
+<script type="importmap">
+  {
+    "imports": {
+      "shapes/": "./modules/shapes/",
+      "other-shapes/": "https://example.com/modules/shapes/"
+    }
+  }
+</script>
+<script type="importmap">
+  {
+    "imports": {
+      "square": "./modules/shapes/square.js"
+    },
+    "scopes": {
+      "/modules/custom-shapes/": {
+        "square": "https://example.com/modules/shapes/square.js"
+      }
+    }
+  }
+</script>
+<script type="importmap">
+  {
+    "imports": {
+      "square": "./modules/shapes/square.js"
+    },
+    "integrity": {
+      "./modules/shapes/square.js": "sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC"
+    }
+  }
+</script>
+<script type="importmap">
+  {
+    "imports": {
+      "/app/": "./original-app/"
+    }
+  }
+</script>
+<script type="importmap">
+  {
+    "imports": {
+      "/app/helper": "./helper/index.mjs"
+    },
+    "scopes": {
+      "/js": {
+        "/app/": "./js-app/"
+      }
+    }
+  }
+</script>
+<script type="importmap">
+  {
+    "imports": {
+      "/app/": "./original-app/",
+      "/app/helper": "./helper/index.mjs"
+    },
+    "scopes": {
+      "/js": {
+        "/app/": "./js-app/"
+      }
+    }
+  }
+</script>
+<script type="importmap">
+  {
+    "imports": {
+      "/app/helper.js": "./helper/index.mjs",
+      "lodash": "/node_modules/lodash-es/lodash.js"
+    }
+  }
+</script>
+<script type="importmap">
+  {
+    "imports": {
+      "lodash": "/node_modules/lodash-es/lodash.js"
+    }
+  }
+</script>
+<script type="importmap">
+  {
+    "imports": {
+      "/app/helper": "./helper/index.mjs",
+      "lodash": "/node_modules/lodash-es/lodash.js"
+    }
+  }
+</script>
+<script type="importmap">
+  {
+    "imports": {
+      "/app/helper": "./main/helper/index.mjs"
+    }
+  }
+</script>
+<script type="importmap">
+  {
+    "imports": {
+      "/app/helper": "./helper/index.mjs",
+      "lodash": "/node_modules/lodash-es/lodash.js"
+    }
+  }
+</script>
+</head>
+
+<body>
+
+<h1>MDN type-importmap Tests</h1>
+
+</body>
+</html>

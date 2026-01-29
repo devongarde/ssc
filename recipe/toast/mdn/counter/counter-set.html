@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN counter-set tests</title>
+<style>
+.sid {
+/* Set "my-counter" to 0 */
+counter-set: my-counter;
+
+/* Set "my-counter" to -1 */
+counter-set: my-counter -1;
+
+/* Set "counter1" to 1, and "counter2" to 4 */
+counter-set: counter1 1 counter2 4;
+
+/* Cancel any counter that could have been set in less specific rules */
+counter-set: none;
+
+/* Global values */
+counter-set: inherit;
+counter-set: initial;
+counter-set: revert;
+counter-set: revert-layer;
+counter-set: unset;
+}
+
+h1 {
+  counter-set: chapter section 1 page;
+  /* Sets the chapter and page counters to 0,
+     and the section counter to 1 */
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN counter-set Tests</h1>
+
+
+</body>
+</html>

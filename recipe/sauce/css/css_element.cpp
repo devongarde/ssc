@@ -141,6 +141,15 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
             {   css_element e (elem_css_child);
                 ::std::swap (*this, e); }
             break;
+        case ct_splat :
+            if (context.html_ver ().css_version () == css_1)
+                nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": * requires CSS 2.0 or better");
+            else
+            {   css_element e (elem_css_all);
+                ::std::swap (*this, e);
+                b = next_non_whitespace (args.t_, b, to); }
+            if ((b < 0) || (args.t_.at (b).t_ != ct_identifier)) break;
+            // drop thru'
         case ct_identifier :
         case ct_keyword :
             {   PRESUME (! args.styled (), __FILE__, __LINE__);
@@ -165,14 +174,6 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                 css_element e (elem_css_precede_immediate);
                 ::std::swap (*this, e); }
             break;
-        case ct_splat :
-            if (context.html_ver ().css_version () == css_1)
-                nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": * requires CSS 2.0 or better");
-            else
-            {   css_element e (elem_css_all);
-                ::std::swap (*this, e);
-                b = next_non_whitespace (args.t_, b, to); }
-            break;
         case ct_squiggle :
             pseudo = false;
             if (context.css_module (c_selector) < 3)
@@ -188,7 +189,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
             if (context.css_module (c_nesting) >= 3) return;
             FALLTHROUGH;
         default :
-            nits.pick (nit_css_element, es_error, ec_css, quote (tkn_rpt (args.t_.at (from))), ": element expected");
+            nits.pick (nit_css_element, es_error, ec_css, quote (tkn_rpt (args.t_.at (from))), ": element expected (", args.t_.at (b).t_, ")");
             return; }
     if (! pseudo)
     {   if ((b > 0) && (b < to))
@@ -261,7 +262,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                 if (context.css_module (c_nesting) >= 3) return;
                 FALLTHROUGH;
             default :
-                nits.pick (nit_css_syntax, es_error, ec_css, quote (tkn_rpt (args.t_.at (i))), ": unexpected (4)");
+                nits.pick (nit_css_syntax, es_error, ec_css, quote (tkn_rpt (args.t_.at (i))), ": unexpected (", args.t_.at (i).t_, ",4)");
                 return; } }
 
 bool css_element::bef_aft () const
@@ -272,6 +273,7 @@ bool css_element::bef_aft () const
 
 void css_element::accumulate (stats_t* s) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
+    const ::std::string z = e_.name ();
     s -> mark (e_);
     for (auto d : decore_)
         d.accumulate (s, e_.get ()); }

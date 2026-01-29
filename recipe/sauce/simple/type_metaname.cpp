@@ -267,7 +267,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MN_MSAPPLICATION_TILECOLOR "msapplication-tilecolor"
 #define MN_MSAPPLICATION_TILEIMAGE "msapplication-tileimage"
 #define MN_MSAPPLICATION_CONFIG "msapplication-config"
-#define MN_MSAPPLICATION_NAVBUTTON_COLOR "msapplication-navbutton-color"
+#define MN_MSAPPLICATION_NAVBUTTON_COLOUR "msapplication-navbutton-color"
 #define MN_MSAPPLICATION_NOTIFICATION "msapplication-notification"
 #define MN_MSAPPLICATION_SQUARE150X150LOGO "msapplication-square150x150logo"
 #define MN_MSAPPLICATION_SQUARE310X310LOGO "msapplication-square310x310logo"
@@ -713,7 +713,7 @@ struct symbol_entry < html_version, e_metaname > metaname_symbol_table [] =
    { { HTML_4_0 }, { HTML_UNDEF }, MN_MSAPPLICATION_TILECOLOR, mn_msapplication_tilecolor },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_MSAPPLICATION_TILEIMAGE, mn_msapplication_tileimage },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_MSAPPLICATION_CONFIG, mn_msapplication_config },
-   { { HTML_4_0 }, { HTML_UNDEF }, MN_MSAPPLICATION_NAVBUTTON_COLOR, mn_msapplication_navbutton_color },
+   { { HTML_4_0 }, { HTML_UNDEF }, MN_MSAPPLICATION_NAVBUTTON_COLOUR, mn_msapplication_navbutton_colour },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_MSAPPLICATION_NOTIFICATION, mn_msapplication_notification },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_MSAPPLICATION_SQUARE150X150LOGO, mn_msapplication_square150x150logo },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_MSAPPLICATION_SQUARE310X310LOGO, mn_msapplication_square310x310logo },

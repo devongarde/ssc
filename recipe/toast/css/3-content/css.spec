@@ -2,17 +2,12 @@
 
 PASS ../toast/css/3-content/css-0.css
 0 html
-8 naughty_content
-13 naughty_content
-14 naughty_content
 
 PASS ../toast/css/3-content/css-1.css
 0 html
 
 PASS ../toast/css/3-content/css-2.css
 0 html
-1 naughty_content
-4 naughty_content
 7 pseud
 8 pseud
 

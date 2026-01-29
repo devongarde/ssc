@@ -1,0 +1,9 @@
+﻿div { background-image: url('texture.png'); }
+@font-face {
+  font-family: "Mythos Std";
+  src: url("http://example.com/mythos.otf");
+}
+p {
+  mix-blend-mode: overlay;
+  font-family: "Mythos Std"
+}

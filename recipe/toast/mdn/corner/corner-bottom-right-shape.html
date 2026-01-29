@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN corner-bottom-right-shape tests</title>
+<style>
+.sid {
+/* Keyword values */
+corner-bottom-right-shape: notch;
+corner-bottom-right-shape: scoop;
+
+/* superellipse() function values */
+corner-bottom-right-shape: superellipse(1.7);
+corner-bottom-right-shape: superellipse(-3);
+
+/* Global values */
+corner-bottom-right-shape: inherit;
+corner-bottom-right-shape: initial;
+corner-bottom-right-shape: revert;
+corner-bottom-right-shape: revert-layer;
+corner-bottom-right-shape: unset;
+}
+
+div {
+  box-shadow: 1px 1px 3px gray;
+  border-radius: 30% / 20%;
+  corner-bottom-right-shape: notch;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN corner-bottom-right-shape Tests</h1>
+
+<div></div>
+
+</body>
+</html>

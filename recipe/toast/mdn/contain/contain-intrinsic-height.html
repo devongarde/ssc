@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN contain-intrinsic-height tests</title>
+<style>
+.sid {
+/* Keyword values */
+contain-intrinsic-height: none;
+
+/* <length> values */
+contain-intrinsic-height: 1000px;
+contain-intrinsic-height: 10rem;
+
+/* auto <length> */
+contain-intrinsic-height: auto 300px;
+
+/* Global values */
+contain-intrinsic-height: inherit;
+contain-intrinsic-height: initial;
+contain-intrinsic-height: revert;
+contain-intrinsic-height: revert-layer;
+contain-intrinsic-height: unset;
+}
+
+#contained_element {
+  border: 2px solid green;
+  width: 151px;
+  content-visibility: auto;
+  contain-intrinsic-width: 152px;
+  contain-intrinsic-height: 52px;
+}
+.child_element {
+  border: 1px solid red;
+  background: blue;
+  height: 50px;
+  width: 150px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN contain-intrinsic-height Tests</h1>
+
+<div id="contained_element">
+  <div class="child_element"></div>
+</div>
+
+</body>
+</html>

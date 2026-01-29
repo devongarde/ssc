@@ -110,6 +110,9 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, cla
 template < > struct type_master < t_abcfl > : four_value < t_abcfl, e_abcfl, sz_after, sz_before, sz_content, sz_first_letter >
 { using four_value < t_abcfl, e_abcfl, sz_after, sz_before, sz_content, sz_first_letter > :: four_value; };
 
+template < > struct type_master < t_ablr > : four_value < t_ablr, e_ablr, sz_above, sz_below, sz_left, sz_right >
+{ using four_value < t_ablr, e_ablr, sz_above, sz_below, sz_left, sz_right > :: four_value; };
+
 template < > struct type_master < t_aces > : four_value < t_aces, e_aces, sz_auto, sz_centre, sz_end, sz_start >
 { using four_value < t_aces, e_aces, sz_auto, sz_centre, sz_end, sz_start > :: four_value; };
 
@@ -124,6 +127,9 @@ template < > struct type_master < t_aligndec > : four_value < t_aligndec, e_alig
 
 template < > struct type_master < t_alignfig > : four_value < t_alignfig, e_alignfig, sz_centre, sz_float, sz_left, sz_right >
 { using four_value < t_alignfig, e_alignfig, sz_centre, sz_float, sz_left, sz_right > :: four_value; };
+
+template < > struct type_master < t_analysis > : four_value < t_analysis, e_analysis, sz_default, sz_original, sz_aug25, sz_dec25 >
+{ using four_value < t_analysis, e_analysis, sz_default, sz_original, sz_aug25, sz_dec25 > :: four_value; };
 
 template < > struct type_master < t_arabicenum > : four_value < t_arabicenum, e_arabicenum, sz_initial, sz_medial, sz_terminal, sz_isolated >
 { using four_value < t_arabicenum, e_arabicenum, sz_initial, sz_medial, sz_terminal, sz_isolated > :: four_value; };
@@ -146,6 +152,9 @@ template < > struct type_master < t_bens > : four_value < t_bens, e_bens, sz_bot
 template < > struct type_master < t_benrs > : four_value < t_benrs, e_benrs, sz_both, sz_end, sz_normal, sz_start >
 { using four_value < t_benrs, e_benrs, sz_both, sz_end, sz_normal, sz_start > :: four_value; };
 
+template < > struct type_master < t_bihv > : four_value < t_bihv, e_bihv, sz_block, sz_horizontal, sz_inline, sz_vertical >
+{ using four_value < t_bihv, e_bihv, sz_block, sz_horizontal, sz_inline, sz_vertical > :: four_value; };
+
 template < > struct type_master < t_bixy > : four_value < t_bixy, e_bixy, sz_block, sz_inline, sz_x, sz_y  >
 { using four_value < t_bixy, e_bixy, sz_block, sz_inline, sz_x, sz_y > :: four_value; };
 
@@ -160,6 +169,9 @@ template < > struct type_master < t_captionalign > : four_value < t_captionalign
 
 template < > struct type_master < t_cc_requires > : four_value < t_cc_requires, e_cc_requires, sz_cc_attribution, sz_cc_notice, sz_cc_sharealike, sz_cc_sourcecode >
 { using four_value < t_cc_requires, e_cc_requires, sz_cc_attribution, sz_cc_notice, sz_cc_sharealike, sz_cc_sourcecode > :: four_value; };
+
+template < > struct type_master < t_ccee > : four_value < t_ccee, e_ccee, sz_contain, sz_cover, sz_entry, sz_exit >
+{ using four_value < t_ccee, e_ccee, sz_contain, sz_cover, sz_entry, sz_exit > :: four_value; };
 
 template < > struct type_master < t_cens > : four_value < t_cens, e_cens, sz_centre, sz_end, sz_none, sz_start >
 { using four_value < t_cens, e_cens, sz_centre, sz_end, sz_none, sz_start > :: four_value; };
@@ -176,6 +188,9 @@ template < > struct type_master < t_cipr > : four_value < t_cipr, e_cipr, sz_col
 template < > struct type_master < t_content_encoding > : four_value < t_content_encoding, e_content_encoding, sz_gzip, sz_compress, sz_deflate, sz_identity >
 { using four_value < t_content_encoding, e_content_encoding, sz_gzip, sz_compress, sz_deflate, sz_identity > :: four_value; };
 
+template < > struct type_master < t_css_context_properties > : four_value < t_css_context_properties, e_css_context_properties, sz_fill, sz_fill_opacity, sz_stroke, sz_stroke_opacity >
+{ using four_value < t_css_context_properties, e_css_context_properties, sz_fill, sz_fill_opacity, sz_stroke, sz_stroke_opacity > :: four_value; };
+
 template < > struct type_master < t_crs_tonecurvename > : four_value < t_crs_tonecurvename, e_crs_tonecurvename, sz_custom, sz_linear, sz_mediumcontrast, sz_strongcontrast >
 { using four_value < t_crs_tonecurvename, e_crs_tonecurvename, sz_custom, sz_linear, sz_mediumcontrast, sz_strongcontrast > :: four_value; };
 
@@ -191,11 +206,17 @@ template < > struct type_master < t_css_border_image_repeat > : four_value < t_c
 template < > struct type_master < t_css_box_orient > : four_value < t_css_box_orient, e_css_box_orient, sz_block_axis, sz_horizontal, sz_inline_axis, sz_vertical >
 { using four_value < t_css_box_orient, e_css_box_orient, sz_block_axis, sz_horizontal, sz_inline_axis, sz_vertical > :: four_value; };
 
+template < > struct type_master < t_css_box_pack > : four_value < t_css_box_pack, e_css_box_pack, sz_end, sz_centre, sz_justify, sz_start >
+{ using four_value < t_css_box_pack, e_css_box_pack, sz_end, sz_centre, sz_justify, sz_start > :: four_value; };
+
 template < > struct type_master < t_css_composite > : four_value < t_css_composite, e_css_composite, sz_add, sz_exclude, sz_intersect, sz_subtract >
 { using four_value < t_css_composite, e_css_composite, sz_add, sz_exclude, sz_intersect, sz_subtract > :: four_value; };
 
 template < > struct type_master < t_css_display_legacy > : four_value < t_css_display_legacy, e_css_display_legacy, sz_inline_block, sz_inline_flex, sz_inline_grid, sz_inline_table >
 { using four_value < t_css_display_legacy, e_css_display_legacy, sz_inline_block, sz_inline_flex, sz_inline_grid, sz_inline_table > :: four_value; };
+
+template < > struct type_master < t_css_empty_cells > : four_value < t_css_empty_cells, e_css_empty_cells, sz_hide, sz_inherit, sz_moz_show_background, sz_show >
+{ using four_value < t_css_empty_cells, e_css_empty_cells, sz_hide, sz_inherit, sz_moz_show_background, sz_show > :: four_value; };
 
 template < > struct type_master < t_css_flex_direction > : four_value < t_css_flex_direction, e_css_flex_direction, sz_column, sz_column_reverse, sz_row, sz_row_reverse >
 { using four_value < t_css_flex_direction, e_css_flex_direction, sz_column, sz_column_reverse, sz_row, sz_row_reverse > :: four_value; };
@@ -221,11 +242,17 @@ template < > struct type_master < t_css_margin_trim_inner > : four_value < t_css
 template < > struct type_master < t_css_mask_border_repeat > : four_value < t_css_mask_border_repeat, e_css_mask_border_repeat, sz_repeat, sz_round, sz_space_word, sz_stretch >
 { using four_value < t_css_mask_border_repeat, e_css_mask_border_repeat, sz_repeat, sz_round, sz_space_word, sz_stretch > :: four_value; };
 
+template < > struct type_master < t_css_mask_repeat > : four_value < t_css_mask_repeat, e_css_mask_repeat, sz_no_repeat, sz_repeat, sz_round, sz_space_word >
+{ using four_value < t_css_mask_repeat, e_css_mask_repeat, sz_no_repeat, sz_repeat, sz_round, sz_space_word > :: four_value; };
+
 template < > struct type_master < t_css_orientation > : four_value < t_css_orientation, e_css_orientation, sz_auto, sz_inherit, sz_landscape, sz_portrait >
 { using four_value < t_css_orientation, e_css_orientation, sz_auto, sz_inherit, sz_landscape, sz_portrait > :: four_value; };
 
 template < > struct type_master < t_css_polar > : four_value < t_css_polar, e_css_polar, sz_hsl, sz_hwb, sz_lch, sz_oklch >
 { using four_value < t_css_polar, e_css_polar, sz_hsl, sz_hwb, sz_lch, sz_oklch > :: four_value; };
+
+template < > struct type_master < t_css_pto > : four_value < t_css_pto, e_css_pto, sz_most_block_size, sz_most_height, sz_most_inline_size, sz_most_width >
+{ using four_value < t_css_pto, e_css_pto, sz_most_block_size, sz_most_height, sz_most_inline_size, sz_most_width > :: four_value; };
 
 template < > struct type_master < t_css_radial_size > : four_value < t_css_radial_size, e_css_radial_size, sz_closest_corner, sz_closest_side, sz_farthest_corner, sz_farthest_side >
 { using four_value < t_css_radial_size, e_css_radial_size, sz_closest_corner, sz_closest_side, sz_farthest_corner, sz_farthest_side > :: four_value; };
@@ -253,6 +280,9 @@ template < > struct type_master < t_ddny > : four_value < t_ddny, e_ddny, sz_dev
 
 template < > struct type_master < t_device > : four_value < t_device, e_device, sz_media, sz_fs, sz_rs232, sz_usb >
 { using four_value < t_device, e_device, sz_media, sz_fs, sz_rs232, sz_usb > :: four_value; };
+
+template < > struct type_master < t_dsc2 > : four_value < t_dsc2, e_dsc2, sz_circle, sz_disc, sz_square, sz_none >
+{ using four_value < t_dsc2, e_dsc2, sz_circle, sz_disc, sz_square, sz_none > :: four_value; };
 
 template < > struct type_master < t_edit > : four_value < t_edit, e_edit, sz_changed, sz_deleted, sz_inserted, sz_moved >
 { using four_value < t_edit, e_edit, sz_changed, sz_deleted, sz_inserted, sz_moved > :: four_value; };

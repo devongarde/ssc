@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-bottom-width tests</title>
+<style>
+.sid {
+/* Keyword values */
+border-bottom-width: thin;
+border-bottom-width: medium;
+border-bottom-width: thick;
+
+/* <length> values */
+border-bottom-width: 10em;
+border-bottom-width: 3vmax;
+border-bottom-width: 6px;
+
+/* Global keywords */
+border-bottom-width: inherit;
+border-bottom-width: initial;
+border-bottom-width: revert;
+border-bottom-width: revert-layer;
+border-bottom-width: unset;
+}
+
+div {
+  border: 1px solid red;
+  margin: 1em 0;
+}
+
+div:nth-child(1) {
+  border-bottom-width: thick;
+}
+div:nth-child(2) {
+  border-bottom-width: 2em;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-bottom-width Tests</h1>
+
+<div>Element 1</div>
+<div>Element 2</div>
+
+</body>
+</html>

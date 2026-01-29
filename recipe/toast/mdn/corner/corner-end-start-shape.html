@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN corner-end-start-shape tests</title>
+<style>
+.sid {
+/* Keyword values */
+corner-end-start-shape: round;
+corner-end-start-shape: scoop;
+
+/* superellipse() function values */
+corner-end-start-shape: superellipse(0.2);
+corner-end-start-shape: superellipse(-5);
+
+/* Global values */
+corner-end-start-shape: inherit;
+corner-end-start-shape: initial;
+corner-end-start-shape: revert;
+corner-end-start-shape: revert-layer;
+corner-end-start-shape: unset;
+}
+
+div {
+  box-shadow: 1px 1px 3px gray;
+  border-radius: 60px / 20%;
+  corner-end-start-shape: bevel;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN corner-end-start-shape Tests</h1>
+
+<div></div>
+
+</body>
+</html>

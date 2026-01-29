@@ -1,0 +1,51 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN SAMP tests</title>
+<style>
+samp {
+  font-weight: bold;
+}
+
+samp {
+  font-family: "Courier";
+}
+
+.prompt {
+  color: #bb0000;
+}
+
+samp > kbd {
+  font-weight: bold;
+}
+
+.cursor {
+  color: #0000bb;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN SAMP Tests</h1>
+
+<p>I was trying to boot my computer, but I got this hilarious message:</p>
+
+<p>
+  <samp>Keyboard not found <br />Press F1 to continue</samp>
+</p>
+
+<p>
+  When the process is complete, the utility will output the text
+  <samp>Scan complete. Found <em>N</em> results.</samp> You can then proceed to
+  the next step.
+</p>
+
+<pre>
+<samp><span class="prompt">mike@interwebz:~$</span> <kbd>md5 -s "Hello world"</kbd>
+MD5 ("Hello world") = 3e25960a79dbc69b674cd4ec67a72c62
+
+<span class="prompt">mike@interwebz:~$</span> <span class="cursor">█</span></samp></pre>
+
+</body>
+</html>

@@ -289,7 +289,13 @@ struct hav_t
 
 #define MATH4_PRES_ATTRIBUTES_EX(ELEM, FLAGS) \
     { { HTML_MATH4, 0, FLAGS, H2_MATH_4_C }, { HTML_UNDEF }, ELEM, a_arg }, \
+    { { HTML_JAN26, 0, 0, H2_MATH_4 }, { HTML_UNDEF }, ELEM, a_decimalcharacter }, \
+    { { HTML_MATH4, 0, 0, H2_MATH_4 | H2_M4_DEPRECAT }, { HTML_DEC25 }, ELEM, a_decimalpoint }, \
+    { { HTML_MATH4, 0, 0, H2_MATH_4 }, { HTML_UNDEF }, ELEM, a_displaystyle }, \
+    { { HTML_MATH4, 0, 0, H2_MATH_4 }, { HTML_UNDEF }, ELEM, a_infixlinebreakstyle }, \
     { { HTML_MATH4, 0, FLAGS, H2_MATH_4_C }, { HTML_UNDEF }, ELEM, a_intent }, \
+    { { HTML_MATH4, 0, 0, H2_MATH_4 }, { HTML_UNDEF }, ELEM, a_scriptminsize }, \
+    { { HTML_MATH4, 0, 0, H2_MATH_4 }, { HTML_UNDEF }, ELEM, a_scriptsizemultiplier }, \
     MATH3_PRES_ATTRIBUTES_EX (ELEM, FLAGS)
 
 #define MATH4_PRES_ATTRIBUTES(ELEM) \
@@ -973,7 +979,7 @@ struct hav_t
 #define EXTRA_HTML5_ATTRIBUTES(ELEM) \
     ADDITIONAL_ARIA_ATTRIBUTES(ELEM), \
     { { HTML_5_0, HV_W3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_accept_charset }, \
-    { { HTML_AUG25 }, { HTML_UNDEF }, ELEM, a_anchor }, \
+    { { HTML_AUG25, 0, HE_CHROME }, { HTML_UNDEF }, ELEM, a_anchor }, \
     { { HTML_JAN18, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_autocapitalise }, \
     { { HTML_SEP24, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_autocorrect }, \
     { { HTML_JAN20, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_autofocus }, \
@@ -986,6 +992,7 @@ struct hav_t
     { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_oncontextrestored }, \
     { { HTML_JAN07, HV_NOT50, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_draggable }, \
     { { HTML_JAN11, HV_NOT50, HE_NOT_SVG }, { HTML_DEC16, HV_NOT52 | HV_NOT53 }, ELEM, a_dropzone }, \
+    { { HTML_DEC25 }, { HTML_UNDEF }, ELEM, a_elementtiming }, \
     { { HTML_JUL18, HV_NOT53, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_enterkeyhint }, \
     { { HTML_CSS_PART, 0, HE_NOT_SVG, 0, H3_CSS_SHADOW }, { HTML_UNDEF }, ELEM, a_exportparts }, \
     { { HTML_5_0, HV_W3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_generator_unable }, \
@@ -1038,6 +1045,9 @@ struct hav_t
     { { HTML_JUL09, 0, HE_NOT_SVG_1 }, { HTML_JUN11 }, ELEM, a_onformchange }, \
     { { HTML_JUL19, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onformdata }, \
     { { HTML_JUL09, 0, HE_NOT_SVG_1 }, { HTML_JUN11 }, ELEM, a_onforminput }, \
+    { { HTML_DEC25, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ongesturechange }, \
+    { { HTML_DEC25, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ongestureend }, \
+    { { HTML_DEC25, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ongesturestart }, \
     { { HTML_JAN09, 0, HE_NOT_SVG_1 }, { HTML_JUN09 }, ELEM, a_onhashchange }, \
     { { HTML_JUL09, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_oninput }, \
     { { HTML_JUL09, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_oninvalid }, \
@@ -1063,6 +1073,8 @@ struct hav_t
     { { HTML_JAN14, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onresize }, \
     { { HTML_JUL07, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onscroll }, \
     { { HTML_JAN23, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onscrollend }, \
+    { { HTML_DEC25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onscrollsnapchange }, \
+    { { HTML_DEC25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onscrollsnapchanging }, \
     { { HTML_JAN18, HV_NOT53, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onsecuritypolicyviolation }, \
     { { HTML_JUL09, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onseeking }, \
     { { HTML_JUL07, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onselect }, \
@@ -1083,6 +1095,10 @@ struct hav_t
     { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onwebkitanimationend }, \
     { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onwebkitanimationiteration }, \
     { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onwebkitanimationstart }, \
+    { { HTML_DEC25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onwebkitmouseforcechanged }, \
+    { { HTML_DEC25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onwebkitmouseforcedown }, \
+    { { HTML_DEC25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onwebkitmouseforceup }, \
+    { { HTML_DEC25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onwebkitmouseforcewillbegin }, \
     { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onwebkittransitionend }, \
     { { HTML_JUL15, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onwheel }, \
     { { HTML_CSS_PART, 0, HE_NOT_SVG, 0, H3_CSS_SHADOW }, { HTML_UNDEF }, ELEM, a_part }, \

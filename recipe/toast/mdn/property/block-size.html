@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN block-size tests</title>
+<style>
+.sid {
+/* <length> values */
+block-size: 300px;
+block-size: 25em;
+block-size: anchor-size(height);
+block-size: calc(anchor-size(--my-anchor block) * 0.75);
+
+/* <percentage> values */
+block-size: 75%;
+
+/* Keyword values */
+block-size: max-content;
+block-size: min-content;
+block-size: fit-content;
+block-size: fit-content(20em);
+block-size: auto;
+
+/* Global values */
+block-size: inherit;
+block-size: initial;
+block-size: revert;
+block-size: revert-layer;
+block-size: unset;
+}
+.exampleText {
+  writing-mode: vertical-rl;
+  background-color: yellow;
+  block-size: 200px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN block-size Tests</h1>
+
+<p class="exampleText">Example text</p>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-colour tests</title>
+<style>
+.sid {
+/* <color> values */
+border-color: red;
+
+/* top and bottom | left and right */
+border-color: red #f015ca;
+
+/* top | left and right | bottom */
+border-color: red rgb(240 30 50 / 70%) green;
+
+/* top | right | bottom | left */
+border-color: red yellow green blue;
+
+/* Global values */
+border-color: inherit;
+border-color: initial;
+border-color: revert;
+border-color: revert-layer;
+border-color: unset;
+}
+
+#justone {
+  border-color: red;
+}
+
+#horzvert {
+  border-color: gold red;
+}
+
+#topvertbott {
+  border-color: red cyan gold;
+}
+
+#trbl {
+  border-color: red cyan black gold;
+}
+
+/* Set width and style for all divs */
+div {
+  border: solid 0.3em;
+  width: auto;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+ul {
+  margin: 0;
+  list-style: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-colour Tests</h1>
+
+<div id="justone">
+  <p><code>border-color: red;</code> is equivalent to</p>
+  <ul>
+    <li><code>border-top-color: red;</code></li>
+    <li><code>border-right-color: red;</code></li>
+    <li><code>border-bottom-color: red;</code></li>
+    <li><code>border-left-color: red;</code></li>
+  </ul>
+</div>
+<div id="horzvert">
+  <p><code>border-color: gold red;</code> is equivalent to</p>
+  <ul>
+    <li><code>border-top-color: gold;</code></li>
+    <li><code>border-right-color: red;</code></li>
+    <li><code>border-bottom-color: gold;</code></li>
+    <li><code>border-left-color: red;</code></li>
+  </ul>
+</div>
+<div id="topvertbott">
+  <p><code>border-color: red cyan gold;</code> is equivalent to</p>
+  <ul>
+    <li><code>border-top-color: red;</code></li>
+    <li><code>border-right-color: cyan;</code></li>
+    <li><code>border-bottom-color: gold;</code></li>
+    <li><code>border-left-color: cyan;</code></li>
+  </ul>
+</div>
+<div id="trbl">
+  <p><code>border-color: red cyan black gold;</code> is equivalent to</p>
+  <ul>
+    <li><code>border-top-color: red;</code></li>
+    <li><code>border-right-color: cyan;</code></li>
+    <li><code>border-bottom-color: black;</code></li>
+    <li><code>border-left-color: gold;</code></li>
+  </ul>
+</div>
+
+</body>
+</html>

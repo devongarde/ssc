@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <!-- Document metadata goes here -->
+  </head>
+  <frameset cols="400, 500">
+    <frame src="https://developer.mozilla.org/en/HTML/Element/iframe" />
+    <frame src="https://developer.mozilla.org/en/HTML/Element/frame" />
+  </frameset>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN column-fill tests</title>
+<style>
+.sid {
+/* Keyword values */
+column-fill: auto;
+column-fill: balance;
+
+/* Global values */
+column-fill: inherit;
+column-fill: initial;
+column-fill: revert;
+column-fill: revert-layer;
+column-fill: unset;
+}
+
+p {
+  height: 7em;
+  background: #ffff99;
+  columns: 3;
+  column-rule: 1px solid;
+}
+
+p.fill-auto {
+  column-fill: auto;
+}
+
+p.fill-balance {
+  column-fill: balance;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN column-fill Tests</h1>
+
+<p class="fill-auto">
+  This paragraph fills columns one at a time. Since all of the text can fit in
+  the first column, the others are empty.
+</p>
+
+<p class="fill-balance">
+  This paragraph attempts to balance the amount of content in each column.
+</p>
+
+</body>
+</html>

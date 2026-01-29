@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN -webkit-text-security- tests</title>
+<style>
+.sid
+{   -webkit-text-security: circle;
+    -webkit-text-security: disc;
+    -webkit-text-security: square;
+    -webkit-text-security: none;
+
+    /* Global values */
+    -webkit-text-security: inherit;
+    -webkit-text-security: initial;
+    -webkit-text-security: revert;
+    -webkit-text-security: revert-layer;
+    -webkit-text-security: unset; }
+
+input {
+  -webkit-text-security: square;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN -webkit-text-security- Tests</h1>
+
+<label for="name">Name:</label> <input type="text" name="name" id="name" />
+
+</body>
+</html>

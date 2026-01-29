@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN column-rule tests</title>
+<style>
+.sid {
+column-rule: dotted;
+column-rule: solid 8px;
+column-rule: solid blue;
+column-rule: thick inset blue;
+
+/* Global values */
+column-rule: inherit;
+column-rule: initial;
+column-rule: revert;
+column-rule: revert-layer;
+column-rule: unset;
+}
+
+/* Same as "medium dotted currentColor" */
+p.foo {
+  column-rule: dotted;
+}
+
+/* Same as "medium solid blue" */
+p.bar {
+  column-rule: solid blue;
+}
+
+/* Same as "8px solid currentColor" */
+p.baz {
+  column-rule: solid 8px;
+}
+
+p.abc {
+  column-rule: thick inset blue;
+}
+
+.content-box {
+  padding: 0.3em;
+  background: #ffff77;
+  column-count: 3;
+  column-rule: inset 2px #3333ff;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN column-rule Tests</h1>
+
+<p class="content-box">
+  This is a bunch of text split into three columns. Take note of how the
+  `column-rule` property is used to adjust the style, width, and color of the
+  rule that appears between the columns.
+</p>
+
+</body>
+</html>

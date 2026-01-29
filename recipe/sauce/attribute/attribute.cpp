@@ -30,7 +30,7 @@ bool verify_attribute_version (nitpick& nits, const html_version& v, const e_ele
     {   excluded = attr :: first_version (id).invalid_addendum (v);
         if (excluded) nits.pick (nit_excluded_attribute, es_warning, ec_attribute, "the attribute ", quote (name), " on <", elem::name (tag), "> is invalid in pure ", v.report ()); }
     deprecated = is_deprecated_attribute_version (v, tag, id);
-    if (deprecated) nits.pick (nit_deprecated_attribute, es_warning, ec_attribute, name, " on <", elem::name (tag), "> is deprecated in ", v.report ());
+    if (deprecated) nits.pick (nit_deprecated_attribute, es_warning, ec_attribute, name, " on <", elem::name (tag), "> is deprecated in ", v.report (), " (3)");
     else if (not_production_attribute (v, tag, id))
         nits.pick (nit_prototype, ed_jan21, "1.11.1 Presentational markup", es_comment, ec_attribute, name, " on <", elem::name (tag), "> is best not used in production in ", v.report ());
     return true; }

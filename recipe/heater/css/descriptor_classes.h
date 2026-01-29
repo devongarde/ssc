@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/typed_property.h"
 
 typedef typed_property < t_css_addsyms, ec_additive_symbols > desc_additive_symbols;
+typedef typed_property < t_css_box_alignself_acs, ec_align_self > desc_align_self;
 typedef typed_property < t_real, ec_ascent > desc_ascent;
 typedef typed_property < t_percent_flexible, ec_ascent_override > desc_ascent_override;
 typedef typed_property < t_percents_n, ec_ascent_override > desc_ascent_override_5;
@@ -79,6 +80,14 @@ typedef typed_property < t_css_font_variation_settings, ec_font_variation_settin
 typedef typed_property < t_css_font_weights, ec_font_weight > desc_font_weight;
 typedef typed_property < t_css_length_2, ec_height > desc_height;
 typedef typed_property < t_css_length_xtz, ec_height > desc_vp_height;
+typedef typed_property < t_css_lengths_aa_l, ec_inset > desc_inset;
+typedef typed_property < t_css_length_aa2, ec_inset_block > desc_inset_block;
+typedef typed_property < t_css_length_aia, ec_inset_block_end > desc_inset_block_end;
+typedef typed_property < t_css_length_aia, ec_inset_block_start > desc_inset_block_start;
+typedef typed_property < t_css_length_aa2, ec_inset_inline > desc_inset_inline;
+typedef typed_property < t_css_length_aia, ec_inset_inline_end > desc_inset_inline_end;
+typedef typed_property < t_css_length_aia, ec_inset_inline_start > desc_inset_inline_start;
+typedef typed_property < t_css_box_justself, ec_justify_self > desc_justify_self;
 typedef typed_property < t_css_length_n, ec_letter_spacing > desc_letter_spacing;
 typedef typed_property < t_percent_flexible, ec_line_gap_override > desc_line_gap_override;
 typedef typed_property < t_percents_n, ec_line_gap_override > desc_line_gap_override_5;
@@ -112,6 +121,7 @@ typedef typed_property < t_measure_i, ec_padding_right > desc_padding_right;
 typedef typed_property < t_measure_i, ec_padding_top > desc_padding_top;
 typedef typed_property < t_rotate_upright, ec_page_orientation > desc_page_orientation;
 typedef typed_property < t_10_int, ec_panose_1 > desc_panose_1;
+typedef typed_property < t_css_place_self, ec_place_self > desc_place_self;
 typedef typed_property < t_text, ec_prefix > desc_prefix;
 typedef typed_property < t_4string_ni, ec_quotes > desc_quotes;
 typedef typed_property < t_css_range_a, ec_range > desc_range;
@@ -317,6 +327,29 @@ typedef typed_property < t_unknown, ec_unknown > desc_unknown;
     desc_base_palette, \
     desc_font_family, \
     desc_override_colours
+
+#define POSITION_TRY_DESCRIPTORS \
+    desc_align_self, \
+    desc_height, \
+    desc_inset, \
+    desc_inset_block, \
+    desc_inset_block_end, \
+    desc_inset_block_start, \
+    desc_inset_inline, \
+    desc_inset_inline_end, \
+    desc_inset_inline_start, \
+    desc_justify_self, \
+    desc_margin, \
+    desc_margin_bottom, \
+    desc_margin_left, \
+    desc_margin_right, \
+    desc_margin_top, \
+    desc_max_height, \
+    desc_max_width, \
+    desc_min_height, \
+    desc_min_width, \
+    desc_place_self, \
+    desc_width
 
 #define VIEWPORT_DESCRIPTORS \
     desc_vp_height, \

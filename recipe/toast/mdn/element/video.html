@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN VIDEO tests</title>
+<style>
+b {
+  /* Add your styles here */
+}
+</style>
+<script>
+const elem = document.querySelector("video");
+
+elem.audioTracks.onaddtrack = (event) => {
+  trackEditor.addTrack(event.track);
+};
+
+elem.audioTracks.onremovetrack = (event) => {
+  trackEditor.removeTrack(event.track);
+};
+</script>
+</head>
+
+<body>
+
+<h1>MDN VIDEO Tests</h1>
+
+<video controls width="250">
+  <source src="/shared-assets/videos/flower.webm" type="video/webm" />
+
+  <source src="/shared-assets/videos/flower.mp4" type="video/mp4" />
+
+  Download the
+  <a href="/shared-assets/videos/flower.webm">WEBM</a>
+  or
+  <a href="/shared-assets/videos/flower.mp4">MP4</a>
+  video.
+</video>
+
+<video controls>
+  <source src="myVideo.webm" type="video/webm" />
+  <source src="myVideo.mp4" type="video/mp4" />
+  <p>
+    Your browser doesn't support HTML video. Here is a
+    <a href="myVideo.mp4" download="myVideo.mp4">link to the video</a> instead.
+  </p>
+</video>
+
+<video controls src="video.webm">
+  <track default kind="captions" src="captions.vtt" />
+</video>
+
+<!-- Basic video example -->
+<!-- 'Big Buck Bunny' licensed under CC 3.0 by the Blender foundation. Hosted by archive.org -->
+<!-- Poster from peach.blender.org -->
+<video
+  controls
+  src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"
+  poster="https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217"
+  width="620">
+  Sorry, your browser doesn't support embedded videos, but don't worry, you can
+  <a href="https://archive.org/details/BigBuckBunny_124">download it</a>
+  and watch it with your favorite video player!
+</video>
+
+<!-- Using multiple sources as fallbacks for a video tag -->
+<!-- 'Elephants Dream' by Orange Open Movie Project Studio, licensed under CC-3.0, hosted by archive.org -->
+<!-- Poster hosted by Wikimedia -->
+<video
+  width="620"
+  controls
+  poster="https://upload.wikimedia.org/wikipedia/commons/e/e8/Elephants_Dream_s5_both.jpg">
+  <source
+    src="https://archive.org/download/ElephantsDream/ed_hd.avi"
+    type="video/avi" />
+  <source
+    src="https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"
+    type="video/mp4" />
+
+  Sorry, your browser doesn't support embedded videos, but don't worry, you can
+  <a
+    href="https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"
+    download="ed_1024_512kb.mp4">
+    download the MP4
+  </a>
+  and watch it with your favorite video player!
+</video>
+
+</body>
+</html>

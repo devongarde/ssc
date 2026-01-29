@@ -28,6 +28,7 @@ hav_t havt_calendar [] =
 
 hav_t havt_canvas [] =
 {   { { HTML_JAN07 }, { HTML_UNDEF }, elem_canvas, a_height },
+    { { HTML_DEC25 }, { HTML_UNDEF }, elem_canvas, a_moz_opaque },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_canvas, a_width },
     SVG_PRESENTATION_ATTRIBUTES_2 (elem_canvas),
     SVG_HTML_ATTRIBUTES (elem_canvas),

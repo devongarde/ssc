@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN LINK tests</title>
+<link href="/shared-assets/misc/link-element-example.css" rel="stylesheet" />
+<link href="main.css" rel="stylesheet" />
+<link rel="icon" href="favicon.ico" />
+<link
+  rel="apple-touch-icon"
+  sizes="114x114"
+  href="apple-icon-114.png"
+  type="image/png" />
+<link href="print.css" rel="stylesheet" media="print" />
+<link href="mobile.css" rel="stylesheet" media="screen and (width <= 600px)" />
+<link
+  rel="preload"
+  href="myFont.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin="anonymous" />
+<link href="style.css" rel="stylesheet" />
+<link href="default.css" rel="stylesheet" title="Default Style" />
+<link href="fancy.css" rel="alternate stylesheet" title="Fancy" />
+<link href="basic.css" rel="alternate stylesheet" title="Basic" />
+<!-- iPad Pro with high-resolution Retina display: -->
+<link
+  rel="apple-touch-icon"
+  sizes="167x167"
+  href="/apple-touch-icon-167x167.png" />
+<!-- 3x resolution iPhone: -->
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/apple-touch-icon-180x180.png" />
+<!-- non-Retina iPad, iPad mini, etc.: -->
+<link
+  rel="apple-touch-icon"
+  sizes="152x152"
+  href="/apple-touch-icon-152x152.png" />
+<!-- 2x resolution iPhone and other devices: -->
+<link rel="apple-touch-icon" href="/apple-touch-icon-120x120.png" />
+<!-- basic favicon -->
+<link rel="icon" href="/favicon.ico" />
+<link href="print.css" rel="stylesheet" media="print" />
+<link href="mobile.css" rel="stylesheet" media="all" />
+<link href="desktop.css" rel="stylesheet" media="screen and (width >= 600px)" />
+<link
+  href="highres.css"
+  rel="stylesheet"
+  media="screen and (resolution >= 300dpi)" />
+<link rel="stylesheet" href="mystylesheet.css" id="my-stylesheet" />
+<script>
+const stylesheet = document.getElementById("my-stylesheet");
+
+stylesheet.onload = () => {
+  // Do something interesting; the sheet has been loaded
+};
+
+stylesheet.onerror = () => {
+  console.log("An error occurred loading the stylesheet!");
+    };
+</script>
+<link blocking="render" rel="stylesheet" href="example.css" crossorigin />
+</head>
+
+<body>
+
+<h1>MDN LINK Tests</h1>
+
+<p>This text will be red as defined in the external stylesheet.</p>
+<p style="color: blue">
+  The <code>style</code> attribute can override it, though.
+</p>
+
+</body>
+</html>

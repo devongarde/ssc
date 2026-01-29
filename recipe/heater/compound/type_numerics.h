@@ -102,6 +102,10 @@ template < > struct type_master < t_integers_a > : type_range < t_integers_a, sz
 {   static bool is_numeric () { return true; }
     using type_range < t_integers_a, sz_space_char, t_integer_ai, 1, 3 > :: type_range; };
 
+template < > struct type_master < t_fixedpoint_inf > : type_or_string < t_fixedpoint_inf, t_fixedpoint, sz_infinite >
+{   static bool is_numeric () { return true; }
+    using type_or_string < t_fixedpoint_inf, t_fixedpoint, sz_infinite > :: type_or_string; };
+
 template < > struct type_master < t_positive_1_2 > : type_range < t_positive_1_2, sz_commaspace, t_0_more, 1, 2 >
 {   static bool is_numeric () { return true; }
     using type_range < t_positive_1_2, sz_commaspace, t_0_more, 1, 2 > :: type_range; };

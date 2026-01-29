@@ -102,6 +102,7 @@ PASS ../toast/math/4/doa-suchthat.html
 
 PASS ../toast/math/4/elementary.html
 2 naughty_lang
+131 invalid_attribute_version wrong_version
 
 PASS ../toast/math/4/embedding.html
 2 naughty_lang

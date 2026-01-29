@@ -333,7 +333,7 @@ void element::examine_meter ()
             else pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "VALUE (", value, ") cannot exceed ", max, ", the default for MAX");
         if (kl)
         {   if (kh)
-            {   if (low < high) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "LOW (", low, ") cannot exceed HIGH (", high, ")");
+            {   if (low > high) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "LOW (", low, ") cannot exceed HIGH (", high, ")");
                 if (low == high) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_info, ec_element, "a <METER> where LOW equals HIGH seems a little dubious"); }
             if (low < min) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "MIN (", min, ") cannot exceed LOW (", low, ")");
             if (max < low) pick (nit_bad_meter, ed_50, "4.10.15 The meter element", es_error, ec_element, "LOW (", low, ") cannot exceed MAX (", max, ")"); }

@@ -23,8 +23,8 @@ PASS ../toast/math/4-core/core-4.html
 
 PASS ../toast/math/4-core/core-1.css
 0 html
-4 missing_value
-6 missing_value
+4 unrecognised_value
+6 unrecognised_value
 7 fontname
 16 css_version
 20 css_version
@@ -48,8 +48,8 @@ PASS ../toast/math/4-core/core-a.css
 0 html
 1 css_namespace
 5 unrecognised_value
-14 missing_value
-16 missing_value
+14 unrecognised_value
+16 unrecognised_value
 17 fontname
 26 css_version
 30 css_version

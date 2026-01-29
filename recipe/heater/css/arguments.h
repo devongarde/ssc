@@ -51,6 +51,7 @@ struct arguments
     font_features* ffs_ = nullptr;
     media_t* media_ = nullptr;
     element_bitset eb_;
+    sstr_t anchors_;
     arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g);
     arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const e_element styled, const element_bitset eb);
     arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst, const e_element styled, const element_bitset eb);

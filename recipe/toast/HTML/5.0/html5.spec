@@ -142,8 +142,9 @@ PASS ../toast/HTML/5.0/html5-bad.html
 209 bad_meter bad_meter
 210 bad_meter
 211 bad_meter
+212 bad_meter
 213 bad_meter
-214 bad_meter bad_meter bad_meter bad_meter bad_meter
+214 bad_meter bad_meter bad_meter bad_meter bad_meter bad_meter
 217 url_not_found
 218 bad_script bad_script
 219 invalid_attribute_version wrong_version

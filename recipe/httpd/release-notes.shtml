@@ -30,6 +30,31 @@ This site is no longer maintained, and will soon be turned into a toad.
 
 <h2>2025</h2>
 
+<h3>0.2.24</h3>
+
+<ul>
+<li>
+noted additional bespoke elements and attributes
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+download
+<A href="/bin/Install-SSC-0.2.24-Win-x64.msi" type="application/octet-stream" download>Windows 10/11 x64 installer</a>,
+<A href="/bin/Install-SSC-0.2.24-Win-a64.msi" type="application/octet-stream" download>Windows 10/11 ARM64 installer</a>,
+<A href="/bin/SSC-0.2.24-Mac-Arm.zip" type="application/zip" download>Mac ARM app (zipped)</a>,
+<A href="/bin/SSC-0.2.24-Mac-Intel.zip" type="application/zip" download>Mac Intel app (zipped)</a>,
+<A href="/src/ssc-0.2.24.tgz" type="application/gzip" download>source</a>.
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-12-24">25 12 24</time>
+</li>
+</ul>
+
 <h3>0.2.23</h3>
 
 <ul>
@@ -44,6 +69,9 @@ OpenBSD 7.8
 </li>
 <li>
 CSS 2025 snapshots
+</li>
+<li>
+schema.org 29.4
 </li>
 <li>
 GS1 ontology version 1.5.1 folded into 1.5.
@@ -63,10 +91,9 @@ download
 <A href="/src/ssc-0.2.23.tgz" type="application/gzip" download>source</a>.
 </li>
 <li>
-released <time itemprop="datePublished" class="dt-published" datetime="2025-12-24">25 12 24</time>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-11-24">25 11 24</time>
 </li>
 </ul>
-
 
 <h3>0.2.22</h3>
 

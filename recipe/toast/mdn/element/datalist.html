@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN DATALIST tests</title>
+<style>
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN DATALIST Tests</h1>
+
+<label for="ice-cream-choice">Choose a flavor:</label>
+<input list="ice-cream-flavors" id="ice-cream-choice" name="ice-cream-choice" />
+
+<datalist id="ice-cream-flavors">
+  <option value="Chocolate"></option>
+  <option value="Coconut"></option>
+  <option value="Mint"></option>
+  <option value="Strawberry"></option>
+  <option value="Vanilla"></option>
+</datalist>
+
+<label for="myBrowser">Choose a browser from this list:</label>
+<input list="browsers" id="myBrowser" name="myBrowser" />
+<datalist id="browsers">
+  <option value="Chrome"></option>
+  <option value="Firefox"></option>
+  <option value="Opera"></option>
+  <option value="Safari"></option>
+  <option value="Microsoft Edge"></option>
+</datalist>
+
+<input type="time" list="popularHours" />
+<datalist id="popularHours">
+  <option value="12:00"></option>
+  <option value="13:00"></option>
+  <option value="14:00"></option>
+</datalist>
+
+<label for="tick">Tip amount:</label>
+<input type="range" list="tickmarks" min="0" max="100" id="tick" name="tick" />
+<datalist id="tickmarks">
+  <option value="0" label="0%"></option>
+  <option value="10" label="Minimum Tip"></option>
+  <option value="20" label="Standard"></option>
+  <option value="30" label="Generous"></option>
+  <option value="50" label="Very Generous"></option>
+</datalist>
+
+<label for="colors">Pick a color (preferably a red tone):</label>
+<input type="color" list="redColors" id="colors" />
+<datalist id="redColors">
+  <option value="#800000"></option>
+  <option value="#8B0000"></option>
+  <option value="#A52A2A"></option>
+  <option value="#DC143C"></option>
+</datalist>
+
+</body>
+</html>

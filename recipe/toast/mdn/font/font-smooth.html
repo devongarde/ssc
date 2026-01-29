@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN font-smooth tests</title>
+<style>
+.sid
+{   /* Keyword values */
+    font-smooth: auto;
+    font-smooth: never;
+    font-smooth: always;
+
+    /* <length> value */
+    font-smooth: 2em;
+
+    /* Global values */
+    font-smooth: inherit;
+    font-smooth: initial;
+    font-smooth: revert;
+    font-smooth: revert-layer;
+    font-smooth: unset; }
+
+html {
+  background-color: black;
+  color: white;
+  font-size: 3rem;
+}
+
+p {
+  text-align: center;
+}
+
+.smoothed {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN font-smooth Tests</h1>
+
+<p>Without font smoothing</p>
+
+<p class="smoothed">With font smoothing</p>
+
+</body>
+</html>

@@ -39,6 +39,7 @@ hav_t havt_scalarproduct [] =
 
 hav_t havt_script [] =
 {   { { HTML_JUL06 }, { HTML_UNDEF }, elem_script, a_async },
+    { { HTML_DEC25 }, { HTML_UNDEF }, elem_script, a_attributionsrc },
     { { HTML_APR22 }, { HTML_UNDEF }, elem_script, a_blocking },
     { { HTML_JUL08 }, { HTML_JUN17 }, elem_script, a_charset },
     { { HTML_5_2, HV_W3 }, { HTML_5_2 }, elem_script, a_charset },

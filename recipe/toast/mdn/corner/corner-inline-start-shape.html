@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN corner-inline-start-shape tests</title>
+<style>
+.sid {
+/* Single keyword value set for both corners */
+corner-inline-start-shape: round;
+corner-inline-start-shape: bevel;
+
+/* Single superellipse() value set for both corners */
+corner-inline-start-shape: superellipse(0.5);
+corner-inline-start-shape: superellipse(-3);
+
+/* Block-start/inline-start corner, block-end/inline-start corner */
+corner-inline-start-shape: round bevel;
+corner-inline-start-shape: round superellipse(0.5);
+
+/* Global values */
+corner-inline-start-shape: inherit;
+corner-inline-start-shape: initial;
+corner-inline-start-shape: revert;
+corner-inline-start-shape: revert-layer;
+corner-inline-start-shape: unset;
+}
+
+div {
+  box-shadow: 1px 1px 3px gray;
+  border-radius: 60px;
+  corner-inline-start-shape: square bevel;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN corner-inline-start-shape Tests</h1>
+
+<div></div>
+
+</body>
+</html>

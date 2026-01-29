@@ -301,6 +301,7 @@
     <ClCompile Include="..\sauce\base\type_master.cpp" />
     <ClCompile Include="..\sauce\compound\type_csses.cpp" />
     <ClCompile Include="..\sauce\compound\type_mimes.cpp" />
+    <ClCompile Include="..\sauce\compound\type_van.cpp" />
     <ClCompile Include="..\sauce\compound\type_varied.cpp" />
     <ClCompile Include="..\sauce\coop\fred.cpp" />
     <ClCompile Include="..\sauce\coop\kew.cpp" />
@@ -339,13 +340,18 @@
     <ClCompile Include="..\sauce\css\typed_property.cpp" />
     <ClCompile Include="..\sauce\css\value.cpp" />
     <ClCompile Include="..\sauce\css\value2.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_0_2.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_3_9.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_0_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_2_9.cpp" />
     <ClCompile Include="..\sauce\css\value_types_a_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_a_2.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_b.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_a_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_a_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_a_5.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_b_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_b_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_a_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_a_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_a_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_b_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_b_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_b_3.cpp" />
@@ -358,12 +364,14 @@
     <ClCompile Include="..\sauce\css\value_types_css_f_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_f_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_f_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_f_4.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_g_h.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_i.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_j_k.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_l.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_m_n.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_o.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_p_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_p_q.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_r.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_s_1.cpp" />
@@ -372,44 +380,62 @@
     <ClCompile Include="..\sauce\css\value_types_css_t_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_t_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_t_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_t_4.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_u.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_v.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_w_z.cpp" />
     <ClCompile Include="..\sauce\css\value_types_c_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_c_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_c_3.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_d.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_c_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_c_5.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_d_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_d_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_e.cpp" />
     <ClCompile Include="..\sauce\css\value_types_f_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_f_2.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_g_h.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_f_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_g.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_h.cpp" />
     <ClCompile Include="..\sauce\css\value_types_i_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_i_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_i_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_j_k.cpp" />
     <ClCompile Include="..\sauce\css\value_types_l_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_l_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_l_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_m_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_m_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_m_3.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_m_n.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_n_o.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_m_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_m_5.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_m_6.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_n.cpp" />
     <ClCompile Include="..\sauce\css\value_types_o.cpp" />
     <ClCompile Include="..\sauce\css\value_types_p_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_p_2.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_q_r.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_r.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_rsl.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_svg_1.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_svg_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_p_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_p_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_r_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_r_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_r_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_r_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_r_5.cpp" />
     <ClCompile Include="..\sauce\css\value_types_s_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_s_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_s_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_s_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_s_5.cpp" />
     <ClCompile Include="..\sauce\css\value_types_t_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_t_2.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_u.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_v.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_v_w.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_x.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_x_z.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_u_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_u_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_v_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_v_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_w.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_x_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_x_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_y_z.cpp" />
     <ClCompile Include="..\sauce\css\weight.cpp" />
     <ClCompile Include="..\sauce\element\elem.cpp" />
     <ClCompile Include="..\sauce\element\element.cpp" />
@@ -631,7 +657,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ProjectDir)..\third;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(SSL)\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
     <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
     <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
@@ -643,7 +669,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ProjectDir)..\third;$(BOOST)\..\GSL\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)ssc19$(Platform)\$(Configuration)\</OutDir>
     <IntDir>ssc19$(Platform)\$(Configuration)\</IntDir>

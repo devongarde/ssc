@@ -87,7 +87,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MATH3PRES   MATH3UNIPR, MATH3COMMON
 
 #define MATH4PRBASE a_arg, a_intent
-#define MATH4PRES   MATH4PRBASE, MATH3PRES
+#define MATH4PRPLUS a_decimalcharacter, a_decimalpoint, a_displaystyle, a_infixlinebreakstyle, a_scriptminsize, a_scriptsizemultiplier, MATH4PRBASE
+//#define MATH4PRES   MATH4PRBASE, MATH3PRES
+#define MATH4PRES   MATH4PRPLUS, MATH3PRES
 
 #define MATH4CBASE  a_datawild, a_dir, a_mathbackground, a_mathcolour, a_mathsize, a_mathvariant, a_numberonce, a_onautocomplete, a_onautocompleteerror, a_onauxclick, a_onblur, \
                     a_oncancel, a_oncanplay, a_oncanplaythrough, a_onchange, a_onclose, a_oncontextmenu, a_oncopy, a_oncuechange, a_oncut, a_ondrag, \
@@ -182,8 +184,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COMMON51    a_oncopy, a_oncut, a_onpaste, a_onwheel, COMMON50
 #define COMMON52    a_onauxclick, a_onloadend, COMMON51
 #define COMMON53    COMMON52
-#define LIVING_STANDARD    a_anchor, a_autocapitalise, a_autocorrect, a_enterkeyhint, a_exportparts, a_inputmode, a_onformdata, a_onsecuritypolicyviolation, \
-                    a_onslotchange, a_part, a_popover, a_slot, a_virtualkeyboardpolicy, a_writingsuggestions, COMMON53
+#define LIVING_STANDARD     a_anchor, a_autocapitalise, a_autocorrect, a_elementtiming, a_enterkeyhint, a_exportparts, a_inputmode, a_onformdata, \
+                            a_ongesturechange, a_ongestureend, a_ongesturestart, a_onscrollsnapchange, a_onscrollsnapchanging, \
+                            a_onsecuritypolicyviolation, a_onwebkitmouseforcechanged, a_onwebkitmouseforcedown, a_onwebkitmouseforceup, \
+                            a_onwebkitmouseforcewillbegin, a_onslotchange, a_part, a_popover, a_slot, a_virtualkeyboardpolicy, \
+                            a_writingsuggestions, COMMON53
 #define X5          LIVING_STANDARD
 #define LIVING_STANDARD_PLUS a_index, LIVING_STANDARD
 
@@ -195,8 +200,9 @@ struct element_init_t
 
 element_init_t ei [] =
 {   { elem_undefined, { a_unknown } },
-    { elem_a, { a_charset, a_command, a_download, a_effect, a_externalresourcesrequired, a_md, a_methods, a_name, a_ping, a_print, a_referrerpolicy,
-                a_size, a_type, a_urn, a_xmllink, a_xmlns_xlink, SVG_GR, SVG_XLINK, SVG_COND, SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_a, { a_attributionsrc, a_charset, a_command, a_download, a_effect, a_externalresourcesrequired, a_interestfor, a_md, a_methods,
+                a_name, a_ping, a_print, a_referrerpolicy, a_size, a_type, a_urn, a_xmllink, a_xmlns_xlink, SVG_GR, SVG_XLINK, SVG_COND,
+                SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_abbr, { a_full, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_abbrev, { LC3PLUS, a_unknown } },
     { elem_above, { a_sym, LANGCLASS3, a_unknown } },
@@ -237,7 +243,7 @@ element_init_t ei [] =
     { elem_arcsec, { MATH3DEFCOM, a_unknown } },
     { elem_arcsech, { MATH3DEFCOM, a_unknown } },
     { elem_arctanh, { MATH3DEFCOM, a_unknown } },
-    { elem_area, { a_alt, a_download, a_nohref, a_name, a_ping, a_referrerpolicy, a_type, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_area, { a_alt, a_download, a_nohref, a_interestfor, a_name, a_ping, a_referrerpolicy, a_type, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_arg, { a_index, a_lang, MATH3DEFCOM, a_unknown } },
     { elem_array, { a_align, a_coldef, a_labels, a_ldelim, a_rdelim, a_unknown } },
     { elem_article, { a_active, a_pubdate, METADATA, LIVING_STANDARD, a_unknown } },
@@ -266,7 +272,8 @@ element_init_t ei [] =
     { elem_atop, { a_unknown } },
     { elem_au, { LANGCLASS3, a_unknown } },
     { elem_audio, { a_autobuffer, a_autoplay, a_controls, a_crossorigin, a_currenttime, a_duration, a_loop, a_loopcount, a_loopend, a_loopstart,
-                    a_mediagroup, a_muted, a_preload, a_start, a_type, SVG_COND, SVG_XLINK, SVG_ANTIME, SVG_PRES, SVG_SYNC, METADATA, LIVING_STANDARD, a_unknown } },
+                    a_mediagroup, a_muted, a_preload, a_start, a_type, a_x_webkit_airplay, SVG_COND, SVG_XLINK, SVG_ANTIME, SVG_PRES, SVG_SYNC,
+                    METADATA, LIVING_STANDARD, a_unknown } },
     { elem_b, { LIVING_STANDARD_PLUS, a_unknown } },
     { elem_bb, { a_type, METADATA, COMMON5, a_unknown } },
     { elem_banner, { LANGCLASS3, a_unknown } },
@@ -290,12 +297,13 @@ element_init_t ei [] =
     { elem_bq, { a_nowrap, a_clear, LANGCLASS3, a_unknown } },
     { elem_br, { a_clear, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_bt, { a_class, a_unknown } },
-    { elem_button, {    a_action, a_autocomplete, a_command, a_commandfor, a_disabled, a_enctype, a_form, a_formaction, a_formenctype, a_formmethod, a_formnovalidate, a_formtarget,
-                        a_menu, a_method, a_name, a_novalidate, a_popovertarget, a_popovertargetaction, a_type, a_value, RESERVED4, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_button, {    a_action, a_autocomplete, a_command, a_commandfor, a_disabled, a_enctype, a_form, a_formaction, a_formenctype, a_formmethod,
+                        a_formnovalidate, a_formtarget, a_interestfor, a_menu, a_method, a_name, a_novalidate, a_popovertarget, a_popovertargetaction,
+                        a_type, a_value, RESERVED4, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_bvar, { MATH3COMMON, a_unknown } },
     { elem_byline, { HTMLPLUS, a_unknown } },
     { elem_calendar, { a_active, METADATA, COMMON5, a_unknown } },
-    { elem_canvas, { WIDEHIGH, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_canvas, { a_moz_opaque, WIDEHIGH, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_caption, { a_align, a_valign, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_card, { a_active, MATH3UNIQUE, METADATA, COMMON5, a_unknown } },
     { elem_cartesianproduct, { MATH3DEFCOM, a_unknown } },
@@ -372,7 +380,7 @@ element_init_t ei [] =
     { elem_elementdef, { a_name, SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_ellipse, { a_externalresourcesrequired, a_cx, a_cy, a_rx, a_ry, a_will_change, SVG_GR, SVG_COND, SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_em, { LIVING_STANDARD_PLUS, a_unknown } },
-    { elem_embed, { a_type, a_align, a_hspace, a_name, a_vspace, WIDEHIGH, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_embed, { a_type, a_airplay, a_align, a_hspace, a_name, a_vspace, WIDEHIGH, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_emptyset, { MATH3DEFCOM, a_unknown } },
     { elem_eq, { MATH3DEFCOM, a_unknown } },
     { elem_equivalent, { MATH3DEFCOM, a_unknown } },
@@ -522,21 +530,23 @@ element_init_t ei [] =
     { elem_htmlplus, { a_forms, a_version, a_unknown } },
     { elem_i, { LIVING_STANDARD_PLUS, a_unknown } },
     { elem_ident, { MATH3DEFCOM, a_unknown } },
-    { elem_iframe, {    a_align, a_allow, a_allowfullscreen, a_allowpaymentrequest, a_allowusermedia, a_csp, a_frameborder, a_importance,
-                        a_loading, a_longdesc, a_marginheight, a_marginwidth, a_mozbrowser, a_name, a_referrerpolicy, a_sandbox, a_scrolling,
-                        a_seamless, a_srcdoc, WIDEHIGH, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_iframe, {    a_align, a_allow, a_allowfullscreen, a_allowpaymentrequest, a_allowusermedia, a_browsingtopics, a_credentialless,
+                        a_csp, a_frameborder, a_importance, a_loading, a_longdesc, a_marginheight, a_marginwidth, a_mozbrowser, a_name, a_privatetoken,
+                        a_referrerpolicy, a_sandbox, a_scrolling, a_seamless, a_srcdoc, WIDEHIGH, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_ilayer, {    a_above, a_background, a_below, a_bgcolour, a_class, a_clip, a_height, a_id, a_left, a_name, a_pagex, a_pagey,
                         a_src, a_style, a_top, a_visibility, a_zindex, a_unknown } },
-    { elem_image, { a_align, a_crossorigin, a_externalresourcesrequired, a_onloadprogress, a_onpostload, a_onpreload, a_onzoom, a_preserveaspectratio, a_seethru,
-                    a_shadowinherit, a_transin, a_transout, a_xlinkhref, a_will_change, MATH2UNIQUE, MATH2UNIDEF, SVG_GR, SVG_BOX, SVG_COND, SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_image, { a_align, a_crossorigin, a_externalresourcesrequired, a_onloadprogress, a_onpostload, a_onpreload, a_onzoom,
+                    a_preserveaspectratio, a_seethru, a_shadowinherit, a_transin, a_transout, a_xlinkhref, a_will_change, MATH2UNIQUE, MATH2UNIDEF,
+                    SVG_GR, SVG_BOX, SVG_COND, SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_imaginary, { MATH3DEFCOM, a_unknown } },
     { elem_imaginaryi, { MATH3DEFCOM, a_unknown } },
-    { elem_img, {   a_align, a_alt, a_border, a_crossorigin, a_decoding, a_fetchpriority, a_hspace, a_importance, a_intrinsicsize, a_loading, a_longdesc,
-                    a_md, a_referrerpolicy, a_seethru, a_sizes, a_srcset, a_units, a_vspace, WIDEHIGH, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_img, {   a_align, a_alt, a_border, a_crossorigin, a_decoding, a_fetchpriority, a_hspace, a_importance, a_intrinsicsize,
+                    a_loading, a_longdesc, a_md, a_referrerpolicy, a_seethru, a_sizes, a_srcset, a_units, a_vspace, WIDEHIGH, METADATA,
+                    LIVING_STANDARD, a_unknown } },
     { elem_implies, { MATH3DEFCOM, a_unknown } },
     { elem_in, { MATH3DEFCOM, a_unknown } },
     { elem_infinity, { MATH3DEFCOM, a_unknown } },
-    { elem_input, { a_accept, a_action, a_align, a_alt, a_autocomplete, a_capture, a_checked, a_command, a_dirname, a_disabled, a_enctype, a_error, a_form,
+    { elem_input, { a_accept, a_action, a_align, a_alt, a_autocomplete, a_capture, a_checked, a_colourspace, a_command, a_dirname, a_disabled, a_enctype, a_error, a_form,
                     a_formaction, a_formenctype, a_formmethod, a_formnovalidate, a_formtarget, a_incremental, a_list, a_max, a_maxlength, a_md, a_method, a_min, a_minlength,
                     a_mozactionhint, a_multiple, a_name, a_novalidate, a_orient, a_pattern, a_placeholder, a_popovertarget, a_popovertargetaction, a_readonly, a_required,
                     a_results, a_size, a_step, a_type, a_value, a_webkitdirectory, WIDEHIGH, RESERVED4, METADATA, LIVING_STANDARD, a_unknown } },
@@ -567,8 +577,9 @@ element_init_t ei [] =
     { elem_line, {  a_externalresourcesrequired, a_x1, a_x2, a_y1, a_y2, a_will_change,
                     SVG_GR, SVG_COND, SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_lineargradient, { a_externalresourcesrequired, a_gradienttransform, a_gradientunits, a_spreadmethod, a_x1, a_x2, a_y1, a_y2, SVG_XLINK, SVG_PRES,METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_link, {  a_as, a_blocking, a_charset, a_colour, a_crossorigin, a_disabled, a_fetchpriority, a_idref, a_imagesizes, a_imagesrcset, a_importance, a_integrity,
-                    a_methods, a_ping, a_prefetch, a_referrerpolicy, a_scope, a_sizes, a_type, a_updateviacache, a_urn, a_workertype, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_link, {  a_as, a_blocking, a_charset, a_colour, a_crossorigin, a_disabled, a_fetchpriority, a_idref, a_imagesizes, a_imagesrcset,
+                    a_importance, a_integrity, a_methods, a_ping, a_prefetch, a_referrerpolicy, a_scope, a_sizes, a_target, a_type, a_updateviacache,
+                    a_urn, a_workertype, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_listener, { a_evevent, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_list, { a_order, MATH3COMMON, a_unknown } },
     { elem_listing, { COMMON4, a_unknown } },
@@ -592,14 +603,13 @@ element_init_t ei [] =
     { elem_marquee, { a_behaviour, a_bgcolour, a_direction, a_hspace, a_loop, a_scrollamount, a_scrolldelay, a_truespeed, a_vspace, WIDEHIGH, a_unknown } },
     { elem_mask, { a_externalresourcesrequired, a_maskcontentunits, a_masktype, a_maskunits, SVG_COND, SVG_PRES, SVG_BOX, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_math, {  a_accentunder, a_altimg, a_altimg_height, a_altimg_width, a_altimg_valign, a_alttext, a_background, a_baseline,
-                    a_bevelled, a_box, a_cdgroup, a_charalign, a_charspacing, a_close, a_columnspan, a_crossout, a_decimalpoint,
-                    a_display, a_denomalign, a_depth, a_edge, a_infixlinebreakstyle, a_lang, a_leftoverhang, a_length,
-                    a_linethickness, a_location, a_longdivstyle, a_lquote, a_macros, a_maxwidth, a_mediummathspace, a_mode,
-                    a_mslinethickness, a_name, a_notation, a_numalign, a_open, a_overflow, a_position, a_rightoverhang, a_rowspan,
-                    a_rquote, a_scriptlevel, a_scriptminsize, a_scriptsizemultiplier, a_selection, a_separators, a_shift,
-                    a_stackalign, a_subscriptshift, a_superscriptshift, a_thickmathspace, a_thinmathspace, a_valign,
-                    a_verythickmathspace, a_verythinmathspace, a_veryverythickmathspace, a_veryverythinmathspace,
-                    a_style, a_type, a_xsischemaloc, MATH3BREAK, MATH3INDENT, MATH3SHARED, MATH3UNIQUE, WIDEHIGH, MATH4CPRES, a_unknown } },
+                    a_bevelled, a_box, a_cdgroup, a_charalign, a_charspacing, a_close, a_columnspan, a_crossout, a_display, a_denomalign,
+                    a_depth, a_edge, a_lang, a_leftoverhang, a_length, a_linethickness, a_location, a_longdivstyle, a_lquote, a_macros,
+                    a_maxwidth, a_mediummathspace, a_mode, a_mslinethickness, a_name, a_notation, a_numalign, a_open, a_overflow, a_position,
+                    a_rightoverhang, a_rowspan, a_rquote, a_scriptlevel, a_selection, a_separators, a_shift, a_stackalign, a_subscriptshift,
+                    a_superscriptshift, a_thickmathspace, a_thinmathspace, a_valign, a_verythickmathspace, a_verythinmathspace,
+                    a_veryverythickmathspace, a_veryverythinmathspace, a_style, a_type, a_xsischemaloc, MATH3BREAK, MATH3INDENT, MATH3SHARED,
+                    MATH3UNIQUE, WIDEHIGH, MATH4PRES, MATH4CORE, a_unknown } },
     { elem_matrix, { MATH3COMMON, a_unknown } },
     { elem_matrixrow, { MATH3COMMON, a_unknown } },
     { elem_max, { MATH3DEFCOM, a_unknown } },
@@ -688,13 +698,12 @@ element_init_t ei [] =
     { elem_msrow, { a_position, MATH4PRES, a_unknown } },
     { elem_mstack, { a_align, a_charalign, a_charspacing, a_stackalign, MATH4PRES, a_unknown } },
     { elem_mstyle, {    a_accentunder, a_background, a_bevelled, a_charalign, a_charspacing, a_close, a_columnspan, a_crossout,
-                        a_decimalpoint, a_denomalign, a_depth, a_edge, a_height, a_infixlinebreakstyle, a_leftoverhang, a_length,
-                        a_linethickness, a_location, a_longdivstyle, a_lquote, a_mediummathspace, a_mslinethickness, a_notation,
-                        a_numalign, a_open, a_position, a_rightoverhang, a_rowspan, a_rquote, a_scriptlevel, a_scriptminsize,
-                        a_scriptsizemultiplier, a_selection, a_separators, a_shift, a_stackalign, a_subscriptshift,
-                        a_superscriptshift, a_thickmathspace, a_thinmathspace, a_valign, a_verythickmathspace,
-                        a_verythinmathspace, a_veryverythickmathspace, a_veryverythinmathspace, MATH3BREAK, MATH3INDENT,
-                        MATH3TABLE, MATHOPINFO, MATH4CSTYLE, a_unknown } },
+                        a_denomalign, a_depth, a_edge, a_height, a_leftoverhang, a_length, a_linethickness, a_location, a_longdivstyle,
+                        a_lquote, a_mediummathspace, a_mslinethickness, a_notation, a_numalign, a_open, a_position, a_rightoverhang,
+                        a_rowspan, a_rquote, a_scriptlevel, a_selection, a_separators, a_shift, a_stackalign, a_subscriptshift,
+                        a_superscriptshift, a_thickmathspace, a_thinmathspace, a_valign, a_verythickmathspace, a_verythinmathspace,
+                        a_veryverythickmathspace, a_veryverythinmathspace, MATH3BREAK, MATH3INDENT, MATH3TABLE, MATHOPINFO, MATH4CSTYLE,
+                        MATH4PRES, a_unknown } },
     { elem_msub, { a_subscriptshift, MATH4CPRES, a_unknown } },
     { elem_msubsup, { a_subscriptshift, a_superscriptshift, MATH4CPRES, a_unknown } },
     { elem_msup, { a_superscriptshift, MATH4CPRES, a_unknown } },
@@ -863,8 +872,9 @@ element_init_t ei [] =
     { elem_samp, { LIVING_STANDARD_PLUS, a_unknown } },
     { elem_sarcasm, { a_unknown } },
     { elem_scalarproduct, { MATH3DEFCOM, a_unknown } },
-    { elem_script, {    a_async, a_blocking, a_charset, a_crossorigin, a_defer, a_externalresourcesrequired, a_fetchpriority, a_implements, a_integrity, a_language, a_nomodule, a_referrerpolicy,
-                        a_type, SVG_XLINK, SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_script, {    a_async, a_attributionsrc, a_blocking, a_charset, a_crossorigin, a_defer, a_externalresourcesrequired, a_fetchpriority,
+                        a_implements, a_integrity, a_language, a_nomodule, a_referrerpolicy, a_type, SVG_XLINK, SVG_PRES, METADATA,
+                        LIVING_STANDARD, a_unknown } },
     { elem_sdev, { MATH3DEFCOM, a_unknown } },
     { elem_search, { METADATA, LIVING_STANDARD, a_unknown } },
     { elem_sec, { MATH3DEFCOM, a_unknown } },
@@ -977,7 +987,7 @@ element_init_t ei [] =
     { elem_video, { a_audio, a_autobuffer, a_autopictureinpicture, a_autoplay, a_buffered, a_controls, a_controlslist, a_crossorigin,
                     a_currenttime, a_disablepictureinpicture, a_disableremoteplayback, a_duration, a_initialvisibility, a_intrinsicsize, a_loop,
                     a_loopcount, a_loopend, a_loopstart, a_mediagroup, a_muted, a_overlay, a_playcount, a_playsinline, a_poster, a_preload,
-                    a_preserveaspectratio, a_start, a_transformbehaviour, a_transin, a_transout, a_type,
+                    a_preserveaspectratio, a_start, a_transformbehaviour, a_transin, a_transout, a_type, a_x_webkit_airplay,
                     SVG_BOX, SVG_COND, SVG_XLINK, SVG_ANTIME, SVG_PRES, SVG_SYNC, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_view, { a_externalresourcesrequired, a_preserveaspectratio, a_viewbox, a_viewtarget, a_zoomandpan, SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_vkern, { a_g1, a_g2, a_k, a_u1, a_u2, METADATA, LIVING_STANDARD, a_unknown } },

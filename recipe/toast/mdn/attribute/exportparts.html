@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN exportparts tests</title>
+<style>
+::part(body) {
+  color: red;
+  font-style: italic;
+}
+
+h2 {
+  background-color: #dedede;
+}
+
+card-wrapper,
+card-component {
+  border: 1px dashed blue;
+  width: fit-content;
+}
+
+::part(body) {
+  color: red;
+  font-style: italic;
+}
+
+::part(header),
+::part(footer) {
+  font-weight: bold;
+}
+
+/* selects the exported parts name */
+::part(card__header) {
+  font-weight: bold;
+}
+/* selects nothing: these part names were not exported */
+::part(footer),
+::part(body) {
+  font-weight: bold;
+}
+</style>
+<script>
+customElements.define(
+  "card-component",
+  class extends HTMLElement {
+    constructor() {
+      super(); // Always call super first in constructor
+      const template = document.getElementById("card-component-template");
+      const shadowRoot = this.attachShadow({
+        mode: "open",
+      });
+      shadowRoot.appendChild(document.importNode(template.content, true));
+    }
+  },
+    );
+
+customElements.define(
+  "card-wrapper",
+  class extends HTMLElement {
+    constructor() {
+      super(); // Always call super first in constructor
+      const template = document.getElementById("card-wrapper");
+      const shadowRoot = this.attachShadow({
+        mode: "open",
+      });
+      shadowRoot.appendChild(document.importNode(template.content, true));
+    }
+  },
+    );
+
+customElements.define(
+  "card-wrapper",
+  class extends HTMLElement {
+    constructor() {
+      super(); // Always call super first in constructor
+      const template = document.getElementById("card-wrapper");
+      const shadowRoot = this.attachShadow({
+        mode: "open",
+      });
+      shadowRoot.appendChild(document.importNode(template.content, true));
+    }
+  },
+);
+</script>
+</head>
+
+<body>
+
+<h1>MDN exportparts Tests</h1>
+
+<template id="ancestor-component">
+  <nested-component exportparts="part1, part2, part5"></nested-component>
+</template>
+
+<template id="ancestor-component">
+  <nested-component
+    exportparts="part1:exposed1, part2:exposed2"></nested-component>
+</template>
+
+<template id="card-component-template">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <div class="base" part="base">
+    <div part="header"><slot name="header_slot"></slot></div>
+    <div part="body"><slot name="body_slot"></slot></div>
+    <div part="footer"><slot name="footer_slot"></slot></div>
+  </div>
+</template>
+
+<card-component>
+  <p slot="header_slot">This is the header</p>
+  <p slot="body_slot">This is the body</p>
+  <p slot="footer_slot">This is the footer</p>
+</card-component>
+
+<template id="card-wrapper">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <card-component exportparts="base, header, body">
+    <slot name="H" slot="header_slot"></slot>
+    <slot name="B" slot="body_slot"></slot>
+    <slot name="F" slot="footer_slot"></slot>
+  </card-component>
+</template>
+
+<h2>Card wrapper</h2>
+
+<card-wrapper>
+  <p slot="H">This is the header</p>
+  <p slot="B">This is the body</p>
+  <p slot="F">This is the footer</p>
+</card-wrapper>
+
+<h2>Card component</h2>
+
+<card-component>
+  <p slot="header_slot">This is the header</p>
+  <p slot="body_slot">This is the body</p>
+  <p slot="footer_slot">This is the footer</p>
+</card-component>
+
+<template id="card-wrapper">
+  <card-component
+    exportparts="
+       base:card__base,
+       header:card__header,
+       footer:card__footer
+     ">
+    <span slot="header_slot"><slot name="H"></slot></span>
+    <span slot="body_slot"><slot name="B"></slot></span>
+    <span slot="footer_slot"><slot name="F"></slot></span>
+  </card-component>
+</template>
+
+</body>
+</html>

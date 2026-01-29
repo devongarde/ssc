@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN animation-name tests</title>
+<style>
+.sid
+{
+/* No animation */
+animation-name: none;
+
+/* Single animation */
+animation-name: test_05;
+animation-name: -specific;
+animation-name: "sliding-vertically";
+
+/* Multiple animations */
+animation-name: test1, animation4;
+animation-name:
+  none,
+  -moz-specific,
+  sliding;
+
+/* Global values */
+animation-name: inherit;
+animation-name: initial;
+animation-name: revert;
+animation-name: revert-layer;
+animation-name: unset;
+}
+
+.box {
+  background-color: rebeccapurple;
+  border-radius: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+.box:hover {
+  animation-name: rotate;
+  animation-duration: 0.7s;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN animation-name Tests</h1>
+
+<div class="box"></div>
+
+</body>
+</html>

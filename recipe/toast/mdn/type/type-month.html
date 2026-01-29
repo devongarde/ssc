@@ -1,0 +1,198 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN type-month tests</title>
+<style>
+label {
+  display: block;
+  font:
+    1rem "Fira Sans",
+    sans-serif;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+
+div {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+input[type="number"] {
+  width: 100px;
+}
+
+input + span {
+  padding-right: 30px;
+}
+
+input:invalid + span::after {
+  position: absolute;
+  content: "✖";
+  padding-left: 5px;
+}
+
+input:valid + span::after {
+  position: absolute;
+  content: "✓";
+  padding-left: 5px;
+}
+</style>
+<script>
+const monthControl = document.querySelector('input[type="month"]');
+    monthControl.value = "2001-06";
+
+// Get UI elements
+const nativePicker = document.querySelector(".nativeDatePicker");
+const fallbackPicker = document.querySelector(".fallbackDatePicker");
+const fallbackLabel = document.querySelector(".fallbackLabel");
+
+const yearSelect = document.querySelector("#year");
+const monthSelect = document.querySelector("#month");
+
+// Hide fallback initially
+fallbackPicker.style.display = "none";
+fallbackLabel.style.display = "none";
+
+// Test whether a new date input falls back to a text input or not
+const test = document.createElement("input");
+
+try {
+  test.type = "month";
+} catch (e) {
+  console.log(e.description);
+}
+
+// If it does, run the code inside the if () {} block
+if (test.type === "text") {
+  // Hide the native picker and show the fallback
+  nativePicker.style.display = "none";
+  fallbackPicker.style.display = "block";
+  fallbackLabel.style.display = "block";
+
+  // Populate the years dynamically
+  // (the months are always the same, therefore hardcoded)
+  populateYears();
+}
+
+function populateYears() {
+  // Get the current year as a number
+  const date = new Date();
+  const year = date.getFullYear();
+
+  // Make this year, and the 100 years before it available in the year <select>
+  for (let i = 0; i <= 100; i++) {
+    const option = document.createElement("option");
+    option.textContent = year - i;
+    yearSelect.appendChild(option);
+  }
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN type-month Tests</h1>
+
+<label for="start">Start month:</label>
+
+<input type="month" id="start" name="start" min="2018-03" value="2018-05" />
+
+<label for="bday-month">What month were you born in?</label>
+<input id="bday-month" type="month" name="bday-month" value="2001-06" />
+
+<label for="bday-month">What month were you born in?</label>
+<input id="bday-month" type="month" name="bday-month" />
+
+<form>
+  <label for="bday-month">What month were you born in?</label>
+  <input id="bday-month" type="month" name="bday-month" />
+</form>
+
+<form>
+  <label for="bday-month">What month were you born in?</label>
+  <input
+    id="bday-month"
+    type="month"
+    name="bday-month"
+    min="1900-01"
+    max="2013-12" />
+</form>
+
+<form>
+  <div>
+    <label for="month">
+      What month would you like to visit (June to Sept.)?
+    </label>
+    <input
+      id="month"
+      type="month"
+      name="month"
+      min="2022-06"
+      max="2022-09"
+      required />
+    <span class="validity"></span>
+  </div>
+  <div>
+    <input type="submit" value="Submit form" />
+  </div>
+</form>
+
+<form>
+  <div>
+    <label for="month">
+      What month would you like to visit (June to Sept.)?
+    </label>
+    <input
+      id="month"
+      type="month"
+      name="month"
+      min="2022-06"
+      max="2022-09"
+      required
+      pattern="[0-9]{4}-[0-9]{2}" />
+    <span class="validity"></span>
+  </div>
+  <div>
+    <input type="submit" value="Submit form" />
+  </div>
+</form>
+
+<form>
+  <div class="nativeDatePicker">
+    <label for="month-visit">What month would you like to visit us?</label>
+    <input type="month" id="month-visit" name="month-visit" />
+    <span class="validity"></span>
+  </div>
+  <p class="fallbackLabel">What month would you like to visit us?</p>
+  <div class="fallbackDatePicker">
+    <div>
+      <span>
+        <label for="month">Month:</label>
+        <select id="month" name="month">
+          <option selected>January</option>
+          <option>February</option>
+          <option>March</option>
+          <option>April</option>
+          <option>May</option>
+          <option>June</option>
+          <option>July</option>
+          <option>August</option>
+          <option>September</option>
+          <option>October</option>
+          <option>November</option>
+          <option>December</option>
+        </select>
+      </span>
+      <span>
+        <label for="year">Year:</label>
+        <select id="year" name="year"></select>
+      </span>
+    </div>
+  </div>
+</form>
+
+</body>
+</html>

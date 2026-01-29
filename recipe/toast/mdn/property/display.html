@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+.sid {
+/* precomposed values */
+display: block;
+display: inline;
+display: inline-block;
+display: flex;
+display: inline-flex;
+display: grid;
+display: inline-grid;
+display: flow-root;
+
+/* Box suppression */
+display: none;
+display: contents;
+
+/* multi-keyword syntax */
+display: block flex;
+display: block flow;
+display: block flow-root;
+display: block grid;
+display: inline flex;
+display: inline flow;
+display: inline flow-root;
+display: inline grid;
+
+/* other values */
+display: table;
+display: table-row; /* all table elements have an equivalent CSS display value */
+display: list-item;
+
+/* Global values */
+display: inherit;
+display: initial;
+display: revert;
+display: revert-layer;
+display: unset;
+}
+
+.container {
+  display: inline-flex;
+  display: inline flex;
+}
+
+.container {
+  display: inline flex;
+}
+
+.container {
+  display: inline-flex;
+}
+
+html {
+  font-family: "Helvetica", "Arial", sans-serif;
+  letter-spacing: 1px;
+  padding-top: 10px;
+}
+
+article {
+  background-color: red;
+}
+
+article span {
+  background-color: black;
+  color: white;
+  margin: 1px;
+}
+
+article,
+span {
+  padding: 10px;
+  border-radius: 7px;
+}
+
+article,
+div {
+  margin: 20px;
+}
+</style>
+<script>
+const articles = document.querySelectorAll(".container");
+const select = document.querySelector("select");
+
+function updateDisplay() {
+  articles.forEach((article) => {
+    article.style.display = select.value;
+  });
+}
+
+select.addEventListener("change", updateDisplay);
+
+updateDisplay();
+</script>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+<article class="container">
+  <span>First</span>
+  <span>Second</span>
+  <span>Third</span>
+</article>
+
+<article class="container">
+  <span>First</span>
+  <span>Second</span>
+  <span>Third</span>
+</article>
+
+<div>
+  <label for="display">Choose a display value:</label>
+  <select id="display">
+    <option selected>block</option>
+    <option>block flow</option>
+    <option>inline</option>
+    <option>inline flow</option>
+    <option>flow</option>
+    <option>flow-root</option>
+    <option>block flow-root</option>
+    <option>table</option>
+    <option>block table</option>
+    <option>flex</option>
+    <option>block flex</option>
+    <option>grid</option>
+    <option>block grid</option>
+    <option>list-item</option>
+    <option>block flow list-item</option>
+    <option>inline flow list-item</option>
+    <option>block flow-root list-item</option>
+    <option>inline flow-root list-item</option>
+    <option>contents</option>
+    <option>none</option>
+    <option>inline-block</option>
+    <option>inline flow-root</option>
+    <option>inline-table</option>
+    <option>inline table</option>
+    <option>inline-flex</option>
+    <option>inline flex</option>
+    <option>inline-grid</option>
+    <option>inline grid</option>
+  </select>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-inline-end-colour tests</title>
+<style>
+.sid {
+border-inline-end-color: rebeccapurple;
+border-inline-end-color: #663399;
+
+/* Global values */
+border-inline-end-color: inherit;
+border-inline-end-color: initial;
+border-inline-end-color: revert;
+border-inline-end-color: revert-layer;
+border-inline-end-color: unset;
+}
+
+div {
+  background-color: yellow;
+  width: 120px;
+  height: 120px;
+}
+
+.exampleText {
+  writing-mode: vertical-lr;
+  border: 10px solid blue;
+  border-inline-end-color: red;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-inline-end-colour Tests</h1>
+
+<div>
+  <p class="exampleText">Example text</p>
+</div>
+
+</body>
+</html>

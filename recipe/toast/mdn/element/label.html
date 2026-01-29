@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN LABEL tests</title>
+<style>
+.preference {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  margin: 0.5rem;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN LABEL Tests</h1>
+
+<label for="peas">I like peas.</label>
+<input type="checkbox" name="peas" id="peas" />
+
+<label>
+  I like peas.
+  <input type="checkbox" name="peas" />
+</label>
+
+<label for="username">Enter your username:</label>
+<input id="username" name="username" type="text" />
+<label for="username">Forgot your username?</label>
+
+<label for="tac">
+  <input id="tac" type="checkbox" name="terms-and-conditions" />
+  I agree to the <a href="terms-and-conditions.html">Terms and Conditions</a>
+</label>
+
+<p>
+  <a href="terms-and-conditions.html">Read our Terms and Conditions</a>
+</p>
+<label for="tac">
+  <input id="tac" type="checkbox" name="terms-and-conditions" />
+  I agree to the Terms and Conditions
+</label>
+
+<label for="your-name">
+  <h3>Your name</h3>
+  <input id="your-name" name="your-name" type="text" />
+</label>
+
+<label class="large-label" for="your-name">
+  Your name
+  <input id="your-name" name="your-name" type="text" />
+</label>
+
+<label>Click me <input type="text" /></label>
+
+<label for="username">Click me to focus on the input field</label>
+<input type="text" id="username" />
+
+</body>
+</html>

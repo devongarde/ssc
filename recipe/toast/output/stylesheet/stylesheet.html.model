@@ -12,14 +12,14 @@
 <H2 class="nit-section">/stylesheet.html</H2>
 <BR><P><SPAN class="nit-before">&lt;!DOCTYPE html&gt; </SPAN> <SPAN class="nit-mote">&lt;html&gt;</SPAN> <SPAN class="nit-after"> &lt;head&gt; &lt;title&gt;HTML outpu...</SPAN></P>
 <P>
-<SPAN class="nit-warning">warning</SPAN>: <SPAN class="nit-explanation">use LANG on &lt;HTML&gt; to specify a default language</SPAN><BR><SPAN class="nit-ref">4.1.1 The html element</SPAN><SPAN class="nit-doc">, HTML 5.0, W3, Oct 2014</SPAN><SPAN class="nit-link" type=application/pdf download> (<A href="https://ssc.lu/spex/html/html5/html5.0.pdf">reference</A>)</SPAN><BR>
+<SPAN class="nit-warning">warning</SPAN>: <SPAN class="nit-explanation">use LANG on &lt;HTML&gt; to specify a default language</SPAN><BR><SPAN class="nit-ref">4.1.1 The html element</SPAN><SPAN class="nit-doc">, HTML 5.0, W3, Oct 2014</SPAN><SPAN class="nit-link" type=application/pdf download> (<A href="https://dylanharris.org/ssc/spex/html/html5/html5.0.pdf">reference</A>)</SPAN><BR>
 </P>
 <BR><BR>
 </MAIN>
 <BR><HR>
 <FOOTER class="smaller">
-<A href="https://ssc.lu/" class="ssc-name">Static Site Checker</A> version 0.2.23 build<BR>
-<A href="https://dylanharris.org/" class="ssc-copyright">(c) 2020-2026 Dylan Harris</A><BR>
+<A href="https://dylanharris.org/ssc/" class="ssc-name">Static Site Checker</A> version 0.2.24 build<BR>
+<A href="https://dylanharris.org/ssc/" class="ssc-copyright">(c) 2020-2026 Dylan Harris</A><BR>
 </FOOTER>
 </BODY>
 </HTML>

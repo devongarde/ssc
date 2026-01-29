@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+.sid {
+/* Keyword values */
+empty-cells: show;
+empty-cells: hide;
+
+/* Global values */
+empty-cells: inherit;
+empty-cells: initial;
+empty-cells: revert;
+empty-cells: revert-layer;
+empty-cells: unset;
+}
+
+.table_1 {
+  empty-cells: show;
+}
+
+.table_2 {
+  empty-cells: hide;
+}
+
+td,
+th {
+  border: 1px solid gray;
+  padding: 0.5rem;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+<table class="table_1">
+  <tbody>
+    <tr>
+      <td>Moe</td>
+      <td>Larry</td>
+    </tr>
+    <tr>
+      <td>Curly</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<table class="table_2">
+  <tbody>
+    <tr>
+      <td>Moe</td>
+      <td>Larry</td>
+    </tr>
+    <tr>
+      <td>Curly</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

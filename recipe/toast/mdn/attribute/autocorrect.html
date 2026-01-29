@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN autocorrect tests</title>
+<script>
+const resetButton = document.querySelector("#reset");
+const userNameElement = document.querySelector("#username");
+const bioElement = document.querySelector("#bio");
+
+if (!("autocorrect" in HTMLElement.prototype)) {
+  log("autocorrect not supported");
+} else {
+  log(`userNameElement.autocorrect: ${userNameElement.autocorrect}`);
+  log(`bioElement.autocorrect: ${bioElement.autocorrect}`);
+}
+
+resetButton.addEventListener("click", (e) => {
+  userNameElement.value = "";
+  bioElement.value = "";
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN autocorrect Tests</h1>
+
+<label for="vegetable">A vegetable: </label>
+<input id="vegetable" name="vegetable" type="text" autocorrect="on" />
+
+<label for="fruit">A fruit: </label>
+<input id="fruit" name="fruit" type="text" autocorrect="off" />
+
+<button id="reset">Reset</button>
+<label for="username">Name: </label>
+<input id="username" name="username" type="text" autocorrect="off" />
+<label for="bio">Biography: </label>
+<textarea id="bio" name="bio"></textarea>
+
+</body>
+</html>

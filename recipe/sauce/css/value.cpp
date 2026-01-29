@@ -26,6 +26,22 @@ void add_param (const arguments& args, t_params& params, int& from, const int i)
 {   params.emplace_back (from, i-1);
     from = next_non_whitespace (args.t_, i, -1); }
 
+bool maybe_anchor (nitpick& nits, const e_css_property id)
+{   if (id < ec_custom) return true;
+    const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
+    if ((f & CF_ANCHOR) == CF_ANCHOR) return true;
+    if (! test_esii (sii_hush, HIDE_ME))
+        nits.pick (nit_css_value_fn, ed_css_image_3, "2. Anchor Values: the <anchor> type", es_error, ec_css, "not an anchor property");
+    return false; }
+
+bool maybe_anchor_size (nitpick& nits, const e_css_property id)
+{   if (id < ec_custom) return true;
+    const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
+    if ((f & CF_ANCHOR_SIZE) == CF_ANCHOR_SIZE) return true;
+    if (! test_esii (sii_hush, HIDE_ME))
+        nits.pick (nit_css_value_fn, ed_css_image_3, "2. Anchor Values: the <anchor> type", es_error, ec_css, "not an anchor-size property");
+    return false; }
+
 bool maybe_content (nitpick& nits, const e_css_property id)
 {   if (id < ec_custom) return true;
     if (context.css_module (c_generated_content) < 3)
@@ -77,13 +93,8 @@ bool maybe_math (nitpick& nits, const e_css_property id)
 
 bool maybe_offset_path (nitpick& nits, const e_css_property id)
 {   if (id < ec_custom) return true;
-    if (context.css_module (c_motion_path) < 3)
-    {   nits.pick (nit_css_version, es_error, ec_css, "Requires CSS Motion Path 3 or better");
-        return false; }
-    const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
-    if ((f & CF_TEXT_4) == CF_TEXT_4) return true;
-    if (! test_esii (sii_hush, HIDE_ME))
-        nits.pick (nit_css_value_fn, es_error, ec_css, "not a CSS Text 4 property");
+    if (context.css_module (c_motion_path) >= 3) return true;
+    nits.pick (nit_css_version, es_error, ec_css, "Requires CSS Motion Path 3 or better");
     return false; }
 
 bool maybe_text_4 (nitpick& nits, const e_css_property id)
@@ -94,7 +105,7 @@ bool maybe_text_4 (nitpick& nits, const e_css_property id)
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_TEXT_4) == CF_TEXT_4) return true;
     if (! test_esii (sii_hush, HIDE_ME))
-        nits.pick (nit_css_value_fn, es_error, ec_css, "not a CSS Text 4 property");
+        nits.pick (nit_css_value_fn, es_error, ec_css, "not a CSS Text 4 property (2)");
     return false; }
 
 bool maybe_text_overflow (nitpick& nits, const e_css_property id)
@@ -137,16 +148,23 @@ int check_typed_feature (arguments& args, nitpick& nits, const int start, const 
 
 int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id)
 #ifdef LIMITED_META_COMPLEXITY
-{   int test_value_fns_0_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_3_9 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+{   int test_value_fns_0_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_2_9 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_a_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_a_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_b (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_a_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_a_4 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_a_5 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_b_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_b_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_c_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_c_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_c_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_c_4 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_c_5 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_a_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_a_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_css_a_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_b_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_b_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_b_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
@@ -165,6 +183,7 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     int test_value_fns_css_l (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_m_n (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_o (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_css_p_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_p_q (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_r (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_s_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
@@ -173,52 +192,75 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     int test_value_fns_css_t_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_t_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_t_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_css_t_4 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_u (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_v (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_w_z (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_d (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_d_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_d_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_e (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_f_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_f_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_g_h (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_f_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_g (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_h (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_i_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_i_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_i_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_j_k (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_l_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_l_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_l_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_m_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_m_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_m_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_m_n (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_n_o (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_m_4 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_m_5 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_m_6 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_n (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_o (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_p_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_p_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_q_r (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_r (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_rsl (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_p_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_p_4 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_r_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_r_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_r_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_r_4 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_r_5 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_s_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_s_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_svg_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_svg_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_s_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_s_4 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_s_5 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_t_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_t_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_u (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_v (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_v_w (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_x (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_x_z (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_u_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_u_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_v_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_v_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_w (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_x_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_x_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_y_z (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
 
-    if (t <= SSC_TYPES_0_2_MAX) return test_value_fns_0_2 (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_3_9_MAX) return test_value_fns_3_9 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_0_1_MAX) return test_value_fns_0_1 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_2_9_MAX) return test_value_fns_2_9 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_A_1_MAX) return test_value_fns_a_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_A_2_MAX) return test_value_fns_a_2 (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_B_MAX) return test_value_fns_b (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_A_3_MAX) return test_value_fns_a_3 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_A_4_MAX) return test_value_fns_a_4 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_A_5_MAX) return test_value_fns_a_5 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_B_1_MAX) return test_value_fns_b_1 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_B_2_MAX) return test_value_fns_b_2 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_C_1_MAX) return test_value_fns_c_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_C_2_MAX) return test_value_fns_c_2 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_C_3_MAX) return test_value_fns_c_3 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_C_4_MAX) return test_value_fns_c_4 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_C_5_MAX) return test_value_fns_c_5 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_A_1_MAX) return test_value_fns_css_a_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_A_2_MAX) return test_value_fns_css_a_2 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_CSS_A_3_MAX) return test_value_fns_css_a_3 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_B_1_MAX) return test_value_fns_css_b_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_B_2_MAX) return test_value_fns_css_b_2 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_B_3_MAX) return test_value_fns_css_b_3 (args, start, to, nits, t, fn, id);
@@ -237,6 +279,7 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     if (t <= SSC_TYPES_CSS_L_MAX) return test_value_fns_css_l (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_M_N_MAX) return test_value_fns_css_m_n (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_O_MAX) return test_value_fns_css_o (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_CSS_P_1_MAX) return test_value_fns_css_p_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_P_Q_MAX) return test_value_fns_css_p_q (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_R_MAX) return test_value_fns_css_r (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_S_1_MAX) return test_value_fns_css_s_1 (args, start, to, nits, t, fn, id);
@@ -245,41 +288,57 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     if (t <= SSC_TYPES_CSS_T_1_MAX) return test_value_fns_css_t_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_T_2_MAX) return test_value_fns_css_t_2 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_T_3_MAX) return test_value_fns_css_t_3 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_CSS_T_4_MAX) return test_value_fns_css_t_4 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_U_MAX) return test_value_fns_css_u (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_V_MAX) return test_value_fns_css_v (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_W_Z_MAX) return test_value_fns_css_w_z (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_D_MAX) return test_value_fns_d (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_D_1_MAX) return test_value_fns_d_1 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_D_2_MAX) return test_value_fns_d_2 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_E_MAX) return test_value_fns_e (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_F_1_MAX) return test_value_fns_f_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_F_2_MAX) return test_value_fns_f_2 (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_G_H_MAX) return test_value_fns_g_h (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_F_3_MAX) return test_value_fns_f_3 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_G_MAX) return test_value_fns_g (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_H_MAX) return test_value_fns_h (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_I_1_MAX) return test_value_fns_i_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_I_2_MAX) return test_value_fns_i_2 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_I_3_MAX) return test_value_fns_i_3 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_J_K_MAX) return test_value_fns_j_k (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_L_1_MAX) return test_value_fns_l_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_L_2_MAX) return test_value_fns_l_2 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_L_3_MAX) return test_value_fns_l_3 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_M_1_MAX) return test_value_fns_m_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_M_2_MAX) return test_value_fns_m_2 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_M_3_MAX) return test_value_fns_m_3 (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_M_N_MAX) return test_value_fns_m_n (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_N_O_MAX) return test_value_fns_n_o (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_M_4_MAX) return test_value_fns_m_4 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_M_5_MAX) return test_value_fns_m_5 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_M_6_MAX) return test_value_fns_m_6 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_N_MAX) return test_value_fns_n (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_O_MAX) return test_value_fns_o (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_P_1_MAX) return test_value_fns_p_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_P_2_MAX) return test_value_fns_p_2 (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_Q_R_MAX) return test_value_fns_q_r (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_R_MAX) return test_value_fns_r (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_RSL_MAX) return test_value_fns_rsl (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_P_3_MAX) return test_value_fns_p_3 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_P_4_MAX) return test_value_fns_p_4 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_R_1_MAX) return test_value_fns_r_1 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_R_2_MAX) return test_value_fns_r_2 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_R_3_MAX) return test_value_fns_r_3 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_R_4_MAX) return test_value_fns_r_4 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_R_5_MAX) return test_value_fns_r_5 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_S_1_MAX) return test_value_fns_s_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_S_2_MAX) return test_value_fns_s_2 (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_SVG_1_MAX) return test_value_fns_svg_1 (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_SVG_2_MAX) return test_value_fns_svg_2 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_S_3_MAX) return test_value_fns_s_3 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_S_4_MAX) return test_value_fns_s_4 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_S_5_MAX) return test_value_fns_s_5 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_T_1_MAX) return test_value_fns_t_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_T_2_MAX) return test_value_fns_t_2 (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_U_MAX) return test_value_fns_u (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_V_MAX) return test_value_fns_v (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_V_W_MAX) return test_value_fns_v_w (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_X_MAX) return test_value_fns_x (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_X_Z_MAX) return test_value_fns_x_z (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_U_1_MAX) return test_value_fns_u_1 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_U_2_MAX) return test_value_fns_u_2 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_V_1_MAX) return test_value_fns_v_1 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_V_1_MAX) return test_value_fns_v_2 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_W_MAX) return test_value_fns_w (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_X_1_MAX) return test_value_fns_x_1 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_X_1_MAX) return test_value_fns_x_2 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_Y_Z_MAX) return test_value_fns_y_z (args, start, to, nits, t, fn, id);
     GRACEFUL_CRASH (__FILE__, __LINE__); }
 #else // LIMITED_META_COMPLEXITY
 {   return value_types < SSC_TYPES, t_unknown > :: check (args, start, to, nits, t, fn, id); }

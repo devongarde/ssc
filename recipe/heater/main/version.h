@@ -199,6 +199,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_JUN12  HTML_2012, (HTML_JUN + HTML_30TH)
 #define HTML_JUL12  HTML_2012, HTML_JUL
 #define HTML_AUG12  HTML_2012, HTML_AUG
+#define HTML_SEP12  HTML_2012, HTML_SEP
 #define HTML_NOV12  HTML_2012, HTML_NOV
 #define HTML_DEC12  HTML_2012, (HTML_DEC + HTML_31ST)
 #define HTML_JAN13  HTML_2013, HTML_JAN
@@ -321,15 +322,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_NOV25  HTML_2025, HTML_NOV
 #define HTML_DEC25  HTML_2025, HTML_DEC
 #define HTML_JAN26  HTML_2026, HTML_JAN
+#define HTML_FEB26  HTML_2026, HTML_FEB
+#define HTML_MAR26  HTML_2026, HTML_MAR
+#define HTML_APR26  HTML_2026, HTML_APR
 #define HTML_DEC99  HTML_2099, (HTML_DEC + HTML_31ST)
 
 #define HTML_5_EARLIEST_YEAR    HTML_2005
 #define HTML_5_EARLIEST_MONTH   1
 
 #define HTML_LATEST_YEAR        HTML_2026
-#define HTML_LATEST_MONTH       1
+#define HTML_LATEST_MONTH       4
 
-#define HTML_CURRENT            HTML_DEC25
+#define HTML_CURRENT            HTML_JAN26
 
 #define HTML_UNDEF      0, 0
 
@@ -633,7 +637,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_SCHEMA_29_2  HTML_2025, ( HTML_MAY + HTML_16TH )
 #define HTML_SCHEMA_29_3  HTML_2025, ( HTML_SEP + HTML_6TH )
 #define HTML_SCHEMA_29_4  HTML_2025, ( HTML_SEP + HTML_30TH )
-#define HTML_SCHEMA_30_0  HTML_2025, ( HTML_DEC + HTML_1ST )
+#define HTML_SCHEMA_29_5  HTML_2025, ( HTML_DEC + HTML_8TH )
+#define HTML_SCHEMA_30_0  HTML_2025, ( HTML_DEC + HTML_31ST )
 #define HTML_SCHEMA       HTML_SCHEMA_0
 #define HTML_SD         HTML_RDF10_CON
 #define HTML_SIOC       HTML_RDF10
@@ -685,7 +690,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define HTML_XLINK10    XHTML_1_0
 #define HTML_XLINK11    HTML_JUN10
-
 
 class version
 {   unsigned short mjr_ = 0, mnr_ = 0;

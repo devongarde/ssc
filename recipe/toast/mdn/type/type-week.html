@@ -1,0 +1,166 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN type-week tests</title>
+<style>
+label {
+  display: block;
+  font:
+    1rem "Fira Sans",
+    sans-serif;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+
+div {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+input[type="number"] {
+  width: 100px;
+}
+
+input + span {
+  padding-right: 30px;
+}
+
+input:invalid + span::after {
+  position: absolute;
+  content: "✖";
+  padding-left: 5px;
+}
+
+input:valid + span::after {
+  position: absolute;
+  content: "✓";
+  padding-left: 5px;
+}
+</style>
+<script>
+const weekControl = document.querySelector('input[type="week"]');
+    weekControl.value = "2017-W45";
+
+// Get UI elements
+const nativePicker = document.querySelector(".nativeWeekPicker");
+const fallbackPicker = document.querySelector(".fallbackWeekPicker");
+const fallbackLabel = document.querySelector(".fallbackLabel");
+
+const yearSelect = document.querySelector("#year");
+const weekSelect = document.querySelector("#fallbackWeek");
+
+// Hide fallback initially
+fallbackPicker.style.display = "none";
+fallbackLabel.style.display = "none";
+
+// Test whether a new date input falls back to a text input or not
+const test = document.createElement("input");
+
+try {
+  test.type = "week";
+} catch (e) {
+  console.log(e.description);
+}
+
+// If it does, run the code inside the if () {} block
+if (test.type === "text") {
+  // Hide the native picker and show the fallback
+  nativePicker.style.display = "none";
+  fallbackPicker.style.display = "block";
+  fallbackLabel.style.display = "block";
+
+  // populate the weeks dynamically
+  populateWeeks();
+}
+
+function populateWeeks() {
+  // Populate the week select with 52 weeks
+  for (let i = 1; i <= 52; i++) {
+    const option = document.createElement("option");
+    option.textContent = i < 10 ? `0${i}` : i;
+    weekSelect.appendChild(option);
+  }
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN type-week Tests</h1>
+
+<label for="camp-week">Choose a week in May or June:</label>
+
+<input
+  type="week"
+  name="week"
+  id="camp-week"
+  min="2018-W18"
+  max="2018-W26"
+  required />
+
+<label for="week">What week would you like to start?</label>
+<input id="week" type="week" name="week" value="2017-W01" />
+
+<form>
+  <label for="week">What week would you like to start?</label>
+  <input id="week" type="week" name="week" />
+</form>
+
+<form>
+  <label for="week">What week would you like to start?</label>
+  <input id="week" type="week" name="week" min="2017-W01" max="2017-W52" />
+  <span class="validity"></span>
+</form>
+
+<form>
+  <div>
+    <label for="week">What week would you like to start?</label>
+    <input
+      id="week"
+      type="week"
+      name="week"
+      min="2017-W01"
+      max="2017-W52"
+      required />
+    <span class="validity"></span>
+  </div>
+  <div>
+    <input type="submit" value="Submit form" />
+  </div>
+</form>
+
+<form>
+  <div class="nativeWeekPicker">
+    <label for="week">What week would you like to start?</label>
+    <input
+      id="week"
+      type="week"
+      name="week"
+      min="2017-W01"
+      max="2018-W52"
+      required />
+    <span class="validity"></span>
+  </div>
+  <p class="fallbackLabel">What week would you like to start?</p>
+  <div class="fallbackWeekPicker">
+    <div>
+      <span>
+        <label for="week">Week:</label>
+        <select id="fallbackWeek" name="week"></select>
+      </span>
+      <span>
+        <label for="year">Year:</label>
+        <select id="year" name="year">
+          <option value="2017" selected>2017</option>
+          <option value="2018">2018</option>
+        </select>
+      </span>
+    </div>
+  </div>
+</form>
+
+</body>
+</html>

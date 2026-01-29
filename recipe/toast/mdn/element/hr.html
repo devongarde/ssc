@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN HR tests</title>
+<style>
+hr {
+  border: none;
+  border-top: 3px double #333333;
+  color: #333333;
+  overflow: visible;
+  text-align: center;
+  height: 5px;
+}
+
+hr::after {
+  background: white;
+  content: "§";
+  padding: 0 4px;
+  position: relative;
+  top: -13px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN HR Tests</h1>
+
+<p>§1: The first rule of Fight Club is: You do not talk about Fight Club.</p>
+
+<hr />
+
+<p>§2: The second rule of Fight Club is: Always bring cupcakes.</p>
+
+<p>
+  This is the first paragraph of text. This is the first paragraph of text. This
+  is the first paragraph of text. This is the first paragraph of text.
+</p>
+
+<hr />
+
+<p>
+  This is the second paragraph of text. This is the second paragraph of text.
+  This is the second paragraph of text. This is the second paragraph of text.
+</p>
+
+</body>
+</html>

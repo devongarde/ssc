@@ -43,6 +43,7 @@ struct property_base
     virtual void accumulate (stats_t* , const element_bitset& ) const { }
     virtual void shadow (::std::stringstream& , arguments&, element* ) { }
     virtual int fin () const noexcept { return -1; }
+    virtual ::std::string naam () const { return ::std::string (); }
     virtual ::std::string rpt () const { return ::std::string (); } };
 
 #ifdef _MSC_VER
@@ -62,6 +63,7 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
     bool ok_ = false;
     ::std::string s_;
     static ::std::string name () { return type_master < t_css_property > :: name (IDENTITY); }
+    virtual ::std::string naam () const override { return name (); }
     CONSTEXPR static e_css_property whoami () { return IDENTITY; }
     CONSTEXPR static e_type whatami () { return TYPE; }
     virtual e_css_property get () const override { return whoami (); }
@@ -88,14 +90,17 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
         return res; }
     virtual void verify (nitpick& nits, const elem& e) override
     {   if (iiu_ == iiu_none) type_master < TYPE > :: verify_attribute (nits, context.html_ver (), e, nullptr, name ()); }
-    virtual void validate (arguments& ) override
-    {   if (iiu_ == iiu_none) type_master < TYPE > :: validate (); }
+    virtual void validate (arguments& args) override
+    {   if (iiu_ == iiu_none)
+        {   type_master < TYPE > :: validate ();
+            type_master < TYPE > :: argue (args.t_.at (0).nits_, &args); } }
     virtual void accumulate (stats_t* s, const element_bitset& e) const override
     {   if (iiu_ == iiu_none) type_master < TYPE > :: accumulate (s, e); }
     ::std::string iiu () const
     {   switch (iiu_)
         {   case iiu_inherit : return "inherit";
             case iiu_initial : return "initial";
+            case iiu_moz_initial : return "-moz-initial";
             case iiu_revert : return "revert";
             case iiu_revert_layer : return "revert-layer";
             case iiu_unset : return "unset";
@@ -147,6 +152,11 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
         if (iiu_ == iiu_none) return res + type_master < TYPE > :: get_string ();
         return res + iiu (); } };
 
+template < > inline void typed_property < t_css_anchor_none, ec_anchor_name > :: set_value (arguments& args, const int start, const int to, nitpick& nits, const ::std::string& s)
+{   void validate_anchor_id (const ::std::string& s, arguments& args);
+    fin_ = set_value_ex (args, start, to, nits, s);
+    if (ok_) validate_anchor_id (get_string (), args); }
+
 template < > inline void typed_property < t_css_anim_base, ec_animation_name > :: validate (arguments& args)
 {   void validate_animation_name (type_master < t_css_anim_base >& cab, arguments& args);
     if (iiu_ == iiu_none) validate_animation_name (*this, args); }
@@ -179,6 +189,8 @@ property_v_ptr make_page_v_ptr (arguments& args, const int start, const int to, 
 property_v_ptr make_page_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const e_token t);
 property_v_ptr make_palette_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const e_token t);
 property_v_ptr make_palette_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const e_token t);
+property_v_ptr make_position_try_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const e_token t);
+property_v_ptr make_position_try_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const e_token t);
 property_v_ptr make_viewport_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const e_token t);
 property_v_ptr make_viewport_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const e_token t);
 

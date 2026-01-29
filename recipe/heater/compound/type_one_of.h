@@ -51,6 +51,7 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
     type_master < A > val_;
     bool inner_set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   nitpick nuts, nets;
+//        const bool doubledash = (s.size () >= 2) && (s.substr (0, 2) == "--");
         if (type_one_of < T, EMPTY, B... > :: inner_set_value (nuts, v, s)) 
         {   nits.merge (nuts); return true; }
         val_.set_value (nets, v, s);
@@ -110,7 +111,7 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
         {   nitpick nuts;
             if (inner_set_value (nuts, v, ss)) nits.merge (nuts);
             else
-            {   nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid (", type_name (T), ", 1)");
+            {   nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid (", type_name (T), ", ", type_name (A), ", 1)");
                 if (context.extra () || context.tell (es_debug)) nits.merge (nuts); } } }
     void set_id (const ::std::string& s)
     {   type_one_of < T, EMPTY, B... > :: set_id (s); }
@@ -178,6 +179,9 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
     void box (element* b) noexcept
     {   if (! val_.unknown ()) val_.box (b);
         else type_one_of < T, EMPTY, B... > :: box (b); }
+    void argue (nitpick& nits, arguments* a)
+    {   if (! val_.unknown ()) val_.argue (nits, a);
+        else type_one_of < T, EMPTY, B... > :: argue (nits, a); }
     void validate ()
     {   if (! val_.unknown ()) val_.validate ();
         else type_one_of < T, EMPTY, B... > :: validate (); }
@@ -248,7 +252,7 @@ template < e_type T, bool EMPTY, e_type A > struct type_one_of < T, EMPTY, A > :
         {   nitpick nuts;
             if (inner_set_value (nuts, v, ss)) nits.merge (nuts);
             else
-            {   nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid (", type_name (T), ", 2)");
+            {   nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid (", type_name (T), ", ", type_name (A), ", 2)");
                 if (context.extra () || context.tell (es_debug)) nits.merge (nuts); } } }
     void set_id (const ::std::string& s)
     {   tidy_string < T > :: set_id (s); }
@@ -316,6 +320,9 @@ template < e_type T, bool EMPTY, e_type A > struct type_one_of < T, EMPTY, A > :
     void box (element* b) noexcept
     {   if (! val_.unknown ()) val_.box (b);
         else tidy_string < T > :: box (b); }
+    void argue (nitpick& nits, arguments* a)
+    {   if (! val_.unknown ()) val_.argue (nits, a);
+        else tidy_string < T > :: argue (nits, a); }
     void validate ()
     {   if (! val_.unknown ()) val_.validate ();
         else tidy_string < T > :: validate (); }

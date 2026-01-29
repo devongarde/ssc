@@ -1,0 +1,40 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN ADDRESS tests</title>
+\<style>
+a[href^="mailto"]::before {
+  content: "📧 ";
+}
+
+a[href^="tel"]::before {
+  content: "📞 ";
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN ADDRESS Tests</h1>
+
+<p>Contact the author of this page:</p>
+
+<address>
+  <a href="mailto:jim@example.com">jim@example.com</a><br />
+  <a href="tel:+14155550132">+1 (415) 555‑0132</a>
+</address>
+
+<address>
+  You can contact author at
+  <a href="http://www.example.com/contact">www.example.com</a>.<br />
+  If you see any bugs, please
+  <a href="mailto:webmaster@example.com">contact webmaster</a>.<br />
+  You may also want to visit us:<br />
+  Mozilla Foundation<br />
+  331 E Evelyn Ave<br />
+  Mountain View, CA 94041<br />
+  USA
+</address>
+
+</body>
+</html>

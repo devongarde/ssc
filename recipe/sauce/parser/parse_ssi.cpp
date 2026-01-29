@@ -18,6 +18,9 @@ Licence along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
+// look at nginx #block ... #endblock
+// look at https://www.w3.org/TR/esi-lang/
+
 #include "main/standard.h"
 #include "utility/common.h"
 #include "utility/filesystem.h"

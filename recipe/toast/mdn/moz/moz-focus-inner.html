@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN -moz-focus-inner- tests</title>
+<style>
+button::-moz-focus-inner,
+input[type="color"]::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner {
+  padding-block-start: 0px;
+  padding-inline-end: 2px;
+  padding-block-end: 0px;
+  padding-inline-start: 2px;
+  border: 2px dotted red;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN -moz-focus-inner- Tests</h1>
+
+<input type="submit" value="Input" /> <button type="submit">Button</button>
+
+</body>
+</html>

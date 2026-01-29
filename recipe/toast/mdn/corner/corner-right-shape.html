@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN corner-right-shape tests</title>
+<style>
+.sid {
+/* Single keyword value set for both corners */
+corner-right-shape: bevel;
+corner-right-shape: notch;
+
+/* Single superellipse() value set for both corners */
+corner-right-shape: superellipse(4);
+corner-right-shape: superellipse(-0.9);
+
+/* Top corner, bottom corner */
+corner-right-shape: bevel notch;
+corner-right-shape: notch superellipse(-0.9);
+
+/* Global values */
+corner-right-shape: inherit;
+corner-right-shape: initial;
+corner-right-shape: revert;
+corner-right-shape: revert-layer;
+corner-right-shape: unset;
+}
+
+div {
+  box-shadow: 1px 1px 3px gray;
+  border-radius: 20% 30% / 50% 40%;
+  corner-right-shape: square scoop;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN corner-right-shape Tests</h1>
+
+<div></div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN -webkit-text-stroke-colour- tests</title>
+<style>
+.sid
+{   /* <color> values */
+    -webkit-text-stroke-color: red;
+    -webkit-text-stroke-color: #e08ab4;
+    -webkit-text-stroke-color: rgb(200 100 0);
+
+    /* Global values */
+    -webkit-text-stroke-color: inherit;
+    -webkit-text-stroke-color: initial;
+    -webkit-text-stroke-color: revert;
+    -webkit-text-stroke-color: revert-layer;
+    -webkit-text-stroke-color: unset; }
+
+p {
+  margin: 0;
+  font-size: 4em;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: red; /* Can be changed in the live sample */
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN -webkit-text-stroke-colour- Tests</h1>
+
+<p>Text with stroke</p>
+<input type="color" value="#ff0000" />
+
+</body>
+</html>

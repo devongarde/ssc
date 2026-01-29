@@ -201,7 +201,7 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
         if (! may_apply (v, f, symbol < html_version, ENUM, CATEGORY, INIT, LC > :: last ()))
         {   v.check_math_svg (nits, f, name ());
             nits.pick (nit_wrong_version, es_error, ec_type, quote (s), " is invalid here in ", v.report (), " (3)"); }
-        else if (! v.is_css_compatible (f.ext2 (), f.ext3 (), f.ext4 ()))
+        else if (! v.is_css_compatible (f.ext2 (), f.ext3 (), f.ext4 (), f.ext5 ()))
             nits.pick (nit_css_version, es_error, ec_type, quote (s), " is invalid here, but valid with, for example, CSS ", f.long_css_version_name ());
         else if (f.reject ())
             nits.pick (nit_rejected, es_error, ec_type, quote (s), " is valid but incompatible with ", v.report ());
@@ -209,12 +209,14 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
             nits.pick (nit_out_of_scope, es_error, ec_type, quote (s), " is out of scope for an HTML server");
         else
         {   f.check_status (nits, symbol < html_version, ENUM, CATEGORY, INIT, LC > :: name ());
+            if (f.known_insecure ())
+                nits.pick (nit_known_insecure, es_warning, ec_type, quote (s), " has known insecurities, so, if it must be used, do so with great care.");
             if (f.deprecated (v))
-                nits.pick (nit_deprecated_value, es_warning, ec_type, quote (s), " is deprecated in ", v.report ());
+                nits.pick (nit_deprecated_value, es_warning, ec_type, quote (s), " is deprecated in ", v.report (), " (2)");
             if ((f.ext () & HE_M3_NONSTAND) != 0)
                 nits.pick (nit_non_standard_value, es_warning, ec_type, quote (s), " is non-standard in ", v.report (), ", and unlikely to be supported by many browsers");
             else if (f.bespoke ())
-                nits.pick (nit_bespoke_obsolete, es_warning, ec_type, quote (s), " is bespoke andor obsolete, so unlikely to be supported by many browsers.");
+                nits.pick (nit_bespoke_obsolete, es_warning, ec_type, quote (s), " is bespoke, obsolete, or both, so is unlikely to be supported by every browser.");
             enum_base < ENUM, E > :: status (s_good);
             enum_base < ENUM, E > :: post_set_value (nits, v);
             return; } }
@@ -272,6 +274,9 @@ template < > struct type_master < t_autocomplete > : ENUM_N (autocomplete)
 
 template < > struct type_master < t_baselineshift > : ENUM_N (baselineshift)
 { using ENUM_N (baselineshift) :: enum_n; };
+
+template < > struct type_master < t_bcess > : ENUM_N (bcess)
+{ using ENUM_N (bcess) :: enum_n; };
 
 template < > struct type_master < t_cachekey > : ENUM_N (cachekey)
 { using ENUM_N (cachekey) :: enum_n; };
@@ -348,11 +353,17 @@ template < > struct type_master < t_css_align_items > : ENUM_N (css_align_items)
 template < > struct type_master < t_css_all_2 > : ENUM_N (css_all_2)
 { using ENUM_N (css_all_2) :: enum_n; };
 
-template < > struct type_master < t_css_box_alignself_mess > : ENUM_N (css_box_alignself_mess)
-{ using ENUM_N (css_box_alignself_mess) :: enum_n; };
+template < > struct type_master < t_css_anchor_side_e > : ENUM_N (css_anchor_side_e)
+{ using ENUM_N (css_anchor_side_e) :: enum_n; };
+
+template < > struct type_master < t_css_anchor_size_e > : ENUM_N (css_anchor_size_e)
+{ using ENUM_N (css_anchor_size_e) :: enum_n; };
 
 template < > struct type_master < t_css_appearance > : ENUM_N (css_appearance)
 { using ENUM_N (css_appearance) :: enum_n; };
+
+template < > struct type_master < t_css_atf_ky > : ENUM_N (css_atf_ky)
+{ using ENUM_N (css_atf_ky) :: enum_n; };
 
 template < > struct type_master < t_css_azimuth_e > : ENUM_N (css_azimuth_e)
 { using ENUM_N (css_azimuth_e) :: enum_n; };
@@ -363,6 +374,9 @@ template < > struct type_master < t_css_background_attachment > : ENUM_N (css_ba
 template < > struct type_master < t_css_background_repeat > : ENUM_N (css_background_repeat)
 { using ENUM_N (css_background_repeat) :: enum_n; };
 
+template < > struct type_master < t_css_bespoker > : ENUM_N (css_bespoker)
+{ using ENUM_N (css_bespoker) :: enum_n; };
+
 template < > struct type_master < t_css_blend_mode > : ENUM_N (css_blend_mode)
 { using ENUM_N (css_blend_mode) :: enum_n; };
 
@@ -371,6 +385,9 @@ template < > struct type_master < t_css_border_style > : ENUM_N (css_border_styl
 
 template < > struct type_master < t_css_border_width > : ENUM_N (css_border_width)
 { using ENUM_N (css_border_width) :: enum_n; };
+
+template < > struct type_master < t_css_box_alignself_mess > : ENUM_N (css_box_alignself_mess)
+{ using ENUM_N (css_box_alignself_mess) :: enum_n; };
 
 template < > struct type_master < t_css_box_snap > : ENUM_N (css_box_snap)
 { using ENUM_N (css_box_snap) :: enum_n; };
@@ -403,7 +420,8 @@ template < > struct type_master < t_css_cursor_e > : ENUM_N (css_cursor_e)
 { using ENUM_N (css_cursor_e) :: enum_n; };
 
 template < > struct type_master < t_css_colour > : ENUM_N (css_colour)
-{ using ENUM_N (css_colour) :: enum_n; };
+{   static bool is_colourful () { return true; }
+    using ENUM_N (css_colour) :: enum_n; };
 
 template < > struct type_master < t_css_content_enum > : ENUM_N (css_content_enum)
 { using ENUM_N (css_content_enum) :: enum_n; };
@@ -483,14 +501,38 @@ template < > struct type_master < t_css_list_style_position > : ENUM_N (css_list
 template < > struct type_master < t_css_list_style_type > : ENUM_N (css_list_style_type)
 { using ENUM_N (css_list_style_type) :: enum_n; };
 
+template < > struct type_master < t_css_mask_composite > : ENUM_N (css_mask_composite)
+{ using ENUM_N (css_mask_composite) :: enum_n; };
+
 template < > struct type_master < t_css_module > : enum_n < t_css_module, e_css_module, e_nit_macro, nm_none >
 { using enum_n < t_css_module, e_css_module, e_nit_macro, nm_none > :: enum_n; };
 
 template < > struct type_master < t_css_overflow > : ENUM_N (css_overflow)
 { using ENUM_N (css_overflow) :: enum_n; };
 
-template < > struct type_master < t_css_size_e > : ENUM_N (css_size_e)
-{ using ENUM_N (css_size_e) :: enum_n; };
+template < > struct type_master < t_css_pa_left > : ENUM_N (css_pa_left)
+{ using ENUM_N (css_pa_left) :: enum_n; };
+
+template < > struct type_master < t_css_pa_top > : ENUM_N (css_pa_top)
+{ using ENUM_N (css_pa_top) :: enum_n; };
+
+template < > struct type_master < t_css_pa_block > : ENUM_N (css_pa_block)
+{ using ENUM_N (css_pa_block) :: enum_n; };
+
+template < > struct type_master < t_css_pa_inline > : ENUM_N (css_pa_inline)
+{ using ENUM_N (css_pa_inline) :: enum_n; };
+
+template < > struct type_master < t_css_pa_self_block > : ENUM_N (css_pa_self_block)
+{ using ENUM_N (css_pa_self_block) :: enum_n; };
+
+template < > struct type_master < t_css_pa_self_inline > : ENUM_N (css_pa_self_inline)
+{ using ENUM_N (css_pa_self_inline) :: enum_n; };
+
+template < > struct type_master < t_css_pa_start > : ENUM_N (css_pa_start)
+{ using ENUM_N (css_pa_start) :: enum_n; };
+
+template < > struct type_master < t_css_pa_self > : ENUM_N (css_pa_self)
+{ using ENUM_N (css_pa_self) :: enum_n; };
 
 template < > struct type_master < t_css_paint_box > : ENUM_N (css_paint_box)
 { using ENUM_N (css_paint_box) :: enum_n; };
@@ -527,6 +569,9 @@ template < > struct type_master < t_css_ss_type_e > : ENUM_N (css_ss_type_e)
 
 template < > struct type_master < t_css_self_position > : ENUM_N (css_self_position)
 { using ENUM_N (css_self_position) :: enum_n; };
+
+template < > struct type_master < t_css_size_e > : ENUM_N (css_size_e)
+{ using ENUM_N (css_size_e) :: enum_n; };
 
 template < > struct type_master < t_css_sizing > : ENUM_N (css_sizing)
 { using ENUM_N (css_sizing) :: enum_n; };
@@ -570,6 +615,9 @@ template < > struct type_master < t_css_textdec_style > : ENUM_N (css_textdec_st
 template < > struct type_master < t_css_textemph_shape > : ENUM_N (css_textemph_shape)
 { using ENUM_N (css_textemph_shape) :: enum_n; };
 
+template < > struct type_master < t_css_try_tactic > : ENUM_N (css_try_tactic)
+{ using ENUM_N (css_try_tactic) :: enum_n; };
+
 template < > struct type_master < t_css_text_wrap > : ENUM_N (css_text_wrap)
 { using ENUM_N (css_text_wrap) :: enum_n; };
 
@@ -602,6 +650,9 @@ template < > struct type_master < t_css_whitespace > : ENUM_N (css_whitespace)
 
 template < > struct type_master < t_css_wide > : ENUM_N (css_wide)
 { using ENUM_N (css_wide) :: enum_n; };
+
+template < > struct type_master < t_css_win_shad > : ENUM_N (css_win_shad)
+{ using ENUM_N (css_win_shad) :: enum_n; };
 
 template < > struct type_master < t_css_wrap_flow > : ENUM_N (css_wrap_flow)
 { using ENUM_N (css_wrap_flow) :: enum_n; };
@@ -652,7 +703,8 @@ template < > struct type_master < t_filter_in > : ENUM_N (filter_in)
 { using ENUM_N (filter_in) :: enum_n; };
 
 template < > struct type_master < t_fixedcolour > : ENUM_N (fixedcolour)
-{ using ENUM_N (fixedcolour) :: enum_n; };
+{   static bool is_colourful () { return true; }
+    using ENUM_N (fixedcolour) :: enum_n; };
 
 template < > struct type_master < t_fontname > : ENUM_N (fontname)
 { using ENUM_N (fontname) :: enum_n; };
@@ -1031,6 +1083,9 @@ template < > struct type_master < t_css_slider_orientation > : ENUM_N (css_slide
 
 template < > struct type_master < t_smei > : ENUM_N (smei)
 { using ENUM_N (smei) :: enum_n; };
+
+template < > struct type_master < t_speculationrules > : ENUM_N (speculationrules)
+{ using ENUM_N (speculationrules) :: enum_n; };
 
 template < > struct type_master < t_step_position > : ENUM_N (step_position)
 { using ENUM_N (step_position) :: enum_n; };

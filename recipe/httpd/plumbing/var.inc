@@ -13,7 +13,7 @@
 <!--#set var="creator" value="dylan harris" -->
 <!--#set var="css" value="https://dylanharris.org/ssc/plumbing/ignorance.css" -->
 <!--#set var="csp" value="default-src 'self' 'unsafe-inline' 'unsafe-eval'; form-action 'self' www.paypal.com; object-src 'none'; child-src 'none'; script-src 'none'; img-src 'self' https: creativecommons.org dylanharris.org *.facebook.com upload.wikimedia.org web.archive.org www.paypalobjects.com xkcd.com;" -->
-<!--#set var="date" value="November&nbsp;2025" -->
+<!--#set var="date" value="December&nbsp;2025" -->
 <!--#set var="description" value="the static site checker, https://dylanharris.org/ssc/, is a static website nitpicker" -->
 <!--#set var="domain" value="ssc.lu" -->
 <!--#set var="email" value="mail@ssc.lu" -->
@@ -47,7 +47,7 @@
 <!--#set var="terms" value="https://dylanharris.org/terms.shtml" -->
 <!--#set var="test" value="ssc-test" -->
 <!--#set var="stel" value="+352&nbsp;000&nbsp;000&nbsp;000" -->
-<!--#set var="version" value="0.2.23" -->
+<!--#set var="version" value="0.2.24" -->
 <!--#set var="webmeister" value="dylan&nbsp;harris" -->
 <!--#set var="swebmeister" value="dylan harris" -->
 <!--#set var="webssc" value="https://dylanharris.org/ssc/" -->

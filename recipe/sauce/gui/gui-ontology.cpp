@@ -222,7 +222,7 @@ IMPLEMENT_CLASS (ontology_t, d1_t)
         schema_4, schema_5, schema_6, schema_7_00, schema_7_01, schema_7_02, schema_7_03, schema_7_04, schema_8, schema_9, \
         schema_10, schema_11, schema_11_01, schema_12, schema_13, schema_14, schema_15, schema_16, schema_17, schema_18, schema_19, \
         schema_20, schema_21, schema_22, schema_23, schema_24, schema_25, schema_26, schema_27, schema_27_01, schema_27_02, \
-        schema_28_0, schema_28_1, schema_29_0, schema_29_1, schema_29_2, schema_29_3, schema_29_4, schema_30_0, \
+        schema_28_0, schema_28_1, schema_29_0, schema_29_1, schema_29_2, schema_29_3, schema_29_4, schema_29_5, schema_30_0, \
     sd_schema, \
     sioc_schema, \
     sioc_services, \
@@ -276,9 +276,12 @@ vsv_u ontology_t :: vsv_u_;
 
 ontology_t :: ontology_t (wxWindow *mummy, wxWindowID id, const wxString& caption)
     : d1_t (wxPoint (ONT_X, ONT_Y), wxSize (ONT_WIDTH, ONT_HEIGHT))
-{	if (vsv_u_.get () == nullptr)
-        vsv_u_ = vsv_u (new vsv_t ({ VSV_LIST }));
+{	init ();
     Create (mummy, id, caption); } 
+
+void ontology_t :: init ()
+{	if (vsv_u_.get () == nullptr)
+        vsv_u_ = vsv_u (new vsv_t ({ VSV_LIST })); }
 
 bool ontology_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
 {	if (! d1_t :: Create (mummy, id, caption, wxPoint (ONT_X, ONT_Y), wxSize (ONT_WIDTH, ONT_HEIGHT), ONT_STYLE)) return false;

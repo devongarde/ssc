@@ -1,0 +1,109 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN type-date tests</title>
+<style>
+label {
+  display: block;
+  font:
+    1rem "Fira Sans",
+    sans-serif;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+
+label {
+  display: flex;
+  align-items: center;
+}
+
+span::after {
+  padding-left: 5px;
+}
+
+input:invalid + span::after {
+  content: "✖";
+}
+
+input:valid + span::after {
+  content: "✓";
+}
+
+input:invalid + span::after {
+  content: " ✖";
+}
+
+input:valid + span::after {
+  content: " ✓";
+}
+</style>
+<script>
+const dateControl = document.querySelector('input[type="date"]');
+dateControl.value = "2017-06-01";
+console.log(dateControl.value); // prints "2017-06-01"
+console.log(dateControl.valueAsNumber); // prints 1496275200000, a JavaScript timestamp (ms)
+</script>
+</head>
+
+<body>
+
+<h1>MDN type-date Tests</h1>
+
+<label for="start">Start date:</label>
+
+<input
+  type="date"
+  id="start"
+  name="trip-start"
+  value="2018-07-22"
+  min="2018-01-01"
+  max="2018-12-31" />
+
+<input type="date" value="2017-06-01" />
+
+<form action="https://example.com">
+  <label>
+    Enter your birthday:
+    <input type="date" name="bday" />
+  </label>
+
+  <p><button>Submit</button></p>
+</form>
+
+<form>
+  <label>
+    Choose your preferred party date:
+    <input type="date" name="party" min="2017-04-01" max="2017-04-30" />
+  </label>
+</form>
+
+<form>
+  <label>
+    Choose your preferred party date (required, April 1st to 20th):
+    <input
+      type="date"
+      name="party"
+      min="2017-04-01"
+      max="2017-04-20"
+      required />
+    <span class="validity"></span>
+  </label>
+
+  <p>
+    <button>Submit</button>
+  </p>
+</form>
+
+<form>
+  <div class="nativeDatePicker">
+    <label for="bday">Enter your birthday:</label>
+    <input type="date" id="bday" name="bday" />
+    <span class="validity"></span>
+  </div>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN background-image tests</title>
+<style>
+.sid {
+/* single image */
+background-image: linear-gradient(black, white);
+background-image: url("cat-front.png");
+
+/* multiple images */
+background-image:
+  radial-gradient(circle, transparent 45%, black 48%),
+  radial-gradient(ellipse farthest-corner, #fc1c14 20%, #cf15cf 80%);
+
+/* Global values */
+background-image: inherit;
+background-image: initial;
+background-image: revert;
+background-image: revert-layer;
+background-image: unset;
+}
+
+p {
+  font-weight: bold;
+  font-size: 1.5em;
+  color: white;
+  text-shadow: 0.07em 0.07em 0.05em black;
+  background-image: none;
+  background-color: transparent;
+}
+
+div {
+  background-image: url("mdn_logo_only_color.png");
+}
+
+.cats-and-stars {
+  background-image: url("star-transparent.gif"), url("cat-front.png");
+  background-color: transparent;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN background-image Tests</h1>
+
+<div>
+  <p class="cats-and-stars">This paragraph is full of cats<br />and stars.</p>
+  <p>This paragraph is not.</p>
+  <p class="cats-and-stars">Here are more cats for you.<br />Look at them!</p>
+  <p>And no more.</p>
+</div>
+
+</body>
+</html>

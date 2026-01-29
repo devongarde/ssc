@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN contenteditable tests</title>
+<style>
+blockquote {
+  background: #eeeeee;
+  border-radius: 5px;
+  margin: 16px 0;
+}
+
+blockquote p {
+  padding: 15px;
+}
+
+cite {
+  margin: 16px 32px;
+  font-weight: bold;
+}
+
+blockquote p::before {
+  content: "\201C";
+}
+
+blockquote p::after {
+  content: "\201D";
+}
+
+[contenteditable="true"] {
+  caret-color: red;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN contenteditable Tests</h1>
+
+<blockquote contenteditable="true">
+  <p>Edit this content to add your own quote</p>
+</blockquote>
+
+<cite contenteditable="true">-- Write your own name here</cite>
+<b>element, likely in bold.</b>
+
+<h2>Pasting areas</h2>
+<section class="pasting">
+  <div class="wrapper">
+    <h3>contenteditable="true"</h3>
+    <div contenteditable="true"></div>
+  </div>
+  <div class="wrapper">
+    <h3>contenteditable="plaintext-only"</h3>
+    <div contenteditable="plaintext-only"></div>
+  </div>
+</section>
+
+</body>
+</html>

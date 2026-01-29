@@ -1,0 +1,57 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN position-visibility tests</title>
+<style>
+.sid {
+/* Single values */
+position-visibility: always;
+position-visibility: anchors-visible;
+position-visibility: no-overflow;
+
+/* Global values */
+position-visibility: inherit;
+position-visibility: initial;
+position-visibility: revert;
+position-visibility: revert-layer;
+position-visibility: unset;
+}
+
+.anchor {
+  anchor-name: --my-anchor;
+}
+
+.infobox {
+  position-anchor: --my-anchor;
+  position: fixed;
+  position-area: top span-all;
+  margin-bottom: 5px;
+  position-visibility: always;
+}
+</style>
+<script>
+const infobox = document.querySelector(".infobox");
+const radios = document.querySelectorAll('[name="position-visibility"]');
+
+for (const radio of radios) {
+  radio.addEventListener("change", setPositionVisibility);
+}
+
+function setPositionVisibility(e) {
+  infobox.style.positionVisibility = e.target.value;
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN position-visibility Tests</h1>
+
+<div class="anchor">⚓︎</div>
+
+<div class="infobox">
+  <p>This is an information box.</p>
+</div>
+
+</body>
+</html>

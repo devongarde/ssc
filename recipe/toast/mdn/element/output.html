@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN OUTPUT tests</title>
+<script>
+const form = document.getElementById("example-form");
+const a = form.elements["a"];
+const b = form.elements["b"];
+const result = form.elements["result"];
+
+function updateResult() {
+  const aValue = a.valueAsNumber;
+  const bValue = b.valueAsNumber;
+  result.value = aValue + bValue;
+}
+
+form.addEventListener("input", updateResult);
+
+updateResult();
+</script>
+</head>
+
+<body>
+
+<h1>MDN OUTPUT Tests</h1>
+
+<form id="example-form">
+  <input type="range" id="b" name="b" value="50" /> +
+  <input type="number" id="a" name="a" value="10" /> =
+  <output name="result" for="a b">60</output>
+</form>
+
+</body>
+</html>

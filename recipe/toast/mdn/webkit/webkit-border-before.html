@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN -webkit-border-before- tests</title>
+<style>
+.sid
+{   /* Keyword values */
+    -webkit-border-before: 1px;
+    -webkit-border-before: 2px dotted;
+    -webkit-border-before: medium dashed blue;
+
+    /* Global values */
+    -webkit-border-before: inherit;
+    -webkit-border-before: initial;
+    -webkit-border-before: revert;
+    -webkit-border-before: revert-layer;
+    -webkit-border-before: unset; }
+div {
+  background-color: yellow;
+  width: 120px;
+  height: 120px;
+}
+
+.exampleText {
+  writing-mode: vertical-rl;
+  -webkit-border-before: 5px dashed blue;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN -webkit-border-before- Tests</h1>
+
+<div>
+  <p class="exampleText">Example text</p>
+</div>
+
+</body>
+</html>

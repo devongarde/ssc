@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN -moz-first-node- tests</title>
+<style>
+span:-moz-first-node {
+  background-color: lime;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN -moz-first-node- Tests</h1>
+
+<p>
+  <span>This matches!</span>
+  <span>This doesn't match.</span>
+</p>
+
+<p>
+  Blahblah.
+  <span>This doesn't match because it's preceded by text.</span>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN animation-range-start tests</title>
+<style>
+.sid
+{
+/* Keyword or length percentage value */
+animation-range-start: normal;
+animation-range-start: 20%;
+animation-range-start: 100px;
+
+/* Named timeline range value */
+animation-range-start: cover;
+animation-range-start: contain;
+animation-range-start: cover 20%;
+animation-range-start: contain 100px;
+
+/* Global values */
+animation-range-start: inherit;
+animation-range-start: initial;
+animation-range-start: revert;
+animation-range-start: revert-layer;
+animation-range-start: unset;
+}
+
+.animatedElement {
+  background-color: deeppink;
+
+  animation: appear 1ms linear;
+
+  animation-timeline: scroll();
+  animation-range-start: -25%;
+}
+
+@keyframes appear {
+  from {
+    background-color: rebeccapurple;
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    background-color: darkturquoise;
+    opacity: 0.75;
+    transform: scaleX(0.75);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN animation-range-start Tests</h1>
+
+<div class="animatedElement"></div>
+
+</body>
+</html>

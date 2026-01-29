@@ -22,12 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 ::std::string read_text_file (nitpick& nits, const ::boost::filesystem::path& name, bool& borked);
 ::std::string read_text_file (nitpick& nits, const ::std::string& name, bool& borked);
+inline bool read_text_file (nitpick& nits, const ::boost::filesystem::path& name, ::std::string& s)
+{   bool borked = false;
+    s = read_text_file (nits, name, borked);
+    return borked; }
 void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name, ::std::size_t& sz, const bool zero_ok = false);
 bool write_text_file (nitpick& nits, const ::boost::filesystem::path& n, const ::std::string& content);
 bool write_text_file (nitpick& nits, const ::std::string& name, const ::std::string& content);
 bool write_binary_file (nitpick& nits, const ::boost::filesystem::path& n, const void* content, const ::std::size_t sz);
 inline bool write_binary_file (nitpick& nits, const ::boost::filesystem::path& n, const void_ptr& v, const ::std::size_t sz)
 {   return write_binary_file (nits, n, v.get (), sz); }
-//template < class T > bool write_file (nitpick& nits, const ::boost::filesystem::path& n, const T* t, const ::std::size_t sz)
-//{   return write_binary_file (nits, n, t, sz); }
-//::boost::filesystem::path get_tmp_filename ();

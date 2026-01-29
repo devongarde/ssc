@@ -1,0 +1,198 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN TH tests</title>
+<style>
+th,
+td {
+  border: 1px solid rgb(160 160 160);
+  padding: 8px 10px;
+}
+
+th[scope="col"] {
+  background-color: #505050;
+  color: white;
+}
+
+th[scope="row"] {
+  background-color: #d6ecd4;
+}
+
+td {
+  text-align: center;
+}
+
+tr:nth-of-type(even) {
+  background-color: #eeeeee;
+}
+
+table {
+  border-collapse: collapse;
+  border: 2px solid rgb(140 140 140);
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+caption {
+  caption-side: bottom;
+  padding: 10px;
+}
+
+th,
+td {
+  border: 1px solid rgb(160 160 160);
+  padding: 8px 10px;
+}
+
+th[scope="col"] {
+  background-color: #505050;
+  color: white;
+}
+
+th[scope="row"] {
+  background-color: #d6ecd4;
+}
+
+tr:nth-of-type(odd) td {
+  background-color: #eeeeee;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN TH Tests</h1>
+
+<table>
+  <caption>
+    Alien football stars
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Player</th>
+      <th scope="col">Gloobles</th>
+      <th scope="col">Za'taak</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">TR-7</th>
+      <td>7</td>
+      <td>4,569</td>
+    </tr>
+    <tr>
+      <th scope="row">Khiresh Odo</th>
+      <td>7</td>
+      <td>7,223</td>
+    </tr>
+    <tr>
+      <th scope="row">Mia Oolong</th>
+      <td>9</td>
+      <td>6,219</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tr>
+    <th scope="col">Symbol</th>
+    <th scope="col">Code word</th>
+    <th scope="col">Pronunciation</th>
+  </tr>
+  <tr>
+    <th scope="row">A</th>
+    <td>Alfa</td>
+    <td>AL fah</td>
+  </tr>
+  <tr>
+    <th scope="row">B</th>
+    <td>Bravo</td>
+    <td>BRAH voh</td>
+  </tr>
+  <tr>
+    <th scope="row">C</th>
+    <td>Charlie</td>
+    <td>CHAR lee</td>
+  </tr>
+  <tr>
+    <th scope="row">D</th>
+    <td>Delta</td>
+    <td>DELL tah</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th scope="col" rowspan="2">Symbol</th>
+    <th scope="col" rowspan="2">Code word</th>
+    <th scope="col" colspan="2">Pronunciation</th>
+  </tr>
+  <tr>
+    <th scope="col">IPA</th>
+    <th scope="col">Respelling</th>
+  </tr>
+  <tr>
+    <th scope="row">A</th>
+    <td>Alfa</td>
+    <td>ˈælfa</td>
+    <td>AL fah</td>
+  </tr>
+  <tr>
+    <th scope="row">B</th>
+    <td>Bravo</td>
+    <td>ˈbraːˈvo</td>
+    <td>BRAH voh</td>
+  </tr>
+  <tr>
+    <th scope="row">C</th>
+    <td>Charlie</td>
+    <td>ˈtʃɑːli</td>
+    <td>CHAR lee</td>
+  </tr>
+  <tr>
+    <th scope="row">D</th>
+    <td>Delta</td>
+    <td>ˈdeltɑ</td>
+    <td>DELL tah</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th scope="col" rowspan="2">Symbol</th>
+    <th scope="col" rowspan="2">Code word</th>
+    <th scope="col" colspan="2" id="p" headers="i r">Pronunciation</th>
+  </tr>
+  <tr>
+    <th scope="col" id="i" headers="p">IPA</th>
+    <th scope="col" id="r" headers="p">Respelling</th>
+  </tr>
+  <tr>
+    <th scope="row">A</th>
+    <td>Alfa</td>
+    <td>ˈælfa</td>
+    <td>AL fah</td>
+  </tr>
+  <tr>
+    <th scope="row">B</th>
+    <td>Bravo</td>
+    <td>ˈbraːˈvo</td>
+    <td>BRAH voh</td>
+  </tr>
+  <tr>
+    <th scope="row">C</th>
+    <td>Charlie</td>
+    <td>ˈtʃɑːli</td>
+    <td>CHAR lee</td>
+  </tr>
+  <tr>
+    <th scope="row">D</th>
+    <td>Delta</td>
+    <td>ˈdeltɑ</td>
+    <td>DELL tah</td>
+  </tr>
+</table>
+
+</body>
+</html>

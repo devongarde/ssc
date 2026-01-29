@@ -2,8 +2,6 @@
 
 PASS ../toast/stats/CSS-6/content-3-2.css
 0 html
-1 naughty_content
-4 naughty_content
 7 pseud
 8 pseud
 
@@ -17,12 +15,6 @@ Class/Element:
   *.bodymatter styled once, used 0 times
   *.frontmatter styled once, used 0 times
   ol.toc styled once, used 0 times
-
-Content-Name:
-    chapter
-    heading
-    page
-  Used thrice
 
 Element:
     (undefined): 4 times
@@ -72,6 +64,7 @@ PASS ../toast/stats/CSS-6/custom-3.css
 3 css_syntax unrecognised_value
 8 css_custom
 11 css_custom
+29 sunk immeasurable unrecognised_value immeasurable unrecognised_value
 
 STAT
 Class:
@@ -131,7 +124,7 @@ Class/Element:
   *.top styled once, used 0 times
 
 Element:
-    (undefined): twice
+    (undefined): 5 times
     a: once
     article: once
     html: twice
@@ -150,22 +143,6 @@ Highlight:
     foo
     sample
   Used thrice
-
-Id:
-  from-mdn styled once, used 0 times
-  there styled once, used 0 times
-  this styled once, used 0 times
-
-Id/Element:
-  *#from-mdn styled once, used 0 times
-  *#there styled once, used 0 times
-  *#this styled once, used 0 times
-
-ItemId:
-    from-mdn: 1
-    there: 1
-    this: 1
-  3 ItemId used thrice
 
 Property:
     background-color: thrice
@@ -256,7 +233,7 @@ Class/Element:
   span.alt-U styled once, used 0 times
 
 Element:
-    (undefined): twice
+    (undefined): 5 times
     annotation: once
     blockquote: twice
     body: thrice
@@ -274,22 +251,6 @@ Font:
     Taisho Gothic: once
     serif: once
   5 Font used 5 times
-
-Id:
-  example1 styled once, used 0 times
-  example2 styled once, used 0 times
-  title styled once, used 0 times
-
-Id/Element:
-  *#example1 styled once, used 0 times
-  *#example2 styled once, used 0 times
-  *#title styled once, used 0 times
-
-ItemId:
-    example1: 1
-    example2: 1
-    title: 1
-  3 ItemId used thrice
 
 Property:
     font-family: thrice
@@ -315,7 +276,6 @@ Statement:
     styleset: 6 times
     supports: once
   7 statements used 46 times
-
 ===
 
 PASS ../toast/stats/CSS-6/font-4-9.css
@@ -489,12 +449,6 @@ Class/Element:
   span.alt-N styled once, used 0 times
   span.alt-U styled once, used 0 times
 
-Content-Name:
-    chapter
-    heading
-    page
-  Used thrice
-
 Counter-Style:
     box-corner
     decimal-paren
@@ -511,7 +465,7 @@ Custom-Media:
     --narrow-window: once, (max-width: 30em)
 
 Custom-Property:
-    --gap: 3
+    --gap: 2
     --looks-valid: 2
     --not-a-color: 2
     --prop1: 2
@@ -520,10 +474,10 @@ Custom-Property:
     --prop4: 1
     --side: 1
     --text-color: 1
-  9 Custom-Property used 16 times
+  9 Custom-Property used 15 times
 
 Element:
-    (undefined): 8 times
+    (undefined): 14 times
     !doctype: once
     a: 6 times
     annotation: once
@@ -595,31 +549,6 @@ Historical-Form:
     chaucer
     shakespeare
   Used twice
-
-Id:
-  example1 styled twice, used 0 times
-  example2 styled twice, used 0 times
-  from-mdn styled twice, used 0 times
-  there styled twice, used 0 times
-  this styled twice, used 0 times
-  title styled twice, used 0 times
-
-Id/Element:
-  *#example1 styled once, used 0 times
-  *#example2 styled once, used 0 times
-  *#from-mdn styled once, used 0 times
-  *#there styled once, used 0 times
-  *#this styled once, used 0 times
-  *#title styled once, used 0 times
-
-ItemId:
-    example1: 2
-    example2: 2
-    from-mdn: 2
-    there: 2
-    this: 2
-    title: 2
-  6 ItemId used 12 times
 
 Keyframe:
     fade-in

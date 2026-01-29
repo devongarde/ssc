@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN contain-intrinsic-size tests</title>
+<style>
+.sid {
+/* Keyword values */
+contain-intrinsic-size: none;
+
+/* <length> values */
+contain-intrinsic-size: 1000px;
+contain-intrinsic-size: 10rem;
+
+/* width | height */
+contain-intrinsic-size: 1000px 1.5em;
+
+/* auto <length> */
+contain-intrinsic-size: auto 300px;
+contain-intrinsic-size: auto none;
+
+/* auto width | auto height */
+contain-intrinsic-size: auto 300px auto 4rem;
+
+/* Global values */
+contain-intrinsic-size: inherit;
+contain-intrinsic-size: initial;
+contain-intrinsic-size: revert;
+contain-intrinsic-size: revert-layer;
+contain-intrinsic-size: unset;
+}
+
+p {
+  height: 500px;
+  width: 500px;
+  border: 4px dotted;
+  background: lightblue;
+}
+
+.auto-length {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+  background-color: linen;
+  outline: 4px dotted blue;
+}
+
+.large-intrinsic-size {
+  /* Setting an inaccurate intrinsic size for the element */
+  contain-intrinsic-size: auto 5000px;
+  background-color: lightgray;
+  outline: 4px dotted red;
+}
+
+.small {
+  /* This element is a lot smaller than expected */
+  height: 100px;
+  width: 100px;
+}
+
+.none {
+  background-color: papayawhip;
+  contain-intrinsic-size: auto none;
+  outline: 4px dotted red;
+}
+
+#contained_element {
+  border: 2px solid green;
+  width: 120px;
+}
+.child_element {
+  border: 1px solid red;
+  background: blue;
+  height: 50px;
+  width: 150px;
+}
+</style>
+<script>
+const containedElement = document.querySelector("#contained_element");
+const intrinsicSizeSelector = document.querySelector(
+  "#contain_intrinsic_size_selector",
+);
+const containSelector = document.querySelector("#contain_selector");
+const contentVisibilitySelector = document.querySelector(
+  "#content_visibility_selector",
+);
+
+containedElement.style["contain-intrinsic-size"] =
+  intrinsicSizeSelector.options[intrinsicSizeSelector.selectedIndex].text;
+containedElement.style["contain"] =
+  containSelector.options[containSelector.selectedIndex].text;
+containedElement.style["content-visibility"] =
+  contentVisibilitySelector.options[
+    contentVisibilitySelector.selectedIndex
+  ].text;
+
+intrinsicSizeSelector.addEventListener("change", () => {
+  containedElement.style["contain-intrinsic-size"] =
+    intrinsicSizeSelector.options[intrinsicSizeSelector.selectedIndex].text;
+});
+
+containSelector.addEventListener("change", () => {
+  containedElement.style["contain"] =
+    containSelector.options[containSelector.selectedIndex].text;
+});
+
+contentVisibilitySelector.addEventListener("change", () => {
+  containedElement.style["content-visibility"] =
+    contentVisibilitySelector.options[
+      contentVisibilitySelector.selectedIndex
+    ].text;
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN contain-intrinsic-size Tests</h1>
+
+<div id="container">
+  <div id="auto-length-note">
+    <p>
+      Your browser does not support
+      <code>contain-intrinsic-size: auto &lt;length&gt;</code>.
+    </p>
+  </div>
+  <div class="auto-length">
+    <p>Item one</p>
+  </div>
+  <div class="auto-length">
+    <p>Item two</p>
+  </div>
+  <div class="auto-length large-intrinsic-size">
+    <p class="small">Item three</p>
+  </div>
+  <div class="auto-length large-intrinsic-size">
+    <p class="small">Item four</p>
+  </div>
+  <div id="auto-none-note">
+    <p>
+      Your browser does not support
+      <code>contain-intrinsic-size: auto none</code>.
+    </p>
+  </div>
+  <div class="auto-length none">
+    <p>Item five</p>
+  </div>
+  <div class="auto-length none">
+    <p>Item six</p>
+  </div>
+</div>
+
+<p>
+  <label for="contain_intrinsic_size_selector">contain-intrinsic-size:</label>
+  <select id="contain_intrinsic_size_selector">
+    <option>none</option>
+    <option>40px 130px</option>
+    <option>auto 40px auto 130px</option></select
+  >;<br />
+
+  <label for="contain_selector">contain:</label>
+  <select id="contain_selector">
+    <option>none</option>
+    <option>size</option>
+    <option>strict</option></select
+  >;<br />
+
+  <label for="content_visibility_selector">content-visibility:</label>
+  <select id="content_visibility_selector">
+    <option>visible</option>
+    <option>auto</option>
+    <option>hidden</option></select
+  >;
+</p>
+
+<div id="contained_element">
+  <div class="child_element"></div>
+</div>
+
+</body>
+</html>

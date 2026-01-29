@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN caret-shape tests</title>
+<style>
+.sid {
+/* Keyword values */
+caret-shape: auto;
+caret-shape: bar;
+caret-shape: block;
+caret-shape: underscore;
+
+/* Global values */
+caret-shape: inherit;
+caret-shape: initial;
+caret-shape: revert;
+caret-shape: revert-layer;
+caret-shape: unset;
+}
+
+.terminal-input {
+  caret-shape: block;
+  caret-animation: manual;
+  animation: old-caret 2s infinite;
+}
+
+@keyframes old-caret {
+  0%,
+  50% {
+    caret-color: #00ad00;
+  }
+  75%,
+  100% {
+    caret-color: transparent;
+  }
+}
+
+.console {
+  caret-shape: underscore;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN caret-shape Tests</h1>
+
+<label for="terminal">Enter a command</label>
+<div class="old-screen">
+  <span>></span>
+  <textarea id="terminal" class="terminal-input"></textarea>
+</div>
+
+<label for="console">Enter a command</label>
+<div class="console-demo">
+  <div class="console-output">
+    <p>user@host:css-ui-4 $ ls -a</p>
+    <p>. .. Overview.bs Overview.html</p>
+  </div>
+  <div class="console-input">
+    <span class="prompt">user@host:css-ui-4 $ </span>
+    <input type="text" id="console" class="console" value="cd" />
+  </div>
+</div>
+
+</body>
+</html>

@@ -92,7 +92,7 @@ bool ids_t::is_good_id (element& e, const ::std::string& s, const e_category nau
     if (! ids.has_id (s))
     {   e.pick (naughty_nit, es_error, naughty_cat, "#", s, " doesn't exist"); return false; }
     if (hidden_concern && ! compatible_id_state (e.ancestral_attributes ().test (a_hidden), ids.is_hidden (s)))
-    {   e.pick (nit_id_hidden, es_error, naughty_cat, "#", s, " is hidden"); return false; }
+        e.pick (nit_id_hidden, es_warning, naughty_cat, "#", s, " is hidden");
     const element* const pe = ids.get_element (s);
     VERIFY_NOT_NULL (pe, __FILE__, __LINE__);
     if (! ids.compatible_category (e.node ().version (), *pe, e.link_category_sought ()))

@@ -1,0 +1,217 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN type-tel tests</title>
+<style>
+label {
+  display: block;
+  font:
+    1rem "Fira Sans",
+    sans-serif;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+
+div {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+input[type="number"] {
+  width: 100px;
+}
+
+input + span {
+  padding-right: 30px;
+}
+
+input:invalid + span::after {
+  position: absolute;
+  content: "✖";
+  padding-left: 5px;
+  color: darkred;
+}
+
+input:valid + span::after {
+  position: absolute;
+  content: "✓";
+  padding-left: 5px;
+  color: #009000;
+}
+</style>
+<script>
+const selectElem = document.querySelector("select");
+const inputElems = document.querySelectorAll("input");
+
+selectElem.onchange = () => {
+  for (const e of inputElems) {
+    e.value = "";
+  }
+
+  if (selectElem.value === "US") {
+    inputElems[2].parentNode.style.display = "inline";
+
+    inputElems[0].placeholder = "Area code";
+    inputElems[0].pattern = "[0-9]{3}";
+
+    inputElems[1].placeholder = "First part";
+    inputElems[1].pattern = "[0-9]{3}";
+    inputElems[1].setAttribute("aria-label", "First part of number");
+
+    inputElems[2].placeholder = "Second part";
+    inputElems[2].pattern = "[0-9]{4}";
+    inputElems[2].setAttribute("aria-label", "Second part of number");
+  } else if (selectElem.value === "UK") {
+    inputElems[2].parentNode.style.display = "none";
+
+    inputElems[0].placeholder = "Area code";
+    inputElems[0].pattern = "[0-9]{3,6}";
+
+    inputElems[1].placeholder = "Local number";
+    inputElems[1].pattern = "[0-9]{4,8}";
+    inputElems[1].setAttribute("aria-label", "Local number");
+  } else if (selectElem.value === "Germany") {
+    inputElems[2].parentNode.style.display = "inline";
+
+    inputElems[0].placeholder = "Area code";
+    inputElems[0].pattern = "[0-9]{3,5}";
+
+    inputElems[1].placeholder = "First part";
+    inputElems[1].pattern = "[0-9]{2,4}";
+    inputElems[1].setAttribute("aria-label", "First part of number");
+
+    inputElems[2].placeholder = "Second part";
+    inputElems[2].pattern = "[0-9]{4}";
+    inputElems[2].setAttribute("aria-label", "Second part of number");
+  }
+    };
+</script>
+</head>
+
+<body>
+
+<h1>MDN type-tel Tests</h1>
+
+<label for="phone">
+  Enter your phone number:<br />
+  <small>Format: 123-456-7890</small>
+</label>
+
+<input
+  type="tel"
+  id="phone"
+  name="phone"
+  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+  required />
+
+<label for="telNo">Phone number:</label>
+<input id="telNo" name="telNo" type="tel" />
+
+<input id="telNo" name="telNo" type="tel" placeholder="123-4567-8901" />
+
+<input id="telNo" name="telNo" type="tel" size="20" />
+
+<input
+  id="telNo"
+  name="telNo"
+  type="tel"
+  size="20"
+  minlength="9"
+  maxlength="14" />
+
+<input id="telNo" name="telNo" type="tel" value="333-4444-4444" />
+
+<label for="telNo">Phone number: </label>
+<input id="telNo" name="telNo" type="tel" list="defaultTels" />
+
+<datalist id="defaultTels">
+  <option value="111-1111-1111"></option>
+  <option value="122-2222-2222"></option>
+  <option value="333-3333-3333"></option>
+  <option value="344-4444-4444"></option>
+</datalist>
+
+<form>
+  <div>
+    <label for="telNo">Enter a telephone number (required): </label>
+    <input id="telNo" name="telNo" type="tel" required />
+    <span class="validity"></span>
+  </div>
+  <div>
+    <button>Submit</button>
+  </div>
+</form>
+
+<form>
+  <div>
+    <label for="telNo">
+      Enter a telephone number (in the form xxx-xxx-xxxx):
+    </label>
+    <input
+      id="telNo"
+      name="telNo"
+      type="tel"
+      required
+      pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
+    <span class="validity"></span>
+  </div>
+  <div>
+    <button>Submit</button>
+  </div>
+</form>
+
+<form>
+  <div>
+    <label for="country">Choose your country:</label>
+    <select id="country" name="country">
+      <option>UK</option>
+      <option selected>US</option>
+      <option>Germany</option>
+    </select>
+  </div>
+  <div>
+    <p>Enter your telephone number:</p>
+    <span class="areaDiv">
+      <input
+        id="areaNo"
+        name="areaNo"
+        type="tel"
+        required
+        placeholder="Area code"
+        pattern="[0-9]{3}"
+        aria-label="Area code" />
+      <span class="validity"></span>
+    </span>
+    <span class="number1Div">
+      <input
+        id="number1"
+        name="number1"
+        type="tel"
+        required
+        placeholder="First part"
+        pattern="[0-9]{3}"
+        aria-label="First part of number" />
+      <span class="validity"></span>
+    </span>
+    <span class="number2Div">
+      <input
+        id="number2"
+        name="number2"
+        type="tel"
+        required
+        placeholder="Second part"
+        pattern="[0-9]{4}"
+        aria-label="Second part of number" />
+      <span class="validity"></span>
+    </span>
+  </div>
+  <div>
+    <button>Submit</button>
+  </div>
+</form>
+
+</body>
+</html>

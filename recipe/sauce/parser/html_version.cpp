@@ -29,7 +29,7 @@ CONSTEXPR ::std::size_t doctype_len = 7;
 const char* docdot = "<!DOCTYPE ...>";
 
 html_version::html_version (const ::boost::gregorian::date& d)
-        :   version (0, 0, HV_WHATWG, ao_html), ext_ (NOFLAGS), ext2_ (NOFLAGS), ext3_ (NOFLAGS), ext4_ (NOFLAGS)
+        :   version (0, 0, HV_WHATWG, ao_html), ext_ (NOFLAGS), ext2_ (NOFLAGS), ext3_ (NOFLAGS), ext4_ (NOFLAGS), ext5_ (NOFLAGS)
 {   if (d.is_not_a_date ()) { reset (html_1); return; }
     int y = d.year ();
     if ((y > 100) && (y < 2000)) { reset (html_1); return; }
@@ -86,8 +86,8 @@ html_version::html_version (const ::boost::gregorian::date& d)
         case 25 : css_version (css_2025); break;
         default : css_version (css_2025); break; } }
 
-html_version::html_version (const boost::gregorian::date& d, const flags_t flags, const flags_t extensions, const flags_t e2, const flags_t e3, const flags_t e4)
-        :   version (0, 0, flags | HV_WHATWG, ao_html), ext_ (extensions), ext2_ (e2), ext3_ (e3), ext4_ (e4)
+html_version::html_version (const boost::gregorian::date& d, const flags_t flags, const flags_t extensions, const flags_t e2, const flags_t e3, const flags_t e4, const flags_t e5)
+        :   version (0, 0, flags | HV_WHATWG, ao_html), ext_ (extensions), ext2_ (e2), ext3_ (e3), ext4_ (e4), ext5_ (e5)
 {   if (d.is_not_a_date ()) { reset (html_1); return; }
     int y = d.year ();
     if ((y > 100) && (y < 2000)) { reset (html_1); return; }
@@ -245,7 +245,8 @@ void html_version::swap (html_version& v) noexcept
     ::std::swap (ext_, v.ext_);
     ::std::swap (ext2_, v.ext2_);
     ::std::swap (ext3_, v.ext3_);
-    ::std::swap (ext4_, v.ext4_); }
+    ::std::swap (ext4_, v.ext4_);
+    ::std::swap (ext5_, v.ext5_); }
 
 void html_version::init (const unsigned short mjr)
 {   css_ = css_unknown;
@@ -408,6 +409,7 @@ bool html_version::note_parsed_version (nitpick& nits, const e_nit n, const html
     const uint64_t cm = (context.html_ver ().ext2 () & H2_FULL_CSS_MASK);
     const uint64_t cm3 = (context.html_ver ().ext3 () & H3_FULL_CSS_MASK);
     const uint64_t cm4 = (context.html_ver ().ext4 () & (H4_FULL_CSS_MASK | H4_CSS_VER_MASK));
+    const uint64_t cm5 = (context.html_ver ().ext5 () & H5_FULL_CSS_MASK);
     css_ = css_unknown;
     if (is_not (got))
     {   if (got > *this)
@@ -430,7 +432,8 @@ bool html_version::note_parsed_version (nitpick& nits, const e_nit n, const html
             if (cv > css_none)
             {   set_ext2 (H2_FULL_CSS_MASK, cm);
                 set_ext3 (H3_FULL_CSS_MASK, cm3);
-                set_ext4 (H4_FULL_CSS_MASK, cm4); }
+                set_ext4 (H4_FULL_CSS_MASK, cm4);
+                set_ext5 (H5_FULL_CSS_MASK, cm5); }
             if (jv > jsonld_none) jsonld_version (jv);
             if (rv > rdf_none) rdf_version (rv);
             return true; }
@@ -452,7 +455,8 @@ bool html_version::note_parsed_version (nitpick& nits, const e_nit n, const html
         if (cv > css_none)
         {   set_ext2 (H2_FULL_CSS_MASK, cm);
             set_ext3 (H3_FULL_CSS_MASK, cm3);
-            set_ext4 (H4_FULL_CSS_MASK, cm4); }
+            set_ext4 (H4_FULL_CSS_MASK, cm4);
+            set_ext5 (H5_FULL_CSS_MASK, cm5); }
         if (jv > jsonld_none) jsonld_version (jv);
         if (rv > rdf_none) rdf_version (rv); }
     return true; }
@@ -745,13 +749,13 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
 bool html_version::deprecated (const html_version& current) const
 {   switch (context.math_version ())
     {   case math_2 :
-            if (current.all_ext (H2_M2_DEPRECAT)) return true;
+            if (current.all_ext2 (H2_M2_DEPRECAT)) return true;
             break;
         case math_3 :
-            if (current.all_ext (H2_M3_DEPRECAT)) return true;
+            if (current.all_ext2 (H2_M3_DEPRECAT)) return true;
             break;
         case math_4 :
-            if (current.all_ext (H2_M4_DEPRECAT)) return true;
+            if (current.all_ext2 (H2_M4_DEPRECAT)) return true;
             break;
         default : break; }
     if (current.rdf_version () == rdf_deprecated) return true;
@@ -857,6 +861,15 @@ bool is_excluded4 (const html_version& lhs, const html_version& rhs, const flags
     a &= b;
     return (a == 0); }
 
+bool is_excluded5 (const html_version& lhs, const html_version& rhs, const flags_t mask)
+{   PRESUME (mask != 0, __FILE__, __LINE__);
+    flags_t a = mask, b = mask;
+    a &= lhs.ext5 ();
+    b &= rhs.ext5 ();
+    if ((a == 0) || (b == 0)) return false;
+    a &= b;
+    return (a == 0); }
+
 e_emi rdfa_conflict (const html_version& lhs, const html_version& rhs)
 {   PRESUME (! lhs.is_b4_4 (), __FILE__, __LINE__);
     PRESUME (rhs.has_rdfa (), __FILE__, __LINE__);
@@ -880,7 +893,7 @@ e_emi svg_conflict (const html_version& lhs, const html_version& rhs)
         if (rhs.svg_old_html ()) return emi_good; }
     else if (lhs < html_jul08) return emi_good;
     if (rhs.any_ext2 (H2_CSS_SVG))
-        if (lhs.is_css_compatible (rhs.ext2 (), rhs.ext3 (), rhs.ext4 ()))
+        if (lhs.is_css_compatible (rhs.ext2 (), rhs.ext3 (), rhs.ext4 (), rhs.ext5 ()))
             switch (lhs.svg_version ())
             {   case sv_1_0 :
                     if (rhs.any_ext2 (H2_CSS_SVG_10)) return emi_good;
@@ -935,50 +948,56 @@ bool html_version::check_math_svg (nitpick& nits, const html_version& a, const :
         default : break; }
     return true; }
 
-bool html_version::has_this_css (const flags_t f2, const flags_t f3, const flags_t f4) const noexcept
+bool html_version::has_this_css (const flags_t f2, const flags_t f3, const flags_t f4, const flags_t f5) const noexcept
 {   return  ((ext2 () & f2) == f2) &&
             ((ext3 () & f3) == f3) &&
-            ((ext4 () & f4) == f4); }
+            ((ext4 () & f4) == f4) &&
+            ((ext5 () & f5) == f5); }
 
 e_css_version html_version::css_version () const noexcept
 {   if (css_ < css_unknown) return css_;
-    if (has_this_css (H2_CSS_6_FULL, H3_CSS_6_FULL, H4_CSS_6_FULL)) css_ = css_6;
-    else if (has_this_css (H2_CSS_5_FULL, H3_CSS_5_FULL, H4_CSS_5_FULL)) css_ = css_5;
-    else if (has_this_css (H2_CSS_4_FULL, H3_CSS_4_FULL, H4_CSS_4_FULL)) css_ = css_4;
-    else if (has_this_css (H2_CSS_3_FULL, H3_CSS_3_FULL, H4_CSS_3_FULL)) css_ = css_3;
-    else if (has_this_css (H2_CSS_LS_2025, H3_CSS_LS_2025, H4_CSS_LS_2025)) css_ = css_ls_2025;
-    else if (has_this_css (H2_CSS_2025_3, H3_CSS_2025_3, H4_CSS_2025_3)) css_ = css_2025_3;
-    else if (has_this_css (H2_CSS_2025_2, H3_CSS_2025_2, H4_CSS_2025_2)) css_ = css_2025_2;
-    else if (has_this_css (H2_CSS_2025_1, H3_CSS_2025_1, H4_CSS_2025_1)) css_ = css_2025_1;
-    else if (has_this_css (H2_CSS_2025, H3_CSS_2025, H4_CSS_2025)) css_ = css_2025;
-    else if (has_this_css (H2_CSS_LS_2024, H3_CSS_LS_2024, H4_CSS_LS_2024)) css_ = css_ls_2024;
-    else if (has_this_css (H2_CSS_2024_3, H3_CSS_2024_3, H4_CSS_2024_3)) css_ = css_2024_3;
-    else if (has_this_css (H2_CSS_2024_2, H3_CSS_2024_2, H4_CSS_2024_2)) css_ = css_2024_2;
-    else if (has_this_css (H2_CSS_2024_1, H3_CSS_2024_1, H4_CSS_2024_1)) css_ = css_2024_1;
-    else if (has_this_css (H2_CSS_2024, H3_CSS_2024, H4_CSS_2024)) css_ = css_2024;
-    else if (has_this_css (H2_CSS_2023_2, H3_CSS_2023_2, H4_CSS_2023_2)) css_ = css_2023_2;
-    else if (has_this_css (H2_CSS_2023_1, H3_CSS_2023_1, H4_CSS_2023_1)) css_ = css_2023_1;
-    else if (has_this_css (H2_CSS_2023, H3_CSS_2023, H4_CSS_2023)) css_ = css_2023;
-    else if (has_this_css (H2_CSS_2022_2, H3_CSS_2022_2, H4_CSS_2022_2)) css_ = css_2022_2;
-    else if (has_this_css (H2_CSS_2022_1, H3_CSS_2022_1, H4_CSS_2022_1)) css_ = css_2022_1;
-    else if (has_this_css (H2_CSS_2022, H3_CSS_2022, H4_CSS_2022)) css_ = css_2022;
-    else if (has_this_css (H2_CSS_2021_2, H3_CSS_2021_2, H4_CSS_2021_2)) css_ = css_2021_2;
-    else if (has_this_css (H2_CSS_2021_1, H3_CSS_2021_1, H4_CSS_2021_1)) css_ = css_2021_1;
-    else if (has_this_css (H2_CSS_2021, H3_CSS_2021, H4_CSS_2021)) css_ = css_2021;
-    else if (has_this_css (H2_CSS_2020_2, H3_CSS_2020_2, H4_CSS_2020_2)) css_ = css_2020_2;
-    else if (has_this_css (H2_CSS_2020_1, H3_CSS_2020_1, H4_CSS_2020_1)) css_ = css_2020_1;
-    else if (has_this_css (H2_CSS_2020, H3_CSS_2020, H4_CSS_2020)) css_ = css_2020;
-    else if (has_this_css (H2_CSS_2018_2, H3_CSS_2018_2, H4_CSS_2018_2)) css_ = css_2018_2;
-    else if (has_this_css (H2_CSS_2018_1, H3_CSS_2018_1, H4_CSS_2018_1)) css_ = css_2018_1;
-    else if (has_this_css (H2_CSS_2018, H3_CSS_2018, H4_CSS_2018)) css_ = css_2018;
-    else if (has_this_css (H2_CSS_2017_2, H3_CSS_2017_2, H4_CSS_2017_2)) css_ = css_2017_2;
-    else if (has_this_css (H2_CSS_2017_1, H3_CSS_2017_1, H4_CSS_2017_1)) css_ = css_2017_1;
-    else if (has_this_css (H2_CSS_2017, H3_CSS_2017, H4_CSS_2017)) css_ = css_2017;
-    else if (has_this_css (H2_CSS_2015_2, H3_CSS_2015_2, H4_CSS_2015_2)) css_ = css_2015_2;
-    else if (has_this_css (H2_CSS_2015_1, H3_CSS_2015_1, H4_CSS_2015_1)) css_ = css_2015_1;
-    else if (has_this_css (H2_CSS_2015, H3_CSS_2015, H4_CSS_2015)) css_ = css_2015;
-    else if (has_this_css (H2_CSS_2010, H3_CSS_2010, H4_CSS_2010)) css_ = css_2010;
-    else if (has_this_css (H2_CSS_2007, H3_CSS_2007, H4_CSS_2007)) css_ = css_2007;
+    if (has_this_css (H2_CSS_6_FULL, H3_CSS_6_FULL, H4_CSS_6_FULL, H5_CSS_6_FULL)) css_ = css_6;
+    else if (has_this_css (H2_CSS_5_FULL, H3_CSS_5_FULL, H4_CSS_5_FULL, H5_CSS_5_FULL)) css_ = css_5;
+    else if (has_this_css (H2_CSS_4_FULL, H3_CSS_4_FULL, H4_CSS_4_FULL, H4_CSS_4_FULL)) css_ = css_4;
+    else if (has_this_css (H2_CSS_3_FULL, H3_CSS_3_FULL, H4_CSS_3_FULL, H5_CSS_3_FULL)) css_ = css_3;
+    else if (has_this_css (H2_CSS_LS_2026, H3_CSS_LS_2026, H4_CSS_LS_2026, H5_CSS_LS_2026)) css_ = css_ls_2026;
+    else if (has_this_css (H2_CSS_2026_3, H3_CSS_2026_3, H4_CSS_2026_3, H5_CSS_2026_3)) css_ = css_2026_3;
+    else if (has_this_css (H2_CSS_2026_2, H3_CSS_2026_2, H4_CSS_2026_2, H5_CSS_2026_2)) css_ = css_2026_2;
+    else if (has_this_css (H2_CSS_2026_1, H3_CSS_2026_1, H4_CSS_2026_1, H5_CSS_2026_1)) css_ = css_2026_1;
+    else if (has_this_css (H2_CSS_2026, H3_CSS_2026, H4_CSS_2026, H5_CSS_2026)) css_ = css_2026;
+    else if (has_this_css (H2_CSS_LS_2025, H3_CSS_LS_2025, H4_CSS_LS_2025, H5_CSS_LS_2025)) css_ = css_ls_2025;
+    else if (has_this_css (H2_CSS_2025_3, H3_CSS_2025_3, H4_CSS_2025_3, H5_CSS_2025_3)) css_ = css_2025_3;
+    else if (has_this_css (H2_CSS_2025_2, H3_CSS_2025_2, H4_CSS_2025_2, H5_CSS_2025_2)) css_ = css_2025_2;
+    else if (has_this_css (H2_CSS_2025_1, H3_CSS_2025_1, H4_CSS_2025_1, H5_CSS_2025_1)) css_ = css_2025_1;
+    else if (has_this_css (H2_CSS_2025, H3_CSS_2025, H4_CSS_2025, H5_CSS_2025)) css_ = css_2025;
+    else if (has_this_css (H2_CSS_LS_2024, H3_CSS_LS_2024, H4_CSS_LS_2024, H5_CSS_LS_2024)) css_ = css_ls_2024;
+    else if (has_this_css (H2_CSS_2024_3, H3_CSS_2024_3, H4_CSS_2024_3, H5_CSS_2024_3)) css_ = css_2024_3;
+    else if (has_this_css (H2_CSS_2024_2, H3_CSS_2024_2, H4_CSS_2024_2, H5_CSS_2024_2)) css_ = css_2024_2;
+    else if (has_this_css (H2_CSS_2024_1, H3_CSS_2024_1, H4_CSS_2024_1, H5_CSS_2024_1)) css_ = css_2024_1;
+    else if (has_this_css (H2_CSS_2024, H3_CSS_2024, H4_CSS_2024, H5_CSS_2024)) css_ = css_2024;
+    else if (has_this_css (H2_CSS_2023_2, H3_CSS_2023_2, H4_CSS_2023_2, H5_CSS_2023_2)) css_ = css_2023_2;
+    else if (has_this_css (H2_CSS_2023_1, H3_CSS_2023_1, H4_CSS_2023_1, H5_CSS_2023_1)) css_ = css_2023_1;
+    else if (has_this_css (H2_CSS_2023, H3_CSS_2023, H4_CSS_2023, H5_CSS_2023)) css_ = css_2023;
+    else if (has_this_css (H2_CSS_2022_2, H3_CSS_2022_2, H4_CSS_2022_2, H5_CSS_2022_2)) css_ = css_2022_2;
+    else if (has_this_css (H2_CSS_2022_1, H3_CSS_2022_1, H4_CSS_2022_1, H5_CSS_2023_2)) css_ = css_2022_1;
+    else if (has_this_css (H2_CSS_2022, H3_CSS_2022, H4_CSS_2022, H5_CSS_2022)) css_ = css_2022;
+    else if (has_this_css (H2_CSS_2021_2, H3_CSS_2021_2, H4_CSS_2021_2, H5_CSS_2021_2)) css_ = css_2021_2;
+    else if (has_this_css (H2_CSS_2021_1, H3_CSS_2021_1, H4_CSS_2021_1, H5_CSS_2021_2)) css_ = css_2021_1;
+    else if (has_this_css (H2_CSS_2021, H3_CSS_2021, H4_CSS_2021, H5_CSS_2021)) css_ = css_2021;
+    else if (has_this_css (H2_CSS_2020_2, H3_CSS_2020_2, H4_CSS_2020_2, H5_CSS_2020_2)) css_ = css_2020_2;
+    else if (has_this_css (H2_CSS_2020_1, H3_CSS_2020_1, H4_CSS_2020_1, H5_CSS_2020_2)) css_ = css_2020_1;
+    else if (has_this_css (H2_CSS_2020, H3_CSS_2020, H4_CSS_2020, H5_CSS_2020)) css_ = css_2020;
+    else if (has_this_css (H2_CSS_2018_2, H3_CSS_2018_2, H4_CSS_2018_2, H5_CSS_2018_2)) css_ = css_2018_2;
+    else if (has_this_css (H2_CSS_2018_1, H3_CSS_2018_1, H4_CSS_2018_1, H5_CSS_2018_2)) css_ = css_2018_1;
+    else if (has_this_css (H2_CSS_2018, H3_CSS_2018, H4_CSS_2018, H5_CSS_2018)) css_ = css_2018;
+    else if (has_this_css (H2_CSS_2017_2, H3_CSS_2017_2, H4_CSS_2017_2, H5_CSS_2017_2)) css_ = css_2017_2;
+    else if (has_this_css (H2_CSS_2017_1, H3_CSS_2017_1, H4_CSS_2017_1, H5_CSS_2017_2)) css_ = css_2017_1;
+    else if (has_this_css (H2_CSS_2017, H3_CSS_2017, H4_CSS_2017, H5_CSS_2017)) css_ = css_2017;
+    else if (has_this_css (H2_CSS_2015_2, H3_CSS_2015_2, H4_CSS_2015_2, H5_CSS_2015_2)) css_ = css_2015_2;
+    else if (has_this_css (H2_CSS_2015_1, H3_CSS_2015_1, H4_CSS_2015_1, H5_CSS_2015_2)) css_ = css_2015_1;
+    else if (has_this_css (H2_CSS_2015, H3_CSS_2015, H4_CSS_2015, H5_CSS_2015)) css_ = css_2015;
+    else if (has_this_css (H2_CSS_2010, H3_CSS_2010, H4_CSS_2010, H5_CSS_2010)) css_ = css_2010;
+    else if (has_this_css (H2_CSS_2007, H3_CSS_2007, H4_CSS_2007, H5_CSS_2007)) css_ = css_2007;
     else if (all_ext2 (H2_CSS_2_2)) css_ = css_2_2;
     else if (all_ext2 (H2_CSS_2_1)) css_ = css_2_1;
     else if (all_ext2 (H2_CSS_2_0)) css_ = css_2_0;
@@ -986,13 +1005,15 @@ e_css_version html_version::css_version () const noexcept
     else css_ = css_none;
     return css_; }
 
-bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_t e4, flags_t& ext2, flags_t& ext3, flags_t& ext4) const
+bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_t e4, const flags_t e5, flags_t& ext2, flags_t& ext3, flags_t& ext4, flags_t& ext5) const
 {   if (! all_ext2 (e2)) return false;
     if ((e3 != 0) && ! all_ext3 (e3)) return false;
     if ((e4 != 0) && ! all_ext4 (e4)) return false;
+    if ((e5 != 0) && ! all_ext5 (e5)) return false;
     ext2 = e2;
     ext3 = e3;
     ext4 = e4;
+    ext5 = e5;
     return true; }
 
 ::std::string big_small_start (const bool b, const char* klein, const char* gross)
@@ -1026,59 +1047,65 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
 
 ::std::string html_version::css_version_text (const bool b) const
 {   ::std::string res;
-    flags_t e2 = NOFLAGS, e3 = NOFLAGS, e4 = NOFLAGS;
-    if (compare_css (H2_CSS_6, H3_CSS_6, H4_CSS_6, e2, e3, e4)) return big_small_start (b, "6", "level 6");
-    else if (compare_css (H2_CSS_5, H3_CSS_5, H4_CSS_5, e2, e3, e4)) res = big_small_start (b, "5", "level 5");
-    else if (compare_css (H2_CSS_4, H3_CSS_4, H4_CSS_4, e2, e3, e4)) res = big_small_start (b, "4", "level 4");
-    else if (compare_css (H2_CSS_3, H3_CSS_3, H4_CSS_3, e2, e3, e4)) res = big_small_start (b, "3", "level 3");
-    else if (compare_css (H2_CSS_LS_2025, H3_CSS_LS_2025, H4_CSS_LS_2025, e2, e3, e4)) res = big_small_start (b, "5/25", "HTML5 CSS/25");
-    else if (compare_css (H2_CSS_2025_3, H3_CSS_2025_3, H4_CSS_2025_3, e2, e3, e4)) res = big_small_start (b, "25+++", "2025+++ snapshot");
-    else if (compare_css (H2_CSS_2025_2, H3_CSS_2025_2, H4_CSS_2025_2, e2, e3, e4)) res = big_small_start (b, "25++", "2025++ snapshot");
-    else if (compare_css (H2_CSS_2025_1, H3_CSS_2025_1, H4_CSS_2025_1, e2, e3, e4)) res = big_small_start (b, "25+", "2025+ snapshot");
-    else if (compare_css (H2_CSS_2025, H3_CSS_2025, H4_CSS_2025, e2, e3, e4)) res = big_small_start (b, "25", "2025 snapshot");
-    else if (compare_css (H2_CSS_LS_2024, H3_CSS_LS_2024, H4_CSS_LS_2024, e2, e3, e4)) res = big_small_start (b, "5/24", "HTML5 CSS/24");
-    else if (compare_css (H2_CSS_2024_3, H3_CSS_2024_3, H4_CSS_2024_3, e2, e3, e4)) res = big_small_start (b, "24+++", "2024+++ snapshot");
-    else if (compare_css (H2_CSS_2024_2, H3_CSS_2024_2, H4_CSS_2024_2, e2, e3, e4)) res = big_small_start (b, "24++", "2024++ snapshot");
-    else if (compare_css (H2_CSS_2024_1, H3_CSS_2024_1, H4_CSS_2024_1, e2, e3, e4)) res = big_small_start (b, "24+", "2024+ snapshot");
-    else if (compare_css (H2_CSS_2024, H3_CSS_2024, H4_CSS_2024, e2, e3, e4)) res = big_small_start (b, "24", "2024 snapshot");
-    else if (compare_css (H2_CSS_2023_2, H3_CSS_2023_2, H4_CSS_2023_2, e2, e3, e4)) res = big_small_start (b, "23++", "2023++ snapshot");
-    else if (compare_css (H2_CSS_2023_1, H3_CSS_2023_1, H4_CSS_2023_1, e2, e3, e4)) res = big_small_start (b, "23+", "2023+ snapshot");
-    else if (compare_css (H2_CSS_2023, H3_CSS_2023, H4_CSS_2023, e2, e3, e4)) res = big_small_start (b, "23", "2023 snapshot");
-    else if (compare_css (H2_CSS_2022_2, H3_CSS_2022_2, H4_CSS_2022_2, e2, e3, e4)) res = big_small_start (b, "22++", "2022++ snapshot");
-    else if (compare_css (H2_CSS_2022_1, H3_CSS_2022_1, H4_CSS_2022_1, e2, e3, e4)) res = big_small_start (b, "22+", "2022+ snapshot");
-    else if (compare_css (H2_CSS_2022, H3_CSS_2022, H4_CSS_2022, e2, e3, e4)) res = big_small_start (b, "22", "2022 snapshot");
-    else if (compare_css (H2_CSS_2021_2, H3_CSS_2021_2, H4_CSS_2021_2, e2, e3, e4)) res = big_small_start (b, "21++", "2021++ snapshot");
-    else if (compare_css (H2_CSS_2021_1, H3_CSS_2021_1, H4_CSS_2021_1, e2, e3, e4)) res = big_small_start (b, "21+", "2021+ snapshot");
-    else if (compare_css (H2_CSS_2021, H3_CSS_2021, H4_CSS_2021, e2, e3, e4)) res = big_small_start (b, "21", "2021 snapshot");
-    else if (compare_css (H2_CSS_2020_2, H3_CSS_2020_2, H4_CSS_2020_2, e2, e3, e4)) res = big_small_start (b, "20++", "2020++ snapshot");
-    else if (compare_css (H2_CSS_2020_1, H3_CSS_2020_1, H4_CSS_2020_1, e2, e3, e4)) res = big_small_start (b, "20+", "2020+ snapshot");
-    else if (compare_css (H2_CSS_2020, H3_CSS_2020, H4_CSS_2020, e2, e3, e4)) res = big_small_start (b, "20", "2020 snapshot");
-    else if (compare_css (H2_CSS_2018_2, H3_CSS_2018_2, H4_CSS_2018_2, e2, e3, e4)) res = big_small_start (b, "18++", "2018++ snapshot");
-    else if (compare_css (H2_CSS_2018_1, H3_CSS_2018_1, H4_CSS_2018_1, e2, e3, e4)) res = big_small_start (b, "18+", "2018+ snapshot");
-    else if (compare_css (H2_CSS_2018, H3_CSS_2018, H4_CSS_2018, e2, e3, e4)) res = big_small_start (b, "18", "2018 snapshot");
-    else if (compare_css (H2_CSS_2017_2, H3_CSS_2017_2, H4_CSS_2017_2, e2, e3, e4)) res = big_small_start (b, "17++", "2017++ snapshot");
-    else if (compare_css (H2_CSS_2017_1, H3_CSS_2017_1, H4_CSS_2017_1, e2, e3, e4)) res = big_small_start (b, "17+", "2017+ snapshot");
-    else if (compare_css (H2_CSS_2017, H3_CSS_2017, H4_CSS_2017, e2, e3, e4)) res = big_small_start (b, "17", "2017 snapshot");
-    else if (compare_css (H2_CSS_2015_2, H3_CSS_2015_2, H4_CSS_2015_2, e2, e3, e4)) res = big_small_start (b, "15++", "2015++ snapshot");
-    else if (compare_css (H2_CSS_2015_1, H3_CSS_2015_1, H4_CSS_2015_1, e2, e3, e4)) res = big_small_start (b, "15+", "2015+ snapshot");
-    else if (compare_css (H2_CSS_2015, H3_CSS_2015, H4_CSS_2015, e2, e3, e4)) res = big_small_start (b, "15", "2015 snapshot");
-    else if (compare_css (H2_CSS_2010, H3_CSS_2010, H4_CSS_2010, e2, e3, e4)) res = big_small_start (b, "10", "2010 snapshot");
-    else if (compare_css (H2_CSS_2007, H3_CSS_2007, H4_CSS_2007, e2, e3, e4)) res = big_small_start (b, "07", "2007 snapshot");
-    else if (compare_css (H2_CSS_2_2, 0, 0, e2, e3, e4)) res = "2.2";
-    else if (compare_css (H2_CSS_2_1, 0, 0, e2, e3, e4)) res = "2.1";
-    else if (compare_css (H2_CSS_2_0, 0, 0, e2, e3, e4)) res = "2.0";
-    else if (compare_css (H2_CSS_1, 0, 0, e2, e3, e4)) res = "1";
+    flags_t e2 = NOFLAGS, e3 = NOFLAGS, e4 = NOFLAGS, e5 = NOFLAGS;
+    if (compare_css (H2_CSS_6, H3_CSS_6, H4_CSS_6, H5_CSS_6, e2, e3, e4, e5)) return big_small_start (b, "6", "level 6");
+    else if (compare_css (H2_CSS_5, H3_CSS_5, H4_CSS_5, H5_CSS_5, e2, e3, e4, e5)) res = big_small_start (b, "5", "level 5");
+    else if (compare_css (H2_CSS_4, H3_CSS_4, H4_CSS_4, H5_CSS_4, e2, e3, e4, e5)) res = big_small_start (b, "4", "level 4");
+    else if (compare_css (H2_CSS_3, H3_CSS_3, H4_CSS_3, H5_CSS_4, e2, e3, e4, e5)) res = big_small_start (b, "3", "level 3");
+    else if (compare_css (H2_CSS_LS_2026, H3_CSS_LS_2026, H4_CSS_LS_2026, H5_CSS_LS_2026, e2, e3, e4, e5)) res = big_small_start (b, "5/26", "HTML5 CSS/26");
+    else if (compare_css (H2_CSS_2026_3, H3_CSS_2026_3, H4_CSS_2026_3, H5_CSS_LS_2026, e2, e3, e4, e5)) res = big_small_start (b, "26+++", "2026+++ snapshot");
+    else if (compare_css (H2_CSS_2026_2, H3_CSS_2026_2, H4_CSS_2026_2, H5_CSS_LS_2026, e2, e3, e4, e5)) res = big_small_start (b, "26++", "2026++ snapshot");
+    else if (compare_css (H2_CSS_2026_1, H3_CSS_2026_1, H4_CSS_2026_1, H5_CSS_LS_2026, e2, e3, e4, e5)) res = big_small_start (b, "26+", "2026+ snapshot");
+    else if (compare_css (H2_CSS_2026, H3_CSS_2026, H4_CSS_2026, H5_CSS_2026, e2, e3, e4, e5)) res = big_small_start (b, "26", "2026 snapshot");
+    else if (compare_css (H2_CSS_LS_2025, H3_CSS_LS_2025, H4_CSS_LS_2025, H5_CSS_LS_2025, e2, e3, e4, e5)) res = big_small_start (b, "5/25", "HTML5 CSS/25");
+    else if (compare_css (H2_CSS_2025_3, H3_CSS_2025_3, H4_CSS_2025_3, H5_CSS_LS_2025, e2, e3, e4, e5)) res = big_small_start (b, "25+++", "2025+++ snapshot");
+    else if (compare_css (H2_CSS_2025_2, H3_CSS_2025_2, H4_CSS_2025_2, H5_CSS_LS_2025, e2, e3, e4, e5)) res = big_small_start (b, "25++", "2025++ snapshot");
+    else if (compare_css (H2_CSS_2025_1, H3_CSS_2025_1, H4_CSS_2025_1, H5_CSS_LS_2025, e2, e3, e4, e5)) res = big_small_start (b, "25+", "2025+ snapshot");
+    else if (compare_css (H2_CSS_2025, H3_CSS_2025, H4_CSS_2025, H5_CSS_2025, e2, e3, e4, e5)) res = big_small_start (b, "25", "2025 snapshot");
+    else if (compare_css (H2_CSS_LS_2024, H3_CSS_LS_2024, H4_CSS_LS_2024, H5_CSS_LS_2024, e2, e3, e4, e5)) res = big_small_start (b, "5/24", "HTML5 CSS/24");
+    else if (compare_css (H2_CSS_2024_3, H3_CSS_2024_3, H4_CSS_2024_3, H5_CSS_2024_3, e2, e3, e4, e5)) res = big_small_start (b, "24+++", "2024+++ snapshot");
+    else if (compare_css (H2_CSS_2024_2, H3_CSS_2024_2, H4_CSS_2024_2, H5_CSS_2024_2, e2, e3, e4, e5)) res = big_small_start (b, "24++", "2024++ snapshot");
+    else if (compare_css (H2_CSS_2024_1, H3_CSS_2024_1, H4_CSS_2024_1, H5_CSS_2024_1, e2, e3, e4, e5)) res = big_small_start (b, "24+", "2024+ snapshot");
+    else if (compare_css (H2_CSS_2024, H3_CSS_2024, H4_CSS_2024, H5_CSS_2024, e2, e3, e4, e5)) res = big_small_start (b, "24", "2024 snapshot");
+    else if (compare_css (H2_CSS_2023_2, H3_CSS_2023_2, H4_CSS_2023_2, H5_CSS_2023_2, e2, e3, e4, e5)) res = big_small_start (b, "23++", "2023++ snapshot");
+    else if (compare_css (H2_CSS_2023_1, H3_CSS_2023_1, H4_CSS_2023_1, H5_CSS_2023_1, e2, e3, e4, e5)) res = big_small_start (b, "23+", "2023+ snapshot");
+    else if (compare_css (H2_CSS_2023, H3_CSS_2023, H4_CSS_2023, H5_CSS_2023, e2, e3, e4, e5)) res = big_small_start (b, "23", "2023 snapshot");
+    else if (compare_css (H2_CSS_2022_2, H3_CSS_2022_2, H4_CSS_2022_2, H5_CSS_2022_2, e2, e3, e4, e5)) res = big_small_start (b, "22++", "2022++ snapshot");
+    else if (compare_css (H2_CSS_2022_1, H3_CSS_2022_1, H4_CSS_2022_1, H5_CSS_2022_1, e2, e3, e4, e5)) res = big_small_start (b, "22+", "2022+ snapshot");
+    else if (compare_css (H2_CSS_2022, H3_CSS_2022, H4_CSS_2022, H5_CSS_2022, e2, e3, e4, e5)) res = big_small_start (b, "22", "2022 snapshot");
+    else if (compare_css (H2_CSS_2021_2, H3_CSS_2021_2, H4_CSS_2021_2, H5_CSS_2021_2, e2, e3, e4, e5)) res = big_small_start (b, "21++", "2021++ snapshot");
+    else if (compare_css (H2_CSS_2021_1, H3_CSS_2021_1, H4_CSS_2021_1, H5_CSS_2021_1, e2, e3, e4, e5)) res = big_small_start (b, "21+", "2021+ snapshot");
+    else if (compare_css (H2_CSS_2021, H3_CSS_2021, H4_CSS_2021, H5_CSS_2021, e2, e3, e4, e5)) res = big_small_start (b, "21", "2021 snapshot");
+    else if (compare_css (H2_CSS_2020_2, H3_CSS_2020_2, H4_CSS_2020_2, H5_CSS_2020_2, e2, e3, e4, e5)) res = big_small_start (b, "20++", "2020++ snapshot");
+    else if (compare_css (H2_CSS_2020_1, H3_CSS_2020_1, H4_CSS_2020_1, H5_CSS_2020_1, e2, e3, e4, e5)) res = big_small_start (b, "20+", "2020+ snapshot");
+    else if (compare_css (H2_CSS_2020, H3_CSS_2020, H4_CSS_2020, H5_CSS_2020, e2, e3, e4, e5)) res = big_small_start (b, "20", "2020 snapshot");
+    else if (compare_css (H2_CSS_2018_2, H3_CSS_2018_2, H4_CSS_2018_2, H5_CSS_2018_2, e2, e3, e4, e5)) res = big_small_start (b, "18++", "2018++ snapshot");
+    else if (compare_css (H2_CSS_2018_1, H3_CSS_2018_1, H4_CSS_2018_1, H5_CSS_2018_1, e2, e3, e4, e5)) res = big_small_start (b, "18+", "2018+ snapshot");
+    else if (compare_css (H2_CSS_2018, H3_CSS_2018, H4_CSS_2018, H5_CSS_2018, e2, e3, e4, e5)) res = big_small_start (b, "18", "2018 snapshot");
+    else if (compare_css (H2_CSS_2017_2, H3_CSS_2017_2, H4_CSS_2017_2, H5_CSS_2017_2, e2, e3, e4, e5)) res = big_small_start (b, "17++", "2017++ snapshot");
+    else if (compare_css (H2_CSS_2017_1, H3_CSS_2017_1, H4_CSS_2017_1, H5_CSS_2017_1, e2, e3, e4, e5)) res = big_small_start (b, "17+", "2017+ snapshot");
+    else if (compare_css (H2_CSS_2017, H3_CSS_2017, H4_CSS_2017, H5_CSS_2017, e2, e3, e4, e5)) res = big_small_start (b, "17", "2017 snapshot");
+    else if (compare_css (H2_CSS_2015_2, H3_CSS_2015_2, H4_CSS_2015_2, H5_CSS_2015_2, e2, e3, e4, e5)) res = big_small_start (b, "15++", "2015++ snapshot");
+    else if (compare_css (H2_CSS_2015_1, H3_CSS_2015_1, H4_CSS_2015_1, H5_CSS_2015_1, e2, e3, e4, e5)) res = big_small_start (b, "15+", "2015+ snapshot");
+    else if (compare_css (H2_CSS_2015, H3_CSS_2015, H4_CSS_2015, H5_CSS_2015, e2, e3, e4, e5)) res = big_small_start (b, "15", "2015 snapshot");
+    else if (compare_css (H2_CSS_2010, H3_CSS_2010, H4_CSS_2010, H5_CSS_2010, e2, e3, e4, e5)) res = big_small_start (b, "10", "2010 snapshot");
+    else if (compare_css (H2_CSS_2007, H3_CSS_2007, H4_CSS_2007, H5_CSS_2007, e2, e3, e4, e5)) res = big_small_start (b, "07", "2007 snapshot");
+    else if (compare_css (H2_CSS_2_2, 0, 0, 0, e2, e3, e4, e5)) res = "2.2";
+    else if (compare_css (H2_CSS_2_1, 0, 0, 0, e2, e3, e4, e5)) res = "2.1";
+    else if (compare_css (H2_CSS_2_0, 0, 0, 0, e2, e3, e4, e5)) res = "2.0";
+    else if (compare_css (H2_CSS_1, 0, 0, 0, e2, e3, e4, e5)) res = "1";
 
     res += single_feature (res, b, "AcP", "Anchor Positioning", ext4_, e4, H4_CSS_ANCHOR_POS);
     res += single_feature (res, b, "Adj", "Colour Adjustment", ext3_, e3, H3_CSS_ADJUST);
     res += single_feature (res, b, "Anc", "Scrollbar Anchoring", ext3_, e3, H3_CSS_ANCHOR);
     res += single_feature (res, b, "Ani", "Animation", ext2_, H2_CSS_ANIM_3, H2_CSS_ANIM_4);
-    res += single_feature (res, b, "Bac", "Background and Borders", ext2_, e2, H2_CSS_BACKGROUND);
+    res += single_feature (res, b, "Bac", "Background (and Borders)", ext5_, e5, H5_CSS_BACKGROUND_3, H5_CSS_BACKGROUND_4);
+    res += single_feature (res, b, "BrB", "Borders and Boxes", ext5_, e5, 0, H5_CSS_BORD_BOX_4);
     res += single_feature (res, b, "BxA", "Box Alignment", ext3_, e3, H3_CSS_BOX_ALIGN);
     res += single_feature (res, b, "BxM", "Box Model", ext3_, e3, H3_CSS_BOX_MODEL_3, H3_CSS_BOX_MODEL_4);
     res += single_feature (res, b, "BxS", "Box Sizing", ext3_, e3, H3_CSS_BOX_SIZING_3, H3_CSS_BOX_SIZING_4);
     res += single_feature (res, b, "Cas", "Cascade & Inheritance", ext2_, e2, H2_CSS_CASCADE_3, H2_CSS_CASCADE_4, H2_CSS_CASCADE_5, H2_CSS_CASCADE_6);
-    res += single_feature (res, b, "Cmp", "Compositing and Blending", ext2_, e2, H2_CSS_COMPOSITING);
+    res += single_feature (res, b, "Cmp", "Compositing and Blending", ext2_, e2, H2_CSS_COMBLE_3, H2_CSS_COMBLE_4);
     res += single_feature (res, b, "Col", "Colour", ext4_, e4, H4_CSS_COLOUR_3, H4_CSS_COLOUR_4, H4_CSS_COLOUR_5, H4_CSS_COLOUR_6);
     res += single_feature (res, b, "Con", "Contain", ext3_, e3, H3_CSS_CONTAIN_3, H3_CSS_CONTAIN_4, H3_CSS_CONTAIN_5);
     res += single_feature (res, b, "Cnt", "Generated Content", ext3_, e3, H3_CSS_CONTENT);
@@ -1086,11 +1113,12 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "CoS", "Counter Style", ext2_, e2, H2_CSS_CS);
     res += single_feature (res, b, "Cus", "Custom Properties for Cascading Variables", ext2_, e2, H2_CSS_CUSTOM);
     res += single_feature (res, b, "Dev", "Device Adaption", ext3_, e3, H3_CSS_DEVICE);
-    res += single_feature (res, b, "Dsp", "Display", ext3_, e3, H3_CSS_DISPLAY);
-    res += single_feature (res, b, "Eas", "Easing Functions", ext2_, e2, H2_CSS_EASE);
+    res += single_feature (res, b, "Dsp", "Display", ext5_, e5, H5_CSS_DISPLAY_3, H5_CSS_DISPLAY_4);
+    res += single_feature (res, b, "Eas", "Easing Functions", ext5_, e5, H5_CSS_EASE_3, H5_CSS_EASE_4);
+    res += single_feature (res, b, "Env", "Environment", ext3_, e3, H3_CSS_ENVIRONMENT);
     res += single_feature (res, b, "Exc", "Exclusions", ext3_, e3, H3_CSS_EXCLUDE);
     res += single_feature (res, b, "Fll", "Fill and Stroke", ext3_, e3, H3_CSS_FILL);
-    res += single_feature (res, b, "Fil", "Filter Effects", ext3_, e3, H3_CSS_FILTER);
+    res += single_feature (res, b, "Fil", "Filter Effects", ext5_, e5, H5_CSS_FILTER_3, H5_CSS_FILTER_4);
     res += single_feature (res, b, "FBL", "Flexible Box Layout", ext2_, e2, H2_CSS_FBL);
     res += single_feature (res, b, "FCS", "Form Control Styling", ext4_, e4, H4_CSS_FCS);
     res += single_feature (res, b, "Fon", "Fonts", ext2_, e2, H2_CSS_FONT_3, H2_CSS_FONT_4, H2_CSS_FONT_5);
@@ -1098,28 +1126,30 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "Grd", "Grid", ext3_, e3, H3_CSS_GRID_3, H3_CSS_GRID_4);
     res += single_feature (res, b, "HiL", "Custom Highlight", ext3_, e3, H3_CSS_HIGHLIGHT);
     res += single_feature (res, b, "HTM", "HTML5 Living Standard", ext4_, e4, H4_CSS_LIVING_STANDARD);
-    res += single_feature (res, b, "Img", "Images", ext3_, e3, H3_CSS_IMAGE_4, H3_CSS_IMAGE_3);
+    res += single_feature (res, b, "Img", "Images", ext3_, e3, H3_CSS_IMAGE_3, H3_CSS_IMAGE_4, H3_CSS_IMAGE_5);
     res += single_feature (res, b, "Inl", "Inline Layout", ext3_, e3, H3_CSS_INLINE);
     res += single_feature (res, b, "LnG", "Lists and Counters", ext3_, e3, H3_CSS_LINE_GRID);
     res += single_feature (res, b, "Lst", "Line Grid", ext3_, e3, H3_CSS_LIST);
-    res += single_feature (res, b, "Log", "Logical Properties", ext3_, e3, H3_CSS_LOGIC);
+    res += single_feature (res, b, "Log", "Logical Properties and Values", ext3_, e3, H3_CSS_LOGIC);
     res += single_feature (res, b, "Mrq", "Marquee", ext4_, e4, H4_CSS_ADVLAY);
-    res += single_feature (res, b, "Mrq", "Marquee", ext4_, e4, H4_CSS_ADVLAY);
+    res += single_feature (res, b, "Mrq", "Marquee", ext4_, e4, H4_CSS_MARQUEE);
+    res += single_feature (res, b, "Msk", "Masking", ext3_, e3, H3_CSS_MASKING);
     res += single_feature (res, b, "MCr", "Math Core", ext4_, e4, H4_CSS_MATH_CORE);
     res += single_feature (res, b, "Med", "Media Queries", ext2_, e2, H2_CSS_MEDIA_3, H2_CSS_MEDIA_4, H2_CSS_MEDIA_5);
+    res += single_feature (res, b, "Mix", "Functions and Mixin", ext2_, e2, H2_CSS_MIXIN);
     res += single_feature (res, b, "Mot", "Motion Path", ext3_, e3, H3_CSS_MOTION);
-    res += single_feature (res, b, "Mlt", "Multi-Column", ext3_, e3, H3_CSS_MULTI_COL);
+    res += single_feature (res, b, "Mlt", "Multi-Column", ext5_, e5, H5_CSS_MULTCOL_3, H5_CSS_MULTCOL_4);
     res += single_feature (res, b, "Nam", "Namespaces", ext2_, e2, H2_CSS_NAMESPACE);
     res += single_feature (res, b, "Nes", "Non-Element Selectors", ext3_, e2, H3_CSS_NES);
     res += single_feature (res, b, "Nst", "Nesting", ext3_, e2, H3_CSS_NESTING);
-    res += single_feature (res, b, "Ofl", "Overflow", ext4_, e4, H4_CSS_OVERFLOW_3, H4_CSS_OVERFLOW_4);
+    res += single_feature (res, b, "Ofl", "Overflow", ext5_, e5, H5_CSS_OVERFLOW_3, H5_CSS_OVERFLOW_4, H5_CSS_OVERFLOW_5);
     res += single_feature (res, b, "Osc", "Overscroll Behaviour", ext3_, e3, H3_CSS_OVERSCROLL);
     res += single_feature (res, b, "PaM", "Paged Media", ext3_, e3, H3_CSS_PAGE);
     res += single_feature (res, b, "PFl", "Page Floats", ext3_, e3, H3_CSS_FLOAT);
-    res += single_feature (res, b, "Pos", "Positions", ext3_, e3, H3_CSS_POSITION);
+    res += single_feature (res, b, "Pos", "Positions", ext3_, e3, H3_CSS_POSITION_3, H3_CSS_POSITION_4);
     res += single_feature (res, b, "Pre", "Presentation Levels", ext3_, e3, H3_CSS_PRESENT);
     res += single_feature (res, b, "Rou", "Round Display", ext3_, e3, H3_CSS_ROUND);
-    res += single_feature (res, b, "Psd", "Pseudo-Elements", ext3_, e3, H3_CSS_PSEUDO);
+    res += single_feature (res, b, "Psd", "Pseudo-Elements", ext5_, e5, H5_CSS_PSEUDO_3, H5_CSS_PSEUDO_4);
     res += single_feature (res, b, "Reg", "Regions", ext3_, e3, H3_CSS_REGION);
     res += single_feature (res, b, "Rhy", "Rhythmic Sizing", ext3_, e3, H3_CSS_RHYTHM);
     res += single_feature (res, b, "Rub", "Ruby Annotation", ext3_, e3, H3_CSS_RUBY);
@@ -1128,10 +1158,17 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "Sel", "Selectors", ext2_, e2, H2_CSS_SELECTOR_3, H2_CSS_SELECTOR_4);
     res += single_feature (res, b, "Sha", "Shadow Parts", ext3_, e3, H3_CSS_SHADOW);
     res += single_feature (res, b, "Shp", "Shapes", ext3_, e3, H3_CSS_SHAPE_3, H3_CSS_SHAPE_4);
-    res += single_feature (res, b, "Snp", "Scroll Snap", ext3_, e3, H3_CSS_SNAP);
+    res += single_feature (res, b, "Sda", "Scroll-driven Animation", ext3_, e3, H3_CSS_SDA);
+    res += single_feature (res, b, "Snp", "Scroll Snap", ext3_, e3, H3_CSS_SNAP_3, H3_CSS_SNAP_4);
     res += single_feature (res, b, "Spa", "Spatial Navigation", ext4_, e4, H4_CSS_SPATIAL);
     res += single_feature (res, b, "Spe", "Speech", ext3_, e3, H3_CSS_SPEECH);
     res += single_feature (res, b, "Sty", "Style Attributes", ext2_, e2, H2_CSS_STYLE);
+    if (any_ext2 (H2_CSS_SVG_10)) res += single_feature (res, b, "S10", "SVG 1.0", ext2_, e2, H2_CSS_SVG_10);
+    else if (any_ext2 (H2_CSS_SVG_11)) res += single_feature (res, b, "S11", "SVG 1.1", ext2_, e2, H2_CSS_SVG_11);
+    else if (any_ext2 (H2_CSS_SVG_20)) res += single_feature (res, b, "S20", "SVG 2.0", ext2_, e2, H2_CSS_SVG_20);
+    else if (any_ext2 (H2_CSS_SVG_21)) res += single_feature (res, b, "S21", "SVG 2.1", ext2_, e2, H2_CSS_SVG_21);
+    else if (any_ext2 (H2_CSS_SVG_12_TINY)) res += single_feature (res, b, "S1t", "SVG 1.2 tiny", ext2_, e2, H2_CSS_SVG_12_TINY);
+    else if (any_ext2 (H2_CSS_SVG_12_FULL)) res += single_feature (res, b, "S1f", "SVG 1.2 full", ext2_, e2, H2_CSS_SVG_12_FULL);
     res += single_feature (res, b, "Syn", "Syntax Module", ext2_, e2, H2_CSS_SYNTAX);
     res += single_feature (res, b, "Tab", "Tables", ext3_, e3, H3_CSS_TABLE);
     res += single_feature (res, b, "Trf", "Transforms", ext3_, e3, H3_CSS_TRANSFORM_3, H3_CSS_TRANSFORM_4);
@@ -1139,7 +1176,9 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "Txd", "Text Decoration", ext3_, e3, H3_CSS_TEXTDEC_3, H3_CSS_TEXTDEC_4);
     res += single_feature (res, b, "Txt", "Text", ext3_, e3, H3_CSS_TEXT_3, H3_CSS_TEXT_4);
     res += single_feature (res, b, "UsI", "Basic User Interface", ext2_, e2, H2_CSS_UI_3, H2_CSS_UI_4);
-    res += single_feature (res, b, "Val", "Values and Units", ext2_, e2, H2_CSS_VALUE_3, H2_CSS_VALUE_4);
+    res += single_feature (res, b, "Val", "Values and Units", ext5_, e5, H5_CSS_VALUE_3, H5_CSS_VALUE_4, H5_CSS_VALUE_5);
+    res += single_feature (res, b, "Vpt", "Viewport", ext4_, e4, H4_CSS_VIEWPORT);
+    res += single_feature (res, b, "Vtr", "View Transitions", ext5_, e5, H5_CSS_VIEWTRAN_3, H5_CSS_VIEWTRAN_4);
     res += single_feature (res, b, "WCh", "Will Change", ext3_, e3, H3_CSS_WC);
     res += single_feature (res, b, "WrM", "Writing Mode", ext3_, e3, H3_CSS_WRITING_3, H3_CSS_WRITING_4);
     return res; }
@@ -1149,6 +1188,7 @@ void html_version::css_version (const e_css_version v) noexcept
     reset_ext2 (H2_FULL_CSS_MASK);
     reset_ext3 (H3_FULL_CSS_MASK);
     reset_ext4 (H4_FULL_CSS_MASK | H4_CSS_VER_MASK);
+    reset_ext5 (H5_FULL_CSS_MASK);
     switch (v)
     {   case css_1 :        set_ext2 (H2_CSS_1);
                             break;
@@ -1161,156 +1201,194 @@ void html_version::css_version (const e_css_version v) noexcept
         case css_3 :        set_ext2 (H2_CSS_3_FULL);
                             set_ext3 (H3_CSS_3_FULL);
                             set_ext4 (H4_CSS_3_FULL);
+                            set_ext5 (H5_CSS_3_FULL);
                             break;
         case css_4 :        set_ext2 (H2_CSS_4_FULL);
                             set_ext3 (H3_CSS_4_FULL);
                             set_ext4 (H4_CSS_4_FULL);
+                            set_ext5 (H5_CSS_4_FULL);
                             break;
         case css_5 :        set_ext2 (H2_CSS_5_FULL);
                             set_ext3 (H3_CSS_5_FULL);
                             set_ext4 (H4_CSS_5_FULL);
+                            set_ext5 (H5_CSS_5_FULL);
                             break;
         case css_6 :        set_ext2 (H2_CSS_6_FULL);
                             set_ext3 (H3_CSS_6_FULL);
                             set_ext4 (H4_CSS_6_FULL);
+                            set_ext5 (H5_CSS_6_FULL);
                             break;
         case css_2007 :     set_ext2 (H2_CSS_2007);
                             set_ext3 (H3_CSS_2007);
                             set_ext4 (H4_CSS_2007);
+                            set_ext5 (H5_CSS_2007);
                             break;
         case css_2010 :     set_ext2 (H2_CSS_2010);
                             set_ext3 (H3_CSS_2010);
                             set_ext4 (H4_CSS_2010);
+                            set_ext5 (H5_CSS_2010);
                             break;
         case css_2015 :     set_ext2 (H2_CSS_2015);
                             set_ext3 (H3_CSS_2015);
                             set_ext4 (H4_CSS_2015);
+                            set_ext5 (H5_CSS_2015);
                             break;
         case css_2015_1 :   set_ext2 (H2_CSS_2015 | H2_CSS_2015_1);
                             set_ext3 (H3_CSS_2015 | H3_CSS_2015_1);
                             set_ext4 (H4_CSS_2015 | H4_CSS_2015_1);
+                            set_ext5 (H5_CSS_2015 | H5_CSS_2015_1);
                             break;
         case css_2015_2 :   set_ext2 (H2_CSS_2015 | H2_CSS_2015_1 | H2_CSS_2015_2);
                             set_ext3 (H3_CSS_2015 | H3_CSS_2015_1 | H3_CSS_2015_2);
                             set_ext4 (H4_CSS_2015 | H4_CSS_2015_1 | H4_CSS_2015_2);
+                            set_ext5 (H5_CSS_2015 | H5_CSS_2015_1 | H5_CSS_2015_2);
                             break;
         case css_2017 :     set_ext2 (H2_CSS_2017);
                             set_ext3 (H3_CSS_2017);
                             set_ext4 (H4_CSS_2017);
+                            set_ext5 (H5_CSS_2017);
                             break;
         case css_2017_1 :   set_ext2 (H2_CSS_2017 | H2_CSS_2017_1);
                             set_ext3 (H3_CSS_2017 | H3_CSS_2017_1);
                             set_ext4 (H4_CSS_2017 | H4_CSS_2017_1);
+                            set_ext5 (H5_CSS_2017 | H5_CSS_2017_1);
                             break;
         case css_2017_2 :   set_ext2 (H2_CSS_2017 | H2_CSS_2017_1 | H2_CSS_2017_2);
                             set_ext3 (H3_CSS_2017 | H3_CSS_2017_1 | H3_CSS_2017_2);
                             set_ext4 (H4_CSS_2017 | H4_CSS_2017_1 | H4_CSS_2017_2);
+                            set_ext5 (H5_CSS_2017 | H5_CSS_2017_1 | H5_CSS_2017_2);
                             break;
         case css_2018 :     set_ext2 (H2_CSS_2018);
                             set_ext3 (H3_CSS_2018);
                             set_ext4 (H4_CSS_2018);
+                            set_ext5 (H5_CSS_2018);
                             break;
         case css_2018_1 :   set_ext2 (H2_CSS_2018 | H2_CSS_2018_1);
                             set_ext3 (H3_CSS_2018 | H3_CSS_2018_1);
                             set_ext4 (H4_CSS_2018 | H4_CSS_2018_1);
+                            set_ext5 (H5_CSS_2018 | H5_CSS_2018_1);
                             break;
         case css_2018_2 :   set_ext2 (H2_CSS_2018 | H2_CSS_2018_1 | H2_CSS_2018_2);
                             set_ext3 (H3_CSS_2018 | H3_CSS_2018_1 | H3_CSS_2018_2);
                             set_ext4 (H4_CSS_2018 | H4_CSS_2018_1 | H4_CSS_2018_2);
+                            set_ext5 (H5_CSS_2018 | H5_CSS_2018_1 | H5_CSS_2018_2);
                             break;
         case css_2020 :     set_ext2 (H2_CSS_2020);
                             set_ext3 (H3_CSS_2020);
                             set_ext4 (H4_CSS_2020);
+                            set_ext5 (H5_CSS_2020);
                             break;
         case css_2020_1 :   set_ext2 (H2_CSS_2020 | H2_CSS_2020_1);
                             set_ext3 (H3_CSS_2020 | H3_CSS_2020_1);
                             set_ext4 (H4_CSS_2020 | H4_CSS_2020_1);
+                            set_ext5 (H5_CSS_2020 | H5_CSS_2020_1);
                             break;
         case css_2020_2 :   set_ext2 (H2_CSS_2020 | H2_CSS_2020_1 | H2_CSS_2020_2);
                             set_ext3 (H3_CSS_2020 | H3_CSS_2020_1 | H3_CSS_2020_2);
                             set_ext4 (H4_CSS_2020 | H4_CSS_2020_1 | H4_CSS_2020_2);
+                            set_ext5 (H5_CSS_2020 | H5_CSS_2020_1 | H5_CSS_2020_2);
                             break;
         case css_2021 :     set_ext2 (H2_CSS_2021);
                             set_ext3 (H3_CSS_2021);
                             set_ext4 (H4_CSS_2021);
+                            set_ext5 (H5_CSS_2021);
                             break;
         case css_2021_1 :   set_ext2 (H2_CSS_2021 | H2_CSS_2021_1);
                             set_ext3 (H3_CSS_2021 | H3_CSS_2021_1);
                             set_ext4 (H4_CSS_2021 | H4_CSS_2021_1);
+                            set_ext5 (H5_CSS_2021 | H5_CSS_2021_1);
                             break;
         case css_2021_2 :   set_ext2 (H2_CSS_2021 | H2_CSS_2021_1 | H2_CSS_2021_2);
                             set_ext3 (H3_CSS_2021 | H3_CSS_2021_1 | H3_CSS_2021_2);
                             set_ext4 (H4_CSS_2021 | H4_CSS_2021_1 | H4_CSS_2021_2);
+                            set_ext5 (H5_CSS_2021 | H5_CSS_2021_1 | H5_CSS_2021_2);
                             break;
         case css_2022 :     set_ext2 (H2_CSS_2022);
                             set_ext3 (H3_CSS_2022);
                             set_ext4 (H4_CSS_2022);
+                            set_ext5 (H5_CSS_2022);
                             break;
         case css_2022_1 :   set_ext2 (H2_CSS_2022 | H2_CSS_2022_1);
                             set_ext3 (H3_CSS_2022 | H3_CSS_2022_1);
                             set_ext4 (H4_CSS_2022 | H4_CSS_2022_1);
+                            set_ext5 (H5_CSS_2022 | H5_CSS_2022_1);
                             break;
         case css_2022_2 :   set_ext2 (H2_CSS_2022 | H2_CSS_2022_1 | H2_CSS_2022_2);
                             set_ext3 (H3_CSS_2022 | H3_CSS_2022_1 | H3_CSS_2022_2);
                             set_ext4 (H4_CSS_2022 | H4_CSS_2022_1 | H4_CSS_2022_2);
+                            set_ext5 (H5_CSS_2022 | H5_CSS_2022_1 | H5_CSS_2022_2);
                             break;
         case css_2023 :     set_ext2 (H2_CSS_2023);
                             set_ext3 (H3_CSS_2023);
                             set_ext4 (H4_CSS_2023);
+                            set_ext5 (H5_CSS_2023);
                             break;
         case css_2023_1 :   set_ext2 (H2_CSS_2023 | H2_CSS_2023_1);
                             set_ext3 (H3_CSS_2023 | H3_CSS_2023_1);
                             set_ext4 (H4_CSS_2023 | H4_CSS_2023_1);
+                            set_ext5 (H5_CSS_2023 | H5_CSS_2023_1);
                             break;
         case css_2023_2 :   set_ext2 (H2_CSS_2023 | H2_CSS_2023_1 | H2_CSS_2023_2);
                             set_ext3 (H3_CSS_2023 | H3_CSS_2023_1 | H3_CSS_2023_2);
                             set_ext4 (H4_CSS_2023 | H4_CSS_2023_1 | H4_CSS_2023_2);
+                            set_ext5 (H5_CSS_2023 | H5_CSS_2023_1 | H5_CSS_2023_2);
                             break;
         case css_2024 :     set_ext2 (H2_CSS_2024);
                             set_ext3 (H3_CSS_2024);
                             set_ext4 (H4_CSS_2024);
+                            set_ext5 (H5_CSS_2024);
                             break;
         case css_2024_1 :   set_ext2 (H2_CSS_2024 | H2_CSS_2024_1);
                             set_ext3 (H3_CSS_2024 | H3_CSS_2024_1);
                             set_ext4 (H4_CSS_2024 | H4_CSS_2024_1);
+                            set_ext5 (H5_CSS_2024 | H5_CSS_2024_1);
                             break;
         case css_2024_2 :   set_ext2 (H2_CSS_2024 | H2_CSS_2024_1 | H2_CSS_2024_2);
                             set_ext3 (H3_CSS_2024 | H3_CSS_2024_1 | H3_CSS_2024_2);
                             set_ext4 (H4_CSS_2024 | H4_CSS_2024_1 | H4_CSS_2024_2);
+                            set_ext5 (H5_CSS_2024 | H5_CSS_2024_1 | H5_CSS_2024_2);
                             break;
         case css_2024_3 :   set_ext2 (H2_CSS_2024 | H2_CSS_2024_1 | H2_CSS_2024_2 | H2_CSS_2024_3);
                             set_ext3 (H3_CSS_2024 | H3_CSS_2024_1 | H3_CSS_2024_2 | H3_CSS_2024_3);
                             set_ext4 (H4_CSS_2024 | H4_CSS_2024_1 | H4_CSS_2024_2 | H4_CSS_2024_3);
+                            set_ext5 (H5_CSS_2024 | H5_CSS_2024_1 | H5_CSS_2024_2 | H5_CSS_2024_3);
                             break;
         case css_2025 :     set_ext2 (H2_CSS_2025);
                             set_ext3 (H3_CSS_2025);
                             set_ext4 (H4_CSS_2025);
+                            set_ext5 (H5_CSS_2025);
                             break;
         case css_2025_1 :   set_ext2 (H2_CSS_2025 | H2_CSS_2025_1);
                             set_ext3 (H3_CSS_2025 | H3_CSS_2025_1);
                             set_ext4 (H4_CSS_2025 | H4_CSS_2025_1);
+                            set_ext5 (H5_CSS_2025 | H5_CSS_2025_1);
                             break;
         case css_2025_2 :   set_ext2 (H2_CSS_2025 | H2_CSS_2025_1 | H2_CSS_2025_2);
                             set_ext3 (H3_CSS_2025 | H3_CSS_2025_1 | H3_CSS_2025_2);
                             set_ext4 (H4_CSS_2025 | H4_CSS_2025_1 | H4_CSS_2025_2);
+                            set_ext5 (H5_CSS_2025 | H5_CSS_2025_1 | H5_CSS_2025_2);
                             break;
         case css_2025_3 :   set_ext2 (H2_CSS_2025 | H2_CSS_2025_1 | H2_CSS_2025_2 | H2_CSS_2025_3);
                             set_ext3 (H3_CSS_2025 | H3_CSS_2025_1 | H3_CSS_2025_2 | H3_CSS_2025_3);
                             set_ext4 (H4_CSS_2025 | H4_CSS_2025_1 | H4_CSS_2025_2 | H4_CSS_2025_3);
+                            set_ext5 (H5_CSS_2025 | H5_CSS_2025_1 | H5_CSS_2025_2 | H5_CSS_2025_3);
                             break;
         case css_ls_2024 :  set_ext2 (H2_CSS_LS_2024);
                             set_ext3 (H3_CSS_LS_2024);
                             set_ext4 (H4_CSS_LS_2024);
+                            set_ext4 (H5_CSS_LS_2024);
                             break;
         case css_ls_2025 :  set_ext2 (H2_CSS_LS_2025);
                             set_ext3 (H3_CSS_LS_2025);
                             set_ext4 (H4_CSS_LS_2025);
+                            set_ext4 (H5_CSS_LS_2025);
                             break;
         default :           break; }
     set_ext4 (H4_CSS_VER_MASK, v, H4_CSS_VER_SHIFT); }
 
 bool html_version::css_any_3_4_5_6 () const noexcept
-{   if ((ext4_ & H4_CSS_3_4_5_6) != 0) return true;
+{   if ((ext5_ & H5_CSS_3_4_5_6) != 0) return true;
+    if ((ext4_ & H4_CSS_3_4_5_6) != 0) return true;
     if ((ext3_ & H3_CSS_3_4_5_6) != 0) return true;
     return (ext2_ & H2_CSS_3_4_5_6) != 0; }
 
@@ -1562,12 +1640,22 @@ template < > void html_version::set_level < c_animation > (const int n)
     else if (n == 3) set_ext2 (H2_CSS_ANIM_3); }
 
 template < > int html_version::get_level < c_background_border > () const
-{   if (any_ext2 (H2_CSS_BACKGROUND)) return 3;
+{   if ((ext5 () & H5_CSS_BACKGROUND_4) == H5_CSS_BACKGROUND_4) return 4;   
+    if ((ext5 () & H5_CSS_BACKGROUND_3) == H5_CSS_BACKGROUND_3) return 3;   
     return 0; }
 
 template < > void html_version::set_level < c_background_border > (const int n)
-{   if (n == 3) set_ext2 (H2_CSS_BACKGROUND);
-    else reset_ext2 (H2_CSS_BACKGROUND); }
+{   reset_ext5 (H5_CSS_BACKGROUND_MASK);
+    if (n == 4) set_ext5 (H5_CSS_BACKGROUND_34);
+    else if (n == 3) set_ext5 (H5_CSS_BACKGROUND_3); }
+
+template < > int html_version::get_level < c_border_box > () const
+{   if ((ext5 () & H5_CSS_BORD_BOX_4) == H5_CSS_BORD_BOX_4) return 4;   
+    return 0; }
+
+template < > void html_version::set_level < c_border_box > (const int n)
+{   reset_ext5 (H5_CSS_BORD_BOX_4);
+    if (n == 4) set_ext5 (H5_CSS_BORD_BOX_4); }
 
 template < > int html_version::get_level < c_box_alignment > () const
 {   if (any_ext3 (H3_CSS_BOX_ALIGN)) return 3;
@@ -1630,12 +1718,14 @@ template < > void html_version::set_level < c_colour > (const int n)
         default : break; } }
 
 template < > int html_version::get_level < c_compositing_blending > () const
-{   if (any_ext2 (H2_CSS_COMPOSITING)) return 3;
+{   if ((ext2 () & H2_CSS_COMBLE_4) == H2_CSS_COMBLE_4) return 4;
+    if ((ext2 () & H2_CSS_COMBLE_3) == H2_CSS_COMBLE_3) return 3;
     return 0; }
 
 template < > void html_version::set_level < c_compositing_blending > (const int n)
-{   if (n > 0) set_ext2 (H2_CSS_COMPOSITING);
-    else reset_ext2 (H2_CSS_COMPOSITING); }
+{   reset_ext2 (H2_CSS_COMBLE_MASK);
+    if (n == 4) set_ext2 (H2_CSS_COMBLE_34);
+    else if (n == 3) set_ext2 (H2_CSS_COMBLE_3); }
 
 template < > int html_version::get_level < c_conditional_rule > () const
 {   if ((ext2 () & H2_CSS_COND_RULE_5) == H2_CSS_COND_RULE_5) return 5;   
@@ -1698,20 +1788,32 @@ template < > void html_version::set_level < c_device_adaption > (const int n)
     else reset_ext3 (H3_CSS_DEVICE); }
 
 template < > int html_version::get_level < c_display > () const
-{   if (any_ext3 (H3_CSS_DISPLAY)) return 3;
+{   if ((ext5 () & H5_CSS_DISPLAY_4) == H5_CSS_DISPLAY_4) return 4;   
+    if ((ext5 () & H5_CSS_DISPLAY_3) == H5_CSS_DISPLAY_3) return 3;   
     return 0; }
 
 template < > void html_version::set_level < c_display > (const int n)
-{   if (n == 3) set_ext3 (H3_CSS_DISPLAY);
-    else reset_ext3 (H3_CSS_DISPLAY); }
+{   reset_ext5 (H5_CSS_DISPLAY_MASK);
+    if (n == 4) set_ext5 (H5_CSS_DISPLAY_34);
+    else if (n == 3) set_ext5 (H5_CSS_DISPLAY_3); }
 
 template < > int html_version::get_level < c_easing_function > () const
-{   if (any_ext2 (H2_CSS_EASE)) return 3;
+{   if ((ext5 () & H5_CSS_EASE_4) == H5_CSS_EASE_4) return 4;   
+    if ((ext5 () & H5_CSS_EASE_3) == H5_CSS_EASE_3) return 3;   
     return 0; }
 
 template < > void html_version::set_level < c_easing_function > (const int n)
-{   if (n > 0) set_ext2 (H2_CSS_EASE);
-    else reset_ext2 (H2_CSS_EASE); }
+{   reset_ext5 (H5_CSS_EASE_MASK);
+    if (n == 4) set_ext5 (H5_CSS_EASE_34);
+    else if (n == 3) set_ext5 (H5_CSS_EASE_3); }
+
+template < > int html_version::get_level < c_environment > () const
+{   if (any_ext3 (H3_CSS_ENVIRONMENT)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_environment > (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_ENVIRONMENT);
+    else reset_ext3 (H3_CSS_ENVIRONMENT); }
 
 template < > int html_version::get_level < c_exclusion > () const
 {   if (any_ext3 (H3_CSS_EXCLUDE)) return 3;
@@ -1738,12 +1840,14 @@ template < > void html_version::set_level < c_fill_stroke > (const int n)
     else reset_ext3 (H3_CSS_FILL); }
 
 template < > int html_version::get_level < c_filter_effect > () const
-{   if (any_ext3 (H3_CSS_FILTER)) return 3;
+{   if ((ext5 () & H5_CSS_FILTER_4) == H5_CSS_FILTER_4) return 4;   
+    if ((ext5 () & H5_CSS_FILTER_3) == H5_CSS_FILTER_3) return 3;   
     return 0; }
 
 template < > void html_version::set_level < c_filter_effect > (const int n)
-{   if (n == 3) set_ext3 (H3_CSS_FILTER);
-    else reset_ext3 (H3_CSS_FILTER); }
+{   reset_ext5 (H5_CSS_FILTER_MASK);
+    if (n == 4) set_ext5 (H5_CSS_FILTER_34);
+    else if (n == 3) set_ext5 (H5_CSS_FILTER_3); }
 
 template < > int html_version::get_level < c_page_float > () const
 {   if (any_ext3 (H3_CSS_FLOAT)) return 3;
@@ -1803,6 +1907,14 @@ template < > void html_version::set_level < c_custom_highlight > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_HIGHLIGHT);
     else reset_ext3 (H3_CSS_HIGHLIGHT); }
 
+template < > int html_version::get_level < c_hdr > () const
+{   if (any_ext4 (H4_CSS_HDR)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_hdr > (const int n)
+{   if (n == 3) set_ext4 (H4_CSS_HDR);
+    else reset_ext4 (H4_CSS_HDR); }
+
 template < > int html_version::get_level < c_hyperlink_presentation > () const
 {   if (any_ext3 (H3_CSS_HYPERLINK)) return 3;
     return 0; }
@@ -1812,13 +1924,15 @@ template < > void html_version::set_level < c_hyperlink_presentation > (const in
     else reset_ext3 (H3_CSS_HYPERLINK); }
 
 template < > int html_version::get_level < c_image > () const
-{   if ((ext3 () & H3_CSS_IMAGE_4) == H3_CSS_IMAGE_4) return 4;
+{   if ((ext3 () & H3_CSS_IMAGE_5) == H3_CSS_IMAGE_5) return 5;
+    if ((ext3 () & H3_CSS_IMAGE_4) == H3_CSS_IMAGE_4) return 4;
     if ((ext3 () & H3_CSS_IMAGE_3) == H3_CSS_IMAGE_3) return 3;
     return 0; }
 
 template < > void html_version::set_level < c_image > (const int n)
 {   reset_ext3 (H3_CSS_IMAGE_MASK);
-    if (n == 4) set_ext3 (H3_CSS_IMAGE);
+    if (n == 5) set_ext3 (H3_CSS_IMAGE);
+    else if (n == 4) set_ext3 (H3_CSS_IMAGE_34);
     else if (n == 3) set_ext3 (H3_CSS_IMAGE_3); }
 
 template < > int html_version::get_level < c_inline_layout > () const
@@ -1899,6 +2013,14 @@ template < > void html_version::set_level < c_media_query > (const int n)
         case 3 : set_ext2 (H2_CSS_MEDIA_3); break;
         default : break; } }
 
+template < > int html_version::get_level < c_mixin > () const
+{   if (any_ext2 (H2_CSS_MIXIN)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_mixin > (const int n)
+{   if (n == 3) set_ext2 (H2_CSS_MIXIN);
+    else reset_ext2 (H2_CSS_MIXIN); }
+
 template < > int html_version::get_level < c_motion_path > () const
 {   if (any_ext3 (H3_CSS_MOTION)) return 3;
     return 0; }
@@ -1908,12 +2030,14 @@ template < > void html_version::set_level < c_motion_path > (const int n)
     else reset_ext3 (H3_CSS_MOTION); }
 
 template < > int html_version::get_level < c_multicolumn > () const
-{   if (any_ext3 (H3_CSS_MULTI_COL)) return 3;
+{   if ((ext5 () & H5_CSS_MULTCOL_4) == H5_CSS_MULTCOL_4) return 4;   
+    if ((ext5 () & H5_CSS_MULTCOL_3) == H5_CSS_MULTCOL_3) return 3;   
     return 0; }
 
 template < > void html_version::set_level < c_multicolumn > (const int n)
-{   if (n == 3) set_ext3 (H3_CSS_MULTI_COL);
-    else reset_ext3 (H3_CSS_MULTI_COL); }
+{   reset_ext5 (H5_CSS_MULTCOL_MASK);
+    if (n == 4) set_ext5 (H5_CSS_MULTCOL_34);
+    else if (n == 3) set_ext5 (H5_CSS_MULTCOL_3); }
 
 template < > int html_version::get_level < c_namespace > () const
 {   if (any_ext2 (H2_CSS_NAMESPACE)) return 3;
@@ -1940,14 +2064,16 @@ template < > void html_version::set_level < c_nesting > (const int n)
     else reset_ext3 (H3_CSS_NESTING); }
 
 template < > int html_version::get_level < c_overflow > () const
-{   if ((ext4 () & H4_CSS_OVERFLOW_4) == H4_CSS_OVERFLOW_4) return 4;
-    if ((ext4 () & H4_CSS_OVERFLOW_3) == H4_CSS_OVERFLOW_3) return 3;
+{   if ((ext5 () & H5_CSS_OVERFLOW_5) == H5_CSS_OVERFLOW_5) return 5;
+    if ((ext5 () & H5_CSS_OVERFLOW_4) == H5_CSS_OVERFLOW_4) return 4;
+    if ((ext5 () & H5_CSS_OVERFLOW_3) == H5_CSS_OVERFLOW_3) return 3;
     return 0; }
 
 template < > void html_version::set_level < c_overflow > (const int n)
-{   reset_ext4 (H4_CSS_OVERFLOW_MASK);
-    if (n == 4) set_ext4 (H4_CSS_OVERFLOW);
-    else if (n == 3) set_ext4 (H4_CSS_OVERFLOW_3); }
+{   reset_ext5 (H5_CSS_OVERFLOW_MASK);
+    if (n == 5) set_ext5 (H5_CSS_OVERFLOW);
+    else if (n == 4) set_ext5 (H5_CSS_OVERFLOW_34);
+    else if (n == 3) set_ext5 (H5_CSS_OVERFLOW_3); }
 
 template < > int html_version::get_level < c_overscroll_behaviour > () const
 {   if (any_ext3 (H3_CSS_OVERSCROLL)) return 3;
@@ -1966,12 +2092,14 @@ template < > void html_version::set_level < c_paged_media > (const int n)
     else reset_ext3 (H3_CSS_PAGE); }
 
 template < > int html_version::get_level < c_positioned_layout > () const
-{   if (any_ext3 (H3_CSS_POSITION)) return 3;
+{   if (any_ext3 (H3_CSS_POSITION_4)) return 4;
+    if (any_ext3 (H3_CSS_POSITION_3)) return 3;
     return 0; }
 
 template < > void html_version::set_level < c_positioned_layout > (const int n)
-{   if (n == 3) set_ext3 (H3_CSS_POSITION);
-    else reset_ext3 (H3_CSS_POSITION); }
+{   reset_ext3 (H3_CSS_POSITION_MASK);
+    if (n == 4) set_ext3 (H3_CSS_POSITION_34);
+    else if (n == 3) set_ext3 (H3_CSS_POSITION_3); }
 
 template < > int html_version::get_level < c_presentation_level > () const
 {   if (any_ext3 (H3_CSS_PRESENT)) return 3;
@@ -1982,12 +2110,14 @@ template < > void html_version::set_level < c_presentation_level > (const int n)
     else reset_ext3 (H3_CSS_PRESENT); }
 
 template < > int html_version::get_level < c_pseudo_element > () const
-{   if (any_ext3 (H3_CSS_PSEUDO)) return 4;
+{   if (any_ext5 (H5_CSS_PSEUDO_4)) return 4;
+    if (any_ext5 (H5_CSS_PSEUDO_3)) return 3;
     return 0; }
 
 template < > void html_version::set_level < c_pseudo_element > (const int n)
-{   if ((n == 3) || (n == 4)) set_ext3 (H3_CSS_PSEUDO);
-    else reset_ext3 (H3_CSS_PSEUDO); }
+{   reset_ext5 (H5_CSS_PSEUDO_MASK);
+    if (n == 4) set_ext5 (H5_CSS_PSEUDO_34);
+    else if (n == 3) set_ext5 (H5_CSS_PSEUDO_3); }
 
 template < > int html_version::get_level < c_region > () const
 {   if (any_ext3 (H3_CSS_REGION)) return 3;
@@ -2075,12 +2205,14 @@ template < > void html_version::set_level < c_shape > (const int n)
     else if (n == 4) set_ext3 (H3_CSS_SHAPE_4); }
 
 template < > int html_version::get_level < c_scroll_snap > () const
-{   if (any_ext3 (H3_CSS_SNAP)) return 3;
+{   if ((ext3 () & H3_CSS_SNAP_4) == H3_CSS_SNAP_4) return 4;   
+    if ((ext3 () & H3_CSS_SNAP_3) == H3_CSS_SNAP_3) return 3;   
     return 0; }
 
 template < > void html_version::set_level < c_scroll_snap > (const int n)
-{   if (n == 3) set_ext3 (H3_CSS_SNAP);
-    else reset_ext3 (H3_CSS_SNAP); }
+{   reset_ext3 (H3_CSS_SNAP_MASK);
+    if (n == 3) set_ext3 (H3_CSS_SNAP_3);
+    else if (n == 4) set_ext3 (H3_CSS_SNAP_4); }
 
 template < > int html_version::get_level < c_scroll_snap_point > () const
 {   if (any_ext4 (H4_CSS_SNAP_POINTS)) return 3;
@@ -2181,14 +2313,16 @@ template < > void html_version::set_level < c_basic_user_interface > (const int 
     else if (n == 4) set_ext2 (H2_CSS_UI); }
 
 template < > int html_version::get_level < c_value_unit > () const
-{   if ((ext2 () & H2_CSS_VALUE_4) == H2_CSS_VALUE_4) return 4;   
-    if ((ext2 () & H2_CSS_VALUE_3) == H2_CSS_VALUE_3) return 3;   
+{   if ((ext5 () & H5_CSS_VALUE_5) == H5_CSS_VALUE_5) return 5;   
+    if ((ext5 () & H5_CSS_VALUE_4) == H5_CSS_VALUE_4) return 4;   
+    if ((ext5 () & H5_CSS_VALUE_3) == H5_CSS_VALUE_3) return 3;   
     return 0; }
 
 template < > void html_version::set_level < c_value_unit > (const int n)
-{   reset_ext2 (H2_CSS_VALUE_MASK);
-    if (n == 3) set_ext2 (H2_CSS_VALUE_3);
-    else if (n == 4) set_ext2 (H2_CSS_VALUE); }
+{   reset_ext5 (H5_CSS_VALUE_MASK);
+    if (n == 5) set_ext5 (H5_CSS_VALUE_345);
+    else if (n == 4) set_ext5 (H5_CSS_VALUE_34);
+    else if (n == 3) set_ext5 (H5_CSS_VALUE_3); }
 
 template < > int html_version::get_level < c_viewport > () const
 {   if (any_ext4 (H4_CSS_VIEWPORT)) return 3;
@@ -2199,12 +2333,14 @@ template < > void html_version::set_level < c_viewport > (const int n)
     else reset_ext4 (H4_CSS_VIEWPORT); }
 
 template < > int html_version::get_level < c_view_transition > () const
-{   if (any_ext3 (H3_CSS_VIEW)) return 3;
+{   if ((ext5 () & H5_CSS_VIEWTRAN_4) == H5_CSS_VIEWTRAN_4) return 4;
+    if ((ext5 () & H5_CSS_VIEWTRAN_3) == H5_CSS_VIEWTRAN_3) return 3;
     return 0; }
 
 template < > void html_version::set_level < c_view_transition > (const int n)
-{   if (n == 3) set_ext3 (H3_CSS_VIEW);
-    else reset_ext3 (H3_CSS_VIEW); }
+{   reset_ext5 (H5_CSS_VIEWTRAN_MASK);
+    if (n == 4) set_ext5 (H5_CSS_VIEWTRAN_34);
+    else if (n == 3) set_ext5 (H5_CSS_VIEWTRAN_3); }
 
 template < > int html_version::get_level < c_will_change > () const
 {   if (any_ext3 (H3_CSS_WC)) return 3;
@@ -2246,23 +2382,24 @@ int html_version::css_module (const e_css_module m) const
 void html_version::css_module (const e_css_module m, const int n)
 {   process_module < CSS_MODULES > :: set_level (*this, m, n); }
 
-bool html_version::is_css_compatible (const flags_t& f, const flags_t& f3, const flags_t& f4) const
-{   constexpr flags_t ext2_concerned = H2_FULL_CSS_MASK & ~H2_CSS_ARG_MASK;
-    if (((ext2_ & ext2_concerned) == 0) && ((ext3_ & H3_FULL_CSS_MASK) == 0) && ((ext4_ & H4_FULL_CSS_MASK) == 0)) return true;
-    if (((f & ext2_concerned) == 0) && ((f3 & H3_FULL_CSS_MASK) == 0) && ((f4 & H4_FULL_CSS_MASK) == 0)) return true;
-    if (((ext2_ & f) != 0) || ((ext3_ & f3) != 0) || ((ext4_ & f4) != 0)) return true;
+bool html_version::is_css_compatible (const flags_t& f2, const flags_t& f3, const flags_t& f4, const flags_t& f5) const
+{   constexpr flags_t ext2_concerned = H2_FULL_CSS_MASK & ~H2_CSS_SYNTAX_MASK;
+    if (((ext2_ & ext2_concerned) == 0) && ((ext3_ & H3_FULL_CSS_MASK) == 0) && ((ext4_ & H4_FULL_CSS_MASK) == 0) && ((ext5_ & H5_FULL_CSS_MASK) == 0)) return true;
+    if (((f2 & ext2_concerned) == 0) && ((f3 & H3_FULL_CSS_MASK) == 0) && ((f4 & H4_FULL_CSS_MASK) == 0) && ((f5 & H5_FULL_CSS_MASK) == 0)) return true;
+    if (((ext2_ & f2) != 0) || ((ext3_ & f3) != 0) || ((ext4_ & f4) != 0) || ((ext5_ & f5) != 0)) return true;
     if (((ext4_ & f4) & H4_CSS_SAFE) != 0) return true;
-    if ((ext4_ & H4_VTT) && (f4 & H4_VTT)) return true;
+//    if ((ext4_ & H4_VTT) && (f4 & H4_VTT)) return true;
+    if (((ext4_ & f4) & H4_VTT) != 0) return true;
     if (has_svg ())
-    {   if (((f & H2_CSS_SVG_10) == H2_CSS_SVG_10) && ((ext_ & HE_SVG_10) == HE_SVG_10)) return true;
-        if (((f & H2_CSS_SVG_11) == H2_CSS_SVG_11) && ((ext_ & HE_SVG_11) == HE_SVG_11)) return true;
-        if (((f & H2_CSS_SVG_20) == H2_CSS_SVG_20) && ((ext_ & HE_SVG_20) == HE_SVG_20)) return true;
-        if (((f & H2_CSS_SVG_21) == H2_CSS_SVG_21) && ((ext_ & HE_SVG_21) == HE_SVG_21)) return true;
-        if (((f & H2_CSS_SVG_12) == H2_CSS_SVG_12) && ((ext_ & HE_SVG_12) == HE_SVG_12)) return true; }
+    {   if (((f2 & H2_CSS_SVG_10) == H2_CSS_SVG_10) && ((ext_ & HE_SVG_10) == HE_SVG_10)) return true;
+        if (((f2 & H2_CSS_SVG_11) == H2_CSS_SVG_11) && ((ext_ & HE_SVG_11) == HE_SVG_11)) return true;
+        if (((f2 & H2_CSS_SVG_20) == H2_CSS_SVG_20) && ((ext_ & HE_SVG_20) == HE_SVG_20)) return true;
+        if (((f2 & H2_CSS_SVG_21) == H2_CSS_SVG_21) && ((ext_ & HE_SVG_21) == HE_SVG_21)) return true;
+        if (((f2 & H2_CSS_SVG_12) == H2_CSS_SVG_12) && ((ext_ & HE_SVG_12) == HE_SVG_12)) return true; }
     return false; }
 
-bool html_version::is_css_compatible (nitpick& nits, const flags_t& f, const flags_t& f2, const flags_t& f3) const
-{   if (is_css_compatible (f, f2, f3)) return true;
+bool html_version::is_css_compatible (nitpick& nits, const flags_t& f2, const flags_t& f3, const flags_t& f4, const flags_t& f5) const
+{   if (is_css_compatible (f2, f3, f4, f5)) return true;
     nits.pick (nit_css_version, es_error, ec_css, "CSS ", long_css_version_name (), " required");   
     return false; }
 
@@ -2275,22 +2412,24 @@ void html_version::check_status (nitpick& nits, const ::std::string& s) const
         if (context.tv_profile () && ((ext3_ & H3_NOT_TV) == H3_NOT_TV))
             nits.pick (nit_profile, es_warning, ec_css, s, " may be ignored when the CSS TV profile applies"); }
     if (abandoned ())
-        nits.pick (nit_abandoned, es_warning, ec_css, s, " was rejected, abandoned, unfinished, andor unimplemented: it will at best be ignored");
+        nits.pick (nit_abandoned, es_warning, ec_css, quote (s), " was rejected, abandoned, unfinished, andor unimplemented: it will at best be ignored");
+    if (borked ())
+        nits.pick (nit_borked, es_warning, ec_css, quote (s), " is known to be buggy, so cannot be relied on");
     if (dinosaur ())
-        nits.pick (nit_dinosaur, es_warning, ec_css, s, " is ancient and will not be recognised");
+        nits.pick (nit_dinosaur, es_warning, ec_css, quote (s), " is so ancient it will be recognised");
     if (experimental ())
-        nits.pick (nit_experimental, es_warning, ec_css, s, " is experimental, so unlikely to be recognised");
+        nits.pick (nit_experimental, es_warning, ec_css, quote (s), " is experimental, so unlikely to be recognised");
     if (css_deprecated ())   
-        nits.pick (nit_deprecated, es_warning, ec_css, s, " has been deprecated and should not be used");
+        nits.pick (nit_deprecated, es_warning, ec_css, quote (s), " has been deprecated and should not be used");
     if (bizarritude ())
-    {   if (chrome () && ! context.chrome ()) nits.pick (nit_chrome, es_warning, ec_browser, s, " requires an appropriate version of a Chrome-based browser");
-        if (ie () && ! context.ie ()) nits.pick (nit_ie, es_warning, ec_browser, s, " requires an appropriate version of Internet Explorer");
-        if (mozilla () && ! context.mozilla ()) nits.pick (nit_chrome, es_warning, ec_browser, s, " requires an appropriate version of a Mozilla browser, such as Firefox");
-        if (netscape () && ! context.netscape ()) nits.pick (nit_netscape, es_warning, ec_browser, s, " requires an appropriate version of the Netscape browser");
-        if (opera () && ! context.opera ()) nits.pick (nit_chrome, es_warning, ec_browser, s, " requires an appropriate version of the Opera browser");
-        if (webcomponents ()) nits.pick (nit_bespoke_obsolete, es_info, ec_browser, s, " is bespoke WebComponents content");
-        if (bespoke ()) nits.pick (nit_bespoke_obsolete, es_comment, ec_browser, s, " is bespoke");
-        if (safari () && ! context.safari ()) nits.pick (nit_chrome, es_warning, ec_browser, s, " requires an appropriate version of the Safari browser"); } }
+    {   if (chrome () && ! context.chrome ()) nits.pick (nit_chrome, es_warning, ec_browser, quote (s), " requires an appropriate version of a Chrome-based browser");
+        if (ie () && ! context.ie ()) nits.pick (nit_ie, es_warning, ec_browser, quote (s), " requires an appropriate version of Internet Explorer");
+        if (mozilla () && ! context.mozilla ()) nits.pick (nit_mozilla, es_warning, ec_browser, quote (s), " requires an appropriate version of a Mozilla browser, such as Firefox");
+        if (netscape () && ! context.netscape ()) nits.pick (nit_netscape, es_warning, ec_browser, quote (s), " requires an appropriate version of the Netscape browser");
+        if (opera () && ! context.opera ()) nits.pick (nit_opera, es_warning, ec_browser, quote (s), " requires an appropriate version of the Opera browser");
+        if (webcomponents ()) nits.pick (nit_bespoke_obsolete, es_info, ec_browser, quote (s), " is bespoke WebComponents content");
+        if (bespoke ()) nits.pick (nit_bespoke_obsolete, es_comment, ec_browser, quote (s), " is bespoke");
+        if (safari () && ! context.safari ()) nits.pick (nit_safari, es_warning, ec_browser, quote (s), " requires an appropriate version of the Safari browser"); } }
 
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e)
 {   const bool res = version.parse_doctype (nits, ::std::string (b, e));
@@ -2306,13 +2445,13 @@ bool does_html_apply (const html_version& v, const html_version& from, const htm
     if (from.requires_extension ())
         if (extension_conflict (v, from) != emi_good) return false;
     if (! from.valid_context (v)) return false;
-    if (from.bizarritude ())
-    {   if (from.chrome () && ! context.chrome ()) return false;
-        if (from.ie () && ! context.ie ()) return false;
-        if (from.mozilla () && ! context.mozilla ()) return false;
-        if (from.netscape () && ! context.netscape ()) return false;
-        if (from.opera () && ! context.opera ()) return false;
-        if (from.safari () && ! context.safari ()) return false; }
+//    if (from.bizarritude ())
+//    {   if (from.chrome () && ! context.chrome ()) return false;
+//        if (from.ie () && ! context.ie ()) return false;
+//        if (from.mozilla () && ! context.mozilla ()) return false;
+//        if (from.netscape () && ! context.netscape ()) return false;
+//        if (from.opera () && ! context.opera ()) return false;
+//        if (from.safari () && ! context.safari ()) return false; }
     switch (v.mjr ())
     {   case 0 :    break;
         case 1 :    if (v.mnr () == 0) return ! from.not10 ();
@@ -2434,13 +2573,15 @@ html_version get_min_version (const e_css_version e) noexcept
 bool is_css_identical (const html_version& lhs, const html_version& rhs)
 {   if ((lhs.ext2 () & H2_FULL_CSS_MASK) != (rhs.ext2 () & H2_FULL_CSS_MASK)) return false;
     if ((lhs.ext3 () & H3_MPT_CSS_MASK) != (rhs.ext3 () & H3_MPT_CSS_MASK)) return false;
-    return (lhs.ext4 () & H4_FULL_CSS_MASK) == (rhs.ext4 () & H4_FULL_CSS_MASK); }
+    if ((lhs.ext4 () & H4_FULL_CSS_MASK) != (rhs.ext4 () & H4_FULL_CSS_MASK)) return false;
+    return (lhs.ext5 () & H5_FULL_CSS_MASK) == (rhs.ext5 () & H5_FULL_CSS_MASK); }
 
-bool has_css_crossover (const html_version& lhs, const html_version& rhs, const flags_t f2, const flags_t f3, const flags_t f4) noexcept
+bool has_css_crossover (const html_version& lhs, const html_version& rhs, const flags_t f2, const flags_t f3, const flags_t f4, const flags_t f5) noexcept
 {   const bool b2 = (((lhs.ext2 () & rhs.ext2 ()) & f2) != 0);
     const bool b3 = (((lhs.ext3 () & rhs.ext3 ()) & f3) != 0);
     const bool b4 = (((lhs.ext4 () & rhs.ext4 ()) & f4) != 0);
-    return  b2 || b3 || b4; }
+    const bool b5 = (((lhs.ext5 () & rhs.ext5 ()) & f5) != 0);
+    return  b2 || b3 || b4 || b5; }
 
 bool has_css_crossover (const e_css_version c, const html_version& lhs, const html_version& rhs) noexcept
 {   switch (c)
@@ -2448,41 +2589,50 @@ bool has_css_crossover (const e_css_version c, const html_version& lhs, const ht
         case css_2_0 :
         case css_2_1 :
         case css_2_2 : return (lhs.css_version () >= c) && (rhs.css_version () >= c);
-        case css_3 : return has_css_crossover (lhs, rhs, H2_CSS_3_FULL, H3_CSS_3_FULL, H4_CSS_3_FULL);
-        case css_4 : return has_css_crossover (lhs, rhs, H2_CSS_4_FULL, H3_CSS_4_FULL, H4_CSS_4_FULL);
-        case css_5 : return has_css_crossover (lhs, rhs, H2_CSS_5_FULL, H3_CSS_5_FULL, H4_CSS_5_FULL);
-        case css_6 : return has_css_crossover (lhs, rhs, H2_CSS_6_FULL, H3_CSS_6_FULL, H4_CSS_6_FULL);
-        case css_2007 : return has_css_crossover (lhs, rhs, H2_CSS_2007, H3_CSS_2007, H4_CSS_2007);
-        case css_2010 : return has_css_crossover (lhs, rhs, H2_CSS_2010, H3_CSS_2010, H4_CSS_2010);
-        case css_2015 : return has_css_crossover (lhs, rhs, H2_CSS_2015, H3_CSS_2015, H4_CSS_2015);
-        case css_2015_1 : return has_css_crossover (lhs, rhs, H2_CSS_2015_1, H3_CSS_2015_1, H4_CSS_2015_1);
-        case css_2015_2 : return has_css_crossover (lhs, rhs, H2_CSS_2015_2, H3_CSS_2015_2, H4_CSS_2015_2);
-        case css_2017 : return has_css_crossover (lhs, rhs, H2_CSS_2017, H3_CSS_2017, H4_CSS_2017);
-        case css_2017_1 : return has_css_crossover (lhs, rhs, H2_CSS_2017_1, H3_CSS_2017_1, H4_CSS_2017_1);
-        case css_2017_2 : return has_css_crossover (lhs, rhs, H2_CSS_2017_2, H3_CSS_2017_2, H4_CSS_2017_2);
-        case css_2018 : return has_css_crossover (lhs, rhs, H2_CSS_2018, H3_CSS_2018, H4_CSS_2018);
-        case css_2018_1 : return has_css_crossover (lhs, rhs, H2_CSS_2018_1, H3_CSS_2018_1, H4_CSS_2018_1);
-        case css_2018_2 : return has_css_crossover (lhs, rhs, H2_CSS_2018_2, H3_CSS_2018_2, H4_CSS_2018_2);
-        case css_2020 : return has_css_crossover (lhs, rhs, H2_CSS_2020, H3_CSS_2020, H4_CSS_2020);
-        case css_2020_1 : return has_css_crossover (lhs, rhs, H2_CSS_2020_1, H3_CSS_2020_1, H4_CSS_2020_1);
-        case css_2020_2 : return has_css_crossover (lhs, rhs, H2_CSS_2020_2, H3_CSS_2020_2, H4_CSS_2020_2);
-        case css_2021 : return has_css_crossover (lhs, rhs, H2_CSS_2021, H3_CSS_2021, H4_CSS_2021);
-        case css_2021_1 : return has_css_crossover (lhs, rhs, H2_CSS_2021_1, H3_CSS_2021_1, H4_CSS_2021_1);
-        case css_2021_2 : return has_css_crossover (lhs, rhs, H2_CSS_2021_2, H3_CSS_2021_2, H4_CSS_2021_2);
-        case css_2022 : return has_css_crossover (lhs, rhs, H2_CSS_2022, H3_CSS_2022, H4_CSS_2022);
-        case css_2022_1 : return has_css_crossover (lhs, rhs, H2_CSS_2022_1, H3_CSS_2022_1, H4_CSS_2022_1);
-        case css_2022_2 : return has_css_crossover (lhs, rhs, H2_CSS_2022_2, H3_CSS_2022_2, H4_CSS_2022_2);
-        case css_2023 : return has_css_crossover (lhs, rhs, H2_CSS_2023, H3_CSS_2023, H4_CSS_2023);
-        case css_2023_1 : return has_css_crossover (lhs, rhs, H2_CSS_2023_1, H3_CSS_2023_1, H4_CSS_2023_1);
-        case css_2023_2 : return has_css_crossover (lhs, rhs, H2_CSS_2023_2, H3_CSS_2023_2, H4_CSS_2023_2);
-        case css_2024 : return has_css_crossover (lhs, rhs, H2_CSS_2024, H3_CSS_2024, H4_CSS_2024);
-        case css_2024_1 : return has_css_crossover (lhs, rhs, H2_CSS_2024_1, H3_CSS_2024_1, H4_CSS_2024_1);
-        case css_2024_2 : return has_css_crossover (lhs, rhs, H2_CSS_2024_2, H3_CSS_2024_2, H4_CSS_2024_2);
-        case css_2024_3 : return has_css_crossover (lhs, rhs, H2_CSS_2024_3, H3_CSS_2024_3, H4_CSS_2024_3);
-        case css_2025 : return has_css_crossover (lhs, rhs, H2_CSS_2025, H3_CSS_2025, H4_CSS_2025);
-        case css_ls_2024 : return has_css_crossover (lhs, rhs, H2_CSS_LS_2024, H3_CSS_LS_2024, H4_CSS_LS_2024);
-        case css_2025_1 : return has_css_crossover (lhs, rhs, H2_CSS_2025_1, H3_CSS_2025_1, H4_CSS_2025_1);
-        case css_2025_2 : return has_css_crossover (lhs, rhs, H2_CSS_2025_2, H3_CSS_2025_2, H4_CSS_2025_2);
-        case css_2025_3 : return has_css_crossover (lhs, rhs, H2_CSS_2025_3, H3_CSS_2025_3, H4_CSS_2025_3);
-        case css_ls_2025 : return has_css_crossover (lhs, rhs, H2_CSS_LS_2025, H3_CSS_LS_2025, H4_CSS_LS_2025);
+        case css_3 : return has_css_crossover (lhs, rhs, H2_CSS_3_FULL, H3_CSS_3_FULL, H4_CSS_3_FULL, H5_CSS_3_FULL);
+        case css_4 : return has_css_crossover (lhs, rhs, H2_CSS_4_FULL, H3_CSS_4_FULL, H4_CSS_4_FULL, H5_CSS_4_FULL);
+        case css_5 : return has_css_crossover (lhs, rhs, H2_CSS_5_FULL, H3_CSS_5_FULL, H4_CSS_5_FULL, H5_CSS_5_FULL);
+        case css_6 : return has_css_crossover (lhs, rhs, H2_CSS_6_FULL, H3_CSS_6_FULL, H4_CSS_6_FULL, H5_CSS_6_FULL);
+        case css_2007 : return has_css_crossover (lhs, rhs, H2_CSS_2007, H3_CSS_2007, H4_CSS_2007, H5_CSS_2007);
+        case css_2010 : return has_css_crossover (lhs, rhs, H2_CSS_2010, H3_CSS_2010, H4_CSS_2010, H5_CSS_2010);
+        case css_2015 : return has_css_crossover (lhs, rhs, H2_CSS_2015, H3_CSS_2015, H4_CSS_2015, H5_CSS_2015);
+        case css_2015_1 : return has_css_crossover (lhs, rhs, H2_CSS_2015_1, H3_CSS_2015_1, H4_CSS_2015_1, H5_CSS_2015_1);
+        case css_2015_2 : return has_css_crossover (lhs, rhs, H2_CSS_2015_2, H3_CSS_2015_2, H4_CSS_2015_2, H5_CSS_2015_2);
+        case css_2017 : return has_css_crossover (lhs, rhs, H2_CSS_2017, H3_CSS_2017, H4_CSS_2017, H5_CSS_2017);
+        case css_2017_1 : return has_css_crossover (lhs, rhs, H2_CSS_2017_1, H3_CSS_2017_1, H4_CSS_2017_1, H5_CSS_2017_1);
+        case css_2017_2 : return has_css_crossover (lhs, rhs, H2_CSS_2017_2, H3_CSS_2017_2, H4_CSS_2017_2, H5_CSS_2017_2);
+        case css_2018 : return has_css_crossover (lhs, rhs, H2_CSS_2018, H3_CSS_2018, H4_CSS_2018, H5_CSS_2018);
+        case css_2018_1 : return has_css_crossover (lhs, rhs, H2_CSS_2018_1, H3_CSS_2018_1, H4_CSS_2018_1, H5_CSS_2018_1);
+        case css_2018_2 : return has_css_crossover (lhs, rhs, H2_CSS_2018_2, H3_CSS_2018_2, H4_CSS_2018_2, H5_CSS_2018_2);
+        case css_2020 : return has_css_crossover (lhs, rhs, H2_CSS_2020, H3_CSS_2020, H4_CSS_2020, H5_CSS_2020);
+        case css_2020_1 : return has_css_crossover (lhs, rhs, H2_CSS_2020_1, H3_CSS_2020_1, H4_CSS_2020_1, H5_CSS_2020_1);
+        case css_2020_2 : return has_css_crossover (lhs, rhs, H2_CSS_2020_2, H3_CSS_2020_2, H4_CSS_2020_2, H5_CSS_2020_2);
+        case css_2021 : return has_css_crossover (lhs, rhs, H2_CSS_2021, H3_CSS_2021, H4_CSS_2021, H5_CSS_2021);
+        case css_2021_1 : return has_css_crossover (lhs, rhs, H2_CSS_2021_1, H3_CSS_2021_1, H4_CSS_2021_1, H5_CSS_2021_1);
+        case css_2021_2 : return has_css_crossover (lhs, rhs, H2_CSS_2021_2, H3_CSS_2021_2, H4_CSS_2021_2, H5_CSS_2021_2);
+        case css_2022 : return has_css_crossover (lhs, rhs, H2_CSS_2022, H3_CSS_2022, H4_CSS_2022, H5_CSS_2022);
+        case css_2022_1 : return has_css_crossover (lhs, rhs, H2_CSS_2022_1, H3_CSS_2022_1, H4_CSS_2022_1, H5_CSS_2022_1);
+        case css_2022_2 : return has_css_crossover (lhs, rhs, H2_CSS_2022_2, H3_CSS_2022_2, H4_CSS_2022_2, H5_CSS_2022_2);
+        case css_2023 : return has_css_crossover (lhs, rhs, H2_CSS_2023, H3_CSS_2023, H4_CSS_2023, H5_CSS_2023);
+        case css_2023_1 : return has_css_crossover (lhs, rhs, H2_CSS_2023_1, H3_CSS_2023_1, H4_CSS_2023_1, H5_CSS_2023_1);
+        case css_2023_2 : return has_css_crossover (lhs, rhs, H2_CSS_2023_2, H3_CSS_2023_2, H4_CSS_2023_2, H5_CSS_2023_2);
+        case css_2024 : return has_css_crossover (lhs, rhs, H2_CSS_2024, H3_CSS_2024, H4_CSS_2024, H5_CSS_2024);
+        case css_2024_1 : return has_css_crossover (lhs, rhs, H2_CSS_2024_1, H3_CSS_2024_1, H4_CSS_2024_1, H5_CSS_2024_1);
+        case css_2024_2 : return has_css_crossover (lhs, rhs, H2_CSS_2024_2, H3_CSS_2024_2, H4_CSS_2024_2, H5_CSS_2024_2);
+        case css_2024_3 : return has_css_crossover (lhs, rhs, H2_CSS_2024_3, H3_CSS_2024_3, H4_CSS_2024_3, H5_CSS_2024_3);
+        case css_2025 : return has_css_crossover (lhs, rhs, H2_CSS_2025, H3_CSS_2025, H4_CSS_2025, H5_CSS_2025);
+        case css_ls_2024 : return has_css_crossover (lhs, rhs, H2_CSS_LS_2024, H3_CSS_LS_2024, H4_CSS_LS_2024, H4_CSS_LS_2024);
+        case css_2025_1 : return has_css_crossover (lhs, rhs, H2_CSS_2025_1, H3_CSS_2025_1, H4_CSS_2025_1, H5_CSS_2025_1);
+        case css_2025_2 : return has_css_crossover (lhs, rhs, H2_CSS_2025_2, H3_CSS_2025_2, H4_CSS_2025_2, H5_CSS_2025_2);
+        case css_2025_3 : return has_css_crossover (lhs, rhs, H2_CSS_2025_3, H3_CSS_2025_3, H4_CSS_2025_3, H5_CSS_2025_3);
+        case css_ls_2025 : return has_css_crossover (lhs, rhs, H2_CSS_LS_2025, H3_CSS_LS_2025, H4_CSS_LS_2025, H5_CSS_LS_2025);
+        case css_2026 : return has_css_crossover (lhs, rhs, H2_CSS_2026, H3_CSS_2026, H4_CSS_2026, H5_CSS_2026);
+        case css_2026_1 : return has_css_crossover (lhs, rhs, H2_CSS_2026_1, H3_CSS_2026_1, H4_CSS_2026_1, H5_CSS_2026_1);
+        case css_2026_2 : return has_css_crossover (lhs, rhs, H2_CSS_2026_2, H3_CSS_2026_2, H4_CSS_2026_2, H5_CSS_2026_2);
+        case css_2026_3 : return has_css_crossover (lhs, rhs, H2_CSS_2026_3, H3_CSS_2026_3, H4_CSS_2026_3, H5_CSS_2026_3);
+        case css_ls_2026 : return has_css_crossover (lhs, rhs, H2_CSS_LS_2026, H3_CSS_LS_2026, H4_CSS_LS_2026, H5_CSS_LS_2026);
         default : return false; } } 
+
+bool comparable (const html_version& lhs, const html_version& rhs) noexcept
+{   if (lhs.is_css () != rhs.is_css ()) return false;
+    return comparable (static_cast < version > (lhs), static_cast < version > (rhs)); }

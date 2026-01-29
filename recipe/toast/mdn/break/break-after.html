@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN break-after tests</title>
+<style>
+.sid {
+/* Generic break values */
+break-after: auto;
+break-after: avoid;
+break-after: always;
+break-after: all;
+
+/* Page break values */
+break-after: avoid-page;
+break-after: page;
+break-after: left;
+break-after: right;
+break-after: recto;
+break-after: verso;
+
+/* Column break values */
+break-after: avoid-column;
+break-after: column;
+
+/* Region break values */
+break-after: avoid-region;
+break-after: region;
+
+/* Global values */
+break-after: inherit;
+break-after: initial;
+break-after: revert;
+break-after: revert-layer;
+break-after: unset;
+}
+
+html {
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: 2px;
+  column-span: all;
+}
+
+h2 {
+  font-size: 1.2rem;
+  color: red;
+  letter-spacing: 1px;
+}
+
+p {
+  line-height: 1.5;
+  break-after: column;
+}
+
+article {
+  column-width: 200px;
+  gap: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN break-after Tests</h1>
+
+<article>
+  <h1>Main heading</h1>
+
+  <h2>Subheading</h2>
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae
+    fringilla mauris. Quisque commodo eget nisi sed pretium. Mauris luctus nec
+    lacus in ultricies. Mauris vitae hendrerit arcu, ac scelerisque lacus.
+    Aliquam lobortis in lacus sit amet posuere. Fusce iaculis urna id neque
+    dapibus, eu lacinia lectus dictum.
+  </p>
+
+  <h2>Subheading</h2>
+
+  <p>
+    Praesent condimentum dui dui, sit amet rutrum diam tincidunt eu. Cras
+    suscipit porta leo sit amet rutrum. Sed vehicula ornare tincidunt. Curabitur
+    a ipsum ac diam mattis volutpat ac ut elit. Nullam luctus justo non
+    vestibulum gravida. Morbi metus libero, pharetra non porttitor a, molestie
+    nec nisi.
+  </p>
+
+  <h2>Subheading</h2>
+
+  <p>
+    Vivamus eleifend metus vitae neque placerat, eget interdum elit mattis.
+    Donec eu vulputate nibh. Ut turpis leo, malesuada quis nisl nec, volutpat
+    egestas tellus.
+  </p>
+
+  <h2>Subheading</h2>
+
+  <p>
+    In finibus viverra enim vel suscipit. Quisque consequat velit eu orci
+    malesuada, ut interdum tortor molestie. Proin sed pellentesque augue. Nam
+    risus justo, faucibus non porta a, congue vel massa. Cras luctus lacus nisl,
+    sed tincidunt velit pharetra ac. Duis suscipit faucibus dui sed ultricies.
+  </p>
+</article>
+
+</body>
+</html>

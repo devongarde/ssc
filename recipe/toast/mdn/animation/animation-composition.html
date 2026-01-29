@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN animation-composition tests</title>
+<style>
+.sid
+{
+/* Single animation */
+animation-composition: replace;
+animation-composition: add;
+animation-composition: accumulate;
+
+/* Multiple animations */
+animation-composition: replace, add;
+animation-composition: add, accumulate;
+animation-composition: replace, add, accumulate;
+
+/* Global values */
+animation-composition: inherit;
+animation-composition: initial;
+animation-composition: revert;
+animation-composition: revert-layer;
+animation-composition: unset;
+}
+
+.icon:hover {
+  filter: blur(5px);
+  animation: 3s infinite pulse;
+  animation-composition: add;
+}
+
+@keyframes pulse {
+  0% {
+    filter: blur(10px);
+  }
+  100% {
+    filter: blur(20px);
+  }
+}
+
+@keyframes slide {
+  20%,
+  40% {
+    transform: translateX(100px);
+    background: yellow;
+  }
+  80%,
+  100% {
+    transform: translateX(150px);
+    background: orange;
+  }
+}
+
+.target {
+  transform: translateX(30px) rotate(45deg);
+  animation: slide 5s linear infinite;
+}
+.target:hover {
+  animation-play-state: paused;
+}
+#replace {
+  animation-composition: replace;
+}
+#add {
+  animation-composition: add;
+}
+#accumulate {
+  animation-composition: accumulate;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN animation-composition Tests</h1>
+
+<div class="container">
+  replace
+  <div id="replace" class="target"></div>
+</div>
+<div class="container">
+  add
+  <div id="add" class="target"></div>
+</div>
+<div class="container">
+  accumulate
+  <div id="accumulate" class="target"></div>
+</div>
+
+</body>
+</html>

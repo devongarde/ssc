@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN METER tests</title>
+<style>
+label {
+  padding-right: 10px;
+  font-size: 1rem;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN METER Tests</h1>
+
+<label for="fuel">Fuel level:</label>
+
+<meter id="fuel" min="0" max="100" low="33" high="66" optimum="80" value="50">
+  at 50/100
+</meter>
+
+<p>Battery level: <meter min="0" max="100" value="75">75%</meter></p>
+
+<p>
+  Student's exam score:
+  <meter min="0" low="50" high="80" max="100" value="84">84%</meter>
+</p>
+
+</body>
+</html>

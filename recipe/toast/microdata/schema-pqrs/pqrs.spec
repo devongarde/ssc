@@ -119,7 +119,7 @@ PASS ../toast/microdata/schema-pqrs/place.html
 109 unrecognised_value
 110 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 113 unrecognised_value
-116 invalid_attribute_version wrong_version svg_rdf bad_year bad_year
+116 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year
 117 unrecognised_value
 119 unrecognised_value
 124 unrecognised_value
@@ -171,7 +171,7 @@ PASS ../toast/microdata/schema-pqrs/postaladdress.html
 150 unrecognised_value
 151 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
 154 unrecognised_value
-157 invalid_attribute_version wrong_version svg_rdf bad_year bad_year
+157 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year
 158 unrecognised_value
 160 unrecognised_value
 165 unrecognised_value

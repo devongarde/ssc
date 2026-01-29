@@ -294,7 +294,7 @@ int cycle (nitpick& nits, const int argc, char** argv)
     bool enfooten = false;
     vstr_t vs;
     try
-    {   if (context.iterate () || context.serve ()) cycle_start (nits);
+    {   if (context.loop ()) cycle_start (nits);
         context.started (balloon.inflate_time ());
         if (argc > 0)
         {   VERIFY_NOT_NULL (argv, __FILE__, __LINE__);
@@ -373,7 +373,7 @@ int cycle (nitpick& nits, const int argc, char** argv)
             else context.os () -> console (FULL_TITLE);
             if (! context.update_info ().empty ())
                 context.os () -> console (context.update_info () + "\n");
-            nuts.merge (nits);                                       
+            nuts.merge (nits);
             macro -> dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
             context.os () -> console (context.domsg ());
             context.os () -> aborting ();
@@ -444,7 +444,7 @@ int ssc_main (int argc, char** argv)
         {   res = cycle (nits, argc, argv);
             if (res == STOP_NOW) { res = VALID_RESULT; break; }
             argc = 0; }
-        while (context.iterate () || context.serve ()); }
+        while (context.loop ()); }
     catch (const ::std::system_error& e)
     {   msg = "catastrophic exit system error: ";
         msg += e.what ();

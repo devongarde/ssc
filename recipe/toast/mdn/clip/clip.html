@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN clip tests</title>
+<style>
+.sid {
+/* Keyword value */
+clip: auto;
+
+/* <shape> values */
+clip: rect(1px, 10em, 3rem, 2ch);
+
+/* Global values */
+clip: inherit;
+clip: initial;
+clip: revert;
+clip: revert-layer;
+clip: unset;
+}
+
+.dotted-border {
+  border: dotted;
+  position: relative;
+  width: 390px;
+  height: 400px;
+}
+
+#top-left,
+#middle,
+#bottom-right {
+  position: absolute;
+  top: 0;
+}
+
+#top-left {
+  left: 400px;
+  clip: rect(0, 130px, 90px, 0);
+}
+
+#middle {
+  left: 270px;
+  clip: rect(100px, 260px, 190px, 130px);
+}
+
+#bottom-right {
+  left: 140px;
+  clip: rect(200px, 390px, 290px, 260px);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN clip Tests</h1>
+
+<p class="dotted-border">
+  <img src="macarons.png" alt="Original graphic" />
+  <img id="top-left" src="macarons.png" alt="Graphic clipped to upper left" />
+  <img id="middle" src="macarons.png" alt="Graphic clipped towards middle" />
+  <img
+    id="bottom-right"
+    src="macarons.png"
+    alt="Graphic clipped to bottom right" />
+</p>
+
+</body>
+</html>

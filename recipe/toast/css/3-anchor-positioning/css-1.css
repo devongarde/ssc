@@ -1,0 +1,34 @@
+﻿.anchor {
+  anchor-name: --tooltip;
+}
+.tooltip {
+  /* Fixpos means we don't need to worry about
+     containing block relationships;
+     the tooltip can live anywhere in the DOM. */
+  position: fixed;
+
+  /* All the anchoring behavior will default to
+     referring to the --tooltip anchor. */
+  position-anchor: --tooltip;
+
+  /* Align the tooltip's bottom to the top of the anchor;
+     this also defaults to horizontally center-aligning
+     the tooltip and the anchor (in horizontal writing modes). */
+  position-area: block-start;
+
+  /* Automatically swap if this overflows the window
+     so the tooltip's top aligns to the anchor's bottom
+     instead. */
+  position-try: flip-block;
+
+  /* Prevent getting too wide */
+  max-inline-size: 20em;
+}
+
+.tooltip {
+  /* Using the popover + popovertarget attributes sets 'position: fixed'
+     and creates the necessary position-anchor relationship already. */
+  position-area: block-start;
+  position-try: flip-block;
+  max-inline-size: 20em;
+}

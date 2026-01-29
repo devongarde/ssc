@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.24)
 set (FULLNAME "Static-Site-Checker")
-set (VER 0.2.23)
+set (VER 0.2.24)
 project (ssc VERSION ${VER} DESCRIPTION ${FULLNAME} LANGUAGES CXX HOMEPAGE_URL "https://dylanharris.org/ssc/")
 message (NOTICE "preparing " ${FULLNAME} " ${VER}" )
 
@@ -133,30 +133,34 @@ set (SAUCE
             ${S}/attribute/avm_data_x.cpp ${S}/attribute/avm_data_rdf.cpp ${S}/attribute/namespace.cpp
         ${S}/base/type_base.cpp ${S}/base/type_case.cpp ${S}/base/type_core.cpp ${S}/base/type_master.cpp
         ${S}/coop/fred.cpp ${S}/coop/kew.cpp ${S}/coop/knickers.cpp ${S}/coop/lox.cpp ${S}/coop/tls.cpp
-        ${S}/compound/type_csses.cpp ${S}/compound/type_mimes.cpp ${S}/compound/type_varied.cpp
+        ${S}/compound/type_csses.cpp ${S}/compound/type_mimes.cpp ${S}/compound/type_van.cpp ${S}/compound/type_varied.cpp
         ${S}/css/arguments.cpp ${S}/css/css.cpp ${S}/css/css_attribute.cpp ${S}/css/css_class.cpp ${S}/css/css_element.cpp ${S}/css/css_id.cpp
             ${S}/css/css_parse.cpp ${S}/css/css_state.cpp ${S}/css/decoration.cpp ${S}/css/descriptor.cpp ${S}/css/descriptor_constructor.cpp
             ${S}/css/descriptors.cpp ${S}/css/distilled.cpp ${S}/css/ffv.cpp ${S}/css/ffvs.cpp ${S}/css/fn.cpp ${S}/css/global.cpp ${S}/css/group.cpp
             ${S}/css/media.cpp ${S}/css/medium.cpp ${S}/css/property.cpp ${S}/css/properties.cpp ${S}/css/property_constructor.cpp ${S}/css/rule.cpp
             ${S}/css/rules.cpp ${S}/css/selector.cpp ${S}/css/selectors.cpp ${S}/css/statement.cpp ${S}/css/statements.cpp ${S}/css/typed_property.cpp
-            ${S}/css/value.cpp ${S}/css/value2.cpp ${S}/css/value_types_0_2.cpp ${S}/css/value_types_3_9.cpp ${S}/css/value_types_a_1.cpp
-            ${S}/css/value_types_a_2.cpp ${S}/css/value_types_b.cpp ${S}/css/value_types_c_1.cpp ${S}/css/value_types_c_2.cpp ${S}/css/value_types_c_3.cpp
-            ${S}/css/value_types_css_a_1.cpp ${S}/css/value_types_css_a_2.cpp ${S}/css/value_types_css_b_1.cpp ${S}/css/value_types_css_b_2.cpp
+            ${S}/css/value.cpp ${S}/css/value2.cpp ${S}/css/value_types_0_1.cpp ${S}/css/value_types_2_9.cpp ${S}/css/value_types_a_1.cpp
+            ${S}/css/value_types_a_2.cpp ${S}/css/value_types_a_3.cpp ${S}/css/value_types_a_4.cpp ${S}/css/value_types_a_5.cpp ${S}/css/value_types_b_1.cpp
+			${S}/css/value_types_b_2.cpp ${S}/css/value_types_c_1.cpp ${S}/css/value_types_c_2.cpp ${S}/css/value_types_c_3.cpp ${S}/css/value_types_c_4.cpp
+            ${S}/css/value_types_c_5.cpp ${S}/css/value_types_css_a_1.cpp ${S}/css/value_types_css_a_2.cpp ${S}/css/value_types_css_a_3.cpp
+			${S}/css/value_types_css_b_1.cpp ${S}/css/value_types_css_b_2.cpp
             ${S}/css/value_types_css_b_3.cpp ${S}/css/value_types_css_b_4.cpp ${S}/css/value_types_css_c_1.cpp ${S}/css/value_types_css_c_2.cpp
             ${S}/css/value_types_css_c_3.cpp ${S}/css/value_types_css_d.cpp ${S}/css/value_types_css_e.cpp ${S}/css/value_types_css_f_1.cpp
-            ${S}/css/value_types_css_f_2.cpp ${S}/css/value_types_css_f_3.cpp ${S}/css/value_types_css_g_h.cpp ${S}/css/value_types_css_i.cpp
-            ${S}/css/value_types_css_j_k.cpp ${S}/css/value_types_css_l.cpp ${S}/css/value_types_css_m_n.cpp ${S}/css/value_types_css_o.cpp
+            ${S}/css/value_types_css_f_2.cpp ${S}/css/value_types_css_f_3.cpp ${S}/css/value_types_css_f_4.cpp ${S}/css/value_types_css_g_h.cpp ${S}/css/value_types_css_i.cpp
+            ${S}/css/value_types_css_j_k.cpp ${S}/css/value_types_css_l.cpp ${S}/css/value_types_css_m_n.cpp ${S}/css/value_types_css_o.cpp ${S}/css/value_types_css_p_1.cpp
             ${S}/css/value_types_css_p_q.cpp ${S}/css/value_types_css_r.cpp ${S}/css/value_types_css_s_1.cpp ${S}/css/value_types_css_s_2.cpp
-            ${S}/css/value_types_css_s_3.cpp ${S}/css/value_types_css_t_1.cpp ${S}/css/value_types_css_t_2.cpp ${S}/css/value_types_css_t_3.cpp
-            ${S}/css/value_types_css_u.cpp ${S}/css/value_types_css_v.cpp ${S}/css/value_types_css_w_z.cpp ${S}/css/value_types_d.cpp
-            ${S}/css/value_types_e.cpp ${S}/css/value_types_f_1.cpp ${S}/css/value_types_f_2.cpp ${S}/css/value_types_g_h.cpp
-            ${S}/css/value_types_i_1.cpp ${S}/css/value_types_i_2.cpp ${S}/css/value_types_j_k.cpp ${S}/css/value_types_l_1.cpp ${S}/css/value_types_l_2.cpp
-            ${S}/css/value_types_m_1.cpp ${S}/css/value_types_m_2.cpp ${S}/css/value_types_m_3.cpp ${S}/css/value_types_m_n.cpp ${S}/css/value_types_n_o.cpp
-            ${S}/css/value_types_o.cpp ${S}/css/value_types_p_1.cpp ${S}/css/value_types_p_2.cpp ${S}/css/value_types_q_r.cpp
-            ${S}/css/value_types_r.cpp ${S}/css/value_types_rsl.cpp ${S}/css/value_types_s_1.cpp ${S}/css/value_types_s_2.cpp ${S}/css/value_types_svg_1.cpp
-            ${S}/css/value_types_svg_2.cpp ${S}/css/value_types_t_1.cpp ${S}/css/value_types_t_2.cpp ${S}/css/value_types_u.cpp
-            ${S}/css/value_types_v.cpp ${S}/css/value_types_v_w.cpp ${S}/css/value_types_x.cpp
-            ${S}/css/value_types_x_z.cpp ${S}/css/weight.cpp 
+            ${S}/css/value_types_css_s_3.cpp ${S}/css/value_types_css_t_1.cpp ${S}/css/value_types_css_t_2.cpp ${S}/css/value_types_css_t_3.cpp ${S}/css/value_types_css_t_4.cpp
+            ${S}/css/value_types_css_u.cpp ${S}/css/value_types_css_v.cpp ${S}/css/value_types_css_w_z.cpp ${S}/css/value_types_d_1.cpp ${S}/css/value_types_d_2.cpp
+			${S}/css/value_types_e.cpp ${S}/css/value_types_f_1.cpp ${S}/css/value_types_f_2.cpp ${S}/css/value_types_f_3.cpp ${S}/css/value_types_g.cpp
+            ${S}/css/value_types_h.cpp ${S}/css/value_types_i_1.cpp ${S}/css/value_types_i_2.cpp ${S}/css/value_types_i_3.cpp ${S}/css/value_types_j_k.cpp
+			${S}/css/value_types_l_1.cpp ${S}/css/value_types_l_2.cpp ${S}/css/value_types_l_3.cpp ${S}/css/value_types_m_1.cpp ${S}/css/value_types_m_2.cpp
+			${S}/css/value_types_m_3.cpp ${S}/css/value_types_m_4.cpp ${S}/css/value_types_m_5.cpp ${S}/css/value_types_m_6.cpp ${S}/css/value_types_n.cpp
+            ${S}/css/value_types_o.cpp ${S}/css/value_types_p_1.cpp ${S}/css/value_types_p_2.cpp ${S}/css/value_types_p_3.cpp ${S}/css/value_types_p_4.cpp
+			${S}/css/value_types_r_1.cpp ${S}/css/value_types_r_2.cpp ${S}/css/value_types_r_3.cpp ${S}/css/value_types_r_4.cpp ${S}/css/value_types_r_5.cpp
+			${S}/css/value_types_s_1.cpp ${S}/css/value_types_s_2.cpp ${S}/css/value_types_s_3.cpp ${S}/css/value_types_s_4.cpp ${S}/css/value_types_s_5.cpp
+            ${S}/css/value_types_t_1.cpp ${S}/css/value_types_t_2.cpp ${S}/css/value_types_u_1.cpp ${S}/css/value_types_u_2.cpp ${S}/css/value_types_v_1.cpp
+            ${S}/css/value_types_v_2.cpp ${S}/css/value_types_w.cpp ${S}/css/value_types_x_1.cpp ${S}/css/value_types_x_2.cpp ${S}/css/value_types_y_z.cpp
+			${S}/css/weight.cpp 
         ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_aria.cpp ${S}/element/element_attributes.cpp
             ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp
             ${S}/element/element_jkl.cpp ${S}/element/element_microdata.cpp ${S}/element/element_microformats.cpp ${S}/element/element_mno.cpp

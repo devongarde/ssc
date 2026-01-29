@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Image preload example</title>
+
+  <link rel="preload" href="flower.avif" as="image" type="image/avif" />
+</head>
+<body>
+  <picture>
+    <source src="flower.avif" type="image/avif" />
+    <source src="flower.webp" type="image/webp" />
+    <img src="flower.jpg" />
+  </picture>
+</body>
+</html>

@@ -69,20 +69,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EP_HOLDS_ALL        0x0000008000000000
 
 // corresponds to e_category_sought
-#define EP_XLINK_TYPE_MASK  0x0000FF0000000000
+#define EP_XLINK_TYPE_MASK  0x000FFF0000000000
 #define EP_XLINK_TYPE_SHIFT 40
 
 #define EP_SET_XLINKCAT(XXX)  ((flags_t) (XXX) << EP_XLINK_TYPE_SHIFT)
 #define EP_GET_XLINKCAT(XXX)  (((XXX) & EP_XLINK_TYPE_MASK) >> EP_XLINK_TYPE_SHIFT)
 
-#define EP_WX               0x0001000000000000
-#define EP_WXONLY           0x0002000000000000
-#define EP_AI               0x0004000000000000
-#define EP_EXPERIMENTAL     0x0008000000000000
 
 #define EP_ATOM             0x0010000000000000
 #define EP_NODOCTYPE        0x0020000000000000
-
 // bleugh
 #define EP_CAN_BE_TOP       0x0040000000000000
 
@@ -90,8 +85,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EP_MRSS             0x0400000000000000
 #define EP_TRACKBACK        0x0800000000000000
 
-// categories
+#define EP_WX               0x1000000000000000
+#define EP_WXONLY           0x2000000000000000
+#define EP_AI               0x4000000000000000
+#define EP_EXPERIMENTAL     0x8000000000000000
 
+// categories
 #define EF_DOCUMENT         0x0000000000000001
 #define EF_FAUX             0x0000000000000002
 #define EF_METADATA         0x0000000000000004

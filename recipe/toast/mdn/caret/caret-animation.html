@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN caret-animation tests</title>
+<style>
+.sid {
+/* Keyword values */
+caret-animation: auto;
+caret-animation: manual;
+
+/* Global values */
+caret-animation: inherit;
+caret-animation: initial;
+caret-animation: revert;
+caret-animation: revert-layer;
+caret-animation: unset;
+}
+
+@keyframes custom-caret-animation {
+  from {
+    caret-color: transparent;
+  }
+
+  to {
+    caret-color: darkblue;
+  }
+}
+
+.custom-caret {
+  animation: custom-caret-animation infinite linear alternate 0.75s;
+  caret-color: darkblue;
+  caret-animation: manual;
+}
+
+p,
+input {
+  font-size: 1.6rem;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN caret-animation Tests</h1>
+
+<p contenteditable="true">
+  My caret animates because <code>caret-animation</code> is set to
+  <code>auto</code>.
+</p>
+<p contenteditable="true">
+  My caret doesn't animate because <code>caret-animation</code> is set to
+  <code>manual</code>.
+</p>
+
+<p contenteditable="true" class="custom-caret">
+  This paragraph has a custom animation applied to it, plus
+  <code>caret-animation: manual</code> to stop the default caret blinking and
+  allow the smooth animation to be seen.
+</p>
+
+<input
+  type="text"
+  class="custom-caret"
+  value="I've got a custom caret animation" />
+
+<input type="text" value="I've got the default blinking caret" />
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN corner-block-end-shape tests</title>
+<style>
+.sid {
+/* Single keyword value set for both corners */
+corner-block-end-shape: square;
+corner-block-end-shape: scoop;
+
+/* Single superellipse() value set for both corners */
+corner-block-end-shape: superellipse(3.5);
+corner-block-end-shape: superellipse(-1.9);
+
+/* Block-end/inline-start corner, block-end/inline-end corner */
+corner-block-end-shape: square scoop;
+corner-block-end-shape: square superellipse(-1.9);
+
+/* Global values */
+corner-block-end-shape: inherit;
+corner-block-end-shape: initial;
+corner-block-end-shape: revert;
+corner-block-end-shape: revert-layer;
+corner-block-end-shape: unset;
+}
+
+div {
+  box-shadow: 1px 1px 3px gray;
+  border-radius: 80px / 40px;
+  corner-block-end-shape: notch square;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN corner-block-end-shape Tests</h1>
+
+<div></div>
+
+</body>
+</html>

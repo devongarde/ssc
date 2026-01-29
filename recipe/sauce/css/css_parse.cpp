@@ -45,6 +45,8 @@ void bonk (vtok_t& vt, e_token t, const int line, ::std::string& s, ::std::strin
         else if ((s.substr (0, 1).find_first_not_of (SIGNEDDECIMAL) == ::std::string::npos) &&
                     (s.substr (1).find_first_not_of (EXPONENTIAL) == ::std::string::npos))
             vt.emplace_back (ct_number, line, x, s);
+        else if ((s.length () == 1) && (s.at (0) == HASH))
+            vt.emplace_back (ct_hash, line, x);
         else
         {   if (context.html_ver ().css_version () == css_1)
                 if (s.find_first_not_of (HYPHENATED) == ::std::string::npos)
@@ -266,7 +268,6 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
                            break;
                 case ';' : bonk (args_.t_, ct_semicolon, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case '!' : bonk (args_.t_, ct_bang, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
-                case '#' : bonk (args_.t_, ct_hash, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case '^' : bonk (args_.t_, ct_hat, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case '$' : bonk (args_.t_, ct_dollar, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case '>' : if (anticipate (i, e, ">="))
@@ -309,6 +310,10 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
                     if (v.size () == 1)
                     {   sq = true;
                         PRESUME (! dq, __FILE__, __LINE__); }
+                    break;
+                case '#' :
+                    if (v.empty ()) v = *i;
+                    else bonk (args_.t_, ct_hash, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                     break;
                 case '0' :
                 case '1' :
@@ -395,8 +400,9 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
 {   switch (t)
     {   case ct_keyword :
         case ct_identifier :
-        case ct_number : return s;
-        case ct_string : return s;
+        case ct_number :
+        case ct_string :
+            return s;
         case ct_slash : return "/";
         case ct_splat : return "*";
         case ct_curly_brac : return "{";
@@ -429,8 +435,8 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
         case ct_plus : return "+";
         case ct_comment :
         case ct_whitespace : return " ";
-        case ct_error : return "???";
-        case ct_eof :
+        case ct_error :  return "???";
+        case ct_eof : 
         case ct_root : return "";
         default : GRACEFUL_CRASH (__FILE__, __LINE__); } }
 
@@ -521,6 +527,7 @@ unsigned short token_category (const e_token t)
         case ct_keyword :
         case ct_number :
         case ct_string :
+        case ct_hash :
             return TC_VALUE;
         case ct_eq :
         case ct_gt :

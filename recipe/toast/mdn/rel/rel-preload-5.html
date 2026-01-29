@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Responsive preload example</title>
+
+  <link
+    rel="preload"
+    href="bg-image-narrow.png"
+    as="image"
+    media="(width <= 600px)" />
+  <link
+    rel="preload"
+    href="bg-image-wide.png"
+    as="image"
+    media="(width > 600px)" />
+
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+  <header>
+    <h1>My site</h1>
+  </header>
+
+  <script>
+    const mediaQueryList = window.matchMedia("(width <= 600px)");
+    const header = document.querySelector("header");
+
+    if (mediaQueryList.matches) {
+      header.style.backgroundImage = 'url("bg-image-narrow.png")';
+    } else {
+      header.style.backgroundImage = 'url("bg-image-wide.png")';
+    }
+  </script>
+</body>
+</html>

@@ -364,6 +364,7 @@ sh_t sh [] =  // latest first
     { role_schema, html_role },
     { rr_schema, html_rr },
     { schema_30_0, html_schema_30_0 },
+    { schema_29_5, html_schema_29_5 },
     { schema_29_4, html_schema_29_4 },
     { schema_29_3, html_schema_29_3 },
     { schema_29_2, html_schema_29_2 },
@@ -1212,9 +1213,9 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
         case 11 :
         case 28 : return (mnr < 2);
         case 27 : return (mnr == 1) || (mnr == 2); 
-        case 29 : return (mnr < 5);
+        case 29 : return (mnr < 6);
         default : return (mnr == 0); }
-    switch (mnr)
+    switch (mnr) // 3.x
     {   case 0 : return ((oflags & SV_NOT_30) == 0);
         case 1 : return ((oflags & SV_NOT_31) == 0);
         case 2 : return ((oflags & SV_NOT_32) == 0);
@@ -1228,7 +1229,7 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
         default : break; }
     return false; }
 template < > ontology_version ontology_detail < s_schema > :: from () noexcept { return ontology_version (s_schema, MIN_SCHEMA_ORG_MAJOR, MIN_SCHEMA_ORG_MINOR); }
-template < > int ontology_detail < s_schema > :: count () noexcept { return 89; }
+template < > int ontology_detail < s_schema > :: count () noexcept { return 90; }
 template < > ontology_version ontology_detail < s_schema > :: to () noexcept { return ontology_version (s_schema, MAX_SCHEMA_ORG_MAJOR, MAX_SCHEMA_ORG_MINOR); }
 template < > ::std::string ontology_detail < s_schema > :: ver (const unsigned short mjr, const unsigned short mnr)
 {   switch (mjr)

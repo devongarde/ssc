@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN cursor tests</title>
+<style>
+.sid {
+/* Keyword value */
+cursor: auto;
+cursor: pointer;
+/* … */
+cursor: zoom-out;
+
+/* URL with mandatory keyword fallback */
+cursor: url("hand.cur"), pointer;
+
+/* URL and coordinates, with mandatory keyword fallback */
+cursor:
+  url("cursor_1.png") 4 12,
+  auto;
+cursor:
+  url("cursor_2.png") 2 2,
+  pointer;
+
+/* URLs and fallback URLs (some with coordinates), with mandatory keyword fallback */
+cursor:
+  url("cursor_1.svg") 4 5,
+  url("cursor_2.svg"),
+  /* …, */ url("cursor_n.cur") 5 5,
+  progress;
+
+/* Global values */
+cursor: inherit;
+cursor: initial;
+cursor: revert;
+cursor: revert-layer;
+cursor: unset;
+}
+.foo {
+  cursor: crosshair;
+}
+
+.bar {
+  cursor: zoom-in;
+}
+
+/* A fallback keyword value is required when using a URL */
+.baz {
+  cursor: url("hyper.cur"), auto;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN cursor Tests</h1>
+
+</body>
+</html>

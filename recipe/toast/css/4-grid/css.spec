@@ -7,7 +7,6 @@ PASS ../toast/css/4-grid/css-1.css
 
 PASS ../toast/css/4-grid/css-2.css
 0 html
-48 unrecognised_value
 
 PASS ../toast/css/4-grid/css-3.css
 0 html

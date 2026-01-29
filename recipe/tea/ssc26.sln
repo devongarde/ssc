@@ -1,40 +1,15 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31612.314
+# Visual Studio Version 18
+VisualStudioVersion = 18.1.11312.151 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ssc26", "ssc26.vcxproj", "{267FF320-A1F2-453B-B242-BD51EB2C54D6}"
 	ProjectSection(ProjectDependencies) = postProject
 		{19E11ED4-2652-40E1-9EBB-F69A244C7301} = {19E11ED4-2652-40E1-9EBB-F69A244C7301}
-		{D634717B-6097-483E-BF95-E38BB88B23C1} = {D634717B-6097-483E-BF95-E38BB88B23C1}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ssc26-test", "ssc26-test.vcxproj", "{19E11ED4-2652-40E1-9EBB-F69A244C7301}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "httpd", "..\httpd\", "{D634717B-6097-483E-BF95-E38BB88B23C1}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_53053"
-		Debug.AspNetCompiler.PhysicalPath = "..\httpd\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53053\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_53053"
-		Release.AspNetCompiler.PhysicalPath = "..\httpd\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53053\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "53053"
-		SlnRelativePath = "..\httpd\"
-	EndProjectSection
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ssc26-wx", "ssc26wx.vcxproj", "{CDFD1629-A939-463B-B181-58512930A8E4}"
-	ProjectSection(ProjectDependencies) = postProject
-		{D634717B-6097-483E-BF95-E38BB88B23C1} = {D634717B-6097-483E-BF95-E38BB88B23C1}
-	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "install-x64", "..\install\install-x64.vdproj", "{DDEB8BE6-36F4-4B46-B786-B980F9B9DDB1}"
 EndProject
@@ -93,26 +68,6 @@ Global
 		{19E11ED4-2652-40E1-9EBB-F69A244C7301}.Release|Win32.ActiveCfg = Release|Win32
 		{19E11ED4-2652-40E1-9EBB-F69A244C7301}.Release|x64.ActiveCfg = Release|x64
 		{19E11ED4-2652-40E1-9EBB-F69A244C7301}.Release|x64.Build.0 = Release|x64
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Debug|ARM.Build.0 = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Debug|Win32.Build.0 = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Debug|x64.Build.0 = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Release|ARM.ActiveCfg = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Release|ARM.Build.0 = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Release|ARM64.ActiveCfg = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Release|ARM64.Build.0 = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Release|Win32.ActiveCfg = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Release|Win32.Build.0 = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Release|x64.ActiveCfg = Debug|Any CPU
-		{D634717B-6097-483E-BF95-E38BB88B23C1}.Release|x64.Build.0 = Debug|Any CPU
 		{CDFD1629-A939-463B-B181-58512930A8E4}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{CDFD1629-A939-463B-B181-58512930A8E4}.Debug|ARM.ActiveCfg = Debug|x64
 		{CDFD1629-A939-463B-B181-58512930A8E4}.Debug|ARM.Build.0 = Debug|x64

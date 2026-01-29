@@ -1,0 +1,219 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN type-speculationrules tests</title>
+<script type="speculationrules">
+  // JSON object defining rules
+</script>
+<script type="speculationrules">
+  {
+    "prefetch": [
+      {
+        "urls": ["next.html", "next2.html"],
+        "requires": ["anonymous-client-ip-when-cross-origin"],
+        "referrer_policy": "no-referrer"
+      }
+    ]
+  }
+</script>
+<script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "where": { "href_matches": "/next" },
+        "eagerness": "eager"
+      }
+    ]
+  }
+</script>
+<script type="speculationrules">
+  {
+    "prefetch": [
+      {
+        "urls": ["next.html", "next2.html"],
+        "requires": ["anonymous-client-ip-when-cross-origin"],
+        "referrer_policy": "no-referrer"
+      }
+    ],
+    "prerender": [
+      {
+        "where": { "selector_matches": ".product-link" },
+        "eagerness": "eager"
+      }
+    ]
+  }
+</script>
+<script type="speculationrules">
+  {
+    "prefetch": [
+      {
+        "urls": ["next.html", "next2.html"],
+        "requires": ["anonymous-client-ip-when-cross-origin"],
+        "referrer_policy": "no-referrer"
+      }
+    ]
+  }
+</script>
+<script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "where": { "selector_matches": ".product-link" },
+        "eagerness": "eager"
+      }
+    ]
+  }
+</script>
+<script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "urls": ["one.html"]
+      },
+      {
+        "urls": ["two.html"]
+      }
+    ]
+  }
+</script>
+<script>
+if (
+  HTMLScriptElement.supports &&
+  HTMLScriptElement.supports("speculationrules")
+) {
+  const specScript = document.createElement("script");
+  specScript.type = "speculationrules";
+  const specRules = {
+    prerender: [
+      {
+        urls: ["/next.html"],
+      },
+    ],
+  };
+  specScript.textContent = JSON.stringify(specRules);
+  console.log("added speculation rules to: next.html");
+  document.body.append(specScript);
+}
+</script>
+<script type="speculationrules">
+  {
+    "prefetch": [
+      {
+        "where": {
+          "and": [
+            { "href_matches": "/*" },
+            { "not": { "href_matches": "/logout" } },
+            { "not": { "selector_matches": ".no-prerender" } }
+          ]
+        }
+      }
+    ]
+  }
+</script>
+<script type="speculationrules">
+  {
+    "prefetch": [
+      {
+        { "where": { "href_matches": "/users?id=*" } },
+        "expects_no_vary_search": "params=(\"id\" \"order\" \"lang\")"
+      }
+    ]
+  }
+</script>
+<script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "where": { "href_matches": "/*" },
+        "eagerness": "conservative"
+      },
+      {
+        "where": { "selector_matches": ".product-link" },
+        "eagerness": "eager"
+      }
+    ]
+  }
+</script>
+<script type="speculationrules">
+  {
+    "tag": "my-rules",
+    "prerender": [
+      {
+        "where": { "href_matches": "/*" },
+        "eagerness": "conservative"
+      }
+    ]
+  }
+</script>
+<script type="speculationrules">
+  {
+    "prefetch": [
+      "tag": "my-prefetch-rule",
+      "urls": ["next.html"]
+    ],
+    "prerender": [
+      "tag": "my-prerender-rule",
+      "urls": ["next2.html"]
+    ],
+  }
+</script>
+<script type="speculationrules">
+  {
+    "tag": "my-rules",
+    "prerender": [
+      {
+        "eagerness": "eager",
+        "target_hint": "_blank",
+        "urls": ["page2.html"]
+      }
+    ]
+  }
+</script>
+</head>
+
+<body>
+
+<h1>MDN type-speculationrules Tests</h1>
+
+<script type="speculationrules">
+  {
+    "prefetch": [
+      {
+        "urls": ["/users"]
+      }
+    ]
+  }
+</script>
+<a href="/users?id=345">User Bob</a>
+
+<script type="speculationrules">
+  {
+    "prefetch": [
+      {
+        "urls": ["/users"],
+        "expects_no_vary_search": "params=(\"id\")"
+      }
+    ]
+  }
+</script>
+<a href="/users?id=345">User Bob</a>
+
+<script type="speculationrules">
+  {
+    "prefetch": [
+      {
+        { "where": { "href_matches": "/users?id=*" } },
+        "expects_no_vary_search": "params=(\"id\")"
+      }
+    ]
+  }
+</script>
+<a href="/users?id=012">User Bill</a>
+<a href="/users?id=345">User Bob</a>
+<a href="/users?id=678">User Ben</a>
+
+<a href="page1.html">Open link in this window</a>
+<a target="_blank" href="page2.html">Open link in new window</a>
+
+</body>
+</html>

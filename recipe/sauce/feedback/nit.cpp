@@ -218,6 +218,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_ecma : return "ECMAScript, 22.2.1 Patterns";
         case ed_keyboard : return "KeyboardEvent key Values";
         case ed_mozilla : return "mozilla.org May 20";
+        case ed_mdn : return "developer.mozilla.org Dec 25";
         case ed_microdata : return "WhatWG Microdata";
         case ed_microformats : return MICROFORMATS_ORG " May 20";
         case ed_aria_1_0 : return "Aria 1.0";
@@ -235,6 +236,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_css_20 : return "CSS Level 2";
         case ed_css_21 : return "CSS Level 2.1";
         case ed_css_22 : return "CSS Level 2.2";
+        case ed_css_anchor : return "CSS Anchor Positioning";
         case ed_css_animation_3 : return "CSS Animation 3"; 
         case ed_css_cascade_4 : return "CSS Cascade 4"; 
         case ed_css_cascade_5 : return "CSS Cascade 5"; 
@@ -366,12 +368,14 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_apache : return "Apache 2.4 mod_include, 2020";
         case ed_so_11 : return SCHEMA_ORG " 11.0";
         case ed_mozilla : return "moz://a, May 2020";
+        case ed_mdn : return "developer.mozilla.org, December 2025";
         case ed_microdata : return "WhatWG HTML 5, WhatWG, July 2020";
         case ed_microformats : return "Microformats (" MICROFORMATS_ORG "), May 2020";
         case ed_css_1 : return "CSS Level 1 (April 2008)";
         case ed_css_20 : return "CSS Level 2 (May 1998)";
         case ed_css_21 : return "CSS Level 2.1 (April 2016)";
         case ed_css_22 : return "CSS Level 2.2 (February 2022 draft)";
+        case ed_css_anchor : return "CSS Anchor Positioning Level '1', December 2025";
         case ed_css_animation_3 : return "CSS Animation Level '1', March 2023"; 
         case ed_css_cascade_4 : return "CSS Cascade Level 4, January 2022"; 
         case ed_css_cascade_5 : return "CSS Cascade Level 5, January 2022"; 
@@ -487,6 +491,7 @@ e_nit_link_type doc_link (const e_doc doc, ::std::string& link)
         case ed_css_20 : link = CSSSPEX "css-2.0-may98.pdf"; return nlt_pdf;
         case ed_css_21 : link = CSSSPEX "css-2.1-apr16.pdf"; return nlt_pdf;
         case ed_css_22 : link = CSSSPEX "css-2.2-feb22.pdf"; return nlt_pdf;
+        case ed_css_anchor : link = CSSSPEX "css-anchor-positioning-1-dec25.pdf"; return nlt_pdf;
         case ed_css_animation_3 : link = CSSSPEX "css-animations-1-mar23.pdf"; return nlt_pdf; 
         case ed_css_cascade_4 : link = CSSSPEX "css-cascading-inheritance-4-jan22.pdf"; return nlt_pdf; 
         case ed_css_cascade_5 : link = CSSSPEX "css-cascading-inheritance-5-jan22.pdf"; return nlt_pdf; 
@@ -530,8 +535,8 @@ e_nit_link_type doc_link (const e_doc doc, ::std::string& link)
         case ed_microdata : link = LIVING "html-whatwg-2020-07.pdf"; return nlt_pdf;
         case ed_microformats : link = "https://microformats.org/"; return nlt_html;
         case ed_mimetype : link = "mime/media-types.txt"; return nlt_txt;
-        case ed_mozilla : link = "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta"; return nlt_html;
-        case ed_mql : link = "media/media-queries.pdf"; return nlt_pdf;
+        case ed_mozilla : link = "https://developer.mozilla.org/"; return nlt_html;
+        case ed_mql : link = "css/media-queries.pdf"; return nlt_pdf;
         case ed_mrss : link = "https://www.rssboard.org/media-rss"; return nlt_html;
         case ed_owasp : link = "https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html"; return nlt_html;
         case ed_plus : link = "https://www.w3.org/MarkUp/HTMLPlus/htmlplus_1.html"; return nlt_html;

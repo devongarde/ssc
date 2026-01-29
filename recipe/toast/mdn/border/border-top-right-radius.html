@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-top-right-radius tests</title>
+<style>
+.sid {
+/* the corner is a circle */
+/* border-top-right-radius: radius */
+border-top-right-radius: 3px;
+
+/* the corner is an ellipse */
+/* border-top-right-radius: horizontal vertical */
+border-top-right-radius: 0.5em 1em;
+
+border-top-right-radius: inherit;
+
+/* Global values */
+border-top-right-radius: inherit;
+border-top-right-radius: initial;
+border-top-right-radius: revert;
+border-top-right-radius: revert-layer;
+border-top-right-radius: unset;
+}
+
+div {
+  border-top-right-radius: 40px;
+  background-color: lightgreen;
+  border: solid 1px black;
+  width: 100px;
+  height: 100px;
+}
+
+div {
+  border-top-right-radius: 40px 20px;
+  background-color: lightgreen;
+  border: solid 1px black;
+  width: 100px;
+  height: 100px;
+}
+
+div {
+  border-top-right-radius: 40%;
+  background-color: lightgreen;
+  border: solid 1px black;
+  width: 100px;
+  height: 100px;
+}
+
+div {
+  border-top-right-radius: 40%;
+  background-color: lightgreen;
+  border: solid 1px black;
+  width: 200px;
+  height: 100px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-top-right-radius Tests</h1>
+
+</body>
+</html>

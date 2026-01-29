@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN box-orient tests</title>
+<style>
+.sid {
+/* Keyword values */
+box-orient: horizontal;
+box-orient: vertical;
+box-orient: inline-axis;
+box-orient: block-axis;
+
+/* Global values */
+box-orient: inherit;
+box-orient: initial;
+box-orient: unset;
+}
+
+div.example {
+  display: -moz-box; /* Mozilla */
+  display: -webkit-box; /* WebKit */
+  display: box; /* As specified */
+
+  /* Children should be oriented vertically */
+  -moz-box-orient: horizontal; /* Mozilla */
+  -webkit-box-orient: horizontal; /* WebKit */
+  box-orient: horizontal; /* As specified */
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN box-orient Tests</h1>
+
+<div class="example">
+  <p>I will be to the left of my sibling.</p>
+  <p>I will be to the right of my sibling.</p>
+</div>
+
+</body>
+</html>

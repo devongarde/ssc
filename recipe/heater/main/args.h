@@ -35,12 +35,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
         m microdata      M microformat
         n              
         o output         O rpt ext once
-        p                P NIT OVERRIDE
+        p port           P NIT OVERRIDE
         q shell          Q
         r no revoke chks R HTML revision
         s domain name    S stats
         t                T test mode
-        u                U unique
+        u HTML UI        U unique
         v verbose        V version
         w                W cgi
         x extensions     X check cross-linked ids
@@ -50,16 +50,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
         1
         2
         3 report http 30*
-        4
+        4 ipv4
         5 HTML minor
-        6
+        6 ipv6
         7 original analysis
         8
         9 */
 
 #define DONTASK_SW_ "0"
 #define FORWARD_SW_ "3"
+#define IPV4_SW_    "4"
 #define MINOR_SW_   "5"
+#define IPV6_SW_    "6"
 #define ANAL_SW_    "7"
 #define ASK_SW_     "a"
 #define SWITCH_SW_  "A"
@@ -85,6 +87,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MFVER_SW_   "M"
 #define OUTPUT_SW_  "o"
 #define ONCE_SW_    "O"
+#define PORT_SW_    "p"
 #define OVRRD_SW_   "P"
 #define SHELL_SW_   "q"
 #define REVOKE_SW_  "r"
@@ -130,7 +133,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define OUTPUT_     "output"
 #define RSL_        "rsl"
 #define RSS_        "rss"
-#define SERVER_     "server"
 #define SP          "shadow"
 #define SHADOW_     SP
 #define SPELL_      "spell"
@@ -142,8 +144,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define WEBSITE_    "site"
 
 #define ATOMIC      ATOMIC_ JOIN
-#define BLACKLIST   BLACKLIST_ JOIN
-#define BLUELIST    BLUELIST_ JOIN
 #define CORPUS      CORPUS_ JOIN
 #define CSS         CSS_ JOIN
 #define ENVIRONMENT ENVIRONMENT_ JOIN
@@ -160,7 +160,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define OUTPUT      OUTPUT_ JOIN
 #define RSL         RSL_ JOIN
 #define RSS         RSS_ JOIN
-#define SERVER      SERVER_ JOIN
 #define SHADOW      SHADOW_ JOIN
 #define SPELL       SPELL_ JOIN
 #define SSC         PROG JOIN
@@ -170,7 +169,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define VALIDATION  VALIDATION_ JOIN
 #define VTT         VTT_ JOIN
 #define WEBSITE     WEBSITE_ JOIN
-#define WHITELIST   WHITELIST_ JOIN
 
 #define ABBR        "abbreviation"
 #define ABHORRENT   "abhorrent"
@@ -194,6 +192,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define BACK        "back"
 #define BACKGROUND  "background"
 #define BODY        "body"
+#define BORDER      "border"
 #define BOX_ALIGN   "box-align"
 #define BOX_MODEL   "box-model"
 #define BOX_SIZING  "box-sizing"
@@ -287,6 +286,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define FV          "fv"
 #define GIT         "git"
 #define GRID        "grid"
+#define HDR         "hdr"
 #define HEADER      "header"
 #define HELP        "help"
 #define HELPSITE    "helpsite"
@@ -306,6 +306,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define INFORMATION "information"
 #define INLINE      "inline"
 #define INPUT       "input"
+#define IPV4        "ipv4"
+#define IPV6        "ipv6"
 #define ITEMID      "itemid"
 #define KEYFRAME    "keyframe"
 #define LANG        "lang"
@@ -327,6 +329,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MICRODATAARG "microdata"
 #define MINOR       "minor"
 #define MIMETYPE    "mimetype"
+#define MIXIN       "mixin"
 #define MOBILE      "mobile"
 #define MODE        "mode"
 #define MOTION      "motion"
@@ -449,6 +452,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define TITLE       "title"
 #define THREAD      "thread"
 #define TIMEFMT     "timefmt"
+#define TIMEOUT     "timeout"
+#define TLS         "tls"
 #define TRANSFORM   "transform"
 #define TRANSITION  "transition"
 #define TV          "tv"

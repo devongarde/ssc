@@ -3,7 +3,7 @@
 PASS ../toast/css/3-sel/bad.css
 0 html
 1 css_syntax
-3 css_syntax css_syntax
+3 css_syntax
 
 PASS ../toast/css/3-sel/css-5.css
 0 html

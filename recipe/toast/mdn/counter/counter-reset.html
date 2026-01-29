@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN counter-reset tests</title>
+<style>
+.sid {
+/* Create a counter with initial default value 0 */
+counter-reset: my-counter;
+
+/* Create a counter and initialize as "-3" */
+counter-reset: my-counter -3;
+
+/* Create a reversed counter with initial default value */
+counter-reset: reversed(my-counter);
+
+/* Create a reversed counter and initialize as "-1" */
+counter-reset: reversed(my-counter) -1;
+
+/* Create reversed and regular counters at the same time */
+counter-reset: reversed(pages) 10 items 1 reversed(sections) 4;
+
+/* Remove all counter-reset declarations in less specific rules */
+counter-reset: none;
+
+/* Global values */
+counter-reset: inherit;
+counter-reset: initial;
+counter-reset: revert;
+counter-reset: revert-layer;
+counter-reset: unset;
+}
+
+h1 {
+  /* Create the counters "chapter" and "page" and set to initial default value.
+     Create the counter "section" and set to "4". */
+  counter-reset: chapter section 4 page;
+}
+
+h1 {
+  /* Create reversed counters "chapter" and "section".
+      Set "chapter" as the number of elements and "section" as "10".
+      Create the counter "pages" with the initial default value. */
+  counter-reset: reversed(chapter) reversed(section) 10 pages;
+}
+
+ol {
+  counter-reset: list-item 3;
+}
+
+li::before {
+  content: counter(priority) ". ";
+  counter-increment: priority -1;
+}
+
+.stack {
+  counter-reset: reversed(priority);
+  list-style: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN counter-reset Tests</h1>
+
+<ol>
+  <li>First</li>
+  <li>Second</li>
+  <li>Third</li>
+  <li>Fourth</li>
+  <li>Fifth</li>
+</ol>
+
+<ul class="stack">
+  <li>Task A</li>
+  <li>Task B</li>
+  <li>Task C</li>
+  <li>Task D</li>
+  <li>Task E</li>
+</ul>
+
+</body>
+</html>

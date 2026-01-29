@@ -57,6 +57,21 @@ bool check_custom_property (arguments& args, const ::std::string& s)
     args.note_custom_prop (s);
     return true; }
 
+void validate_anchor_id (const ::std::string& s, arguments& args)
+{   VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
+    const auto pear = args.anchors_.insert (s);
+    if (! pear.second)
+        args.t_.at (0).nits_.pick ( nit_anchor, ed_css_anchor, "2.1. Creating an Anchor: the anchor-name property",
+                                    es_comment, ec_type, quote (s), ": has multiple declarations."); }
+
+void validate_anchor_idref (nitpick& nits, type_master < t_css_anchor_idref >& cai, arguments& args, const ::std::string& s)
+{   VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
+    if (cai.status () == s_good)
+        if (args.anchors_.find (s) == args.anchors_.cend ())
+        {   nits.pick ( nit_anchor, ed_css_anchor, "2.1. Creating an Anchor: the anchor-name property",
+                        es_error, ec_type, quote (s), ": has not been declared (with anchor-name).");
+            cai.status (s_invalid); } }
+
 void validate_animation_name (type_master < t_css_anim_base >& cab, arguments& args)
 {   VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
     sstr_t sstr (args.g_.get_strs (gst_keyframe));
@@ -83,19 +98,25 @@ bool check_constants (arguments& args, nitpick& nits, const int i)
 bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e_css_val_fn& e)
 {   nitpick nuts;
     type_master < t_css_val_fn > cvf;
+    const bool easing = context.css_module (c_easing_function);
     e = cvf_none;
     cvf.set_value (nuts, args.v_, args.t_.at (i).val_);
     if (! cvf.good ()) return false;
     nits.merge (nuts);
     if ((cvf.flags () & CF_NO_PARAMS) == CF_NO_PARAMS)
     {   i = next_non_whitespace (args.t_, i, to);
-        if (context.css_module (c_easing_function))
+        if (easing)
         {   e = cvf.get (); return true; }
         nits.pick (nit_css_ease, ed_css_ease, "", es_error, ec_css, quote (cvf.name ()), " requires CSS Easing Functions");
         return false; }
     i = next_non_whitespace (args.t_, i, to);
     if ((i < 0) || (args.t_.at (i).t_ != ct_round_brac))
-        nits.pick (nit_css_syntax, es_error, ec_css, "expecting '(' after ", quote (cvf.name ()));
+    {   if (easing && ((cvf.flags () & CF_MAYBE_NO_PARAMS) == CF_MAYBE_NO_PARAMS))
+        {   if (args.v_.any_ext5 (H5_CSS_EASE_4))
+            {   e = cvf.get (); return true; }
+            nits.pick (nit_css_ease, ed_css_ease, "", es_error, ec_css, quote (cvf.name ()), " requires CSS Easing Functions level 2");
+            return false; }
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting '(' after ", quote (cvf.name ())); }
     else
     {   i = next_non_whitespace (args.t_, i, to);
         if (i > 0)
@@ -138,6 +159,11 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                         nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Colour 3");
                     else e = cvf.get ();
                     break;
+                case cvf_linear :
+                    if (! easing)
+                        nits.pick (nit_css_ease, es_error, ec_css, quote (cvf.name ()), " requires CSS Easing Functions");
+                    else e = cvf.get ();
+                    break;
                 case cvf_rgb :
                 case cvf_url :
                     e = cvf.get ();
@@ -151,6 +177,12 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                     if (context.css_module (c_custom_property) < 3)
                         nits.pick (nit_css_custom, es_error, ec_css, quote (cvf.name ()), " requires CSS Custom");
                     else e = cvf_var;
+                    break;
+                case cvf_moz_calc :
+                case cvf_moz_image_rect :
+                    nits.pick ( nit_bespoke_obsolete, es_warning, ec_type, quote (cvf.name ()),
+                                " is bespoke, obsolete, or both, so is unlikely to be supported by every browser.");
+                    e = cvf.get ();
                     break;
                 default :
                     switch (context.css_module (c_value_unit))
@@ -175,8 +207,8 @@ bool test_cascade (const ::std::string& s, e_iiu& iiu)
             {   case 'r' :
                 case 'R' :
                     if (compare_no_case (s, "revert-layer"))
-                        {   iiu = iiu_revert_layer;
-                            return true; }
+                    {   iiu = iiu_revert_layer;
+                        return true; }
                     break;
                 default: break; }
             FALLTHROUGH;   
@@ -185,8 +217,8 @@ bool test_cascade (const ::std::string& s, e_iiu& iiu)
             {   case 'r' :
                 case 'R' :
                     if (compare_no_case (s, "revert"))
-                        {   iiu = iiu_revert;
-                            return true; }
+                    {   iiu = iiu_revert;
+                        return true; }
                     break;
                 default: break; }
             FALLTHROUGH;   
@@ -194,13 +226,9 @@ bool test_cascade (const ::std::string& s, e_iiu& iiu)
             switch (s.at (0))
             {   case 'i' :
                 case 'I' :
-                    if (s.length () == 7)
-                        if (compare_no_case (s, "inherit"))
-                        {   iiu = iiu_inherit;
-                            return true; }
-                        if (compare_no_case (s, "initial"))
-                        {   iiu = iiu_initial;
-                            return true; }
+                    if (compare_no_case (s, "initial"))
+                    {   iiu = iiu_initial;
+                        return true; }
                     break;
                 case 'u' :
                 case 'U' :
@@ -209,12 +237,21 @@ bool test_cascade (const ::std::string& s, e_iiu& iiu)
                         return true; }
                     break;
                 default: break; }
-            break;
+            FALLTHROUGH;   
         default :
-            PRESUME ((context.css_version () < css_3) && (context.css_version () != css_bespoke), __FILE__, __LINE__);
             if (context.css_version () != css_1)
-                if (compare_no_case (s, "inherit"))
-                {   iiu = iiu_inherit;
-                    return true; }
+                switch (s.at (0))
+                {   case 'i' :
+                    case 'I' :
+                        if (compare_no_case (s, "inherit"))
+                        {   iiu = iiu_inherit;
+                            return true; }
+                        break;
+                    case '-' :
+                        if (compare_no_case (s, "-moz-initial"))
+                        {   iiu = iiu_moz_initial;
+                            return true; }
+                        break;
+                default: break; }
             break; }
     return false; }

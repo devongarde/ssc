@@ -1,0 +1,114 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN type-url tests</title>
+<style>
+label {
+  display: block;
+  font:
+    1rem "Fira Sans",
+    sans-serif;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+
+input:focus:invalid {
+  outline: 2px solid red;
+}
+
+input:focus:valid {
+  outline: 2px solid green;
+}
+
+input + span {
+  padding: 0 0.3rem;
+}
+
+input:invalid + span::after {
+  content: "✖" / "Content is not valid";
+  color: red;
+}
+
+input:valid + span::after {
+  content: "✓" / "Content is valid";
+  color: green;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN type-url Tests</h1>
+
+<form>
+  <label for="url">Enter an https:// URL:</label>
+  <input
+    type="url"
+    name="url"
+    id="url"
+    placeholder="https://example.com"
+    pattern="https://.*"
+    size="30"
+    required />
+</form>
+
+<input id="myURL" name="myURL" type="url" />
+
+<input
+  id="myURL"
+  name="myURL"
+  type="url"
+  placeholder="http://www.example.com" />
+
+<input id="myURL" name="myURL" type="url" size="30" />
+
+<input
+  id="myURL"
+  name="myURL"
+  type="url"
+  size="30"
+  minlength="10"
+  maxlength="80" />
+
+<input id="myURL" name="myURL" type="url" value="http://www.example.com" />
+
+<input id="myURL" name="myURL" type="url" list="defaultURLs" />
+
+<datalist id="defaultURLs">
+  <option value="https://developer.mozilla.org/"></option>
+  <option value="http://www.google.com/"></option>
+  <option value="http://www.microsoft.com/"></option>
+  <option value="https://www.mozilla.org/"></option>
+  <option value="http://w3.org/"></option>
+</datalist>
+
+<input id="myURL" name="myURL" type="url" list="defaultURLs" />
+
+<datalist id="defaultURLs">
+  <option value="https://developer.mozilla.org/" label="MDN Web Docs"></option>
+  <option value="http://www.google.com/" label="Google"></option>
+  <option value="http://www.microsoft.com/" label="Microsoft"></option>
+  <option value="https://www.mozilla.org/" label="Mozilla"></option>
+  <option value="http://w3.org/" label="W3C"></option>
+</datalist>
+
+<form>
+  <label for="myURL">
+    Enter a url from this site:
+    <input
+      id="myURL"
+      name="myURL"
+      type="url"
+      required
+      pattern=".*\.mozilla\.org.*"
+      title="URL should include mozilla.org" />
+    <span class="validity"></span>
+  </label>
+  <button>Submit</button>
+</form>
+
+</body>
+</html>

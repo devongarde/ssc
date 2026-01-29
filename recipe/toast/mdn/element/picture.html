@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN PICTURE tests</title>
+</head>
+
+<body>
+
+<h1>MDN PICTURE Tests</h1>
+
+<picture>
+  <source
+    srcset="/shared-assets/images/examples/surfer.jpg"
+    media="(orientation: portrait)" />
+  <img src="/shared-assets/images/examples/painted-hand.jpg" alt="" />
+</picture>
+
+<picture>
+  <source srcset="mdn-logo-wide.png" media="(width >= 600px)" />
+  <img src="mdn-logo-narrow.png" alt="MDN" />
+</picture>
+
+<picture>
+  <source srcset="logo-dark.png" media="(prefers-color-scheme: dark)" />
+  <source srcset="logo-light.png" media="(prefers-color-scheme: light)" />
+  <img src="logo-light.png" alt="Product logo" />
+</picture>
+
+<picture>
+  <source srcset="logo.png, logo-1.5x.png 1.5x" />
+  <img src="logo.png" alt="MDN Web Docs logo" height="320" width="320" />
+</picture>
+
+<img
+  srcset="logo.png, logo-2x.png 2x"
+  src="logo.png"
+  height="320"
+  width="320"
+  alt="MDN Web Docs logo" />
+
+<picture>
+  <source
+    srcset="small.jpg 480w, medium.jpg 800w, large.jpg 1200w"
+    sizes="(max-width: 600px) 400px, 800px"
+    type="image/jpeg" />
+  <img src="fallback.jpg" alt="Example image" />
+</picture>
+
+<picture>
+  <source srcset="photo.avif" type="image/avif" />
+  <source srcset="photo.webp" type="image/webp" />
+  <img src="photo.jpg" alt="photo" />
+</picture>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN bottom tests</title>
+<style>
+.sid {
+/* <length> values */
+bottom: 3px;
+bottom: 2.4em;
+bottom: calc(anchor(--my-anchor 50%) + 5px);
+bottom: anchor-size(width);
+
+/* <percentage>s of the height of the containing block */
+bottom: 10%;
+
+/* Keyword value */
+bottom: auto;
+
+/* Global values */
+bottom: inherit;
+bottom: initial;
+bottom: revert;
+bottom: revert-layer;
+bottom: unset;
+}
+p {
+  font-size: 30px;
+  line-height: 2em;
+}
+
+div {
+  width: 48%;
+  text-align: center;
+  background: rgb(55 55 55 / 20%);
+  border: 1px solid blue;
+}
+
+.absolute {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN bottom Tests</h1>
+
+<p>
+  This<br />is<br />some<br />tall,<br />tall,<br />tall,<br />tall,<br />tall<br />content.
+</p>
+<div class="fixed"><p>Fixed</p></div>
+<div class="absolute"><p>Absolute</p></div>
+
+</body>
+</html>

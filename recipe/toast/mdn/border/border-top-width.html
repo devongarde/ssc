@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-top-width tests</title>
+<style>
+.sid {
+/* Keyword values */
+border-top-width: thin;
+border-top-width: medium;
+border-top-width: thick;
+
+/* <length> values */
+border-top-width: 10em;
+border-top-width: 3vmax;
+border-top-width: 6px;
+
+/* Global keywords */
+border-top-width: inherit;
+border-top-width: initial;
+border-top-width: revert;
+border-top-width: revert-layer;
+border-top-width: unset;
+}
+
+div {
+  border: 1px solid red;
+  margin: 1em 0;
+}
+
+div:nth-child(1) {
+  border-top-width: thick;
+}
+div:nth-child(2) {
+  border-top-width: 2em;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-top-width Tests</h1>
+
+<div>Element 1</div>
+<div>Element 2</div>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN corner-block-start-shape tests</title>
+<style>
+.sid {
+/* Single keyword value set for both corners */
+corner-block-start-shape: notch;
+corner-block-start-shape: squircle;
+
+/* Single superellipse() value set for both corners */
+corner-block-start-shape: superellipse(2.7);
+corner-block-start-shape: superellipse(-2.5);
+
+/* Block-start/inline-start corner, block-start/inline-end corner */
+corner-block-start-shape: notch squircle;
+corner-block-start-shape: notch superellipse(-2.5);
+
+/* Global values */
+corner-block-start-shape: inherit;
+corner-block-start-shape: initial;
+corner-block-start-shape: revert;
+corner-block-start-shape: revert-layer;
+corner-block-start-shape: unset;
+}
+
+div {
+  box-shadow: 1px 1px 3px gray;
+  border-radius: 40px 60px;
+  corner-block-start-shape: scoop notch;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN corner-block-start-shape Tests</h1>
+
+<div></div>
+
+</body>
+</html>

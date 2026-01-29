@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN PROGRESS tests</title>
+<style>
+label {
+  padding-right: 10px;
+  font-size: 1rem;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN PROGRESS Tests</h1>
+
+<label for="file">File progress:</label>
+
+<progress id="file" max="100" value="70">70%</progress>
+
+<label>
+  Uploading Document: <progress value="70" max="100">70 %</progress>
+</label>
+
+<!-- OR -->
+<br />
+
+<label for="progress-bar">Uploading Document</label>
+<progress id="progress-bar" value="70" max="100">70 %</progress>
+
+<div aria-busy="true" aria-describedby="progress-bar">
+  <!-- content is for this region is loading -->
+</div>
+
+<!-- ... -->
+
+<progress id="progress-bar" aria-label="Content loading…"></progress>
+
+<progress value="70" max="100">70 %</progress>
+
+</body>
+</html>

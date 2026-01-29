@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN corner-shape tests</title>
+<style>
+.sid {
+/* Single value set for all four corners */
+corner-shape: bevel;
+
+/* top-left and bottom-right, top-right and bottom-left */
+corner-shape: notch superellipse(0.6);
+
+/* top-left, top-right and bottom-left, bottom-right */
+corner-shape: superellipse(-1.2) square squircle;
+
+/* top-left, top-right, bottom-right, bottom-left */
+corner-shape: scoop superellipse(-1.6) superellipse(-2.2) round;
+
+/* Global values */
+corner-shape: inherit;
+corner-shape: initial;
+corner-shape: revert;
+corner-shape: revert-layer;
+corner-shape: unset;
+}
+
+div {
+  width: 480px;
+  height: 200px;
+  background-color: goldenrod;
+  border-radius: 80% 20px;
+  corner-shape: scoop;
+}
+
+div {
+  height: 180px;
+  box-shadow: 1px 1px 3px gray;
+  border-radius: 30px;
+  corner-shape: scoop;
+}
+
+body {
+  background: url("https://mdn.github.io/shared-assets/images/examples/leopard.jpg")
+    no-repeat;
+  background-size: cover;
+}
+
+div {
+  border-radius: 40px;
+  corner-shape: scoop notch;
+  background-color: rgb(255 255 255 / 0.2);
+  border-top: 3px solid blue;
+  border-left: 6px dashed red;
+  border-bottom: 9px solid yellow;
+  border-right: 12px double green;
+  backdrop-filter: invert(100%);
+}
+
+div:hover {
+  background-color: white;
+}
+
+section {
+  box-shadow: 1px 1px 3px gray;
+}
+
+section {
+  box-shadow: 1px 1px 3px gray;
+}
+
+@keyframes corner-pulse {
+  0% {
+    corner-shape: square;
+  }
+
+  /* To make the starting point apparent, let us keep
+  the shape the same for a small duration. */
+  20% {
+    corner-shape: square;
+  }
+
+  100% {
+    corner-shape: notch;
+  }
+}
+
+div {
+  animation: corner-pulse infinite alternate 4s linear;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN corner-shape Tests</h1>
+
+<div>Nice scooped corners</div>
+
+<div>
+  Some styles follow the corner shape, such as border, outline, box-shadow,
+  overflow, and backdrop-filter. This is useful for helping various aspects of
+  your design to not clash. As shown, it can result in some interesting visual
+  effects, so you should test your design carefully.
+</div>
+
+<form>
+  <div>
+    <label for="corner-shape-choice">Choose a corner-shape value:</label>
+    <select id="corner-shape-choice">
+      <optgroup label="Keywords">
+        <option value="square">square | superellipse(infinity)</option>
+        <option selected value="squircle">squircle | superellipse(2)</option>
+        <option value="round">round | superellipse(1)</option>
+        <option value="bevel">bevel | superellipse(0)</option>
+        <option value="scoop">scoop | superellipse(-1)</option>
+        <option value="notch">notch | superellipse(-infinity)</option>
+      </optgroup>
+      <optgroup label="Functions">
+        <option>superellipse(3)</option>
+        <option>superellipse(1.5)</option>
+        <option>superellipse(0.5)</option>
+        <option>superellipse(-0.5)</option>
+        <option>superellipse(-1.5)</option>
+        <option>superellipse(-3)</option>
+      </optgroup>
+    </select>
+  </div>
+  <div>
+    <label for="radius-slider">Choose a border-radius value:</label>
+    <input
+      type="range"
+      id="radius-slider"
+      min="0"
+      value="45"
+      max="90"
+      step="1" />
+  </div>
+</form>
+<section></section>
+
+<form>
+  <div>
+    <label for="superellipse-slider">Choose a superellipse() value:</label>
+    <input
+      type="range"
+      id="superellipse-slider"
+      min="-5"
+      value="0"
+      max="5"
+      step="0.1" />
+  </div>
+  <div>
+    <label for="radius-slider">Choose a border-radius value:</label>
+    <input
+      type="range"
+      id="radius-slider"
+      min="0"
+      value="45"
+      max="90"
+      step="1" />
+  </div>
+</form>
+<section></section>
+
+<div></div>
+
+</body>
+</html>

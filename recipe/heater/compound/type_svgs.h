@@ -228,7 +228,6 @@ template < > struct type_master < t_svg_viewbox > : tidy_string < t_svg_viewbox 
             else nits.pick (nit_viewbox, es_error, ec_type, quote (ss), ": four numbers (x y width height) expected");
             tidy_string < t_svg_viewbox > :: status (s_invalid); } } };
 
-
 template < > struct type_master < t_clip_path_rule > : type_or_either_string < t_clip_path_rule, t_urifn, sz_none, sz_inherit >
 { using type_or_either_string < t_clip_path_rule, t_urifn, sz_none, sz_inherit > :: type_or_either_string; };
 

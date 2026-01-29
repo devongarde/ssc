@@ -2,6 +2,19 @@
   {
     "MJR": 0,
     "MNR": 2,
+    "REL": 24,
+    "VER": "0.2.24",
+    "NOTES": "https://dylanharris.org/ssc/release-notes.shtml",
+    "SRC": "https://dylanharris.org/ssc/src/ssc-0.2.24.tgz",
+    "DATE": "2025 12 24",
+    "MACX": "https://dylanharris.org/ssc/bin/SSC-0.2.24-Mac-Intel.zip",
+    "MACA": "https://dylanharris.org/ssc/bin/SSC-0.2.24-Mac-Arm.zip",
+    "WINX": "https://dylanharris.org/ssc/bin/Install-SSC-0.2.24-Win-x64.msi",
+    "WINA": "https://dylanharris.org/ssc/bin/Install-SSC-0.2.24-Win-a64.msi"
+  },
+  {
+    "MJR": 0,
+    "MNR": 2,
     "REL": 23,
     "VER": "0.2.23",
     "NOTES": "https://dylanharris.org/ssc/release-notes.shtml",

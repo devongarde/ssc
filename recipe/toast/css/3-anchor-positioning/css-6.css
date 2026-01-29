@@ -1,0 +1,28 @@
+﻿#myPopover {
+  position: fixed;
+  position-anchor: --button;
+  position-area: bottom span-x-end;
+  position-try-fallbacks: flip-x, flip-y, flip-x flip-y, bottom, top;
+
+  /* The popover is at least as wide as the button */
+  min-width: anchor-size(width);
+
+  /* The popover is at least as tall as 2 menu items */
+  min-height: 6em;
+}
+
+.anchor { anchor-name: --foo; }
+.list {
+  position: fixed;
+  position-anchor: --foo;
+  position-area: block-end span-inline-end;
+  position-try-fallbacks: --bottom-scrollable, flip-block, --top-scrollable;
+  position-try-order: most-height;
+}
+@position-try --bottom-scrollable {
+  align-self: stretch;
+}
+@position-try --top-scrollable {
+  position-area: block-start span-inline-end;
+  align-self: stretch;
+}

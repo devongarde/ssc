@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN INPUT tests</title>
+<style>
+label {
+  display: block;
+  font:
+    1rem "Fira Sans",
+    sans-serif;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+
+input:checked + label {
+  color: red;
+  font-weight: bold;
+}
+
+/* matches a password input */
+input[type="password"] {
+}
+
+/* matches a form control whose valid values are limited to a range of values */
+input[min][max] {
+}
+
+/* matches a form control with a pattern attribute */
+input[pattern] {
+}
+
+::placeholder {
+  color: blue;
+}
+
+input.custom {
+  caret-color: red;
+  font:
+    16px "Helvetica",
+    "Arial",
+    sans-serif;
+}
+</style>
+<script>
+let form = document.querySelector("form");
+
+let guestName = form.elements.guest;
+    let hatSize = form.elements["hat-size"];
+
+function validate(input) {
+  let validityState = input.validity;
+  if (validityState.valueMissing) {
+    input.setCustomValidity("A value is required");
+  } else if (validityState.rangeUnderflow) {
+    input.setCustomValidity("Your value is too low");
+  } else if (validityState.rangeOverflow) {
+    input.setCustomValidity("Your value is too high");
+  } else {
+    input.setCustomValidity("");
+  }
+    }
+
+const nameInput = document.querySelector("input");
+
+nameInput.addEventListener("input", () => {
+  nameInput.setCustomValidity("");
+  nameInput.checkValidity();
+});
+
+nameInput.addEventListener("invalid", () => {
+  if (nameInput.value === "") {
+    nameInput.setCustomValidity("Enter your username!");
+  } else {
+    nameInput.setCustomValidity(
+      "Usernames can only contain upper and lowercase letters. Try again!",
+    );
+  }
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN INPUT Tests</h1>
+
+<label for="name">Name (4 to 8 characters):</label>
+
+<input
+  type="text"
+  id="name"
+  name="name"
+  required
+  minlength="4"
+  maxlength="8"
+  size="10" />
+
+<form action="page.html" method="post">
+  <label>
+    Fruit:
+    <input type="text" name="fruit" dirname="fruit-dir" value="cherry" />
+  </label>
+  <input type="submit" />
+</form>
+<!-- page.html?fruit=cherry&fruit-dir=ltr -->
+
+<label for="textInput">Note the red caret:</label>
+<input id="textInput" class="custom" size="32" />
+
+<!-- inaccessible -->
+<p>Enter your name: <input id="name" type="text" size="30" /></p>
+
+<!-- implicit label -->
+<p>
+  <label>Enter your name: <input id="name" type="text" size="30" /></label>
+</p>
+
+<!-- explicit label -->
+<p>
+  <label for="name">Enter your name: </label>
+  <input id="name" type="text" size="30" />
+</p>
+
+<input type="time" min="20:00" max="08:00" name="overnight" />
+
+<form>
+  <label for="name">Enter username (upper and lowercase letters): </label>
+  <input type="text" name="name" id="name" required pattern="[A-Za-z]+" />
+  <button>Submit</button>
+</form>
+
+<label for="peas">Do you like peas?</label>
+<input type="checkbox" name="peas" id="peas" />
+
+</body>
+</html>

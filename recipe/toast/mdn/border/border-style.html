@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-style tests</title>
+<style>
+.sid {
+/* Keyword values */
+border-style: none;
+border-style: hidden;
+border-style: dotted;
+border-style: dashed;
+border-style: solid;
+border-style: double;
+border-style: groove;
+border-style: ridge;
+border-style: inset;
+border-style: outset;
+
+/* top and bottom | left and right */
+border-style: dotted solid;
+
+/* top | left and right | bottom */
+border-style: hidden double dashed;
+
+/* top | right | bottom | left */
+border-style: none solid dotted dashed;
+
+/* Global values */
+border-style: inherit;
+border-style: initial;
+border-style: revert;
+border-style: revert-layer;
+border-style: unset;
+}
+
+pre {
+  height: 80px;
+  width: 120px;
+  margin: 20px;
+  padding: 20px;
+  display: inline-block;
+  background-color: palegreen;
+  border-width: 5px;
+  box-sizing: border-box;
+}
+
+/* border-style example classes */
+.b1 {
+  border-style: none;
+}
+
+.b2 {
+  border-style: hidden;
+}
+
+.b3 {
+  border-style: dotted;
+}
+
+.b4 {
+  border-style: dashed;
+}
+
+.b5 {
+  border-style: solid;
+}
+
+.b6 {
+  border-style: double;
+}
+
+.b7 {
+  border-style: groove;
+}
+
+.b8 {
+  border-style: ridge;
+}
+
+.b9 {
+  border-style: inset;
+}
+
+.b10 {
+  border-style: outset;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-style Tests</h1>
+
+<pre class="b1">none</pre>
+<pre class="b2">hidden</pre>
+<pre class="b3">dotted</pre>
+<pre class="b4">dashed</pre>
+<pre class="b5">solid</pre>
+<pre class="b6">double</pre>
+<pre class="b7">groove</pre>
+<pre class="b8">ridge</pre>
+<pre class="b9">inset</pre>
+<pre class="b10">outset</pre>
+
+</body>
+</html>

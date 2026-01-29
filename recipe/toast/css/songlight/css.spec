@@ -5,36 +5,18 @@ PASS ../toast/css/songlight/index.html
 
 PASS ../toast/css/songlight/songlight.css
 0 html
-1 css_version
-18 css_bespoke css_version
-20 css_version
-25 fontname
-26 fontname
-27 fontname
-32 css_bespoke
-33 css_bespoke
-34 css_bespoke
-35 css_version
-100 css_bespoke css_bespoke css_bespoke
-103 css_bespoke css_bespoke css_bespoke
-106 css_bespoke css_bespoke css_bespoke
-397 fontname
-403 fontname
+37 unrecognised_value unrecognised_value
+39 fontname
+40 fontname
+41 fontname
+414 fontname
+420 fontname
 
 PASS ../toast/css/songlight/yukontoast.css
 0 html
-1 css_version
-18 css_bespoke css_version
-20 css_version
-25 fontname
-26 fontname
-27 fontname
-32 css_bespoke
-33 css_bespoke
-34 css_bespoke
-35 css_version
-100 css_bespoke css_bespoke css_bespoke
-103 css_bespoke css_bespoke css_bespoke
-106 css_bespoke css_bespoke css_bespoke
-397 fontname
-403 fontname
+37 unrecognised_value unrecognised_value
+39 fontname
+40 fontname
+41 fontname
+414 fontname
+420 fontname

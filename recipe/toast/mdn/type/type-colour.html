@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN type-colour tests</title>
+<style>
+p,
+label {
+  font:
+    1rem "Fira Sans",
+    sans-serif;
+}
+
+input {
+  margin: 0.4rem;
+}
+</style>
+<script>
+colorPicker.addEventListener("input", updateFirst);
+colorPicker.addEventListener("change", watchColorPicker);
+
+function watchColorPicker(event) {
+  document.querySelectorAll("p").forEach((p) => {
+    p.style.color = event.target.value;
+  });
+    }
+
+    colorPicker.select();
+
+const defaultColor = "#0000ff";
+const colorPicker = document.querySelector("#color-picker");
+colorPicker.value = defaultColor;
+colorPicker.addEventListener("input", updateFirst);
+colorPicker.addEventListener("change", updateAll);
+    colorPicker.select();
+
+function updateFirst(event) {
+  const p = document.querySelector("p");
+  if (p) {
+    p.style.color = event.target.value;
+  }
+    }
+
+function updateAll(event) {
+  document.querySelectorAll("p").forEach((p) => {
+    p.style.color = event.target.value;
+  });
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN type-colour Tests</h1>
+
+<p>Choose your colors:</p>
+
+<div>
+  <input type="color" id="foreground" name="foreground" value="#e66465" />
+  <label for="foreground">Foreground color</label>
+</div>
+
+<div>
+  <input
+    type="color"
+    id="background"
+    name="background"
+    value="oklab(50% 0.1 0.1 / 0.5)"
+    colorspace="display-p3"
+    alpha />
+  <label for="background">Background color</label>
+</div>
+
+<input type="color" value="#ff0000" />
+<input
+  type="color"
+  id="body"
+  name="body"
+  value="oklab(50% 0.1 0.1 / 0.5)"
+  colorspace="display-p3"
+  alpha />
+
+<p>
+  An example demonstrating the use of the
+  <code>&lt;input type="color"&gt;</code> control.
+</p>
+
+<label for="color-picker">Color:</label>
+<input type="color" value="#ff0000" id="color-picker" />
+
+<p>
+  Watch the paragraph colors change when you adjust the color picker. As you
+  make changes in the color picker, the first paragraph's color changes, as a
+  preview (this uses the <code>input</code> event). When you close the color
+  picker, the <code>change</code> event fires, and we detect that to change
+  every paragraph to the selected color.
+</p>
+
+</body>
+</html>

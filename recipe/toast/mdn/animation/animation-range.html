@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN animation-range tests</title>
+<style>
+.sid
+{
+/* Range start value only*/
+/* Single value syntax */
+animation-range: normal;
+animation-range: 20%;
+animation-range: 100px;
+animation-range: cover;
+animation-range: contain;
+/* Two value syntax */
+animation-range: cover 20%;
+animation-range: contain 100px;
+
+/* Range start and end values */
+/* Two value syntax */
+animation-range: normal 25%;
+animation-range: 25% normal;
+animation-range: 25% 50%;
+animation-range: entry exit;
+/* Three value syntax */
+animation-range: cover cover 200px;
+animation-range: 10% exit 90%;
+animation-range: entry 10% 90%;
+/* Four value syntax */
+animation-range: cover 0% cover 200px;
+animation-range: entry 10% exit 100%;
+
+/* Global values */
+animation-timeline: inherit;
+animation-timeline: initial;
+animation-timeline: revert;
+animation-timeline: revert-layer;
+animation-timeline: unset;
+}
+
+.animatedElement {
+  background-color: deeppink;
+  animation: appear 1ms linear;
+  animation-timeline: view();
+  animation-range: entry 10% exit -25%;
+}
+
+@keyframes appear {
+  from {
+    background-color: rebeccapurple;
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    background-color: darkturquoise;
+    opacity: 0.75;
+    transform: scaleX(0.75);
+  }
+}
+
+:has(:checked) .animatedElement {
+  animation-fill-mode: both;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN animation-range Tests</h1>
+
+<div class="animatedElement"></div>
+
+</body>
+</html>

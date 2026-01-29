@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-image-repeat tests</title>
+<style>
+.sid {
+/* Keyword value */
+border-image-repeat: stretch;
+border-image-repeat: repeat;
+border-image-repeat: round;
+border-image-repeat: space;
+
+/* top and bottom | left and right */
+border-image-repeat: round stretch;
+
+/* Global values */
+border-image-repeat: inherit;
+border-image-repeat: initial;
+border-image-repeat: revert;
+border-image-repeat: revert-layer;
+border-image-repeat: unset;
+}
+
+#bordered {
+  width: 12rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 40px solid;
+  border-image: url("border.png") 27;
+  border-image-repeat: stretch; /* Can be changed in the live sample */
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-image-repeat Tests</h1>
+
+</body>
+</html>

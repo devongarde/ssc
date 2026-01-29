@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN capture tests</title>
+<style>
+label {
+  display: block;
+  margin-top: 1rem;
+}
+
+input {
+  margin-bottom: 1rem;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN capture Tests</h1>
+
+<label for="selfie">Take a picture of your face:</label>
+
+<input type="file" id="selfie" name="selfie" accept="image/*" capture="user" />
+
+<label for="picture">Take a picture using back facing camera:</label>
+
+<input
+  type="file"
+  id="picture"
+  name="picture"
+  accept="image/*"
+  capture="environment" />
+
+<p>
+  <label for="soundFile">What does your voice sound like?:</label>
+  <input type="file" id="soundFile" capture="user" accept="audio/*" />
+</p>
+<p>
+  <label for="videoFile">Upload a video:</label>
+  <input type="file" id="videoFile" capture="environment" accept="video/*" />
+</p>
+<p>
+  <label for="imageFile">Upload a photo of yourself:</label>
+  <input type="file" id="imageFile" capture="user" accept="image/*" />
+</p>
+
+</body>
+</html>

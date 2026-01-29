@@ -2,8 +2,6 @@
 
 PASS ../toast/stats/CSS-6/content-3-2.css
 0 html
-1 naughty_content
-4 naughty_content
 7 pseud
 8 pseud
 
@@ -15,6 +13,7 @@ PASS ../toast/stats/CSS-6/custom-3.css
 3 css_syntax unrecognised_value
 8 css_custom
 11 css_custom
+29 sunk immeasurable unrecognised_value immeasurable unrecognised_value
 
 PASS ../toast/stats/CSS-6/extra.css
 0 html
@@ -70,7 +69,7 @@ PASS ../toast/stats/CSS-6/index.html
 
 GRAND
 Custom-Property:
-    --gap: 3
+    --gap: 2
     --looks-valid: 2
     --not-a-color: 2
     --prop1: 2
@@ -79,5 +78,5 @@ Custom-Property:
     --prop4: 1
     --side: 1
     --text-color: 1
-  9 Custom-Property used 16 times
+  9 Custom-Property used 15 times
 ===

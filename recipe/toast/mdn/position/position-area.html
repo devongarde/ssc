@@ -1,0 +1,110 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN position-area tests</title>
+<style>
+.sid {
+/* Default value */
+position-area: none;
+
+/* Two <position-area> keywords defining a single specific tile */
+position-area: top left;
+position-area: start end;
+position-area: block-start center;
+position-area: inline-start block-end;
+position-area: x-start y-end;
+position-area: center self-y-end;
+
+/* Two <position-area> keywords spanning two tiles */
+position-area: top span-left;
+position-area: center span-start;
+position-area: inline-start span-block-end;
+position-area: y-start span-x-end;
+
+/* Two <position-area> keywords spanning three tiles */
+position-area: top span-all;
+position-area: block-end span-all;
+position-area: self-x-start span-all;
+
+/* One <position-area> keyword with an implicit second <position-area> keyword  */
+position-area: top; /* equiv: top span-all */
+position-area: inline-start; /* equiv: inline-start span-all */
+position-area: center; /* equiv: center center */
+position-area: span-all; /* equiv: center center */
+position-area: end; /* equiv: end end */
+
+/* Global values */
+position-area: inherit;
+position-area: initial;
+position-area: revert;
+position-area: revert-layer;
+position-area: unset;
+}
+
+.my-popover {
+  margin: 0;
+  inset: auto;
+}
+
+.anchor {
+  anchor-name: --infobox;
+  background: palegoldenrod;
+  font-size: 3em;
+  width: fit-content;
+  border: 1px solid goldenrod;
+  margin: 100px auto;
+}
+
+p {
+  position: absolute;
+  position-anchor: --infobox;
+  position-area: top center;
+  margin: 0;
+  background-color: darkkhaki;
+  border: 1px solid darkolivegreen;
+}
+
+style {
+  display: block;
+  white-space: pre;
+  font-family: monospace;
+  background-color: #ededed;
+  -webkit-user-modify: read-write-plaintext-only;
+  line-height: 1.5;
+  padding: 10px;
+}
+
+.anchor {
+  anchor-name: --my-anchor;
+}
+
+.infobox {
+  position-anchor: --my-anchor;
+  position: fixed;
+  opacity: 0.8;
+  position-area: top left;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN position-area Tests</h1>
+
+<div class="anchor" contenteditable="true">⚓︎</div>
+
+<p class="positionedElement" contenteditable="true">This can be edited.</p>
+
+<style contenteditable="true">.positionedElement {
+    position-area: top center;
+  }
+</style>
+
+<div class="anchor" contenteditable>⚓︎</div>
+
+<div class="infobox">
+  <p contenteditable>You can edit this text.</p>
+</div>
+
+</body>
+</html>

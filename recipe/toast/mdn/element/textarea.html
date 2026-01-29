@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN TEXTAREA tests</title>
+<style>
+label,
+textarea {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+textarea {
+  padding: 10px;
+  max-width: 100%;
+  line-height: 1.5;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  box-shadow: 1px 1px 1px #999999;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+textarea {
+  resize: none;
+}
+
+textarea:invalid {
+  border: 2px dashed red;
+}
+
+textarea:valid {
+  border: 2px solid lime;
+}
+
+textarea {
+  max-height: 130px;
+  max-width: 500px;
+}
+
+textarea {
+  display: block;
+  resize: horizontal;
+  max-width: 500px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN TEXTAREA Tests</h1>
+
+<label for="story">Tell us your story:</label>
+
+<textarea id="story" name="story" rows="5" cols="33">
+It was a dark and stormy night...
+</textarea>
+
+<textarea name="textarea" rows="5" cols="15">Write something here</textarea>
+
+<textarea name="textarea" rows="5" cols="30" minlength="10" maxlength="20">
+Write something here…
+</textarea>
+
+<textarea
+  name="textarea"
+  rows="5"
+  cols="30"
+  placeholder="Comment text."></textarea>
+
+<textarea name="textarea" rows="5" cols="30" readonly>
+I am a read-only textarea.
+</textarea>
+<textarea name="textarea" rows="5" cols="30" disabled>
+I am a disabled textarea.
+</textarea>
+
+</body>
+</html>

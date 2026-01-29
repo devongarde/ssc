@@ -141,7 +141,6 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
     const unsigned max = (flags & UQ_COUNT) >> UQ_DECOUNT;
     for (auto p : sep)
     {   PRESUME (! p.empty (), __FILE__, __LINE__);
-//        PRESUME (p.find ("\\") == ::std::string::npos, __FILE__, __LINE__);
         if ((flags & UQ_SQ) == UQ_SQ) PRESUME (p.find ("'") == ::std::string::npos, __FILE__, __LINE__);
         if ((flags & UQ_DQ) == UQ_DQ) PRESUME (p.find ("\"") == ::std::string::npos, __FILE__, __LINE__);
         if ((flags & UQ_BS) == UQ_BS) PRESUME (p.find ("\\") == ::std::string::npos, __FILE__, __LINE__);

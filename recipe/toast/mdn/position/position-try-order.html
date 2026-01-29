@@ -1,0 +1,94 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN position-try-order tests</title>
+<style>
+.sid {
+/* Keywords */
+position-try-order: normal;
+position-try-order: most-height;
+position-try-order: most-width;
+position-try-order: most-block-size;
+position-try-order: most-inline-size;
+
+/* Global values */
+position-try-order: inherit;
+position-try-order: initial;
+position-try-order: revert;
+position-try-order: revert-layer;
+position-try-order: unset;
+}
+
+.anchor {
+  anchor-name: --my-anchor;
+  margin: 90px auto;
+}
+
+@position-try --custom-bottom {
+  top: anchor(bottom);
+  bottom: unset;
+  margin-top: 10px;
+}
+
+.infobox {
+  position: fixed;
+  position-anchor: --my-anchor;
+
+  bottom: anchor(top);
+  margin-bottom: 10px;
+  justify-self: anchor-center;
+
+  position-try: normal --custom-bottom;
+}
+</style>
+<script>
+const infobox = document.querySelector(".infobox");
+const form = document.forms[0];
+const radios = form.elements["position-try-order"];
+
+for (const radio of radios) {
+  radio.addEventListener("change", setTryOrder);
+}
+
+function setTryOrder(e) {
+  const tryOrder = e.target.value;
+  infobox.style.positionTryOrder = tryOrder;
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN position-try-order Tests</h1>
+
+<div class="anchor">⚓︎</div>
+
+<div class="infobox">
+  <p>This is an information box.</p>
+</div>
+
+<form>
+  <fieldset>
+    <legend>Choose a try order</legend>
+    <div>
+      <label for="radio-normal">normal</label>
+      <input
+        type="radio"
+        id="radio-normal"
+        name="position-try-order"
+        value="normal"
+        checked />
+    </div>
+    <div>
+      <label for="radio-most-height">most-height</label>
+      <input
+        type="radio"
+        id="radio-most-height"
+        name="position-try-order"
+        value="most-height" />
+    </div>
+  </fieldset>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN aspect-ratio tests</title>
+<style>
+.sid {
+aspect-ratio: 1 / 1;
+aspect-ratio: 1;
+
+/* fallback to 'auto' for replaced elements */
+aspect-ratio: auto 3/4;
+aspect-ratio: 9/6 auto;
+
+/* Global values */
+aspect-ratio: inherit;
+aspect-ratio: initial;
+aspect-ratio: revert;
+aspect-ratio: revert-layer;
+aspect-ratio: unset;
+}
+div {
+  width: 100px;
+  height: auto;
+}
+div:nth-child(1) {
+  aspect-ratio: 1/1;
+}
+div:nth-child(2) {
+  aspect-ratio: 0.5;
+}
+div:nth-child(3) {
+  aspect-ratio: 1;
+}
+div:nth-child(4) {
+  aspect-ratio: 1/0.5;
+}
+div:nth-child(5) {
+  aspect-ratio: 16/9;
+}
+img {
+  display: inline;
+  width: 200px;
+  border: 2px dashed red;
+  background-color: lime;
+  vertical-align: top;
+
+  aspect-ratio: 3/2 auto;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN aspect-ratio Tests</h1>
+
+<img src="" /> <img src="plumeria.jpg" />
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN -moz-force-broken-image-icon- tests</title>
+<style>
+.sid
+{   /* Keyword values */
+    -moz-force-broken-image-icon: 1;
+    -moz-force-broken-image-icon: 0;
+
+    /* Global values */
+    -moz-force-broken-image-icon: inherit;
+    -moz-force-broken-image-icon: initial;
+    -moz-force-broken-image-icon: revert;
+    -moz-force-broken-image-icon: revert-layer;
+    -moz-force-broken-image-icon: unset; }
+img {
+  -moz-force-broken-image-icon: 1;
+  height: 100px;
+  width: 100px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN -moz-force-broken-image-icon- Tests</h1>
+
+<img src="/broken/image/link.png" alt="Broken image link" />
+
+</body>
+</html>

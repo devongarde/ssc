@@ -1,0 +1,24 @@
+﻿li {
+  anchor-name: --list-item;
+  anchor-scope: --list-item;
+}
+li .positioned {
+  position: absolute;
+  position-anchor: --list-item;
+  position-area: inline-start;
+}
+
+.anchored {
+  position: absolute;
+  top: calc(.5em + anchor(outside));
+  /* Since no anchor name was specified,
+     this automatically refers to the
+     default anchor box. */
+}
+
+.foo.anchored {
+  position-anchor: --foo;
+}
+.bar.anchored {
+  position-anchor: --bar;
+}

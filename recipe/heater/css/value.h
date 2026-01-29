@@ -28,6 +28,8 @@ typedef ::std::vector < t_param > t_params;
 void add_param (const arguments& args, t_params& params, int& from, const int i);
 int check_typed_identifier (arguments& args, nitpick& nits, const int start, const int to, const e_type t);
 int check_typed_feature (arguments& args, nitpick& nits, const int start, const int to, const e_css_statement cs, const char* const sz);
+bool maybe_anchor (nitpick& nits, const e_css_property id);
+bool maybe_anchor_size (nitpick& nits, const e_css_property id);
 bool maybe_content (nitpick& nits, const e_css_property id);
 bool maybe_filter (nitpick& nits, const e_css_property id);
 bool maybe_float (nitpick& nits, const e_css_property id);

@@ -111,15 +111,22 @@ template < e_type T, class SZ, int F, int MIN, int MAX, e_type... A > struct typ
         {   string_vector < T, SZ, F > :: status (emptiness < T, MIN==0 > :: content_status (nits, string_vector < T, SZ, F > :: get ()));
             return; }
         bool good = true;
+        nitpick nuts, awful, great;
         for (::std::string ss : string_vector < T, SZ, F > :: value_)
-        {   type_one_of < T, MIN==0, A... > one;
-            one.set_value (nits, v, ss);
-            if (! one.good ()) good = false;
+        {   nitpick knots;
+            type_one_of < T, MIN==0, A... > one;
+            one.set_value (knots, v, ss);
+            if (! one.good ()) { awful.merge (knots); good = false; }
+            else if (good) great.merge (knots);
             voo_.push_back (one); }
-        if (! min_max_ok < T, MIN, MAX > :: ok (nits, voo_.size ())) good = false;
+        if (! min_max_ok < T, MIN, MAX > :: ok (nuts, voo_.size ()))
+        {   awful.merge (nuts); good = false; }
+        else if (good) great.merge (nuts);
         if (good)
         {   string_vector < T, SZ, F > :: status (s_good);
+            nits.merge (great);
             return; }
+        nits.merge (awful);
         string_vector < T, SZ, F > :: status (s_invalid); }
     void set_id (const ::std::string& s)
     {   string_vector < T, SZ, F > :: set_id (s); }
@@ -201,6 +208,11 @@ template < e_type T, class SZ, int F, int MIN, int MAX, e_type... A > struct typ
     {   return string_vector < T, SZ, F > :: box (); }
     void box (element* b) noexcept
     {   string_vector < T, SZ, F > :: box (b); }
+    void argue (nitpick& nits, arguments* a)
+    {   for (auto oo : voo_)
+            if (! oo.unknown ())
+                oo.argue (nits, a);
+        string_vector < T, SZ, F > :: argue (nits, a); }
     void validate ()
     {   for (auto oo : voo_)
             if (! oo.unknown ())

@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN background-blend-mode tests</title>
+<style>
+.sid {
+/* One value */
+background-blend-mode: normal;
+
+/* Two values, one per background */
+background-blend-mode: darken, luminosity;
+
+/* Global values */
+background-blend-mode: inherit;
+background-blend-mode: initial;
+background-blend-mode: revert;
+background-blend-mode: revert-layer;
+background-blend-mode: unset;
+}
+.item {
+  width: 300px;
+  height: 300px;
+  background: url("image1.png"), url("image2.png");
+  background-blend-mode: screen;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN background-blend-mode Tests</h1>
+
+</body>
+</html>

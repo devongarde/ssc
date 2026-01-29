@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN minlength tests</title>
+<style>
+label {
+  display: block;
+  margin-top: 1em;
+}
+
+input:valid,
+textarea:valid {
+  background-color: palegreen;
+}
+input {
+  border: 2px solid currentColor;
+}
+input:invalid {
+  border: 2px dashed red;
+}
+input:invalid:focus {
+  background-image: linear-gradient(pink, lightgreen);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN minlength Tests</h1>
+
+<label for="name">Product name:</label>
+<input
+  id="name"
+  name="name"
+  type="text"
+  value="Shampoo"
+  minlength="3"
+  maxlength="20"
+  required />
+
+<label for="description">Product description:</label>
+<textarea
+  id="description"
+  name="description"
+  minlength="10"
+  maxlength="40"
+  required></textarea>
+
+<label for="fruit">Enter a fruit name that is at least 5 letters long</label>
+<input type="text" minlength="5" id="fruit" />
+
+</body>
+</html>

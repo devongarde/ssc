@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN baseline-source tests</title>
+<style>
+.sid {
+/* Keyword values */
+baseline-source: auto;
+baseline-source: first;
+baseline-source: last;
+
+/* Global values */
+baseline-source: inherit;
+baseline-source: initial;
+baseline-source: revert;
+baseline-source: revert-layer;
+baseline-source: unset;
+}
+.box {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.first {
+  baseline-source: first;
+}
+
+.auto {
+  baseline-source: auto;
+}
+
+.last {
+  baseline-source: last;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN baseline-source Tests</h1>
+
+<span>Baseline ___</span>
+
+<span class="box first">
+  <span>First</span>
+  <span>A</span>
+  <span>B</span>
+  <span>C</span>
+</span>
+
+<span class="box auto">
+  <span>Auto</span>
+  <span>A</span>
+  <span>B</span>
+  <span>C</span>
+</span>
+
+<span class="box last">
+  <span>A</span>
+  <span>B</span>
+  <span>C</span>
+  <span>Last</span>
+</span>
+
+</body>
+</html>

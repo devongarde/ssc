@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-block-start-style tests</title>
+<style>
+.sid {
+/* <'border-style'> values */
+border-block-start-style: dashed;
+border-block-start-style: dotted;
+border-block-start-style: groove;
+
+/* Global values */
+border-block-start-style: inherit;
+border-block-start-style: initial;
+border-block-start-style: revert;
+border-block-start-style: revert-layer;
+border-block-start-style: unset;
+}
+
+div {
+  background-color: yellow;
+  width: 120px;
+  height: 120px;
+}
+
+.exampleText {
+  writing-mode: vertical-lr;
+  border: 5px solid blue;
+  border-block-start-style: dashed;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-block-start-style Tests</h1>
+
+<div>
+  <p class="exampleText">Example text</p>
+</div>
+
+</body>
+</html>

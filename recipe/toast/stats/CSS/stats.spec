@@ -5,7 +5,7 @@ PASS ../toast/stats/CSS/basic.css
 4 css_colour
 7 dialect
 9 unrecognised_value
-10 unrecognised_value unrecognised_value unrecognised_value
+10 unrecognised_value
 11 css_colour
 12 unrecognised_value
 18 css_version css_dubious
@@ -85,6 +85,7 @@ Class/Element:
   div.sidenote styled once, used 0 times
 
 Element:
+	(undefined): twice
     b: 4 times
     body: once
     code: once
@@ -161,17 +162,19 @@ PASS ../toast/stats/CSS/css-3.css
 
 STATS
 Element:
-    h1: twice 
-    p: once 
+    h1: twice
+    p: once
   2 elements used thrice
+
 Property:
-    background: once 
-    color: twice 
-    font-size: once 
-    font-style: once 
+    background: once
+    color: twice
+    font-size: once
+    font-style: once
   4 properties used 5 times
+
 Statement:
-    import: twice 
+    import: twice
   1 statements used twice
 ===
 
@@ -193,6 +196,7 @@ Class/Element:
   li.square styled once, used 0 times
 
 Element:
+    (undefined): once
     a: thrice
     blockquote: 9 times
     body: 14 times
@@ -217,16 +221,6 @@ Font:
     sans-serif: once
     serif: once
   5 Font used 5 times
-
-Id:
-  xy34 styled once, used 0 times
-
-Id/Element:
-  *#xy34 styled once, used 0 times
-
-ItemId:
-    xy34: 1
-  1 ItemId used once
 
 Property:
     background: 9 times
@@ -551,6 +545,7 @@ Class/Element:
   h1.pastoral styled once, used once
 
 Element:
+    (undefined): once
     !doctype: once
     body: once
     h1: 4 times
@@ -577,15 +572,14 @@ Element:
   13 elements used 32 times
 
 Id:
-  x97z styled twice, used twice
+  x97z styled 0 times, used once
 
 Id/Element:
-  *#x97z styled once, used 0 times
   p#x97z styled 0 times, used once
 
 ItemId:
-    x97z: 2
-  1 ItemId used twice
+    x97z: 0
+  1 ItemId used 0 times
 
 Property:
     background: once
@@ -680,6 +674,7 @@ Class/Element:
   ol.alpha styled once, used once
 
 Element:
+    (undefined): once
     !doctype: once
     a: thrice
     blockquote: 9 times
@@ -724,16 +719,6 @@ Font:
     sans-serif: once
     serif: once
   7 Font used 7 times
-
-Id:
-  xy34 styled once, used 0 times
-
-Id/Element:
-  *#xy34 styled once, used 0 times
-
-ItemId:
-    xy34: 1
-  1 ItemId used once
 
 Property:
     background: 9 times
@@ -830,7 +815,7 @@ PASS ../toast/stats/CSS/import.css
 7 dialect
 8 selector
 9 unrecognised_value
-10 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
+10 unrecognised_value unrecognised_value unrecognised_value
 11 css_colour
 12 unrecognised_value
 18 css_version css_dubious
@@ -930,7 +915,7 @@ Class/Element:
   ul.compact styled once, used 0 times
 
 Element:
-    (undefined): 18 times
+    (undefined): 23 times
     !doctype: 7 times
     a: 27 times
       class: once
@@ -1024,26 +1009,18 @@ Font:
   11 Font used 28 times
 
 Id:
-  x78y styled twice, used 0 times
-  x97z styled twice, used twice
-  xy34 styled 4 times, used 0 times
-  z98y styled 4 times, used once
+  x97z styled 0 times, used once
+  z98y styled twice, used once
 
 Id/Element:
-  *#x78y styled once, used 0 times
-  *#x97z styled once, used 0 times
-  *#xy34 styled twice, used 0 times
-  *#z98y styled once, used 0 times
   h1#z98y styled once, used 0 times
   p#x97z styled 0 times, used once
   p#z98y styled 0 times, used once
 
 ItemId:
-    x78y: 2
-    x97z: 2
-    xy34: 4
-    z98y: 4
-  4 ItemId used 12 times
+    x97z: 0
+    z98y: 2
+  2 ItemId used twice
 
 Property:
     background: 37 times
@@ -1106,5 +1083,5 @@ Statement:
 
 Version:
     HTML-3.2/CSS-1: 10 times
-    HTML-5/20251201/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times
+    HTML-5/20260101/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times
 ===

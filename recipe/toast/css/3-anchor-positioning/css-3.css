@@ -1,0 +1,14 @@
+﻿.centered-message {
+  position: fixed;
+  max-width: max-content;
+  justify-self: center;
+
+  --center: anchor(--x 50%);
+  --half-distance: min(
+    abs(0% - var(--center)),
+    abs(100% - var(--center))
+  );
+  left: calc(var(--center) - var(--half-distance));
+  right: calc(var(--center) - var(--half-distance));
+  bottom: anchor(--x top);
+}

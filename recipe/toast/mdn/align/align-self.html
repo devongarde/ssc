@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN align-self tests</title>
+<style>
+.sid {
+/* Keyword values */
+align-self: auto;
+align-self: normal;
+
+/* Positional alignment */
+/* align-self does not take left and right values */
+align-self: center; /* Put the item around the center */
+align-self: start; /* Put the item at the start */
+align-self: end; /* Put the item at the end */
+align-self: self-start; /* Align the item flush at the start */
+align-self: self-end; /* Align the item flush at the end */
+align-self: flex-start; /* Put the flex item at the start */
+align-self: flex-end; /* Put the flex item at the end */
+align-self: anchor-center;
+
+/* Baseline alignment */
+align-self: baseline;
+align-self: first baseline;
+align-self: last baseline;
+align-self: stretch; /* Stretch 'auto'-sized items to fit the container */
+
+/* Overflow alignment */
+align-self: safe center;
+align-self: unsafe center;
+
+/* Global values */
+align-self: inherit;
+align-self: initial;
+align-self: revert;
+align-self: revert-layer;
+align-self: unset;
+}
+section {
+  display: flex;
+  align-items: center;
+  height: 120px;
+  background: beige;
+}
+
+div {
+  height: 60px;
+  background: cyan;
+  margin: 5px;
+}
+
+div:nth-child(3) {
+  align-self: flex-end;
+  background: pink;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN align-self Tests</h1>
+
+<section>
+  <div>Item #1</div>
+  <div>Item #2</div>
+  <div>Item #3</div>
+</section>
+
+</body>
+</html>

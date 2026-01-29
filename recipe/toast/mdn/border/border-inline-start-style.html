@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-inline-start-style tests</title>
+<style>
+.sid {
+/* <'border-style'> values */
+border-inline-start-style: dashed;
+border-inline-start-style: dotted;
+border-inline-start-style: groove;
+
+/* Global values */
+border-inline-start-style: inherit;
+border-inline-start-style: initial;
+border-inline-start-style: revert;
+border-inline-start-style: revert-layer;
+border-inline-start-style: unset;
+}
+
+div {
+  background-color: yellow;
+  width: 120px;
+  height: 120px;
+}
+
+.exampleText {
+  writing-mode: vertical-lr;
+  border: 5px solid blue;
+  border-inline-start-style: dashed;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-inline-start-style Tests</h1>
+
+<div>
+  <p class="exampleText">Example text</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN clear tests</title>
+<style>
+.sid {
+/* Keyword values */
+clear: none;
+clear: left;
+clear: right;
+clear: both;
+clear: inline-start;
+clear: inline-end;
+
+/* Global values */
+clear: inherit;
+clear: initial;
+clear: revert;
+clear: revert-layer;
+clear: unset;
+}
+
+.wrapper {
+  border: 1px solid black;
+  padding: 10px;
+}
+.left {
+  border: 1px solid black;
+  clear: left;
+}
+.black {
+  float: left;
+  margin: 0;
+  background-color: black;
+  color: white;
+  width: 20%;
+}
+.red {
+  float: left;
+  margin: 0;
+  background-color: pink;
+  width: 20%;
+}
+p {
+  width: 50%;
+}
+
+.wrapper {
+  border: 1px solid black;
+  padding: 10px;
+}
+.right {
+  border: 1px solid black;
+  clear: right;
+}
+.black {
+  float: right;
+  margin: 0;
+  background-color: black;
+  color: white;
+  width: 20%;
+}
+.red {
+  float: right;
+  margin: 0;
+  background-color: pink;
+  width: 20%;
+}
+p {
+  width: 50%;
+}
+
+.wrapper {
+  border: 1px solid black;
+  padding: 10px;
+}
+.both {
+  border: 1px solid black;
+  clear: both;
+}
+.black {
+  float: left;
+  margin: 0;
+  background-color: black;
+  color: white;
+  width: 20%;
+}
+.red {
+  float: right;
+  margin: 0;
+  background-color: pink;
+  width: 20%;
+}
+p {
+  width: 45%;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN clear Tests</h1>
+
+<div class="wrapper">
+  <p class="black">
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus sit amet
+    diam. Duis mattis varius dui. Suspendisse eget dolor.
+  </p>
+  <p class="red">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+  <p class="left">This paragraph clears left.</p>
+</div>
+
+<div class="wrapper">
+  <p class="black">
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus sit amet
+    diam. Duis mattis varius dui. Suspendisse eget dolor.
+  </p>
+  <p class="red">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+  <p class="right">This paragraph clears right.</p>
+</div>
+
+<div class="wrapper">
+  <p class="black">
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus sit amet
+    diam. Duis mattis varius dui. Suspendisse eget dolor. Fusce pulvinar lacus
+    ac dui.
+  </p>
+  <p class="red">
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus sit amet
+    diam. Duis mattis varius dui. Suspendisse eget dolor.
+  </p>
+  <p class="both">This paragraph clears both.</p>
+</div>
+
+</body>
+</html>

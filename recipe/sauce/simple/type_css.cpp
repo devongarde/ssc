@@ -69,7 +69,7 @@ e_status set_css_font_value (nitpick& nits, const html_version& v, const ::std::
         if (test_value < t_font_enum > (gnats, v, gs))
         {   nits.merge (gnats);
             return s_good; }
-        vstr_t ss (split_by_space (gs));
+        vstr_t ss (split_by_comma_space (gs));
         PRESUME (! ss.empty (), __FILE__, __LINE__);
         bool res = true;
         typedef enum { fs_style, fs_variant, fs_weight, fs_size, fs_family, fs_done } font_state;
@@ -225,7 +225,16 @@ e_status set_css_unicode_wildcard_value (nitpick& nits, const html_version& , co
         else return s_good; }
     return s_invalid; }
 
-e_status set_fn_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box)
+e_status set_fn_calc_args_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box)
+{   if (s.empty ()) return s_good;
+    if (! test_esii (sii_fn, s))
+    {   VERIFY_NOT_NULL (box, __FILE__, __LINE__);
+        esii_scope esii (sii_fn, s);
+//        if (box -> get_page ().css ().parse_calc (interpret_string (nits, v, s), v, box -> namespaces (), box -> ancestral_elements (), false, box -> line ()))
+            return s_good; }
+    return s_invalid; }
+
+e_status set_fn_trans_args_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box)
 {   if (s.empty ()) return s_good;
     if (! test_esii (sii_fn, s))
     {   VERIFY_NOT_NULL (box, __FILE__, __LINE__);
@@ -260,3 +269,12 @@ e_status set_vtn_value (nitpick& nits, const html_version& , const vstr_t& vs, e
             nits.pick (nit_vtn, es_error, ec_css, quote (s), ": View Transition identifiers must start with double dash");
         else g.note_str (gst_view, s);
     return s_good; }
+
+e_status test_css_anchor (nitpick& nits, const e_status st, const html_version& , const ::std::string& ss)
+{   if (st == s_empty)
+        nits.pick (nit_empty, es_error, ec_type, "missing anchor name");
+    else if ((st == s_good) || (st == s_unset))
+        if ((ss.size () < 2) || (ss.substr (0, 2) != "--"))
+            nits.pick (nit_anchor, ed_css_anchor, "2.1. Creating an Anchor: the anchor-name property", es_error, ec_type, "an anchor name must begin with --");
+        else return s_good;
+    return s_invalid; }

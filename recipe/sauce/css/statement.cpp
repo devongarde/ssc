@@ -684,6 +684,27 @@ void statement::parse_page (arguments& args, nitpick& nits, const int from, cons
             fiddlesticks < statement > f (&args.st_, this);
             dsc_.parse (args, css_page, args.t_.at (to).child_); } } }
 
+void statement::parse_position_try (arguments& args, nitpick& nits, const int from, const int to)
+{   if ((context.css_module (c_anchor_pos) == 0))
+        nits.pick (nit_css_version, es_error, ec_css, "@position-try requires CSS Anchor Positioning");
+    else
+    {   int i = next_non_whitespace (args.t_, from, to);
+        if (i < 0)
+            nits.pick (nit_css_position_try, ed_css_anchor, "6.4 The @position-try Rule", es_error, ec_css, "@position-try: position reference missing");
+        else
+        {   if ((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier))
+            {   type_master < t_css_anchor_id > aid;
+                aid.set_value (nits, context.html_ver (), args.t_.at (i).val_); }
+            else
+                nits.pick (nit_css_position_try, ed_css_anchor, "6.4 The @position-try Rule", es_error, ec_css, "expecting an anchor name after @position-try");
+            i = next_non_whitespace (args.t_, i, to);
+            if ((i < 0) || (args.t_.at (i).t_ != ct_curly_brac))
+                nits.pick (nit_css_position_try, ed_css_anchor, "6.4 The @position-try Rule", es_error, ec_css, "expecting { property... }");
+            else
+            {   PRESUME (args.t_.at (i).child_ > 0, __FILE__, __LINE__);
+                fiddlesticks < statement > f (&args.st_, this);
+                dsc_.parse (args, css_position_try, args.t_.at (i).child_); } } } }
+
 void statement::parse_scope (arguments& args, nitpick& nits, const int from, const int to)
 {   if ((context.css_module (c_cascade_inheritance) < 6) && (context.css_module (c_scoping) < 3))
         nits.pick (nit_css_version, es_error, ec_css, "@scope requires CSS Cascade 6 or CSS scope 3");
@@ -906,6 +927,9 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_page :
                 parse_page (args, nits, b, to);
                 break;
+            case css_position_try :
+                parse_position_try (args, nits, b, to);
+                break;
             case css_scope :
                 parse_scope (args, nits, b, to);
                 break;
@@ -916,6 +940,7 @@ void statement::parse (arguments& args, const int from, const int to)
                 parse_viewport (args, nits, b, to);
                 break;
             case css_document :
+            case css_moz_document :
                 break;
             case css_else :
             case css_when :
@@ -1018,6 +1043,9 @@ void statement::accumulate (stats_t* s) const
         case css_media :
             res = "@media ();";
             break;
+        case css_moz_document :
+            res = "@-moz-document;";
+            break;
         case css_namespace :
             res = "@namespace;";
             break;
@@ -1026,6 +1054,9 @@ void statement::accumulate (stats_t* s) const
             break;
         case css_page :
             res = "@page ();";
+            break;
+        case css_position_try :
+            res = "position-try ()";
             break;
         case css_right_bottom :
             res = "@right-bottom ();";

@@ -970,6 +970,16 @@ const nitname nitnames [] =
     { nit_cc, "cc" },
     { nit_mrss, "mrss" },
     { nit_rdfa, "rdfa" },
+    { nit_ipv4, "ipv4" },
+    { nit_ipv6, "ipv6" },
+    { nit_root_cert, "root_cert" },
+    { nit_cert, "cert" },
+    { nit_et, "et" },
+    { nit_input_type, "input_type" },
+    { nit_known_insecure, "known_insecure" },
+    { nit_borked, "borked" },
+    { nit_anchor, "anchor" },
+    { nit_css_position_try, "css_position_try" },
 
     { nit_incompatible, "incompatible" },
 

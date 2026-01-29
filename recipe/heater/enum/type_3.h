@@ -119,9 +119,6 @@ template < > struct type_master < t_all_auto_none > : three_value < t_all_auto_n
 template < > struct type_master < t_alp > : three_value < t_alp, e_alp, sz_auto, sz_landscape, sz_portrait >
 { using three_value < t_alp, e_alp, sz_auto, sz_landscape, sz_portrait > :: three_value; };
 
-template < > struct type_master < t_analysis > : three_value < t_analysis, e_analysis, sz_default, sz_original, sz_aug25 >
-{ using three_value < t_analysis, e_analysis, sz_default, sz_original, sz_aug25 > :: three_value; };
-
 template < > struct type_master < t_anywhere_break_normal > : three_value < t_anywhere_break_normal, e_anywhere_break_normal, sz_anywhere, sz_break_word, sz_normal >
 { using three_value < t_anywhere_break_normal, e_anywhere_break_normal, sz_anywhere, sz_break_word, sz_normal > :: three_value; };
 
@@ -224,8 +221,8 @@ template < > struct type_master < t_css_column_fill > : three_value < t_css_colu
 template < > struct type_master < t_css_display_outside > : three_value < t_css_display_outside, e_css_display_outside, sz_block, sz_inline, sz_run_in >
 { using three_value < t_css_display_outside, e_css_display_outside, sz_block, sz_inline, sz_run_in > :: three_value; };
 
-template < > struct type_master < t_css_empty_cells > : three_value < t_css_empty_cells, e_css_empty_cells, sz_hide, sz_inherit, sz_show >
-{ using three_value < t_css_empty_cells, e_css_empty_cells, sz_hide, sz_inherit, sz_show > :: three_value; };
+template < > struct type_master < t_css_dynamic_range_limit_e > : three_value < t_css_dynamic_range_limit_e, e_css_dynamic_range_limit_e, sz_constrained, sz_no_limit, sz_standard >
+{ using three_value < t_css_dynamic_range_limit_e, e_css_dynamic_range_limit_e, sz_constrained, sz_no_limit, sz_standard > :: three_value; };
 
 template < > struct type_master < t_css_fca > : three_value < t_css_fca, e_css_fca, sz_auto, sz_none, sz_preserve_parent_colour >
 { using three_value < t_css_fca, e_css_fca, sz_auto, sz_none, sz_preserve_parent_colour > :: three_value; };
@@ -248,8 +245,8 @@ template < > struct type_master < t_css_masking_mode > : three_value < t_css_mas
 template < > struct type_master < t_css_overflow_style > : three_value < t_css_overflow_style, e_css_overflow_style, sz_auto, sz_marquee_block, sz_marquee_line >
 { using three_value < t_css_overflow_style, e_css_overflow_style, sz_auto, sz_marquee_block, sz_marquee_line > :: three_value; };
 
-template < > struct type_master < t_css_speak_3 > : three_value < t_css_speak_3, e_css_speak_3, sz_always, sz_auto, sz_never >
-{ using three_value < t_css_speak_3, e_css_speak_3, sz_always, sz_auto, sz_never > :: three_value; };
+template < > struct type_master < t_always_auto_never > : three_value < t_always_auto_never, e_always_auto_never, sz_always, sz_auto, sz_never >
+{ using three_value < t_always_auto_never, e_always_auto_never, sz_always, sz_auto, sz_never > :: three_value; };
 
 template < > struct type_master < t_css_speak_header > : three_value < t_css_speak_header, e_css_speak_header, sz_always, sz_inherit, sz_once >
 { using three_value < t_css_speak_header, e_css_speak_header, sz_always, sz_inherit, sz_once > :: three_value; };
@@ -341,6 +338,10 @@ template < > struct type_master < t_importance > : three_value < t_importance, e
 template < > struct type_master < t_infixlinebreakstyle > : three_value < t_infixlinebreakstyle, e_infixlinebreakstyle, sz_before, sz_after, sz_duplicate >
 { using three_value < t_infixlinebreakstyle, e_infixlinebreakstyle, sz_before, sz_after, sz_duplicate > :: three_value; };
 
+//typedef enum { inn_ignore, inn_none, inn_normal } e_inn; // t_inn
+template < > struct type_master < t_inn > : three_value < t_inn, e_inn, sz_ignore, sz_none, sz_normal >
+{ using three_value < t_inn, e_inn, sz_ignore, sz_none, sz_normal > :: three_value; };
+
 template < > struct type_master < t_interactive_widget > : three_value < t_interactive_widget, e_interactive_widget, sz_overlays_content, sz_resizes_content, sz_resizes_visual >
 { using three_value < t_interactive_widget, e_interactive_widget, sz_overlays_content, sz_resizes_content, sz_resizes_visual > :: three_value; };
 
@@ -425,11 +426,17 @@ template < > struct type_master < t_popover > : three_value < t_popover, e_popov
 template < > struct type_master < t_popovertargetaction > : three_value < t_popovertargetaction, e_popovertargetaction, sz_hide, sz_show, sz_toggle >
 { using three_value < t_popovertargetaction, e_popovertargetaction, sz_hide, sz_show, sz_toggle > :: three_value; };
 
+template < > struct type_master < t_css_position_vvo > : three_value < t_css_position_vvo, e_css_position_vvo, sz_anchors_valid, sz_anchors_visible, sz_no_overflow >
+{ using three_value < t_css_position_vvo, e_css_position_vvo, sz_anchors_valid, sz_anchors_visible, sz_no_overflow > :: three_value; };
+
 template < > struct type_master < t_preload5 > : three_value < t_preload5, e_preload, sz_auto, sz_metadata, sz_none >
 { using three_value < t_preload5, e_preload, sz_auto, sz_metadata, sz_none > :: three_value; };
 
 template < > struct type_master < t_pri_img_setting > : three_value < t_pri_img_setting, e_pri_img_setting, sz_indoor, sz_outdoor, sz_studio >
 { using three_value < t_pri_img_setting, e_pri_img_setting, sz_indoor, sz_outdoor, sz_studio > :: three_value; };
+
+template < > struct type_master < t_private_token > : three_value < t_private_token, e_private_token, sz_send_redemption_record, sz_token_redemption, sz_token_request >
+{ using three_value < t_private_token, e_private_token, sz_send_redemption_record, sz_token_redemption, sz_token_request > :: three_value; };
 
 template < > struct type_master < t_restart > : three_value < t_restart, e_restart, sz_always, sz_whennotactive, sz_never >
 { using three_value < t_restart, e_restart, sz_always, sz_whennotactive, sz_never > :: three_value; };

@@ -119,6 +119,12 @@ This version makes clear that the license is applicable to both software and tex
 Some test files come from <a href="https://whatwg.org/">whatwg.org</a> (some directly, in WhatWG documents, etc.), and are licensed under a Creative Commons Attribution 4.0 International License. See <a href="https://whatwg.org/">https://whatwg.org/</a> for details.
 </p>
 
+<h2><a href="https://mozilla.org/">MDN</a></h2>
+
+<p>
+Some test files come from <a href="https://mozilla.org/">MDN</a>, and are licensed under the Mozilla Public License. See <a href="https://www.mozilla.org/en-US/about/legal/terms/mozilla/">here</a> for details.
+</p>
+
 <h2><a href="https://boost.org">Boost Software License</a> - Version 1.0 - August 17th, 2003</h2>
 
 <p>

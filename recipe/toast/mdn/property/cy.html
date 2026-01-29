@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN cy tests</title>
+<style>
+.sid {
+/* length and percentage values */
+cy: 3px;
+cy: 20%;
+
+/* Global values */
+cy: inherit;
+cy: initial;
+cy: revert;
+cy: revert-layer;
+cy: unset;
+}
+
+svg {
+  border: 1px solid;
+}
+
+circle:first-of-type {
+  cy: 30px;
+  fill: lightgreen;
+  stroke: black;
+}
+ellipse:first-of-type {
+  cy: 100px;
+  fill: pink;
+  stroke: black;
+}
+
+svg {
+  border: 1px solid;
+}
+
+circle:first-of-type {
+  cy: 30%;
+  fill: lightgreen;
+  stroke: black;
+}
+ellipse:first-of-type {
+  cy: 50%;
+  fill: pink;
+  stroke: black;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN cy Tests</h1>
+
+<svg xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="30" />
+  <circle cx="50" cy="50" r="30" />
+  <ellipse cx="150" cy="50" rx="20" ry="40" />
+  <ellipse cx="150" cy="50" rx="20" ry="40" />
+</svg>
+
+</body>
+</html>

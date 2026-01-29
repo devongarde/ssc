@@ -56,6 +56,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MIME_XML            0x08000000
 #define MIME_COMMON_MASK    0x0F000000
 
+#define MIME_SSC            0x80000000
+
 template < > inline void enum_n < t_mime, e_mimetype > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (s.empty ())
     {   nits.pick (nit_mime, es_error, ec_type, "a mime type cannot be empty");
@@ -68,6 +70,10 @@ template < > inline void enum_n < t_mime, e_mimetype > :: set_value (nitpick& ni
     if ((v >= html_aug25) && compare_complain (nits, v, "importmap", s))
     {   enum_base < e_mimetype, t_mime > :: status (s_good);
         enum_base < e_mimetype, t_mime > :: value_ = mime_faux_importmap;
+        return; }
+    if ((v >= html_dec25) && compare_complain (nits, v, "speculationrules", s))
+    {   enum_base < e_mimetype, t_mime > :: status (s_good);
+        enum_base < e_mimetype, t_mime > :: value_ = mime_faux_speculationrules;
         return; }
     ::std::string::size_type pos = s.find ('/');
     if (pos == ::std::string::npos)

@@ -446,7 +446,7 @@ void element::examine_self (
                     else if (context.html_ver () < html_ruby) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> requires at least the ", html_ruby.nice_name (), " living standard");
 
                 if (hv.deprecated (node_.version ()))
-                    pick (nit_deprecated_element, es_warning, ec_element, "<", elem :: name (tag), "> is deprecated in ", node_.version ().report ());
+                    pick (nit_deprecated_element, es_warning, ec_element, "<", elem :: name (tag), "> is deprecated in ", node_.version ().report (), " (4)");
                 if (hv.experimental ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> is experimental; it will probably change, it may be withdrawn");
 
                 if (node_.version ().is_5 ())
@@ -561,6 +561,18 @@ void element::examine_self (
                 test_compatible_ancestral_role (); } }
 
     examine_children (flags, lang);
+
+    if (a_.known (a_elementtiming))
+        switch (tag)
+        {   case elem_img :
+            case elem_image :
+            case elem_script :  // peerdh.com
+            case elem_video :
+                break;
+            default :
+                if (node_.text ().empty ())
+                    pick (nit_et, ed_mdn, "elementtiming", es_info, ec_element, "Here, ELEMENTTIMING applies to a background image or child text, but there's no child text");
+                break; }
 
     if (post_examine)
     {   post_examine_element ();

@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN type-range tests</title>
+<style>
+p,
+label {
+  font:
+    1rem "Fira Sans",
+    sans-serif;
+}
+
+input {
+  margin: 0.4rem;
+}
+
+datalist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  writing-mode: vertical-lr;
+  width: 200px;
+}
+
+option {
+  padding: 0;
+}
+
+input[type="range"] {
+  width: 200px;
+  margin: 0;
+}
+
+input[type="range"] {
+  writing-mode: vertical-lr;
+}
+</style>
+<script>
+defaultValue =
+  rangeElem.max < rangeElem.min
+    ? rangeElem.min
+            : rangeElem.min + (rangeElem.max - rangeElem.min) / 2;
+
+const value = document.querySelector("#value");
+const input = document.querySelector("#pi_input");
+value.textContent = input.value;
+input.addEventListener("input", (event) => {
+  value.textContent = event.target.value;
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN type-range Tests</h1>
+
+<p>Audio settings:</p>
+
+<div>
+  <input type="range" id="volume" name="volume" min="0" max="11" />
+  <label for="volume">Volume</label>
+</div>
+
+<div>
+  <input
+    type="range"
+    id="cowbell"
+    name="cowbell"
+    min="0"
+    max="100"
+    value="90"
+    step="10" />
+  <label for="cowbell">Cowbell</label>
+</div>
+
+<input type="range" min="-10" max="10" />
+
+<input type="range" min="5" max="10" step="0.5" />
+
+<input id="pi_input" type="range" min="0" max="3.14" step="any" />
+<p>Value: <output id="value"></output></p>
+
+<label for="temp">Choose a comfortable temperature:</label><br />
+<input type="range" id="temp" name="temp" list="markers" />
+
+<datalist id="markers">
+  <option value="0"></option>
+  <option value="25"></option>
+  <option value="50"></option>
+  <option value="75"></option>
+  <option value="100"></option>
+</datalist>
+
+<p>
+  <label for="temp1">Temperature for room 1:</label>
+  <input type="range" id="temp1" name="temp1" list="values" />
+</p>
+<p>
+  <label for="temp2">Temperature for room 2:</label>
+  <input type="range" id="temp2" name="temp2" list="values" />
+</p>
+
+<p>
+  <label for="temp3">Temperature for room 3:</label>
+  <input type="range" id="temp3" name="temp3" list="values" />
+</p>
+
+<datalist id="values">
+  <option value="0" label="0"></option>
+  <option value="25" label="25"></option>
+  <option value="50" label="50"></option>
+  <option value="75" label="75"></option>
+  <option value="100" label="100"></option>
+</datalist>
+
+<label for="tempB">Choose a comfortable temperature:</label><br />
+<input type="range" id="tempB" name="temp" list="values" />
+
+<datalist id="values">
+  <option value="0" label="very cold!"></option>
+  <option value="25" label="cool"></option>
+  <option value="50" label="medium"></option>
+  <option value="75" label="getting warm!"></option>
+  <option value="100" label="hot!"></option>
+</datalist>
+
+</body>
+</html>

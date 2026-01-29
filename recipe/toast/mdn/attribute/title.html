@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN title tests</title>
+<style>
+iframe {
+  height: 200px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+</style>
+<script>
+const span = document.querySelector("span");
+const output = document.querySelector("#output");
+output.textContent = span.title;
+</script>
+</head>
+
+<body>
+
+<h1>MDN title Tests</h1>
+
+<p>
+  Use the <code>title</code> attribute on an <code>iframe</code> to clearly
+  identify the content of the <code>iframe</code> to screen readers.
+</p>
+
+<iframe
+  title="Wikipedia page for the HTML language"
+  src="https://en.m.wikipedia.org/wiki/HTML"></iframe>
+<iframe
+  title="Wikipedia page for the CSS language"
+  src="https://en.m.wikipedia.org/wiki/CSS"></iframe>
+
+<p>
+  Newlines in <code>title</code> should be taken into account. This
+  <span
+    title="This is a
+multiline title">
+    example span
+  </span>
+  has a title attribute with a newline.
+</p>
+<hr />
+<pre id="output"></pre>
+
+<div title="CoolTip">
+  <p>Hovering here will show "CoolTip".</p>
+  <p title="">Hovering here will show nothing.</p>
+</div>
+
+</body>
+</html>

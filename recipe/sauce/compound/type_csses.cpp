@@ -425,7 +425,7 @@ e_status set_css_speak_value (nitpick& nits, const html_version& v, const ::std:
 {   if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "must be empty ... NOT");
     else
     {   if (v.css_module (c_speech) >= 3)
-        {   type_master < t_css_speak_3 > tst (box);
+        {   type_master < t_always_auto_never > tst (box);
             tst.set_value (nits, v, s);
             if (tst.good ()) return s_good; }
         else if ((v.css_version () == css_2_1) || (v.css_version () == css_2_2))

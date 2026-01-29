@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN SEARCH 1 tests</title>
+</head>
+
+<body>
+
+<h1>MDN SEARCH 1 Tests</h1>
+
+<header>
+  <h1>Movie website</h1>
+  <search>
+    <form action="./search/">
+      <label for="movie">Find a Movie</label>
+      <input type="search" id="movie" name="q" />
+      <button type="submit">Search</button>
+    </form>
+  </search>
+</header>
+
+<search>
+  <label>
+    Find and filter your query
+    <input type="search" id="query" />
+  </label>
+  <label>
+    <input type="checkbox" id="exact-only" />
+    Exact matches only
+  </label>
+
+  <section>
+    <h3>Results:</h3>
+    <ul id="results">
+      <!-- search result content -->
+    </ul>
+    <output id="no-results">
+      <!-- no results content -->
+    </output>
+  </section>
+</search>
+
+</body>
+</html>

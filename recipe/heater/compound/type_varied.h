@@ -232,6 +232,7 @@ template < > struct type_master < t_closure > : varied < t_closure >
 template < > struct type_master < t_colour_v > : varied < t_colour_v >
 {   using varied < t_colour_v > :: varied;
     static e_animation_type animation_type () noexcept { return at_colour; }
+    static bool is_colourful () { return true; }
     void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
     {   if (good () || empty ())
             if (v.svg_version () != sv_none) validate_type < type_master < t_colour_i > > (nits, v);
@@ -846,6 +847,10 @@ template < > struct type_master < t_type > : varied < t_type >
                             break; }
                     if (v >= html_aug25)
                         if (compare_complain (nits, v, "importmap", varied < t_type > :: get_string ()))
+                        {   varied < t_type > :: type_ = static_cast < ::std::size_t > (mime_faux_module);
+                            break; }
+                    if (v >= html_dec25)
+                        if (compare_complain (nits, v, "speculationrules", varied < t_type > :: get_string ()))
                         {   varied < t_type > :: type_ = static_cast < ::std::size_t > (mime_faux_module);
                             break; }
                     validate_type < type_master < t_mime > > (nits, v); break;

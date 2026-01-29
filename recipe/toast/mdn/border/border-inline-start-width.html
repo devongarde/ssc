@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-inline-start-width tests</title>
+<style>
+.sid {
+/* <'border-width'> values */
+border-inline-start-width: 5px;
+border-inline-start-width: thick;
+
+/* Global values */
+border-inline-start-width: inherit;
+border-inline-start-width: initial;
+border-inline-start-width: revert;
+border-inline-start-width: revert-layer;
+border-inline-start-width: unset;
+}
+
+div {
+  background-color: yellow;
+  width: 120px;
+  height: 120px;
+}
+
+.exampleText {
+  writing-mode: vertical-lr;
+  border: 1px solid blue;
+  border-inline-start-width: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-inline-start-width Tests</h1>
+
+<div>
+  <p class="exampleText">Example text</p>
+</div>
+
+</body>
+</html>

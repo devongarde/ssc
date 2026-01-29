@@ -54,6 +54,7 @@ class statement
     void parse_media (arguments& args, nitpick& nits, const int from, const int to);
     void parse_namespace (arguments& args, nitpick& nits, const int from, const int to);
     void parse_page (arguments& args, nitpick& nits, const int from, const int to);
+    void parse_position_try (arguments& args, nitpick& nits, const int from, const int to);
     void parse_scope (arguments& args, nitpick& nits, const int from, const int to);
     void parse_supports (arguments& args, nitpick& nits, const int from, const int to);
     void parse_viewport (arguments& args, nitpick& nits, const int from, const int to);

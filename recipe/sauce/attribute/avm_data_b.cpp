@@ -188,6 +188,7 @@ hav_t havt_button [] =
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_button, a_formmethod },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_button, a_formnovalidate },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_button, a_formtarget },
+    { { HTML_DEC25 }, { HTML_UNDEF }, elem_button, a_interestfor },
     { { HTML_JAN13 }, { HTML_JUN17 }, elem_button, a_menu },
     { { HTML_JAN09 }, { HTML_JUN09 }, elem_button, a_method },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_button, a_name },

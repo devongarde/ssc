@@ -1,0 +1,39 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN dirname tests</title>
+</head>
+
+<body>
+
+<h1>MDN dirname Tests</h1>
+
+<form method="get" action="https://www.example.com/submit">
+  <textarea name="comment" dir="auto" dirname="comment-direction">سيب</textarea>
+  <button type="submit">Send my greetings</button>
+</form>
+
+<form method="get" action="https://www.example.com/submit">
+  <input
+    type="text"
+    name="comment-input"
+    dir="auto"
+    dirname="comment-direction"
+    value="Hello" />
+  <button type="submit">Send my greetings</button>
+</form>
+
+<div dir="rtl">
+  <form method="get" action="https://www.example.com/submit">
+    <input
+      type="text"
+      name="user"
+      dirname="user-direction"
+      value="LTR Username" />
+    <textarea name="comment" dirname="comment-direction">LTR Comment</textarea>
+    <button type="submit">Post Comment</button>
+  </form>
+</div>
+
+</body>
+</html>

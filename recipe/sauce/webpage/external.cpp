@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/lexical.h"
 
 const vstr_t rfc2606_no_no =
-{   // https://datatracker.ietf.org/doc/html/rfc2606
+{   // https://datatracker.ietf.org/doc/attribute/rfc2606
     "example",
     "example.com",
     "example.net",
@@ -36,7 +36,7 @@ const vstr_t rfc2606_no_no =
     "test" };
 
 const vstr_t rfc2606_no_no_no =
-{   // https://datatracker.ietf.org/doc/html/rfc2606 misinterpreted
+{   // https://datatracker.ietf.org/doc/attribute/rfc2606 misinterpreted
     "example.mil", // not actually in rfc2606, but...
     "invalid" };
 
@@ -51,7 +51,7 @@ const vstr_t local_domain =
     "lan",
     "local",
     "localdomain",
-    "localhost", // https://datatracker.ietf.org/doc/html/rfc2606
+    "localhost", // https://datatracker.ietf.org/doc/attribute/rfc2606
     // RFC6761
     "10.in-addr.arpa",
     "21.172.in-addr.arpa",

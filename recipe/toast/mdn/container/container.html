@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN container tests</title>
+<style>
+.sid {
+/* <container-name> */
+container: my-layout;
+
+/* <container-name> / <container-type> */
+container: my-layout / size;
+
+/* Global Values */
+container: inherit;
+container: initial;
+container: revert;
+container: revert-layer;
+container: unset;
+}
+
+.post {
+  container-type: inline-size;
+  container-name: sidebar;
+}
+
+.post {
+  container: sidebar / inline-size;
+}
+
+@container sidebar (width >= 400px) {
+  /* <stylesheet> */
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN container Tests</h1>
+
+<div class="post">
+  <div class="card">
+    <h2>Card title</h2>
+    <p>Card content</p>
+  </div>
+</div>
+
+</body>
+</html>

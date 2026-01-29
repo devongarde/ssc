@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN FENCEDFRAME tests</title>
+<script>
+const frameConfig = await navigator.runAdAuction({
+  // … auction configuration
+  resolveToConfig: true,
+});
+
+const frame = document.querySelector("fencedframe");
+frame.config = frameConfig;
+</script>
+</head>
+
+<body>
+
+<h1>MDN FENCEDFRAME Tests</h1>
+
+<fencedframe
+  title="Advertisement for new Log. From Blammo!"
+  width="640"
+  height="320"></fencedframe>
+
+<fencedframe width="640" height="320"></fencedframe>
+
+</body>
+</html>

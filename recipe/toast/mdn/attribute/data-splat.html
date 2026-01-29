@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN data-* tests</title>
+<style>
+h1 {
+  margin: 0;
+}
+
+ul {
+  margin: 10px 0 0;
+}
+
+li {
+  position: relative;
+  width: 200px;
+  padding-bottom: 10px;
+}
+
+li::after {
+  content: "Data ID: " attr(data-id);
+  position: absolute;
+  top: -22px;
+  left: 10px;
+  background: black;
+  color: white;
+  padding: 2px;
+  border: 1px solid #eeeeee;
+  opacity: 0;
+  transition: 0.5s opacity;
+}
+
+li:hover::after {
+  opacity: 1;
+}
+</style>
+<script>
+function clickSpaceship() {
+  spaceships[this.dataset.shipId].blasted();
+}
+
+document.querySelectorAll("img.spaceship").forEach((ship) => {
+  ship.addEventListener("click", clickSpaceship);
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN data-* Tests</h1>
+
+<h1>Secret agents</h1>
+
+<ul>
+  <li data-id="10784">Jason Walters, 003: Found dead in "A View to a Kill".</li>
+  <li data-id="97865">
+    Alex Trevelyan, 006: Agent turned terrorist leader; James' nemesis in
+    "Goldeneye".
+  </li>
+  <li data-id="45732">
+    James Bond, 007: The main man; shaken but not stirred.
+  </li>
+</ul>
+
+<img
+  class="spaceship cruiserX3"
+  src="shipX3.png"
+  data-ship-id="324"
+  data-weapons="laserI laserII"
+  data-shields="72%"
+  data-x="414354"
+  data-y="85160"
+  data-z="31940" />
+
+</body>
+</html>

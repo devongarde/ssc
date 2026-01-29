@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-block-colour tests</title>
+<style>
+.sid {
+border-block-color: yellow;
+border-block-color: #f5f6f7;
+
+/* Global values */
+border-block-color: inherit;
+border-block-color: initial;
+border-block-color: revert;
+border-block-color: revert-layer;
+border-block-color: unset;
+}
+
+div {
+  background-color: yellow;
+  width: 120px;
+  height: 120px;
+}
+
+.exampleText {
+  writing-mode: vertical-lr;
+  border: 10px solid blue;
+  border-block-color: red;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-block-colour Tests</h1>
+
+<div>
+  <p class="exampleText">Example text</p>
+</div>
+
+</body>
+</html>

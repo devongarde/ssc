@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN border-bottom-right-radius tests</title>
+<style>
+.sid {
+/* The corner is a circle */
+/* border-bottom-right-radius: radius */
+border-bottom-right-radius: 3px;
+
+/* Percentage values */
+border-bottom-right-radius: 20%; /* corner of a circle if box is a square or else corner of a rectangle */
+border-bottom-right-radius: 20% 20%; /* same as above */ /* 20% of horizontal(width) and vertical(height) */
+border-bottom-right-radius: 20% 10%; /* 20% of horizontal(width) and 10% of vertical(height) */
+
+/*The corner is an ellipse */
+/* border-bottom-right-radius: horizontal vertical */
+border-bottom-right-radius: 0.5em 1em;
+
+/* Global values */
+border-bottom-right-radius: inherit;
+border-bottom-right-radius: initial;
+border-bottom-right-radius: revert;
+border-bottom-right-radius: revert-layer;
+border-bottom-right-radius: unset;
+}
+
+div {
+  border-bottom-right-radius: 40px;
+  background-color: lightgreen;
+  border: solid 1px black;
+  width: 100px;
+  height: 100px;
+}
+
+div {
+  border-bottom-right-radius: 40px 20px;
+  background-color: lightgreen;
+  border: solid 1px black;
+  width: 100px;
+  height: 100px;
+}
+
+div {
+  border-bottom-right-radius: 40%;
+  background-color: lightgreen;
+  border: solid 1px black;
+  width: 100px;
+  height: 100px;
+}
+
+div {
+  border-bottom-right-radius: 40%;
+  background-color: lightgreen;
+  border: solid 1px black;
+  width: 200px;
+  height: 100px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN border-bottom-right-radius Tests</h1>
+
+</body>
+</html>

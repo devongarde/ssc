@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+.sid {
+/* Keyword values */
+dynamic-range-limit: standard;
+dynamic-range-limit: no-limit;
+dynamic-range-limit: constrained;
+
+/* dynamic-range-limit-mix() function */
+dynamic-range-limit: dynamic-range-limit-mix(standard 70%, no-limit 30%);
+
+/* Global values */
+dynamic-range-limit: inherit;
+dynamic-range-limit: initial;
+dynamic-range-limit: revert;
+dynamic-range-limit: revert-layer;
+dynamic-range-limit: unset;
+}
+
+img {
+  width: 50%;
+  border: 1px solid black;
+  dynamic-range-limit: standard;
+  transition: dynamic-range-limit 0.6s;
+}
+
+img:hover,
+img:focus {
+  dynamic-range-limit: no-limit;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+<img
+  src="gioia-pixel-ultrahdr.jpg"
+  alt="A subway station, with white strip lights lighting the platform and ad posters in the background"
+  tabindex="0" />
+
+</body>
+</html>

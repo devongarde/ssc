@@ -85,7 +85,7 @@ template < > inline void enum_n < t_role, e_aria_role > :: set_value (nitpick& n
                 nits.pick (nit_rejected, es_error, ec_type, quote (pret), " is valid but incompatible with ", v.report ());
             else
             {   f.check_status (nits, symbol < html_version, e_aria_role > :: name ());
-                if (f.deprecated (v)) nits.pick (nit_deprecated_value, es_warning, ec_type, quote (pret), " is deprecated in ", v.report ());
+                if (f.deprecated (v)) nits.pick (nit_deprecated_value, es_warning, ec_type, quote (pret), " is deprecated in ", v.report (), " (1)");
                 enum_base < e_aria_role, t_role > :: status (s_good);
                 enum_base < e_aria_role, t_role > :: post_set_value (nits, v);
                 return; } }

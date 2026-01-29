@@ -53,7 +53,8 @@ hav_t havt_em [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_embed [] =
-{   { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, a_height },
+{   { { HTML_JAN12 }, { HTML_UNDEF }, elem_embed, a_airplay },
+    { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, a_height },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, a_src },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, a_type },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, a_width },

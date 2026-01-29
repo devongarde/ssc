@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN caret tests</title>
+<style>
+.sid {
+/* Individual values */
+caret: red; /* caret-color only */
+caret: block; /* caret-shape only */
+caret: manual; /* caret-animation only */
+
+/* Two values */
+caret: red manual; /* caret-color + caret-animation */
+caret: block auto; /* caret-shape + caret-animation */
+caret: underscore orange; /* caret-shape + caret-color */
+
+/* Three values */
+caret: bar manual red; /* caret-shape + caret-animation + caret-color */
+caret: block auto #00ff00; /* caret-shape + caret-animation + caret-color */
+
+/* Global values */
+caret: inherit;
+caret: initial;
+caret: revert;
+caret: revert-layer;
+caret: unset;
+}
+
+.terminal-input {
+  caret: block manual green;
+  animation: vintage-caret 2s infinite;
+}
+
+@keyframes vintage-caret {
+  0%,
+  50% {
+    caret-color: #00ad00;
+  }
+  75%,
+  100% {
+    caret-color: transparent;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN caret Tests</h1>
+
+<label for="terminal">Enter a command</label>
+<div class="old-screen">
+  <span>></span>
+  <textarea id="terminal" class="terminal-input"></textarea>
+</div>
+<label for="terminal">Enter a command</label>
+<div class="old-screen">
+  <span>></span>
+  <textarea id="terminal" class="terminal-input"></textarea>
+</div>
+
+</body>
+</html>

@@ -582,17 +582,19 @@ microdata_structure ontology_structure [] =
     { { s_croissant, 0, 3 }, { 0, 0 }, cr_extract, cp_fileproperty },
     { { s_croissant, 0, 3 }, { 0, 0 }, cr_extract, cp_jsonpath },
 
+    { { s_croissant, 1, 101 }, { 0, 0 }, cr_field, cp_annotation },
     { { s_croissant, 1, 18 }, { 0, 0 }, cr_field, cp_arrayshape },
     { { s_croissant, 1, 17 }, { 0, 0 }, cr_field, cp_audio },
     { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_datatype },
     { { s_croissant, 1, 3 }, { 0, 0 }, cr_field, cp_equivalentproperty },
-    { { s_croissant, 1, 18 }, { 0, 0 }, cr_field, cp_isarray },
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_field, cp_isenumeration },
+    { { s_croissant, 1, 18 }, { s_croissant, 1, 100 }, cr_field, cp_isarray },
+    { { s_croissant, 1, 3 }, { s_croissant, 1, 100 }, cr_field, cp_isenumeration },
     { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_parentfield },
     { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_references },
     { { s_croissant, 1, 6 }, { s_croissant, 1, 17 }, cr_field, cp_repeated },
     { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_source },
     { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_subfield },
+    { { s_croissant, 1, 101 }, { 0, 0 }, cr_field, cp_value },
 
     { { s_croissant, 0, 2 }, { 0, 0 }, cr_fileobject, cp_containedin },
     { { s_croissant, 1, 3 }, { 0, 0 }, cr_fileobject, sp_contentsize },
@@ -605,11 +607,12 @@ microdata_structure ontology_structure [] =
     { { s_croissant, 0, 2 }, { 0, 0 }, cr_fileset, cp_excludes },
     { { s_croissant, 0, 2 }, { 0, 0 }, cr_fileset, cp_includes },
 
+    { { s_croissant, 1, 101 }, { 0, 0 }, cr_recordset, cp_annotation },
     { { s_croissant, 0, 2 }, { 0, 0 }, cr_recordset, cp_data },
     { { s_croissant, 1, 4 }, { 0, 0 }, cr_recordset, cp_datatype },
     { { s_croissant, 1, 3 }, { 0, 0 }, cr_recordset, cp_examples },
     { { s_croissant, 0, 2 }, { 0, 0 }, cr_recordset, cp_field },
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_recordset, cp_isenumeration },
+    { { s_croissant, 1, 3 }, { s_croissant, 1, 100 }, cr_recordset, cp_isenumeration },
     { { s_croissant, 0, 2 }, { 0, 0 }, cr_recordset, cp_key },
     { { s_croissant, 0, 2 }, { 0, 0 }, cr_recordset, cp_source },
 
@@ -617,9 +620,11 @@ microdata_structure ontology_structure [] =
     { { s_croissant, 0, 2 }, { s_croissant, 1, 21 }, cr_reference, cp_fileobject },
     { { s_croissant, 1, 3 }, { s_croissant, 1, 21 }, cr_reference, cp_recordset },
 
-    { { s_croissant, 1, 1 }, { 0, 0 }, cr_transform, cp_delimiter },
-    { { s_croissant, 1, 1 }, { 0, 0 }, cr_transform, cp_jsonquery },
+    { { s_croissant, 1, 1 }, { s_croissant, 1, 100 }, cr_transform, cp_delimiter },
+    { { s_croissant, 1, 1 }, { s_croissant, 1, 100 }, cr_transform, cp_jsonquery },
+    { { s_croissant, 1, 101 }, { 0, 0 }, cr_transform, cp_readlines },
     { { s_croissant, 1, 3 }, { 0, 0 }, cr_transform, cp_regex },
+    { { s_croissant, 1, 101 }, { 0, 0 }, cr_transform, cp_unarchive },
 
     // contrary sausages
     { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_abouturl },
@@ -4539,6 +4544,9 @@ microdata_structure ontology_structure [] =
     { { 3, 0 }, { 0, 0 }, sch_compoundpricespecification, sp_pricecomponent },
     { { 11, 0 }, { 0, 0 }, sch_compoundpricespecification, sp_pricetype },
 
+    { { 29, 4 }, { 0, 0 }, sch_conferenceevent, sp_hasparticipationoffer },
+    { { 29, 4 }, { 0, 0 }, sch_conferenceevent, sp_hassponsorshipoffer },
+
     { { 16, 0 }, { 0, 0 }, sch_constraintnode, sp_constraintproperty },
     { { 16, 0 }, { 0, 0 }, sch_constraintnode, sp_numconstraints },
 
@@ -4619,7 +4627,7 @@ microdata_structure ontology_structure [] =
     { { 0, 30 }, { 0, 0 }, sch_creativework, sp_datemodified },
     { { 0, 10 }, { 0, 0 }, sch_creativework, sp_datepublished },
     { { 0, 30 }, { 0, 0 }, sch_creativework, sp_discussionurl },
-    { { 29, 3 }, { 0, 0 }, sch_creativework, sp_displaylocation },
+    { { 29, 4 }, { 0, 0 }, sch_creativework, sp_displaylocation },
     { { 8, 0 }, { 0, 0 }, sch_creativework, sp_editeidr },
     { { 0, 10 }, { 0, 0 }, sch_creativework, sp_editor },
     { { 1, 0 }, { 0, 0 }, sch_creativework, sp_educationalalignment },
@@ -4725,9 +4733,7 @@ microdata_structure ontology_structure [] =
 
     { { 1, 0 }, { 1, 93 }, sch_dataset, sp_catalogue },
     { { s_croissant, 1, 4 }, { 0, 0 }, sch_dataset, cp_citeas },
-    { { s_croissant, 1, 5 }, { 0, 0 }, sch_dataset, dct_conformsto },
-//    { { s_croissant, 1, 5 }, { s_croissant, 1, 7 }, sch_dataset, dct_conformsto },
-//    { { s_croissant, 1, 101 }, { 0, 0 }, sch_dataset, dct_conformsto },
+    { { s_croissant, 1, 5 }, { 0, 0 }, sch_dataset, dct_conformsto }, // really to 1, 7 & reintroduced at 1, 101
     { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_annotationsperitem },
     { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_annotatordemographics },
     { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_datacollection },
@@ -4756,6 +4762,7 @@ microdata_structure ontology_structure [] =
     { { 3, 5 }, { 0, 0 }, sch_dataset, sp_measurementtechnique },
     { { s_rai, 1, 22 }, { 0, 0 }, sch_dataset, rai_personalsensitiveinformation },
     { { s_croissant, 1, 3 }, { s_croissant, 1, 21 }, sch_dataset, cp_recordset },
+    { { s_croissant, 1, 101 }, { 0, 0 }, sch_dataset, cp_sdversion },
     { { 1, 0 }, { 3, 0 }, sch_dataset, sp_spatial },
     { { 1, 0 }, { 1, 93 }, sch_dataset, sp_temporal },
     { { 3, 5 }, { 0, 0 }, sch_dataset, sp_variablemeasured },
@@ -4772,9 +4779,11 @@ microdata_structure ontology_structure [] =
     { { 8, 0 }, { 0, 0 }, sch_definedregion, sp_postalcodeprefix },
     { { 8, 0 }, { 0, 0 }, sch_definedregion, sp_postalcoderange },
 
+    { { 29, 4 }, { 0, 0 }, sch_definedterm, sp_about },
     { { 3, 5 }, { 0, 0 }, sch_definedterm, sp_indefinedtermset },
     { { 3, 5 }, { 0, 0 }, sch_definedterm, sp_termcode },
 
+    { { 29, 4 }, { 0, 0 }, sch_definedtermset, sp_about },
     { { 3, 5 }, { 0, 0 }, sch_definedtermset, sp_hasdefinedterm },
 
     { { 0, 99 }, { 0, 0 }, sch_deliverychargespecification, sp_appliestodeliverymethod },
@@ -5016,6 +5025,8 @@ microdata_structure ontology_structure [] =
     { { 1, 3 }, { 1, 93 }, sch_episode, sp_publication },
     { { 1, 3 }, { 0, 0 }, sch_episode, sp_trailer },
 
+    { { 29, 4 }, { 0, 0 }, sch_error, sp_errorcode },
+
     { { 3, 1 }, { 0, 0 }, sch_event, sp_about },
     { { 3, 0 }, { 0, 0 }, sch_event, sp_actor },
     { { 2, 0 }, { 0, 0 }, sch_event, sp_aggregaterating },
@@ -5033,8 +5044,6 @@ microdata_structure ontology_structure [] =
     { { 1, 3 }, { 0, 0 }, sch_event, sp_eventstatus },
     { { 3, 1 }, { 0, 0 }, sch_event, sp_funder },
     { { 14, 0 }, { 0, 0 }, sch_event, sp_funding },
-    { { 29, 4 }, { 0, 0 }, sch_event, sp_hasparticipationoffer },
-    { { 29, 4 }, { 0, 0 }, sch_event, sp_hassponsorshipoffer },
     { { 2, 0 }, { 0, 0 }, sch_event, sp_inlanguage },
     { { 3, 1 }, { 0, 0 }, sch_event, sp_isaccessibleforfree },
     { { 0, 10 }, { 0, 0 }, sch_event, sp_location },
@@ -5316,6 +5325,7 @@ microdata_structure ontology_structure [] =
     { { 2, 0 }, { 0, 0 }, sch_jobposting, sp_incentivecompensation },
     { { 0, 60 }, { 0, 0 }, sch_jobposting, sp_industry },
     { { 2, 0 }, { 0, 0 }, sch_jobposting, sp_jobbenefits },
+    { { 29, 5 }, { 0, 0 }, sch_jobposting, sp_jobduration },
     { { 3, 8 }, { 0, 0 }, sch_jobposting, sp_jobimmediatestart },
     { { 0, 60 }, { 0, 0 }, sch_jobposting, sp_joblocation },
     { { 3, 5 }, { 0, 0 }, sch_jobposting, sp_joblocationtype },
@@ -5399,6 +5409,7 @@ microdata_structure ontology_structure [] =
 
     { { 0, 10 }, { 1, 93 }, sch_localbusiness, sp_branchof },
     { { 0, 10 }, { 0, 0 }, sch_localbusiness, sp_currenciesaccepted },
+    { { 29, 5 }, { 0, 0 }, sch_localbusiness, sp_floorlevel },
     { { 0, 10 }, { 0, 0 }, sch_localbusiness, sp_openinghours },
     { { 2, 0 }, { 2, 0 }, sch_localbusiness, sp_parentorganisation },
     { { 0, 10 }, { 0, 0 }, sch_localbusiness, sp_paymentaccepted },
@@ -5882,9 +5893,9 @@ microdata_structure ontology_structure [] =
     { { 15, 0 }, { 0, 0 }, sch_offershippingdetails, sp_weight },
     { { 15, 0 }, { 0, 0 }, sch_offershippingdetails, sp_width },
 
-    { { 29, 3 }, { 0, 0 }, sch_onlinestore, sp_isstoreon },
+    { { 29, 4 }, { 0, 0 }, sch_onlinestore, sp_isstoreon },
 
-    { { 29, 3 }, { 0, 0 }, sch_onlinemarketplace, sp_hasstore },
+    { { 29, 4 }, { 0, 0 }, sch_onlinemarketplace, sp_hasstore },
 
     { { 0, 99 }, { 0, 0 }, sch_openinghoursspecification, sp_closes },
     { { 0, 99 }, { 0, 0 }, sch_openinghoursspecification, sp_dayofweek },
@@ -6111,7 +6122,7 @@ microdata_structure ontology_structure [] =
     { { 0, 30 }, { 0, 0 }, sch_person, sp_knows },
     { { 3, 5 }, { 0, 0 }, sch_person, sp_knowsabout },
     { { 3, 5 }, { 0, 0 }, sch_person, sp_knowslanguage },
-    { { 29, 4 }, { 0, 0 }, sch_person, sp_lifeevents },
+    { { 29, 4 }, { 0, 0 }, sch_person, sp_lifeevent },
     { { 0, 99 }, { 0, 0 }, sch_person, sp_makesoffer },
     { { 0, 10 }, { 0, 0 }, sch_person, sp_memberof },
     { { 0, 99 }, { 0, 0 }, sch_person, sp_naics },
@@ -6246,7 +6257,7 @@ microdata_structure ontology_structure [] =
     { { 13, 0 }, { 0, 0 }, sch_product, sp_countryoflastprocessing },
     { { 0, 99 }, { 0, 0 }, sch_product, sp_depth },
     { { 2, 0 }, { 0, 0 }, sch_product, gr_depth },
-    { { 29, 3 }, { 0, 0 }, sch_product, sp_displaylocation },
+    { { 29, 4 }, { 0, 0 }, sch_product, sp_displaylocation },
     { { 14, 0 }, { 0, 0 }, sch_product, sp_funding },
     { { 3, 8 }, { 0, 0 }, sch_product, sp_gtin },
     { { 2, 0 }, { 0, 0 }, sch_product, sp_gtin12 },
@@ -6497,6 +6508,7 @@ microdata_structure ontology_structure [] =
     { { 1, 2 }, { 0, 0 }, sch_reserveaction, sp_scheduledtime },
 
     { { 6, 0 }, { 0, 0 }, sch_residence, sp_accommodationfloorplan },
+    { { 29, 5 }, { 0, 0 }, sch_residence, sp_floorlevel },
 
     { { 1, 2 }, { 0, 0 }, sch_returnaction, sp_recipient },
 
@@ -6783,6 +6795,7 @@ microdata_structure ontology_structure [] =
     { { 0, 10 }, { 0, 0 }, sch_thing, sp_image },
     { { 2, 0 }, { 0, 0 }, sch_thing, sp_mainentityofpage },
     { { 0, 10 }, { 0, 0 }, sch_thing, sp_name },
+    { { 29, 4 }, { 0, 0 }, sch_thing, sp_owner },
     { { 1, 20 }, { 0, 0 }, sch_thing, sp_potentialaction },
     { { 1, 1 }, { 0, 0 }, sch_thing, sp_sameas },
     { { 3, 5 }, { 0, 0 }, sch_thing, sp_subjectof },

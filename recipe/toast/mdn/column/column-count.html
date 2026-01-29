@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN column-count tests</title>
+<style>
+.sid {
+/* Keyword value */
+column-count: auto;
+
+/* <integer> value */
+column-count: 3;
+
+/* Global values */
+column-count: inherit;
+column-count: initial;
+column-count: revert;
+column-count: revert-layer;
+column-count: unset;
+}
+
+.content-box {
+  column-count: 3;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN column-count Tests</h1>
+
+<p class="content-box">
+  This is a bunch of text split into three columns using the CSS
+  <code>column-count</code>
+  property. The text is equally distributed over the columns.
+</p>
+
+</body>
+</html>

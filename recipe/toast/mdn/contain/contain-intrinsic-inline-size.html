@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN contain-intrinsic-inline-size tests</title>
+<style>
+.sid {
+/* Keyword values */
+contain-intrinsic-inline-size: none;
+
+/* <length> values */
+contain-intrinsic-inline-size: 1000px;
+contain-intrinsic-inline-size: 10rem;
+
+/* auto <length> */
+contain-intrinsic-inline-size: auto 300px;
+
+/* Global values */
+contain-intrinsic-inline-size: inherit;
+contain-intrinsic-inline-size: initial;
+contain-intrinsic-inline-size: revert;
+contain-intrinsic-inline-size: revert-layer;
+contain-intrinsic-inline-size: unset;
+}
+
+#contained_element {
+  border: 2px solid green;
+  inline-size: 151px;
+  content-visibility: auto;
+  contain-intrinsic-inline-size: 152px;
+  contain-intrinsic-block-size: 52px;
+}
+.child_element {
+  border: 1px solid red;
+  background: blue;
+  block-size: 50px;
+  inline-size: 150px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN contain-intrinsic-inline-size Tests</h1>
+
+<div id="contained_element">
+  <div class="child_element"></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN type-time tests</title>
+<style>
+label {
+  display: block;
+  font:
+    1rem "Fira Sans",
+    sans-serif;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+
+input[type="time"] {
+  width: 100px;
+}
+
+input + span {
+  padding-right: 30px;
+}
+
+input:invalid + span::after {
+  position: absolute;
+  content: "✖";
+  padding-left: 5px;
+}
+
+input:valid + span::after {
+  position: absolute;
+  content: "✓";
+  padding-left: 5px;
+}
+
+div {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+input[type="number"] {
+  width: 100px;
+}
+
+input + span {
+  padding-right: 30px;
+}
+
+input:invalid + span::after {
+  position: absolute;
+  content: "✖";
+  padding-left: 5px;
+}
+
+input:valid + span::after {
+  position: absolute;
+  content: "✓";
+  padding-left: 5px;
+}
+</style>
+<script>
+const timeControl = document.querySelector('input[type="time"]');
+    timeControl.value = "15:30";
+
+const startTime = document.getElementById("startTime");
+const valueSpan = document.getElementById("value");
+
+const input = document.createElement("input");
+startTime.addEventListener("input", () => {
+  valueSpan.innerText = startTime.value;
+});
+
+input.type = "time";
+input.min = "23:00";
+input.max = "01:00";
+input.value = "23:59";
+
+if (input.validity.valid && input.type === "time") {
+  // <input type=time> reversed range supported
+} else {
+  // <input type=time> reversed range unsupported
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN type-time Tests</h1>
+
+<label for="appointment">Choose a time for your meeting:</label>
+
+<input
+  type="time"
+  id="appointment"
+  name="appointment"
+  min="09:00"
+  max="18:00"
+  required />
+
+<small>Office hours are 9am to 6pm</small>
+
+<form>
+  <label for="appointment-time">Choose an appointment time: </label>
+  <input id="appointment-time" type="time" name="appointment-time" />
+</form>
+
+<form>
+  <label for="appointment-time">
+    Choose an appointment time (opening hours 12:00 to 18:00):
+  </label>
+  <input
+    id="appointment-time"
+    type="time"
+    name="appointment-time"
+    min="12:00"
+    max="18:00"
+    required />
+  <span class="validity"></span>
+</form>
+
+<label for="appointment-time">Choose an appointment time: </label>
+<input
+  id="appointment-time"
+  type="time"
+  name="appointment-time"
+  value="13:30" />
+
+<form>
+  <label for="startTime">Start time: </label>
+  <input type="time" id="startTime" />
+  <p>
+    Value of the <code>time</code> input:
+    <code>"<span id="value">n/a</span>"</code>.
+  </p>
+</form>
+
+<form>
+  <label for="appointment-time">Choose an appointment time: </label>
+  <input id="appointment-time" type="time" name="appointment-time" step="2" />
+</form>
+
+<form>
+  <label for="appointment-time">
+    Choose an appointment time (opening hours 12:00 to 18:00):
+  </label>
+  <input
+    id="appointment-time"
+    type="time"
+    name="appointment-time"
+    min="12:00"
+    max="18:00" />
+  <span class="validity"></span>
+</form>
+
+<form>
+  <div>
+    <label for="appointment-time">
+      Choose an appointment time (opening hours 12:00 to 18:00):
+    </label>
+    <input
+      id="appointment-time"
+      type="time"
+      name="appointment-time"
+      min="12:00"
+      max="18:00"
+      required />
+    <span class="validity"></span>
+  </div>
+  <div>
+    <input type="submit" value="Submit form" />
+  </div>
+</form>
+
+</body>
+</html>

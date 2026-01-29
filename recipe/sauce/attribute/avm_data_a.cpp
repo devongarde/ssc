@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/avm_data.h"
 
 hav_t havt_a [] =
-{   { { HTML_2_0, HV_RFC_2070 | HV_NOT3 }, { XHTML_2_0 }, elem_a, a_charset },
+{   { { HTML_DEC25 }, { HTML_UNDEF }, elem_a, a_attributionsrc },
+    { { HTML_2_0, HV_RFC_2070 | HV_NOT3 }, { XHTML_2_0 }, elem_a, a_charset },
     { { HTML_JAN05 }, { HTML_DEC05 }, elem_a, a_command },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_a, a_coords },
     { { HTML_JAN12 }, { HTML_UNDEF }, elem_a, a_download },
@@ -30,6 +31,7 @@ hav_t havt_a [] =
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_a, a_externalresourcesrequired },
     { { HTML_TAGS }, { HTML_UNDEF }, elem_a, a_href, EP_WX },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_a, a_hreflang },
+    { { HTML_DEC25 }, { HTML_UNDEF }, elem_a, a_interestfor },
     { { HTML_3_0 }, { HTML_3_0 }, elem_a, a_md },
     { { HTML_JAN05 }, { HTML_DEC12 }, elem_a, a_media },
     { { HTML_1_0 }, { HTML_3_0 }, elem_a, a_methods },
@@ -331,6 +333,7 @@ hav_t havt_area [] =
     { { HTML_2_0, HV_NOT30 | HV_RFC_1980 }, { HTML_UNDEF }, elem_area, a_href, EP_WX },
     { { HTML_JAN07 }, { HTML_DEC15 }, elem_area, a_hreflang },
     { { HTML_5_1, HV_W3 }, { HTML_5_3 }, elem_area, a_hreflang },
+    { { HTML_DEC25 }, { HTML_UNDEF }, elem_area, a_interestfor },
     { { HTML_JAN07 }, { HTML_DEC12 }, elem_area, a_media },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_area, a_name },
     { { HTML_2_0, HV_NOT30 | HV_RFC_1980 }, { XHTML_2_0 }, elem_area, a_nohref },
@@ -496,6 +499,7 @@ hav_t havt_audio [] =
     { { HTML_JUL07 }, { HTML_UNDEF }, elem_audio, a_src },
     { { HTML_JUL07 }, { HTML_DEC08 }, elem_audio, a_start },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_audio, a_type },
+    { { HTML_SEP12 }, { HTML_UNDEF }, elem_audio, a_x_webkit_airplay },
     SVG_ANIMATION_TIMING_ATTRIBUTES (elem_audio),
     SVG_CONDITIONAL_ATTRIBUTES (elem_audio),
     SVG_HTML_ATTRIBUTES (elem_audio),

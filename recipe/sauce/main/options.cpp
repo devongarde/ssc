@@ -123,6 +123,8 @@ options::options (const context_t& c)
     if (def.FN () != c.FN ()) insert < ::std::string > (SECT VAR, c.FN ());
 #define INSERT_TIME(SECT,VAR,FN) \
     if (def.FN () != c.FN ()) insert < ::std::time_t > (SECT VAR, c.FN ());
+#define INSERT_USHORT(SECT,VAR,FN) \
+    if (def.FN () != c.FN ()) insert < unsigned short > (SECT VAR, c.FN ());
 #define INSERT_VALID(VAR,TY,EN) \
     {   const ::std::size_t xtra = type_master < TY > :: extra_values (); \
         if (xtra > 0) \
@@ -133,12 +135,16 @@ options::options (const context_t& c)
             if (! v.empty ()) { const ::boost::any a = v; insert < ::boost::any > (VALIDATION VAR, a); } } }
 #define INSERT_VALID2(VAR,TY,EN) \
     INSERT_VALID (#VAR, TY, EN)
+#define INSERT_VBP(SECT,VAR,FN) \
+    { const vbp_t& v = c.FN (); if (! v.empty ()) { const ::boost::any a = v; insert < ::boost::any > (SECT VAR, a); } }
 #define INSERT_VSTR(SECT,VAR,FN) \
     { const vstr_t& v = c.FN (); if (! v.empty ()) { const ::boost::any a = v; insert < ::boost::any > (SECT VAR, a); } }
 #define INSERT_VREG(SECT,VAR,FN) \
     { const vreg_t& v = c.FN (); if (! v.empty ()) { const ::boost::any a = v; insert < ::boost::any > (SECT VAR, a); } }
 #define INSERT_SSTR(SECT,VAR,FN) \
     { const sstr_t& v = c.FN (); if (! v.empty ()) { const ::boost::any a = v; insert < ::boost::any > (SECT VAR, a); } }
+#define INSERT_UNSIGNED(SECT,VAR,FN) \
+    if (def.FN () != c.FN ()) insert < unsigned > (SECT VAR, c.FN ());
 
     if (! c.environment (env_query_string).empty ())
     {   insert < ::std::string > (ENVIRONMENT QUERY_STRING, c.environment (env_query_string));
@@ -238,9 +244,7 @@ options::options (const context_t& c)
     INSERT_BOOL (HTML, WXARG, wx);
     INSERT_STRING (HTML, WX_SNIPPET, wx_snippet);
 
-    if (c.jsonld_extension () != def.jsonld_extension ())
-        INSERT_SSTR (JSONLD, EXTENSION, jsonld_extension);
-
+    if (c.jsonld_extension () != def.jsonld_extension ()) INSERT_SSTR (JSONLD, EXTENSION, jsonld_extension);
     INSERT_VSTR (JSONLD, ONTOLOGY_, jsonld_ontology);
     INSERT_BOOL (JSONLD, PRETTY, pretty);
     INSERT_BOOL (JSONLD, VERIFY, jsonld);
@@ -310,11 +314,11 @@ options::options (const context_t& c)
     INSERT_PATH (OUTPUT, HOME, home);
     INSERT_STRING (OUTPUT, OVERRIDE, output_override);
 #ifdef SIGNING
-    INSERT_PATH (OUTPUT, PASSWORD, password);
-    INSERT_PATH (OUTPUT, PRIVATE, pri);
-    INSERT_PATH (OUTPUT, PUBLIC, pub);
+    INSERT_PATH (OUTPUT, PASSWORD, output_password);
+    INSERT_PATH (OUTPUT, PRIVATE, output_private);
+    INSERT_PATH (OUTPUT, PUBLIC, output_public);
     INSERT_BOOL (OUTPUT, SIGN, sign);
-    INSERT_PATH (OUTPUT, SIGNATURE, signature);
+    INSERT_PATH (OUTPUT, SIGNATURE, output_signature);
 #endif // SIGNING
     INSERT_PATH (OUTPUT, STYLESHEET, stylesheet);
     INSERT_STRING (OUTPUT, TIME, output_time);
@@ -796,7 +800,7 @@ void options::init (context_t& c)
         (GENERAL VERBOSE, ::boost::program_options::value < ::std::string > (), "Use --" NITS VERBOSE)
         (GENERAL YGGDRISIL, ::boost::program_options::bool_switch (), "Sniff yggdrisil.")
 
-        (HTML ANALYSIS ARGSEP ANAL_SW_, ::boost::program_options::value < ::std::string > (), "Style of nitpick analysis: one of default, original, or aug25 (intended for testing).")
+        (HTML ANALYSIS ARGSEP ANAL_SW_, ::boost::program_options::value < ::std::string > (), "Style of nitpick analysis: one of default, original, aug25, or dec25 (intended for testing).")
         (HTML SLOVEN, ::boost::program_options::bool_switch (), "Do not nitpick slovenly HTML such as missing closures, slovenly typography, etc..")
         (HTML DONT SLOVEN, ::boost::program_options::bool_switch (), "Nitpick slovenly HTML such as missing closures, slovenly typography, etc..")
         (HTML WX_SNIPPET, ::boost::program_options::value < ::std::string > (), "Snippet seen in wx intro dialogue.")
@@ -889,7 +893,7 @@ void options::init (context_t& c)
         (GENERAL TEST ARGSEP TEST_SW_, ::boost::program_options::bool_switch (), "Output in format useful for automated tests.")
         (GENERAL DONT TEST, ::boost::program_options::bool_switch (), "Output in format specified by other switches.")
 #ifndef NO_FRED
-        (GENERAL THREAD ARGSEP THREAD_SW_, ::boost::program_options::value < int > () -> default_value  (def_fred), "Number of threads (default 1, zero for whatever is appropriate for the hardware).")
+        (GENERAL THREAD ARGSEP THREAD_SW_, ::boost::program_options::value < int > () -> default_value (def_fred), "Number of threads (default " MIN_FRED_S ", zero for hardware appropriate).")
 #endif // NO_FRED
         (GENERAL UPDATE, ::boost::program_options::bool_switch (), "Check for updates to " PROG ".")
         (GENERAL DONT UPDATE, ::boost::program_options::bool_switch (), "Do not check for updates to " PROG ".")
@@ -914,13 +918,14 @@ void options::init (context_t& c)
         (CSS ANCHOR, ::boost::program_options::value < int > (), "CSS Scroll Anchoring level (0 or 3).")
         (CSS ANCHOR_POS, ::boost::program_options::value < int > (), "CSS Anchoring Positioning level (0 or 3).")
         (CSS ANIMATION, ::boost::program_options::value < int > (), "CSS Animation level (0 or 3).")
-        (CSS BACKGROUND, ::boost::program_options::value < int > (), "CSS Background Borders level (0 or 3).")
+        (CSS BACKGROUND, ::boost::program_options::value < int > (), "CSS Background (and Borders) level (0, 3 or 4).")
+        (CSS BORDER, ::boost::program_options::value < int > (), "CSS Borders and Boxes level (0 or 4).")
         (CSS BOX_ALIGN, ::boost::program_options::value < int > (), "CSS Box Alignment level (0 or 3).")
         (CSS BOX_MODEL, ::boost::program_options::value < int > (), "CSS Box Model level (0, 3 or 4).")
         (CSS BOX_SIZING, ::boost::program_options::value < int > (), "CSS Box Sizing level (0, 3 or 4).")
         (CSS CASCADE, ::boost::program_options::value < int > (), "CSS Cascade & Inheritance level (0, 3, 4, 5 or 6).")
         (CSS COLOUR, ::boost::program_options::value < int > (), "CSS Colour level (0, 3, 4, 5, or 6).")
-        (CSS COMPOSITING, ::boost::program_options::value < int > (), "CSS Compositing and Blending level (0 or 3).")
+        (CSS COMPOSITING, ::boost::program_options::value < int > (), "CSS Compositing and Blending level (0, 3 or 4).")
         (CSS COND_RULE, ::boost::program_options::value < int > (), "CSS Conditional Rule level (0, 3, 4, or 5).")
         (CSS CONTAIN, ::boost::program_options::value < int > (), "CSS Contain level (0, 3, 4, or 5).")
         (CSS CON_TENT, ::boost::program_options::value < int > (), "CSS Generated Content level (0 or 3).")
@@ -928,7 +933,8 @@ void options::init (context_t& c)
         (CSS CUSTOM, ::boost::program_options::value < int > (), "CSS Custom level (0 or 3).")
         (CSS DEVICE, ::boost::program_options::value < int > (), "CSS Device Adaption level (0 or 3).")
         (CSS DISPLAY, ::boost::program_options::value < int > (), "CSS Display level (0 or 3).")
-        (CSS EASE, ::boost::program_options::value < int > (), "CSS Ease level (0 or 3).")
+        (CSS EASE, ::boost::program_options::value < int > (), "CSS Ease level (0, 3 or 4).")
+        (CSS ENVIRONMENT, ::boost::program_options::value < int > (), "CSS Environment level (0 or 3).")
         (CSS EXCLUDE, ::boost::program_options::value < int > (), "CSS Exclusions level (0 or 3).")
         (CSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "CSS files have this extension (default css); may be repeated.")
         (CSS EXTERNAL, ::boost::program_options::bool_switch (), "Nitpick css files imported from external sites.")
@@ -940,6 +946,7 @@ void options::init (context_t& c)
         (CSS FONT, ::boost::program_options::value < int > (), "CSS Font level (0, 3, 4, or 5).")
         (CSS FRAG, ::boost::program_options::value < int > (), "CSS Fragmentation level (0, 3, or 4).")
         (CSS GRID, ::boost::program_options::value < int > (), "CSS Grid level (0, 3, or 4).")
+        (CSS HDR, ::boost::program_options::value < int > (), "CSS HDR level (0 or 3).")
         (CSS HIGHLIGHT, ::boost::program_options::value < int > (), "CSS Custom Highlight level (0, 3, or 4).")
         (CSS HYPERLINK, ::boost::program_options::value < int > (), "CSS Hyperlink level (0 or 3).")
         (CSS IMAGE, ::boost::program_options::value < int > (), "CSS Images level (0, 3, or 4).")
@@ -950,6 +957,7 @@ void options::init (context_t& c)
         (CSS MARQUEE, ::boost::program_options::value < int > (), "CSS Marquee level (0 or 3).")
         (CSS MASKING, ::boost::program_options::value < int > (), "CSS Masking level (0 or 3).")
         (CSS MEDIA, ::boost::program_options::value < int > (), "CSS Media level (0, 3, 4, or 5).")
+        (CSS MIXIN, ::boost::program_options::value < int > (), "CSS Functions and Mixin level (0 or 3).")
         (CSS MOBILE, ::boost::program_options::bool_switch (), "Notify if some CSS conflicts with the CSS Mobile Profile.")
         (CSS DONT MOBILE, ::boost::program_options::bool_switch (), "Do not notify CSS Mobile Profile matters.")
         (CSS MOTION, ::boost::program_options::value < int > (), "CSS Motion Path level (0 or 3).")
@@ -1050,7 +1058,7 @@ void options::init (context_t& c)
             "For HTML+, use '+'. For HTML tags, use 'tags'.")
         (HTML WXARG, ::boost::program_options::bool_switch (), "Warn about HTML tags and attributes unsupported by wxWidgets' HTML engine.")
         (HTML DONT WXARG, ::boost::program_options::bool_switch (), "Do not warn about HTML tags and attributes unsupported by wxWidgets' HTML engine.")
- 
+
         (JSONLD EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for JSON-LD files (default jld); may be repeated.")
         (JSONLD ONTOLOGY_, ::boost::program_options::value < vstr_t > () -> composing (), "Predefine JSON-LD ontology context, format \"shortname:URL\": may be repeated")
         (JSONLD PRETTY, ::boost::program_options::bool_switch (), "Output pretty JSON.")
@@ -1629,7 +1637,8 @@ void options::contextualise (context_t& c, nitpick& nits)
 
     if (c.test () || is_be (GENERAL SPEC))
         c.adstxt (false).article (false).atomic_verify (false).body (false).cased (false).classic (false).crosslinks (false).example (false).external (false).ext_css (false)
-            .forwarded (false).icu (true).info (false).jsonld (false).links (false).load_css (true).load_vtt (true).main (false).md_export (false).mf_verify (false)
+            .forwarded (false)
+            .icu (true).info (false).jsonld (false).links (false).load_css (true).load_vtt (true).main (false).md_export (false).mf_verify (false)
             .microdata (false).nids (true).nits (false).nits_nits_nits (true).not_root (false).once (false).ontology (true).presume_tags (false).progress (false).rdfa (false)
             .rel (false).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).robtxt (false).rpt_opens (false).rsl_verify (false).rss_verify (false)
             .sectxt (false).serve (false).shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).sign (false)
@@ -1798,13 +1807,14 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_scroll_anchoring, n, nits, CSS ANCHOR, "Scrollbar Anchoring", 4);
         process_css_level (c, c_anchor_pos, n, nits, CSS ANCHOR_POS, "Anchor Positioning", 3);
         process_css_level (c, c_animation, n, nits, CSS ANIMATION, "Animation", 4);
-        process_css_level (c, c_background_border, n, nits, CSS BACKGROUND, "Background Border", 3, true);
+        process_css_level (c, c_background_border, n, nits, CSS BACKGROUND, "Background Border", 4);
         process_css_level (c, c_box_alignment, n, nits, CSS BOX_ALIGN, "Background Alignment", 3);
+        process_css_level (c, c_border_box, n, nits, CSS BORDER, "Border Box", 4);
         process_css_level (c, c_box_model, n, nits, CSS BOX_MODEL, "Box Model", 4);
         process_css_level (c, c_box_sizing, n, nits, CSS BOX_SIZING, "Background Sizing", 4);
         process_css_level (c, c_cascade_inheritance, n, nits, CSS CASCADE, "Cascade & Inheritance", 6);
         process_css_level (c, c_colour, n, nits, CSS COLOUR, "Colour", 6);
-        process_css_level (c, c_compositing_blending, n, nits, CSS COMPOSITING, "Compositing", 3, true);
+        process_css_level (c, c_compositing_blending, n, nits, CSS COMPOSITING, "Compositing & Blending", 4);
         process_css_level (c, c_conditional_rule, n, nits, CSS COND_RULE, "Conditional Rule", 5);
         process_css_level (c, c_containment, n, nits, CSS CONTAIN, "Contain", 5);
         process_css_level (c, c_generated_content, n, nits, CSS CON_TENT, "Generated Content", 3);
@@ -1812,7 +1822,8 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_custom_property, n, nits, CSS CUSTOM, "Custom", 3, true);
         process_css_level (c, c_device_adaption, n, nits, CSS DEVICE, "Device Adaption", 3);
         process_css_level (c, c_display, n, nits, CSS DISPLAY, "Display", 3);
-        process_css_level (c, c_easing_function, n, nits, CSS EASE, "Ease", 4, true);
+        process_css_level (c, c_easing_function, n, nits, CSS EASE, "Ease", 4);
+        process_css_level (c, c_environment, n, nits, CSS ENVIRONMENT, "Environment", 3);
         process_css_level (c, c_exclusion, n, nits, CSS EXCLUDE, "Exclusions", 3);
         process_css_level (c, c_flexible_box_layout, n, nits, CSS FBL, "Flexible Box Layout", 3);
         process_css_level (c, c_fill_stroke, n, nits, CSS FILL, "Fill and Stroke", 3);
@@ -1821,6 +1832,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_font, n, nits, CSS FONT, "Font", 5);
         process_css_level (c, c_fragmentation, n, nits, CSS FRAG, "Fragmentation", 4);
         process_css_level (c, c_grid_layout, n, nits, CSS GRID, "Grid", 4);
+        process_css_level (c, c_hdr, n, nits, CSS HDR, "HDR", 3);
         process_css_level (c, c_custom_highlight, n, nits, CSS HIGHLIGHT, "Custom Highlight", 4);
         process_css_level (c, c_hyperlink_presentation, n, nits, CSS HYPERLINK, "Hyperlink", 5);
         process_css_level (c, c_image, n, nits, CSS IMAGE, "Image", 4);
@@ -1832,6 +1844,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_math_core, n, nits, CSS MATHCORE, "Math Core", 3);
         process_css_level (c, c_masking, n, nits, CSS MASKING, "Masking", 3);
         process_css_level (c, c_media_query, n, nits, CSS MEDIA, "Media", 5);
+        process_css_level (c, c_mixin, n, nits, CSS MIXIN, "Mixin", 3);
         yea_nay (c, &context_t::mobile_profile, nits, CSS MOBILE, CSS DONT MOBILE);
         process_css_level (c, c_motion_path, n, nits, CSS MOTION, "Motion Path", 3);
         process_css_level (c, c_multicolumn, n, nits, CSS MULTI_COLUMN, "Multi-Column", 3);
@@ -1997,11 +2010,11 @@ void options::contextualise (context_t& c, nitpick& nits)
         if (var_.count (OUTPUT FORMAT)) c.output_format (var_ [OUTPUT FORMAT].as < ::std::string > ());
         if (var_.count (OUTPUT HOME)) c.home (var_ [OUTPUT HOME].as < ::std::string > ());
 #ifdef SIGNING
-        if (var_.count (OUTPUT PASSWORD)) c.password (absolute_name (var_ [OUTPUT PASSWORD].as < ::std::string > ()));
-        if (var_.count (OUTPUT PRIVATE)) c.pri (absolute_name (var_ [OUTPUT PRIVATE].as < ::std::string > ()));
-        if (var_.count (OUTPUT PUBLIC)) c.pub (absolute_name (var_ [OUTPUT PUBLIC].as < ::std::string > ()));
+        if (var_.count (OUTPUT PASSWORD)) c.output_password (absolute_name (var_ [OUTPUT PASSWORD].as < ::std::string > ()));
+        if (var_.count (OUTPUT PRIVATE)) c.output_private (absolute_name (var_ [OUTPUT PRIVATE].as < ::std::string > ()));
+        if (var_.count (OUTPUT PUBLIC)) c.output_public (absolute_name (var_ [OUTPUT PUBLIC].as < ::std::string > ()));
         yea_nay (c, &context_t::sign, nits, OUTPUT SIGN, OUTPUT DONT SIGN);
-        if (var_.count (OUTPUT SIGNATURE)) c.signature (absolute_name (var_ [OUTPUT SIGNATURE].as < ::std::string > ()));
+        if (var_.count (OUTPUT SIGNATURE)) c.output_signature (absolute_name (var_ [OUTPUT SIGNATURE].as < ::std::string > ()));
 #endif // SIGNING 
         if (var_.count (OUTPUT TIME)) c.output_time (var_ [OUTPUT TIME].as < ::std::string > ());
         if (var_.count (OUTPUT USERNAME)) c.username (var_ [OUTPUT USERNAME].as < ::std::string > ());
@@ -2471,6 +2484,14 @@ template < class T > void options::report_variable (const e_gui_report gr, ::std
     catch (...)
     {   context.os () -> err (section, wot, " is incompatible with ::std::string\n"); } }
 
+template < > void options::report_variable < vbp_t > (const e_gui_report gr, ::std::ostringstream& res, const char* wot, const char* section, int& count, const char* variable) const
+{   if (var_.count (wot)) try
+    {   vbp_t vs = var_ [wot].as < vbp_t > ();
+        for (auto s : vs)
+            res << report_value (gr, section, count, variable, s.string ()); }
+    catch (...)
+    {   context.os () -> err (section, wot, " is no vstr_t\n"); } }
+
 template < > void options::report_variable < vstr_t > (const e_gui_report gr, ::std::ostringstream& res, const char* wot, const char* section, int& count, const char* variable) const
 {   if (var_.count (wot)) try
     {   vstr_t vs = var_ [wot].as < vstr_t > ();
@@ -2512,9 +2533,10 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     if (context.test ()) return res.str ();
 #endif // EXPAND_TEST
 
-    int atomic = 0, corpus = 0, css = 0, env = 0, general = 0, html = 0, jsonld = 0, lynx = 0, math = 0, mf = 0,
-        nitty = 0, ontology = 0, output = 0, rsl = 0, rss = 0, shadow = 0,
-        site = 0, ssc = 0, ssi = 0, stats = 0, svg = 0, validate = 0, vtt = 0;
+    int atomic = 0, corpus = 0, css = 0, env = 0, general = 0, html = 0,
+        jsonld = 0, lynx = 0, math = 0, mf = 0, nitty = 0, ontology = 0, output = 0,
+        rsl = 0, rss = 0, shadow = 0, site = 0, ssc = 0, ssi = 0, stats = 0, svg = 0,
+        validate = 0, vtt = 0;
 #ifndef NOSPELL
     int spell = 0;
 #endif // NOSPELL
@@ -2612,6 +2634,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, CSS, ANCHOR_POS, css);
     RG (gr, res, int, CSS, ANIMATION, css);
     RG (gr, res, int, CSS, BACKGROUND, css);
+    RG (gr, res, int, CSS, BORDER, css);
     RG (gr, res, int, CSS, BOX_ALIGN, css);
     RG (gr, res, int, CSS, BOX_MODEL, css);
     RG (gr, res, int, CSS, BOX_SIZING, css);
@@ -2625,6 +2648,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, CSS, CUSTOM, css);
     RG (gr, res, int, CSS, DEVICE, css);
     RG (gr, res, int, CSS, DISPLAY, css);
+    RG (gr, res, int, CSS, ENVIRONMENT, css);
     RG (gr, res, int, CSS, EASE, css);
     RG (gr, res, int, CSS, EXCLUDE, css);
     RG (gr, res, vstr_t, CSS, EXTENSION, css);
@@ -2635,6 +2659,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, CSS, FONT, css);
     RG (gr, res, int, CSS, FRAG, css);
     RG (gr, res, int, CSS, GRID, css);
+    RG (gr, res, int, CSS, HDR, css);
     RG (gr, res, int, CSS, HIGHLIGHT, css);
     RG (gr, res, int, CSS, HYPERLINK, css);
     RG (gr, res, int, CSS, IMAGE, css);
@@ -2645,6 +2670,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, CSS, MARQUEE, css);
     RG (gr, res, int, CSS, MASKING, css);
     RG (gr, res, int, CSS, MEDIA, css);
+    RG (gr, res, int, CSS, MIXIN, css);
     RB (gr, res, CSS, MOBILE, css);
     RG (gr, res, int, CSS, MOTION, css);
     RG (gr, res, int, CSS, MULTI_COLUMN, css);

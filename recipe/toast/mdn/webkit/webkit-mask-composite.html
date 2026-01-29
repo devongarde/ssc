@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN -webkit-mask-composite- tests</title>
+<style>
+.sid
+{   /* Keyword values */
+    -webkit-mask-composite: clear;
+    -webkit-mask-composite: copy;
+    -webkit-mask-composite: source-over;
+    -webkit-mask-composite: source-in;
+    -webkit-mask-composite: source-out;
+    -webkit-mask-composite: source-atop;
+    -webkit-mask-composite: destination-over;
+    -webkit-mask-composite: destination-in;
+    -webkit-mask-composite: destination-out;
+    -webkit-mask-composite: destination-atop;
+    -webkit-mask-composite: xor;
+
+    /* Global values */
+    -webkit-mask-composite: inherit;
+    -webkit-mask-composite: initial;
+    -webkit-mask-composite: revert;
+    -webkit-mask-composite: revert-layer;
+    -webkit-mask-composite: unset; }
+
+.example {
+  -webkit-mask-image: url("mask1.png"), url("mask2.png");
+  -webkit-mask-composite: xor, source-over;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN -webkit-mask-composite- Tests</h1>
+
+</body>
+</html>
