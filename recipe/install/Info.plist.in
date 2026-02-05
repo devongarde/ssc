@@ -32,9 +32,9 @@
     <key>CFBundleVersion</key>
     <string>@GUI_VERSION@</string>
     <key>CFBundleGetInfoString</key>
-    <string>@GUI_VERSION@, © 2019-2026 Dylan Harris, https://ssc.lu/</string>
+    <string>@GUI_VERSION@, © 2019-2026 Dylan Harris, https://dylanharris.org/ssc/</string>
     <key>NSHumanReadableCopyright</key>
-    <string>© 2019-2026 Dylan Harris, https://ssc.lu/</string>
+    <string>© 2019-2026 Dylan Harris, https://dylanharris.org/ssc/</string>
     <key>LSMinimumSystemVersion</key>
     <string>15.2</string>
     <key>NSHighResolutionCapable</key>

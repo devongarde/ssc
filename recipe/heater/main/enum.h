@@ -147,7 +147,7 @@ typedef enum {  role_any, role_alert, role_alertdialogue, role_application, role
                 role_window, role_illegal } e_aria_role;
 constexpr e_aria_role last_role = role_illegal;
 typedef enum { as_ascending, as_descending, as_none, as_other } e_aria_sort;
-typedef enum { as_audio, as_document, as_embed, as_fetch, as_font, as_image, as_object, as_script, as_style, as_track, as_video, as_worker } e_as;
+typedef enum { as_audio, as_document, as_embed, as_fetch, as_font, as_image, as_json, as_object, as_script, as_style, as_track, as_video, as_worker } e_as;
 typedef enum { ass_alternative, ass_slide, ass_scroll } e_ass;
 typedef enum { att_text, att_html, att_xhtml } e_atom_type; // text first
 

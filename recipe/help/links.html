@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<!--#comment https://docs.wxwidgets.org/3.0/overview_html.html -->
+
+<html lang="en">
+<head>
+<title>ssc site panel</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="alternate" hreflang="x-default" href="https://dylanharris.org/ssc/index.shtml">
+<meta name="author" content="Dylan Harris">
+<meta name="contact" content="ssc@dylanharris.org">
+<meta name="copyright" content="&copy; 2020-2026 Dylan Harris">
+<meta name="description" content="static site checker site panel">
+<meta name="rights-standard" content=";cc by-nc-sa">
+<meta name="theme-color" content="#000000">
+
+<link rel="author" href="https://dylanharris.org/index.shtml">
+<link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+
+</head>
+
+<body itemscope itemtype="https://schema.org/WebPage">
+
+<div>
+  <meta itemprop="alternateName" content="dylan harris">
+  <link itemprop="author" href="https://dylanharris.org/">
+  <link itemprop="copyrightHolder" href="https://dylanharris.org/">
+  <meta itemprop="description" content="the static site checker nitpicks websites">
+  <meta itemprop="inLanguage" content="en-GB">
+  <link itemprop="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <meta itemprop="name headline" content="static site checker">
+  <h1>
+  site
+  </h1>
+</div>
+
+<p>
+This panel, which is part of the <a href="conf.html">Settings Dialogue</a>,
+allows you to provide important details regarding the website to be analysed.
+</p>
+
+<h2>Default Root Directory</h2>
+
+<p>
+Here you specify the root, the topmost directory, of the site you want to analyse.
+This directory contains the source HTML, and probably many other files, that make up
+the website.
+</p>
+
+<p>
+Websites (normally) have domains, often more than one domain. You can specify those here. 
+For example, the domains for SSC are <kbd>dylanharris.org</kbd> and <kbd>www.dylanharris.org</kbd>.
+</p>
+
+<p>
+Some websites also have virtual directories, which you can specify in the
+<a href="validation.html">virtual and validation</a> panel.
+</p>
+
+<h2>checkboxen</h2>
+
+<p>
+There are a number of options associated with link checking.
+</p>
+
+<h3>check links</h3>
+
+<p>
+SSC can validate links found on your site. It verifies that a link points to a page
+that exists, and that the link is good (for example, a link to a valid page that refers
+to a HIDDEN element is illegal).
+</p>
+
+<h3>Check external links</h3>
+
+<p>
+Select this option if you want to test external site links.
+</p>
+
+<h3>Report example domains</h3>
+
+<p>
+Certain domain names are defined to be used in sample text, and should never be used in a live page,
+so their use on a live web page is an error. For example, your web page should never actually reference
+<kbd>example.com</kbd>.
+</p>
+
+<h3>Report forwards</h3>
+
+<p>
+When SSC checks an external domain, that domain may reply with a forward message, indicating that the page
+has been forwarded to another place. This is often a temporary measure, for example when a site is being refreshed,
+but may be a permanent change. You&rsquo;ll have to use your best judgement to decide which is which.
+</p>
+
+<h3>Report local domains</h3>
+
+<p>
+A number of domain names are actually local to your network, by convention. Select this option to have SSC report them.
+</p>
+
+<h3>Report special domains</h3>
+
+<p>
+Certain domain names are special, and should never be used. Again, SSC can report if it finds them on the website.
+</p>
+
+<h3>Test an external link once</h3>
+
+<p>
+If you select this option, then SSC will keep track of which links it has checked as it analyses a site,
+and, if it encounters that link again, it won&rsquo;t repeat the check.
+</p>
+
+<p>
+This can be rather important. If you have a large site, and many pages reference another site many times, as mine does
+at the bottom of each page with a reference to github.org, then having SSC check that link on each page
+risks the linked site concluding that you are conducted a Denial Of Service attack. If that happens,
+those link checks are blocked, and SSC thinks the page has a bad link.
+</p>
+
+<h3>Check cross-linked IDs</h3>
+
+<p>
+Links between pages on your website might include IDs, which reference particular points on a webpage.
+SSC can check whether that ID is valid on that page.
+</p>
+
+<h3>Test revocation</h3>
+
+<p>
+Links to external websites usually use the https protocol. This depends on the public key infrastructure to secure
+access to that website. This is achieved by the use of certificates. Sometimes, something can go wrong somewhere,
+which means a certificate has to be revoked. Select this option to have SSC check for revocation for https links.
+</p>
+
+<p>
+This option can reduce performance.
+</p>
+
+<h2>Output search engine corpus</h2>
+
+<p>
+SSC can output an XML file containing important content from the website, for use in constructing data
+used by local search engines.
+</p>
+
+<p>
+If you decide to do so, you must specify the name of the output file.
+</p>
+
+<p>
+You should also specify which element SSC should use to determine the content to export, from the choice
+of &lt;ARTICLE&gt;, &lt;BODY&gt; and &lt;MAIN&gt;.
+</p>
+
+</body>
+</html>

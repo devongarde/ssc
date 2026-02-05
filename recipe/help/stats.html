@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<!--#comment https://docs.wxwidgets.org/3.0/overview_html.html -->
+
+<html lang="en">
+<head>
+<title>ssc statistics panel</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="alternate" hreflang="x-default" href="https://dylanharris.org/ssc/index.shtml">
+<meta name="author" content="Dylan Harris">
+<meta name="contact" content="ssc@dylanharris.org">
+<meta name="copyright" content="&copy; 2020-2026 Dylan Harris">
+<meta name="description" content="static site checker statistics panel">
+<meta name="rights-standard" content=";cc by-nc-sa">
+<meta name="theme-color" content="#000000">
+
+<link rel="author" href="https://dylanharris.org/index.shtml">
+<link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+
+</head>
+
+<body itemscope itemtype="https://schema.org/WebPage">
+
+<div>
+  <meta itemprop="alternateName" content="dylan harris">
+  <link itemprop="author" href="https://dylanharris.org/">
+  <link itemprop="copyrightHolder" href="https://dylanharris.org/">
+  <meta itemprop="description" content="the static site checker nitpicks websites">
+  <meta itemprop="inLanguage" content="en-GB">
+  <link itemprop="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <meta itemprop="name headline" content="static site checker">
+  <h1>
+  statistics and reports
+  </h1>
+</div>
+
+<p>
+This panel is part of the <a href="conf.html">Settings Dialogue</a>.
+It allows you to control site shadowing, which is the creation of a cleaned&ndash;up copy of the site being analysed.
+</p>
+
+<p>
+ssc can output a number of statistical reports, allowing you to verify a site&rsquo;s consistency,
+and gain a broad understanding of its size and technical content.
+</p>
+
+<h2>reports</h2>
+
+<h3>Abbr.</h3>
+
+<p>
+This report lists all the abbreviations defined by &lt;ABBR&gt; elements,
+so you can see whether the same abbreviations have the same expansions
+across the site.
+</p>
+
+<h3>Annotation</h3>
+
+<p>
+</p>
+
+<h3>Attribute</h3>
+
+<p>
+Output element attribute report, which expands
+the element report to output information about
+attributes used.
+</p>
+
+<h3>Category</h3>
+
+<p>
+Output category report, which output the total
+quantity of nits reported by nit category.
+</p>
+
+<h3>Char Var.</h3>
+
+<p>
+</p>
+
+<h3>Class</h3>
+
+<p>
+This report lists all the classes used across the site, both in CLASS attributes,
+and as defined in CSS files.
+It allows to you seen which classes are defined in CSS but not used,
+and which classes are used but not defined.
+</p>
+
+<h3>Content</h3>
+
+<p>
+</p>
+
+<h3>Counter</h3>
+
+<p>
+</p>
+
+<h3>CSS Prop.</h3>
+
+<p>
+This report lists all the CSS properties used across the site,
+both in CSS files and in STYLE attributes.
+</p>
+
+<h3>Cust. Media</h3>
+
+<p>
+Output custom media report, which lists all
+named custom media definitions encountered.
+</p>
+
+<h3>Cust. Prop.</h3>
+
+<p>
+Output custom property report, which lists all
+named custom property definitions encountered.
+</p>
+
+<h3>Definition</h3>
+
+<p>
+This report lists all the definitions given by &lt;DFN&gt; elements.
+</p>
+
+
+<h3>Element</h3>
+
+<p>
+This report lists all the elements used across the site.
+</p>
+
+<h3>Error</h3>
+
+<p>
+This report summarises all the significant nits found by SSC, including errors and warnings.
+</p>
+
+<h3>File</h3>
+
+<p>
+Output file report, which reports the number of
+                        pages processed, and summarises file sizes.
+</p>
+
+<h3>Font</h3>
+
+<p>
+Output font report, which lists all fonts used
+                        across the site.
+</p>
+
+<h3>Family</h3>
+
+<p>
+This report lists all the font families used across the site.
+</p>
+
+<h3>Highlight</h3>
+
+<p>
+</p>
+
+<h3>Hist. Form</h3>
+
+<p>
+</p>
+
+<h3>ID</h3>
+
+<p>
+This report lists all the IDs, as defined by the ID attribute, found across the site.
+</p>
+
+<h3>ItemId</h3>
+
+<p>
+This report lists all the ontology item identifiers used across the site, as specified by
+use of the ITEMID attribute.
+</p>
+
+<h3>Keyframe</h3>
+
+<p>
+Output keyframe report, which lists all named
+keyframes encountered.
+</p>
+
+<h3>Layer</h3>
+
+<p>
+</p>
+
+<h3>Meta</h3>
+
+<p>
+Produce statistics on &lt;META&gt; usage in &lt;HEAD&gt;.
+Note that pragmas reported (http&ndash;equiv) are
+those found in the HTML source, not those
+returned by the HTTP protocol. Remember that
+many web servers (not all) will remove some
+pragmas when serving pages.
+</p>
+
+<h3>Name/Val</h3>
+
+<p>
+Output name/value pairs report, which helps
+you identify inconsistencies between
+definitions across the site.
+</p>
+
+<h3>Ontology</h3>
+
+<p>
+Output ontology report, which gives an insight
+into the ontological depth of the site being
+analysed.
+</p>
+
+<h3>Ornaments</h3>
+
+<p>
+Output ornament report, which reports all named
+CSS font ornaments encountered.
+</p>
+
+<h3>Page</h3>
+
+<p>
+Produce statistics for each web page
+encountered.
+</p>
+
+<h3>Page Name</h3>
+
+<p>
+Output page name report, which reports all
+                        named CSS page names encountered.</p>
+
+<h3>Palette</h3>
+
+<p>
+Output palette report, which reports all named
+                        CSS palettes encountered.
+</p>
+
+<h3>Property</h3>
+
+<p>
+Output ontology property count report, as an
+addendum to the ontology report.
+</p>
+
+<h3>Reference</h3>
+
+<p>
+Output a reference report, which identifies, as
+precisely as it can, which versions of HTML,
+XHTML, CSS, etc., are found across the site.
+</p>
+
+<h3>Region</h3>
+
+<p>
+Output region report, which reports all CSS
+                        named regions encountered.
+</p>
+
+<h3>Scroll Anim</h3>
+
+<p>
+Output scroll animation report, which reports
+                        all CSS named scroll animations encountered.
+</p>
+
+<h3>Statement</h3>
+
+<p>
+Output CSS statement report, which summarises
+                        all CSS statements encountered.
+</p>
+
+<h3>Styleset</h3>
+
+<p>
+Output styleset report, which reports all CSS
+                        named stylesets encountered.
+</p>
+
+<h3>Stylistic</h3>
+
+<p>
+Output stylistic report, which reports all CSS
+named stylistics encountered, excluding the
+band themselves.
+</p>
+
+<h3>Summary</h3>
+
+<p>
+Produce a summary of overall statistics for the
+website, including grand totals.
+</p>
+
+<h3>Swash</h3>
+
+<p>
+Output swash report, which reports all CSS
+named swashes encountered.
+</p>
+
+<h3>Version</h3>
+
+<p>
+Output version report, which summarises
+versions of HTML, SVG, MathML, etc.,
+encountered
+</p>
+
+<h3>View</h3>
+
+<p>
+Output view report, which reports all CSS named
+views encountered.
+</p>
+
+<h2>export</h2>
+
+<p>
+<kbd>export</kbd> allows you to output the statistics to your chosen file.
+</p>
+
+</body>
+</html>

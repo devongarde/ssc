@@ -1591,10 +1591,32 @@
     <ClCompile Include="..\sauce\webpage\vtt.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\port\macports\Portfile" />
-    <None Include="..\port\openbsd\Makefile" />
-    <None Include="..\port\openbsd\pkg\DESCR" />
-    <None Include="..\port\openbsd\pkg\PLIST" />
+    <None Include="..\help\about.html" />
+    <None Include="..\help\cmd.html" />
+    <None Include="..\help\conf.html" />
+    <None Include="..\help\config.html" />
+    <None Include="..\help\content.hhc" />
+    <None Include="..\help\css.html" />
+    <None Include="..\help\file.html" />
+    <None Include="..\help\frame.html" />
+    <None Include="..\help\general.html" />
+    <None Include="..\help\html.html" />
+    <None Include="..\help\index.hhk" />
+    <None Include="..\help\index.html" />
+    <None Include="..\help\legal.html" />
+    <None Include="..\help\links.html" />
+    <None Include="..\help\nits.html" />
+    <None Include="..\help\ontology.html" />
+    <None Include="..\help\shadow.html" />
+    <None Include="..\help\site.html" />
+    <None Include="..\help\snippet.html" />
+    <None Include="..\help\spell.html" />
+    <None Include="..\help\ssc.hhp" />
+    <None Include="..\help\ssi.html" />
+    <None Include="..\help\stats.html" />
+    <None Include="..\help\summary.html" />
+    <None Include="..\help\validation.html" />
+    <None Include="..\help\welcome.html" />
     <None Include="..\toast\aria\1-0\2.css" />
     <None Include="..\toast\aria\1-0\2.html" />
     <None Include="..\toast\aria\1-0\5.html" />
@@ -14167,6 +14189,7 @@
     <None Include="..\toast\webapps\jul06\em.html" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\help\welcome.gif" />
     <Image Include="..\toast\coop\corrupt\a\add.gif" />
     <Image Include="..\toast\coop\corrupt\a\ant.jpg" />
     <Image Include="..\toast\coop\corrupt\b\betwixt.jpg" />
@@ -14341,7 +14364,6 @@
     <Text Include="..\..\README.txt" />
     <Text Include="..\..\releasenotes.txt" />
     <Text Include="..\..\usage.txt" />
-    <Text Include="..\port\openbsd\README.txt" />
     <Text Include="..\toast\conf\sites\wordlist.txt" />
     <Text Include="..\toast\coop\corrupt\README.txt" />
     <Text Include="..\toast\coop\corrupt\robots.txt" />
@@ -14509,19 +14531,19 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(SSL)\include;$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(BOOST);$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_arm64_dll;$(LibraryPath);$(SSL)\lib</LibraryPath>
+    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_arm64_dll;$(LibraryPath);$(SSL)\ssl\Debug;$(SSL)\crypto\Debug</LibraryPath>
     <IntDir>ssc26$(Platform)\$(Configuration)wx\</IntDir>
     <OutDir>$(SolutionDir)ssc26$(Platform)\$(Configuration)wx\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(SSL)\include;$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(BOOST);$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_arm64_dll;$(LibraryPath);$(SSL)\lib</LibraryPath>
+    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_arm64_dll;$(LibraryPath);$(SSL)\ssl\Debug;$(SSL)\crypto\Debug</LibraryPath>
     <IntDir>ssc26$(Platform)\$(Configuration)wx\</IntDir>
     <OutDir>$(SolutionDir)ssc26$(Platform)\$(Configuration)wx\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(SSL)\include;$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(BOOST);$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_arm64_dll;$(LibraryPath);$(SSL)\lib</LibraryPath>
+    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_arm64_dll;$(LibraryPath);$(SSL)\ssl\Release;$(SSL)\crypto\Release</LibraryPath>
     <OutDir>$(SolutionDir)ssc26$(Platform)\$(Configuration)wx\</OutDir>
     <IntDir>ssc26$(Platform)\$(Configuration)wx\</IntDir>
   </PropertyGroup>
@@ -14726,7 +14748,7 @@
       <SubSystem>Windows</SubSystem>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;ssl.lib;tls.lib;crypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;ssl.lib;crypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
@@ -14765,7 +14787,7 @@
       <SubSystem>Windows</SubSystem>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;ssl.lib;tls.lib;crypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;ssl.lib;crypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
@@ -14802,7 +14824,7 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;ssl.lib;tls.lib;crypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;ssl.lib;crypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <SubSystem>Windows</SubSystem>
       <HeapReserveSize>33554432</HeapReserveSize>

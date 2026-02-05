@@ -818,12 +818,6 @@
     <Filter Include="Toast\Other\blob">
       <UniqueIdentifier>{9d6f7286-4993-4233-b59f-851f61599889}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Port">
-      <UniqueIdentifier>{3fbb5eed-deba-44f8-932d-aed1323c6f07}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Port\OpenBSD">
-      <UniqueIdentifier>{1130bf8f-89b5-4569-ae91-0bd4c5807fb2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Math\4-core">
       <UniqueIdentifier>{918d08b8-d873-4b82-b4e7-2daedfdb08ea}</UniqueIdentifier>
     </Filter>
@@ -1003,9 +997,6 @@
     </Filter>
     <Filter Include="Toast\Living\jul23">
       <UniqueIdentifier>{2e3978ec-95dd-4ddf-862a-b60c537aaa18}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Port\MacPorts">
-      <UniqueIdentifier>{f042c463-2b18-4e3f-bd5b-b4ef99140a3f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Toast\CSS\3-background">
       <UniqueIdentifier>{e09ae4ef-58d5-48b1-894e-4507dc76d012}</UniqueIdentifier>
@@ -1499,18 +1490,6 @@
     </Filter>
     <Filter Include="Toast\Type\rel">
       <UniqueIdentifier>{6db1c435-d029-4bf9-8f50-087105ce22b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Port\OpenBSD\httpd">
-      <UniqueIdentifier>{415c0099-7de5-4419-ae90-e9e2c58296e1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Port\OpenBSD\portfiles">
-      <UniqueIdentifier>{53fc81f4-dbb8-4ff3-ad4f-04508d97984c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Port\OpenBSD\portfiles\pkg">
-      <UniqueIdentifier>{5dd29b11-9d7c-46a7-af18-6aa69fcb156e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Port\OpenBSD\httpd\7.7">
-      <UniqueIdentifier>{62e86a16-a352-430f-9fa9-1816becfa773}</UniqueIdentifier>
     </Filter>
     <Filter Include="Toast\Output\stylesheet">
       <UniqueIdentifier>{cbcebbab-188c-4546-ba43-2e11f7ca64a6}</UniqueIdentifier>
@@ -32268,9 +32247,6 @@
     <None Include="..\toast\living\jul23\popover.html">
       <Filter>Toast\Living\jul23</Filter>
     </None>
-    <None Include="..\port\macports\Portfile">
-      <Filter>Port\MacPorts</Filter>
-    </None>
     <None Include="..\toast\css\3-background\css.spec">
       <Filter>Toast\CSS\3-background</Filter>
     </None>
@@ -43164,21 +43140,6 @@
     <None Include="..\toast\living\oct25\16.html">
       <Filter>Toast\Living\oct25</Filter>
     </None>
-    <None Include="..\port\openbsd\portfiles\Makefile">
-      <Filter>Port\OpenBSD\portfiles</Filter>
-    </None>
-    <None Include="..\port\openbsd\portfiles\pkg\DESCR">
-      <Filter>Port\OpenBSD\portfiles\pkg</Filter>
-    </None>
-    <None Include="..\port\openbsd\portfiles\pkg\PLIST">
-      <Filter>Port\OpenBSD\portfiles\pkg</Filter>
-    </None>
-    <None Include="..\port\openbsd\httpd\7.7\chroot77.sh">
-      <Filter>Port\OpenBSD\httpd\7.7</Filter>
-    </None>
-    <None Include="..\port\openbsd\httpd\7.7\dependencies.sh">
-      <Filter>Port\OpenBSD\httpd\7.7</Filter>
-    </None>
     <None Include="..\toast\output\stylesheet\output.conf">
       <Filter>Toast\Output\stylesheet</Filter>
     </None>
@@ -46408,9 +46369,6 @@
     <Text Include="..\toast\conf\sites\wordlist.txt">
       <Filter>Toast\Conf\sites</Filter>
     </Text>
-    <Text Include="..\..\installation.txt">
-      <Filter>Info</Filter>
-    </Text>
     <Text Include="..\toast\signing\sign\opensslbug.txt">
       <Filter>Toast\Signing\sign</Filter>
     </Text>
@@ -46422,9 +46380,6 @@
     </Text>
     <Text Include="..\toast\signing\verify-pw\password.txt">
       <Filter>Toast\Signing\verify-pw</Filter>
-    </Text>
-    <Text Include="..\port\openbsd\README.txt">
-      <Filter>Port\OpenBSD</Filter>
     </Text>
     <Text Include="..\toast\other\security\.well-known\security.txt">
       <Filter>Toast\Other\security\,well-known</Filter>

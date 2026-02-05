@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.2.24
+version 0.2.25
 (c) 2020-2026 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notices
 https://dylanharris.org/ssc/
@@ -76,7 +76,7 @@ and forwarding it to the developer:
 - any known workarounds, fixes or solutions;
 - a video of a dance interpretation of the issue (might just be
   optional, this).
-Email everything to mail@ssc.lu (if the collected files are more than
+Email everything to ssc@dylanharris.org (if the collected files are more than
 small, please use a public file server and email the link). Do NOT send
 anything confidential. Furthermore, unless you state otherwise, we
 reserve the right to publish some or all of the information sent in
@@ -107,7 +107,7 @@ Notes on names:
 
 Security
 Regarding the EU's Cyber Resilience Act, any security issues should be
-reported to mail@ssc.lu, and cc'ed to mail@dylanharris.org. For a list
+reported to ssc@dylanharris.org, and cc'ed to mail@dylanharris.org. For a list
 of components used by SSC, please consult the source code.
 
 
@@ -155,6 +155,6 @@ GNU General Public License for more details.
 
 
 dylan harris
-mail@ssc.lu
+ssc@dylanharris.org
 mail@dylanharris.org
 December 2025

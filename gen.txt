@@ -573,7 +573,7 @@ of older sites.
                         Copies of the appropriate standards can be
                         found online. A copy of the copies referenced
                         during ssc's development can be found at
-                        https://ssc.lu/.
+                        https://dylanharris.org/ssc/.
 
 --html.wx               The site is intended for use with wxWidgets'
                         HTML engine.
@@ -1945,4 +1945,4 @@ linkchecker
 
 HISTORY
 
-ssc (ssc.lu) is written by Dylan Harris (dylanharris.org)
+ssc is written by Dylan Harris (dylanharris.org)

@@ -63,12 +63,12 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 24
-#define VERSION_STRING "0.2.24"
+#define VERSION_RELEASE 25
+#define VERSION_STRING "0.2.25"
 
 #define BUILD_YEAR              "2026"
-#define BUILD_MONTH             "Jan"
-#define BUILD_DAY_ISH BUILD_YEAR "-01-01"
+#define BUILD_MONTH             "Feb"
+#define BUILD_DAY_ISH BUILD_YEAR "-02-01"
 #define LATEST_CSS              "2025"
 
 #define NBSP "&nbsp;"
@@ -87,7 +87,7 @@ z
 #define SSC_PUBLIC_KEY ""
 
 #define UPDATE_URL_1 WEBADDR "ssc.ver"
-#define UPDATE_URL_2 "https://ssc.lu/ssc.ver"
+#define UPDATE_URL_2 "https://dylanharris.org/ssc/ssc.ver"
 
 #define DEFAULT_LINE_LENGTH 72
 #define DESCRIPTION_LENGTH 60

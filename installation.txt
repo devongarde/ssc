@@ -1,12 +1,14 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.2.24
+version 0.2.25
 (c) 2020-2026 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notices
+https://dylanharris.org/ssc/
+https://github.com/devongarde/ssc
 
 
 
-ssc analyses static X/HTML snippets, files and sites:
+ssc analyses static websites at source:
 - HTML living standard, Jan 2005 to Jan 2026
 - HTML Tags/1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
 - CSS 1/2.0/2.1/2.2-draft, 2007-2025 snapshots, more
@@ -14,19 +16,19 @@ ssc analyses static X/HTML snippets, files and sites:
 - MathML 1/2/3/core/4-draft
 - XHTML 1.0/1.1/2.0/5.x themselves
 - ads.txt, robots.txt, security.txt, WebVTT
-- most of ATOM, JSON-LD, RSL, RSS themselves
+- most of ATOM, JSON-LD, RSL, RSS, themselves
 - finds broken links
 - server side includes, mostly
 - many ontologies
 
 with opinions on:
-- standard english where dialect is required
-- legal but slovenly HTML
+- contradictory flavours/flavors of english
+- legal but inefficient HTML
 - abhorrent rudeness such as AUTOPLAY on <VIDEO>
 
 It does NOT:
 - analyse or understand scripts
-- analyse or understand XML or derivatives, except as noted above
+- except as noted above, analyse or understand XML or derivatives
 
 It can output:
 - 'repaired' HTML (not XHTML)
@@ -37,11 +39,21 @@ It can output:
 
 
 
-The installation includes:
-ssc.exe        Command line version
-ssc-wx.exe     GUI version
+ssc -h
+for a usage summary.
 
-SSC can be uninstalled using Settings -> Apps, as usual.
+ssc -f config_file
+analyse site using preprepared configuration
+
+ssc directory
+analyse website based in directory
+
+
+
+To build & run:
+1. Follow the build instructions in build.txt
+2. Gleefully run ssc. It will misbehave if you are insufficiently
+   gleeful.
 
 
 
@@ -62,8 +74,9 @@ and forwarding it to the developer:
 - configuration file/s used, if any;
 - any ndx file or other pre-existing file used during the run;
 - any known workarounds, fixes or solutions;
-- optionally, a video of a dance interpretation of the issue.
-Email everything to mail@ssc.lu (if the collected files are more than
+- a video of a dance interpretation of the issue (might just be
+  optional, this).
+Email everything to ssc@dylanharris.org (if the collected files are more than
 small, please use a public file server and email the link). Do NOT send
 anything confidential. Furthermore, unless you state otherwise, we
 reserve the right to publish some or all of the information sent in
@@ -73,20 +86,41 @@ https://github.com/devongarde/ssc. Thank you.
 
 
 
+SSC can be run in a CGI environment. This is intended for use with
+OpenBSD's native httpd web server (https://man.openbsd.org/httpd.8).
+You are reminded that SSC is not production software. Do NOT expose it
+to untrusted data sources, such as those found on the open web.
+
+
+
+Notes on names:
+- recipe: a nod to Vernor Vinge's "A Fire Upon the Deep";
+- tea: without tea, nothing works; then there's builders' tea;
+- sauce: makes the dull tasty; identifies linguistically weak pedants;
+- toast: toasts code; i liked burnt toast;
+- heater: i'm not stopping now;
+- unii: my preferred plural of unix: to my ears, both unixes and unices
+        sound like they sing castrato.
+- andor: and/or sans ancienne; land of Gift (aber nicht das Gift)
+
+
+
+Security
+Regarding the EU's Cyber Resilience Act, any security issues should be
+reported to ssc@dylanharris.org, and cc'ed to mail@dylanharris.org. For a list
+of components used by SSC, please consult the source code.
+
+
+
 SEE ALSO
+build.txt        notes on building ssc
 gen.txt          a model man page
 usage.txt        how to use ssc
 releasenotes.txt fishless chips
 LICENCE.txt      ssc licence information
 LICENSE.txt      formal GPL 3 licence
-
-
-
-Built-It-Yourself
-The source code can be found at:
-https://ssc.lu/
-https://github.com/devongarde/ssc
-You will need a C++ development environment to build a binary.
+more licences    licences for borrowed external content
+SECURITY.md		 security reporting
 
 
 
@@ -121,6 +155,6 @@ GNU General Public License for more details.
 
 
 dylan harris
-mail@ssc.lu
+ssc@dylanharris.org
 mail@dylanharris.org
 December 2025

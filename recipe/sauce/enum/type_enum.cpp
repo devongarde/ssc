@@ -165,6 +165,7 @@ struct symbol_entry < html_version, e_as > as_symbol_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, "fetch", as_fetch },
     { { HTML_JAN05 }, { HTML_UNDEF }, "font", as_font },
     { { HTML_JAN05 }, { HTML_UNDEF }, "image", as_image },
+    { { HTML_FEB26 }, { HTML_UNDEF }, "json", as_json },
     { { HTML_JAN05 }, { HTML_UNDEF }, "object", as_object },
     { { HTML_JAN05 }, { HTML_UNDEF }, "script", as_script },
     { { HTML_JAN05 }, { HTML_UNDEF }, "style", as_style },

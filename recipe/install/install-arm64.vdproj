@@ -772,7 +772,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Static Site Checker"
         "ProductCode" = "8:{6FCB849C-3AF4-4874-833E-81E0E5FACCE0}"
-        "PackageCode" = "8:{2012F05F-C57C-4497-855B-D54189BAB357}"
+        "PackageCode" = "8:{51914220-FE4F-4A33-B6AB-64613C7641F7}"
         "UpgradeCode" = "8:{885C7144-A679-4BEF-A6A4-2633181CE2AC}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1363,7 +1363,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_ACAC046B75B34ACDA5D27086C4A9187A"
             {
-            "SourcePath" = "8:..\\tea\\ARM64\\Releasewx\\ssc22-wx.exe"
+            "SourcePath" = "8:..\\tea\\ssc26ARM64\\Releasewx\\ssc26-wx.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
@@ -1391,7 +1391,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D47E6490AA4A4F86B7E8D66D2C45DD6B"
             {
-            "SourcePath" = "8:..\\tea\\ARM64\\Release\\ssc22.exe"
+            "SourcePath" = "8:..\\tea\\ssc26ARM64\\Release\\ssc26.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"

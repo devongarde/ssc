@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<!--#comment https://docs.wxwidgets.org/3.0/overview_html.html -->
+
+<html lang="en">
+<head>
+<title>ssc validation, virtual panel</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="alternate" hreflang="x-default" href="https://dylanharris.org/ssc/index.shtml">
+<meta name="author" content="Dylan Harris">
+<meta name="contact" content="ssc@dylanharris.org">
+<meta name="copyright" content="&copy; 2020-2026 Dylan Harris">
+<meta name="description" content="static site checker validation virtual panel">
+<meta name="rights-standard" content=";cc by-nc-sa">
+<meta name="theme-color" content="#000000">
+
+<link rel="author" href="https://dylanharris.org/index.shtml">
+<link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+
+</head>
+
+<body itemscope itemtype="https://schema.org/WebPage">
+
+<div>
+  <meta itemprop="alternateName" content="dylan harris">
+  <link itemprop="author" href="https://dylanharris.org/">
+  <link itemprop="copyrightHolder" href="https://dylanharris.org/">
+  <meta itemprop="description" content="the static site checker nitpicks websites">
+  <meta itemprop="inLanguage" content="en-GB">
+  <link itemprop="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <meta itemprop="name headline" content="static site checker">
+  <h1>
+  validation, virtual
+  </h1>
+</div>
+
+<p>
+This panel is part of the <a href="conf.html">Settings Dialogue</a>.
+It allows you to control site shadowing, which is the creation of a cleaned&ndash;up copy of the site being analysed.
+</p>
+
+<h2>virtual</h2>
+
+<p>
+A virtual directory is referenced as a directory on the website, but does not appear
+as a corresponding directory in the root. Instead, it can be found elsewhere, in another
+<kbd>physical</kbd> on the web server.
+</p>
+
+<p>
+SSC can output various data as a result of its site analysis. Two of them, the
+<kbd>shadow output</kbd> and <kbd>ontology data</kbd>, output the same data structure
+as the original data, so SSC can also output this content to their own corresponding
+alternative directories. If they are not specified, SSC outputs them as though they
+were normal directories.
+</p>
+
+<h2>validation</h2>
+
+<p>
+SSC checks much data to ensure it does not contain illegal values. However, private web
+services often permit additional values for certain pieces of data. A lot of permitted
+content is a list of permitted values. Here, you can extend those permitted values.
+</p>
+
+<p>
+The first task is to select the data you wish to modify in the <kbd>validation</kbd>
+drop down. Most of the entries refer to particular type names, which can be found in
+the source code, but you can also, for example, specify bespoke attributes. You can
+add your own valid entries as you wish.
+</p>
+
+<p>
+Unfortunately, if you wish to add valid attributes to an element, you must
+do so using the <a href="cmd.html">validation.element-attribute</a> switch,
+or by entering an element-attribute in the validation section of a
+<a href="conf.html"> configuration file</a>; you cannot do so (yet) in the GUI.
+</p>
+
+<h2>validation example</h2>
+
+<p>
+Let us pretend you are running a website for a game, and that game has its own internal currency
+that you reference on your website. SSC only knows about national and international currencies, but doesn&rsquo;t know about
+other currencies. If you don&rsquo;t tell it about the currency, it will flag references to it as an error.
+</p>
+
+<p>
+To tell SSC to accept the game&rsquo;s currency&rsquo;s code when validating the website,
+select validation Currency, then add the code below.
+</p>
+
+</body>
+</html>

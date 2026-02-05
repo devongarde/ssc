@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.24)
 set (FULLNAME "Static-Site-Checker")
-set (VER 0.2.24)
+set (VER 0.2.25)
 project (ssc VERSION ${VER} DESCRIPTION ${FULLNAME} LANGUAGES CXX HOMEPAGE_URL "https://dylanharris.org/ssc/")
 message (NOTICE "preparing " ${FULLNAME} " ${VER}" )
 
@@ -13,8 +13,7 @@ set (CMAKE_INSTALL_MODE COPY)    # not that it works; despite the command COPY t
 # expects standard ssc directory structure ...
 set (R ${CMAKE_SOURCE_DIR}/recipe)
 set (H ${R}/heater)
-set (HT ${R}/httpd)
-set (HLP ${HT}/help)
+set (HLP ${R}/help)
 set (I ${R}/install)
 set (S ${R}/sauce)
 set (T ${R}/toast)
