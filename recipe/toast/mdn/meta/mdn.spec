@@ -21,8 +21,3 @@ PASS ../toast/mdn/meta/meta-theme.html
 
 PASS ../toast/mdn/meta/meta-viewport.html
 2 naughty_lang
-5 css_version
-6 css_version
-7 css_version
-10 css_version
-11 css_version

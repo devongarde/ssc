@@ -10,6 +10,7 @@ PASS ../toast/css/3-list/css-4.css
 
 PASS ../toast/css/3-list/css-a.css
 0 html
+27 unrecognised_value css_type function
 
 PASS ../toast/css/3-list/css-1.html
 2 naughty_lang

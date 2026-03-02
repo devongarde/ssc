@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN if tests</title>
+<style>
+.sid
+{
+/* Single <if-test> */
+  background-image: if(style(--scheme: dark): #eeeeee;);
+  background-image: if(media(print): black;);
+  background-image: if(media(width > 700px): 0 auto;);
+  background-image: if(supports(color: lch(7.1% 60.23 300.16)): lch(7.1% 60.23 300.16););
+
+/* <if-test> with else */
+  background-image: if(style(--size: "2xl"): 1em; else: 0.25em;);
+  background-image: if(media(print): white; else: black;);
+  background-image: if(media(width < 700px): 0 auto; else: 20px auto);
+  background-image: if(
+  supports(color: lch(7.1% 60.23 300.16)): lch(7.1% 60.23 300.16);
+  else: #03045e;
+);
+  background-image: if(
+  supports(color: lch(75% 0 0)): 3px solid lch(75% 0 0);
+  else: 3px solid silver;
+);
+
+/* Multiple <if-test>s */
+  background-image: if(
+  style(--scheme: ice): linear-gradient(#caf0f8, white, #caf0f8);
+  style(--scheme: fire): linear-gradient(#ffc971, white, #ffc971);
+  else: none;
+);
+
+/* <if-test> within a shorthand */
+  background-image: 3px yellow if(
+  style(--color: green): dashed;
+  style(--color: yellow): inset;
+  else: solid;
+);
+}
+
+div {
+  background-image: if(
+    style(--scheme: ice): linear-gradient(#caf0f8, white, #caf0f8);
+    style(--scheme: fire): linear-gradient(#ffc971, white, #ffc971);
+    else: none;
+  );
+}
+
+div {
+  background-image: if(
+    else: none;
+    style(--scheme: ice): linear-gradient(#caf0f8, white, #caf0f8);
+    style(--scheme: fire): linear-gradient(#ffc971, white, #ffc971)
+  );
+}
+
+div {
+  background-image: if(
+    style(--scheme: ice): linear-gradient(#caf0f8, white, #caf0f8);
+    else: url("debug.png");
+    style(--scheme: fire): linear-gradient(#ffc971, white, #ffc971);
+    else: none;
+  );
+}
+
+.doris
+{
+background-color: if(else: yellow);
+background-image: if();
+
+background-image: if(
+  style(--scheme: ice): linear-gradient(#caf0f8, white, #caf0f8);
+  else: none;
+);
+
+background-color: if(
+  style((--scheme: dark) or (--scheme: very-dark)): black;
+);
+
+background-color: if(
+  style((--scheme: dark) and (--contrast: hi)): black;
+);
+
+background-color: if(
+  not style(--scheme: light): black;
+);
+
+if(
+  background-color: if(style(color: white): black;);
+);
+
+background-color: if(
+  media(print): white;
+  else: #eeeeee;
+);
+
+margin: if(
+  media(width < 700px): 0 auto;
+  else: 20px auto;
+);
+
+border-color: if(
+  media((width > 700px) and (width < 1000px)): blue;
+);
+
+border-color: if(
+  media((width < 500px) or (orientation: landscape)): blue;
+);
+
+background-color: if(
+  not media(width < 500px): blue;
+  else: red
+);
+
+color: if(
+  supports(color: lch(75% 0 0)): lch(75% 0 0);
+  else: rgb(185 185 185);
+);
+
+margin-top: if(
+  supports(selector(:buffering)): 1em;
+  else: initial;
+);
+
+margin-top: if(
+  supports((selector(:buffering)) and (color: blue)): 1em;
+);
+
+margin-top: if(
+  supports((selector(:buffering)) or (color: not-a-color)): 1em;
+);
+
+margin-top: if(
+  supports(not selector(:buffering)): 1em;
+);
+
+padding: 1em;
+padding: if(style(--size: "2xl"): 1em; else: 0.25em);
+
+border: if(
+  supports(color: lch(75% 0 0)): 3px solid lch(75% 0 0);
+  else: 3px solid silver;
+);
+
+border: 3px solid
+  if(
+    supports(color: lch(75% 0 0)): lch(75% 0 0); else: silver;
+  );
+
+color: if(
+  style(--scheme: ice):
+    if(
+      media(prefers-color-scheme: dark): #caf0f8;
+      else: #03045e;
+    );
+  style(--scheme: fire):
+    if(
+      media(prefers-color-scheme: dark): #ffc971;
+      else: #621708;
+    );
+  else: black
+);
+
+width: calc(if(
+    style(--scheme: wide): 70%;
+    else: 50%;
+  ) - 50px);
+
+}
+
+section {
+  display: flex;
+  gap: 16px;
+  flex-direction: if(
+    media(orientation: landscape): row;
+    else: column;
+  )
+}
+
+h2::before {
+  content: if(
+    style(--show-apple: true): "🍎 ";
+  );
+}
+
+h2 {
+  color: if(
+    supports(color: lch(29.57% 43.25 344.44)): lch(29.57% 43.25 344.44);
+    else: #792359;
+  )
+}
+
+body {
+  max-width: 700px;
+  margin: if(
+    media(width < 700px): 0;
+    else: 20px;
+  ) auto 0;
+}
+
+.ice {
+  --scheme: ice;
+}
+
+.fire {
+  --scheme: fire;
+}
+
+article {
+  padding: 20px;
+  --color1: if(
+    style(--scheme: ice): #03045e;
+    style(--scheme: fire): #621708;
+    else: black;
+  );
+  --color2: if(
+    style(--scheme: ice): #caf0f8;
+    style(--scheme: fire): #ffc971;
+    else: white;
+  );
+
+  color: var(--color1);
+  border: 3px solid var(--color1);
+  background-image: linear-gradient(
+    to left,
+    var(--color2),
+    white,
+    var(--color2)
+  );
+}
+
+aside {
+  color: var(--color2);
+  background-color: var(--color1);
+  padding: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: if(
+    media(width > 700px): calc(3rem + 2vw);
+    else: 3rem;
+  );
+}
+
+h1::before {
+  content: if(
+    style(--scheme: ice): "❄️ ";
+    style(--scheme: fire): "🔥 ";
+    else: "";
+  );
+}
+
+</style>
+<script>
+const articleElem = document.querySelector("article");
+const selectElem = document.querySelector("select");
+
+selectElem.addEventListener("change", () => {
+  articleElem.className = selectElem.value;
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN if Tests</h1>
+
+<section style="--show-apple:true">
+  <article><h2>First article</h2></article>
+  <article><h2>Second article</h2></article>
+</section>
+
+<article>
+  <h1>Main heading</h1>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipiscing elit.
+    Quisque faucibus ex sapien vitae pellentesque sem placerat.
+    In id cursus mi pretium tellus duis convallis.
+  </p>
+  <aside>
+    <h2>An aside</h2>
+    <p>
+      Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus
+      fringilla lacus nec metus bibendum egestas.
+    </p>
+  </aside>
+  <p>
+    Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut
+    hendrerit semper vel class aptent taciti sociosqu. Ad litora
+    torquent per conubia nostra inceptos himenaeos.
+  </p>
+</article>
+<form>
+  <label for="scheme">Choose color scheme:</label>
+  <select id="scheme">
+    <option value="">Default</option>
+    <option value="ice">Ice</option>
+    <option value="fire">Fire</option>
+  </select>
+</form>
+
+</body>
+</html>

@@ -702,7 +702,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     sq_brac_ket = true;
                     break;
                default :
-                    nits.pick (nit_internal_parsing_error, es_catastrophic, ec_parser, "bork! bork! bork! when parsing html_version: abandoning hope");
+                    nits.pick (nit_internal_parsing_error, es_catastrophic, ec_parser, "bork! bork! bork! when parsing html_version (", quote (s), "): abandoning hope");
                     return false; } }
     if (found_html)
     {   if (unknown ())

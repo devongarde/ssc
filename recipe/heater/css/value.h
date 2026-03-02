@@ -31,6 +31,7 @@ int check_typed_feature (arguments& args, nitpick& nits, const int start, const 
 bool maybe_anchor (nitpick& nits, const e_css_property id);
 bool maybe_anchor_size (nitpick& nits, const e_css_property id);
 bool maybe_content (nitpick& nits, const e_css_property id);
+bool maybe_corner (nitpick& nits, const e_css_property id);
 bool maybe_filter (nitpick& nits, const e_css_property id);
 bool maybe_float (nitpick& nits, const e_css_property id);
 bool maybe_image (nitpick& nits, const e_css_property id);

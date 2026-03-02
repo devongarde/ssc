@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+div {
+  width: 80px;
+  height: 80px;
+  background-color: skyblue;
+}
+
+.perspective {
+  /* Includes a perspective to create a 3D space */
+  transform: perspective(400px) translateZ(-100px);
+  background-color: limegreen;
+}
+
+.scaled-translated {
+  /* Includes a perspective to create a 3D space */
+  transform: perspective(400px) scaleZ(2) translateZ(-100px);
+  background-color: pink;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+<div>Normal</div>
+<div class="perspective">Translated</div>
+<div class="scaled-translated">Scaled</div>
+</body>
+</html>

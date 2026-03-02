@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN saturate tests</title>
+<style>
+.sid
+{
+filter: saturate(0);     /* Completely unsaturated */
+filter: saturate(.4);    /* 40% saturated */
+filter: saturate()  ;    /* No effect */
+filter: saturate(100%);  /* No effect */
+filter: saturate(200%);  /* Double saturation */
+}
+</style>
+<script>
+const saturate = document.getElementById("saturate");
+const hsl = document.getElementById("hsl");
+
+for (let i = 0; i <= 200; i++) {
+  const div1 = document.createElement("div");
+  div1.style.backgroundColor = `hsl(0 ${i / 2}% 50%)`;
+  hsl.appendChild(div1);
+
+  const div2 = document.createElement("div");
+  div2.style.backgroundColor = "hsl(0 50% 50%)";
+  div2.style.filter = `saturate(${i}%)`;
+  saturate.appendChild(div2);
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN saturate Tests</h1>
+
+<div>
+  <p>Using <code>saturate()</code></p>
+  <div id="saturate"></div>
+</div>
+<div>
+  <p>Using <code>hsl()</code></p>
+  <div id="hsl"></div>
+</div>
+
+</body>
+</html>

@@ -10,8 +10,8 @@ PASS ../toast/css/3-ns/bad.css
 
 PASS ../toast/css/3-ns/css-2.css
 0 html
-1 empty namespace_unknown
-2 empty
+1 namespace_unknown
+2 prefix_again
 
 PASS ../toast/css/3-ns/css-3.css
 0 html

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN repeating-linear-gradient tests</title>
+<style>
+.sid
+{
+/* A repeating gradient tilted 45 degrees,
+   starting blue and finishing red, repeating 3 times */
+background-image: repeating-linear-gradient(45deg, blue, red 33.3%);
+
+/* A repeating gradient going from the bottom right to the top left,
+   starting blue and finishing red, repeating every 20px */
+background-image: repeating-linear-gradient(to left top, blue, red 20px);
+
+/* A gradient going from the bottom to top,
+   starting blue, turning green after 40%,
+   and finishing red. This gradient doesn't repeat because
+   the last color stop defaults to 100% */
+background-image: repeating-linear-gradient(0deg, blue, green 40%, red);
+
+/* A gradient repeating five times, going from the left to right,
+   starting red, turning green, and back to red */
+background-image: repeating-linear-gradient(to right, red 0%, green 10%, red 20%);
+
+/* Interpolation in rectangular color space */
+background-image: repeating-linear-gradient(in oklab, blue, red 50px);
+
+/* Interpolation in polar color space */
+background-image: repeating-linear-gradient(in hsl, blue, red 50px);
+
+/* Interpolation in polar color space
+  with longer hue interpolation method */
+background-image: repeating-linear-gradient(in hsl longer hue, blue, red 50px);
+}
+
+body {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 20px,
+    black 20px,
+    black 40px
+  );
+  /* with multiple color stop lengths */
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0 20px,
+    black 20px 40px
+  );
+}
+
+body {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgb(26 198 204),
+    rgb(26 198 204) 7%,
+    rgb(100 100 100) 10%
+  );
+}
+
+body {
+  background: repeating-linear-gradient(90deg in oklab, blue, red 100px);
+}
+
+.shorter {
+  background: repeating-linear-gradient(
+    90deg in hsl shorter hue,
+    red,
+    blue 300px
+  );
+}
+
+.longer {
+  background: repeating-linear-gradient(
+    90deg in hsl longer hue,
+    red,
+    blue 300px
+  );
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN repeating-linear-gradient Tests</h1>
+
+</body>
+</html>

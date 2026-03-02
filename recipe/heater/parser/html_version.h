@@ -708,6 +708,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H4_CSS_COLOUR_34  ( H4_CSS_COLOUR_3 | H4_CSS_COLOUR_4 )  
 #define H4_CSS_COLOUR_345 ( H4_CSS_COLOUR_34 | H4_CSS_COLOUR_6 )  
 #define H4_CSS_COLOUR_56  ( H4_CSS_COLOUR_5 | H4_CSS_COLOUR_6 )  
+#define H4_CSS_COLOUR_456  ( H4_CSS_COLOUR_4 | H4_CSS_COLOUR_56 )  
 #define H4_CSS_COLOUR     ( H4_CSS_COLOUR_34 | H4_CSS_COLOUR_56 )
 #define H4_CSS_COLOUR_MASK  H4_CSS_COLOUR
 
@@ -1395,6 +1396,7 @@ const html_version html_dc_1_1 (aoo_dc, HTML_DC_1_1);
 const html_version html_dcat_3 (aoo_dc, HTML_DCAT_3);
 const html_version html_dcterms_1_0 (aoo_dc, HTML_DCTERMS_1_0);
 const html_version html_dcterms_1_1 (aoo_dc, HTML_DCTERMS_1_1);
+const html_version html_dpv_2_4 (aoo_dpv, HTML_DPV_2_4);
 const html_version html_dpv_2_3 (aoo_dpv, HTML_DPV_2_3);
 const html_version html_dpv_2_2 (aoo_dpv, HTML_DPV_2_2);
 const html_version html_dpv_2_1 (aoo_dpv, HTML_DPV_2_1);

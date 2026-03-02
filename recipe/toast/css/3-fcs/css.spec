@@ -17,7 +17,6 @@ PASS ../toast/css/3-fcs/css-6.css
 PASS ../toast/css/3-fcs/css-a.css
 0 html
 14 not_not
-52 empty empty empty empty content
 96 unrecognised_value unrecognised_value unrecognised_value
 97 unrecognised_value unrecognised_value unrecognised_value
 108 css_version

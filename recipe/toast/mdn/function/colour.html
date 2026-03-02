@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+.sid
+{
+/* Absolute values */
+background-color: color(display-p3 1 0.5 0);
+background-color: color(display-p3 1 0.5 0 / .5);
+
+/* Relative values */
+background-color: color(from green srgb r g b / 0.5);
+background-color: color(from #123456 xyz calc(x + 0.75) y calc(z - 0.35));
+
+background-color: color(from hsl(0 100% 50%) srgb r g b);
+background-color: color(from hsl(0 100% 50%) xyz x y z);
+
+background-color: color(from hsl(0 100% 50%) srgb 0.749938 0 0.609579);
+/* Computed output color: color(srgb 0.749938 0 0.609579) */
+
+background-color: color(from hsl(0 100% 50%) xyz 0.75 0.6554 0.1);
+/* Computed output color: color(xyz-d65 0.75 0.6554 0.1 */
+
+background-color: color(from hsl(0 100% 50%) srgb r 1 b);
+/* Computed output color: color(srgb 1 1 0) */
+
+background-color: color(from hsl(0 100% 50%) xyz x y 0.5);
+/* Computed output color: color(xyz-d65 0.412426 0.212648 0.5) */
+
+background-color: color(from hsl(0 100% 50% / 0.8) srgb r g b / alpha);
+/* Computed output color: color(srgb 1 0 0 / 0.8) */
+
+background-color: color(from hsl(0 100% 50% / 0.8) xyz x y z / 0.5);
+/* Computed output color: color(xyz-d65 0.412426 0.212648 0.0193173 / 0.5) */
+
+background-color: color(from hsl(0 100% 50%) srgb calc(r - 0.4) calc(g + 0.1) calc(b + 0.6) / calc(alpha - 0.1));
+/* Computed output color: color(srgb 0.6 0.1 0.6 / 0.9)  */
+
+background-color: color(from hsl(0 100% 50%) xyz calc(x - 0.3) calc(y + 0.3) calc(z + 0.3) / calc(alpha - 0.1));
+/* Computed output color: color(xyz-d65 0.112426 0.512648 0.319317 / 0.9) */
+}
+
+[data-color="red-a98-rgb"] {
+  background-color: color(a98-rgb 1 0 0);
+}
+[data-color="red-prophoto-rgb"] {
+  background-color: color(prophoto-rgb 1 0 0);
+}
+[data-color="green-srgb-linear"] {
+  background-color: color(srgb-linear 0 1 0);
+}
+[data-color="green-display-p3"] {
+  background-color: color(display-p3 0 1 0);
+}
+[data-color="blue-rec2020"] {
+  background-color: color(rec2020 0 0 1);
+}
+[data-color="blue-srgb"] {
+  background-color: color(srgb 0 0 1);
+}
+
+[data-color="red"] {
+  background-color: color(xyz 45 20 0);
+}
+
+[data-color="green"] {
+  background-color: color(xyz-d50 0.3 80 0.3);
+}
+
+[data-color="blue"] {
+  background-color: color(xyz-d65 5 0 50);
+}
+
+@media (color-gamut: p3) {
+  div {
+    background-color: color(display-p3 1 0 0);
+  }
+}
+
+@media (color-gamut: srgb) {
+  div:nth-child(2) {
+    background-color: color(srgb 1 0 0);
+  }
+}
+
+@media (color-gamut: rec2020) {
+  div:nth-child(3) {
+    background-color: color(rec2020 1 0 0);
+  }
+}
+
+:root {
+  --base-color: orange;
+}
+
+#one {
+  background-color: color(
+    from var(--base-color) display-p3 r calc(g + 0.15) calc(b + 0.15)
+  );
+}
+
+#two {
+  background-color: var(--base-color);
+}
+
+#three {
+  background-color: color(
+    from var(--base-color) display-p3 r calc(g - 0.15) calc(b - 0.15)
+  );
+}
+
+/* Use @supports to add in support old syntax that requires r g b values
+   to be specified as percentages (with units) in calculations.
+   This is required for Safari 16.4+ */
+@supports (color: color(from red display-p3 r g calc(b + 30%))) {
+  #one {
+    background-color: color(
+      from var(--base-color) display-p3 r calc(g + 15%) calc(b + 15%)
+    );
+  }
+
+  #three {
+    background-color: color(
+      from var(--base-color) display-p3 r calc(g - 15%) calc(b - 15%)
+    );
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+<div data-color="red-a98-rgb"></div>
+<div data-color="red-prophoto-rgb"></div>
+<div data-color="green-srgb-linear"></div>
+<div data-color="green-display-p3"></div>
+<div data-color="blue-rec2020"></div>
+<div data-color="blue-srgb"></div>
+
+<div data-color="red"></div>
+<div data-color="green"></div>
+<div data-color="blue"></div>
+
+<div></div>
+<div></div>
+<div></div>
+
+</body>
+</html>

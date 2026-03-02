@@ -5,7 +5,6 @@ PASS ../toast/css/songlight/index.html
 
 PASS ../toast/css/songlight/songlight.css
 0 html
-37 unrecognised_value unrecognised_value
 39 fontname
 40 fontname
 41 fontname
@@ -14,7 +13,6 @@ PASS ../toast/css/songlight/songlight.css
 
 PASS ../toast/css/songlight/yukontoast.css
 0 html
-37 unrecognised_value unrecognised_value
 39 fontname
 40 fontname
 41 fontname

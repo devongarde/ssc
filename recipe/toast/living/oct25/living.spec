@@ -692,6 +692,8 @@ PASS ../toast/living/oct25/15.html
 PASS ../toast/living/oct25/15.css
 0 html
 26 bad_media
+79 unrecognised_value unrecognised_value
+80 unrecognised_value unrecognised_value
 216 css_version
 224 css_version
 525 immeasurable

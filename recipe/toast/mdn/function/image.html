@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN image tests</title>
+<style>
+.sid
+{
+/* Basic usage */
+background-image: image("image1.jpg");
+background-image: image(url("image2.jpg"));
+
+/* Bidi-sensitive Images */
+background-image: image(ltr "image1.jpg");
+background-image: image(rtl "image1.jpg");
+
+/* Image Fallbacks */
+background-image: image("image1.jpg", black);
+
+/* Image Fragments */
+background-image: image("image1.jpg#xywh=40,0,20,20");
+
+/* Solid-color Images */
+background-image: image(rgb(0 0 255 / 0.5)), url("bg-image.png");
+
+background-image: image("my-image.webp#xywh=0,20,40,60");
+}
+
+ul {
+  list-style-image: image(ltr "rightarrow.png");
+}
+
+.box:hover {
+  cursor: image("sprite.png#xywh=32,64,16,16");
+}
+
+.quarter-logo {
+  background-image: image(rgb(0 0 0 / 25%)), url("firefox.png");
+  background-size: 25%;
+  background-repeat: no-repeat;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN image Tests</h1>
+
+<ul>
+  <li dir="ltr">Bullet is a right facing arrow on the left</li>
+  <li dir="rtl">Bullet is the same arrow, flipped to point left.</li>
+</ul>
+
+<div class="box">Hover over me. What cursor do you see?</div>
+
+<div class="quarter-logo">
+  If supported, a quarter of this div has a darkened logo
+</div>
+
+</body>
+</html>

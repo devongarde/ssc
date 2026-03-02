@@ -135,7 +135,6 @@ PASS ../toast/mdn/type/type-range.html
 
 PASS ../toast/mdn/type/type-reset.html
 2 naughty_lang
-5 css_version css_version css_version css_version css_version css_version
 68 id_exists
 
 PASS ../toast/mdn/type/type-search.html

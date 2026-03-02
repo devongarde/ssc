@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN fit-content tests</title>
+<style>
+.sid
+{
+/* <length> values */
+  grid-template-columns: fit-content(200px);
+  grid-template-columns: fit-content(5cm);
+  grid-template-columns: fit-content(30vw);
+  grid-template-columns: fit-content(100ch);
+
+/* <percentage> value */
+  grid-template-columns: fit-content(40%);
+}
+
+#container {
+  display: grid;
+  grid-template-columns: fit-content(300px) fit-content(300px) 1fr;
+  grid-gap: 5px;
+  box-sizing: border-box;
+  height: 200px;
+  width: 100%;
+  background-color: #8cffa0;
+  padding: 10px;
+}
+
+#container > div {
+  background-color: #8ca0ff;
+  padding: 5px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN fit-content Tests</h1>
+
+<div id="container">
+  <div>Item as wide as the content.</div>
+  <div>
+    Item with more text in it. Because the contents of it are wider than the
+    maximum width, it is clamped at 300 pixels.
+  </div>
+  <div>Flexible item</div>
+</div>
+
+</body>
+</html>

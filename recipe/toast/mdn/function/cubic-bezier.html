@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+.sid
+{
+transition: cubic-bezier(0.25, 0.1, 0.25, 1);
+transition: cubic-bezier(0.1, -0.6, 0.2, 0);
+transition: cubic-bezier(0, 0, 1, 1);
+}
+
+span {
+  transition: translate 0.3s cubic-bezier(0.3, 0.8, 0.3, 2.3);
+}
+
+.doris
+{
+/* The canonical Bézier curve with four <number> in the [0,1] range */
+transition: cubic-bezier(0.1, 0.7, 1.0, 0.1);
+
+/* Using <integer> is valid because any <integer> is also a <number> */
+transition: cubic-bezier(0, 0, 1, 1);
+
+/* Negative values for ordinates are valid, leading to bouncing effects */
+transition: cubic-bezier(0.1, -0.6, 0.2, 0);
+
+/* Values greater than 1.0 for ordinates are also valid */
+transition: cubic-bezier(0, 1.1, 0.8, 4);
+}
+
+.invalid
+{
+/* Parameters must be numbers */
+transition: cubic-bezier(0.1, red, 1.0, green);
+
+/* X coordinates must be in the [0, 1] range */
+transition: cubic-bezier(2.45, 0.6, 4, 0.1);
+
+/* There must be exactly four parameters */
+transition: cubic-bezier(0.3, 2.1);
+
+/* X coordinates must be in the [0, 1] range */
+transition: cubic-bezier(-1.9, 0.3, -0.2, 2.1);
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+</body>
+</html>

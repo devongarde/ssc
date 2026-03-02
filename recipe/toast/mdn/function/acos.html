@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN acos tests</title>
+<style>
+.sid
+{   /* Single <number> values */
+transform: rotate(acos(-0.2));
+transform: rotate(acos(2 * 0.125));
+
+/* Other values */
+transform: rotate(acos(pi / 5));
+transform: rotate(acos(e / 3)); }
+
+div.box {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(orange, red);
+}
+div.box-1 {
+  transform: rotate(acos(1));
+}
+div.box-2 {
+  transform: rotate(acos(0.5));
+}
+div.box-3 {
+  transform: rotate(acos(0));
+}
+div.box-4 {
+  transform: rotate(acos(-0.5));
+}
+div.box-5 {
+  transform: rotate(acos(-1));
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN acos Tests</h1>
+
+<div class="box box-1"></div>
+<div class="box box-2"></div>
+<div class="box box-3"></div>
+<div class="box box-4"></div>
+<div class="box box-5"></div>
+
+</body>
+</html>

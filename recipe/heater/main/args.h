@@ -313,6 +313,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define LANG        "lang"
 #define LASTMOD     "lastmod"
 #define LAYER       "layer"
+#define LINE_LENGTH "line-length"
 #define LINE_GRID   "line-grid"
 #define LIST        "list"
 #define LOCAL       "local"

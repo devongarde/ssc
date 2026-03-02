@@ -53,6 +53,14 @@ bool maybe_content (nitpick& nits, const e_css_property id)
         nits.pick (nit_css_value_fn, ed_css_content, "1. Inserting and replacing content with the content property", es_error, ec_css, "not a content property");
     return false; }
 
+bool maybe_corner (nitpick& nits, const e_css_property id)
+{   if (id < ec_custom) return true;
+    const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
+    if ((f & CF_CORNER) == CF_CORNER) return true;
+    if (! test_esii (sii_hush, HIDE_ME))
+        nits.pick (nit_css_value_fn, ed_css_bb_4, "3.7. Corner Shaping: the corner-*-shape properties", es_error, ec_css, "not a superellipse corner property");
+    return false; }
+
 bool maybe_filter (nitpick& nits, const e_css_property id)
 {   if (id < ec_custom) return true;
     if (context.css_module (c_filter_effect) < 3)
@@ -172,15 +180,21 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     int test_value_fns_css_c_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_c_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_c_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_css_c_4 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_d (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_e (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_f_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_f_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_f_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_css_fn_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_css_fn_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_g_h (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_css_i (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_css_i_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_css_i_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_j_k (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_css_l (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_css_l_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_css_l_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_css_l_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_m_n (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_o (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_p_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
@@ -228,11 +242,13 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     int test_value_fns_r_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_r_4 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_r_5 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_r_6 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_s_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_s_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_s_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_s_4 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_s_5 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_s_6 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_t_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_t_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_u_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
@@ -268,15 +284,21 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     if (t <= SSC_TYPES_CSS_C_1_MAX) return test_value_fns_css_c_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_C_2_MAX) return test_value_fns_css_c_2 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_C_3_MAX) return test_value_fns_css_c_3 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_CSS_C_4_MAX) return test_value_fns_css_c_4 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_D_MAX) return test_value_fns_css_d (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_E_MAX) return test_value_fns_css_e (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_F_1_MAX) return test_value_fns_css_f_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_F_2_MAX) return test_value_fns_css_f_2 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_F_3_MAX) return test_value_fns_css_f_3 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_CSS_FN_1_MAX) return test_value_fns_css_fn_1 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_CSS_FN_2_MAX) return test_value_fns_css_fn_2 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_G_H_MAX) return test_value_fns_css_g_h (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_CSS_I_MAX) return test_value_fns_css_i (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_CSS_I_1_MAX) return test_value_fns_css_i_1 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_CSS_I_2_MAX) return test_value_fns_css_i_2 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_J_K_MAX) return test_value_fns_css_j_k (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_CSS_L_MAX) return test_value_fns_css_l (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_CSS_L_1_MAX) return test_value_fns_css_l_1 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_CSS_L_2_MAX) return test_value_fns_css_l_2 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_CSS_L_3_MAX) return test_value_fns_css_l_3 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_M_N_MAX) return test_value_fns_css_m_n (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_O_MAX) return test_value_fns_css_o (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_P_1_MAX) return test_value_fns_css_p_1 (args, start, to, nits, t, fn, id);
@@ -324,11 +346,13 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     if (t <= SSC_TYPES_R_3_MAX) return test_value_fns_r_3 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_R_4_MAX) return test_value_fns_r_4 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_R_5_MAX) return test_value_fns_r_5 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_R_6_MAX) return test_value_fns_r_6 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_S_1_MAX) return test_value_fns_s_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_S_2_MAX) return test_value_fns_s_2 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_S_3_MAX) return test_value_fns_s_3 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_S_4_MAX) return test_value_fns_s_4 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_S_5_MAX) return test_value_fns_s_5 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_S_6_MAX) return test_value_fns_s_6 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_T_1_MAX) return test_value_fns_t_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_T_2_MAX) return test_value_fns_t_2 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_U_1_MAX) return test_value_fns_u_1 (args, start, to, nits, t, fn, id);

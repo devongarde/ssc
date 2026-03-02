@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN steps tests</title>
+<style>
+.sid
+{
+/* Different intervals */
+animation-timing-function: steps(2, end);
+animation-timing-function: steps(4, jump-end);
+animation-timing-function: steps(12, end);
+
+/* Different jump positions */
+animation-timing-function: steps(3, jump-start);
+animation-timing-function: steps(3, jump-end);
+animation-timing-function: steps(3, jump-none);
+animation-timing-function: steps(3, jump-both);
+
+animation-timing-function: steps(2, jump-start);  /* Or steps(2, start) */
+animation-timing-function: steps(4, jump-end);    /* Or steps(4, end) */
+animation-timing-function: steps(5, jump-none);
+animation-timing-function: steps(3, jump-both);
+
+/* Five steps with jump at the end */
+animation-timing-function: steps(5, end);
+
+/* Two steps with jump at the start */
+animation-timing-function: steps(2, start);
+
+/* Using default second parameter */
+animation-timing-function: steps(2);
+
+/* borked */
+/* First parameter must be an <integer>, not a real value */
+animation-timing-function: steps(2.0, jump-end);
+
+/* Number of steps must be positive */
+animation-timing-function: steps(-3, start);
+
+/* Number of steps must be at least 1 */
+animation-timing-function: steps(0, jump-none);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN steps Tests</h1>
+
+</body>
+</html>

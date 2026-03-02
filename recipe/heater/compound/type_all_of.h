@@ -176,7 +176,7 @@ template < e_type T, class SZ, int F, e_type A > struct type_all_flagged_of < T,
             string_vector < T, SZ, F > :: status (s_invalid);
             return false; }
         if (i + 1 < vv.size ())
-            nits.pick (nit_precisely, es_warning, ec_type, "too many (", vv.size (), ") values provided, only ", i+1, " expected (", type_name (T), ")");
+            nits.pick (nit_precisely, es_warning, ec_type, "too many (", vv.size (), ") values provided (from ", quote (vv.at (1)), "), only ", i+1, " expected (", type_name (T), ")");
         val_.set_value (nits, v, vv.at (i));
         return val_.good (); }
     void reset () noexcept

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+.sid
+{
+/* Select image based on resolution */
+ background-image: image-set(
+  "image1.jpg" 1x,
+  "image2.jpg" 2x
+);
+
+ background-image: image-set(
+  url("image1.jpg") 1x,
+  url("image2.jpg") 2x
+);
+
+/* Select gradient based on resolution */
+ background-image: image-set(
+  linear-gradient(blue, white) 1x,
+  linear-gradient(blue, green) 2x
+);
+
+/* Select image based on supported formats */
+ background-image: image-set(
+  url("image1.avif") type("image/avif"),
+  url("image2.jpg") type("image/jpeg")
+);
+}
+
+.box {
+  width: 400px;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  background-image: image-set(
+    url("https://mdn.github.io/shared-assets/images/examples/balloons-small.jpg")
+      1x,
+    url("https://mdn.github.io/shared-assets/images/examples/balloons-landscape.jpg")
+      2x
+  );
+}
+
+.box {
+  width: 400px;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  background-image: image-set(
+    "https://mdn.github.io/shared-assets/images/examples/balloons-landscape.avif"
+      type("image/avif"),
+    "https://mdn.github.io/shared-assets/images/examples/balloons-landscape.jpg"
+      type("image/jpeg")
+  );
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+<div class="box"></div>
+
+</body>
+</html>

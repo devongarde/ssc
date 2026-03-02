@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN attr tests</title>
+<style>
+blockquote {
+  margin: 1em 0;
+}
+
+blockquote::after {
+  display: block;
+  content: " (source: " attr(cite) ") ";
+  color: hotpink;
+}
+
+.sid
+{
+content: attr(data-name raw-string, "stranger");
+}
+
+.doris
+{
+content: attr(data-size rem);
+content: attr(data-width px, inherit);
+content: attr(data-rotation deg);
+}
+
+span[data-icon] {
+  background-image: url(attr(data-icon));
+}
+
+span[data-icon] {
+  background: image-set(attr(data-icon));
+}
+
+div::before {
+  content: attr(text) " World";
+}
+div::before {
+  content: attr(text) 1px;
+}
+
+#parent {
+  --x: attr(data-attr);
+}
+#child::before {
+  content: var(--x);
+}
+
+@supports (x: attr(x type(*))) {
+  /* Browser has modern attr() support */
+}
+
+@supports not (x: attr(x type(*))) {
+  /* Browser does not have modern attr() support */
+}
+
+[data-foo]::before {
+  content: attr(data-foo) " ";
+}
+
+p::after {
+  content: " " attr(data-browser, "Unknown");
+  color: tomato;
+}
+
+.background {
+  background-color: red;
+}
+
+.background[data-background] {
+  background-color: attr(data-background type(<color>), red);
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  padding: 1em;
+}
+
+.card {
+  view-transition-name: attr(id type(<custom-ident>), none);
+  view-transition-class: card;
+}
+</style>
+<script>
+if (CSS.supports("x: attr(x type(*))")) {
+  /* Browser has modern attr() support */
+}
+
+if (!CSS.supports("x: attr(x type(*))")) {
+  /* Browser does not have modern attr() support */
+}
+
+div {
+  width: fit-content;
+  transform-origin: 50% 50%;
+  rotate: attr(data-rotation deg, 1.5deg);
+}
+
+const shuffle = (array) => {
+  for (let i = array.length - 1; i >= 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+};
+
+document.querySelector("button").addEventListener("click", (e) => {
+  const $cards = Array.from(document.querySelectorAll(".card"));
+  shuffle($cards);
+  document.startViewTransition(() => {
+    $cards.forEach(($card, i) => {
+      $card.style.setProperty("order", i);
+    });
+  });
+});
+
+</script>
+</head>
+
+<body>
+
+<h1>MDN attr Tests</h1>
+
+<blockquote cite="https://mozilla.org/en-US/about/">
+  Mozilla is working to put control of the internet back in the hands of the
+  people using it.
+</blockquote>
+
+<blockquote cite="https://web.dev/about/">
+  Build beautiful, accessible, fast, and secure websites that work
+  cross-browser.
+</blockquote>
+
+<!-- This won't work! -->
+<span data-icon="https://example.org/icons/question-mark.svg">help</span>
+
+<div text="Hello"></div>
+
+<div id="parent"><div id="child" data-attr="foo"></div></div>
+
+<p data-foo="hello">world</p>
+
+<p data-browser="Firefox">My favorite browser is:</p>
+<p>Your favorite browser is:</p>
+
+<div class="background" data-background="lime">
+  background expected to be red if your browser does not support advanced usage
+  of attr()
+</div>
+
+<div data-rotation="-3">I am rotated by -3 degrees</div>
+<div data-rotation="2">And I by 2 degrees</div>
+<div>And so am I, using the fallback value of 1.5deg</div>
+
+<div class="cards">
+  <div class="card" id="card-1">1</div>
+  <div class="card" id="card-2">2</div>
+  <div class="card" id="card-3">3</div>
+  <div class="card" id="card-4">4</div>
+</div>
+<button>Shuffle cards</button>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+div {
+  width: 80px;
+  height: 80px;
+  background-color: skyblue;
+}
+
+.scaled {
+  transform: scale(0.7); /* Equal to scaleX(0.7) scaleY(0.7) */
+  background-color: pink;
+}
+
+div {
+  width: 80px;
+  height: 80px;
+  background-color: skyblue;
+}
+
+.scaled {
+  transform: scale(2, 0.5); /* Equal to scaleX(2) scaleY(0.5) */
+  transform-origin: left;
+  background-color: pink;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+<div>Normal</div>
+<div class="scaled">Scaled</div>
+
+</body>
+</html>

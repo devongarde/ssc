@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+.sid
+{
+offset-path: xywh(0 1% 2px 3% round 0 1px 2% 3px);
+clip-path: xywh(1px 2% 3px 4em round 0 1% 2px 3em);
+}
+
+.container {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  margin: 30px;
+  text-align: center;
+}
+
+.path {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  background-color: magenta;
+  animation: move 10s linear infinite;
+}
+
+.xywh-path-1 {
+  offset-path: xywh(20px 20px 100% 100% round 10%);
+}
+
+.xywh-path-2 {
+  offset-path: xywh(20px 30% 150% 200%);
+}
+
+@keyframes move {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+<div class="container">
+  Rectangular path 1
+  <div class="path xywh-path-1">→</div>
+</div>
+<div class="container">
+  Rectangular path 2
+  <div class="path xywh-path-2">→</div>
+</div>
+
+</body>
+</html>

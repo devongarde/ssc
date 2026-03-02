@@ -194,44 +194,38 @@ void nitpick::set_context (const int line, const ::std::string& c)
     else if (line_ == 0) line_ = line; }
 
 void nitpick::set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to)
-{   BOOST_STATIC_ASSERT (DEFAULT_LINE_LENGTH - 16 <= INT8_MAX);
-    CONSTEXPR int maxish = DEFAULT_LINE_LENGTH - 16;
+{   const int maxish = context.line_length () - 16;
     const int len = GSL_NARROW_CAST < int > (to - from);
     const int maxlen = GSL_NARROW_CAST < int > (e - from);
     before_.clear (); after_.clear ();
     if (maxlen == 0)
         mote_.clear ();
     else
-    {   if (len >= maxish) mote_ = ::std::string (from, from + maxish) + "...";
+    {   if (len >= maxish) mote_ = ::std::string (from, from + maxish);
         else
         {   const int halfish = (maxish - len) / 2;
             if (len == 0)
             {   int last = halfish, x = 0;
-                bool hell = true;
                 const ::std::string ls (LINE_SEPARATORS);
                 while ((from + x < to) && (::std::iswspace (*(from + x)) || ::std::iswcntrl (*(from + x)) || (ls.find (*(from + x)) != ::std::string::npos)) && (x < maxlen)) ++x;
                 if (x >= maxlen-1) x = 0;
-                if (x + last > maxlen)
-                {   last = maxlen;
-                    hell = false; }
+                if (x + last > maxlen) last = maxlen;
                 for (int i = x + 1; i < last; ++i)
                     if (ls.find (*(from + i)) != ::std::string::npos)
                     {   last = i - 1;
-                        hell = false;
                         break; }
-                mote_ = delined (from + x, from + last);
-                if (hell) mote_ += "..."; }
+                mote_ = delined (from + x, from + last);}
             else
             {   mote_ = delined (from, to);
                 ::std::string::const_iterator mb, me;
                 if ((e - b) <= maxish) { me = e; mb = b; }
                 else
                 {   if ((b + halfish) >= from) mb = b;
-                    else { mb = from - halfish; before_ = "..."; }
+                    else mb = from - halfish;
                     if ((e - halfish) <= to) me = e;
-                    else { me = to + halfish; after_ = "..."; } }
-                before_ += delined (mb, from);
-                after_ = delined (to, me) + after_;
+                    else me = to + halfish; }
+                before_ = delined (mb, from);
+                after_ = delined (to, me);
                 ::std::string::size_type pos = before_.find_last_of (LINE_SEPARATORS);
                 if (pos != ::std::string::npos) before_ = before_.substr (pos+1);
                 pos = after_.find_first_of (LINE_SEPARATORS);

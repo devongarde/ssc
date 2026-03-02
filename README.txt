@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.2.25
+version 0.2.26
 (c) 2020-2026 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notices
 https://dylanharris.org/ssc/
@@ -107,8 +107,10 @@ Notes on names:
 
 Security
 Regarding the EU's Cyber Resilience Act, any security issues should be
-reported to ssc@dylanharris.org, and cc'ed to mail@dylanharris.org. For a list
-of components used by SSC, please consult the source code.
+reported to security@dylanharris.org. Kindly email a detailed report,
+including full reproduction steps, with your full contact details and,
+for verification purposes, appropriate references. Thank you in advance
+for doing so. 
 
 
 

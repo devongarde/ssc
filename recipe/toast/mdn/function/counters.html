@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+ol {
+  counter-reset: index;
+  list-style-type: none;
+}
+
+li::before {
+  counter-increment: index;
+  content: counters(index, ".", decimal) " ";
+}
+
+ol {
+  counter-reset: listCounter;
+}
+li {
+  counter-increment: listCounter;
+}
+li::marker {
+  content:
+    counters(listCounter, ".", upper-roman) ") ";
+}
+li::before {
+  content:
+    counters(listCounter, ".") " == "
+    counters(listCounter, ".", lower-roman);
+}
+
+ol {
+  counter-reset: count;
+}
+li {
+  counter-increment: count;
+}
+li::marker {
+  content:
+    counters(count, "-", decimal-leading-zero) ") ";
+}
+li::before {
+  content:
+    counters(count, "~", upper-alpha) " == "
+    counters(count,  "*", lower-alpha);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+<ol>
+  <li>Mars</li>
+  <li>
+    Saturn
+    <ol>
+      <li>Mimas</li>
+      <li>Enceladus</li>
+      <li>
+        <ol>
+          <li>Voyager</li>
+          <li>Cassini</li>
+        </ol>
+      </li>
+      <li>Tethys</li>
+    </ol>
+  </li>
+  <li>
+    Uranus
+    <ol>
+      <li>Titania</li>
+    </ol>
+  </li>
+</ol>
+
+<ol>
+  <li>
+    <ol>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ol>
+  </li>
+  <li></li>
+  <li></li>
+  <li>
+    <ol>
+      <li></li>
+      <li>
+        <ol>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+</body>
+</html>

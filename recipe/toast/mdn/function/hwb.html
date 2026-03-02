@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN hwb tests</title>
+<style>
+.sid
+{
+/* Absolute values */
+background-color: hwb(194 0% 0%);
+background-color: hwb(194 0% 0% / .5);
+
+/* Relative values */
+background-color: hwb(from green h w b / 0.5);
+background-color: hwb(from #123456 h calc(w + 30) b);
+background-color: hwb(from lch(40% 70 240deg) h w calc(b - 30));
+
+background-color: hwb(from hsl(0 100% 50%) h w b);
+
+background-color: hwb(from hsl(0 100% 50%) 240 52% 12%);
+
+background-color: hwb(from hsl(0 100% 50%) h 30% b);
+
+background-color: hwb(from hsl(0 100% 50% / 0.8) h w b / alpha);
+/* Computed output color: color(srgb 1 0 0 / 0.8) */
+
+background-color: hwb(from hsl(0 100% 50% / 0.8) h w b / 0.5);
+/* Computed output color: color(srgb 1 0 0 / 0.5) */
+
+background-color: hwb(from hsl(0 100% 50%) calc(h + 120) calc(w + 25) calc(b + 10) / calc(alpha - 0.1));
+}
+
+:root {
+  --base-color: orange;
+}
+
+/* As per the spec, w and b values should resolve to a number between 0-100
+   However, Chrome 121+ incorrectly resolves them to numbers between 0-1
+   hence currently using calculations like w + 0.3 instead of w + 30 */
+
+#one {
+  background-color: hwb(from var(--base-color) h calc(w + 0.3) b);
+}
+
+#two {
+  background-color: var(--base-color);
+}
+
+#three {
+  background-color: hwb(from var(--base-color) h w calc(b + 0.3));
+}
+
+/* Use @supports to add in support for old syntax that requires % units to
+   be specified in w and b calculations. This is required for Safari 16.4+. */
+@supports (color: hwb(from red h w calc(b + 30%))) {
+  #one {
+    background-color: hwb(from var(--base-color) h calc(w + 30%) b);
+  }
+
+  #three {
+    background-color: hwb(from var(--base-color) h w calc(b + 30%));
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN hwb Tests</h1>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN lab tests</title>
+<style>
+.sid
+{
+/* Absolute values */
+background-color: lab(29.2345% 39.3825 20.0664);
+background-color: lab(52.2345% 40.1645 59.9971);
+background-color: lab(52.2345% 40.1645 59.9971 / .5);
+
+/* Relative values */
+background-color: lab(from green l a b / 0.5);
+background-color: lab(from #123456 calc(l + 10) a b);
+background-color: lab(from hsl(180 100% 50%) calc(l - 10) a b);
+
+background-color: lab(from hsl(0 100% 50%) l a b);
+
+background-color: lab(from hsl(0 100% 50%) 29.692% 44.89% -29.034%);
+
+background-color: lab(from hsl(0 100% 50%) l -100 b);
+
+background-color: lab(from hsl(0 100% 50% / 0.8) l a b / alpha);
+/* Computed output color: lab(54.29 80.8198 69.8997 / 0.8) */
+
+background-color: lab(from hsl(0 100% 50% / 0.8) l a b / 0.5);
+/* Computed output color: lab(54.29 80.8198 69.8997 / 0.5) */
+
+background-color: lab(from hsl(0 100% 50%) calc(l + 20) calc(a - 20) calc(b - 40) / calc(alpha - 0.1));
+
+}
+
+[data-color="red-dark"] {
+  background-color: lab(5 125 71);
+}
+[data-color="red"] {
+  background-color: lab(40 125 71);
+}
+[data-color="red-light"] {
+  background-color: lab(95 125 71);
+}
+
+[data-color="green-dark"] {
+  background-color: lab(10% -120 125);
+}
+[data-color="green"] {
+  background-color: lab(50% -120 125);
+}
+[data-color="green-light"] {
+  background-color: lab(90% -120 125);
+}
+
+[data-color="blue-dark"] {
+  background-color: lab(10 -120 -120);
+}
+[data-color="blue"] {
+  background-color: lab(50 -120 -120);
+}
+[data-color="blue-light"] {
+  background-color: lab(90 -120 -120);
+}
+
+/* a-axis max, variable b-axis */
+[data-color="red-yellow"] {
+  background-color: lab(50 125 125);
+}
+[data-color="red-zero"] {
+  background-color: lab(50 125 0);
+}
+[data-color="red-blue"] {
+  background-color: lab(50 125 -125);
+}
+
+/* a-axis center, variable b-axis */
+[data-color="zero-yellow"] {
+  background-color: lab(50 0 125);
+}
+[data-color="zero-zero"] {
+  background-color: lab(50 0 0);
+}
+[data-color="zero-blue"] {
+  background-color: lab(50 0 -125);
+}
+
+/* a-axis min, variable b-axis */
+[data-color="green-yellow"] {
+  background-color: lab(50 -125 125);
+}
+[data-color="green-zero"] {
+  background-color: lab(50 -125 0);
+}
+[data-color="green-blue"] {
+  background-color: lab(50 -125 -125);
+}
+
+/* a-axis gradients */
+[data-color="red-to-green-yellow"] {
+  background-image: linear-gradient(to right, lab(50 125 125), lab(50 -125 125));
+}
+[data-color="red-to-green-zero"] {
+  background-image: linear-gradient(to right, lab(50 125 0), lab(50 -125 0));
+}
+[data-color="red-to-green-blue"] {
+  background-image: linear-gradient(to right, lab(50 125 -125), lab(50 -125 -125));
+}
+
+/* b-axis gradients */
+[data-color="yellow-to-blue-red"] {
+  background-image: linear-gradient(to right, lab(50 125 125), lab(50 125 -125));
+}
+[data-color="yellow-to-blue-zero"] {
+  background-image: linear-gradient(to right, lab(50 0 125), lab(50 0 -125));
+}
+[data-color="yellow-to-blue-green"] {
+  background-image: linear-gradient(to right, lab(50 -125 125),lab(50 -125 -125));
+}
+
+[data-color="red"] {
+  background-color: lab(80 125 125);
+}
+[data-color="red-alpha"] {
+  background-color: lab(80 125 125 / 0.4);
+}
+
+:root {
+  --base-color: orange;
+  /* equivalent of lab(75 24 79) */
+}
+
+#one {
+  background-color: lab(from var(--base-color) calc(l + 15) a b);
+}
+
+#two {
+  background-color: var(--base-color);
+}
+
+#three {
+  background-color: lab(from var(--base-color) calc(l - 15) a b);
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN lab Tests</h1>
+
+<div data-color="red-dark"></div>
+<div data-color="red"></div>
+<div data-color="red-light"></div>
+
+<div data-color="green-dark"></div>
+<div data-color="green"></div>
+<div data-color="green-light"></div>
+
+<div data-color="blue-dark"></div>
+<div data-color="blue"></div>
+<div data-color="blue-light"></div>
+
+<div data-color="red-yellow"></div>
+<div data-color="red-zero"></div>
+<div data-color="red-blue"></div>
+
+<div data-color="zero-yellow"></div>
+<div data-color="zero-zero"></div>
+<div data-color="zero-blue"></div>
+
+<div data-color="green-yellow"></div>
+<div data-color="green-zero"></div>
+<div data-color="green-blue"></div>
+
+<div id="background-div">
+  <div data-color="red"></div>
+  <div data-color="red-alpha"></div>
+</div>
+
+</body>
+</html>

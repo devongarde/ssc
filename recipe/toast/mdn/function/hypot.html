@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN hypot tests</title>
+<style>
+.sid
+{
+/* A <number> value */
+width: hypot(2em); /* 2em */
+width: hypot(3em, 4em); /* 5em */
+width: hypot(30px, 40px); /* 50px */
+width: hypot(48px, 64px); /* 80px */
+width: hypot(3px, 4px, 5px); /* 7.0710678118654755px */
+}
+
+:root {
+  --size-0: 100px;
+  --size-1: hypot(var(--size-0)); /*  100px */
+  --size-2: hypot(var(--size-0), var(--size-0)); /*  141.42px */
+  --size-3: hypot(
+    calc(var(--size-0) * 1.5),
+    calc(var(--size-0) * 2)
+  ); /*  250px */
+}
+
+.one {
+  width: var(--size-1);
+  height: var(--size-1);
+}
+.two {
+  width: var(--size-2);
+  height: var(--size-2);
+}
+.three {
+  width: var(--size-3);
+  height: var(--size-3);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN hypot Tests</h1>
+
+<div class="boxes">
+  <div class="box">100px</div>
+  <div class="box one">100px</div>
+  <div class="box two">141.42px</div>
+  <div class="box three">250px</div>
+</div>
+
+</body>
+</html>

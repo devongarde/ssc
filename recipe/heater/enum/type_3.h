@@ -224,6 +224,12 @@ template < > struct type_master < t_css_display_outside > : three_value < t_css_
 template < > struct type_master < t_css_dynamic_range_limit_e > : three_value < t_css_dynamic_range_limit_e, e_css_dynamic_range_limit_e, sz_constrained, sz_no_limit, sz_standard >
 { using three_value < t_css_dynamic_range_limit_e, e_css_dynamic_range_limit_e, sz_constrained, sz_no_limit, sz_standard > :: three_value; };
 
+template < > struct type_master < t_css_ellipse_pos_2c_block > : three_value < t_css_ellipse_pos_2c_block, e_css_ellipse_pos_2c_block, sz_block_end, sz_block_start, sz_centre >
+{ using three_value < t_css_ellipse_pos_2c_block, e_css_ellipse_pos_2c_block,  sz_block_end, sz_block_start, sz_centre > :: three_value; };
+
+template < > struct type_master < t_css_ellipse_pos_2c_inline > : three_value < t_css_ellipse_pos_2c_inline, e_css_ellipse_pos_2c_inline, sz_centre, sz_inline_end, sz_inline_start >
+{ using three_value < t_css_ellipse_pos_2c_inline, e_css_ellipse_pos_2c_inline, sz_centre, sz_inline_end, sz_inline_start > :: three_value; };
+
 template < > struct type_master < t_css_fca > : three_value < t_css_fca, e_css_fca, sz_auto, sz_none, sz_preserve_parent_colour >
 { using three_value < t_css_fca, e_css_fca, sz_auto, sz_none, sz_preserve_parent_colour > :: three_value; };
 
@@ -401,6 +407,9 @@ template < > struct type_master < t_mf_class > : three_value < t_mf_class, e_mf_
 
 template < > struct type_master < t_mf_status > : three_value < t_mf_status, e_mf_status, sz_tentative, sz_confirmed, sz_cancelled >
 { using three_value < t_mf_status, e_mf_status, sz_tentative, sz_confirmed, sz_cancelled > :: three_value; };
+
+template < > struct type_master < t_minmax_content > : three_value < t_minmax_content, e_minmax_content, sz_auto, sz_max_content, sz_min_content >
+{ using three_value < t_minmax_content, e_minmax_content, sz_auto, sz_max_content, sz_min_content > :: three_value; };
 
 template < > struct type_master < t_mrss_expression > : three_value < t_mrss_expression, e_mrss_expression, sz_full, sz_nonstop, sz_sample >
 { using three_value < t_mrss_expression, e_mrss_expression, sz_full, sz_nonstop, sz_sample > :: three_value; };

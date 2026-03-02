@@ -95,7 +95,7 @@ IMPLEMENT_CLASS (ontology_t, d1_t)
     disco_schema, \
     doap_schema, \
     dpv_0_1, dpv_0_2, dpv_0_3, dpv_0_4_0, dpv_0_4_1, dpv_0_4_2, dpv_0_5, dpv_0_6, dpv_0_7, dpv_0_8_0, \
-        dpv_0_8_1, dpv_0_8_2, dpv_0_9, dpv_1_0, dpv_2_0, dpv_2_1, dpv_2_2, dpv_2_3, \
+        dpv_0_8_1, dpv_0_8_2, dpv_0_9, dpv_1_0, dpv_2_0, dpv_2_1, dpv_2_2, dpv_2_3, dpv_2_4, \
     DPV_X_SH_2XX (ai), \
     DPV_X_SH_2XX (eu_aiact), \
     DPV_X_SH_2XX (eu_dga), \

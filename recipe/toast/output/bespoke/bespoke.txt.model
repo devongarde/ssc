@@ -1,10 +1,10 @@
-Static Site Checker version 0.2.25
+Static Site Checker version 0.2.26
 (c) 2020-2026 Dylan Harris
 
 
 *** /index.html
 
-2 <!DOCTYPE html>  ** <html> **  <head> <title>bespoke ou...
+2 <!DOCTYPE html>  ** <html> **  <head> <title>bespoke output test page</title> </head>
  -->  use LANG on <HTML> to specify a default language [naughty_lang]
 
 ---

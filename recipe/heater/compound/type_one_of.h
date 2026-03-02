@@ -51,7 +51,6 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
     type_master < A > val_;
     bool inner_set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   nitpick nuts, nets;
-//        const bool doubledash = (s.size () >= 2) && (s.substr (0, 2) == "--");
         if (type_one_of < T, EMPTY, B... > :: inner_set_value (nuts, v, s)) 
         {   nits.merge (nuts); return true; }
         val_.set_value (nets, v, s);

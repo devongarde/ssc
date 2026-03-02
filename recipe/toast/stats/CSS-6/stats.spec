@@ -16,6 +16,12 @@ Class/Element:
   *.frontmatter styled once, used 0 times
   ol.toc styled once, used 0 times
 
+Content-Name:
+    chapter
+    heading
+    page
+  Used thrice
+
 Element:
     (undefined): 4 times
     a: 5 times
@@ -64,7 +70,6 @@ PASS ../toast/stats/CSS-6/custom-3.css
 3 css_syntax unrecognised_value
 8 css_custom
 11 css_custom
-29 sunk immeasurable unrecognised_value immeasurable unrecognised_value
 
 STAT
 Class:
@@ -272,8 +277,8 @@ Statement:
     character-variant: 9 times
     font-feature-values: 15 times
     ornaments: once
-    swash: 12 times
     styleset: 6 times
+    swash: 12 times
     supports: once
   7 statements used 46 times
 ===
@@ -449,6 +454,12 @@ Class/Element:
   span.alt-N styled once, used 0 times
   span.alt-U styled once, used 0 times
 
+Content-Name:
+    chapter
+    heading
+    page
+  Used thrice
+
 Counter-Style:
     box-corner
     decimal-paren
@@ -465,7 +476,7 @@ Custom-Media:
     --narrow-window: once, (max-width: 30em)
 
 Custom-Property:
-    --gap: 2
+    --gap: 3
     --looks-valid: 2
     --not-a-color: 2
     --prop1: 2
@@ -474,10 +485,10 @@ Custom-Property:
     --prop4: 1
     --side: 1
     --text-color: 1
-  9 Custom-Property used 15 times
+  9 Custom-Property used 16 times
 
 Element:
-    (undefined): 14 times
+    (undefined): 12 times
     !doctype: once
     a: 6 times
     annotation: once
@@ -498,7 +509,7 @@ Element:
     sub: twice
     sup: once
     title: once
-  26 elements used 133 times
+  26 elements used 131 times
 
 Nits Reported:
     Warnings: once
@@ -618,10 +629,10 @@ Property:
     suffix: 6 times
     symbols: 6 times
     system: 8 times
-    transform: 4 times
+    transform: twice
     vertical-align: twice
     view-transition-name: once
-  39 properties used 175 times
+  39 properties used 173 times
 
 Reference:
     HTML 5.0: once
@@ -649,9 +660,9 @@ Statement:
     layer: twice
     media: 6 times
     ornaments: twice
-    swash: 12 times
     styleset: 6 times
     stylistic: once
+    swash: 12 times
     page: 4 times
     supports: once
     top-center: once
@@ -687,7 +698,4 @@ Swash:
 
 Version:
     HTML-5/20230701/SVG-2.1/MathML-core/CSS-6/WhatWG: 8 times
-
-View:
-    --root
 ===

@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/common.h"
 
 #define QUOTESEP "\"" PLAINSEP
+#define JUSTQUOTES "\"'"
 
 CONSTEXPR ::std::size_t def_quote_cut = 60;
 
@@ -30,6 +31,7 @@ CONSTEXPR ::std::size_t def_quote_cut = 60;
 ::std::string enquote (const ::std::string& str, const ::std::string& qs = ::std::string (QUOTESEP));
 ::std::string enquote (const vstr_t vs, const ::std::string& quotesep = ::std::string (QUOTESEP));
 ::std::ostringstream& enquote (::std::ostringstream& ss, const vstr_t vs, const ::std::string& quotesep = ::std::string (QUOTESEP));
+::std::string simple_unquote (::std::string::const_iterator ci, const ::std::string::const_iterator cie, const ::std::string& quotesep = ::std::string (JUSTQUOTES));
 ::std::string unquote (::std::string::const_iterator ci, const ::std::string::const_iterator cie, const ::std::string& quotesep = ::std::string (QUOTESEP));
 vstr_t unquote (const ::std::string& str, const ::std::size_t len = 0, const ::std::string& quotesep = ::std::string (QUOTESEP));
 ::std::istringstream& unquote (::std::istringstream& ss, vstr_t& res, const ::std::size_t len = 0, const ::std::string& quotesep = ::std::string (QUOTESEP));
@@ -53,6 +55,8 @@ inline ::std::ostringstream& quote (::std::ostringstream& ss, const vstr_t vs, c
 
 inline ::std::string uq (const ::std::string& str, const ::std::string& qs = ::std::string (QUOTESEP))
 { return unquote (str.cbegin (), str.cend (), qs); }
+inline ::std::string uq0 (const ::std::string& str, const ::std::string& qs = ::std::string (JUSTQUOTES))
+{ return simple_unquote (str.cbegin (), str.cend (), qs); }
 
 #define UQ_DQ       0x00000001
 #define UQ_SQ       0x00000002

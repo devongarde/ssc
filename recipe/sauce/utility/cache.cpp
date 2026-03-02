@@ -136,16 +136,16 @@ void report_cache (nitpick& nits, const ::std::string& intro)
     if (intro.empty ()) nits.pick (nit_cache, es_info, ec_cache, "Cache report: ");
     else nits.pick (nit_cache, es_info, ec_cache, "Cache report: seeking ", intro);
     if (mc.get () != nullptr)
-    {   ::std::string::size_type n = 0;
+    {   long n = 0;
         lox l (lox_cache);
         for (auto c : *mc)
             if (! c.first.empty ())
                 if (c.first.size () >= len)
                     if ((len == 0) || cache_of_interest (c.first))
                     {   if (started) res += ", "; else started = true;
-                        const ::std::string::size_type l2 = c.first.length ();
-                        if (l2 >= DEFAULT_LINE_LENGTH) vs.push_back (c.first);
-                        else if (n + l2 >= DEFAULT_LINE_LENGTH)
+                        const long l2 = static_cast < long > (c.first.length ());
+                        if (l2 >= context.line_length ()) vs.push_back (c.first);
+                        else if (n + l2 >= context.line_length ())
                         {   vs.push_back (res);
                             n = l2;
                             res = c.first; }

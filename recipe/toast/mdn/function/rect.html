@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN rect tests</title>
+<style>
+.sid
+{
+offset-path: rect(0 1% auto 3% round 0 1px);
+clip-path: rect(50px 70px 80% 20%);
+}
+
+.container {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  margin: 15px;
+  text-align: center;
+}
+
+.path {
+  width: 40px;
+  height: 40px;
+  background-color: red;
+  position: absolute;
+  animation: move 10s linear infinite;
+}
+
+.rect-path-1 {
+  offset-path: rect(50px 150px 200px 50px round 20%);
+}
+
+.rect-path-2 {
+  offset-path: rect(50px auto 200px 50px round 20%);
+}
+
+.rect-path-3 {
+  offset-path: rect(50px auto 200px auto);
+}
+
+@keyframes move {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN rect Tests</h1>
+
+<div class="container">
+  Rectangular path 1
+  <div class="path rect-path-1">→</div>
+</div>
+<div class="container">
+  Rectangular path 2
+  <div class="path rect-path-2">→</div>
+</div>
+<div class="container">
+  Rectangular path 3
+  <div class="path rect-path-3">→</div>
+</div>
+
+</body>
+</html>

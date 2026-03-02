@@ -909,6 +909,8 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_font_palette_values :
                 parse_font_palette_values (args, nits, b, to);
                 break;
+            case css_function :
+                break;
             case css_import :
                 parse_import (args, nits, b, to);
                 break;
@@ -930,14 +932,20 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_position_try :
                 parse_position_try (args, nits, b, to);
                 break;
+            case css_property :
+                break;
             case css_scope :
                 parse_scope (args, nits, b, to);
+                break;
+            case css_starting_style :
                 break;
             case css_supports :
                 parse_supports (args, nits, b, to);
                 break;
             case css_viewport :
                 parse_viewport (args, nits, b, to);
+                break;
+            case css_view_transition :
                 break;
             case css_document :
             case css_moz_document :

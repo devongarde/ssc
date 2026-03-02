@@ -674,284 +674,107 @@
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_0_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_2_9.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_a_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_a_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_a_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_a_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_a_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_a_4.cpp" />
     <ClCompile Include="..\sauce\css\value_types_a_5.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_b_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_b_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_b_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_a_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_a_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_a_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_b_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_b_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_b_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_b_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_c_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_c_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_c_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_c_4.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_d.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_e.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_fn_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_f_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_f_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_f_3.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_css_f_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_fn_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_g_h.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_i_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_i_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_j_k.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_l_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_l_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_l_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_m_n.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_o.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_p_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_p_q.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_r.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_s_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_s_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_s_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_t_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_t_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_t_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_t_4.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_u.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_v.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_css_w_z.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_b_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_b_3.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_c_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_f_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_i.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_j_k.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_l.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_o.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_p_q.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_r.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_s_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_s_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_t_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_t_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_w_z.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_c_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_c_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_c_3.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_c_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_b_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_c_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_f_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_g_h.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_c_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_c_4.cpp" />
     <ClCompile Include="..\sauce\css\value_types_c_5.cpp" />
     <ClCompile Include="..\sauce\css\value_types_d_1.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_d_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_e.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_f_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_f_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_d_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_e.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_f_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_f_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_f_3.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_g.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_g.cpp" />
     <ClCompile Include="..\sauce\css\value_types_h.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_i_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_i_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_i_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_i_3.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_j_k.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_j_k.cpp" />
     <ClCompile Include="..\sauce\css\value_types_l_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_l_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_l_3.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_m_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_m_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_m_3.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_m_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_m_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_m_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_m_4.cpp" />
     <ClCompile Include="..\sauce\css\value_types_m_5.cpp" />
     <ClCompile Include="..\sauce\css\value_types_m_6.cpp" />
     <ClCompile Include="..\sauce\css\value_types_n.cpp" />
     <ClCompile Include="..\sauce\css\value_types_o.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_p_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_p_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_p_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_p_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_p_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_p_4.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_r_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_r_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_r_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_r_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_r_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_r_4.cpp" />
     <ClCompile Include="..\sauce\css\value_types_r_5.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_s_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_r_6.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_s_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_s_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_s_3.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_s_4.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_s_5.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_s_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_s_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_s_5.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_s_6.cpp" />
     <ClCompile Include="..\sauce\css\value_types_t_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_t_2.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_u_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_u_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_u_2.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_v_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_v_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_v_2.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_w.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_x_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_w.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_x_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_x_2.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_y_z.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_y_z.cpp" />
     <ClCompile Include="..\sauce\css\weight.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
@@ -13374,10 +13197,117 @@
     <None Include="..\toast\mdn\font\index.html" />
     <None Include="..\toast\mdn\font\mdn.conf" />
     <None Include="..\toast\mdn\font\mdn.spec" />
+    <None Include="..\toast\mdn\function\abs.html" />
+    <None Include="..\toast\mdn\function\acos.html" />
+    <None Include="..\toast\mdn\function\anchor-size.html" />
+    <None Include="..\toast\mdn\function\anchor.html" />
+    <None Include="..\toast\mdn\function\asin.html" />
+    <None Include="..\toast\mdn\function\atan.html" />
+    <None Include="..\toast\mdn\function\atan2.html" />
+    <None Include="..\toast\mdn\function\attr.html" />
+    <None Include="..\toast\mdn\function\brightness.html" />
+    <None Include="..\toast\mdn\function\blur.html" />
+    <None Include="..\toast\mdn\function\calc-size.html" />
+    <None Include="..\toast\mdn\function\calc.html" />
+    <None Include="..\toast\mdn\function\circle.html" />
+    <None Include="..\toast\mdn\function\clamp.html" />
+    <None Include="..\toast\mdn\function\colour-mix.html" />
+    <None Include="..\toast\mdn\function\colour.html" />
+    <None Include="..\toast\mdn\function\conic-gradient.html" />
+    <None Include="..\toast\mdn\function\contrast-colour.html" />
+    <None Include="..\toast\mdn\function\contrast.html" />
+    <None Include="..\toast\mdn\function\cos.html" />
+    <None Include="..\toast\mdn\function\counter.html" />
+    <None Include="..\toast\mdn\function\counters.html" />
+    <None Include="..\toast\mdn\function\cross-fade.html" />
+    <None Include="..\toast\mdn\function\cubic-bezier.html" />
+    <None Include="..\toast\mdn\function\device-cmyk.html" />
+    <None Include="..\toast\mdn\function\drop-shadow.html" />
+    <None Include="..\toast\mdn\function\dynamic-range-limit-mix.html" />
+    <None Include="..\toast\mdn\function\element.html" />
+    <None Include="..\toast\mdn\function\ellipse.html" />
+    <None Include="..\toast\mdn\function\env.html" />
+    <None Include="..\toast\mdn\function\exp.html" />
+    <None Include="..\toast\mdn\function\fit-content.html" />
+    <None Include="..\toast\mdn\function\greyscale.html" />
+    <None Include="..\toast\mdn\function\hsl.html" />
+    <None Include="..\toast\mdn\function\hue-rotate.html" />
+    <None Include="..\toast\mdn\function\hwb.html" />
+    <None Include="..\toast\mdn\function\hypot.html" />
+    <None Include="..\toast\mdn\function\if.html" />
+    <None Include="..\toast\mdn\function\image-set.html" />
+    <None Include="..\toast\mdn\function\image.html" />
     <None Include="..\toast\mdn\function\index.html" />
+    <None Include="..\toast\mdn\function\inset.html" />
+    <None Include="..\toast\mdn\function\invert.html" />
+    <None Include="..\toast\mdn\function\lab.html" />
+    <None Include="..\toast\mdn\function\lch.html" />
+    <None Include="..\toast\mdn\function\light-dark.html" />
     <None Include="..\toast\mdn\function\linear-gradient.html" />
+    <None Include="..\toast\mdn\function\linear.html" />
+    <None Include="..\toast\mdn\function\log.html" />
+    <None Include="..\toast\mdn\function\matrix.html" />
+    <None Include="..\toast\mdn\function\matrix3d.html" />
+    <None Include="..\toast\mdn\function\max.html" />
     <None Include="..\toast\mdn\function\mdn.conf" />
     <None Include="..\toast\mdn\function\mdn.spec" />
+    <None Include="..\toast\mdn\function\min.html" />
+    <None Include="..\toast\mdn\function\minmax.html" />
+    <None Include="..\toast\mdn\function\mod.html" />
+    <None Include="..\toast\mdn\function\moz-image-rect.html" />
+    <None Include="..\toast\mdn\function\oklab.html" />
+    <None Include="..\toast\mdn\function\oklch.html" />
+    <None Include="..\toast\mdn\function\opacity.html" />
+    <None Include="..\toast\mdn\function\paint.html" />
+    <None Include="..\toast\mdn\function\path.html" />
+    <None Include="..\toast\mdn\function\perspective.html" />
+    <None Include="..\toast\mdn\function\polygon.html" />
+    <None Include="..\toast\mdn\function\pow.html" />
+    <None Include="..\toast\mdn\function\progress.html" />
+    <None Include="..\toast\mdn\function\radial-gradient.html" />
+    <None Include="..\toast\mdn\function\ray.html" />
+    <None Include="..\toast\mdn\function\rect.html" />
+    <None Include="..\toast\mdn\function\rem.html" />
+    <None Include="..\toast\mdn\function\repeat.html" />
+    <None Include="..\toast\mdn\function\repeating-conic-gradient.html" />
+    <None Include="..\toast\mdn\function\repeating-linear-gradient.html" />
+    <None Include="..\toast\mdn\function\repeating-radial-gradient.html" />
+    <None Include="..\toast\mdn\function\rgb.html" />
+    <None Include="..\toast\mdn\function\rotate.html" />
+    <None Include="..\toast\mdn\function\rotate3d.html" />
+    <None Include="..\toast\mdn\function\rotatex.html" />
+    <None Include="..\toast\mdn\function\rotatey.html" />
+    <None Include="..\toast\mdn\function\rotatez.html" />
+    <None Include="..\toast\mdn\function\round.html" />
+    <None Include="..\toast\mdn\function\saturate.html" />
+    <None Include="..\toast\mdn\function\scale.html" />
+    <None Include="..\toast\mdn\function\scale3d.html" />
+    <None Include="..\toast\mdn\function\scalex.html" />
+    <None Include="..\toast\mdn\function\scaley.html" />
+    <None Include="..\toast\mdn\function\scalez.html" />
+    <None Include="..\toast\mdn\function\sepia.html" />
+    <None Include="..\toast\mdn\function\shape.html" />
+    <None Include="..\toast\mdn\function\sibling-count.html" />
+    <None Include="..\toast\mdn\function\sibling-index.html" />
+    <None Include="..\toast\mdn\function\sign.html" />
+    <None Include="..\toast\mdn\function\sin.html" />
+    <None Include="..\toast\mdn\function\skew.html" />
+    <None Include="..\toast\mdn\function\skewx.html" />
+    <None Include="..\toast\mdn\function\skewy.html" />
+    <None Include="..\toast\mdn\function\sqrt.html" />
+    <None Include="..\toast\mdn\function\steps.html" />
+    <None Include="..\toast\mdn\function\superellipse.html" />
+    <None Include="..\toast\mdn\function\symbols.html" />
+    <None Include="..\toast\mdn\function\tan.html" />
+    <None Include="..\toast\mdn\function\translate.html" />
+    <None Include="..\toast\mdn\function\translate3d.html" />
+    <None Include="..\toast\mdn\function\translatex.html" />
+    <None Include="..\toast\mdn\function\translatey.html" />
+    <None Include="..\toast\mdn\function\translatez.html" />
+    <None Include="..\toast\mdn\function\type.html" />
+    <None Include="..\toast\mdn\function\url.html" />
+    <None Include="..\toast\mdn\function\var.html" />
+    <None Include="..\toast\mdn\function\xywh.html" />
     <None Include="..\toast\mdn\meta\index.html" />
     <None Include="..\toast\mdn\meta\mdn.conf" />
     <None Include="..\toast\mdn\meta\mdn.spec" />
@@ -13455,6 +13385,7 @@
     <None Include="..\toast\mdn\property\dominant-baseline.html" />
     <None Include="..\toast\mdn\property\dominant-range-limit.html" />
     <None Include="..\toast\mdn\property\empty-cells.html" />
+    <None Include="..\toast\mdn\property\field-sizing.html" />
     <None Include="..\toast\mdn\property\index.html" />
     <None Include="..\toast\mdn\property\mdn.conf" />
     <None Include="..\toast\mdn\property\mdn.spec" />
@@ -13472,6 +13403,15 @@
     <None Include="..\toast\mdn\rel\rel-preload-3.html" />
     <None Include="..\toast\mdn\rel\rel-preload-4.html" />
     <None Include="..\toast\mdn\rel\rel-preload-5.html" />
+    <None Include="..\toast\mdn\transition\index.html" />
+    <None Include="..\toast\mdn\transition\mdn.conf" />
+    <None Include="..\toast\mdn\transition\mdn.spec" />
+    <None Include="..\toast\mdn\transition\transition-behaviour.html" />
+    <None Include="..\toast\mdn\transition\transition-delay.html" />
+    <None Include="..\toast\mdn\transition\transition-duration.html" />
+    <None Include="..\toast\mdn\transition\transition-property.html" />
+    <None Include="..\toast\mdn\transition\transition-timing-function.html" />
+    <None Include="..\toast\mdn\transition\transition.html" />
     <None Include="..\toast\mdn\type\index.html" />
     <None Include="..\toast\mdn\type\mdn.conf" />
     <None Include="..\toast\mdn\type\mdn.spec" />

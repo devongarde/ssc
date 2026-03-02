@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN blur tests</title>
+<style>
+.sid
+{
+    filter: blur();         /* No effect */
+    filter: blur(0);        /* No effect */
+
+    filter: blur(8px);      /* Blur with 8px radius */
+    filter: blur(1.17rem);  /* Blur with 1.17rem radius */
+}
+
+svg
+{
+    filter: blur(1.1px);
+    filter: url("#blur11"); /* with embedded SVG */
+    filter: url("folder/fileName.svg#blur11"); /* external svg filter definition */
+}
+
+.filter {
+  filter: blur(3.5px);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN blur Tests</h1>
+
+<svg role="none">
+  <filter id="blur11">
+    <feGaussianBlur stdDeviation="1.1" edgeMode="duplicate" />
+  </filter>
+</svg>
+
+<svg role="img" aria-label="Flag">
+  <filter id="blur">
+    <feGaussianBlur stdDeviation="3.5" edgeMode="duplicate" />
+  </filter>
+  <image
+    href="https://mdn.example.com/shared-assets/images/examples/progress-pride-flag.jpg"
+    xlink:href="https://mdn.example.com/shared-assets/images/examples/progress-pride-flag.jpg"
+    filter="url('#blur')" />
+</svg>
+
+</body>
+</html>

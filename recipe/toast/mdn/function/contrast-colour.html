@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+.sid
+{
+color: contrast-color(red);
+color: contrast-color(var(--backgroundColor));
+}
+
+:root {
+  --button-color: lightblue;
+}
+
+button {
+  background-color: var(--button-color);
+
+  /* Set contrasting text color automatically */
+  color: contrast-color(var(--button-color));
+}
+
+:root {
+  --background-color: navy;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: wheat;
+  }
+}
+
+body,
+a {
+  background-color: var(--background-color);
+  color: contrast-color(var(--background-color));
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+</body>
+</html>

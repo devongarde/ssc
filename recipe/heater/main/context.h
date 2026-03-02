@@ -92,7 +92,7 @@ class context_t
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = def_mf;
     html_version    version_;
-    long            max_file_size_ = def_max_file_size;
+    long            max_file_size_ = def_max_file_size, line_length_ = DEFAULT_LINE_LENGTH;
     e_severity      report_error_ = es_error, verbose_ = default_output;
     ::std::string   accept_, account_, build_, cache_, domsg_, export_root_, general_info_, help_, index_, lang_, macro_end_ = def_macroend,
                     macro_start_ = def_macrostart, msg_, out_, out_copy_, output_format_, output_override_, output_time_, path_ = def_path,
@@ -104,8 +104,8 @@ class context_t
     sstr_t          atomic_ext_ = { ATOMIC_EXT }, css_ext_ = { CSS_EXT }, custom_elements_, extensions_ = { HTML_EXT }, jsonld_ext_ = { JSONLD_EXT },
                     no_ex_check_, rsl_ext_ = { RSL_EXT }, rss_ext_ = { RSS_EXT }, site_, vtt_ext_ = { VTT_EXT };
     vstr_t          abhorrent_, attrib_, catastrophe_, cmd_, comment_, debug_, dict_, dlang_, elem_, elem_attrib_, environment_, error_, exclude_,
-                    exports_, inform_, ignore_, jsonld_key_, jsonld_ont_, jsonld_val_, output_description_, naughty_, nice_, note_, pretend_,
-                    replace_, report_, shadow_ignore_, shadows_, silent_, spell_list_, spellings_, url_var_, virtuals_, vont_, warning_;
+                    exports_, inform_, ignore_, jsonld_key_, jsonld_ont_, jsonld_val_, output_description_, naughty_, nice_, note_,
+                    pretend_, replace_, report_, shadow_ignore_, shadows_, silent_, spell_list_, spellings_, url_var_, virtuals_, vont_, warning_;
     ustr_t          uvar_;
     vvstr_t         vvext_;
     static ustr_t   validation_;
@@ -237,6 +237,7 @@ public:
     context_t& jsonld_ontology (const vstr_t& vs) { populate_jsonld_ont (vs); mac (nm_context_jsonld_ontology, vs); return *this; }
     context_t& jsonld_version (const e_jsonld_version v) { version_.jsonld_version (v); mac < int > (nm_context_jsonld_version, v); return *this; }
     context_t& lang (const ::std::string& s) { lang_ = s; mac (nm_context_lang, s); return *this; }
+    context_t& line_length (const long l) { if ((l >= MIN_LINE_LENGTH) && (l < (INT8_MAX - 16))) line_length_ = l; mac (nm_contect_line_length, l); return *this; }
     context_t& links (const bool b);
     context_t& load_css (const bool b) { load_css_ = b; mac (nm_context_css, b); return *this; }
     context_t& load_vtt (const bool b) { load_vtt_ = b; mac (nm_context_vtt, b); return *this; }
@@ -471,6 +472,7 @@ public:
     e_jsonld_version jsonld_version () const noexcept { return version_.jsonld_version (); }
     const ::std::string& lang () const { return lang_; }
     bool local () const noexcept { return local_; }
+    long line_length () const noexcept { return line_length_; }
     bool links () const noexcept { return links_; }
     bool load_css () const noexcept { return load_css_; }
     bool load_vtt () const noexcept { return load_vtt_; }
@@ -491,15 +493,15 @@ public:
     bool microformats () const noexcept { return mf_verify_ || mf_export_; }
     bool mozilla () const noexcept { return mozilla_; }
     const ::std::string& msg () const { return msg_; }
-    bool netscape () const noexcept { return netscape_; }
     const vstr_t& naughty () const { return naughty_; }
+    bool netscape () const noexcept { return netscape_; }
     const vstr_t& nice () const { return nice_; }
     bool nids () const noexcept { return nids_; }
-    const vstr_t& note () const { return note_; }
     bool nits () const noexcept { return nits_; }
     bool nits_nits_nits () const noexcept { return nits_nits_nits_; }
     const sstr_t& no_ex_check () const { return no_ex_check_; }
     bool not_root () const noexcept { return not_root_; }
+    const vstr_t& note () const { return note_; }
     bool once () const noexcept { return once_; }
     bool ontology () const noexcept { return ontology_; }
     ontology_version ontology_ver (const e_ontology es = s_schema) const

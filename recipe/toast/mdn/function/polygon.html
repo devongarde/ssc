@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN polygon tests</title>
+<style>
+.sid
+{
+/* Specified as coordinate list */
+/* polygon(<length-percentage> <length-percentage>, ... )*/
+clip-path:polygon(50% 2.4%, 34.5% 33.8%, 0% 38.8%, 25% 63.1%, 19.1% 97.6%);
+clip-path:polygon(0px 0px, 200px 100px, 0px 200px);
+clip-path:polygon(0% 0px, 100% 100px, 0px 100%);
+clip-path:polygon(0 0, 50% 1rem, 100% 2vw, calc(100% - 20px) 100%, 0 100%);
+
+/* Specified as coordinate list and fill rule*/
+/* polygon(<fill-rule> <length-percentage> <length-percentage>, ... )*/
+clip-path:polygon(nonzero, 0% 0%, 50% 50%, 0% 100%);
+clip-path:polygon(evenodd, 0% 0%, 50% 50%, 0% 100%);
+
+clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.triangle {
+  width: 400px;
+  height: 400px;
+  background-color: magenta;
+  clip-path: polygon(100% 0%, 50% 50%, 100% 100%);
+}
+
+.box {
+  width: 250px;
+}
+
+.shape {
+  float: left;
+  shape-outside: polygon(
+    0 5%,
+    15% 12%,
+    30% 15%,
+    40% 26%,
+    45% 35%,
+    45% 45%,
+    40% 55%,
+    10% 90%,
+    10% 98%,
+    8% 100%,
+    0 100%
+  );
+  width: 300px;
+  height: 320px;
+}
+
+p {
+  font-size: 0.9rem;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN polygon Tests</h1>
+
+<div class="triangle"></div>
+
+<div class="box">
+  <div class="shape"></div>
+  <p>
+    One November night in the year 1782, so the story runs, two brothers sat
+    over their winter fire in the little French town of Annonay, watching the
+    grey smoke-wreaths from the hearth curl up the wide chimney. Their names
+    were Stephen and Joseph Montgolfier, they were papermakers by trade, and
+    were noted as possessing thoughtful minds and a deep interest in all
+    scientific knowledge and new discovery. Before that night—a memorable night,
+    as it was to prove—hundreds of millions of people had watched the rising
+    smoke-wreaths of their fires without drawing any special inspiration from
+    the fact.
+  </p>
+</div>
+
+</body>
+</html>

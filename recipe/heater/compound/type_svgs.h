@@ -99,7 +99,7 @@ template < > struct type_master < t_navigation > : type_id_or_either_string < t_
     static e_animation_type animation_type () noexcept { return at_other; } };
 
 template < > struct type_master < t_opacity > : type_or_string < t_opacity, t_zero_to_one, sz_inherit >
-{ using type_or_string < t_opacity, t_zero_to_one, sz_inherit > :: type_or_string; };
+{   using type_or_string < t_opacity, t_zero_to_one, sz_inherit > :: type_or_string; };
 
 template < > struct type_master < t_panose1 > : type_exactly_n < t_panose1, sz_space_char, t_integer, 10 >
 { using type_exactly_n < t_panose1, sz_space_char, t_integer, 10 > :: type_exactly_n; };
@@ -210,21 +210,21 @@ template < > struct type_master < t_svg_viewbox > : tidy_string < t_svg_viewbox 
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
         tidy_string < t_svg_viewbox > :: set_value (nits, v, ss);
-        if (v.is_svg_12 () && compare_complain (nits, v, QNONE, ss))
+        if (v.is_svg_12 () && compare_complain (nits, v, NONE, uq0 (ss)))
             type_master < t_svg_viewbox > :: status (s_good);
         else
         {   type_master < t_svg_viewboxrect > vb;
             vb.set_value (nits, v, ss);
             if (vb.good ())
                 if (vb.size () != 4)
-                    nits.pick (nit_viewbox, ed_svg_1_0, "7.7 The viewBox attribute", es_error, ec_type, quote (ss), "a VIEWBOX expects four numbers: x, y, width and height (or '", QNONE "')");
+                    nits.pick (nit_viewbox, ed_svg_1_0, "7.7 The viewBox attribute", es_error, ec_type, quote (ss), "a VIEWBOX expects four numbers: x, y, width and height (or '", NONE "')");
                 else
                 {   const double width = lexical < double > :: cast (vb.at (2));
                     const double height = lexical < double > :: cast (vb.at (3));
                     if ((width >= 0.0) && (height >= 0.0)) return;
                     if (width < 0.0) nits.pick (nit_viewbox, ed_svg_1_0, "7.7 The viewBox attribute", es_error, ec_type, quote (ss), "a VIEWBOX width cannot be negative");
                     if (height < 0.0) nits.pick (nit_viewbox, ed_svg_1_0, "7.7 The viewBox attribute", es_error, ec_type, quote (ss), "a VIEWBOX height cannot be negative"); }
-            else if (v.is_svg_12 ()) nits.pick (nit_viewbox, es_error, ec_type, quote (ss), ": '", QNONE "' or four numbers (x y width height) expected");
+            else if (v.is_svg_12 ()) nits.pick (nit_viewbox, es_error, ec_type, quote (ss), ": '", NONE "' or four numbers (x y width height) expected");
             else nits.pick (nit_viewbox, es_error, ec_type, quote (ss), ": four numbers (x y width height) expected");
             tidy_string < t_svg_viewbox > :: status (s_invalid); } } };
 

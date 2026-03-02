@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN paint tests</title>
+<style>
+body {
+  font: 1.2em / 1.2 sans-serif;
+}
+li {
+  background-image: paint(boxbg);
+  --box-color: hsl(55 90% 60%);
+}
+
+li:nth-of-type(3n) {
+  --box-color: hsl(155 90% 60%);
+  --width-subtractor: 20;
+}
+
+li:nth-of-type(3n + 1) {
+  --box-color: hsl(255 90% 60%);
+  --width-subtractor: 40;
+}
+
+body {
+  font: 1.2em / 1.2 sans-serif;
+}
+
+li {
+  --box-color: hsl(55 90% 60% / 100%);
+  background-image: paint(hollow-highlights, stroke, 2px);
+}
+
+li:nth-of-type(3n) {
+  --box-color: hsl(155 90% 60% / 100%);
+  background-image: paint(hollow-highlights, filled, 3px);
+}
+
+li:nth-of-type(3n + 1) {
+  --box-color: hsl(255 90% 60% / 100%);
+  background-image: paint(hollow-highlights, stroke, 1px);
+}
+</style>
+<script>
+CSS.paintWorklet.addModule(
+  "https://mdn.github.io/houdini-examples/cssPaint/intro/worklets/boxbg.js",
+);
+</script>
+</head>
+
+<body>
+
+<h1>MDN paint Tests</h1>
+
+<ul>
+  <li>item 1</li>
+  <li>item 2</li>
+  <li>item 3</li>
+  <li>item 4</li>
+  <li>item 5</li>
+  <li>item 6</li>
+  <li>item 7</li>
+  <li>item 8</li>
+  <li>item 9</li>
+  <li>item 10</li>
+  <li>item N</li>
+</ul>
+
+</body>
+</html>

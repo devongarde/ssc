@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN rgb tests</title>
+<style>
+.sid
+{
+/* Absolute values */
+background-color: rgb(255 255 255);
+/* Relative values */
+background-color: rgb(from green r g b / 0.5);
+background-color: rgb(from #123456 calc(r + 40) calc(g + 40) b);
+background-color: rgb(from hwb(120deg 10% 20%) r g calc(b + 200));
+
+/* Legacy 'rgba()' alias */
+background-color: rgba(0 255 255);
+
+/* Legacy format */
+background-color: rgb(0, 255, 255);
+background-color: rgb(0, 255, 255, 50%);
+
+background-color: rgb(from hsl(0 100% 50%) r g b);
+
+background-color: rgb(from hsl(0 100% 50%) 132 132 224);
+
+background-color: rgb(from hsl(0 100% 50%) r 80 80);
+
+background-color: rgb(from hsl(0 100% 50% / 0.8) r g b / alpha);
+/* Computed output color: color(srgb 1 0 0 / 0.8) */
+
+background-color: rgb(from hsl(0 100% 50% / 0.8) r g b / 0.5);
+/* Computed output color: color(srgb 1 0 0 / 0.5) */
+
+background-color: rgb(from hsl(0 100% 50%) calc(r/2) calc(g + 25) calc(b + 175) / calc(alpha - 0.1));
+}
+
+body {
+  background: repeating-linear-gradient(-45deg, #eeeeee 0 2px, white 2px 6px);
+  padding: 10px;
+}
+
+#integer {
+  background-color: rgb(189 85 218);
+}
+
+#percent {
+  background-color: rgb(74% 33% 85%);
+}
+
+#alpha {
+  background-color: rgb(189 85 218 / 0.25);
+}
+
+:root {
+  --base-color: orange;
+  /* equal to rgb(255 165 0) */
+}
+
+#one {
+  background-color: var(--base-color);
+}
+
+#two {
+  background-color: rgb(from var(--base-color) calc(r - 76.5) g calc(b + 76.5));
+  /* 76.5 is 30% of 255 */
+}
+
+#three {
+  background-color: rgb(from var(--base-color) calc(r - 153) g calc(b + 153));
+  /* 153 is 60% of 255 */
+}
+
+/* Use @supports to add in support for old syntax that requires r g b values to
+   be specified as percentages (with units) in calculations. This is required
+   for Safari 16.4+. */
+@supports (color: rgb(from red r g calc(b + 30%))) {
+  #two {
+    background-color: rgb(from var(--base-color) calc(r - 30%) g calc(b + 30%));
+  }
+
+  #three {
+    background-color: rgb(from var(--base-color) calc(r - 60%) g calc(b + 60%));
+  }
+}
+
+div {
+  width: 100px;
+  height: 50px;
+  margin: 1rem;
+}
+
+div.space-separated {
+  background-color: rgb(255 0 0 / 50%);
+}
+
+div.comma-separated {
+  background-color: rgb(255, 0, 0, 0.5);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN rgb Tests</h1>
+
+<div>
+  <div id="integer"></div>
+  <div id="percent"></div>
+  <div id="alpha"></div>
+</div>
+
+<div class="space-separated"></div>
+<div class="comma-separated"></div>
+
+</body>
+</html>

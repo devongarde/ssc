@@ -16121,6 +16121,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 3, 2 }, { 0, 0 }, sch_creativework, sch_course },
     { { 2, 0 }, { 0, 0 }, sch_creativework, sch_creativeworkseason },
     { { 2, 0 }, { 0, 0 }, sch_creativework, sch_creativeworkseries },
+    { { 29, 5 }, { 0, 0 }, sch_creativework, sch_credential },
     { { 1, 0 }, { 0, 0 }, sch_creativework, sch_datacatalogue },
     { { 1, 0 }, { 0, 0 }, sch_creativework, sch_dataset },
     { { 3, 5 }, { 0, 0 }, sch_creativework, sch_definedtermset },

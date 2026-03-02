@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+.sid
+{
+/* Single <length-percentage> values */
+transform: translate(200px);
+transform: translate(50%);
+
+/* Double <length-percentage> values */
+transform: translate(100px, 200px);
+transform: translate(100px, 50%);
+transform: translate(30%, 200px);
+transform: translate(30%, 50%);
+}
+
+div {
+  width: 60px;
+  height: 60px;
+  background-color: skyblue;
+}
+
+.moved {
+  /* Equal to: translateX(10px) or translate(10px, 0) */
+  transform: translate(10px);
+  background-color: pink;
+}
+
+div {
+  width: 60px;
+  height: 60px;
+  background-color: skyblue;
+}
+
+.moved {
+  transform: translate(10px, 10px);
+  background-color: pink;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+<div>Static</div>
+<div class="moved">Moved</div>
+<div>Static</div>
+
+</body>
+</html>

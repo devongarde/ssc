@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN skew tests</title>
+<style>
+body {
+  margin: 20px;
+}
+
+div {
+  width: 80px;
+  height: 80px;
+  background-color: skyblue;
+}
+
+.skewed {
+  transform: skew(10deg); /* Equal to skewX(10deg) */
+  background-color: pink;
+}
+
+body {
+  margin: 20px;
+}
+
+div {
+  width: 80px;
+  height: 80px;
+  background-color: skyblue;
+}
+
+.skewed {
+  transform: skew(10deg, 10deg);
+  background-color: pink;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN skew Tests</h1>
+
+<div>Normal</div>
+<div class="skewed">Skewed</div>
+
+</body>
+</html>

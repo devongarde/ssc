@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN minmax tests</title>
+<style>
+.sid
+{
+/* <inflexible-breadth>, <track-breadth> values */
+grid-template-columns:minmax(200px, 1fr);
+grid-template-columns:minmax(400px, 50%);
+grid-template-columns:minmax(30%, 300px);
+grid-template-columns:minmax(100px, max-content);
+grid-template-columns:minmax(min-content, 400px);
+grid-template-columns:minmax(max-content, auto);
+grid-template-columns:minmax(auto, 300px);
+grid-template-columns:minmax(min-content, auto);
+
+/* <fixed-breadth>, <track-breadth> values */
+grid-template-columns:minmax(200px, 1fr);
+grid-template-columns:minmax(30%, 300px);
+grid-template-columns:minmax(400px, 50%);
+grid-template-columns:minmax(50%, min-content);
+grid-template-columns:minmax(300px, max-content);
+grid-template-columns:minmax(200px, auto);
+
+/* <inflexible-breadth>, <fixed-breadth> values */
+grid-template-columns:minmax(400px, 50%);
+grid-template-columns:minmax(30%, 300px);
+grid-template-columns:minmax(min-content, 200px);
+grid-template-columns:minmax(max-content, 200px);
+grid-template-columns:minmax(auto, 300px);
+}
+
+#container {
+  display: grid;
+  grid-template-columns: minmax(min-content, 300px) minmax(200px, 1fr) 150px;
+  grid-gap: 5px;
+  box-sizing: border-box;
+  height: 200px;
+  width: 100%;
+  background-color: #8cffa0;
+  padding: 10px;
+}
+
+#container > div {
+  background-color: #8ca0ff;
+  padding: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN minmax Tests</h1>
+
+<div id="container">
+  <div>Item as wide as the content, but at most 300 pixels.</div>
+  <div>Item with flexible width but a minimum of 200 pixels.</div>
+  <div>Inflexible item of 150 pixels width.</div>
+</div>
+
+</body>
+</html>

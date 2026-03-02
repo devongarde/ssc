@@ -777,6 +777,7 @@ n_string_entry < e_ontology, 3 > ontology_name_entries [] =
     { { HTML_AUG24 }, { HTML_UNDEF }, s_dpv, 0, { "dpv", HTTPS W3ID_ORG "/dpv/1.0#", "data privacy vocabulary" } },
     { { HTML_AUG24 }, { HTML_UNDEF }, s_dpv, 0, { "dpv", HTTPS W3ID_ORG "/dpv/2.0#", "data privacy vocabulary" } },
     { { HTML_AUG24 }, { HTML_UNDEF }, s_dpv_ai, 0, { "ai", HTTPS W3ID_ORG "/dpv/ai#", "data privacy vocabulary (ai)" } },
+    { { HTML_MAR26 }, { HTML_UNDEF }, s_dpv_de_gdng, 0, { "de-gdng", HTTPS W3ID_ORG "/dpv/degdng#", "data privacy vocabular (degdng)" } },
     { { HTML_AUG24 }, { HTML_UNDEF }, s_dpv_eu_aiact, 0, { "eu-aiact", HTTPS W3ID_ORG "/dpv/aiact#", "data privacy vocabulary (aiact)" } },
     { { HTML_AUG24 }, { HTML_UNDEF }, s_dpv_eu_dga, 0, { "eu-dga", HTTPS W3ID_ORG "/dpv/dga#", "data privacy vocabulary (dga)" } },
     { { HTML_MAR25 }, { HTML_UNDEF }, s_dpv_eu_ehds, 0, { "eu-ehds", HTTPS W3ID_ORG "/dpv/legal/eu/ehds#", "data privacy vocabulary (ehds)" } },

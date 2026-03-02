@@ -233,6 +233,7 @@
 ../toast/mdn/position/mdn.spec
 ../toast/mdn/property/mdn.spec
 ../toast/mdn/rel/mdn.spec
+../toast/mdn/transition/mdn.spec
 ../toast/mdn/type/mdn.spec
 ../toast/mdn/webkit/mdn.spec
 ../toast/microdata/12/schema.spec

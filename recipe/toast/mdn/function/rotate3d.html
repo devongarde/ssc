@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN rotate3d tests</title>
+<style>
+body {
+  perspective: 800px;
+}
+
+div {
+  width: 80px;
+  height: 80px;
+  background-color: skyblue;
+}
+
+.rotated {
+  transform: rotate3d(0, 1, 0, 60deg);
+  background-color: pink;
+}
+
+body {
+  perspective: 800px;
+}
+
+div {
+  width: 80px;
+  height: 80px;
+  background-color: skyblue;
+}
+
+.rotated {
+  transform: rotate3d(1, 2, -1, 192deg);
+  background-color: pink;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN rotate3d Tests</h1>
+
+<div>Normal</div>
+<div class="rotated">Rotated</div>
+
+</body>
+</html>

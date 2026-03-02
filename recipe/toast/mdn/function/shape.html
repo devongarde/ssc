@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN shape tests</title>
+<style>
+.sid
+{
+/* <fill-rule> */
+clip-path: shape(nonzero from 0 0, line to 10px 10px);
+
+/* <move-command>, <line-command>, and close */
+offset-path: shape(from 10px 10px, move by 10px 5px, line by 20px 40%, close);
+
+/* <hvline-command> */
+offset-path: shape(from 10px 10px, hline by 50px, vline to 5rem);
+
+/* <curve-command> */
+offset-path: shape(
+  from 10px 10px,
+  curve to 80px 80px with 160px 1px / 20% 16px
+);
+
+/* <smooth-command> */
+offset-path: shape(from 10px 10px, smooth to 100px 50pt);
+
+/* <arc-command> */
+offset-path: shape(
+  from 5% 0.5rem,
+  arc to 80px 1pt of 10% ccw large rotate 25deg
+);
+
+/* Using a CSS math function */
+offset-path: shape(
+  from 5px -5%,
+  hline to 50px,
+  vline by calc(0% + 160px),
+  hline by 70.5px,
+  close,
+  vline by 60px
+);
+
+clip-path: shape(
+  evenodd from 10px 10px,
+  curve to 60px 20% with 40px 0,
+  smooth to 90px 0,
+  curve by -20px 60% with 10% 40px / 20% 20px,
+  smooth by -40% -10px with -10px 70px,
+  close
+);
+}
+
+.shape {
+  width: 50px;
+  height: 50px;
+  background: #2bc4a2;
+  position: absolute;
+  text-align: center;
+  line-height: 50px;
+  animation: move 6s infinite linear;
+}
+
+.shape1 {
+  offset-path: shape(
+    from 30% 60px,
+    curve to 180px 180px with 90px 190px,
+    close,
+    move by 0px 150px,
+    hline by 40%
+  );
+}
+
+.shape2 {
+  offset-path: shape(
+    from 50px 90px,
+    hline to 8em,
+    move to 50px 90px,
+    vline by 20%,
+    close
+  );
+}
+
+@keyframes move {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+    background-color: hotpink;
+  }
+}
+
+.shape {
+  width: 100%;
+  height: 100%;
+  background: #2bc4a2;
+  position: absolute;
+  text-align: center;
+  line-height: 50px;
+}
+
+/* Triangular clipping region */
+.shape1 {
+  clip-path: shape(from 0% 0%, line to 100% 0%, line to 50% 100%, close);
+}
+
+/* A Heart clipping region using curve and arc transitions
+   and a box using hline and vline transitions */
+.shape2 {
+  clip-path: shape(
+    from 20px 70px,
+    arc to 100px 70px of 1% cw,
+    arc to 180px 70px of 1% cw,
+    curve to 100px 190px with 180px 130px,
+    curve to 20px 70px with 20px 130px,
+    close,
+    move to 150px 150px,
+    hline by 40px,
+    vline by 40px,
+    hline by -40px,
+    close
+  );
+}
+
+#shape1 {
+  width: 200px;
+  height: 200px;
+  background: green;
+  clip-path: shape(
+    from center left,
+    curve by 200px 0 with 50% -50% from start / 50% 0 from origin,
+    curve by -200px 0 with 50% 100% from origin / -50% 50% from start,
+    close
+  );
+}
+
+#shape2 {
+  width: 200px;
+  height: 200px;
+  background: purple;
+  clip-path: shape(
+    from center left,
+    curve to 200px 100px with 50% -80% from start,
+    curve to center left with 0% 70% from start / 20% 0% from end,
+    close
+  );
+}
+
+#shape3 {
+  width: 200px;
+  height: 200px;
+  background: orangered;
+  clip-path: shape(
+    from center left,
+    curve by 200px 0px with 50% -80% from start,
+    smooth to center with 50% 100% from origin,
+    close
+  );
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN shape Tests</h1>
+
+</body>
+</html>

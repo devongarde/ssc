@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN light-dark tests</title>
+<style>
+:root {
+  color-scheme: light dark;
+}
+body {
+  color: light-dark(#333b3c, #efefec);
+  background-color: light-dark(#efedea, #223a2c);
+}
+
+.sid
+{
+/* Named color values */
+color: light-dark(black, white);
+
+/* RGB color values */
+color: light-dark(rgb(0 0 0), rgb(255 255 255));
+
+/* Custom properties */
+color: light-dark(var(--light), var(--dark));
+}
+
+:root {
+  /* this has to be set to switch between light or dark */
+  color-scheme: light dark;
+
+  --light-bg: ghostwhite;
+  --light-color: darkslategray;
+  --light-code: tomato;
+
+  --dark-bg: darkslategray;
+  --dark-color: ghostwhite;
+  --dark-code: gold;
+}
+* {
+  background-color: light-dark(var(--light-bg), var(--dark-bg));
+  color: light-dark(var(--light-color), var(--dark-color));
+}
+code {
+  color: light-dark(var(--light-code), var(--dark-code));
+}
+
+.light {
+  /* forces light color-scheme */
+  color-scheme: light;
+}
+.dark {
+  /* forces dark color-scheme */
+  color-scheme: dark;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN light-dark Tests</h1>
+
+<h1><code>light-dark()</code> CSS function</h1>
+<section>
+  <h2>Automatic</h2>
+  <p>This section will react to the users system or user agent setting.</p>
+</section>
+<section class="light">
+  <h2>Light</h2>
+  <p>
+    This section will be light due to the <code>color-scheme: light;</code>.
+  </p>
+</section>
+<section class="dark">
+  <h2>Dark</h2>
+  <p>This section will be dark due to the <code>color-scheme: dark;</code>.</p>
+</section>
+
+</body>
+</html>

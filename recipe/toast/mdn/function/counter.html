@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+.double-list {
+  counter-reset: count -1;
+}
+
+.double-list li {
+  counter-increment: count 2;
+}
+
+.double-list li::marker {
+  content: counter(count, decimal) ") ";
+}
+
+ol {
+  counter-reset: count;
+}
+li {
+  counter-increment: count;
+}
+li::after {
+  content:
+    "[" counter(count, lower-roman) "] == ["
+    counter(count, lower-alpha) "]";
+}
+
+ol {
+  counter-reset: listCounter;
+  padding-left: 5em;
+}
+li {
+  counter-increment: listCounter;
+}
+li::marker {
+  content:
+    "Item #" counter(listCounter) " is: ";
+}
+li::after {
+  content:
+    "[" counter(listCounter, decimal-leading-zero) "] == ["
+    counter(listCounter, upper-roman) "]";
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+<p>Best Dynamic Duos in Sports:</p>
+<ol class="double-list">
+  <li>Simone Biles + Jonathan Owens</li>
+  <li>Serena Williams + Venus Williams</li>
+  <li>Aaron Judge + Giancarlo Stanton</li>
+  <li>LeBron James + Dwyane Wade</li>
+  <li>Xavi Hernandez + Andres Iniesta</li>
+</ol>
+
+<ol>
+  <li></li>
+  <li></li>
+  <li></li>
+</ol>
+
+</body>
+</html>

@@ -40,11 +40,14 @@ bool set_measure_value (nitpick& nits, const html_version& v, const ::std::strin
     nits.pick (nit_immeasurable, es_error, ec_type, quote (ss), " should be a number optionally followed immediately by '%', '*', or a standard unit of measurement");
     return false; }
 
-bool set_css_measure_value (nitpick& nits, const html_version& v, const ::std::string& ss, const bool absolute)
+bool set_css_measure_value (nitpick& nits, const html_version& v, const ::std::string& ss, const bool absolute, const bool positive)
 {   ::std::string s (ss);
     if (! s.empty ())
     {   ::std::string units;
         if (s == "0") return true;
+        if (positive && (s.at (0) == '-'))
+        {   nits.pick (nit_negative, es_error, ec_type, quote (s), " cannot be negative");
+            return false; }
         const ::std::string::size_type pos = s.find_first_not_of (SIGNEDDECIMAL " ");
         if (pos != ::std::string::npos)
         {   units = s.substr (pos);
@@ -60,6 +63,30 @@ bool set_css_measure_value (nitpick& nits, const html_version& v, const ::std::s
         {   if (units.empty ()) return true;
             if ((! absolute) && (units == "%")) return true;
             if (v.svg () || v.is_5 () || v.has_css ()) if (test_value < t_unit > (nits, v, units)) return true; } }
+    if (absolute) nits.pick (nit_immeasurable, es_error, ec_type, quote (ss), ": a length is a number immediately followed a standard unit of measurement");
+    else nits.pick (nit_immeasurable, es_error, ec_type, quote (ss), ": a length is a percentage or a number immediately followed a standard unit of measurement");
+    return false; }
+
+bool set_css_dimension_value (nitpick& nits, const html_version& v, const ::std::string& ss, const bool absolute)
+{   ::std::string s (ss);
+    if (! s.empty ())
+    {   ::std::string units;
+        if (s == "0") return true;
+        const ::std::string::size_type pos = s.find_first_not_of (SIGNEDDECIMAL " ");
+        if (pos != ::std::string::npos)
+        {   units = s.substr (pos);
+            s = s.substr (0, pos);
+            if (s.empty ())
+            {   nits.pick (nit_missing_value, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_type, quote (units), ": got the units but not how many");
+                return false; } }
+        else if (context.html_ver ().is_css_compatible (v.ext2 (), v.ext3 (), v.ext4 (), v.ext5 ())) return true;
+        else
+        {   nits.pick (nit_missing_units, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_type, quote (ss), ": units must be specified");
+            return false; }
+        if (test_value < t_fixedpoint > (nits, v, s))
+        {   if (units.empty ()) return true;
+            if ((! absolute) && (units == "%")) return true;
+            if (v.svg () || v.is_5 () || v.has_css ()) if (test_value < t_unit_any > (nits, v, units)) return true; } }
     if (absolute) nits.pick (nit_immeasurable, es_error, ec_type, quote (ss), ": a length is a number immediately followed a standard unit of measurement");
     else nits.pick (nit_immeasurable, es_error, ec_type, quote (ss), ": a length is a percentage or a number immediately followed a standard unit of measurement");
     return false; }

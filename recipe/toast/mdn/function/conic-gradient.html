@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+.sid
+{
+/* A gradient with a single color of red */
+background-image: conic-gradient(red);
+
+/* A conic gradient rotated 45 degrees,
+   starting blue and finishing red */
+background-image: conic-gradient(from 45deg, blue, red);
+
+/* A bluish purple box: the gradient goes from blue to red,
+   but only the bottom right quadrant is visible, as the
+   center of the conic gradient is at the top left corner */
+background-image: conic-gradient(from 90deg at 0 0, blue, red);
+
+/* Interpolation in polar color space
+  with longer hue interpolation method */
+background-image: conic-gradient(in hsl longer hue, red, blue, green, red);
+
+/* Color wheel */
+background-image: conic-gradient(
+  hsl(360 100% 50%),
+  hsl(315 100% 50%),
+  hsl(270 100% 50%),
+  hsl(225 100% 50%),
+  hsl(180 100% 50%),
+  hsl(135 100% 50%),
+  hsl(90 100% 50%),
+  hsl(45 100% 50%),
+  hsl(0 100% 50%)
+);
+
+background-image: conic-gradient(red, orange, yellow, green, blue);
+background-image: conic-gradient(red 0deg, orange 90deg, yellow 180deg, green 270deg, blue 360deg);
+
+background-image: conic-gradient(red 40grad, 80grad, blue 360grad);
+
+background-image: conic-gradient(white 0.09turn, #bbbbbb 0.09turn, #bbbbbb 0.27turn, #666666 0.27turn, #666666 0.54turn, black 0.54turn);
+background-image: conic-gradient(white 0turn 0.09turn, #bbbbbb 0.09turn 0.27turn, #666666 0.27turn 0.54turn, black 0.54turn 1turn);
+
+background-image: conic-gradient(red .8rad, yellow .6rad, blue 1.3rad);
+
+background-image: conic-gradient(white 90deg, black 0.25turn 0.5turn, white calc(pi * 1rad) calc(pi * 1.5rad), black 300grad);
+background-size: 25% 25%;
+}
+
+div {
+  background-image: conic-gradient(from 40deg, white, black);
+}
+
+div {
+  background: conic-gradient(from 0deg at 0% 25%, blue, green, yellow 180deg);
+}
+
+div {
+  background: conic-gradient(red 36deg, orange 36deg 170deg, yellow 170deg);
+  border-radius: 50%;
+}
+
+div {
+  background: conic-gradient(
+      white 0.25turn,
+      black 0.25turn 0.5turn,
+      white 0.5turn 0.75turn,
+      black 0.75turn
+    )
+    top left / 25% 25% repeat;
+  border: 1px solid;
+}
+
+.shorter {
+  background-image: conic-gradient(in hsl shorter hue, red, blue);
+}
+
+.longer {
+  background-image: conic-gradient(in hsl longer hue, red, blue);
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+</body>
+</html>

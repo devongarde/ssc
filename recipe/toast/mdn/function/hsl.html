@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN hslx tests</title>
+<style>
+.sid
+{
+/* Absolute values */
+background: hsl(120deg 75% 25%);
+background: hsl(120 75 25); /* deg and % units are optional */
+background: hsl(120deg 75% 25% / 60%);
+background: hsl(none 75% 25%);
+
+/* Relative values */
+background: hsl(from green h s l / 0.5);
+background: hsl(from #123456 h s calc(l + 20));
+background: hsl(from rgb(200 0 0) calc(h + 30) s calc(l + 30));
+
+/* Legacy 'hsla()' alias */
+background: hsla(120deg 75% 25% / 60%);
+
+/* Legacy format */
+background: hsl(120, 75%, 25%);
+background: hsl(120deg, 75%, 25%, 0.8);
+
+background: hsl(from rgb(255 0 0) h s l);
+
+background: hsl(from rgb(255 0 0) 240 60% 70%);
+
+background: hsl(from rgb(255 0 0) h 30% 60%);
+
+background: hsl(from rgb(255 0 0 / 0.8) h s l / alpha);
+/* Computed output color: color(srgb 1 0 0 / 0.8) */
+
+background: hsl(from rgb(255 0 0 / 0.8) h s l / 0.5);
+/* Computed output color: color(srgb 1 0 0 / 0.5) */
+
+background: hsl(from rgb(255 0 0 / 0.8) calc(h + 60) calc(s - 20) calc(l - 10) / calc(alpha - 0.1));
+
+}
+
+div {
+  width: 100px;
+  height: 100px;
+  background: conic-gradient(
+    hsl(360 100% 50%),
+    hsl(315 100% 50%),
+    hsl(270 100% 50%),
+    hsl(225 100% 50%),
+    hsl(180 100% 50%),
+    hsl(135 100% 50%),
+    hsl(90 100% 50%),
+    hsl(45 100% 50%),
+    hsl(0 100% 50%)
+  );
+  clip-path: circle(closest-side);
+}
+
+:root {
+  --base-color: orange;
+}
+
+#one {
+  background-color: hsl(from var(--base-color) h s calc(l + 20));
+}
+
+#two {
+  background-color: var(--base-color);
+}
+
+#three {
+  background-color: hsl(from var(--base-color) h s calc(l - 20));
+}
+
+/* Use @supports to add in support for old syntax that requires % units to
+   be specified in lightness calculations */
+@supports (color: hsl(from red h s calc(l - 20%))) {
+  #one {
+    background-color: hsl(from var(--base-color) h s calc(l + 20%));
+  }
+
+  #three {
+    background-color: hsl(from var(--base-color) h s calc(l - 20%));
+  }
+}
+
+div {
+  width: 100px;
+  height: 50px;
+  margin: 1rem;
+}
+
+div.space-separated {
+  background-color: hsl(0 100% 50% / 50%);
+}
+
+div.comma-separated {
+  background-color: hsl(0, 100%, 50%, 0.5);
+}
+
+div {
+  width: 100px;
+  min-height: 50px;
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body {
+  display: flex;
+  gap: 20px;
+}
+
+div.modern {
+  background-color: hsl(90 80% 50%);
+}
+
+div.legacy {
+  background-color: hsl(90, 80%, 50%);
+}
+
+div.modernWithAlpha {
+  background-color: hsl(90 80% 50% / 50%);
+}
+
+div.modernHSLA {
+  background-color: hsla(90 80% 50% / 50%);
+}
+
+div.legacyHSLA {
+  background-color: hsla(90, 80%, 50%, 0.5);
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN hsl Tests</h1>
+
+<div class="space-separated"></div>
+<div class="comma-separated"></div>
+
+<div class="modern">HSL</div>
+<div class="legacy">HSL</div>
+<div class="modernWithAlpha">HSL</div>
+<div class="modernHSLA">HSLA</div>
+<div class="legacyHSLA">HSLA</div>
+
+</body>
+</html>

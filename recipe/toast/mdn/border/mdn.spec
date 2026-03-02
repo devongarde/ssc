@@ -49,7 +49,6 @@ PASS ../toast/mdn/border/border-bottom.html
 
 PASS ../toast/mdn/border/border-bottom-colour.html
 2 naughty_lang
-4 long_title
 
 PASS ../toast/mdn/border/border-bottom-left-radius.html
 2 naughty_lang
@@ -102,7 +101,6 @@ PASS ../toast/mdn/border/border-inline.html
 
 PASS ../toast/mdn/border/border-inline-colour.html
 2 naughty_lang
-4 long_title
 
 PASS ../toast/mdn/border/border-inline-end.html
 2 naughty_lang

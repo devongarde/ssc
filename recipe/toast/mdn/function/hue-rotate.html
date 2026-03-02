@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+.sid
+{
+filter: hue-rotate(-180deg);
+filter: hue-rotate(540deg);
+filter: hue-rotate(200grad);
+filter: hue-rotate(3.14159rad);
+filter: hue-rotate(0.5turn);
+}
+
+p {
+  filter: hue-rotate(-60deg);
+  text-shadow: 2px 2px blue;
+  background-color: magenta;
+  color: goldenrod;
+  border: 1em solid rebeccapurple;
+  box-shadow:
+    inset -5px -5px red,
+    5px 5px yellow;
+}
+
+.doris
+{
+filter: hue-rotate(90deg); /* 90deg rotation */
+filter: url("#hue-rotate"); /* with embedded SVG */
+filter: url("folder/fileName.svg#hue-rotate"); /* external svg filter definition */
+}
+</style>
+<script>
+const hueRotate = document.getElementById("hue-rotate");
+const hsl = document.getElementById("hsl");
+
+for (let i = 0; i < 360; i++) {
+  const div1 = document.createElement("div");
+  div1.style.backgroundColor = `hsl(${i}, 100%, 50%)`;
+  hsl.appendChild(div1);
+
+  const div2 = document.createElement("div");
+  div2.style.backgroundColor = "red";
+  div2.style.filter = `hue-rotate(${i}deg)`;
+  hueRotate.appendChild(div2);
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 220 220"
+  color-interpolation-filters="sRGB"
+  height="220"
+  width="220">
+  <filter id="hue-rotate">
+    <feColorMatrix type="hueRotate" values="90" />
+  </filter>
+</svg>
+
+<div>
+  <p>Using <code>hue-rotate()</code></p>
+  <div id="hue-rotate"></div>
+</div>
+<div>
+  <p>Using <code>hsl()</code></p>
+  <div id="hsl"></div>
+</div>
+
+</body>
+</html>

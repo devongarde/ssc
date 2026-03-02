@@ -25,8 +25,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "symbol/nstr.h"
 #include "utility/common.h"
 
+#define DPV_X_SH_223(XXX) \
+    { dpv_##XXX##_2_4, html_dpv_2_4 }, \
+    { dpv_##XXX##_2_3, html_dpv_2_3 }
+
 #define DPV_X_SH_222(XXX) \
-    { dpv_##XXX##_2_3, html_dpv_2_3 }, \
+    DPV_X_SH_223 (XXX), \
     { dpv_##XXX##_2_2, html_dpv_2_2 }
 
 #define DPV_X_SH_221(XXX) \
@@ -133,6 +137,7 @@ sh_t sh [] =  // latest first
     { doap_schema, html_rdf_1_0 },
     { data_quality, html_rdf_1_0_con },
     { described_by, html_rdf_1_0 },
+    { dpv_2_4, html_dpv_2_4 },
     { dpv_2_3, html_dpv_2_3 },
     { dpv_2_2, html_dpv_2_2 },
     { dpv_2_1, html_dpv_2_1 },
@@ -152,6 +157,7 @@ sh_t sh [] =  // latest first
     { dpv_0_2, html_dpv_02 },
     { dpv_0_1, html_dpv_01 },
     DPV_X_SH_220 (ai),
+    DPV_X_SH_223 (de_gdng),
     DPV_X_SH_220 (eu_aiact),
     DPV_X_SH_220 (eu_dga),
     DPV_X_SH_221 (eu_ehds),
@@ -553,8 +559,9 @@ e_apples_oranges ontology_to_apples_oranges (const e_ontology root) noexcept
         case s_dct : return aoo_dc;
         case s_ddi : return aoo_ddi;
         case s_doap : return aoo_doap;
-        case s_dpv : return aoo_dpv;
+        case s_dpv :
         case s_dpv_ai : 
+        case s_dpv_de_gdng :
         case s_dpv_eu_aiact : 
         case s_dpv_eu_dga : 
         case s_dpv_eu_ehds : 
@@ -897,27 +904,35 @@ bool is_dpv_valid (const unsigned short mjr, const unsigned short mnr, const uns
 #define DETAIL_DPV2(ONT) \
     template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t oflags) noexcept \
     {   if ((mjr == 2) && (mnr == 0)) return ((oflags & OV_DPV_NOT_4020) == 0); \
-        return (mjr == 2) && (mnr <= 3); } \
+        return (mjr == 2) && (mnr <= 4); } \
     template < > ontology_version ontology_detail < ONT > :: from () noexcept { return ontology_version (ONT, 2, 0); } \
     template < > int ontology_detail < ONT > :: count () noexcept { return 3; } \
-    template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 3); }
+    template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 4); }
 
 #define DETAIL_DPV21(ONT) \
     template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept \
-    {   return (mjr == 2) && (mnr >= 1) && (mnr <= 3); } \
+    {   return (mjr == 2) && (mnr >= 1) && (mnr <= 4); } \
     template < > ontology_version ontology_detail < ONT > :: from () noexcept { return ontology_version (ONT, 2, 1); } \
     template < > int ontology_detail < ONT > :: count () noexcept { return 2; } \
-    template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 3); }
+    template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 4); }
 
 #define DETAIL_DPV22(ONT) \
     template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept \
-    {   return (mjr == 2) && (mnr >= 2) && (mnr <= 3); } \
+    {   return (mjr == 2) && (mnr >= 2) && (mnr <= 4); } \
     template < > ontology_version ontology_detail < ONT > :: from () noexcept { return ontology_version (ONT, 2, 2); } \
     template < > int ontology_detail < ONT > :: count () noexcept { return 1; } \
-    template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 3); }
+    template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 4); }
+
+#define DETAIL_DPV23(ONT) \
+    template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept \
+    {   return (mjr == 2) && (mnr >= 3) && (mnr <= 4); } \
+    template < > ontology_version ontology_detail < ONT > :: from () noexcept { return ontology_version (ONT, 2, 3); } \
+    template < > int ontology_detail < ONT > :: count () noexcept { return 1; } \
+    template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 4); }
 
 DETAIL_DPV (s_dpv, 10, 16, 2, 3)
 DETAIL_DPV2 (s_dpv_ai);
+DETAIL_DPV23 (s_dpv_de_gdng);
 DETAIL_DPV2 (s_dpv_eu_aiact);
 DETAIL_DPV2 (s_dpv_eu_dga);
 DETAIL_DPV21 (s_dpv_eu_ehds);

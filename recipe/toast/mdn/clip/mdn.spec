@@ -12,7 +12,7 @@ PASS ../toast/mdn/clip/clip-path.html
 129 inserted_missing_closure
 130 inserted_missing_closure
 131 inserted_missing_closure
-133 inserted_missing_closure
+134 inserted_missing_closure
 135 inserted_missing_closure
 150 inserted_missing_closure
 
@@ -37,7 +37,7 @@ PASS ../toast/mdn/clip/clip-rule.html
 143 inserted_missing_closure
 145 inserted_missing_closure
 146 inserted_missing_closure
-149 inserted_missing_closure
+149 id_exists
 151 inserted_missing_closure
-153 inserted_missing_closure
+153 id_exists
 155 inserted_missing_closure

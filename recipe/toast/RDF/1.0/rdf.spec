@@ -89,7 +89,8 @@ PASS ../toast/RDF/1.0/example-20.rdf
 4 contradictory_namespace unrecognised_namespace unrecognised_value
 
 PASS ../toast/RDF/1.0/example-21.rdf
+0 charset_mismatch charset_used
 1 xhtml_1_0
 3 rdfa_version
-6 xhtml_enum_lc unrecognised_value
+6 xhtml_enum_lc
 7 url_not_found

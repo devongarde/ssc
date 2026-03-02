@@ -13,7 +13,6 @@ PASS ../toast/stats/CSS-6/custom-3.css
 3 css_syntax unrecognised_value
 8 css_custom
 11 css_custom
-29 sunk immeasurable unrecognised_value immeasurable unrecognised_value
 
 PASS ../toast/stats/CSS-6/extra.css
 0 html

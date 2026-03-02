@@ -111,6 +111,18 @@ vstr_t unquote (const ::std::string& str, const ::std::size_t len, const ::std::
     res = unquote (tmp, len, quotesep);
     return ss; }
 
+::std::string simple_unquote (::std::string::const_iterator ci, const ::std::string::const_iterator cie, const ::std::string& quotesep)
+{   PRESUME (quotesep.length () > 0, __FILE__, __LINE__);
+    ::std::string res (ci, cie);
+    if ((cie - ci) > 2)
+    {   char quote = 0;
+        for (::std::string::const_iterator ch = quotesep.cbegin (); ch != quotesep.cend (); ++ch)
+            if (*ci == *ch)
+                quote = *ch;
+        if ((quote > 0) && (*(cie-1) == quote))
+            res = ::std::string (ci+1, cie-1); }
+    return res; }
+
 ::std::string limited_string_with_quote (bool quoted, const ::std::string& s, const ::std::size_t max, const ::std::string& qs = ::std::string (QUOTESEP))
 {   const ::std::size_t el = strlen (ELLIPSES);
     const ::std::size_t len = s.length ();
@@ -411,7 +423,7 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                 else state = uq_dull;
                 break;
             default : break; }
-        if (consider && (state != uq_bracket))
+        if (consider && (state != uq_bracket) && (state != uq_dq) && (state != uq_sq))
             for (auto p : sep)
                 if (p.at (0) == *i)
                     if (GSL_NARROW_CAST < ::std::size_t > (se - i) >= p.length ())

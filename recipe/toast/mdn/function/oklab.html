@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN oklab tests</title>
+<style>
+.sid
+{
+/* Absolute values */
+background-color: oklab(40.1% 0.1143 0.045);
+background-color: oklab(59.69% 0.1007 0.1191);
+background-color: oklab(59.69% 0.1007 0.1191 / 0.5);
+
+/* Relative values */
+background-color: oklab(from green l a b / 0.5);
+background-color: oklab(from #123456 calc(l + 0.1) a b / calc(alpha * 0.9));
+background-color: oklab(from hsl(180 100% 50%) calc(l - 0.1) a b);
+
+background-color: oklab(from hsl(0 100% 50%) l a b);
+
+background-color: oklab(from hsl(0 100% 50%) 42.1% 0.165 -0.101);
+
+background-color: oklab(from hsl(0 100% 50%) l -0.3 b);
+
+background-color: oklab(from hsl(0 100% 50% / 0.8) l a b / alpha);
+/* Computed output color: oklab(0.627966 0.22488 0.125859 / 0.8) */
+
+background-color: oklab(from hsl(0 100% 50% / 0.8) l a b / 0.5);
+/* Computed output color: oklab(0.627966 0.22488 0.125859 / 0.5) */
+
+background-color: oklab(from hsl(0 100% 50%) calc(l + 0.2) calc(a - 0.08) calc(b - 0.2) / calc(alpha - 0.1));
+
+}
+
+[data-color="red-dark"] {
+  background-color: oklab(0.05 0.4 0.4);
+}
+[data-color="red"] {
+  background-color: oklab(0.5 0.4 0.4);
+}
+[data-color="red-light"] {
+  background-color: oklab(0.95 0.4 0.4);
+}
+
+[data-color="green-dark"] {
+  background-color: oklab(5% -100% 0.4);
+}
+[data-color="green"] {
+  background-color: oklab(50% -100% 0.4);
+}
+[data-color="green-light"] {
+  background-color: oklab(95% -100% 0.4);
+}
+
+[data-color="blue-dark"] {
+  background-color: oklab(0.05 -0.3 -0.4);
+}
+[data-color="blue"] {
+  background-color: oklab(0.5 -0.3 -0.4);
+}
+[data-color="blue-light"] {
+  background-color: oklab(0.95 -0.3 -0.4);
+}
+
+[data-color="red"] {
+  background-color: oklab(0.628 0.225 0.126);
+}
+[data-color="red-alpha"] {
+  background-color: oklab(0.628 0.225 0.126 / 0.4);
+}
+
+/* a-axis max, variable b-axis */
+[data-color="red-yellow"] {
+  background-color: oklab(0.5 0.4 0.4);
+}
+[data-color="red-zero"] {
+  background-color: oklab(0.5 0.4 0);
+}
+[data-color="red-blue"] {
+  background-color: oklab(0.5 0.4 -0.4);
+}
+
+/* a-axis center, variable b-axis */
+[data-color="zero-yellow"] {
+  background-color: oklab(0.5 0 0.4);
+}
+[data-color="zero-zero"] {
+  background-color: oklab(0.5 0 0);
+}
+[data-color="zero-blue"] {
+  background-color: oklab(0.5 0 -0.4);
+}
+
+/* a-axis min, variable b-axis */
+[data-color="green-yellow"] {
+  background-color: oklab(0.5 -0.4 0.4);
+}
+[data-color="green-zero"] {
+  background-color: oklab(0.5 -0.4 0);
+}
+[data-color="green-blue"] {
+  background-color: oklab(0.5 -0.4 -0.4);
+}
+
+/* a-axis gradients */
+[data-color="red-to-green-yellow"] {
+  background-image: linear-gradient(to right, oklab(50% 0.4 0.4), oklab(50% -0.4 0.4));
+}
+[data-color="red-to-green-zero"] {
+  background-image: linear-gradient(to right, oklab(50% 0.4 0), oklab(50% -0.4 0));
+}
+[data-color="red-to-green-blue"] {
+  background-image: linear-gradient(to right, oklab(50% 0.4 -0.4), oklab(50% -0.4 -0.4));
+}
+
+/* b-axis gradients */
+[data-color="yellow-to-blue-red"] {
+  background-image: linear-gradient(to right, oklab(50% 0.4 0.4), oklab(50% 0.4 -0.4));
+}
+[data-color="yellow-to-blue-zero"] {
+  background-image: linear-gradient(to right, oklab(50% 0 0.4), oklab(50% 0 -0.4));
+}
+[data-color="yellow-to-blue-green"] {
+  background-image: linear-gradient(to right, oklab(50% -0.4 0.4),oklab(50% -0.4 -0.4));
+}
+
+:root {
+  --base-color: orange;
+}
+
+#one {
+  background-color: oklab(from var(--base-color) calc(l + 0.15) a b);
+}
+
+#two {
+  background-color: var(--base-color);
+}
+
+#three {
+  background-color: oklab(from var(--base-color) calc(l - 0.15) a b);
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN oklab Tests</h1>
+
+<div data-color="red-dark"></div>
+<div data-color="red"></div>
+<div data-color="red-light"></div>
+
+<div data-color="green-dark"></div>
+<div data-color="green"></div>
+<div data-color="green-light"></div>
+
+<div data-color="blue-dark"></div>
+<div data-color="blue"></div>
+<div data-color="blue-light"></div>
+
+<div id="background-div">
+  <div data-color="red"></div>
+  <div data-color="red-alpha"></div>
+</div>
+
+<div data-color="red-yellow"></div>
+<div data-color="red-zero"></div>
+<div data-color="red-blue"></div>
+
+<div data-color="zero-yellow"></div>
+<div data-color="zero-zero"></div>
+<div data-color="zero-blue"></div>
+
+<div data-color="green-yellow"></div>
+<div data-color="green-zero"></div>
+<div data-color="green-blue"></div>
+
+</body>
+</html>

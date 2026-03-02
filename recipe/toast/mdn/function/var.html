@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN var tests</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="1.css" />
+    <link rel="stylesheet" href="2.css" />
+<style>
+.sid
+{
+/* Basic usage */
+background-color: var(--custom-prop);
+
+/* With fallback */
+background-color: var(--custom-prop,);  /* empty value as fallback */
+background-color: var(--custom-prop, initial); /* initial value of the property as fallback */
+background-color: var(--custom-prop, red);
+background-color: var(--custom-prop, var(--default-value));
+background-color: var(--custom-prop, var(--default-value, red));
+}
+
+:root {
+  --main-bg-color: pink;
+}
+
+body {
+  background-color: var(--main-bg-color);
+}
+
+body {
+  background-color: var(--main-bg-color);
+}
+
+:root {
+  --main-bg-color: pink;
+}
+
+/* 1.css */
+body {
+  background-color: var(--main-bg-color);
+}
+
+/* 2.css */
+:root {
+  --main-bg-color: pink;
+}
+
+/* In the component's style: */
+.component .header {
+  /* header-color isn't set, and so remains blue, the fallback value */
+  color: var(--header-color, blue);
+}
+
+.component .text {
+  color: var(--text-color, black);
+}
+
+/* In the larger application's style: */
+.component {
+  --text-color: #008800;
+}
+
+:root {
+  --backup-bg-color: teal;
+}
+
+body {
+  background-color: var(--main-bg-color, var(--backup-bg-color, white));
+}
+
+p {
+  color: red;
+}
+
+.p1 {
+  color: var(--invalid-color);
+}
+
+.p2 {
+  --invalid-color: 20px;
+  color: var(--invalid-color);
+}
+
+.p3 {
+  color: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN var Tests</h1>
+
+<div class="component">
+  <h1 class="header">Header</h1>
+  <p class="text">Text</p>
+</div>
+
+<p class="p1">Undefined variable</p>
+<p class="p2">Invalid variable</p>
+<p class="p3">Invalid literal color</p>
+
+</body>
+</html>

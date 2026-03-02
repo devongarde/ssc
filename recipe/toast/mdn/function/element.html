@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN element tests</title>
+<style>
+#target-box {
+  width: 400px;
+  height: 400px;
+  background: -moz-element(#my-background) no-repeat;
+}
+
+#background-container {
+  overflow: hidden;
+  height: 0;
+}
+
+#my-background {
+  width: 1024px;
+  height: 1024px;
+  background-image: linear-gradient(to right, red, orange, yellow, white);
+}
+
+#my-background p {
+  transform-origin: 0 0;
+  rotate: 45deg;
+  color: white;
+}
+
+#css-result {
+  background: -moz-element(#css-source) no-repeat;
+  width: 256px;
+  height: 32px;
+  background-size: 80%;
+  border: dashed;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN element Tests</h1>
+
+<div id="target-box">
+  <p>This box uses the element with the #my-background ID as its background!</p>
+</div>
+
+<div id="background-container">
+  <div id="my-background">
+    <p>This text is part of the background. Cool, huh?</p>
+  </div>
+</div>
+
+<div id="css-source">
+  <h1>Page Preview</h1>
+</div>
+<div id="css-result"></div>
+
+</body>
+</html>

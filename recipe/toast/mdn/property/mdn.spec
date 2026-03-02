@@ -104,3 +104,7 @@ PASS ../toast/mdn/property/dominant-range-limit.html
 
 PASS ../toast/mdn/property/empty-cells.html
 2 naughty_lang
+
+PASS ../toast/mdn/property/field-sizing.html
+2 naughty_lang
+41 h1_h6

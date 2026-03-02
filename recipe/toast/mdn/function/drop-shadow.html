@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN drop-shadow tests</title>
+<style>
+.sid
+{
+/* Two length values */
+/* drop-shadow( <length> <length> ) */
+filter: drop-shadow(5px 5px);
+
+/* Three length values */
+/* drop-shadow( <length> <length> <length> ) */
+filter: drop-shadow(5px 5px 15px);
+
+/* Two length values and a color */
+/* drop-shadow( <length> <length> <color> ) */
+filter: drop-shadow(5px 5px red);
+
+/* Three length values and a color */
+/* drop-shadow( <length> <length> <length> <color> ) */
+filter: drop-shadow(5px 5px 15px red);
+
+/* The order of color and length values can be changed */
+/* drop-shadow( <color> <length> <length> <length> ) */
+filter: drop-shadow(#ee2233 0.5rem 0.5rem 1rem);
+
+/* Pass multiple drop-shadows to a filter to stack them */
+filter: drop-shadow(10px 10px red); filter: drop-shadow(-5px -5px yellow);
+}
+
+div {
+  display: inline-block;
+  margin: 0 0.5rem 2rem 1rem;
+  padding: 0.5rem;
+  height: 100px;
+  width: 190px;
+  vertical-align: top;
+  background-color: #222222;
+
+  color: lime;
+}
+
+div:nth-child(1) {
+  filter: drop-shadow(16px 16px);
+}
+
+div:nth-child(2) {
+  filter: drop-shadow(16px 16px red);
+}
+
+div:nth-child(3) {
+  filter: drop-shadow(red 1rem 1rem 10px);
+}
+
+div:nth-child(4) {
+  filter: drop-shadow(-16px -16px red);
+}
+
+div:nth-child(5) {
+  filter: drop-shadow(1px 1px red) drop-shadow(1px -1px red)
+    drop-shadow(-1px 1px red) drop-shadow(-1px -1px red);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN drop-shadow Tests</h1>
+
+<div>drop-shadow(16px 16px)</div>
+<div>drop-shadow(16px 16px red)</div>
+<div>drop-shadow(red 1rem 1rem 10px)</div>
+<div>drop-shadow(-16px -16px red)</div>
+<div>
+  drop-shadow(1px 1px red) drop-shadow(1px -1px red) drop-shadow(-1px 1px red)
+  drop-shadow(-1px -1px red)
+</div>
+
+</body>
+</html>

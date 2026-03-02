@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN calc tests</title>
+<style>
+.sid
+{
+/* calc(expression) */
+  font-size: calc(100% - 80px);
+
+/* Expression with a CSS function */
+  font-size: calc(100px * sin(pi / 2));
+
+/* Expression containing a variable */
+  font-size: calc(var(--hue) + 180);
+
+/* Expression with color channels in relative colors */
+  color: lch(from aquamarine l c calc(h + 180));
+}
+
+h1 {
+  font-size: calc(1.5rem + 3vw);
+}
+
+input {
+  padding: 2px;
+  display: block;
+  width: calc(100% - 1em);
+}
+
+#form-box {
+  width: calc(100% / 6);
+  border: 1px solid black;
+  padding: 4px;
+}
+
+.foo {
+  --width-a: 100px;
+  --width-b: calc(var(--width-a) / 2);
+  --width-c: calc(var(--width-b) / 2);
+  width: var(--width-c);
+}
+
+.original {
+  color: rebeccapurple;
+}
+
+.increase-hue {
+  color: lch(from rebeccapurple l c calc(h + 80));
+}
+
+.increase-lightness {
+  color: lch(from rebeccapurple calc(l + 20) c h);
+}
+
+.decrease-lightness {
+  color: lch(from rebeccapurple calc(l - 10) c h);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN calc Tests</h1>
+
+<div class="banner">This is a banner!</div>
+
+<form>
+  <div id="form-box">
+    <label for="misc">Type something:</label>
+    <input type="text" id="misc" name="misc" />
+  </div>
+</form>
+
+<p class="original">Original text color in rebeccapurple</p>
+<p class="increase-hue">Hue increased by 80</p>
+<p class="increase-lightness">Lightness increased by 20</p>
+<p class="decrease-lightness">Lightness decreased by 10</p>
+
+</body>
+</html>

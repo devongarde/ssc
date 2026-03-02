@@ -113,6 +113,8 @@ options::options (const context_t& c)
     if (def.FN () != c.FN ()) \
         if (! c.FN ()) insert < bool > (SECT VAR, true); \
         else insert < bool > (SECT DONT VAR, false);
+#define INSERT_LONG(SECT,VAR,FN) \
+    if (def.FN () != c.FN ()) insert < long > (SECT VAR, c.FN ());
 #define INSERT_PATH(SECT,VAR,FN) \
     if (def.FN () != c.FN ()) insert < ::std::string > (SECT VAR, c.FN ().string ());
 #define INSERT_STATS(VAR,ST) \
@@ -197,6 +199,7 @@ options::options (const context_t& c)
     INSERT_BOOL (GENERAL, EDE, excl_def_excl);
     INSERT_VSTR (GENERAL, EXCLUDE, exclude);
     INSERT_STRING (GENERAL, HELPSITE, help);
+    INSERT_LONG (GENERAL, LINE_LENGTH, line_length);
     INSERT_STRING (GENERAL, MACROEND, macro_end);
     INSERT_STRING (GENERAL, MACROSTART, macro_start);
     INSERT_INT (GENERAL, MAXFILESIZE, max_file_size);
@@ -876,6 +879,7 @@ void options::init (context_t& c)
         (GENERAL EXCLUDE, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore files that end with this string; may be repeated.")
         (GENERAL FICHIER ARGSEP PERSIST_SW_, ::boost::program_options::value < ::std::string > () -> default_value (def_persisted), "File for persistent data (note --" GENERAL DATAPATH ").")
         (GENERAL INFO, ::boost::program_options::bool_switch (), "Report " PROG " launch context at startup.")
+        (GENERAL LINE_LENGTH, ::boost::program_options::value < long > () -> default_value (DEFAULT_LINE_LENGTH), "Maximum line length for output (default 72).")
         (GENERAL MACROSTART, ::boost::program_options::value < ::std::string > () -> default_value (def_macrostart), "Start of template macro (by default, the '{{' in '{{macro}}').")
         (GENERAL MACROEND, ::boost::program_options::value < ::std::string > () -> default_value (def_macroend), "End of template macro (by default, the '}}' in '{{macro}}').")
         (GENERAL MAXFILESIZE, ::boost::program_options::value < int > (), "Maximum file size to read, in megabytes (zero for no limit).")
@@ -1507,7 +1511,7 @@ void options::parse (context_t& c, nitpick& nits, const vstr_t& vs)
         VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         macro -> set (nm_config, file.string ());
         if (file_exists (file))
-        {   nits.pick (nit_configuration, es_debug, ec_init, ::std::string ("Loading configuration ") + file.string () + "...");
+        {   nits.pick (nit_configuration, es_debug, ec_init, ::std::string ("Loading configuration ") + file.string () + " " ELLIPSES);
             try
             {   c.config (canonical_name (absolute_name (file))); }
             catch (...)
@@ -1773,6 +1777,7 @@ void options::contextualise (context_t& c, nitpick& nits)
 
         if (var_.count (GENERAL EXCLUDE)) c.exclude (nits, var_ [GENERAL EXCLUDE].as < vstr_t > ());
         if (var_.count (GENERAL HELPSITE)) c.help (var_ [GENERAL HELPSITE].as < ::std::string > ());
+        if (var_.count (GENERAL LINE_LENGTH)) c.line_length (var_ [GENERAL LINE_LENGTH].as < long > ());
         if (var_.count (GENERAL MACROEND)) c.macro_end (var_ [GENERAL MACROEND].as < ::std::string > ());
         if (var_.count (GENERAL MACROSTART)) c.macro_start (var_ [GENERAL MACROSTART].as < ::std::string > ());
         if (var_.count (GENERAL SILENCE)) c.silence (nits, var_ [GENERAL SILENCE].as < vstr_t > ());
@@ -2751,6 +2756,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RI (gr, res, GENERAL, FICHIER, def_persisted, general);
     RB (gr, res, GENERAL, INFO, general);
     RG (gr, res, ::std::string, GENERAL, HELPSITE, general);
+    RG (gr, res, long, GENERAL, LINE_LENGTH, general);
     RI (gr, res, GENERAL, MACROEND, def_macroend, general);
     RI (gr, res, GENERAL, MACROSTART, def_macrostart, general);
     RG (gr, res, int, GENERAL, MAXFILESIZE, general);

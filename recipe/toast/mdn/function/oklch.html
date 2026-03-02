@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN oklch tests</title>
+<style>
+.sid
+{
+/* Absolute values */
+background-color: oklch(40.1% 0.123 21.57);
+background-color: oklch(59.69% 0.156 49.77);
+background-color: oklch(59.69% 0.156 49.77 / .5);
+
+/* Relative values */
+background-color: oklch(from green l c h / 0.5);
+background-color: oklch(from #123456 calc(l + 0.1) c h);
+background-color: oklch(from hsl(180 100% 50%) calc(l - 0.1) c h);
+background-color: oklch(from var(--color) l c h / calc(alpha - 0.1));
+
+background-color: oklch(from hsl(0 100% 50%) l c h);
+
+background-color: oklch(from hsl(0 100% 50%) 42.1% 0.25 328.363);
+
+background-color: oklch(from hsl(0 100% 50%) 0.8 0.4 h);
+
+background-color: oklch(from hsl(0 100% 50% / 0.8) l c h / alpha);
+/* Computed output color: oklch(0.627966 0.257704 29.2346 / 0.8) */
+
+background-color: oklch(from hsl(0 100% 50% / 0.8) l c h / 0.5);
+/* Computed output color: oklch(0.627966 0.257704 29.2346 / 0.5) */
+
+background-color: oklch(from hsl(0 100% 50%) calc(l + 0.2) calc(c + 0.1) calc(h - 20) / calc(alpha - 0.1));
+
+}
+
+[data-color="blue-dark"] {
+  background-color: oklch(10% 0.4 240);
+}
+[data-color="blue"] {
+  background-color: oklch(50% 0.4 240);
+}
+[data-color="blue-light"] {
+  background-color: oklch(90% 0.4 240);
+}
+
+[data-color="red-dark"] {
+  background-color: oklch(10% 0.4 20);
+}
+[data-color="red"] {
+  background-color: oklch(50% 0.4 20);
+}
+[data-color="red-light"] {
+  background-color: oklch(90% 0.4 20);
+}
+
+[data-color="green-dark"] {
+  background-color: oklch(10% 0.4 130);
+}
+[data-color="green"] {
+  background-color: oklch(50% 0.4 130);
+}
+[data-color="green-light"] {
+  background-color: oklch(90% 0.4 130);
+}
+
+[data-color="blue"] {
+  background-color: oklch(50% 0.4 240);
+}
+[data-color="blue-chroma1"] {
+  background-color: oklch(50% 0.2 240);
+}
+[data-color="blue-chroma2"] {
+  background-color: oklch(50% 0.1 240);
+}
+[data-color="blue-chroma3"] {
+  background-color: oklch(50% 0.01 240);
+}
+
+[data-color="red"] {
+  background-color: oklch(50% 100% 20deg);
+}
+[data-color="red-chroma1"] {
+  background-color: oklch(50% 50% 20deg);
+}
+[data-color="red-chroma2"] {
+  background-color: oklch(50% 25% 20deg);
+}
+[data-color="red-chroma3"] {
+  background-color: oklch(50% 2% 20deg);
+}
+
+[data-color="green"] {
+  background-color: oklch(50% 0.4 130);
+}
+[data-color="green-chroma1"] {
+  background-color: oklch(50% 0.2 130);
+}
+[data-color="green-chroma2"] {
+  background-color: oklch(50% 0.1 130);
+}
+[data-color="green-chroma3"] {
+  background-color: oklch(50% 0.01 130);
+}
+
+[data-color="0"] {
+  background-color: oklch(50% 0.4 0deg);
+}
+[data-color="20"] {
+  background-color: oklch(50% 0.4 20deg);
+}
+[data-color="40"] {
+  background-color: oklch(50% 0.4 40deg);
+}
+[data-color="60"] {
+  background-color: oklch(50% 0.4 60deg);
+}
+
+[data-color="red"] {
+  background-color: oklch(50% 0.5 20);
+}
+[data-color="red-alpha"] {
+  background-color: oklch(50% 0.5 20 / 0.4);
+}
+
+:root {
+  --base-color: orange;
+}
+
+#one {
+  background-color: oklch(from var(--base-color) calc(l + 0.15) c h);
+}
+
+#two {
+  background-color: var(--base-color);
+}
+
+#three {
+  background-color: oklch(from var(--base-color) calc(l - 0.15) c h);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN oklch Tests</h1>
+
+<div data-color="blue-dark"></div>
+<div data-color="blue"></div>
+<div data-color="blue-light"></div>
+
+<div data-color="red-dark"></div>
+<div data-color="red"></div>
+<div data-color="red-light"></div>
+
+<div data-color="green-dark"></div>
+<div data-color="green"></div>
+<div data-color="green-light"></div>
+
+<div data-color="blue"></div>
+<div data-color="blue-chroma1"></div>
+<div data-color="blue-chroma2"></div>
+<div data-color="blue-chroma3"></div>
+
+<div data-color="red"></div>
+<div data-color="red-chroma1"></div>
+<div data-color="red-chroma2"></div>
+<div data-color="red-chroma3"></div>
+
+<div data-color="green"></div>
+<div data-color="green-chroma1"></div>
+<div data-color="green-chroma2"></div>
+<div data-color="green-chroma3"></div>
+
+<div data-color="0">0deg</div>
+<div data-color="20">20deg</div>
+<div data-color="40">40deg</div>
+<div data-color="60">60deg</div>
+
+<div id="background-div">
+  <div data-color="red"></div>
+  <div data-color="red-alpha"></div>
+</div>
+
+</body>
+</html>

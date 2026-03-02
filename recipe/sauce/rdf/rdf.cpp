@@ -54,6 +54,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_ddi :
         case s_doap :
         case s_dpv_ai :
+        case s_dpv_de_gdng :
         case s_dpv_eu_aiact :
         case s_dpv_eu_dga :
         case s_dpv_eu_ehds :
@@ -197,6 +198,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_ddi :
         case s_doap :
         case s_dpv_ai :
+        case s_dpv_de_gdng :
         case s_dpv_eu_aiact :
         case s_dpv_eu_dga :
         case s_dpv_eu_ehds :

@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN calc-size tests</title>
+<style>
+.sid
+{
+/* Pass a value through calc-size() */
+  height: calc-size(auto, size);
+  height: calc-size(fit-content, size);
+
+/* Perform a calculation */
+  height: calc-size(min-content, size + 100px);
+  height: calc-size(fit-content, size / 2);
+
+/* Calculation including a function */
+  height: calc-size(auto, round(up, size, 50px));
+}
+
+section {
+  height: calc-size(calc-size(max-content, size), size + 2rem);
+}
+
+:root {
+  --intrinsic-size: calc-size(max-content, size);
+}
+
+section {
+  height: calc-size(var(--intrinsic-size), size + 2rem);
+}
+
+section {
+  height: calc-size(300px + 2rem, size / 2);
+}
+
+section {
+  height: calc-size(any, 300px * 1.5); /* Returns 450px */
+}
+
+section {
+  width: 0;
+  transition: width ease 1s;
+}
+
+section:hover,
+section:focus {
+  width: calc-size(auto, size);
+}
+
+section {
+  width: 0;
+  transition: width ease 1s;
+}
+
+section:hover,
+section:focus {
+  width: calc-size(auto, size + 2rem);
+}
+
+@keyframes narrower {
+  from {
+    width: fit-content;
+  }
+
+  to {
+    width: calc-size(fit-content, size * 0.7);
+  }
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: calc-size(fit-content, size + 6rem);
+  height: calc-size(auto, size * 2);
+}
+
+section {
+  height: 2.5rem;
+  overflow: hidden;
+  transition: height ease 1s;
+}
+
+section:hover,
+section:focus {
+  height: calc-size(max-content, size + 2rem);
+}
+
+section {
+  width: fit-content;
+}
+
+@keyframes narrower {
+  from {
+    width: fit-content;
+  }
+
+  to {
+    width: calc-size(fit-content, size * 0.7);
+  }
+}
+
+@keyframes wider {
+  from {
+    width: calc-size(fit-content, size * 0.7);
+  }
+
+  to {
+    width: fit-content;
+  }
+}
+
+.narrower {
+  animation: narrower 1s ease forwards;
+}
+
+.wider {
+  animation: wider 1s ease forwards;
+}
+
+label {
+  width: 100px;
+}
+
+input {
+  field-sizing: content;
+  width: calc-size(fit-content, max(100px, size + 20px));
+}
+</style>
+<script>
+const widthAdjustBtn = document.querySelector(".width-adjust");
+const easyReader = document.querySelector(".easy-reader");
+
+widthAdjustBtn.addEventListener("click", () => {
+  if (easyReader.classList.length === 1) {
+    easyReader.classList.add("narrower");
+    widthAdjustBtn.textContent = "Wider";
+  } else if (easyReader.classList.contains("wider")) {
+    easyReader.classList.replace("wider", "narrower");
+    widthAdjustBtn.textContent = "Wider";
+  } else if (easyReader.classList.contains("narrower")) {
+    easyReader.classList.replace("narrower", "wider");
+    widthAdjustBtn.textContent = "Narrower";
+  }
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN calc-size Tests</h1>
+
+<section>
+  <h2>Favorite quote</h2>
+
+  <p>
+    Fashion is something so ugly it has to be changed every fifteen minutes.
+  </p>
+</section>
+
+<section tabindex="0">
+  <header>
+    <h2>Chris Mills</h2>
+  </header>
+  <main>
+    <p>Chris is the silent phantom of MDN.</p>
+    <ul>
+      <li><strong>Height</strong>: 3.03m</li>
+      <li><strong>Weight</strong>: 160kg</li>
+      <li><strong>Tech Fu</strong>: 7</li>
+      <li><strong>Bad Jokes</strong>: 9</li>
+    </ul>
+  </main>
+</section>
+
+<section class="easy-reader">
+  <h2>Easy reader</h2>
+
+  <p>
+    Eius velit aperiam ipsa. Deleniti eum excepturi ut magni maxime maxime
+    beatae. Dicta aperiam est laudantium ut illum facere qui officiis. Sunt
+    deleniti quam id. Quis sunt voluptatem praesentium minima dolorum autem
+    consequatur velit.
+  </p>
+
+  <p>
+    Vitae ab incidunt velit aspernatur deleniti distinctio rerum. Et natus sed
+    et quos mollitia quia quod. Quae officia ex ea. Ducimus ut voluptatem et et
+    debitis. Quidem provident laboriosam exercitationem similique deleniti.
+    Temporibus vel veniam mollitia magni unde a nostrum.
+  </p>
+
+  <button class="width-adjust">Narrower</button>
+</section>
+
+<form>
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" maxlength="48" />
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" maxlength="48" />
+  </div>
+  <div>
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" maxlength="60" />
+  </div>
+</form>
+
+</body>
+</html>

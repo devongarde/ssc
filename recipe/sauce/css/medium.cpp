@@ -37,7 +37,7 @@ void medium_t::mtkn_report ()
             else item = quote (s);
             if (! m.s_.empty ())
             {   item += "="; item += m.s_; }
-            if (line.size () + item.size () > DEFAULT_LINE_LENGTH)
+            if (static_cast < long > (line.size () + item.size ()) > context.line_length ())
             {   res += line + "\n"; line.clear (); }
             else if (! line.empty ()) line += " | ";
             line += item; }

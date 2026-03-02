@@ -14323,6 +14323,7 @@ struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > 
     { { 0, 10 }, { 0, 0 }, "CreativeWork", sch_creativework },
     { { 2, 0 }, { 0, 0 }, "CreativeWorkSeason", sch_creativeworkseason },
     { { 2, 0 }, { 0, 0 }, "CreativeWorkSeries", sch_creativeworkseries },
+    { { 29, 5 }, { 0, 0 }, "Credential", sch_credential },
     { { 0, 99 }, { 0, 0 }, "CreditCard", sch_creditcard },
     { { 0, 10 }, { 0, 0 }, "Crematorium", sch_crematorium },
     { { 3, 5 }, { 0, 0 }, "CriticReview", sch_criticreview },

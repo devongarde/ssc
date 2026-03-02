@@ -1,0 +1,63 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN type tests</title>
+<style>
+.sid
+{
+/* Single value */
+background-color: type(<color>);
+background-color: type(auto);
+
+/* "|" combinator for multiple types */
+background-color: type(<length> | <percentage>);
+
+/* Space-separated list of values */
+background-color: type(<color>+);
+
+/* Comma-separated list of values */
+background-color: type(<length>#);
+
+/* Multiple keywords */
+background-color: type(red | blue | green);
+
+/* Combination of data type and keyword */
+background-color: type(<percentage> | auto);
+
+/* Universal syntax value */
+background-color: type(*);
+
+background-color: attr(data-background type(<color>), red);
+}
+
+@function --color-choice(--color1 type(red | green), --color2 blue) {
+  result: var(--color1);
+  @media (width < 700px) {
+    result: var(--color2);
+  }
+}
+
+@function --combine-strings(--strings type(<string>+)) {
+  result: var(--strings) " ❤️";
+}
+
+section {
+  font-family: system-ui;
+  background-color: lime;
+  padding: 20px;
+}
+
+section::after {
+  content: --combine-strings("hello" "goodbye");
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN type Tests</h1>
+
+<section>What you gonna say?</section>
+
+</body>
+</html>

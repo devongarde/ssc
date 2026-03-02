@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN url tests</title>
+<style>
+.sid
+{
+/* Basic usage */
+content: url("https://example.com/images/myImg.jpg");
+content: url('https://example.com/images/myImg.jpg');
+content: url(https://example.com/images/myImg.jpg);
+content: url("data:image/jpeg;base64,iRxVB0…");
+content: url(myImg.jpg);
+content: url(#IDofSVGpath);
+
+/* associated properties */
+background-image: url("star.gif");
+list-style-image: url('../images/bullet.jpg');
+content: url("my-icon.jpg");
+cursor: url(my-cursor.cur);
+border-image-source: url(/media/diamonds.png);
+src: url('fantastic-font.woff');
+offset-path: url(#path);
+mask-image: url("masks.svg#mask1");
+
+/* Properties with fallbacks */
+cursor: url(pointer.cur), pointer;
+
+/* Associated short-hand properties */
+background: url('star.gif') bottom right repeat-x blue;
+border-image: url("/media/diamonds.png") 30 fill / 30px / 30px space;
+
+/* As a parameter in another CSS function */
+background-image: cross-fade(20% url(first.png), url(second.png));
+mask-image: image(url(mask.png), skyblue, linear-gradient(black, transparent));
+
+/* as part of a non-shorthand multiple value */
+content: url(star.svg) url(star.svg) url(star.svg) url(star.svg) url(star.svg);
+}
+
+/* at-rules */
+@document url("https://www.example.com/") { /* … */ }
+@import url("https://www.example.com/style.css");
+@namespace url(http://www.w3.org/1999/xhtml);
+
+
+body {
+  background: url("https://mdn.github.io/shared-assets/images/examples/leopard.jpg")
+    #0000dd no-repeat fixed;
+}
+
+li::after {
+  content: " - "
+    url("https://mdn.github.io/shared-assets/images/examples/star-white_16x16.png");
+}
+
+body {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='45'%3E%3Cpath d='M10 10h60' stroke='%2300F' stroke-width='5'/%3E%3Cpath d='M10 20h60' stroke='%230F0' stroke-width='5'/%3E%3Cpath d='M10 30h60' stroke='red' stroke-width='5'/%3E%3C/svg%3E");
+}
+
+.blur {
+  filter: url("my-file.svg#svg-blur"); /* the URL of an SVG file used as a filter */
+}
+
+.inline-blur {
+  filter: url("#svg-blur"); /* the ID of an SVG that is embedded in the HTML page */
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN url Tests</h1>
+
+<ul>
+  <li>One</li>
+  <li>Two</li>
+  <li>Three</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+.sid
+{
+/* Polar color space */
+background-color: color-mix(in hsl, hsl(200 50 80), coral);
+background-color: color-mix(in hsl, hsl(200 50 80) 20%, coral 80%);
+
+/* Rectangular color space */
+background-color: color-mix(in srgb, plum, #123456);
+background-color: color-mix(in lab, plum 60%, #123456 50%);
+
+/* With hue interpolation method */
+background-color: color-mix(in lch increasing hue, hsl(200deg 50% 80%), coral);
+background-color: color-mix(in lch longer hue, hsl(200deg 50% 80%) 44%, coral 16%);
+}
+
+li:nth-child(1) {
+  background-color: color-mix(in oklab, #a71e14 0%, white);
+}
+
+li:nth-child(2) {
+  background-color: color-mix(in oklab, #a71e14 25%, white);
+}
+
+li:nth-child(3) {
+  background-color: color-mix(in oklab, #a71e14 50%, white);
+}
+
+li:nth-child(4) {
+  background-color: color-mix(in oklab, #a71e14 75%, white);
+}
+
+li:nth-child(5) {
+  background-color: color-mix(in oklab, #a71e14 100%, white);
+}
+
+li:nth-child(6) {
+  background-color: color-mix(in oklab, #a71e14, white);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+<ul>
+  <li>0%</li>
+  <li>25%</li>
+  <li>50%</li>
+  <li>75%</li>
+  <li>100%</li>
+  <li></li>
+</ul>
+
+</body>
+</html>

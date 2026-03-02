@@ -107,7 +107,7 @@ template < > struct type_master < t_all_none > : two_value < t_all_none, e_bool,
 { using two_value < t_all_none, e_bool, sz_all, sz_none > :: two_value; };
 
 template < > struct type_master < t_allow_ad_n > : two_value < t_allow_ad_n, e_allow_ad_n, sz_allow_discrete, sz_normal >
-{ using two_value < t_allow_ad_n, e_allow_ad_n, sz_allow_discrete, sz_normal > :: two_value; };
+{   using two_value < t_allow_ad_n, e_allow_ad_n, sz_allow_discrete, sz_normal > :: two_value; };
 
 template < > struct type_master < t_allow_deny > : two_value < t_allow_deny, e_allow_deny, sz_allow, sz_deny >
 { using two_value < t_allow_deny, e_allow_deny, sz_allow, sz_deny > :: two_value; };
@@ -138,6 +138,9 @@ template < > struct type_master < t_auto_stable > : two_value < t_auto_stable, e
 
 template < > struct type_master < t_blink_none > : two_value < t_blink_none, e_blink_none, sz_blink, sz_none >
 { using two_value < t_blink_none, e_blink_none, sz_blink, sz_none > :: two_value; };
+
+template < > struct type_master < t_block > : two_value < t_block, e_block, sz_block_end, sz_block_start >
+{ using two_value < t_block, e_block, sz_block_end, sz_block_start > :: two_value; };
 
 template < > struct type_master < t_block_inline > : two_value < t_block_inline, e_block_inline, sz_block, sz_inline >
 { using two_value < t_block_inline, e_block_inline, sz_block, sz_inline > :: two_value; };
@@ -295,6 +298,9 @@ template < > struct type_master < t_ign_stf > : two_value < t_ign_stf, e_ign_stf
 template < > struct type_master < t_initialvisibility > : two_value < t_initialvisibility, e_initialvisibility, sz_whenstarted, sz_always >
 { using two_value < t_initialvisibility, e_initialvisibility, sz_whenstarted, sz_always > :: two_value; };
 
+template < > struct type_master < t_inline > : two_value < t_inline, e_inline, sz_inline_end, sz_inline_start >
+{ using two_value < t_inline, e_inline, sz_inline_end, sz_inline_start > :: two_value; };
+
 template < > struct type_master < t_inverted_colours > : two_value < t_inverted_colours, e_inverted_colours, sz_inverted, sz_none >
 { using two_value < t_inverted_colours, e_inverted_colours, sz_inverted, sz_none > :: two_value; };
 
@@ -306,6 +312,9 @@ template < > struct type_master < t_layout > : two_value < t_layout, e_layout, s
 
 template < > struct type_master < t_lengthadjust > : two_value < t_lengthadjust, e_lengthadjust, sz_spacing, sz_spacingandglyphs >
 { using two_value < t_lengthadjust, e_lengthadjust, sz_spacing, sz_spacingandglyphs > :: two_value; };
+
+template < > struct type_master < t_light_dark > : two_value < t_light_dark, e_light_dark, sz_dark, sz_light >
+{ using two_value < t_light_dark, e_light_dark, sz_dark, sz_light > :: two_value; };
 
 template < > struct type_master < t_literal_or_not > : two_value < t_literal_or_not, e_literal_or_not, sz_literal_punctuation, sz_no_punctuation >
 { using two_value < t_literal_or_not, e_literal_or_not, sz_literal_punctuation, sz_no_punctuation > :: two_value; };

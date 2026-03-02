@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "base/type_master.h"
 
 bool set_measure_value (nitpick& nits, const html_version& v, const ::std::string& ss);
-bool set_css_measure_value (nitpick& nits, const html_version& v, const ::std::string& ss, const bool absolute);
+bool set_css_measure_value (nitpick& nits, const html_version& v, const ::std::string& ss, const bool absolute, const bool positive = false);
+bool set_css_dimension_value (nitpick& nits, const html_version& v, const ::std::string& ss, const bool absolute);
 
 template < > struct type_master < t_measure > : tidy_string < t_measure > // verify against HTML 5.0, 2.4.4.4
 {   using tidy_string < t_measure > :: tidy_string;
@@ -53,3 +54,23 @@ template < > struct type_master < t_css_length_abs > : tidy_string < t_css_lengt
             if (set_css_measure_value (nits, v, tidy_string < t_css_length_abs > :: get_string (), true))
                 return;
         tidy_string < t_css_length_abs > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_length_pos > : tidy_string < t_css_length_pos >
+{   using tidy_string < t_css_length_pos > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_length; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_length_pos > :: set_value (nits, v, s);
+        if (tidy_string < t_css_length_pos > :: good ())
+            if (set_css_measure_value (nits, v, tidy_string < t_css_length_pos > :: get_string (), false, true))
+                return;
+        tidy_string < t_css_length_pos > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_dimension > : tidy_string < t_css_dimension >
+{   using tidy_string < t_css_dimension > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_length; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_dimension > :: set_value (nits, v, s);
+        if (tidy_string < t_css_dimension > :: good ())
+            if (set_css_dimension_value (nits, v, tidy_string < t_css_dimension > :: get_string (), false))
+                return;
+        tidy_string < t_css_dimension > :: status (s_invalid); } };

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN sibling-count tests</title>
+<style>
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  display: flex;
+}
+
+li {
+  width: calc(100% / sibling-count());
+}
+
+li:nth-of-type(odd) {
+  background-color: rgb(0 0 0 / 0.05);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN sibling-count Tests</h1>
+
+<ul>
+  <li>One</li>
+  <li>Two</li>
+  <li>Three</li>
+  <li>Four</li>
+  <li>Five</li>
+</ul>
+
+</body>
+</html>

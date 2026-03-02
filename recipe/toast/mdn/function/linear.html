@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN linear tests</title>
+<style>
+.sid
+{
+filter: linear(0, 1);
+filter: linear(0, 0.25, 1);
+filter: linear(0, 0.25 75%, 1);
+filter: linear(0, 0.5 25% 75%, 1);
+
+/* Three evenly distributed progress points */
+filter: linear(0, 0.25, 1);
+
+/* Custom timing with percentage values */
+filter: linear(0, 0.5 25% 75%, 1);
+
+/* borked */
+
+/* At least two parameters are required */
+filter: linear(0.5);
+
+/* Percentages must be in ascending order */
+filter: linear(0, 0.25 80%, 0.5 60%, 1);
+
+/* Values must be numbers */
+filter: linear(start, middle, end);
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+</body>
+</html>

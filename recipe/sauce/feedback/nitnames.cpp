@@ -980,6 +980,8 @@ const nitname nitnames [] =
     { nit_borked, "borked" },
     { nit_anchor, "anchor" },
     { nit_css_position_try, "css_position_try" },
+    { nit_css_type, "css_type" },
+    { nit_negative, "negative" },
 
     { nit_incompatible, "incompatible" },
 

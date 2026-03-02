@@ -158,6 +158,9 @@ template < > struct type_master < t_bihv > : four_value < t_bihv, e_bihv, sz_blo
 template < > struct type_master < t_bixy > : four_value < t_bixy, e_bixy, sz_block, sz_inline, sz_x, sz_y  >
 { using four_value < t_bixy, e_bixy, sz_block, sz_inline, sz_x, sz_y > :: four_value; };
 
+template < > struct type_master < t_btyy > : four_value < t_btyy, e_btyy, sz_bottom, sz_top, sz_y_end, sz_y_start >
+{ using four_value < t_btyy, e_btyy, sz_bottom, sz_top, sz_y_end, sz_y_start > :: four_value; };
+
 template < > struct type_master < t_buffered_rendering > : four_value < t_buffered_rendering, e_buffered_rendering, sz_auto, sz_dynamic, sz_static, sz_inherit >
 { using four_value < t_buffered_rendering, e_buffered_rendering, sz_auto, sz_dynamic, sz_static, sz_inherit > :: four_value; };
 
@@ -208,6 +211,9 @@ template < > struct type_master < t_css_box_orient > : four_value < t_css_box_or
 
 template < > struct type_master < t_css_box_pack > : four_value < t_css_box_pack, e_css_box_pack, sz_end, sz_centre, sz_justify, sz_start >
 { using four_value < t_css_box_pack, e_css_box_pack, sz_end, sz_centre, sz_justify, sz_start > :: four_value; };
+
+template < > struct type_master < t_css_calc_size > : four_value < t_css_calc_size, e_css_calc_size, sz_auto, sz_fit_content, sz_max_content, sz_min_content >
+{ using four_value < t_css_calc_size, e_css_calc_size, sz_auto, sz_fit_content, sz_max_content, sz_min_content > :: four_value; };
 
 template < > struct type_master < t_css_composite > : four_value < t_css_composite, e_css_composite, sz_add, sz_exclude, sz_intersect, sz_subtract >
 { using four_value < t_css_composite, e_css_composite, sz_add, sz_exclude, sz_intersect, sz_subtract > :: four_value; };
@@ -319,6 +325,9 @@ template < > struct type_master < t_linecap > : four_value < t_linecap, e_lineca
 
 template < > struct type_master < t_linejoin > : four_value < t_linejoin, e_linejoin, sz_miter, sz_round, sz_bevel, sz_inherit >
 { using four_value < t_linejoin, e_linejoin, sz_miter, sz_round, sz_bevel, sz_inherit > :: four_value; };
+
+template < > struct type_master < t_lrxx > : four_value < t_lrxx, e_lrxx, sz_left, sz_right, sz_x_end, sz_x_start >
+{ using four_value < t_lrxx, e_lrxx, sz_left, sz_right, sz_x_end, sz_x_start > :: four_value; };
 
 template < > struct type_master < t_mathclosure > : four_value < t_mathclosure, e_mathclosure, sz_open, sz_closed, sz_openclosed, sz_closedopen >
 { using four_value < t_mathclosure, e_mathclosure, sz_open, sz_closed, sz_openclosed, sz_closedopen > :: four_value; };

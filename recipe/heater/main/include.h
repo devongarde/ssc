@@ -63,12 +63,12 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 25
-#define VERSION_STRING "0.2.25"
+#define VERSION_RELEASE 26
+#define VERSION_STRING "0.2.26"
 
 #define BUILD_YEAR              "2026"
 #define BUILD_MONTH             "Feb"
-#define BUILD_DAY_ISH BUILD_YEAR "-02-01"
+#define BUILD_DAY_ISH BUILD_YEAR "-02-10"
 #define LATEST_CSS              "2025"
 
 #define NBSP "&nbsp;"
@@ -89,8 +89,9 @@ z
 #define UPDATE_URL_1 WEBADDR "ssc.ver"
 #define UPDATE_URL_2 "https://dylanharris.org/ssc/ssc.ver"
 
-#define DEFAULT_LINE_LENGTH 72
-#define DESCRIPTION_LENGTH 60
+#define DEFAULT_LINE_LENGTH 132
+#define MIN_LINE_LENGTH 72
+#define DESCRIPTION_LENGTH 120
 
 #define DEFAULT_MAX_FILE_SIZE 4
 #define DMFS_BYTES (DEFAULT_MAX_FILE_SIZE * 1024 * 1024)
@@ -669,7 +670,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define PLAIN_TYPE "text/plain"
 
 #define EXPORT_EXTENSION ".json"
-#define QNONE "'none'"
+#define NONE "none"
 
 #define US_ASCII "US-ASCII"
 #define LATIN_1 "ISO-8859-1"

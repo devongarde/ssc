@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN repeating-conic-gradient tests</title>
+<style>
+.sid
+{
+/* Starburst: a blue on blue starburst: the gradient
+   is a starburst of lighter and darker blue,
+   centered in the upper left quadrant,
+   offset by 3degrees so there is no up/down straight line */
+ background-image: repeating-conic-gradient(
+  from 3deg at 25% 25%,
+  hsl(200 100% 50%) 0deg 15deg,
+  hsl(200 100% 60%) 10deg 30deg
+);
+
+/* Interpolation in polar color space
+  with longer hue interpolation method */
+ background-image: repeating-conic-gradient(in hsl shorter hue, red, blue 90deg, green 180deg);
+
+ background-image: repeating-conic-gradient(from 0deg, red 0deg 30deg, yellow 30deg 60deg, blue 60deg 90deg);
+
+ background-image: repeating-radial-gradient(red 0 8%, yellow 8% 16%, blue 16% 24%);
+
+ background-image: conic-gradient(red 120deg, yellow 120deg 240deg, blue 240deg);
+
+ background-image: radial-gradient(red 33%, yellow 33% 66%, blue 66%);
+
+ background-image: repeating-conic-gradient(red, orange, yellow, green, blue 50%);
+ background-image: repeating-conic-gradient(from -45deg, red 45deg, orange, yellow, green, blue 225deg);
+
+}
+
+div {
+  background-image: repeating-conic-gradient(white 0 9deg, black 9deg 18deg);
+}
+
+div {
+  background: repeating-conic-gradient(
+    from 3deg at 25% 25%,
+    green,
+    blue 2deg 5deg,
+    green,
+    yellow 15deg 18deg,
+    green 20deg
+  );
+}
+
+.shorter {
+  background-image: repeating-conic-gradient(
+    in hsl shorter hue,
+    red,
+    blue 180deg
+  );
+}
+
+.longer {
+  background-image: repeating-conic-gradient(
+    in hsl longer hue,
+    red,
+    blue 180deg
+  );
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN repeating-conic-gradient Tests</h1>
+
+</body>
+</html>

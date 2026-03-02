@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN radial-gradient tests</title>
+<style>
+.sid
+{
+/* A gradient with a single color of red */
+background-image:radial-gradient(red);
+
+/* A gradient at the center of its container,
+   starting red, changing to blue, and finishing green */
+background-image:radial-gradient(circle at center, red 0, blue, green 100%);
+
+/* hsl color space with longer hue interpolation */
+background-image:radial-gradient(circle at center in hsl longer hue, red 0, blue, green 100%);
+}
+
+.radial-gradient {
+  background-image: radial-gradient(cyan 0%, transparent 20%, salmon 40%);
+}
+
+.radial-gradient {
+  background-image: radial-gradient(
+    farthest-corner at 40px 40px,
+    #ff3355 0%,
+    #4433ee 100%
+  );
+}
+
+.shorter {
+  background-image: radial-gradient(
+    circle at center in hsl shorter hue,
+    red,
+    blue
+  );
+}
+
+.longer {
+  background-image: radial-gradient(
+    circle at center in hsl longer hue,
+    red,
+    blue
+  );
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN radial-gradient Tests</h1>
+
+</body>
+</html>

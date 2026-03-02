@@ -242,6 +242,33 @@ template < e_type T, e_type P, e_type Q, class SZ > struct either_type_or_string
             nits.merge (gnats); nits.merge (nuts); nits.merge (knots); }
         tidy_string < T > :: status (s_invalid); } };
 
+template < e_type T, e_type P, e_type IDENT, class SZ > struct type_string_or_ident : tidy_string < T >
+{   using tidy_string < T > :: tidy_string;
+    bool id_ = false;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
+        {   const ::std::string ss (tidy_string < T > :: get_string ());
+            nitpick gnats, nuts, knots;
+            if (compare_complain (gnats, v, SZ :: sz (), ss)) { nits.merge (gnats); return; }
+            if (test_value < P > (nuts, v, ss, tidy_string < T > :: id ()))
+            {   nits.merge (nuts); return; }
+            if (test_value < IDENT > (knots, v, ss, tidy_string < T > :: id ()))
+            {   nits.merge (knots); id_ = true; return; }
+            nits.merge (gnats); nits.merge (nuts); nits.merge (knots); }
+        tidy_string < T > :: status (s_invalid); }
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& i, element* e)
+    {   if (! id_) return false;
+        type_master < IDENT > pt;
+        nitpick nuts;
+        pt.set_value (nuts, v, tidy_string < T > :: get_string ());
+        return pt.invalid_id (nits, v, i, e); }
+    bool invalid_access (nitpick& nits, const html_version& v, sstr_t* s)
+    {   if (! id_) return false;
+        type_master < IDENT > pt;
+        pt.set_value (nits, v, tidy_string < T > :: get_string ());
+        return pt.invalid_access (nits, v, s); } };
+
 template < e_type T, e_type P, e_type Q, e_type R, class SZ > struct one_of_three_or_string : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -374,9 +401,9 @@ template < e_type T, e_type U, class SZ, e_type P, int F = 0 > struct type_eithe
                 both_ = true;
                 res = test_value < P > (nits, v, vs.at (1), tidy_string < T > :: id ()); }
             if ((! both_) && (vs.size () > 1))
-                nits.pick (nit_too_many, es_warning, ec_type, "one or two values expected; ignoring values from ", quote (vs.at (1)));
+                nits.pick (nit_too_many, es_warning, ec_type, "one or two values expected; ignoring values from ", quote (vs.at (1)), " (7)");
             else if (vs.size () > 2)
-                nits.pick (nit_too_many, es_warning, ec_type, "one or two values expected; ignoring values from ", quote (vs.at (2)));
+                nits.pick (nit_too_many, es_warning, ec_type, "one or two values expected; ignoring values from ", quote (vs.at (2)), " (8)");
             if (res) return; }
         uq4 < T, SZ, F > :: status (s_invalid); }
     ::std::size_t size () const noexcept { return both_ ? 2 : 1; } };
@@ -389,7 +416,7 @@ template < e_type T, e_type U, class SZ, e_type P, int F = 0 > struct type_one_o
         if ((vs.size () > 0) && uq4 < T, SZ, F > :: good ())
         {   bool res = test_value < U > (nits, v, vs.at (0), tidy_string < T > :: id ());
             if ((vs.size () > 1) && (! test_value < P > (nits, v, vs.at (1), tidy_string < T > :: id ()))) res = false;
-            if (vs.size () > 2) nits.pick (nit_too_many, es_warning, ec_type, "one or two values expected; ignoring additional values from ", quote (vs.at (2)));
+            if (vs.size () > 2) nits.pick (nit_too_many, es_warning, ec_type, "one or two values expected; ignoring additional values from ", quote (vs.at (2)), " (9)");
             if (res) return; }
         uq4 < T, SZ, F > :: status (s_invalid); }
     ::std::size_t size () const noexcept { return both_ ? 2 : 1; } };
@@ -409,7 +436,8 @@ template < e_type T, class SZ, e_type U, e_type P, int F = 0 > struct type_ab_ba
             if (! good)
                 if (test_value < P > (nits, v, vs.at (0), tidy_string < T > :: id ()))
                     good = (vs.size () == 1) || test_value < U > (nits, v, vs.at (1), tidy_string < T > :: id ());
-            if (vs.size () > 2) nits.pick (nit_too_many, es_warning, ec_type, "ignoring values from ", quote (vs.at (2)), " (", type_name (T), ")");
+            if (vs.size () > 2)
+                nits.pick (nit_too_many, es_warning, ec_type, "ignoring values from ", quote (vs.at (2)), " (", type_name (T), ")");
             if (good) return; }
         uq4 < T, SZ, F > :: status (s_invalid); }
     ::std::size_t size () const noexcept { return 2; } };
@@ -426,7 +454,7 @@ template < e_type T, e_type P, class SZ, int F = 0 > struct type_then_string : u
             if (vs.size () < 2) { good = false; nits.pick (nit_css_syntax, es_error, ec_type, "value then ", SZ :: sz (), " expected"); }
             else
             {   if (! compare_complain (nits, v, SZ :: sz (), vs.at (1)))  good = false;
-                if (vs.size () > 2) nits.pick (nit_too_many, es_warning, ec_type, "ignoring values from ", SZ :: sz ()); }
+                if (vs.size () > 2) nits.pick (nit_too_many, es_warning, ec_type, "ignoring values from ", SZ :: sz (), " (1)"); }
             if (good) return; }
         uq4 < T, sz_space_char, F > :: status (s_invalid); }
     ::std::size_t size () const noexcept { return 3; } };
@@ -441,12 +469,12 @@ template < e_type T, e_type P, class SZ, int F = 0 > struct maybe_type_then_stri
             nitpick nuts, nets;
             if (compare_complain (nuts, v, SZ :: sz (), vs.at (0)))
             {   nits.merge (nuts);
-                if (vs.size () > 1) nits.pick (nit_too_many, es_warning, ec_type, "ignoring values after ", SZ :: sz ());
+                if (vs.size () > 1) nits.pick (nit_too_many, es_warning, ec_type, "ignoring values after ", SZ :: sz (), " (3)");
                 return; }
             if (test_value < P > (nets, v, vs.at (0)))
             {   nits.merge (nets);
                 if (compare_complain (nits, v, SZ :: sz (), vs.at (1)))
-                {   if (vs.size () > 2) nits.pick (nit_too_many, es_warning, ec_type, "ignoring values after ", SZ :: sz ());
+                {   if (vs.size () > 2) nits.pick (nit_too_many, es_warning, ec_type, "ignoring values after ", SZ :: sz (), " (4)");
                     return; }
                 else nits.pick (nit_css_syntax, es_error, ec_type, SZ :: sz (), " expected after ", quote (vs.at (0))); }
             else { nits.merge (nuts); nits.merge (nets); } }
@@ -483,7 +511,7 @@ template < e_type T, e_type P, e_type Q, class SZ, int F = 0 > struct both_types
             if (vs.size () > 2)
                 if (! compare_complain (nits, v, SZ :: sz (), vs.at (2))) good = false;
             if (vs.size () < 3) { good = false; nits.pick (nit_too_few, es_error, ec_type, "three values expected"); }
-            else if (vs.size () > 3) nits.pick (nit_too_many, es_warning, ec_type, "ignoring values from ", quote (vs.at (3)));
+            else if (vs.size () > 3) nits.pick (nit_too_many, es_warning, ec_type, "ignoring values from ", quote (vs.at (3)), " (2)");
             if (good) return; }
         uq4 < T, sz_space_char, F > :: status (s_invalid); }
     ::std::size_t size () const noexcept { return 3; } };
@@ -500,7 +528,7 @@ template < e_type T, e_type A, class SZ, e_type B, int F = 0 > struct type_opt_t
             else
             {   res = test_value < A > (nits, v, vs.at (0), uq4 < T, SZ, F > :: id ());
                 if (! test_value < B > (nits, v, vs.at (1), uq4 < T, SZ, F > :: id ())) res = false;
-                if (vs.size () > 2) nits.pick (nit_too_many, es_warning, ec_type, "one or two values expected; ignoring additional values from ", quote (vs.at (2))); }
+                if (vs.size () > 2) nits.pick (nit_too_many, es_warning, ec_type, "one or two values expected; ignoring additional values from ", quote (vs.at (2)), " (6)"); }
             if (res) return; }
         uq4 < T, SZ, F > :: status (s_invalid); }
     ::std::size_t size () const { return both_ ? 2 : 1; } };
@@ -599,7 +627,7 @@ template < e_type T, e_type P, class SZSEP, class SZ1 > struct type_and_maybe_st
         {   vstr_t params (uq2_sep (tidy_string < T > :: get_string (), UQ_TRIM | UQ_ROUND | UQ_DQ | UQ_SQ, SZSEP :: sz ()));
             PRESUME (params.size () > 0, __FILE__, __LINE__);
             bool nice = test_value < P > (nits, v, params.at (0));
-            nitpick nuts;
+            nitpick nuts, knots;
             for (::std::size_t i = 1; i < params.size (); ++i)
                 if (! compare_complain (nuts, v, SZ1 :: sz (), params.at (i)))
                     nice = false;

@@ -53,7 +53,7 @@ struct property_base
 
 bool examine_custom_property (arguments& args, nitpick& nits, const int from, const int to);
 bool check_constants (arguments& args, nitpick& nits, const int i);
-bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e_css_val_fn& e);
+bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e_css_val_fn& e, bool& params);
 bool test_cascade (const ::std::string& s, e_iiu& iiu);
 
 template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public property_base, public type_master < TYPE >
@@ -79,12 +79,13 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
             if ((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier))
                 if (! check_constants (args, nits, i))
                 {   nitpick nuts;
-                    if (! call_fn (args, nuts, i, to, res, e))
+                    bool params = false;
+                    if (! call_fn (args, nuts, i, to, res, e, params))
                     {   if (! ok)
                         {   nits.merge (nuts);
                             test_value < TYPE > (nits, args.v_, args.t_.at (i).val_); } }
                     else if (e != cvf_none)
-                    {   if (ok && listed < cvf_url, cvf_colour, cvf_hsl, cvf_hsla, cvf_hwb, cvf_lab, cvf_lch, cvf_oklab, cvf_oklch, cvf_rgb, cvf_rgba > :: yes (e)) return res;
+                    {   if (ok && ((! params) || listed < cvf_url, cvf_colour, cvf_hsl, cvf_hsla, cvf_hwb, cvf_lab, cvf_lch, cvf_oklab, cvf_oklch, cvf_rgb, cvf_rgba > :: yes (e))) return res;
                         nits.merge (nuts);
                         start = i = test_value_fns (args, i, to, nits, TYPE, e, IDENTITY); } }
         return res; }

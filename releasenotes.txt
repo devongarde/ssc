@@ -3,10 +3,15 @@ static site checker
 https://dylanharris.org/ssc/
 (c) 2020-2026 Dylan Harris
 
+0.2.26
+- start updating CSS
+- various bug fixes
+- underlying work
+
 0.2.25
+- fix wx crash on unii
 - remove old port files
 - change domain from ssc.lu to dylanharris.org/ssc
-- fix wx crash on unii
 - various bug fixes
 - underlying work
 

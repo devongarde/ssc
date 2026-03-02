@@ -99,7 +99,7 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
 {   if (value < e_ssi_encoding, t_ssi_encoding > (ln, nits, v, e, uq (arg), true))
     {   if ((e == ssi_encoding_none) || (e == ssi_encoding_url)) return true;
         set_ssi_context (ln, nits, es_error);
-        nits.pick (nit_unsupported_code, es_error, ec_ssi, "apologies, but " PROG " only supports the " QNONE " and 'url' encodings"); }
+        nits.pick (nit_unsupported_code, es_error, ec_ssi, "apologies, but " PROG " only supports the '" NONE "' and 'url' encodings"); }
     return false; }
 
 ::std::string timefmt (const ::std::string& fmt, const ::std::string& def, const struct tm* const t)

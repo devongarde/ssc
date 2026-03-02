@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+.sid
+{
+/* A <number> value */
+width: calc(100px * log(7.389)); /* 200px */
+width: calc(100px * log(8, 2)); /* 300px */
+width: calc(100px * log(625, 5)); /* 400px */
+}
+
+.bar {
+  width: calc(log(var(--value), 10) * 2em);
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+<div class="bar" style="--value: 50">50</div>
+<div class="bar" style="--value: 100">100</div>
+<div class="bar" style="--value: 500">500</div>
+<div class="bar" style="--value: 10000">10,000</div>
+<div class="bar" style="--value: 2000000">2,000,000</div>
+
+</body>
+</html>

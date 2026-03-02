@@ -75,6 +75,7 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
         { "parlour", d_johnson, "1452" },
         { "penciller", d_none, nullptr },
         { "randomised", d_none, nullptr },
+        { "recognised", d_none, nullptr },
         { "referrer", d_wiki, "https://en.wikipedia.org/wiki/HTTP_referer#Etymology" },
         { "speciality", d_johnson, "1895" },
         { "sought", d_none, nullptr },

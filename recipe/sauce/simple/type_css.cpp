@@ -225,23 +225,241 @@ e_status set_css_unicode_wildcard_value (nitpick& nits, const html_version& , co
         else return s_good; }
     return s_invalid; }
 
-e_status set_fn_calc_args_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box)
-{   if (s.empty ()) return s_good;
-    if (! test_esii (sii_fn, s))
-    {   VERIFY_NOT_NULL (box, __FILE__, __LINE__);
-        esii_scope esii (sii_fn, s);
-//        if (box -> get_page ().css ().parse_calc (interpret_string (nits, v, s), v, box -> namespaces (), box -> ancestral_elements (), false, box -> line ()))
-            return s_good; }
-    return s_invalid; }
+struct type_cvf
+{   e_type type_ = t_error;
+    e_css_val_fn cvf_ = cvf_none; };
+
+type_cvf a_tc [] =
+{   { t_css_fn_anchor, cvf_anchor },
+    { t_css_fn_anchor_size, cvf_anchor_size },
+    { t_css_fn_annotation, cvf_annotation },
+    { t_css_fn_attr, cvf_attr },
+    { t_css_fn_calc, cvf_calc },
+    { t_css_fn_calc_size, cvf_calc_size },
+    { t_css_fn_character_variant, cvf_character_variant },
+    { t_css_fn_cross_fade, cvf_cross_fade },
+    { t_css_fn_cubic_bezier, cvf_cubic_bezier },
+    { t_css_fn_dylm, cvf_dynamic_range_limit_mix },
+    { t_css_fn_element, cvf_element },
+    { t_css_fn_fit_content, cvf_fit_content },
+    { t_css_fn_if_media, cvf_media },
+    { t_css_fn_if_style, cvf_style },
+    { t_css_fn_if_supports, cvf_supports },
+    { t_css_fn_image, cvf_image },
+    { t_css_fn_image_set, cvf_image_set },
+    { t_css_fn_linear, cvf_linear },
+    { t_css_fn_moz_image_rect, cvf_moz_image_rect },
+    { t_css_fn_ornaments, cvf_ornaments },
+    { t_css_fn_round_t, cvf_round },
+    { t_css_fn_steps, cvf_steps },
+    { t_css_fn_styleset, cvf_styleset },
+    { t_css_fn_stylistic, cvf_stylistic },
+    { t_css_fn_superellipse, cvf_superellipse },
+    { t_css_fn_swash, cvf_swash },
+    { t_css_fn_type, cvf_type },
+    { t_css_fn_var, cvf_var },
+    { t_error, cvf_none } };
+
+typedef ssc_map < e_css_val_fn, e_type > m_cvf_t;
+static m_cvf_t mct;
+
+template < e_type TYPE, e_type... TYPES > struct fn_by_type : public fn_by_type < TYPES... >
+{   static e_status check (const e_type e, nitpick& nits, const html_version& v, const ::std::string& s)
+    {   if (e != TYPE) return fn_by_type < TYPES... > :: check (e, nits, v, s);
+        type_master < TYPE > t;
+        t.set_value (nits, v, s);
+        return t.status (); } };
+
+template < e_type TYPE > struct fn_by_type < TYPE >
+{   static e_status check (const e_type e, nitpick& nits, const html_version& v, const ::std::string& s)
+    {   type_master < TYPE > t;
+        if (e != TYPE) return s_invalid;
+        t.set_value (nits, v, s);
+        return t.status (); } };
+
+bool set_calc_ex (nitpick& nits, const html_version& v, char ch, e_status& st, ::std::string& n, bool& had_op, bool is_op = false)
+{   if (! n.empty ())
+        if (n != "-")
+            if (is_op || (ch <= ' '))
+                if (! test_value < t_css_calc_value > (nits, v, n))
+                    st = s_invalid;
+    if ((n == "-") || is_op)
+        switch (ch)
+        {   case '+' :
+            case '-' :
+            case '*' :
+            case '/' :
+                nits.pick (nit_css_type, ed_mdn, "calc ()", es_error, ec_css, quote (ch), ": after ", quote (n), " is wrong");
+                st = s_invalid;
+                had_op = true;
+                break;
+            case ')' :
+                break;
+            case '(' :
+                return true;
+            default :
+                if (! is_op)
+                    if (((ch >= 'A') && (ch <= 'Z')) || ((ch >= 'a') && (ch <= 'z')) || ((ch >= '0') && (ch <= '9')) || (ch == '_') || (ch == '-'))
+                    {   had_op = false; n += ch; break; }
+                if (ch <= ' ') break;
+                nits.pick (nit_css_type, ed_mdn, "calc ()", es_error, ec_css, quote (ch), ": unexpected");
+                st = s_invalid;
+                break; }
+    else
+        switch (ch)
+        {   case '+' :
+            case '-' :
+            case '*' :
+            case '/' :
+                had_op = true;
+                n.clear ();
+                break;
+            case ')' :
+                break;
+            case '(' :
+                return true;
+            default :
+                if (((ch >= 'A') && (ch <= 'Z')) || ((ch >= 'a') && (ch <= 'z')) || ((ch >= '0') && (ch <= '9')) || (ch == '_') || (ch == '-'))
+                {   had_op = false; n += ch; break; }
+                n.clear ();
+                if (ch <= ' ') break;
+                nits.pick (nit_css_type, ed_mdn, "calc ()", es_error, ec_css, quote (ch), ": unexpected");
+                st = s_invalid;
+                break; }
+    if (is_op) n.clear ();
+    return false; } 
+
+e_status set_fn_calc_args_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   if (ss.empty ()) return s_good;
+    nitpick gnats;
+    bool had_op = true;
+    int rounds = 0, fn = -1;
+    e_status st = s_good;
+    e_css_val_fn cvf = cvf_none;
+    ::std::string n, fnn, fna;
+    for (auto s : ss)
+    {   switch (s)
+        {   case '(' :
+                ++rounds;
+                if (fn >= 0) { fna += s; continue; }
+                fnn = n;
+                if (set_calc_ex (nits, v, s, st, n, had_op, true))
+                {   fn = rounds; n.clear (); fna.clear ();
+                    cvf = examine_value < t_css_val_fn > (nits, v, fnn);
+                    continue; }
+                break;
+            case ')' :
+                set_calc_ex (nits, v, s, st, n, had_op, true);
+                if (fn > rounds) fna += s;
+                else if (fn == rounds)
+                    if (! fnn.empty ())
+                    {   if (cvf > cvf_none)
+                        {   if ((type_master < t_css_val_fn > :: flags (cvf) & CF_CALC) == 0)
+                                nits.pick (nit_css_type, ed_mdn, "calc ()", es_warning, ec_css, quote (fnn), ": may be unsuitable here");
+                            if (mct.empty ())
+                                for (int i = 0; GSL_AT (a_tc, i).type_ != t_error; ++i)
+                                    mct.insert (m_cvf_t::value_type (GSL_AT (a_tc, i).cvf_, GSL_AT (a_tc, i).type_));
+                            auto t = mct.find (cvf);
+                            if (t == mct.cend ())
+                            {   nits.pick (nit_css_type, ed_mdn, "calc ()", es_warning, ec_css, "cannot convert ", fnn, " to internal type"); 
+                                st = s_invalid; }
+                            else fn_by_type < SSC_TYPES_CSS_FN_1, SSC_TYPES_CSS_FN_2, t_error > :: check (t -> second, nits, v, fna); }
+                        fnn.clear ();
+                        n.clear (); }
+                if (rounds == 0)
+                {   nits.pick (nit_css_type, ed_mdn, "calc ()", es_error, ec_css, quote (ss), ": is a '(' missing?");
+                    st = s_invalid; }
+                else --rounds;
+                break;
+            default :
+                if (fn >= 0) { fna += s; continue; }
+                set_calc_ex (nits, v, s, st, n, had_op);
+                break; } }
+    if (rounds > 0)
+    {   nits.pick (nit_css_type, ed_mdn, "calc ()", es_error, ec_css, quote (ss), ": '(' and ')' appear to be imbalanced.");
+        st = s_invalid; }
+    return st; }
 
 e_status set_fn_trans_args_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box)
 {   if (s.empty ()) return s_good;
     if (! test_esii (sii_fn, s))
     {   VERIFY_NOT_NULL (box, __FILE__, __LINE__);
         esii_scope esii (sii_fn, s);
-        if (box -> get_page ().css ().parse_transform (interpret_string (nits, v, s), v, box -> namespaces (), box -> ancestral_elements (), false, box -> line ()))
+//        if (box -> get_page ().css ().parse_transform (interpret_string (nits, v, s), v, box -> namespaces (), box -> ancestral_elements (), false, box -> line ()))
             return s_good; }
     return s_invalid; }
+
+e_status set_fn_type_args_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   if (ss.empty ()) return s_good;
+    if (ss == "*") return s_good;
+    nitpick gnats;
+    bool angular = false, had_type = false, had_word = false;
+    e_status st = s_good;
+    ::std::string n;
+    for (auto s : ss)
+        switch (s)
+        {   case '<' :
+                if (! n.empty ())
+                {   n.clear ();
+                    nits.pick (nit_css_type, ed_mdn, "type ()", es_error, ec_css, quote (s), ": is a '|' missing?");
+                    st = s_invalid; }
+                if (angular)
+                {   nits.pick (nit_css_type, ed_mdn, "type ()", es_error, ec_css, quote (s), ": cannot have nested types");
+                    st = s_invalid; }
+                else angular = true;
+                had_word = had_type = false;
+                break;
+            case '>' :
+                if (! angular)
+                {   nits.pick (nit_css_type, ed_mdn, "type ()", es_error, ec_css, quote (s), ": missing '<'");
+                    st = s_invalid;
+                    had_word = had_type = false; }
+                else
+                {   angular = false;
+                    if (! test_value < t_css_type > (nits, v, n))
+                        st = s_invalid;
+                    had_type = true;
+                    n.clear (); }
+                had_word = false;
+                break;
+            case '|' :
+                if (! had_word && ! had_type)
+                {   nits.pick (nit_css_type, ed_mdn, "type ()", es_error, ec_css, quote (s), ": should follow a type specification (e.g. '< TYPE >*') or a value");
+                    st = s_invalid; }
+                had_word = had_type = false;
+                break;
+            case '+' :
+                if (! had_type)
+                {   nits.pick (nit_css_type, ed_mdn, "type ()", es_error, ec_css, quote (s), ": should follow a type specification (e.g. '< TYPE >*')");
+                    st = s_invalid; }
+                had_word = had_type = false;
+                break;
+            case '#' :
+                if (! had_type)
+                {   nits.pick (nit_css_type, ed_mdn, "type ()", es_error, ec_css, quote (s), ": should follow a type specification (e.g. '< TYPE >#')");
+                    st = s_invalid; }
+                had_word = had_type = false;
+                break;
+            default :
+                if (s <= ' ')
+                {   if (! n.empty ()) had_word = true;
+                    break; }
+                if (had_word || had_type)
+                {   nits.pick (nit_css_type, ed_mdn, "type ()", es_error, ec_css, "is a '|' missing after ", quote (n));
+                    n.clear ();
+                    st = s_invalid;
+                    had_word = had_type = false; }
+                if (((s >= '0') && (s <= '9')) || ((s >= 'a') && (s <= 'z')) || ((s >= 'A') && (s <= 'Z')) || (s == '-') || (s == '_'))
+                    n += s;
+                else
+                {   nits.pick (nit_css_type, ed_mdn, "type ()", es_error, ec_css, quote (s), ": unexpected when processing type ()");
+                    st = s_invalid; }
+                had_type = false;
+                break; }
+    if (angular)
+    {   nits.pick (nit_css_type, ed_mdn, "type ()", es_error, ec_css, "missing '>' at end of type ()");
+        st = s_invalid; }
+    return st; }
 
 e_status set_region_value (nitpick& , const html_version& , const ::std::string& s, element* box)
 {   if (s.empty ()) return s_invalid;

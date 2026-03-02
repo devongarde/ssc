@@ -38,14 +38,17 @@ void bonk (vtok_t& vt, e_token t, const int line, ::std::string& s, ::std::strin
     if (t == ct_root) commented = sgml_cmt = xml_cmt = false;
     bool shush = false;
     if (! s.empty ())
-    {   if ((s.length () > 1) && ((s.at (0) == '"') || (s.at (0) == '\'') || (s.at (0) == '\\')) && (s.at (s.length () - 1) == s.at (0)))
+    {   const ::std::string::size_type len = s.length ();
+        if ((len > 1) && ((s.at (0) == '"') || (s.at (0) == '\'')) && (s.at (len - 1) == s.at (0)))
+        {   vt.emplace_back (ct_string, line, x, s); shush = true; }
+        else if ((s.at (0) == '\'') && (s.at (len - 1) == s.at (0)))
         {   vt.emplace_back (ct_string, line, x, uq3 (s)); shush = true; }
-        else if ((s.length () == 1) && (s.at (0) == '-'))
+        else if ((len == 1) && (s.at (0) == '-'))
             vt.emplace_back (ct_dash, line, x);
         else if ((s.substr (0, 1).find_first_not_of (SIGNEDDECIMAL) == ::std::string::npos) &&
                     (s.substr (1).find_first_not_of (EXPONENTIAL) == ::std::string::npos))
             vt.emplace_back (ct_number, line, x, s);
-        else if ((s.length () == 1) && (s.at (0) == HASH))
+        else if ((len == 1) && (s.at (0) == HASH))
             vt.emplace_back (ct_hash, line, x);
         else
         {   if (context.html_ver ().css_version () == css_1)

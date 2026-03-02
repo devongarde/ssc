@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+.sid
+{
+backdrop-filter: contrast(0) ;   /* Completely gray */
+backdrop-filter: contrast(0%);
+
+backdrop-filter: contrast(0.65); /* 65% contrast */
+backdrop-filter: contrast(65%);
+
+backdrop-filter: contrast()  ;   /* No effect */
+backdrop-filter: contrast(1);
+backdrop-filter: contrast(100%);
+
+backdrop-filter: contrast(2)  ;  /* Double contrast */
+backdrop-filter: contrast(200%);
+}
+
+.container {
+  background: url("unity_for_the_people.jpg") no-repeat center / contain #333399;
+}
+p {
+  backdrop-filter: contrast(0.5);
+}
+code {
+  backdrop-filter: contrast(0.15);
+}
+
+p:first-of-type {
+  filter: contrast(30%);
+}
+p:last-of-type {
+  filter: contrast(300%);
+}
+
+.doris
+{
+filter: contrast(200%);
+filter: url("#contrast"); /* with embedded SVG */
+filter: url("folder/fileName.svg#contrast"); /* external svg filter definition */
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  id="svg"
+  viewBox="0 0 240 151"
+  height="0"
+  width="0"
+  overflow="visible"
+  color-interpolation-filters="sRGB">
+  <filter id="contrast">
+    <feComponentTransfer>
+      <feFuncR type="linear" slope="2" intercept="-0.5" />
+      <feFuncG type="linear" slope="2" intercept="-0.5" />
+      <feFuncB type="linear" slope="2" intercept="-0.5" />
+    </feComponentTransfer>
+  </filter>
+</svg>
+
+</body>
+</html>

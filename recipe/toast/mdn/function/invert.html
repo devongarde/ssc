@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN invert tests</title>
+<style>
+.sid
+{
+/* No inversion */
+filter: invert(0);
+
+/* Complete inversion */
+filter: invert();
+filter: invert(1);
+filter: invert(100%);
+
+/* 60% inversion */
+filter: invert(.6);
+filter: invert(60%);
+
+filter: invert(0.9);
+filter: invert(90%);
+filter: url("#invert90"); /* with embedded SVG */
+filter: url("fileName.svg#invert90"); /* external SVG */
+}
+
+.filter {
+  filter: invert(70%);
+}
+
+.svgFilter {
+  filter: url("#invert");
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN invert Tests</h1>
+
+<svg role="none">
+  <filter id="invert90">
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues="0.1 0" />
+      <feFuncG type="table" tableValues="0.1 0" />
+      <feFuncB type="table" tableValues="0.1 0" />
+    </feComponentTransfer>
+  </filter>
+</svg>
+
+<svg height="0">
+  <filter id="invert">
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues="0.3 0" />
+      <feFuncG type="table" tableValues="0.3 0" />
+      <feFuncB type="table" tableValues="0.3 0" />
+    </feComponentTransfer>
+  </filter>
+</svg>
+
+</body>
+</html>

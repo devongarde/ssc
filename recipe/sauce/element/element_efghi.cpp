@@ -317,26 +317,50 @@ void element::examine_h123456 ()
 {   if (node_.version ().mjr () < 5) return;
     check_ancestors (tag (), empty_element_bitset | elem_address | elem_dt);
     if (node_.version () >= html_aug25)
-    {   switch (tag ())
+    {   if (previous_h_ != elem_none)
+            switch (tag ())
+            {   case elem_h2 :
+                    if (previous_h_ == elem_none)
+                        pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H2> should really be a descendent of <H1>, not <", elem::name (previous_h_), ">");
+                    break;
+                case elem_h3 :
+                    if ((previous_h_ == elem_none) || (previous_h_ == elem_h1))
+                        pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H3> should really be a descendant of <H2>, not <", elem::name (previous_h_), ">");
+                    break;
+                case elem_h4 :
+                    if ((previous_h_ == elem_none) || (previous_h_ == elem_h1) || (previous_h_ == elem_h2))
+                        pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H4> should really be a descendant of <H3>, not <", elem::name (previous_h_), ">");
+                    break;
+                case elem_h5 :
+                    if ((previous_h_ == elem_none) || ((previous_h_ >= elem_h1) && (previous_h_ <= elem_h3)))
+                        pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H5> should really be a descendant of <H4>, not <", elem::name (previous_h_), ">");
+                    break;
+                case elem_h6 :
+                    if ((previous_h_ == elem_none) || ((previous_h_ >= elem_h1) && (previous_h_ <= elem_h4)))
+                        pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H6> should really be a descendant of <H5>, not <", elem::name (previous_h_), ">");
+                    break;
+                default :
+                    break; }
+        else switch (tag ())
         {   case elem_h2 :
                 if (previous_h_ == elem_none)
-                    pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H2> should really be a descendent of <H1>, not <", elem::name (previous_h_), ">");
+                    pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H2> should really be a descendent of <H1>");
                 break;
             case elem_h3 :
                 if ((previous_h_ == elem_none) || (previous_h_ == elem_h1))
-                    pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H3> should really be a descendant of <H2>, not <", elem::name (previous_h_), ">");
+                    pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H3> should really be a descendant of <H2>");
                 break;
             case elem_h4 :
                 if ((previous_h_ == elem_none) || (previous_h_ == elem_h1) || (previous_h_ == elem_h2))
-                    pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H4> should really be a descendant of <H3>, not <", elem::name (previous_h_), ">");
+                    pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H4> should really be a descendant of <H3>");
                 break;
             case elem_h5 :
                 if ((previous_h_ == elem_none) || ((previous_h_ >= elem_h1) && (previous_h_ <= elem_h3)))
-                    pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H5> should really be a descendant of <H4>, not <", elem::name (previous_h_), ">");
+                    pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H5> should really be a descendant of <H4>");
                 break;
             case elem_h6 :
                 if ((previous_h_ == elem_none) || ((previous_h_ >= elem_h1) && (previous_h_ <= elem_h4)))
-                    pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H6> should really be a descendant of <H5>, not <", elem::name (previous_h_), ">");
+                    pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H6> should really be a descendant of <H5>");
                 break;
             default :
                 break; }

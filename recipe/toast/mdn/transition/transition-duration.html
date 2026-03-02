@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN transition-duration tests</title>
+<style>
+.sid
+{
+/* <time> values */
+transition-duration: 6s;
+transition-duration: 120ms;
+transition-duration: 1s, 15s;
+transition-duration: 10s, 30s, 230ms;
+
+/* Global values */
+transition-duration: inherit;
+transition-duration: initial;
+transition-duration: revert;
+transition-duration: revert-layer;
+transition-duration: unset;
+}
+.box {
+  margin: 20px;
+  padding: 10px;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  font-size: 18px;
+  transition-property: background-color, font-size, transform, color;
+  transition-timing-function: ease-in-out;
+}
+
+.transformed-state {
+  transform: rotate(270deg);
+  background-color: blue;
+  color: yellow;
+  font-size: 12px;
+  transition-property: background-color, font-size, transform, color;
+  transition-timing-function: ease-in-out;
+}
+
+.duration-1 {
+  transition-duration: 0.5s;
+}
+
+.duration-2 {
+  transition-duration: 2s;
+}
+
+.duration-3 {
+  transition-duration: 4s;
+}
+</style>
+<script>
+function change() {
+  const elements = document.querySelectorAll("div.box");
+  for (const element of elements) {
+    element.classList.toggle("transformed-state");
+  }
+}
+
+const changeButton = document.querySelector("#change");
+changeButton.addEventListener("click", change);
+</script>
+</head>
+
+<body>
+
+<h1>MDN transition-duration Tests</h1>
+
+<div class="box duration-1">0.5 seconds</div>
+
+<div class="box duration-2">2 seconds</div>
+
+<div class="box duration-3">4 seconds</div>
+
+<button id="change">Change</button>
+
+</body>
+</html>

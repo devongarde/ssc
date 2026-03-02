@@ -685,7 +685,7 @@ e_status set_csp_value (nitpick& nits, const html_version& v, const ::std::strin
                 {   const e_csp_directive cd = examine_value < t_csp_directive > (nits, v, csp.at (0));
                     switch (cd)
                     {   case csp_plugin_types :
-                            if (! compare_no_case (csp.at (1), QNONE))
+                            if (! compare_no_case (uq0 (csp.at (1)), NONE))
                                 for (::std::size_t i = 1; i < csp.size (); ++i)
                                     if (! test_value < t_mime > (nits, v, csp.at (i))) res = false;
                             break;
@@ -711,7 +711,7 @@ e_status set_csp_value (nitpick& nits, const html_version& v, const ::std::strin
                         default :
                             if (csp.size () < 2)
                                 nits.pick (nit_bad_csp_directive, ed_csp, "Content Security Policy Directives", es_error, ec_type, quote (csp.at (0)), " requires arguments");
-                            else if ((csp.size () != 2) || ! compare_no_case (csp.at (1), QNONE))
+                            else if ((csp.size () != 2) || ! compare_no_case (uq0 (csp.at (1)), NONE))
                                 for (::std::size_t i = 1; i < csp.size (); ++i)
                                     if (! test_value < t_csp_source > (nits, v, csp.at (i))) res = false; } } } }
     if (res) return s_good;

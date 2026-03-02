@@ -12,9 +12,8 @@ PASS ../toast/mdn/attribute/accesskey.html
 
 PASS ../toast/mdn/attribute/anchor.html
 2 naughty_lang
-5 unrecognised_value missing_value unrecognised_value missing_value unrecognised_value missing_value unrecognised_value
 25 unrecognised_value
-27 experimental invalid_attribute_version wrong_version
+27 experimental
 
 PASS ../toast/mdn/attribute/autocapitalise.html
 2 naughty_lang
@@ -83,14 +82,13 @@ PASS ../toast/mdn/attribute/enterkeyhint.html
 
 PASS ../toast/mdn/attribute/exportparts.html
 2 naughty_lang
-5 css_version css_version css_version css_version css_version css_version css_version css_version css_version css_version css_version css_version css_version css_version
 91 unknown_element experimental unknown_element
 94 id_exists
 96 unknown_element experimental unknown_element
 105 experimental unrecognised_value part
-106 experimental part
-107 experimental part
-108 experimental part
+106 experimental
+107 experimental
+108 experimental
 112 unknown_element
 113 unknown
 114 unknown
@@ -120,7 +118,6 @@ PASS ../toast/mdn/attribute/exportparts.html
 
 PASS ../toast/mdn/attribute/for.html
 2 naughty_lang
-5 css_colour
 44 use_double_quote_code
 48 use_double_quote_code
 

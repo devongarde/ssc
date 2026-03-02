@@ -392,6 +392,9 @@ This are switches that don't really belong in any other section.
 --general.file XXX      File for persistent data. See also
                         --general.datapath. Default extension: .ndx.
 
+--general.line-length x The maximum length of a line in output is x.
+						Default: 132, mimumum: 72.
+
 --general.maxfilesize n Do not process HTML source files that exceed n
                         bytes in size (default: 4M). Specify 0 for
                         unlimited, although be warned that ssc is

@@ -40,7 +40,7 @@ PASS ../toast/microdata/schema-defg/drycleaningorlaundry.html
 
 PASS ../toast/microdata/schema-defg/eooc.html
 0 charset_mismatch charset_used charset_invalid
-58 invalid_attribute_version wrong_version svg_rdf empty_link empty_link
+58 invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-defg/educationalorganisation.html
 30 bad_property

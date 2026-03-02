@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN progress tests</title>
+<style>
+.sid
+{
+/* With fixed progress value */
+width: progress(300, 0, 1000);
+width: progress(50px, 0px, 100px);
+width: progress(50%, 30%, 80%);
+
+/* With custom property */
+width: progress(var(--container-width), 320, 1200);
+
+/* Inside math function */
+width: calc((progress(var(--container-width), 20%, 80%) / 2) + 0.5);
+
+/* Inside non-math function */
+width: rgb(
+  calc(255 * progress(var(--container-width), 320px, 1200px));
+  calc(255 * progress(var(--container-width), 320px, 1200px)) 255 / 0.5;
+);
+
+/* Math function inside progress() */
+width: progress(calc(20 + 30), 0, 100);
+
+width: progress(5, 0, 10);
+
+width: progress(3em, 0px, 100px);
+
+width: calc(progress(100vw, 320px, 1200px) * 600px);
+
+width: calc(
+  progress(
+      var(--container-width),
+      var(--custom-min-width),
+      var(--custom-max-width)
+    ) *
+    var(--custom-max-width)
+);
+
+background-color: rgb(
+  calc(
+      255 *
+        progress(
+          var(--container-width),
+          var(--custom-min-width),
+          var(--custom-max-width)
+        )
+    )
+    calc(
+      255 *
+        progress(
+          var(--container-width),
+          var(--custom-min-width),
+          var(--custom-max-width)
+        )
+    )
+    255 / 0.5
+);
+
+}
+
+section {
+  --custom-min-width: 300px;
+  --custom-max-width: 700px;
+  --custom-width: 600px;
+
+  min-width: var(--custom-min-width);
+  max-width: var(--custom-max-width);
+  width: var(--custom-width);
+
+  background-color: cyan;
+}
+
+.progress {
+  height: 4px;
+  background-color: red;
+
+  width: calc(
+    progress(
+        var(--custom-width),
+        var(--custom-min-width),
+        var(--custom-max-width)
+      ) *
+      100%
+  );
+}
+
+body {
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --custom-min-width: 320px;
+  --custom-max-width: 1200px;
+}
+
+article {
+  min-width: var(--custom-min-width);
+  max-width: var(--custom-max-width);
+  position: relative;
+  width: 70%;
+  height: 600px;
+  border: 3px solid black;
+}
+
+.progress {
+  width: calc(
+    progress(
+        var(--container-width),
+        var(--custom-min-width),
+        var(--custom-max-width)
+      ) *
+      100%
+  );
+  height: 4px;
+  background-color: red;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  background-image: url("https://mdn.github.io/shared-assets/images/examples/wide-background.jpg");
+  background-position-x: calc(
+    progress(
+        var(--container-width),
+        var(--custom-min-width),
+        var(--custom-max-width)
+      ) *
+      100%
+  );
+}
+
+.content {
+  position: absolute;
+  inset: 0;
+  padding: 20px;
+  background-color: rgb(
+    calc(
+        255 *
+          progress(
+            var(--container-width),
+            var(--custom-min-width),
+            var(--custom-max-width)
+          )
+      )
+      calc(
+        255 *
+          progress(
+            var(--container-width),
+            var(--custom-min-width),
+            var(--custom-max-width)
+          )
+      )
+      255 / 0.5
+  );
+  opacity: calc(
+    (
+        progress(
+            var(--container-width),
+            var(--custom-min-width),
+            var(--custom-max-width)
+          ) /
+          2
+      ) +
+      0.5
+  );
+}
+
+</style>
+<script>
+const articleElem = document.querySelector("article");
+
+function setContainerWidth() {
+  const clientWidth = articleElem.getBoundingClientRect().width;
+  articleElem.style.setProperty(
+    "--container-width",
+    `${Math.floor(clientWidth)}px`,
+  );
+}
+
+window.addEventListener("resize", setContainerWidth);
+
+setContainerWidth();
+</script>
+</head>
+
+<body>
+
+<h1>MDN progress Tests</h1>
+
+<section>
+  <div class="progress"></div>
+</section>
+
+<article>
+  <section class="background"></section>
+  <section class="content">
+    <div class="progress"></div>
+    <!-- Content here -->
+  </section>
+</article>
+
+</body>
+</html>

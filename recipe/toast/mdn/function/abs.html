@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN circle tests</title>
+<style>
+.sid {
+    /* abs( <calc-sum> ) */
+    font-size: abs(20% - 100px);
+    font-size: abs(var(--gradientAngle));
+}
+h1 {
+  font-size: abs(var(--font-size));
+}
+div {
+  --deg: -45deg;
+  background-image: linear-gradient(abs(var(--deg)), blue, red);
+}
+p {
+  line-height: max(var(--lh), -1 * var(--lh));
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN circle Tests</h1>
+
+</body>
+</html>

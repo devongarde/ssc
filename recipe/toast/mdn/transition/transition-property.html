@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN transition-property tests</title>
+<style>
+.doris
+{
+/* Keyword values */
+transition-property: none;
+transition-property: all;
+
+/* <custom-ident> values */
+transition-property: test_05;
+transition-property: -specific;
+transition-property: sliding-vertically;
+
+/* Multiple values */
+transition-property: test1, animation4;
+transition-property: all, height, color;
+transition-property:
+  all,
+  -moz-specific,
+  sliding;
+
+/* Global values */
+transition-property: inherit;
+transition-property: initial;
+transition-property: revert;
+transition-property: revert-layer;
+transition-property: unset;
+}
+
+.target {
+  transition-property: background-color;
+  transition-duration: 1s;
+  background-color: #cccccc;
+}
+
+.target:hover,
+.target:focus {
+  background-color: #eeeeee;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN transition-property Tests</h1>
+
+<button class="target">Focus me!</button>
+
+</body>
+</html>

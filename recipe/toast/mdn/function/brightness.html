@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN brightness tests</title>
+<style>
+.sid
+{
+  backdrop-filter: brightness(0) ;  /* Brightness is reduced to zero, so input turns black */
+  backdrop-filter: brightness(0%);
+
+  backdrop-filter: brightness(0.4); /* Brightness of input is reduced to 40%, so input is 60% darker */
+  backdrop-filter: brightness(40%);
+
+  backdrop-filter: brightness();     /* Brightness of input is not changed */
+  backdrop-filter: brightness(1);
+  backdrop-filter: brightness(100%);
+
+  backdrop-filter: brightness(2);   /* Brightness of input is doubled */
+  backdrop-filter: brightness(200%);
+}
+.container {
+  background: url("be_fierce.jpg") no-repeat right / contain #d4d5b2;
+}
+p {
+  backdrop-filter: brightness(150%);
+  text-shadow: 2px 2px white;
+}
+
+p:first-of-type {
+  filter: brightness(50%);
+}
+p:last-of-type {
+  filter: brightness(200%);
+}
+
+svg
+{   filter: brightness(75%);
+    filter: url("#darken25"); /* with embedded SVG */
+    filter: url("folder/fileName.svg#darken25"); /* external svg filter definition */
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN brightness Tests</h1>
+
+<svg role="none">
+  <filter id="darken25" color-interpolation-filters="sRGB">
+    <feComponentTransfer>
+      <feFuncR type="linear" slope="0.75" />
+      <feFuncG type="linear" slope="0.75" />
+      <feFuncB type="linear" slope="0.75" />
+    </feComponentTransfer>
+  </filter>
+</svg>
+
+</body>
+</html>

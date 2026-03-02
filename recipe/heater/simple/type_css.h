@@ -35,8 +35,9 @@ e_status set_css_inherit_value (nitpick& nits, const html_version& v, const ::st
 e_status set_css_nth_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_css_unicode_from_to_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_css_unicode_wildcard_value (nitpick& nits, const html_version& v, const ::std::string& s);
-e_status set_fn_calc_args_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box);
+e_status set_fn_calc_args_value (nitpick& nits, const html_version& v, const ::std::string& ss);
 e_status set_fn_trans_args_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box);
+e_status set_fn_type_args_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_region_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box);
 e_status set_stn_value (nitpick& nits, const html_version& v, const vstr_t& vs, element* box);
 e_status set_vtn_value (nitpick& nits, const html_version& v, const vstr_t& vs, element* box);
@@ -230,15 +231,7 @@ template < > struct type_master < t_css_fn_calc_args > : public tidy_string < t_
 {   using tidy_string < t_css_fn_calc_args > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_fn_calc_args > :: set_value (nits, v, s);
-        if ((v.css_version () <= css_2_2) && ! v.css_any_3_4_5_6 ())
-        {   nits.pick (nit_css_version, es_error, ec_type, "CSS level 3 or better required");
-            status (s_invalid); }
-        else if (tidy_string < t_css_fn_calc_args > :: empty ())
-            nits.pick (nit_empty, es_warning, ec_type, "rather a minimalistic calculation"); }
-    bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
-    {   if (tidy_string < t_css_fn_calc_args > :: good ())
-            tidy_string < t_css_fn_calc_args > :: status (set_fn_calc_args_value (nits, v, tidy_string < t_css_fn_calc_args > :: get_string (), e));
-        return false; } };
+        tidy_string < t_css_fn_calc_args > :: status (set_fn_calc_args_value (nits, v, tidy_string < t_css_fn_calc_args > :: get_string ())); } };
 
 template < > struct type_master < t_css_fn_trans_args > : public tidy_string < t_css_fn_trans_args >
 {   using tidy_string < t_css_fn_trans_args > :: tidy_string;
@@ -253,6 +246,12 @@ template < > struct type_master < t_css_fn_trans_args > : public tidy_string < t
     {   if (tidy_string < t_css_fn_trans_args > :: good ())
             tidy_string < t_css_fn_trans_args > :: status (set_fn_trans_args_value (nits, v, tidy_string < t_css_fn_trans_args > :: get_string (), e));
         return false; } };
+
+template < > struct type_master < t_css_fn_type_args > : public tidy_string < t_css_fn_type_args >
+{   using tidy_string < t_css_fn_type_args > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_fn_type_args > :: set_value (nits, v, s);
+        tidy_string < t_css_fn_type_args > :: status (set_fn_type_args_value (nits, v, tidy_string < t_css_fn_type_args > :: get_string ())); } };
 
 template < > struct type_master < t_css_region_id > : public tidy_string < t_css_region_id >
 {   using tidy_string < t_css_region_id > :: tidy_string;

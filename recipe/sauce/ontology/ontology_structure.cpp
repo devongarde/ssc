@@ -4716,6 +4716,11 @@ microdata_structure ontology_structure [] =
     { { 3, 3 }, { 0, 0 }, sch_creativeworkseries, sp_issn },
     { { 2, 0 }, { 0, 0 }, sch_creativeworkseries, sp_startdate },
 
+    { { 29, 5 }, { 0, 0 }, sch_credential, sp_credentialcategory },
+    { { 29, 5 }, { 0, 0 }, sch_credential, sp_recognizedby },
+    { { 29, 5 }, { 0, 0 }, sch_credential, sp_validfor },
+    { { 29, 5 }, { 0, 0 }, sch_credential, sp_validin },
+
     { { 0, 95, 0, SV_NOT_3034 }, { 0, 0 }, sch_ddxelement, sp_diagnosis },
     { { 0, 95, 0, SV_NOT_3034 }, { 0, 0 }, sch_ddxelement, sp_distinguishingsign },
 
@@ -4953,12 +4958,12 @@ microdata_structure ontology_structure [] =
     { { 1, 0 }, { 0, 0 }, sch_educationaudience, sp_educationalrole },
 
     { { 3, 5 }, { 0, 0 }, sch_educationoccupationcredential, sp_competencyrequired },
-    { { 3, 5 }, { 0, 0 }, sch_educationoccupationcredential, sp_credentialcategory },
+    { { 3, 5 }, { 29, 4 }, sch_educationoccupationcredential, sp_credentialcategory },
     { { 3, 5 }, { 0, 0 }, sch_educationoccupationcredential, sp_educationallevel },
-    { { 3, 5 }, { 0, 0 }, sch_educationoccupationcredential, sp_recognisedby },
-    { { 28, 1 }, { 0, 0 }, sch_educationoccupationcredential, sp_recognizedby },
-    { { 3, 5 }, { 0, 0 }, sch_educationoccupationcredential, sp_validfor },
-    { { 3, 5 }, { 0, 0 }, sch_educationoccupationcredential, sp_validin },
+    { { 3, 5 }, { 28, 0 }, sch_educationoccupationcredential, sp_recognisedby },
+    { { 28, 1 }, { 29, 4 }, sch_educationoccupationcredential, sp_recognizedby },
+    { { 3, 5 }, { 29, 4 }, sch_educationoccupationcredential, sp_validfor },
+    { { 3, 5 }, { 29, 4 }, sch_educationoccupationcredential, sp_validin },
 
     { { 6, 0 }, { 0, 0 }, sch_educationoccupationprogramme, sp_applicationdeadline },
     { { 6, 0 }, { 0, 0 }, sch_educationoccupationprogramme, sp_applicationstartdate },

@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN path tests</title>
+<style>
+.sid
+{
+offset-path: path("M 10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80");
+
+/* When used in clip-path only */
+offset-path: path(evenodd,"M 10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80");
+}
+
+#path {
+  margin: 40px;
+  width: 400px;
+  height: 200px;
+
+  /* draw the gray ramp */
+  background: radial-gradient(at 50% 0%, transparent 70%, grey 70%, grey 100%);
+}
+
+#ball {
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: 50%;
+
+  /* mark the elliptical path */
+  offset-path: path("M 15 15 A 6 5.5 10 0 0 385 15");
+}
+
+html,
+body,
+svg {
+  height: 100%;
+}
+
+/* This path is displayed on hover */
+#svg_css_ex1:hover path {
+  d: path("M20,80 L50,20 L80,80");
+}
+</style>
+<script>
+const btn = document.querySelector("button");
+const ball = document.getElementById("ball");
+
+btn.addEventListener("click", () => {
+  btn.setAttribute("disabled", true);
+  setTimeout(() => btn.removeAttribute("disabled"), 6000);
+
+  ball.animate(
+    // animate the offset path
+    { offsetDistance: [0, "100%"] },
+    {
+      duration: 1500,
+      iterations: 4,
+      easing: "cubic-bezier(.667,0.01,.333,.99)",
+      direction: "alternate",
+    },
+  );
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN path Tests</h1>
+
+<div id="path">
+  <div id="ball"></div>
+</div>
+<button>animate</button>
+
+<svg id="svg_css_ex1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <path fill="none" stroke="red" d="M20,20 L50,80 L80,20" />
+</svg>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN anchor-size tests</title>
+<style>
+
+.sid
+{
+    /* sizing relative to anchor side */
+width: anchor-size(width);
+block-size: anchor-size(block);
+height: calc(anchor-size(self-inline) + 2em);
+
+/* sizing relative to named anchor's side */
+width: anchor-size(--my-anchor width);
+block-size: anchor-size(--my-anchor block);
+
+/* sizing relative to named anchor's side with fallback */
+width: anchor-size(--my-anchor width, 50%);
+block-size: anchor-size(--my-anchor block, 200px);
+
+/* positioning relative to anchor side */
+left: anchor-size(width);
+inset-inline-end: anchor-size(--my-anchor height, 100px);
+
+/* setting margin relative to anchor side */
+margin-left: calc(anchor-size(width) / 4);
+margin-block-start: anchor-size(--my-anchor self-block, 20px);
+}
+
+.positionedElem {
+  width: anchor-size(width);
+}
+
+.positionedElem {
+  inline-size: calc(anchor-size(self-inline) * 4);
+}
+
+.anchor {
+  anchor-name: --my-anchor;
+  width: 100px;
+  height: 100px;
+}
+
+.infobox {
+  position-anchor: --my-anchor;
+  position: fixed;
+}
+
+#infobox1 {
+  position-area: right;
+  height: anchor-size(height);
+  width: calc(anchor-size(width) * 2);
+  margin-left: 5px;
+}
+
+#infobox2 {
+  position-area: top span-right;
+  height: calc(anchor-size(height) / 1.5);
+  margin-bottom: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN anchor-size Tests</h1>
+
+<div class="anchor">⚓︎</div>
+
+<div class="infobox" id="infobox1">
+  <p>This is the first infobox.</p>
+</div>
+
+<div class="infobox" id="infobox2">
+  <p>This is the second infobox.</p>
+</div>
+
+</body>
+</html>

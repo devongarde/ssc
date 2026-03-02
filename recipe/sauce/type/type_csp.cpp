@@ -53,13 +53,13 @@ struct symbol_entry < html_version, e_csp_directive > csp_directive_symbol_table
     { { CSP_3 }, { HTML_UNDEF }, "worker-src", csp_worker } };
 
 struct symbol_entry < html_version, e_csp_keyword > csp_keyword_symbol_table [] =
-{   { { CSP_1 }, { HTML_UNDEF },  "'self'", csk_self },
-    { { CSP_1 }, { HTML_UNDEF },  "'unsafe-inline'", csk_unsafe_inline },
-    { { CSP_1 }, { HTML_UNDEF },  "'unsafe-eval'", csk_unsafe_eval },
-    { { CSP_3 }, { HTML_UNDEF },  "'strict-dynamic'", csk_strict_dynamic },
-    { { CSP_3 }, { HTML_UNDEF },  "'unsafe-hashes'", csk_unsafe_hashes },
-    { { CSP_3 }, { HTML_UNDEF },  "'report-sample'", csk_report_sample },
-    { { CSP_3 }, { HTML_UNDEF },  "'unsafe-allow-redirects'", csk_unsafe_allow_redirects } };
+{   { { CSP_1 }, { HTML_UNDEF },  "self", csk_self },
+    { { CSP_1 }, { HTML_UNDEF },  "unsafe-inline", csk_unsafe_inline },
+    { { CSP_1 }, { HTML_UNDEF },  "unsafe-eval", csk_unsafe_eval },
+    { { CSP_3 }, { HTML_UNDEF },  "strict-dynamic", csk_strict_dynamic },
+    { { CSP_3 }, { HTML_UNDEF },  "unsafe-hashes", csk_unsafe_hashes },
+    { { CSP_3 }, { HTML_UNDEF },  "report-sample", csk_report_sample },
+    { { CSP_3 }, { HTML_UNDEF },  "unsafe-allow-redirects", csk_unsafe_allow_redirects } };
 
 void csp_directive_init (nitpick& nits)
 {   type_master < t_csp_directive > :: init (nits, csp_directive_symbol_table, sizeof (csp_directive_symbol_table) / sizeof (symbol_entry < html_version, e_csp_directive >)); }

@@ -95,7 +95,7 @@ bool check_constants (arguments& args, nitpick& nits, const int i)
         nits.pick (nit_css_value, ed_css_value_4, "10.7 Numeric Constants", es_error, ec_css, quote (args.t_.at (i).val_), " requires CSS Values 4");
     return true; }
 
-bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e_css_val_fn& e)
+bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e_css_val_fn& e, bool& params)
 {   nitpick nuts;
     type_master < t_css_val_fn > cvf;
     const bool easing = context.css_module (c_easing_function);
@@ -106,19 +106,20 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
     if ((cvf.flags () & CF_NO_PARAMS) == CF_NO_PARAMS)
     {   i = next_non_whitespace (args.t_, i, to);
         if (easing)
-        {   e = cvf.get (); return true; }
+        {   e = cvf.get (); params = false; return true; }
         nits.pick (nit_css_ease, ed_css_ease, "", es_error, ec_css, quote (cvf.name ()), " requires CSS Easing Functions");
         return false; }
     i = next_non_whitespace (args.t_, i, to);
     if ((i < 0) || (args.t_.at (i).t_ != ct_round_brac))
     {   if (easing && ((cvf.flags () & CF_MAYBE_NO_PARAMS) == CF_MAYBE_NO_PARAMS))
         {   if (args.v_.any_ext5 (H5_CSS_EASE_4))
-            {   e = cvf.get (); return true; }
+            {   e = cvf.get (); params = false; return true; }
             nits.pick (nit_css_ease, ed_css_ease, "", es_error, ec_css, quote (cvf.name ()), " requires CSS Easing Functions level 2");
             return false; }
         nits.pick (nit_css_syntax, es_error, ec_css, "expecting '(' after ", quote (cvf.name ())); }
     else
     {   i = next_non_whitespace (args.t_, i, to);
+        params = true;
         if (i > 0)
         {   switch (cvf.get ()) // dear visual studio, I do understand the dislike of C style casts, but would you care to point out where one is on this line?
             {   case cvf_annotation :
@@ -168,6 +169,12 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                 case cvf_url :
                     e = cvf.get ();
                     break;
+                case cvf_superellipse :
+                    if (context.css_module (c_border_box) < 4)
+                        nits.pick (nit_css_version, es_error, ec_css, quote (cvf.name ()), " requires CSS Borders and Box Decorations 4");
+                    else e = cvf.get ();
+                    break;
+
                 case cvf_tech :
                     if (context.css_module (c_font) < 4)
                         nits.pick (nit_css_version, es_error, ec_css, quote (cvf.name ()), " requires CSS Font 4");
@@ -187,6 +194,8 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                 default :
                     switch (context.css_module (c_value_unit))
                     {   case 4 :
+                        case 5 :
+                        case 6 :
                             e = cvf.get ();
                             break;
                         case 3 :

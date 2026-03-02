@@ -192,7 +192,6 @@ PASS ../toast/mdn/element/figure.html
 PASS ../toast/mdn/element/footer.html
 0 charset_mismatch charset_used charset_invalid
 2 naughty_lang
-5 css_version
 45 h1_h6
 
 PASS ../toast/mdn/element/form.html
@@ -219,9 +218,6 @@ PASS ../toast/mdn/element/h1.html
 0 charset_mismatch charset_used charset_invalid
 2 naughty_lang
 58 h1_h6
-
-PASS ../toast/mdn/element/head.html
-5 css_version
 
 PASS ../toast/mdn/element/header.html
 0 charset_mismatch charset_used charset_invalid
@@ -273,6 +269,7 @@ PASS ../toast/mdn/element/input.html
 
 PASS ../toast/mdn/element/ins.html
 2 naughty_lang
+5 protocol
 67 use_quote_code
 
 PASS ../toast/mdn/element/is.html
@@ -320,6 +317,7 @@ PASS ../toast/mdn/element/map.html
 
 PASS ../toast/mdn/element/mark.html
 2 naughty_lang
+5 abandoned
 35 use_double_quote_code
 54 use_quote_code
 58 unrecognised_value
@@ -519,7 +517,7 @@ PASS ../toast/mdn/element/sub.html
 
 PASS ../toast/mdn/element/summary.html
 2 naughty_lang
-5 fontname css_version property css_version unrecognised_value pseud invalid_character_code invalid_character_code
+5 fontname protocol protocol unrecognised_value pseud invalid_character_code invalid_character_code
 90 h1_h6
 110 use_quote_code
 

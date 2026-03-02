@@ -46,7 +46,6 @@ PASS ../toast/mdn/animation/animation-range-start.html
 
 PASS ../toast/mdn/animation/animation-timeline.html
 2 naughty_lang
-5 unrecognised_value
 
 PASS ../toast/mdn/animation/animation-timeline-function.html
 2 naughty_lang

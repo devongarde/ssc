@@ -145,8 +145,18 @@ template < > struct type_master < t_not_empty > : string_value < t_not_empty >
         {   nits.pick (nit_empty, es_error, ec_type, "value should not be empty");
             string_value < t_not_empty > :: status (s_invalid); } } };
 
+template < > struct type_master < t_round > : type_string < t_round, sz_round >
+{ using type_string < t_round, sz_round > :: type_string; };
+
 template < > struct type_master < t_slash > : type_string < t_slash, sz_slash >
 { using type_string < t_slash, sz_slash > :: type_string; };
+
+template < > struct type_master < t_text > : public tidy_string < t_text >
+{   using tidy_string < t_text > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_text > :: set_value (nits, v, uq3 (s));
+        const ::std::string ss (tidy_string < t_text > :: get_string ());
+        if (ss.empty ()) tidy_string < t_text > :: status (s_good); } };
 
 template < > struct type_master < t_wanted > : public tidy_string < t_wanted >
 {   using tidy_string < t_wanted > :: tidy_string;

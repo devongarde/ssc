@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN repeat tests</title>
+<style>
+.sid
+{
+/* <track-repeat> values */
+grid-template-columns:repeat(4, 1fr);
+grid-template-columns:repeat(4, [col-start] 250px [col-end]);
+grid-template-columns:repeat(4, [col-start] 60% [col-end]);
+grid-template-columns:repeat(4, [col-start] 1fr [col-end]);
+grid-template-columns:repeat(4, [col-start] min-content [col-end]);
+grid-template-columns:repeat(4, [col-start] max-content [col-end]);
+grid-template-columns:repeat(4, [col-start] auto [col-end]);
+grid-template-columns:repeat(4, [col-start] minmax(100px, 1fr) [col-end]);
+grid-template-columns:repeat(4, [col-start] fit-content(200px) [col-end]);
+grid-template-columns:repeat(4, 10px [col-start] 30% [col-middle] auto [col-end]);
+grid-template-columns:repeat(4, [col-start] min-content [col-middle] max-content [col-end]);
+
+/* <auto-repeat> values */
+grid-template-columns:repeat(auto-fill, 250px);
+grid-template-columns:repeat(auto-fit, 250px);
+grid-template-columns:repeat(auto-fill, [col-start] 250px [col-end]);
+grid-template-columns:repeat(auto-fit, [col-start] 250px [col-end]);
+grid-template-columns:repeat(auto-fill, [col-start] minmax(100px, 1fr) [col-end]);
+grid-template-columns:repeat(auto-fill, 10px [col-start] 30% [col-middle] 400px [col-end]);
+
+/* <fixed-repeat> values */
+grid-template-columns:repeat(4, 250px);
+grid-template-columns:repeat(4, [col-start] 250px [col-end]);
+grid-template-columns:repeat(4, [col-start] 60% [col-end]);
+grid-template-columns:repeat(4, [col-start] minmax(100px, 1fr) [col-end]);
+grid-template-columns:repeat(4, [col-start] fit-content(200px) [col-end]);
+grid-template-columns:repeat(4, 10px [col-start] 30% [col-middle] 400px [col-end]);
+}
+
+#container {
+  display: grid;
+  grid-template-columns: repeat(2, 50px 1fr) 100px;
+  grid-gap: 5px;
+  box-sizing: border-box;
+  height: 200px;
+  width: 100%;
+  background-color: #8cffa0;
+  padding: 10px;
+}
+
+#container > div {
+  background-color: #8ca0ff;
+  padding: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN repeat Tests</h1>
+
+<div id="container">
+  <div>This item is 50 pixels wide.</div>
+  <div>Item with flexible width.</div>
+  <div>This item is 50 pixels wide.</div>
+  <div>Item with flexible width.</div>
+  <div>Inflexible item of 100 pixels width.</div>
+</div>
+
+</body>
+</html>

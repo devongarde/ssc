@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN dynamic-range-limit-mix tests</title>
+<style>
+.sid
+{
+dynamic-range-limit: dynamic-range-limit-mix(standard 70%, no-limit 30%);
+dynamic-range-limit: dynamic-range-limit-mix(no-limit 10%, constrained 20%);
+dynamic-range-limit: dynamic-range-limit-mix(no-limit 30%, constrained 30%, standard 30%);
+dynamic-range-limit: dynamic-range-limit-mix(
+    no-limit 20%,
+    dynamic-range-limit-mix(standard 25%, constrained 75%) 20%
+)
+
+/* standard 70%, no-limit 30% */
+dynamic-range-limit: dynamic-range-limit-mix(standard 70%, no-limit 30%);
+
+/* no-limit 40%, constrained 60% */
+dynamic-range-limit: dynamic-range-limit-mix(no-limit 20%, constrained 30%);
+
+/* no-limit 20%, constrained 40%, standard 40% */
+dynamic-range-limit: dynamic-range-limit-mix(no-limit 40%, constrained 80%, standard 80%);
+
+/* constrained 70%, standard 30% */
+dynamic-range-limit: dynamic-range-limit-mix(constrained 40%, standard 30%, constrained 30%);
+
+/* no-limit 40%, constrained 60% */
+dynamic-range-limit: dynamic-range-limit-mix(no-limit 10%, constrained 30%, no-limit 10%);
+
+dynamic-range-limit: dynamic-range-limit-mix(
+    no-limit 10%,
+    dynamic-range-limit-mix(standard 25%, constrained 75%) 20%,
+    dynamic-range-limit-mix(constrained 10%, no-limit 30%) 20%
+);
+
+dynamic-range-limit: dynamic-range-limit-mix(standard 5%, constrained 20%, no-limit 25%);
+
+dynamic-range-limit: dynamic-range-limit-mix(standard 10%, constrained 40%, no-limit 50%);
+}
+
+img {
+  dynamic-range-limit: dynamic-range-limit-mix(standard 70%, no-limit 30%);
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN dynamic-range-limit-mix Tests</h1>
+
+<img src="my-hdr-image.jpg" alt="my image" />
+
+</body>
+</html>

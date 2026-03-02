@@ -232,6 +232,23 @@ typedef typed_property < t_generic, ec_content_order > prop_content_order;
 typedef typed_property < t_auto_hidden_visible, ec_content_visibility > prop_content_visibility;
 typedef typed_property < t_generic, ec_context > prop_context;
 typedef typed_property < t_css_continue, ec_continue > prop_continue;
+typedef typed_property < t_css_corner_shapes, ec_corner_block_end_shape > prop_corner_block_end_shape;
+typedef typed_property < t_css_corner_shapes, ec_corner_block_start_shape > prop_corner_block_start_shape;
+typedef typed_property < t_css_corner_shape, ec_corner_bottom_left_shape > prop_corner_bottom_left_shape;
+typedef typed_property < t_css_corner_shape, ec_corner_bottom_right_shape > prop_corner_bottom_right_shape;
+typedef typed_property < t_css_corner_shapes, ec_corner_bottom_shape > prop_corner_bottom_shape;
+typedef typed_property < t_css_corner_shape, ec_corner_end_end_shape > prop_corner_end_end_shape;
+typedef typed_property < t_css_corner_shape, ec_corner_end_start_shape > prop_corner_end_start_shape;
+typedef typed_property < t_css_corner_shapes, ec_corner_inline_end_shape > prop_corner_inline_end_shape;
+typedef typed_property < t_css_corner_shapes, ec_corner_inline_start_shape > prop_corner_inline_start_shape;
+typedef typed_property < t_css_corner_shapes, ec_corner_left_shape > prop_corner_left_shape;
+typedef typed_property < t_css_corner_shapes, ec_corner_right_shape > prop_corner_right_shape;
+typedef typed_property < t_css_corner_shapes4, ec_corner_shape > prop_corner_shape;
+typedef typed_property < t_css_corner_shape, ec_corner_start_end_shape > prop_corner_start_end_shape;
+typedef typed_property < t_css_corner_shape, ec_corner_start_start_shape > prop_corner_start_start_shape;
+typedef typed_property < t_css_corner_shape, ec_corner_top_left_shape > prop_corner_top_left_shape;
+typedef typed_property < t_css_corner_shape, ec_corner_top_right_shape > prop_corner_top_right_shape;
+typedef typed_property < t_css_corner_shapes, ec_corner_top_shape > prop_corner_top_shape;
 typedef typed_property < t_css_counter_set, ec_counter_increment > prop_counter_increment;
 typedef typed_property < t_css_counter_set, ec_counter_reset > prop_counter_reset;
 typedef typed_property < t_css_counter_set, ec_counter_set > prop_counter_set;
@@ -273,7 +290,7 @@ typedef typed_property < t_fill_rule, ec_fillrule > prop_fillrule;
 typedef typed_property < t_fill_rule, ec_fill_rule > prop_fill_rule;
 typedef typed_property < t_css_background_sizes, ec_fill_size > prop_fill_size;
 typedef typed_property < t_css_filters_n, ec_filter > prop_filter;
-typedef typed_property < t_css_flex, ec_flex > prop_flex;
+typedef typed_property < t_css_flex_n, ec_flex > prop_flex;
 typedef typed_property < t_css_flex_basis, ec_flex_basis > prop_flex_basis;
 typedef typed_property < t_css_flex_direction, ec_flex_direction > prop_flex_direction;
 typedef typed_property < t_css_flex_flow, ec_flex_flow > prop_flex_flow;
@@ -469,7 +486,7 @@ typedef typed_property < t_css_length, ec_offset_distance > prop_offset_distance
 typedef typed_property < t_css_offset_path_n, ec_offset_path > prop_offset_path;
 typedef typed_property < t_css_position_a, ec_offset_position > prop_offset_position;
 typedef typed_property < t_angle_ars, ec_offset_rotate > prop_offset_rotate;
-typedef typed_property < t_opacity, ec_opacity > prop_opacity;
+typedef typed_property < t_css_opacity, ec_opacity > prop_opacity;
 typedef typed_property < t_integer, ec_order > prop_order;
 typedef typed_property < t_integer_i, ec_orphans > prop_orphans;
 typedef typed_property < t_css_outline_i, ec_outline > prop_outline;
@@ -731,6 +748,7 @@ typedef typed_property < t_css_stss, ec_view_timeline > prop_view_timeline;
 typedef typed_property < t_bixys, ec_view_timeline_axis > prop_view_timeline_axis;
 typedef typed_property < t_css_length_a2, ec_view_timeline_inset > prop_view_timeline_inset;
 typedef typed_property < t_css_stn_n, ec_view_timeline_name > prop_view_timeline_name;
+typedef typed_property < t_css_vtn, ec_view_transition_class > prop_view_transition_class;
 typedef typed_property < t_css_vtn_n, ec_view_transition_name > prop_view_transition_name;
 typedef typed_property < t_colour_ni, ec_viewport_fill > prop_viewport_fill;
 typedef typed_property < t_real_ni, ec_viewport_fill_opacity > prop_viewport_fill_opacity;
@@ -1873,6 +1891,23 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_content_visibility, \
     prop_context, \
     prop_continue, \
+    prop_corner_block_end_shape, \
+    prop_corner_block_start_shape, \
+    prop_corner_bottom_left_shape, \
+    prop_corner_bottom_right_shape, \
+    prop_corner_bottom_shape, \
+    prop_corner_end_end_shape, \
+    prop_corner_end_start_shape, \
+    prop_corner_inline_end_shape, \
+    prop_corner_inline_start_shape, \
+    prop_corner_left_shape, \
+    prop_corner_right_shape, \
+    prop_corner_shape, \
+    prop_corner_start_end_shape, \
+    prop_corner_start_start_shape, \
+    prop_corner_top_left_shape, \
+    prop_corner_top_right_shape, \
+    prop_corner_top_shape, \
     prop_counter_increment, \
     prop_counter_reset, \
     prop_counter_set, \

@@ -85,7 +85,7 @@ Class/Element:
   div.sidenote styled once, used 0 times
 
 Element:
-	(undefined): twice
+    (undefined): twice
     b: 4 times
     body: once
     code: once
@@ -95,25 +95,21 @@ Element:
     h2: 5 times
     h3: once
     p: thrice
-  10 elements used 40 times
+  11 elements used 40 times
 
 Font:
     helvetica: twice
   1 Font used twice
 
 Id:
-  x78y styled once, used 0 times
-  z98y styled twice, used 0 times
+  z98y styled once, used 0 times
 
 Id/Element:
-  *#x78y styled once, used 0 times
-  *#z98y styled once, used 0 times
   h1#z98y styled once, used 0 times
 
 ItemId:
-    x78y: 1
-    z98y: 2
-  2 ItemId used thrice
+    z98y: 1
+  1 ItemId used once
 
 Property:
     background: twice

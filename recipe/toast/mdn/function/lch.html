@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN x tests</title>
+<style>
+.sid
+{
+/* Absolute values */
+background-color: lch(29.2345% 44.2 27);
+background-color: lch(52.2345% 72.2 56.2);
+background-color: lch(52.2345% 72.2 56.2 / .5);
+
+/* Relative values */
+background-color: lch(from green l c h / 0.5);
+background-color: lch(from #123456 calc(l + 10) c h);
+background-color: lch(from hsl(180 100% 50%) calc(l - 10) c h);
+background-color: lch(from var(--color-value) l c h / calc(alpha - 0.1));
+
+background-color: lch(from hsl(0 100% 50%) l c h);
+
+background-color: lch(from hsl(0 100% 50%) 29.6871% 66.83 327.109);
+
+background-color: lch(from hsl(0 100% 50%) 70 150 h);
+
+background-color: lch(from hsl(0 100% 50% / 0.8) l c h / alpha);
+/* Computed output color: lch(54.29 106.854 40.856 / 0.8) */
+
+background-color: lch(from hsl(0 100% 50% / 0.8) l c h / 0.5);
+/* Computed output color: lch(54.29 106.854 40.856 / 0.5) */
+
+background-color: lch(from hsl(0 100% 50%) calc(l + 20) calc(c - 20) calc(h - 40) / calc(alpha - 0.1));
+
+}
+
+[data-color="blue-dark"] {
+  background-color: lch(10% 100 240);
+}
+[data-color="blue"] {
+  background-color: lch(50% 100 240);
+}
+[data-color="blue-light"] {
+  background-color: lch(90% 100 240);
+}
+
+[data-color="red-dark"] {
+  background-color: lch(10% 130 20);
+}
+[data-color="red"] {
+  background-color: lch(50% 130 20);
+}
+[data-color="red-light"] {
+  background-color: lch(90% 130 20);
+}
+
+[data-color="green-dark"] {
+  background-color: lch(10% 132 130);
+}
+[data-color="green"] {
+  background-color: lch(50% 132 130);
+}
+[data-color="green-light"] {
+  background-color: lch(90% 132 130);
+}
+
+[data-color="blue"] {
+  background-color: lch(50% 150 240);
+}
+[data-color="blue-chroma1"] {
+  background-color: lch(50% 105 240);
+}
+[data-color="blue-chroma2"] {
+  background-color: lch(50% 54 240);
+}
+[data-color="blue-chroma3"] {
+  background-color: lch(50% 3 240);
+}
+
+[data-color="red"] {
+  background-color: lch(50% 100% 20deg);
+}
+[data-color="red-chroma1"] {
+  background-color: lch(50% 70% 20deg);
+}
+[data-color="red-chroma2"] {
+  background-color: lch(50% 36% 20deg);
+}
+[data-color="red-chroma3"] {
+  background-color: lch(50% 2% 20deg);
+}
+
+[data-color="green"] {
+  background-color: lch(50% 150 130);
+}
+[data-color="green-chroma1"] {
+  background-color: lch(50% 105 130);
+}
+[data-color="green-chroma2"] {
+  background-color: lch(50% 54 130);
+}
+[data-color="green-chroma3"] {
+  background-color: lch(50% 3 130);
+}
+
+[data-color="0"] {
+  background-color: lch(50% 150 0deg);
+}
+[data-color="20"] {
+  background-color: lch(50% 150 20deg);
+}
+[data-color="40"] {
+  background-color: lch(50% 150 40deg);
+}
+[data-color="60"] {
+  background-color: lch(50% 150 60deg);
+}
+
+[data-color="red"] {
+  background-color: lch(50% 130 20);
+}
+[data-color="red-alpha"] {
+  background-color: lch(50% 130 20 / 0.4);
+}
+
+:root {
+  --base-color: orange;
+}
+
+#one {
+  background-color: lch(from var(--base-color) calc(l + 15) c h);
+}
+
+#two {
+  background-color: var(--base-color);
+}
+
+#three {
+  background-color: lch(from var(--base-color) calc(l - 15) c h);
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN x Tests</h1>
+
+<div data-color="blue-dark"></div>
+<div data-color="blue"></div>
+<div data-color="blue-light"></div>
+
+<div data-color="red-dark"></div>
+<div data-color="red"></div>
+<div data-color="red-light"></div>
+
+<div data-color="green-dark"></div>
+<div data-color="green"></div>
+<div data-color="green-light"></div>
+
+<div data-color="blue"></div>
+<div data-color="blue-chroma1"></div>
+<div data-color="blue-chroma2"></div>
+<div data-color="blue-chroma3"></div>
+
+<div data-color="red"></div>
+<div data-color="red-chroma1"></div>
+<div data-color="red-chroma2"></div>
+<div data-color="red-chroma3"></div>
+
+<div data-color="green"></div>
+<div data-color="green-chroma1"></div>
+<div data-color="green-chroma2"></div>
+<div data-color="green-chroma3"></div>
+
+<div data-color="0">0deg</div>
+<div data-color="20">20deg</div>
+<div data-color="40">40deg</div>
+<div data-color="60">60deg</div>
+
+<div id="background-div">
+  <div data-color="red"></div>
+  <div data-color="red-alpha"></div>
+</div>
+
+</body>
+</html>

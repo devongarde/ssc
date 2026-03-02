@@ -187,7 +187,7 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
 template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
     void enum_n < E, ENUM, CATEGORY, INIT, LC > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   enum_base < ENUM, E > :: original_ = s;
-    ::std::string pret (trim_the_lot_off (s));
+    ::std::string pret (uq0 (trim_the_lot_off (s)));
     ::std::string t (careless_case < LC >::lower (pret));
     nitpick knots;
     if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "empty value (", type_name (E), ")");
@@ -432,6 +432,9 @@ template < > struct type_master < t_css_content_position > : ENUM_N (css_content
 template < > struct type_master < t_css_coord_box > : ENUM_N (css_coord_box)
 { using ENUM_N (css_coord_box) :: enum_n; };
 
+template < > struct type_master < t_css_corner_shape_name > : ENUM_N (css_corner_shape_name)
+{ using ENUM_N (css_corner_shape_name) :: enum_n; };
+
 template < > struct type_master < t_css_counter_style > : ENUM_N (css_counter_style)
 { using ENUM_N (css_counter_style) :: enum_n; };
 
@@ -446,6 +449,15 @@ template < > struct type_master < t_css_display_internal > : ENUM_N (css_display
 
 template < > struct type_master < t_css_elevation_e > : ENUM_N (css_elevation_e)
 { using ENUM_N (css_elevation_e) :: enum_n; };
+
+template < > struct type_master < t_css_ellipse_pos_e > : ENUM_N (css_ellipse_pos_e)
+{ using ENUM_N (css_ellipse_pos_e) :: enum_n; };
+
+template < > struct type_master < t_css_ellipse_pos_x_2_e > : ENUM_N (css_ellipse_pos_x_2_e)
+{ using ENUM_N (css_ellipse_pos_x_2_e) :: enum_n; };
+
+template < > struct type_master < t_css_ellipse_pos_y_2_e > : ENUM_N (css_ellipse_pos_y_2_e)
+{ using ENUM_N (css_ellipse_pos_y_2_e) :: enum_n; };
 
 template < > struct type_master < t_css_float > : ENUM_N (css_float)
 { using ENUM_N (css_float) :: enum_n; };
@@ -623,6 +635,9 @@ template < > struct type_master < t_css_text_wrap > : ENUM_N (css_text_wrap)
 
 template < > struct type_master < t_css_transform_box > : ENUM_N (css_transform_box)
 { using ENUM_N (css_transform_box) :: enum_n; };
+
+template < > struct type_master < t_css_type > : ENUM_N (css_type)
+{ using ENUM_N (css_type) :: enum_n; };
 
 template < > struct type_master < t_css_user_select > : ENUM_N (css_user_select)
 { using ENUM_N (css_user_select) :: enum_n; };
@@ -810,6 +825,9 @@ template < > struct type_master < t_mah > : ENUM_N (mah)
 
 template < > struct type_master < t_mathalign > : ENUM_N (mathalign)
 { using ENUM_N (mathalign) :: enum_n; };
+
+template < > struct type_master < t_math_constant > : ENUM_N (math_constant)
+{ using ENUM_N (math_constant) :: enum_n; };
 
 template < > struct type_master < t_mathlocation > : ENUM_N (mathlocation)
 { using ENUM_N (mathlocation) :: enum_n; };

@@ -207,9 +207,13 @@ const ontology_version disco_schema (s_ddi, 1, 0);
 
 const ontology_version doap_schema (s_doap, 1, 0);
 
+#define DPV_X_VERSION23(XXX) \
+const ontology_version dpv_##XXX##_2_3 (s_dpv_##XXX, 2, 3); \
+const ontology_version dpv_##XXX##_2_4 (s_dpv_##XXX, 2, 4)
+
 #define DPV_X_VERSION22(XXX) \
 const ontology_version dpv_##XXX##_2_2 (s_dpv_##XXX, 2, 2); \
-const ontology_version dpv_##XXX##_2_3 (s_dpv_##XXX, 2, 3)
+DPV_X_VERSION23 (XXX)
 
 #define DPV_X_VERSION21(XXX) \
 const ontology_version dpv_##XXX##_2_1 (s_dpv_##XXX, 2, 1); \
@@ -238,6 +242,7 @@ const ontology_version dpv_##XXX##_0_4_1 (s_dpv_##XXX, 0, 41); \
 const ontology_version dpv_##XXX##_0_4_2 (s_dpv_##XXX, 0, 42); \
 DPV_X_VERSION50(XXX)
 
+DPV_X_VERSION23 (de_gdng);
 const ontology_version dpv_0_1 (s_dpv, 0, 10);
 const ontology_version dpv_0_2 (s_dpv, 0, 20);
 const ontology_version dpv_0_3 (s_dpv, 0, 30);
@@ -256,6 +261,7 @@ const ontology_version dpv_2_0 (s_dpv, 2, 0);
 const ontology_version dpv_2_1 (s_dpv, 2, 1);
 const ontology_version dpv_2_2 (s_dpv, 2, 2);
 const ontology_version dpv_2_3 (s_dpv, 2, 3);
+const ontology_version dpv_2_4 (s_dpv, 2, 4);
 DPV_X_VERSION20 (eu_aiact);
 DPV_X_VERSION21 (eu_ehds);
 DPV_X_VERSION20 (eu_dga);

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN ray tests</title>
+<style>
+.sid
+{
+/* all parameters specified */
+offset-path: ray(50deg closest-corner contain at 100px 20px);
+
+/* two parameters specified, order does not matter */
+offset-path: ray(contain 200deg);
+
+/* only one parameter specified */
+offset-path: ray(45deg);
+}
+
+.box {
+  background-color: palegreen;
+  border-top: 4px solid black;
+  opacity: 20%;
+}
+
+.box:first-of-type {
+  position: absolute;
+}
+
+.box1 {
+  offset-path: ray(0deg);
+}
+
+.box2 {
+  offset-path: ray(150deg);
+}
+
+.box3 {
+  offset-rotate: 0deg;
+  offset-position: 20% 40%;
+  offset-path: ray(150deg);
+}
+
+.box4 {
+  offset-position: 0 0;
+  offset-path: ray(0deg);
+}
+
+.box5 {
+  offset-path: ray(60deg closest-side at bottom right);
+}
+
+body {
+  display: grid;
+  grid-template-columns: 200px 100px;
+  gap: 40px;
+  margin-left: 40px;
+}
+
+.container {
+  transform-style: preserve-3d;
+  width: 150px;
+  height: 100px;
+  border: 2px dotted green;
+}
+
+.shape {
+  width: 40px;
+  height: 40px;
+  background: #2bc4a2;
+  margin: 5px;
+  text-align: center;
+  line-height: 40px;
+  clip-path: polygon(0% 0%, 70% 0%, 100% 50%, 70% 100%, 0% 100%, 30% 50%);
+  animation: move 5000ms infinite alternate ease-in-out;
+}
+
+.shape2 {
+  offset-path: ray(120deg sides contain);
+}
+
+.shape3 {
+  offset-rotate: 0deg;
+  offset-path: ray(120deg sides contain);
+}
+
+.shape4 {
+  offset-position: auto;
+  offset-path: ray(120deg closest-corner);
+}
+
+.shape5 {
+  offset-position: auto;
+  offset-path: ray(120deg farthest-corner);
+}
+
+@keyframes move {
+  0%,
+  20% {
+    offset-distance: 0%;
+  }
+  80%,
+  100% {
+    offset-distance: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN ray Tests</h1>
+
+</body>
+</html>
