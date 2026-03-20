@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN font-optical-sizing tests</title>
+<style>
+.sid
+{
+/* keyword values */
+font-optical-sizing: none;
+font-optical-sizing: auto; /* default */
+
+/* Global values */
+font-optical-sizing: inherit;
+font-optical-sizing: initial;
+font-optical-sizing: revert;
+font-optical-sizing: revert-layer;
+font-optical-sizing: unset;
+}
+
+@font-face {
+  src: url("AmstelvarAlpha-VF.ttf");
+  font-family: "Amstelvar";
+  font-style: normal;
+}
+
+p {
+  font-size: 36px;
+  font-family: "Amstelvar", serif;
+}
+
+.no-optical-sizing {
+  font-optical-sizing: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN font-optical-sizing Tests</h1>
+
+<p class="optical-sizing">
+  This paragraph is optically sized. This is the default across browsers.
+</p>
+
+<p class="no-optical-sizing">
+  This paragraph is not optically sized. You should see a difference in
+  supporting browsers.
+</p>
+
+</body>
+</html>

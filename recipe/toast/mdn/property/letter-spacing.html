@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN letter-spacing tests</title>
+<style>
+.sid
+{
+/* Keyword value */
+letter-spacing: normal;
+
+/* <length> values */
+letter-spacing: 0.3em;
+letter-spacing: 3px;
+letter-spacing: 0.3px;
+
+/* Global values */
+letter-spacing: inherit;
+letter-spacing: initial;
+letter-spacing: revert;
+letter-spacing: revert-layer;
+letter-spacing: unset;
+}
+
+.normal {
+  letter-spacing: normal;
+}
+.em-wide {
+  letter-spacing: 0.4em;
+}
+.em-wider {
+  letter-spacing: 1em;
+}
+.em-tight {
+  letter-spacing: -0.05em;
+}
+.px-wide {
+  letter-spacing: 6px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN letter-spacing Tests</h1>
+
+<p class="normal">letter spacing</p>
+<p class="em-wide">letter spacing</p>
+<p class="em-wider">letter spacing</p>
+<p class="em-tight">letter spacing</p>
+<p class="px-wide">letter spacing</p>
+
+</body>
+</html>

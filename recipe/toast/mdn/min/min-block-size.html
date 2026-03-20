@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN min-block-size tests</title>
+<style>
+.sid {
+/* <length> values */
+min-block-size: 100px;
+min-block-size: 5em;
+min-block-size: anchor-size(self-inline);
+
+/* <percentage> values */
+min-block-size: 10%;
+
+/* Keyword values */
+min-block-size: max-content;
+min-block-size: min-content;
+min-block-size: fit-content;
+min-block-size: fit-content(20em);
+
+/* Global values */
+min-block-size: inherit;
+min-block-size: initial;
+min-block-size: revert;
+min-block-size: revert-layer;
+min-block-size: unset;
+}
+
+.exampleText {
+  writing-mode: vertical-rl;
+  background-color: yellow;
+  min-block-size: 200px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN min-block-size Tests</h1>
+
+<p class="exampleText">Example text</p>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN mask-mode tests</title>
+<style>
+.sid {
+/* Keyword values */
+mask-mode: alpha;
+mask-mode: luminance;
+mask-mode: match-source;
+
+/* Multiple values */
+mask-mode: alpha, match-source;
+
+/* Global values */
+mask-mode: inherit;
+mask-mode: initial;
+mask-mode: revert;
+mask-mode: revert-layer;
+mask-mode: unset;
+}
+
+div {
+  background: blue linear-gradient(red, blue);
+  mask-image: url("mdn.svg");
+}
+
+.alpha {
+  mask-mode: alpha;
+}
+
+.luminance {
+  mask-mode: luminance;
+}
+
+.matchSource {
+  mask-mode: match-source;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN mask-mode Tests</h1>
+
+<div class="alpha">ALPHA</div>
+<div class="luminance">LUMINANCE</div>
+<div class="matchSource">MATCH-SOURCE</div>
+
+</body>
+</html>

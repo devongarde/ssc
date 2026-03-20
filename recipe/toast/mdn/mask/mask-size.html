@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN mask-size tests</title>
+<style>
+.sid {
+/* Keyword syntax */
+mask-size: cover;
+mask-size: contain;
+mask-size: auto;
+
+/* One-value syntax */
+/* Mask width. Sets height to 'auto'. */
+mask-size: 50%;
+mask-size: 3em;
+mask-size: 12px;
+
+/* Two-value syntax */
+/* First value: mask width. Second value: mask height */
+mask-size: 3em 25%;
+mask-size: auto 6px;
+mask-size: auto 50%;
+
+/* Multiple values */
+mask-size: auto, contain;
+mask-size:
+  50%,
+  50% 25%,
+  auto 25%;
+mask-size: 6px, auto, contain;
+
+/* Global values */
+mask-size: inherit;
+mask-size: initial;
+mask-size: revert;
+mask-size: revert-layer;
+mask-size: unset;
+}
+
+div {
+  width: 200px;
+  height: 400px;
+  background: blue linear-gradient(red, blue);
+  mask-image: url("mdn.svg");
+}
+
+.width {
+  mask-size: 50%;
+}
+
+.height {
+  mask-size: auto 50%;
+}
+
+div {
+  width: 200px;
+  height: 400px;
+  background: blue linear-gradient(red, blue);
+  mask-image: url("mask-star.svg");
+}
+
+.auto div {
+  mask-size: auto;
+}
+
+.cover div {
+  mask-size: cover;
+}
+
+.contain div {
+  mask-size: contain;
+}
+
+section::before {
+  content: "mask-size: " attr(class) ";";
+  display: block;
+  text-align: center;
+  border-bottom: 1px solid;
+}
+
+div {
+  width: 70px;
+  height: 70px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN mask-size Tests</h1>
+
+<div class="width"></div>
+<div class="height"></div>
+
+<section class="auto">
+  <div></div>
+</section>
+<section class="cover">
+  <div></div>
+</section>
+<section class="contain">
+  <div></div>
+</section>
+
+</body>
+</html>

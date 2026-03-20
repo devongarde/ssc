@@ -103,6 +103,9 @@ template < > struct type_master < t_additive > : two_value < t_additive, e_addit
 template < > struct type_master < t_aesf > : two_value < t_aesf, e_aesf, sz_allow_end, sz_space_first >
 { using two_value < t_aesf, e_aesf, sz_allow_end, sz_space_first > :: two_value; };
 
+template < > struct type_master < t_allow_numeric > : two_value < t_allow_numeric, e_allow_numeric, sz_allow_keywords, sz_numeric_only >
+{ using two_value < t_allow_numeric, e_allow_numeric, sz_allow_keywords, sz_numeric_only > :: two_value; };
+
 template < > struct type_master < t_all_none > : two_value < t_all_none, e_bool, sz_all, sz_none >
 { using two_value < t_all_none, e_bool, sz_all, sz_none > :: two_value; };
 
@@ -123,6 +126,10 @@ template < > struct type_master < t_auto_break > : two_value < t_auto_break, e_a
 
 template < > struct type_master < t_auto_contain > : two_value < t_auto_contain, e_auto_contain, sz_auto, sz_contain >
 { using two_value < t_auto_contain, e_auto_contain, sz_auto, sz_contain > :: two_value; };
+
+// t_auto_inert
+template < > struct type_master < t_auto_inert > : two_value < t_auto_inert, e_auto_inert, sz_auto, sz_inert >
+{ using two_value < t_auto_inert, e_auto_inert, sz_auto, sz_inert > :: two_value; };
 
 template < > struct type_master < t_auto_manual > : two_value < t_auto_manual, e_auto_manual, sz_auto, sz_manual >
 { using two_value < t_auto_manual, e_auto_manual, sz_auto, sz_manual > :: two_value; };
@@ -487,8 +494,8 @@ template < > struct type_master < t_ltr_rtl > : two_value < t_ltr_rtl, e_svg_dir
 template < > struct type_master < t_scan > : two_value < t_scan, e_scan, sz_interlace, sz_progressive >
 { using two_value < t_scan, e_scan, sz_interlace, sz_progressive > :: two_value; };
 
-template < > struct type_master < t_svg_fontvariant_ff > : two_value < t_svg_fontvariant_ff, e_svg_fontvariant_ff, sz_normal, sz_smallcaps >
-{ using two_value < t_svg_fontvariant_ff, e_svg_fontvariant_ff, sz_normal, sz_smallcaps > :: two_value; };
+template < > struct type_master < t_svg_fontvariant_ff > : two_value < t_svg_fontvariant_ff, e_svg_fontvariant_ff, sz_normal, sz_small_caps >
+{ using two_value < t_svg_fontvariant_ff, e_svg_fontvariant_ff, sz_normal, sz_small_caps > :: two_value; };
 
 template < > struct type_master < t_svg_method > : two_value < t_svg_method, e_svg_method, sz_align, sz_stretch >
 { using two_value < t_svg_method, e_svg_method, sz_align, sz_stretch > :: two_value; };

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN flood-colour tests</title>
+<style>
+.sid
+{
+/* <color> values */
+flood-color: red;
+flood-color: hsl(120deg 75% 25% / 60%);
+flood-color: currentColor;
+
+/* Global values */
+flood-color: inherit;
+flood-color: initial;
+flood-color: revert;
+flood-color: revert-layer;
+flood-color: unset;
+}
+
+rect {
+  width: 100px;
+  height: 100px;
+  x: 10px;
+  y: 10px;
+}
+#r2 {
+  x: 150px;
+}
+
+#flood1 feFlood {
+  flood-color: rebeccapurple;
+}
+#flood2 feFlood {
+  flood-color: #ff3366;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN flood-colour Tests</h1>
+
+<svg viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg">
+  <filter id="flood1">
+    <feFlood flood-color="seagreen" />
+  </filter>
+  <filter id="flood2">
+    <feFlood flood-color="seagreen" />
+  </filter>
+
+  <rect id="r1" filter="url(#flood1)" />
+  <rect id="r2" filter="url(#flood2)" />
+</svg>
+
+</body>
+</html>

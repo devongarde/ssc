@@ -108,3 +108,93 @@ PASS ../toast/mdn/property/empty-cells.html
 PASS ../toast/mdn/property/field-sizing.html
 2 naughty_lang
 41 h1_h6
+
+PASS ../toast/mdn/property/filter.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/float.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/flood-colour.html
+2 naughty_lang
+46 inserted_missing_closure
+49 inserted_missing_closure
+52 inserted_missing_closure
+53 inserted_missing_closure
+
+PASS ../toast/mdn/property/flood-opacity.html
+2 naughty_lang
+52 inserted_missing_closure
+55 inserted_missing_closure
+58 inserted_missing_closure
+59 inserted_missing_closure
+
+PASS ../toast/mdn/property/forced-colour-adjust.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/gap.html
+2 naughty_lang
+121 use_quote_code
+124 id_exists
+
+PASS ../toast/mdn/property/hanging-punctuation.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/height.html
+2 naughty_lang
+79 use_quote_code
+80 use_quote_code
+82 use_quote_code
+
+PASS ../toast/mdn/property/hyphenate-character.html
+2 naughty_lang
+5 bespoke_obsolete
+30 use_double_quote_code
+
+PASS ../toast/mdn/property/hyphenate-limit-chars.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/hyphens.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/initial-letter.html
+2 naughty_lang
+5 bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete
+
+PASS ../toast/mdn/property/inline-size.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/interactivity.html
+2 naughty_lang
+5 css_keyframes css_keyframes css_keyframes css_keyframes
+96 use_quote_code
+131 use_quote_code
+134 use_quote_code
+
+PASS ../toast/mdn/property/interpolate-size.html
+2 naughty_lang
+49 bad_ancestor
+
+PASS ../toast/mdn/property/isolation.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/left.html
+0 anchor
+2 naughty_lang
+
+PASS ../toast/mdn/property/letter-spacing.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/lighting-colour.html
+2 naughty_lang
+57 inserted_missing_closure
+62 inserted_missing_closure
+66 inserted_missing_closure
+67 inserted_missing_closure
+
+PASS ../toast/mdn/property/mix-blend-mode.html
+2 naughty_lang
+5 bad_import cannot_open
+113 inserted_missing_closure
+114 inserted_missing_closure
+115 inserted_missing_closure

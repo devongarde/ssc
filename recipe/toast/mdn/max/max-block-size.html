@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN max-block-size tests</title>
+<style>
+.sid {
+/* <length> values */
+max-block-size: 300px;
+max-block-size: 25em;
+max-block-size: anchor-size(--my-anchor self-inline, 250px);
+max-block-size: calc(anchor-size(width) / 2);
+
+/* <percentage> values */
+max-block-size: 75%;
+
+/* Keyword values */
+max-block-size: none;
+max-block-size: max-content;
+max-block-size: min-content;
+max-block-size: fit-content;
+max-block-size: fit-content(20em);
+
+/* Global values */
+max-block-size: inherit;
+max-block-size: initial;
+max-block-size: revert;
+max-block-size: revert-layer;
+max-block-size: unset;
+}
+
+.standard-box {
+  padding: 4px;
+  background-color: #abcdef;
+  color: black;
+  font:
+    16px "Open Sans",
+    "Helvetica",
+    "Arial",
+    sans-serif;
+  max-block-size: 160px;
+  min-block-size: 100px;
+}
+
+.horizontal {
+  writing-mode: horizontal-tb;
+}
+
+.vertical {
+  writing-mode: vertical-rl;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN max-block-size Tests</h1>
+
+<p>Writing mode <code>horizontal-tb</code> (the default):</p>
+<div class="standard-box horizontal">
+  Call me Ishmael. Some years ago—never mind how long precisely—having little or
+  no money in my purse, and nothing particular to interest me on shore, I
+  thought I would sail about a little and see the watery part of the world. It
+  is a way I have of driving off the spleen and regulating the circulation.
+</div>
+
+<p>Writing mode <code>vertical-rl</code>:</p>
+<div class="standard-box vertical">
+  Call me Ishmael. Some years ago—never mind how long precisely—having little or
+  no money in my purse, and nothing particular to interest me on shore, I
+  thought I would sail about a little and see the watery part of the world. It
+  is a way I have of driving off the spleen and regulating the circulation.
+</div>
+
+</body>
+</html>

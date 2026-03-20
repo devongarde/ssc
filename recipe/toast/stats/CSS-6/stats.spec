@@ -129,13 +129,13 @@ Class/Element:
   *.top styled once, used 0 times
 
 Element:
-    (undefined): 5 times
+    (undefined): thrice
     a: once
     article: once
     html: twice
     nav: twice
     p: thrice
-  7 elements used 22 times
+  7 elements used 20 times
 
 Font:
     Ignoble: once
@@ -163,9 +163,9 @@ Property:
     overflow-y: once
     position: once
     scroll-timeline-name: once
-    transform: 4 times
+    transform: twice
     view-transition-name: once
-  15 properties used 32 times
+  15 properties used 30 times
 
 Region:
     article-flow
@@ -186,9 +186,6 @@ Statement:
     stylistic: once
     page: thrice
   7 statements used 15 times
-
-View:
-    --root
 ===
 
 PASS ../toast/stats/CSS-6/font-4-6.css

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN mask-border tests</title>
+<style>
+.sid {
+/* source | slice */
+mask-border: url("border-mask.png") 25;
+
+/* source | slice | repeat */
+mask-border: url("border-mask.png") 25 space;
+
+/* source | slice | width */
+mask-border: url("border-mask.png") 25 / 35px;
+
+/* source | slice | width | outset | repeat | mode */
+mask-border: url("border-mask.png") 25 / 35px / 12px space alpha;
+
+/* Global values */
+mask-border: inherit;
+mask-border: initial;
+mask-border: revert;
+mask-border: revert-layer;
+mask-border: unset;
+}
+
+.masked {
+  width: 200px;
+  background-color: lavender;
+  border: 18px solid salmon;
+  padding: 10px;
+
+  -webkit-mask-box-image: url("https://mdn.github.io/shared-assets/images/examples/mask-border-diamonds.png")
+    30 fill /          /* slice */
+    20px /             /* width */
+    1px                /* outset */
+    round;             /* repeat */
+
+  mask-border:
+    url("https://mdn.github.io/shared-assets/images/examples/mask-border-diamonds.png")
+    30 fill /        /* slice */
+    20px /           /* width */
+    1px              /* outset */
+    round;           /* repeat */
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN mask-border Tests</h1>
+
+<div class="masked">
+  This element is surrounded by a bitmap-based mask border! Pretty neat, isn't
+  it?
+</div>
+
+</body>
+</html>

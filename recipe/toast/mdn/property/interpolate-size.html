@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN interpolate-size tests</title>
+<style>
+.sid
+{
+/* Keyword values */
+interpolate-size: allow-keywords;
+interpolate-size: numeric-only;
+
+/* Global values */
+interpolate-size: inherit;
+interpolate-size: initial;
+interpolate-size: revert;
+interpolate-size: revert-layer;
+interpolate-size: unset;
+}
+
+:root {
+  interpolate-size: allow-keywords;
+}
+
+main {
+  interpolate-size: allow-keywords;
+}
+
+section {
+  height: 2.5rem;
+  overflow: hidden;
+  transition: height ease 1s;
+}
+
+section:hover,
+section:focus {
+  height: max-content;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN interpolate-size Tests</h1>
+
+<section tabindex="0">
+  <header>
+    <h2>Tanuki</h2>
+  </header>
+  <main>
+    <p>Tanuki is the silent phantom of MDN.</p>
+    <ul>
+      <li><strong>Height</strong>: 3.03m</li>
+      <li><strong>Weight</strong>: 160kg</li>
+      <li><strong>Tech Fu</strong>: 7</li>
+      <li><strong>Bad Jokes</strong>: 9</li>
+    </ul>
+  </main>
+</section>
+
+</body>
+</html>

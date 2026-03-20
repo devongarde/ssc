@@ -148,11 +148,14 @@ template < > struct type_master < t_css_font_variant > : public tidy_string < t_
     {   tidy_string < t_css_font_variant > :: set_value (nits, v, s);
         tidy_string < t_css_font_variant > :: status (set_css_font_variant_value (nits, v, tidy_string < t_css_font_variant > :: get_string ())); } };
 
-template < > struct type_master < t_css_font_weights > : public tidy_string < t_css_font_weights >
-{   using tidy_string < t_css_font_weights > :: tidy_string;
-    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_css_font_weights > :: set_value (nits, v, s);
-        tidy_string < t_css_font_weights > :: status (set_css_font_weights_value (nits, v, tidy_string < t_css_font_weights > :: get_string ())); } };
+template < > struct type_master < t_css_font_weights > : public string_vector < t_css_font_weights, sz_space_char >
+{   using string_vector < t_css_font_weights, sz_space_char > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+    {   string_vector < t_css_font_weights, sz_space_char > :: set_value (nits, v, ss);
+        if (string_vector < t_css_font_weights, sz_space_char > :: good ())
+            for (auto s : string_vector < t_css_font_weights, sz_space_char > :: value_)
+                if (set_css_font_weights_value (nits, v, s) == s_invalid)
+                    string_vector < t_css_font_weights, sz_space_char > :: status (s_invalid); } };
 
 template < > struct type_master < t_css_frame > : public tidy_string < t_css_frame >
 {   using tidy_string < t_css_frame > :: tidy_string;

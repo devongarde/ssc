@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN max-height tests</title>
+<style>
+.sid {
+/* <length> value */
+max-height: 3.5em;
+max-height: anchor-size(height);
+max-height: calc(anchor-size(--my-anchor self-block, 250px) + 2em);
+
+/* <percentage> value */
+max-height: 75%;
+
+/* Keyword values */
+max-height: none;
+max-height: max-content;
+max-height: min-content;
+max-height: fit-content;
+max-height: fit-content(20em);
+max-height: stretch;
+
+/* Global values */
+max-height: inherit;
+max-height: initial;
+max-height: revert;
+max-height: revert-layer;
+max-height: unset;
+}
+
+table {
+  max-height: 75%;
+}
+
+form {
+  max-height: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN max-height Tests</h1>
+
+</body>
+</html>

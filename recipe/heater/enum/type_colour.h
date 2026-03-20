@@ -30,6 +30,7 @@ template < > struct type_master < t_colour > : tidy_string < t_colour >
         if (tidy_string < t_colour > :: good ())
         {   const ::std::string& val (tidy_string < t_colour > :: get_string ());
             const ::std::string::size_type len = val.length ();
+            nitpick nets;
             if (val.at (0) == HASH)
                 switch (len)
                 {   case 7 :
@@ -82,7 +83,7 @@ template < > struct type_master < t_colour > : tidy_string < t_colour >
                 fix.set_value (nits, v, val);
                 if (fix.good ()) return;
                 nits.merge (nuts); } }
-        if ((v.css_module (c_colour) >= 4))
+        if (v.css_module (c_colour) >= 4)
             nits.pick (nit_bad_colour, es_error, ec_type, quote (s), " is neither '#' followed by 3, 6 or 8 hexadecimal digits, nor a valid function, nor a standard colour name");
         else if ((v.svg () >= sv_1_0) || (v.css_version () != css_none))
             nits.pick (nit_bad_colour, es_error, ec_type, quote (s), " is neither '#' followed by 3 or 6 hexadecimal digits, nor a valid rgb, nor a standard colour name");

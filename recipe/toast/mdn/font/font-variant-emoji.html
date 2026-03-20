@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN font-variant-emoji tests</title>
+<style>
+.sid
+{
+/* Keyword values */
+font-variant-emoji: normal;
+font-variant-emoji: text;
+font-variant-emoji: emoji;
+font-variant-emoji: unicode;
+
+/* Global values */
+font-variant-emoji: inherit;
+font-variant-emoji: initial;
+font-variant-emoji: revert;
+font-variant-emoji: revert-layer;
+font-variant-emoji: unset;
+}
+
+.text-presentation {
+  font-variant-emoji: text;
+}
+
+.emoji-presentation {
+  font-variant-emoji: emoji;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN font-variant-emoji Tests</h1>
+
+<section class="emojis">
+  <div class="emoji">
+    <h2>text presentation</h2>
+    <div class="text-presentation">☎</div>
+  </div>
+  <div class="emoji">
+    <h2>emoji presentation</h2>
+    <div class="emoji-presentation">☎</div>
+  </div>
+</section>
+
+</body>
+</html>

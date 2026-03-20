@@ -369,8 +369,8 @@ sh_t sh [] =  // latest first
     { rif_schema, html_rif },
     { role_schema, html_role },
     { rr_schema, html_rr },
+    { schema_30_1, html_schema_30_1 },
     { schema_30_0, html_schema_30_0 },
-    { schema_29_5, html_schema_29_5 },
     { schema_29_4, html_schema_29_4 },
     { schema_29_3, html_schema_29_3 },
     { schema_29_2, html_schema_29_2 },
@@ -1226,9 +1226,10 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
         case 3 : break;
         case 7 : return (mnr < 5);
         case 11 :
-        case 28 : return (mnr < 2);
+        case 28 :
+        case 30 : return (mnr < 2);
         case 27 : return (mnr == 1) || (mnr == 2); 
-        case 29 : return (mnr < 6);
+        case 29 : return (mnr < 5);
         default : return (mnr == 0); }
     switch (mnr) // 3.x
     {   case 0 : return ((oflags & SV_NOT_30) == 0);

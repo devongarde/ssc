@@ -51,7 +51,7 @@ bool parse_paint (nitpick& nits, const html_version& v, const ::std::string& d, 
     const ::std::string::size_type ket = d.find_last_of (")");
     if ((brac != ::std::string::npos) && (ket != ::std::string::npos))
         if (++brac < ket)
-            if (test_value < t_colour > (knits, v, args.at (0)))
+            if (test_value < t_css_colour_4 > (knits, v, args.at (0)))
             {   if (args.at (1).size () >= 9)
                 if (compare_complain (nits, v, args.at (1).substr (0, 9), "icc-color"))
                 {   ::std::string tmp = trim_the_lot_off (d.substr (brac, ket-brac));
@@ -61,7 +61,7 @@ bool parse_paint (nitpick& nits, const html_version& v, const ::std::string& d, 
                         if (cwsp != ::std::string::npos)
                         {   n = trim_the_lot_off (tmp.substr (cwsp));
                             tmp = tmp.substr (0, cwsp); }
-                        if (test_value < t_colour > (knits, v, tmp))
+                        if (test_value < t_css_colour_4 > (knits, v, tmp))
                             if (n.empty () || test_value < t_real > (knits, v, n))
                             {   nits.merge (knits); return true; } } } }
     if ((! recheck) && (d.size () > 2))

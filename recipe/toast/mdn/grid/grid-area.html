@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN grid-area tests</title>
+<style>
+.sid {
+/* Keyword values */
+grid-area: auto;
+grid-area: auto / auto;
+grid-area: auto / auto / auto;
+grid-area: auto / auto / auto / auto;
+
+/* <custom-ident> values */
+grid-area: some-grid-area;
+grid-area: some-grid-area / another-grid-area;
+
+/* <integer> && <custom-ident>? values */
+grid-area: 4 some-grid-area;
+grid-area: 4 some-grid-area / 2 another-grid-area;
+
+/* span && [ <integer> || <custom-ident> ] values */
+grid-area: span 3;
+grid-area: span 3 / span some-grid-area;
+grid-area: 2 span / another-grid-area span;
+
+/* Global values */
+grid-area: inherit;
+grid-area: initial;
+grid-area: revert;
+grid-area: revert-layer;
+grid-area: unset;
+}
+
+#grid {
+  display: grid;
+  height: 100px;
+  grid-template: repeat(4, 1fr) / 50px 100px;
+}
+
+#item1 {
+  background-color: lime;
+  grid-area: 2 / 2 / auto / span 3;
+}
+
+#item2 {
+  background-color: yellow;
+}
+
+#item3 {
+  background-color: blue;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN grid-area Tests</h1>
+
+<div id="grid">
+  <div id="item1"></div>
+  <div id="item2"></div>
+  <div id="item3"></div>
+</div>
+
+</body>
+</html>

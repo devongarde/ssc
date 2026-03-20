@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN mask-type tests</title>
+<style>
+.sid {
+/* Keyword values */
+mask-type: luminance;
+mask-type: alpha;
+
+/* Global values */
+mask-type: inherit;
+mask-type: initial;
+mask-type: revert;
+mask-type: revert-layer;
+mask-type: unset;
+}
+
+mask#alphaMask {
+  mask-type: alpha;
+}
+
+mask#luminanceMask {
+  mask-type: luminance;
+}
+
+img.alphaMaskType {
+  mask-image: url("#alphaMask");
+}
+
+img.luminanceMaskType {
+  mask-image: url("#luminanceMask");
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN mask-type Tests</h1>
+
+<img
+  class="alphaMaskType"
+  src="https://mdn.github.io/shared-assets/images/examples/progress-pride-flag.jpg"
+  alt="Pride flag" />
+<img
+  class="luminanceMaskType"
+  src="https://mdn.github.io/shared-assets/images/examples/progress-pride-flag.jpg"
+  alt="Pride flag" />
+
+<svg height="0" width="0">
+  <mask id="alphaMask">
+    <path
+      d="M20,70 A40,40,0,0,1,100,70 A40,40,0,0,1,180,70 Q180,130,100,190 Q20,130,20,70 Z"
+      fill="green"
+      stroke="white"
+      stroke-width="20" />
+    <circle
+      cx="170"
+      cy="170"
+      r="40"
+      fill="rgb(0 0 0 / 0.5)"
+      stroke="rgb(255 255 255 / 0.5)"
+      stroke-width="20" />
+  </mask>
+  <mask id="luminanceMask">
+    <path
+      d="M20,70 A40,40,0,0,1,100,70 A40,40,0,0,1,180,70 Q180,130,100,190 Q20,130,20,70 Z"
+      fill="green"
+      stroke="white"
+      stroke-width="20" />
+    <circle
+      cx="170"
+      cy="170"
+      r="40"
+      fill="rgb(0 0 0 / 0.5)"
+      stroke="rgb(255 255 255 / 0.5)"
+      stroke-width="20" />
+  </mask>
+</svg>
+
+</body>
+</html>

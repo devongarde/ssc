@@ -152,6 +152,9 @@ template < > struct type_master < t_auto_manual_none > : three_value < t_auto_ma
 template < > struct type_master < t_auto_merge_separate > : three_value < t_auto_merge_separate, e_auto_merge_separate, sz_auto, sz_merge, sz_separate >
 { using three_value < t_auto_merge_separate, e_auto_merge_separate, sz_auto, sz_merge, sz_separate > :: three_value; };
 
+template < > struct type_master < t_auto_none_oblique > : three_value < t_auto_none_oblique, e_auto_none_oblique, sz_auto, sz_none, sz_oblique_only >
+{ using three_value < t_auto_none_oblique, e_auto_none_oblique, sz_auto, sz_none, sz_oblique_only > :: three_value; };
+
 template < > struct type_master < t_auto_none_thin > : three_value < t_auto_none_thin, e_auto_none_thin, sz_auto, sz_none, sz_thin >
 { using three_value < t_auto_none_thin, e_auto_none_thin, sz_auto, sz_none, sz_thin > :: three_value; };
 
@@ -480,8 +483,8 @@ template < > struct type_master < t_ssi_include > : three_value < t_ssi_include,
 template < > struct type_master < t_svg_direction > : three_value < t_svg_direction, e_svg_direction, sz_ltr, sz_rtl, sz_inherit >
 { using three_value < t_svg_direction, e_svg_direction, sz_ltr, sz_rtl, sz_inherit > :: three_value; };
 
-template < > struct type_master < t_svg_fontvariant > : three_value < t_svg_fontvariant, e_svg_fontvariant, sz_normal, sz_smallcaps, sz_inherit >
-{ using three_value < t_svg_fontvariant, e_svg_fontvariant, sz_normal, sz_smallcaps, sz_inherit > :: three_value; };
+template < > struct type_master < t_svg_fontvariant > : three_value < t_svg_fontvariant, e_svg_fontvariant, sz_normal, sz_small_caps, sz_inherit >
+{ using three_value < t_svg_fontvariant, e_svg_fontvariant, sz_normal, sz_small_caps, sz_inherit > :: three_value; };
 
 template < > struct type_master < t_tcbalign > : three_value < t_tcbalign, e_tcbalign, sz_top, sz_centre, sz_bottom >
 { using three_value < t_tcbalign, e_tcbalign, sz_top, sz_centre, sz_bottom > :: three_value; };

@@ -17,7 +17,7 @@ PASS ../toast/mdn/webkit/webkit-box-reflect.html
 PASS ../toast/mdn/webkit/webkit-mask-box-image.html
 2 naughty_lang
 4 long_title
-5 css_bespoke css_bespoke css_bespoke css_bespoke css_bespoke css_bespoke css_bespoke css_bespoke css_bespoke css_bespoke css_bespoke css_bespoke css_bespoke
+5 css_bespoke css_bespoke css_bespoke css_bespoke css_bespoke css_bespoke css_bespoke css_bespoke
 
 PASS ../toast/mdn/webkit/webkit-mask-composite.html
 2 naughty_lang

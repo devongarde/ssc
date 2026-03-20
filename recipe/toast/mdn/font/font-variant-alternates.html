@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN font-variant-alternates tests</title>
+<style>
+.sid
+{
+/* Keyword values */
+font-variant-alternates: normal;
+font-variant-alternates: historical-forms;
+
+/* Functional notation values */
+font-variant-alternates: stylistic(user-defined-ident);
+font-variant-alternates: styleset(user-defined-ident);
+font-variant-alternates: character-variant(user-defined-ident);
+font-variant-alternates: swash(user-defined-ident);
+font-variant-alternates: ornaments(user-defined-ident);
+font-variant-alternates: annotation(user-defined-ident);
+font-variant-alternates: swash(ident1) annotation(ident2);
+
+/* Global values */
+font-variant-alternates: inherit;
+font-variant-alternates: initial;
+font-variant-alternates: revert;
+font-variant-alternates: revert-layer;
+font-variant-alternates: unset;
+}
+
+@font-face {
+  font-family: "MonteCarlo";
+  src: url("/shared-assets/fonts/monte-carlo/monte-carlo-regular.woff2");
+}
+
+@font-feature-values "MonteCarlo" {
+  @swash {
+    fancy: 1;
+  }
+}
+
+p {
+  font-family: "MonteCarlo", cursive;
+  font-size: 3rem;
+  margin: 0.7rem 3rem;
+}
+
+.variant {
+  font-variant-alternates: swash(fancy);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN font-variant-alternates Tests</h1>
+
+<p>A Fancy Swash</p>
+<p class="variant">A Fancy Swash</p>
+
+</body>
+</html>

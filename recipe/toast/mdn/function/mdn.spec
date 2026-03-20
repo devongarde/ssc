@@ -246,7 +246,7 @@ PASS ../toast/mdn/function/pow.html
 
 PASS ../toast/mdn/function/progress.html
 2 naughty_lang
-5 css_custom css_custom css_value_fn css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom
+5 css_custom css_custom css_value_fn css_custom css_custom css_custom css_custom css_custom css_custom
 
 PASS ../toast/mdn/function/radial-gradient.html
 2 naughty_lang

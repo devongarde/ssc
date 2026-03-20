@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN font-stretch tests</title>
+<style>
+.sid
+{
+/* Keyword values */
+font-stretch: normal;
+font-stretch: ultra-condensed;
+font-stretch: extra-condensed;
+font-stretch: condensed;
+font-stretch: semi-condensed;
+font-stretch: semi-expanded;
+font-stretch: expanded;
+font-stretch: extra-expanded;
+font-stretch: ultra-expanded;
+
+/* Percentage values */
+font-stretch: 50%;
+font-stretch: 100%;
+font-stretch: 200%;
+
+/* Global values */
+font-stretch: inherit;
+font-stretch: initial;
+font-stretch: revert;
+font-stretch: revert-layer;
+font-stretch: unset;
+}
+
+@font-face {
+  src: url("/shared-assets/fonts/LeagueMono-VF.ttf") format("truetype");
+  font-family: "LeagueMonoVariable";
+  font-style: normal;
+}
+
+p {
+  font:
+    1.5rem "LeagueMonoVariable",
+    sans-serif;
+}
+
+.condensed {
+  font-stretch: 50%;
+}
+
+.normal {
+  font-stretch: 100%;
+}
+
+.expanded {
+  font-stretch: 200%;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN font-stretch Tests</h1>
+
+<p class="condensed">an elephantine lizard</p>
+<p class="normal">an elephantine lizard</p>
+<p class="expanded">an elephantine lizard</p>
+
+</body>
+</html>

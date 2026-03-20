@@ -18,7 +18,6 @@ PASS ../toast/coop/corrupt/search.shtml
 PASS ../toast/coop/corrupt/plumbing/songshade.css
 0 html
 1 css_version
-9 empty empty empty empty content
 19 css_bespoke
 41 abandoned mozilla bespoke_obsolete
 42 css_bespoke

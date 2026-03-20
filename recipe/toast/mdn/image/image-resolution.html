@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN image-resolution tests</title>
+<style>
+.sid {
+image-resolution: from-image;
+image-resolution: 300dpi;
+image-resolution: from-image 300dpi;
+image-resolution: 300dpi snap;
+
+/* Global values */
+image-resolution: inherit;
+image-resolution: initial;
+image-resolution: revert;
+image-resolution: revert-layer;
+image-resolution: unset;
+}
+
+@media print {
+  .my-image {
+    image-resolution: 300dpi;
+  }
+}
+
+.my-image {
+  image-resolution: from-image 300dpi;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN image-resolution Tests</h1>
+
+</body>
+</html>

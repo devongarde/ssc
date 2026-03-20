@@ -171,10 +171,11 @@ void property::parse (arguments& args, const int from, const int to)
     const int k = b;
     b = next_non_whitespace (args.t_, b, to);
     if ((b > 0) && (args.t_.at (b).t_ == ct_colon)) b = next_token_at (args.t_, b, to);
-    else nits.pick (nit_css_syntax, es_error, ec_css, "missing colon after property name");
+    else if (b < 0) nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (k)), ": missing colon after property name (zilch)");
+    else nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (k)), ": missing colon after property name (", tkn_rpt (args.t_.at (b)), ")");
     b = first_non_whitespace (args.t_, b, to);
     if ((b < 0) || ((b > 0) && (args.t_.at (b).t_ == ct_curly_ket)))
-        nits.pick (nit_property, es_error, ec_css, "missing property value");
+        nits.pick (nit_property, es_error, ec_css, tkn_rpt (args.t_.at (k)), ": missing property value");
     else
     {   val_.clear ();
         e_token p = ct_error;

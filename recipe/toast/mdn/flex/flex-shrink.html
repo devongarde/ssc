@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN flex-shrink tests</title>
+<style>
+.sid {
+/* <number> values */
+flex-shrink: 2;
+flex-shrink: 0.6;
+
+/* Global values */
+flex-shrink: inherit;
+flex-shrink: initial;
+flex-shrink: revert;
+flex-shrink: revert-layer;
+flex-shrink: unset;
+}
+
+#content {
+  display: flex;
+  width: 500px;
+}
+
+#content div {
+  width: 200px;
+}
+
+.box1,
+.box2,
+.box3 {
+  flex-shrink: 1;
+}
+
+.box4 {
+  flex-shrink: 1.5;
+}
+
+.box5 {
+  flex-shrink: 2;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN flex-shrink Tests</h1>
+
+<div id="content">
+  <div class="box1">A</div>
+  <div class="box2">B</div>
+  <div class="box3">C</div>
+  <div class="box4">D</div>
+  <div class="box5">E</div>
+</div>
+
+</body>
+</html>

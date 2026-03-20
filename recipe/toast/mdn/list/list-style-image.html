@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN list-style-image tests</title>
+<style>
+.sid {
+/* Keyword values */
+list-style-image: none;
+
+/* <url> values */
+list-style-image: url("star-solid.gif");
+
+/* valid image values */
+list-style-image: linear-gradient(to left bottom, red, blue);
+
+/* Global values */
+list-style-image: inherit;
+list-style-image: initial;
+list-style-image: revert;
+list-style-image: revert-layer;
+list-style-image: unset;
+}
+
+ul {
+  list-style-image: url("star-solid.gif");
+}
+
+ul {
+  font-size: 200%;
+  list-style-image: linear-gradient(to left bottom, red, blue);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN list-style-image Tests</h1>
+
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+</ul>
+
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+</ul>
+
+</body>
+</html>

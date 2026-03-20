@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN lighting-colour tests</title>
+<style>
+.sid
+{
+/* <color> values */
+lighting-color: red;
+lighting-color: hsl(120deg 75% 25% / 60%);
+lighting-color: currentColor;
+
+/* Global values */
+lighting-color: inherit;
+lighting-color: initial;
+lighting-color: revert;
+lighting-color: revert-layer;
+lighting-color: unset;
+}
+
+svg {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent 0 9px,
+    #cccccc 0px 10px
+  );
+}
+
+rect {
+  width: 100px;
+  height: 100px;
+  x: 10px;
+  y: 10px;
+}
+
+#r2 {
+  x: 150px;
+}
+
+feDiffuseLighting {
+  lighting-color: blue;
+}
+
+feSpecularLighting {
+  lighting-color: #ff0099;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN lighting-colour Tests</h1>
+
+<svg viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg">
+  <filter id="flood1">
+    <feDiffuseLighting lighting-color="red">
+      <fePointLight x="75" y="30" z="10" />
+    </feDiffuseLighting>
+  </filter>
+  <filter id="flood2">
+    <feSpecularLighting specularExponent="5" lighting-color="red">
+      <fePointLight x="225" y="75" z="5" />
+    </feSpecularLighting>
+  </filter>
+
+  <rect id="r1" filter="url(#flood1)" />
+  <rect id="r2" filter="url(#flood2)" />
+</svg>
+
+</body>
+</html>

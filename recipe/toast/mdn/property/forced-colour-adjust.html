@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN forced-colour-adjust tests</title>
+<style>
+.sid
+{
+forced-color-adjust: auto;
+forced-color-adjust: none;
+forced-color-adjust: preserve-parent-color;
+
+/* Global values */
+forced-color-adjust: inherit;
+forced-color-adjust: initial;
+forced-color-adjust: revert;
+forced-color-adjust: revert-layer;
+forced-color-adjust: unset;
+}
+
+.box {
+  border: 5px solid grey;
+  background-color: #cccccc;
+  width: 300px;
+  margin: 20px;
+  padding: 10px;
+}
+
+@media (forced-colors: active) {
+  .forced {
+    forced-color-adjust: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN forced-colour-adjust Tests</h1>
+
+<div class="box">
+  <p>This is a box which should use your color preferences.</p>
+</div>
+
+<div class="box forced">
+  <p>This is a box which should stay the colors set by the site.</p>
+</div>
+
+</body>
+</html>

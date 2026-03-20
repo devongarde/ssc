@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN mask-repeat tests</title>
+<style>
+.sid {
+/* One-value syntax */
+mask-repeat: repeat-x;
+mask-repeat: repeat-y;
+mask-repeat: repeat;
+mask-repeat: space;
+mask-repeat: round;
+mask-repeat: no-repeat;
+
+/* Two-value syntax: horizontal | vertical */
+mask-repeat: repeat space;
+mask-repeat: repeat repeat;
+mask-repeat: round space;
+mask-repeat: no-repeat round;
+
+/* Multiple values */
+mask-repeat:
+  space round,
+  no-repeat;
+mask-repeat:
+  round repeat,
+  space,
+  repeat-x;
+
+/* Global values */
+mask-repeat: inherit;
+mask-repeat: initial;
+mask-repeat: revert;
+mask-repeat: revert-layer;
+mask-repeat: unset;
+}
+
+div {
+  width: 250px;
+  height: 250px;
+  background-image: linear-gradient(red, blue);
+
+  mask-image: url("/shared-assets/images/examples/mask-star.svg");
+  mask-size: 100px 100px;
+
+  mask-repeat: round space;
+}
+
+div {
+  width: 180px;
+  height: 180px;
+  background-image: linear-gradient(red, blue);
+
+  mask-image: url("/shared-assets/images/examples/mask-star.svg");
+
+  mask-size: 50px 50px;
+  mask-position: bottom right;
+}
+
+.repeat div {
+  mask-repeat: repeat;
+}
+.space div {
+  mask-repeat: space;
+}
+.round div {
+  mask-repeat: round;
+}
+.no-repeat div {
+  mask-repeat: no-repeat;
+}
+.repeat-x div {
+  mask-repeat: repeat-x;
+}
+.repeat-y div {
+  mask-repeat: repeat-y;
+}
+
+section::before {
+  content: attr(class);
+  display: block;
+  text-align: center;
+  border-bottom: 1px solid;
+}
+
+.extra-repeats {
+  mask-image: url("mask1.png"), url("mask2.png");
+  mask-repeat: repeat-x, repeat-y, space;
+}
+
+.missing-repeats {
+  mask-image:
+    url("mask1.png"), url("mask2.png"), url("mask3.png"), url("mask4.png");
+  mask-repeat: repeat-x, repeat-y;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN mask-repeat Tests</h1>
+
+<div></div>
+
+<section class="repeat">
+  <div></div>
+</section>
+<section class="space">
+  <div></div>
+</section>
+<section class="round">
+  <div></div>
+</section>
+<section class="no-repeat">
+  <div></div>
+</section>
+<section class="repeat-x">
+  <div></div>
+</section>
+<section class="repeat-y">
+  <div></div>
+</section>
+
+</body>
+</html>

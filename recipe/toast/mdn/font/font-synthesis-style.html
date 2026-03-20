@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN font-synthesis-style tests</title>
+<style>
+.sid
+{
+/* Keyword values */
+font-synthesis-style: auto;
+font-synthesis-style: none;
+font-synthesis-style: oblique-only;
+
+/* Global values */
+font-synthesis-style: inherit;
+font-synthesis-style: initial;
+font-synthesis-style: revert;
+font-synthesis-style: revert-layer;
+font-synthesis-style: unset;
+}
+
+@import "duff.fnt";
+
+.english {
+  font-family: "Montserrat", sans-serif;
+}
+
+.no-syn {
+  font-synthesis-style: none;
+}
+
+/* Specify style of the font synthesis */
+.fss-none {
+  font-synthesis-style: none;
+}
+
+.fss-auto {
+  font-synthesis-style: auto;
+}
+
+.fss-oblique-only {
+  font-synthesis-style: oblique-only;
+}
+
+/* Set font styles */
+.oblique {
+  font-style: oblique;
+}
+
+.italic {
+  font-style: italic;
+}
+
+/* Styles for the demonstration */
+.oblique::after {
+  content: " (font-style: oblique)";
+  font-size: 0.8rem;
+  vertical-align: sub;
+}
+
+.italic::after {
+  content: " (font-style: italic)";
+  font-size: 0.8rem;
+  vertical-align: sub;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN font-synthesis-style Tests</h1>
+
+<p class="english">
+  This is the default <em>oblique typeface</em> and
+  <strong>bold typeface</strong>.
+</p>
+
+<p class="english no-syn">
+  The <em>oblique typeface</em> is turned off here but not the
+  <strong>bold typeface</strong>.
+</p>
+
+<div class="fss-none">
+  <h2>font-synthesis-style: none</h2>
+  <p class="oblique">This text is set to <code>oblique</code></p>
+  <p class="italic">This text is set to <code>italic</code></p>
+</div>
+
+<div class="fss-auto">
+  <h2>font-synthesis-style: auto</h2>
+  <p class="oblique">This text is set to <code>oblique</code></p>
+  <p class="italic">This text is set to <code>italic</code></p>
+</div>
+
+<div class="fss-oblique-only">
+  <h2>font-synthesis-style: oblique-only</h2>
+  <p class="oblique">This text is set to <code>oblique</code></p>
+  <p class="italic">This text is set to <code>italic</code></p>
+</div>
+
+</body>
+</html>

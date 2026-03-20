@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN interactivity tests</title>
+<style>
+.sid
+{
+/* Keyword values */
+interactivity: auto;
+interactivity: inert;
+
+/* Global values */
+interactivity: inherit;
+interactivity: initial;
+interactivity: revert;
+interactivity: revert-layer;
+interactivity: unset;
+}
+
+.inert {
+  interactivity: inert;
+  background-color: lightpink;
+}
+
+.inert {
+  interactivity: inert;
+}
+
+[contenteditable] {
+  outline: 1px dashed lightblue;
+}
+
+.borderChanged {
+  border-color: orange;
+}
+
+ul {
+  width: 100vw;
+  height: 250px;
+  padding: 1vw;
+  overflow-x: scroll;
+  display: flex;
+  gap: 1vw;
+  scroll-snap-type: x mandatory;
+}
+
+li {
+  list-style-type: none;
+  background-color: #eeeeee;
+  border: 1px solid #dddddd;
+  padding: 20px;
+
+  flex: 0 0 98vw;
+
+  scroll-snap-align: center;
+
+  view-timeline: --inner-change inline;
+  animation-timeline: --inner-change;
+  animation-name: inert-change;
+  animation-fill-mode: both;
+}
+
+@keyframes inert-change {
+  entry 0%,
+  exit 100% {
+    interactivity: inert;
+  }
+
+  entry 1%,
+  exit 99% {
+    interactivity: auto;
+  }
+}
+</style>
+<script>
+const paras = document.querySelectorAll("p");
+
+function tempBorderChange(e) {
+  const targetPara = e.currentTarget;
+  targetPara.classList.add("borderChanged");
+  setTimeout(() => {
+    targetPara.classList.remove("borderChanged");
+  }, 2000);
+}
+
+for (para of paras) {
+  para.addEventListener("click", tempBorderChange);
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN interactivity Tests</h1>
+
+<button inert>You can't press me</button>
+
+<p>
+  <label>
+    This input is interactive:
+    <input type="text" name="one" value="editable" />
+  </label>
+</p>
+<p>
+  <label>
+    This input is not interactive:
+    <input type="text" name="two" value="Not editable" class="inert" />
+  </label>
+</p>
+
+<p>
+  This paragraph is not
+  <a
+    href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/inert"
+    >inert</a
+  >. You should be able to select the text content, search for it using
+  in-browser search features, and focus and click the link. There is a
+  <code>click</code> event handler set on the paragraph that changes the border
+  color for a second when it is clicked anywhere.
+  <span contenteditable>This sentence has <code>contenteditable</code> set on
+  it, so it is editable</span>.
+</p>
+
+<p class="inert">
+  This paragraph is
+  <a
+    href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/inert"
+    >inert</a
+  >. You won't be able to select the text content, search for it using
+  in-browser search features, focus and click the link, or issue
+  <code>click</code> events on it (the border color won't change when it is
+  clicked).
+  <span contenteditable
+    >This sentence has <code>contenteditable</code> set on it, but it is not
+    editable because it is inert</span
+  >.
+</p>
+
+<h1>Pagination interactivity demo</h1>
+<ul>
+  <li>
+    <h2>Page 1</h2>
+    <p>This is the first page of content.</p>
+    <p><a href="#">A demo link</a>.</p>
+    <p><button>Press me</button></p>
+  </li>
+  <li>
+    <h2>Page 2</h2>
+    <p>This is the second page of content.</p>
+    <p><a href="#">A demo link</a>.</p>
+    <p><button>Press me</button></p>
+  </li>
+  <li>
+    <h2>Page 3</h2>
+    <p>This is the third page of content.</p>
+    <p><a href="#">A demo link</a>.</p>
+    <p><button>Press me</button></p>
+  </li>
+  <li>
+    <h2>Page 4</h2>
+    <p>This is the fourth page of content.</p>
+    <p><a href="#">A demo link</a>.</p>
+    <p><button>Press me</button></p>
+  </li>
+</ul>
+
+</body>
+</html>

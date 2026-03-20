@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN min-height tests</title>
+<style>
+.sid {
+/* <length> value */
+min-height: 3.5em;
+min-height: anchor-size(height);
+min-height: anchor-size(--my-anchor block, 200px);
+
+/* <percentage> value */
+min-height: 10%;
+
+/* Keyword values */
+min-height: max-content;
+min-height: min-content;
+min-height: fit-content;
+min-height: fit-content(20em);
+min-height: stretch;
+
+/* Global values */
+min-height: inherit;
+min-height: initial;
+min-height: revert;
+min-height: revert-layer;
+min-height: unset;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN min-height Tests</h1>
+
+table {
+  min-height: 75%;
+}
+
+form {
+  min-height: 0;
+}
+
+</body>
+</html>

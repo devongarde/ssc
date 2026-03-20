@@ -129,8 +129,10 @@ e_status set_css_font_stretch_value (nitpick& nits, const html_version& v, const
         nits.pick (nit_empty, es_error, ec_type, "font-stretch cannot be empty");
     else
     {   nitpick nuts;
+        if (v >= html_dec25)
+            nits.pick (nit_deprecated, es_warning, ec_css, "font-stretch has been replaced by font-width");
         if (context.css_module (c_font) >= 4)
-            if (test_value < t_percent > (nuts, v, s))
+            if (test_value < t_percentish > (nuts, v, s))
             {   nits.merge (nuts);
                 return s_good; }
         if (test_value < t_svg_fontstretch > (nits, v, s)) return s_good;
@@ -345,7 +347,7 @@ e_status set_fn_calc_args_value (nitpick& nits, const html_version& v, const ::s
                 fnn = n;
                 if (set_calc_ex (nits, v, s, st, n, had_op, true))
                 {   fn = rounds; n.clear (); fna.clear ();
-                    cvf = examine_value < t_css_val_fn > (nits, v, fnn);
+                    if (! fnn.empty ()) cvf = examine_value < t_css_val_fn > (nits, v, fnn);
                     continue; }
                 break;
             case ')' :

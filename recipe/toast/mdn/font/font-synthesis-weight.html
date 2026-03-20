@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN font-synthesis-weight tests</title>
+<style>
+.sid
+{
+/* Keyword values */
+font-synthesis-weight: auto;
+font-synthesis-weight: none;
+
+/* Global values */
+font-synthesis-weight: inherit;
+font-synthesis-weight: initial;
+font-synthesis-weight: revert;
+font-synthesis-weight: revert-layer;
+font-synthesis-weight: unset;
+}
+
+@import "duff.fnt";
+
+.english {
+  font-family: "Montserrat", sans-serif;
+}
+.no-syn {
+  font-synthesis-weight: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN font-synthesis-weight Tests</h1>
+
+<p class="english">
+  This is the default <strong>bold typeface</strong> and
+  <em>oblique typeface</em>.
+</p>
+
+<p class="english no-syn">
+  The <strong>bold typeface</strong> is turned off here but not the
+  <em>oblique typeface</em>.
+</p>
+
+</body>
+</html>

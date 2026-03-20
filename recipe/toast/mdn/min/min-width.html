@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN min-width tests</title>
+<style>
+.sid {
+/* <length> value */
+min-width: 3.5em;
+min-width: anchor-size(width);
+min-width: anchor-size(--my-anchor self-inline, 200%);
+
+/* <percentage> value */
+min-width: 10%;
+
+/* Keyword values */
+min-width: max-content;
+min-width: min-content;
+min-width: fit-content;
+min-width: fit-content(20em);
+min-width: stretch;
+
+/* Global values */
+min-width: inherit;
+min-width: initial;
+min-width: revert;
+min-width: revert-layer;
+min-width: unset;
+}
+
+table {
+  min-width: 75%;
+}
+
+form {
+  min-width: 0;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN min-width Tests</h1>
+
+</body>
+</html>

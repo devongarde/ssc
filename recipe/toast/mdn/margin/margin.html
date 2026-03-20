@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN margin tests</title>
+<style>
+.sid {
+/* apply to all four sides */
+margin: 1em;
+margin: -3px;
+
+/* top and bottom | left and right */
+margin: 5% auto;
+
+/* top | left and right | bottom */
+margin: 1em auto 2em;
+
+/* top | right | bottom | left */
+margin: 2px 1em 0 auto;
+
+/* anchor-size() values */
+margin: 5% anchor-size(width);
+margin: calc(anchor-size(width) / 4) 1em 0
+  anchor-size(--my-anchor self-inline, 50px);
+
+/* Keyword values */
+margin: auto;
+
+/* Global values */
+margin: inherit;
+margin: initial;
+margin: revert;
+margin: revert-layer;
+margin: unset;
+}
+
+.center {
+  margin: auto;
+  background: lime;
+  width: 66%;
+}
+
+.outside {
+  margin: 3rem 0 0 -3rem;
+  background: cyan;
+  width: 66%;
+}
+
+.doris
+{
+margin: 5%; /* All sides: 5% margin */
+
+margin: 10px; /* All sides: 10px margin */
+
+margin: 1.6em 20px; /* top and bottom: 1.6em margin */
+/* left and right: 20px margin */
+
+margin: 10px 3% -1em; /* top:            10px margin */
+/* left and right: 3% margin   */
+/* bottom:         -1em margin */
+
+margin: 10px 3px 30px 5px; /* top:    10px margin */
+/* right:  3px margin  */
+/* bottom: 30px margin */
+/* left:   5px margin  */
+
+margin: 2em auto; /* top and bottom: 2em margin   */
+/* Box is horizontally centered */
+
+margin: auto; /* top and bottom: 0 margin     */
+/* Box is horizontally centered */
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN margin Tests</h1>
+
+<div class="center">This element is centered.</div>
+
+<div class="outside">This element is positioned outside of its container.</div>
+
+</body>
+</html>

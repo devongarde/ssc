@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN marker-mid tests</title>
+<style>
+.sid {
+marker-mid: none;
+marker-mid: url("markers.svg#arrow");
+
+/* Global values */
+marker-mid: inherit;
+marker-mid: initial;
+marker-mid: revert;
+marker-mid: revert-layer;
+marker-mid: unset;
+}
+
+polyline#test {
+  marker-mid: url("#triangle");
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN marker-mid Tests</h1>
+
+<svg viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker
+      id="triangle"
+      viewBox="0 0 10 10"
+      markerWidth="10"
+      markerHeight="10"
+      refX="1"
+      refY="5"
+      markerUnits="strokeWidth"
+      orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="red" />
+    </marker>
+  </defs>
+  <polyline
+    id="test"
+    fill="none"
+    stroke="black"
+    points="20,100 40,60 70,80 100,20 130,10 150,10 170,20 170,100 120,100" />
+</svg>
+
+</body>
+</html>

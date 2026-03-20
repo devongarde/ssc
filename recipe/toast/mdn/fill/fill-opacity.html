@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN fill-opacity tests</title>
+<style>
+.sid {
+/* numeric and percentage values */
+fill-opacity: 0.2;
+fill-opacity: 20%;
+
+/* Global values */
+fill-opacity: inherit;
+fill-opacity: initial;
+fill-opacity: revert;
+fill-opacity: revert-layer;
+fill-opacity: unset;
+}
+
+svg > * {
+  fill: black;
+}
+rect:last-of-type {
+  fill-opacity: 0.1;
+}
+circle {
+  fill-opacity: 0.6;
+}
+ellipse {
+  fill-opacity: 40%;
+}
+line {
+  fill-opacity: 10%;
+}
+polyline {
+  fill-opacity: 50%;
+}
+path {
+  fill-opacity: 0.5;
+}
+
+circle,
+ellipse {
+  stroke: black;
+  stroke-width: 3px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN fill-opacity Tests</h1>
+
+<svg viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="30" height="30" fill-opacity="1" />
+  <rect x="60" y="10" rx="10" ry="10" width="30" height="30" fill-opacity="1" />
+  <circle cx="25" cy="75" r="20" fill-opacity="1" />
+  <ellipse cx="75" cy="75" rx="20" ry="10" fill-opacity="1" />
+  <line x1="50" x2="90" y1="40" y2="60" stroke="black" stroke-width="5" />
+  <polyline
+    points="60 90 65 100 70 95 75 110 80 105 85 120 90 115 95 130 100 125"
+    fill-opacity="1" />
+  <path d="M20,130 Q40,105 50,130 T90,130" fill-opacity="1" />
+</svg>
+
+</body>
+</html>

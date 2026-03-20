@@ -144,11 +144,12 @@ e_status set_css_font_size_adjust_value (nitpick& nits, const html_version& v, c
             if (test_value < t_css_font_size_adjust_e > (nuts, v, vs.at (0)))
             {   nits.merge (nuts);
                 ++pos; }
-            if ((vs.size () > pos) && compare_no_case (vs.at (pos), "from-font")) ++pos;
-            if ((vs.size () > pos) && test_value < t_real > (nits, v, vs.at (pos)))
-            {   if (len > pos) nits.pick (nit_css_syntax, es_warning, ec_css, "ignoring unexpected junk following ", quote (vs.at (pos))); 
+            if ((len > pos) && compare_no_case (vs.at (pos), "from-font"))
+                if (len == ++pos) return s_good;
+            if ((len > pos) && test_value < t_real > (nits, v, vs.at (pos)))
+            {   if (len > ++pos) nits.pick (nit_css_syntax, es_warning, ec_css, "ignoring unexpected junk following ", quote (vs.at (pos))); 
                 return s_good; }
-            if (pos >= vs.size ()) nits.pick (nit_css_syntax, es_error, ec_css, "number expected"); } }
+            nits.pick (nit_css_syntax, es_error, ec_css, "number expected after ", quote (vs.at (pos-1))); } }
     return s_invalid; }
 
 e_status set_css_lang_value (nitpick& nits, const html_version& v, const vstr_t& vs)
@@ -340,7 +341,7 @@ e_status set_css_font_style_a_value (nitpick& nits, const html_version& v, const
         cf.set_value (nits, v, vs.at (0));
         if (cf.good ())
         {   if (vs.size () == 1) return s_good;
-            if (compare_no_case (cf.original (), "oblique"))
+            if (compare_no_case (vs.at (0), "oblique"))
             {   if (vs.size () > 2) nits.pick (nit_css_syntax, es_warning, ec_css, "junk found after ", quote (vs.at (1)));
                 if (test_value < t_angle > (nits, v, vs.at (1))) return s_good; }
             else nits.pick (nit_css_syntax, es_warning, ec_css, "junk found after ", quote (vs.at (0))); } }

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN fill-rule tests</title>
+<style>
+.sid {
+/* keywords */
+fill-rule: evenodd;
+fill-rule: nonzero;
+
+/* Global values */
+fill-rule: inherit;
+fill-rule: initial;
+fill-rule: revert;
+fill-rule: revert-layer;
+fill-rule: unset;
+}
+
+svg:nth-of-type(2) > * {
+  fill-rule: nonzero;
+}
+svg:nth-of-type(3) > * {
+  fill-rule: evenodd;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN fill-rule Tests</h1>
+
+<svg viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
+  <polygon
+    points="180,10 150,100 220,40 140,40 210,100"
+    stroke="red"
+    fill-rule="evenodd" />
+  <path
+    d="M 10,5 l 90,0 -80,80 0,-60 80,80 -90,0 z"
+    stroke="red"
+    fill-rule="nonzero" />
+</svg>
+
+</body>
+</html>

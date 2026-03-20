@@ -129,7 +129,7 @@ PASS ../toast/mdn/element/dfn.html
 PASS ../toast/mdn/element/dialogue.html
 0 charset_mismatch charset_used charset_invalid
 2 naughty_lang
-5 css_value_fn unrecognised_value unrecognised_value
+5 unrecognised_value unrecognised_value unrecognised_value
 266 bad_form
 302 use_double_quote_code
 304 use_double_quote_code
@@ -317,7 +317,7 @@ PASS ../toast/mdn/element/map.html
 
 PASS ../toast/mdn/element/mark.html
 2 naughty_lang
-5 abandoned
+5 css_syntax abandoned
 35 use_double_quote_code
 54 use_quote_code
 58 unrecognised_value

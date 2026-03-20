@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN hyphenate-limit-chars tests</title>
+<style>
+.sid
+{
+/* Numeric values */
+hyphenate-limit-chars: 10 4 4;
+hyphenate-limit-chars: 10 4;
+hyphenate-limit-chars: 10;
+
+/* Keyword values */
+hyphenate-limit-chars: auto auto auto;
+hyphenate-limit-chars: auto auto;
+hyphenate-limit-chars: auto;
+
+/* Mix of numeric and keyword values */
+hyphenate-limit-chars: 10 auto 4;
+hyphenate-limit-chars: 10 auto;
+hyphenate-limit-chars: auto 3;
+
+/* Global values */
+hyphenate-limit-chars: inherit;
+hyphenate-limit-chars: initial;
+hyphenate-limit-chars: revert;
+hyphenate-limit-chars: revert-layer;
+hyphenate-limit-chars: unset;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+p {
+  margin: 1rem;
+  width: 120px;
+  border: 2px dashed #999999;
+  font-size: 1.5rem;
+  hyphens: auto;
+}
+
+#ex2 {
+  hyphenate-limit-chars: 14;
+}
+
+#ex3 {
+  hyphenate-limit-chars: 5 9 2;
+}
+
+#ex4 {
+  hyphenate-limit-chars: 5 2 7;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN hyphenate-limit-chars Tests</h1>
+
+<div class="container">
+  <p id="ex1">juxtaposition and acknowledgement</p>
+  <p id="ex2">juxtaposition and acknowledgement</p>
+  <p id="ex3">juxtaposition and acknowledgement</p>
+  <p id="ex4">juxtaposition and acknowledgement</p>
+</div>
+
+</body>
+</html>

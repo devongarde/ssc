@@ -102,6 +102,12 @@ template < > struct type_master < t_custom_element_new > : tidy_string < t_custo
                 nits.pick (nit_custom_element, ed_jul25, "4.13.3 Core concepts", es_warning, ec_type, quote (ss), ": the custom element name may contain an illegal ASCII character"); }
         string_value < t_custom_element_new > :: status (s_invalid); } };
 
+template < > struct type_master < t_anchor_centre > : type_string < t_anchor_centre, sz_anchor_centre >
+{ using type_string < t_anchor_centre, sz_anchor_centre > :: type_string; };
+
+template < > struct type_master < t_auto > : type_string < t_auto, sz_auto >
+{ using type_string < t_auto, sz_auto > :: type_string; };
+
 template < > struct type_master < t_digits > : type_string < t_digits, sz_digits >
 { using type_string < t_digits, sz_digits > :: type_string; };
 
@@ -150,6 +156,9 @@ template < > struct type_master < t_round > : type_string < t_round, sz_round >
 
 template < > struct type_master < t_slash > : type_string < t_slash, sz_slash >
 { using type_string < t_slash, sz_slash > :: type_string; };
+
+template < > struct type_master < t_stretch > : type_string < t_stretch, sz_stretch >
+{ using type_string < t_stretch, sz_stretch > :: type_string; };
 
 template < > struct type_master < t_text > : public tidy_string < t_text >
 {   using tidy_string < t_text > :: tidy_string;

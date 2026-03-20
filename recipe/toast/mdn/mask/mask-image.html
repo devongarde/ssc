@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN mask-image tests</title>
+<style>
+.sid {
+/* Keyword value */
+mask-image: none;
+
+/* <mask-source> value */
+mask-image: url("masks.svg#mask1");
+
+/* <image> values */
+mask-image: linear-gradient(black, transparent);
+mask-image: image(url("mask.png"), skyblue);
+
+/* Multiple values */
+mask-image: url("mask.png"), linear-gradient(black 25%, transparent 35%);
+
+/* Global values */
+mask-image: inherit;
+mask-image: initial;
+mask-image: revert;
+mask-image: revert-layer;
+mask-image: unset;
+}
+
+img {
+  mask-image: radial-gradient(black 50%, transparent 60%);
+}
+
+img:first-of-type {
+  mask-image: url("mask-star.svg");
+}
+
+img {
+  mask-size: 95%, 100%;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-image:
+    url("mask-star.svg"),
+    repeating-radial-gradient(transparent 0 5px, black 5px 10px);
+}
+
+#green {
+  mask-image: url("#greenMask");
+}
+#stroke {
+  mask-image: url("#strokeMask");
+}
+#both {
+  mask-image: url("#bothMask");
+}
+#alphaMode {
+  mask-image: url("#black");
+}
+
+body:has(:checked) img {
+  mask-mode: alpha;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN mask-image Tests</h1>
+
+<img
+  src="progress-pride-flag.jpg"
+  alt="Pride flag" />
+
+<img
+  src="progress-pride-flag.jpg"
+  alt="Pride flag" />
+
+<img
+  src="mask-star.svg"
+  alt="A star" />
+
+<img
+  id="green"
+  src="https://mdn.github.io/shared-assets/images/examples/progress-pride-flag.jpg"
+  alt="Pride flag" />
+<img
+  id="stroke"
+  src="https://mdn.github.io/shared-assets/images/examples/progress-pride-flag.jpg"
+  alt="Pride flag" />
+<img
+  id="both"
+  src="https://mdn.github.io/shared-assets/images/examples/progress-pride-flag.jpg"
+  alt="Pride flag" />
+<img
+  id="alphaMode"
+  src="https://mdn.github.io/shared-assets/images/examples/progress-pride-flag.jpg"
+  alt="Pride flag" />
+
+<svg height="0" width="0">
+  <mask id="greenMask">
+    <path
+      d="M20,70 A40,40,0,0,1,100,70 A40,40,0,0,1,180,70 Q180,130,100,190 Q20,130,20,70 Z"
+      fill="green" />
+  </mask>
+  <mask id="strokeMask">
+    <path
+      d="M20,70 A40,40,0,0,1,100,70 A40,40,0,0,1,180,70 Q180,130,100,190 Q20,130,20,70 Z"
+      fill="none"
+      stroke="white"
+      stroke-width="20" />
+  </mask>
+  <mask id="bothMask">
+    <path
+      d="M20,70 A40,40,0,0,1,100,70 A40,40,0,0,1,180,70 Q180,130,100,190 Q20,130,20,70 Z"
+      fill="green"
+      stroke="white"
+      stroke-width="20" />
+  </mask>
+  <mask id="black">
+    <path
+      d="M20,70 A40,40,0,0,1,100,70 A40,40,0,0,1,180,70 Q180,130,100,190 Q20,130,20,70 Z"
+      fill="black" />
+  </mask>
+</svg>
+
+</body>
+</html>

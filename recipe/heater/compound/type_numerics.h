@@ -66,6 +66,10 @@ template < > struct type_master < t_a_b_c_d > : type_one_two_three_four < t_a_b_
 {   static bool is_numeric () { return true; }
     using type_one_two_three_four < t_a_b_c_d, t_0_to_255, t_0_to_255, t_0_to_255, t_0_to_255, sz_dot_char > :: type_one_two_three_four; };
 
+template < > struct type_master < t_integer_1_up > : type_range < t_integer_1_up, sz_commaspace, t_integer, 1, INT_MAX >
+{   static bool is_numeric () { return true; }
+    using type_range < t_integer_1_up, sz_commaspace, t_integer, 1, INT_MAX > :: type_range; };
+
 template < > struct type_master < t_integer_ai > : type_or_either_string < t_integer_ai, t_integer, sz_auto, sz_inherit >
 {   static bool is_numeric () { return true; }
     using type_or_either_string < t_integer_ai, t_integer, sz_auto, sz_inherit > :: type_or_either_string; };
@@ -130,6 +134,18 @@ template < > struct type_master < t_real_ai > : type_or_either_string < t_real_a
 {   static bool is_numeric () { return true; }
     using type_or_either_string < t_real_ai, t_real, sz_auto, sz_inherit > :: type_or_either_string; };
 
+template < > struct type_master < t_real_1_up_inf > : type_or_string < t_real_1_up_inf, t_real_1_up, sz_infinity >
+{   static bool is_numeric () { return true; }
+    using type_or_string < t_real_1_up_inf, t_real_1_up, sz_infinity > :: type_or_string; };
+
+template < > struct type_master < t_integer_1_up_inf > : type_or_string < t_integer_1_up_inf, t_integer_1_up, sz_infinity >
+{   static bool is_numeric () { return true; }
+    using type_or_string < t_integer_1_up_inf, t_integer_1_up, sz_infinity > :: type_or_string; };
+
+template < > struct type_master < t_real_int_1_up > : type_one_two < t_real_int_1_up, t_real_1_up_inf, t_integer_1_up_inf, sz_space_char >
+{   static bool is_numeric () { return true; }
+    using type_one_two < t_real_int_1_up, t_real_1_up_inf, t_integer_1_up_inf, sz_space_char > :: type_one_two; };
+
 template < > struct type_master < t_real_n > : type_or_string < t_real_n, t_real, sz_none >
 {   static bool is_numeric () { return true; }
     using type_or_string < t_real_n, t_real, sz_none > :: type_or_string; };
@@ -187,5 +203,5 @@ template < > struct type_master < t_resolution > : type_number_unit_4 < t_resolu
 { using type_number_unit_4 < t_resolution, t_0_more, sz_dpi, sz_dpcm, sz_dppx, sz_x > :: type_number_unit_4; };
 
 template < > struct type_master < t_zero_to_ones > : type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one >
-{    static bool is_numeric () { return true; }
+{   static bool is_numeric () { return true; }
     using type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one > :: type_at_least_one; };

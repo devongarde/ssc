@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN margin-bottom tests</title>
+<style>
+.sid {
+/* <length> values */
+margin-bottom: 10px; /* An absolute length */
+margin-bottom: 1em; /* relative to the text size */
+margin-bottom: 5%; /* relative to the nearest block container's width */
+margin-bottom: anchor-size(width);
+margin-bottom: calc(anchor-size(--my-anchor self-block, 20px) / 3);
+
+/* Keyword values */
+margin-bottom: auto;
+
+/* Global values */
+margin-bottom: inherit;
+margin-bottom: initial;
+margin-bottom: revert;
+margin-bottom: revert-layer;
+margin-bottom: unset;
+}
+
+.box0 {
+  margin-bottom: 1em;
+  height: 3em;
+}
+.box1 {
+  margin-bottom: -1.5em;
+  height: 4em;
+}
+.box2 {
+  border: 1px dashed black;
+  border-width: 1px 0;
+  margin-bottom: 2em;
+}
+
+.container {
+  background-color: orange;
+  width: 320px;
+  border: 1px solid black;
+}
+div {
+  width: 320px;
+  background-color: gold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN margin-bottom Tests</h1>
+
+<div class="container">
+  <div class="box0">Box 0</div>
+  <div class="box1">Box 1</div>
+  <div class="box2">Box one's negative margin pulls me up</div>
+</div>
+
+</body>
+</html>

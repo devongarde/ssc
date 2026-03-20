@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN inset-block-end tests</title>
+<style>
+.sid {
+/* <length> values */
+inset-block-end: 3px;
+inset-block-end: 2.4em;
+inset-block-end: calc(anchor(start) + 20px);
+inset-block-end: anchor-size(--my-anchor width, 10%);
+
+/* <percentage>s of the width or height of the containing block */
+inset-block-end: 10%;
+
+/* Keyword value */
+inset-block-end: auto;
+
+/* Global values */
+inset-block-end: inherit;
+inset-block-end: initial;
+inset-block-end: revert;
+inset-block-end: revert-layer;
+inset-block-end: unset;
+}
+
+div {
+  background-color: yellow;
+  width: 120px;
+  height: 120px;
+}
+
+.exampleText {
+  writing-mode: vertical-rl;
+  position: relative;
+  inset-block-end: 20px;
+  background-color: #c8c800;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN inset-block-end Tests</h1>
+
+<div>
+  <p class="exampleText">Example text</p>
+</div>
+
+</body>
+</html>

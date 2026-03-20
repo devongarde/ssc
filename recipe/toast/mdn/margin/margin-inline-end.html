@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN margin-inline-end tests</title>
+<style>
+.sid {
+/* <length> values */
+margin-inline-end: 10px; /* An absolute length */
+margin-inline-end: 1em; /* relative to the text size */
+margin-inline-end: 5%; /* relative to the nearest block container's width */
+margin-inline-end: anchor-size(height);
+margin-inline-end: calc(anchor-size(--my-anchor self-inline, 25px) / 5);
+
+/* Keyword values */
+margin-inline-end: auto;
+
+/* Global values */
+margin-inline-end: inherit;
+margin-inline-end: initial;
+margin-inline-end: revert;
+margin-inline-end: revert-layer;
+margin-inline-end: unset;
+}
+
+div {
+  background-color: yellow;
+  width: 120px;
+  height: 120px;
+}
+
+.exampleText {
+  writing-mode: vertical-lr;
+  margin-inline-end: 20px;
+  background-color: #c8c800;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN margin-inline-end Tests</h1>
+
+<div>
+  <p class="exampleText">Example text</p>
+</div>
+
+</body>
+</html>

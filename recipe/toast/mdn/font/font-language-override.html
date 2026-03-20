@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN font-language-override tests</title>
+<style>
+.sid
+{
+/* Keyword value */
+font-language-override: normal;
+
+/* <string> values */
+font-language-override: "ENG"; /* Use English glyphs */
+font-language-override: "TRK"; /* Use Turkish glyphs */
+
+/* Global values */
+font-language-override: inherit;
+font-language-override: initial;
+font-language-override: revert;
+font-language-override: revert-layer;
+font-language-override: unset;
+}
+
+p.para1 {
+  font-language-override: normal;
+}
+
+p.para2 {
+  font-language-override: "DAN";
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN font-language-override Tests</h1>
+
+<p class="para1">Default language setting.</p>
+<p class="para2">
+  This is a string with the <code>font-language-override</code> set to Danish.
+</p>
+
+</body>
+</html>

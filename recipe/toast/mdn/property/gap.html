@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN gap tests</title>
+<style>
+.sid
+{
+/* One <length> value */
+gap: 20px;
+gap: 1em;
+gap: 3vmin;
+gap: 0.5cm;
+
+/* One <percentage> value */
+gap: 16%;
+gap: 100%;
+
+/* Two <length> values */
+gap: 20px 10px;
+gap: 1em 0.5em;
+gap: 3vmin 2vmax;
+gap: 0.5cm 2mm;
+
+/* One or two <percentage> values */
+gap: 16% 100%;
+gap: 21px 82%;
+
+/* calc() values */
+gap: calc(10% + 20px);
+gap: calc(20px + 10%) calc(10% - 5px);
+
+/* Global values */
+gap: inherit;
+gap: initial;
+gap: revert;
+gap: revert-layer;
+gap: unset;
+}
+
+#flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  gap: 20px 5px;
+}
+
+#flexbox > div {
+  border: 1px solid green;
+  background-color: lime;
+  flex: 1 1 auto;
+  width: 100px;
+  height: 50px;
+}
+
+#grid {
+  display: grid;
+  height: 200px;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  gap: 20px 5px;
+}
+
+#grid > div {
+  border: 1px solid green;
+  background-color: lime;
+}
+
+.content-box {
+  column-count: 3;
+  gap: 40px;
+}
+
+#grid {
+  display: inline-grid;
+  height: 200px;
+  gap: 12.5% 0;
+}
+
+#flex {
+  display: inline-flex;
+  height: 200px;
+  gap: 12.5% 0;
+}
+
+#grid > div,
+#flex > div {
+  background-color: coral;
+  width: 20px;
+  height: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN gap Tests</h1>
+
+<div id="flexbox">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<div id="grid">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<p class="content-box">
+  This is some multi-column text with a 40px column gap created with the CSS
+  <code>gap</code> property. Don't you think that's fun and exciting? I sure do!
+</p>
+
+<span>Grid</span>
+<div id="grid">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+</div>
+<span>Flex</span>
+<div id="flex">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+</div>
+
+</body>
+</html>

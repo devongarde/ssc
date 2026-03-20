@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN height tests</title>
+<style>
+.sid
+{
+/* <length> values */
+height: 120px;
+height: 10em;
+height: 100vh;
+height: anchor-size(height);
+height: anchor-size(--my-anchor self-block, 250px);
+height: clamp(200px, anchor-size(width));
+
+/* <percentage> value */
+height: 75%;
+
+/* Keyword values */
+height: max-content;
+height: min-content;
+height: fit-content;
+height: fit-content(20em);
+height: auto;
+height: stretch;
+
+/* Global values */
+height: inherit;
+height: initial;
+height: revert;
+height: revert-layer;
+height: unset;
+}
+
+div {
+  width: 250px;
+  margin-bottom: 5px;
+  border: 2px solid blue;
+}
+
+#taller {
+  height: 50px;
+}
+
+#shorter {
+  height: 25px;
+}
+
+#parent {
+  height: 100px;
+}
+
+#child {
+  height: 50%;
+  width: 75%;
+}
+
+.parent {
+  height: 150px;
+  margin: 1rem;
+  border: solid;
+}
+
+.child {
+  margin: 1rem;
+  background: #00999999;
+}
+
+.stretch {
+  height: stretch;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN height Tests</h1>
+
+<div id="taller">I'm 50 pixels tall.</div>
+<div id="shorter">I'm 25 pixels tall.</div>
+<div id="parent">
+  <div id="child">I'm half the height of my parent.</div>
+</div>
+
+<div class="parent">
+  <div class="child">text</div>
+</div>
+
+<div class="parent">
+  <div class="child stretch">stretch</div>
+</div>
+
+</body>
+</html>

@@ -13,6 +13,7 @@ PASS ../toast/mdn/container/container-name.html
 
 PASS ../toast/mdn/container/container-type.html
 2 naughty_lang
+5 isnt unrecognised_value too_many
 49 h1_h6
 50 unrecognised_value
 60 unrecognised_value

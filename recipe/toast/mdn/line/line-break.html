@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN line-break tests</title>
+<style>
+.sid {
+/* Keyword values */
+line-break: auto;
+line-break: loose;
+line-break: normal;
+line-break: strict;
+line-break: anywhere;
+
+/* Global values */
+line-break: inherit;
+line-break: initial;
+line-break: revert;
+line-break: revert-layer;
+line-break: unset;
+}
+
+.wrap-box {
+  width: 10em;
+  margin: 0.5em;
+  white-space: normal;
+  vertical-align: top;
+  display: inline-block;
+}
+.auto {
+  line-break: auto;
+}
+.loose {
+  line-break: loose;
+}
+.normal {
+  line-break: normal;
+}
+.strict {
+  line-break: strict;
+}
+.anywhere {
+  line-break: anywhere;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN line-break Tests</h1>
+
+<div lang="ja">
+  <p class="wrap-box auto">
+    auto:<br />そこは湖のほとりで木々が輝いていた。<br />その景色に、美しいなぁと思わずつぶやいた。
+  </p>
+  <p class="wrap-box loose">
+    loose:<br />そこは湖のほとりで木々が輝いていた。<br />その景色に、美しいなぁと思わずつぶやいた。
+  </p>
+  <p class="wrap-box normal">
+    normal:<br />そこは湖のほとりで木々が輝いていた。<br />その景色に、美しいなぁと思わずつぶやいた。
+  </p>
+  <p class="wrap-box strict">
+    strict:<br />そこは湖のほとりで木々が輝いていた。<br />その景色に、美しいなぁと思わずつぶやいた。
+  </p>
+  <p class="wrap-box anywhere">
+    anywhere:<br />そこは湖のほとりで木々が輝いていた。<br />その景色に、美しいなぁと思わずつぶやいた。
+  </p>
+</div>
+
+</body>
+</html>

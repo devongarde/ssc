@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN font-variation-settings tests</title>
+<style>
+.sid
+{
+/* Use the default settings */
+font-variation-settings: normal;
+
+/* Set values for variable font axis names */
+font-variation-settings: "xhgt" 0.7;
+
+/* Global values */
+font-variation-settings: inherit;
+font-variation-settings: initial;
+font-variation-settings: revert;
+font-variation-settings: revert-layer;
+font-variation-settings: unset;
+}
+
+/* weight range is 300 to 900 */
+.p1 {
+  font-weight: 625;
+}
+
+/* weight range is 300 to 900 */
+.p2 {
+  font-variation-settings: "wght" 625;
+}
+
+/* Adjust with slider & custom property */
+.p3 {
+  font-variation-settings: "wght" var(--text-axis);
+}
+
+/* slant range is from 0deg to 12deg */
+.p1 {
+  font-style: oblique 14deg;
+}
+
+/* slant range is from 0 to 12 */
+.p2 {
+  font-variation-settings: "slnt" 12;
+}
+
+/* Adjust with slider & custom property */
+.p3 {
+  font-variation-settings: "slnt" var(--text-axis);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN font-variation-settings Tests</h1>
+
+</body>
+</html>

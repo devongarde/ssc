@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN grid-column-start tests</title>
+<style>
+.sid {
+/* Keyword value */
+grid-column-start: auto;
+
+/* <custom-ident> value */
+grid-column-start: some-grid-area;
+
+/* <integer> + <custom-ident> values */
+grid-column-start: 2;
+grid-column-start: some-grid-area 4;
+
+/* span + <integer> + <custom-ident> values */
+grid-column-start: span 3;
+grid-column-start: span some-grid-area;
+grid-column-start: span some-grid-area 5;
+
+/* Global values */
+grid-column-start: inherit;
+grid-column-start: initial;
+grid-column-start: revert;
+grid-column-start: revert-layer;
+grid-column-start: unset;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 100px;
+}
+
+.box1 {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.box2 {
+  grid-column-start: 1;
+  grid-row-start: 3;
+  grid-row-end: 5;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN grid-column-start Tests</h1>
+
+<div class="wrapper">
+  <div class="box1">One</div>
+  <div class="box2">Two</div>
+  <div class="box3">Three</div>
+  <div class="box4">Four</div>
+  <div class="box5">Five</div>
+</div>
+
+</body>
+</html>

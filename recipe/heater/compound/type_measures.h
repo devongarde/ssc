@@ -43,6 +43,9 @@ template < > struct type_master < t_measure_a > : type_or_string < t_measure_a, 
 template < > struct type_master < t_measure_ai > : either_type_or_string < t_measure_ai, t_measure, t_css_inherit, sz_auto >
 { using either_type_or_string < t_measure_ai, t_measure, t_css_inherit, sz_auto > :: either_type_or_string; };
 
+template < > struct type_master < t_measure_ai_2 > : type_range < t_measure_ai_2, sz_space_char, t_measure_ai, 1, 2 >
+{ using type_range < t_measure_ai_2, sz_space_char, t_measure_ai, 1, 2 > :: type_range; };
+
 template < > struct type_master < t_measure_ni > : either_type_or_string < t_measure_ni, t_measure, t_css_inherit, sz_normal >
 { using either_type_or_string < t_measure_ni, t_measure, t_css_inherit, sz_normal > :: either_type_or_string; };
 

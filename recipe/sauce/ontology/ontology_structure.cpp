@@ -1372,7 +1372,9 @@ microdata_structure ontology_structure [] =
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_risk, dpv_hasresidualrisk },
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_risk, dpv_hasrisklevel },
     { { s_dpv_risk, 2, 0 }, { 0, 0 }, dpv_risk, dpv_risk_hasrisksource },
-    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, dpv_risk, dpv_ismitigatedbymeasure },
+    { { s_dpv, 0, 40 }, { 0, 0 }, dpv_risk, dpv_ismitigatedbymeasure },
+//    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, dpv_risk, dpv_ismitigatedbymeasure },
+//    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_risk, dpv_ismitigatedbymeasure },
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_risk, dpv_isresidualriskof },
 
     { { s_dpv, 0, 40 }, { 0, 0 }, dpv_riskmitigationmeasure, dpv_mitigatesrisk },
@@ -4716,10 +4718,10 @@ microdata_structure ontology_structure [] =
     { { 3, 3 }, { 0, 0 }, sch_creativeworkseries, sp_issn },
     { { 2, 0 }, { 0, 0 }, sch_creativeworkseries, sp_startdate },
 
-    { { 29, 5 }, { 0, 0 }, sch_credential, sp_credentialcategory },
-    { { 29, 5 }, { 0, 0 }, sch_credential, sp_recognizedby },
-    { { 29, 5 }, { 0, 0 }, sch_credential, sp_validfor },
-    { { 29, 5 }, { 0, 0 }, sch_credential, sp_validin },
+    { { 30, 0 }, { 0, 0 }, sch_credential, sp_credentialcategory },
+    { { 30, 0 }, { 0, 0 }, sch_credential, sp_recognizedby },
+    { { 30, 0 }, { 0, 0 }, sch_credential, sp_validfor },
+    { { 30, 0 }, { 0, 0 }, sch_credential, sp_validin },
 
     { { 0, 95, 0, SV_NOT_3034 }, { 0, 0 }, sch_ddxelement, sp_diagnosis },
     { { 0, 95, 0, SV_NOT_3034 }, { 0, 0 }, sch_ddxelement, sp_distinguishingsign },
@@ -5330,7 +5332,7 @@ microdata_structure ontology_structure [] =
     { { 2, 0 }, { 0, 0 }, sch_jobposting, sp_incentivecompensation },
     { { 0, 60 }, { 0, 0 }, sch_jobposting, sp_industry },
     { { 2, 0 }, { 0, 0 }, sch_jobposting, sp_jobbenefits },
-    { { 29, 5 }, { 0, 0 }, sch_jobposting, sp_jobduration },
+    { { 30, 0 }, { 0, 0 }, sch_jobposting, sp_jobduration },
     { { 3, 8 }, { 0, 0 }, sch_jobposting, sp_jobimmediatestart },
     { { 0, 60 }, { 0, 0 }, sch_jobposting, sp_joblocation },
     { { 3, 5 }, { 0, 0 }, sch_jobposting, sp_joblocationtype },
@@ -5414,7 +5416,7 @@ microdata_structure ontology_structure [] =
 
     { { 0, 10 }, { 1, 93 }, sch_localbusiness, sp_branchof },
     { { 0, 10 }, { 0, 0 }, sch_localbusiness, sp_currenciesaccepted },
-    { { 29, 5 }, { 0, 0 }, sch_localbusiness, sp_floorlevel },
+    { { 30, 0 }, { 0, 0 }, sch_localbusiness, sp_floorlevel },
     { { 0, 10 }, { 0, 0 }, sch_localbusiness, sp_openinghours },
     { { 2, 0 }, { 2, 0 }, sch_localbusiness, sp_parentorganisation },
     { { 0, 10 }, { 0, 0 }, sch_localbusiness, sp_paymentaccepted },
@@ -6513,7 +6515,7 @@ microdata_structure ontology_structure [] =
     { { 1, 2 }, { 0, 0 }, sch_reserveaction, sp_scheduledtime },
 
     { { 6, 0 }, { 0, 0 }, sch_residence, sp_accommodationfloorplan },
-    { { 29, 5 }, { 0, 0 }, sch_residence, sp_floorlevel },
+    { { 30, 0 }, { 0, 0 }, sch_residence, sp_floorlevel },
 
     { { 1, 2 }, { 0, 0 }, sch_returnaction, sp_recipient },
 

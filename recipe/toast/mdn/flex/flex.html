@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN flex tests</title>
+<style>
+.sid {
+/* Keyword value */
+flex: none; /* 0 0 auto */
+
+/* One value, unitless number: flex-grow
+flex-basis is then equal to 0%. */
+flex: 2; /* 2 1 0% */
+
+/* One value, width/height: flex-basis */
+flex: auto; /* 1 1 auto */
+flex: 10em; /* 1 1 10em */
+flex: 30%;
+flex: min-content;
+
+/* Two values: flex-grow | flex-basis */
+flex: 1 30px; /* 1 1 30px */
+
+/* Two values: flex-grow | flex-shrink */
+flex: 2 2; /* 2 2 0% */
+
+/* Three values: flex-grow | flex-shrink | flex-basis */
+flex: 2 2 10%;
+
+/* Global values */
+flex: inherit;
+flex: initial; /* 0 1 auto */
+flex: revert;
+flex: revert-layer;
+flex: unset;
+}
+
+#flex-container {
+  border: 2px dashed gray;
+  display: flex;
+}
+
+#flex-auto {
+  cursor: pointer;
+  background-color: wheat;
+
+  flex: auto;
+}
+
+#default {
+  background-color: lightblue;
+}
+</style>
+<script>
+const flexAutoItem = document.getElementById("flex-auto");
+const defaultItem = document.getElementById("default");
+flexAutoItem.addEventListener("click", () => {
+  defaultItem.style.display =
+    defaultItem.style.display === "none" ? "block" : "none";
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN flex Tests</h1>
+
+<div id="flex-container">
+  <div id="flex-auto">
+    flex: auto (click to remove/add the `flex: initial` box)
+  </div>
+  <div id="default">flex: initial</div>
+</div>
+
+</body>
+</html>

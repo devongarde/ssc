@@ -115,7 +115,13 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
         {   nits.pick (nit_css_version, es_error, ec_css, name (), " requires CSS ", type_master < t_css_property > :: first_version (IDENTITY).long_css_version_name ());
             base_type :: status (s_invalid); }
         else
-        {   type_master < TYPE > :: set_value (nuts, args.v_, s);
+        {   if (s.length () >= 3)
+            {   PRESUME ((start > 0) && (start < GSL_NARROW_CAST < int > (args.t_.size ())), __FILE__, __LINE__);
+                if ((args.t_.at (start).t_ == ct_keyword) || (args.t_.at (start).t_ == ct_identifier))
+                    if (test_cascade (s, iiu_))
+                    {   base_type :: status (s_good);
+                        return start+1; } }
+            type_master < TYPE > :: set_value (nuts, args.v_, s);
             ok_ = type_master < TYPE > :: good ();
             if (ok_)
             {   s_ = s;
@@ -126,12 +132,6 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
                     base_type :: status (s_invalid);
                     ok_ = false; }
                 else nits.merge (nuts); }
-            else if (s.length () >= 3)
-            {   PRESUME ((start > 0) && (start < GSL_NARROW_CAST < int > (args.t_.size ())), __FILE__, __LINE__);
-                if ((args.t_.at (start).t_ == ct_keyword) || (args.t_.at (start).t_ == ct_identifier))
-                    if (test_cascade (s, iiu_))
-                    {   base_type :: status (s_good);
-                        return start; } }
             int i = start;
             if ((args.st_ == nullptr) || (args.cs () != css_font_face))
                 if (check_fn (args, i, to, nits, ok_))

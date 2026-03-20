@@ -302,7 +302,7 @@ typedef typed_property < t_integer_ln, ec_float_defer > prop_float_defer;
 typedef typed_property < t_css_length, ec_float_offset > prop_float_offset;
 typedef typed_property < t_cipr, ec_float_reference > prop_float_reference;
 typedef typed_property < t_css_col, ec_flood_colour > prop_flood_colour;
-typedef typed_property < t_opacity, ec_flood_opacity > prop_flood_opacity;
+typedef typed_property < t_css_opacity, ec_flood_opacity > prop_flood_opacity;
 typedef typed_property < t_generic, ec_flow > prop_flow;
 typedef typed_property < t_css_region_id_ni, ec_flow_from > prop_flow_from;
 typedef typed_property < t_css_region_flow_into_n, ec_flow_into > prop_flow_into;
@@ -316,15 +316,16 @@ typedef typed_property < t_generic, ec_font_named_instance > prop_font_named_ins
 typedef typed_property < t_auto_none, ec_font_optical_sizing > prop_font_optical_sizing;
 typedef typed_property < t_css_palette_nld, ec_font_palette > prop_font_palette;
 typedef typed_property < t_css_font_size_4, ec_font_size > prop_font_size;
-typedef typed_property < t_real_ni, ec_font_size_adjust > prop_font_size_adjust;
+typedef typed_property < t_css_font_size_adjust, ec_font_size_adjust > prop_font_size_adjust;
 typedef typed_property < t_css_font_smooth, ec_font_smooth > prop_font_smooth;
 typedef typed_property < t_css_font_stretch, ec_font_stretch > prop_font_stretch;
 typedef typed_property < t_css_font_style_a, ec_font_style > prop_font_style;
 typedef typed_property < t_font_synthesis_n, ec_font_synthesis > prop_font_synthesis;
+typedef typed_property < t_auto_none, ec_font_synthesis_position > prop_font_synthesis_position;
 typedef typed_property < t_auto_none, ec_font_synthesis_small_caps > prop_font_synthesis_small_caps;
-typedef typed_property < t_auto_none, ec_font_synthesis_style > prop_font_synthesis_style;
+typedef typed_property < t_auto_none_oblique, ec_font_synthesis_style > prop_font_synthesis_style;
 typedef typed_property < t_auto_none, ec_font_synthesis_weight > prop_font_synthesis_weight;
-typedef typed_property < t_css_font_variant, ec_font_variant > prop_font_variant;
+typedef typed_property < t_css_font_variant_i, ec_font_variant > prop_font_variant;
 typedef typed_property < t_font_variant_alternatives, ec_font_variant_alternatives > prop_font_variant_alternates;
 typedef typed_property < t_font_variant_caps, ec_font_variant_caps > prop_font_variant_caps;
 typedef typed_property < t_font_variant_east_asians, ec_font_variant_east_asian > prop_font_variant_east_asian;
@@ -334,6 +335,7 @@ typedef typed_property < t_font_variant_numerics, ec_font_variant_numeric > prop
 typedef typed_property < t_font_variant_position, ec_font_variant_position > prop_font_variant_position;
 typedef typed_property < t_css_font_variation_settings, ec_font_variation_settings > prop_font_variation_settings;
 typedef typed_property < t_css_font_weights, ec_font_weight > prop_font_weight;
+typedef typed_property < t_css_font_width, ec_font_width > prop_font_width;
 typedef typed_property < t_generic, ec_footnote_display > prop_footnote_display;
 typedef typed_property < t_generic, ec_footnote_policy > prop_footnote_policy;
 typedef typed_property < t_css_fca, ec_forced_colour_adjust > prop_forced_colour_adjust;
@@ -384,6 +386,11 @@ typedef typed_property < t_css_length_aia, ec_inset_block_start > prop_inset_blo
 typedef typed_property < t_css_length_aa2, ec_inset_inline > prop_inset_inline;
 typedef typed_property < t_css_length_aia, ec_inset_inline_end > prop_inset_inline_end;
 typedef typed_property < t_css_length_aia, ec_inset_inline_start > prop_inset_inline_start;
+typedef typed_property < t_auto_inert, ec_interactivity > prop_interactivity;
+typedef typed_property < t_css_duration_n, ec_interest_delay > prop_interest_delay;
+typedef typed_property < t_css_duration_n, ec_interest_delay_end > prop_interest_delay_end;
+typedef typed_property < t_css_duration_n, ec_interest_delay_start > prop_interest_delay_start;
+typedef typed_property < t_allow_numeric, ec_interpolate_size > prop_interpolate_size;
 typedef typed_property < t_css_isolation, ec_isolation > prop_isolation;
 
 typedef typed_property < t_css_box_justify_n, ec_justify_content > prop_justify_content;
@@ -394,7 +401,7 @@ typedef typed_property < t_measure_ai, ec_kerning > prop_kerning;
 
 typedef typed_property < t_benrs, ec_leading_trim > prop_leading_trim;
 typedef typed_property < t_css_length_aia, ec_left > prop_left;
-typedef typed_property < t_css_length_n, ec_letter_spacing > prop_letter_spacing;
+typedef typed_property < t_css_length_norm, ec_letter_spacing > prop_letter_spacing;
 typedef typed_property < t_css_col, ec_lighting_colour > prop_lighting_colour;
 typedef typed_property < t_css_line_break, ec_line_break > prop_line_break;
 typedef typed_property < t_css_line_clamp_n, ec_line_clamp > prop_line_clamp;
@@ -411,12 +418,12 @@ typedef typed_property < t_css_list_style_position, ec_list_style_position > pro
 typedef typed_property < t_css_list_style_type_cs, ec_list_style_type > prop_list_style_type;
 
 typedef typed_property < t_css_margins_l, ec_margin > prop_margin;
-typedef typed_property < t_measure_2, ec_margin_block > prop_margin_block;
+typedef typed_property < t_measure_ai_2, ec_margin_block > prop_margin_block;
 typedef typed_property < t_measure_ai, ec_margin_block_end > prop_margin_block_end;
 typedef typed_property < t_measure_ai, ec_margin_block_start > prop_margin_block_start;
 typedef typed_property < t_measure_ai, ec_margin_bottom > prop_margin_bottom;
 typedef typed_property < t_css_margin_break, ec_margin_break > prop_margin_break;
-typedef typed_property < t_measure_2, ec_margin_inline > prop_margin_inline;
+typedef typed_property < t_measure_ai_2, ec_margin_inline > prop_margin_inline;
 typedef typed_property < t_measure_ai, ec_margin_inline_end > prop_margin_inline_end;
 typedef typed_property < t_measure_ai, ec_margin_inline_start > prop_margin_inline_start;
 typedef typed_property < t_measure_ai, ec_margin_left > prop_margin_left;
@@ -1983,6 +1990,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_font_stretch, \
     prop_font_style, \
     prop_font_synthesis, \
+    prop_font_synthesis_position, \
     prop_font_synthesis_small_caps, \
     prop_font_synthesis_style, \
     prop_font_synthesis_weight, \
@@ -1996,6 +2004,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_font_variant_position, \
     prop_font_variation_settings, \
     prop_font_weight, \
+    prop_font_width, \
     prop_footnote_display, \
     prop_footnote_policy, \
     prop_forced_colour_adjust, \
@@ -2044,6 +2053,11 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_inset_inline, \
     prop_inset_inline_end, \
     prop_inset_inline_start, \
+    prop_interactivity, \
+    prop_interest_delay, \
+    prop_interest_delay_end, \
+    prop_interest_delay_start, \
+    prop_interpolate_size, \
     prop_isolation, \
     prop_justify_content, \
     prop_justify_items, \

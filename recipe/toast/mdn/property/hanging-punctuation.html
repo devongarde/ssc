@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN hanging-punctuation tests</title>
+<style>
+.sid
+{
+/* Keyword values */
+hanging-punctuation: none;
+hanging-punctuation: first;
+hanging-punctuation: last;
+hanging-punctuation: allow-end;
+
+/* Two keywords */
+hanging-punctuation: first allow-end;
+hanging-punctuation: first last;
+hanging-punctuation: last allow-end;
+
+/* Three keywords */
+hanging-punctuation: first allow-end last;
+
+/* Global values */
+hanging-punctuation: inherit;
+hanging-punctuation: initial;
+hanging-punctuation: revert;
+hanging-punctuation: revert-layer;
+hanging-punctuation: unset;
+}
+
+p {
+  width: 15em;
+  border: 1px solid #cccccc;
+  font-size: 2rem;
+  font-style: italic;
+  margin: 1em;
+}
+
+p.hanging {
+  hanging-punctuation: first last;
+}
+
+p.right {
+  text-align: right;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN hanging-punctuation Tests</h1>
+
+<p>
+  «For a moment, nothing happened. Then, after a second or so, nothing continued
+  to happen.»
+</p>
+
+<p class="hanging">
+  «For a moment, nothing happened. Then, after a second or so, nothing continued
+  to happen.»
+</p>
+
+<p class="hanging right">
+  «For a moment, nothing happened. Then, after a second or so, nothing continued
+  to happen.»
+</p>
+
+</body>
+</html>

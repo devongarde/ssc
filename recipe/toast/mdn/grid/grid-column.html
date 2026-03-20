@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN grid-column tests</title>
+<style>
+.sid {
+/* Keyword values */
+grid-column: auto;
+grid-column: auto / auto;
+
+/* <custom-ident> values */
+grid-column: some-grid-area;
+grid-column: some-grid-area / some-other-grid-area;
+
+/* <integer> + <custom-ident> values */
+grid-column: some-grid-area 4;
+grid-column: 4 some-grid-area / 6;
+
+/* span + <integer> + <custom-ident> values */
+grid-column: span 3;
+grid-column: span some-grid-area;
+grid-column: 5 some-grid-area span;
+grid-column: span 3 / 6;
+grid-column: span some-grid-area / span some-other-grid-area;
+grid-column: 5 some-grid-area span / 2 span;
+
+/* Global values */
+grid-column: inherit;
+grid-column: initial;
+grid-column: revert;
+grid-column: revert-layer;
+grid-column: unset;
+}
+
+#grid {
+  display: grid;
+  height: 100px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 100px;
+}
+
+#item1 {
+  background-color: lime;
+}
+
+#item2 {
+  background-color: yellow;
+  grid-column: 2 / 4;
+}
+
+#item3 {
+  background-color: blue;
+  grid-column: span 2 / 7;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN grid-column Tests</h1>
+
+<div id="grid">
+  <div id="item1"></div>
+  <div id="item2"></div>
+  <div id="item3"></div>
+</div>
+
+</body>
+</html>

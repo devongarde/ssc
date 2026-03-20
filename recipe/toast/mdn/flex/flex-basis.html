@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN flex-basis tests</title>
+<style>
+.sid {
+/* Specify <'width'> */
+flex-basis: 10em;
+flex-basis: 3px;
+flex-basis: 50%;
+flex-basis: auto;
+
+/* Intrinsic sizing keywords */
+flex-basis: max-content;
+flex-basis: min-content;
+flex-basis: fit-content;
+
+/* Automatically size based on the flex item's content */
+flex-basis: content;
+
+/* Global values */
+flex-basis: inherit;
+flex-basis: initial;
+flex-basis: revert;
+flex-basis: revert-layer;
+flex-basis: unset;
+}
+
+.container {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex {
+  background: #6ab6d8;
+  padding: 10px;
+  margin-bottom: 50px;
+  border: 3px solid #2e86bb;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  position: relative;
+}
+
+.flex::after {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 100%;
+  margin-top: 10px;
+  width: 100%;
+  color: #333333;
+  font-size: 12px;
+}
+
+.flex1 {
+  flex-basis: auto;
+}
+
+.flex1::after {
+  content: "auto";
+}
+
+.flex2 {
+  flex-basis: max-content;
+}
+
+.flex2::after {
+  content: "max-content";
+}
+
+.flex3 {
+  flex-basis: min-content;
+}
+
+.flex3::after {
+  content: "min-content";
+}
+
+.flex4 {
+  flex-basis: fit-content;
+}
+
+.flex4::after {
+  content: "fit-content";
+}
+
+.flex5 {
+  flex-basis: content;
+}
+
+.flex5::after {
+  content: "content";
+}
+
+.container {
+  width: 40vw;
+  padding: 1rem;
+  border: 1px dashed blue;
+
+  display: inline-flex;
+  flex-direction: column;
+}
+
+section {
+  outline: 1px solid red;
+
+  overflow: auto;
+  min-height: 200px;
+}
+
+.content {
+  background: wheat;
+  height: 300px;
+}
+
+.container.basis-0 > * {
+  flex-basis: 0;
+}
+.container.basis-0-percent > * {
+  flex-basis: 0%;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN flex-basis Tests</h1>
+
+<ul class="container">
+  <li class="flex flex1">1: flex-basis test</li>
+  <li class="flex flex2">2: flex-basis test</li>
+  <li class="flex flex3">3: flex-basis test</li>
+  <li class="flex flex4">4: flex-basis test</li>
+  <li class="flex flex5">5: flex-basis test</li>
+</ul>
+
+<ul class="container">
+  <li class="flex flex6">6: flex-basis test</li>
+</ul>
+
+<div class="container basis-0">
+  <div>heading</div>
+  <section>
+    <div class="content">flex-basis: 0;</div>
+  </section>
+</div>
+<div class="container basis-0-percent">
+  <div>heading</div>
+  <section>
+    <div class="content">flex-basis: 0%;</div>
+  </section>
+</div>
+
+</body>
+</html>

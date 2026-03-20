@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN justify-content tests</title>
+<style>
+.sid {
+/* Positional alignment */
+justify-content: center;
+justify-content: start;
+justify-content: end;
+justify-content: flex-start;
+justify-content: flex-end;
+justify-content: left;
+justify-content: right;
+
+/* Normal alignment */
+justify-content: normal;
+
+/* Distributed alignment */
+justify-content: space-between;
+justify-content: space-around;
+justify-content: space-evenly;
+justify-content: stretch;
+
+/* Overflow alignment (for positional alignment only)*/
+justify-content: safe center;
+justify-content: unsafe center;
+
+/* Global values */
+justify-content: inherit;
+justify-content: initial;
+justify-content: revert;
+justify-content: revert-layer;
+justify-content: unset;
+}
+
+.container {
+  display: grid;
+  grid: auto-flow / repeat(3, 80px);
+  width: 500px;
+  justify-content: space-evenly;
+}
+
+div {
+  background-color: pink;
+  width: 80px;
+}
+
+div:nth-of-type(n + 9) {
+  width: 35px;
+  background-color: lightgreen;
+}
+
+div:nth-last-of-type(3) {
+  width: 250px;
+  background-color: lightblue;
+}
+
+.container {
+  align-items: baseline;
+  display: flex;
+  width: 350px;
+  height: 2em;
+}
+
+.safe {
+  justify-content: center;
+}
+
+.safe-center {
+  justify-content: safe center;
+}
+
+div {
+  flex: 0 0 100px;
+}
+
+#container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between; /* Can be changed in the live sample */
+  width: 510px;
+}
+
+div {
+  line-height: 2em;
+  flex: 0 0 120px;
+  background-color: pink;
+}
+
+div:nth-of-type(2) {
+  flex-grow: 1;
+  background-color: yellow;
+}
+
+div:nth-of-type(n + 9) {
+  flex: 0 0 35px;
+  background-color: lightgreen;
+}
+div:last-of-type {
+  flex: 0 0 300px;
+  background-color: lightblue;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN justify-content Tests</h1>
+
+<section class="container">
+  <div>A</div>
+  <div>B</div>
+  <div>C</div>
+  <div>D</div>
+  <div>E</div>
+  <div>F</div>
+  <div>G</div>
+  <div>H</div>
+  <div>I</div>
+  <div>J</div>
+  <div>K</div>
+  <div>L</div>
+  <div>M</div>
+  <div>N</div>
+  <div>O</div>
+  <div>P</div>
+</section>
+
+</body>
+</html>

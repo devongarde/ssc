@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN margin-trim tests</title>
+<style>
+.sid {
+margin-trim: none;
+margin-trim: block;
+margin-trim: block-start;
+margin-trim: block-end;
+margin-trim: inline;
+margin-trim: inline-start;
+margin-trim: inline-end;
+
+/* Global values */
+margin-trim: inherit;
+margin-trim: initial;
+margin-trim: revert;
+margin-trim: revert-layer;
+margin-trim: unset;
+}
+
+article {
+  background-color: red;
+  margin: 20px;
+  padding: 20px;
+  display: inline-block;
+}
+
+article > span {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-right: 20px;
+  margin-left: 30px;
+}
+
+span:last-child {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+article {
+  margin-trim: inline-end;
+  /* … */
+}
+
+article {
+  margin-trim: inline-start;
+  /* … */
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN margin-trim Tests</h1>
+
+</body>
+</html>

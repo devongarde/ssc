@@ -149,7 +149,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                 ::std::swap (*this, e);
                 b = next_non_whitespace (args.t_, b, to); }
             if ((b < 0) || (args.t_.at (b).t_ != ct_identifier)) break;
-            // drop thru'
+            FALLTHROUGH;
         case ct_identifier :
         case ct_keyword :
             {   PRESUME (! args.styled (), __FILE__, __LINE__);

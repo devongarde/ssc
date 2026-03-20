@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN max-inline-size tests</title>
+<style>
+.sid {
+/* <length> values */
+max-inline-size: 300px;
+max-inline-size: 25em;
+max-inline-size: anchor-size(width);
+max-inline-size: anchor-size(--my-anchor self-block, 200px);
+
+/* <percentage> values */
+max-inline-size: 75%;
+
+/* Keyword values */
+max-inline-size: none;
+max-inline-size: max-content;
+max-inline-size: min-content;
+max-inline-size: fit-content;
+max-inline-size: fit-content(20em);
+
+/* Global values */
+max-inline-size: inherit;
+max-inline-size: initial;
+max-inline-size: revert;
+max-inline-size: revert-layer;
+max-inline-size: unset;
+}
+
+.exampleText {
+  writing-mode: vertical-rl;
+  background-color: yellow;
+  block-size: 100%;
+  max-inline-size: 200px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN max-inline-size Tests</h1>
+
+<p class="exampleText">Example text</p>
+
+</body>
+</html>

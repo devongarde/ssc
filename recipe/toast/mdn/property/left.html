@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN left tests</title>
+<style>
+.sid
+{
+/* <length> values */
+left: 3px;
+left: 2.4em;
+left: anchor(--my-anchor 50%);
+left: calc(anchor-size(--my-anchor inline, 100px) * 2);
+
+/* <percentage>s of the width of the containing block */
+left: 10%;
+
+/* Keyword value */
+left: auto;
+
+/* Global values */
+left: inherit;
+left: initial;
+left: revert;
+left: revert-layer;
+left: unset;
+}
+
+#wrap {
+  width: 700px;
+  margin: 0 auto;
+  background: #5c5c5c;
+}
+
+pre {
+  white-space: pre-line;
+  word-wrap: break-word;
+}
+
+#example_1 {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  background-color: #d8f5ff;
+}
+
+#example_2 {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  top: 0;
+  right: 0;
+  background-color: #c1ffdb;
+}
+#example_3 {
+  width: 600px;
+  height: 400px;
+  position: relative;
+  top: 20px;
+  left: 20px;
+  background-color: #ffd7c2;
+}
+
+#example_4 {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  background-color: #ffc7e4;
+}
+#example_5 {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 100px;
+  background-color: #d7ffc2;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN left Tests</h1>
+
+<div id="wrap">
+  <div id="example_1">
+    <pre>
+      position: absolute;
+      left: 20px;
+      top: 20px;
+    </pre>
+    <p>
+      The only containing element for this div is the main window, so it
+      positions itself in relation to it.
+    </p>
+  </div>
+
+  <div id="example_2">
+    <pre>
+      position: relative;
+      top: 0;
+      right: 0;
+    </pre>
+    <p>Relative position in relation to its siblings.</p>
+  </div>
+
+  <div id="example_3">
+    <pre>
+      float: right;
+      position: relative;
+      top: 20px;
+      left: 20px;
+    </pre>
+    <p>Relative to its sibling div above, but removed from flow of content.</p>
+
+    <div id="example_4">
+      <pre>
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+      </pre>
+      <p>Absolute position inside of a parent with relative position</p>
+    </div>
+
+    <div id="example_5">
+      <pre>
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 200px;
+      </pre>
+      <p>Absolute position with both left and right declared</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

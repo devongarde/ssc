@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN inset-inline-start tests</title>
+<style>
+.sid {
+/* <length> values */
+inset-inline-start: 3px;
+inset-inline-start: 2.4em;
+inset-inline-start: calc(anchor(--my-anchor 50%) + 10px);
+inset-inline-start: anchor-size(width);
+
+/* <percentage>s of the width or height of the containing block */
+inset-inline-start: 10%;
+
+/* Keyword value */
+inset-inline-start: auto;
+
+/* Global values */
+inset-inline-start: inherit;
+inset-inline-start: initial;
+inset-inline-start: revert;
+inset-inline-start: revert-layer;
+inset-inline-start: unset;
+}
+
+div {
+  background-color: yellow;
+  width: 120px;
+  height: 120px;
+}
+
+.exampleText {
+  writing-mode: vertical-lr;
+  position: relative;
+  inset-inline-start: 20px;
+  background-color: #c8c800;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN inset-inline-start Tests</h1>
+
+<div>
+  <p class="exampleText">Example text</p>
+</div>
+
+</body>
+</html>

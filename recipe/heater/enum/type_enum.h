@@ -190,7 +190,8 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
     ::std::string pret (uq0 (trim_the_lot_off (s)));
     ::std::string t (careless_case < LC >::lower (pret));
     nitpick knots;
-    if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "empty value (", type_name (E), ")");
+    if (t.empty ())
+        nits.pick (nit_empty, es_error, ec_type, "empty value (", type_name (E), ")");
     else if (! symbol < html_version, ENUM, CATEGORY, INIT, LC > :: parse (nits, v, t))
     {   check_identifier_spelling (nits, v, t);
         nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is not a valid ", type_name (E), " value"); }
@@ -403,6 +404,11 @@ template < > struct type_master < t_css_caret_shape > : ENUM_N (css_caret_shape)
 
 template < > struct type_master < t_css_clear > : ENUM_N (css_clear)
 { using ENUM_N (css_clear) :: enum_n; };
+
+// typedef enum { ccm_clear, ccm_copy, ccm_destination_atop, ccm_destination_in, ccm_destination_out, ccm_destination_over, ccm_lighter,
+//      ccm_plus_darker, ccm_plus_lighter, ccm_source_atop, ccm_source_in, ccm_source_out, ccm_source_over, ccm_xor } e_css_composite_mode;
+template < > struct type_master < t_css_composite_mode > : ENUM_N (css_composite_mode)
+{ using ENUM_N (css_composite_mode) :: enum_n; };
 
 template < > struct type_master < t_css_contain_e > : ENUM_N (css_contain_e)
 { using ENUM_N (css_contain_e) :: enum_n; };
@@ -759,6 +765,9 @@ template < > struct type_master < t_image_rendering > : ENUM_N (image_rendering)
 
 template < > struct type_master < t_icc > : ENUM_N (icc)
 { using ENUM_N (icc) :: enum_n; };
+
+template < > struct type_master < t_iiu > : ENUM_N (iiu)
+{ using ENUM_N (iiu) :: enum_n; };
 
 template < > struct type_master < t_indentalign > : ENUM_N (indentalign)
 { using ENUM_N (indentalign) :: enum_n; };

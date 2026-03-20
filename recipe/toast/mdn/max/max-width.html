@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN max-width tests</title>
+<style>
+.sid {
+/* <length> value */
+max-width: 3.5em;
+max-width: anchor-size(--my-anchor inline, 245px);
+max-width: calc(anchor-size(width) + 4em);
+
+/* <percentage> value */
+max-width: 75%;
+
+/* Keyword values */
+max-width: none;
+max-width: max-content;
+max-width: min-content;
+max-width: fit-content;
+max-width: fit-content(20em);
+max-width: stretch;
+
+/* Global values */
+max-width: inherit;
+max-width: initial;
+max-width: revert;
+max-width: revert-layer;
+max-width: unset;
+}
+
+#parent {
+  background: lightblue;
+  width: 300px;
+}
+
+#child {
+  background: gold;
+  width: 100%;
+  max-width: 150px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN max-width Tests</h1>
+
+<div id="parent">
+  <div id="child">
+    Fusce pulvinar vestibulum eros, sed luctus ex lobortis quis.
+  </div>
+</div>
+
+</body>
+</html>

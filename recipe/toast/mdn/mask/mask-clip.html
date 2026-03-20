@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN mask-clip tests</title>
+<style>
+.sid {
+/* <coord-box> values */
+mask-clip: content-box;
+mask-clip: padding-box;
+mask-clip: border-box;
+mask-clip: fill-box;
+mask-clip: stroke-box;
+mask-clip: view-box;
+
+/* Keyword values */
+mask-clip: no-clip;
+
+/* Multiple values */
+mask-clip: padding-box, no-clip;
+mask-clip: view-box, fill-box, border-box;
+
+/* Global values */
+mask-clip: inherit;
+mask-clip: initial;
+mask-clip: revert;
+mask-clip: revert-layer;
+mask-clip: unset;
+}
+
+div {
+  width: 100px;
+  height: 100px;
+  background-color: #8cffa0;
+  margin: 10px;
+  border: 20px solid #8ca0ff;
+  padding: 20px;
+  mask-image: url("mdn.svg");
+  mask-size: 100% 100%;
+}
+.content-box {
+  mask-clip: content-box;
+}
+.border-box {
+  mask-clip: border-box;
+}
+.padding-box {
+  mask-clip: padding-box;
+}
+div::before {
+  content: attr(class);
+  position: relative;
+  top: -10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN mask-clip Tests</h1>
+
+<div class="border-box"></div>
+<div class="padding-box"></div>
+<div class="content-box"></div>
+
+</body>
+</html>

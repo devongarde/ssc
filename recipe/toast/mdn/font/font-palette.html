@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN font-palette tests</title>
+<style>
+.sid
+{
+/* Using a font-defined palette */
+font-palette: normal;
+
+/* Using a user-defined palette */
+font-palette: --one;
+
+/* Creating a new palette by blending two others */
+font-palette: palette-mix(in lch, --blue, --yellow);
+}
+
+@media (prefers-color-scheme: dark) {
+  .banner {
+    font-palette: dark;
+  }
+}
+
+@import "duff.fnt";
+
+@font-palette-values --blue-nabla {
+  font-family: "Nabla";
+  base-palette: 2; /* this is Nabla's blue palette */
+}
+
+@font-palette-values --grey-nabla {
+  font-family: "Nabla";
+  base-palette: 3; /* this is Nabla's grey palette */
+}
+
+@keyframes animate-palette {
+  from {
+    font-palette: --grey-nabla;
+  }
+
+  to {
+    font-palette: --blue-nabla;
+  }
+}
+
+p {
+  font-family: "Nabla", fantasy;
+  font-size: 5rem;
+  margin: 0;
+  text-align: center;
+  animation: animate-palette 4s infinite alternate linear;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN font-palette Tests</h1>
+
+<p>color-palette<br />animation</p>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN font-variant-numeric tests</title>
+<style>
+.sid
+{
+font-variant-numeric: normal;
+font-variant-numeric: ordinal;
+font-variant-numeric: slashed-zero;
+font-variant-numeric: lining-nums; /* <numeric-figure-values> */
+font-variant-numeric: oldstyle-nums; /* <numeric-figure-values> */
+font-variant-numeric: proportional-nums; /* <numeric-spacing-values> */
+font-variant-numeric: tabular-nums; /* <numeric-spacing-values> */
+font-variant-numeric: diagonal-fractions; /* <numeric-fraction-values> */
+font-variant-numeric: stacked-fractions; /* <numeric-fraction-values> */
+font-variant-numeric: oldstyle-nums stacked-fractions;
+
+/* Global values */
+font-variant-numeric: inherit;
+font-variant-numeric: initial;
+font-variant-numeric: revert;
+font-variant-numeric: revert-layer;
+font-variant-numeric: unset;
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("https://example.com/shared-assets/fonts/SourceSansPro-Regular.otf")
+    format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.ordinal {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 2rem;
+  font-variant-numeric: ordinal;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN font-variant-numeric Tests</h1>
+
+<p class="ordinal">1st, 2nd, 3rd, 4th, 5th</p>
+
+</body>
+</html>

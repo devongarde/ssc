@@ -700,6 +700,23 @@ struct symbol_entry < html_version, e_css_clear > css_clear_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_1_2, H3_CSS_FLOAT }, { HTML_UNDEF }, "right", ecc_right },
     { { HTML_CSS, 0, 0, 0, H3_CSS_FLOAT }, { HTML_UNDEF }, "top", ecc_top } };
 
+struct symbol_entry < html_version, e_css_composite_mode > css_composite_mode_symbol_table [] =
+{   { { HTML_CSS }, { HTML_UNDEF }, "clear", ccm_clear },
+    { { HTML_CSS }, { HTML_UNDEF }, "copy", ccm_copy },
+    { { HTML_CSS }, { HTML_UNDEF }, "destination-atop", ccm_destination_atop },
+    { { HTML_CSS }, { HTML_UNDEF }, "destination-in", ccm_destination_in },
+    { { HTML_CSS }, { HTML_UNDEF }, "destination-out", ccm_destination_out },
+    { { HTML_CSS }, { HTML_UNDEF }, "destination-over", ccm_destination_over },
+    { { HTML_CSS }, { HTML_UNDEF }, "lighter", ccm_lighter },
+    { { HTML_CSS }, { HTML_UNDEF }, "plus-darker", ccm_plus_darker },
+    { { HTML_CSS }, { HTML_UNDEF }, "plus-lighter", ccm_plus_lighter },
+    { { HTML_CSS }, { HTML_UNDEF }, "source-atop", ccm_source_atop },
+    { { HTML_CSS }, { HTML_UNDEF }, "source-in", ccm_source_in },
+    { { HTML_CSS }, { HTML_UNDEF }, "source-out", ccm_source_out },
+    { { HTML_CSS }, { HTML_UNDEF }, "source-over", ccm_source_over },
+    { { HTML_CSS }, { HTML_UNDEF }, "xor", ccm_xor } };
+
+
 struct symbol_entry < html_version, e_css_contain_e > css_contain_e_symbol_table [] =
 {   { { HTML_CSS, 0, 0, 0, H3_CSS_CONTAIN_5 }, { HTML_UNDEF }, "inline-size", lps_inline_size },
     { { HTML_CSS, 0, 0, 0, H3_CSS_CONTAIN }, { HTML_UNDEF }, "layout", lps_layout },
@@ -731,6 +748,8 @@ struct symbol_entry < html_version, e_css_content_position > css_content_positio
     { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "end", eccp_end },
     { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "flex-end", eccp_flex_end },
     { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "flex-start", eccp_flex_start },
+    { { HTML_DEC25, 0, 0, 0, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "self-end", eccp_self_end },
+    { { HTML_DEC25, 0, 0, 0, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "self-start", eccp_self_start },
     { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "start", eccp_start } };
 
 struct symbol_entry < html_version, e_css_continue > css_continue_symbol_table [] =
@@ -950,10 +969,6 @@ struct symbol_entry < html_version, e_css_ellipse_pos_e > css_ellipse_pos_e_symb
     { { HTML_CSS }, { HTML_UNDEF }, "x-start", cep_x_start },
     { { HTML_CSS }, { HTML_UNDEF }, "y-end", cep_y_end },
     { { HTML_CSS }, { HTML_UNDEF }, "y-start", cep_y_start } };
-
-// // t_css_ellipse_pos_x_2_e, t_css_ellipse_pos_y_2_e
-//typedef enum { cepx_centre, cepx_left, cepx_right, cepx_x_end, cepx_x_start } e_css_ellipse_pos_x_2_e;
-//typedef enum { cepy_bottom, cepy_centre, cepy_top, cepy_y_end, cepy_y_start } e_css_ellipse_pos_y_2_e;
 
 struct symbol_entry < html_version, e_css_ellipse_pos_x_2_e > css_ellipse_pos_x_2_e_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "center", cepx_centre },
@@ -1541,6 +1556,7 @@ struct symbol_entry < html_version, e_css_font_variation > css_font_variation_sy
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "head", ecfv_head, ns_default, CF_OPENTYPE | CF_TRUETYPE },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "hhea", ecfv_hhea, ns_default, CF_OPENTYPE | CF_TRUETYPE },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "hmtx", ecfv_hmtx, ns_default, CF_OPENTYPE | CF_TRUETYPE },
+    { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "ital", ecfv_ital, ns_default, CF_OPENTYPE | CF_TRUETYPE },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "just", ecfv_just, ns_default, CF_TRUETYPE },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "kern", ecfv_kern, ns_default, CF_OPENTYPE | CF_TRUETYPE },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "kerx", ecfv_kerx, ns_default, CF_TRUETYPE },
@@ -1553,13 +1569,17 @@ struct symbol_entry < html_version, e_css_font_variation > css_font_variation_sy
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "morx", ecfv_morx, ns_default, CF_TRUETYPE },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "name", ecfv_name, ns_default, CF_OPENTYPE | CF_TRUETYPE },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "opbd", ecfv_opbd, ns_default, CF_TRUETYPE },
+    { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "opsz", ecfv_opsz, ns_default, CF_OPENTYPE | CF_TRUETYPE },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "post", ecfv_post, ns_default, CF_OPENTYPE | CF_TRUETYPE },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "prep", ecfv_prep, ns_default, CF_OPENTYPE | CF_TRUETYPE },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "prop", ecfv_prop, ns_default, CF_TRUETYPE },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "sbix", ecfv_sbix, ns_default, CF_OPENTYPE | CF_TRUETYPE },
+    { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "slnt", ecfv_slnt, ns_default, CF_OPENTYPE | CF_TRUETYPE },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "trak", ecfv_trak, ns_default, CF_TRUETYPE },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "vhea", ecfv_vhea, ns_default, CF_OPENTYPE | CF_TRUETYPE },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "vmtx", ecfv_vmtx, ns_default, CF_OPENTYPE | CF_TRUETYPE },
+    { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "wdth", ecfv_wdth, ns_default, CF_OPENTYPE | CF_TRUETYPE },
+    { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "wght", ecfv_wght, ns_default, CF_OPENTYPE | CF_TRUETYPE },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "xref", ecfv_xref, ns_default, CF_TRUETYPE } };
 
 struct symbol_entry < html_version, e_css_font_weight > css_font_weight_symbol_table [] =
@@ -3127,6 +3147,14 @@ struct symbol_entry < html_version, e_icc > icc_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "FOGRA52", icc_FOGRA52 },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "FOGRA54", icc_FOGRA54 },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "Japan Color 2011", icc_Japan_Color_2011 } };
+
+struct symbol_entry < html_version, e_iiu > iiu_symbol_table [] =
+{   { { HTML_CSS }, { HTML_UNDEF }, "inherit", iiu_inherit },
+    { { HTML_CSS }, { HTML_UNDEF }, "initial", iiu_initial },
+    { { HTML_CSS }, { HTML_UNDEF }, "-moz-initial", iiu_moz_initial },
+    { { HTML_CSS }, { HTML_UNDEF }, "revert", iiu_revert },
+    { { HTML_CSS }, { HTML_UNDEF }, "revert-layer", iiu_revert_layer },
+    { { HTML_CSS }, { HTML_UNDEF }, "unset", iiu_unset } };
 
 struct symbol_entry < html_version, e_image_rendering > image_rendering_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG, 0, H3_CSS_IMAGE }, { HTML_UNDEF }, "auto", ir_auto },
@@ -7927,6 +7955,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_corner_shape_name);
     INIT_ENUM (css_caret_shape);
     INIT_ENUM (css_clear);
+    INIT_ENUM (css_composite_mode);
     INIT_ENUM (css_contain_e);
     INIT_ENUM (css_content_enum);
     INIT_ENUM (css_container_feature);
@@ -8039,6 +8068,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (icalfreq);
     INIT_ENUM (image_rendering);
     INIT_ENUM (icc);
+    INIT_ENUM (iiu);
     INIT_ENUM (indentalign);
     INIT_ENUM (inky);
     INIT_ENUM (inputmode);
@@ -8306,6 +8336,7 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (css_corner_shape_name);
         RETURN_SIZE (css_caret_shape);
         RETURN_SIZE (css_clear);
+        RETURN_SIZE (css_composite_mode);
         RETURN_SIZE (css_contain_e);
         RETURN_SIZE (css_content_enum);
         RETURN_SIZE (css_container_feature);
@@ -8417,6 +8448,7 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (icalfreq);
         RETURN_SIZE (image_rendering);
         RETURN_SIZE (icc);
+        RETURN_SIZE (iiu);
         RETURN_SIZE (indentalign);
         RETURN_SIZE (inky);
         RETURN_SIZE (inputmode);

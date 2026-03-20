@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN font-kerning tests</title>
+<style>
+.sid
+{
+font-kerning: auto;
+font-kerning: normal;
+font-kerning: none;
+
+/* Global values */
+font-kerning: inherit;
+font-kerning: initial;
+font-kerning: revert;
+font-kerning: revert-layer;
+font-kerning: unset;
+}
+
+div {
+  font-size: 2rem;
+  font-family: serif;
+}
+
+#no-kern {
+  font-kerning: none;
+}
+
+#kern {
+  font-kerning: normal;
+}
+</style>
+<script>
+const input = document.getElementById("input");
+const kern = document.getElementById("kern");
+const noKern = document.getElementById("no-kern");
+
+input.addEventListener("keyup", () => {
+  kern.textContent = input.value; /* Update content */
+  noKern.textContent = input.value;
+});
+
+kern.textContent = input.value; /* Initialize content */
+noKern.textContent = input.value;
+</script>
+</head>
+
+<body>
+
+<h1>MDN font-kerning Tests</h1>
+
+<div id="kern"></div>
+<div id="no-kern"></div>
+<textarea id="input">AV T. ij</textarea>
+
+</body>
+</html>

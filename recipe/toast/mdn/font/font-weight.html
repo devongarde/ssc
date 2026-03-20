@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN font-weight tests</title>
+<style>
+.sid
+{
+/* <font-weight-absolute> keyword values */
+font-weight: normal;
+font-weight: bold;
+
+/* <font-weight-absolute> numeric values [1,1000] */
+font-weight: 100;
+font-weight: 200;
+font-weight: 300;
+font-weight: 400; /* normal */
+font-weight: 500;
+font-weight: 600;
+font-weight: 700; /* bold */
+font-weight: 800;
+font-weight: 900;
+
+/* Keyword values relative to the parent */
+font-weight: lighter;
+font-weight: bolder;
+
+/* Global values */
+font-weight: inherit;
+font-weight: initial;
+font-weight: revert;
+font-weight: revert-layer;
+font-weight: unset;
+}
+
+@font-face {
+  src: url("/shared-assets/fonts/variable-fonts/MutatorSans.ttf");
+  font-family: "MutatorSans";
+  font-style: normal;
+  font-weight: 1 1000;
+}
+
+.sample {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 1.5rem;
+  font-family: "MutatorSans", sans-serif;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN font-weight Tests</h1>
+
+<p class="sample">
+  ...it would not be wonderful to meet a Megalosaurus, forty feet long or so,
+  waddling like an elephantine lizard up Holborn Hill.
+</p>
+
+</body>
+</html>

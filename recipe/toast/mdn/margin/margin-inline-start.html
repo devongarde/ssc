@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN margin-inline-start tests</title>
+<style>
+.sid {
+/* <length> values */
+margin-inline-start: 10px; /* An absolute length */
+margin-inline-start: 1em; /* relative to the text size */
+margin-inline-start: 5%; /* relative to the nearest block container's width */
+margin-inline-start: anchor-size(block);
+margin-inline-start: calc(anchor-size(--my-anchor width, 30px) / 4);
+
+/* Keyword values */
+margin-inline-start: auto;
+
+/* Global values */
+margin-inline-start: inherit;
+margin-inline-start: initial;
+margin-inline-start: revert;
+margin-inline-start: revert-layer;
+margin-inline-start: unset;
+}
+
+div {
+  background-color: yellow;
+  width: 120px;
+  height: 120px;
+}
+
+.exampleText {
+  writing-mode: vertical-lr;
+  margin-inline-start: 20px;
+  background-color: #c8c800;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN margin-inline-start Tests</h1>
+
+<div>
+  <p class="exampleText">Example text</p>
+</div>
+
+</body>
+</html>

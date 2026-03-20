@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN list-style tests</title>
+<style>
+.sid {
+/* type */
+list-style: square;
+
+/* image */
+list-style: url("../img/shape.png");
+
+/* position */
+list-style: inside;
+
+/* two values */
+list-style: georgian outside;
+list-style: url("img/pip.svg") inside;
+
+/* three values */
+list-style: lower-roman url("img/shape.png") outside;
+
+/* Keyword value */
+list-style: none;
+
+/* Global values */
+list-style: inherit;
+list-style: initial;
+list-style: revert;
+list-style: revert-layer;
+list-style: unset;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li::before {
+  content: "+ ";
+}
+
+.one {
+  list-style: circle;
+}
+
+.two {
+  list-style: square inside;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN list-style Tests</h1>
+
+<ul role="list">
+  <li>An item</li>
+  <li>Another item</li>
+</ul>
+
+List 1
+<ul class="one">
+  <li>List Item1</li>
+  <li>List Item2</li>
+  <li>List Item3</li>
+</ul>
+List 2
+<ul class="two">
+  <li>List Item A</li>
+  <li>List Item B</li>
+  <li>List Item C</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN mask-composite tests</title>
+<style>
+.sid {
+/* Keyword values */
+mask-composite: add;
+mask-composite: subtract;
+mask-composite: intersect;
+mask-composite: exclude;
+
+/* Global values */
+mask-composite: inherit;
+mask-composite: initial;
+mask-composite: revert;
+mask-composite: revert-layer;
+mask-composite: unset;
+}
+
+div {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+
+  mask-image:
+    url("mdn.svg"),
+    url("mask-star.svg");
+  mask-size: 100% 100%;
+
+  mask-composite: subtract;
+}
+
+mask.luminance {
+  mask-type: luminance;
+}
+
+mask.alpha {
+  mask-type: alpha;
+}
+
+/* apply the mask images */
+tr.alphaMaskType img {
+  mask-image: url("#heartAlpha"), url("#circleAlpha");
+}
+
+tr.luminanceMaskType img {
+  mask-image: url("#heartLuminance"), url("#circleLuminance");
+}
+
+/* property we're testing */
+td:nth-of-type(1) img {
+  mask-composite: add;
+}
+td:nth-of-type(2) img {
+  mask-composite: subtract;
+}
+td:nth-of-type(3) img {
+  mask-composite: intersect;
+}
+td:nth-of-type(4) img {
+  mask-composite: exclude;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN mask-composite Tests</h1>
+
+<div></div>
+
+<img
+  src="progress-pride-flag.jpg"
+  alt="Pride flag" />
+
+<svg height="0" width="0">
+  <mask id="heartAlpha" class="alpha">
+    <path
+      d="M20,70 A40,40,0,0,1,100,70 A40,40,0,0,1,180,70 Q180,130,100,190 Q20,130,20,70 Z"
+      fill="green"
+      stroke="white"
+      stroke-width="20" />
+  </mask>
+  <mask id="circleAlpha" class="alpha">
+    <circle
+      cx="130"
+      cy="130"
+      r="50"
+      fill="rgb(0 0 0 / 0.5)"
+      stroke="rgb(255 255 255 / 0.5)"
+      stroke-width="20" />
+  </mask>
+  <mask id="heartLuminance" class="luminance">
+    <path
+      d="M20,70 A40,40,0,0,1,100,70 A40,40,0,0,1,180,70 Q180,130,100,190 Q20,130,20,70 Z"
+      fill="green"
+      stroke="white"
+      stroke-width="20" />
+  </mask>
+  <mask id="circleLuminance" class="luminance">
+    <circle
+      cx="130"
+      cy="130"
+      r="50"
+      fill="rgb(0 0 0 / 0.5)"
+      stroke="rgb(255 255 255 / 0.5)"
+      stroke-width="20" />
+  </mask>
+</svg>
+
+
+</body>
+</html>

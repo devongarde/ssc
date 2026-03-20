@@ -707,9 +707,7 @@ PASS ../toast/living/jan26/15.css
 80 unrecognised_value unrecognised_value
 216 css_version
 224 css_version
-525 immeasurable
 709 css_version
-749 immeasurable
 768 dialect
 901 unrecognised_value unrecognised_value unrecognised_value unrecognised_value
 902 unrecognised_value unrecognised_value unrecognised_value unrecognised_value

@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN margin-left tests</title>
+<style>
+.sid {
+/* <length> values */
+margin-left: 10px; /* An absolute length */
+margin-left: 1em; /* relative to the text size */
+margin-left: 5%; /* relative to the nearest block container's width */
+margin-left: anchor-size(self-inline);
+margin-left: calc(anchor-size(--my-anchor width, 20px) / 4);
+
+/* Keyword values */
+margin-left: auto;
+
+/* Global values */
+margin-left: inherit;
+margin-left: initial;
+margin-left: revert;
+margin-left: revert-layer;
+margin-left: unset;
+}
+
+.example {
+  margin-left: 50%;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN margin-left Tests</h1>
+
+<p>
+  A large rose-tree stood near the entrance of the garden: the roses growing on
+  it were white, but there were three gardeners at it, busily painting them red.
+</p>
+<p class="example">
+  Alice thought this a very curious thing, and she went nearer to watch them,
+  and just as she came up to them she heard one of them say, "Look out now,
+  Five! Don't go splashing paint over me like that!"
+</p>
+<p>
+  "I couldn't help it," said Five, in a sulky tone; "Seven jogged my elbow."
+</p>
+
+</body>
+</html>

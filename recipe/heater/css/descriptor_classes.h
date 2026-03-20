@@ -78,6 +78,7 @@ typedef typed_property < t_css_font_style_2, ec_font_style > desc_font_style;
 typedef typed_property < t_svg_fontvariant, ec_font_variant > desc_font_variant;
 typedef typed_property < t_css_font_variation_settings, ec_font_variation_settings > desc_font_variation_settings;
 typedef typed_property < t_css_font_weights, ec_font_weight > desc_font_weight;
+typedef typed_property < t_css_font_width, ec_font_width > desc_font_width;
 typedef typed_property < t_css_length_2, ec_height > desc_height;
 typedef typed_property < t_css_length_xtz, ec_height > desc_vp_height;
 typedef typed_property < t_css_lengths_aa_l, ec_inset > desc_inset;
@@ -88,7 +89,7 @@ typedef typed_property < t_css_length_aa2, ec_inset_inline > desc_inset_inline;
 typedef typed_property < t_css_length_aia, ec_inset_inline_end > desc_inset_inline_end;
 typedef typed_property < t_css_length_aia, ec_inset_inline_start > desc_inset_inline_start;
 typedef typed_property < t_css_box_justself, ec_justify_self > desc_justify_self;
-typedef typed_property < t_css_length_n, ec_letter_spacing > desc_letter_spacing;
+typedef typed_property < t_css_length_norm, ec_letter_spacing > desc_letter_spacing;
 typedef typed_property < t_percent_flexible, ec_line_gap_override > desc_line_gap_override;
 typedef typed_property < t_percents_n, ec_line_gap_override > desc_line_gap_override_5;
 typedef typed_property < t_css_line_height, ec_line_height > desc_line_height;
@@ -186,6 +187,7 @@ typedef typed_property < t_unknown, ec_unknown > desc_unknown;
     desc_font_style, \
     desc_font_variant, \
     desc_font_weight, \
+    desc_font_width, \
     desc_mathline, \
     desc_panose_1, \
     desc_slope, \
@@ -204,6 +206,7 @@ typedef typed_property < t_unknown, ec_unknown > desc_unknown;
     desc_font_stretch, \
     desc_font_style, \
     desc_font_weight, \
+    desc_font_width, \
     desc_src, \
     desc_unicode_range
 
@@ -281,6 +284,7 @@ typedef typed_property < t_unknown, ec_unknown > desc_unknown;
     desc_font_size, \
     desc_font_style, \
     desc_font_weight, \
+    desc_font_width, \
     desc_font_variant, \
     desc_height, \
     desc_letter_spacing, \

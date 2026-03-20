@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN mask-origin tests</title>
+<style>
+.sid {
+/* Keyword values */
+mask-origin: content-box;
+mask-origin: padding-box;
+mask-origin: border-box;
+mask-origin: fill-box;
+mask-origin: stroke-box;
+mask-origin: view-box;
+
+/* Multiple values */
+mask-origin: padding-box, content-box;
+mask-origin: view-box, fill-box, border-box;
+
+/* Global values */
+mask-origin: inherit;
+mask-origin: initial;
+mask-origin: revert;
+mask-origin: revert-layer;
+mask-origin: unset;
+}
+
+div {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border: 10px solid blue;
+  background-color: #8cffa0;
+  padding: 10px;
+  mask-image: url("mask-star.svg");
+}
+section {
+  border: 1px solid black;
+}
+
+.content div {
+  mask-origin: content-box;
+}
+
+.padding div {
+  mask-origin: padding-box;
+}
+
+.border div {
+  mask-origin: border-box;
+}
+
+.comparison div {
+  mask-image: none;
+}
+
+section::before {
+  content: attr(class);
+  display: block;
+  text-align: center;
+}
+
+div {
+  width: 120px;
+  height: 120px;
+  margin: 10px;
+  border: 10px solid blue;
+  background-color: #8cffa0;
+  padding: 10px;
+  mask-image:
+    url("mask-star.svg"),
+    url("mask-star.svg"),
+    url("mask-star.svg");
+  mask-position:
+    top left,
+    top right,
+    bottom center;
+  mask-repeat: no-repeat;
+  mask-origin: content-box, border-box;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN mask-origin Tests</h1>
+
+<section class="content">
+  <div></div>
+</section>
+<section class="padding">
+  <div></div>
+</section>
+<section class="border">
+  <div></div>
+</section>
+<section class="comparison">
+  <div></div>
+</section>
+
+<div></div>
+
+</body>
+</html>

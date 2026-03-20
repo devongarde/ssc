@@ -63,8 +63,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 26
-#define VERSION_STRING "0.2.26"
+#define VERSION_RELEASE 27
+#define VERSION_STRING "0.2.27"
 
 #define BUILD_YEAR              "2026"
 #define BUILD_MONTH             "Feb"

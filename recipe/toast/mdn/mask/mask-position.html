@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN mask-position tests</title>
+<style>
+.sid {
+/* Single <position> keyword value */
+/* Sets second value to 'center' */
+mask-position: left;
+mask-position: center;
+mask-position: right;
+mask-position: top;
+mask-position: bottom;
+
+/* Two <position> keyword values */
+mask-position: left center;
+mask-position: right top;
+
+/* One length or percentage <position> value */
+/* Horizontal position. Vertical position set to 'center' */
+mask-position: 25%;
+mask-position: 0px;
+mask-position: 8em;
+
+/* Two length or percentage <position> values */
+/* First value: horizontal position. Second value: vertical position */
+mask-position: 25% 75%;
+mask-position: 0px 0px;
+mask-position: 10% 8em;
+
+/* Edge offsets: Four <position> values */
+mask-position: bottom 10px right 20px;
+mask-position: right 3em bottom 10px;
+mask-position: bottom 10px right 0;
+
+/* Multiple <position> values */
+mask-position:
+  top left,
+  bottom 10px right 10px;
+mask-position:
+  1rem 1rem,
+  center;
+
+/* Global values */
+mask-position: inherit;
+mask-position: initial;
+mask-position: revert;
+mask-position: revert-layer;
+mask-position: unset;
+}
+
+section {
+  border: 1px solid black;
+  width: 250px;
+  height: 250px;
+}
+
+div {
+  width: 250px;
+  height: 250px;
+  margin-bottom: 10px;
+  background: blue linear-gradient(red, blue);
+
+  mask-image: url("/shared-assets/images/examples/mask-star.svg");
+  mask-repeat: no-repeat;
+  mask-position: top right;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN mask-position Tests</h1>
+
+<section>
+  <div></div>
+</section>
+
+</body>
+</html>

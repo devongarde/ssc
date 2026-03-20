@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN math-depth tests</title>
+<style>
+.sid {
+/* Keyword values */
+math-depth: auto-add;
+
+/* Relative values */
+math-depth: add(2);
+math-depth: add(-2);
+
+/* Absolute value */
+math-depth: 4;
+
+/* Global values */
+math-depth: inherit;
+math-depth: initial;
+math-depth: revert;
+math-depth: revert-layer;
+math-depth: unset;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN math-depth Tests</h1>
+
+<p>
+  <math>
+    <mtext>0</mtext>
+
+    <!-- auto-add value has no effect when math-style is normal -->
+    <mrow style="math-style: normal">
+      <mrow style="math-depth: auto-add">
+        <mtext>0</mtext>
+      </mrow>
+    </mrow>
+
+    <!-- the inherited math-style is compact, so math-depth is set to 1 -->
+    <mrow style="math-depth: auto-add">
+      <mtext>1</mtext>
+    </mrow>
+
+    <mrow style="math-depth: add(2)">
+      <mtext>2</mtext>
+      <mrow style="math-depth: add(-1)">
+        <mtext>1</mtext>
+      </mrow>
+      <mrow style="math-depth: 0">
+        <mtext>0</mtext>
+      </mrow>
+    </mrow>
+  </math>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN flood-opacity tests</title>
+<style>
+.sid
+{
+/* numeric and percentage values */
+flood-opacity: 0.2;
+flood-opacity: 20%;
+
+/* Global values */
+flood-opacity: inherit;
+flood-opacity: initial;
+flood-opacity: revert;
+flood-opacity: revert-layer;
+flood-opacity: unset;
+}
+
+svg {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent 0 9px,
+    #cccccc 0px 10px
+  );
+}
+rect {
+  width: 100px;
+  height: 100px;
+  x: 10px;
+  y: 10px;
+}
+#r2 {
+  x: 150px;
+}
+
+#flood1 feFlood {
+  flood-opacity: 0.5;
+}
+#flood2 feFlood {
+  flood-opacity: 90%;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN flood-opacity Tests</h1>
+
+<svg viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg">
+  <filter id="flood1">
+    <feFlood flood-color="seagreen" flood-opacity="1" />
+  </filter>
+  <filter id="flood2">
+    <feFlood flood-color="seagreen" flood-opacity="0" />
+  </filter>
+
+  <rect id="r1" filter="url(#flood1)" />
+  <rect id="r2" filter="url(#flood2)" />
+</svg>
+
+</body>
+</html>

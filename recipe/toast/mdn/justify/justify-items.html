@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN justify-items tests</title>
+<style>
+.sid {
+/* Basic keywords */
+justify-items: normal;
+justify-items: stretch;
+
+/* Positional alignment */
+justify-items: center; /* Pack items around the center */
+justify-items: start; /* Pack items from the start */
+justify-items: end; /* Pack items from the end */
+justify-items: flex-start; /* Equivalent to 'start'. Note that justify-items is ignored in flexbox layouts. */
+justify-items: flex-end; /* Equivalent to 'end'. Note that justify-items is ignored in flexbox layouts. */
+justify-items: self-start;
+justify-items: self-end;
+justify-items: left; /* Pack items from the left */
+justify-items: right; /* Pack items from the right */
+justify-items: anchor-center;
+
+/* Baseline alignment */
+justify-items: baseline;
+justify-items: first baseline;
+justify-items: last baseline;
+
+/* Overflow alignment (for positional alignment only) */
+justify-items: safe center;
+justify-items: unsafe center;
+
+/* Legacy alignment */
+justify-items: legacy left;
+justify-items: legacy right;
+justify-items: legacy center;
+
+/* Global values */
+justify-items: inherit;
+justify-items: initial;
+justify-items: revert;
+justify-items: revert-layer;
+justify-items: unset;
+}
+
+html {
+  font-family: "Helvetica", "Arial", sans-serif;
+  letter-spacing: 1px;
+}
+
+article {
+  background-color: red;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 40px;
+  grid-gap: 10px;
+  margin: 20px;
+  width: 300px;
+  justify-items: stretch;
+}
+
+article:hover,
+article:focus {
+  justify-items: center;
+}
+
+article span {
+  background-color: black;
+  color: white;
+  margin: 1px;
+  text-align: center;
+}
+
+article,
+span {
+  padding: 10px;
+  border-radius: 7px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN justify-items Tests</h1>
+
+<article class="container" tabindex="0">
+  <span>First child</span>
+  <span>Second child</span>
+  <span>Third child</span>
+  <span>Fourth child</span>
+</article>
+
+</body>
+</html>

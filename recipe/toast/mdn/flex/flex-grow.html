@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN flex-grow tests</title>
+<style>
+.sid {
+/* <number> values */
+flex-grow: 3;
+flex-grow: 0.6;
+
+/* Global values */
+flex-grow: inherit;
+flex-grow: initial;
+flex-grow: revert;
+flex-grow: revert-layer;
+flex-grow: unset;
+}
+
+#content {
+  display: flex;
+}
+
+div > div {
+  border: 3px solid rgb(0 0 0 / 20%);
+}
+
+.box1,
+.box2,
+.box3,
+.box6 {
+  flex-grow: 1;
+}
+
+.box4,
+.box5 {
+  flex-grow: 2;
+  border: 3px solid rgb(0 0 0 / 20%);
+}
+
+.box1 {
+  background-color: red;
+}
+.box2 {
+  background-color: lightblue;
+}
+.box3 {
+  background-color: yellow;
+}
+.box4 {
+  background-color: brown;
+}
+.box5 {
+  background-color: lightgreen;
+}
+.box6 {
+  background-color: brown;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN flex-grow Tests</h1>
+
+<h1>This is a <code>flex-grow</code> example</h1>
+<p>
+  A, B, C, and F have <code>flex-grow: 1</code> set. D and E have
+  <code>flex-grow: 2</code> set.
+</p>
+<div id="content">
+  <div class="box1">A</div>
+  <div class="box2">B</div>
+  <div class="box3">C</div>
+  <div class="box4">D</div>
+  <div class="box5">E</div>
+  <div class="box6">F</div>
+</div>
+
+</body>
+</html>

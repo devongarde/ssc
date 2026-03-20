@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN hyphenate-character tests</title>
+<style>
+.sid
+{
+hyphenate-character: <string>;
+hyphenate-character: auto;
+}
+
+dd {
+  width: 90px;
+  border: 1px solid black;
+  hyphens: auto;
+}
+
+dd#string {
+  -webkit-hyphenate-character: "=";
+  hyphenate-character: "=";
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN hyphenate-character Tests</h1>
+
+<dl>
+  <dt><code>hyphenate-character: "="</code></dt>
+  <dd id="string" lang="en">Superc&shy;alifragilisticexpialidocious</dd>
+  <dt><code>hyphenate-character is not set</code></dt>
+  <dd lang="en">Superc&shy;alifragilisticexpialidocious</dd>
+</dl>
+
+</body>
+</html>

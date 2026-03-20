@@ -49,6 +49,7 @@ typedef enum {  ab_afteredge, ab_alphabetic, ab_auto, ab_baseline, ab_beforeedge
                 ab_textbeforeedge, ab_textbottom, ab_texttop, ab_top } e_alignment_baseline;
 typedef enum { ap_centre, ap_indent, ap_justify, ap_left, ap_right } e_alignplus;
 typedef enum { a3_top, a3_middle, a3_bottom, a3_left, a3_right } e_align3;
+typedef enum { ean_allow_keywords, ean_numeric_only } e_allow_numeric;
 typedef enum
 {   ao_unknown,
 
@@ -302,8 +303,10 @@ typedef enum { afs_auto, afs_focus, afs_scroll } e_auto_focus_scroll;
 typedef enum { ahv_auto, ahv_hidden, ahv_visible } e_auto_hidden_visible;
 typedef enum { amn_auto, amn_manual, amn_none } e_auto_manual_none;
 typedef enum { ems_auto, ems_merge, ems_separate } e_auto_merge_separate;
+typedef enum { eai_auto, eai_inert } e_auto_inert;
 typedef enum { fam_auto, fam_manual } e_auto_manual;
 typedef enum { fch_auto, fch_none } e_auto_none;
+typedef enum { ano_auto, ano_none, ano_oblique_only } e_auto_none_oblique;
 typedef enum { ant_auto, ant_none, ant_thin } e_auto_none_thin;
 typedef enum { eas_auto, eas_smooth } e_auto_smooth;
 typedef enum { as_auto, as_stable } e_auto_stable;
@@ -653,6 +656,8 @@ typedef enum { ccs_auto, ccs_fit_content, css_max_content, css_min_content } e_c
 typedef enum { ecsc_auto, ecsc_bar, ecsc_block, ecsc_inherit, ecsc_underscore } e_css_caret_shape;
 typedef enum { ecc_inherit, ecc_block_end, ecc_block_start, ecc_both, ecc_bottom, ecc_inline_end, ecc_inline_start, ecc_left, ecc_none, ecc_right, ecc_top } e_css_clear;
 typedef enum { cpb_fill_box, cpb_stroke_box, cpb_view_box } e_css_clip_path_box;
+typedef enum {  ccm_clear, ccm_copy, ccm_destination_atop, ccm_destination_in, ccm_destination_out, ccm_destination_over, ccm_lighter, ccm_plus_darker,
+                ccm_plus_lighter, ccm_source_atop, ccm_source_in, ccm_source_out, ccm_source_over, ccm_xor } e_css_composite_mode;
 typedef enum { eccmb_content_box, eccmb_margin_box } e_css_content_cm_box;
 typedef enum {  csc_aliceblue, csc_antiquewhite, csc_aqua, csc_aquamarine, csc_azure, csc_beige, csc_bisque, csc_black, csc_blanchedalmond, csc_blue,
                 csc_blueviolet, csc_brown, csc_burlywood, csc_cadetblue, csc_chartreuse, csc_chocolate, csc_coral, csc_cornflowerblue, csc_cornsilk,
@@ -695,7 +700,7 @@ typedef enum { ecf_content, ecf_fixed } e_css_content_fixed;
 typedef enum { ecse_auto, ecse_discard, ecse_fragments, ecse_overflow, ecse_paginate, ecse_webkit_discard } e_css_continue;
 typedef enum { ccb_auto, ccb_avoid, ccb_avoid_flex, ccb_avoid_line, ccb_flex, ccb_line } e_css_control_break;
 typedef enum { eccb_border_box, eccb_content_box, eccb_fill_box, eccb_match_parent, eccb_padding_box, eccb_stroke_box, eccb_view_box } e_css_coord_box;
-typedef enum { eccp_centre, eccp_end, eccp_flex_end, eccp_flex_start, eccp_start } e_css_content_position;
+typedef enum { eccp_centre, eccp_end, eccp_flex_end, eccp_flex_start, eccp_self_end, eccp_self_start, eccp_start } e_css_content_position;
 typedef enum { ecxp_fill, ecxp_fill_opacity, ecxp_stroke, ecxp_stroke_opacity } e_css_context_properties;
 typedef enum { ccsn_bevel, ccsn_notch, ccsn_round, ccsn_scoop, ccsn_square, ccsn_squircle } e_css_corner_shape_name;
 typedef enum {  eccs_inherit, eccs_initial, eccs_none, eccs_revert, eccs_revert_layer, eccs_unset,
@@ -753,6 +758,7 @@ typedef enum { cepy_bottom, cepy_centre, cepy_top, cepy_y_end, cepy_y_start } e_
 
 typedef enum { cec_hide, cec_inherit, cec_moz_show_background, cec_show } e_css_empty_cells;
 typedef enum { fca_auto, fca_none, fca_preserve } e_css_fca;
+typedef enum { cfc_content, cfc_fit_content, cfc_max_content, cfc_min_content } e_css_flex_content;
 typedef enum {  cf_block_end, cf_block_start, cf_bottom, cf_inherit, cf_inline_end, cf_inline_start, cf_left, cf_none, cf_right,
                 cf_snap_block, cf_snap_inline, cf_top } e_css_float;
 typedef enum { ecfd_column, ecfd_column_reverse, ecfd_row, ecfd_row_reverse } e_css_flex_direction;
@@ -839,10 +845,10 @@ typedef enum { ecfk_auto, ecfk_none, ecfk_normal } e_css_font_kerning;
 typedef enum { ecfs_normal, ecfs_italic, ecfs_oblique, ecfs_inherit } e_css_font_style_e;
 typedef enum {  ecfv_acnt, ecfv_ankr, ecfv_avar, ecfv_base, ecfv_bdat, ecfv_bhed, ecfv_bloc, ecfv_bsln, ecfv_cbdt, ecfv_cblc, ecfv_cff, ecfv_cff2, ecfv_cmap,
                 ecfv_colr, ecfv_cpal, ecfv_cvar, ecfv_cvt, ecfv_dsig, ecfv_ebdt, ecfv_eblc, ecfv_ebsc, ecfv_fdsc, ecfv_feat, ecfv_fmtx, ecfv_fond, ecfv_fpgm,
-                ecfv_fvar, ecfv_gasp, ecfv_gcid, ecfv_gdef, ecfv_glyf, ecfv_gpos, ecfv_gsub, ecfv_gvar, ecfv_hdmx, ecfv_head, ecfv_hhea, ecfv_hmtx, ecfv_hvar,
+                ecfv_fvar, ecfv_gasp, ecfv_gcid, ecfv_gdef, ecfv_glyf, ecfv_gpos, ecfv_gsub, ecfv_gvar, ecfv_hdmx, ecfv_head, ecfv_hhea, ecfv_hmtx, ecfv_hvar, ecfv_ital,
                 ecfv_jstf, ecfv_just, ecfv_kern, ecfv_kerx, ecfv_lcar, ecfv_loca, ecfv_ltag, ecfv_ltsh, ecfv_math, ecfv_maxp, ecfv_merg, ecfv_meta, ecfv_mort,
-                ecfv_morx, ecfv_mvar, ecfv_name, ecfv_opbd, ecfv_os_2, ecfv_pclt, ecfv_post, ecfv_prep, ecfv_prop, ecfv_sbix, ecfv_stat, ecfv_svg, ecfv_trak,
-                ecfv_vdmx, ecfv_vhea, ecfv_vmtx, ecfv_vorg, ecfv_vvar, ecfv_xref, ecfv_zapf } e_css_font_variation;
+                ecfv_morx, ecfv_mvar, ecfv_name, ecfv_opbd, ecfv_opsz, ecfv_os_2, ecfv_pclt, ecfv_post, ecfv_prep, ecfv_prop, ecfv_sbix, ecfv_slnt, ecfv_stat, ecfv_svg, ecfv_trak,
+                ecfv_vdmx, ecfv_vhea, ecfv_vmtx, ecfv_vorg, ecfv_vvar, ecfv_wdth, ecfv_wght, ecfv_xref, ecfv_zapf } e_css_font_variation;
 typedef enum {  ecgf_inherit, ecf_cursive, ecf_emoji, ecf_fangsong, ecf_fantasy, ecf_math, ecf_monospace, ecf_sans_serif, ecf_serif, ecf_system_ui, ecf_ui_monospace, ecf_ui_rounded,
                 ecf_ui_sans_serif, ecf_ui_serif } e_css_generic_family;
 typedef enum { hll_always, hll_column, hll_none, hll_page, hll_spread } e_css_hll;
@@ -993,13 +999,14 @@ typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                 ec_elevation, ec_empty_cells, ec_enable_background,
                 ec_fallback, ec_field_sizing, ec_fill, ec_fill_break, ec_fill_colour, ec_fill_image, ec_fill_opacity, ec_fill_origin, ec_fill_params,
                     ec_fill_position, ec_fill_repeat, ec_fillrule, ec_fill_rule, ec_fill_size, ec_filter, ec_flex, ec_flex_basis, ec_flex_direction,
-                    ec_flex_flow, ec_flex_grow, ec_flex_shrink, ec_flex_wrap, ec_float, ec_float_defer, ec_float_offset, ec_float_reference, ec_flood_colour,
-                    ec_flood_opacity, ec_flow, ec_flow_from, ec_flow_into, ec_font, ec_font_display, ec_font_family, ec_font_feature_settings, ec_font_kerning,
-                    ec_font_language_override, ec_font_named_instance, ec_font_optical_sizing, ec_font_palette, ec_font_size, ec_font_size_adjust, ec_font_smooth,
-                    ec_font_stretch, ec_font_style, ec_font_synthesis, ec_font_synthesis_small_caps, ec_font_synthesis_style, ec_font_synthesis_weight, ec_font_variant,
+                    ec_flex_flow, ec_flex_grow, ec_flex_shrink, ec_flex_wrap, ec_float, ec_float_defer, ec_float_offset, ec_float_reference,
+                    ec_flood_colour, ec_flood_opacity, ec_flow, ec_flow_from, ec_flow_into, ec_font, ec_font_display, ec_font_family,
+                    ec_font_feature_settings, ec_font_kerning, ec_font_language_override, ec_font_named_instance, ec_font_optical_sizing,
+                    ec_font_palette, ec_font_size, ec_font_size_adjust, ec_font_smooth, ec_font_stretch, ec_font_style, ec_font_synthesis,
+                    ec_font_synthesis_position, ec_font_synthesis_small_caps, ec_font_synthesis_style, ec_font_synthesis_weight, ec_font_variant,
                     ec_font_variant_alternatives, ec_font_variant_caps, ec_font_variant_east_asian, ec_font_variant_emoji, ec_font_variant_ligatures,
-                    ec_font_variant_numeric, ec_font_variant_position, ec_font_variation_settings, ec_font_weight, ec_footnote_display, ec_footnote_policy,
-                    ec_forced_colour_adjust,
+                    ec_font_variant_numeric, ec_font_variant_position, ec_font_variation_settings, ec_font_weight, ec_font_width, ec_footnote_display,
+                    ec_footnote_policy, ec_forced_colour_adjust,
                 ec_gap, ec_glyph_orientation_horizontal, ec_glyph_orientation_vertical, ec_grid, ec_grid_area, ec_grid_auto_columns, ec_grid_auto_flow,
                     ec_grid_auto_rows, ec_grid_column, ec_grid_column_end, ec_grid_column_start, ec_grid_row, ec_grid_row_end, ec_grid_row_start,
                     ec_grid_template, ec_grid_template_areas, ec_grid_template_columns, ec_grid_template_rows,
@@ -1007,7 +1014,8 @@ typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                     ec_hyphenate_limit_zone, ec_hyphens,
                 ec_icc_profile, ec_image_orientation, ec_image_rendering, ec_image_resolution, ec_initial_letter, ec_initial_letter_align,
                     ec_initial_letter_wrap, ec_inline_size, ec_inline_sizing, ec_input_security, ec_inset, ec_inset_block, ec_inset_block_end,
-                    ec_inset_block_start, ec_inset_inline, ec_inset_inline_end, ec_inset_inline_start, ec_isolation,
+                    ec_inset_block_start, ec_inset_inline, ec_inset_inline_end, ec_inset_inline_start, ec_interactivity, ec_interest_delay,
+                    ec_interest_delay_start, ec_interest_delay_end, ec_interpolate_size, ec_isolation,
                 ec_justify_content, ec_justify_items, ec_justify_self,
                 ec_kerning,
                 ec_leading_trim, ec_left, ec_letter_spacing, ec_lighting_colour, ec_line_break, ec_line_clamp, ec_line_gap_override, ec_line_grid,
@@ -1269,6 +1277,7 @@ typedef enum {  css_context,
                 css_error } e_css_statement;
 constexpr e_css_statement css_content_ok = css_page;
 typedef enum { cse_additive, cse_alphabetic, cse_cyclic, cse_numeric, cse_symbolic } e_css_system_e;
+typedef enum { efs_position, efs_small_caps, efs_style, efs_weight } e_css_synthesis;
 typedef enum { ctl_auto, ctl_fixed, ctl_inherit } e_css_table_layout;
 typedef enum { cta_ideographic_alpha, cta_ideographic_numeric, cta_insert, cta_no_autospace, cta_punctuation, cta_replace } e_css_text_autospace;
 typedef enum {  ecta_centre, ecta_end, ecta_inherit, ecta_justify, ecta_justify_all, ecta_left, ecta_moz_centre, ecta_moz_left, ecta_moz_right,
@@ -1634,7 +1643,7 @@ typedef enum {  fv2_normal, fv2_none, fv2_small_caps, fv2_all_small_caps, fv2_pe
 typedef enum { fvc_normal, fvc_small_caps, fvc_all_small_caps, fvc_petite_caps, fvc_all_petite_caps, fvc_unicase, fvc_titling_caps } e_font_variant_caps;
 typedef enum {  fvea_normal, fvea_jis78, fvea_jis83, fvea_jis90, fvea_jis04, fvea_simplified, fvea_traditional, fvea_full_width,
                 fvea_proportional_width, fvea_ruby } e_font_variant_east_asian;
-typedef enum { fve_auto, fve_emji, fve_text, fve_unicode } e_font_variant_emoji;
+typedef enum { fve_emji, fve_normal, fve_text, fve_unicode } e_font_variant_emoji;
 typedef enum {  fvl_normal, fvl_none, fvl_common, fvl_no_common, fvl_discretionary, fvl_no_discretionary, fvl_historical, fvl_no_historical,
                 fvl_contextual, fvl_no_contextual } e_font_variant_ligature;
 typedef enum {  fvn_normal, fvn_lining_nums, fvn_oldstyle_nums, fvn_proportional_nums, fvn_tabular_nums, fvn_diagonal_fractions,
@@ -3284,8 +3293,8 @@ typedef enum
     dpv_academicresearch, dpv_academicscientificorganisation, dpv_accent, dpv_acceptcontract, dpv_acceptablerule, dpv_acceptableusepolicy, dpv_access, dpv_accesscontrol,
         dpv_accesscontrolmethod, dpv_accountidentifier,
         dpv_accountmanagement, dpv_acquantaince,  dpv_acquire, dpv_activelyinvolved, dpv_activeright, dpv_activitycompleted, dpv_activityhalted, dpv_activitymonitoring,
-        dpv_activitynotcompleted, dpv_activityongoing, dpv_activityplanned,  dpv_activityproposed, dpv_activitystatus, dpv_adapt, dpv_adult, dpv_advertising, dpv_age,
-        dpv_ageverification, dpv_aggregate, dpv_ailiteracy, dpv_ainotice, dpv_algorithmiclogic, dpv_align, dpv_alter, dpv_ambulanceprovider, dpv_analyse, dpv_anonymisation,
+        dpv_activitynotcompleted, dpv_activityongoing, dpv_activityplanned,  dpv_activityproposed, dpv_activitystatus, dpv_adapt, dpv_adult, dpv_advertising, dpv_age, dpv_agent,
+        dpv_ageverification, dpv_aggregate, dpv_aigovernance, dpv_ailiteracy, dpv_ainotice, dpv_algorithmiclogic, dpv_align, dpv_alter, dpv_ambulanceprovider, dpv_analyse, dpv_anonymisation,
         dpv_anonymise, dpv_anonymiseddata, dpv_anonymization, dpv_antiterrorismoperations, dpv_apartmentowned, dpv_applicability, dpv_applicant, dpv_approvalprocedure, dpv_assess,
         dpv_assessment, dpv_assetmanagementprocedures, dpv_assistiveautomation, dpv_association, dpv_asylumseeker, dpv_asymmetriccryptography, dpv_asymmetricencryption, dpv_attitude,
         dpv_audit, dpv_auditapproved, dpv_auditconditionallyapproved, dpv_auditnotrequired, dpv_auditrejected, dpv_auditrequested, dpv_auditrequired, dpv_auditstatus,
@@ -3325,7 +3334,7 @@ typedef enum
         dpv_criminalconviction,  dpv_criminalpardon, dpv_crossbordertransfer, dpv_cryptographicauthentication, dpv_cryptographickeymanagement, dpv_cryptographicmethods, dpv_customer,
         dpv_customercare,  dpv_customerclaimsmanagement, dpv_customermanagement, dpv_customerordermanagement, dpv_customerrelationshipmanagement, dpv_customersolvencymonitoring,
         dpv_cybersecurityassessment, dpv_cybersecurityassessments, dpv_cybersecuritytraining,
-    dpv_damage, dpv_dashboardnotice, dpv_data, dpv_dataaltruism, dpv_dataanonymisationtechnique, dpv_databackupprotocols, dpv_databreachimpactassessment, dpv_databreachnotice,
+    dpv_damage, dpv_dashboardnotice, dpv_data, dpv_dataaltruism, dpv_dataanonymisationtechnique, dpv_dataavailabilityassessment, dpv_databackupprotocols, dpv_databreachimpactassessment, dpv_databreachnotice,
         dpv_databreachnotification, dpv_databreachrecord, dpv_datacontroller, dpv_datacontrollercontract, dpv_datacontrollerdatasource, dpv_datadeletionpolicy, dpv_dataerasurepolicy,
         dpv_dataexporter, dpv_datagovernance, dpv_datahandlingclause, dpv_dataimporter, dpv_datainteroperabilityassessment, dpv_datainteroperabilityimprovement,
         dpv_datainteroperabilitymanagement, dpv_datainventorymanagement, dpv_datajurisdictionpolicy, dpv_dataliteracy, dpv_dataprocessingagreement, dpv_dataprocessingpolicy,
@@ -3333,7 +3342,7 @@ typedef enum
         dpv_dataprotectionauthority, dpv_dataprotectionofficer, dpv_dataprotectiontraining, dpv_datapublishedbydatasubject, dpv_dataqualityassessment, dpv_dataqualityimprovement,
         dpv_dataqualitymanagement, dpv_dataredaction, dpv_datarestorationpolicy, dpv_datareusepolicy, dpv_datasanitisationtechnique, dpv_datasecuritymanagement, dpv_datasource,
         dpv_datastoragepolicy, dpv_datasubject, dpv_datasubjectcontract, dpv_datasubjectdatasource, dpv_datasubjectinformed, dpv_datasubjectright, dpv_datasubjectrightsmanagement,
-        dpv_datasubjectscale, dpv_datasubjectuninformed, dpv_datasubprocessor, dpv_datatransferimpactassessment, dpv_datatransferlegalbasis, dpv_datatransfernotice, dpv_datatransferrecord,
+        dpv_datasubjectscale, dpv_datasubjectuninformed, dpv_datasubprocessor, dpv_datasuitabilityassessment, dpv_datatransferimpactassessment, dpv_datatransferlegalbasis, dpv_datatransfernotice, dpv_datatransferrecord,
         dpv_datavolume, dpv_decentralisedlocations, dpv_decisionmaking, dpv_deidentification, dpv_delete, dpv_deliveryofgoods, dpv_demeanour, dpv_demographic, dpv_derive, dpv_deriveddata,
         dpv_derivedpersonaldata, dpv_designstandard, dpv_destruct, dpv_deterministicpseudonymisation, dpv_deterrence, dpv_deterrencefollowed, dpv_deterrencenotfollowed, dpv_detriment,
         dpv_deviceapplications, dpv_devicebased, dpv_deviceoperatingsystem, dpv_devicenotice,
@@ -3348,7 +3357,7 @@ typedef enum
         dpv_entityinvolvementstatus, dpv_entitynoninvolvement, dpv_entitynonpermissiveinvolvement, dpv_entitynotinvolved, dpv_entitypassiveinvolvement, dpv_entitypermissiveinvolvement,
         dpv_entityuninformed, dpv_entityunintendedinvolvement, dpv_environmentalprotection, dpv_erase, dpv_establishcontractualagreement, dpv_ethnicity, dpv_ethnicorigin, dpv_eula,
         dpv_evaluationofindividuals, dpv_evaluationscoring, dpv_expectationstatus, dpv_expected, dpv_explicitlyexpressedconsent, dpv_export, dpv_expressedconsent, dpv_external,
-    dpv_family, dpv_familyhealthhistory, dpv_familystructure, dpv_favourite, dpv_favouritecolour, dpv_favouritefood, dpv_favouritemusic, dpv_federatedlocations, dpv_feenotrequired,
+    dpv_family, dpv_familyhealthhistory, dpv_familystructure, dpv_favourite, dpv_favouritecolour, dpv_favouritefood, dpv_favouritemusic, dpv_failsafeprotocols, dpv_federatedlocations, dpv_feenotrequired,
         dpv_feerequired, dpv_feerequirement, dpv_fetish, dpv_filesystemsecurity, dpv_filter, dpv_financial, dpv_financialaccount, dpv_financialaccountnumber, dpv_fingerprint,
         dpv_firedepartment, dpv_fixedlocation, dpv_fixedmultiplelocations, dpv_fixedoccurencesduration, dpv_fixedsingularlocation, dpv_format, dpv_forprofitorganisation,
         dpv_fraudpreventiondetection, dpv_frequency, dpv_fria, dpv_friend, dpv_fulfilmentofcontractualobligation, dpv_fulfilmentofobligation, dpv_fullautomation,
@@ -3359,7 +3368,7 @@ typedef enum
     dpv_haircolour, dpv_hardwaresecurityprotocols, dpv_harm, dpv_hashbasedmessageauthenticationcode, dpv_healthcareorganisation, dpv_hashfunctions, dpv_health, dpv_healthdata,
         dpv_healthhistory, dpv_healthrecord,  dpv_height, dpv_highautomation, dpv_historical, dpv_homomorphicencryption, dpv_hospital, dpv_houseowned, dpv_hugedatavolume,
         dpv_hugescaleofdatasubjects, dpv_humaninvolved, dpv_humaninvolvement, dpv_humaninvolvementforcontrol, dpv_humaninvolvementfordecision, dpv_humaninvolvementforinput,
-        dpv_humaninvolvementforintervention, dpv_humaninvolvementforoversight, dpv_humaninvolvementforverification, dpv_humannotinvolved, dpv_humanresourcemanagement, dpv_humansubject,
+        dpv_humaninvolvementforintervention, dpv_humaninvolvementforoversight, dpv_humaninvolvementforverification, dpv_humannotinvolved, dpv_humanoversight, dpv_humanresourcemanagement, dpv_humansubject,
         dpv_hybridpublicprivatespace,
     dpv_identityauthentication, dpv_identifying, dpv_identifyingpersonaldata, dpv_identitymanagementmethod, dpv_identifyrectifyimpairments, dpv_identityverification, dpv_immigrant,
         dpv_impact, dpv_impactassessment, dpv_impliedconsent, dpv_importance, dpv_improveexistingproductsandservices, dpv_improvehealthcare, dpv_improveinternalcrmprocesses,
@@ -3372,7 +3381,7 @@ typedef enum
     dpv_jitnotice, dpv_job, dpv_jobapplicant, dpv_jointdatacontrollers, dpv_jointdatacontrollersagreement, dpv_judicialorganisation, dpv_jurisdiction, dpv_justification,
     dpv_knowledgebelief,
     dpv_language, dpv_largedatavolume, dpv_largescaleofdatasubjects, dpv_largescaleprocessing, dpv_law, dpv_lawenforcementorganisation, dpv_lawful, dpv_lawfulness, dpv_lawfulnessunkown,
-        dpv_layerednotice, dpv_legalagreement,  dpv_legalbasis, dpv_legalcompliance, dpv_legalcomplianceassessment, dpv_legalcomplianceaudit, dpv_legalentity, dpv_legalmeasure,
+        dpv_layerednotice, dpv_legalagent, dpv_legalagreement,  dpv_legalbasis, dpv_legalcompliance, dpv_legalcomplianceassessment, dpv_legalcomplianceaudit, dpv_legalentity, dpv_legalmeasure,
         dpv_legalobligation, dpv_legalobligationcompleted, dpv_legalobligationongoing, dpv_legalobligationpending, dpv_legalobligationstatus, dpv_legitimateinterest,
         dpv_legitimateinterestassessment,
   	    dpv_legitimateinterestinformed, dpv_legitimateinterestnotobjected, dpv_legitimateinterestobjected, dpv_legitimateinterestofcontroller, dpv_legitimateinterestofdatasubject,
@@ -3443,7 +3452,7 @@ typedef enum
         dpv_security, dpv_securityassessment, dpv_securityassessments, dpv_securityaudit, dpv_securityincidentnotice, dpv_securityincidentnotification, dpv_securityincidentrecord,
         dpv_securityknowledgetraining, dpv_securitymethod, dpv_securityprocedure, dpv_securityroleprocedures, dpv_selldatatothirdparties, dpv_sellinsightsfromdata, dpv_sellproducts,
         dpv_sellproductstodatasubject, dpv_selltargettedadvertisements, dpv_semiprivatespace, dpv_sensitivedata, dpv_sensitivenonpersonaldata, dpv_sensitivepersonaldata, dpv_sensitivitylevel,
-        dpv_service, dpv_serviceconsumer, dpv_serviceconsumptionbehaviour, dpv_servicelevelagreement, dpv_serviceoptimisation, dpv_serviceoptimization, dpv_servicepersonalisation,
+        dpv_service, dpv_serviceconsumer, dpv_serviceaccessdetermination, dpv_serviceconsumptionbehaviour, dpv_servicelevelagreement, dpv_servicemanagement, dpv_servicemonitoring, dpv_serviceoptimisation, dpv_serviceoptimization, dpv_servicepersonalisation,
         dpv_servicepersonalization,
         dpv_serviceprovider, dpv_serviceprovision, dpv_serviceregistration, dpv_serviceusageanalytics, dpv_severity, dpv_sexual, dpv_sexualhistory, dpv_sexualpreference, dpv_share,
         dpv_sibling, dpv_singlesignon, dpv_singulardatavolume, dpv_singularfrequency, dpv_singularscaleofdatasubjects, dpv_skintone, dpv_smeorganisation, dpv_smalldatavolume,
@@ -3460,7 +3469,7 @@ typedef enum
         dpv_transform, dpv_transmit, dpv_trustedcomputing, dpv_trustedexecutionenvironments, dpv_trustedthirdpartyutilisation, dpv_tvviewingbehaviour,
     dpv_uid, dpv_unacceptablerule, dpv_uncategoriseddata, dpv_unexpected, dpv_uninformedconsent, dpv_unintended, dpv_unknownapplicability, dpv_unlawful, dpv_unstructureddata,
         dpv_untileventduration, dpv_untiltimeduration, dpv_unverifieddata,
-        dpv_usageanalytics, dpv_usagecontrol, dpv_use, dpv_useofsyntheticdata, dpv_user, dpv_userinterfacepersonalisation, dpv_username,
+        dpv_usageanalytics, dpv_usagecontrol, dpv_use, dpv_usesyntheticdata, dpv_user, dpv_userinterfacepersonalisation, dpv_username,
     dpv_variablelocation, dpv_vendormanagement, dpv_vendorpayment, dpv_vendorrecordsmanagement, dpv_vendorselectionassessment, dpv_verification, dpv_verifieddata, dpv_violationofcompliance,
         dpv_virtualisationsecurity, dpv_visitor, dpv_vitalinterest, dpv_vitalinterestcompleted, dpv_vitalinterestobjected, dpv_vitalinterestofdatasubject, dpv_vitalinterestofnaturalperson,
         dpv_vitalinterestongoing, dpv_vitalinterestpending, dpv_vitalintereststatus, dpv_voicecommunicationrecording, dpv_voicemail, dpv_vulnerabilitytestingmethods, dpv_vulnerabledatasubject,
@@ -8197,24 +8206,24 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_A_2 \
         t_additive, t_advar, t_aesf, t_aesfs, t_align, t_align2070, t_align3, t_aligndec, t_alignfig, t_alignment_baseline, t_alignplus, \
-        t_all_auto_none, t_all_none, t_allow_ad_n, t_allow_deny, t_allow_list, t_allow_force, t_alp, t_always_auto_never, t_always_normal, \
-        t_analysis, t_angle, t_angle_0
-#define SSC_TYPES_A_2_MAX t_angle_0
+        t_all_auto_none, t_all_none, t_allow_ad_n, t_allow_deny, t_allow_list, t_allow_force, t_allow_numeric, t_alp, t_always_auto_never, \
+        t_always_normal, t_analysis, t_anchor_centre
+#define SSC_TYPES_A_2_MAX t_anchor_centre
 
 #define SSC_TYPES_A_3 \
-        t_angle_a, t_angle_ai, t_angle_ar, t_angle_ars, t_angle_i, t_angle_lrtb, t_angle_lrtb_col, t_angle_n, t_angle_p, t_angular_colour_more, \
+        t_angle, t_angle_0, t_angle_a, t_angle_ai, t_angle_ar, t_angle_ars, t_angle_i, t_angle_lrtb, t_angle_lrtb_col, t_angle_n, t_angle_p, t_angular_colour_more, \
         t_angular_colour_stop, t_anywhere_break_normal, t_arabicenum, t_arabic_form,  t_aria_autocomplete, t_aria_current, t_aria_invalidity, \
         t_aria_live, t_aria_popup, t_aria_relevant, t_aria_relevants
 #define SSC_TYPES_A_3_MAX t_aria_relevants
 
 #define SSC_TYPES_A_4 \
         t_aria_sort, t_arxiv, t_as, t_ass, t_as_units, t_at_pos, t_atom_mime, t_atom_type, t_attr, t_attributename, t_attributetype, t_attr_unit, \
-        t_audio_level, t_autocapitalise, t_auto_break, t_auto_contain, t_autocomplete, t_autocompletes, t_autocompletevaried
+        t_audio_level, t_autocapitalise, t_auto, t_auto_break, t_auto_contain, t_autocomplete, t_autocompletes, t_autocompletevaried
 #define SSC_TYPES_A_4_MAX t_autocompletevaried
 
 #define SSC_TYPES_A_5 \
-        t_auto_contain_cover, t_auto_first_last, t_auto_focus_scroll, t_auto_hidden_visible, t_auto_manual, t_auto_manual_none, t_auto_merge_separate, \
-        t_auto_none, t_auto_none_thin, t_auto_smooth, t_auto_stable
+        t_auto_contain_cover, t_auto_first_last, t_auto_focus_scroll, t_auto_hidden_visible, t_auto_inert, t_auto_manual, t_auto_manual_none, \
+        t_auto_merge_separate, t_auto_none, t_auto_none_oblique, t_auto_none_thin, t_auto_smooth, t_auto_stable
 #define SSC_TYPES_A_5_MAX t_auto_stable
 
 #define SSC_TYPES_B_1 \
@@ -8307,7 +8316,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_CSS_C_2 \
             t_css_colour_interpolation, t_css_colour_percent, t_css_colour_percent_n, t_css_colour_stop_list, t_css_cols, t_css_cols_2, \
             t_css_cols_2_a, t_css_cols_l, t_css_col_s_url, t_css_column_fill, t_css_column_rule, t_css_column_rules, t_css_column_width, \
-            t_css_columns, t_css_composite, t_css_composites, t_css_contain, t_css_contain_e, t_css_contain_slp, t_css_container
+            t_css_columns, t_css_composite, t_css_composite_mode, t_css_composites, t_css_contain, t_css_contain_e, t_css_contain_slp, t_css_container
 #define SSC_TYPES_CSS_C_2_MAX t_css_container
 
 #define SSC_TYPES_CSS_C_3 \
@@ -8325,7 +8334,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_CSS_D \
             t_css_dimension, t_css_djs, t_css_djs_n, t_css_djss, t_css_display, t_css_display_1, t_css_display_3, t_css_display_box, t_css_display_flow, \
-            t_css_display_inside, t_css_display_internal, t_css_display_legacy, t_css_display_listitem, t_css_display_outside, t_css_durations, \
+            t_css_display_inside, t_css_display_internal, t_css_display_legacy, t_css_display_listitem, t_css_display_outside, t_css_duration_n, t_css_durations, \
             t_css_dynamic_range_limit, t_css_dynamic_range_limit_e, t_css_dynamic_range_limit_pe, t_css_dynamic_range_limit_p, t_css_dynamic_range_limit_ps
 #define SSC_TYPES_CSS_D_MAX t_css_dynamic_range_limit
 
@@ -8340,7 +8349,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_CSS_F_1 \
             t_css_fca, t_css_feature_annotation, t_css_feature_character_variant, t_css_feature_historical_forms, t_css_feature_ornaments, \
             t_css_feature_swash, t_css_feature_styleset, t_css_feature_stylistic, t_css_ffv, t_css_filter, t_css_filters, t_css_filters_n, \
-            t_css_flex, t_css_flex_basis, t_css_flex_direction, t_css_flex_flow, t_css_flex_n, t_css_flex_wrap, t_css_float, t_css_float_fn
+            t_css_flex, t_css_flex_basis, t_css_flex_content, t_css_flex_direction, t_css_flex_flow, t_css_flex_n, t_css_flex_wrap, t_css_float, t_css_float_fn
 #define SSC_TYPES_CSS_F_1_MAX t_css_float_fn
 
 #define SSC_TYPES_CSS_F_2 \
@@ -8351,8 +8360,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_CSS_F_3 \
             t_css_font_style_2, t_css_font_style_a, t_css_font_style_e, t_css_font_synthesis, t_css_font_synthesis_n, t_css_font_tech, t_css_font_techs, \
-            t_css_font_variation, t_css_font_variation_settings, t_css_font_variation_tag, t_css_font_variation_tags, t_css_font_variant, \
-            t_css_font_variant_4, t_css_font_weight, t_css_font_weight_4, t_css_font_weights, t_css_format, t_css_frame
+            t_css_font_variation, t_css_font_variation_settings, t_css_font_variation_tag, t_css_font_variation_tags, t_css_font_variant, t_css_font_variant_i, \
+            t_css_font_variant_4, t_css_font_weight, t_css_font_weight_4, t_css_font_weights, t_css_font_width, t_css_format, t_css_frame
 #define SSC_TYPES_CSS_F_3_MAX t_css_frame
 
 // update either of the two below, also update type_css.cpp
@@ -8396,7 +8405,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_CSS_L_1_MAX t_css_length_f
 
 #define SSC_TYPES_CSS_L_2 \
-            t_css_length_inf, t_css_length_math, t_css_length_minmax, t_css_length_n, t_css_length_percent, t_css_length_percent_inf, \
+            t_css_length_inf, t_css_length_math, t_css_length_minmax, t_css_length_n, t_css_length_norm, t_css_length_percent, t_css_length_percent_inf, \
             t_css_length_percent_inf_2, t_css_length_pos, t_css_length_real, t_css_length_xtz, t_css_lengths, t_css_lengths_a, t_css_lengths_aa, \
             t_css_lengths_a_l, t_css_lengths_aa_l, t_css_lengths_l, t_css_lengths_n, t_css_length_size, t_css_length_twice, t_css_line_break, \
             t_css_line_clamp
@@ -8457,8 +8466,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_CSS_S_3 \
             t_css_speak_numeral, t_css_src_4, t_css_srcs, t_css_ss_align, t_css_ss_type, t_css_ss_type_e, t_css_ss_type_n, t_css_stroke_linejoin, \
             t_css_statement, t_css_stn, t_css_stn_n, t_css_str_set, t_css_str_sets, t_css_str_sets_n, t_css_sts, t_css_stss, t_css_sym, \
-            t_css_system, t_css_system_e, t_css_system_fix, t_css_system_ext
-#define SSC_TYPES_CSS_S_3_MAX t_css_system_ext
+            t_css_system, t_css_system_e, t_css_system_ext, t_css_system_fix, t_css_synthesis
+#define SSC_TYPES_CSS_S_3_MAX t_css_synthesis
 
 #define SSC_TYPES_CSS_T_1 \
             t_css_table_layout, t_css_tech, t_css_text_align, t_css_text_align_4, t_css_text_align_all, t_css_text_align_last, t_css_text_autospace, \
@@ -8544,20 +8553,20 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_H_MAX t_hwbfn
 
 #define SSC_TYPES_I_1 \
-    t_icalfreq, t_icc, t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_ign_stf, t_illegal, t_image_rendering, t_imcastr, \
+    t_icalfreq, t_icc, t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_ign_stf, t_iiu, t_illegal, t_image_rendering, t_imcastr, \
         t_imgsizes, t_imgsizes_a, t_importance, t_in, t_index, t_indentalign, t_indentalign2, t_indentshift2, t_infixlinebreakstyle, \
-        t_initialvisibility, t_inky, t_inline, t_inlist, t_inn
-#define SSC_TYPES_I_1_MAX t_inn
+        t_initialvisibility, t_inky
+#define SSC_TYPES_I_1_MAX t_inky
 
 #define SSC_TYPES_I_2 \
-        t_inputaccept, t_inputmode, t_inputplus, t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_inset, t_integer, \
-        t_integer_ai, t_integer_i, t_integer_is, t_integer_ln, t_integer_n, t_integer_nl, t_integer_oo, t_integer_or_percent, t_integers, \
-        t_integers_a
-#define SSC_TYPES_I_2_MAX t_integers_a
+        t_inline, t_inlist, t_inn, t_inputaccept, t_inputmode, t_inputplus, t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, \
+        t_inset, t_integer, t_integer_1_up, t_integer_1_up_inf, t_integer_ai, t_integer_i, t_integer_is, t_integer_ln, t_integer_n, t_integer_nl, \
+        t_integer_oo
+#define SSC_TYPES_I_2_MAX t_integer_oo
 
 #define SSC_TYPES_I_3 \
-        t_intent, t_intent_app, t_intent_args, t_intent_conlit, t_intent_hint, t_intent_ref, t_interactive_widget, t_inverted_colours, \
-        t_ip_address, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref
+        t_integer_or_percent, t_integers, t_integers_a, t_intent, t_intent_app, t_intent_args, t_intent_conlit, t_intent_hint, t_intent_ref, \
+        t_interactive_widget, t_inverted_colours, t_ip_address, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref
 #define SSC_TYPES_I_3_MAX t_itemref
 
 #define SSC_TYPES_J_K \
@@ -8594,9 +8603,9 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_M_2_MAX t_mathvertauto
 
 #define SSC_TYPES_M_3 \
-        t_matrixtype, t_matrix_values, t_maybe_filename, t_mb, t_measure, t_measure_2, t_measure_4, t_measure_a, t_measure_ai, t_measure_i, \
-        t_measure_in, t_measure_ni, t_measure_or_more, t_measures, t_measures_a, t_measures_all, t_measures_i, t_measures_l, t_media, \
-        t_media_display_mode, t_media_hover
+        t_matrixtype, t_matrix_values, t_maybe_filename, t_mb, t_measure, t_measure_2, t_measure_4, t_measure_a, t_measure_ai, \
+        t_measure_ai_2, t_measure_i, t_measure_in, t_measure_ni, t_measure_or_more, t_measures, t_measures_a, t_measures_all, \
+        t_measures_i, t_measures_l, t_media, t_media_display_mode, t_media_hover
 #define SSC_TYPES_M_3_MAX t_media_hover
 
 #define SSC_TYPES_M_4 \
@@ -8634,15 +8643,15 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_P_1_MAX t_percent_or_neg
 
 #define SSC_TYPES_P_2 \
-        t_percent_or_not, t_permpol, t_phase, t_phase_x, t_pics, t_plainhtml,  t_plus_1_7, t_plusstyle, t_pointer_events, t_points, t_popover, t_popovertargetaction, \
-        t_port, t_position, t_position_lcrtcb, t_position_lcr_len, t_position_lcrtcb_len, t_position_tcb_len, t_position_lr_len, \
-        t_position_lrtb_len, t_position_tb_len, t_positions, t_positive, t_positive_1_2
-#define SSC_TYPES_P_2_MAX t_positive_1_2
+        t_percent_or_not, t_permpol, t_phase, t_phase_x, t_pics, t_plainhtml,  t_plus_1_7, t_plusstyle, t_pointer_events, t_points, t_popover, \
+        t_popovertargetaction, t_port, t_position, t_position_lcrtcb, t_position_lcr_len, t_position_lcrtcb_len, t_position_tcb_len, t_position_lr_len, \
+        t_position_lrtb_len, t_position_tb_len, t_positions, t_positive
+#define SSC_TYPES_P_2_MAX t_positive
 
 #define SSC_TYPES_P_3 \
-        t_positive_i, t_positive_n, t_pragma, t_prefix, t_preload, t_preload5, t_preserveaspectratio, t_preserveaspectratio10, t_preserveaspectratio12, \
-        t_pri_img_colour, t_pri_img_orientation, t_pri_img_season, t_pri_img_setting, t_pri_img_technique, t_pri_img_viewpoint, t_print, t_prism_ad_pos, \
-        t_prism_ad_type, t_prism_ag_type, t_prism_audience_sector, t_prism_ccv, t_prism_class, t_prism_contenttype
+        t_positive_1_2, t_positive_i, t_positive_n, t_pragma, t_prefix, t_preload, t_preload5, t_preserveaspectratio, t_preserveaspectratio10, \
+        t_preserveaspectratio12, t_pri_img_colour, t_pri_img_orientation, t_pri_img_season, t_pri_img_setting, t_pri_img_technique, t_pri_img_viewpoint, \
+        t_print, t_prism_ad_pos, t_prism_ad_type, t_prism_ag_type, t_prism_audience_sector, t_prism_ccv, t_prism_class, t_prism_contenttype
 #define SSC_TYPES_P_3_MAX t_prism_contenttype
 
 #define SSC_TYPES_P_4 \
@@ -8653,24 +8662,24 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_P_4_MAX t_quote_style
 
 #define SSC_TYPES_R_1 \
-    t_r0_to_1, t_radial_1, t_radial_4, t_radial_ending, t_radial_size, t_rap, t_ratio, t_ratio_a, t_rational, t_rationals, t_rating, t_rdf_parsetype, \
-        t_rdfa_typeof, t_real, t_real_1_2, t_real_1_up, t_real_04, t_real_100, t_real_125, t_real_360, t_real_ai, t_real_angle_h, t_real_angle_n
-#define SSC_TYPES_R_1_MAX t_real_angle_n
+    t_r0_to_1, t_radial_1, t_radial_2, t_radial_3, t_radial_4, t_radial_ending, t_radial_size, t_radial_start, t_rap, t_ratio, t_ratio_a, t_rational, \
+        t_rationals, t_rating, t_rdf_parsetype, t_rdfa_typeof, t_real, t_real_1_2, t_real_1_up, t_real_1_up_inf, t_real_04, t_real_100, t_real_125, t_real_360
+#define SSC_TYPES_R_1_MAX t_real_360
 
 #define SSC_TYPES_R_2 \
-        t_real_i, t_real_infinity, t_real_n, t_real_ni, t_real_percent, t_real_percentish, t_real_percent_n, t_real_percent_04, t_real_percent_100, \
-        t_real_percent_125, t_real_percent_n_a, t_real_percent_n_a04, t_real_percent_n_b, t_real_percent_n_bz, t_real_percent_n_b04, t_real_percent_n_b125, \
-        t_real_percent_n_c, t_real_percent_n_g, t_real_percent_n_gy, t_real_percent_n_h, t_real_percent_n_L, t_real_percent_n_l, t_real_percent_n_r, t_real_percent_n_rx
-#define SSC_TYPES_R_2_MAX t_real_percent_n_rx
+        t_real_ai, t_real_angle_h, t_real_angle_n, t_real_i, t_real_infinity, t_real_int_1_up, t_real_n, t_real_ni, t_real_percent, \
+        t_real_percentish, t_real_percent_n, t_real_percent_04, t_real_percent_100, t_real_percent_125, t_real_percent_n_a, t_real_percent_n_a04, \
+        t_real_percent_n_b, t_real_percent_n_bz, t_real_percent_n_b04, t_real_percent_n_b125, t_real_percent_n_c, t_real_percent_n_g, t_real_percent_n_gy
+#define SSC_TYPES_R_2_MAX t_real_percent_n_gy
 
 #define SSC_TYPES_R_3 \
-        t_real_percents, t_real_perflex, t_reals, t_reals_1_up,  t_recipe_content,  t_recipe_course, t_recipe_cuisine, t_recipe_dietary, t_recipe_dish, \
-        t_recipe_exclusion, t_recipe_kit, t_recipe_meal, t_recipe_method, t_recipe_source, t_recipe_skill, t_recipe_special, t_recipe_time, t_rect_round, \
-        t_referrer, t_refresh
-#define SSC_TYPES_R_3_MAX t_refresh
+        t_real_percent_n_h, t_real_percent_n_L, t_real_percent_n_l, t_real_percent_n_r, t_real_percent_n_rx, t_real_percents, t_real_perflex, t_reals, \
+        t_reals_1_up, t_recipe_content, t_recipe_course,  t_recipe_cuisine, t_recipe_dietary, t_recipe_dish, t_recipe_exclusion, t_recipe_kit, t_recipe_meal, \
+        t_recipe_method, t_recipe_source, t_recipe_skill, t_recipe_special, t_recipe_time, t_rect_round
+#define SSC_TYPES_R_3_MAX t_rect_round
 
 #define SSC_TYPES_R_4 \
-        t_refx, t_refxs, t_refy, t_refys, t_regex, t_rel, t_rel_avoid, t_rel_css, t_rel_illegal, t_rel_obsolete, t_rendering_colour_space, \
+        t_referrer, t_refresh, t_refx, t_refxs, t_refy, t_refys, t_regex, t_rel, t_rel_avoid, t_rel_css, t_rel_illegal, t_rel_obsolete, t_rendering_colour_space, \
         t_rendering_in_tents, t_repeatcount, t_report, t_required_page, t_resolution, t_restart, t_result, t_reveal_trans, t_rfc822, t_rfc822_zone
 #define SSC_TYPES_R_4_MAX t_rfc822_zone
 
@@ -8698,7 +8707,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_S_3_MAX t_ssi_sizefmt
 
 #define SSC_TYPES_S_4 \
-        t_start, t_startend, t_startends, t_step, t_step_position, t_stitchtiles, t_streamedcontents, t_stress, t_stripe, t_style, t_supports, \
+        t_start, t_startend, t_startends, t_step, t_step_position, t_stitchtiles, t_streamedcontents, t_stress, t_stretch, t_stripe, t_style, t_supports, \
         t_sym, t_syncbehaviour, t_syncbehaviourdefault, t_svg_align, t_svg_baselineshift, t_svg_baseprofile, t_svg_clip, t_svg_colour_profile, t_svg_content, \
         t_svg_direction, t_svg_display
 #define SSC_TYPES_S_4_MAX t_svg_display

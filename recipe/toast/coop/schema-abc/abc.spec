@@ -170,7 +170,7 @@ PASS ../toast/coop/schema-abc/b/brokerageaccount.html
 
 PASS ../toast/coop/schema-abc/c/car.html
 28 use_quote_code
-29 attribute_required invalid_attribute_version wrong_version empty_link empty_link url_not_found attribute_required naughty_alt
+29 attribute_required invalid_attribute_version wrong_version url_not_found attribute_required naughty_alt
 
 PASS ../toast/coop/schema-abc/c/cableorsatelliteservice.html
 4 long_title

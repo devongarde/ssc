@@ -305,7 +305,6 @@ PASS ../toast/css/2.1/css-12-2.css
 
 PASS ../toast/css/2.1/css-12-3.css
 0 html
-2 precisely precisely unrecognised_value
 4 css_version
 5 naughty_content
 5 css_version

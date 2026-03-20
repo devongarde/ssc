@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN font-synthesis tests</title>
+<style>
+.sid
+{
+/* none or one or more of the other keyword values */
+font-synthesis: none;
+font-synthesis: weight;
+font-synthesis: style;
+font-synthesis: position;
+font-synthesis: small-caps style; /* property values can be in any order */
+font-synthesis: style small-caps weight position; /* property values can be in any order */
+
+/* Global values */
+font-synthesis: inherit;
+font-synthesis: initial;
+font-synthesis: revert;
+font-synthesis: revert-layer;
+font-synthesis: unset;
+}
+
+*:lang(ar) {
+  font-synthesis: none;
+}
+
+@import "duff.fnt";
+@import "duffer.fnt";
+
+.english {
+  font-family: "Montserrat", sans-serif;
+}
+.chinese {
+  font-family: "Ma Shan Zheng", cursive;
+}
+.no-syn {
+  font-synthesis: none;
+}
+.syn {
+  font-synthesis: style weight;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN font-synthesis Tests</h1>
+
+<pre> DEFAULT </pre>
+<p class="english">
+  This font supports <strong>bold</strong> and <em>italic</em>.
+</p>
+<p class="chinese">这个字体支持<strong>加粗</strong>和<em>斜体</em></p>
+<br />
+
+<pre> SYNTHESIS IS DISABLED </pre>
+<p class="english no-syn">
+  This font supports <strong>bold</strong> and <em>italic.</em>
+</p>
+<p class="chinese no-syn">这个字体支持<strong>加粗</strong>和<em>斜体</em></p>
+<br />
+
+<pre> SYNTHESIS IS ENABLED </pre>
+<p class="english">
+  This font supports <strong>bold</strong> and <em>italic</em>.
+</p>
+<p class="chinese syn">这个字体支持<strong>加粗</strong>和<em>斜体</em></p>
+
+</body>
+</html>

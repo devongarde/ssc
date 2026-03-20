@@ -222,7 +222,7 @@ IMPLEMENT_CLASS (ontology_t, d1_t)
         schema_4, schema_5, schema_6, schema_7_00, schema_7_01, schema_7_02, schema_7_03, schema_7_04, schema_8, schema_9, \
         schema_10, schema_11, schema_11_01, schema_12, schema_13, schema_14, schema_15, schema_16, schema_17, schema_18, schema_19, \
         schema_20, schema_21, schema_22, schema_23, schema_24, schema_25, schema_26, schema_27, schema_27_01, schema_27_02, \
-        schema_28_0, schema_28_1, schema_29_0, schema_29_1, schema_29_2, schema_29_3, schema_29_4, schema_29_5, schema_30_0, \
+        schema_28_0, schema_28_1, schema_29_0, schema_29_1, schema_29_2, schema_29_3, schema_29_4, schema_30_0, schema_30_1, \
     sd_schema, \
     sioc_schema, \
     sioc_services, \

@@ -26,7 +26,7 @@ template < > inline void enum_n < t_lang, e_lang > :: set_value (nitpick& nits, 
 {   if (s.empty () || (s.length () > 8))
     {   enum_base < e_lang, t_lang > :: status (s_invalid); return; }
     original_ = s;
-    ::std::string lang (s);
+    ::std::string lang (uq0 (s));
     const ::std::string::size_type pos = lang.find ('-');
     if (pos != ::std::string::npos) lang = lang.substr (0, pos);
     if ((lang.length () >= 1) && (lang.length () <= 3))
@@ -40,7 +40,7 @@ template < > inline void enum_n < t_lang, e_lang > :: set_value (nitpick& nits, 
 template < > struct type_master < t_css_lang > : public tidy_string < t_css_lang >
 {   using tidy_string < t_css_lang > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_css_lang > :: set_value (nits, v, s);
+    {   tidy_string < t_css_lang > :: set_value (nits, v, uq0 (s));
         if (tidy_string < t_css_lang > :: good ())
         {   ::std::string lang (tidy_string < t_css_lang > :: get_string ());
             if (lang.length () <= 8)

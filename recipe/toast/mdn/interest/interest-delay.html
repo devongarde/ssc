@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN interest-delay tests</title>
+<style>
+.sid {
+/* Single value */
+interest-delay: normal;
+interest-delay: 2s;
+interest-delay: 250ms;
+
+/* Two values */
+interest-delay: 1s normal;
+interest-delay: 0s 500ms;
+
+/* Global values */
+interest-delay: inherit;
+interest-delay: initial;
+interest-delay: revert;
+interest-delay: revert-layer;
+interest-delay: unset;
+}
+
+.delay {
+  interest-delay: 1s 2s;
+}
+</style>
+<script>
+const btn = document.querySelector("button");
+const checkbox = document.querySelector("input");
+checkbox.addEventListener("change", () => {
+  btn.classList.toggle("delay");
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN interest-delay Tests</h1>
+
+<button interestfor="mypopover">Button</button>
+<p id="mypopover" popover>Hover tooltip</p>
+<form>
+  <input type="checkbox" id="apply-delay" />
+  <label for="apply-delay">
+    Apply an <code>interest-delay</code> of <code>1s 2s</code>
+  </label>
+</form>
+
+</body>
+</html>

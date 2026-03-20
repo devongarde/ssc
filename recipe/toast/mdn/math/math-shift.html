@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN math-shift tests</title>
+<style>
+.sid {
+/* Keyword values */
+math-shift: normal;
+math-shift: compact;
+
+/* Global values */
+math-shift: inherit;
+math-shift: initial;
+math-shift: revert;
+math-shift: revert-layer;
+math-shift: unset;
+}
+
+math {
+  font-size: 64pt;
+  math-shift: normal;
+}
+
+.compact-shift {
+  math-shift: compact;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN math-shift Tests</h1>
+
+<math>
+  <msup>
+    <mi>x</mi>
+    <mn>2</mn>
+  </msup>
+  <msup class="compact-shift">
+    <mi>x</mi>
+    <mn>2</mn>
+  </msup>
+</math>
+
+</body>
+</html>

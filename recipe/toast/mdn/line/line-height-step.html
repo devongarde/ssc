@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN line-height-step tests</title>
+<style>
+.sid {
+/* Point values */
+line-height-step: 18pt;
+
+/* Global values */
+line-height-step: inherit;
+line-height-step: initial;
+line-height-step: revert;
+line-height-step: revert-layer;
+line-height-step: unset;
+}
+
+:root {
+  font-size: 12pt;
+  --my-grid: 18pt;
+  line-height-step: var(--my-grid);
+}
+h1 {
+  font-size: 20pt;
+  margin-top: calc(2 * var(--my-grid));
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN line-height-step Tests</h1>
+
+</body>
+</html>

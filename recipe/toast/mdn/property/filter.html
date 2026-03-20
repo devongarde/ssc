@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN filter tests</title>
+<style>
+.sid
+{
+/* <filter-function> values */
+filter: blur(5px);
+filter: brightness(0.4);
+filter: contrast(200%);
+filter: drop-shadow(16px 16px 20px blue);
+filter: grayscale(50%);
+filter: hue-rotate(90deg);
+filter: invert(75%);
+filter: opacity(25%);
+filter: saturate(30%);
+filter: sepia(60%);
+
+/* URL */
+filter: url("filters.svg#filter-id");
+
+/* Multiple filters */
+filter: contrast(175%) brightness(3%);
+filter: drop-shadow(3px 3px red) sepia(100%) drop-shadow(-3px -3px blue);
+
+/* Use no filter */
+filter: none;
+
+/* Global values */
+filter: inherit;
+filter: initial;
+filter: revert;
+filter: revert-layer;
+filter: unset;
+
+filter: url("file.svg#filter-element-id");
+
+filter: blur(5px);
+
+filter: brightness(2);
+
+filter: contrast(200%);
+
+filter: drop-shadow(16px 16px 10px black);
+
+filter: grayscale(100%);
+
+filter: hue-rotate(90deg);
+
+filter: invert(100%);
+
+filter: opacity(50%);
+
+filter: saturate(200%);
+
+filter: sepia(100%);
+
+filter: contrast(175%) brightness(103%);
+}
+
+img {
+  border: 5px solid yellow;
+}
+/* Gray the second image by 40% and blur by 5px */
+img:nth-of-type(2) {
+  filter: grayscale(0.4) blur(5px);
+}
+
+#MDN-logo {
+  border: 1px solid blue;
+  filter: drop-shadow(5px 5px 0 red) hue-rotate(180deg)
+    drop-shadow(5px 5px 0 red);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN filter Tests</h1>
+
+<img src="pencil.jpg" alt="Original image is sharp" />
+<img src="pencil.jpg" alt="The image and border are blurred and muted" />
+
+</body>
+</html>

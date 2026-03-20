@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN font-synthesis-small-caps tests</title>
+<style>
+.sid
+{
+/* Keyword values */
+font-synthesis-small-caps: auto;
+font-synthesis-small-caps: none;
+
+/* Global values */
+font-synthesis-small-caps: inherit;
+font-synthesis-small-caps: initial;
+font-synthesis-small-caps: revert;
+font-synthesis-small-caps: revert-layer;
+font-synthesis-small-caps: unset;
+}
+
+@import "duff.fnt";
+
+.english {
+  font-family: "Montserrat", sans-serif;
+}
+.small-caps {
+  font-variant: small-caps;
+}
+.no-syn {
+  font-synthesis-small-caps: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN font-synthesis-small-caps Tests</h1>
+
+<p class="english">
+  These are the default <span class="small-caps">small-caps</span>,
+  <strong>bold</strong>, and <em>oblique</em> typefaces.
+</p>
+
+<p class="english no-syn">
+  The <span class="small-caps">small-caps</span> typeface is turned off here but
+  not the <strong>bold</strong> and <em>oblique</em> typefaces.
+</p>
+
+</body>
+</html>

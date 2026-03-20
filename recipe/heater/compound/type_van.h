@@ -151,8 +151,8 @@ template < > struct type_master < t_enable_background > : tidy_string < t_enable
 template < > struct type_master < t_font_families > : type_at_least_one < t_font_families, sz_comma, t_font_family >
 { using type_at_least_one < t_font_families, sz_comma, t_font_family > :: type_at_least_one; };
 
-template < > struct type_master < t_css_font_families > : type_either_or < t_css_font_families, t_css_inherit, t_font_families >
-{ using type_either_or < t_css_font_families, t_css_inherit, t_font_families > :: type_either_or; };
+template < > struct type_master < t_css_font_families > : type_either_or < t_css_font_families, t_iiu, t_font_families >
+{ using type_either_or < t_css_font_families, t_iiu, t_font_families > :: type_either_or; };
 
 template < > struct type_master < t_hidden_ex > : public tidy_string < t_hidden_ex >
 {   using tidy_string < t_hidden_ex > :: tidy_string;

@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN font-feature-settings tests</title>
+<style>
+.sid
+{
+/* Use the default settings */
+font-feature-settings: normal;
+
+/* Set values for OpenType feature tags */
+font-feature-settings: "smcp";
+font-feature-settings: "smcp" on;
+font-feature-settings: "swsh" 2;
+font-feature-settings:
+  "smcp",
+  "swsh" 2;
+
+/* Global values */
+font-feature-settings: inherit;
+font-feature-settings: initial;
+font-feature-settings: revert;
+font-feature-settings: revert-layer;
+font-feature-settings: unset;
+}
+
+/* use small-cap alternate glyphs */
+.small-caps {
+  font-feature-settings: "smcp" on;
+}
+
+/* convert both upper and lowercase to small caps (affects punctuation also) */
+.all-small-caps {
+  font-feature-settings: "c2sc", "smcp";
+}
+
+/* use zeros with a slash through them to differentiate from "O" */
+.nice-zero {
+  font-feature-settings: "zero";
+}
+
+/* enable historical forms */
+.historical {
+  font-feature-settings: "hist";
+}
+
+/* disable common ligatures, usually on by default */
+.no-ligatures {
+  font-feature-settings: "liga" 0;
+}
+
+/* enable tabular (monospaced) figures */
+td.tabular {
+  font-feature-settings: "tnum";
+}
+
+/* enable automatic fractions */
+.fractions {
+  font-feature-settings: "frac";
+}
+
+/* use the second available swash character */
+.swash {
+  font-feature-settings: "swsh" 2;
+}
+
+/* enable stylistic set 7 */
+.fancy-style {
+  font-family: "Gabriola", cursive;
+  font-feature-settings: "ss07";
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN font-feature-settings Tests</h1>
+
+</body>
+</html>

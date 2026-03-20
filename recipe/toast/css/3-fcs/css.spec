@@ -23,7 +23,6 @@ PASS ../toast/css/3-fcs/css-a.css
 116 css_colour css_colour css_colour
 120 css_colour css_colour css_colour
 124 css_colour css_colour css_colour
-135 unrecognised_value
 144 unrecognised_value unrecognised_value
 161 css_colour css_colour css_colour
 164 css_colour css_colour css_colour

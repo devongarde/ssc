@@ -109,6 +109,19 @@ template < e_css_val_fn T > int split_fn_params (t_params& params, arguments& ar
                             break; }
                 break;
             case ct_slash :
+                if (! in_list < T, cvf_format, cvf_local, cvf_url, cvf_type, cvf_attr, cvf_rgb > :: yes ())
+                    switch (last)
+                    {   case ct_plus :
+                        case ct_dash :
+                        case ct_slash :
+                        case ct_splat :
+                            nits.pick (nit_css_value_fn, es_error, ec_css,
+                                type_master < t_css_val_fn > :: name (T), ": unexpected ", quote (tkn_rpt (last)), " ", quote (tkn_rpt (args.t_.at (i))), " when checking ", quote (tkn_rpt (args.t_.at (start))), "(3)");
+                            prev = last = ct_error;
+                            break;
+                        default :
+                            break; }
+                break;
             case ct_splat :
                 if (! in_list < T, cvf_format, cvf_local, cvf_url, cvf_type, cvf_attr > :: yes ())
                     switch (last)
@@ -762,7 +775,7 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_progress >
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_radial_gradient >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
     {   if (! maybe_image (nits, id)) return -1;
-        return value_fn < TYPE, cvf_radial_gradient, 1, -1, t_radial_4, t_css_colour_stop_list > :: check (args, start, to, nits); } };
+        return value_fn < TYPE, cvf_radial_gradient, 1, -1, t_radial_4 > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_ray >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
@@ -782,7 +795,7 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_repeating_linear_gra
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_repeating_radial_gradient >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
     {   if (! maybe_image (nits, id)) return -1;
-        return value_fn < TYPE, cvf_repeating_radial_gradient, 1, -1, t_radial_4, t_css_colour_stop_list > :: check (args, start, to, nits); } };
+        return value_fn < TYPE, cvf_repeating_radial_gradient, 1, -1, t_radial_4 > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_rem >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
