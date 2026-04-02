@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-wrap tests</title>
+<style>
+.sid {
+/* Keyword values */
+text-wrap: wrap;
+text-wrap: nowrap;
+text-wrap: balance;
+text-wrap: pretty;
+text-wrap: stable;
+
+/* Global values */
+text-wrap: inherit;
+text-wrap: initial;
+text-wrap: revert;
+text-wrap: revert-layer;
+text-wrap: unset;
+}
+
+.wrap {
+  text-wrap: wrap;
+}
+
+.nowrap {
+  text-wrap: nowrap;
+}
+
+.balance {
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: 2rem;
+  font-family: sans-serif;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN text-wrap Tests</h1>
+
+<h2 class="wrap" contenteditable="true">
+  The default behavior; the text in the heading wraps "normally"
+</h2>
+
+<h2 class="nowrap" contenteditable="true">
+  In this case the text in the heading doesn't wrap, and overflows the container
+</h2>
+
+<h2 class="balance" contenteditable="true">
+  In this case the text in the heading is nicely balanced across lines
+</h2>
+
+</body>
+</html>

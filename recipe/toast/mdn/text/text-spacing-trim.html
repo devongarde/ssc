@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-spacing-trim tests</title>
+<style>
+.sid {
+/* Keyword values */
+text-spacing-trim: normal;
+text-spacing-trim: space-all;
+text-spacing-trim: space-first;
+text-spacing-trim: trim-start;
+
+/* Global values */
+text-spacing-trim: inherit;
+text-spacing-trim: initial;
+text-spacing-trim: revert;
+text-spacing-trim: revert-layer;
+text-spacing-trim: unset;
+}
+
+main {
+  font-family:
+    "Yu Gothic", "YuGothic", "Noto Sans JP", "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", sans-serif;
+  display: grid;
+  gap: 0.5em;
+  grid-template-columns: 1fr 1fr;
+  width: 70%;
+  margin: 0 auto;
+}
+h2 {
+  font-size: 80%;
+  margin: 0;
+}
+p {
+  font-size: 20px;
+  border: 1px solid blue;
+  margin: 0;
+}
+#normal {
+  text-spacing-trim: normal;
+  grid-column: 1;
+  grid-row: 1;
+}
+#space-all {
+  text-spacing-trim: space-all;
+  grid-column: 2;
+  grid-row: 1;
+}
+#space-first {
+  text-spacing-trim: space-first;
+  grid-column: 1;
+  grid-row: 2;
+}
+#trim-start {
+  text-spacing-trim: trim-start;
+  grid-column: 2;
+  grid-row: 2;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN text-spacing-trim Tests</h1>
+
+<main>
+  <div id="normal">
+    <h2>normal</h2>
+    <p>
+      （東）、【「（東）」】。<br />
+      「東」「東」「東」東東東「東」。
+    </p>
+  </div>
+  <div id="space-all">
+    <h2>space-all</h2>
+    <p>
+      （東）、【「（東）」】。<br />
+      「東」「東」「東」東東東「東」。
+    </p>
+  </div>
+  <div id="space-first">
+    <h2>space-first</h2>
+    <p>
+      （東）、【「（東）」】。<br />
+      「東」「東」「東」東東東「東」。
+    </p>
+  </div>
+  <div id="trim-start">
+    <h2>trim-start</h2>
+    <p>
+      （東）、【「（東）」】。<br />
+      「東」「東」「東」東東東「東」。
+    </p>
+  </div>
+</main>
+
+</body>
+</html>

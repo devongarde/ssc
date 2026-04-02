@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN width tests</title>
+<style>
+.sid {
+/* <length> values */
+width: 300px;
+width: 25em;
+
+/* <percentage> value */
+width: 75%;
+
+/* Keyword values */
+width: max-content;
+width: min-content;
+width: fit-content;
+width: auto;
+width: stretch;
+
+/* function values */
+width: fit-content(20em);
+width: anchor-size(width);
+width: anchor-size(--my-anchor inline, 120%);
+width: calc-size(max-content, size / 2);
+
+/* Global values */
+width: inherit;
+width: initial;
+width: revert;
+width: revert-layer;
+width: unset;
+}
+
+p {
+  background: gold;
+}
+p.has-width {
+  width: auto;
+}
+
+.px_length {
+  width: 200px;
+
+  background-color: red;
+  color: white;
+  border: 1px solid black;
+}
+
+.em_length {
+  width: 20em;
+
+  background-color: white;
+  color: red;
+  border: 1px solid black;
+}
+
+.percent {
+  width: 20%;
+
+  background-color: silver;
+  border: 1px solid red;
+}
+
+p.max-green {
+  width: max-content;
+
+  background-color: lightgreen;
+  border-style: dotted;
+}
+
+p.min-blue {
+  width: min-content;
+
+  background-color: lightblue;
+  border-style: dashed;
+}
+
+p.min-pink {
+  width: calc-size(min-content, size * 2);
+
+  background-color: pink;
+  border-style: solid;
+}
+
+.parent {
+  border: solid;
+  margin: 1rem;
+  display: flex;
+}
+
+.child {
+  background: #00999999;
+  margin: 1rem;
+}
+
+.stretch {
+  width: stretch;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN width Tests</h1>
+
+<p>The MDN community writes really great documentation.</p>
+<p class="has-width">The MDN community writes really great documentation.</p>
+
+<div class="px_length">Width measured in px</div>
+<div class="em_length">Width measured in em</div>
+
+<div class="percent">Width in percentage</div>
+
+<p class="max-green">The MDN community writes really great documentation.</p>
+<p class="min-blue">The MDN community writes really great documentation.</p>
+<p class="min-pink">The MDN community writes really great documentation.</p>
+
+<div class="parent">
+  <div class="child">text</div>
+  <div class="child stretch">stretch</div>
+</div>
+
+<div class="anchor">⚓︎</div>
+
+<div class="infobox">
+  <p>Infobox.</p>
+</div>
+
+</body>
+</html>

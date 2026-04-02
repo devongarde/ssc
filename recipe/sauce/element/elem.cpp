@@ -592,7 +592,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_3_0 }, { HTML_3_0 }, "range", elem_range, ns_default, EP_CLOSED },
     { { HTML_RSS, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, "rating", elem_rss_rating, ns_rss, EP_RSS | EP_NO_WHINGE },
     { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "rating", elem_mrss_rating, ns_mrss, EP_MRSS },
-    { { XHTML_1_1, HV_W3, 0, 0, 0, H4_RUBY }, { HTML_UNDEF }, "rb", elem_rb, ns_default },
+    { { XHTML_1_1, HV_W3, 0, 0, 0, H4_RUBY }, { HTML_UNDEF }, "rb", elem_rb },
     { { XHTML_1_1, 0, 0, 0, 0, H4_RUBY }, { XHTML_2_0 }, "rbc", elem_rbc },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "RDF", elem_rdf_rdf, ns_rdf, 0, EF_4_SPECIAL | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_EMBEDDED | EF_RDF | EF_METADATA },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "real", elem_real, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },

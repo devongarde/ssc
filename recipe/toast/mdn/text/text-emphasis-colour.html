@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-emphasis-colour tests</title>
+<style>
+.sid {
+/* Initial value */
+text-emphasis-color: currentColor;
+
+/* <color> */
+text-emphasis-color: #555555;
+text-emphasis-color: blue;
+text-emphasis-color: rgb(90 200 160 / 80%);
+text-emphasis-color: transparent;
+
+/* Global values */
+text-emphasis-color: inherit;
+text-emphasis-color: initial;
+text-emphasis-color: revert;
+text-emphasis-color: revert-layer;
+text-emphasis-color: unset;
+}
+
+em {
+  text-emphasis-color: green;
+  text-emphasis-style: "*";
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN text-emphasis-colour Tests</h1>
+
+<p>Here's an example:</p>
+
+<em>This has emphasis marks!</em>
+
+</body>
+</html>

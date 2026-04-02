@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN stop-opacity tests</title>
+<style>
+.sid
+{
+/* numeric and percentage values */
+stop-opacity: 0.2;
+stop-opacity: 20%;
+
+/* Global values */
+stop-opacity: inherit;
+stop-opacity: initial;
+stop-opacity: revert;
+stop-opacity: revert-layer;
+stop-opacity: unset;
+}
+
+polygon {
+  stroke: #333333;
+  stroke-width: 1px;
+}
+polygon:nth-of-type(1) {
+  fill: url("#myGradient1") magenta;
+}
+polygon:nth-of-type(2) {
+  fill: url("#myGradient2") magenta;
+}
+polygon:nth-of-type(3) {
+  fill: url("#myGradient3") magenta;
+}
+
+#myGradient1 stop {
+  stop-opacity: 1;
+}
+#myGradient2 stop {
+  stop-opacity: 0.8;
+}
+#myGradient3 stop {
+  stop-opacity: 25%;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN stop-opacity Tests</h1>
+
+<svg viewBox="0 0 250 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="myGradient1">
+      <stop offset="5%" stop-color="#66ccff" stop-opacity="1" />
+      <stop offset="50%" stop-color="#fefefe" stop-opacity="1" />
+      <stop offset="95%" stop-color="#f4aab9" stop-opacity="1" />
+    </linearGradient>
+    <linearGradient id="myGradient2">
+      <stop offset="5%" stop-color="#66ccff" stop-opacity="1" />
+      <stop offset="50%" stop-color="#fefefe" stop-opacity="1" />
+      <stop offset="95%" stop-color="#f4aab9" stop-opacity="1" />
+    </linearGradient>
+    <linearGradient id="myGradient3">
+      <stop offset="5%" stop-color="#66ccff" stop-opacity="1" />
+      <stop offset="50%" stop-color="#fefefe" stop-opacity="1" />
+      <stop offset="95%" stop-color="#f4aab9" stop-opacity="1" />
+    </linearGradient>
+  </defs>
+  <polygon points="40,10 10,100 80,40 0,40 70,100" />
+  <polygon points="125,10 95,100 165,40 85,40 155,100" />
+  <polygon points="210,10 180,100 250,40 170,40 240,100" />
+</svg>
+
+</body>
+</html>

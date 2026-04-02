@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN scroll-initial-target tests</title>
+<style>
+.sid {
+/* Keyword values */
+scroll-initial-target: none;
+scroll-initial-target: nearest;
+
+/* Global values */
+scroll-initial-target: inherit;
+scroll-initial-target: initial;
+scroll-initial-target: revert;
+scroll-initial-target: revert-layer;
+scroll-initial-target: unset;
+}
+
+/* mandatory scroll-snap on parent */
+div.nearest,
+div.none {
+  scroll-snap-type: x mandatory;
+}
+
+/* scroll-snap alignment for children */
+div > div {
+  scroll-snap-align: center;
+  scroll-initial-target: always;
+}
+
+.none .set,
+.nearest .set.unset {
+  scroll-initial-target: none;
+}
+.nearest .set {
+  scroll-initial-target: nearest;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN scroll-initial-target Tests</h1>
+
+<p><code>none</code> on #4 only</p>
+<div class="none">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div class="set">4</div>
+  <div>5</div>
+</div>
+
+<p><code>nearest</code> on #4 only</p>
+<div class="nearest">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div class="set">4</div>
+  <div>5</div>
+</div>
+
+<p><code>nearest</code> on even elements</p>
+<div class="nearest">
+  <div>1</div>
+  <div class="set">2</div>
+  <div>3</div>
+  <div class="set">4</div>
+  <div>5</div>
+</div>
+
+<p><code>nearest</code> on odd elements</p>
+<div class="nearest">
+  <div class="set">1</div>
+  <div>2</div>
+  <div class="set">3</div>
+  <div>4</div>
+  <div class="set">5</div>
+</div>
+
+<p><code>nearest</code> on odd elements, with <code>none</code> on #1</p>
+<div class="nearest">
+  <div class="set unset">1</div>
+  <div>2</div>
+  <div class="set">3</div>
+  <div>4</div>
+  <div class="set">5</div>
+</div>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.2.27
+version 0.2.28
 (c) 2020-2026 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notices
 https://dylanharris.org/ssc/
@@ -9,20 +9,20 @@ https://github.com/devongarde/ssc
 
 
 ssc analyses static websites at source:
-- HTML living standard, Jan 2005 to Jan 2026
+- HTML living standard, Jan 2005 to Apr 2026
 - HTML Tags/1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
-- CSS 1/2.0/2.1/2.2-draft, 2007-2025 snapshots, more
+- CSS 1/2.0/2.1/2.2-draft, 2007-2026 snapshots, more
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x-draft
 - MathML 1/2/3/core/4-draft
-- XHTML 1.0/1.1/2.0/5.x themselves
+- XHTML 1.0/1.1/2.0/5.x
 - ads.txt, robots.txt, security.txt, WebVTT
-- most of ATOM, JSON-LD, RSL, RSS, themselves
+- most of ATOM, JSON-LD, RSL, RSS
 - finds broken links
 - server side includes, mostly
 - many ontologies
 
-with opinions on:
-- contradictory flavours/flavors of english
+with loud opinions on:
+- dialects of english
 - legal but inefficient HTML
 - abhorrent rudeness such as AUTOPLAY on <VIDEO>
 
@@ -74,9 +74,9 @@ and forwarding it to the developer:
 - configuration file/s used, if any;
 - any ndx file or other pre-existing file used during the run;
 - any known workarounds, fixes or solutions;
-- a video of a dance interpretation of the issue (might just be
-  optional, this).
-Email everything to ssc@dylanharris.org (if the collected files are more than
+- a video of a dance interpretation of the issue (this might just be
+  optional).
+Email this to ssc@dylanharris.org (if the collected files are more than
 small, please use a public file server and email the link). Do NOT send
 anything confidential. Furthermore, unless you state otherwise, we
 reserve the right to publish some or all of the information sent in
@@ -127,11 +127,11 @@ SECURITY.md		 security reporting
 
 
 Background
-I have a website, arts & ego, at https://dylanharris.org/. It has
-approaching 60G of original content. It contains hand coded HTMLs 2
-to 5. It is a complete mess. Despite a long search, I could not find
-any tools to properly identify its flaws. Anything I did find was at
-most cursory.
+I have an online folly, arts & ego, at https://dylanharris.org/. It has
+approaching 60G of original content. It contains hand coded HTMLs 2 to
+5. It is a complete mess. Despite a long search, I could not find any
+tools to properly identify its flaws. Anything I did find was at most
+cursory.
 
 Then came the cow flu*.
 
@@ -144,7 +144,7 @@ Hence ssc is a covid project that grew out of hand.
 
 Unabashed Opportunism
 If you appreciate modernist poetry or abstract photography, click on
-books at https://dylanharris.org/ for gen.
+bibliography at https://dylanharris.org/.
 
 
 
@@ -159,4 +159,4 @@ GNU General Public License for more details.
 dylan harris
 ssc@dylanharris.org
 mail@dylanharris.org
-December 2025
+April 2026

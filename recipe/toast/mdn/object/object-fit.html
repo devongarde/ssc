@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN object-fit tests</title>
+<style>
+.sid {
+object-fit: contain;
+object-fit: cover;
+object-fit: fill;
+object-fit: none;
+object-fit: scale-down;
+
+/* Global values */
+object-fit: inherit;
+object-fit: initial;
+object-fit: revert;
+object-fit: revert-layer;
+object-fit: unset;
+}
+
+h2 {
+  font-family: "Courier New", monospace;
+  font-size: 1em;
+  margin: 1em 0 0.3em;
+}
+
+img {
+  width: 150px;
+  height: 100px;
+  border: 1px solid black;
+  margin: 10px 0;
+}
+
+.narrow {
+  width: 100px;
+  height: 150px;
+}
+
+.fill {
+  object-fit: fill;
+}
+
+.contain {
+  object-fit: contain;
+}
+
+.cover {
+  object-fit: cover;
+}
+
+.none {
+  object-fit: none;
+}
+
+.scale-down {
+  object-fit: scale-down;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN object-fit Tests</h1>
+
+<section>
+  <h2>object-fit: fill</h2>
+  <img class="fill" src="mdn_logo_only_color.png" alt="MDN Logo" />
+
+  <img class="fill narrow" src="mdn_logo_only_color.png" alt="MDN Logo" />
+
+  <h2>object-fit: contain</h2>
+  <img class="contain" src="mdn_logo_only_color.png" alt="MDN Logo" />
+
+  <img class="contain narrow" src="mdn_logo_only_color.png" alt="MDN Logo" />
+
+  <h2>object-fit: cover</h2>
+  <img class="cover" src="mdn_logo_only_color.png" alt="MDN Logo" />
+
+  <img class="cover narrow" src="mdn_logo_only_color.png" alt="MDN Logo" />
+
+  <h2>object-fit: none</h2>
+  <img class="none" src="mdn_logo_only_color.png" alt="MDN Logo" />
+
+  <img class="none narrow" src="mdn_logo_only_color.png" alt="MDN Logo" />
+
+  <h2>object-fit: scale-down</h2>
+  <img class="scale-down" src="mdn_logo_only_color.png" alt="MDN Logo" />
+
+  <img class="scale-down narrow" src="mdn_logo_only_color.png" alt="MDN Logo" />
+</section>
+
+</body>
+</html>

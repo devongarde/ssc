@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN vertical-align tests</title>
+<style>
+.sid {
+/* Keyword values */
+vertical-align: baseline;
+vertical-align: sub;
+vertical-align: super;
+vertical-align: text-top;
+vertical-align: text-bottom;
+vertical-align: middle;
+vertical-align: top;
+vertical-align: bottom;
+
+/* <length> values */
+vertical-align: 10em;
+vertical-align: 4px;
+
+/* <percentage> values */
+vertical-align: 20%;
+
+/* Global values */
+vertical-align: inherit;
+vertical-align: initial;
+vertical-align: revert;
+vertical-align: revert-layer;
+vertical-align: unset;
+}
+
+img.top {
+  vertical-align: text-top;
+}
+img.bottom {
+  vertical-align: text-bottom;
+}
+img.middle {
+  vertical-align: middle;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+td {
+  padding: 0.5em;
+  font-family: monospace;
+}
+
+.bottom {
+  vertical-align: bottom;
+}
+
+.baseline {
+  vertical-align: baseline;
+}
+
+.top {
+  vertical-align: top;
+}
+
+.middle {
+  vertical-align: middle;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN vertical-align Tests</h1>
+
+<div>
+  An <img src="frame_image.svg" alt="link" width="32" height="32" /> image with
+  a default alignment.
+</div>
+<div>
+  An
+  <img class="top" src="frame_image.svg" alt="link" width="32" height="32" />
+  image with a text-top alignment.
+</div>
+<div>
+  An
+  <img class="bottom" src="frame_image.svg" alt="link" width="32" height="32" />
+  image with a text-bottom alignment.
+</div>
+<div>
+  An
+  <img class="middle" src="frame_image.svg" alt="link" width="32" height="32" />
+  image with a middle alignment.
+</div>
+
+<p>
+top:         <img style="vertical-align: top" src="star.png" alt="star"/>
+middle:      <img style="vertical-align: middle" src="star.png" alt="star"/>
+bottom:      <img style="vertical-align: bottom" src="star.png" alt="star"/>
+super:       <img style="vertical-align: super" src="star.png" alt="star"/>
+sub:         <img style="vertical-align: sub" src="star.png" alt="star"/>
+</p>
+
+<p>
+text-top:    <img style="vertical-align: text-top" src="star.png" alt="star"/>
+text-bottom: <img style="vertical-align: text-bottom" src="star.png" alt="star"/>
+0.2em:       <img style="vertical-align: 0.2em" src="star.png" alt="star"/>
+-1em:        <img style="vertical-align: -1em" src="star.png" alt="star"/>
+20%:         <img style="vertical-align: 20%" src="star.png" alt="star"/>
+-100%:       <img style="vertical-align: -100%" src="star.png" alt="star"/>
+</p>
+
+<table>
+  <tbody>
+    <tr class="bottom">
+      <td class="baseline">baseline</td>
+      <td class="top">top</td>
+      <td class="middle">middle</td>
+      <td>bottom</td>
+      <td>Row's style</td>
+      <td>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+        pretium felis eu sem mattis vulputate.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

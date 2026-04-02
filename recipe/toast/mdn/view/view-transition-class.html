@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN view-transition-class tests</title>
+<style>
+.sid {
+/* <custom-ident> value examples */
+view-transition-class: card;
+
+/* Keyword value */
+view-transition-class: none;
+
+/* Global values */
+view-transition-class: inherit;
+view-transition-class: initial;
+view-transition-class: revert;
+view-transition-class: revert-layer;
+view-transition-class: unset;
+}
+
+::view-transition-group(.fast-card-slide) {
+  animation-duration: 3s;
+}
+
+.product {
+  view-transition-class: fast-card-slide;
+}
+
+.product#card1 {
+  view-transition-name: show-card;
+}
+
+.product#card2 {
+  view-transition-name: hide-card;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN view-transition-class Tests</h1>
+
+</body>
+</html>

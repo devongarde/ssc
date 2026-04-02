@@ -376,6 +376,9 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_advertising, dpv_recruitmentadvertising },
 
     { { s_dpv, 2, 3 }, { 0, 0 }, dpv_agent, dpv_legalagent },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_agent, dpv_tech_softwareagent },
+
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_aigovernance, dpv_eu_aiact_qualitymanagementsystem },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_ailiteracy, dpv_eu_aiact_ailiteracy },
 
@@ -400,6 +403,7 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv, 0, 60 }, { s_dpv, 1, 0 }, dpv_applicant, dpv_jobapplicant },
 
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_assessment, dpv_eu_gdpr_balancingtest },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_assessment, dpv_complianceassessment },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_assessment, dpv_conformanceassessment },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_assessment, dpv_eu_aiact_conformityassessment },
@@ -409,8 +413,11 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_assessment, dpv_eu_aiact_fria },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_assessment, dpv_eu_aiact_highriskaiassessment },
     { { s_dpv, 0, 30 }, { 0, 0 }, dpv_assessment, dpv_legitimateinterestassessment },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_assessment, dpv_eu_gdpr_necessityassessment },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_assessment, dpv_eu_gdpr_purposecompatibilityassessment },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_assessment, dpv_riskassessment },
     { { s_dpv, 0, 80 }, { s_dpv, 0, 90 }, dpv_assessment, dpv_securityassessments },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_assessment, dpv_eu_gdpr_suitabilityassessment },
 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_audit, dpv_informationaudit },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_audit, dpv_legalcomplianceaudit },
@@ -444,9 +451,11 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_authorisationprocedure, dpv_identitymanagementmethod },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_authority, dpv_eu_aiact_aioffice },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_authority, dpv_de_gdng_dataaccessandcoordinationoffice },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_authority, dpv_eu_dga_dataaltruismauthority },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_authority, dpv_eu_dga_dataintermediationauthority },
     { { s_dpv, 0, 20 }, { 0, 0 }, dpv_authority, dpv_dataprotectionauthority },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_authority, dpv_s_hth_digitalhealthauthority },
     { { s_dpv, 0, 40 }, { 0, 0 }, dpv_authority, dpv_nationalauthority },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_authority, dpv_eu_aiact_nationalcompetentauthority },
     { { s_dpv, 0, 40 }, { 0, 0 }, dpv_authority, dpv_regionalauthority },
@@ -491,7 +500,11 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_certificationseal, dpv_eu_aiact_cemarking },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_certificationseal, dpv_certification },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_certificationseal, dpv_eu_dga_dispeuapproval },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_certificationseal, dpv_eu_ehds_eudeclarationofconformity },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_certificationseal, dpv_seal },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_certificationseal, dpv_eu_ehds_wellnessapplicationlabel },
+
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_collect, dpv_ai_datacollection },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_collecteddata, dpv_collectedpersonaldata },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_collecteddata, dpv_observeddata },
@@ -516,6 +529,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, dpv_communication, dpv_voicemail },
 
     { { s_dpv, 0, 30 }, { 0, 0 }, dpv_communicationmanagement, dpv_communicationforcustomercare },
+
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_compatibilityunknown, dpv_s_hth_compatibilityunknown },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_complianceassessment, dpv_legalcomplianceassessment },
 
@@ -543,8 +558,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_concept, dpv_datasource },
     { { s_dpv, 0, 10 }, { s_dpv, 2, 0 }, dpv_concept, dpv_datasubject },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_concept, dpv_tech_documentation },
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_concept, dpv_eu_ehds_ehrmanufacturer },
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_concept, dpv_eu_ehds_ehrsupplier },
+    { { s_dpv, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_concept, dpv_eu_ehds_ehrmanufacturer },
+    { { s_dpv, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_concept, dpv_eu_ehds_ehrsupplier },
     { { s_dpv, 0, 50 }, { 0, 0 }, dpv_concept, dpv_entity },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_concept, dpv_entitycontrol },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_concept, dpv_tech_function },
@@ -572,7 +587,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 40 }, { 0, 0 }, dpv_concept, dpv_technology },
     { { s_dpv, 2, 0 }, { s_dpv, 2, 0 }, dpv_concept, dpv_risk_threatsource },
     { { s_dpv, 2, 0 }, { s_dpv, 2, 0 }, dpv_concept, dpv_risk_vulnerability },
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_concept, dpv_eu_ehds_wellnessappmanufacturer },
+    { { s_dpv, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_concept, dpv_eu_ehds_wellnessappmanufacturer },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_confidentialdata, dpv_intellectualpropertydata },
     { { s_dpv, 2, 2 }, { 0, 0 }, dpv_confidentialdata, dpv_professionalconfidentialdata },
@@ -1508,10 +1523,13 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 2 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_th_dpa_th, },
     { { s_dpv, 2, 2 }, { 0, 0 }, dpv_dataprotectionauthority, dpv_legal_tw_dpa_tw, },
 
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_dataqualityassessment, dpv_ai_benchmarking },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_dataqualityassessment, dpv_ai_biasassessment },
     { { s_dpv, 2, 3 }, { 0, 0 }, dpv_dataqualityassessment, dpv_datasuitabilityassessment },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataqualitymanagement, dpv_dataqualityassessment },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_dataqualitymanagement, dpv_dataqualityimprovement },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_dataqualitymanagement, dpv_eu_aiact_qualitymanagementsystem },
 
     { { s_dpv, 0, 82 }, { s_dpv, 1, 0 }, dpv_datasanitisationtechnique, dpv_dataanonymisationtechnique },
     { { s_dpv, 0, 82 }, { s_dpv, 1, 0 }, dpv_datasanitisationtechnique, dpv_dataredaction },
@@ -1744,8 +1762,10 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_entity, dpv_p7012_agent },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_entity, dpv_tech_actor },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_entity, dpv_eu_dga_datareuseassistant },
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_entity, dpv_eu_ehds_healthcareprovider },
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_entity, dpv_eu_ehds_healthprofessional },
+    { { s_dpv, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_entity, dpv_eu_ehds_healthcareprovider },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_entity, dpv_s_hth_healthdataholder },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_entity, dpv_s_hth_healthdatauser },
+    { { s_dpv, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_entity, dpv_eu_ehds_healthprofessional },
     { { s_dpv, 0, 50 }, { 0, 0 }, dpv_entity, dpv_legalentity },
     { { s_dpv, 0, 40 }, { 0, 0 }, dpv_entity, dpv_naturalperson },
     { { s_dpv, 0, 82 }, { 0, 0 }, dpv_entity, dpv_organisationalunit },
@@ -1982,6 +2002,9 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 82 }, { s_dpv, 1, 0 }, dpv_humaninvolvementforverification, dpv_automatedprocessingwithhumanreview },
     { { s_dpv, 0, 81 }, { s_dpv, 0, 82 }, dpv_humaninvolvementforverification, dpv_automatedprocessingwithhumanverification },
 
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_humanoversight, dpv_eu_aiact_deployerhumanoversightmeasure },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_humanoversight, dpv_eu_aiact_providerhumanoversightmeasure },
+
     { { s_dpv, 0, 50 }, { 0, 0 }, dpv_humanresourcemanagement, dpv_personnelmanagement },
 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_humansubject, dpv_adult },
@@ -2037,6 +2060,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 20 }, { s_dpv, 1, 0 }, dpv_impactassessment, dpv_dpia },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_impactassessment, dpv_risk_incidentimpactassessment },
     { { s_dpv, 0, 20 }, { 0, 0 }, dpv_impactassessment, dpv_pia },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_impactassessment, dpv_eu_gdpr_proportionalityassessment },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_impactassessment, dpv_reviewimpactassessment },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_impactassessment, dpv_rightsimpactassessment },
 
@@ -2046,15 +2070,19 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_importance, dpv_secondaryimportance },
 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_improvehealthcare, dpv_s_hth_crisismanagement },
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_improvehealthcare, dpv_eu_ehds_personalisedhealthcare },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_improvehealthcare, dpv_s_hth_improvehealthcare },
+    { { s_dpv, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_improvehealthcare, dpv_eu_ehds_personalisedhealthcare },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_improvehealthcare, dpv_s_hth_optimisation },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_improvehealthcare, dpv_s_hth_personalisedhealthcare },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_improvehealthcare, dpv_s_hth_researchdevelopment },
 
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_improvepublicservices, dpv_eu_ehds_improvehealthcareeducation },
+    { { s_dpv, 2, 1 }, { s_dpv, 2, 2 }, dpv_improvepublicservices, dpv_eu_ehds_improvehealthcareeducation },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_improvepublicservices, dpv_s_hth_improvehealthcareeducation },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_inferreddata, dpv_inferredpersonaldata },
 
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_inferredpersonaldata, dpv_eu_ehds_inferredhealthdata },
+    { { s_dpv, 2, 1 }, { s_dpv, 2, 2 }, dpv_inferredpersonaldata, dpv_eu_ehds_inferredhealthdata },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_inferredpersonaldata, dpv_s_hth_inferredhealthdata },
 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_informationaudit, dpv_personaldataaudit },
 
@@ -2311,7 +2339,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 30 }, { 0, 0 }, dpv_legalbasis, dpv_vitalinterest },
 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_legalcompliance, dpv_s_fin_regulatorycompliance },
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_legalcompliance, dpv_eu_ehds_supportauthoritiesregulatoryactivities },
+    { { s_dpv, 2, 1 }, { s_dpv, 2, 2 }, dpv_legalcompliance, dpv_eu_ehds_supportauthoritiesregulatoryactivities },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_legalcompliance, dpv_s_hth_supportauthoritiesregulatoryactivities },
 
     { { s_dpv, 0, 20 }, { s_dpv, 1, 0 }, dpv_legalentity, dpv_authority },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_legalentity, dpv_charityorganisation },
@@ -2322,7 +2351,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 20 }, { s_dpv, 2, 0 }, dpv_legalentity, dpv_datasubject },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_legalentity, dpv_eu_dga_datauser },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_legalentity, dpv_eu_dga_disp },
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_legalentity, dpv_eu_ehds_healthdataaccessbody },
+    { { s_dpv, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_legalentity, dpv_eu_ehds_healthdataaccessbody },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_legalentity, dpv_s_hth_healthdataaccessbody },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_legalentity, dpv_humansubject },
     { { s_dpv, 2, 3 }, { 0, 0 }, dpv_legalentity, dpv_legalagent },
     { { s_dpv, 0, 40 }, { 0, 0 }, dpv_legalentity, dpv_organisation },
@@ -2439,6 +2469,7 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv, 0, 50 }, { s_dpv, 0, 70 }, dpv_naturalperson, dpv_child },
     { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, dpv_naturalperson, dpv_datasubject },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_naturalperson, dpv_eu_aiact_humanoverseer },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_naturalperson, dpv_p7012_person },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_naturalperson, dpv_eu_aiact_realworldtestsubject },
 
@@ -2472,7 +2503,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_nonmaterialdamage, dpv_risk_unauthorisedimpersonation },
 
     { { s_dpv, 0, 40 }, { 0, 0 }, dpv_nonpersonaldata, dpv_anonymiseddata },
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_nonpersonaldata, dpv_eu_ehds_pathogengenomicdata },
+    { { s_dpv, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_nonpersonaldata, dpv_eu_ehds_pathogengenomicdata },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_nonpersonaldata, dpv_s_hth_pathogendata },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_nonprofitorganisation, dpv_eu_dga_dataaltruismorganisation },
 
@@ -2520,6 +2552,8 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_obtain, dpv_acquire },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_obtain, dpv_collect },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_obtain, dpv_ai_dataenrichment },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_obtain, dpv_ai_dataupdating },
     { { s_dpv, 0, 90 }, { 0, 0 }, dpv_obtain, dpv_derive },
     { { s_dpv, 0, 70 }, { s_dpv, 1, 0 }, dpv_obtain, dpv_generate },
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_obtain, dpv_observe },
@@ -2572,6 +2606,10 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_organisationalmeasure, dpv_eu_dga_dataassetlist },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_organisationalmeasure, dpv_eu_dga_datareuserequest },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_organisationalmeasure, dpv_digitalliteracy },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_organisationalmeasure, dpv_eu_ehds_ehrsysteminformationsheet },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_organisationalmeasure, dpv_eu_ehds_ehrsystemtechnicaldocumentation },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_organisationalmeasure, dpv_eu_ehds_eudatabaseforregistrationofehrsystems },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_organisationalmeasure, dpv_eu_ehds_eudatabaseforregistrationofwellnessapplications },
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_organisationalmeasure, dpv_governanceprocedures },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_organisationalmeasure, dpv_guidelinesprinciple },
     { { s_dpv, 0, 20 }, { s_dpv, 1, 0 }, dpv_organisationalmeasure, dpv_impactassessment },
@@ -2603,6 +2641,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_organisationriskmanagement, dpv_s_ps_socialwelfareriskassessment },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_organisationriskmanagement, dpv_s_edu_studentintegritymanagement },
 
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_organise, dpv_ai_datapreparation },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, dpv_organise, dpv_organise, MH_CIRCULAR },  // DPV 0.1 whoopsie?!
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_organise, dpv_structure },
 
@@ -2625,9 +2664,11 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv, 0, 50 }, { s_dpv, 1, 0 }, dpv_personaldata, dpv_collectedpersonaldata },
     { { s_dpv, 0, 40 }, { 0, 0 }, dpv_personaldata, dpv_derivedpersonaldata },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_personaldata, dpv_eu_ehds_electronichealthdata },
     { { s_dpv, 0, 40 }, { 0, 0 }, dpv_personaldata, dpv_pd_external },
     { { s_dpv, 0, 50 }, { s_dpv, 1, 0 }, dpv_personaldata, dpv_generatedpersonaldata },
     { { s_dpv, 1, 0 }, { s_dpv, 1, 0 }, dpv_personaldata, dpv_pd_household },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_personaldata, dpv_s_hth_electronichealthdata },
     { { s_dpv_pd, 0, 80 }, { s_dpv_pd, 0, 90 }, dpv_personaldata, dpv_pd_householddata },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_personaldata, dpv_identifyingpersonaldata },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_personaldata, dpv_eu_gdpr_personaldata },
@@ -2652,7 +2693,8 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv, 0, 30 }, { 0, 0 }, dpv_personalisation, dpv_personalisedadvertising },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_personalisation, dpv_politicalcampaign },
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_personalisation, dpv_eu_ehds_personalisedhealthcare },
+    { { s_dpv, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_personalisation, dpv_eu_ehds_personalisedhealthcare },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_personalisation, dpv_s_hth_personalisedhealthcare },
     { { s_dpv, 0, 30 }, { s_dpv, 0, 90 }, dpv_personalisation, dpv_servicepersonalization },
     { { s_dpv, 1, 0 }, { 0, 0 }, dpv_personalisation, dpv_servicepersonalisation },
 
@@ -2698,8 +2740,9 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_physicalmeasure, dpv_physicalsurveillance },
 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_policy, dpv_eu_ehds_datapermit },
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_policy, dpv_eu_ehds_datarequest },
+    { { s_dpv, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_policy, dpv_eu_ehds_datarequest },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_policy, dpv_dataprocessingpolicy },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_policy, dpv_eu_ehds_healthdatarequest },
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_policy, dpv_informationsecuritypolicy },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_policy, dpv_loggingpolicy },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_policy, dpv_monitoringpolicy },
@@ -2711,6 +2754,9 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, dpv_preference, dpv_interest },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, dpv_preference, dpv_opinion },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, dpv_preference, dpv_privacypreference },
+
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_primaryuse, dpv_eu_gdpr_purposecompatible },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_primaryuse, dpv_s_hth_primaryuse },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_principle, dpv_eu_gdpr_accountabilityprinciple },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_principle, dpv_eu_gdpr_accuracyprinciple },
@@ -2734,6 +2780,7 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_process, dpv_p7012_agreementnegotiation },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_process, dpv_p7012_agreementnegotiationrequest },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_process, dpv_ai_aiprocess },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_process, dpv_nonpersonaldataprocess },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_process, dpv_personaldatahandling },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_process, dpv_personaldataprocess },
@@ -2741,6 +2788,7 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_processing, dpv_copy },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_processing, dpv_eu_gdpr_crossborderprocessing },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_processing, dpv_ai_dataoperation },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_processing, dpv_disclose },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_processing, dpv_obtain },
     { { s_dpv, 0, 20 }, { 0, 0 }, dpv_processing, dpv_organise },
@@ -2798,7 +2846,8 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_provideconsent, dpv_manageconsent },
 
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_provideofficialstatistics, dpv_eu_ehds_providehealthcareofficialstatistics },
+    { { s_dpv, 2, 1 }, { s_dpv, 2, 2 }, dpv_provideofficialstatistics, dpv_eu_ehds_providehealthcareofficialstatistics },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_provideofficialstatistics, dpv_s_hth_providehealthcareofficialstatistics },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_providepersonalisedrecommendations, dpv_provideeventrecommendations },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_providepersonalisedrecommendations, dpv_provideproductrecommendations },
@@ -2856,6 +2905,8 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv, 2, 2 }, { 0, 0 }, dpv_publiclyaccessiblespace, dpv_privatelyoperatedpublicspace },
 
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_publicpolicymaking, dpv_s_hth_publicpolicymaking },
+
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_publicregisterofentities, dpv_eu_dga_daoregister },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_publicregisterofentities, dpv_eu_dga_daoregistereu },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_publicregisterofentities, dpv_eu_dga_daoregisternational },
@@ -2889,7 +2940,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 30 }, { 0, 0 }, dpv_purpose, dpv_organisationgovernance },
     { { s_dpv, 0, 30 }, { 0, 0 }, dpv_purpose, dpv_personalisation },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_purpose, dpv_publicbenefit },
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_purpose, dpv_eu_ehds_publicinterestrelatedtohealth },
+    { { s_dpv, 2, 1 }, { s_dpv, 2, 2 }, dpv_purpose, dpv_eu_ehds_publicinterestrelatedtohealth },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_purpose, dpv_s_hth_publicinterestrelatedtohealth },
     { { s_dpv, 0, 30 }, { 0, 0 }, dpv_purpose, dpv_recordmanagement },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_purpose, dpv_researchanddevelopment },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 20 }, dpv_purpose, dpv_security },
@@ -2900,7 +2952,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_purpose, dpv_p7012_serviceimprovement },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 20 }, dpv_purpose, dpv_servicepersonalization },
     { { s_dpv, 0, 10 }, { s_dpv, 2, 2 }, dpv_purpose, dpv_serviceprovision },
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_purpose, dpv_eu_ehds_traintestandevaluatehealthalgorithms },
+    { { s_dpv, 2, 1 }, { s_dpv, 2, 2 }, dpv_purpose, dpv_eu_ehds_traintestandevaluatehealthalgorithms },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_purpose, dpv_s_hth_traintestandevaluatehealthalgorithms },
     { { s_dpv, 0, 30 }, { 0, 0 }, dpv_purpose, dpv_vendormanagement },
 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_reaffirmconsent, dpv_manageconsent },
@@ -2919,6 +2972,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_recordsofactivities, dpv_dataprocessingrecord },
     { { s_dpv, 0, 30 }, { s_dpv, 0, 90 }, dpv_recordsofactivities, dpv_dataprocessingrecords },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_recordsofactivities, dpv_eu_gdpr_databreachregister },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_recordsofactivities, dpv_eu_ehds_digitalhealthauthorityactivityreport },
     { { s_dpv, 2, 2 }, { 0, 0 }, dpv_recordsofactivities, dpv_rightexerciserecord },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_recordsofactivities, dpv_risk_incidentregister },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_recordsofactivities, dpv_risk_incidentreport },
@@ -3054,6 +3108,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_remove, dpv_destruct },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_remove, dpv_erase },
 
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_representative, dpv_eu_ehds_authorisedrepresentative },
     { { s_dpv, 0, 41 }, { 0, 0 }, dpv_representative, dpv_dataprotectionofficer },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_representative, dpv_eu_dga_legalrepresentative },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_representative, dpv_eu_gdpr_representative },
@@ -3074,7 +3129,9 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_researchanddevelopment, dpv_academicresearch },
     { { s_dpv, 0, 10 }, { s_dpv, 1, 0 }, dpv_researchanddevelopment, dpv_commercialresearch },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_researchanddevelopment, dpv_eu_ehds_developpublichealthproductsandservices },
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_researchanddevelopment, dpv_eu_ehds_developsocialsecurityproductsandservices },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_researchanddevelopment, dpv_s_hth_developpublichealthproductsandservices },
+    { { s_dpv, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_researchanddevelopment, dpv_eu_ehds_developsocialsecurityproductsandservices },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_researchanddevelopment, dpv_s_hth_developsocialsecurityproductsandservices },
     { { s_dpv, 0, 10 }, { s_dpv, 1, 0 }, dpv_researchanddevelopment, dpv_noncommercialresearch },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_researchanddevelopment, dpv_s_inf_publictransportresearchdevelopment },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_researchanddevelopment, dpv_s_hth_researchdevelopment },
@@ -3082,6 +3139,8 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv, 2, 2 }, { 0, 0 }, dpv_reusecompatibility, dpv_compatibilityunknown },
     { { s_dpv, 2, 2 }, { 0, 0 }, dpv_reusecompatibility, dpv_primaryuse },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_reusecompatibility, dpv_eu_gdpr_purposecompatibility },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_reusecompatibility, dpv_s_hth_reusecompatibility },
     { { s_dpv, 2, 2 }, { 0, 0 }, dpv_reusecompatibility, dpv_secondaryuse },
 
     { { s_dpv, 0, 90 }, { s_dpv, 0, 90 }, dpv_reviewimpactassessment, dpv_reviewimpactassessmentadequacy },
@@ -3089,10 +3148,22 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv, 0, 90 }, { 0, 0 }, dpv_reviewprocedure, dpv_reviewimpactassessment },
 
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_right, dpv_eu_ehds_a3 },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_right, dpv_eu_ehds_a5 },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_right, dpv_eu_ehds_a6 },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_right, dpv_eu_ehds_a7 },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_right, dpv_eu_ehds_a8 },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_right, dpv_eu_ehds_a9 },
+    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_right, dpv_eu_dga_a9_2 },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_right, dpv_eu_ehds_a10 },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_right, dpv_eu_ehds_a16_1 },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_right, dpv_eu_ehds_a21 },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_right, dpv_eu_dga_a27 },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_right, dpv_eu_dga_a28 },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_right, dpv_eu_ehds_a68_11 },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_right, dpv_eu_ehds_a71 },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_right, dpv_eu_gdpr_a78 },
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_right, dpv_eu_dga_a9_2 },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_right, dpv_eu_ehds_a100 },
     { { s_dpv, 0, 90 }, { 0, 0 }, dpv_right, dpv_activeright },
     { { s_dpv, 0, 20 }, { 0, 0 }, dpv_right, dpv_datasubjectright },
     { { s_dpv, 0, 90 }, { 0, 0 }, dpv_right, dpv_passiveright },
@@ -3144,6 +3215,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_riskconcept, dpv_risk_availabilityconcept },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_riskconcept, dpv_risk_avoidconsequence },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_riskconcept, dpv_risk_confidentialityconcept },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_riskconcept, dpv_ai_explainabilityrisk },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_riskconcept, dpv_risk_integrityconcept },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_riskconcept, dpv_risk_legalriskconcept },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_riskconcept, dpv_risk_organisationalriskconcept },
@@ -3154,6 +3226,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_riskconcept, dpv_ai_riskconcept },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_riskconcept, dpv_risk_societalriskconcept },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_riskconcept, dpv_risk_technicalriskconcept },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_riskconcept, dpv_ai_transparencyrisk },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_riskconcept, dpv_risk_unauthorisedreidentification },
 
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_risklevel, dpv_risk_3risklevels },
@@ -3168,6 +3241,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_riskmanagementprocedure, dpv_riskmanagementprocess },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, dpv_riskmanagementprocedure, dpv_stafftraining },
 
+    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_riskmitigationmeasure, dpv_ai_measure }, 
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_riskmitigationmeasure, dpv_risk_controlconsequence },
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_riskmitigationmeasure, dpv_risk_controlmonitors },
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_riskmitigationmeasure, dpv_risk_controlrisksource },
@@ -3187,7 +3261,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 2 }, { 0, 0 }, dpv_rulefulfilled, dpv_deterrencefollowed },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_rulefulfilled, dpv_obligationfulfilled },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_rulefulfilled, dpv_permissionutilised },
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_rulefulfilled, dpv_prohibitionfulfilled },
+    { { s_dpv, 2, 1 }, { s_dpv, 2, 2 }, dpv_rulefulfilled, dpv_prohibitionfulfilled },
     { { s_dpv, 2, 2 }, { 0, 0 }, dpv_rulefulfilled, dpv_prohibitionunviolated },
     { { s_dpv, 2, 2 }, { 0, 0 }, dpv_rulefulfilled, dpv_recommendationfollowed },
 
@@ -3211,9 +3285,13 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_scale, dpv_geographiccoverage },
     { { s_dpv, 0, 81 }, { 0, 0 }, dpv_scale, dpv_processingscale },
 
-    { { s_dpv, 2, 1 }, { 0, 0 }, dpv_scientificresearch, dpv_eu_ehds_healthcarescientificresearch },
+    { { s_dpv, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_scientificresearch, dpv_eu_ehds_healthcarescientificresearch },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_scientificresearch, dpv_s_hth_healthcarescientificresearch },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_scoringofindividuals, dpv_automatedscoringofindividuals },
+
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_secondaryuse, dpv_eu_gdpr_purposeincompatible },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_secondaryuse, dpv_s_hth_secondaryuse },
 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_sector, dpv_eu_aiact_asylumsector },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_sector, dpv_eu_aiact_bordercontrolsector },
@@ -3230,6 +3308,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_sector, dpv_eu_aiact_publicsector },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_secureprocessingenvironment, dpv_eu_dga_secureprocessingenvironment },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_secureprocessingenvironment, dpv_eu_ehds_europeandigitaltestingenvironment },
 
     { { s_dpv, 0, 10 }, { s_dpv, 0, 20 }, dpv_security, dpv_accesscontrol },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 20 }, dpv_security, dpv_fraudpreventiondetection },
@@ -3280,6 +3359,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_sensitivedata, dpv_sensitivepersonaldata },
 
     { { s_dpv, 0, 41 }, { 0, 0 }, dpv_sensitivepersonaldata, dpv_specialcategorypersonaldata },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_sensitivepersonaldata, dpv_pd_vulnerability },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_service, dpv_eu_dga_dataintermediationservice },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_service, dpv_eu_gdpr_informationsocietyservice },
@@ -3412,6 +3492,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_status, dpv_noticestatus },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_status, dpv_notificationstatus },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_status, dpv_officialauthorityexercisestatus },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_status, dpv_eu_gdpr_proportionalitystatus },
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_status, dpv_publicintereststatus },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_status, dpv_tech_provisionstatus },
     { { s_dpv, 1, 0 }, { 0, 0 }, dpv_status, dpv_requeststatus },
@@ -3437,6 +3518,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_supportentitydecisionmaking, dpv_supportinformedconsentdecision },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_supranationalauthority, dpv_eu_dga_europeandatainnovationboard },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_supranationalauthority, dpv_eu_ehds_ehdsboard },
 
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_supranationalunion, dpv_loc_eea },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_supranationalunion, dpv_loc_eu },
@@ -3506,8 +3588,12 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_transform, dpv_alter },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_transform, dpv_anonymise },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_transform, dpv_combine },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_transform, dpv_ai_dataaggregation },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_transform, dpv_ai_datacleaning },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_transform, dpv_ai_datapreparation },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 82 }, dpv_transform, dpv_derive },
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_transform, dpv_filter },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_transform, dpv_ai_modelfinetuning },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 82 }, dpv_transform, dpv_pseudoanonymise },
     { { s_dpv, 0, 90 }, { 0, 0 }, dpv_transform, dpv_pseudonymise },
     { { s_dpv, 0, 10 }, { 0, 0 }, dpv_transform, dpv_restrict },
@@ -3580,23 +3666,32 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_withdrawconsent, dpv_manageconsent },
 
 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_ai, dpv_ai_aiagent }, 
     { { s_dpv_ai, 2, 0 }, { 0, 0 }, dpv_ai_ai, dpv_ai_aisystem }, 
     { { s_dpv_ai, 2, 0 }, { 0, 0 }, dpv_ai_ai, dpv_ai_capability }, 
     { { s_dpv_ai, 2, 0 }, { 0, 0 }, dpv_ai_ai, dpv_ai_model }, 
     { { s_dpv_ai, 2, 0 }, { 0, 0 }, dpv_ai_ai, dpv_ai_technique }, 
-    { { s_dpv_ai, 2, 0 }, { 2, 0 }, dpv_ai_ai, dpv_ai_measure },
-    { { s_dpv_ai, 2, 0 }, { 2, 0 }, dpv_ai_ai, dpv_ai_risk },
+    { { s_dpv_ai, 2, 0 }, { s_dpv_ai, 2, 0 }, dpv_ai_ai, dpv_ai_measure },
+    { { s_dpv_ai, 2, 0 }, { s_dpv_ai, 2, 0 }, dpv_ai_ai, dpv_ai_risk },
 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_aibias, dpv_ai_automationbias }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_aibias, dpv_ai_databias }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_aibias, dpv_ai_engineeringdecisionbias },
  
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_aisystem, dpv_ai_agi }, 
+    { { s_dpv_ai, 2, 0 }, { 0, 0 }, dpv_ai_aisystem, dpv_eu_aiact_aisystem },
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_aisystem, dpv_ai_cognitivecomputing }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_aisystem, dpv_ai_cyberphysicalsystem }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_aisystem, dpv_ai_edgeai }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_aisystem, dpv_ai_expertsystem }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_aisystem, dpv_ai_frugalaisystem }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_aisystem, dpv_ai_gpai }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_aisystem, dpv_ai_intelligentcontrolsystem }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_aisystem, dpv_ai_narrowai }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_aisystem, dpv_ai_reasoningsystem },
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_aisystem, dpv_ai_robot },
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_aisystem, dpv_ai_roboticprocessautomation },
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_aisystem, dpv_ai_robotics },
  
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_audiocapability, dpv_ai_audiogeneration }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_audiocapability, dpv_ai_soundsourceseparation }, 
@@ -3604,6 +3699,10 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_audiocapability, dpv_ai_speechsynthesis }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_audioprocessing, dpv_ai_speakerrecognition }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_audioprocessing, dpv_ai_speechrecognition },
+ 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_biasassessment, dpv_ai_biasdetection }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_biasassessment, dpv_ai_biasmitigation }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_biasassessment, dpv_ai_biasprevention }, 
  
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_biometriccapability, dpv_ai_actionrecognition }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_biometriccapability, dpv_ai_biometriccategorisation }, 
@@ -3629,8 +3728,14 @@ microdata_hierachy ontology_hierarchy [] =
 
 //    { { s_dpv_ai, 2, 2 }, { 0, 0 }, dpv_ai_cognitivebias, dpv_ai_automationbias }, 
 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_computervision, dpv_ai_imageclassification }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_computervision, dpv_ai_imagerecognition }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_computervision, dpv_ai_motionanalysis }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_computervision, dpv_ai_objectdetection }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_computervision, dpv_ai_objectrecognition },
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_computervision, dpv_ai_patternrecognition }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_computervision, dpv_ai_perceptionbasedai }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_computervision, dpv_ai_visualrecognition }, 
  
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_contentgeneration, dpv_ai_imagegeneration }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_contentgeneration, dpv_ai_videogeneration },
@@ -3647,9 +3752,19 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_ai, 2, 1 }, { s_dpv_ai, 2, 1 }, dpv_ai_databias, dpv_ai_missingfeaturesbias }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_databias, dpv_ai_nonrepresentativesamplingbias }, 
 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_dataoperation, dpv_ai_datacollection }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_dataoperation, dpv_ai_datapreparation }, 
+
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_datapreparation, dpv_ai_dataaggregation }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_datapreparation, dpv_ai_datacleaning }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_datapreparation, dpv_ai_dataenrichment }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_datapreparation, dpv_ai_dataupdating }, 
+
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_datarisk, dpv_ai_inputdatarisk }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_datarisk, dpv_ai_testingdatarisk }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_datarisk, dpv_ai_validationdatarisk },
+ 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_deeplearning, dpv_ai_transferlearning },
  
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_emotionrecognition, dpv_ai_biometricemotionrecognition },
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_emotionrecognition, dpv_eu_aiact_emotionrecognition },
@@ -3663,10 +3778,13 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_humanorientedcapability, dpv_ai_behaviouranalysis }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_humanorientedcapability, dpv_ai_biometriccapability }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_humanorientedcapability, dpv_ai_computationalcreativity }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_humanorientedcapability, dpv_ai_emotionrecognition }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_humanorientedcapability, dpv_ai_humanidentification }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_humanorientedcapability, dpv_ai_liedetection }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_humanorientedcapability, dpv_ai_personalitytraitanalysis }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_humanorientedcapability, dpv_ai_sentimentanalysis },
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_humanorientedcapability, dpv_eu_aiact_subliminalcapability },
  
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_informationretrieval, dpv_ai_automaticsummarisation }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_informationretrieval, dpv_ai_contentbasedretrieval }, 
@@ -3691,12 +3809,14 @@ microdata_hierachy ontology_hierarchy [] =
  
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_knowledgetechnique, dpv_ai_inductiveprogramming }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_knowledgetechnique, dpv_ai_knowledgerepresentation }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_knowledgetechnique, dpv_ai_rulebasedtechnique },
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_knowledgetechnique, dpv_ai_symbolicreasoning },
  
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_languagecapability, dpv_ai_dialoguemanagement }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_languagecapability, dpv_ai_machinetranslation }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_languagecapability, dpv_ai_namedentityrecognition }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_languagecapability, dpv_ai_naturallanguagegeneration }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_languagecapability, dpv_ai_naturallanguageprocessing }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_languagecapability, dpv_ai_partofspeechtagging }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_languagecapability, dpv_ai_questionanswering }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_languagecapability, dpv_ai_relationshipextraction },
@@ -3714,20 +3834,30 @@ microdata_hierachy ontology_hierarchy [] =
  
     { { s_dpv_ai, 2, 2 }, { 0, 0 }, dpv_ai_machinelearning, dpv_ai_decisiontree }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_machinelearning, dpv_ai_deeplearning }, 
-    { { s_dpv_ai, 2, 2 }, { 0, 0 }, dpv_ai_technique, dpv_ai_geneticalgorithm }, 
+    { { s_dpv_ai, 2, 2 }, { 0, 0 }, dpv_ai_machinelearning, dpv_ai_geneticalgorithm }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_machinelearning, dpv_ai_frugalmachinelearning }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_machinelearning, dpv_ai_neuralnetwork }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_machinelearning, dpv_ai_reinforcementlearning }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_machinelearning, dpv_ai_selfsupervisedlearning }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_machinelearning, dpv_ai_semisupervisedlearning }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_machinelearning, dpv_ai_supervisedlearning }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_machinelearning, dpv_ai_supportvectormachine }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_machinelearning, dpv_ai_unsupervisedlearning },
  
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_model, dpv_ai_gpaimodel }, 
+    { { s_dpv_ai, 2, 0 }, { 0, 0 }, dpv_ai_model, dpv_eu_aiact_gpaimodel },
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_model, dpv_ai_llm }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_model, dpv_ai_machinelearningmodel }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_model, dpv_ai_trainedmodel },
- 
+
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_modelinteractionbias, dpv_ai_modelexpressivenessbias },
- 
+
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_modeltraining, dpv_ai_modelfinetuning }, 
+
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_naturallanguageprocessing, dpv_ai_chatbotcapability }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_naturallanguageprocessing, dpv_ai_textclassification }, 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_naturallanguageprocessing, dpv_ai_textdatamining }, 
+
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_neuralnetwork, dpv_ai_convolutionalneuralnetwork }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_neuralnetwork, dpv_ai_feedforwardneuralnetwork }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_neuralnetwork, dpv_ai_longshorttermmemory }, 
@@ -3736,6 +3866,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_operationstage, dpv_ai_incidentmonitoringstage }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_operationstage, dpv_ai_repairstage }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_operationstage, dpv_ai_updatestage }, 
+
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_perceptionbasedai, dpv_ai_remotesensing },
 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_profiling, dpv_profiling },
  
@@ -3754,6 +3886,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_robot, dpv_ai_servicerobot }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_robot, dpv_ai_socialrobot }, 
 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_rulebasedtechnique, dpv_ai_heuristicprogramming }, 
+
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_securityattack, dpv_ai_adversarialattack }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_securityattack, dpv_ai_datapoisoning }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_securityattack, dpv_ai_modelevasion }, 
@@ -3765,7 +3899,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_ai, 2, 1 }, { s_dpv_ai, 2, 1 }, dpv_ai_statisticaltechnique, dpv_ai_decisiontree }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_statisticaltechnique, dpv_ai_optimisationmethod }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_statisticaltechnique, dpv_ai_searchmethod },
- 
+
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_technique, dpv_ai_audioprocessing }, 
     { { s_dpv_ai, 2, 1 }, { s_dpv_ai, 2, 2 }, dpv_ai_technique, dpv_ai_geneticalgorithm }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_technique, dpv_ai_knowledgetechnique }, 
@@ -3792,6 +3926,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_testingdatarisk, dpv_ai_testingdataunstructured }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_testingdatarisk, dpv_ai_testingdataunverified },
 
+    { { s_dpv_ai, 2, 3 }, { 0, 0 }, dpv_ai_trainedmodel, dpv_ai_finetunedmodel },
+
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_trainingdata, dpv_eu_aiact_trainingdata },
 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_validationdata, dpv_eu_aiact_validationdata },
@@ -3811,11 +3947,23 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_validationdatarisk, dpv_ai_validationdataunstructured }, 
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_validationdatarisk, dpv_ai_validationdataunverified },
  
-    { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_riskmitigationmeasure, dpv_ai_measure }, 
 
-    { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_ai_model, dpv_eu_aiact_gpaimodel },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_de_gdng_healthdataholder, dpv_de_gdng_datainfrastructure },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_de_gdng_healthdataholder, dpv_de_gdng_dataplatform },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_de_gdng_healthdataholder, dpv_de_gdng_federalstatecentresforcancerregistrydata },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_de_gdng_healthdataholder, dpv_de_gdng_regulatedhealthdataholder },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_de_gdng_healthdataholder, dpv_de_gdng_responsibledataholdingandmediatingbody },
 
-    { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_ai_aisystem, dpv_eu_aiact_aisystem },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_de_gdng_regulatedhealthdataholder, dpv_de_gdng_germancentreforcancerregistrydata },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_de_gdng_regulatedhealthdataholder, dpv_de_gdng_healthdatalab },
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_de_gdng_regulatedhealthdataholder, dpv_de_gdng_modelprojectgenomesequencingplatform },
+
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_de_gdng_researchproject, dpv_de_gdng_healthandhealthcareresearchproject },
+
+
+    { { s_dpv_eu_aiact, 2, 1 }, { 0, 0 }, dpv_eu_aiact_aiactlawfulness, dpv_eu_aiact_aiactcomplianceunknown },
+    { { s_dpv_eu_aiact, 2, 1 }, { 0, 0 }, dpv_eu_aiact_aiactlawfulness, dpv_eu_aiact_aiactcompliant },
+    { { s_dpv_eu_aiact, 2, 1 }, { 0, 0 }, dpv_eu_aiact_aiactlawfulness, dpv_eu_aiact_aiactnoncompliant },
 
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_aioperator, dpv_eu_aiact_aideployer },
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_aioperator, dpv_eu_aiact_aidistributor },
@@ -3828,6 +3976,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_aisystem, dpv_eu_aiact_biometriccategorisationsystem },
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_aisystem, dpv_eu_aiact_emotionrecognitionsystem },
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_aisystem, dpv_eu_aiact_gpaisystem },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_aisystem, dpv_eu_aiact_highriskaisystem },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_aisystem, dpv_eu_aiact_prohibitedaisystem },
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_aisystem, dpv_eu_aiact_remotebiometricidentificationsystem },
 
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_availableonmarket, dpv_eu_aiact_availableoneumarket },
@@ -3838,9 +3988,55 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_conformityassessmentbody, dpv_eu_aiact_notifiedbody },
 
-    { { s_dpv_eu_aiact, 2, 1 }, { 0, 0 }, dpv_eu_aiact_aiactlawfulness, dpv_eu_aiact_aiactcomplianceunknown },
-    { { s_dpv_eu_aiact, 2, 1 }, { 0, 0 }, dpv_eu_aiact_aiactlawfulness, dpv_eu_aiact_aiactcompliant },
-    { { s_dpv_eu_aiact, 2, 1 }, { 0, 0 }, dpv_eu_aiact_aiactlawfulness, dpv_eu_aiact_aiactnoncompliant },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem, dpv_eu_aiact_highriskaisystem_a6_1 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem, dpv_eu_aiact_highriskaisystem_a6_2 },
+
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_1 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_10 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_11 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_12 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_13 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_14 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_15 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_16 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_17 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_18 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_19 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_2 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_20 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_3 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_4 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_5 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_6 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_7 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_8 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_annexi_9 },
+
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_1_a },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_1_b },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_1_c },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_2 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_3_a },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_3_b },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_3_c },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_3_d },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_4_a },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_4_b },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_5_a },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_5_b },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_5_c },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_5_d },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_6_a },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_6_b },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_6_c },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_6_d },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_6_e },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_7_a },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_7_b },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_7_c },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_7_d },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_8_a },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexiii_8_b },
 
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_marketavailabilitystatus, dpv_eu_aiact_availableonmarket },
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_marketavailabilitystatus, dpv_eu_aiact_notavailableonmarket },
@@ -3851,6 +4047,15 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_nationalcompetentauthority, dpv_eu_aiact_notifyingauthority },
 
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_placedonmarket, dpv_eu_aiact_placedoneumarket },
+
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_prohibitedaisystem, dpv_eu_aiact_prohibitedaisystem_a5_1_a },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_prohibitedaisystem, dpv_eu_aiact_prohibitedaisystem_a5_1_b },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_prohibitedaisystem, dpv_eu_aiact_prohibitedaisystem_a5_1_c },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_prohibitedaisystem, dpv_eu_aiact_prohibitedaisystem_a5_1_d },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_prohibitedaisystem, dpv_eu_aiact_prohibitedaisystem_a5_1_e },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_prohibitedaisystem, dpv_eu_aiact_prohibitedaisystem_a5_1_f },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_prohibitedaisystem, dpv_eu_aiact_prohibitedaisystem_a5_1_g },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_prohibitedaisystem, dpv_eu_aiact_prohibitedaisystem_a5_1_h },
 
     { { s_dpv_eu_aiact, 2, 0 }, { 0, 0 }, dpv_eu_aiact_putintoservice, dpv_eu_aiact_putintoserviceineu },
 
@@ -3864,8 +4069,10 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_eu_aiact, 2, 2 }, { 0, 0 }, dpv_eu_aiact_risklevel, dpv_eu_aiact_risklevelpermitted },
     { { s_dpv_eu_aiact, 2, 2 }, { 0, 0 }, dpv_eu_aiact_risklevel, dpv_eu_aiact_risklevelprohibited },
 
-    { { s_dpv_eu_aiact, 2, 2 }, { 0, 0 }, dpv_eu_aiact_risklevelhigh, dpv_eu_aiact_risklevelhighannexi },
-    { { s_dpv_eu_aiact, 2, 2 }, { 0, 0 }, dpv_eu_aiact_risklevelhigh, dpv_eu_aiact_risklevelhighannexiii },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_risklevelhigh, dpv_eu_aiact_risklevelhigh_a6_1 },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, dpv_eu_aiact_risklevelhigh, dpv_eu_aiact_risklevelhigh_a6_2 },
+    { { s_dpv_eu_aiact, 2, 2 }, { s_dpv_eu_aiact, 2, 2 }, dpv_eu_aiact_risklevelhigh, dpv_eu_aiact_risklevelhighannexi },
+    { { s_dpv_eu_aiact, 2, 2 }, { s_dpv_eu_aiact, 2, 2 }, dpv_eu_aiact_risklevelhigh, dpv_eu_aiact_risklevelhighannexiii },
 
     { { s_dpv_eu_aiact, 2, 2 }, { 0, 0 }, dpv_eu_aiact_risklevelnothigh, dpv_eu_aiact_risklevelminimal },
     { { s_dpv_eu_aiact, 2, 2 }, { 0, 0 }, dpv_eu_aiact_risklevelnothigh, dpv_eu_aiact_riskleveltransparencyrequired },
@@ -3904,36 +4111,38 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_eu_dga, 2, 0 }, { 0, 0 }, dpv_eu_dga_sipprovider, dpv_eu_dga_regionalsipprovider },
     { { s_dpv_eu_dga, 2, 0 }, { 0, 0 }, dpv_eu_dga_sipprovider, dpv_eu_dga_sectorialsipprovider },
 
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_healthadmindata, dpv_eu_ehds_claimdata },
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_healthadmindata, dpv_eu_ehds_reimbursementdata },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_healthadmindata, dpv_eu_ehds_claimdata },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_healthadmindata, dpv_eu_ehds_reimbursementdata },
 
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_healthregistrydata, dpv_eu_ehds_medicaldevicesregistrydata },
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_healthregistrydata, dpv_eu_ehds_medicalregistrydata },
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_healthregistrydata, dpv_eu_ehds_medicinalproductsregistrydata },
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_healthregistrydata, dpv_eu_ehds_publichealthregistrydata },
+    { { s_dpv_eu_ehds, 2, 3 }, { 0, 0 }, dpv_eu_ehds_healthdataholder, dpv_eu_ehds_trustedhealthdataholder },
 
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_medicalregistrydata, dpv_eu_ehds_diseaseregistrydata },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_healthregistrydata, dpv_eu_ehds_medicaldevicesregistrydata },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_healthregistrydata, dpv_eu_ehds_medicalregistrydata },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_healthregistrydata, dpv_eu_ehds_medicinalproductsregistrydata },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_healthregistrydata, dpv_eu_ehds_publichealthregistrydata },
 
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_publicinterestrelatedtohealth, dpv_eu_ehds_ensurequalitysafetyhealthcare },
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_publicinterestrelatedtohealth, dpv_eu_ehds_ensurequalitysafetymedicaldevices },
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_publicinterestrelatedtohealth, dpv_eu_ehds_ensurequalitysafetymedicinalproducts },
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_publicinterestrelatedtohealth, dpv_eu_ehds_protectagainstcrossborderthreatstohealth },
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_publicinterestrelatedtohealth, dpv_eu_ehds_publichealthsurveillance },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_medicalregistrydata, dpv_eu_ehds_diseaseregistrydata },
 
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_studydata, dpv_eu_ehds_clinicaltrialsdata },
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_studydata, dpv_eu_ehds_healthquestionnaire },
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_studydata, dpv_eu_ehds_healthsurvey },
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_studydata, dpv_eu_ehds_researchcohortdata },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_publicinterestrelatedtohealth, dpv_eu_ehds_ensurequalitysafetyhealthcare },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_publicinterestrelatedtohealth, dpv_eu_ehds_ensurequalitysafetymedicaldevices },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_publicinterestrelatedtohealth, dpv_eu_ehds_ensurequalitysafetymedicinalproducts },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_publicinterestrelatedtohealth, dpv_eu_ehds_protectagainstcrossborderthreatstohealth },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_publicinterestrelatedtohealth, dpv_eu_ehds_publichealthsurveillance },
 
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_persongeneratedhealthdata, dpv_eu_ehds_persongenegeratedwellnessappdata },
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_persongeneratedhealthdata, dpv_eu_ehds_persongeneratedhealthappdata },
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_persongeneratedhealthdata, dpv_eu_ehds_persongeneratedmedicaldevice },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_studydata, dpv_eu_ehds_clinicaltrialsdata },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_studydata, dpv_eu_ehds_healthquestionnaire },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_studydata, dpv_eu_ehds_healthsurvey },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_studydata, dpv_eu_ehds_researchcohortdata },
 
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_technologysupplier, dpv_eu_ehds_wellnessappsupplier },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_persongeneratedhealthdata, dpv_eu_ehds_persongenegeratedwellnessappdata },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_persongeneratedhealthdata, dpv_eu_ehds_persongeneratedhealthappdata },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_persongeneratedhealthdata, dpv_eu_ehds_persongeneratedmedicaldevice },
 
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_traintestandevaluatehealthalgorithms, dpv_eu_ehds_traintestandevaluateaisystemsalgorithms },
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_traintestandevaluatehealthalgorithms, dpv_eu_ehds_traintestandevaluatehealthappsalgorithms },
-    { { s_dpv_eu_ehds, 2, 1 }, { 0, 0 }, dpv_eu_ehds_traintestandevaluatehealthalgorithms, dpv_eu_ehds_traintestandevaluatemedicaldevicesalgorithms },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_eu_ehds_technologysupplier, dpv_eu_ehds_wellnessappsupplier },
+
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv, 2, 2 }, dpv_eu_ehds_traintestandevaluatehealthalgorithms, dpv_eu_ehds_traintestandevaluateaisystemsalgorithms },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv, 2, 2 }, dpv_eu_ehds_traintestandevaluatehealthalgorithms, dpv_eu_ehds_traintestandevaluatehealthappsalgorithms },
+    { { s_dpv_eu_ehds, 2, 1 }, { s_dpv, 2, 2 }, dpv_eu_ehds_traintestandevaluatehealthalgorithms, dpv_eu_ehds_traintestandevaluatemedicaldevicesalgorithms },
 
     { { s_dpv_eu_gdpr, 2, 1 }, { 0, 0 }, dpv_eu_gdpr_a13_impact, dpv_eu_gdpr_a13_denied },
     { { s_dpv_eu_gdpr, 2, 1 }, { 0, 0 }, dpv_eu_gdpr_a13_impact, dpv_eu_gdpr_a13_eroded },
@@ -4127,6 +4336,16 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv_eu_gdpr, 2, 1 }, { 0, 0 }, dpv_eu_gdpr_justificationa12manifestlyunfounded, dpv_eu_gdpr_justificationa12lackofintent },
     { { s_dpv_eu_gdpr, 2, 1 }, { 0, 0 }, dpv_eu_gdpr_justificationa12manifestlyunfounded, dpv_eu_gdpr_justificationa12maliciousintent },
+
+    { { s_dpv_eu_gdpr, 2, 3 }, { 0, 0 }, dpv_eu_gdpr_proportionalityassessment, dpv_eu_gdpr_balancingtest },
+    { { s_dpv_eu_gdpr, 2, 3 }, { 0, 0 }, dpv_eu_gdpr_proportionalityassessment, dpv_eu_gdpr_necessityassessment },
+    { { s_dpv_eu_gdpr, 2, 3 }, { 0, 0 }, dpv_eu_gdpr_proportionalityassessment, dpv_eu_gdpr_suitabilityassessment },
+
+    { { s_dpv_eu_gdpr, 2, 3 }, { 0, 0 }, dpv_eu_gdpr_proportionalitystatus, dpv_eu_gdpr_disproportionate },
+    { { s_dpv_eu_gdpr, 2, 3 }, { 0, 0 }, dpv_eu_gdpr_proportionalitystatus, dpv_eu_gdpr_proportionate },
+
+    { { s_dpv_eu_gdpr, 2, 3 }, { 0, 0 }, dpv_eu_gdpr_purposecompatibility, dpv_eu_gdpr_purposecompatible },
+    { { s_dpv_eu_gdpr, 2, 3 }, { 0, 0 }, dpv_eu_gdpr_purposecompatibility, dpv_eu_gdpr_purposeincompatible },
 
     { { s_dpv_eu_gdpr, 2, 0 }, { 0, 0 }, dpv_eu_gdpr_sccbycommission, dpv_eu_gdpr_a462c },
 
@@ -6438,7 +6657,6 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_gt, dpv_loc_gt_20 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_gt, dpv_loc_gt_21 },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_gt, dpv_loc_gt_22 },
-
 
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_gw, dpv_loc_gw_ba },
     { { s_dpv_loc, 2, 1 }, { 0, 0 }, dpv_loc_gw, dpv_loc_gw_bm },
@@ -10847,14 +11065,17 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_browsingbehaviour },
     { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_calllog },
     { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_demeanour },
-    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_eu_ehds_lifestyledata },
+    { { s_dpv_pd, 2, 2 }, { s_dpv_eu_ehds, 2, 2 }, dpv_pd_behavioural, dpv_eu_ehds_lifestyledata },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_behavioural, dpv_s_hth_lifestyledata },
     { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_linkclicked },
     { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_performanceatwork },
     { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_personality },
     { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_reliability },
     { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_serviceconsumptionbehaviour },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_socialbehaviour },
     { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_pd_vehicleusage },
-    { { s_dpv_pd, 2, 2 }, { 0, 0 }, dpv_pd_behavioural, dpv_eu_ehds_wellnessdata },
+    { { s_dpv_pd, 2, 2 }, { s_dpv_eu_ehds, 2, 2 }, dpv_pd_behavioural, dpv_eu_ehds_wellnessdata },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_behavioural, dpv_s_hth_wellnessdata },
 
     { { s_dpv_pd, 2, 0 }, { 0, 0 }, dpv_pd_biometric, dpv_eu_aiact_biometric },
     { { s_dpv_pd, 2, 0 }, { 0, 0 }, dpv_pd_biometric, dpv_eu_aiact_biometricdata },
@@ -10909,6 +11130,7 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv_pd, 0, 70 }, { 0, 0 }, dpv_pd_education, dpv_pd_educationexperience },
     { { s_dpv_pd, 0, 70 }, { 0, 0 }, dpv_pd_education, dpv_pd_educationqualification },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_education, dpv_pd_educationtraining },
 
     { { s_dpv_pd, 0, 70 }, { 0, 0 }, dpv_pd_emailaddress, dpv_pd_emailaddresspersonal },
     { { s_dpv_pd, 0, 70 }, { 0, 0 }, dpv_pd_emailaddress, dpv_pd_emailaddresswork },
@@ -10959,23 +11181,38 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_financialaccount, dpv_pd_bankaccount },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_financialaccount, dpv_pd_paymentcard },
 
+    { { s_dpv_pd, 2, 3 }, { s_dpv_eu_ehds, 2, 2 }, dpv_pd_genetic, dpv_s_hth_epigenomicdata },
     { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_genetic, dpv_eu_gdpr_geneticdata },
-    { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_genetic, dpv_eu_ehds_genomicdata },
-    { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_genetic, dpv_eu_ehds_proteomicdata },
+    { { s_dpv_pd, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_pd_genetic, dpv_eu_ehds_genomicdata },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_genetic, dpv_s_hth_genomicdata },
+    { { s_dpv_pd, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_pd_genetic, dpv_eu_ehds_proteomicdata },
 
     { { s_dpv_pd, 0, 70 }, { 0, 0 }, dpv_pd_groupmembership, dpv_pd_tradeunionmembership },
 
-    { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_health, dpv_eu_ehds_behavioraldata },
-    { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_health, dpv_eu_ehds_environmentaldata },
+    { { s_dpv_pd, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_pd_health, dpv_eu_ehds_behaviouraldata },
+    { { s_dpv_pd, 2, 3  }, { 0, 0 }, dpv_pd_health, dpv_s_hth_behaviouralhealthdeterminant },
+    { { s_dpv_pd, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_pd_health, dpv_eu_ehds_environmentaldata },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_health, dpv_s_hth_environmentalhealthdeterminant },
     { { s_dpv_pd, 1, 0 }, { 0, 0 }, dpv_pd_health, dpv_pd_genetic },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_health, dpv_s_hth_healthaggregateddata },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_health, dpv_pd_mentalhealth },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_health, dpv_pd_physicalhealth },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_health, dpv_s_hth_socioeconomichealthdeterminant },
 
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_healthhistory, dpv_pd_familyhealthhistory },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_healthhistory, dpv_pd_individualhealthhistory },
 
-    { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_healthrecord, dpv_eu_ehds_electronichealthrecord },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_healthrecord, dpv_s_hth_dischargereport },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_healthrecord, dpv_s_hth_ehrdata },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_healthrecord, dpv_s_hth_electronicdispensation },
+    { { s_dpv_pd, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_pd_healthrecord, dpv_eu_ehds_electronichealthrecord },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_healthrecord, dpv_s_hth_electronicprescription },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_healthrecord, dpv_eu_ehds_electronicprescription },
     { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_healthrecord, dpv_eu_ehds_healthprofessionaldata },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_healthrecord, dpv_s_hth_healthprofessionaldata },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_healthrecord, dpv_s_hth_medicalimaging },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_healthrecord, dpv_s_hth_medicaltestresult },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_healthrecord, dpv_s_hth_patientsummary },
 
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_houseowned, dpv_pd_apartmentowned },
 
@@ -10997,6 +11234,7 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_knowledgebelief, dpv_pd_philosophicalbelief },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_knowledgebelief, dpv_pd_religiousbelief },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_knowledgebelief, dpv_pd_technicalknowledge },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_knowledgebelief, dpv_pd_thought },
 
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_language, dpv_pd_accent },
@@ -11004,29 +11242,43 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv_pd, 0, 70 }, { 0, 0 }, dpv_pd_location, dpv_pd_birthplace },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_location, dpv_pd_country },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_location, dpv_pd_currentlocation },
     { { s_dpv_pd, 2, 0 }, { 0, 0 }, dpv_pd_location, dpv_pd_domicile },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_location, dpv_pd_gpscoordinate },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_location, dpv_pd_homelocation },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_location, dpv_pd_roomnumber },
     { { s_dpv_pd, 0, 70 }, { 0, 0 }, dpv_pd_location, dpv_pd_travelhistory },
     { { s_dpv_pd, 2, 0 }, { 0, 0 }, dpv_pd_location, dpv_pd_placeofbirth },
     { { s_dpv_pd, 2, 0 }, { 0, 0 }, dpv_pd_location, dpv_pd_residency },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_location, dpv_pd_worklocation },
 
     { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_eu_ehds_biobankdata },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_s_hth_biobankdata },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_pd_bloodtype },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_pd_disability },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_pd_dnacode },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_pd_drugtestresult },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_pd_health },
-    { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_eu_ehds_healthadmindata },
+    { { s_dpv_pd, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_pd_medicalhealth, dpv_eu_ehds_healthadmindata },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_s_hth_healthadmindata },
     { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_eu_gdpr_healthdata },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_pd_healthhistory },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_pd_healthrecord },
-    { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_eu_ehds_healthregistrydata },
-    { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_eu_ehds_medicaldevicesdata },
-    { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_eu_ehds_persongeneratedhealthdata },
+    { { s_dpv_pd, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_pd_medicalhealth, dpv_eu_ehds_healthregistrydata },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_s_hth_healthregistrydata },
+    { { s_dpv_pd, 2, 1 }, { s_dpv, 2, 2 }, dpv_pd_medicalhealth, dpv_eu_ehds_medicaldevicesdata },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_s_hth_medicaldevicesdata },
+    { { s_dpv_pd, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_pd_medicalhealth, dpv_eu_ehds_persongeneratedhealthdata },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_s_hth_persongeneratedhealthdata },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_pd_prescription },
-    { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_eu_ehds_socialdata },
-    { { s_dpv_pd, 2, 1 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_eu_ehds_studydata },
+    { { s_dpv_pd, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_pd_medicalhealth, dpv_eu_ehds_socialdata },
+    { { s_dpv_pd, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_pd_medicalhealth, dpv_eu_ehds_studydata },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_medicalhealth, dpv_s_hth_studydata },
+
+//    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_molecular, dpv_s_hth_lipidomicdata },
+//    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_molecular, dpv_s_hth_metabolomicdata },
+//    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_molecular, dpv_s_hth_proteomicdata },
+//    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_molecular, dpv_s_hth_transcriptomicdata },
 
     { { s_dpv_pd, 0, 70 }, { 0, 0 }, dpv_pd_officialid, dpv_pd_passport },
 
@@ -11070,12 +11322,16 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_pd, 0, 80 }, { 0, 0 }, dpv_pd_professional, dpv_pd_performanceatwork },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_professional, dpv_pd_professionalcertification },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_professional, dpv_pd_professionalevaluation },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_professional, dpv_pd_professionalexperience },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_professional, dpv_pd_professionalinterview },
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_professional, dpv_pd_professionaltraining },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_professional, dpv_pd_reference },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_professional, dpv_pd_salary },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_professional, dpv_pd_school },
     { { s_dpv_pd, 0, 80 }, { 0, 0 }, dpv_pd_professional, dpv_pd_workenvironment },
     { { s_dpv_pd, 0, 40 }, { 0, 0 }, dpv_pd_professional, dpv_pd_workhistory },
+
+    { { s_dpv_pd, 2, 3 }, { 0, 0 }, dpv_pd_professionalexperience, dpv_pd_workexperience },
 
     { { s_dpv_pd, 2, 0 }, { 0, 0 }, dpv_pd_profile, dpv_pd_groupprofile },
     { { s_dpv_pd, 2, 0 }, { 0, 0 }, dpv_pd_profile, dpv_pd_individualprofile },
@@ -11443,7 +11699,13 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_discrimination, dpv_risk_reversediscrimination },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_discrimination, dpv_risk_sexism },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_discrimination, dpv_risk_sexualorientationdiscrimination },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_discrimination, dpv_risk_unfavourabletreatment },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_discrimination, dpv_risk_workplacediscrimination },
+
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_documentationissues, dpv_risk_instructionsinaccessible },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_documentationissues, dpv_risk_instructionsincorrect },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_documentationissues, dpv_risk_instructionsinsufficient },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_documentationissues, dpv_risk_instructionsunsuitable },
 
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_eliminationcontrol, dpv_risk_removeconsequence },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_eliminationcontrol, dpv_risk_removeimpact },
@@ -11569,6 +11831,7 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_individualrisk, dpv_risk_behaviourdistortion },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_individualrisk, dpv_risk_healthsafety },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_individualrisk, dpv_risk_impaireddecisionmaking },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_individualrisk, dpv_risk_personalsafetyendangerment },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_individualrisk, dpv_risk_privacy },
 
@@ -11593,6 +11856,8 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_maliciousactivity, dpv_risk_blackmail },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_maliciousactivity, dpv_risk_coercion },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_maliciousactivity, dpv_risk_deception },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_maliciousactivity, dpv_risk_exploitation },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_maliciousactivity, dpv_risk_extortion },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_maliciousactivity, dpv_risk_fraud },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_maliciousactivity, dpv_risk_identityfraud },
@@ -11602,6 +11867,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_maliciousactivity, dpv_risk_sabotage },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_maliciousactivity, dpv_risk_scam },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_maliciousactivity, dpv_risk_spoofing },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_maliciousactivity, dpv_risk_vulnerabilityexploitation },
 
     { { s_dpv_risk, 2, 0 }, { s_dpv_risk, 2, 0 }, dpv_risk_materialdamage, dpv_risk_lossassets },
     { { s_dpv_risk, 2, 0 }, { s_dpv_risk, 2, 0 }, dpv_risk_materialdamage, dpv_risk_lossfunds },
@@ -11654,10 +11920,11 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_risk, 2, 0 }, { 0, 0 }, dpv_risk_nonmaterialdamage, dpv_risk_unauthoriseddatamodification },
     { { s_dpv_risk, 2, 0 }, { 0, 0 }, dpv_risk_nonmaterialdamage, dpv_risk_unauthorisedimpersonation },
 
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_organisationalmanagementrisk, dpv_risk_documentationissues },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_organisationalmanagementrisk, dpv_risk_humanoversightineffective },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_organisationalmanagementrisk, dpv_risk_humanoversightinsufficient },
-    { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_organisationalmanagementrisk, dpv_risk_instructionsincorrect },
-    { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_organisationalmanagementrisk, dpv_risk_instructionsinsufficient },
+    { { s_dpv_risk, 2, 1 }, { s_dpv_risk, 2, 2 }, dpv_risk_organisationalmanagementrisk, dpv_risk_instructionsincorrect },
+    { { s_dpv_risk, 2, 1 }, { s_dpv_risk, 2, 2 }, dpv_risk_organisationalmanagementrisk, dpv_risk_instructionsinsufficient },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_organisationalmanagementrisk, dpv_risk_lackofsystemtransparency },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_organisationalmanagementrisk, dpv_risk_staffincompetence },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_organisationalmanagementrisk, dpv_risk_technologyoverreliance },
@@ -11732,18 +11999,22 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_risk, 0, 80 }, { s_dpv_risk, 1, 0 }, dpv_risk_qualitativeriskassessmenttechnique, dpv_risk_taxonomies },
 
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualitydegraded, dpv_risk_accuracydegraded },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_qualitydegraded, dpv_risk_resiliencedegraded },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualitydegraded, dpv_risk_robustnessdegraded },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualitydegraded, dpv_risk_securityqualitydegraded },
 
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityinconsistent, dpv_risk_accuracyinconsistent },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_qualityinconsistent, dpv_risk_resilienceinconsistent },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityinconsistent, dpv_risk_robustnessinconsistent },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityinconsistent, dpv_risk_securityqualityinconsistent },
 
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityinsufficient, dpv_risk_accuracyinsufficient },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_qualityinsufficient, dpv_risk_resilienceinsufficient },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityinsufficient, dpv_risk_robustnessinsufficient },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityinsufficient, dpv_risk_securityqualityinsufficient },
 
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityrisk, dpv_risk_accuracyrisk },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_qualityrisk, dpv_risk_resiliencerisk },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityrisk, dpv_risk_qualitydegraded },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityrisk, dpv_risk_qualityinconsistent },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityrisk, dpv_risk_qualityinsufficient },
@@ -11753,10 +12024,12 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityrisk, dpv_risk_securityqualityrisk },
  
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityunknown, dpv_risk_accuracyunknown },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_qualityunknown, dpv_risk_resilienceunknown },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityunknown, dpv_risk_robustnessunknown },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityunknown, dpv_risk_securityqualityunknown },
 
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityunverified, dpv_risk_accuracyunverified },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_qualityunverified, dpv_risk_resilienceunverified },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityunverified, dpv_risk_robustnessunverified },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_qualityunverified, dpv_risk_securityqualityunverified },
 
@@ -11824,6 +12097,12 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_risk, 2, 2 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_opportunityloss },
     { { s_dpv_risk, 2, 2 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_reputationalloss },
     { { s_dpv_risk, 2, 2 }, { 0, 0 }, dpv_risk_reputationalrisk, dpv_risk_trustloss },
+
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_resiliencerisk, dpv_risk_resiliencedegraded },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_resiliencerisk, dpv_risk_resilienceinconsistent },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_resiliencerisk, dpv_risk_resilienceinsufficient },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_resiliencerisk, dpv_risk_resilienceunknown },
+    { { s_dpv_risk, 2, 3 }, { 0, 0 }, dpv_risk_resiliencerisk, dpv_risk_resilienceunverified },
 
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_resolutioncontrol, dpv_risk_recoverycontrol },
     { { s_dpv_risk, 2, 1 }, { 0, 0 }, dpv_risk_resolutioncontrol, dpv_risk_remeditationcontrol },
@@ -12243,6 +12522,18 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_s_fin, 2, 1 }, { 0, 0 }, dpv_s_fin_serviceprovision, dpv_s_fin_productrecommendation },
     { { s_dpv_s_fin, 2, 1 }, { 0, 0 }, dpv_s_fin_serviceprovision, dpv_s_fin_wealthmanagement },
 
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_administrativeservicesprovision, dpv_eu_ehds_administrativeservicesprovision },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_behaviouralhealthdeterminant, dpv_eu_ehds_behaviouralhealthdeterminant },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_claimadmindata, dpv_eu_ehds_claimadmindata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_clinicalinvestigationsdata, dpv_eu_ehds_clinicalinvestigationsdata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_clinicalstudiesdata, dpv_eu_ehds_clinicalstudiesdata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_clinicaltrialsdata, dpv_eu_ehds_clinicaltrialsdata },
+
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_crisismanagement, dpv_s_hth_disasterreliefmanagement },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_crisismanagement, dpv_s_hth_pandemicresponsemanagement },
 
@@ -12250,14 +12541,63 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_diagnosismanagement, dpv_s_hth_medicalconditiondiagnosis },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_diagnosismanagement, dpv_s_hth_mentalhealthconditiondiagnosis },
 
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_dischargereport, dpv_eu_ehds_dischargereport },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_diseaseregistrydata, dpv_eu_ehds_diseaseregistrydata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_dispensationadmindata, dpv_eu_ehds_dispensationadmindata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_dispensationmanagement, dpv_s_hth_medicaldevicesdispensation },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_dispensationmanagement, dpv_s_hth_medicinalproductsdispensation },
+
+//    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_ehr, dpv_eu_ehds_ehr },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_ehrdata, dpv_eu_ehds_ehrdata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_ehrsystem, dpv_eu_ehds_ehrsystem },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_electronicdispensation, dpv_eu_ehds_electronicdispensation },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_electronicprescription, dpv_eu_ehds_electronicprescription },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_electronichealthdata, dpv_eu_ehds_electronichealthdata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_electronichealthdata, dpv_s_hth_nonpersonalelectronichealthdata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_electronichealthdata, dpv_s_hth_personalelectronichealthdata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_electronichealthdataaccessservice, dpv_eu_ehds_electronichealthdataaccessservice },
+
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_emergencycaremanagement, dpv_s_hth_emergencycarecommunication },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_emergencycaremanagement, dpv_s_hth_emergencycaredispatch },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_emergencycaremanagement, dpv_s_hth_emergencycareeligibilityassessment },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_emergencycaremanagement, dpv_s_hth_emergencycaretriage },
 
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_ensurequalitysafetyhealthcare, dpv_eu_ehds_ensurequalitysafetyhealthcare },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_ensurequalitysafetymedicaldevices, dpv_eu_ehds_ensurequalitysafetymedicaldevices },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_ensurequalitysafetymedicinalproducts, dpv_eu_ehds_ensurequalitysafetymedicinalproducts },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_environmentalhealthdeterminant, dpv_eu_ehds_environmentalhealthdeterminant },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_epigenomicdata, dpv_eu_ehds_epigenomicdata },
+
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_fraudpreventiondetection, dpv_s_hth_identityfraudmanagement },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_fraudpreventiondetection, dpv_s_hth_insuranceclaimfraudmanagement },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_fraudpreventiondetection, dpv_s_hth_servicebillingfraudmanagement },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_genomicdata, dpv_eu_ehds_genomicdata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthadmindata, dpv_s_hth_claimadmindata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthadmindata, dpv_s_hth_dispensationadmindata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthadmindata, dpv_s_hth_dispensationadmindata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthadmindata, dpv_eu_ehds_healthadmindata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthaggregateddata, dpv_eu_ehds_healthcarefinancingaggregateddata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthaggregateddata, dpv_eu_ehds_healthcareneedsaggregateddata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthaggregateddata, dpv_eu_ehds_healthcareprovisionaggregateddata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthaggregateddata, dpv_eu_ehds_healthcareresourcesaggregateddata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthapplication, dpv_s_hth_wellnessapplication },
 
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_healthcaremanagement, dpv_s_hth_healthcareservicemanagement },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_healthcaremanagement, dpv_s_hth_healthinsurancemanagement },
@@ -12268,6 +12608,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_healthcaremanagement, dpv_s_hth_securitymanagement },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_healthcaremanagement, dpv_s_hth_workforcemanagement },
 
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthcarescientificresearch, dpv_eu_ehds_healthcarescientificresearch },
+
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_healthcareservicemanagement, dpv_s_hth_accessmanagement },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_healthcareservicemanagement, dpv_s_hth_appointmentscheduling },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_healthcareservicemanagement, dpv_s_hth_crisismanagement },
@@ -12277,16 +12619,85 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_healthcareservicemanagement, dpv_s_hth_primarycaremanagement },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_healthcareservicemanagement, dpv_s_hth_providersdatasharing },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_healthcareservicemanagement, dpv_s_hth_referralmanagement },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthcareservicemanagement, dpv_s_hth_secondmedicalopinion },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_healthcareservicemanagement, dpv_s_hth_serviceprovision },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_healthcareservicemanagement, dpv_s_hth_specialisedcaremanagement },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthdataaccessbody, dpv_eu_ehds_healthdataaccessbody },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthdataholder, dpv_eu_ehds_healthdataholder },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthdatauser, dpv_eu_ehds_healthdatauser },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthprofessionalaccessservice, dpv_eu_ehds_healthprofessionalaccessservice },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthprofessionaldata, dpv_eu_ehds_healthprofessionaldata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthquestionnaire, dpv_eu_ehds_healthquestionnaire },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthregistrydata, dpv_s_hth_medicaldevicesregistrydata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthregistrydata, dpv_s_hth_medicinalproductsregistrydata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthregistrydata, dpv_s_hth_mortalityregistrydata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthregistrydata, dpv_s_hth_publichealthregistrydata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_healthsurvey, dpv_eu_ehds_healthsurvey },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_improvehealthcare, dpv_eu_ehds_improvehealthcare },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_improvehealthcareeducation, dpv_eu_ehds_improvehealthcareeducation },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_inferredhealthdata, dpv_eu_ehds_inferredhealthdata },
 
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_insurancemanagement, dpv_s_hth_healthinsurancemanagement },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_insurancemanagement, dpv_s_hth_lifeinsurancemanagement },
 
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_interoperabilitysoftwareforehrsystem, dpv_eu_ehds_interoperabilitysoftwareforehrsystem },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_lipidomicdata, dpv_eu_ehds_lipidomicdata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_loggingsoftwareforehrsystem, dpv_eu_ehds_loggingsoftwareforehrsystem },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_medicaldevicesdata, dpv_eu_ehds_medicaldevicesdata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_medicaldevicesdispensation, dpv_eu_ehds_medicaldevicesdispensation },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_medicaldevicesprescription, dpv_eu_ehds_medicaldevicesprescription },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_medicaldevicesprovision, dpv_eu_ehds_medicaldevicesprovision },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_medicaldevicesregistrydata, dpv_eu_ehds_medicaldevicesregistrydata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_medicalimaging, dpv_eu_ehds_medicalimaging },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_medicalregistrydata, dpv_s_hth_diseaseregistrydata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_medicalregistrydata, dpv_eu_ehds_medicalregistrydata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_medicaltestresult, dpv_eu_ehds_medicaltestresult },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_medicinalproductsdispensation, dpv_eu_ehds_medicinalproductsdispensation },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_medicinalproductsprescription, dpv_eu_ehds_medicinalproductsprescription },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_medicinalproductsprovision, dpv_eu_ehds_medicinalproductsprovision },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_medicinalproductsregistrydata, dpv_eu_ehds_medicinalproductsregistrydata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_metabolomicdata, dpv_eu_ehds_metabolomicdata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_mortalityregistrydata, dpv_eu_ehds_mortalityregistrydata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_nonpersonalelectronichealthdata, dpv_eu_ehds_nonpersonalelectronichealthdata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_wellnessapplication, dpv_eu_ehds_wellnessapplication },
+
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_optimisation, dpv_s_hth_diagnosticoptimisation },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_optimisation, dpv_eu_ehds_medicalregistrydata },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_optimisation, dpv_s_hth_medicalresourceoptimisation },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_optimisation, dpv_s_hth_treatmentoptimisation },
 
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_pathogendata, dpv_eu_ehds_pathogendata },
+
+    { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_patientinformationmanagement, dpv_s_hth_electronicrecordsmanagement },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_patientinformationmanagement, dpv_s_hth_electronicrecordsmanagement },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_patientinformationmanagement, dpv_s_hth_patientconsentmanagement },
 
@@ -12297,15 +12708,62 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_patientmonitoring, dpv_s_hth_patienttreatmenteffectivenessmonitoring },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_patientmonitoring, dpv_s_hth_patienttreatmentoutcomeanalysis },
 
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_patientsummary, dpv_eu_ehds_patientsummary },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_persongeneratedhealthappdata, dpv_s_hth_persongeneratedwellnessappdata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_performancestudiesdata, dpv_eu_ehds_performancestudiesdata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_persongeneratedhealthdata, dpv_s_hth_persongeneratedhealthappdata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_persongeneratedhealthdata, dpv_s_hth_persongeneratedmedicaldevicedata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_persongeneratedmedicaldevicedata, dpv_eu_ehds_persongeneratedmedicaldevice },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_persongeneratedwellnessappdata, dpv_eu_ehds_persongeneratedwellnessappdata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_personalelectronichealthdata, dpv_eu_ehds_personalelectronichealthdata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_prescriptionmanagement, dpv_s_hth_medicaldevicesprescription },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_prescriptionmanagement, dpv_s_hth_medicinalproductsprescription },
+
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_preventativecaremanagement, dpv_s_hth_diseasepreventionawareness },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_preventativecaremanagement, dpv_s_hth_fitnessnutritionawareness },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_preventativecaremanagement, dpv_s_hth_mentalhealthawareness },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_preventativecaremanagement, dpv_s_hth_publichealthmonitoring },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_preventativecaremanagement, dpv_s_hth_vaccinationmanagement },
 
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_primarycaremanagement, dpv_s_hth_homecaremanagement },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_protectagainstcrossborderthreatstohealth, dpv_eu_ehds_protectagainstcrossborderthreatstohealth },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_proteomicdata, dpv_eu_ehds_proteomicdata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_providehealthcareofficialstatistics, dpv_eu_ehds_providehealthcareofficialstatistics },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_publichealthregistrydata, dpv_eu_ehds_publichealthregistrydata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_publichealthsurveillance, dpv_eu_ehds_publichealthsurveillance },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_publicinterestrelatedtohealth, dpv_s_hth_ensurequalitysafetyhealthcare },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_publicinterestrelatedtohealth, dpv_s_hth_ensurequalitysafetymedicaldevices },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_publicinterestrelatedtohealth, dpv_s_hth_ensurequalitysafetymedicinalproducts },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_publicinterestrelatedtohealth, dpv_eu_ehds_publicinterestrelatedtohealth },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_publicinterestrelatedtohealth, dpv_s_hth_protectagainstcrossborderthreatstohealth },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_publicinterestrelatedtohealth, dpv_s_hth_publichealthsurveillance },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_publicpolicymaking, dpv_eu_ehds_publicpolicymaking },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_reimbursementadmindata, dpv_eu_ehds_reimbursementadmindata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_reimbursementservicesprovision, dpv_eu_ehds_reimbursementservicesprovision },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_researchcohortdata, dpv_eu_ehds_researchcohortdata },
+
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_researchdevelopment, dpv_s_hth_effectivenessassessment },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_researchdevelopment, dpv_s_hth_healthinequalityanalysis },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_researchdevelopment, dpv_s_hth_healthtrendanalysis },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_researchdevelopment, dpv_s_hth_healthinequalityanalysis },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_researchdevelopment, dpv_s_hth_healthtrendanalysis },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_researchdevelopment, dpv_s_hth_populationhealthanalysis },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_researchdevelopment, dpv_s_hth_predictivehealthriskanalysis },
 
@@ -12313,9 +12771,45 @@ microdata_hierachy ontology_hierarchy [] =
  
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_securitymanagement, dpv_s_hth_fraudpreventiondetection },
 
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_serviceprovision, dpv_s_hth_administrativeservicesprovision },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_serviceprovision, dpv_s_hth_consultationmanagement },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_serviceprovision, dpv_s_hth_dispensationmanagement },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_serviceprovision, dpv_s_hth_diagnosismanagement },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_serviceprovision, dpv_s_hth_medicaldevicesprovision },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_serviceprovision, dpv_s_hth_medicinalproductsprovision },
     { { s_dpv_s_hth, 2, 1 }, { 0, 0 }, dpv_s_hth_serviceprovision, dpv_s_hth_patientmonitoring },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_serviceprovision, dpv_s_hth_prescriptionmanagement },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_serviceprovision, dpv_s_hth_reimbursementservicesprovision },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_serviceprovision, dpv_s_hth_socialservicesprovision },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_socialservicesprovision, dpv_eu_ehds_socialservicesprovision },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_socioeconomichealthdeterminant, dpv_eu_ehds_socioeconomichealthdeterminant },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_supportauthoritiesregulatoryactivities, dpv_eu_ehds_supportauthoritiesregulatoryactivities },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_studydata, dpv_s_hth_clinicalinvestigationsdata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_studydata, dpv_s_hth_clinicalstudiesdata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_studydata, dpv_s_hth_clinicaltrialsdata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_studydata, dpv_s_hth_healthquestionnaire },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_studydata, dpv_s_hth_healthsurvey },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_studydata, dpv_s_hth_performancestudiesdata },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_studydata, dpv_s_hth_researchcohortdata },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_system, dpv_s_hth_ehrsystem },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_traintestandevaluateaisystemsalgorithms, dpv_eu_ehds_traintestandevaluateaisystemsalgorithms },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_traintestandevaluatehealthalgorithms, dpv_s_hth_traintestandevaluateaisystemsalgorithms },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_traintestandevaluatehealthalgorithms, dpv_s_hth_traintestandevaluatehealthappsalgorithms },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_traintestandevaluatehealthalgorithms, dpv_eu_ehds_traintestandevaluatehealthalgorithms },
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_traintestandevaluatehealthalgorithms, dpv_s_hth_traintestandevaluatemedicaldevicesalgorithms },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_traintestandevaluatehealthappsalgorithms, dpv_eu_ehds_traintestandevaluatehealthappsalgorithms },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_traintestandevaluatemedicaldevicesalgorithms, dpv_eu_ehds_traintestandevaluatemedicaldevicesalgorithms },
+
+    { { s_dpv_s_hth, 2, 3 }, { 0, 0 }, dpv_s_hth_transcriptomicdata, dpv_eu_ehds_transcriptomicdata },
 
     { { s_dpv_s_inf, 2, 1 }, { 0, 0 }, dpv_s_inf_criticalemergencyresponsemanagement, dpv_s_inf_criticalemergencyresponsecommunicationmanagement },
     { { s_dpv_s_inf, 2, 1 }, { 0, 0 }, dpv_s_inf_criticalemergencyresponsemanagement, dpv_s_inf_criticalemergencyresponsedispatchmanagement },
@@ -12528,6 +13022,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_actor, dpv_tech_deployer },
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_actor, dpv_tech_designer },
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_actor, dpv_tech_distributor },
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_actor, dpv_eu_aiact_humanoverseer },
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_actor, dpv_tech_importer },
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_actor, dpv_tech_installer },
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_actor, dpv_tech_maintainer },
@@ -12540,15 +13035,16 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_actor, dpv_tech_purchaser },
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_actor, dpv_tech_subject },
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_actor, dpv_tech_supplier },
-    { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_actor, dpv_eu_ehds_technologydistributor },
-    { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_actor, dpv_eu_ehds_technologyimporter },
-    { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_actor, dpv_eu_ehds_technologymanufacturer },
-    { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_actor, dpv_eu_ehds_technologysupplier },
+    { { s_dpv_tech, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_tech_actor, dpv_eu_ehds_technologydistributor },
+    { { s_dpv_tech, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_tech_actor, dpv_eu_ehds_technologyimporter },
+    { { s_dpv_tech, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_tech_actor, dpv_eu_ehds_technologymanufacturer },
+    { { s_dpv_tech, 2, 1 }, { s_dpv_eu_ehds, 2, 2 }, dpv_tech_actor, dpv_eu_ehds_technologysupplier },
 
     { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_algorithm, dpv_tech_api },
 
     { { s_dpv_tech, 0, 80 }, { s_dpv_tech, 1, 0 }, dpv_tech_application, dpv_tech_smartphoneapplication },
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_application, dpv_tech_applicationstore },
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_application, dpv_s_hth_healthapplication },
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_application, dpv_tech_smartphoneapplication },
 
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_auditor, dpv_eu_aiact_conformityassessmentbody },
@@ -12607,6 +13103,9 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_device, dpv_tech_personalcomputer },
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_device, dpv_tech_telephone },
 
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_distributor, dpv_s_hth_ehrsystemdistributor },
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_distributor, dpv_s_hth_wellnessappdistributor },
+
     { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_documentation, dpv_eu_aiact_eudeclarationofconformity },
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_documentation, dpv_tech_guide },
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_documentation, dpv_tech_instructions },
@@ -12629,6 +13128,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_tech, 0, 80 }, { s_dpv_tech, 1, 0 }, dpv_tech_identitymanagementtechnology, dpv_tech_identitywallet },
 
     { { s_dpv_tech, 0, 80 }, { s_dpv_tech, 1, 0 }, dpv_tech_identitytechnology, dpv_tech_identitymanagementtechnology },
+
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_importer, dpv_s_hth_ehrsystemimporter },
 
     { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_input, dpv_tech_inputaction }, 
     { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_input, dpv_tech_inputdata }, 
@@ -12659,6 +13160,9 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_tech, 0, 80 }, { s_dpv_tech, 1, 0 }, dpv_tech_managementtechnology, dpv_tech_securitymanagementtechnology },
 
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_manufacturer, dpv_eu_aiact_aiproductmanufacturer },
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_manufacturer, dpv_s_hth_ehrsystemmanufacturer },
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_manufacturer, dpv_s_hth_medicaldevicemanufacturer },
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_manufacturer, dpv_s_hth_wellnessappmanufacturer },
 
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_marketavailabilitystatus, dpv_tech_marketavailable },
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_marketavailabilitystatus, dpv_tech_marketunavailable },
@@ -12755,21 +13259,34 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_dpv_tech, 0, 80 }, { s_dpv_tech, 1, 0 }, dpv_tech_securitytechnology, dpv_tech_preventionsecuritytechnology },
     { { s_dpv_tech, 0, 80 }, { s_dpv_tech, 1, 0 }, dpv_tech_securitytechnology, dpv_tech_securitymanagementtechnology },
 
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_service, dpv_s_hth_electronichealthdataaccessservice },
     { { s_dpv_tech, 2, 0 }, { s_dpv_tech, 2, 0 }, dpv_tech_service, dpv_tech_cloudservice },
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_service, dpv_s_hth_healthprofessionalaccessservice },
 
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_software, dpv_tech_application },
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_software, dpv_tech_datastorage },
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_software, dpv_s_hth_interoperabilitysoftwareforehrsystem },
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_software, dpv_s_hth_loggingsoftwareforehrsystem },
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_software, dpv_tech_os },
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_software, dpv_tech_softwareagent },
     { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_software, dpv_tech_softwareframework },
     { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_software, dpv_tech_softwarelibrary },
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_software, dpv_tech_webscraper },
+
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_softwareagent, dpv_ai_aiagent },
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_softwareagent, dpv_tech_useragent },
 
     { { s_dpv_tech, 2, 0 }, { 0, 0 }, dpv_tech_specification, dpv_eu_aiact_commonspecification },
+
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_supplier, dpv_s_hth_ehrsystemsupplier },
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_supplier, dpv_s_hth_wellnessappsupplier },
 
     { { s_dpv_tech, 0, 80 }, { s_dpv_tech, 1, 0 }, dpv_tech_surveillancetechnology, dpv_tech_covertsurveillancetechnology },
     { { s_dpv_tech, 0, 80 }, { s_dpv_tech, 1, 0 }, dpv_tech_surveillancetechnology, dpv_tech_overtsurveillancetechnology },
 
     { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_system, dpv_ai_aisystem },
     { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_system, dpv_tech_iotsystem },
+    { { s_dpv_tech, 2, 3 }, { 0, 0 }, dpv_tech_system, dpv_s_hth_system },
 
     { { s_dpv_tech, 0, 80 }, { s_dpv_tech, 1, 0 }, dpv_tech_technologyactor, dpv_tech_technologydeveloper },
     { { s_dpv_tech, 0, 80 }, { s_dpv_tech, 1, 0 }, dpv_tech_technologyactor, dpv_tech_technologyprovider },

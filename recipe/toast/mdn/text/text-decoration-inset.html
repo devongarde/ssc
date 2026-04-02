@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-decoration-inset tests</title>
+<style>
+.sid {
+/* auto keyword */
+text-decoration-inset: auto;
+
+/* One <length> value */
+text-decoration-inset: 20px;
+text-decoration-inset: -2rem;
+
+/* Two <length> values */
+text-decoration-inset: 20px 1em;
+text-decoration-inset: -0.5rem -1.5rem;
+text-decoration-inset: -2ex 1vw;
+
+/* Global values */
+text-decoration-inset: inherit;
+text-decoration-inset: initial;
+text-decoration-inset: revert;
+text-decoration-inset: revert-layer;
+text-decoration-inset: unset;
+}
+
+#one {
+  text-decoration: underline 0.3em limegreen;
+  text-decoration-inset: -10px;
+}
+
+#two {
+  text-decoration: line-through 5px white;
+  text-decoration-inset: 0.5em;
+}
+
+#three {
+  text-decoration: underline wavy 2px blue;
+  text-decoration-inset: 1em -1em;
+}
+
+u {
+  text-decoration-color: red;
+  text-decoration-thickness: 3px;
+}
+
+#one u {
+  text-decoration-inset: auto;
+}
+
+#two u {
+  text-decoration-inset: 0;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN text-decoration-inset Tests</h1>
+
+<ul>
+  <li id="one">Outset decoration</li>
+  <li id="two">Inset decoration</li>
+  <li id="three">Shifted decoration</li>
+</ul>
+
+<p lang="zh" id="one"><u>石井</u><u>艾俐俐</u></p>
+
+<p lang="zh" id="two"><u>石井</u><u>艾俐俐</u></p>
+
+</body>
+</html>

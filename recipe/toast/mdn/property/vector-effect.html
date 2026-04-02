@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN vector-effect tests</title>
+<style>
+.sid {
+/* Keywords */
+vector-effect: none;
+vector-effect: non-scaling-stroke;
+
+/* Global values */
+vector-effect: inherit;
+vector-effect: initial;
+vector-effect: revert;
+vector-effect: revert-layer;
+vector-effect: unset;
+}
+
+svg {
+  width: 500px;
+}
+svg rect.thinned {
+  vector-effect: non-scaling-stroke;
+}
+
+svg {
+  width: 500px;
+}
+svg rect {
+  transform: scale(2.3);
+}
+svg rect.thinned {
+  vector-effect: non-scaling-stroke;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN vector-effect Tests</h1>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100">
+  <g
+    transform="scale(2.3) rotate(23)"
+    transform-origin="100 50"
+    stroke-width="3"
+    stroke="orange"
+    fill="#ddeeff88">
+    <rect x=" 60" y="20" width="30" height="60" />
+    <rect x="110" y="20" width="30" height="60" class="thinned" />
+  </g>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100">
+  <g
+    transform="rotate(23)"
+    transform-origin="100 50"
+    stroke-width="3"
+    stroke="orange"
+    fill="#ddeeff88">
+    <rect
+      x=" 60"
+      y="20"
+      width="30"
+      height="60"
+      transform-origin="100 50"
+      vector-effect="none" />
+    <rect
+      x="110"
+      y="20"
+      width="30"
+      height="60"
+      transform-origin="100 50"
+      vector-effect="none"
+      class="thinned" />
+  </g>
+</svg>
+
+</body>
+</html>

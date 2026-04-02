@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN quotes tests</title>
+<style>
+.sid
+{
+/* Keyword value */
+quotes: none;
+quotes: auto;
+
+/* <string> values */
+quotes: "«" "»"; /* Set open-quote and close-quote to use French quotation marks */
+quotes: "«" "»" "‹" "›"; /* Set two levels of quotation marks */
+
+/* Global values */
+quotes: inherit;
+quotes: initial;
+quotes: revert;
+quotes: revert-layer;
+quotes: unset;
+}
+
+li {
+  quotes: auto;
+}
+
+.specialQuotes {
+  quotes: "“" "”" "‘" "’";
+}
+
+q {
+  quotes: auto;
+}
+li:not(:last-of-type) {
+  border-bottom: 1px solid;
+}
+
+.quote {
+  quotes: '"' '"' "'" "'";
+}
+.quote::before {
+  content: open-quote;
+}
+.quote::after {
+  content: close-quote;
+}
+
+[data-speaker="karen" i] {
+  quotes: "She said: " "";
+}
+[data-speaker="chad" i] {
+  quotes: "He said: " "";
+}
+[data-speaker="pat" i] {
+  quotes: "They said: " "";
+}
+[data-speaker] q {
+  quotes: auto;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN quotes Tests</h1>
+
+<ul>
+  <li>
+    Default quotes:
+    <p lang="ru">
+      <q
+        >Митч Макконнелл - это человек, который знает о России и ее влиянии
+        меньше, чем даже Дональд Трамп, и <q>я ничего не знаю</q>, сказал
+        Трамп</q
+      >, - писал Раджу.
+    </p>
+  </li>
+  <li class="specialQuotes">
+    Defined by <code>quotes</code> property :
+    <p lang="ru">
+      <q
+        >Митч Макконнелл - это человек, который знает о России и ее влиянии
+        меньше, чем даже Дональд Трамп, и <q>я ничего не знаю</q>, сказал
+        Трамп</q
+      >, - писал Раджу.
+    </p>
+  </li>
+</ul>
+
+<ul>
+  <li lang="fr">
+    <q>Ceci est une citation française.</q>
+  </li>
+  <li lang="ru">
+    <q>Это русская цитата</q>
+  </li>
+  <li lang="de">
+    <q>Dies ist ein deutsches Zitat</q>
+  </li>
+  <li lang="en">
+    <q>This is an English quote.</q>
+  </li>
+</ul>
+
+<p>
+  <span class="quote">I should be using quotes</span>, I thought,
+  <span class="quote"
+    >But why use semantic HTML elements when I can add classes to
+    <span class="quote">ALL THE THINGS!</span>?
+  </span>
+</p>
+
+<ul>
+  <li><q data-speaker="karen">Hello</q></li>
+  <li><q data-speaker="chad">Hi</q></li>
+  <li><q data-speaker="karen">this conversation is not interesting</q></li>
+  <li>
+    <q data-speaker="pat"
+      >OMG! <q>Hi</q>? Seriously? at least <q>hello</q> is five letters long.</q
+    >
+  </li>
+</ul>
+
+</body>
+</html>

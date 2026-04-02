@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN shape-rendering tests</title>
+<style>
+.sid {
+shape-rendering: auto;
+shape-rendering: crispEdges;
+shape-rendering: geometricPrecision;
+shape-rendering: optimizeSpeed;
+
+/* Global values */
+shape-rendering: inherit;
+shape-rendering: initial;
+shape-rendering: revert;
+shape-rendering: revert-layer;
+shape-rendering: unset;
+}
+
+ellipse:nth-of-type(1) {
+  shape-rendering: crispEdges;
+}
+ellipse:nth-of-type(2) {
+  shape-rendering: geometricPrecision;
+}
+ellipse:nth-of-type(3) {
+  shape-rendering: optimizeSpeed;
+}
+ellipse:nth-of-type(4) {
+  shape-rendering: auto;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN shape-rendering Tests</h1>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120">
+  <ellipse cx="50" cy="60" rx="40" ry="60" />
+  <ellipse cx="150" cy="60" rx="40" ry="60" />
+  <ellipse cx="250" cy="60" rx="40" ry="60" />
+  <ellipse cx="350" cy="60" rx="40" ry="60" />
+</svg>
+
+</body>
+</html>

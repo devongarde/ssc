@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN transform-box tests</title>
+<style>
+.sid {
+/* Keyword values */
+transform-box: content-box;
+transform-box: border-box;
+transform-box: fill-box;
+transform-box: stroke-box;
+transform-box: view-box;
+
+/* Global values */
+transform-box: inherit;
+transform-box: initial;
+transform-box: revert;
+transform-box: revert-layer;
+transform-box: unset;
+}
+
+svg {
+  width: 80vh;
+  border: 1px solid #d9d9d9;
+  position: absolute;
+  margin: auto;
+  inset: 0;
+}
+
+#box {
+  transform-origin: 50% 50%; /* anything other than `0 0` to see the effect */
+  transform-box: fill-box;
+  animation: rotate-box 3s linear infinite;
+}
+
+@keyframes rotate-box {
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN transform-box Tests</h1>
+
+<svg id="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+  <g>
+    <circle id="center" fill="red" r="1" transform="translate(25 25)" />
+    <circle id="boxcenter" fill="blue" r=".5" transform="translate(15 15)" />
+    <rect
+      id="box"
+      x="10"
+      y="10"
+      width="10"
+      height="10"
+      rx="1"
+      ry="1"
+      stroke="black"
+      fill="none" />
+  </g>
+</svg>
+
+</body>
+</html>

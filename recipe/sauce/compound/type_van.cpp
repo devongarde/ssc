@@ -448,3 +448,39 @@ void type_master < t_imcastr > :: swap (type_master < t_imcastr >& t)
     ::std::swap (has_width_, t.has_width_);
     ::std::swap (has_density_, t.has_density_);
     tidy_string < t_imcastr > :: swap (t); }
+
+bool is_baseline (nitpick& nits, const html_version& v, const vstr_t& vs, ::std::size_t& from)
+{   nitpick nuts;
+    PRESUME (from < vs.size (), __FILE__, __LINE__);
+    if (compare_no_case (vs.at (from), sz_baseline :: sz ()))
+        return true;
+    if (vs.size () > from + 1)
+        if (test_value < t_first_last > (nuts, v, vs.at (from)))
+            if (compare_no_case (vs.at (from+1), sz_baseline :: sz ()))
+            {   nits.merge (nuts);
+                ++from;
+                return true; }
+    return false; }
+
+template < e_type A, e_type B > e_status set_css_place (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s)
+{   if (es == s_empty) nits.pick (nit_empty, es_error, ec_type, "value expected");
+    else if (es == s_good)
+    {   vstr_t args (split_by_space (s));
+        if (args.size () == 0) nits.pick (nit_empty, es_error, ec_type, "value expected");
+        else
+        {   ::std::size_t from = 0;
+            if (is_baseline (nits, v, args, from) || test_value < A > (nits, v, args.at (0)))
+            {   if (++from == args.size ()) return s_good; }
+                if (args.size () > 3)
+                    nits.pick (nit_too_many, es_warning, ec_type, "too many values");
+                if (test_value < B > (nits, v, args.at (from))) return s_good; } }
+    return s_invalid; }
+
+e_status set_css_place_content (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s)
+{   return set_css_place < t_css_align_content, t_css_justify_content > (es, nits, v, s); }
+
+e_status set_css_place_items (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s)
+{   return set_css_place < t_css_box_alignself_acs, t_css_box_justitems_ns > (es, nits, v, s); }
+
+e_status set_css_place_self (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s)
+{   return set_css_place < t_css_box_alignself_acs, t_css_box_justself > (es, nits, v, s); }

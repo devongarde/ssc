@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN speak-as tests</title>
+<style>
+.sid
+{
+/* single value syntax */
+speak-as: normal;
+speak-as: spell-out;
+speak-as: literal-punctuation;
+speak-as: digits;
+speak-as: no-punctuation;
+
+/* multiple value syntax */
+speak-as: spell-out literal-punctuation;
+speak-as: spell-out no-punctuation;
+speak-as: digits literal-punctuation;
+speak-as: digits no-punctuation;
+speak-as: spell-out digits literal-punctuation;
+speak-as: spell-out digits no-punctuation;
+}
+
+.normal {
+  speak-as: normal;
+}
+
+.spell-out {
+  speak-as: spell-out;
+}
+
+.literal-punctuation {
+  speak-as: literal-punctuation;
+}
+
+.no-punctuation {
+  speak-as: no-punctuation;
+}
+
+.digits {
+  speak-as: digits;
+}
+.multi {
+  speak-as: literal-punctuation digits;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN speak-as Tests</h1>
+
+<p class="normal">Hello, world! I'm 25.</p>
+<p class="spell-out">Hello, world! I'm 25.</p>
+<p class="literal-punctuation">Hello, world! I'm 25.</p>
+<p class="no-punctuation">Hello, world! I'm 25.</p>
+<p class="digits">Hello, world! I'm 25.</p>
+<p class="multi">Hello, world! I'm 25.</p>
+
+</body>
+</html>

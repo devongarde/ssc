@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN top tests</title>
+<style>
+.sid {
+/* <length> values */
+top: 3px;
+top: 2.4em;
+top: anchor(bottom);
+top: anchor-size(--my-anchor self-block, 10%);
+
+/* <percentage>s of the height of the containing block */
+top: 10%;
+
+/* Keyword value */
+top: auto;
+
+/* Global values */
+top: inherit;
+top: initial;
+top: revert;
+top: revert-layer;
+top: unset;
+}
+
+body {
+  background: beige;
+}
+
+div {
+  position: absolute;
+  top: 10%;
+  right: 40%;
+  bottom: 20%;
+  left: 15%;
+  background: gold;
+  border: 1px solid blue;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN top Tests</h1>
+
+<div>The size of this content is determined by the position of its edges.</div>
+
+</body>
+</html>

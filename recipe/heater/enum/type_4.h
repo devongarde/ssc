@@ -146,8 +146,8 @@ template < > struct type_master < t_aria_relevant > : four_value < t_aria_releva
 template < > struct type_master < t_aria_sort > : four_value < t_aria_sort, e_aria_sort, sz_ascending, sz_descending, sz_none, sz_other >
 { using four_value < t_aria_sort, e_aria_sort, sz_ascending, sz_descending, sz_none, sz_other > :: four_value; };
 
-template < > struct type_master < t_bens > : four_value < t_bens, e_bens, sz_both, sz_end, sz_none, sz_start >
-{ using four_value < t_bens, e_bens, sz_both, sz_end, sz_none, sz_start > :: four_value; };
+template < > struct type_master < t_bens > : four_value < t_bens, e_bens, sz_trim_both, sz_trim_end, sz_none, sz_trim_start >
+{ using four_value < t_bens, e_bens, sz_trim_both, sz_trim_end, sz_none, sz_trim_start > :: four_value; };
 
 template < > struct type_master < t_benrs > : four_value < t_benrs, e_benrs, sz_both, sz_end, sz_normal, sz_start >
 { using four_value < t_benrs, e_benrs, sz_both, sz_end, sz_normal, sz_start > :: four_value; };
@@ -224,7 +224,6 @@ template < > struct type_master < t_css_display_legacy > : four_value < t_css_di
 template < > struct type_master < t_css_empty_cells > : four_value < t_css_empty_cells, e_css_empty_cells, sz_hide, sz_inherit, sz_moz_show_background, sz_show >
 { using four_value < t_css_empty_cells, e_css_empty_cells, sz_hide, sz_inherit, sz_moz_show_background, sz_show > :: four_value; };
 
-// typedef enum { cfc_content, cfc_fit_content, cfc_max_content, cfc_min_content } e_css_flex_content;
 template < > struct type_master < t_css_flex_content > : four_value < t_css_flex_content, e_css_flex_content, sz_content, sz_fit_content, sz_max_content, sz_min_content >
 { using four_value < t_css_flex_content, e_css_flex_content, sz_content, sz_fit_content, sz_max_content, sz_min_content > :: four_value; };
 
@@ -279,14 +278,14 @@ template < > struct type_master < t_css_synthesis > : four_value < t_css_synthes
 template < > struct type_master < t_css_textemph_skip > : four_value < t_css_textemph_skip, e_css_textemph_skip, sz_narrow, sz_punctuation, sz_spaces, sz_symbols >
 { using four_value < t_css_textemph_skip, e_css_textemph_skip, sz_narrow, sz_punctuation, sz_spaces, sz_symbols > :: four_value; };
 
-template < > struct type_master < t_css_text_justify > : four_value < t_css_text_justify, e_css_text_justify, sz_auto, sz_inter_character, sz_inter_word, sz_none >
-{ using four_value < t_css_text_justify, e_css_text_justify, sz_auto, sz_inter_character, sz_inter_word, sz_none > :: four_value; };
+template < > struct type_master < t_css_text_spacing_trim > : four_value < t_css_text_spacing_trim, e_css_text_spacing_trim, sz_normal, sz_space_all, sz_space_first, sz_trim_start >
+{ using four_value < t_css_text_spacing_trim, e_css_text_spacing_trim, sz_normal, sz_space_all, sz_space_first, sz_trim_start > :: four_value; };
+
+template < > struct type_master < t_css_text_wrap_style > : four_value < t_css_text_wrap_style, e_css_text_wrap_style, sz_auto, sz_balance, sz_pretty, sz_stable >
+{ using four_value < t_css_text_wrap_style, e_css_text_wrap_style, sz_auto, sz_balance, sz_pretty, sz_stable > :: four_value; };
 
 template < > struct type_master < t_css_val_con > : four_value < t_css_val_con, e_css_val_con, sz_e, sz_infinity, sz_nan, sz_pi >
 { using four_value < t_css_val_con, e_css_val_con, sz_e, sz_infinity, sz_nan, sz_pi > :: four_value; };
-
-template < > struct type_master < t_css_word_break > : four_value < t_css_word_break, e_css_word_break, sz_break_all, sz_break_word, sz_keep_all, sz_normal >
-{ using four_value < t_css_word_break, e_css_word_break, sz_break_all, sz_break_word, sz_keep_all, sz_normal > :: four_value; };
 
 template < > struct type_master < t_ddny > : four_value < t_ddny, e_ddny, sz_device_height, sz_device_width, sz_no, sz_yes >
 { using four_value < t_ddny, e_ddny, sz_device_height, sz_device_width, sz_no, sz_yes > :: four_value; };

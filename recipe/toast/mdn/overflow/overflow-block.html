@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN overflow-block tests</title>
+<style>
+.sid {
+/* Keyword values */
+overflow-block: visible;
+overflow-block: hidden;
+overflow-block: clip;
+overflow-block: scroll;
+overflow-block: auto;
+
+/* Global values */
+overflow-block: inherit;
+overflow-block: initial;
+overflow-block: revert;
+overflow-block: revert-layer;
+overflow-block: unset;
+}
+
+div {
+  border: 1px solid black;
+  width: 250px;
+  height: 100px;
+  margin-bottom: 120px;
+}
+
+#hidden {
+  overflow-block: hidden;
+}
+#scroll {
+  overflow-block: scroll;
+}
+#clip {
+  overflow-block: clip;
+}
+#visible {
+  overflow-block: visible;
+}
+#auto {
+  overflow-block: auto;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN overflow-block Tests</h1>
+
+<ul>
+  <li>
+    <code>overflow-block: hidden</code> (hides the text outside the box)
+    <div id="hidden">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur.
+    </div>
+  </li>
+
+  <li>
+    <code>overflow-block: scroll</code> (always adds a scrollbar)
+    <div id="scroll">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur.
+    </div>
+  </li>
+
+  <li>
+    <code>overflow-block: clip</code> (hides the text outside the box beyond the
+    overflow clip edge)
+    <div id="clip">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur.
+    </div>
+  </li>
+
+  <li>
+    <code>overflow-block: visible</code> (displays the text outside the box if
+    needed)
+    <div id="visible">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur.
+    </div>
+  </li>
+
+  <li>
+    <code>overflow-block: auto</code> (on most browsers, equivalent to
+    <code>scroll</code>)
+    <div id="auto">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur.
+    </div>
+  </li>
+</ul>
+
+</body>
+</html>

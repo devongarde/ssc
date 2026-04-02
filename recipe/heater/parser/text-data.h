@@ -29,6 +29,12 @@ struct wotsit_t
     flags_t flags_ = NOFLAGS;
     const char* simple_ = nullptr;
     DEFAULT_CONSTRUCTORS (wotsit_t);
+#ifdef CPP20
+    wotsit_t (html_version first, html_version last) noexcept
+        :   first_ (first), last_ (last), wotsit_ (nullptr), flags_ (NOFLAGS), simple_ (nullptr) { }
+    wotsit_t (html_version first, html_version last, const char8_t* wotsit, const flags_t f = NOFLAGS, const char8_t* simple = nullptr) noexcept
+        :   first_ (first), last_ (last), wotsit_ ((char*) wotsit), flags_ (f), simple_ ((char*) simple) { }
+#endif // CPP20
     wotsit_t (html_version first, html_version last, const char* wotsit, const flags_t f = NOFLAGS, const char* simple = nullptr) noexcept
         :   first_ (first), last_ (last), wotsit_ (wotsit), flags_ (f), simple_ (simple) { } };
 
@@ -36,6 +42,12 @@ struct extra_t
 {   const char* symbol_ = nullptr;
     const char* code_ = nullptr;
     const bool suggest_ = true;
+#ifdef CPP20
+    extra_t ()
+        :   symbol_ (nullptr), code_ (nullptr), suggest_ (false) { }
+    extra_t (const char8_t* symbol, const char8_t* code, const bool suggest = true) noexcept
+        :   symbol_ ((char *) symbol), code_ ((char *) code), suggest_ (suggest) { }
+#endif // CPP20
     extra_t (const char* symbol, const char* code, const bool suggest = true) noexcept
         :   symbol_ (symbol), code_ (code), suggest_ (suggest)
         { } };

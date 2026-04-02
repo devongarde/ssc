@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN reading-flow tests</title>
+<style>
+.sid
+{
+/* Keyword values */
+reading-flow: normal;
+reading-flow: flex-visual;
+reading-flow: flex-flow;
+reading-flow: grid-columns;
+reading-flow: grid-rows;
+reading-flow: grid-order;
+reading-flow: source-order;
+
+/* Global values */
+reading-flow: inherit;
+reading-flow: initial;
+reading-flow: revert;
+reading-flow: revert-layer;
+reading-flow: unset;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  reading-flow: normal;
+  gap: 1em;
+}
+
+a:first-child {
+  order: 1;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  grid-template-areas:
+    "d b b"
+    "c c a";
+  reading-flow: normal;
+}
+
+.a {
+  grid-area: a;
+}
+.b {
+  grid-area: b;
+}
+.c {
+  grid-area: c;
+}
+.d {
+  grid-area: d;
+}
+
+a:first-child {
+  order: 1;
+}
+
+.wrapper {
+  reading-flow: source-order;
+}
+
+a:first-child {
+  reading-order: 1;
+}
+</style>
+<script>
+const selectElem = document.getElementById("reading-flow");
+const wrapperElem = document.querySelector(".wrapper");
+
+selectElem.addEventListener("change", () => {
+  wrapperElem.style.readingFlow = selectElem.value;
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN reading-flow Tests</h1>
+
+<form>
+  <label for="reading-flow">Choose reading flow:</label>
+  <select id="reading-flow">
+    <option>normal</option>
+    <option>flex-visual</option>
+    <option>flex-flow</option>
+  </select>
+</form>
+<div class="wrapper">
+  <a href="#">Item 1</a>
+  <a href="#">Item 2</a>
+  <a href="#">Item 3</a>
+</div>
+
+<form>
+  <label for="reading-flow">Choose reading flow:</label>
+  <select id="reading-flow">
+    <option>normal</option>
+    <option>grid-rows</option>
+    <option>grid-columns</option>
+    <option>grid-order</option>
+  </select>
+</form>
+<div class="wrapper">
+  <a class="a" href="#">Item A</a>
+  <a class="b" href="#">Item B</a>
+  <a class="c" href="#">Item C</a>
+  <a class="d" href="#">Item D</a>
+</div>
+
+<div class="wrapper">
+  <a class="a" href="#">Item A</a>
+  <a class="b" href="#">Item B</a>
+  <a class="c" href="#">Item C</a>
+  <a class="d" href="#">Item D</a>
+</div>
+
+</body>
+</html>

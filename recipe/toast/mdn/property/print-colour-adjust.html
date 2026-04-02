@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN print-colour-adjust tests</title>
+<style>
+.sid
+{
+print-color-adjust: economy;
+print-color-adjust: exact;
+
+/* Global values */
+print-color-adjust: inherit;
+print-color-adjust: initial;
+print-color-adjust: revert;
+print-color-adjust: revert-layer;
+print-color-adjust: unset;
+}
+
+.my-box {
+  background-color: black;
+  background-image: linear-gradient(rgb(0 0 180 / 50%), rgb(70 140 220 / 50%));
+  color: #990000;
+  width: 15rem;
+  height: 6rem;
+  text-align: center;
+  font:
+    24px "Helvetica",
+    sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  print-color-adjust: exact;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN print-colour-adjust Tests</h1>
+
+<div class="my-box">
+  <p>Need more contrast!</p>
+</div>
+
+</body>
+</html>

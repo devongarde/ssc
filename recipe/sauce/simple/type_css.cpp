@@ -249,9 +249,11 @@ type_cvf a_tc [] =
     { t_css_fn_if_supports, cvf_supports },
     { t_css_fn_image, cvf_image },
     { t_css_fn_image_set, cvf_image_set },
+    { t_css_fn_inset, cvf_inset },
     { t_css_fn_linear, cvf_linear },
     { t_css_fn_moz_image_rect, cvf_moz_image_rect },
     { t_css_fn_ornaments, cvf_ornaments },
+    { t_css_fn_rect, cvf_rect },
     { t_css_fn_round_t, cvf_round },
     { t_css_fn_steps, cvf_steps },
     { t_css_fn_styleset, cvf_styleset },
@@ -260,6 +262,7 @@ type_cvf a_tc [] =
     { t_css_fn_swash, cvf_swash },
     { t_css_fn_type, cvf_type },
     { t_css_fn_var, cvf_var },
+    { t_css_fn_xywh, cvf_xywh },
     { t_error, cvf_none } };
 
 typedef ssc_map < e_css_val_fn, e_type > m_cvf_t;

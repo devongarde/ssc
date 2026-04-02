@@ -2138,7 +2138,7 @@ wotsit_t wotsit_table [] =
     { { HTML_2_0, HV_RFC_2070 | HV_NOT3 }, { HTML_UNDEF }, u8"zwj" },
     { { HTML_2_0, HV_RFC_2070 | HV_NOT3 }, { HTML_UNDEF }, u8"zwnj" },
 
-    { { HTML_UNDEF }, { HTML_UNDEF }, nullptr } };
+    { { HTML_UNDEF }, { HTML_UNDEF } } };
 
 extra_t known_symbols [] =
 {   { u8"Á", u8"Aacute" },
@@ -4270,7 +4270,7 @@ extra_t known_symbols [] =
     { u8"𝓏", u8"zscr" },
     { u8"‍", u8"zwj" },
     { u8"‌", u8"zwnj" },
-    { nullptr, nullptr } };
+    { } };
 
 // WARNING: some symbols may display incorrectly in some editors on some systems: edit them at your peril.
 extra_t xtra [] =
@@ -4316,4 +4316,4 @@ extra_t xtra [] =
     { u8"ǌ", u8"nj" },
     { u8"œ", u8"oe" },
     { u8"ﬂ", u8"fll" },
-    { nullptr, nullptr, NOFLAGS } };
+    { } };

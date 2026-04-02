@@ -22,6 +22,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 #include "element/element.h"
 
+e_status set_char_value (nitpick& nits, const html_version& , const ::std::string& s)
+{   if (s.length () > 0)
+    {   if (s.length () == 1) return s_good;
+        if ((s.length () > 2) && (s.at (0) == '&') && (s.at (s.length () - 1) == ';')) return s_good;
+        if ((s.length () == 5) && (s.at (0) == '\\') && (s.substr (1).find_first_not_of (HEX) == ::std::string::npos)) return s_good; }
+    nits.pick (nit_single_character, es_error, ec_type, quote (s), " is not a single character");
+    return s_invalid; }
+
 e_status set_compact_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (! s.empty ())
     {   if (v.is_1 ())
@@ -31,6 +39,43 @@ e_status set_compact_value (nitpick& nits, const html_version& v, const ::std::s
         {   nits.pick (nit_bad_compact, es_error, ec_type, "if compact is given a value, it must be \"compact\", not ", quote (s));
             return s_invalid; } }
     return s_good; }
+
+e_status set_custom_old_value (nitpick& nits, const html_version& , const ::std::string& s)
+{   if (! s.empty ())
+        if ((s.at (0) < 'a') || (s.at (0) > 'z'))
+            nits.pick (nit_custom_element, ed_jul25, "4.13.3 Core concepts", es_error, ec_type, quote (s), ": the first character of a custom element must be an ASCII lower-case letter");
+        else if (s.find ('-') == ::std::string::npos)
+            nits.pick (nit_custom_element, ed_jul25, "4.13.3 Core concepts", es_error, ec_type, quote (s), ": a custom element name must contain '-' (ASCII minus)");
+        else if (s.find_first_of (UPPERCASE) != ::std::string::npos)
+            nits.pick (nit_custom_element, ed_jul25, "4.13.3 Core concepts", es_error, ec_type, quote (s), ": a custom element name must not contain an upper-case ASCII letter");
+        else return s_good;
+    return s_invalid; }
+
+e_status set_custom_new_value (nitpick& nits, const html_version& , const ::std::string& s)
+{   if (! s.empty ())
+        if ((s.at (0) < 'a') || (s.at (0) > 'z'))
+            nits.pick (nit_custom_element, ed_jul25, "4.13.3 Core concepts", es_error, ec_type, quote (s), ": the first character of a custom element must be an ASCII lower-case letter");
+        else if (s.find_first_of (UPPERCASE) != ::std::string::npos)
+            nits.pick (nit_custom_element, ed_jul25, "4.13.3 Core concepts", es_error, ec_type, quote (s), ": a custom element name must not contain an upper-case ASCII letter");
+        else
+        {   bool whoops = false;
+            for (   ::std::string::size_type pos = s.find_first_not_of (LOWERCASE DENARY ".-_");
+                    pos != ::std::string::npos;
+                    pos = s.substr (pos+1).find_first_not_of (LOWERCASE DENARY ".-_"))
+#ifdef _MSC_VER
+            {   const char ch = s.at (pos);
+                if ((ch >= 0xC0) && (ch <= 0xD6)) continue;
+                if ((ch >= 0xC0) && (ch <= 0xD6)) continue;
+                if (ch > 0xF8) continue;
+                if (ch == 0xB8) continue;
+                whoops = true;
+#else // _MSC_VER
+            {   whoops = true;
+#endif // _MSC_VER
+                break; }
+            if (! whoops) return s_good;
+            nits.pick (nit_custom_element, ed_jul25, "4.13.3 Core concepts", es_warning, ec_type, quote (s), ": the custom element name may contain an illegal ASCII character"); }
+    return s_invalid; }
 
 e_status set_html_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (s.empty ())

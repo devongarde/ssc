@@ -1665,7 +1665,7 @@ property_gen gentab [] =
     { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_withdrawaltime, t_datetime },
 
     // dpv AI
-    { { s_dpv_ai, 2, 1 }, { 0, 0 }, s_dpv_ai, dpv_ai_hasai, t_ontology, dpv_ai_ai },
+    { { s_dpv_ai, 2, 1 }, { 0, 02 }, s_dpv_ai, dpv_ai_hasai, t_ontology, dpv_ai_ai },
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, s_dpv_ai, dpv_ai_hasaisystem, t_ontology, dpv_ai_aisystem },
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, s_dpv_ai, dpv_ai_hascapability, t_ontology, dpv_ai_capability },
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, s_dpv_ai, dpv_ai_hasdata, t_ontology, dpv_ai_data },
@@ -1676,9 +1676,14 @@ property_gen gentab [] =
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, s_dpv_ai, dpv_ai_hastrainingdata, t_ontology, dpv_ai_trainingdata },
     { { s_dpv_ai, 2, 1 }, { 0, 0 }, s_dpv_ai, dpv_ai_hasvalidationdata, t_ontology, dpv_ai_validationdata },
 
-    // DPV EU AIACT
+    // DPV DE GDNG
+//    { { s_dpv_de_gdng, 2, 3 }, { 0, 0 }, s_dpv_de_gdng, dpv_de_gdng_hasdataholder, t_ontology, dpv_de_gdng_dataholder },
+    { { s_dpv_de_gdng, 2, 3 }, { 0, 0 }, s_dpv_de_gdng, dpv_de_gdng_hasdataholder, t_ontology, dpv_entity },  // FFS
+
+        // DPV EU AIACT
     { { s_dpv_eu_aiact, 2, 1 }, { 0, 0 }, s_dpv_eu_aiact, dpv_eu_aiact_haschangecategory, t_ontology, dpv_eu_aiact_changecategory },
     { { s_dpv_eu_aiact, 2, 1 }, { 0, 0 }, s_dpv_eu_aiact, dpv_eu_aiact_haschangedescription, t_ontology, dpv_eu_aiact_changedescription },
+    { { s_dpv_eu_aiact, 2, 3 }, { 0, 0 }, s_dpv_eu_aiact, dpv_eu_aiact_hasrisklevel, t_ontology, dpv_eu_aiact_risklevel },
 
     // dpv EU dga
     { { s_dpv_eu_dga, 2, 0 }, { 0, 0 }, s_dpv_eu_dga, dpv_eu_dga_hasdao, t_ontology, dpv_eu_dga_dataaltruismorganisation },

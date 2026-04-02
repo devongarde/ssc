@@ -206,7 +206,9 @@ void examine_character_code (const html_version& v, const ::std::string& text, b
     return ::std::string (1, GSL_NARROW_CAST <char> (n)); }
 
 bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
-{   if (n < 32)
+{   if ((n >= 9) && (n <= 13))
+        nits.pick (nit_not_iso_8859_1, ed_iso_8859_1, "https://en.wikipedia.org/wiki/ISO/IEC_8859-1", es_info, ec_parser, quote (s), " will move the cursor: is this intentional?");
+    else if (n < 32)
         nits.pick (nit_not_iso_8859_1, ed_iso_8859_1, "https://en.wikipedia.org/wiki/ISO/IEC_8859-1", es_warning, ec_parser, quote (s), " is a control character");
     else if ((n >= 127) && (n <= 159))
         nits.pick (nit_not_iso_8859_1, ed_iso_8859_1, "https://en.wikipedia.org/wiki/ISO/IEC_8859-1", es_warning, ec_parser, quote (s), " is an invalid character code");

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN place-items tests</title>
+<style>
+.sid {
+/* Positional alignment */
+place-items: center;
+place-items: normal start;
+place-items: center normal;
+place-items: start legacy;
+place-items: end normal;
+place-items: self-start legacy;
+place-items: self-end normal;
+place-items: flex-start legacy;
+place-items: flex-end normal;
+place-items: anchor-center;
+
+/* Baseline alignment */
+place-items: baseline normal;
+place-items: first baseline legacy;
+place-items: last baseline normal;
+place-items: stretch legacy;
+
+/* Global values */
+place-items: inherit;
+place-items: initial;
+place-items: revert;
+place-items: revert-layer;
+place-items: unset;
+}
+
+#container {
+  height: 200px;
+  width: 240px;
+  place-items: stretch; /* You can change this value by selecting another option in the list */
+  background-color: #8c8c8c;
+  display: flex;
+}
+
+#grid-container {
+  height: 200px;
+  width: 240px;
+  place-items: stretch; /* You can change this value by selecting another option in the list */
+  background-color: #8c8c8c;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#grid-container > div {
+  width: 50px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN place-items Tests</h1>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN reading-order tests</title>
+<style>
+.sid
+{
+/* <integer> values */
+reading-order: 1;
+reading-order: -1;
+
+/* Global values */
+reading-order: inherit;
+reading-order: initial;
+reading-order: revert;
+reading-order: revert-layer;
+reading-order: unset;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  grid-auto-flow: dense;
+  reading-flow: grid-rows;
+}
+
+.top {
+  reading-order: -1;
+}
+
+.bottom {
+  reading-order: 21;
+}
+
+.wrapper {
+  reading-flow: source-order;
+}
+
+.wrapper > a {
+  display: block;
+}
+
+.wrapper a:nth-child(odd) {
+  reading-order: -1;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN reading-order Tests</h1>
+
+<div class="wrapper">
+  <a href="#">Item 1</a>
+  <a class="bottom" href="#">Item 2</a>
+  <a href="#">Item 3</a>
+  <a class="top" href="#">Item 4</a>
+  <a href="#">Item 5</a>
+  <a href="#">Item 6</a>
+</div>
+
+<div class="wrapper">
+  <a href="#">Item 1</a>
+  <a href="#">Item 2</a>
+  <a href="#">Item 3</a>
+  <a href="#">Item 4</a>
+  <a href="#">Item 5</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN will-change tests</title>
+<style>
+.sid {
+/* Keyword values */
+will-change: auto;
+will-change: scroll-position;
+will-change: contents;
+will-change: transform; /* Example of <custom-ident> */
+will-change: opacity; /* Example of <custom-ident> */
+will-change: left, top; /* Example of two <animatable-feature> */
+
+/* Global values */
+will-change: inherit;
+will-change: initial;
+will-change: revert;
+will-change: revert-layer;
+will-change: unset;
+}
+
+.slide {
+  will-change: transform;
+}
+</style>
+<script>
+const el = document.getElementById("element");
+
+// Set will-change when the element is hovered
+el.addEventListener("mouseenter", hintBrowser);
+el.addEventListener("animationEnd", removeHint);
+
+function hintBrowser() {
+  // The optimizable properties that are going to change
+  // in the animation's keyframes block
+  this.style.willChange = "transform, opacity";
+}
+
+function removeHint() {
+  this.style.willChange = "auto";
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN will-change Tests</h1>
+
+</body>
+</html>

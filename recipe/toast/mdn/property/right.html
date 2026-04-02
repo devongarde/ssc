@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN right tests</title>
+<style>
+.sid
+{
+/* <length> values */
+right: 3px;
+right: 2.4em;
+right: anchor(--my-anchor 50%);
+right: anchor-size(--my-anchor height, 65px);
+
+/* <percentage>s of the width of the containing block */
+right: 10%;
+
+/* Keyword value */
+right: auto;
+
+/* Global values */
+right: inherit;
+right: initial;
+right: revert;
+right: revert-layer;
+right: unset;
+}
+
+#relative {
+  width: 100px;
+  height: 100px;
+  background-color: #ffc7e4;
+  position: relative;
+  top: 20px;
+  left: 20px;
+}
+
+#absolute {
+  width: 100px;
+  height: 100px;
+  background-color: #ffd7c2;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+
+div {
+  outline: 1px solid #cccccc;
+}
+#parent {
+  width: 200px;
+  height: 200px;
+  background-color: #ffc7e4;
+  position: relative;
+}
+/* declare both a left and a right */
+#width,
+#noWidth {
+  background-color: #c2ffd7;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+/* declare a width */
+#width {
+  width: 100px;
+  top: 60px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN right Tests</h1>
+
+<div id="relative">Relatively positioned</div>
+<div id="absolute">Absolutely positioned</div>
+
+<div id="parent">
+  Parent
+  <div id="noWidth">No width</div>
+  <div id="width">width: 100px</div>
+</div>
+
+</body>
+</html>

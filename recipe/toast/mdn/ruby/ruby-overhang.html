@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN ruby-overhang tests</title>
+<style>
+.sid {
+/* Keyword values */
+ruby-overhang: auto;
+ruby-overhang: none;
+
+/* Global values */
+ruby-overhang: inherit;
+ruby-overhang: initial;
+ruby-overhang: revert;
+ruby-overhang: revert-layer;
+ruby-overhang: unset;
+}
+
+p {
+  font-size: 40px;
+  display: block;
+  margin: 0.5rem;
+}
+rt {
+  font-size: 28px;
+  outline: 1px solid red;
+}
+.auto {
+  ruby-overhang: auto;
+}
+.none {
+  ruby-overhang: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN ruby-overhang Tests</h1>
+
+<p class="auto">
+  あの<ruby>表<rp>(</rp><rt>ひょう</rt><rp>)</rp></ruby
+  ><ruby>現<rp>(</rp><rt>げん</rt><rp>)</rp></ruby>は面白い。
+</p>
+
+<p class="none">
+  あの<ruby>表<rp>(</rp><rt>ひょう</rt><rp>)</rp></ruby
+  ><ruby>現<rp>(</rp><rt>げん</rt><rp>)</rp></ruby>は面白い。
+</p>
+
+</body>
+</html>

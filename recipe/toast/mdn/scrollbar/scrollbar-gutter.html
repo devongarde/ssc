@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN scrollbar-gutter tests</title>
+<style>
+.sid {
+/* Initial value */
+scrollbar-gutter: auto;
+
+/* "stable" keyword, with optional modifier */
+scrollbar-gutter: stable;
+scrollbar-gutter: stable both-edges;
+
+/* Global values */
+scrollbar-gutter: inherit;
+scrollbar-gutter: initial;
+scrollbar-gutter: revert;
+scrollbar-gutter: revert-layer;
+scrollbar-gutter: unset;
+}
+
+.container {
+  scrollbar-gutter: stable;
+}
+
+.container {
+  scrollbar-gutter: stable both-edges;
+}
+
+.container1 {
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
+
+.container2 {
+  scrollbar-gutter: stable;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN scrollbar-gutter Tests</h1>
+
+</body>
+</html>

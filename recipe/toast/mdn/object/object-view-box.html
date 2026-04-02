@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN object-fit tests</title>
+<style>
+.sid {
+/* keywords */
+object-view-box: none;
+
+/* <basic-shape-rect> functions */
+object-view-box: inset(20%);
+object-view-box: inset(20% 30%);
+object-view-box: inset(10px 0 25px 33px);
+object-view-box: xywh(95px 20px 60px 60px);
+object-view-box: rect(10px 30px 30px 10px);
+
+/* Global values */
+object-view-box: inherit;
+object-view-box: initial;
+object-view-box: revert;
+object-view-box: revert-layer;
+object-view-box: unset;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+  border: 1px solid red;
+}
+
+.intrinsic {
+  object-view-box: xywh(70px 90px 200px 200px);
+}
+
+.zoom-in {
+  object-view-box: rect(110px 250px 270px 90px);
+}
+
+.zoom-out {
+  object-view-box: inset(17px 0 17px 0);
+}
+
+img {
+  width: 350px;
+  height: 350px;
+  border: 2px solid red;
+
+  --box-size: 150px;
+  object-view-box: xywh(500px 30px var(--box-size) var(--box-size));
+}
+
+img {
+  width: 350px;
+  height: 350px;
+
+  object-view-box: xywh(0 30px 400px 400px);
+
+  animation: panning 5s linear infinite alternate;
+}
+
+@keyframes panning {
+  from {
+    object-view-box: xywh(0 -50px 400px 400px);
+  }
+  to {
+    object-view-box: xywh(800px 68px 400px 400px);
+  }
+}
+</style>
+<script>
+const img = document.querySelector("img");
+const zoom = document.getElementById("box-size");
+const output = document.querySelector("output");
+
+function update() {
+  const size = 500 - zoom.value;
+  img.style.setProperty("--box-size", `${size}px`);
+  output.innerText = `object-view-box: xywh(500px 30px ${size}px ${size}px);`;
+}
+
+zoom.addEventListener("input", update);
+update();
+</script>
+</head>
+
+<body>
+
+<h1>MDN object-fit Tests</h1>
+
+<figure>
+  <img
+    class="intrinsic"
+    src="https://mdn.github.io/shared-assets/images/examples/painted-hand.jpg"
+    alt="Original scale section of a painted hand" />
+  <figcaption>intrinsic</figcaption>
+</figure>
+<figure>
+  <img
+    class="zoom-in"
+    src="https://mdn.github.io/shared-assets/images/examples/painted-hand.jpg"
+    alt="Zoomed in section of a painted hand" />
+  <figcaption>zoomed in</figcaption>
+</figure>
+<figure>
+  <img
+    class="zoom-out"
+    src="https://mdn.github.io/shared-assets/images/examples/painted-hand.jpg"
+    alt="Zoomed out section of a painted hand" />
+  <figcaption>zoomed out</figcaption>
+</figure>
+
+<img
+  src="https://mdn.github.io/shared-assets/images/examples/leopard.jpg"
+  alt="leopard" />
+<p>
+  <label for="box-size">Zoom-in: </label>
+  <input type="range" id="box-size" min="115" max="380" value="150" />
+</p>
+<output></output>
+
+<img
+  src="https://mdn.github.io/shared-assets/images/examples/leopard.jpg"
+  alt="leopard" />
+
+</body>
+</html>

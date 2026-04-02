@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN opacity tests</title>
+<style>
+.sid
+{
+opacity: 0.9;
+opacity: 90%;
+
+/* Global values */
+opacity: inherit;
+opacity: initial;
+opacity: revert;
+opacity: revert-layer;
+opacity: unset;
+
+background: rgb(0 0 0 / 40%);
+}
+
+.card {
+  transition:
+    opacity 5s,
+    display 5s;
+  background-color: orange;
+
+  transition-behavior: allow-discrete;
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+.card.hidden {
+  display: none;
+  opacity: 0;
+}
+
+div {
+  background-color: yellow;
+  font-weight: bold;
+  font-size: 130%;
+}
+.light {
+  opacity: 0.2; /* Barely see the text over the background */
+}
+.medium {
+  opacity: 0.5; /* See the text more clearly over the background */
+}
+.heavy {
+  opacity: 0.9; /* See the text very clearly over the background */
+}
+
+img.opacity {
+  opacity: 1;
+}
+
+img.opacity:hover {
+  opacity: 0.5;
+}
+
+.wrapper {
+  width: 200px;
+  height: 160px;
+  background-color: #f03cc3;
+  background-image: linear-gradient(
+    90deg,
+    transparent 50%,
+    rgb(255 255 255 / 50%) 50%
+  );
+  background-size: 20px 20px;
+}
+
+.element {
+  opacity: 0.5;
+}
+
+@media (prefers-reduced-transparency) {
+  .element {
+    opacity: 1;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN opacity Tests</h1>
+
+<div class="light">You can barely see this.</div>
+<div class="medium">This is easier to see.</div>
+<div class="heavy">This is very easy to see.</div>
+
+<div class="wrapper">
+  <img
+    src="/shared-assets/images/examples/dino.svg"
+    alt="MDN Dino"
+    width="128"
+    height="146"
+    class="opacity" />
+</div>
+
+</body>
+</html>

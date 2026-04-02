@@ -101,6 +101,9 @@ template < > struct type_master < t_navigation > : type_id_or_either_string < t_
 template < > struct type_master < t_opacity > : type_or_string < t_opacity, t_zero_to_one, sz_inherit >
 {   using type_or_string < t_opacity, t_zero_to_one, sz_inherit > :: type_or_string; };
 
+template < > struct type_master < t_opacity_percent > : type_either_or < t_opacity_percent, t_zero_to_one, t_percent_100 >
+{   using type_either_or < t_opacity_percent, t_zero_to_one, t_percent_100 > :: type_either_or; };
+
 template < > struct type_master < t_panose1 > : type_exactly_n < t_panose1, sz_space_char, t_integer, 10 >
 { using type_exactly_n < t_panose1, sz_space_char, t_integer, 10 > :: type_exactly_n; };
 

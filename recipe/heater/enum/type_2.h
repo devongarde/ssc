@@ -127,7 +127,6 @@ template < > struct type_master < t_auto_break > : two_value < t_auto_break, e_a
 template < > struct type_master < t_auto_contain > : two_value < t_auto_contain, e_auto_contain, sz_auto, sz_contain >
 { using two_value < t_auto_contain, e_auto_contain, sz_auto, sz_contain > :: two_value; };
 
-// t_auto_inert
 template < > struct type_master < t_auto_inert > : two_value < t_auto_inert, e_auto_inert, sz_auto, sz_inert >
 { using two_value < t_auto_inert, e_auto_inert, sz_auto, sz_inert > :: two_value; };
 
@@ -137,11 +136,11 @@ template < > struct type_master < t_auto_manual > : two_value < t_auto_manual, e
 template < > struct type_master < t_auto_none > : two_value < t_auto_none, e_auto_none, sz_auto, sz_none >
 { using two_value < t_auto_none, e_auto_none, sz_auto, sz_none > :: two_value; };
 
-template < > struct type_master < t_auto_smooth > : two_value < t_auto_smooth, e_auto_smooth, sz_all, sz_smooth >
-{ using two_value < t_auto_smooth, e_auto_smooth, sz_all, sz_smooth > :: two_value; };
+template < > struct type_master < t_auto_smooth > : two_value < t_auto_smooth, e_auto_smooth, sz_auto, sz_smooth >
+{ using two_value < t_auto_smooth, e_auto_smooth, sz_auto, sz_smooth > :: two_value; };
 
-template < > struct type_master < t_auto_stable > : two_value < t_auto_stable, e_auto_smooth, sz_all, sz_stable >
-{ using two_value < t_auto_stable, e_auto_smooth, sz_all, sz_stable > :: two_value; };
+template < > struct type_master < t_auto_stable > : two_value < t_auto_stable, e_auto_smooth, sz_auto, sz_stable >
+{ using two_value < t_auto_stable, e_auto_smooth, sz_auto, sz_stable > :: two_value; };
 
 template < > struct type_master < t_blink_none > : two_value < t_blink_none, e_blink_none, sz_blink, sz_none >
 { using two_value < t_blink_none, e_blink_none, sz_blink, sz_none > :: two_value; };
@@ -233,8 +232,14 @@ template < > struct type_master < t_css_shape_fillrule > : two_value < t_css_sha
 template < > struct type_master < t_css_text_resize > : two_value < t_css_text_resize, e_css_text_resize, sz_clip, sz_ellipsis >
 { using two_value < t_css_text_resize, e_css_text_resize, sz_clip, sz_ellipsis > :: two_value; };
 
+template < > struct type_master < t_css_text_wrap_mode > : two_value < t_css_text_wrap_mode, e_css_text_wrap_mode, sz_wrap, sz_nowrap >
+{ using two_value < t_css_text_wrap_mode, e_css_text_wrap_mode, sz_wrap, sz_nowrap > :: two_value; };
+
 template < > struct type_master < t_css_transform_style > : two_value < t_css_transform_style, e_css_transform_style, sz_flat, sz_preserve_3d >
 { using two_value < t_css_transform_style, e_css_transform_style, sz_flat, sz_preserve_3d > :: two_value; };
+
+template < > struct type_master < t_css_vector_effect > : two_value < t_css_vector_effect, e_css_vector_effect, sz_non_scaling_stroke, sz_none >
+{ using two_value < t_css_vector_effect, e_css_vector_effect, sz_non_scaling_stroke, sz_none > :: two_value; };
 
 template < > struct type_master < t_css_wc_e > : two_value < t_css_wc_e, e_css_wc_e, sz_contents, sz_scroll_position >
 { using two_value < t_css_wc_e, e_css_wc_e, sz_contents, sz_scroll_position > :: two_value; };
@@ -397,6 +402,9 @@ template < > struct type_master < t_n_s > : two_value < t_n_s, e_n_s, sz_n, sz_s
 
 template < > struct type_master < t_nav_controls > : two_value < t_nav_controls, e_nav_controls, sz_back, sz_none >
 { using two_value < t_nav_controls, e_nav_controls, sz_back, sz_none > :: two_value; };
+
+template < > struct type_master < t_nearest_none > : two_value < t_nearest_none, e_none_objects, sz_nearest, sz_none >
+{ using two_value < t_nearest_none, e_none_objects, sz_nearest, sz_none > :: two_value; };
 
 template < > struct type_master < t_none_objects > : two_value < t_none_objects, e_none_objects, sz_none, sz_objects >
 { using two_value < t_none_objects, e_none_objects, sz_none, sz_objects > :: two_value; };

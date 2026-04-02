@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN white-space-collapse tests</title>
+<style>
+.sid {
+/* Keyword values */
+white-space-collapse: collapse;
+white-space-collapse: preserve;
+white-space-collapse: preserve-breaks;
+white-space-collapse: preserve-spaces;
+white-space-collapse: break-spaces;
+
+/* Global values */
+white-space-collapse: inherit;
+white-space-collapse: initial;
+white-space-collapse: revert;
+white-space-collapse: revert-layer;
+white-space-collapse: unset;
+}
+
+.collapse {
+  white-space-collapse: collapse;
+}
+
+.preserve {
+  white-space-collapse: preserve;
+}
+
+.preserve-breaks {
+  white-space-collapse: preserve-breaks;
+}
+
+.preserve-spaces {
+  white-space-collapse: preserve-spaces;
+}
+
+h2 {
+  font-size: 1.6rem;
+  font-family: monospace;
+  border-bottom: 1px dotted #cccccc;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN white-space-collapse Tests</h1>
+
+<h2 class="collapse">Default behavior;
+  all   whitespace   is   collapsed
+  in    the          heading       .</h2>
+
+<h2 class="preserve">In this case
+  all   whitespace   is   preserved
+  in    the          heading       .</h2>
+
+<h2 class="preserve-breaks">In this case only
+  the   line breaks  are  preserved
+  in    the          heading       .</h2>
+
+<h2 class="preserve-spaces">In this case only
+  the   spaces       are  preserved
+  in    the          heading       .</h2>
+
+</body>
+</html>

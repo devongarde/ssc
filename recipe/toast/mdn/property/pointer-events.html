@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN pointer-events tests</title>
+<style>
+.sid
+{
+/* Keyword values */
+pointer-events: auto;
+pointer-events: none;
+
+/* Values used in SVGs */
+pointer-events: visiblePainted;
+pointer-events: visibleFill;
+pointer-events: visibleStroke;
+pointer-events: visible;
+pointer-events: painted;
+pointer-events: fill;
+pointer-events: stroke;
+pointer-events: bounding-box;
+pointer-events: all;
+
+/* Global values */
+pointer-events: inherit;
+pointer-events: initial;
+pointer-events: revert;
+pointer-events: revert-layer;
+pointer-events: unset;
+}
+
+img {
+  pointer-events: none;
+}
+
+a[href="http://example.com"] {
+  pointer-events: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN pointer-events Tests</h1>
+
+<ul>
+  <li><a href="https://developer.mozilla.org">MDN</a></li>
+  <li><a href="http://example.com">example.com</a></li>
+</ul>
+
+</body>
+</html>

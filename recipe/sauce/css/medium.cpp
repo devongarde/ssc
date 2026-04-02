@@ -559,6 +559,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                 case md_colour_index :
                 case md_grid :
                 case md_monochrome :
+                case md_prefers_reduced_transparency :
                 case md_moz_windows_glass :
                     check_feature_compatibility (nits, device, m.m_);
                     arged = value_expected (m.m_, t, len, ratio, dpi);
@@ -609,7 +610,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                 case md_prefers_colour_scheme :
                 case md_prefers_contrast :
                 case md_prefers_reduced_data :
-                case md_prefers_reduced_transparency :
+//                case md_prefers_reduced_transparency :
                 case md_scripting :
                 case md_vertical_viewport_segments :
                 case md_video_colour_gamut :

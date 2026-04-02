@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-transform tests</title>
+<style>
+.sid {
+/* Keyword values */
+text-transform: none;
+text-transform: capitalize;
+text-transform: uppercase;
+text-transform: lowercase;
+text-transform: full-width;
+text-transform: full-size-kana;
+text-transform: math-auto;
+
+/* Global values */
+text-transform: inherit;
+text-transform: initial;
+text-transform: revert;
+text-transform: revert-layer;
+text-transform: unset;
+}
+
+span {
+  text-transform: none;
+}
+strong {
+  float: right;
+}
+
+span {
+  text-transform: capitalize;
+}
+strong {
+  float: right;
+}
+
+span {
+  text-transform: uppercase;
+}
+strong {
+  float: right;
+}
+
+span {
+  text-transform: lowercase;
+}
+strong {
+  float: right;
+}
+
+span {
+  text-transform: full-width;
+}
+strong {
+  width: 100%;
+  float: right;
+}
+
+p:nth-of-type(2) {
+  text-transform: full-size-kana;
+}
+
+.math-id {
+  text-transform: math-auto;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN text-transform Tests</h1>
+
+<p>
+  Initial String
+  <strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit…</strong>
+</p>
+<p>
+  text-transform: none
+  <strong
+    ><span
+      >Lorem ipsum dolor sit amet, consectetur adipisicing elit…</span
+    ></strong
+  >
+</p>
+
+<p>
+  Initial String
+  <strong
+    >(this) "is" [a] –short– -test- «for» *the* _css_ ¿capitalize?
+    ?¡transform!</strong
+  >
+</p>
+<p>
+  text-transform: capitalize
+  <strong
+    ><span
+      >(this) "is" [a] –short– -test- «for» *the* _css_ ¿capitalize?
+      ?¡transform!</span
+    ></strong
+  >
+</p>
+
+<p>
+  Initial String
+  <strong>ⓐⓑⓒ (ⓓⓔⓕ) —ⓖⓗⓘ— ⓙkl</strong>
+</p>
+<p>
+  text-transform: capitalize
+  <strong><span>ⓐⓑⓒ (ⓓⓔⓕ) —ⓖⓗⓘ— ⓙkl</span></strong>
+</p>
+
+<p>
+  Initial String
+  <strong lang="nl">The Dutch word: "ijsland" starts with a digraph.</strong>
+</p>
+<p>
+  text-transform: capitalize
+  <strong
+    ><span lang="nl"
+      >The Dutch word: "ijsland" starts with a digraph.</span
+    ></strong
+  >
+</p>
+
+<p>
+  Initial String
+  <strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit…</strong>
+</p>
+<p>
+  text-transform: uppercase
+  <strong
+    ><span
+      >Lorem ipsum dolor sit amet, consectetur adipisicing elit…</span
+    ></strong
+  >
+</p>
+
+<p>
+  Initial String
+  <strong>Θα πάμε στο "Θεϊκό φαΐ" ή στη "Νεράιδα"</strong>
+</p>
+<p>
+  text-transform: uppercase
+  <strong
+    ><span lang="el">Θα πάμε στο "Θεϊκό φαΐ" ή στη "Νεράιδα"</span></strong
+  >
+</p>
+
+<p>
+  Initial String
+  <strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit…</strong>
+</p>
+<p>
+  text-transform: lowercase
+  <strong
+    ><span
+      >Lorem ipsum dolor sit amet, consectetur adipisicing elit…</span
+    ></strong
+  >
+</p>
+
+<p>
+  Initial String
+  <strong>Σ IS A greek LETTER that appears SEVERAL TIMES IN ΟΔΥΣΣΕΥΣ.</strong>
+</p>
+<p>
+  text-transform: lowercase
+  <strong
+    ><span
+      >Σ IS A greek LETTER that appears SEVERAL TIMES IN ΟΔΥΣΣΕΥΣ.</span
+    ></strong
+  >
+</p>
+
+<p>
+  Initial String
+  <strong>Ĩ is a Lithuanian LETTER as is J́</strong>
+</p>
+<p>
+  text-transform: lowercase
+  <strong><span lang="lt">Ĩ is a Lithuanian LETTER as is J́</span></strong>
+</p>
+
+<p>
+  Initial String
+  <strong
+    >0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&()*+,-./:;&lt;=&gt;?@{|}~</strong
+  >
+</p>
+<p>
+  text-transform: full-width
+  <strong
+    ><span
+      >0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&()*+,-./:;&lt;=&gt;?@{|}~</span
+    ></strong
+  >
+</p>
+
+<p>
+  Initial String
+  <strong>ｳｪﾌﾞﾌﾟﾛｸﾞﾗﾐﾝｸﾞの勉強</strong>
+</p>
+<p>
+  text-transform: full-width
+  <strong><span>ｳｪﾌﾞﾌﾟﾛｸﾞﾗﾐﾝｸﾞの勉強</span></strong>
+</p>
+
+<p>ァィゥェ ォヵㇰヶ ㇱㇲッㇳ ㇴㇵㇶㇷ ㇸㇹㇺャ ュョㇻㇼ ㇽㇾㇿヮ</p>
+<p>ァィゥェ ォヵㇰヶ ㇱㇲッㇳ ㇴㇵㇶㇷ ㇸㇹㇺャ ュョㇻㇼ ㇽㇾㇿヮ</p>
+
+<div>
+  (<span class="math-id">sin</span>&#8198;<span class="math-id">x</span>)<sup
+    >2</sup
+  >
+  + (<span class="math-id">cos</span>&#8198;<span class="math-id">x</span>)<sup
+    >2</sup
+  >
+  = 1
+</div>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <semantics>
+    <mrow>
+      <mo stretchy="false">(</mo>
+      <mo lspace="0em" rspace="0em">sin</mo>
+      <mspace width="0.16666666666666666em"></mspace>
+      <mi>x</mi>
+      <msup>
+        <mo stretchy="false">)</mo>
+        <mn>2</mn>
+      </msup>
+      <mo>+</mo>
+      <mo stretchy="false">(</mo>
+      <mo lspace="0em" rspace="0em">cos</mo>
+      <mspace width="0.16666666666666666em"></mspace>
+      <mi>x</mi>
+      <msup>
+        <mo stretchy="false">)</mo>
+        <mn>2</mn>
+      </msup>
+      <mo>=</mo>
+      <mn>1</mn>
+    </mrow>
+    <annotation encoding="TeX">(\sin\,x)^2+(\cos\,x)^2=1</annotation>
+  </semantics>
+</math>
+
+</body>
+</html>

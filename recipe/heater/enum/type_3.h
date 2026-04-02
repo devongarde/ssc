@@ -106,6 +106,9 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, boo
     ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE, EMPTY > :: b_;
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE, bool EMPTY >
     ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE, EMPTY > :: c_;
+    
+template < > struct type_master < t_abn > : three_value < t_abn, e_abn, sz_after, sz_before, sz_none >
+{ using three_value < t_abn, e_abn, sz_after, sz_before, sz_none > :: three_value; };
 
 template < > struct type_master < t_acm > : three_value < t_acm, e_acm, sz_arcs, sz_crop, sz_miter >
 { using three_value < t_acm, e_acm, sz_arcs, sz_crop, sz_miter > :: three_value; };
@@ -347,7 +350,6 @@ template < > struct type_master < t_importance > : three_value < t_importance, e
 template < > struct type_master < t_infixlinebreakstyle > : three_value < t_infixlinebreakstyle, e_infixlinebreakstyle, sz_before, sz_after, sz_duplicate >
 { using three_value < t_infixlinebreakstyle, e_infixlinebreakstyle, sz_before, sz_after, sz_duplicate > :: three_value; };
 
-//typedef enum { inn_ignore, inn_none, inn_normal } e_inn; // t_inn
 template < > struct type_master < t_inn > : three_value < t_inn, e_inn, sz_ignore, sz_none, sz_normal >
 { using three_value < t_inn, e_inn, sz_ignore, sz_none, sz_normal > :: three_value; };
 

@@ -198,3 +198,239 @@ PASS ../toast/mdn/property/mix-blend-mode.html
 113 inserted_missing_closure
 114 inserted_missing_closure
 115 inserted_missing_closure
+
+PASS ../toast/mdn/property/opacity.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/order.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/orphans.html
+2 naughty_lang
+5 naughty_page
+
+PASS ../toast/mdn/property/overlay.html
+2 naughty_lang
+87 use_quote_code
+
+PASS ../toast/mdn/property/paint-order.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/perspective.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/perspective-origin.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/pointer-events.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/print-colour-adjust.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/quotes.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/r.html
+2 naughty_lang
+59 inserted_missing_closure
+60 inserted_missing_closure
+64 inserted_missing_closure
+65 inserted_missing_closure
+68 inserted_missing_closure
+69 inserted_missing_closure
+
+PASS ../toast/mdn/property/reading-flow.html
+2 naughty_lang
+100 id_exists
+
+PASS ../toast/mdn/property/reading-order.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/resize.html
+2 naughty_lang
+56 naughty_grave naughty_grave naughty_grave naughty_grave
+
+PASS ../toast/mdn/property/right.html
+0 anchor
+2 naughty_lang
+
+PASS ../toast/mdn/property/rotate.html
+2 naughty_lang
+62 lonely_ampersand
+
+PASS ../toast/mdn/property/row-gap.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/rx.html
+2 naughty_lang
+74 inserted_missing_closure
+75 inserted_missing_closure
+76 inserted_missing_closure
+77 inserted_missing_closure
+78 inserted_missing_closure
+82 inserted_missing_closure
+83 inserted_missing_closure
+87 inserted_missing_closure
+88 inserted_missing_closure
+
+PASS ../toast/mdn/property/ry.html
+2 naughty_lang
+74 inserted_missing_closure
+75 inserted_missing_closure
+76 inserted_missing_closure
+77 inserted_missing_closure
+78 inserted_missing_closure
+82 inserted_missing_closure
+83 inserted_missing_closure
+87 inserted_missing_closure
+88 inserted_missing_closure
+
+PASS ../toast/mdn/property/scale.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/speak-as.html
+2 naughty_lang
+53 use_quote_code
+54 use_quote_code
+55 use_quote_code
+56 use_quote_code
+57 use_quote_code
+58 use_quote_code
+
+PASS ../toast/mdn/property/stop-colour.html
+2 naughty_lang
+5 unrecognised_value unrecognised_value unrecognised_value
+60 inserted_missing_closure
+61 inserted_missing_closure
+62 inserted_missing_closure
+63 inserted_missing_closure
+66 inserted_missing_closure
+67 inserted_missing_closure
+68 inserted_missing_closure
+69 inserted_missing_closure
+72 inserted_missing_closure
+73 inserted_missing_closure
+74 inserted_missing_closure
+75 inserted_missing_closure
+78 inserted_missing_closure
+79 inserted_missing_closure
+80 inserted_missing_closure
+
+PASS ../toast/mdn/property/stop-opacity.html
+2 naughty_lang
+53 inserted_missing_closure
+54 inserted_missing_closure
+55 inserted_missing_closure
+58 inserted_missing_closure
+59 inserted_missing_closure
+60 inserted_missing_closure
+63 inserted_missing_closure
+64 inserted_missing_closure
+65 inserted_missing_closure
+68 inserted_missing_closure
+69 inserted_missing_closure
+70 inserted_missing_closure
+
+PASS ../toast/mdn/property/table-layout.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/tab-stop.html
+2 naughty_lang
+50 not_iso_8859_1
+51 not_iso_8859_1
+53 not_iso_8859_1
+
+PASS ../toast/mdn/property/timeline-scope.html
+2 naughty_lang
+5 angle unrecognised_value
+
+PASS ../toast/mdn/property/top.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/touch-action.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/translate.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/unicode-bidi.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/user-modify.html
+2 naughty_lang
+5 deprecated deprecated deprecated deprecated deprecated deprecated deprecated abandoned bespoke_obsolete css_bespoke
+
+PASS ../toast/mdn/property/user-select.html
+2 naughty_lang
+5 css_bespoke css_bespoke
+38 use_quote_code
+
+PASS ../toast/mdn/property/vector-effect.html
+2 naughty_lang
+48 invalid_attribute_version wrong_version
+49 inserted_missing_closure
+50 inserted_missing_closure
+60 invalid_attribute_version wrong_version
+67 inserted_missing_closure invalid_attribute_version wrong_version
+75 inserted_missing_closure invalid_attribute_version wrong_version
+
+PASS ../toast/mdn/property/vertical-align.html
+2 naughty_lang
+125 use_quote_code
+
+PASS ../toast/mdn/property/visibility.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/white-space.html
+2 naughty_lang
+65 use_quote_code
+
+PASS ../toast/mdn/property/white-space-collapse.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/widows.html
+2 naughty_lang
+5 naughty_page
+
+PASS ../toast/mdn/property/width.html
+2 naughty_lang
+124 unrecognised_value
+126 unrecognised_value
+
+PASS ../toast/mdn/property/will-change.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/word-break.html
+2 naughty_lang
+5 deprecated deprecated unrecognised_value deprecated deprecated
+
+PASS ../toast/mdn/property/word-spacing.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/writing-mode.html
+2 naughty_lang
+100 unrecognised_value
+107 unrecognised_value
+116 unrecognised_value
+
+PASS ../toast/mdn/property/x.html
+2 naughty_lang
+52 inserted_missing_closure
+53 inserted_missing_closure
+54 inserted_missing_closure
+55 inserted_missing_closure
+
+PASS ../toast/mdn/property/y.html
+2 naughty_lang
+51 inserted_missing_closure
+52 inserted_missing_closure
+53 inserted_missing_closure
+54 inserted_missing_closure
+
+PASS ../toast/mdn/property/z-index.html
+2 naughty_lang
+
+PASS ../toast/mdn/property/zoom.html
+2 naughty_lang
+97 unrecognised_value

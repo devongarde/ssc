@@ -492,7 +492,7 @@ template < e_type T, e_type P, class SZ, int F = 0 > struct maybe_type_then_stri
                 return; }
             if (test_value < P > (nets, v, vs.at (0)))
             {   nits.merge (nets);
-                if (compare_complain (nits, v, SZ :: sz (), vs.at (1)))
+                if ((vs.size () > 1) && compare_complain (nits, v, SZ :: sz (), vs.at (1)))
                 {   if (vs.size () > 2) nits.pick (nit_too_many, es_warning, ec_type, "ignoring values after ", SZ :: sz (), " (4)");
                     return; }
                 else nits.pick (nit_css_syntax, es_error, ec_type, SZ :: sz (), " expected after ", quote (vs.at (0))); }

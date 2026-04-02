@@ -25,6 +25,7 @@ typedef enum { ac_a, av_v } e_a_v;
 typedef enum { abc_after, abc_before, abc_content, abc_first_letter } e_abcfl;
 typedef enum { abf_after, abf_before, abf_first_letter, abf_marker, abf_text } e_abfmt;
 typedef enum { ablr_above, ablr_below, ablr_left, ablr_right } e_ablr;
+typedef enum { abn_after, abn_before, abn_none } e_abn;
 typedef enum {  am_deposit, am_donation, am_purchase, am_loan, am_licence, am_item_creation } e_accrual_method;
 typedef enum {  ap_triennial, ap_biennial, ap_annual, ap_semiannual, ap_thriceyearly, ap_quarterly, ap_bimonthly, ap_monthly, ap_semimonthly, ap_biweekly, ap_thricemonthly,
                 ap_weekly, ap_semiweekly, ap_thriceweekly, ap_daily, ap_continuous, ap_irregular } e_accrual_periodicity;
@@ -370,7 +371,7 @@ typedef enum { bsb_baseline, bsb_bottom, bsb_centre, bsb_top, bsb_sub, bsb_super
 typedef enum { bce_baseline, bce_centre, bce_end, bce_start, bce_stretch } e_bcess;
 typedef enum { bcs_bounding_box, bcs_clone, bcs_slice } e_bcs;
 typedef enum { be_alternative, be_scroll, be_slide } e_behaviour;
-typedef enum { bens_both, bens_end, bens_none, bens_start } e_bens;
+typedef enum { bens_trim_both, bens_trim_end, bens_none, bens_trim_start } e_bens;
 typedef enum { benrs_both, benrs_end, benrs_normal, benrs_start } e_benrs;
 typedef enum { bihv_block, bihv_horizontal, bihv_inline, bihv_vertical } e_bihv;
 typedef enum { bixy_block, bixy_inline, bixy_x, bixy_y } e_bixy;
@@ -614,11 +615,11 @@ typedef enum {  csk_context,
 
 typedef enum { caa_always, caa_auto, caa_avoid, caa_inherit, caa_left, caa_recto, caa_right, caa_verso } e_css_aaalri;
 typedef enum { cai_auto, cai_avoid, cai_inherit } e_css_aai;
-typedef enum { ecac_baseline, ecac_centre, ecac_flex_end, ecac_flex_start, ecac_space_around, ecac_space_between, ecac_space_evenly, ecac_stretch } e_css_align_content;
+typedef enum { ecac_baseline, ecac_centre, ecac_end, ecac_flex_end, ecac_flex_start, ecac_space_around, ecac_space_between, ecac_space_evenly, ecac_start, ecac_stretch } e_css_align_content;
 typedef enum { ecai_baseline, ecai_centre, ecai_flex_end, ecai_flex_start, ecai_stretch } e_css_align_items;
 typedef enum { eat_any, eat_begins, eat_identical, eat_contains, eat_ends, eat_in_list, eat_is, eat_lang, eat_uncased } e_css_attribute_value;
 typedef enum { ecas_inherit, eca_xx_small, eca_x_small, eca_small, eca_medium, eca_large, eca_x_large, eca_xx_large, eca_xxx_large } e_css_absolute_size;
-typedef enum { all_inherit, all_initial, all_revert, all_revert_layer, all_unset } e_css_all_2;
+typedef enum { all_inherit, all_initial, all_moz_initial, all_revert, all_revert_layer, all_unset } e_css_all_2;
 typedef enum { ecc_accumulate, ecc_add, ecc_replace } e_css_anim_comp;
 typedef enum { ecd_alternative, scd_alternative_reverse, ecd_normal, ecd_reverse } e_css_anim_dir;
 typedef enum {  eca_auto, eca_base, eca_base_select, eca_button, eca_checkbox, eca_inherit, eca_listbox, eca_menulist, eca_menulist_button, eca_meter, eca_none, eca_progress_bar,
@@ -703,7 +704,7 @@ typedef enum { eccb_border_box, eccb_content_box, eccb_fill_box, eccb_match_pare
 typedef enum { eccp_centre, eccp_end, eccp_flex_end, eccp_flex_start, eccp_self_end, eccp_self_start, eccp_start } e_css_content_position;
 typedef enum { ecxp_fill, ecxp_fill_opacity, ecxp_stroke, ecxp_stroke_opacity } e_css_context_properties;
 typedef enum { ccsn_bevel, ccsn_notch, ccsn_round, ccsn_scoop, ccsn_square, ccsn_squircle } e_css_corner_shape_name;
-typedef enum {  eccs_inherit, eccs_initial, eccs_none, eccs_revert, eccs_revert_layer, eccs_unset,
+typedef enum {  eccs_inherit, eccs_initial, eccs_moz_initial, eccs_none, eccs_revert, eccs_revert_layer, eccs_unset,
                 eccs_arabic_indic, eccs_armenian, eccs_bengali, eccs_cambodian, eccs_circle, eccs_cjk_decimal, eccs_cjk_earthly_branch, eccs_cjk_heavenly_stem,
                 eccs_decimal, eccs_decimal_leading_zero, eccs_devanagari, eccs_disc, eccs_disclosure_closed, eccs_disclosure_open, eccs_ethiopic_numeric, eccs_georgian,
                 eccs_gujarati, eccs_gurmukhi, eccs_hebrew, eccs_hiragana, eccs_hiragana_iroha, eccs_japanese_formal, eccs_japanese_informal, eccs_kannada, eccs_katakana,
@@ -830,9 +831,9 @@ typedef enum {  efn_none, efn_webkit_autofill,
                 efn_part, efn_past, efn_paused, efn_picker, efn_picker_icon, efn_picture_in_picture, efn_placeholder, efn_placeholder_shown, efn_playing,
                     efn_polygon, efn_popover_open,
                 efn_read_only, efn_read_write, efn_recto, efn_region, efn_required, efn_right, efn_root,
-                efn_scope, efn_seeking, efn_selection, efn_shadow, efn_slider_fill, efn_slider_thumb, efn_slider_track, efn_slotted, efn_spelling_error,
-                    efn_stalled, efn_state, enf_step_control, efn_step_down, efn_step_up,
-                efn_target, efn_target_text, efn_target_within,
+                efn_scope, efn_scroll_marker, efn_scroll_marker_group, efn_seeking, efn_selection, efn_shadow, efn_slider_fill, efn_slider_thumb,
+                    efn_slider_track, efn_slotted, efn_spelling_error, efn_stalled, efn_state, enf_step_control, efn_step_down, efn_step_up,
+                efn_target, efn_target_after, efn_target_before, efn_target_current, efn_target_text, efn_target_within,
                 efn_user_invalid, efn_user_valid,
                 efn_valid, efn_verso, efn_view_transition, efn_view_transition_group, efn_view_transition_new, efn_view_transition_old,
                     efn_view_transition_image_pair, efn_visited, efn_volume_locked,
@@ -859,7 +860,7 @@ typedef enum { cib1_alphabetic, cib1_cap, cib1_ex, cib1_ideographic, cib1_ideogr
 typedef enum { cib2_alphabetic, cib2_ideographic, cib2_ideographic_ink, cib2_text } e_css_inline_bem_2;
 typedef enum { ehi_decreasing, ehi_increasing, ehi_longer, ehi_shorter } e_css_hue_interpolation;
 typedef enum { eci_auto, eci_isolate } e_css_isolation;
-typedef enum { ejc_centre, ejc_flex_end, ejc_flex_start, ejc_space_around, ejc_space_between, ejc_space_evenly, ejc_stretch } e_css_justify_content;
+typedef enum { ejc_centre, ejc_end, ejc_flex_end, ejc_flex_start, ejc_left, ejc_right, ejc_space_around, ejc_space_between, ejc_space_evenly, ejc_start, ejc_stretch } e_css_justify_content;
 typedef enum { eclb_border_box, eclb_content_box, eclb_margin_box, eclb_padding_box } e_css_layout_box;
 typedef enum { clb_anywhere, clb_auto, clb_loose, clb_normal, clb_strict } e_css_line_break;
 typedef enum {  ecls_inherit,
@@ -1031,9 +1032,9 @@ typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                     ec_max_lines, ec_max_width, ec_max_zoom, ec_min_block_size, ec_min_height, ec_min_inline_size, ec_min_intrinsic_sizing, ec_min_width,
                     ec_min_zoom, ec_mix_blend_mode,
                 ec_name, ec_nav_down, ec_nav_left, ec_nav_right, ec_nav_up, ec_negative,
-                ec_object_fit, ec_object_position, ec_offset, ec_offset_anchor, ec_offset_distance, ec_offset_path, ec_offset_position, ec_offset_rotate,
+                ec_object_fit, ec_object_position, ec_object_view_box, ec_offset, ec_offset_anchor, ec_offset_distance, ec_offset_path, ec_offset_position, ec_offset_rotate,
                     ec_orientation, ec_opacity, ec_order, ec_orphans, ec_outline, ec_outline_colour, ec_outline_offset, ec_outline_style, ec_outline_width,
-                    ec_overflow, ec_overflow_anchor, ec_overflow_block, ec_overflow_clip_margin, ec_overflow_clip_margin_block,
+                    ec_overlay, ec_overflow, ec_overflow_anchor, ec_overflow_block, ec_overflow_clip_margin, ec_overflow_clip_margin_block,
                     ec_overflow_clip_margin_block_end, ec_overflow_clip_margin_block_start, ec_overflow_clip_margin_bottom, ec_overflow_clip_margin_inline,
                     ec_overflow_clip_margin_inline_end, ec_overflow_clip_margin_inline_start, ec_overflow_clip_margin_left, ec_overflow_clip_margin_right,
                     ec_overflow_clip_margin_top, ec_overflow_inline, ec_overflow_wrap, ec_overflow_x, ec_overflow_y, ec_override_colours,
@@ -1046,14 +1047,14 @@ typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                     ec_position_try, ec_position_try_fallbacks, ec_position_try_order, ec_position_visibility, ec_prefix, ec_presentation_level,
                     ec_print_colour_adjust,
                 ec_quotes,
-                ec_r, ec_range, ec_region_fragment, ec_rendering_intent, ec_resize, ec_rest, ec_rest_after, ec_rest_before, ec_richness, ec_right, ec_rotate,
-                    ec_row_gap, ec_ruby_align, ec_ruby_merge, ec_ruby_overhang, ec_ruby_position, ec_running, ec_rx, ec_ry,
-                ec_scale, ec_scroll_behaviour, ec_scroll_margin, ec_scroll_margin_block, ec_scroll_margin_block_end, ec_scroll_margin_block_start,
+                ec_r, ec_range, ec_reading_flow, ec_reading_order, ec_region_fragment, ec_rendering_intent, ec_resize, ec_rest, ec_rest_after, ec_rest_before,
+                    ec_richness, ec_right, ec_rotate, ec_row_gap, ec_ruby_align, ec_ruby_merge, ec_ruby_overhang, ec_ruby_position, ec_running, ec_rx, ec_ry,
+                ec_scale, ec_scroll_behaviour, ec_scroll_initial_target, ec_scroll_margin, ec_scroll_margin_block, ec_scroll_margin_block_end, ec_scroll_margin_block_start,
                     ec_scroll_margin_bottom, ec_scroll_margin_inline, ec_scroll_margin_inline_end, ec_scroll_margin_inline_start, ec_scroll_margin_left,
-                    ec_scroll_margin_right, ec_scroll_margin_top, ec_scroll_padding, ec_scroll_padding_block, ec_scroll_padding_block_end,
+                    ec_scroll_margin_right, ec_scroll_margin_top, ec_scroll_marker_group, ec_scroll_padding, ec_scroll_padding_block, ec_scroll_padding_block_end,
                     ec_scroll_padding_block_start, ec_scroll_padding_bottom, ec_scroll_padding_inline, ec_scroll_padding_inline_end,
                     ec_scroll_padding_inline_start, ec_scroll_padding_left, ec_scroll_padding_right, ec_scroll_padding_top, ec_scroll_snap_align,
-                    ec_scroll_snap_stop, ec_scroll_snap_type, ec_scroll_timeline, ec_scroll_timeline_axis, ec_scroll_timeline_name, ec_scrollbar_colour,
+                    ec_scroll_snap_stop, ec_scroll_snap_type, ec_scroll_target_group, ec_scroll_timeline, ec_scroll_timeline_axis, ec_scroll_timeline_name, ec_scrollbar_colour,
                     ec_scrollbar_gutter, ec_scrollbar_width, ec_shape_image_threshold, ec_shape_inside, ec_shape_margin, ec_shape_outside, ec_shape_padding,
                     ec_shape_rendering, ec_shape_subtract, ec_size, ec_size_adjust, ec_slider_orientation, ec_slope, ec_solid_colour, ec_solid_opacity,
                     ec_spatial_navigation_action, ec_spatial_navigation_contain, ec_spatial_navigation_function, ec_speak, ec_speak_as, ec_speak_header, ec_speak_numeral,
@@ -1063,14 +1064,14 @@ typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                     ec_stroke_image, ec_stroke_linecap, ec_stroke_linejoin, ec_stroke_miterlimit, ec_stroke_opacity, ec_stroke_origin, ec_stroke_params,
                     ec_stroke_position, ec_stroke_repeat, ec_stroke_size, ec_stroke_width, ec_subscript_position_override, ec_subscript_size_override,
                     ec_suffix, ec_superscript_position_override, ec_superscript_size_override, ec_symbols, ec_system,
-                ec_tab_size, ec_table_layout, ec_text_align, ec_text_align_all, ec_text_align_last, ec_text_anchor, ec_text_autospace, ec_text_box_edge,
-                    ec_text_box_trim, ec_text_combine_upright, ec_text_decoration, ec_text_decoration_colour, ec_text_decoration_line, ec_text_decoration_skip,
-                    ec_text_decoration_skip_box, ec_text_decoration_skip_ink, ec_text_decoration_skip_inset, ec_text_decoration_skip_self,
+                ec_tab_size, ec_table_layout, ec_text_align, ec_text_align_all, ec_text_align_last, ec_text_anchor, ec_text_autospace, ec_text_box, ec_text_box_edge,
+                    ec_text_box_trim, ec_text_combine_upright, ec_text_decoration, ec_text_decoration_colour, ec_text_decoration_inset, ec_text_decoration_line,
+                    ec_text_decoration_skip, ec_text_decoration_skip_box, ec_text_decoration_skip_ink, ec_text_decoration_skip_inset, ec_text_decoration_skip_self,
                     ec_text_decoration_skip_spaces, ec_text_decoration_style, ec_text_decoration_thickness, ec_text_definition, ec_text_emphasis,
                     ec_text_emphasis_colour, ec_text_emphasis_position, ec_text_emphasis_skip, ec_text_emphasis_style, ec_text_group_align, ec_text_indent,
                     ec_text_justify, ec_text_orientation, ec_text_overflow, ec_text_rendering, ec_text_resize, ec_text_shadow, ec_text_size_adjust,
                     ec_text_spacing, ec_text_spacing_trim, ec_text_transform, ec_text_underline_offset, ec_text_underline_position, ec_text_wrap,
-                    ec_timeline_scope, ec_top, ec_topline, ec_transform, ec_transform_box, ec_transform_origin, ec_transform_style, ec_transition,
+                    ec_timeline_scope, ec_top, ec_topline, ec_touch_action, ec_transform, ec_transform_box, ec_transform_origin, ec_transform_style, ec_transition,
                     ec_text_wrap_mode, ec_text_wrap_style, ec_transition_behaviour, ec_transition_delay, ec_transition_duration, ec_transition_property,
                     ec_transition_timing_function, ec_translate,
                 ec_unicode_bidi, ec_unicode_range, ec_units_per_em, ec_user_modify, ec_user_select, ec_user_zoom,
@@ -1281,19 +1282,24 @@ typedef enum { efs_position, efs_small_caps, efs_style, efs_weight } e_css_synth
 typedef enum { ctl_auto, ctl_fixed, ctl_inherit } e_css_table_layout;
 typedef enum { cta_ideographic_alpha, cta_ideographic_numeric, cta_insert, cta_no_autospace, cta_punctuation, cta_replace } e_css_text_autospace;
 typedef enum {  ecta_centre, ecta_end, ecta_inherit, ecta_justify, ecta_justify_all, ecta_left, ecta_moz_centre, ecta_moz_left, ecta_moz_right,
-                ecta_match_parent, ecta_right, ecta_start } e_css_text_align;
+                ecta_match_parent, ecta_right, ecta_start, ecta_webkit_centre, ecta_webkit_left, ecta_webkit_right } e_css_text_align;
 typedef enum { ectaa_centre, ectaa_end, ectaa_justify, ectaa_left, ectaa_match_parent, ectaa_right, ectaa_start } e_css_text_align_all;
 typedef enum { ectal_auto, ectal_centre, ectal_end, ectal_justify, ectal_left, ectal_match_parent, ectal_right, ectal_start } e_css_text_align_last;
 typedef enum { ectd_inherit, ectd_none, ectd_underline, ectd_overline, ectd_linethrough, ectd_blink } e_css_text_decoration;
-typedef enum { etj_auto, etj_inter_character, etj_inter_word, etj_none } e_css_text_justify;
+typedef enum { etj_auto, etj_distribute, etj_inter_character, etj_inter_word, etj_none } e_css_text_justify;
 typedef enum { ecto_mixed, ecto_sideways, ecto_upright } e_css_text_orientation;
 typedef enum { etr_clip, etr_ellipses } e_css_text_resize;
+typedef enum { tst_normal, tst_space_all, tst_space_first, tst_trim_start } e_css_text_spacing_trim;
 typedef enum { ect_capitalise, ect_full_width, ect_full_size_kana, ect_lowercase, ect_uppercase } e_css_text_transform;
 typedef enum { ectl_grammar_error, ectl_none, ectl_spelling_error } e_css_textdec_line_e;
+typedef enum { tds_box_decoration, tds_edges, tds_leading_spaces, tds_object, tds_none, tds_spaces, tds_trailing_spaces } e_css_textdec_skip;
 typedef enum { ects_dashed, ects_dotted, ects_double, ects_solid, ects_wavy } e_css_textdec_style;
 typedef enum { cte_circle, cte_dot, cte_double_circle, cte_triangle, cte_sesame } e_css_textemph_shape;
 typedef enum { cts_narrow, cts_punctuation, cts_spaces, cts_symbols } e_css_textemph_skip;
 typedef enum { ctw_balance, ctw_nowrap, ctw_pretty, ctw_stable, ctw_wrap } e_css_text_wrap;
+typedef enum { ctwm_nowrap, ctwm_wrap } e_css_text_wrap_mode;
+typedef enum { ctws_auto, ctws_balance, ctws_pretty, ctws_stable } e_css_text_wrap_style;
+typedef enum { cta_auto, cta_manipulation, cta_none, cta_pan_down, cta_pan_left, cta_pan_right, cta_pan_up, cta_pan_x, cta_pan_y, cta_pinch_zoom } e_css_touch_action;
 typedef enum { ctb_content_box, ctb_border_box, ctb_fill_box, ctb_stroke_box, ctb_view_box } e_css_transform_box;
 typedef enum { cts_flat, cts_preserve_3d } e_css_transform_style;
 typedef enum { ctt_flip_block, ctt_flip_inline, ctt_flip_start, ctt_flip_x, ctt_flip_y } e_css_try_tactic;
@@ -1328,13 +1334,14 @@ typedef enum { cvc_e, cvc_infinity, cvc_nan, cvc_pi } e_css_val_con;
                 cvf_var, \
                 cvf_xywh
 typedef enum {  CSS_VAL_FN } e_css_val_fn;
+typedef enum { cve_non_scaling_stroke, cve_none } e_css_vector_effect;
 typedef enum {  css_none, css_bespoke, css_1, css_2_0, css_2_1, css_2_2, css_3, css_4, css_5, css_6, css_2007, css_2010,
                 css_2015, css_2015_1, css_2015_2, css_2017, css_2017_1, css_2017_2, css_2018, css_2018_1, css_2018_2, css_2020, css_2020_1, css_2020_2,
                 css_2021, css_2021_1, css_2021_2, css_2022, css_2022_1, css_2022_2, css_2023, css_2023_1, css_2023_2, css_2024, css_2024_1, css_2024_2, css_2024_3,
                 css_2025, css_2025_1, css_2025_2, css_2025_3, css_2026, css_2026_1, css_2026_2, css_2026_3,
                 css_ls_2024, css_ls_2025, css_ls_2026,
                 css_unknown } e_css_version;
-constexpr e_css_version css_version_max = css_ls_2025;
+constexpr e_css_version css_version_max = css_ls_2026;
 typedef enum { ecva_inherit, ecv_baseline, ecv_bottom, ecv_middle, ecv_sub, ecv_super, ecv_text_bottom, ecv_text_top, ecv_top } e_css_vertical_align;
 typedef enum { eccl_border_area, eccl_border_box, eccl_content_box, eccl_padding_box, eccl_text } e_css_visual_box;
 typedef enum { cva_child, cva_old, cva_young  } e_css_voice_age;
@@ -1343,9 +1350,9 @@ typedef enum { evb_centre, evb_left, evb_leftwards, evb_right, evb_rightwards } 
 typedef enum { cve_inherit, cve_loud, cve_medium, cve_silent, cve_soft, cve_x_loud, cve_x_soft } e_css_volume_e;
 typedef enum { wbe_ideographic_space, wbe_none, wbe_space } e_css_wbe;
 typedef enum { wc_contents, wc_scroll_position } e_css_wc_e;
-typedef enum { cw_default, cw_inherit, cw_initial, cw_revert, cw_revert_layer, cw_unset } e_css_wide;
-typedef enum { ecwh_break_spaces, ecwh_inherit, ecwh_normal, ecwh_nowrap, ecwh_pre, ecwh_preline, ecwh_prewrap } e_css_whitespace;
-typedef enum { wb_break_all, wb_break_word, wb_keep_all, wb_normal } e_css_word_break;
+typedef enum { cw_default, cw_inherit, cw_initial, cw_moz_initial, cw_revert, cw_revert_layer, cw_unset } e_css_wide;
+typedef enum { ecwh_break_spaces, ecwh_collapse, ecwh_inherit, ecwh_normal, ecwh_nowrap, ecwh_pre, ecwh_preline, ecwh_preserve, ecwh_prewrap } e_css_whitespace;
+typedef enum { wb_auto_phrase, wb_break_all, wb_break_word, wb_keep_all, wb_normal } e_css_word_break;
 typedef enum { cwf_auto, cwf_both, cwf_clear, cwf_end, cwf_maximum, cwf_minimum, cwf_start } e_css_wrap_flow;
 typedef enum { wsc_break_spaces, wsc_collapse, wsc_discard, wsc_preserve, wsc_preserve_breaks, wsc_preserve_spaces } e_css_wsc;
 typedef enum { wst_discard_after, wst_discard_before, wst_discard_inner, wst_none  } e_css_wst;
@@ -3052,6 +3059,7 @@ typedef enum
     ns_update, ns_update_foot, ns_update_head,
     ns_max } e_nit_section;
 
+typedef enum { enn_nearest, enn_none } e_nearest_none;
 typedef enum { eno_none, eno_objects } e_none_objects;
 typedef enum { nw_none, nw_wrap } e_none_wrap;
 typedef enum { ens_normal, ens_spell_out } e_normal_spell;
@@ -3478,47 +3486,74 @@ typedef enum
         dpv_withinphysicalenvironment, dpv_withinvirtualenvironment, dpv_workhistory,
     dpv_zeroknowledgeauthentication,
 
-    dpv_ai_agi, dpv_ai_ai, dpv_ai_aibias, dpv_ai_aisystem, dpv_ai_aisystemrisk, dpv_ai_actionrecognition, dpv_ai_adversarialattack, dpv_ai_algorithmselectionbias,
-        dpv_ai_audiocapability, dpv_ai_audiogeneration, dpv_ai_audioprocessing, dpv_ai_automaticsummarisation, dpv_ai_automationbias, 
-    dpv_ai_bayesianestimation, dpv_ai_bayesiannetwork, dpv_ai_bayesianoptimisation, dpv_ai_behaviouranalysis, dpv_ai_biometriccapability, dpv_ai_biometriccategorisation, 
-        dpv_ai_biometricemotionrecognition, dpv_ai_biometricidentification,
-    dpv_ai_capability, dpv_ai_cognitivecomputing, dpv_ai_computervision, dpv_ai_contentbasedretrieval, dpv_ai_contentgeneration, dpv_ai_contextawareretrieval,
-        dpv_ai_continuousvalidationstage, dpv_ai_convolutionalneuralnetwork,
-    dpv_ai_data, dpv_ai_dataaggregationbias, dpv_ai_databias, dpv_ai_datalabellingprocessbias, dpv_ai_datalabelsandlabellingprocessbias, dpv_ai_datapoisoning, dpv_ai_datarisk,
-        dpv_ai_decisiontree, dpv_ai_decomissionstage, dpv_ai_deeplearning, dpv_ai_deploymentstage, dpv_ai_designstage, dpv_ai_developmentstage, dpv_ai_dialoguemanagement,
-        dpv_ai_discardstage, dpv_ai_distributedtrainingbias,
-    dpv_ai_emotionrecognition, dpv_ai_engineeringdecisionbias, dpv_ai_expertsystem,
-    dpv_ai_facerecognition, dpv_ai_featureengineeringbias, dpv_ai_feedforwardneuralnetwork,
-    dpv_ai_gpaimodel, dpv_ai_geneticalgorithm, dpv_ai_gesturerecognition,
-    dpv_ai_humanorientedcapability, dpv_ai_hyperparametertuningbias,
-    dpv_ai_imagegeneration, dpv_ai_imagerecognition, dpv_ai_inceptionstage, dpv_ai_incidentmonitoringstage, dpv_ai_inductiveprogramming, dpv_ai_industrialrobot,
-        dpv_ai_informationretrieval, dpv_ai_informativenessbias, dpv_ai_inputdatabias, dpv_ai_inputdatainaccurate, dpv_ai_inputdatainappropriate, dpv_ai_inputdataincomplete,
-        dpv_ai_inputdatainconsistent, dpv_ai_inputdatamisclassified, dpv_ai_inputdatamisinterpretation, dpv_ai_inputdatanoise, dpv_ai_inputdataoutdated, dpv_ai_inputdatarisk,
-        dpv_ai_inputdataselectionerror, dpv_ai_inputdatasparse, dpv_ai_inputdataunrepresentative, dpv_ai_inputdataunstructured, dpv_ai_inputdataunverified, dpv_ai_intelligentcontrolsystem,
-    dpv_ai_knowledgerepresentation, dpv_ai_knowledgetechnique, 
-    dpv_ai_languagecapability, dpv_ai_liedetection, dpv_ai_lifecyclestage, dpv_ai_localbiometricidentification, dpv_ai_logictechnique, dpv_ai_longshorttermmemory,
-    dpv_ai_machinelearning, dpv_ai_machinelearningmodel, dpv_ai_machinelearningplatform, dpv_ai_machinetranslation, dpv_ai_measure, dpv_ai_missingfeaturesbias,
-        dpv_ai_missingfeaturesandlabelsbias, dpv_ai_model, dpv_ai_modelbias, dpv_ai_modelevasion, dpv_ai_modelexpressivenessbias, dpv_ai_modelinteractionbias, dpv_ai_modelinversion,
-        dpv_ai_modelrisk, dpv_ai_modeltraining, dpv_ai_multimodalretrieval, dpv_ai_musicinformationretrieval, dpv_ai_namedentityrecognition,
-    dpv_ai_narrowai, dpv_ai_naturallanguagegeneration, dpv_ai_neuralnetwork, dpv_ai_nonrepresentativesamplingbias, 
-    dpv_ai_objectrecognition, dpv_ai_operationstage, dpv_ai_optimisationmethod, 
-    dpv_ai_partofspeechtagging, dpv_ai_personalitytraitanalysis, dpv_ai_posttimebiometricidentification, dpv_ai_profiling,
+    dpv_ai_actionrecognition, dpv_ai_adversarialattack, dpv_ai_agi, dpv_ai_ai, dpv_ai_aiagent, dpv_ai_aibias, dpv_ai_aiprocess, dpv_ai_aisystem, dpv_ai_aisystemrisk,
+        dpv_ai_algorithmselectionbias, dpv_ai_audiocapability, dpv_ai_audiogeneration, dpv_ai_audioprocessing, dpv_ai_automaticsummarisation, dpv_ai_automationbias,
+    dpv_ai_bayesianestimation, dpv_ai_bayesiannetwork, dpv_ai_bayesianoptimisation, dpv_ai_behaviouranalysis, dpv_ai_benchmarking, dpv_ai_biasassessment,
+        dpv_ai_biasdetection, dpv_ai_biasmitigation, dpv_ai_biasprevention, dpv_ai_biometriccapability, dpv_ai_biometriccategorisation, dpv_ai_biometricemotionrecognition,
+        dpv_ai_biometricidentification,
+    dpv_ai_capability, dpv_ai_chatbotcapability, dpv_ai_cognitivecomputing, dpv_ai_computationalcreativity, dpv_ai_computervision, dpv_ai_contentbasedretrieval,
+        dpv_ai_contentgeneration, dpv_ai_contextawareretrieval, dpv_ai_continuousvalidationstage, dpv_ai_convolutionalneuralnetwork, dpv_ai_cyberphysicalsystem,
+    dpv_ai_data, dpv_ai_dataaggregation, dpv_ai_dataaggregationbias, dpv_ai_dataannotation, dpv_ai_databias, dpv_ai_datacleaning, dpv_ai_datacollection,
+        dpv_ai_dataenrichment, dpv_ai_datalabelling, dpv_ai_datalabellingprocessbias, dpv_ai_datalabelsandlabellingprocessbias, dpv_ai_dataoperation,
+        dpv_ai_datapoisoning, dpv_ai_datapreparation, dpv_ai_datarisk, dpv_ai_dataupdating, dpv_ai_decisiontree, dpv_ai_decomissionstage, dpv_ai_decommissionstage,
+        dpv_ai_deeplearning, dpv_ai_deploymentstage, dpv_ai_designstage, dpv_ai_developmentstage, dpv_ai_dialoguemanagement, dpv_ai_discardstage,
+        dpv_ai_distributedtrainingbias,
+    dpv_ai_edgeai, dpv_ai_emotionrecognition, dpv_ai_engineeringdecisionbias, dpv_ai_expertsystem, dpv_ai_explainabilityrisk,
+    dpv_ai_facerecognition, dpv_ai_featureengineeringbias, dpv_ai_feedforwardneuralnetwork, dpv_ai_finetunedmodel, dpv_ai_frugalaisystem,
+        dpv_ai_frugalmachinelearning,
+    dpv_ai_genai, dpv_ai_geneticalgorithm, dpv_ai_gesturerecognition, dpv_ai_gpai, dpv_ai_gpaimodel,
+    dpv_ai_heuristicprogramming, dpv_ai_humanidentification, dpv_ai_humanorientedcapability, dpv_ai_hyperparametertuningbias,
+    dpv_ai_imageclassification, dpv_ai_imagegeneration, dpv_ai_imagerecognition, dpv_ai_inceptionstage, dpv_ai_incidentmonitoringstage, dpv_ai_inductiveprogramming,
+        dpv_ai_industrialrobot, dpv_ai_informationretrieval, dpv_ai_informativenessbias, dpv_ai_inputdatabias, dpv_ai_inputdatainaccurate, dpv_ai_inputdatainappropriate,
+        dpv_ai_inputdataincomplete, dpv_ai_inputdatainconsistent, dpv_ai_inputdatamisclassified, dpv_ai_inputdatamisinterpretation, dpv_ai_inputdatanoise,
+        dpv_ai_inputdataoutdated, dpv_ai_inputdatarisk, dpv_ai_inputdataselectionerror, dpv_ai_inputdatasparse, dpv_ai_inputdataunrepresentative, dpv_ai_inputdataunstructured,
+        dpv_ai_inputdataunverified, dpv_ai_intelligentcontrolsystem,
+    dpv_ai_knowledgerepresentation, dpv_ai_knowledgetechnique,
+    dpv_ai_languagecapability, dpv_ai_liedetection, dpv_ai_lifecyclestage, dpv_ai_llm, dpv_ai_localbiometricidentification, dpv_ai_logictechnique, dpv_ai_longshorttermmemory,
+    dpv_ai_machinelearning, dpv_ai_machinelearningmodel, dpv_ai_machinelearningplatform, dpv_ai_machinetranslation, dpv_ai_measure, dpv_ai_missingfeaturesandlabelsbias,
+        dpv_ai_missingfeaturesbias, dpv_ai_model, dpv_ai_modelbias, dpv_ai_modelevasion, dpv_ai_modelexpressivenessbias, dpv_ai_modelfinetuning, dpv_ai_modelinteractionbias,
+        dpv_ai_modelinversion, dpv_ai_modelrisk, dpv_ai_modeltraining, dpv_ai_motionanalysis, dpv_ai_multimodalretrieval, dpv_ai_musicinformationretrieval,
+    dpv_ai_namedentityrecognition, dpv_ai_narrowai, dpv_ai_naturallanguagegeneration, dpv_ai_naturallanguageprocessing, dpv_ai_neuralnetwork, dpv_ai_nonrepresentativesamplingbias,
+    dpv_ai_objectdetection, dpv_ai_objectrecognition, dpv_ai_operationstage, dpv_ai_optimisationmethod,
+    dpv_ai_partofspeechtagging, dpv_ai_patternrecognition, dpv_ai_perceptionbasedai, dpv_ai_personalitytraitanalysis, dpv_ai_posttimebiometricidentification, dpv_ai_profiling,
     dpv_ai_questionanswering,
-    dpv_ai_realtimebiometricidentification, dpv_ai_reasoningtechnique, dpv_ai_recurrentneuralnetwork, dpv_ai_reevaluationstage, dpv_ai_reinforcementlearning,
-        dpv_ai_relationshipextraction, dpv_ai_remotebiometricidentification, dpv_ai_repairstage, dpv_ai_replacestage, dpv_ai_retirementstage, dpv_ai_risk,
-        dpv_ai_riskconcept, dpv_ai_robot,
-    dpv_ai_searchmethod, dpv_ai_securityattack, dpv_ai_semisupervisedlearning, dpv_ai_sentimentanalysis, dpv_ai_servicerobot, dpv_ai_socialrobot, dpv_ai_soundsourceseparation,
-        dpv_ai_soundsynthesis, dpv_ai_speakerrecognition, dpv_ai_speechrecognition, dpv_ai_speechsynthesis, dpv_ai_statisticaltechnique, dpv_ai_supervisedlearning,
-        dpv_ai_supportvectormachine, dpv_ai_symbolicreasoning,
-    dpv_ai_technique, dpv_ai_testingdata, dpv_ai_testingdatabias, dpv_ai_testingdatainaccurate, dpv_ai_testingdatainappropriate, dpv_ai_testingdataincomplete, 
-        dpv_ai_testingdatainconsistent, dpv_ai_testingdatamisclassified, dpv_ai_testingdatamisinterpretation, dpv_ai_testingdatanoise, dpv_ai_testingdataoutdated, 
+    dpv_ai_realtimebiometricidentification, dpv_ai_reasoningsystem, dpv_ai_reasoningtechnique, dpv_ai_recurrentneuralnetwork, dpv_ai_reevaluationstage,
+        dpv_ai_reinforcementlearning, dpv_ai_relationshipextraction, dpv_ai_remotebiometricidentification, dpv_ai_remotesensing, dpv_ai_repairstage, dpv_ai_replacestage,
+        dpv_ai_retirementstage, dpv_ai_risk, dpv_ai_riskconcept, dpv_ai_robot, dpv_ai_roboticprocessautomation, dpv_ai_robotics, dpv_ai_rulebasedtechnique,
+    dpv_ai_searchmethod, dpv_ai_securityattack, dpv_ai_selfsupervisedlearning, dpv_ai_semisupervisedlearning, dpv_ai_sentimentanalysis, dpv_ai_servicerobot, dpv_ai_socialrobot,
+        dpv_ai_soundsourceseparation, dpv_ai_soundsynthesis, dpv_ai_speakerrecognition, dpv_ai_speechrecognition, dpv_ai_speechsynthesis, dpv_ai_statisticaltechnique,
+        dpv_ai_supervisedlearning, dpv_ai_supportvectormachine, dpv_ai_symbolicreasoning,
+    dpv_ai_technique, dpv_ai_testingdata, dpv_ai_testingdatabias, dpv_ai_testingdatainaccurate, dpv_ai_testingdatainappropriate, dpv_ai_testingdataincomplete,
+        dpv_ai_testingdatainconsistent, dpv_ai_testingdatamisclassified, dpv_ai_testingdatamisinterpretation, dpv_ai_testingdatanoise, dpv_ai_testingdataoutdated,
         dpv_ai_testingdatarisk, dpv_ai_testingdataselectionerror, dpv_ai_testingdatasparse, dpv_ai_testingdataunrepresentative, dpv_ai_testingdataunstructured,
-        dpv_ai_testingdataunverified, dpv_ai_trainedmodel, dpv_ai_trainingdata, dpv_ai_trainingtechnique, 
+        dpv_ai_testingdataunverified, dpv_ai_textclassification, dpv_ai_textdatamining, dpv_ai_trainedmodel, dpv_ai_trainingdata, dpv_ai_trainingtechnique, dpv_ai_transferlearning,
+        dpv_ai_transparencyrisk,
     dpv_ai_unsupervisedlearning, dpv_ai_updatestage, dpv_ai_userrisk,
     dpv_ai_validationdata, dpv_ai_validationdatabias, dpv_ai_validationdatainaccurate, dpv_ai_validationdatainappropriate, dpv_ai_validationdataincomplete,
         dpv_ai_validationdatainconsistent, dpv_ai_validationdatamisclassified, dpv_ai_validationdatamisinterpretation, dpv_ai_validationdatanoise, dpv_ai_validationdataoutdated,
         dpv_ai_validationdatarisk, dpv_ai_validationdataselectionerror, dpv_ai_validationdatasparse, dpv_ai_validationdataunrepresentative, dpv_ai_validationdataunstructured,
-        dpv_ai_validationdataunverified, dpv_ai_validationstage, dpv_ai_verificationstage, dpv_ai_videogeneration,
+        dpv_ai_validationdataunverified, dpv_ai_validationstage, dpv_ai_verificationstage, dpv_ai_videogeneration, dpv_ai_visualrecognition,
+
+    dpv_de_gdng_anonymization, dpv_de_gdng_authorizedperson,
+    dpv_de_gdng_controller,
+    dpv_de_gdng_dpaapproval, dpv_de_gdng_dataaccessandcoordinationoffice, dpv_de_gdng_datainfrastructure, dpv_de_gdng_datalinkage, dpv_de_gdng_datalinkagepermission,
+        dpv_de_gdng_datalinkagerequest, dpv_de_gdng_datalinkagerequestrecord, dpv_de_gdng_dataplatform, dpv_de_gdng_dataprocessinghealthcarefacility,
+        dpv_de_gdng_datasubject, dpv_de_gdng_deletionpolicy, dpv_de_gdng_dutytoinform,
+    dpv_de_gdng_federalstatecentresforcancerregistrydata,
+    dpv_de_gdng_germancentreforcancerregistrydata,
+    dpv_de_gdng_healthandhealthcareresearchproject, dpv_de_gdng_healthdata, dpv_de_gdng_healthdataaccessapplication, dpv_de_gdng_healthdataaccessapplicationrecord,
+        dpv_de_gdng_healthdataholder, dpv_de_gdng_healthdatalab, dpv_de_gdng_healthdataquery, dpv_de_gdng_healthdataqueryrecord, dpv_de_gdng_healthdatauser,
+        dpv_de_gdng_healthcaredataprocessing,
+    dpv_de_gdng_legitimateinterest,
+    dpv_de_gdng_medicalrehabnursingresearch, dpv_de_gdng_modelprojectgenomesequencingplatform,
+    dpv_de_gdng_necessity,
+    dpv_de_gdng_p6_1, dpv_de_gdng_p6_3_consent, dpv_de_gdng_p6_3_publicjointresearch, dpv_de_gdng_p6_3_statutory, dpv_de_gdng_personaldata,
+        dpv_de_gdng_processingrequirementsconformance, dpv_de_gdng_processingresultsanonymization, dpv_de_gdng_promotionofpatientsafety, dpv_de_gdng_pseudonymization,
+        dpv_de_gdng_pseudonymizeddata, dpv_de_gdng_publichealthdataaccessapplicationregister, dpv_de_gdng_publicjointhealthresearchnetwork, dpv_de_gdng_publicmetadatacatalogue,
+    dpv_de_gdng_qualityassurance,
+    dpv_de_gdng_regulatedhealthdataholder, dpv_de_gdng_researchproject, dpv_de_gdng_responsibledataholdingandmediatingbody, dpv_de_gdng_rightsrolesconcept,
+    dpv_de_gdng_secondaryuse, dpv_de_gdng_secureprocessingenvironment, dpv_de_gdng_statistics,
+    dpv_de_gdng_thirdparty, dpv_de_gdng_transfer,
 
     dpv_eu_aiact_aiactcomplianceunknown, dpv_eu_aiact_aiactcompliant, dpv_eu_aiact_aiactlawfulness, dpv_eu_aiact_aiactnoncompliant,
         dpv_eu_aiact_aideployer, dpv_eu_aiact_aidistributor, dpv_eu_aiact_aiimporter, dpv_eu_aiact_ailiteracy, dpv_eu_aiact_aioffice,
@@ -3529,11 +3564,23 @@ typedef enum
         dpv_eu_aiact_biometricidentityverification, dpv_eu_aiact_biometricverification, dpv_eu_aiact_bordercontrolsector,
     dpv_eu_aiact_cemarking, dpv_eu_aiact_changecategory, dpv_eu_aiact_changedescription, dpv_eu_aiact_commonspecification, dpv_eu_aiact_conformityassessment,
         dpv_eu_aiact_conformityassessmentbody, dpv_eu_aiact_criticalinfrastructure, dpv_eu_aiact_criticalinfrastructuresector,
-    dpv_eu_aiact_deepfake, dpv_eu_aiact_deepfakegeneration, dpv_eu_aiact_democraticprocesssector, dpv_eu_aiact_downstreamaiprovider,
+    dpv_eu_aiact_deepfake, dpv_eu_aiact_deepfakegeneration, dpv_eu_aiact_deployerhumanoversightmeasure, dpv_eu_aiact_democraticprocesssector, dpv_eu_aiact_downstreamaiprovider,
     dpv_eu_aiact_educationsector, dpv_eu_aiact_emotionrecognition, dpv_eu_aiact_emotionrecognitionsystem, dpv_eu_aiact_employmentsector, dpv_eu_aiact_eudeclarationofconformity,
     dpv_eu_aiact_fria,
     dpv_eu_aiact_gpaimodel, dpv_eu_aiact_gpaisystem,
-    dpv_eu_aiact_highimpactcapabilitygpaimodel, dpv_eu_aiact_highimpactcapabilityingpaimodels, dpv_eu_aiact_highriskaiassessment,
+    dpv_eu_aiact_highimpactcapabilitygpaimodel, dpv_eu_aiact_highimpactcapabilityingpaimodels, dpv_eu_aiact_highriskaiassessment, dpv_eu_aiact_highriskaisystem,
+        dpv_eu_aiact_highriskaisystem_a6_1, dpv_eu_aiact_highriskaisystem_a6_2, dpv_eu_aiact_highriskaisystem_annexi_1, dpv_eu_aiact_highriskaisystem_annexi_10,
+        dpv_eu_aiact_highriskaisystem_annexi_11, dpv_eu_aiact_highriskaisystem_annexi_12, dpv_eu_aiact_highriskaisystem_annexi_13, dpv_eu_aiact_highriskaisystem_annexi_14,
+        dpv_eu_aiact_highriskaisystem_annexi_15, dpv_eu_aiact_highriskaisystem_annexi_16, dpv_eu_aiact_highriskaisystem_annexi_17, dpv_eu_aiact_highriskaisystem_annexi_18,
+        dpv_eu_aiact_highriskaisystem_annexi_19, dpv_eu_aiact_highriskaisystem_annexi_2, dpv_eu_aiact_highriskaisystem_annexi_20, dpv_eu_aiact_highriskaisystem_annexi_3,
+        dpv_eu_aiact_highriskaisystem_annexi_4, dpv_eu_aiact_highriskaisystem_annexi_5, dpv_eu_aiact_highriskaisystem_annexi_6, dpv_eu_aiact_highriskaisystem_annexi_7,
+        dpv_eu_aiact_highriskaisystem_annexi_8, dpv_eu_aiact_highriskaisystem_annexi_9, dpv_eu_aiact_highriskaisystem_annexiii_1_a, dpv_eu_aiact_highriskaisystem_annexiii_1_b,
+        dpv_eu_aiact_highriskaisystem_annexiii_1_c, dpv_eu_aiact_highriskaisystem_annexiii_2, dpv_eu_aiact_highriskaisystem_annexiii_3_a, dpv_eu_aiact_highriskaisystem_annexiii_3_b,
+        dpv_eu_aiact_highriskaisystem_annexiii_3_c, dpv_eu_aiact_highriskaisystem_annexiii_3_d, dpv_eu_aiact_highriskaisystem_annexiii_4_a, dpv_eu_aiact_highriskaisystem_annexiii_4_b,
+        dpv_eu_aiact_highriskaisystem_annexiii_5_a, dpv_eu_aiact_highriskaisystem_annexiii_5_b, dpv_eu_aiact_highriskaisystem_annexiii_5_c, dpv_eu_aiact_highriskaisystem_annexiii_5_d,
+        dpv_eu_aiact_highriskaisystem_annexiii_6_a, dpv_eu_aiact_highriskaisystem_annexiii_6_b, dpv_eu_aiact_highriskaisystem_annexiii_6_c, dpv_eu_aiact_highriskaisystem_annexiii_6_d,
+        dpv_eu_aiact_highriskaisystem_annexiii_6_e, dpv_eu_aiact_highriskaisystem_annexiii_7_a, dpv_eu_aiact_highriskaisystem_annexiii_7_b, dpv_eu_aiact_highriskaisystem_annexiii_7_c,
+        dpv_eu_aiact_highriskaisystem_annexiii_7_d, dpv_eu_aiact_highriskaisystem_annexiii_8_a, dpv_eu_aiact_highriskaisystem_annexiii_8_b, dpv_eu_aiact_humanoverseer,
     dpv_eu_aiact_informedconsent, dpv_eu_aiact_instructionforuse, dpv_eu_aiact_intendedpurpose,
     dpv_eu_aiact_justicesector,
     dpv_eu_aiact_lawenforcement, dpv_eu_aiact_lawenforcementsector,
@@ -3542,14 +3589,18 @@ typedef enum
         dpv_eu_aiact_notputintoservice,
     dpv_eu_aiact_placedoneumarket, dpv_eu_aiact_placedonmarket, dpv_eu_aiact_postmarketmonitoringplan, dpv_eu_aiact_postmarketmonitoringsystem,
         dpv_eu_aiact_postremotebiometricidentificationsystem, dpv_eu_aiact_postmarketmonitoringsystemdocumentation, dpv_eu_aiact_predeterminedchange, dpv_eu_aiact_privatesector,
-        dpv_eu_aiact_publiclyaccessiblespace, dpv_eu_aiact_publicsector, dpv_eu_aiact_putintoservice, dpv_eu_aiact_putintoserviceineu,
+        dpv_eu_aiact_prohibitedaisystem, dpv_eu_aiact_prohibitedaisystem_a5_1_a, dpv_eu_aiact_prohibitedaisystem_a5_1_b, dpv_eu_aiact_prohibitedaisystem_a5_1_c,
+        dpv_eu_aiact_prohibitedaisystem_a5_1_d, dpv_eu_aiact_prohibitedaisystem_a5_1_e, dpv_eu_aiact_prohibitedaisystem_a5_1_f, dpv_eu_aiact_prohibitedaisystem_a5_1_g,
+        dpv_eu_aiact_prohibitedaisystem_a5_1_h, dpv_eu_aiact_providerhumanoversightmeasure, dpv_eu_aiact_publiclyaccessiblespace, dpv_eu_aiact_publicsector,
+        dpv_eu_aiact_putintoservice, dpv_eu_aiact_putintoserviceineu,
+    dpv_eu_aiact_qualitymanagementsystem,
     dpv_eu_aiact_realtimeremotebiometricidentificationsystem, dpv_eu_aiact_realworldtestingplan, dpv_eu_aiact_realworldtestsubject,
         dpv_eu_aiact_reasonablyforeseeablemisuse, dpv_eu_aiact_recalledfromservice, dpv_eu_aiact_remotebiometricidentificationsystem, dpv_eu_aiact_risk,
-        dpv_eu_aiact_risklevel, dpv_eu_aiact_risklevelhigh, dpv_eu_aiact_risklevelhighannexi, dpv_eu_aiact_risklevelhighannexiii, dpv_eu_aiact_risklevelminimal,
-        dpv_eu_aiact_risklevelnothigh, dpv_eu_aiact_risklevelpermitted, dpv_eu_aiact_risklevelprohibited, dpv_eu_aiact_riskleveltransparencyrequired,
-        dpv_eu_aiact_riskmanagementsystem,
-    dpv_eu_aiact_safetycomponent, dpv_eu_aiact_sandboxplan, dpv_eu_aiact_seriousincident, dpv_eu_aiact_servicesupplystatus, dpv_eu_aiact_substantialmodification,
-        dpv_eu_aiact_systemarchitecturedescription, dpv_eu_aiact_systemicrisk, dpv_eu_aiact_systemicriskforeu, dpv_eu_aiact_systemicriskatunionlevel,
+        dpv_eu_aiact_risklevel, dpv_eu_aiact_risklevelhigh, dpv_eu_aiact_risklevelhigh_a6_1, dpv_eu_aiact_risklevelhigh_a6_2, dpv_eu_aiact_risklevelhighannexi,
+        dpv_eu_aiact_risklevelhighannexiii, dpv_eu_aiact_risklevelminimal, dpv_eu_aiact_risklevelnothigh, dpv_eu_aiact_risklevelpermitted, dpv_eu_aiact_risklevelprohibited,
+        dpv_eu_aiact_riskleveltransparencyrequired, dpv_eu_aiact_riskmanagementsystem,
+    dpv_eu_aiact_safetycomponent, dpv_eu_aiact_sandboxplan, dpv_eu_aiact_seriousincident, dpv_eu_aiact_servicesupplystatus, dpv_eu_aiact_subliminalcapability,
+        dpv_eu_aiact_substantialmodification, dpv_eu_aiact_systemarchitecturedescription, dpv_eu_aiact_systemicrisk, dpv_eu_aiact_systemicriskforeu, dpv_eu_aiact_systemicriskatunionlevel,
     dpv_eu_aiact_technicaldocumentation, dpv_eu_aiact_testingdata, dpv_eu_aiact_testinginrealworldconditions, dpv_eu_aiact_testlog, dpv_eu_aiact_testreport, dpv_eu_aiact_trainingdata,
     dpv_eu_aiact_validationdata,
     dpv_eu_aiact_withdrawnfromservice,
@@ -3573,25 +3624,41 @@ typedef enum
     dpv_eu_dga_sectorialsipprovider, dpv_eu_dga_secureprocessingenvironment, dpv_eu_dga_singleinformationpoint, dpv_eu_dga_sipprovider,
     dpv_eu_dga_thirdcountrydatarequestnotice,
 
-    dpv_eu_ehds_behavioraldata, dpv_eu_ehds_biobankdata, 
-    dpv_eu_ehds_claimdata, dpv_eu_ehds_clinicaltrialsdata,
-    dpv_eu_ehds_datapermit, dpv_eu_ehds_datarequest, dpv_eu_ehds_developpublichealthproductsandservices, dpv_eu_ehds_developsocialsecurityproductsandservices, dpv_eu_ehds_diseaseregistrydata,
-    dpv_eu_ehds_ehrmanufacturer, dpv_eu_ehds_ehrsupplier, dpv_eu_ehds_electronichealthrecord, dpv_eu_ehds_ensurequalitysafetyhealthcare, dpv_eu_ehds_ensurequalitysafetymedicaldevices,
-        dpv_eu_ehds_ensurequalitysafetymedicinalproducts, dpv_eu_ehds_environmentaldata,
+    dpv_eu_ehds_a10, dpv_eu_ehds_a100, dpv_eu_ehds_a16_1, dpv_eu_ehds_a21, dpv_eu_ehds_a3, dpv_eu_ehds_a5, dpv_eu_ehds_a6, dpv_eu_ehds_a68_11, dpv_eu_ehds_a7, dpv_eu_ehds_a71,
+        dpv_eu_ehds_a8, dpv_eu_ehds_a9, dpv_eu_ehds_administrativeservicesprovision, dpv_eu_ehds_authorisedrepresentative,
+    dpv_eu_ehds_behaviouraldata, dpv_eu_ehds_behaviouralhealthdeterminant, dpv_eu_ehds_biobankdata,
+    dpv_eu_ehds_claimadmindata, dpv_eu_ehds_claimdata, dpv_eu_ehds_clinicalinvestigationsdata, dpv_eu_ehds_clinicalstudiesdata, dpv_eu_ehds_clinicaltrialsdata,
+    dpv_eu_ehds_datapermit, dpv_eu_ehds_datarequest, dpv_eu_ehds_developpublichealthproductsandservices, dpv_eu_ehds_developsocialsecurityproductsandservices,
+        dpv_eu_ehds_digitalhealthauthorityactivityreport, dpv_eu_ehds_dischargereport, dpv_eu_ehds_diseaseregistrydata, dpv_eu_ehds_dispensationadmindata,
+    dpv_eu_ehds_ehdsboard, dpv_eu_ehds_ehr, dpv_eu_ehds_ehrdata, dpv_eu_ehds_ehrmanufacturer, dpv_eu_ehds_ehrsupplier, dpv_eu_ehds_ehrsystem, dpv_eu_ehds_ehrsysteminformationsheet,
+        dpv_eu_ehds_ehrsystemtechnicaldocumentation, dpv_eu_ehds_electronicdispensation, dpv_eu_ehds_electronichealthdata, dpv_eu_ehds_electronichealthdataaccessservice,
+        dpv_eu_ehds_electronichealthrecord, dpv_eu_ehds_electronicprescription, dpv_eu_ehds_ensurequalitysafetyhealthcare, dpv_eu_ehds_ensurequalitysafetymedicaldevices,
+        dpv_eu_ehds_ensurequalitysafetymedicinalproducts, dpv_eu_ehds_environmentaldata, dpv_eu_ehds_environmentalhealthdeterminant, dpv_eu_ehds_epigenomicdata,
+        dpv_eu_ehds_eudatabaseforregistrationofehrsystems, dpv_eu_ehds_eudatabaseforregistrationofwellnessapplications, dpv_eu_ehds_eudeclarationofconformity,
+        dpv_eu_ehds_europeandigitaltestingenvironment,
     dpv_eu_ehds_genomicdata,
-    dpv_eu_ehds_healthadmindata, dpv_eu_ehds_healthdataaccessbody, dpv_eu_ehds_healthprofessional, dpv_eu_ehds_healthprofessionaldata, dpv_eu_ehds_healthquestionnaire,
-        dpv_eu_ehds_healthregistrydata, dpv_eu_ehds_healthsurvey, dpv_eu_ehds_healthcareprovider, dpv_eu_ehds_healthcarescientificresearch,
-    dpv_eu_ehds_improvehealthcareeducation, dpv_eu_ehds_inferredhealthdata,
-    dpv_eu_ehds_lifestyledata,
-    dpv_eu_ehds_medicaldevicesdata, dpv_eu_ehds_medicaldevicesregistrydata, dpv_eu_ehds_medicalregistrydata, dpv_eu_ehds_medicinalproductsregistrydata,
-    dpv_eu_ehds_pathogengenomicdata, dpv_eu_ehds_persongenegeratedwellnessappdata, dpv_eu_ehds_persongeneratedhealthappdata, dpv_eu_ehds_persongeneratedhealthdata,
-        dpv_eu_ehds_persongeneratedmedicaldevice, dpv_eu_ehds_personalisedhealthcare, dpv_eu_ehds_protectagainstcrossborderthreatstohealth, dpv_eu_ehds_proteomicdata,
-        dpv_eu_ehds_providehealthcareofficialstatistics, dpv_eu_ehds_publichealthregistrydata, dpv_eu_ehds_publichealthsurveillance, dpv_eu_ehds_publicinterestrelatedtohealth,
-    dpv_eu_ehds_reimbursementdata, dpv_eu_ehds_researchcohortdata,
-    dpv_eu_ehds_socialdata, dpv_eu_ehds_studydata, dpv_eu_ehds_supportauthoritiesregulatoryactivities,
-    dpv_eu_ehds_technologydistributor, dpv_eu_ehds_technologyimporter, dpv_eu_ehds_technologymanufacturer, dpv_eu_ehds_technologysupplier, dpv_eu_ehds_traintestandevaluateaisystemsalgorithms,
-        dpv_eu_ehds_traintestandevaluatehealthalgorithms, dpv_eu_ehds_traintestandevaluatehealthappsalgorithms, dpv_eu_ehds_traintestandevaluatemedicaldevicesalgorithms,
-    dpv_eu_ehds_wellnessappmanufacturer, dpv_eu_ehds_wellnessappsupplier, dpv_eu_ehds_wellnessdata,
+    dpv_eu_ehds_healthadmindata, dpv_eu_ehds_healthcarefinancingaggregateddata, dpv_eu_ehds_healthcareneedsaggregateddata, dpv_eu_ehds_healthcareprovider,
+        dpv_eu_ehds_healthcareprovisionaggregateddata, dpv_eu_ehds_healthcareresourcesaggregateddata, dpv_eu_ehds_healthcarescientificresearch, dpv_eu_ehds_healthdataaccessapplication,
+        dpv_eu_ehds_healthdataaccessbody, dpv_eu_ehds_healthdataholder, dpv_eu_ehds_healthdatarequest, dpv_eu_ehds_healthdatauser, dpv_eu_ehds_healthprofessional,
+        dpv_eu_ehds_healthprofessionalaccessservice, dpv_eu_ehds_healthprofessionaldata, dpv_eu_ehds_healthquestionnaire, dpv_eu_ehds_healthregistrydata, dpv_eu_ehds_healthsurvey,
+    dpv_eu_ehds_improvehealthcare, dpv_eu_ehds_improvehealthcareeducation, dpv_eu_ehds_inferredhealthdata, dpv_eu_ehds_interoperabilitysoftwareforehrsystem,
+    dpv_eu_ehds_lifestyledata, dpv_eu_ehds_lipidomicdata, dpv_eu_ehds_loggingsoftwareforehrsystem,
+    dpv_eu_ehds_medicaldevicesdata, dpv_eu_ehds_medicaldevicesdispensation, dpv_eu_ehds_medicaldevicesprescription, dpv_eu_ehds_medicaldevicesprovision,
+        dpv_eu_ehds_medicaldevicesregistrydata, dpv_eu_ehds_medicalimaging, dpv_eu_ehds_medicalregistrydata, dpv_eu_ehds_medicaltestresult, dpv_eu_ehds_medicinalproductsdispensation,
+        dpv_eu_ehds_medicinalproductsprescription, dpv_eu_ehds_medicinalproductsprovision, dpv_eu_ehds_medicinalproductsregistrydata, dpv_eu_ehds_metabolomicdata,
+        dpv_eu_ehds_mortalityregistrydata,
+    dpv_eu_ehds_nonpersonalelectronichealthdata,
+    dpv_eu_ehds_pathogendata, dpv_eu_ehds_pathogengenomicdata, dpv_eu_ehds_patientsummary, dpv_eu_ehds_performancestudiesdata, dpv_eu_ehds_personalelectronichealthdata,
+        dpv_eu_ehds_personalisedhealthcare, dpv_eu_ehds_persongenegeratedwellnessappdata, dpv_eu_ehds_persongeneratedhealthappdata, dpv_eu_ehds_persongeneratedhealthdata,
+        dpv_eu_ehds_persongeneratedmedicaldevice, dpv_eu_ehds_persongeneratedmedicaldevicedata, dpv_eu_ehds_persongeneratedwellnessappdata,
+        dpv_eu_ehds_protectagainstcrossborderthreatstohealth, dpv_eu_ehds_proteomicdata, dpv_eu_ehds_providehealthcareofficialstatistics, dpv_eu_ehds_publichealthregistrydata,
+        dpv_eu_ehds_publichealthsurveillance, dpv_eu_ehds_publicinterestrelatedtohealth, dpv_eu_ehds_publicpolicymaking,
+    dpv_eu_ehds_reimbursementadmindata, dpv_eu_ehds_reimbursementdata, dpv_eu_ehds_reimbursementservicesprovision, dpv_eu_ehds_researchcohortdata,
+    dpv_eu_ehds_socialdata, dpv_eu_ehds_socialservicesprovision, dpv_eu_ehds_socioeconomichealthdeterminant, dpv_eu_ehds_studydata, dpv_eu_ehds_supportauthoritiesregulatoryactivities,
+    dpv_eu_ehds_technologydistributor, dpv_eu_ehds_technologyimporter, dpv_eu_ehds_technologymanufacturer, dpv_eu_ehds_technologysupplier,
+        dpv_eu_ehds_traintestandevaluateaisystemsalgorithms, dpv_eu_ehds_traintestandevaluatehealthalgorithms, dpv_eu_ehds_traintestandevaluatehealthappsalgorithms,
+        dpv_eu_ehds_traintestandevaluatemedicaldevicesalgorithms, dpv_eu_ehds_transcriptomicdata, dpv_eu_ehds_trustedhealthdataholder,
+    dpv_eu_ehds_wellnessapplication, dpv_eu_ehds_wellnessapplicationlabel, dpv_eu_ehds_wellnessappmanufacturer, dpv_eu_ehds_wellnessappsupplier, dpv_eu_ehds_wellnessdata,
 
     dpv_eu_gdpr_a13, dpv_eu_gdpr_a13_denied, dpv_eu_gdpr_a13_eroded, dpv_eu_gdpr_a13_exerciseprevented, dpv_eu_gdpr_a13_impact, dpv_eu_gdpr_a13_limited, dpv_eu_gdpr_a13_obstructed,
         dpv_eu_gdpr_a13_unfulfilled, dpv_eu_gdpr_a13_violated, dpv_eu_gdpr_a14, dpv_eu_gdpr_a14_impact, dpv_eu_gdpr_a15, dpv_eu_gdpr_a15_impact, dpv_eu_gdpr_a16, dpv_eu_gdpr_a16_impact,
@@ -3608,7 +3675,7 @@ typedef enum
     dpv_eu_gdpr_a73, dpv_eu_gdpr_a73_impact, dpv_eu_gdpr_a77, dpv_eu_gdpr_a77_impact, dpv_eu_gdpr_a78, dpv_eu_gdpr_a79,
     dpv_eu_gdpr_a92a, dpv_eu_gdpr_a92b, dpv_eu_gdpr_a92c, dpv_eu_gdpr_a92d, dpv_eu_gdpr_a92e, dpv_eu_gdpr_a92f, dpv_eu_gdpr_a92g, dpv_eu_gdpr_a92h, dpv_eu_gdpr_a92i, dpv_eu_gdpr_a92j,
     dpv_eu_gdpr_accountabilityprinciple, dpv_eu_gdpr_accuracyprinciple, dpv_eu_gdpr_adequacydecision, dpv_eu_gdpr_adhoccontractualclauses, dpv_eu_gdpr_availabilitybreach,
-    dpv_eu_gdpr_bindingcorporaterules, dpv_eu_gdpr_biometricdata, dpv_eu_gdpr_breachnotificationnotneeded,
+    dpv_eu_gdpr_balancingtest, dpv_eu_gdpr_bindingcorporaterules, dpv_eu_gdpr_biometricdata, dpv_eu_gdpr_breachnotificationnotneeded,
     dpv_eu_gdpr_certificationmechanismsfordatatransfers, dpv_eu_gdpr_codesofconductfordatatransfers, dpv_eu_gdpr_concernedsupervisoryauthority, dpv_eu_gdpr_confidentialitybreach,
         dpv_eu_gdpr_consent, dpv_eu_gdpr_controller, dpv_eu_gdpr_controllerbreachnotice, dpv_eu_gdpr_controllerbreachnotificationneeded, dpv_eu_gdpr_crossborderdatabreach,
         dpv_eu_gdpr_crossborderprocessing,
@@ -3616,7 +3683,7 @@ typedef enum
         dpv_eu_gdpr_databreachnoticerequirement, dpv_eu_gdpr_databreachongoingreport, dpv_eu_gdpr_databreachpreliminaryreport, dpv_eu_gdpr_databreachregister,
         dpv_eu_gdpr_databreachreport, dpv_eu_gdpr_dataminimisationprinciple, dpv_eu_gdpr_dataprotectionauthority, dpv_eu_gdpr_datasubjectbreachnotice,
         dpv_eu_gdpr_datasubject, dpv_eu_gdpr_datasubjectbreachnotificationneeded, dpv_eu_gdpr_datatransfertool, dpv_eu_gdpr_dbiaindicateshighrisk, dpv_eu_gdpr_dbiaindicateslowrisk,
-        dpv_eu_gdpr_dbiaindicatesnorisk, dpv_eu_gdpr_dbiariskstatus, dpv_eu_gdpr_directdatacollectionnotice, dpv_eu_gdpr_dpabreachinitialnotice,
+        dpv_eu_gdpr_dbiaindicatesnorisk, dpv_eu_gdpr_dbiariskstatus, dpv_eu_gdpr_directdatacollectionnotice, dpv_eu_gdpr_disproportionate, dpv_eu_gdpr_dpabreachinitialnotice,
         dpv_eu_gdpr_dpabreachnotice, dpv_eu_gdpr_dpabreachnotificationneeded, dpv_eu_gdpr_dpabundledbreachnotice, dpv_eu_gdpr_dpaphasedbreachnotice,
         dpv_eu_gdpr_dpiaconformant, dpv_eu_gdpr_dpiaconformity, dpv_eu_gdpr_dpiaindicateshighrisk, dpv_eu_gdpr_dpiaindicateslowrisk, dpv_eu_gdpr_dpiaindicatesnorisk,
         dpv_eu_gdpr_dpianecessityassessment, dpv_eu_gdpr_dpianecessitystatus, dpv_eu_gdpr_dpianonconformant, dpv_eu_gdpr_dpianotrequired, dpv_eu_gdpr_dpiaoutcome,
@@ -3643,11 +3710,13 @@ typedef enum
             dpv_eu_gdpr_justificationa33riskmitigated, dpv_eu_gdpr_justificationa33riskunlikely,
     dpv_eu_gdpr_lawfulnessprinciple, dpv_eu_gdpr_leadsupervisoryauthority, dpv_eu_gdpr_localsupervisoryauthority,
     dpv_eu_gdpr_mainestablishment,
+    dpv_eu_gdpr_necessityassessment,
     dpv_eu_gdpr_personaldata, dpv_eu_gdpr_processoring, dpv_eu_gdpr_processor, dpv_eu_gdpr_processorbreachnotice, dpv_eu_gdpr_processorbreachnotificationneeded, dpv_eu_gdpr_profiling,
-        dpv_eu_gdpr_pseudonymisation, dpv_eu_gdpr_purposelimitationprinciple,
+        dpv_eu_gdpr_proportionalityassessment, dpv_eu_gdpr_proportionalitystatus, dpv_eu_gdpr_proportionate, dpv_eu_gdpr_pseudonymisation, dpv_eu_gdpr_purposecompatibility,
+        dpv_eu_gdpr_purposecompatibilityassessment, dpv_eu_gdpr_purposecompatible, dpv_eu_gdpr_purposeincompatible, dpv_eu_gdpr_purposelimitationprinciple,
     dpv_eu_gdpr_recipient, dpv_eu_gdpr_representative, dpv_eu_gdpr_rightsrecipientsnotice,
     dpv_eu_gdpr_sarnotice, dpv_eu_gdpr_sccbycommission, dpv_eu_gdpr_sccbysupervisoryauthority, dpv_eu_gdpr_singleestablishment, dpv_eu_gdpr_standardcontractualclauses,
-        dpv_eu_gdpr_storagelimitationprinciple, dpv_eu_gdpr_supplementarymeasure,
+        dpv_eu_gdpr_storagelimitationprinciple, dpv_eu_gdpr_suitabilityassessment, dpv_eu_gdpr_supplementarymeasure,
     dpv_eu_gdpr_thirdparty, dpv_eu_gdpr_transparencyprinciple,
 
     dpv_eu_nis2_earlywarningreport, dpv_eu_nis2_finalreport, dpv_eu_nis2_incidentassessmentreport, dpv_eu_nis2_initialfeedbackonincident, dpv_eu_nis2_intermediatereport,
@@ -4260,22 +4329,22 @@ typedef enum
 
     dpv_pd_accent, dpv_pd_accountidentifier, dpv_pd_acquaintance, dpv_pd_age, dpv_pd_age_exact, dpv_pd_age_range, dpv_pd_apartmentowned, dpv_pd_association,
         dpv_pd_attitude, dpv_pd_authenticating, dpv_pd_authenticationhistory,
-    dpv_pd_bankaccount, dpv_pd_behavioral, dpv_pd_behavioural, dpv_pd_birthcountry, dpv_pd_birthdate, dpv_pd_birthplace, dpv_pd_biometric, dpv_pd_bloodtype, dpv_pd_browserfingerprint, dpv_pd_browserhistory,
-        dpv_pd_browsingbehaviour, dpv_pd_browsingreferral,
+    dpv_pd_bankaccount, dpv_pd_behavioral, dpv_pd_behavioural, dpv_pd_birthcountry, dpv_pd_birthdate, dpv_pd_birthplace, dpv_pd_biometric, dpv_pd_bloodtype,
+        dpv_pd_browserfingerprint, dpv_pd_browserhistory, dpv_pd_browsingbehaviour, dpv_pd_browsingreferral,
     dpv_pd_calllog, dpv_pd_carowned, dpv_pd_character, dpv_pd_citizenship, dpv_pd_city, dpv_pd_communication, dpv_pd_communicationsmetadata, dpv_pd_connection,
-        dpv_pd_contact, dpv_pd_country, dpv_pd_countryofbirth,
-        dpv_pd_credit, dpv_pd_creditcapacity, dpv_pd_creditcardnumber, dpv_pd_creditrecord, dpv_pd_creditscore, dpv_pd_creditstanding, dpv_pd_creditworthiness,
-        dpv_pd_criminal, dpv_pd_criminalcharge, dpv_pd_criminalconviction, dpv_pd_criminaloffence, dpv_pd_criminaloffense, dpv_pd_criminalpardon, dpv_pd_currentemployment,
+        dpv_pd_contact, dpv_pd_country, dpv_pd_countryofbirth, dpv_pd_credit, dpv_pd_creditcapacity, dpv_pd_creditcardnumber, dpv_pd_creditrecord, dpv_pd_creditscore,
+        dpv_pd_creditstanding, dpv_pd_creditworthiness, dpv_pd_criminal, dpv_pd_criminalcharge, dpv_pd_criminalconviction, dpv_pd_criminaloffence, dpv_pd_criminaloffense,
+        dpv_pd_criminalpardon, dpv_pd_currentemployment, dpv_pd_currentlocation,
     dpv_pd_demeanor, dpv_pd_demeanour, dpv_pd_demographic, dpv_pd_deviceapplications, dpv_pd_devicebased, dpv_pd_deviceoperatingsystem, dpv_pd_devicesoftware, dpv_pd_dialect,
         dpv_pd_digitalfingerprint, dpv_pd_disability, dpv_pd_disciplinaryaction, dpv_pd_dislike, dpv_pd_divorce, dpv_pd_dnacode, dpv_pd_domicile,dpv_pd_drugtestresult,
-    dpv_pd_education, dpv_pd_educationexperience, dpv_pd_educationqualification, dpv_pd_emailaddress, dpv_pd_emailaddresspersonal, dpv_pd_emailaddresswork,
-        dpv_pd_emailcontent, dpv_pd_emotion, dpv_pd_employmenthistory, dpv_pd_ethnicity, dpv_pd_ethnicorigin, dpv_pd_external,
+    dpv_pd_education, dpv_pd_educationexperience, dpv_pd_educationqualification, dpv_pd_educationtraining, dpv_pd_emailaddress, dpv_pd_emailaddresspersonal,
+        dpv_pd_emailaddresswork, dpv_pd_emailcontent, dpv_pd_emotion, dpv_pd_employmenthistory, dpv_pd_ethnicity, dpv_pd_ethnicorigin, dpv_pd_external,
     dpv_pd_facialexpression, dpv_pd_facialprint, dpv_pd_family, dpv_pd_familyhealthhistory, dpv_pd_familystructure, dpv_pd_favorite, dpv_pd_favoritecolour, dpv_pd_favoritefood,
         dpv_pd_favoritemusic, dpv_pd_favourite, dpv_pd_favouritecolour, dpv_pd_favouritefood, dpv_pd_favouritemusic, dpv_pd_fetish, dpv_pd_financial, dpv_pd_financialaccount,
         dpv_pd_financialaccountnumber, dpv_pd_financialstatus, dpv_pd_fingerprint, dpv_pd_friend,
     dpv_pd_gender, dpv_pd_genetic, dpv_pd_geneticdata, dpv_pd_generalreputation, dpv_pd_geographic, dpv_pd_gpscoordinate, dpv_pd_groupmembership, dpv_pd_groupprofile,
-    dpv_pd_haircolor, dpv_pd_haircolour, dpv_pd_health, dpv_pd_healthhistory, dpv_pd_healthrecord, dpv_pd_height, dpv_pd_historical, dpv_pd_household, dpv_pd_householddata,
-        dpv_pd_housenumber, dpv_pd_houseowned,
+    dpv_pd_haircolor, dpv_pd_haircolour, dpv_pd_health, dpv_pd_healthhistory, dpv_pd_healthrecord, dpv_pd_height, dpv_pd_historical, dpv_pd_homelocation, dpv_pd_household,
+        dpv_pd_householddata, dpv_pd_housenumber, dpv_pd_houseowned,
     dpv_pd_identifier, dpv_pd_identifying, dpv_pd_income, dpv_pd_incomebracket, dpv_pd_individualhealthhistory, dpv_pd_individualprofile, dpv_pd_insurance,
         dpv_pd_intention, dpv_pd_interaction, dpv_pd_interest, dpv_pd_internal, dpv_pd_ipaddress,
     dpv_pd_job,
@@ -4288,20 +4357,20 @@ typedef enum
         dpv_pd_performanceatwork, dpv_pd_personaldocuments, dpv_pd_personality, dpv_pd_personalpossession, dpv_pd_philosophicalbelief, dpv_pd_physicaladdress,
         dpv_pd_physicalcharacteristic, dpv_pd_physicalhealth, dpv_pd_physicaltrait, dpv_pd_picture, dpv_pd_piercing, dpv_pd_pincode, dpv_pd_placeofbirth,
         dpv_pd_politicalaffiliation, dpv_pd_politicalopinion, dpv_pd_postalcode, dpv_pd_preference, dpv_pd_prescription, dpv_pd_privacypreference,
-        dpv_pd_proclivitie, dpv_pd_proclivity,
-        dpv_pd_professional, dpv_pd_professionalcertification, dpv_pd_professionalevaluation, dpv_pd_professionalinterview, dpv_pd_profile,
-        dpv_pd_publiclyavailablesocialmedia, dpv_pd_publiclyavailablesocialmediadata, dpv_pd_publiclife, dpv_pd_purchase, dpv_pd_purchasesandspendinghabit,
+        dpv_pd_proclivitie, dpv_pd_proclivity, dpv_pd_professional, dpv_pd_professionalcertification, dpv_pd_professionalevaluation, dpv_pd_professionalexperience,
+        dpv_pd_professionalinterview, dpv_pd_professionaltraining, dpv_pd_profile, dpv_pd_publiclyavailablesocialmedia, dpv_pd_publiclyavailablesocialmediadata,
+        dpv_pd_publiclife, dpv_pd_purchase, dpv_pd_purchasesandspendinghabit,
     dpv_pd_race, dpv_pd_reference, dpv_pd_region, dpv_pd_relationship, dpv_pd_reliability, dpv_pd_religion, dpv_pd_religiousbelief, dpv_pd_residency,
         dpv_pd_retina, dpv_pd_roomnumber,
     dpv_pd_salary, dpv_pd_sale, dpv_pd_school, dpv_pd_secrettext, dpv_pd_serviceconsumptionbehavior, dpv_pd_serviceconsumptionbehaviour, dpv_pd_sexual, dpv_pd_sexualhistory,
-        dpv_pd_sexualpreference, dpv_pd_sibling, dpv_pd_skintone, dpv_pd_social, dpv_pd_socialmedia, dpv_pd_socialmediadata, dpv_pd_socialmediacommunication,
-        dpv_pd_socialnetwork, dpv_pd_socialstatus, dpv_pd_street,
-    dpv_pd_tattoo, dpv_pd_tax, dpv_pd_telephonenumber, dpv_pd_thought, dpv_pd_tracking, dpv_pd_tradeunionmembership, dpv_pd_transaction, dpv_pd_transactional,
-        dpv_pd_travelhistory, dpv_pd_tvviewingbehavior, dpv_pd_tvviewingbehaviour,
+        dpv_pd_sexualpreference, dpv_pd_sibling, dpv_pd_skintone, dpv_pd_social, dpv_pd_socialbehaviour, dpv_pd_socialmedia, dpv_pd_socialmediadata,
+        dpv_pd_socialmediacommunication, dpv_pd_socialnetwork, dpv_pd_socialstatus, dpv_pd_street,
+    dpv_pd_tattoo, dpv_pd_tax, dpv_pd_technicalknowledge, dpv_pd_telephonenumber, dpv_pd_thought, dpv_pd_tracking, dpv_pd_tradeunionmembership, dpv_pd_transaction,
+        dpv_pd_transactional, dpv_pd_travelhistory, dpv_pd_tvviewingbehavior, dpv_pd_tvviewingbehaviour,
     dpv_pd_uid, dpv_pd_useragent, dpv_pd_username,
     dpv_pd_vehicle, dpv_pd_vehicledata, dpv_pd_vehiclelicence, dpv_pd_vehiclelicencenumber, dpv_pd_vehiclelicenceregistration, dpv_pd_vehicleusage,
-        dpv_pd_vehicleusagedata, dpv_pd_voicecommunicationrecording, dpv_pd_voicemail,
-    dpv_pd_weight, dpv_pd_workenvironment, dpv_pd_workhistory,
+        dpv_pd_vehicleusagedata, dpv_pd_voicecommunicationrecording, dpv_pd_voicemail, dpv_pd_vulnerability,
+    dpv_pd_weight, dpv_pd_workenvironment, dpv_pd_workexperience, dpv_pd_workhistory, dpv_pd_worklocation,
 
     dpv_right_a1_humandignity, dpv_right_a10_freedomofthoughtconsciencereligion, dpv_right_a11_freedomofexpressioninformation, dpv_right_a12_freedomofassemblyassociation,
         dpv_right_a13_freedomofartssciences, dpv_right_a14_righttoeducation, dpv_right_a15_freedomtochooseoccuprationengagework, dpv_right_a16_freedomtoconductbusiness,
@@ -4351,14 +4420,15 @@ typedef enum
         dpv_risk_datacollectionerror, dpv_risk_datacorruption, dpv_risk_dataerasureerror, dpv_risk_datainaccurate, dpv_risk_dataincomplete, dpv_risk_datainconsistent, dpv_risk_dataloss,
         dpv_risk_datamisclassified, dpv_risk_datamisinterpretation, dpv_risk_datanoise, dpv_risk_dataoutdated, dpv_risk_datapreparationerror, dpv_risk_dataprocessingbias,
         dpv_risk_dataprocessingerror, dpv_risk_datarisk, dpv_risk_dataselectionerror, dpv_risk_datasparse, dpv_risk_datastorageerror, dpv_risk_datatransfererror, dpv_risk_dataunavailable,
-        dpv_risk_dataunrepresentative, dpv_risk_dataunstructured, dpv_risk_dataunverified, dpv_risk_decisiontreeanalysis, dpv_risk_delayedapplicationprocessing, dpv_risk_deliberateincident,
-        dpv_risk_delphitechnique, dpv_risk_denialofserviceattack, dpv_risk_detectioncontrol, dpv_risk_detriment, dpv_risk_detrimenttorecovery, dpv_risk_discrimination,
-        dpv_risk_directdiscrimination, dpv_risk_disabilitydiscrimination, dpv_risk_distributeddenialofserviceattack, dpv_risk_disproportionateenergyconsumption, dpv_risk_dpia,
+        dpv_risk_dataunrepresentative, dpv_risk_dataunstructured, dpv_risk_dataunverified, dpv_risk_deception, dpv_risk_decisiontreeanalysis, dpv_risk_delayedapplicationprocessing,
+        dpv_risk_deliberateincident, dpv_risk_delphitechnique, dpv_risk_denialofserviceattack, dpv_risk_detectioncontrol, dpv_risk_detriment, dpv_risk_detrimenttorecovery,
+        dpv_risk_directdiscrimination, dpv_risk_disabilitydiscrimination, dpv_risk_discrimination, dpv_risk_disproportionateenergyconsumption, dpv_risk_distributeddenialofserviceattack,
+        dpv_risk_documentationissues, dpv_risk_dpia,
     dpv_risk_earthquake, dpv_risk_eavesdropping, dpv_risk_ebios, dpv_risk_economicdisadvantage, dpv_risk_eliminationcontrol, dpv_risk_environmentalincident, dpv_risk_environmentalrisk,
         dpv_risk_environmentalsafetyendangerment, dpv_risk_equipmentfailure, dpv_risk_equipmentmalfunction, dpv_risk_ermif, dpv_risk_erroneoussystemuse, dpv_risk_erroneoususe,
-        dpv_risk_ethnicdiscrimination, dpv_risk_etsits1021651, dpv_risk_eventtreeanalysis, dpv_risk_excellencediscrimination, dpv_risk_exposuretoharmfulspeech, dpv_risk_externalsecuritythreat,
-        dpv_risk_extortion, dpv_risk_extremelyhighlikelihood, dpv_risk_extremelyhighrisk, dpv_risk_extremelyhighseverity, dpv_risk_extremelylowlikelihood, dpv_risk_extremelylowrisk,
-        dpv_risk_extremelylowseverity,
+        dpv_risk_ethnicdiscrimination, dpv_risk_etsits1021651, dpv_risk_eventtreeanalysis, dpv_risk_excellencediscrimination, dpv_risk_exploitation, dpv_risk_exposuretoharmfulspeech,
+        dpv_risk_externalsecuritythreat, dpv_risk_extortion, dpv_risk_extremelyhighlikelihood, dpv_risk_extremelyhighrisk, dpv_risk_extremelyhighseverity, dpv_risk_extremelylowlikelihood,
+        dpv_risk_extremelylowrisk, dpv_risk_extremelylowseverity,
     dpv_risk_fair, dpv_risk_fairprivacy, dpv_risk_faulttreeanalysis, dpv_risk_fee, dpv_risk_financialequipmentcosts, dpv_risk_financialimpact, dpv_risk_financialinvestigationcosts,
         dpv_risk_financialloss, dpv_risk_financialpersonnelcosts, dpv_risk_financialrepaircosts, dpv_risk_fishbone, dpv_risk_floods, dpv_risk_fmea, dpv_risk_fmeca, dpv_risk_fndiagrams,
         dpv_risk_fraud,
@@ -4368,20 +4438,20 @@ typedef enum
         dpv_risk_healthandlifeimpact, dpv_risk_healthsafety, dpv_risk_highlikelihood, dpv_risk_highrisk, dpv_risk_highseverity, dpv_risk_hitrustcsf, dpv_risk_homophobia,
         dpv_risk_humanerrors, dpv_risk_humanoversightineffective, dpv_risk_humanoversightinsufficient, dpv_risk_humanreliabilityanalysis,
     dpv_risk_identificationcontrol, dpv_risk_identitydispute, dpv_risk_identityfraud, dpv_risk_identitytheft, dpv_risk_identityverificationfailure, dpv_risk_illegaldataprocessing,
-        dpv_risk_illegalprocessingofdata, dpv_risk_imomscfal1circ3, dpv_risk_impactcontrol, dpv_risk_impactondatasubject, dpv_risk_impacttorights, dpv_risk_implicitbias,
-        dpv_risk_inabilitytoenterintocontract, dpv_risk_inabilitytoestablishlegalclaims, dpv_risk_inabilitytofulfillegalobligations, dpv_risk_inabilitytofulfilllegalobligations,
-        dpv_risk_inabilitytoprocesspayments, dpv_risk_inabilitytoprotectvitalinterests, dpv_risk_inabilitytoprovidehealthcare, dpv_risk_incident,
-        dpv_risk_incidentassessmentreport, dpv_risk_incidentconcluded, dpv_risk_incidentconcludingreport, dpv_risk_incidentdetectionreport,
+        dpv_risk_illegalprocessingofdata, dpv_risk_imomscfal1circ3, dpv_risk_impactcontrol, dpv_risk_impactondatasubject, dpv_risk_impacttorights, dpv_risk_impaireddecisionmaking,
+        dpv_risk_implicitbias, dpv_risk_inabilitytoenterintocontract, dpv_risk_inabilitytoestablishlegalclaims, dpv_risk_inabilitytofulfillegalobligations,
+        dpv_risk_inabilitytofulfilllegalobligations, dpv_risk_inabilitytoprocesspayments, dpv_risk_inabilitytoprotectvitalinterests, dpv_risk_inabilitytoprovidehealthcare,
+        dpv_risk_incident, dpv_risk_incidentassessmentreport, dpv_risk_incidentconcluded, dpv_risk_incidentconcludingreport, dpv_risk_incidentdetectionreport,
         dpv_risk_incidenthalted, dpv_risk_incidenthandlingreport, dpv_risk_incidentidentifier, dpv_risk_incidentimpactassessment, dpv_risk_incidentinvestigationcompleted,
         dpv_risk_incidentinvestigationnotstarted, dpv_risk_incidentinvestigationongoing, dpv_risk_incidentinvestigationpreliminary, dpv_risk_incidentinvestigationstatus,
         dpv_risk_incidentmitigated, dpv_risk_incidentmitigationmeasure, dpv_risk_incidentnearmiss, dpv_risk_incidentnotice, dpv_risk_incidentongoing,
         dpv_risk_incidentongoingreport, dpv_risk_incidentpreliminaryreport, dpv_risk_incidentregister, dpv_risk_incidentreport, dpv_risk_incidentstatus,
         dpv_risk_incidentstatusunknown, dpv_risk_incidentsuspected, dpv_risk_incidentsuspectedreport, dpv_risk_incidentterminated,  dpv_risk_increaseinternalcost,
         dpv_risk_indirectdiscrimination, dpv_risk_industrialcrisis, dpv_risk_influencediagrams, dpv_risk_individualhealthsafety, dpv_risk_individualrisk,
-        dpv_risk_informativenessbias, dpv_risk_ingroupbias, dpv_risk_injury, dpv_risk_instructionsincorrect, dpv_risk_instructionsinsufficient, dpv_risk_integritybreach,
-        dpv_risk_integrityconcept, dpv_risk_integrityincident, dpv_risk_intentionalmisuse, dpv_risk_interceptcommunications, dpv_risk_interceptionofcommunications,
-        dpv_risk_internaloperationdisruption, dpv_risk_interruptioncontrol, dpv_risk_interventioncontrol, dpv_risk_investigationcontrol, dpv_risk_interviews, dpv_risk_iram2,
-        dpv_risk_isacariskit, dpv_risk_isamm, dpv_risk_isbm, dpv_risk_isoiec270052018, dpv_risk_isram, dpv_risk_itgrundschutz, dpv_risk_itsrm,
+        dpv_risk_informativenessbias, dpv_risk_ingroupbias, dpv_risk_injury, dpv_risk_instructionsinaccessible, dpv_risk_instructionsincorrect, dpv_risk_instructionsinsufficient,
+        dpv_risk_instructionsunsuitable, dpv_risk_integritybreach, dpv_risk_integrityconcept, dpv_risk_integrityincident, dpv_risk_intentionalmisuse, dpv_risk_interceptcommunications,
+        dpv_risk_interceptionofcommunications, dpv_risk_internaloperationdisruption, dpv_risk_interruptioncontrol, dpv_risk_interventioncontrol, dpv_risk_investigationcontrol,
+        dpv_risk_interviews, dpv_risk_iram2, dpv_risk_isacariskit, dpv_risk_isamm, dpv_risk_isbm, dpv_risk_isoiec270052018, dpv_risk_isram, dpv_risk_itgrundschutz, dpv_risk_itsrm,
     dpv_risk_judicialcosts, dpv_risk_judicialpenalty,
     dpv_risk_knownvulnerabilityexploited,
     dpv_risk_lackofsystemtransparency, dpv_risk_languagediscrimination, dpv_risk_lawenforcementadverseeffects, dpv_risk_legalcompliancerisk, dpv_risk_legallyrelevantconsequence,
@@ -4410,8 +4480,8 @@ typedef enum
     dpv_risk_racialdiscrimination, dpv_risk_racism, dpv_risk_reactivecontrol, dpv_risk_ransomwareattack, dpv_risk_recoverycontrol, dpv_risk_reducelikelihood, dpv_risk_reduceseverity,
         dpv_risk_reductioncontrol, dpv_risk_reidentification, dpv_risk_reliabilitycentredmaintenance, dpv_risk_religiousdiscrimination, dpv_risk_remeditationcontrol, dpv_risk_remedycontrol,
         dpv_risk_remotespying, dpv_risk_removeconsequence, dpv_risk_removeimpact, dpv_risk_removesource, dpv_risk_renumeration, dpv_risk_replacementcosts, dpv_risk_reputationalloss,
-        dpv_risk_reputationalrisk,
-        dpv_risk_reputationandtrustimpact, dpv_risk_requirementsbias, dpv_risk_resolutioncontrol, dpv_risk_retrievalofdeleteddata, dpv_risk_retrievalofdiscardedequipment,
+        dpv_risk_reputationalrisk, dpv_risk_reputationandtrustimpact, dpv_risk_requirementsbias, dpv_risk_resiliencedegraded, dpv_risk_resilienceinconsistent, dpv_risk_resilienceinsufficient,
+        dpv_risk_resiliencerisk, dpv_risk_resilienceunknown, dpv_risk_resilienceunverified, dpv_risk_resolutioncontrol, dpv_risk_retrievalofdeleteddata, dpv_risk_retrievalofdiscardedequipment,
         dpv_risk_reversalcontrol, dpv_risk_reversediscrimination, dpv_risk_reward, dpv_risk_rightsdenied, dpv_risk_rightseroded, dpv_risk_rightsexerciseprevented, dpv_risk_rightsimpact,
         dpv_risk_rightslimited, dpv_risk_rightsobstructed, dpv_risk_rightsunfulfilled, dpv_risk_rightsviolated, dpv_risk_riskacceptance, dpv_risk_riskanalysis, dpv_risk_riskassessment,
         dpv_risk_riskassessmenttechnique, dpv_risk_riskcontrol, dpv_risk_riskcriteria, dpv_risk_riskevaluation, dpv_risk_riskidentification, dpv_risk_riskindices,
@@ -4445,13 +4515,13 @@ typedef enum
         dpv_risk_threatsource, dpv_risk_toxicologicalriskassessment, dpv_risk_transfercontrol, dpv_risk_transparencycontrol, dpv_risk_transphobia, dpv_risk_trustloss,
     dpv_risk_unauthorisedaccesstopremises, dpv_risk_unauthorisedactivity, dpv_risk_unauthorisedcodeaccess, dpv_risk_unauthorisedcodedisclosure, dpv_risk_unauthorisedcodemodification,
         dpv_risk_unauthoriseddataaccess, dpv_risk_unauthoriseddatadisclosure, dpv_risk_unauthoriseddatamodification, dpv_risk_unauthorisedimpersonation, dpv_risk_unauthorisedinformationdisclosure,
-        dpv_risk_unauthorisedreidentification, dpv_risk_unauthorisedresourceuse, dpv_risk_unauthorisedsystemaccess, dpv_risk_unauthorisedsystemmodification, dpv_risk_unknownvulnerabilityexploited,
-        dpv_risk_unwantedcodedeletion, dpv_risk_unwanteddatadeletion, dpv_risk_unwanteddisclosureofdata, dpv_risk_userrisks,
+        dpv_risk_unauthorisedreidentification, dpv_risk_unauthorisedresourceuse, dpv_risk_unauthorisedsystemaccess, dpv_risk_unauthorisedsystemmodification, dpv_risk_unfavourabletreatment,
+        dpv_risk_unknownvulnerabilityexploited, dpv_risk_unwantedcodedeletion, dpv_risk_unwanteddatadeletion, dpv_risk_unwanteddisclosureofdata, dpv_risk_userrisks,
     dpv_risk_vandalism, dpv_risk_var, dpv_risk_veryhighlikelihood, dpv_risk_veryhighrisk, dpv_risk_veryhighseverity, dpv_risk_verylowlikelihood, dpv_risk_verylowrisk, dpv_risk_verylowseverity,
         dpv_risk_violationcodeofconduct, dpv_risk_violationcontractualobligations, dpv_risk_violationethicalcode, dpv_risk_violationethicscode, dpv_risk_violatinglegalobligation,
         dpv_risk_violatingobligation, dpv_risk_violatingpolicy, dpv_risk_violatingprohibition, dpv_risk_violatingnstatutoryobligations, dpv_risk_violationregulatoryobligations,
-        dpv_risk_violationrights, dpv_risk_violationstatutoryobligations, dpv_risk_violenceagainstchildren, dpv_risk_vulnerability,
-        dpv_risk_vulnerabilitycreated, dpv_risk_vulnerabilityexploited,
+        dpv_risk_violationrights, dpv_risk_violationstatutoryobligations, dpv_risk_violenceagainstchildren, dpv_risk_vulnerability, dpv_risk_vulnerabilitycreated,
+        dpv_risk_vulnerabilityexploited, dpv_risk_vulnerabilityexploitation,
     dpv_risk_wellbeing, dpv_risk_workplacediscrimination,
 
     dpv_s_edu_accessmanagement,
@@ -4487,27 +4557,55 @@ typedef enum
     dpv_s_fin_taxreportingcompliance, dpv_s_fin_transactionfraudmanagement, dpv_s_fin_transactionreportingcompliance,
     dpv_s_fin_wealthmanagement,
 
-    dpv_s_hth_accessmanagement, dpv_s_hth_appointmentscheduling,
-    dpv_s_hth_consultationmanagement, dpv_s_hth_crisismanagement,
-    dpv_s_hth_diagnosismanagement, dpv_s_hth_diagnosticoptimisation, dpv_s_hth_disasterreliefmanagement, dpv_s_hth_diseasepreventionawareness,
-    dpv_s_hth_effectivenessassessment, dpv_s_hth_electronicrecordsmanagement, dpv_s_hth_eligibilityassessment, dpv_s_hth_emergencycarecommunication, dpv_s_hth_emergencycaredispatch,
-        dpv_s_hth_emergencycareeligibilityassessment, dpv_s_hth_emergencycaremanagement, dpv_s_hth_emergencycaretriage,
+    dpv_s_hth_accessmanagement, dpv_s_hth_administrativeservicesprovision, dpv_s_hth_appointmentscheduling,
+    dpv_s_hth_behaviouralhealthdeterminant, dpv_s_hth_biobankdata,
+    dpv_s_hth_claimadmindata, dpv_s_hth_clinicalinvestigationsdata, dpv_s_hth_clinicalstudiesdata, dpv_s_hth_clinicaltrialsdata, dpv_s_hth_compatibilityunknown,
+        dpv_s_hth_consultationmanagement, dpv_s_hth_crisismanagement,
+    dpv_s_hth_developpublichealthproductsandservices, dpv_s_hth_developsocialsecurityproductsandservices, dpv_s_hth_diagnosismanagement, dpv_s_hth_diagnosticoptimisation,
+        dpv_s_hth_digitalhealthauthority, dpv_s_hth_disasterreliefmanagement, dpv_s_hth_dischargereport, dpv_s_hth_diseasepreventionawareness, dpv_s_hth_diseaseregistrydata,
+        dpv_s_hth_dispensationadmindata, dpv_s_hth_dispensationmanagement,
+    dpv_s_hth_ehrdata, dpv_s_hth_ehrsystem, dpv_s_hth_ehrsystemdistributor, dpv_s_hth_ehrsystemimporter, dpv_s_hth_ehrsystemmanufacturer, dpv_s_hth_ehrsystemsupplier,
+        dpv_s_hth_effectivenessassessment, dpv_s_hth_electronicdispensation, dpv_s_hth_electronichealthdata, dpv_s_hth_electronichealthdataaccessservice,
+        dpv_s_hth_electronicprescription, dpv_s_hth_electronicrecordsmanagement, dpv_s_hth_eligibilityassessment, dpv_s_hth_emergencycarecommunication,
+        dpv_s_hth_emergencycaredispatch, dpv_s_hth_emergencycareeligibilityassessment, dpv_s_hth_emergencycaremanagement, dpv_s_hth_emergencycaretriage,
+        dpv_s_hth_ensurequalitysafetyhealthcare, dpv_s_hth_ensurequalitysafetymedicaldevices, dpv_s_hth_ensurequalitysafetymedicinalproducts,
+        dpv_s_hth_environmentalhealthdeterminant, dpv_s_hth_epigenomicdata,
     dpv_s_hth_fitnessnutritionawareness, dpv_s_hth_fraudpreventiondetection,
-    dpv_s_hth_geneticconditiondiagnosis,
-    dpv_s_hth_healthinequalityanalysis, dpv_s_hth_healthinsurancemanagement, dpv_s_hth_healthtrendanalysis, dpv_s_hth_healthcaremanagement, dpv_s_hth_healthcareservicemanagement,
-    dpv_s_hth_identityfraudmanagement, dpv_s_hth_insuranceclaimfraudmanagement, dpv_s_hth_insurancemanagement,
-    dpv_s_hth_lifeinsurancemanagement,
-    dpv_s_hth_medicalconditiondiagnosis, dpv_s_hth_medicalresourceoptimisation, dpv_s_hth_mentalhealthawareness, dpv_s_hth_mentalhealthconditiondiagnosis,
+    dpv_s_hth_geneticconditiondiagnosis, dpv_s_hth_genomicdata,
+    dpv_s_hth_healthadmindata, dpv_s_hth_healthaggregateddata, dpv_s_hth_healthapplication, dpv_s_hth_healthdataaccessbody, dpv_s_hth_healthdataholder,
+        dpv_s_hth_healthdatauser, dpv_s_hth_healthinequalityanalysis, dpv_s_hth_healthinsurancemanagement, dpv_s_hth_healthprofessional,
+        dpv_s_hth_healthprofessionalaccessservice, dpv_s_hth_healthprofessionaldata, dpv_s_hth_healthquestionnaire, dpv_s_hth_healthregistrydata, dpv_s_hth_healthsurvey,
+        dpv_s_hth_healthtrendanalysis, dpv_s_hth_healthcaremanagement, dpv_s_hth_healthcareprovider, dpv_s_hth_healthcarescientificresearch,
+        dpv_s_hth_healthcareservicemanagement, dpv_s_hth_homecaremanagement,
+    dpv_s_hth_identityfraudmanagement, dpv_s_hth_improvehealthcare, dpv_s_hth_improvehealthcareeducation, dpv_s_hth_inferredhealthdata,
+        dpv_s_hth_insuranceclaimfraudmanagement, dpv_s_hth_insurancemanagement, dpv_s_hth_interoperabilitysoftwareforehrsystem,
+    dpv_s_hth_lifeinsurancemanagement, dpv_s_hth_lifestyledata, dpv_s_hth_lipidomicdata, dpv_s_hth_loggingsoftwareforehrsystem,
+    dpv_s_hth_medicalconditiondiagnosis, dpv_s_hth_medicaldevicemanufacturer, dpv_s_hth_medicaldevicesdata, dpv_s_hth_medicaldevicesdispensation,
+        dpv_s_hth_medicaldevicesprescription, dpv_s_hth_medicaldevicesprovision, dpv_s_hth_medicaldevicesregistrydata, dpv_s_hth_medicalimaging,
+        dpv_s_hth_medicalregistrydata, dpv_s_hth_medicalresourceoptimisation, dpv_s_hth_medicaltestresult, dpv_s_hth_medicinalproductsdispensation,
+        dpv_s_hth_medicinalproductsprescription, dpv_s_hth_medicinalproductsprovision, dpv_s_hth_medicinalproductsregistrydata, dpv_s_hth_mentalhealthawareness,
+        dpv_s_hth_mentalhealthconditiondiagnosis, dpv_s_hth_metabolomicdata, dpv_s_hth_mortalityregistrydata,
+    dpv_s_hth_nonpersonalelectronichealthdata,
     dpv_s_hth_optimisation,
-    dpv_s_hth_pandemicresponsemanagement, dpv_s_hth_patientchronicconditionmonitoring, dpv_s_hth_patientconsentmanagement, dpv_s_hth_patientinformationmanagement,
-        dpv_s_hth_patientintensivecaremonitoring, dpv_s_hth_patientmonitoring, dpv_s_hth_patientposttreatmentmonitoring, dpv_s_hth_patientremotemonitoring, 
-        dpv_s_hth_patienttreatmenteffectivenessmonitoring, dpv_s_hth_patienttreatmentoutcomeanalysis, dpv_s_hth_populationhealthanalysis, dpv_s_hth_predictivehealthriskanalysis,
-        dpv_s_hth_preventativecaremanagement, dpv_s_hth_primarycaremanagement, dpv_s_hth_providersdatasharing, dpv_s_hth_publichealthmonitoring,
-    dpv_s_hth_referralmanagement, dpv_s_hth_researchdevelopment, dpv_s_hth_resourcemanagement,
-    dpv_s_hth_securitymanagement, dpv_s_hth_servicebillingfraudmanagement, dpv_s_hth_serviceprovision, dpv_s_hth_specialisedcaremanagement,
-    dpv_s_hth_treatmentoptimisation,
+    dpv_s_hth_pandemicresponsemanagement, dpv_s_hth_pathogendata, dpv_s_hth_patientchronicconditionmonitoring, dpv_s_hth_patientconsentmanagement,
+        dpv_s_hth_patientinformationmanagement, dpv_s_hth_patientintensivecaremonitoring, dpv_s_hth_patientmonitoring, dpv_s_hth_patientposttreatmentmonitoring,
+        dpv_s_hth_patientremotemonitoring, dpv_s_hth_patientsummary, dpv_s_hth_patienttreatmenteffectivenessmonitoring, dpv_s_hth_patienttreatmentoutcomeanalysis,
+        dpv_s_hth_performancestudiesdata, dpv_s_hth_persongeneratedhealthappdata, dpv_s_hth_persongeneratedhealthdata, dpv_s_hth_persongeneratedmedicaldevicedata,
+        dpv_s_hth_persongeneratedwellnessappdata, dpv_s_hth_personalelectronichealthdata, dpv_s_hth_personalisedhealthcare, dpv_s_hth_populationhealthanalysis,
+        dpv_s_hth_predictivehealthriskanalysis, dpv_s_hth_prescriptionmanagement, dpv_s_hth_preventativecaremanagement, dpv_s_hth_primarycaremanagement,
+        dpv_s_hth_primaryuse, dpv_s_hth_protectagainstcrossborderthreatstohealth, dpv_s_hth_proteomicdata, dpv_s_hth_providehealthcareofficialstatistics,
+        dpv_s_hth_providersdatasharing, dpv_s_hth_publichealthmonitoring, dpv_s_hth_publichealthregistrydata, dpv_s_hth_publichealthsurveillance,
+        dpv_s_hth_publicinterestrelatedtohealth, dpv_s_hth_publicpolicymaking,
+    dpv_s_hth_referralmanagement, dpv_s_hth_reimbursementadmindata, dpv_s_hth_reimbursementservicesprovision, dpv_s_hth_researchcohortdata,
+        dpv_s_hth_researchdevelopment, dpv_s_hth_resourcemanagement, dpv_s_hth_reusecompatibility,
+    dpv_s_hth_secondmedicalopinion, dpv_s_hth_secondaryuse, dpv_s_hth_securitymanagement, dpv_s_hth_servicebillingfraudmanagement, dpv_s_hth_serviceprovision,
+        dpv_s_hth_socialservicesprovision, dpv_s_hth_socioeconomichealthdeterminant, dpv_s_hth_specialisedcaremanagement, dpv_s_hth_studydata,
+        dpv_s_hth_supportauthoritiesregulatoryactivities, dpv_s_hth_system,
+    dpv_s_hth_traintestandevaluateaisystemsalgorithms, dpv_s_hth_traintestandevaluatehealthalgorithms, dpv_s_hth_traintestandevaluatehealthappsalgorithms,
+        dpv_s_hth_traintestandevaluatemedicaldevicesalgorithms, dpv_s_hth_transcriptomicdata, dpv_s_hth_treatmentoptimisation,
     dpv_s_hth_vaccinationmanagement,
-    dpv_s_hth_workforcemanagement,
+    dpv_s_hth_wellnessappdistributor, dpv_s_hth_wellnessappmanufacturer, dpv_s_hth_wellnessappsupplier, dpv_s_hth_wellnessapplication, dpv_s_hth_wellnessdata,
+        dpv_s_hth_workforcemanagement,
 
     dpv_s_inf_aviationinfrastructuremanagement,
     dpv_s_inf_criticalcommunicationmanagement, dpv_s_inf_criticaldigitalinfrastructuremanagement, dpv_s_inf_criticalelectricitymanagement, dpv_s_inf_criticalemergencyresponsecommunicationmanagement,
@@ -4588,13 +4686,13 @@ typedef enum
         dpv_tech_providedassystem, dpv_tech_provider, dpv_tech_provisionmethod, dpv_tech_provisionstatus, dpv_tech_publiccloudservice, dpv_tech_purchaser,
     dpv_tech_recommendation,
     dpv_tech_saas, dpv_tech_securitymanagementtechnology, dpv_tech_securitytechnology, dpv_tech_serverlesscomputing, dpv_tech_service, dpv_tech_services, dpv_tech_smartphone,
-        dpv_tech_smartphoneapplication, dpv_tech_software, dpv_tech_softwareframework, dpv_tech_softwarelibrary,  dpv_tech_specification, dpv_tech_subject, dpv_tech_subscription,
-        dpv_tech_supplier, dpv_tech_surveillancetechnology, dpv_tech_system, dpv_tech_systemintegrator,
+        dpv_tech_smartphoneapplication, dpv_tech_software, dpv_tech_softwareagent, dpv_tech_softwareframework, dpv_tech_softwarelibrary, dpv_tech_specification, dpv_tech_subject,
+        dpv_tech_subscription, dpv_tech_supplier, dpv_tech_surveillancetechnology, dpv_tech_system, dpv_tech_systemintegrator,
     dpv_tech_technologyactor, dpv_tech_technologydeveloper, dpv_tech_technologyprovider, dpv_tech_technologyprovisionmethod, dpv_tech_technologyreadinesslevel, dpv_tech_technologystatus,
         dpv_tech_technologysubject, dpv_tech_technologyusagelocation, dpv_tech_technologyuser, dpv_tech_telephone, dpv_tech_testingplan, dpv_tech_textualcontent,
-    dpv_tech_user,
+    dpv_tech_user, dpv_tech_useragent,
     dpv_tech_videocontent,
-    dpv_tech_wifi,
+    dpv_tech_webscraper, dpv_tech_wifi,
 
     // DPV NACE
     dpv_nace_a, dpv_nace_a01, dpv_nace_a01_1, dpv_nace_a01_11, dpv_nace_a01_12, dpv_nace_a01_13, dpv_nace_a01_14,
@@ -6303,8 +6401,11 @@ typedef enum
     dpv_ai_hasai, dpv_ai_hasaisystem, dpv_ai_hascapability, dpv_ai_hasdata, dpv_ai_hasgpaimodel, dpv_ai_hasmodel, dpv_ai_hastechnique, dpv_ai_hastestingdata,
         dpv_ai_hastrainingdata, dpv_ai_hasvalidationdata,
 
-    // dpv au aiact
-    dpv_eu_aiact_haschangecategory, dpv_eu_aiact_haschangedescription,
+    // dpv eu aiact
+    dpv_eu_aiact_haschangecategory, dpv_eu_aiact_haschangedescription, dpv_eu_aiact_hasrisklevel,
+
+    // dpv de gdng
+    dpv_de_gdng_hasdataholder,
 
     // dpv eu dga
     dpv_eu_dga_hasdao, dpv_eu_dga_hasdataholder, dpv_eu_dga_hasdatareuseassistant, dpv_eu_dga_hasdatauser, dpv_eu_dga_hasdisp,
@@ -7684,6 +7785,7 @@ typedef enum {
 typedef enum { prsa_aggregate, prsa_presentdisplay, prsa_presentplay, prsa_presentprint, prsa_presenttexttospeech, prsa_transform, prsa_translate, prsa_use } e_prs_action;
 typedef enum { prsd_compensate, prsd_credit, prsd_include, prsd_inform } e_prs_duty;
 typedef enum { qs_none, qs_c, qs_csv, qs_double, qs_html, qs_single } e_quote_style;
+typedef enum { crf_flex_flow, crf_flex_visual, crf_grid_columns, crf_grid_order, crf_grid_rows, crf_normal, crf_source_order } e_css_reading_flow;
 typedef enum { rp_collection, rp_literal, rp_resource } e_rdf_parsetype;
 typedef enum { rdf_none, rdf_a, rdf_deprecated, rdf_1_0, rdf_1_1 } e_rdf_version;
 typedef enum {  erc_cooktime, erc_duration, erc_ingredient, erc_ingredientintro, erc_ingredients, erc_instructions, erc_instructionsintro, erc_itemname,
@@ -8199,7 +8301,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_2_9_MAX t_5x_unsigned
 
 #define SSC_TYPES_A_1 \
-    t_a_b_c_d, t_a_v, t_abcfl, t_abfmt, t_ablr, t_about, t_absolute_url, t_accept, t_accrual_method, t_accrual_periodicity, \
+    t_a_b_c_d, t_a_v, t_abcfl, t_abfmt, t_ablr, t_abn, t_about, t_absolute_url, t_accept, t_accrual_method, t_accrual_periodicity, \
         t_accrual_policy, t_accumulate, t_accumulate0, t_accumulate1, t_accumulate2, t_aces, t_acm, t_acn, t_acn_2, t_action, \
         t_actiontype, t_actiontype2
 #define SSC_TYPES_A_1_MAX t_actiontype2
@@ -8227,7 +8329,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_A_5_MAX t_auto_stable
 
 #define SSC_TYPES_B_1 \
-    t_b64, t_background, t_bandwidth, t_base, t_baseline_contain_none, t_baselineshift, t_bb, t_bcess, t_bcs, t_beginvalue, t_beginvalues, \
+    t_b64, t_background, t_bandwidth, t_base, t_baseline, t_baseline_contain_none, t_baselineshift, t_bb, t_bcess, t_bcs, t_beginvalue, t_beginvalues, \
         t_beginvaluelist, t_behaviour, t_bens, t_benrs, t_bihv, t_bixy, t_bixys, t_blink_none, t_blocking, t_block, t_block_inline, t_bns, t_bool
 #define SSC_TYPES_B_1_MAX t_bool
 
@@ -8367,14 +8469,15 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 // update either of the two below, also update type_css.cpp
 #define SSC_TYPES_CSS_FN_1 \
             t_css_fn_anchor, t_css_fn_anchor_size, t_css_fn_annotation, t_css_fn_attr, t_css_fn_calc, t_css_fn_calc_args, t_css_fn_calc_size, \
-            t_css_fn_character_variant, t_css_fn_cross_fade, t_css_fn_cubic_bezier, t_css_fn_dylm, t_css_fn_element, t_css_fn_fit_content, t_css_fn_if
-#define SSC_TYPES_CSS_FN_1_MAX t_css_fn_if
+            t_css_fn_character_variant, t_css_fn_cross_fade, t_css_fn_cubic_bezier, t_css_fn_dylm, t_css_fn_element, t_css_fn_fit_content, t_css_fn_if, \
+            t_css_fn_if_media, t_css_fn_if_supports, t_css_fn_if_style
+#define SSC_TYPES_CSS_FN_1_MAX t_css_fn_if_style
 
 #define SSC_TYPES_CSS_FN_2 \
-            t_css_fn_if_media, t_css_fn_if_supports, t_css_fn_if_style, t_css_fn_image, t_css_fn_image_set, t_css_fn_linear, t_css_fn_moz_image_rect, \
-            t_css_fn_ornaments, t_css_fn_path_args, t_css_fn_round_t, t_css_fn_steps, t_css_fn_styleset, t_css_fn_stylistic, t_css_fn_superellipse, \
-            t_css_fn_swash, t_css_fn_trans_args, t_css_fn_type, t_css_fn_type_args, t_css_fn_var
-#define SSC_TYPES_CSS_FN_2_MAX t_css_fn_var
+            t_css_fn_image, t_css_fn_image_set, t_css_fn_inset, t_css_fn_linear, t_css_fn_moz_image_rect, t_css_fn_ornaments, t_css_fn_path_args, \
+            t_css_fn_rect, t_css_fn_round_t, t_css_fn_steps, t_css_fn_styleset, t_css_fn_stylistic, t_css_fn_superellipse, t_css_fn_swash, t_css_fn_trans_args, \
+            t_css_fn_type, t_css_fn_type_args, t_css_fn_var, t_css_fn_xywh
+#define SSC_TYPES_CSS_FN_2_MAX t_css_fn_xywh
 
 #define SSC_TYPES_CSS_G_H \
             t_css_gap, t_css_generic_family, t_css_gradient, t_css_grid, t_css_grid_auto_flow, t_css_grid_line, t_css_grid_lines, \
@@ -8426,9 +8529,9 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_CSS_O \
             t_css_nth, t_css_nth_oe, \
-            t_css_object_fit, t_css_offset, t_css_offset_path, t_css_offset_path_basic, t_css_offset_path_n, t_css_opacity, t_css_orientation, t_css_outline, \
-            t_css_outline_i, t_css_outline_style, t_css_outlines, t_css_overflow, t_css_overflow_style, t_css_overflows, t_css_override_colour, \
-            t_css_override_colours
+            t_css_object_fit, t_css_object_view_box, t_css_object_view_box_n, t_css_offset, t_css_offset_path, t_css_offset_path_basic, \
+            t_css_offset_path_n, t_css_opacity, t_css_orientation, t_css_outline, t_css_outline_i, t_css_outline_style, t_css_outlines, \
+            t_css_overflow, t_css_overflow_style, t_css_overflows, t_css_override_colour, t_css_override_colours
 #define SSC_TYPES_CSS_O_MAX t_css_override_colours
 
 #define SSC_TYPES_CSS_P_1 \
@@ -8439,20 +8542,20 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_CSS_P_Q \
             t_css_place_items, t_css_place_self, t_css_play_during, t_css_play_during_mr, t_css_polar, t_css_position, t_css_position_a, \
-            t_css_position_area, t_css_position_area_n, t_css_position_try, t_css_position_visibility, t_css_position_vvo, t_css_position_vvos, \
-            t_css_property, t_css_pto, \
+            t_css_position_area, t_css_position_area_n, t_css_position_na, t_css_position_try, t_css_position_visibility, t_css_position_vvo, \
+            t_css_position_vvos, t_css_property, t_css_pto, \
             t_css_quotes, t_css_quotes_3
 #define SSC_TYPES_CSS_P_Q_MAX t_css_quotes_3
 
 #define SSC_TYPES_CSS_R \
-            t_css_range, t_css_range_a, t_css_ranges, t_css_radial_size, t_css_ray_size, t_css_rect, t_css_rect_ai, t_css_rect_fn, \
-            t_css_ref_annotation,  t_css_ref_character_variant, t_css_ref_historical_forms, t_css_ref_ornaments, t_css_ref_swash, \
-            t_css_ref_styleset, t_css_ref_stylistic, t_css_relative_size, t_css_region_flow_into, t_css_region_flow_into_n, \
+            t_css_range, t_css_range_a, t_css_ranges, t_css_radial_size, t_css_ray_size, t_css_reading_flow, t_css_rect, t_css_rect_ai, \
+            t_css_rect_fn, t_css_ref_annotation,  t_css_ref_character_variant, t_css_ref_historical_forms, t_css_ref_ornaments, \
+            t_css_ref_swash, t_css_ref_styleset, t_css_ref_stylistic, t_css_relative_size, t_css_region_flow_into, t_css_region_flow_into_n, \
             t_css_region_id, t_css_region_id_ni, t_css_resize, t_css_rgb_xyz
 #define SSC_TYPES_CSS_R_MAX t_css_rgb_xyz
 
 #define SSC_TYPES_CSS_S_1 \
-            t_css_rotate,t_css_rotate_angle, t_css_rotate_angles, t_css_rotate_xyz, t_css_ruby_pos, t_css_ruby_pos_in, t_css_ruby_pos_ins,\
+            t_css_rotate,t_css_rotate_angle, t_css_rotate_x, t_css_rotate_y, t_css_rotate_z, t_css_ruby_pos, t_css_ruby_pos_in, \
             t_css_scale, t_css_scale_3, t_css_scrollbar_gutter,  t_css_self_position, t_css_shape_box, t_css_shape_ellipse, t_css_shape_fillrule, \
             t_css_shape_inside, t_css_shape_inside_box, t_css_shape_inside_boxen, t_css_shape_inside_e, t_css_shape_outside, t_css_shape_position
 #define SSC_TYPES_CSS_S_1_MAX t_css_shape_position
@@ -8465,7 +8568,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_CSS_S_3 \
             t_css_speak_numeral, t_css_src_4, t_css_srcs, t_css_ss_align, t_css_ss_type, t_css_ss_type_e, t_css_ss_type_n, t_css_stroke_linejoin, \
-            t_css_statement, t_css_stn, t_css_stn_n, t_css_str_set, t_css_str_sets, t_css_str_sets_n, t_css_sts, t_css_stss, t_css_sym, \
+            t_css_statement, t_css_stn, t_css_stn_n, t_css_stn_na, t_css_str_set, t_css_str_sets, t_css_str_sets_n, t_css_sts, t_css_stss, t_css_stss_n, t_css_sym, \
             t_css_system, t_css_system_e, t_css_system_ext, t_css_system_fix, t_css_synthesis
 #define SSC_TYPES_CSS_S_3_MAX t_css_synthesis
 
@@ -8476,15 +8579,17 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_CSS_T_1_MAX t_css_text_orientation
 
 #define SSC_TYPES_CSS_T_2 \
-            t_css_text_resize, t_css_text_resize_4, t_css_text_resizes, t_css_text_resizes_4,  t_css_text_shadow, t_css_text_spacing, \
-            t_css_text_spacing_nan, t_css_text_transform, t_css_text_transform_n, t_css_text_transform_3, t_css_textdec_line, t_css_textdec_line_e, \
-            t_css_textdec_short, t_css_textdec_skip_space, t_css_textdec_style, t_css_textdec_thickness, t_css_textdec_underline, t_css_textdec_underline_lru
-#define SSC_TYPES_CSS_T_2_MAX t_css_textdec_underline_lru
+            t_css_text_resize, t_css_text_resize_4, t_css_text_resizes, t_css_text_resizes_4,  t_css_text_shadow, t_css_text_spacing, t_css_text_spacing_nan, \
+            t_css_text_spacing_trim, t_css_text_transform, t_css_text_transform_n, t_css_text_transform_3, t_css_textdec_line, t_css_textdec_line_e, \
+            t_css_textdec_short, t_css_textdec_skip, t_css_textdec_skips, t_css_textdec_skip_space, t_css_textdec_style, t_css_textdec_thickness, \
+            t_css_textdec_underline, t_css_textdec_underline_lru, t_css_textdec_underline_offset, t_css_text_emphases
+#define SSC_TYPES_CSS_T_2_MAX t_css_text_emphases
 
 #define SSC_TYPES_CSS_T_3 \
-            t_css_textdec_underline_offset, t_css_text_emphasis, t_css_textemph_pos,  t_css_textemph_shape, t_css_textemph_skip, t_css_textemph_style, \
-            t_css_textemph_substyle, t_css_texts_indent, t_css_text_wrap, t_css_transform,  t_css_transform_box, t_css_transform_origin, t_css_transform_origins, \
-            t_css_transform_n, t_css_transform_style, t_css_transforms, t_css_translate, t_css_translate_n, t_css_track_list, t_css_track_list_auto
+            t_css_text_emphasis, t_css_textemph_pos, t_css_textemph_shape, t_css_textemph_skip, t_css_textemph_string, t_css_textemph_style, \
+            t_css_textemph_substyle, t_css_texts_indent, t_css_text_wrap, t_css_text_wrap_mode, t_css_text_wrap_style, t_css_touch_action, t_css_transform, \
+            t_css_transform_box, t_css_transform_origin, t_css_transform_origins, t_css_transform_n, t_css_transform_style, t_css_transforms, t_css_translate, \
+            t_css_translate_n, t_css_track_list, t_css_track_list_auto
 #define SSC_TYPES_CSS_T_3_MAX t_css_track_list_auto
 
 #define SSC_TYPES_CSS_T_4 \
@@ -8498,15 +8603,16 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_CSS_U_MAX t_css_vertal_inline
 
 #define SSC_TYPES_CSS_V \
-            t_css_vertical_align, t_css_visual_box, t_css_voice_balance, t_css_voice_balance_e, t_css_voice, t_css_voice_age, t_css_voice_families, \
-            t_css_voice_families_p, t_css_voice_family, t_css_voice_family_desc, t_css_voice_gender, t_css_voice_pitch, t_css_voice_volume, \
-            t_css_volume, t_css_volume_e, t_css_vtn, t_css_vtn_n, t_css_vtn_splat
+            t_css_vector_effect, t_css_vertical_align, t_css_view_timeline, t_css_view_timelines, t_css_visual_box, t_css_voice_balance, t_css_voice_balance_e, \
+            t_css_voice, t_css_voice_age, t_css_voice_families, t_css_voice_families_p, t_css_voice_family, t_css_voice_family_desc, t_css_voice_gender, \
+            t_css_voice_pitch, t_css_voice_volume, t_css_volume, t_css_volume_e, t_css_vtn, t_css_vtn_n, t_css_vtn_splat
 #define SSC_TYPES_CSS_V_MAX t_css_vtn_splat
 
 #define SSC_TYPES_CSS_W_Z \
             t_css_wbd, t_css_wbe, t_css_wc, t_css_wc_e, t_css_wcs, t_css_wcs_a, t_css_whitespace, t_css_whitespace_2, t_css_whitespace_4, \
-            t_css_wide, t_css_win_shad, t_css_word_break, t_css_worklet, t_css_wrap_flow, t_css_ws_wsc, t_css_wsc, t_css_wsc_val, t_css_wst, t_css_wsts
-#define SSC_TYPES_CSS_W_Z_MAX t_css_wsts
+            t_css_wide, t_css_win_shad, t_css_word_break, t_css_worklet, t_css_wrap_flow, t_css_ws_wsc, t_css_wsc, t_css_wsc_val, t_css_wst, t_css_wsts, \
+            t_css_zoom
+#define SSC_TYPES_CSS_W_Z_MAX t_css_zoom
 
 #define SSC_TYPES_D_1 \
     t_d, t_dashes, t_data, t_dataformatas, t_datetime, t_datetime_absolute, t_datetime_auto, t_datetime_autos, t_datetime_http, \
@@ -8627,23 +8733,23 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_M_6_MAX t_namedspace
 
 #define SSC_TYPES_N \
-    t_nav_controls, t_navigation, t_negative, t_nit_macro, t_nit_section, t_no_braille, t_none_objects, t_none_wrap, t_normal, t_normal_spell, \
+    t_nav_controls, t_navigation, t_nearest_none, t_negative, t_nit_macro, t_nit_section, t_no_braille, t_none_objects, t_none_wrap, t_normal, t_normal_spell, \
         t_normal_stretch, t_not_0, t_not_empty, t_not_neg, t_not_pos, t_notation, t_notations, t_nsd, t_nsds, t_nss, t_nuf, t_num
 #define SSC_TYPES_N_MAX t_num
 
 #define SSC_TYPES_O \
-    t_occurence, t_og, t_ogdet, t_ogtype, t_oklabfn, t_oklchfn, t_onetwo, t_onetwothree, t_onoff, t_onoffempty, t_ontology, t_opacity, t_open, \
-        t_operator, t_order, t_orientation, t_origin, t_output_template, t_overflow, t_overlay, t_over_under
+    t_occurence, t_og, t_ogdet, t_ogtype, t_oklabfn, t_oklchfn, t_onetwo, t_onetwothree, t_onoff, t_onoffempty, t_ontology, t_opacity, \
+        t_opacity_percent, t_open, t_operator, t_order, t_orientation, t_origin, t_output_template, t_overflow, t_overlay, t_over_under
 #define SSC_TYPES_O_MAX t_over_under
 
 #define SSC_TYPES_P_1 \
-    t_p1_10, t_page_orientation, t_paint, t_paintkeyword, t_paint_order, t_pam_ccv, t_pam_status, t_panose1, t_part, t_pcmm_status, t_percent, \
+    t_p1_10, t_page_orientation, t_paint, t_paintkeyword, t_paint_order, t_paint_orders, t_pam_ccv, t_pam_status, t_panose1, t_part, t_pcmm_status, t_percent, \
         t_percent_100, t_percent_b, t_percent_flexible, t_percent_int, t_percent_l, t_percent_n, t_percent_s, t_percent_w, t_percentish, t_percents_nf, \
-        t_percents_flexible, t_percents_n, t_percent_or_neg
-#define SSC_TYPES_P_1_MAX t_percent_or_neg
+        t_percents_flexible, t_percents_n
+#define SSC_TYPES_P_1_MAX t_percents_n
 
 #define SSC_TYPES_P_2 \
-        t_percent_or_not, t_permpol, t_phase, t_phase_x, t_pics, t_plainhtml,  t_plus_1_7, t_plusstyle, t_pointer_events, t_points, t_popover, \
+        t_percent_or_neg, t_percent_or_not, t_permpol, t_phase, t_phase_x, t_pics, t_plainhtml,  t_plus_1_7, t_plusstyle, t_pointer_events, t_points, t_popover, \
         t_popovertargetaction, t_port, t_position, t_position_lcrtcb, t_position_lcr_len, t_position_lcrtcb_len, t_position_tcb_len, t_position_lr_len, \
         t_position_lrtb_len, t_position_tb_len, t_positions, t_positive
 #define SSC_TYPES_P_2_MAX t_positive

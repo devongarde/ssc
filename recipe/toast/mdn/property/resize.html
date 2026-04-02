@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN resize tests</title>
+<style>
+.sid
+{
+/* Keyword values */
+resize: none;
+resize: both;
+resize: horizontal;
+resize: vertical;
+resize: block;
+resize: inline;
+
+/* Global values */
+resize: inherit;
+resize: initial;
+resize: revert;
+resize: revert-layer;
+resize: unset;
+}
+
+textarea {
+  resize: none; /* Disables resizability */
+}
+
+.resizable {
+  resize: both;
+  overflow: scroll;
+  border: 1px solid black;
+}
+
+div {
+  height: 300px;
+  width: 300px;
+}
+
+p {
+  height: 200px;
+  width: 200px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN resize Tests</h1>
+
+<textarea>Type some text here.</textarea>
+
+<div class="resizable">
+  <p class="resizable">
+    This paragraph is resizable in all directions, because the CSS `resize`
+    property is set to `both` on this element.
+  </p>
+</div>
+
+</body>
+</html>

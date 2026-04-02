@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN visibility tests</title>
+<style>
+.sid {
+/* Keyword values */
+visibility: visible;
+visibility: hidden;
+visibility: collapse;
+
+/* Global values */
+visibility: inherit;
+visibility: initial;
+visibility: revert;
+visibility: revert-layer;
+visibility: unset;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.not-visible {
+  visibility: hidden;
+}
+
+.collapse {
+  visibility: collapse;
+}
+
+table {
+  border: 1px solid red;
+}
+
+td {
+  border: 1px solid gray;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN visibility Tests</h1>
+
+<p class="visible">The first paragraph is visible.</p>
+<p class="not-visible">The second paragraph is NOT visible.</p>
+<p class="visible">
+  The third paragraph is visible. Notice the second paragraph is still occupying
+  space.
+</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>1.1</td>
+      <td class="collapse">1.2</td>
+      <td>1.3</td>
+    </tr>
+    <tr class="collapse">
+      <td>2.1</td>
+      <td>2.2</td>
+      <td>2.3</td>
+    </tr>
+    <tr>
+      <td>3.1</td>
+      <td>3.2</td>
+      <td>3.3</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

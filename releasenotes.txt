@@ -3,6 +3,15 @@ static site checker
 https://dylanharris.org/ssc/
 (c) 2020-2026 Dylan Harris
 
+0.2.28
+- DPV ontologies 2.3
+- CSS March 2026 snapshot
+- Living Standard Apr 2026
+- withdraw MacOS binaries, they had hidden dependencies
+- Windows arm 64 requires C++ 20
+- various bug fixes
+- underlying work
+
 0.2.27
 - schema.org 30.0
 - various bug fixes

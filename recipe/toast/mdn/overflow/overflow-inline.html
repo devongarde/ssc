@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN overflow-inline tests</title>
+<style>
+.sid {
+/* Keyword values */
+overflow-inline: visible;
+overflow-inline: hidden;
+overflow-inline: clip;
+overflow-inline: scroll;
+overflow-inline: auto;
+
+/* Global values */
+overflow-inline: inherit;
+overflow-inline: initial;
+overflow-inline: revert;
+overflow-inline: revert-layer;
+overflow-inline: unset;
+}
+
+div {
+  border: 1px solid black;
+  width: 250px;
+  margin-bottom: 12px;
+}
+
+#div1 {
+  overflow-inline: hidden;
+}
+#div2 {
+  overflow-inline: scroll;
+}
+#div3 {
+  overflow-inline: visible;
+}
+#div4 {
+  overflow-inline: auto;
+}
+#div5 {
+  overflow-inline: clip;
+  overflow-clip-margin: 2em;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN overflow-inline Tests</h1>
+
+<ul>
+  <li>
+    <code>overflow-inline: hidden</code> (hides the text outside the box)
+    <div id="div1">ABCDEFGHIJKLMOPQRSTUVWXYZABCDEFGHIJKLMOPQRSTUVWXYZ</div>
+  </li>
+
+  <li>
+    <code>overflow-inline: scroll</code> (always adds a scrollbar)
+    <div id="div2">ABCDEFGHIJKLMOPQRSTUVWXYZABCDEFGHIJKLMOPQRSTUVWXYZ</div>
+  </li>
+
+  <li>
+    <code>overflow-inline: visible</code> (displays the text outside the box if
+    needed)
+    <div id="div3">ABCDEFGHIJKLMOPQRSTUVWXYZABCDEFGHIJKLMOPQRSTUVWXYZ</div>
+  </li>
+
+  <li>
+    <code>overflow-inline: auto</code> (equivalent to <code>scroll</code>
+    in most browsers)
+    <div id="div4">ABCDEFGHIJKLMOPQRSTUVWXYZABCDEFGHIJKLMOPQRSTUVWXYZ</div>
+  </li>
+
+  <li>
+    <code>overflow-inline: clip</code> (hides the text outside the box beyond
+    the overflow clip edge)
+    <code>clip</code>
+    <div id="div5">ABCDEFGHIJKLMOPQRSTUVWXYZABCDEFGHIJKLMOPQRSTUVWXYZ</div>
+  </li>
+</ul>
+
+</body>
+</html>

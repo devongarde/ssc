@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN scroll-behaviour tests</title>
+<style>
+.sid {
+/* Keyword values */
+scroll-behavior: auto;
+scroll-behavior: smooth;
+
+/* Global values */
+scroll-behavior: inherit;
+scroll-behavior: initial;
+scroll-behavior: revert;
+scroll-behavior: revert-layer;
+scroll-behavior: unset;
+}
+
+a {
+  display: inline-block;
+  width: 50px;
+  text-decoration: none;
+}
+nav,
+.scroll-container {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+nav {
+  width: 339px;
+  padding: 5px;
+  border: 1px solid black;
+}
+.scroll-container {
+  width: 350px;
+  height: 200px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+.scroll-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 5em;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN scroll-behaviour Tests</h1>
+
+<nav>
+  <a href="#page-1">1</a>
+  <a href="#page-2">2</a>
+  <a href="#page-3">3</a>
+</nav>
+<div class="scroll-container">
+  <div class="scroll-page" id="page-1">1</div>
+  <div class="scroll-page" id="page-2">2</div>
+  <div class="scroll-page" id="page-3">3</div>
+</div>
+
+</body>
+</html>

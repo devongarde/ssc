@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-overflow tests</title>
+<style>
+.sid {
+overflow: hidden;
+white-space: nowrap;
+
+text-overflow: clip;
+text-overflow: ellipsis ellipsis;
+text-overflow: ellipsis " [..]";
+
+/* Global values */
+text-overflow: inherit;
+text-overflow: initial;
+text-overflow: revert;
+text-overflow: revert-layer;
+text-overflow: unset;
+}
+
+p {
+  width: 200px;
+  border: 1px solid;
+  padding: 2px 5px;
+
+  /* Both of the following are required for text-overflow */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.overflow-clip {
+  text-overflow: clip;
+}
+
+.overflow-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.overflow-string {
+  text-overflow: " [..]";
+}
+
+body {
+  display: flex;
+  justify-content: space-around;
+}
+
+.ltr > p {
+  direction: ltr;
+}
+
+.rtl > p {
+  direction: rtl;
+}
+
+p {
+  width: 200px;
+  border: 1px solid;
+  padding: 2px 5px;
+
+  /* Both of the following are required for text-overflow */
+  white-space: nowrap;
+  overflow: scroll;
+}
+
+.overflow-clip-clip {
+  text-overflow: clip clip;
+}
+
+.overflow-clip-ellipsis {
+  text-overflow: clip ellipsis;
+}
+
+.overflow-ellipsis-ellipsis {
+  text-overflow: ellipsis ellipsis;
+}
+
+.overflow-ellipsis-string {
+  text-overflow: ellipsis " [..]";
+}
+</style>
+<script>
+// Scroll each paragraph so the start is also hidden
+const paras = document.querySelectorAll("p");
+
+for (const para of paras) {
+  para.scroll(100, 0);
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN text-overflow Tests</h1>
+
+<div class="ltr">
+  <h2>Left to right text</h2>
+  <pre>clip</pre>
+  <p class="overflow-clip">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+  </p>
+  <pre>ellipsis</pre>
+  <p class="overflow-ellipsis">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+  </p>
+  <pre>" [..]"</pre>
+  <p class="overflow-string">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+  </p>
+</div>
+
+<div class="rtl">
+  <h2>Right to left text</h2>
+  <pre>clip</pre>
+  <p class="overflow-clip">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+  </p>
+  <pre>ellipsis</pre>
+  <p class="overflow-ellipsis">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+  </p>
+  <pre>" [..]"</pre>
+  <p class="overflow-string">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+  </p>
+</div>
+
+<pre>clip clip</pre>
+<p class="overflow-clip-clip">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+</p>
+<pre>clip ellipsis</pre>
+<p class="overflow-clip-ellipsis">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+</p>
+<pre>ellipsis ellipsis</pre>
+<p class="overflow-ellipsis-ellipsis">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+</p>
+<pre>ellipsis " [..]"</pre>
+<p class="overflow-ellipsis-string">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+</p>
+
+</body>
+</html>

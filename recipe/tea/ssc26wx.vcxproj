@@ -14564,7 +14564,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WINSPELL;BUILD_OS="win x64";COMMAND_LINE;WX;_DEBUG;_CONSOLE;WXUSINGDLL;SIGNING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -14574,7 +14574,7 @@
       <ControlFlowGuard>false</ControlFlowGuard>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -14618,7 +14618,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>LEAK_SEEK;WINSPELL;BUILD_OS="win x64";COMMAND_LINE;WX;_DEBUG;_CONSOLE;WXUSINGDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -14628,7 +14628,7 @@
       <ControlFlowGuard>false</ControlFlowGuard>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -14674,7 +14674,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WINSPELL;BUILD_OS="win x64";COMMAND_LINE;WX;NDEBUG;_CONSOLE;WXUSINGDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <IntelJCCErratum>true</IntelJCCErratum>
@@ -14687,7 +14687,7 @@
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -14734,7 +14734,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;COMMAND_LINE;_CONSOLE;WINSPELL;WX;WXUSINGDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -14748,7 +14748,7 @@
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <GenerateMapFile>true</GenerateMapFile>
@@ -14773,7 +14773,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;COMMAND_LINE;_CONSOLE;WINSPELL;WX;WXUSINGDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -14787,7 +14787,7 @@
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <GenerateMapFile>true</GenerateMapFile>
@@ -14813,7 +14813,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
       <PreprocessorDefinitions>NDEBUG;COMMAND_LINE;_CONSOLE;WX;WXUSINGDLL;WINSPELL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
@@ -14827,7 +14827,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>

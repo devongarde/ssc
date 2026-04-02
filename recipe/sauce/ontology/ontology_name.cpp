@@ -1226,9 +1226,13 @@ property_name namtab [] =
     { "hasTrainingData", s_dpv_ai, dpv_ai_hastrainingdata },
     { "hasValidationData", s_dpv_ai, dpv_ai_hasvalidationdata },
 
+    // DPV DE GDNG
+    { "hasDataHolder", s_dpv_de_gdng, dpv_de_gdng_hasdataholder },
+
     // DPV EU AIACT
     { "hasChangeCategory", s_dpv_eu_aiact, dpv_eu_aiact_haschangecategory },
     { "hasChangeDescription", s_dpv_eu_aiact, dpv_eu_aiact_haschangedescription },
+    { "hasRiskLevel", s_dpv_eu_aiact, dpv_eu_aiact_hasrisklevel },
 
     // DPV EU DGA
     { "hasDAO", s_dpv_eu_dga, dpv_eu_dga_hasdao },

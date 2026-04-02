@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-emphasis tests</title>
+<style>
+.sid {
+/* Initial value */
+text-emphasis: none; /* No emphasis marks */
+
+/* <string> value */
+text-emphasis: "x";
+text-emphasis: "点";
+text-emphasis: "\25B2";
+text-emphasis: "*" #555555;
+text-emphasis: "foo"; /* Should NOT use. It may be computed to or rendered as 'f' only */
+
+/* Keywords value */
+text-emphasis: filled;
+text-emphasis: open;
+text-emphasis: filled sesame;
+text-emphasis: open sesame;
+
+/* Keywords value combined with a color */
+text-emphasis: filled sesame #555555;
+
+/* Global values */
+text-emphasis: inherit;
+text-emphasis: initial;
+text-emphasis: revert;
+text-emphasis: revert-layer;
+text-emphasis: unset;
+}
+
+h2 {
+  text-emphasis: triangle #dd5555;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN text-emphasis Tests</h1>
+
+<h2>This is important!</h2>
+
+</body>
+</html>

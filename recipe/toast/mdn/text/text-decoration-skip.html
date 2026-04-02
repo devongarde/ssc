@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-decoration-skip tests</title>
+<style>
+.sid {
+/* Keyword values */
+text-decoration-skip: none;
+text-decoration-skip: objects;
+text-decoration-skip: spaces;
+text-decoration-skip: edges;
+text-decoration-skip: box-decoration;
+
+/* Multiple keywords */
+text-decoration-skip: objects spaces;
+text-decoration-skip: leading-spaces trailing-spaces;
+text-decoration-skip: objects edges box-decoration;
+
+/* Global values */
+text-decoration-skip: inherit;
+text-decoration-skip: initial;
+text-decoration-skip: revert;
+text-decoration-skip: revert-layer;
+text-decoration-skip: unset;
+}
+
+p {
+  margin: 0;
+  font-size: 3em;
+  text-decoration: underline;
+  text-decoration-skip: edges;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN text-decoration-skip Tests</h1>
+
+<p>Hey, grab a cup of <em>coffee!</em></p>
+
+</body>
+</html>

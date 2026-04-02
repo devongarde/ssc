@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-emphasis-style tests</title>
+<style>
+.sid {
+/* Initial value */
+text-emphasis-style: none; /* No emphasis marks */
+
+/* <string> values */
+text-emphasis-style: "x";
+text-emphasis-style: "\25B2";
+text-emphasis-style: "*";
+
+/* Keyword values */
+text-emphasis-style: filled;
+text-emphasis-style: open;
+text-emphasis-style: dot;
+text-emphasis-style: circle;
+text-emphasis-style: double-circle;
+text-emphasis-style: triangle;
+text-emphasis-style: filled sesame;
+text-emphasis-style: open sesame;
+
+/* Global values */
+text-emphasis-style: inherit;
+text-emphasis-style: initial;
+text-emphasis-style: revert;
+text-emphasis-style: revert-layer;
+text-emphasis-style: unset;
+}
+
+h2 {
+  -webkit-text-emphasis-style: sesame;
+  text-emphasis-style: sesame;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN text-emphasis-style Tests</h1>
+
+</body>
+</html>

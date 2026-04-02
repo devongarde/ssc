@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.24)
 set (FULLNAME "Static-Site-Checker")
-set (VER 0.2.27)
+set (VER 0.2.28)
 project (ssc VERSION ${VER} DESCRIPTION ${FULLNAME} LANGUAGES CXX HOMEPAGE_URL "https://dylanharris.org/ssc/")
 message (NOTICE "preparing " ${FULLNAME} " ${VER}" )
 

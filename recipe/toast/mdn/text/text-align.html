@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-align tests</title>
+<style>
+.sid {
+/* Keyword values */
+text-align: start;
+text-align: end;
+text-align: left;
+text-align: right;
+text-align: center;
+text-align: justify;
+text-align: match-parent;
+
+/* Block alignment values (Non-standard syntax) */
+text-align: -moz-center;
+text-align: -webkit-center;
+
+/* Global values */
+text-align: inherit;
+text-align: initial;
+text-align: revert;
+text-align: revert-layer;
+text-align: unset;
+}
+
+.example {
+  text-align: start;
+  border: solid;
+}
+
+.example {
+  text-align: center;
+  border: solid;
+}
+
+.example {
+  text-align: justify;
+  border: solid;
+}
+
+table {
+  border-collapse: collapse;
+  border: solid black 1px;
+  width: 250px;
+  height: 150px;
+}
+
+thead {
+  text-align: left;
+}
+
+td,
+th {
+  border: solid 1px black;
+}
+
+.center {
+  text-align: center;
+}
+
+.right,
+caption {
+  text-align: right;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN text-align Tests</h1>
+
+<p class="example">
+  Integer elementum massa at nulla placerat varius. Suspendisse in libero risus,
+  in interdum massa. Vestibulum ac leo vitae metus faucibus gravida ac in neque.
+  Nullam est eros, suscipit sed dictum quis, accumsan a ligula.
+</p>
+
+<table>
+  <caption>
+    Example table
+  </caption>
+  <thead>
+    <tr>
+      <th>Col 1</th>
+      <th>Col 2</th>
+      <th class="right">Col 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="right">
+      <td>11</td>
+      <td class="center">12</td>
+      <td>13</td>
+    </tr>
+    <tr class="center">
+      <td>21</td>
+      <td>22</td>
+      <td>23</td>
+    </tr>
+    <tr id="r3">
+      <td class="right">31</td>
+      <td>32</td>
+      <td>33</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

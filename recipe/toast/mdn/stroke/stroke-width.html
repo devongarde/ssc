@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN stroke-width tests</title>
+<style>
+.sid {
+/* Length and percentage values */
+stroke-width: 0%;
+stroke-width: 1.414px;
+
+/* Global values */
+stroke-width: inherit;
+stroke-width: initial;
+stroke-width: revert;
+stroke-width: revert-layer;
+stroke-width: unset;
+}
+
+path:nth-child(1) {
+  stroke-width: 0.25;
+}
+path:nth-child(2) {
+  stroke-width: 0.25px;
+}
+path:nth-child(3) {
+  stroke-width: 1;
+}
+path:nth-child(4) {
+  stroke-width: 1px;
+}
+path:nth-child(5) {
+  stroke-width: 5%;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN stroke-width Tests</h1>
+
+<svg viewBox="0 0 39 30" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="black" stroke-width="1" fill="none">
+    <path
+      d="M1,5 l7   ,-3 l7   ,3
+         m2,0 l3.5 ,-3 l3.5 ,3
+         m2,0 l2   ,-3 l2   ,3
+         m2,0 l0.75,-3 l0.75,3
+         m2,0 l0.5 ,-3 l0.5 ,3" />
+    <path
+      d="M1,8 l7,-3 l7,3 m2,0 l3.5,-3 l3.5,3 m2,0 l2,-3 l2,3 m2,0 l0.75,-3 l0.75,3 m2,0 l0.5,-3 l0.5,3" />
+    <path
+      d="M1,14 l7,-3 l7,3 m2,0 l3.5,-3 l3.5,3 m2,0 l2,-3 l2,3 m2,0 l0.75,-3 l0.75,3 m2,0 l0.5,-3 l0.5,3" />
+    <path
+      d="M1,18 l7,-3 l7,3 m2,0 l3.5,-3 l3.5,3 m2,0 l2,-3 l2,3 m2,0 l0.75,-3 l0.75,3 m2,0 l0.5,-3 l0.5,3" />
+    <path
+      d="M1,26 l7,-3 l7,3 m2,0 l3.5,-3 l3.5,3 m2,0 l2,-3 l2,3 m2,0 l0.75,-3 l0.75,3 m2,0 l0.5,-3 l0.5,3" />
+  </g>
+</svg>
+
+</body>
+</html>

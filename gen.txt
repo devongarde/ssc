@@ -11,11 +11,11 @@ ssc
 
 
 DESCRIPTION
-ssc (the Static Site Checker) is an opinionated HTML nit-picker,
-intended for people, like its author, who hand code websites. It
-doesn't just check static sites for broken links, dubious syntax, and
-bad semantic data, it will actively complain about things that are
-perfectly legal but rather untidy, like its author.
+ssc (the Static Site Checker) is an opinionated website nit-picker,
+intended for people, like its author, who hand code sites. It doesn't
+just check a site's source for broken links, dubious syntax, and bad
+semantic data, it will actively complain about things that are
+perfectly legal but rather untidy.
 
 Except when serving CGI queries, it recursively scans the directory
 seeking HTML & related files to analyse. It produces a list of errors,
@@ -48,7 +48,7 @@ These options are only available on the command line:
 
 -h                      Show a summary of switches, then exit.
 
---ontology.list         List known schema versions, then exit.
+--ontology.list         List understood ontology versions, then exit.
 
 -q                      Use a simple shell. The shell accepts the
                         following commands:
@@ -331,25 +331,32 @@ defined at w3.org.
                             2024+
                             2024++
                             2024+++
+                            2025
+                            2025+
+                            2025++
+                            2025+++
+                            2026
+                            2026+
+                            2026++
+                            2026+++
                             html5
                         The years are CSS snapshots, whether the year
-                        itself for stable modules, with + for wobbly
+                        itself for stable modules, plus + for wobbly
                         modules, ++ for wibbly-wobbly modules, and +++
                         for weally-wibbly-wobbly modules, as per the
                         corresponding W3 CSS snapshots (the terminology
                         in those snapshots is inconsistent, hence the
-                        use of alternative scientific terminology).
-                        For levels 3, 4, 5 and 6, note that extensions
-                        that are part of neither CSS 1 nor CSS 2.x
-                        specifications are numbered three and upwards
-                        in ssc, for internal consistency. If you wish
-                        to use an extension named ... level 1, that is
-                        not part of CSS 1, specify 3. Similarly, for
-                        those named level 2 that are not part of any
-                        CSS 2 specification, etc..
-                        HTML5 extends 2024+++ with the CSS requirements
-                        of Math 4 Core and the August 2025 HTML Living
-                        Standard.
+                        use of alternatives). For levels 3, 4, 5 and 6,
+                        note that extensions that are part of neither
+                        CSS 1 nor CSS 2.x specifications are numbered
+                        three and upwards in ssc, for consistency. If
+                        you wish to use an extension named ... level 1,
+                        that is not part of CSS 1, specify 3. For those
+                        named level 2 that are not part of any CSS 2.x
+                        specification, use 4, and so on.
+                        HTML5 extends 2024 and later CSS snapshots with
+                        the CSS requirements of Math 4 Core and the
+                        August 2025 HTML or later Living Standard.
 
 --css.view  X           Use CSS View Transitions level X, where X is 0
                         or 3.
@@ -842,7 +849,7 @@ ontologies (see --ontology.list).
                                 dcterms 1.0,1.1
                                 ddi 1.0
                                 doap 1.0
-                                dpv* 0.1-2.2 (see below)
+                                dpv* 0.1-2.3 (see below)
                                 dqv 1.0
                                 describedby 1.0
                                 duv 1.0
@@ -898,7 +905,7 @@ ontologies (see --ontology.list).
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema.org 0.10-29.3 (see below)
+                                schema.org 0.10-30.0 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -1009,37 +1016,39 @@ ontologies (see --ontology.list).
                             2.0     2.0
                             2.1     2.1
                             2.2     2.2
+                            2.3     2.3
                         The data privacy ontology versions:
-                            ai              2.0-2.2
-                            dpv             0.1-2.2
-                            eu-aiact        2.0-2.2
-                            eu-dga          2.0-2.2
-                            eu-ehds         2.1,2.2
-                            eu-gdpr         2.0-2.2
-                            eu-nis2         2.0-2.2
-                            eu-rights       2.0-2.2
+                            ai              2.0-2.3
+                            dpv             0.1-2.3
+                            de-gndr         2.3
+                            eu-aiact        2.0-2.3
+                            eu-dga          2.0-2.3
+                            eu-ehds         2.1,2.3
+                            eu-gdpr         2.0-2.3
+                            eu-nis2         2.0-2.3
+                            eu-rights       2.0-2.3
                             gdpr            0.1-1
-                            justifications  2.0-2.2
+                            justifications  2.0-2.3
                             legal           0.5-1
-                            legal-de        2.0-2.2
-                            legal-eu        2.0-2.2
-                            legal-gb        2.0-2.2
-                            legal-ie        2.0-2.2
-                            legal-in        2.0-2.2
-                            legal-us        2.0-2.2
-                            legal-*         2.1,2.2
-                            loc             2.0-2.2
+                            legal-de        2.0-2.3
+                            legal-eu        2.0-2.3
+                            legal-gb        2.0-2.3
+                            legal-ie        2.0-2.3
+                            legal-in        2.0-2.3
+                            legal-us        2.0-2.3
+                            legal-*         2.1,2.3
+                            loc             2.0-2.3
                             nace            0.1-1
-                            p7012           2.1,2.2
+                            p7012           2.1-2.3
                             pd              0.4-2
-                            rights-eu       0.8-2.2
-                            risk            0.8-2.2
-                            dpv-sector-education 2.1,2.2
-                            dpv-sector-finance  2.1,2.2
-                            dpv-sector-health   2.1,2.2
-                            dpv-sector-infra    2.1,2.2
-                            dpv-sector-law  2.1,2.2
-                            tech            0.8-2.2
+                            rights-eu       0.8-2.3
+                            risk            0.8-2.3
+                            dpv-sector-education 2.1-2.3
+                            dpv-sector-finance  2.1-2.3
+                            dpv-sector-health   2.1-2.3
+                            dpv-sector-infra    2.1-2.3
+                            dpv-sector-law  2.1-2.3
+                            tech            0.8-2.3
                         For data privacy ontologies versions 2.1.1, use
                         2.1: there were no changes to the ontologies
                         themselves.
@@ -1110,7 +1119,9 @@ ontologies (see --ontology.list).
                                 27.1        27.01
                                 27.2        27.02
                                 ...
-                                29.3        as version number
+								29.4		29.4
+								...
+                                30.0        as version number
 
                         vCard versions correspond to RDFa specs,
                         published in 2001, 2006, 2010 & 2014. They do
@@ -1931,7 +1942,7 @@ upload.sh site /var/www/site-upload server user 0
 ssh user@server "cd /var/www ; mv site x ; mv site-upload site ;
 mv x site-upload ; ln -sf site htdocs"
 
-upload.sh is a macos bash script that can be found among the source
+upload.sh is a MacOS bash script that can be found among the source
 code. Note that I have rather naughtily replaced OpenBSD's httpd
 document directory /var/www/htdocs with a link.
 

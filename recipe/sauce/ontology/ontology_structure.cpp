@@ -1172,6 +1172,7 @@ microdata_structure ontology_structure [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_concept, dpv_eu_dga_hasdisp },
     { { s_dpv, 0, 20 }, { 0, 0 }, dpv_concept, dpv_hasduration },
     { { s_dpv, 0, 40 }, { 0, 0 }, dpv_concept, dpv_hasentity },
+//    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_concept, dpv_de_gdng_hasdataholder },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_concept, dpv_hasentitycontrol },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_concept, dpv_hasentityinvolvement },
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_concept, dpv_hasexpectation },
@@ -1373,8 +1374,6 @@ microdata_structure ontology_structure [] =
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_risk, dpv_hasrisklevel },
     { { s_dpv_risk, 2, 0 }, { 0, 0 }, dpv_risk, dpv_risk_hasrisksource },
     { { s_dpv, 0, 40 }, { 0, 0 }, dpv_risk, dpv_ismitigatedbymeasure },
-//    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, dpv_risk, dpv_ismitigatedbymeasure },
-//    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_risk, dpv_ismitigatedbymeasure },
     { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, dpv_risk, dpv_isresidualriskof },
 
     { { s_dpv, 0, 40 }, { 0, 0 }, dpv_riskmitigationmeasure, dpv_mitigatesrisk },
@@ -1445,6 +1444,9 @@ microdata_structure ontology_structure [] =
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_tech_component, dpv_tech_iscomponentof },
 
     { { s_dpv, 2, 1 }, { 0, 0 }, dpv_tech_system, dpv_tech_hascomponent },
+
+    // dpv eu ai act
+    { { s_dpv, 2, 3 }, { 0, 0 }, dpv_eu_aiact_aisystem, dpv_eu_aiact_hasrisklevel },
 
     // dpv risk
     { { s_dpv_risk, 2, 0 }, { 0, 0 }, dpv_risk_incident, dpv_risk_referstorisk },

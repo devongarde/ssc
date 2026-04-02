@@ -1007,10 +1007,11 @@ void options::init (context_t& c)
         (CSS VERSION, ::boost::program_options::value < ::std::string > (),
             "Select no CSS (0); "
             "a specific version (1, 2.0, 2.1, 2.2); "
-            "all modules of a given level (3, 4, 5, 6); "
-            "solid snapshot modules by year (07, 10, 15, 17, 18, 20, 21, 22, 23, 24); "
-            "solid and+ snapshot modules by year (15+, 17+, 18+, 20+, 21+, 22+, 23+, 24+); "
-            "all snapshot modules by year (15++, 17++, 18++, 20++, 21++, 22++, 23++, 24++, 24+++); "
+            "all modules of a given level (3 to 6); "
+            "solid snapshot modules by year (07, 10, 15, 17, 18, 20 to 26); "
+            "solid and + snapshot modules by year (15+, 17+, 18+, 20+ to 26+); "
+            "all snapshot modules by year (15++, 17++, 18++, 20++ to 26++,); "
+            "hairy snapshot modules by year (24+++ to 26+++); "
             "HTML5 Living Standard requirements (HTML5): "
             "default appropriate for HTML version.")
         (CSS VIEW, ::boost::program_options::value < int > (), "CSS View Transitions level (0 or 3).")

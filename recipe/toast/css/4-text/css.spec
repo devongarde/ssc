@@ -20,6 +20,8 @@ PASS ../toast/css/4-text/css-7.css
 
 PASS ../toast/css/4-text/css-8.css
 0 html
+21 unrecognised_value
+33 unrecognised_value
 
 PASS ../toast/css/4-text/css-9.css
 0 html

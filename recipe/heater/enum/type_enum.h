@@ -405,8 +405,6 @@ template < > struct type_master < t_css_caret_shape > : ENUM_N (css_caret_shape)
 template < > struct type_master < t_css_clear > : ENUM_N (css_clear)
 { using ENUM_N (css_clear) :: enum_n; };
 
-// typedef enum { ccm_clear, ccm_copy, ccm_destination_atop, ccm_destination_in, ccm_destination_out, ccm_destination_over, ccm_lighter,
-//      ccm_plus_darker, ccm_plus_lighter, ccm_source_atop, ccm_source_in, ccm_source_out, ccm_source_over, ccm_xor } e_css_composite_mode;
 template < > struct type_master < t_css_composite_mode > : ENUM_N (css_composite_mode)
 { using ENUM_N (css_composite_mode) :: enum_n; };
 
@@ -570,6 +568,9 @@ template < > struct type_master < t_css_property > : ENUM_N (css_property)
 template < > struct type_master < t_css_ray_size > : ENUM_N (css_ray_size)
 { using ENUM_N (css_ray_size) :: enum_n; };
 
+template < > struct type_master < t_css_reading_flow > : ENUM_N (css_reading_flow)
+{ using ENUM_N (css_reading_flow) :: enum_n; };
+
 template < > struct type_master < t_css_rect > : ENUM_N (css_rect)
 { using ENUM_N (css_rect) :: enum_n; };
 
@@ -621,6 +622,12 @@ template < > struct type_master < t_css_text_autospace > : ENUM_N (css_text_auto
 template < > struct type_master < t_css_text_decoration > : ENUM_N (css_text_decoration)
 { using ENUM_N (css_text_decoration) :: enum_n; };
 
+template < > struct type_master < t_css_textdec_skip > : ENUM_N (css_textdec_skip)
+{ using ENUM_N (css_textdec_skip) :: enum_n; };
+
+template < > struct type_master < t_css_text_justify > : ENUM_N (css_text_justify)
+{ using ENUM_N (css_text_justify) :: enum_n; };
+
 template < > struct type_master < t_css_text_transform > : ENUM_N (css_text_transform)
 { using ENUM_N (css_text_transform) :: enum_n; };
 
@@ -632,6 +639,9 @@ template < > struct type_master < t_css_textdec_style > : ENUM_N (css_textdec_st
 
 template < > struct type_master < t_css_textemph_shape > : ENUM_N (css_textemph_shape)
 { using ENUM_N (css_textemph_shape) :: enum_n; };
+
+template < > struct type_master < t_css_touch_action > : ENUM_N (css_touch_action)
+{ using ENUM_N (css_touch_action) :: enum_n; };
 
 template < > struct type_master < t_css_try_tactic > : ENUM_N (css_try_tactic)
 { using ENUM_N (css_try_tactic) :: enum_n; };
@@ -674,6 +684,9 @@ template < > struct type_master < t_css_wide > : ENUM_N (css_wide)
 
 template < > struct type_master < t_css_win_shad > : ENUM_N (css_win_shad)
 { using ENUM_N (css_win_shad) :: enum_n; };
+
+template < > struct type_master < t_css_word_break > : ENUM_N (css_word_break)
+{ using ENUM_N (css_word_break) :: enum_n; };
 
 template < > struct type_master < t_css_wrap_flow > : ENUM_N (css_wrap_flow)
 { using ENUM_N (css_wrap_flow) :: enum_n; };

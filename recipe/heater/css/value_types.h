@@ -162,7 +162,7 @@ template < > inline bool maybe_animatable < t_unknown > (nitpick& )
 {   return true; }
 
 template < e_type T > inline bool maybe_colour (nitpick& nits, const int n = 0)
-{   if (type_master < T > :: animation_type () == at_colour) return true;
+{   if ((type_master < T > :: animation_type () == at_paint ) || (type_master < T > :: animation_type () == at_colour)) return true;
     if (type_master < T > :: is_colourful ()) return true;
     nits.pick (nit_css_value_fn, es_error, ec_css, "not a colour property (", n, ")");
     return false; }

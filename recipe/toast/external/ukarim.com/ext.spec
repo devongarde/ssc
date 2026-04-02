@@ -3,18 +3,19 @@
 PASS ../toast/external/ukarim.com/classfile.html
 2 naughty_lang
 6 long_title
-8 selector
+8 selector deprecated deprecated
+460 deprecated deprecated
 
 PASS ../toast/external/ukarim.com/index.html
 2 naughty_lang
-8 selector
+8 selector deprecated deprecated
 25 use_quote_code
 34 use_quote_code
 
 PASS ../toast/external/ukarim.com/irodov.html
 2 naughty_lang
 6 long_title
-8 selector
+8 selector deprecated deprecated
 28 no_such_folder url_not_found
 29 no_such_folder url_not_found
 30 no_such_folder url_not_found
@@ -139,7 +140,7 @@ PASS ../toast/external/ukarim.com/irodov.html
 
 PASS ../toast/external/ukarim.com/rabbitmq-retry.html
 2 naughty_lang
-8 selector
+8 selector deprecated deprecated
 28 use_quote_code
 30 use_quote_code
 40 use_quote_code

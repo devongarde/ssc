@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-underline-offset tests</title>
+<style>
+.sid {
+/* Single keyword */
+text-underline-offset: auto;
+
+/* length */
+text-underline-offset: 0.1em;
+text-underline-offset: 3px;
+
+/* percentage */
+text-underline-offset: 20%;
+
+/* Global values */
+text-underline-offset: inherit;
+text-underline-offset: initial;
+text-underline-offset: revert;
+text-underline-offset: revert-layer;
+text-underline-offset: unset;
+}
+
+p {
+  text-decoration: underline wavy red;
+  text-underline-offset: 1em;
+}
+
+.two-lines {
+  text-decoration-color: purple;
+  text-decoration-line: underline overline;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN text-underline-offset Tests</h1>
+
+<p class="one-line">Here's some text with an offset wavy red underline!</p>
+<br />
+<p class="two-lines">
+  This text has lines both above and below it. Only the bottom one is offset.
+</p>
+
+</body>
+</html>

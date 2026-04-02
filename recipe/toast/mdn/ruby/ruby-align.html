@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN ruby-align tests</title>
+<style>
+.sid {
+/* Keyword values */
+ruby-align: start;
+ruby-align: center;
+ruby-align: space-between;
+ruby-align: space-around;
+
+/* Global values */
+ruby-align: inherit;
+ruby-align: initial;
+ruby-align: revert;
+ruby-align: revert-layer;
+ruby-align: unset;
+}
+
+ruby {
+  ruby-align: start;
+}
+
+ruby {
+  ruby-align: center;
+}
+
+ruby {
+  ruby-align: space-between;
+}
+
+ruby {
+  ruby-align: space-around;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN ruby-align Tests</h1>
+
+<ruby>
+  <rb>This is a long text to check</rb>
+  <rp>（</rp><rt>short ruby</rt><rp>）</rp>
+</ruby>
+
+</body>
+</html>

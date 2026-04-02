@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN shape-outside tests</title>
+<style>
+.sid {
+/* Keyword values */
+shape-outside: none;
+shape-outside: margin-box;
+shape-outside: content-box;
+shape-outside: border-box;
+shape-outside: padding-box;
+
+/* Function values */
+shape-outside: circle();
+shape-outside: ellipse();
+shape-outside: inset(10px 10px 10px 10px);
+shape-outside: polygon(10px 10px, 20px 20px, 30px 30px);
+
+/* Shape box with basic shape */
+shape-outside: circle() border-box;
+shape-outside: margin-box ellipse();
+
+/* <url> value */
+shape-outside: url("image.png");
+
+/* <gradient> value */
+shape-outside: linear-gradient(45deg, white 150px, red 150px);
+
+/* Global values */
+shape-outside: inherit;
+shape-outside: initial;
+shape-outside: revert;
+shape-outside: revert-layer;
+shape-outside: unset;
+}
+
+.main {
+  width: 530px;
+}
+
+.left,
+.right {
+  background-color: lightgray;
+  height: 12ex;
+  width: 40%;
+}
+
+.left {
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+  float: left;
+  shape-outside: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.right {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  float: right;
+  shape-outside: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+p {
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN shape-outside Tests</h1>
+
+<div class="main">
+  <div class="left"></div>
+  <div class="right"></div>
+  <p>
+    Sometimes a web page's text content appears to be funneling your attention
+    towards a spot on the page to drive you to follow a particular link.
+    Sometimes you don't notice.
+  </p>
+</div>
+
+</body>
+</html>

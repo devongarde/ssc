@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN touch-action tests</title>
+<style>
+.sid {
+/* Keyword values */
+touch-action: auto;
+touch-action: none;
+touch-action: pan-x;
+touch-action: pan-left;
+touch-action: pan-right;
+touch-action: pan-y;
+touch-action: pan-up;
+touch-action: pan-down;
+touch-action: pinch-zoom;
+touch-action: manipulation;
+
+/* Global values */
+touch-action: inherit;
+touch-action: initial;
+touch-action: revert;
+touch-action: revert-layer;
+touch-action: unset;
+}
+
+#map {
+  height: 150vh;
+  width: 70vw;
+  background: linear-gradient(blue, green);
+  touch-action: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN touch-action Tests</h1>
+
+<div id="map"></div>
+
+</body>
+</html>

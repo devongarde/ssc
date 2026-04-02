@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN writing-mode tests</title>
+<style>
+.sid {
+/* Keyword values */
+writing-mode: horizontal-tb;
+writing-mode: vertical-rl;
+writing-mode: vertical-lr;
+writing-mode: sideways-rl;
+writing-mode: sideways-lr;
+
+/* Global values */
+writing-mode: inherit;
+writing-mode: initial;
+writing-mode: revert;
+writing-mode: revert-layer;
+writing-mode: unset;
+}
+
+.text1 td {
+  writing-mode: horizontal-tb;
+}
+
+.text2 td {
+  writing-mode: vertical-lr;
+}
+
+.text3 td {
+  writing-mode: vertical-rl;
+}
+
+.text4 td {
+  writing-mode: sideways-lr;
+}
+
+.text5 td {
+  writing-mode: sideways-rl;
+}
+
+.vertical-lr {
+  writing-mode: vertical-lr;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+.sideways-lr {
+  writing-mode: sideways-lr;
+}
+
+.only-rotate {
+  inline-size: fit-content;
+  transform: rotate(-90deg);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN writing-mode Tests</h1>
+
+<table>
+  <caption>
+    Using multiple writing modes
+  </caption>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Vertical script</th>
+      <th>Horizontal (LTR) script</th>
+      <th>Horizontal (RTL) script</th>
+      <th>Mixed script</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="text1">
+      <th>horizontal-tb</th>
+      <td>我家没有电脑。</td>
+      <td>Example text</td>
+      <td>מלל ארוך לדוגמא</td>
+      <td>1994年に至っては</td>
+    </tr>
+    <tr class="text2">
+      <th>vertical-lr</th>
+      <td>我家没有电脑。</td>
+      <td>Example text</td>
+      <td>מלל ארוך לדוגמא</td>
+      <td>1994年に至っては</td>
+    </tr>
+    <tr class="text3">
+      <th>vertical-rl</th>
+      <td>我家没有电脑。</td>
+      <td>Example text</td>
+      <td>מלל ארוך לדוגמא</td>
+      <td>1994年に至っては</td>
+    </tr>
+    <tr class="experimental text4">
+      <th>sideways-lr</th>
+      <td>我家没有电脑。</td>
+      <td>Example text</td>
+      <td>מלל ארוך לדוגמא</td>
+      <td>1994年に至っては</td>
+    </tr>
+    <tr class="experimental text5">
+      <th>sideways-rl</th>
+      <td>我家没有电脑。</td>
+      <td>Example text</td>
+      <td>מלל ארוך לדוגמא</td>
+      <td>1994年に至っては</td>
+    </tr>
+  </tbody>
+</table>
+<p class="notice">
+  Your browser does not support the <code>sideways-lr</code> or
+  <code>sideways-rl</code> values.
+</p>
+
+<table>
+  <caption>
+    Using writing-mode with transforms
+  </caption>
+  <thead>
+    <tr>
+      <th>Vertical LR</th>
+      <th>Vertical LR with transform</th>
+      <th>Sideways LR</th>
+      <th>Only rotate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <span class="vertical-lr">我家没有电脑。</span>
+        <span class="vertical-lr">Example text</span>
+      </td>
+      <td>
+        <span class="vertical-lr rotated">我家没有电脑。</span>
+        <span class="vertical-lr rotated">Example text</span>
+      </td>
+      <td>
+        <span class="sideways-lr">我家没有电脑。</span>
+        <span class="sideways-lr">Example text</span>
+      </td>
+      <td>
+        <span class="only-rotate">我家没有电脑。</span>
+        <span class="only-rotate">Example text</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

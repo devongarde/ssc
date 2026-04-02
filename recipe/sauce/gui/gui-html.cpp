@@ -52,7 +52,7 @@ bool html_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
     return true; }
 
 void html_t :: create_controls (wxWindow *parent)
-{	constexpr long rg = (wxALL | wxALIGN_RIGHT);
+{	constexpr long rg = (wxALL);
     constexpr long al = wxALIGN_RIGHT;
 
     if (    html_ctrl_.concoct (parent, box_, choice_html_version, "&X/HTML version: ") &&

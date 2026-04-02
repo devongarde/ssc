@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN scroll-target-group tests</title>
+<style>
+.sid {
+/* Keyword values */
+scroll-target-group: none;
+scroll-target-group: auto;
+
+/* Global values */
+scroll-target-group: inherit;
+scroll-target-group: initial;
+scroll-target-group: revert;
+scroll-target-group: revert-layer;
+scroll-target-group: unset;
+}
+
+ol {
+  scroll-target-group: auto;
+}
+
+:target-current {
+  color: red;
+}
+
+ol {
+  position: absolute;
+  position-anchor: --my-carousel;
+  top: calc(anchor(bottom) - 90px);
+  justify-self: anchor-center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+  list-style-type: none;
+  padding: 0;
+  scroll-target-group: auto;
+}
+
+ol a {
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  padding-top: 4px;
+  color: black;
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+ol a:hover,
+ol a:focus,
+:target-current {
+  background-color: black;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN scroll-target-group Tests</h1>
+
+<nav id="toc">
+  <ol>
+    <li><a href="#intro">Introduction</a></li>
+    <li><a href="#ch1">Chapter 1</a></li>
+    <li><a href="#ch2">Chapter 2</a></li>
+    <li><a href="#ch3">Chapter 3</a></li>
+    <li><a href="#ch4">Chapter 4</a></li>
+  </ol>
+</nav>
+<section id="intro" class="chapter">
+  <h1>Prose of the century</h1>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla luctus
+    aliquam dolor, eu lacinia lorem placerat vulputate. Duis felis orci,
+    pulvinar id metus ut, rutrum luctus orci. Cras porttitor imperdiet nunc, at
+    ultricies tellus laoreet sit amet.
+  </p>
+</section>
+<section id="ch1" class="chapter">
+  <h2>Chapter 1</h2>
+
+  <!-- ... -->
+</section>
+<section id="ch2" class="chapter">
+  <h2>Chapter 2</h2>
+
+  <!-- ... -->
+</section>
+
+<!-- ... -->
+
+<h1>CSS carousel single item per page</h1>
+<ul>
+  <li id="page1">
+    <h2>Page 1</h2>
+  </li>
+  <li id="page2">
+    <h2>Page 2</h2>
+  </li>
+  <li id="page3">
+    <h2>Page 3</h2>
+  </li>
+  <li id="page4">
+    <h2>Page 4</h2>
+  </li>
+</ul>
+<ol>
+  <li><a href="#page1">1</a></li>
+  <li><a href="#page2">2</a></li>
+  <li><a href="#page3">3</a></li>
+  <li><a href="#page4">4</a></li>
+</ol>
+
+</body>
+</html>

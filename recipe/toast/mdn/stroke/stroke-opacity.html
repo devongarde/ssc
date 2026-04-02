@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN stroke-opacity tests</title>
+<style>
+.sid {
+/* numeric and percentage values */
+stroke-opacity: 1;
+stroke-opacity: 0.3;
+stroke-opacity: 50%;
+
+/* Global values */
+stroke-opacity: inherit;
+stroke-opacity: initial;
+stroke-opacity: revert;
+stroke-opacity: revert-layer;
+stroke-opacity: unset;
+}
+
+g path:nth-child(1) {
+  stroke-opacity: 0.2;
+} /* equiv. 20% */
+g path:nth-child(2) {
+  stroke-opacity: 0.4;
+} /* equiv. 40% */
+g path:nth-child(3) {
+  stroke-opacity: 0.6;
+} /* equiv. 60% */
+g path:nth-child(4) {
+  stroke-opacity: 0.8;
+} /* equiv. 80% */
+g path:nth-child(5) {
+  stroke-opacity: 1;
+} /* equiv. 100% */
+</style>
+</head>
+
+<body>
+
+<h1>MDN stroke-opacity Tests</h1>
+
+<svg viewBox="0 0 39 36" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="black" stroke-width="1" fill="dodgerblue">
+    <path
+      d="M1,5 l7   ,-3 l7   ,3
+         m2,0 l3.5 ,-3 l3.5 ,3
+         m2,0 l2   ,-3 l2   ,3
+         m2,0 l0.75,-3 l0.75,3
+         m2,0 l0.5 ,-3 l0.5 ,3" />
+    <path
+      d="M1,12 l7,-3 l7,3 m2,0 l3.5,-3 l3.5,3 m2,0 l2,-3 l2,3 m2,0 l0.75,-3 l0.75,3 m2,0 l0.5,-3 l0.5,3" />
+    <path
+      d="M1,19 l7,-3 l7,3 m2,0 l3.5,-3 l3.5,3 m2,0 l2,-3 l2,3 m2,0 l0.75,-3 l0.75,3 m2,0 l0.5,-3 l0.5,3" />
+    <path
+      d="M1,26 l7,-3 l7,3 m2,0 l3.5,-3 l3.5,3 m2,0 l2,-3 l2,3 m2,0 l0.75,-3 l0.75,3 m2,0 l0.5,-3 l0.5,3" />
+    <path
+      d="M1,33 l7,-3 l7,3 m2,0 l3.5,-3 l3.5,3 m2,0 l2,-3 l2,3 m2,0 l0.75,-3 l0.75,3 m2,0 l0.5,-3 l0.5,3" />
+  </g>
+</svg>
+
+</body>
+</html>

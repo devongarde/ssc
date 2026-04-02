@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-emphasis-position tests</title>
+<style>
+.sid {
+/* Initial value */
+text-emphasis-position: auto;
+
+/* Keyword values */
+text-emphasis-position: over;
+text-emphasis-position: under;
+
+text-emphasis-position: over right;
+text-emphasis-position: over left;
+text-emphasis-position: under right;
+text-emphasis-position: under left;
+
+text-emphasis-position: left over;
+text-emphasis-position: right over;
+text-emphasis-position: right under;
+text-emphasis-position: left under;
+
+/* Global values */
+text-emphasis-position: inherit;
+text-emphasis-position: initial;
+text-emphasis-position: revert;
+text-emphasis-position: revert-layer;
+text-emphasis-position: unset;
+}
+
+section p {
+  text-emphasis: filled circle tomato;
+  text-emphasis-position: auto;
+}
+.over-right p,
+.preferred p [lang="ja"] {
+  text-emphasis-position: over right;
+}
+.over-left p {
+  text-emphasis-position: over left;
+}
+.under-right p,
+.preferred p [lang="zh"] {
+  text-emphasis-position: under right;
+}
+.under-left p {
+  text-emphasis-position: under left;
+}
+.preferred p [lang="ja"] {
+}
+
+ruby {
+  text-emphasis: none;
+}
+
+em {
+  text-emphasis: dot; /* Set text-emphasis for <em> elements */
+}
+
+em rt {
+  display: none; /* Hide ruby inside <em> elements */
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN text-emphasis-position Tests</h1>
+
+<section id="setting" class="auto">
+  <p class="horizontal" lang="zh">你好世界</p>
+  <!-- Hello World in Chinese -->
+  <p class="vertical" lang="ja">世界、こんにちは。</p>
+  <!-- Hello World in Japanese -->
+</section>
+
+</body>
+</html>

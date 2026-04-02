@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN table-layout tests</title>
+<style>
+.sid {
+/* Keyword values */
+table-layout: auto;
+table-layout: fixed;
+
+/* Global values */
+table-layout: inherit;
+table-layout: initial;
+table-layout: revert;
+table-layout: revert-layer;
+table-layout: unset;
+}
+
+table {
+  table-layout: fixed;
+  width: 120px;
+  border: 1px solid red;
+}
+
+td {
+  border: 1px solid blue;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN table-layout Tests</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Ed</td>
+      <td>Wood</td>
+    </tr>
+    <tr>
+      <td>Albert</td>
+      <td>Schweitzer</td>
+    </tr>
+    <tr>
+      <td>Jane</td>
+      <td>Fonda</td>
+    </tr>
+    <tr>
+      <td>William</td>
+      <td>Shakespeare</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

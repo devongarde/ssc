@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-box-edge tests</title>
+<style>
+.sid {
+/* Single keyword */
+text-box-edge: auto;
+text-box-edge: text;
+
+/* Two <text-edge> values */
+text-box-edge: text text;
+text-box-edge: text alphabetic;
+text-box-edge: cap alphabetic;
+text-box-edge: ex text;
+
+/* Global values */
+text-box-edge: inherit;
+text-box-edge: initial;
+text-box-edge: revert;
+text-box-edge: revert-layer;
+text-box-edge: unset;
+}
+
+p {
+  text-box-trim: trim-both;
+  border-top: 5px solid magenta;
+  border-bottom: 5px solid magenta;
+}
+
+.one {
+  text-box-edge: cap alphabetic;
+}
+
+.two {
+  text-box-edge: ex alphabetic;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN text-box-edge Tests</h1>
+
+</body>
+</html>

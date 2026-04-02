@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN white-space tests</title>
+<style>
+.sid {
+/* Single keyword values */
+white-space: normal;
+white-space: pre;
+white-space: pre-wrap;
+white-space: pre-line;
+
+/* white-space-collapse and text-wrap-mode shorthand values */
+white-space: nowrap;
+white-space: wrap;
+white-space: break-spaces;
+white-space: collapse;
+white-space: preserve nowrap;
+
+/* Global values */
+white-space: inherit;
+white-space: initial;
+white-space: revert;
+white-space: revert-layer;
+white-space: unset;
+}
+
+code {
+  white-space: pre;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+table {
+  border-collapse: collapse;
+  border: solid black 1px;
+  width: 250px;
+  height: 150px;
+}
+td {
+  border: solid 1px black;
+  text-align: center;
+}
+.nw {
+  white-space: nowrap;
+}
+
+text {
+  white-space: break-spaces;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN white-space Tests</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <td></td>
+      <td>Very long content that splits</td>
+      <td class="nw">Very long content that don't split</td>
+    </tr>
+    <tr>
+      <td class="nw">white-space:</td>
+      <td>normal</td>
+      <td>nowrap</td>
+    </tr>
+  </tbody>
+</table>
+
+<svg viewBox="0 0 320 150">
+  <text y="20" x="10">Here is an English paragraph
+that is broken into multiple lines
+in the source code so that it can
+be more easily read and edited
+in a text editor.
+  </text>
+</svg>
+
+</body>
+</html>

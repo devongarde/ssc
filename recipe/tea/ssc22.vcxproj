@@ -1477,12 +1477,6 @@
     <ClCompile Include="..\sauce\webpage\vtt.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\port\macports\Portfile" />
-    <None Include="..\port\openbsd\httpd\7.7\chroot77.sh" />
-    <None Include="..\port\openbsd\httpd\7.7\dependencies.sh" />
-    <None Include="..\port\openbsd\portfiles\Makefile" />
-    <None Include="..\port\openbsd\portfiles\pkg\DESCR" />
-    <None Include="..\port\openbsd\portfiles\pkg\PLIST" />
     <None Include="..\toast\aria\1-0\2.css" />
     <None Include="..\toast\aria\1-0\2.html" />
     <None Include="..\toast\aria\1-0\5.html" />
@@ -15005,13 +14999,11 @@
     <Text Include="..\..\build.txt" />
     <Text Include="..\..\CMakeLists.txt" />
     <Text Include="..\..\gen.txt" />
-    <Text Include="..\..\installation.txt" />
     <Text Include="..\..\LICENCE.txt" />
     <Text Include="..\..\LICENSE.txt" />
     <Text Include="..\..\README.txt" />
     <Text Include="..\..\releasenotes.txt" />
     <Text Include="..\..\usage.txt" />
-    <Text Include="..\port\openbsd\README.txt" />
     <Text Include="..\toast\conf\sites\wordlist.txt" />
     <Text Include="..\toast\coop\corrupt\README.txt" />
     <Text Include="..\toast\coop\corrupt\robots.txt" />

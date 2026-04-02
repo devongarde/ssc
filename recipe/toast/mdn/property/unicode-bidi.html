@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN unicode-bidi tests</title>
+<style>
+.sid {
+/* Keyword values */
+unicode-bidi: normal;
+unicode-bidi: embed;
+unicode-bidi: isolate;
+unicode-bidi: bidi-override;
+unicode-bidi: isolate-override;
+unicode-bidi: plaintext;
+
+/* Global values */
+unicode-bidi: inherit;
+unicode-bidi: initial;
+unicode-bidi: revert;
+unicode-bidi: revert-layer;
+unicode-bidi: unset;
+}
+
+.bible-quote {
+  direction: rtl;
+  unicode-bidi: embed;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN unicode-bidi Tests</h1>
+
+<div class="bible-quote">A line of text</div>
+<div>Another line of text</div>
+
+</body>
+</html>

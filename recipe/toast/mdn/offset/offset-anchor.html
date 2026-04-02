@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN offset-anchor tests</title>
+<style>
+.sid {
+/* Keyword values */
+offset-anchor: top;
+offset-anchor: bottom;
+offset-anchor: left;
+offset-anchor: right;
+offset-anchor: center;
+offset-anchor: auto;
+
+/* <percentage> values */
+offset-anchor: 25% 75%;
+
+/* <length> values */
+offset-anchor: 0 0;
+offset-anchor: 1cm 2cm;
+offset-anchor: 10ch 8em;
+
+/* Edge offsets values */
+offset-anchor: bottom 10px right 20px;
+offset-anchor: right 3em bottom 10px;
+
+/* Global values */
+offset-anchor: inherit;
+offset-anchor: initial;
+offset-anchor: revert;
+offset-anchor: revert-layer;
+offset-anchor: unset;
+}
+
+div {
+  offset-path: path("M 0,20 L 200,20");
+  animation: move 3000ms infinite alternate ease-in-out;
+  width: 40px;
+  height: 40px;
+}
+
+section {
+  background-image: linear-gradient(
+    to bottom,
+    transparent,
+    transparent 49%,
+    black 50%,
+    black 51%,
+    transparent 52%
+  );
+  border: 1px solid #cccccc;
+  margin-bottom: 10px;
+}
+
+.offset-anchor1 {
+  offset-anchor: auto;
+  background: cyan;
+}
+
+.offset-anchor2 {
+  offset-anchor: right top;
+  background: purple;
+}
+
+.offset-anchor3 {
+  offset-anchor: left bottom;
+  background: magenta;
+}
+
+@keyframes move {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN offset-anchor Tests</h1>
+
+<section>
+  <div class="offset-anchor1"></div>
+</section>
+<section>
+  <div class="offset-anchor2"></div>
+</section>
+<section>
+  <div class="offset-anchor3"></div>
+</section>
+
+</body>
+</html>

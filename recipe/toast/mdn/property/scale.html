@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN scale tests</title>
+<style>
+.sid
+{
+/* Keyword values */
+scale: none;
+
+/* Single values */
+/* values of more than 1 or 100% make the element grow */
+scale: 2;
+/* values of less than 1 or 100% make the element shrink */
+scale: 50%;
+
+/* Two values */
+scale: 2 0.5;
+
+/* Three values */
+scale: 200% 50% 200%;
+
+/* Global values */
+scale: inherit;
+scale: initial;
+scale: revert;
+scale: revert-layer;
+scale: unset;
+}
+
+.box {
+  float: left;
+  margin: 1em;
+  width: 7em;
+  line-height: 7em;
+  text-align: center;
+  transition: 0.5s ease-in-out;
+  border: 3px dotted;
+}
+
+#box1:hover {
+  scale: 1.25;
+}
+
+#box2:hover {
+  scale: 1.25 0.75;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN scale Tests</h1>
+
+<div class="box" id="box1">single value</div>
+<div class="box" id="box2">two values</div>
+
+</body>
+</html>

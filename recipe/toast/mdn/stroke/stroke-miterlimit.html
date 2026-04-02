@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN stroke-miterlimit tests</title>
+<style>
+.sid {
+/* number values */
+stroke-miterlimit: 1;
+stroke-miterlimit: 3.1416;
+
+/* Global values */
+stroke-miterlimit: inherit;
+stroke-miterlimit: initial;
+stroke-miterlimit: revert;
+stroke-miterlimit: revert-layer;
+stroke-miterlimit: unset;
+}
+
+path:nth-child(1) {
+  stroke-miterlimit: 1.1;
+}
+path:nth-child(2) {
+  stroke-miterlimit: 1.4;
+}
+path:nth-child(3) {
+  stroke-miterlimit: 1.9;
+}
+path:nth-child(4) {
+  stroke-miterlimit: 4.2;
+}
+path:nth-child(5) {
+  stroke-miterlimit: 6.1;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN stroke-miterlimit Tests</h1>
+
+<svg viewBox="0 0 39 36" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="black" stroke-width="1" fill="none">
+    <path
+      d="M1,5 l7   ,-3 l7   ,3
+         m2,0 l3.5 ,-3 l3.5 ,3
+         m2,0 l2   ,-3 l2   ,3
+         m2,0 l0.75,-3 l0.75,3
+         m2,0 l0.5 ,-3 l0.5 ,3" />
+    <path
+      d="M1,12 l7,-3 l7,3 m2,0 l3.5,-3 l3.5,3 m2,0 l2,-3 l2,3 m2,0 l0.75,-3 l0.75,3 m2,0 l0.5,-3 l0.5,3" />
+    <path
+      d="M1,19 l7,-3 l7,3 m2,0 l3.5,-3 l3.5,3 m2,0 l2,-3 l2,3 m2,0 l0.75,-3 l0.75,3 m2,0 l0.5,-3 l0.5,3" />
+    <path
+      d="M1,26 l7,-3 l7,3 m2,0 l3.5,-3 l3.5,3 m2,0 l2,-3 l2,3 m2,0 l0.75,-3 l0.75,3 m2,0 l0.5,-3 l0.5,3" />
+    <path
+      d="M1,33 l7,-3 l7,3 m2,0 l3.5,-3 l3.5,3 m2,0 l2,-3 l2,3 m2,0 l0.75,-3 l0.75,3 m2,0 l0.5,-3 l0.5,3" />
+  </g>
+</svg>
+
+</body>
+</html>

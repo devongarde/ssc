@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN r tests</title>
+<style>
+.sid
+{
+/* Length and percentage values */
+r: 3px;
+r: 20%;
+
+/* Global values */
+r: inherit;
+r: initial;
+r: revert;
+r: revert-layer;
+r: unset;
+}
+
+svg {
+  border: 1px solid black;
+}
+
+circle:first-of-type {
+  r: 30px;
+  fill: lightgreen;
+  stroke: black;
+}
+
+svg {
+  border: 1px solid black;
+  width: 300px;
+}
+
+circle:first-of-type {
+  r: 30px;
+  fill: lightgreen;
+  stroke: black;
+}
+
+svg {
+  border: 1px solid black;
+  width: 300px;
+}
+
+circle:first-of-type {
+  r: 30%;
+  fill: lightgreen;
+  stroke: black;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN r Tests</h1>
+
+<svg xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="10" />
+  <circle cx="50" cy="50" r="10" />
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="10" />
+  <circle cx="50" cy="50" r="10" />
+</svg>
+<svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="10" />
+  <circle cx="50" cy="50" r="10" />
+</svg>
+
+</body>
+</html>

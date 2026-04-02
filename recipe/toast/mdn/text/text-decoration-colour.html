@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-decoration-colour tests</title>
+<style>
+.sid {
+/* <color> values */
+text-decoration-color: currentColor;
+text-decoration-color: red;
+text-decoration-color: #00ff00;
+text-decoration-color: rgb(255 128 128 / 50%);
+text-decoration-color: transparent;
+
+/* Global values */
+text-decoration-color: inherit;
+text-decoration-color: initial;
+text-decoration-color: revert;
+text-decoration-color: revert-layer;
+text-decoration-color: unset;
+}
+
+p {
+  text-decoration-line: underline;
+  text-decoration-color: cyan;
+}
+
+s {
+  text-decoration-line: line-through;
+  text-decoration-color: red;
+  text-decoration-style: wavy;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN text-decoration-colour Tests</h1>
+
+<p>
+  This paragraph has <s>some erroneous text</s> inside it that I want to call
+  attention to.
+</p>
+
+</body>
+</html>

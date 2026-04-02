@@ -485,11 +485,13 @@ struct symbol_entry < html_version, e_css_absolute_size > css_absolute_size_symb
 struct symbol_entry < html_version, e_css_align_content > css_align_content_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS_FBL }, { HTML_UNDEF }, "baseline", ecac_baseline },
     { { HTML_CSS, 0, 0, H2_CSS_FBL }, { HTML_UNDEF }, "center", ecac_centre },
+    { { HTML_CSS, 0, 0, H2_CSS_FBL }, { HTML_UNDEF }, "end", ecac_end },
     { { HTML_CSS, 0, 0, H2_CSS_FBL }, { HTML_UNDEF }, "flex-end", ecac_flex_end },
     { { HTML_CSS, 0, 0, H2_CSS_FBL }, { HTML_UNDEF }, "flex-start", ecac_flex_start },
     { { HTML_CSS, 0, 0, H2_CSS_FBL, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "space-around", ecac_space_around },
     { { HTML_CSS, 0, 0, H2_CSS_FBL, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "space-between", ecac_space_between },
     { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "space-evenly", ecac_space_evenly },
+    { { HTML_CSS, 0, 0, H2_CSS_FBL }, { HTML_UNDEF }, "start", ecac_start },
     { { HTML_CSS, 0, 0, H2_CSS_FBL, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "stretch", ecac_stretch } };
 
 struct symbol_entry < html_version, e_css_align_items > css_align_items_symbol_table [] =
@@ -502,6 +504,7 @@ struct symbol_entry < html_version, e_css_align_items > css_align_items_symbol_t
 struct symbol_entry < html_version, e_css_all_2 > css_all_2_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS_CASCADE }, { HTML_UNDEF }, "inherit", all_inherit },
     { { HTML_CSS, 0, 0, H2_CSS_CASCADE }, { HTML_UNDEF }, "initial", all_initial },
+    { { HTML_CSS, 0, 0, H2_CSS_CASCADE }, { HTML_UNDEF }, "-moz-initial", all_moz_initial },
     { { HTML_CSS, 0, 0, H2_CSS_CASCADE_456 }, { HTML_UNDEF }, "revert", all_revert },
     { { HTML_CSS, 0, 0, H2_CSS_CASCADE_56 }, { HTML_UNDEF }, "revert-layer", all_revert_layer },
     { { HTML_CSS, 0, 0, H2_CSS_CASCADE }, { HTML_UNDEF }, "unset", all_unset } };
@@ -826,6 +829,7 @@ struct symbol_entry < html_version, e_css_counter_style > css_counter_style_symb
     { { HTML_CSS, 0, 0, H2_CSS_CS }, { HTML_UNDEF }, "lower-roman", eccs_lower_roman, ns_default, CF_CS_PREDEFINED },
     { { HTML_CSS, 0, 0, H2_CSS_CS }, { HTML_UNDEF }, "malayalam", eccs_malayalam, ns_default, CF_CS_PREDEFINED },
     { { HTML_CSS, 0, 0, H2_CSS_CS }, { HTML_UNDEF }, "mongolian", eccs_mongolian, ns_default, CF_CS_PREDEFINED },
+    { { HTML_CSS, 0, 0, H2_CSS_CS }, { HTML_UNDEF }, "-moz-initial", eccs_moz_initial, ns_default, CF_CS_CASCADE },
     { { HTML_CSS, 0, 0, H2_CSS_CS }, { HTML_UNDEF }, "myanmar", eccs_myanmar, ns_default, CF_CS_PREDEFINED },
     { { HTML_CSS, 0, 0, H2_CSS_CS }, { HTML_UNDEF }, "oriya", eccs_oriya, ns_default, CF_CS_PREDEFINED },
     { { HTML_CSS, 0, 0, H2_CSS_CS }, { HTML_UNDEF }, "persian", eccs_persian, ns_default, CF_CS_PREDEFINED },
@@ -1172,6 +1176,8 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_2, H3_CSS_PAGE }, { HTML_UNDEF }, "right", efn_right, ns_default, CF_PAGE },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "root", efn_root },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "scope", efn_scope },
+    { { HTML_CSS, 0, 0, H2_CSS_COCO, 0, 0, H5_CSS_OVERFLOW_5 }, { HTML_UNDEF }, "scroll-marker", efn_scroll_marker },
+    { { HTML_CSS, 0, 0, H2_CSS_COCO, 0, 0, H5_CSS_OVERFLOW_5 }, { HTML_UNDEF }, "scroll-marker-group", efn_scroll_marker_group },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "seeking", efn_seeking },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, 0, 0, H5_CSS_PSEUDO_3 }, { HTML_UNDEF }, "selection", efn_selection },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, H3_CSS_SCOPE }, { HTML_UNDEF }, "shadow", efn_shadow },
@@ -1186,6 +1192,9 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_AUG25, 0, 0, H2_CSS_COCO, 0, H4_CSS_FCS }, { HTML_UNDEF }, "step-down", efn_step_down },
     { { HTML_AUG25, 0, 0, H2_CSS_COCO, 0, H4_CSS_FCS }, { HTML_UNDEF }, "step-up", efn_step_up },
     { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "target", efn_target },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_OVERFLOW_5 }, { HTML_UNDEF }, "target-marker", efn_target_after },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_OVERFLOW_5 }, { HTML_UNDEF }, "target-before", efn_target_before },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_OVERFLOW_5 }, { HTML_UNDEF }, "target-current", efn_target_current },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, 0, 0, H5_CSS_PSEUDO_3 }, { HTML_UNDEF }, "target-text", efn_target_text },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "target-within", efn_target_within },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "user-invalid", efn_user_invalid, },
@@ -1638,11 +1647,15 @@ struct symbol_entry < html_version, e_css_inline_bem_2 > css_inline_bem_2_symbol
 
 struct symbol_entry < html_version, e_css_justify_content > css_justify_content_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS_FBL }, { HTML_UNDEF }, "center", ejc_centre },
+    { { HTML_CSS, 0, 0, H2_CSS_FBL }, { HTML_UNDEF }, "end", ejc_end },
     { { HTML_CSS, 0, 0, H2_CSS_FBL }, { HTML_UNDEF }, "flex-end", ejc_flex_end },
     { { HTML_CSS, 0, 0, H2_CSS_FBL }, { HTML_UNDEF }, "flex-start", ejc_flex_start },
+    { { HTML_CSS, 0, 0, H2_CSS_FBL }, { HTML_UNDEF }, "left", ejc_left },
+    { { HTML_CSS, 0, 0, H2_CSS_FBL }, { HTML_UNDEF }, "right", ejc_right },
     { { HTML_CSS, 0, 0, H2_CSS_FBL, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "space-around", ejc_space_around },
     { { HTML_CSS, 0, 0, H2_CSS_FBL, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "space-between", ejc_space_between },
     { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "space-evenly", ejc_space_evenly },
+    { { HTML_CSS, 0, 0, H2_CSS_FBL }, { HTML_UNDEF }, "start", ejc_start },
     { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "stretch", ejc_stretch } };
 
 struct symbol_entry < html_version, e_css_layout_box > css_layout_box_symbol_table [] =
@@ -2009,6 +2022,15 @@ struct symbol_entry < html_version, e_css_rgb_xyz > css_rgb_xyz_symbol_table [] 
     { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "xyz-d50", crx_xyz_d50 },
     { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "xyz-d65", crx_xyz_d65 } };
 
+struct symbol_entry < html_version, e_css_reading_flow > css_reading_flow_symbol_table [] =
+{   { { HTML_CSS }, { HTML_UNDEF }, "flex-flow", crf_flex_flow },
+    { { HTML_CSS }, { HTML_UNDEF }, "flex-visual", crf_flex_visual },
+    { { HTML_CSS }, { HTML_UNDEF }, "grid-columns", crf_grid_columns },
+    { { HTML_CSS }, { HTML_UNDEF }, "grid-order", crf_grid_order },
+    { { HTML_CSS }, { HTML_UNDEF }, "grid-rows", crf_grid_rows },
+    { { HTML_CSS }, { HTML_UNDEF }, "normal", crf_normal },
+    { { HTML_CSS }, { HTML_UNDEF }, "source-order", crf_source_order } };
+
 struct symbol_entry < html_version, e_css_rect > css_rect_symbol_table [] =
 {   { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "lab", ec4_lab },
     { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "oklab", ec4_oklab },
@@ -2161,7 +2183,10 @@ struct symbol_entry < html_version, e_css_text_align > css_text_align_symbol_tab
     { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-left", ecta_moz_left },
     { { HTML_CSS, 0, HE_BESPOKE | HE_MOZILLA }, { HTML_UNDEF }, "-moz-right", ecta_moz_right },
     { { HTML_CSS, 0, 0, H2_CSS, H3_CSS_TEXT }, { HTML_UNDEF }, "right", ecta_right },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_LOGIC | H3_CSS_TEXT }, { HTML_UNDEF }, "start", ecta_start } };
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LOGIC | H3_CSS_TEXT }, { HTML_UNDEF }, "start", ecta_start },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_SAFARI }, { HTML_UNDEF }, "-webkit-center", ecta_webkit_centre },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_SAFARI }, { HTML_UNDEF }, "-webkit-left", ecta_webkit_left },
+    { { HTML_CSS, 0, HE_BESPOKE | HE_SAFARI }, { HTML_UNDEF }, "-webkit-right", ecta_webkit_right } };
 
 struct symbol_entry < html_version, e_css_text_align_all > css_text_align_all_symbol_table [] =
 {   { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT }, { HTML_UNDEF }, "center", ectaa_centre },
@@ -2198,6 +2223,22 @@ struct symbol_entry < html_version, e_css_text_decoration > css_text_decoration_
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "line-through", ectd_linethrough },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "blink", ectd_blink } };
 
+struct symbol_entry < html_version, e_css_textdec_skip > css_textdec_skip_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "box-decoration", tds_box_decoration },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "edges", tds_edges },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "leading-spaces", tds_leading_spaces },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "objects", tds_object },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "none", tds_none },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "spaces", tds_spaces },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "trailing-spaces", tds_trailing_spaces } };
+
+struct symbol_entry < html_version, e_css_text_justify > css_text_justify_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT }, { HTML_UNDEF }, "auto", etj_auto },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT | H3_CSS_DEPRECATED }, { HTML_UNDEF }, "distribute", etj_distribute },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT }, { HTML_UNDEF }, "inter-character", etj_inter_character },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT }, { HTML_UNDEF }, "inter-word", etj_inter_word },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT }, { HTML_UNDEF }, "none", etj_none } };
+
 struct symbol_entry < html_version, e_css_text_transform > css_text_transform_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "capitalize", ect_capitalise },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT }, { HTML_UNDEF }, "full-width", ect_full_width },
@@ -2224,19 +2265,31 @@ struct symbol_entry < html_version, e_css_textemph_shape > css_textemph_shape_sy
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "triangle", cte_triangle },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "sesame", cte_sesame } };
 
-struct symbol_entry < html_version, e_css_transform_box > css_transform_box_symbol_table [] =
-{   { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "content-box", ctb_content_box },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "border-box", ctb_border_box },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "fill-box", ctb_fill_box },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "stroke-box", ctb_stroke_box },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "view-box", ctb_view_box } };
-
 struct symbol_entry < html_version, e_css_text_wrap > css_text_wrap_symbol_table [] =
 {   { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "balance", ctw_balance },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "nowrap", ctw_nowrap },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "pretty", ctw_pretty },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "stable", ctw_stable },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "wrap", ctw_wrap } };
+
+struct symbol_entry < html_version, e_css_touch_action > css_touch_action_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_PTR_EV }, { HTML_UNDEF }, "auto", cta_auto },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_PTR_EV }, { HTML_UNDEF }, "manipulation", cta_manipulation },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_PTR_EV }, { HTML_UNDEF }, "none", cta_none },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_PTR_EV_4 }, { HTML_UNDEF }, "pan-down", cta_pan_down },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_PTR_EV_4 }, { HTML_UNDEF }, "pan-left", cta_pan_left },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_PTR_EV_4 }, { HTML_UNDEF }, "pan-right", cta_pan_right },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_PTR_EV_4 }, { HTML_UNDEF }, "pan-up", cta_pan_up },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_PTR_EV }, { HTML_UNDEF }, "pan-x", cta_pan_x },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_PTR_EV }, { HTML_UNDEF }, "pan-y", cta_pan_y },
+    { { HTML_JAN17, 0, 0, 0, 0, 0, H5_CSS_PTR_EV }, { HTML_UNDEF }, "pinch-zoom", cta_pinch_zoom } };
+
+struct symbol_entry < html_version, e_css_transform_box > css_transform_box_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "content-box", ctb_content_box },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "border-box", ctb_border_box },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "fill-box", ctb_fill_box },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "stroke-box", ctb_stroke_box },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "view-box", ctb_view_box } };
 
 struct symbol_entry < html_version, e_css_try_tactic > css_try_tactic_symbol_table [] =
 {   { { HTML_CSS, 0, 0, 0, 0, H4_CSS_ANCHOR_POS }, { HTML_UNDEF }, "flip-block", ctt_flip_block },
@@ -2530,31 +2583,37 @@ struct symbol_entry < html_version, e_css_volume_e > css_volume_e_symbol_table [
 
 struct symbol_entry < html_version, e_css_whitespace > css_whitespace_symbol_table [] =
 {   { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT }, { HTML_UNDEF }, "break-spaces", ecwh_break_spaces },
+    { { HTML_CSS }, { HTML_UNDEF }, "collapse", ecwh_collapse },
     { { HTML_CSS }, { HTML_UNDEF }, "inherit", ecwh_inherit },
     { { HTML_CSS, 0, 0, H2_CSS, H3_CSS_TEXT }, { HTML_UNDEF }, "normal", ecwh_normal },
     { { HTML_CSS, 0, 0, H2_CSS, H3_CSS_TEXT }, { HTML_UNDEF }, "nowrap", ecwh_nowrap },
     { { HTML_CSS, 0, 0, H2_CSS, H3_CSS_TEXT }, { HTML_UNDEF }, "pre", ecwh_pre },
     { { HTML_CSS }, { HTML_UNDEF }, "pre-line", ecwh_preline },
+    { { HTML_CSS }, { HTML_UNDEF }, "preserve", ecwh_preserve },
     { { HTML_CSS }, { HTML_UNDEF }, "pre-wrap", ecwh_prewrap } };
 
 struct symbol_entry < html_version, e_css_wide > css_wide_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS_2 | H2_CSS_CASCADE }, { HTML_UNDEF }, "default", cw_default },
     { { HTML_CSS, 0, 0, H2_CSS_2 | H2_CSS_CASCADE }, { HTML_UNDEF }, "inherit", cw_inherit },
     { { HTML_CSS, 0, 0, H2_CSS_CASCADE }, { HTML_UNDEF }, "initial", cw_initial },
+    { { HTML_CSS, 0, 0, H2_CSS_CASCADE }, { HTML_UNDEF }, "-moz-initial", cw_moz_initial },
     { { HTML_CSS, 0, 0, H2_CSS_CASCADE_456 }, { HTML_UNDEF }, "revert", cw_revert },
     { { HTML_CSS, 0, 0, H2_CSS_CASCADE_56 }, { HTML_UNDEF }, "revert-layer", cw_revert_layer },
     { { HTML_CSS, 0, 0, H2_CSS_CASCADE }, { HTML_UNDEF }, "unset", cw_unset } };
 
-// t_css_win_shad
-//typedef enum { ews_default, ews_menu, ews_none, ews_sheet, ews_tooltip } e_css_win_shad;
-//template < > struct type_master < t_css_win_shad > : ENUM_N (css_win_shad)
-//{ using ENUM_N (css_win_shad) :: enum_n; };
 struct symbol_entry < html_version, e_css_win_shad > css_win_shad_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "default", ews_default },
     { { HTML_CSS }, { HTML_UNDEF }, "menu", ews_menu },
     { { HTML_CSS }, { HTML_UNDEF }, "none", ews_none },
     { { HTML_CSS }, { HTML_UNDEF }, "sheet", ews_sheet },
     { { HTML_CSS }, { HTML_UNDEF }, "tooltip", ews_tooltip } };
+
+struct symbol_entry < html_version, e_css_word_break > css_word_break_symbol_table [] =
+{   { { HTML_JAN26, 0, 0, 0, H3_CSS_TEXT_3 }, { HTML_UNDEF }, "auto-phrase", wb_auto_phrase },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_3 }, { HTML_UNDEF }, "break-all", wb_break_all },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_3 | H3_CSS_DEPRECATED }, { HTML_UNDEF }, "break-word", wb_break_word },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_3 }, { HTML_UNDEF }, "keep-all", wb_keep_all },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_3 }, { HTML_UNDEF }, "normal", wb_normal } };
 
 struct symbol_entry < html_version, e_css_wrap_flow > css_wrap_flow_symbol_table [] =
 {   { { HTML_CSS, 0, 0, 0, H3_CSS_EXCLUDE }, { HTML_UNDEF }, "auto", cwf_auto },
@@ -8009,6 +8068,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_position);
     INIT_ENUM (css_ray_size);
     INIT_ENUM (css_rgb_xyz);
+    INIT_ENUM (css_reading_flow);
     INIT_ENUM (css_rect);
     INIT_ENUM (css_relative_size);
     INIT_ENUM (css_resize);
@@ -8023,10 +8083,13 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_text_align_last);
     INIT_ENUM (css_text_autospace);
     INIT_ENUM (css_text_decoration);
+    INIT_ENUM (css_textdec_skip);
+    INIT_ENUM (css_text_justify);
     INIT_ENUM (css_text_transform);
     INIT_ENUM (css_textdec_line_e);
     INIT_ENUM (css_textdec_style);
     INIT_ENUM (css_textemph_shape);
+    INIT_ENUM (css_touch_action);
     INIT_ENUM (css_transform_box);
     INIT_ENUM (css_try_tactic);
     INIT_ENUM (css_type);
@@ -8041,6 +8104,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_whitespace);
     INIT_ENUM (css_wide);
     INIT_ENUM (css_win_shad);
+    INIT_ENUM (css_word_break);
     INIT_ENUM (css_wrap_flow);
     INIT_ENUM (css_wsc);
     INIT_ENUM (css_wst);
@@ -8390,6 +8454,7 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (css_position);
         RETURN_SIZE (css_ray_size);
         RETURN_SIZE (css_rgb_xyz);
+        RETURN_SIZE (css_reading_flow);
         RETURN_SIZE (css_rect);
         RETURN_SIZE (css_relative_size);
         RETURN_SIZE (css_resize);
@@ -8404,10 +8469,13 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (css_text_align_last);
         RETURN_SIZE (css_text_autospace);
         RETURN_SIZE (css_text_decoration);
+        RETURN_SIZE (css_textdec_skip);
+        RETURN_SIZE (css_text_justify);
         RETURN_SIZE (css_text_transform);
         RETURN_SIZE (css_textdec_line_e);
         RETURN_SIZE (css_textdec_style);
         RETURN_SIZE (css_textemph_shape);
+        RETURN_SIZE (css_touch_action);
         RETURN_SIZE (css_transform_box);
         RETURN_SIZE (css_try_tactic);
         RETURN_SIZE (css_type);
@@ -8422,6 +8490,7 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (css_whitespace);
         RETURN_SIZE (css_wide);
         RETURN_SIZE (css_win_shad);
+        RETURN_SIZE (css_word_break);
         RETURN_SIZE (css_wrap_flow);
         RETURN_SIZE (css_wsc);
         RETURN_SIZE (css_wst);

@@ -759,10 +759,14 @@ void context_t::check_for_update (nitpick& nits) // should be run in a separate 
     {   ::std::string content;
         nitpick nuts;
         url u (nuts, html_current, UPDATE_URL_1);
+#ifdef UPDATE_URL_2
         url u2 (nuts, html_current, UPDATE_URL_2);
+#endif // UPDATE_URL_2
         update_info_.clear ();
         if (! fetch_page (nuts, u, true, content))
+#ifdef UPDATE_URL_2
             if (! fetch_page (nuts, u2, true, content))
+#endif // UPDATE_URL_2
             {   mac (nm_update_info, "");
                 return; }
         if (! content.empty ())

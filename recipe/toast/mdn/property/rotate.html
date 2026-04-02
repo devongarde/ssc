@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN rotate tests</title>
+<style>
+.sid
+{
+/* Keyword values */
+rotate: none;
+
+/* Angle value */
+rotate: 90deg;
+rotate: 0.25turn;
+rotate: 1.57rad;
+
+/* x, y, or z axis name plus angle */
+rotate: x 90deg;
+rotate: y 0.25turn;
+rotate: z 1.57rad;
+
+/* Vector plus angle value */
+rotate: 1 1 1 90deg;
+
+/* Global values */
+rotate: inherit;
+rotate: initial;
+rotate: revert;
+rotate: revert-layer;
+rotate: unset;
+}
+
+.box {
+  display: inline-block;
+  margin: 1em;
+  min-width: 6.5em;
+  line-height: 6.5em;
+  text-align: center;
+  transition: 1s ease-in-out;
+  border: 0.25em dotted;
+}
+
+#box1:hover {
+  rotate: 90deg;
+}
+
+#box2:hover {
+  rotate: y 180deg;
+}
+
+#box3:hover {
+  rotate: 1 2 1 360deg;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN rotate Tests</h1>
+
+<div class="box" id="box1">rotate Z</div>
+<div class="box" id="box2">rotate Y</div>
+<div class="box" id="box3">vector & angle</div>
+
+</body>
+</html>

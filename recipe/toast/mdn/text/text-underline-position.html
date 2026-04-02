@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-underline-position tests</title>
+<style>
+.sid {
+/* Single keyword */
+text-underline-position: auto;
+text-underline-position: under;
+text-underline-position: left;
+text-underline-position: right;
+
+/* Multiple keywords */
+text-underline-position: under left;
+text-underline-position: right under;
+
+/* Global values */
+text-underline-position: inherit;
+text-underline-position: initial;
+text-underline-position: revert;
+text-underline-position: revert-layer;
+text-underline-position: unset;
+}
+
+p {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.horizontal {
+  text-underline-position: under;
+}
+
+.vertical {
+  writing-mode: vertical-rl;
+  text-underline-position: left;
+}
+
+:root {
+  text-underline-position: under;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN text-underline-position Tests</h1>
+
+<p class="horizontal">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur ac
+  turpis vel laoreet. Nullam volutpat pharetra lorem, sit amet feugiat tortor
+  volutpat quis. Nam eget sodales quam. Aliquam accumsan tellus ac erat posuere.
+</p>
+
+<p class="vertical">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur ac
+  turpis vel laoreet. Nullam volutpat pharetra lorem, sit amet feugiat tortor
+  volutpat quis. Nam eget sodales quam. Aliquam accumsan tellus ac erat posuere.
+</p>
+
+</body>
+</html>

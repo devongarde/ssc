@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-box-trim tests</title>
+<style>
+.sid {
+/* Keywords */
+text-box-trim: none;
+text-box-trim: trim-both;
+text-box-trim: trim-start;
+text-box-trim: trim-end;
+
+/* Global values */
+text-box-trim: inherit;
+text-box-trim: initial;
+text-box-trim: revert;
+text-box-trim: revert-layer;
+text-box-trim: unset;
+}
+
+p {
+  text-box-edge: cap alphabetic;
+  border-top: 5px solid magenta;
+  border-bottom: 5px solid magenta;
+}
+
+.one {
+  text-box-trim: trim-end;
+}
+
+.two {
+  text-box-trim: trim-both;
+}
+
+p {
+  margin: 0;
+  font-size: 6rem;
+  font-weight: bold;
+  border-top: 5px solid magenta;
+  border-bottom: 5px solid magenta;
+}
+
+output {
+  border: 2px solid gray;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0;
+  width: fit-content;
+}
+</style>
+<script>
+const boxTrimSelect = document.getElementById("box-trim");
+const trimOverSelect = document.getElementById("trim-over");
+const trimUnderSelect = document.getElementById("trim-under");
+
+const displayElem = document.querySelector("p");
+    const codeElem = document.querySelector("output");
+
+function setEdgeTrim() {
+  const textBoxTrimValue = boxTrimSelect.value;
+  const textBoxEdgeValue = `${trimOverSelect.value} ${trimUnderSelect.value}`;
+  displayElem.style.textBox = `${textBoxTrimValue} ${textBoxEdgeValue}`;
+
+  codeElem.innerHTML = `
+    <span><code>text-box-trim: ${textBoxTrimValue}</code></span>
+    <br>
+    <span><code>text-box-edge: ${textBoxEdgeValue}</code></span>
+    <br><br>
+    <span>Shorthand equivalent:</span>
+    <br><br>
+    <span><code>text-box: ${textBoxTrimValue} ${textBoxEdgeValue}</code></span>
+  `;
+    }
+
+setEdgeTrim();
+
+boxTrimSelect.addEventListener("change", setEdgeTrim);
+trimOverSelect.addEventListener("change", setEdgeTrim);
+trimUnderSelect.addEventListener("change", setEdgeTrim);
+</script>
+</head>
+
+<body>
+
+<h1>MDN text-box-trim Tests</h1>
+
+</body>
+</html>

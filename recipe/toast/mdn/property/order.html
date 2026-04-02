@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN order tests</title>
+<style>
+.sid
+{
+/* <integer> values */
+order: 5;
+order: -5;
+
+/* Global values */
+order: inherit;
+order: initial;
+order: revert;
+order: revert-layer;
+order: unset;
+}
+
+main {
+  display: flex;
+  text-align: center;
+}
+main > article {
+  flex: 1;
+  order: 2;
+}
+main > nav {
+  width: 200px;
+  order: 1;
+}
+main > aside {
+  width: 200px;
+  order: 3;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN order Tests</h1>
+
+<header>Header</header>
+<main>
+  <article>Article</article>
+  <nav>Nav</nav>
+  <aside>Aside</aside>
+</main>
+<footer>Footer</footer>
+
+</body>
+</html>

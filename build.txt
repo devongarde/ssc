@@ -6,19 +6,18 @@ https://dylanharris.org/ssc/
 
 Introduction
 ============
-SSC can be built on various unii with CMake and clang or gcc for C++ 17
-or better, or Visual Studios 2017 / 2019 / 2022 / 2026 under Windows. I
-have built & tested it in various OSs on some amd64 & arm64
-architectures, including various flavours of Linux, MacOS, OpenBSD, and
-Windows.
+SSC can be built on various unii with CMake and clang or gcc for C++
+17, or Visual Studios 2022 / 2026 under Windows. I have built & tested
+it in various OSs on some amd64 & arm64 architectures, including some
+flavours of Linux, MacOS, OpenBSD, and Windows.
 
-Although ssc builds with some older compilers on some older systems,
-not all features are available.
+Older versions ssc build with some older compilers on some older
+systems, although, unsurprisingly, not all features are available.
 
-Be warned: I wrote ssc to run fast, not build fast. I could probably
+Be warned, I wrote ssc to run fast, not build fast. I could probably
 make some changes to improve build speed, but, to be honest, I find it
 quite acceptable on my primary build machine (which runs msvc). I
-regret to say that the gcc build time can be rather poor.
+regret to say that the gcc build time can be very poor.
 
 
 Libraries
@@ -30,11 +29,12 @@ ssc needs boost version 1.75 or better (https://boost.org), Microsoft's
 GSL (https://github.com/Microsoft/GSL) (or define NO_GSL), and, except
 under Windows, a recent copy of ICU4C (https://icu-project.org/) (or
 define NOICU). If you want to experiment with the still-in-development
-GUI version, you'll also need a recent version of WX. If you want its
-output signed, or to verify such a signature, you'll need LibreSSL
-(https://www.libressl.org/, built into OpenBSD and recent versions of
-Windows). Usually, an Operating System's package manager will have an
-appropriate version ready to install.
+GUI version, you'll need to define WX, amd a recent version of WX
+Widgets (https://wxwidgets.org/). If you want its output signed, or to
+verify such a signature, download LibreSSL (https://www.libressl.org/,
+built into OpenBSD and recent versions of Windows). Often, an Operating
+System's package manager will have an appropriate version ready to
+install.
 
 You may need to set these environment variables:
 - BOOST: if you're not using your operating system's packaged flavour
@@ -45,13 +45,13 @@ You may need to set these environment variables:
   Windows);
 - WX_ROOT: if you're building the gui version of ssc, you'll need to
   install wxWidgets and set WX_ROOT to its installation directory.
-- SSL: for signed output, install libreSSL, or an equivalent. Note that
-  libreSSL is built into OpenBSD and Windows 11.  You may also need to
+- SSL: for signed output, install libreSSL or equivalent. Note that
+  libreSSL is built into OpenBSD and Windows 11. You may need to
   #define SIGNED.
 
 hunspell
 --------
-Building SSC under unii, including macos, requires a development
+Building SSC under unii, including MacOS, requires a development
 installation of hunspell (https://hunspell.github.io/).
 
 winspell
@@ -73,8 +73,9 @@ only wxWidgets is documented to support OpenBSD.
 
 Polylingualism
 --------------
-ssc is written for coders. HTML/etc. code is based on English, so
-ssc's GUI text is similarly monolingual.
+ssc is written for coders. HTML/etc. code is based on various flavours
+of English, so ssc's GUI text is similarly monolingual. It uses
+standard English, with dishonourable exceptions.
 
 
 Building
@@ -83,28 +84,23 @@ Building
 Windows
 -------
 To build from Visual Studio, navigate to recipe/tea, open the
-appropriate .sln file, then build. Only Visual Studios 2017, 2019,
-2022, and 2026 have been built & tested for amd64 (x64), and only 2022
-has been tested for arm64 under Windows 10 & 11. Older versions for
-amd64 and i386 were tested on older versions of Windows.
+appropriate .sln file, then build. Only Visual Studios 2022 and 2026
+have been used to build & test for amd64 (x64) and arm64 (a64) under
+Windows 11. Older versions for amd64 and i386 were tested on older
+versions of Windows.
 
 On low memory machines, disable the /MP switch.
-
-Some versions of the Visual Studio solutions used vcpkg, which
-sometimes resolves dependencies. For all such versions, except recent
-editions of Visual Studio 2022, you may need to first download and
-install vcpkg yourself, from https://vcpkg.io/.
 
 
 Unii & mock Unii
 ----------------
 I wrote ssc using visual C++ and clang. It turns out that, regretfully,
-some of the choices I made left gcc ridiculously slow. I suggest, if
-you have the choice, that you avoid it.
+some of the choices I made left gcc ridiculously slow. I suggest you
+avoid it.
 
 You will need CMake 3.24 or better. On Linux, you will also need
 lsb-release. These can be found in most distributions' standard
-packages. For macos, I used macports, but I expect brew is good too.
+packages. For MacOS, I used macports, but I expect brew is good too.
 From the home ssc directory, compile a normal build thus:
 cmake .
 make
@@ -126,9 +122,9 @@ ctest
 
 Note that complaints about being unable to find or copy files during
 testing are of no concern. These come from scripts that set up or tear
-down individual tests. The standard commands used sometimes
-complain if they can't find files they're supposed to delete, which is
-a bit silly given that means things are already in the desired state.
+down individual tests. The standard commands used sometimes complain
+if they can't find files they're supposed to delete, which is a bit
+silly given that means things are already in the desired state.
 
 Unfortunately, the spelling tests depend on the local system spell
 checker, and they're inconsistent across systems, so they're excluded
@@ -147,19 +143,19 @@ I've sometimes found it necessary to use cmake's
 
 Linux
 -----
-I tend to build under Ubuntu, but some other flavours work too.
+I tend to build under Ubuntu, but some other flavours should work too.
 
 OpenBSD
 -------
 You may need to increase significantly the available memory setting
 for your build account in login.conf.
 
-Macos
+MacOS
 -----
-Certain versions of macos clang produce buggy code, whether or not
+Certain versions of MacOS clang produce buggy code, whether or not
 optimisations are applied. Use an alternative compiler if you want
-a stable executable. The bug could be in ssc code, but I've not
-found it.
+a stable executable. The bugs are probably in ssc code, but I've not
+found them.
 
 
 Testing
@@ -202,28 +198,25 @@ Boost
 -----
 Boost is to C++ as breakfast to the working day.
 
-Most package managers support it, including vcpkg. Alternatively, build
-your own version using the source found at boost.org.
-
-Curl
-----
-curl is used for link checking and, where necessary, obtaining remote
-resources. Most package managers support it.
+Most package managers support it, or you can download and build your
+own version using the source found at https://boost.org/.
 
 ICU4C
 -----
-ICU4C is used to process unicode.
+ICU4C is used to process unicode in most operating systems.
 
 Most package managers support it. Alternatively, build your own version
-using the source found at icu.unicode.org.
+using the source found at https://icu.unicode.org/.
 
 LibreSSL
 --------
-This is only required if you wish to sign andor verify SSC's output.
+This is only required if you wish to sign andor verify SSC's output. It
+is native to OpenBSD and Windows 11. It is found in some package
+managers, or can be downloaded from https://www.libressl.org/.
 Alternatives are available, although I've not tested them.
 
 wxWidgets
 ---------
 This is only required if you make a GUI build. It can be found at
-wxwidgets.org. Note that ssc has not been tested on many of the
+https://wxwidgets.org/. Note that ssc has not been tested on many of the
 systems supported by wxWidgets.

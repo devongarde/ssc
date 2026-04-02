@@ -26,6 +26,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 bool invalid_context_menu_id (nitpick& nits, const html_version& v, ids_t& ids, element* pe, element* box, const ::std::string& s);
 e_status set_clear30_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s, element* box);
+e_status set_css_place_content (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
+e_status set_css_place_items (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
+e_status set_css_place_self (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_css_text_align_4_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_css_text_resizes_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_css_vertal_2_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
@@ -366,3 +369,24 @@ template < > struct type_master < t_rsl_usages > : type_at_least_one < t_rsl_usa
 
 template < > struct type_master < t_rsl_users > : type_at_least_one < t_rsl_users, sz_comma, t_rsl_user >
 { using type_at_least_one < t_rsl_users, sz_comma, t_rsl_user > :: type_at_least_one; };
+
+template < > struct type_master < t_css_place_content > : tidy_string < t_css_place_content >
+{   using tidy_string < t_css_place_content > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_none; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_place_content > :: set_value (nits, v, s);
+        tidy_string < t_css_place_content > :: status (set_css_place_content (tidy_string < t_css_place_content > :: status (), nits, v, tidy_string < t_css_place_content > :: get_string ())); } };
+
+template < > struct type_master < t_css_place_items > : tidy_string < t_css_place_items >
+{   using tidy_string < t_css_place_items > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_none; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_place_items > :: set_value (nits, v, s);
+        tidy_string < t_css_place_items > :: status (set_css_place_items (tidy_string < t_css_place_items > :: status (), nits, v, tidy_string < t_css_place_items > :: get_string ())); } };
+
+template < > struct type_master < t_css_place_self > : tidy_string < t_css_place_self >
+{   using tidy_string < t_css_place_self > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_none; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_place_self > :: set_value (nits, v, s);
+        tidy_string < t_css_place_self > :: status (set_css_place_self (tidy_string < t_css_place_self > :: status (), nits, v, tidy_string < t_css_place_self > :: get_string ())); } };

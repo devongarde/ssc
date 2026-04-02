@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN ruby-position tests</title>
+<style>
+.sid {
+/* Keyword values */
+ruby-position: over;
+ruby-position: under;
+ruby-position: alternate;
+ruby-position: alternate over;
+ruby-position: alternate under;
+ruby-position: inter-character;
+
+/* Global values */
+ruby-position: inherit;
+ruby-position: initial;
+ruby-position: revert;
+ruby-position: revert-layer;
+ruby-position: unset;
+}
+
+ruby {
+  ruby-position: over;
+}
+
+ruby {
+  ruby-position: under;
+}
+
+ruby {
+  ruby-position: alternate; /* this is also the initial value */
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN ruby-position Tests</h1>
+
+<ruby>
+  <rb>超電磁砲</rb>
+  <rp>（</rp><rt>レールガン</rt><rp>）</rp>
+</ruby>
+
+<ruby>
+  <rb>A</rb><rb>B</rb><rb>C</rb>
+  <rtc>Above</rtc>
+  <rtc>Below</rtc>
+</ruby>
+
+</body>
+</html>

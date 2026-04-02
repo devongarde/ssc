@@ -21,7 +21,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "base/type_master.h"
 
+e_status set_char_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_compact_value (nitpick& nits, const html_version& v, const ::std::string& s);
+e_status set_custom_old_value (nitpick& nits, const html_version& v, const ::std::string& s);
+e_status set_custom_new_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_html_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_loopie_value (nitpick& nits, const html_version& v, const ::std::string& s);
 
@@ -37,14 +40,8 @@ template < > struct type_master < t_empty > : string_value < t_empty >
 template < > struct type_master < t_char > : string_value < t_char >
 {   using string_value < t_char > :: string_value;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   ::std::string val (trim_the_lot_off (s));
-        if (val.length () == 1)
-            string_value < t_char > :: set_value (nits, v, val);
-        else if ((val.length () > 1) && (val.at (0) == '&') && (val.at (val.length () - 1) == ';'))
-            string_value < t_char > :: set_value (nits, v, val);
-        else
-        {   nits.pick (nit_single_character, es_error, ec_type, quote (val), " is not a single character");
-            string_value < t_char > :: status (s_invalid); } } };
+    {   string_value < t_char > :: set_value (nits, v, uq3 (trim_the_lot_off (s), BS_QQ | BS_MASK));
+        string_value < t_char > :: status (set_char_value (nits, v, string_value < t_char > :: get_string ())); } };
 
 template < > struct type_master < t_compact > : tidy_string < t_compact >
 {   using tidy_string < t_compact > :: tidy_string;
@@ -60,47 +57,14 @@ template < > struct type_master < t_contain > : type_string < t_contain, sz_cont
 template < > struct type_master < t_custom_element_old > : tidy_string < t_custom_element_old >
 {   using tidy_string < t_custom_element_old > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   string_value < t_custom_element_old > :: set_value (nits, v, s);
-        const ::std::string ss (string_value < t_custom_element_old > :: get_string ());
-        if (! ss.empty ())
-            if ((ss.at (0) < 'a') || (ss.at (0) > 'z'))
-                nits.pick (nit_custom_element, ed_jul25, "4.13.3 Core concepts", es_error, ec_type, quote (ss), ": the first character of a custom element must be an ASCII lower-case letter");
-            else if (ss.find ('-') == ::std::string::npos)
-                nits.pick (nit_custom_element, ed_jul25, "4.13.3 Core concepts", es_error, ec_type, quote (ss), ": a custom element name must contain '-' (ASCII minus)");
-            else if (ss.find_first_of (UPPERCASE) != ::std::string::npos)
-                nits.pick (nit_custom_element, ed_jul25, "4.13.3 Core concepts", es_error, ec_type, quote (ss), ": a custom element name must not contain an upper-case ASCII letter");
-            else return;
-        string_value < t_custom_element_old > :: status (s_invalid); } };
+    {   tidy_string < t_custom_element_old > :: set_value (nits, v, s);
+        tidy_string < t_custom_element_old > :: status (set_custom_old_value (nits, v, tidy_string < t_custom_element_old > :: get_string ())); } };
 
 template < > struct type_master < t_custom_element_new > : tidy_string < t_custom_element_new >
 {   using tidy_string < t_custom_element_new > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_value < t_custom_element_new > :: set_value (nits, v, s);
-        const ::std::string ss (string_value < t_custom_element_new > :: get_string ());
-        if (! ss.empty ())
-            if ((ss.at (0) < 'a') || (ss.at (0) > 'z'))
-                nits.pick (nit_custom_element, ed_jul25, "4.13.3 Core concepts", es_error, ec_type, quote (ss), ": the first character of a custom element must be an ASCII lower-case letter");
-            else if (ss.find_first_of (UPPERCASE) != ::std::string::npos)
-                nits.pick (nit_custom_element, ed_jul25, "4.13.3 Core concepts", es_error, ec_type, quote (ss), ": a custom element name must not contain an upper-case ASCII letter");
-            else
-            {   bool whoops = false;
-                for (   ::std::string::size_type pos = ss.find_first_not_of (LOWERCASE DENARY ".-_");
-                        pos != ::std::string::npos;
-                        pos = ss.substr (pos+1).find_first_not_of (LOWERCASE DENARY ".-_"))
-#ifdef _MSC_VER
-                {   const char ch = ss.at (pos);
-                    if ((ch >= 0xC0) && (ch <= 0xD6)) continue;
-                    if ((ch >= 0xC0) && (ch <= 0xD6)) continue;
-                    if (ch > 0xF8) continue;
-                    if (ch == 0xB8) continue;
-                    whoops = true;
-#else // _MSC_VER
-                {   whoops = true;
-#endif // _MSC_VER
-                    break; }
-                if (! whoops) return;
-                nits.pick (nit_custom_element, ed_jul25, "4.13.3 Core concepts", es_warning, ec_type, quote (ss), ": the custom element name may contain an illegal ASCII character"); }
-        string_value < t_custom_element_new > :: status (s_invalid); } };
+        tidy_string < t_custom_element_new > :: status (set_custom_new_value (nits, v, tidy_string < t_custom_element_new > :: get_string ())); } };
 
 template < > struct type_master < t_anchor_centre > : type_string < t_anchor_centre, sz_anchor_centre >
 { using type_string < t_anchor_centre, sz_anchor_centre > :: type_string; };

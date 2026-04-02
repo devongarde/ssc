@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN word-break tests</title>
+<style>
+.sid {
+/* Keyword values */
+word-break: normal;
+word-break: break-all;
+word-break: keep-all;
+word-break: auto-phrase; /* experimental */
+word-break: break-word; /* deprecated */
+
+/* Global values */
+word-break: inherit;
+word-break: initial;
+word-break: revert;
+word-break: revert-layer;
+word-break: unset;
+}
+
+.narrow {
+  padding: 10px;
+  border: 1px solid;
+  width: 500px;
+  margin: 0 auto;
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: 1px;
+}
+
+.normal {
+  word-break: normal;
+}
+
+.breakAll {
+  word-break: break-all;
+}
+
+.keepAll {
+  word-break: keep-all;
+}
+
+.manual {
+  word-break: manual;
+}
+
+.autoPhrase {
+  word-break: auto-phrase;
+}
+
+.breakWord {
+  word-break: break-word;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN word-break Tests</h1>
+
+<p>1. <code>word-break: normal</code></p>
+<p class="normal narrow">
+  This is a long and Honorificabilitudinitatibus califragilisticexpialidocious
+  Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu
+  グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉
+</p>
+
+<p>2. <code>word-break: break-all</code></p>
+<p class="breakAll narrow">
+  This is a long and Honorificabilitudinitatibus califragilisticexpialidocious
+  Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu
+  グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉
+</p>
+
+<p>3. <code>word-break: keep-all</code></p>
+<p class="keepAll narrow">
+  This is a long and Honorificabilitudinitatibus califragilisticexpialidocious
+  Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu
+  グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉
+</p>
+
+<p>4. <code>word-break: manual</code></p>
+<p class="manual narrow">
+  This is a long and Honorificabilitudinitatibus califragilisticexpialidocious
+  Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu
+  グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉
+</p>
+
+<p>5. <code>word-break: auto-phrase</code></p>
+<p class="autoPhrase narrow">
+  This is a long and Honorificabilitudinitatibus califragilisticexpialidocious
+  Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu
+  グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉
+</p>
+
+<p>6. <code>word-break: break-word</code></p>
+<p class="breakWord narrow">
+  This is a long and Honorificabilitudinitatibus califragilisticexpialidocious
+  Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu
+  グレートブリテンおよび北アイルランド連合王国という言葉は本当に長い言葉
+</p>
+
+</body>
+</html>

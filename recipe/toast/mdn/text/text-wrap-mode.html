@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-wrap-mode tests</title>
+<style>
+.sid {
+/* Keyword values */
+text-wrap-mode: wrap;
+text-wrap-mode: nowrap;
+
+/* Global values */
+text-wrap-mode: inherit;
+text-wrap-mode: initial;
+text-wrap-mode: revert;
+text-wrap-mode: revert-layer;
+text-wrap-mode: unset;
+}
+
+.box {
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+  font-size: 64px;
+  box-sizing: border-box;
+  border: 4px solid black;
+  padding: 0px 3px;
+  width: 223px;
+  text-wrap-mode: wrap;
+}
+
+.box {
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+  font-size: 64px;
+  box-sizing: border-box;
+  border: 4px solid black;
+  padding: 0px 3px;
+  width: 223px;
+  text-wrap-mode: nowrap;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN text-wrap-mode Tests</h1>
+
+<div class="box">CSS IS AWESOME</div>
+
+</body>
+</html>

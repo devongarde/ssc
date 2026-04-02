@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN scroll-timeline tests</title>
+<style>
+.sid {
+scroll-timeline-name: none;
+scroll-timeline-name: --custom_name_for_timeline;
+}
+
+#container {
+  height: 300px;
+  overflow-y: scroll;
+  scroll-timeline-name: --square-timeline;
+  position: relative;
+}
+
+#square {
+  background-color: deeppink;
+  width: 100px;
+  height: 100px;
+  margin-top: 100px;
+  animation-name: rotateAnimation;
+  animation-duration: 1ms; /* Firefox requires this to apply the animation */
+  animation-timeline: --square-timeline;
+  position: absolute;
+  bottom: 0;
+}
+
+#stretcher {
+  height: 600px;
+  background: #dedede;
+}
+
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN scroll-timeline Tests</h1>
+
+<div id="container">
+  <div id="square"></div>
+  <div id="stretcher"></div>
+</div>
+
+</body>
+</html>

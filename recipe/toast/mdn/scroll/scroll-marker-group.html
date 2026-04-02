@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN scroll-marker-group tests</title>
+<style>
+.sid {
+/* Single values */
+scroll-marker-group: before;
+scroll-marker-group: after;
+scroll-marker-group: none;
+
+/* Global values */
+scroll-marker-group: inherit;
+scroll-marker-group: initial;
+scroll-marker-group: revert;
+scroll-marker-group: revert-layer;
+scroll-marker-group: unset;
+}
+
+ul {
+  display: flex;
+  gap: 4vw;
+  padding-left: 0;
+  margin: 32px 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+
+  scroll-marker-group: after;
+}
+
+li {
+  list-style-type: none;
+  background-color: #eeeeee;
+  flex: 0 0 33%;
+  scroll-snap-align: start;
+  text-align: center;
+  line-height: 5;
+}
+
+li::scroll-marker {
+  content: " ";
+  border: 1px solid red;
+  height: 1em;
+  width: 1em;
+}
+
+::scroll-marker-group {
+  display: flex;
+  gap: 0.2em;
+}
+
+::scroll-marker:target-current {
+  background: red;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN scroll-marker-group Tests</h1>
+
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+  <li>Item 4</li>
+  <li>Item 5</li>
+  <li>Item 6</li>
+  <li>Item 7</li>
+  <li>Item 8</li>
+</ul>
+
+</body>
+</html>

@@ -333,7 +333,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_LATEST_YEAR        HTML_2026
 #define HTML_LATEST_MONTH       4
 
-#define HTML_CURRENT            HTML_FEB26
+#define HTML_CURRENT            HTML_APR26
 
 #define HTML_UNDEF      0, 0
 

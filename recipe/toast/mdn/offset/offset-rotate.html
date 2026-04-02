@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN offset-rotate tests</title>
+<style>
+.sid {
+/* Follow the path direction, with optional additional angle */
+offset-rotate: auto;
+offset-rotate: auto 45deg;
+
+/* Follow the path direction but facing the opposite direction of `auto` */
+offset-rotate: reverse;
+
+/* Keep a constant rotation regardless the position on the path */
+offset-rotate: 90deg;
+offset-rotate: 0.5turn;
+
+/* Global values */
+offset-rotate: inherit;
+offset-rotate: initial;
+offset-rotate: revert;
+offset-rotate: revert-layer;
+offset-rotate: unset;
+}
+
+div {
+  width: 40px;
+  height: 40px;
+  background: #2bc4a2;
+  margin: 20px;
+  clip-path: polygon(0% 0%, 70% 0%, 100% 50%, 70% 100%, 0% 100%, 30% 50%);
+  animation: move 5000ms infinite alternate ease-in-out;
+
+  offset-path: path("M20,20 C20,50 180,-10 180,20");
+}
+div:nth-child(1) {
+  offset-rotate: auto;
+}
+div:nth-child(2) {
+  offset-rotate: auto 90deg;
+}
+div:nth-child(3) {
+  offset-rotate: 30deg;
+}
+
+@keyframes move {
+  100% {
+    offset-distance: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN offset-rotate Tests</h1>
+
+<div></div>
+<div></div>
+<div></div>
+
+</body>
+</html>

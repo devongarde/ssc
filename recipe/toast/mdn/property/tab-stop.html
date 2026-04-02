@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN tab-stop tests</title>
+<style>
+.sid {
+/* <number> values */
+tab-size: 4;
+tab-size: 0;
+
+/* <length> values */
+tab-size: 10px;
+tab-size: 2em;
+
+/* Global values */
+tab-size: inherit;
+tab-size: initial;
+tab-size: revert;
+tab-size: revert-layer;
+tab-size: unset;
+}
+
+pre {
+  tab-size: 4; /* Set tab size to 4 characters wide */
+}
+
+pre {
+  tab-size: 0; /* Remove indentation */
+}
+
+p {
+  white-space: pre;
+}
+
+.custom-number {
+  tab-size: 3;
+}
+
+.custom-length {
+  tab-size: 50px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN tab-stop Tests</h1>
+
+<p>no tab</p>
+<p>&#0009;default tab size of 8 characters wide</p>
+<p class="custom-number">&#0009;custom tab size of 3 characters wide</p>
+<p>&nbsp;&nbsp;&nbsp;3 spaces, equivalent to the custom tab size</p>
+<p class="custom-length">&#0009;custom tab size of 50px wide</p>
+
+</body>
+</html>

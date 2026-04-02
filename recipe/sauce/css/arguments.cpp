@@ -111,12 +111,14 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
     if (((f & CF_EXPECT_FN) != CF_EXPECT_FN) || ! fn)
     {   if ((kc > 1) && ((f & (CF_EXPECT_STRING | CF_EXPECT_NUMBER)) != 0))
             nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, s, ": a single value is sought");
-        if (xs) if ((f & CF_EXPECT_KEYWORDS) == CF_EXPECT_KEYWORDS)
-            nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val), ": should be a keyword");
-        if (xk || xn || xi) if ((f & CF_EXPECT_STRING) == CF_EXPECT_STRING)
-            nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val), ": should be a string");
-        if (! xn) if ((f & (CF_EXPECT_NUMBERS | CF_EXPECT_NUMBER)) != 0)
-            nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val), ": should be a number"); }
+        nitpick nuts;
+        if (! test_value < t_css_all_2 > (nuts, v_, val))
+        {   if (xs) if ((f & CF_EXPECT_KEYWORDS) == CF_EXPECT_KEYWORDS)
+                nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val), ": should be a keyword");
+            if (xk || xn || xi) if ((f & CF_EXPECT_STRING) == CF_EXPECT_STRING)
+                nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val), ": should be a string");
+            if (! xn) if ((f & (CF_EXPECT_NUMBERS | CF_EXPECT_NUMBER)) != 0)
+                nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val), ": should be a number"); } }
     if (snippet_ && ((f & CF_SVG) == CF_SVG))
         if (! eb_.test (elem_svg))
             nits.pick (nit_svg_version, ed_svg_1_1, "Appendix N: Property Index", es_warning, ec_css, quote (item), " is an SVG property, which requires at least an ancestral <SVG> element");
@@ -255,8 +257,11 @@ void arguments::validate (nitpick& nits, const flags_t f, const ::std::string& p
     if ((f & CF_PAGE_NAME) == CF_PAGE_NAME)
     {   const sstr_t& pn (g_.get_strs (gst_page_name));
         ::std::string vll (trim_the_lot_off (vl));
-        if (pn.find (::boost::to_lower_copy (vll)) == pn.cend ())
-            nits.pick (nit_no_such_page, es_error, ec_css, quote (vll), " is not a known page name"); } }
+        nitpick nuts;
+        if (! test_value < t_css_all_2 > (nuts, v_, vll))
+            if (! compare_no_case (vll, sz_auto::sz ()))
+                if (pn.find (::boost::to_lower_copy (vll)) == pn.cend ())
+                    nits.pick (nit_no_such_page, es_error, ec_css, quote (vll), " is not a known page name"); } }
 
 e_css_statement arguments::cs () const
 {   if (st_ == nullptr) return css_error;

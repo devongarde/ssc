@@ -148,3 +148,14 @@ I snaffled a XPM teapot from John Burkardt of the University of South
 Carolina, who kindly released it under the GNU LPGL licence, here:
 https://people.math.sc.edu/Burkardt/data/xpm/xpm.html
 
+
+
+Footnote
+========
+I regret the mixed use of standard English and American dialect here.
+Unfortunately, some licences requires dialect, so the spelling here
+regretably a confused mess. In principle, Licence is a noun and license
+is a verb, but, due to a national shortage of the letter c at a key
+moment in American history (a raid by Welsh brigands), the American
+dialect uses only s. So, for example, the W3 licence below requires the
+misuse of license, in standard English terms, instead of licence.

@@ -692,15 +692,14 @@ PASS ../toast/living/oct25/15.html
 PASS ../toast/living/oct25/15.css
 0 html
 26 bad_media
-79 unrecognised_value unrecognised_value
-80 unrecognised_value unrecognised_value
-216 css_version
-224 css_version
-709 css_version
+216 abandoned
+224 abandoned
 768 dialect
-901 unrecognised_value unrecognised_value unrecognised_value unrecognised_value
-902 unrecognised_value unrecognised_value unrecognised_value unrecognised_value
-905 css_version
+901 unrecognised_value unrecognised_value unrecognised_value
+902 unrecognised_value unrecognised_value unrecognised_value
+918 css_colour css_colour
+922 css_colour css_colour
+926 css_colour css_colour
 940 css_version
 941 css_version
 942 css_version
@@ -1319,7 +1318,6 @@ PASS ../toast/living/oct25/link.html
 
 PASS ../toast/living/oct25/main-1.html
 3 inserted_missing_parent inefficient inefficient
-4 css_version
 14 inserted_missing_parent inefficient
 18 attempted_escape no_such_folder url_not_found
 19 attempted_escape no_such_folder url_not_found

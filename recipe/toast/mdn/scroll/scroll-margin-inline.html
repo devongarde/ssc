@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN scroll-margin-inline tests</title>
+<style>
+.sid {
+/* <length> values */
+scroll-margin-inline: 10px;
+scroll-margin-inline: 1em 0.5em;
+
+/* Global values */
+scroll-margin-inline: inherit;
+scroll-margin-inline: initial;
+scroll-margin-inline: revert;
+scroll-margin-inline: revert-layer;
+scroll-margin-inline: unset;
+}
+
+.scroller {
+  text-align: left;
+  width: 250px;
+  height: 250px;
+  overflow-x: scroll;
+  display: flex;
+  box-sizing: border-box;
+  border: 1px solid black;
+  scroll-snap-type: x mandatory;
+}
+
+.scroller > div {
+  flex: 0 0 250px;
+  width: 250px;
+  background-color: rebeccapurple;
+  color: white;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: end;
+}
+
+.scroller > div:nth-child(2n) {
+  background-color: white;
+  color: rebeccapurple;
+}
+
+.scroller > div:nth-child(2) {
+  scroll-margin-inline: 1rem;
+}
+
+.scroller > div:nth-child(3) {
+  scroll-margin-inline: 2rem;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN scroll-margin-inline Tests</h1>
+
+<div class="scroller">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+</div>
+
+</body>
+</html>

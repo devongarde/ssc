@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN text-autospace tests</title>
+<style>
+.sid {
+text-autospace: normal;
+text-autospace: no-autospace;
+text-autospace: ideograph-alpha;
+text-autospace: ideograph-numeric;
+text-autospace: punctuation;
+text-autospace: insert;
+text-autospace: replace;
+text-autospace: ideograph-alpha ideograph-numeric punctuation;
+text-autospace: ideograph-alpha ideograph-numeric;
+text-autospace: ideograph-alpha ideograph-numeric insert;
+text-autospace: auto;
+
+/* Global values */
+text-autospace: inherit;
+text-autospace: initial;
+text-autospace: revert;
+text-autospace: revert-layer;
+text-autospace: unset;
+}
+
+.no-autospace {
+  text-autospace: no-autospace;
+}
+.auto {
+  text-autospace: auto;
+}
+.normal {
+  text-autospace: normal;
+}
+.ideograph-alpha {
+  text-autospace: ideograph-alpha;
+}
+.ideograph-numeric {
+  text-autospace: ideograph-numeric;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN text-autospace Tests</h1>
+
+<main>
+  <figure class="no-autospace">
+    <figcaption>
+      <code>
+        text-autospace: <span id="autospace-value">no-autospace</span>;
+      </code>
+    </figcaption>
+    <div>
+      <p>HTML超文本标记语言</p>
+      <p>42四十二</p>
+    </div>
+  </figure>
+</main>
+
+</body>
+</html>

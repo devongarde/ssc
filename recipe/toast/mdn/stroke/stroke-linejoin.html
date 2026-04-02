@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN stroke-linejoin tests</title>
+<style>
+.sid {
+/* keyword values */
+stroke-linejoin: bevel;
+stroke-linejoin: miter;
+stroke-linejoin: round;
+
+/* Global values */
+stroke-linejoin: inherit;
+stroke-linejoin: initial;
+stroke-linejoin: revert;
+stroke-linejoin: revert-layer;
+stroke-linejoin: unset;
+}
+
+path:nth-child(1) {
+  stroke-linejoin: bevel;
+}
+path:nth-child(2) {
+  stroke-linejoin: round;
+}
+path:nth-child(3) {
+  stroke-linejoin: miter;
+}
+path:nth-child(4) {
+  stroke-linejoin: miter;
+  stroke-miterlimit: 2;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN stroke-linejoin Tests</h1>
+
+<svg viewBox="0 0 15 12" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="black" stroke-width="1" fill="none">
+    <path d="M2,5  a2,2 0,0,0 2,-3 a3,3 0 0 1 2,3.5" />
+    <path d="M8,5  a2,2 0,0,0 2,-3 a3,3 0 0 1 2,3.5" />
+    <path d="M2,11 a2,2 0,0,0 2,-3 a3,3 0 0 1 2,3.5" />
+    <path d="M8,11 a2,2 0,0,0 2,-3 a3,3 0 0 1 2,3.5" />
+  </g>
+</svg>
+
+</body>
+</html>

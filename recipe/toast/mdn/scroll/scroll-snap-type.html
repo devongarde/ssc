@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN scroll-snap-type tests</title>
+<style>
+.sid {
+/* No snapping */
+scroll-snap-type: none;
+
+/* Keyword values for snap axes */
+scroll-snap-type: x;
+scroll-snap-type: y;
+scroll-snap-type: block;
+scroll-snap-type: inline;
+scroll-snap-type: both;
+
+/* Optional keyword values for snap strictness */
+/* mandatory | proximity */
+scroll-snap-type: x mandatory;
+scroll-snap-type: y proximity;
+scroll-snap-type: both mandatory;
+
+/* Global values */
+scroll-snap-type: inherit;
+scroll-snap-type: initial;
+scroll-snap-type: revert;
+scroll-snap-type: revert-layer;
+scroll-snap-type: unset;
+}
+
+/* scroll-snap */
+.x.mandatory-scroll-snapping {
+  scroll-snap-type: x mandatory;
+}
+.x.proximity-scroll-snapping {
+  scroll-snap-type: x proximity;
+}
+.y.mandatory-scroll-snapping {
+  scroll-snap-type: y mandatory;
+}
+.y.proximity-scroll-snapping {
+  scroll-snap-type: y proximity;
+}
+
+div {
+  text-align: center;
+  scroll-snap-align: center;
+  flex: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN scroll-snap-type Tests</h1>
+
+<main>
+  <section class="x mandatory-scroll-snapping" dir="ltr">
+    <div>X Mand. LTR</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+  </section>
+  <section class="x proximity-scroll-snapping" dir="ltr">
+    <div>X Prox. LTR</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+  </section>
+  <section class="y mandatory-scroll-snapping" dir="ltr">
+    <div>Y Mand. LTR</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+  </section>
+  <section class="y proximity-scroll-snapping" dir="ltr">
+    <div>Y Prox. LTR</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+  </section>
+  <section class="x mandatory-scroll-snapping" dir="rtl">
+    <div>X Mand. RTL</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+  </section>
+  <section class="x proximity-scroll-snapping" dir="rtl">
+    <div>X Prox. RTL</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+  </section>
+  <section class="y mandatory-scroll-snapping" dir="rtl">
+    <div>Y Mand. RTL</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+  </section>
+  <section class="y proximity-scroll-snapping" dir="rtl">
+    <div>Y Prox. RTL</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+  </section>
+</main>
+
+</body>
+</html>

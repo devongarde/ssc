@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN timeline-scope tests</title>
+<style>
+.sid {
+/* Keyword values */
+timeline-scope: all;
+timeline-scope: none;
+
+/* Custom name values */
+timeline-scope: --custom_name_for_timeline;
+timeline-scope: --timeline_name_one, --timeline_name_two;
+
+/* Global values */
+timeline-scope: inherit;
+timeline-scope: initial;
+timeline-scope: revert;
+timeline-scope: revert-layer;
+timeline-scope: unset;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+
+  timeline-scope: --my-scroller;
+}
+
+.content,
+.scroller {
+  flex: 1;
+}
+
+.scroller {
+  overflow: scroll;
+  scroll-timeline-name: --my-scroller;
+  background: deeppink;
+}
+
+.long-element {
+  height: 2000px;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  background-color: rebeccapurple;
+}
+
+.animation {
+  animation: rotate-appear 1ms linear;
+  animation-timeline: --my-scroller;
+}
+
+@keyframes rotate-appear {
+  from {
+    rotate: 0deg;
+    translate: 0;
+  }
+
+  to {
+    rotate: 720deg;
+    translate: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN timeline-scope Tests</h1>
+
+<div class="content">
+  <div class="box animation"></div>
+</div>
+
+<div class="scroller">
+  <div class="long-element"></div>
+</div>
+
+</body>
+</html>

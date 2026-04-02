@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN overlay tests</title>
+<style>
+.sid
+{
+/* Keyword values */
+overlay: auto;
+overlay: none;
+
+/* Global values */
+overlay: inherit;
+overlay: initial;
+overlay: revert;
+overlay: revert-layer;
+overlay: unset;
+}
+
+html {
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+[popover]:popover-open {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+[popover] {
+  font-size: 1.2rem;
+  padding: 10px;
+
+  /* Final state of the exit animation */
+  opacity: 0;
+  transform: scaleX(0);
+
+  transition:
+    opacity 0.7s,
+    transform 0.7s,
+    overlay 0.7s allow-discrete,
+    display 0.7s allow-discrete;
+  /* Equivalent to
+  transition: all 0.7s allow-discrete; */
+}
+
+/* Needs to be included after the previous [popover]:popover-open
+   rule to take effect, as the specificity is the same */
+@starting-style {
+  [popover]:popover-open {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+
+/* Transition for the popover's backdrop */
+
+[popover]::backdrop {
+  background-color: transparent;
+  transition:
+    display 0.7s allow-discrete,
+    overlay 0.7s allow-discrete,
+    background-color 0.7s;
+  /* Equivalent to
+  transition: all 0.7s allow-discrete; */
+}
+
+[popover]:popover-open::backdrop {
+  background-color: rgb(0 0 0 / 25%);
+}
+
+/* Nesting selectors (&) cannot represent pseudo-elements, so this 
+   starting-style rule cannot be nested. */
+
+@starting-style {
+  [popover]:popover-open::backdrop {
+    background-color: transparent;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN overlay Tests</h1>
+
+<button popovertarget="mypopover">Show the popover</button>
+<div popover="auto" id="mypopover">I'm a Popover! I should animate.</div>
+
+</body>
+</html>

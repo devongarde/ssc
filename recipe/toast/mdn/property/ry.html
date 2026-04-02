@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN ry tests</title>
+<style>
+.sid
+{
+/* Initial value */
+ry: auto;
+
+/* Length and percentage values */
+ry: 30px;
+ry: 30%;
+
+/* Global values */
+ry: inherit;
+ry: initial;
+ry: revert;
+ry: revert-layer;
+ry: unset;
+}
+
+svg {
+  border: 1px solid;
+}
+
+rect:nth-of-type(2) {
+  ry: 10px;
+  fill: red;
+}
+
+rect:nth-of-type(3) {
+  ry: 2em;
+  fill: blue;
+}
+
+rect:nth-of-type(4) {
+  ry: 5%;
+  fill: orange;
+}
+
+rect:nth-of-type(5) {
+  ry: 80%;
+  fill: green;
+}
+
+svg {
+  border: 1px solid;
+}
+
+ellipse:first-of-type {
+  ry: 80px;
+  fill: magenta;
+  stroke: rebeccapurple;
+}
+
+svg {
+  border: 1px solid;
+}
+
+ellipse:first-of-type {
+  ry: 30%;
+  fill: magenta;
+  stroke: rebeccapurple;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN ry Tests</h1>
+
+<svg xmlns="http://www.w3.org/2000/svg">
+  <rect width="50" height="120" y="5" x="5" />
+  <rect width="50" height="120" y="5" x="60" />
+  <rect width="50" height="120" y="5" x="115" />
+  <rect width="50" height="120" y="5" x="170" />
+  <rect width="50" height="120" y="5" x="225" />
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="80" cy="50" rx="40" ry="20" />
+  <ellipse cx="80" cy="50" rx="40" ry="20" />
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="80" cy="50" rx="40" ry="20" />
+  <ellipse cx="80" cy="50" rx="40" ry="20" />
+</svg>
+
+</body>
+</html>

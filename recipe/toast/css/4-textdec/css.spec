@@ -5,6 +5,7 @@ PASS ../toast/css/4-textdec/css-1.css
 
 PASS ../toast/css/4-textdec/css-2.css
 0 html
+12 unrecognised_value
 
 PASS ../toast/css/4-textdec/css-3.css
 0 html

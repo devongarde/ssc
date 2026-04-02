@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN scroll-timeline tests</title>
+<style>
+.sid {
+/* One value */
+scroll-timeline: none;
+scroll-timeline: --custom_name_for_timeline;
+
+/* Two values */
+scroll-timeline: --custom_name_for_timeline block;
+scroll-timeline: --custom_name_for_timeline x;
+scroll-timeline: none inline;
+scroll-timeline: none y;
+
+/* Global values */
+scroll-timeline: inherit;
+scroll-timeline: initial;
+scroll-timeline: revert;
+scroll-timeline: revert-layer;
+scroll-timeline: unset;
+}
+
+#container {
+  height: 300px;
+  overflow-y: scroll;
+
+  scroll-timeline: --square-timeline y;
+  /* Firefox supports the non-standard vertical/horizontal syntax */
+  scroll-timeline: --square-timeline vertical;
+
+  position: relative;
+}
+
+#square {
+  background-color: deeppink;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  bottom: 0;
+
+  animation: rotateAnimation 1ms linear;
+  animation-timeline: --square-timeline;
+}
+
+#stretcher {
+  height: 600px;
+  background: #dedede;
+}
+
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN scroll-timeline Tests</h1>
+
+<div id="container">
+  <div id="square"></div>
+  <div id="stretcher"></div>
+</div>
+
+</body>
+</html>

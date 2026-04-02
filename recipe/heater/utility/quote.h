@@ -89,7 +89,8 @@ inline ::std::string uq0 (const ::std::string& str, const ::std::string& qs = ::
 
 #define BS_NUMERIC  ( UQ_8 | UQ_10 | UQ_16 | UQ_36 )
 #define BS_MASK     ( UQ_BS | BS_NUMERIC )
-#define BS_FN       ( UQ_BS | UQ_SQ | UQ_DQ | UQ_ROUND | UQ_TRIM )
+#define BS_QQ       ( UQ_BS | UQ_SQ | UQ_DQ )
+#define BS_FN       ( BS_QQ | UQ_ROUND | UQ_TRIM )
 
 vstr_t uq2 (const ::std::string& s, const unsigned int flags = UQ_DQ | UQ_SQ | UQ_BS, const vstr_t& sep = vstr_t (), vint_t* lines = nullptr, v_np* ticks = nullptr);
 
@@ -104,8 +105,8 @@ inline vstr_t uq2_sep (const ::std::string& s, const unsigned int flags = UQ_DQ 
     v.push_back (sep);
     return uq2 (s, flags, v, lines, ticks); }
 
-inline ::std::string uq3 (const ::std::string& s)
-{   vstr_t v = uq2 (s);
+inline ::std::string uq3 (const ::std::string& s, const unsigned int flags = UQ_DQ | UQ_SQ | UQ_BS)
+{   vstr_t v = uq2 (s, flags);
     if (v.size () > 0) return v.at (0);
     return ::std::string (); }
 

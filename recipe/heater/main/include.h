@@ -63,12 +63,12 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 27
-#define VERSION_STRING "0.2.27"
+#define VERSION_RELEASE 28
+#define VERSION_STRING "0.2.28"
 
 #define BUILD_YEAR              "2026"
-#define BUILD_MONTH             "Feb"
-#define BUILD_DAY_ISH BUILD_YEAR "-02-10"
+#define BUILD_MONTH             "Apr"
+#define BUILD_DAY_ISH BUILD_YEAR "-04-01"
 #define LATEST_CSS              "2025"
 
 #define NBSP "&nbsp;"
@@ -87,7 +87,7 @@ z
 #define SSC_PUBLIC_KEY ""
 
 #define UPDATE_URL_1 WEBADDR "ssc.ver"
-#define UPDATE_URL_2 "https://dylanharris.org/ssc/ssc.ver"
+// #define UPDATE_URL_2 "https://dylanharris.org/ssc/ssc.ver"
 
 #define DEFAULT_LINE_LENGTH 132
 #define MIN_LINE_LENGTH 72
@@ -101,6 +101,7 @@ z
 #define DEFAULT_ADDRESS "127.0.0.1"
 
 #ifdef __clang__
+#define CPP17
 #pragma clang diagnostic push
 #pragma GCC diagnostic ignored "-Wall"
 #pragma GCC diagnostic ignored "-Wextra"
@@ -110,6 +111,7 @@ z
 #define PROCSIZE "64"
 #define STR_IT_BYTE
 #elif defined (__GNUC__)
+#define CPP17
 #define COMPILER "g"
 #define COMPNAME "gcc"
 #define MSVC_NOEXCEPT
@@ -138,6 +140,14 @@ z
 #define X64
 #define PROCSIZE "64"
 #endif // WIN32
+
+#if _MSVC_LANG == 201703L
+#define CPP17
+#elif _MSVC_LANG == 202002L 
+#define CPP20
+#else // _MSVC_LANG
+#error ssc prefers C++ 17 or C++ 20.
+#endif // _MSVC_LANG
 
 // https://docs.microsoft.com/en-us/cpp/preprocessor/predefined-macros?view=msvc-170
 #if _MSC_VER >= 1950

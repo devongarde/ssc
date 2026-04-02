@@ -72,6 +72,9 @@ template < > struct type_master < t_b64 > : public tidy_string < t_b64 >
         else nits.pick (nit_b64, es_error, ec_type, "invalid character in base 64 binary string");
         string_value < t_b64 > :: status (s_invalid); } };
 
+template < > struct type_master < t_baseline > : public type_string < t_baseline, sz_baseline >
+{   using type_string < t_baseline, sz_baseline > :: type_string; };
+
 template < > struct type_master < t_braille > : string_value < t_braille >
 {   using string_value < t_braille > :: string_value;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -470,15 +473,16 @@ template < > struct type_master < t_target > : public tidy_string < t_target >
             nits.pick (nit_badtarget, es_error, ec_type, quote (s), " starts with '_', but is not a standard target"); }
         string_value < t_target > :: status (s_invalid); } };
 
-template < > struct type_master < t_text_2n > : string_vector < t_text_2n, sz_space_char >
-{   using string_vector < t_text_2n, sz_space_char > :: string_vector;
+template < > struct type_master < t_text_2n > : string_vector < t_text_2n, sz_space_char, BS_QQ | UQ_BLANK >
+{   using string_vector < t_text_2n, sz_space_char, BS_QQ | UQ_BLANK > :: string_vector;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   string_vector < t_text_2n, sz_space_char > :: set_value (nits, v, s);
-        if (string_vector < t_text_2n, sz_space_char > :: empty ()) return;
-        if (string_vector < t_text_2n, sz_space_char > :: good ())
-        {   if (string_vector < t_text_2n, sz_space_char > :: get ().size () % 2 == 0) return;
-            nits.pick (nit_sizes, es_error, ec_type, "an even number of strings expected"); }
-        string_vector < t_text_2n, sz_space_char > :: status (s_invalid); } };
+    {   string_vector < t_text_2n, sz_space_char, BS_QQ | UQ_BLANK > :: set_value (nits, v, s);
+        if (string_vector < t_text_2n, sz_space_char, BS_QQ | UQ_BLANK > :: empty ()) return;
+        if (string_vector < t_text_2n, sz_space_char, BS_QQ | UQ_BLANK > :: good ())
+        {   if (string_vector < t_text_2n, sz_space_char, BS_QQ | UQ_BLANK > :: get ().size () % 2 == 0) return;
+            nits.pick (nit_sizes, es_error, ec_type, string_vector < t_text_2n, sz_space_char, BS_QQ | UQ_BLANK > :: get ().size (),
+                " string(s) found, an even number expected (from ", quote (s), ")"); }
+        string_vector < t_text_2n, sz_space_char, BS_QQ | UQ_BLANK > :: status (s_invalid); } };
 
 template < > struct type_master < t_wildcard > : public tidy_string < t_wildcard >
 {   using tidy_string < t_wildcard > :: tidy_string; 

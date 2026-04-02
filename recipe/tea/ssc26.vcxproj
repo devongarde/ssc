@@ -5064,6 +5064,238 @@
     <None Include="..\toast\living\apr25\ww-7.html" />
     <None Include="..\toast\living\apr25\ww-8.html" />
     <None Include="..\toast\living\apr25\ww-9.html" />
+    <None Include="..\toast\living\apr26\1.10.1.html" />
+    <None Include="..\toast\living\apr26\1.10.2.html" />
+    <None Include="..\toast\living\apr26\1.10.3.html" />
+    <None Include="..\toast\living\apr26\1.11.2.html" />
+    <None Include="..\toast\living\apr26\1.11.3.html" />
+    <None Include="..\toast\living\apr26\10-1.html" />
+    <None Include="..\toast\living\apr26\10-10.html" />
+    <None Include="..\toast\living\apr26\10-2.html" />
+    <None Include="..\toast\living\apr26\10-3.html" />
+    <None Include="..\toast\living\apr26\10-4.html" />
+    <None Include="..\toast\living\apr26\10-5.html" />
+    <None Include="..\toast\living\apr26\10-6.html" />
+    <None Include="..\toast\living\apr26\10-7.html" />
+    <None Include="..\toast\living\apr26\10-8.html" />
+    <None Include="..\toast\living\apr26\10-9.html" />
+    <None Include="..\toast\living\apr26\12.html" />
+    <None Include="..\toast\living\apr26\13.1-1.html" />
+    <None Include="..\toast\living\apr26\13.1-10.html" />
+    <None Include="..\toast\living\apr26\13.1-11.html" />
+    <None Include="..\toast\living\apr26\13.1-12.html" />
+    <None Include="..\toast\living\apr26\13.1-13.html" />
+    <None Include="..\toast\living\apr26\13.1-14.html" />
+    <None Include="..\toast\living\apr26\13.1-2.html" />
+    <None Include="..\toast\living\apr26\13.1-3.html" />
+    <None Include="..\toast\living\apr26\13.1-4.html" />
+    <None Include="..\toast\living\apr26\13.1-5.html" />
+    <None Include="..\toast\living\apr26\13.1-6.html" />
+    <None Include="..\toast\living\apr26\13.1-7.html" />
+    <None Include="..\toast\living\apr26\13.1-8.html" />
+    <None Include="..\toast\living\apr26\13.1-9.html" />
+    <None Include="..\toast\living\apr26\13.2-1.html" />
+    <None Include="..\toast\living\apr26\13.2-2.html" />
+    <None Include="..\toast\living\apr26\13.2-3.html" />
+    <None Include="..\toast\living\apr26\15.css" />
+    <None Include="..\toast\living\apr26\15.html" />
+    <None Include="..\toast\living\apr26\16.html" />
+    <None Include="..\toast\living\apr26\2.3.2.html" />
+    <None Include="..\toast\living\apr26\3.1.6.html" />
+    <None Include="..\toast\living\apr26\3.2.1.1.html" />
+    <None Include="..\toast\living\apr26\3.2.1.2.html" />
+    <None Include="..\toast\living\apr26\3.2.1.3.html" />
+    <None Include="..\toast\living\apr26\3.2.1.4.html" />
+    <None Include="..\toast\living\apr26\3.2.1.5.html" />
+    <None Include="..\toast\living\apr26\3.2.1.6.html" />
+    <None Include="..\toast\living\apr26\3.2.2.html" />
+    <None Include="..\toast\living\apr26\3.2.5.1.xhtml" />
+    <None Include="..\toast\living\apr26\3.2.5.2.html" />
+    <None Include="..\toast\living\apr26\3.2.6.1.html" />
+    <None Include="..\toast\living\apr26\3.2.6.2.html" />
+    <None Include="..\toast\living\apr26\4.10.19.html" />
+    <None Include="..\toast\living\apr26\4.10.22.html" />
+    <None Include="..\toast\living\apr26\4.11.3.6.html" />
+    <None Include="..\toast\living\apr26\4.14.html" />
+    <None Include="..\toast\living\apr26\4.3.11-1.html" />
+    <None Include="..\toast\living\apr26\4.3.11-2.html" />
+    <None Include="..\toast\living\apr26\4.3.11-3.html" />
+    <None Include="..\toast\living\apr26\4.3.11-4.html" />
+    <None Include="..\toast\living\apr26\4.3.11-5.html" />
+    <None Include="..\toast\living\apr26\4.3.11-6.html" />
+    <None Include="..\toast\living\apr26\4.3.11-7.html" />
+    <None Include="..\toast\living\apr26\4.3.11-8.html" />
+    <None Include="..\toast\living\apr26\4.3.11-9.html" />
+    <None Include="..\toast\living\apr26\4.3.12-1.html" />
+    <None Include="..\toast\living\apr26\4.3.12-2.html" />
+    <None Include="..\toast\living\apr26\4.7.4.html" />
+    <None Include="..\toast\living\apr26\4.7.5.html" />
+    <None Include="..\toast\living\apr26\4.7.6.html" />
+    <None Include="..\toast\living\apr26\4.8.11.11.7.vtt" />
+    <None Include="..\toast\living\apr26\4.8.11.3.html" />
+    <None Include="..\toast\living\apr26\4.9.13.html" />
+    <None Include="..\toast\living\apr26\5.1.html" />
+    <None Include="..\toast\living\apr26\5.2-1.html" />
+    <None Include="..\toast\living\apr26\5.2-2.html" />
+    <None Include="..\toast\living\apr26\5.3.1.html" />
+    <None Include="..\toast\living\apr26\5.3.2-1.html" />
+    <None Include="..\toast\living\apr26\5.3.2-2.html" />
+    <None Include="..\toast\living\apr26\5.3.3.html" />
+    <None Include="..\toast\living\apr26\5.3.4.html" />
+    <None Include="..\toast\living\apr26\6.1.html" />
+    <None Include="..\toast\living\apr26\6.11.html" />
+    <None Include="..\toast\living\apr26\6.12.html" />
+    <None Include="..\toast\living\apr26\6.3.html" />
+    <None Include="..\toast\living\apr26\6.6.html" />
+    <None Include="..\toast\living\apr26\6.7.html" />
+    <None Include="..\toast\living\apr26\6.8.html" />
+    <None Include="..\toast\living\apr26\7.2-1.html" />
+    <None Include="..\toast\living\apr26\7.2-2.html" />
+    <None Include="..\toast\living\apr26\7.2-3.html" />
+    <None Include="..\toast\living\apr26\7.2-4.html" />
+    <None Include="..\toast\living\apr26\7.3-1.html" />
+    <None Include="..\toast\living\apr26\7.3-2.html" />
+    <None Include="..\toast\living\apr26\7.5-1.html" />
+    <None Include="..\toast\living\apr26\7.5-2.html" />
+    <None Include="..\toast\living\apr26\7.5-3.html" />
+    <None Include="..\toast\living\apr26\7.5-4.html" />
+    <None Include="..\toast\living\apr26\8.1-1.html" />
+    <None Include="..\toast\living\apr26\8.1-2.html" />
+    <None Include="..\toast\living\apr26\8.1-3.html" />
+    <None Include="..\toast\living\apr26\8.1-4.html" />
+    <None Include="..\toast\living\apr26\8.1-5.html" />
+    <None Include="..\toast\living\apr26\8.1-6.html" />
+    <None Include="..\toast\living\apr26\8.1-7.html" />
+    <None Include="..\toast\living\apr26\8.1-8.html" />
+    <None Include="..\toast\living\apr26\8.1-9.html" />
+    <None Include="..\toast\living\apr26\8.9.html" />
+    <None Include="..\toast\living\apr26\a.html" />
+    <None Include="..\toast\living\apr26\abbr.html" />
+    <None Include="..\toast\living\apr26\address.html" />
+    <None Include="..\toast\living\apr26\alternate.html" />
+    <None Include="..\toast\living\apr26\area.html" />
+    <None Include="..\toast\living\apr26\article-1.html" />
+    <None Include="..\toast\living\apr26\article-2.html" />
+    <None Include="..\toast\living\apr26\aside-1.html" />
+    <None Include="..\toast\living\apr26\aside-2.html" />
+    <None Include="..\toast\living\apr26\b.html" />
+    <None Include="..\toast\living\apr26\base.html" />
+    <None Include="..\toast\living\apr26\bdi.html" />
+    <None Include="..\toast\living\apr26\blockquote.html" />
+    <None Include="..\toast\living\apr26\body.html" />
+    <None Include="..\toast\living\apr26\bookmark.html" />
+    <None Include="..\toast\living\apr26\br.html" />
+    <None Include="..\toast\living\apr26\button.html" />
+    <None Include="..\toast\living\apr26\canvas.html" />
+    <None Include="..\toast\living\apr26\caption.html" />
+    <None Include="..\toast\living\apr26\cite.html" />
+    <None Include="..\toast\living\apr26\code.html" />
+    <None Include="..\toast\living\apr26\custom.html" />
+    <None Include="..\toast\living\apr26\data.html" />
+    <None Include="..\toast\living\apr26\datalist.html" />
+    <None Include="..\toast\living\apr26\dd.html" />
+    <None Include="..\toast\living\apr26\del.html" />
+    <None Include="..\toast\living\apr26\details.html" />
+    <None Include="..\toast\living\apr26\dfn.html" />
+    <None Include="..\toast\living\apr26\dialogue.html" />
+    <None Include="..\toast\living\apr26\div.html" />
+    <None Include="..\toast\living\apr26\dl.html" />
+    <None Include="..\toast\living\apr26\dt.html" />
+    <None Include="..\toast\living\apr26\em.html" />
+    <None Include="..\toast\living\apr26\fieldset.html" />
+    <None Include="..\toast\living\apr26\figcaption.html" />
+    <None Include="..\toast\living\apr26\figure-1.html" />
+    <None Include="..\toast\living\apr26\figure-2.html" />
+    <None Include="..\toast\living\apr26\footer-1.html" />
+    <None Include="..\toast\living\apr26\footer-2.html" />
+    <None Include="..\toast\living\apr26\footer-3.html" />
+    <None Include="..\toast\living\apr26\form.html" />
+    <None Include="..\toast\living\apr26\h1-h6-1.html" />
+    <None Include="..\toast\living\apr26\h1-h6-2.html" />
+    <None Include="..\toast\living\apr26\head-1.html" />
+    <None Include="..\toast\living\apr26\head-2.html" />
+    <None Include="..\toast\living\apr26\header-1.html" />
+    <None Include="..\toast\living\apr26\header-2.html" />
+    <None Include="..\toast\living\apr26\help.html" />
+    <None Include="..\toast\living\apr26\hgroup.html" />
+    <None Include="..\toast\living\apr26\hr.html" />
+    <None Include="..\toast\living\apr26\html.html" />
+    <None Include="..\toast\living\apr26\i.html" />
+    <None Include="..\toast\living\apr26\icon.html" />
+    <None Include="..\toast\living\apr26\iframe.html" />
+    <None Include="..\toast\living\apr26\img-1.html" />
+    <None Include="..\toast\living\apr26\img-2.html" />
+    <None Include="..\toast\living\apr26\img-3.html" />
+    <None Include="..\toast\living\apr26\index.html" />
+    <None Include="..\toast\living\apr26\input.html" />
+    <None Include="..\toast\living\apr26\ins.html" />
+    <None Include="..\toast\living\apr26\kbd.html" />
+    <None Include="..\toast\living\apr26\label.html" />
+    <None Include="..\toast\living\apr26\licence.html" />
+    <None Include="..\toast\living\apr26\link.html" />
+    <None Include="..\toast\living\apr26\living.conf" />
+    <None Include="..\toast\living\apr26\living.spec" />
+    <None Include="..\toast\living\apr26\main-1.html" />
+    <None Include="..\toast\living\apr26\main-2.html" />
+    <None Include="..\toast\living\apr26\map.html" />
+    <None Include="..\toast\living\apr26\mark.html" />
+    <None Include="..\toast\living\apr26\mathml.html" />
+    <None Include="..\toast\living\apr26\menu.html" />
+    <None Include="..\toast\living\apr26\meta-1.html" />
+    <None Include="..\toast\living\apr26\meta-2.html" />
+    <None Include="..\toast\living\apr26\meta-3.html" />
+    <None Include="..\toast\living\apr26\meta-4.html" />
+    <None Include="..\toast\living\apr26\meter.html" />
+    <None Include="..\toast\living\apr26\modulepreload.html" />
+    <None Include="..\toast\living\apr26\nav-1.html" />
+    <None Include="..\toast\living\apr26\nav-2.html" />
+    <None Include="..\toast\living\apr26\nav-3.html" />
+    <None Include="..\toast\living\apr26\noopener.html" />
+    <None Include="..\toast\living\apr26\noreferrer.html" />
+    <None Include="..\toast\living\apr26\noscript.html" />
+    <None Include="..\toast\living\apr26\object.html" />
+    <None Include="..\toast\living\apr26\ol.html" />
+    <None Include="..\toast\living\apr26\opener.html" />
+    <None Include="..\toast\living\apr26\optgroup.html" />
+    <None Include="..\toast\living\apr26\output.html" />
+    <None Include="..\toast\living\apr26\p.html" />
+    <None Include="..\toast\living\apr26\pre.html" />
+    <None Include="..\toast\living\apr26\progress.html" />
+    <None Include="..\toast\living\apr26\q.html" />
+    <None Include="..\toast\living\apr26\rp.html" />
+    <None Include="..\toast\living\apr26\ruby.html" />
+    <None Include="..\toast\living\apr26\s.html" />
+    <None Include="..\toast\living\apr26\samp.html" />
+    <None Include="..\toast\living\apr26\script.html" />
+    <None Include="..\toast\living\apr26\search-1.html" />
+    <None Include="..\toast\living\apr26\search-2.html" />
+    <None Include="..\toast\living\apr26\section-1.html" />
+    <None Include="..\toast\living\apr26\section-2.html" />
+    <None Include="..\toast\living\apr26\select.html" />
+    <None Include="..\toast\living\apr26\small.html" />
+    <None Include="..\toast\living\apr26\source.html" />
+    <None Include="..\toast\living\apr26\span.html" />
+    <None Include="..\toast\living\apr26\strong.html" />
+    <None Include="..\toast\living\apr26\style.html" />
+    <None Include="..\toast\living\apr26\supsub.html" />
+    <None Include="..\toast\living\apr26\table.html" />
+    <None Include="..\toast\living\apr26\tag-1.html" />
+    <None Include="..\toast\living\apr26\tag-2.html" />
+    <None Include="..\toast\living\apr26\td.html" />
+    <None Include="..\toast\living\apr26\template-1.html" />
+    <None Include="..\toast\living\apr26\template-2.html" />
+    <None Include="..\toast\living\apr26\textarea.html" />
+    <None Include="..\toast\living\apr26\th.html" />
+    <None Include="..\toast\living\apr26\thead.html" />
+    <None Include="..\toast\living\apr26\time.html" />
+    <None Include="..\toast\living\apr26\title-1.html" />
+    <None Include="..\toast\living\apr26\title-2.html" />
+    <None Include="..\toast\living\apr26\track.html" />
+    <None Include="..\toast\living\apr26\u.html" />
+    <None Include="..\toast\living\apr26\ul.html" />
+    <None Include="..\toast\living\apr26\var.html" />
+    <None Include="..\toast\living\apr26\video.html" />
+    <None Include="..\toast\living\apr26\wbr.html" />
     <None Include="..\toast\living\jan08\a.html" />
     <None Include="..\toast\living\jan08\abbr.html" />
     <None Include="..\toast\living\jan08\address.html" />
@@ -13514,6 +13746,61 @@
     <None Include="..\toast\mdn\moz\moz-user-input.html" />
     <None Include="..\toast\mdn\moz\moz-window-dragging.html" />
     <None Include="..\toast\mdn\moz\moz-window-shadow.html" />
+    <None Include="..\toast\mdn\object\index.html" />
+    <None Include="..\toast\mdn\object\mdn.conf" />
+    <None Include="..\toast\mdn\object\mdn.spec" />
+    <None Include="..\toast\mdn\object\object-fit.html" />
+    <None Include="..\toast\mdn\object\object-position.html" />
+    <None Include="..\toast\mdn\object\object-view-box.html" />
+    <None Include="..\toast\mdn\offset\index.html" />
+    <None Include="..\toast\mdn\offset\mdn.conf" />
+    <None Include="..\toast\mdn\offset\mdn.spec" />
+    <None Include="..\toast\mdn\offset\offset-anchor.html" />
+    <None Include="..\toast\mdn\offset\offset-distance.html" />
+    <None Include="..\toast\mdn\offset\offset-path.html" />
+    <None Include="..\toast\mdn\offset\offset-position.html" />
+    <None Include="..\toast\mdn\offset\offset-rotate.html" />
+    <None Include="..\toast\mdn\offset\offset.html" />
+    <None Include="..\toast\mdn\outline\index.html" />
+    <None Include="..\toast\mdn\outline\mdn.conf" />
+    <None Include="..\toast\mdn\outline\mdn.spec" />
+    <None Include="..\toast\mdn\outline\outline-colour.html" />
+    <None Include="..\toast\mdn\outline\outline-offset.html" />
+    <None Include="..\toast\mdn\outline\outline-style.html" />
+    <None Include="..\toast\mdn\outline\outline-width.html" />
+    <None Include="..\toast\mdn\outline\outline.html" />
+    <None Include="..\toast\mdn\overflow\index.html" />
+    <None Include="..\toast\mdn\overflow\mdn.conf" />
+    <None Include="..\toast\mdn\overflow\mdn.spec" />
+    <None Include="..\toast\mdn\overflow\overflow-anchor.html" />
+    <None Include="..\toast\mdn\overflow\overflow-block.html" />
+    <None Include="..\toast\mdn\overflow\overflow-clip-margin.html" />
+    <None Include="..\toast\mdn\overflow\overflow-inline.html" />
+    <None Include="..\toast\mdn\overflow\overflow-wrap.html" />
+    <None Include="..\toast\mdn\overflow\overflow-x.html" />
+    <None Include="..\toast\mdn\overflow\overflow-y.html" />
+    <None Include="..\toast\mdn\overflow\overflow.html" />
+    <None Include="..\toast\mdn\overscroll\index.html" />
+    <None Include="..\toast\mdn\overscroll\mdn.conf" />
+    <None Include="..\toast\mdn\overscroll\mdn.spec" />
+    <None Include="..\toast\mdn\overscroll\overscroll-behaviour-block.html" />
+    <None Include="..\toast\mdn\overscroll\overscroll-behaviour-inline.html" />
+    <None Include="..\toast\mdn\overscroll\overscroll-behaviour-x.html" />
+    <None Include="..\toast\mdn\overscroll\overscroll-behaviour-y.html" />
+    <None Include="..\toast\mdn\overscroll\overscroll-behaviour.html" />
+    <None Include="..\toast\mdn\page\index.html" />
+    <None Include="..\toast\mdn\page\mdn.conf" />
+    <None Include="..\toast\mdn\page\mdn.spec" />
+    <None Include="..\toast\mdn\page\page-break-after.html" />
+    <None Include="..\toast\mdn\page\page-break-before.html" />
+    <None Include="..\toast\mdn\page\page-break-inside.html" />
+    <None Include="..\toast\mdn\page\page.html" />
+    <None Include="..\toast\mdn\place\index.html" />
+    <None Include="..\toast\mdn\place\mdn.conf" />
+    <None Include="..\toast\mdn\place\mdn.spec" />
+    <None Include="..\toast\mdn\place\place-content.html" />
+    <None Include="..\toast\mdn\place\place-items.html" />
+    <None Include="..\toast\mdn\place\place-self.html" />
     <None Include="..\toast\mdn\position\index.html" />
     <None Include="..\toast\mdn\position\mdn.conf" />
     <None Include="..\toast\mdn\position\mdn.spec" />
@@ -13574,6 +13861,53 @@
     <None Include="..\toast\mdn\property\mdn.conf" />
     <None Include="..\toast\mdn\property\mdn.spec" />
     <None Include="..\toast\mdn\property\mix-blend-mode.html" />
+    <None Include="..\toast\mdn\property\opacity.html" />
+    <None Include="..\toast\mdn\property\order.html" />
+    <None Include="..\toast\mdn\property\orphans.html" />
+    <None Include="..\toast\mdn\property\overlay.html" />
+    <None Include="..\toast\mdn\property\paint-order.html" />
+    <None Include="..\toast\mdn\property\perspective-origin.html" />
+    <None Include="..\toast\mdn\property\perspective.html" />
+    <None Include="..\toast\mdn\property\pointer-events.html" />
+    <None Include="..\toast\mdn\property\print-colour-adjust.html" />
+    <None Include="..\toast\mdn\property\quotes.html" />
+    <None Include="..\toast\mdn\property\r.html" />
+    <None Include="..\toast\mdn\property\reading-flow.html" />
+    <None Include="..\toast\mdn\property\reading-order.html" />
+    <None Include="..\toast\mdn\property\resize.html" />
+    <None Include="..\toast\mdn\property\right.html" />
+    <None Include="..\toast\mdn\property\rotate.html" />
+    <None Include="..\toast\mdn\property\row-gap.html" />
+    <None Include="..\toast\mdn\property\rx.html" />
+    <None Include="..\toast\mdn\property\ry.html" />
+    <None Include="..\toast\mdn\property\scale.html" />
+    <None Include="..\toast\mdn\property\speak-as.html" />
+    <None Include="..\toast\mdn\property\stop-colour.html" />
+    <None Include="..\toast\mdn\property\stop-opacity.html" />
+    <None Include="..\toast\mdn\property\tab-stop.html" />
+    <None Include="..\toast\mdn\property\table-layout.html" />
+    <None Include="..\toast\mdn\property\timeline-scope.html" />
+    <None Include="..\toast\mdn\property\top.html" />
+    <None Include="..\toast\mdn\property\touch-action.html" />
+    <None Include="..\toast\mdn\property\translate.html" />
+    <None Include="..\toast\mdn\property\unicode-bidi.html" />
+    <None Include="..\toast\mdn\property\user-modify.html" />
+    <None Include="..\toast\mdn\property\user-select.html" />
+    <None Include="..\toast\mdn\property\vector-effect.html" />
+    <None Include="..\toast\mdn\property\vertical-align.html" />
+    <None Include="..\toast\mdn\property\visibility.html" />
+    <None Include="..\toast\mdn\property\white-space-collapse.html" />
+    <None Include="..\toast\mdn\property\white-space.html" />
+    <None Include="..\toast\mdn\property\widows.html" />
+    <None Include="..\toast\mdn\property\width.html" />
+    <None Include="..\toast\mdn\property\will-change.html" />
+    <None Include="..\toast\mdn\property\word-break.html" />
+    <None Include="..\toast\mdn\property\word-spacing.html" />
+    <None Include="..\toast\mdn\property\writing-mode.html" />
+    <None Include="..\toast\mdn\property\x.html" />
+    <None Include="..\toast\mdn\property\y.html" />
+    <None Include="..\toast\mdn\property\z-index.html" />
+    <None Include="..\toast\mdn\property\zoom.html" />
     <None Include="..\toast\mdn\rel\index.html" />
     <None Include="..\toast\mdn\rel\mdn.conf" />
     <None Include="..\toast\mdn\rel\mdn.spec" />
@@ -13588,6 +13922,115 @@
     <None Include="..\toast\mdn\rel\rel-preload-3.html" />
     <None Include="..\toast\mdn\rel\rel-preload-4.html" />
     <None Include="..\toast\mdn\rel\rel-preload-5.html" />
+    <None Include="..\toast\mdn\ruby\index.html" />
+    <None Include="..\toast\mdn\ruby\mdn.conf" />
+    <None Include="..\toast\mdn\ruby\mdn.spec" />
+    <None Include="..\toast\mdn\ruby\ruby-align.html" />
+    <None Include="..\toast\mdn\ruby\ruby-overhang.html" />
+    <None Include="..\toast\mdn\ruby\ruby-position.html" />
+    <None Include="..\toast\mdn\scrollbar\index.html" />
+    <None Include="..\toast\mdn\scrollbar\mdn.conf" />
+    <None Include="..\toast\mdn\scrollbar\mdn.spec" />
+    <None Include="..\toast\mdn\scrollbar\scrollbar-colour.html" />
+    <None Include="..\toast\mdn\scrollbar\scrollbar-gutter.html" />
+    <None Include="..\toast\mdn\scrollbar\scrollbar-width.html" />
+    <None Include="..\toast\mdn\scroll\index.html" />
+    <None Include="..\toast\mdn\scroll\mdn.conf" />
+    <None Include="..\toast\mdn\scroll\mdn.spec" />
+    <None Include="..\toast\mdn\scroll\scroll-behaviour.html" />
+    <None Include="..\toast\mdn\scroll\scroll-initial-target.html" />
+    <None Include="..\toast\mdn\scroll\scroll-margin-block-end.html" />
+    <None Include="..\toast\mdn\scroll\scroll-margin-block-start.html" />
+    <None Include="..\toast\mdn\scroll\scroll-margin-block.html" />
+    <None Include="..\toast\mdn\scroll\scroll-margin-bottom.html" />
+    <None Include="..\toast\mdn\scroll\scroll-margin-inline-end.html" />
+    <None Include="..\toast\mdn\scroll\scroll-margin-inline-start.html" />
+    <None Include="..\toast\mdn\scroll\scroll-margin-inline.html" />
+    <None Include="..\toast\mdn\scroll\scroll-margin-left.html" />
+    <None Include="..\toast\mdn\scroll\scroll-margin-right.html" />
+    <None Include="..\toast\mdn\scroll\scroll-margin-top.html" />
+    <None Include="..\toast\mdn\scroll\scroll-margin.html" />
+    <None Include="..\toast\mdn\scroll\scroll-marker-group.html" />
+    <None Include="..\toast\mdn\scroll\scroll-padding-block-end.html" />
+    <None Include="..\toast\mdn\scroll\scroll-padding-block-start.html" />
+    <None Include="..\toast\mdn\scroll\scroll-padding-block.html" />
+    <None Include="..\toast\mdn\scroll\scroll-padding-bottom.html" />
+    <None Include="..\toast\mdn\scroll\scroll-padding-inline-end.html" />
+    <None Include="..\toast\mdn\scroll\scroll-padding-inline-start.html" />
+    <None Include="..\toast\mdn\scroll\scroll-padding-inline.html" />
+    <None Include="..\toast\mdn\scroll\scroll-padding-left.html" />
+    <None Include="..\toast\mdn\scroll\scroll-padding-right.html" />
+    <None Include="..\toast\mdn\scroll\scroll-padding-top.html" />
+    <None Include="..\toast\mdn\scroll\scroll-padding.html" />
+    <None Include="..\toast\mdn\scroll\scroll-snap-stop.html" />
+    <None Include="..\toast\mdn\scroll\scroll-snap-type.html" />
+    <None Include="..\toast\mdn\scroll\scroll-snap-align.html" />
+    <None Include="..\toast\mdn\scroll\scroll-target-group.html" />
+    <None Include="..\toast\mdn\scroll\scroll-timeline-axis.html" />
+    <None Include="..\toast\mdn\scroll\scroll-timeline-name.html" />
+    <None Include="..\toast\mdn\scroll\scroll-timeline.html" />
+    <None Include="..\toast\mdn\shape\index.html" />
+    <None Include="..\toast\mdn\shape\mdn.conf" />
+    <None Include="..\toast\mdn\shape\mdn.spec" />
+    <None Include="..\toast\mdn\shape\shape-image-threshold.html" />
+    <None Include="..\toast\mdn\shape\shape-margin.html" />
+    <None Include="..\toast\mdn\shape\shape-outside.html" />
+    <None Include="..\toast\mdn\shape\shape-rendering.html" />
+    <None Include="..\toast\mdn\stroke\index.html" />
+    <None Include="..\toast\mdn\stroke\mdn.conf" />
+    <None Include="..\toast\mdn\stroke\mdn.spec" />
+    <None Include="..\toast\mdn\stroke\stroke-dasharray.html" />
+    <None Include="..\toast\mdn\stroke\stroke-dashoffset.html" />
+    <None Include="..\toast\mdn\stroke\stroke-linecap.html" />
+    <None Include="..\toast\mdn\stroke\stroke-linejoin.html" />
+    <None Include="..\toast\mdn\stroke\stroke-miterlimit.html" />
+    <None Include="..\toast\mdn\stroke\stroke-opacity.html" />
+    <None Include="..\toast\mdn\stroke\stroke-width.html" />
+    <None Include="..\toast\mdn\stroke\stroke.html" />
+    <None Include="..\toast\mdn\text\index.html" />
+    <None Include="..\toast\mdn\text\mdn.conf" />
+    <None Include="..\toast\mdn\text\mdn.spec" />
+    <None Include="..\toast\mdn\text\text-align-last.html" />
+    <None Include="..\toast\mdn\text\text-align.html" />
+    <None Include="..\toast\mdn\text\text-anchor.html" />
+    <None Include="..\toast\mdn\text\text-autospace.html" />
+    <None Include="..\toast\mdn\text\text-box-edge.html" />
+    <None Include="..\toast\mdn\text\text-box-trim.html" />
+    <None Include="..\toast\mdn\text\text-box.html" />
+    <None Include="..\toast\mdn\text\text-combine-upright.html" />
+    <None Include="..\toast\mdn\text\text-decoration-colour.html" />
+    <None Include="..\toast\mdn\text\text-decoration-inset.html" />
+    <None Include="..\toast\mdn\text\text-decoration-line.html" />
+    <None Include="..\toast\mdn\text\text-decoration-skip-ink.html" />
+    <None Include="..\toast\mdn\text\text-decoration-skip.html" />
+    <None Include="..\toast\mdn\text\text-decoration-style.html" />
+    <None Include="..\toast\mdn\text\text-decoration-thickness.html" />
+    <None Include="..\toast\mdn\text\text-decoration.html" />
+    <None Include="..\toast\mdn\text\text-emphasis-colour.html" />
+    <None Include="..\toast\mdn\text\text-emphasis-position.html" />
+    <None Include="..\toast\mdn\text\text-emphasis-style.html" />
+    <None Include="..\toast\mdn\text\text-emphasis.html" />
+    <None Include="..\toast\mdn\text\text-indent.html" />
+    <None Include="..\toast\mdn\text\text-justify.html" />
+    <None Include="..\toast\mdn\text\text-orientation.html" />
+    <None Include="..\toast\mdn\text\text-overflow.html" />
+    <None Include="..\toast\mdn\text\text-rendering.html" />
+    <None Include="..\toast\mdn\text\text-shadow.html" />
+    <None Include="..\toast\mdn\text\text-size-adjust.html" />
+    <None Include="..\toast\mdn\text\text-spacing-trim.html" />
+    <None Include="..\toast\mdn\text\text-transform.html" />
+    <None Include="..\toast\mdn\text\text-underline-offset.html" />
+    <None Include="..\toast\mdn\text\text-underline-position.html" />
+    <None Include="..\toast\mdn\text\text-wrap-mode.html" />
+    <None Include="..\toast\mdn\text\text-wrap-style.html" />
+    <None Include="..\toast\mdn\text\text-wrap.html" />
+    <None Include="..\toast\mdn\transform\index.html" />
+    <None Include="..\toast\mdn\transform\mdn.conf" />
+    <None Include="..\toast\mdn\transform\mdn.spec" />
+    <None Include="..\toast\mdn\transform\transform-box.html" />
+    <None Include="..\toast\mdn\transform\transform-origin.html" />
+    <None Include="..\toast\mdn\transform\transform.html" />
+    <None Include="..\toast\mdn\transform\transform-style.html" />
     <None Include="..\toast\mdn\transition\index.html" />
     <None Include="..\toast\mdn\transition\mdn.conf" />
     <None Include="..\toast\mdn\transition\mdn.spec" />
@@ -13624,6 +14067,15 @@
     <None Include="..\toast\mdn\type\type-time.html" />
     <None Include="..\toast\mdn\type\type-url.html" />
     <None Include="..\toast\mdn\type\type-week.html" />
+    <None Include="..\toast\mdn\view\index.html" />
+    <None Include="..\toast\mdn\view\mdn.conf" />
+    <None Include="..\toast\mdn\view\mdn.spec" />
+    <None Include="..\toast\mdn\view\view-timeline-axis.html" />
+    <None Include="..\toast\mdn\view\view-timeline-inset.html" />
+    <None Include="..\toast\mdn\view\view-timeline-name.html" />
+    <None Include="..\toast\mdn\view\view-timeline.html" />
+    <None Include="..\toast\mdn\view\view-transition-class.html" />
+    <None Include="..\toast\mdn\view\view-transition-name.html" />
     <None Include="..\toast\mdn\webkit\index.html" />
     <None Include="..\toast\mdn\webkit\mdn.conf" />
     <None Include="..\toast\mdn\webkit\mdn.spec" />
@@ -16404,7 +16856,7 @@
       <WarningLevel>Level4</WarningLevel>
       <PreprocessorDefinitions>BUILD_OS="win x64";COMMAND_LINE;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);WINSPELL;SIGNING</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -16414,7 +16866,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
@@ -16447,7 +16899,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>LEEK_SEAK;BUILD_OS="win x64";COMMAND_LINE;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);WINSPELL;SIGNING</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -16457,7 +16909,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -16490,7 +16942,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WINSPELL;BUILD_OS="win x64";COMMAND_LINE;NDEBUG;_CONSOLE;SIGNING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <IntelJCCErratum>true</IntelJCCErratum>
@@ -16503,7 +16955,7 @@
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -16526,7 +16978,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;COMMAND_LINE;CONSOLE;WINSPELL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
@@ -16540,7 +16992,7 @@
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <GenerateMapFile>true</GenerateMapFile>
@@ -16556,7 +17008,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;COMMAND_LINE;CONSOLE;WINSPELL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
@@ -16570,7 +17022,7 @@
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <GenerateMapFile>true</GenerateMapFile>
@@ -16586,7 +17038,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;COMMAND_LINE;WINSPELL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
@@ -16600,7 +17052,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
@@ -16624,7 +17076,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WINSPELL;BUILD_OS="win Win32";COMMAND_LINE;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -16634,7 +17086,7 @@
       <ControlFlowGuard>false</ControlFlowGuard>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -16657,7 +17109,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WINSPELL;BUILD_OS="win Win32";COMMAND_LINE;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -16667,7 +17119,7 @@
       <ControlFlowGuard>false</ControlFlowGuard>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -16692,7 +17144,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WINSPELL;BUILD_OS="win Win32";COMMAND_LINE;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <IntelJCCErratum>true</IntelJCCErratum>
@@ -16702,7 +17154,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <Optimization>MinSpace</Optimization>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
