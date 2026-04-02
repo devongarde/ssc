@@ -1,2 +1,4 @@
 .DS_Store
 recipe/tea/install_manifest.txt
+recipe/help.htb
+recipe/tea/cmake_uninstall.cmake.in
