@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN placeholder-shown tests</title>
+<style>
+label {
+  display: block;
+  margin-top: 1em;
+}
+
+input:placeholder-shown {
+  background-color: ivory;
+  border: 2px solid darkorange;
+  border-radius: 5px;
+}
+
+input {
+  border: 1px solid black;
+  padding: 3px;
+}
+
+input:placeholder-shown {
+  border-color: teal;
+  color: purple;
+  font-style: italic;
+}
+
+#input2:placeholder-shown {
+  text-overflow: ellipsis;
+}
+
+input {
+  background-color: #e8e8e8;
+  color: black;
+}
+
+input.student-id:placeholder-shown {
+  background-color: yellow;
+  color: red;
+  font-style: italic;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN placeholder-shown Tests</h1>
+
+<form>
+  <label for="name">Full Name:</label>
+  <input id="name" name="name" type="text" />
+
+  <label for="email">Email Address:</label>
+  <input id="email" name="email" type="email" placeholder="name@example.com" />
+
+  <label for="age">Your age:</label>
+  <input
+    id="age"
+    name="age"
+    type="number"
+    value="18"
+    placeholder="You must be 18+" />
+</form>
+
+<input placeholder="Type something here!" />
+
+<input id="input1" placeholder="Name, Rank, and Serial Number" /> <br /><br />
+<input id="input2" placeholder="Name, Rank, and Serial Number" />
+
+<form id="test">
+  <p>
+    <label for="name">Enter Student Name:</label>
+    <input id="name" placeholder="Student Name" />
+  </p>
+  <p>
+    <label for="branch">Enter Student Branch:</label>
+    <input id="branch" placeholder="Student Branch" />
+  </p>
+  <p>
+    <label for="sid">Enter Student ID:</label>
+    <input
+      pattern="[0-9]{8}"
+      title="8 digit ID"
+      id="sid"
+      class="student-id"
+      placeholder="8 digit id" />
+  </p>
+  <input type="submit" />
+</form>
+
+</body>
+</html>

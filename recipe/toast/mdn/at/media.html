@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN @media tests</title>
+<style>
+abbr {
+  color: #860304;
+  font-weight: bold;
+  transition: color 0.5s ease;
+}
+
+@media (hover: hover) {
+  abbr:hover {
+    color: #001ca8;
+    transition-duration: 0.5s;
+  }
+}
+
+@media not all and (hover: hover) {
+  abbr::after {
+    content: " (" attr(title) ")";
+  }
+}
+
+/* At the top level of your code */
+@media screen and (width >= 900px) {
+  article {
+    padding: 1rem 3rem;
+  }
+}
+
+/* Nested within another conditional at-rule */
+@supports (display: flex) {
+  @media screen and (width >= 900px) {
+    article {
+      display: flex;
+    }
+  }
+}
+
+@media print {
+  body {
+    font-size: 10pt;
+  }
+}
+
+@media screen {
+  body {
+    font-size: 13px;
+  }
+}
+
+@media screen, print {
+  body {
+    line-height: 1.2;
+  }
+}
+
+@media (height > 600px) {
+  body {
+    line-height: 1.4;
+  }
+}
+
+@media (400px <= width <= 700px) {
+  body {
+    line-height: 1.4;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN @media Tests</h1>
+
+<p>
+  <abbr title="National Aeronautics and Space Administration">NASA</abbr> is a
+  U.S. government agency that is responsible for science and technology related
+  to air and space.
+</p>
+
+</body>
+</html>

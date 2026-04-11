@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN @charset tests</title>
+<style>
+@charset "UTF-8";
+@charset "iso-8859-15";
+
+/* naughties */
+@charset 'iso-8859-15'; /* Invalid, wrong quotes used */
+@charset  "UTF-8"; /* Invalid, more than one space */
+ @charset "UTF-8"; /* Invalid, there is a character (a space) before the declarations */
+@charset UTF-8; /* Invalid, the charset is a CSS <string> and requires double-quotes */
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN @charset Tests</h1>
+
+</body>
+</html>

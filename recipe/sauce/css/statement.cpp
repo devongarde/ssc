@@ -31,7 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "simple/type_media.h"
 
 void statement::parse_charset (arguments& args, nitpick& nits, const int from, const int to)
-{   if ((args.v_.css_version () == css_1) || (args.v_.css_module (c_syntax) > 0))
+{   if (args.v_.css_version () == css_1)
         nits.pick (nit_css_version, ed_css_syntax, "9.3. The '@charset' Rule", es_error, ec_css, "@charset requires CSS 2");
     else
     {   const int i = next_non_whitespace (args.t_, from, to); 
@@ -108,28 +108,51 @@ void statement::parse_container (arguments& args, nitpick& nits, const int from,
     {   ::std::string name;
         if ((args.t_.at (i).t_ == ct_identifier) || (args.t_.at (i).t_ == ct_keyword))
         {   nitpick nuts;
-            if (! test_value < t_container_condition > (nuts, html_default, args.t_.at (i).val_))
+            if (! test_value < t_container_condition > (nuts, args.v_, args.t_.at (i).val_) &&
+                ! test_value < t_css_container_query > (nuts, args.v_, args.t_.at (i).val_))
             {   name = args.t_.at (i).val_;
                 i = next_non_whitespace (args.t_, i, to);
                 if (i < 0)
                 {   nits.pick (nit_container, es_error, ec_css, "expecting container condition after ", quote (name));
                     return; } } }
-        int depth = 0;
-        bool had_brax = false, more = true, notted = false, styled = false, curly = false, r1 = false, slash = false, ketable = false;
+        int depth = 0, ss_depth = -1, fe_brack = -1, quack = -1;
+        bool had_brax = false, more = true, notted = false, curly = false, r1 = false, slash = false, ketable = false, fallback = false;
         e_token op = ct_error;
         e_css_container_feature feature = ccf_none;
+        e_css_container_query query = ccq_none;
+        e_css_scroll_state scroll_state = ecss_na;
         for (int j = i; more && (j > 0); j = next_non_whitespace (args.t_, j, to))
             switch (args.t_.at (j).t_)
             {   case ct_round_brac :
                     ++depth;
                     had_brax = notted = ketable = false;
                     break;
+                case ct_comma :
+                    if (depth > 0)
+                        nits.pick (nit_container, es_error, ec_css, "unexpected ',' (missing ket ')'?)");
+                    had_brax = fallback = notted = ketable = false;
+                    fe_brack = ss_depth = -1;
+                    scroll_state = ecss_na;
+                    query = ccq_none;
+                    feature = ccf_none;
+                    break;
                 case ct_round_ket :
-                    styled = ketable = false;
+                    ketable = false;
                     if (depth <= 0)
                     {   nits.pick (nit_container, es_error, ec_css, "unexpected ket (')')");
                         break; }
-                    if (--depth == 0) had_brax = true;
+                    if (depth <= quack)
+                    {   quack = -1;
+                        query = ccq_none; }
+                    if (depth <= ss_depth)
+                    {   ss_depth = -1;
+                        scroll_state = ecss_na;
+                        fallback = false; }
+                    if (depth <= fe_brack)
+                    {   feature = ccf_none;
+                        fe_brack = -1; }
+                    depth -= 1;
+                    had_brax = true;
                     break;
                 case ct_curly_brac :
                     if (depth > 0) nits.pick (nit_container, es_error, ec_css, "missing ket/s (')')");
@@ -140,23 +163,61 @@ void statement::parse_container (arguments& args, nitpick& nits, const int from,
                 case ct_keyword :
                 case ct_identifier :
                     if (op == ct_error)
-                    {   if (compare_no_case (args.t_.at (j).val_, "not"))
+                    {   nitpick knots;
+                        if (compare_no_case (args.t_.at (j).val_, "not"))
                         {   if (notted) nits.pick (nit_container, es_error, ec_css, "too many nots");
                             else if (had_brax) nits.pick (nit_container, es_error, ec_css, "not must be placed before any other term"); 
                             notted = true; }
                         else if (compare_no_case (args.t_.at (j).val_, "and") || compare_no_case (args.t_.at (j).val_, "or"))
-                        {   if (! had_brax) nits.pick (nit_container, es_error, ec_css, "'and' and 'or' may be be placed after bracketed terms"); }
-                        else if (compare_no_case (args.t_.at (j).val_, "style")) styled = true;
+                        {   if (! had_brax)
+                                nits.pick (nit_container, es_error, ec_css, "'and' and 'or' may be be placed after bracketed terms"); }
                         else if (ketable)
                             nits.pick (nit_container, es_error, ec_css, quote (tkn_rpt (args.t_.at (j))), ": expecting ')'");
-                        else
-                            feature = examine_value < t_css_container_feature > (nits, args.v_, args.t_.at (j).val_);
-                        break;
-                    }
+                        else if (feature == ccf_none) switch (query)
+                        {   case ccq_anchored :
+                                if (fallback) test_value < t_css_try_fallbacks > (nits, args.v_, args.t_.at (j).val_);
+                                else if (compare_no_case ("fallback", args.t_.at (j).val_)) fallback = true;
+                                else nits.pick (nit_container, es_error, ec_css, quote (tkn_rpt (args.t_.at (j))), ": expecting 'fallback'");
+                                break;
+                            case ccq_scroll_state :
+                                switch (scroll_state)
+                                {   case ecss_na :
+                                        scroll_state = examine_value < t_css_scroll_state > (nits, args.v_, args.t_.at (j).val_);
+                                        ss_depth = depth;
+                                        break ;
+                                    case ecss_scrollable :
+                                    case ecss_scrolled :
+                                        test_value < t_css_ss_scroll > (nits, args.v_, args.t_.at (j).val_);
+                                        break;
+                                    case ecss_snapped :
+                                        test_value < t_css_ss_snapped > (nits, args.v_, args.t_.at (j).val_);
+                                        break;
+                                    case ecss_stuck :
+                                        test_value < t_css_ss_stuck > (nits, args.v_, args.t_.at (j).val_);
+                                        break;
+                                    default :
+                                        PRESUME (false, __FILE__, __LINE__);
+                                        scroll_state = ecss_na;
+                                        break; }
+                                break;
+                            case ccq_style :
+                                break;
+                            default :
+                            {   query = examine_value < t_css_container_query > (knots, args.v_, args.t_.at (j).val_);
+                                if (query != ccq_none)
+                                {   scroll_state = ecss_na;
+                                    quack = depth;
+                                    nits.merge (knots); }
+                                else
+                                {   feature = examine_value < t_css_container_feature > (nits, args.v_, args.t_.at (j).val_);
+                                    if (feature != ccf_none)
+                                        fe_brack = depth; }
+                                break; } }
+                        break; }
                     FALLTHROUGH;
                 case ct_string :
                 case ct_number :
-                    if ((op != ct_error) && ! styled)
+                    if ((op != ct_error) && (query == ccq_none))
                     {   ketable = true;
                         switch (feature)
                         {   case ccf_aspect_ratio :
@@ -180,12 +241,13 @@ void statement::parse_container (arguments& args, nitpick& nits, const int from,
                                 break;
                             default :
                                 op = ct_error;
-                                GRACEFUL_CRASH (__FILE__, __LINE__);
+                                nits.pick (nit_container, es_comment, ec_css, quote (args.t_.at (j).val_), ": unexpected feature (", feature, ", ", args.t_.at (j).t_, ")");
+//                                GRACEFUL_CRASH (__FILE__, __LINE__);
                                 break; }
                     }
                     break;
                 case ct_slash :
-                    if (! styled)
+                    if (query == ccq_none)
                         if (r1 && slash)
                             nits.pick (nit_container, es_error, ec_css, "only one slash per ratio, thank you");
                         else if (r1 && (op != ct_error) && (feature == ccf_aspect_ratio))
@@ -198,7 +260,7 @@ void statement::parse_container (arguments& args, nitpick& nits, const int from,
                 case ct_gteq :
                 case ct_lt :
                 case ct_lteq :
-                    if (! styled)
+                    if (query == ccq_none)
                         if (op != ct_error)
                             nits.pick (nit_container, es_error, ec_css, "only one operator per feature, thank you");
                         else if (depth == 0)
@@ -338,6 +400,83 @@ void statement::parse_font_palette_values (arguments& args, nitpick& nits, const
         else if (args.t_.at (to).child_ > 0)
         {   fiddlesticks < statement > f (&args.st_, this);
             dsc_.parse (args, css_font_palette_values, args.t_.at (to).child_); } } }
+
+void statement::parse_function (arguments& args, nitpick& nits, const int from, const int to)
+{   PRESUME (to > 0, __FILE__, __LINE__);
+    VERIFY_NOT_NULL (args.dst_.get (), __FILE__, __LINE__);
+    int i = next_non_whitespace (args.t_, from, to); 
+    if (context.html_ver ().css_module (c_mixin) == 0)
+        nits.pick (nit_css_version, es_error, ec_css, "@function requires CSS Functions and Mixin.");
+    else if ((i < 0) || (to < i))
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting a @function name.");
+    else if ((args.t_.at (i).t_ != ct_keyword) && (args.t_.at (i).t_ != ct_identifier))
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting a @function name (", args.t_.at (i).t_, ").");
+    else
+    {   const ::std::string& fn = args.t_.at (i).val_;
+        sstr_t params;
+        if ((fn.size () <= 2) || (fn.substr (0, 2) != "--"))
+            nits.pick (nit_css_function, es_error, ec_css, quote (fn), ": function names must start with '--'.");
+        else if (args.dst_ -> has (cic_fn_name, fn))
+            nits.pick (nit_css_function, es_error, ec_css, quote (fn), " already defined.");
+        else
+        {   args.dst_ -> insert (cic_fn_name, fn);
+            i = next_non_whitespace (args.t_, i, to); 
+            if ((i < 0) || (to <= i))
+            {   nits.pick (nit_css_function, es_error, ec_css, "missing '(': expecting parameters after function name (1)."); return; }
+            if (args.t_.at (i).t_ != ct_round_brac)
+                nits.pick (nit_css_function, es_error, ec_css, "missing '(': expecting parameters after function name (2).");
+            else
+            {   bool id = true, good = true, arg = false;
+                int bk = -1;
+                for (i = next_non_whitespace (args.t_, i, to); good; i = next_non_whitespace (args.t_, i, to))
+                    if ((i < 0) || (to <= i))
+                    {   nits.pick (nit_css_function, es_error, ec_css, "malformed parameter list."); return; }
+                    else switch (args.t_.at (i).t_)
+                    {   case ct_identifier :
+                        case ct_keyword :
+                            if ((bk < 1) && ! arg)
+                            {   const ::std::string& kw = args.t_.at (i).val_;
+                                if ((kw.size () <= 2) || (kw.substr (0, 2) != "--"))
+                                    nits.pick (nit_css_function, es_error, ec_css, quote (kw), ": parameter names must start with '--'.");
+                                if (! id) nits.pick (nit_css_function, es_error, ec_css, quote (kw), ": missing comma.");
+                                else id = false;
+                                if (params.find (kw) != params.cend ())
+                                    nits.pick (nit_css_function, es_error, ec_css, quote (kw), ": previously specified.");
+                                else
+                                {   params.insert (kw);
+                                args.dst_ -> insert (cic_fn_param, kw);
+                                arg = true; } }
+                            break;
+                        case ct_comma :
+                            if (bk < 1)
+                            {   if (id) nits.pick (nit_css_function, es_error, ec_css, "unexpected comma.");
+                                else id = true;
+                                arg = false; }
+                            break;
+                        case ct_round_brac :
+                            if (bk < 1) bk = 1;
+                            else ++bk;
+                            break;
+                        case ct_round_ket :
+                            if (--bk == 0) bk = -1;
+                            else if (bk < 0)
+                            {   if (id) nits.pick (nit_css_function, es_error, ec_css, "missing parameter or extra comma.");
+                                good = false; }
+                            break;
+                        default :
+                            break; }
+                for (i = next_non_whitespace (args.t_, i, to); good; i = next_non_whitespace (args.t_, i, to))
+                    if ((i < 0) || (to <= i))
+                    {   nits.pick (nit_css_function, es_error, ec_css, "missing function body.");
+                        return; }
+                    else
+                    if (args.t_.at (i).t_ == ct_curly_brac) break;
+                    else nits.pick (nit_css_function, es_error, ec_css, quote (args.t_.at (i).val_), ": expecting curly brac ('{').");
+                if (args.t_.at (to).child_ > 0)
+                {   fiddlesticks < statement > f (&args.st_, this);
+                    dsc_.parse (args, css_function, args.t_.at (to).child_, params); } } }
+        for (auto p : params)
+            args.dst_ -> erase (cic_fn_param, p); } }
 
 void statement::bracketed_property (arguments& args, nitpick& nits, const int to, int& i, const bool atsupports, const e_supports su)
 {   int child = next_non_whitespace (args.t_, i, to);
@@ -506,7 +645,13 @@ void statement::parse_keyframes (arguments& args, nitpick& nits, const int from,
                             case ct_keyword :
                             case ct_number :
                                 {   const ::std::string& x = args.t_.at (i).val_;
-                                    if (compare_no_case (x, "from"))
+                                    const ::std::string lx = ::boost::to_lower_copy (x);
+                                    nitpick gnats;
+                                    if (test_value < t_css_trn > (gnats, args.v_, lx))
+                                    {   nits.merge (gnats);
+                                        if (pcnts.find (lx) == pcnts.cend ()) pcnts.insert (lx);
+                                        else nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_warning, ec_css, quote (x), " repeated"); }
+                                    else if (compare_no_case (x, "from"))
                                     {   if (pcnts.find ("from") == pcnts.cend ()) pcnts.insert ("from");
                                         else nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_warning, ec_css, "'from' repeated"); }
                                     else if (compare_no_case (x, "to"))
@@ -910,6 +1055,7 @@ void statement::parse (arguments& args, const int from, const int to)
                 parse_font_palette_values (args, nits, b, to);
                 break;
             case css_function :
+                parse_function (args, nits, b, to);
                 break;
             case css_import :
                 parse_import (args, nits, b, to);

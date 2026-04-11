@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN revert-layer tests</title>
+<style>
+@layer base, special;
+
+@layer special {
+  .item {
+    color: red;
+  }
+}
+
+@layer base {
+  .item {
+    color: blue;
+  }
+  .feature {
+    color: green;
+  }
+}
+
+@layer base, special;
+
+@layer special {
+  .item {
+    color: red;
+  }
+  .feature {
+    color: revert-layer;
+  }
+}
+
+@layer base {
+  .item {
+    color: blue;
+  }
+  .feature {
+    color: green;
+  }
+}
+
+@layer base {
+  .item {
+    color: revert-layer;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN revert-layer Tests</h1>
+
+<p>This example contains a list.</p>
+
+<ul>
+  <li class="item feature">Item one</li>
+  <li class="item">Item two</li>
+  <li class="item">Item three</li>
+</ul>
+
+</body>
+</html>

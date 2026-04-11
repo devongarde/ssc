@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN @container tests</title>
+<style>
+/* With a <size-query> */
+@container (width > 400px) {
+  h2 {
+    font-size: 1.5em;
+  }
+}
+
+/* With an optional <container-name> */
+@container tall (height > 30rem) {
+  p {
+    line-height: 1.6;
+  }
+}
+
+/* With a <container-name> only (query is optional) */
+@container sidebar {
+  h2 {
+    background: blue;
+  }
+}
+
+/* With a <scroll-state> */
+@container scroll-state(scrollable: top) {
+  .back-to-top-link {
+    visibility: visible;
+  }
+}
+
+/* With an anchored query */
+@container anchored(fallback: bottom) {
+  .infobox::before {
+    content: "▲";
+    bottom: 100%;
+    top: auto;
+  }
+}
+
+/* With a <container-name> and a <scroll-state> */
+@container sticky-heading scroll-state(stuck: top) {
+  h2 {
+    background: purple;
+    color: white;
+  }
+}
+
+/* Multiple queries in a single condition */
+@container (width > 400px) and style(--responsive: true) {
+  h2 {
+    font-size: 1.5em;
+  }
+}
+
+/* Condition list */
+@container card (width > 400px), style(--responsive: true), scroll-state(stuck: top) {
+  h2 {
+    font-size: 1.5em;
+  }
+}
+
+@container (width > 400px) and (height > 400px) {
+  /* <stylesheet> */
+}
+
+@container (width > 400px) or (height > 400px) {
+  /* <stylesheet> */
+}
+
+@container not (width < 400px) {
+  /* <stylesheet> */
+}
+
+.post {
+  container-name: sidebar;
+  container-type: inline-size;
+}
+
+.post {
+  container: sidebar / inline-size;
+}
+
+@container sidebar (width > 400px) {
+  /* <stylesheet> */
+}
+
+@container (min-width: 400px) {
+  /* … */
+}
+@container (orientation: landscape) and (width > 400px) {
+  /* … */
+}
+@container (15em <= block-size <= 30em) {
+  /* … */
+}
+
+@container scroll-state(scrollable: top) {
+  /* … */
+}
+@container scroll-state(scrolled: block-end) {
+  /* … */
+}
+@container scroll-state(stuck: inline-end) {
+  /* … */
+}
+@container scroll-state(snapped: both) {
+  /* … */
+}
+
+@container not scroll-state(scrollable: none) {
+  /* … */
+}
+
+@container not scroll-state(scrolled: none) {
+  /* … */
+}
+
+@container not scroll-state(snapped: none) {
+  /* … */
+}
+
+@container scroll-state((stuck: top) and (stuck: left)) {
+  /* … */
+}
+
+@container scroll-state((stuck: left) and (stuck: right)) {
+  /* … */
+}
+
+@container not scroll-state(stuck: none) {
+  /* … */
+}
+
+@container anchored(fallback: top) {
+  /* … */
+}
+@container anchored(fallback: flip-block flip-inline) {
+  /* … */
+}
+@container anchored(fallback: --custom-fallback) {
+  /* … */
+}
+
+/* A container context based on inline size */
+.post {
+  container-type: inline-size;
+}
+
+/* Apply styles if the container is narrower than 650px */
+@container (width < 650px) {
+  .card {
+    width: 50%;
+    background-color: lightgray;
+    font-size: 1em;
+  }
+}
+
+.post {
+  container-type: inline-size;
+  container-name: summary;
+}
+
+@container summary (width >= 400px) {
+  .card {
+    font-size: 1.5em;
+  }
+}
+
+@container summary (width > 400px) {
+  @container (width > 800px) {
+    /* <stylesheet> */
+  }
+}
+
+@container style(<style-feature>),
+    not style(<style-feature>),
+    style(<style-feature>) and style(<style-feature>),
+    style(<style-feature>) or style(<style-feature>) {
+  /* <stylesheet> */
+}
+
+@container style(--themeBackground),
+    not style(background-color: red),
+    style(color: green) and style(background-color: transparent),
+    style(--themeColor: blue) or style(--themeColor: purple) {
+  /* <stylesheet> */
+}
+
+@container style(--accent-color: blue) {
+  /* <stylesheet> */
+}
+
+/* !important is valid but has no effect */
+@container style(--themeColor: purple !important) {
+  /* <stylesheet> */
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN @container Tests</h1>
+
+<div class="post">
+  <div class="card">
+    <h2>Card title</h2>
+    <p>Card content</p>
+  </div>
+</div>
+
+</body>
+</html>

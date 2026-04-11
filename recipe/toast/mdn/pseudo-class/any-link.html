@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN any-link tests</title>
+<style>
+p {
+  font-weight: bold;
+}
+
+a:any-link {
+  color: forestgreen;
+  text-decoration-color: hotpink;
+}
+
+a:any-link {
+  border: 1px solid blue;
+  color: orange;
+}
+
+/* WebKit browsers */
+a:-webkit-any-link {
+  border: 1px solid blue;
+  color: orange;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN any-link Tests</h1>
+
+<p>Pages that you might have visited:</p>
+<ul>
+  <li>
+    <a href="https://developer.mozilla.org">MDN Web Docs</a>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/YouTube">Google</a>
+  </li>
+</ul>
+<p>Pages unlikely to be in your history:</p>
+<ul>
+  <li>
+    <a href="https://developer.mozilla.org/missing-3">Random MDN page</a>
+  </li>
+  <li>
+    <a href="https://example.com/missing-3">Random Example page</a>
+  </li>
+</ul>
+
+<a href="https://example.com">External link</a><br />
+<a href="#">Internal target link</a><br />
+<a>Placeholder link (won't get styled)</a>
+
+</body>
+</html>

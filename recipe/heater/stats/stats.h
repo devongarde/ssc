@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/attr.h"
 #include "parser/html_version.h"
 #include "main/output.h"
+#include "utility/category.h"
 
 class stats;
 
@@ -74,12 +75,13 @@ public:
     bool has_custom_prop (const ::std::string& s) const;
     bool has_id (const ::std::string& s) const;
     bool has_str (const e_gsstr g, const ::std::string& s) const;
-    void merge_class (const smsid_t& s);
-    void merge_custom_prop (const smsid_t& s);
-    void merge_id (const smsid_t& s);
-    void merge_element_class (const smsid_t& s);
-    void merge_element_id (const smsid_t& s);
-    void merge_font (const smsid_t& s);
+    void merge (const categorical& cat);
+//    void merge_class (const smsid_t& s);
+//    void merge_custom_prop (const smsid_t& s);
+//    void merge_id (const smsid_t& s);
+//    void merge_element_class (const smsid_t& s);
+//    void merge_element_id (const smsid_t& s);
+//    void merge_font (const smsid_t& s);
     uint64_t file_count () const;
     unsigned count (const e_element e) const;
     unsigned count (const e_severity s) const;

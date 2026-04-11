@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN first tests</title>
+<style>
+/* Selects the first page when printing */
+@page :first {
+  margin-left: 50%;
+  margin-top: 50%;
+}
+
+@page :first {
+  size: 8.5in 11in;
+  margin-left: 3in;
+  margin-top: 5in;
+}
+
+p {
+  page-break-after: always;
+  font: 1.2em sans-serif;
+}
+</style>
+<script>
+document.querySelector("button").addEventListener("click", () => {
+  window.print();
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN first Tests</h1>
+
+<p>First Page.</p>
+<p>Second Page.</p>
+<button>Print!</button>
+
+</body>
+</html>

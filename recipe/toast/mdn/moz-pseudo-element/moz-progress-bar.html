@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN moz-progress-bar tests</title>
+<style>
+::-moz-progress-bar {
+  background-color: red;
+}
+
+/* Force indeterminate bars to have zero width */
+:indeterminate::-moz-progress-bar {
+  width: 0;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN moz-progress-bar Tests</h1>
+
+<progress value="30" max="100">30%</progress>
+<progress max="100">Indeterminate</progress>
+
+</body>
+</html>

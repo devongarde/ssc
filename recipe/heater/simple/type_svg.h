@@ -50,9 +50,9 @@ template < > struct type_master < t_angle > : type_master < t_real >
         {   type_master < t_real > :: set_value (nits, v, ss);
             if (good ())
                 if ((value_ > max) || (value_ < (-1 * static_cast < double> (max))))
-                    if (v.has_svg ()) nits.pick (nit_angle, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (s), " should closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
-                    else if (v.has_css ()) nits.pick (nit_angle, ed_css_20, "4.3.7 Angles", es_error, ec_type, quote (s), " should be closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
-                    else nits.pick (nit_angle,es_error, ec_type, quote (s), " should be closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
+                    if (v.has_svg ()) nits.pick (nit_angle, ed_svg_1_1, "4.2 Basic data types", es_warning, ec_type, quote (s), " should closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
+                    else if (v.has_css ()) nits.pick (nit_angle, ed_css_20, "4.3.7 Angles", es_warning, ec_type, quote (s), " should be closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
+                    else nits.pick (nit_angle,es_warning, ec_type, quote (s), " should be closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
                 else return; }
         type_master < t_real > :: status (s_invalid); } };
 

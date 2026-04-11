@@ -889,6 +889,8 @@ n_string_entry < e_ontology, 3 > ontology_name_entries [] =
     { { HTML_FOAF }, { HTML_UNDEF }, s_foaf, 0, { "foaf", "https://xmlns.com/foaf/0.1/", "friend of a friend" } },
     { { HTML_FRBR }, { HTML_UNDEF }, s_frbr, 0, { "frbr_core", HTTP PURL_ORG "/vocab/frbr/core#", "functional requirements for bibliographic records core" } },
     { { HTML_FRBR }, { HTML_UNDEF }, s_frbr, 0, { "frbr_core", HTTPS PURL_ORG "/vocab/frbr/core#", "functional requirements for bibliographic records core" } },
+    { { HTML_GEOCR }, { HTML_UNDEF }, s_geocr, 0, { "geocr", HTTP "mlcommons.org/croissant/geo/", "croissant geo" } },
+    { { HTML_GEOCR }, { HTML_UNDEF }, s_geocr, 0, { "geocr", HTTPS "mlcommons.org/croissant/geo/", "croissant geo" } },
     { { HTML_GR }, { HTML_UNDEF }, s_gr, ONTOLOGY_PREFIX_CONTEXT, { "gr", HTTP PURL_ORG "/goodrelations/v1#", "good relations" } },
     { { HTML_GR }, { HTML_UNDEF }, s_gr, 0, { "gr", HTTPS PURL_ORG "/goodrelations/v1#", "good relations" } },
     { { HTML_GRDDL }, { HTML_UNDEF }, s_grddl, ONTOLOGY_PREFIX_CONTEXT, { "grddl", HTTP_W3 "/2003/g/data-view#", "gleaning resource descriptions from dialects of languages" } },

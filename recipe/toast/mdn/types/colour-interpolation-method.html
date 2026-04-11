@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN colour-interpolation-method tests</title>
+<style>
+.gradient {
+  height: 50px;
+  width: 100%;
+}
+.srgb {
+  background-image: linear-gradient(in srgb to right, blue, red);
+}
+.oklab {
+  background-image: linear-gradient(in oklab to right, blue, red);
+}
+.oklch-longer {
+  background-image: linear-gradient(in oklch longer hue to right, blue, red);
+}
+
+.conic {
+  background-image: repeating-conic-gradient(
+    in lab,
+    burlywood,
+    blueviolet 120deg
+  );
+}
+
+.linear {
+  background-image: repeating-linear-gradient(
+    in oklch,
+    burlywood,
+    blueviolet 75px
+  );
+}
+
+.radial {
+  background-image: repeating-radial-gradient(
+    in oklch longer hue,
+    blueviolet 50px,
+    burlywood 100px
+  );
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN colour-interpolation-method Tests</h1>
+
+<div>sRGB:</div>
+<div class="gradient srgb"></div>
+<div>Oklab:</div>
+<div class="gradient oklab"></div>
+<div>Oklch (with <code>longer hue</code>):</div>
+<div class="gradient oklch-longer"></div>
+
+<div class="gradient conic">conic</div>
+<div class="gradient linear">linear</div>
+<div class="gradient radial">radial</div>
+
+</body>
+</html>

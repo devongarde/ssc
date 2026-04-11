@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN revert tests</title>
+<style>
+h3 {
+  font-weight: normal;
+  color: blue;
+}
+
+h3 {
+  font-weight: normal;
+  color: blue;
+  border-bottom: 1px solid grey;
+}
+
+main {
+  color: steelblue;
+}
+section {
+  color: darkgreen;
+}
+p {
+  color: red;
+}
+section.with-revert {
+  color: revert;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN revert Tests</h1>
+
+<h3 style="font-weight: revert; color: revert;">
+  This should have its original font-weight (bold) and color: black
+</h3>
+<p>Just some text</p>
+<h3 style="font-weight: unset; color: unset;">
+  This will still have font-weight: normal, but color: black
+</h3>
+<p>Just some text</p>
+
+<h3>This will have custom styles</h3>
+<p>Just some text</p>
+<h3 style="all: revert">This should be reverted to browser/user defaults.</h3>
+<p>Just some text</p>
+
+<main>
+  <section>
+    <h3>This h3 will be dark green</h3>
+    <p>Text in paragraph will be red.</p>
+    This stray text will also be dark green.
+  </section>
+  <section class="with-revert">
+    <h3>This h3 will be steelblue</h3>
+    <p>Text in paragraph will be red.</p>
+    This stray text will also be steelblue.
+  </section>
+</main>
+
+</body>
+</html>

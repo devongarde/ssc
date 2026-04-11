@@ -106,6 +106,13 @@ template < > struct type_master < t_loopie > : tidy_string < t_loopie >
     {   tidy_string < t_loopie > :: set_value (nits, v, s);
         string_value < t_loopie > :: status (set_loopie_value (nits, v, string_value < t_loopie > :: get_string ())); } };
 
+template < > struct type_master < t_naughty > : string_value < t_naughty >
+{   using string_value < t_naughty > :: string_value;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_value < t_naughty > :: set_value (nits, v, s);
+        nits.pick (nit_naughty, es_error, ec_type, "result can only be used in a function body");
+        string_value < t_naughty > :: status (s_invalid); } };
+
 template < > struct type_master < t_not_empty > : string_value < t_not_empty >
 {   using string_value < t_not_empty > :: string_value;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

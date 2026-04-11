@@ -79,7 +79,11 @@ void css_global::report_usage (::std::ostringstream& ss) const
         smsid_t sum;
         for (auto i : mdst_)
             if (i.second != nullptr)
-                merge_smsid (sum, i.second -> class_);
+                for (mmcid_t::const_iterator j = i.second -> cat ().cbegin (cic_class); i.second -> cat ().another (cic_class, j); ++j)
+                    if (j -> second == oops_a_daisy) break;
+                    else
+                    {   const category& catty = i.second -> cat ().get (j -> second);
+                        insert_smsid (sum, catty.s_, catty.count_); }
         ::std::string cls;
         for (auto i : sum)
         {   mmac_t mac;

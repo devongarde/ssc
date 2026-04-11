@@ -165,6 +165,7 @@ IMPLEMENT_CLASS (ontology_t, d1_t)
     faux_schema, \
     foaf_schema, \
     frbr_schema, \
+    croissant_geo, \
     good_relations, \
     grddl_schema, \
     gs1_0, gs1_1, gs1_2, gs1_3, gs1_4, gs1_5, gs1_6, gs1_7, gs1_8, gs1_9, gs1_10, gs1_11, gs1_16, \

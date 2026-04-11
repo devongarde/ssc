@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN dir tests</title>
+<style>
+/* Selects any element with right-to-left text */
+:dir(rtl) {
+  background-color: red;
+}
+
+:dir(ltr) {
+  background-color: yellow;
+}
+
+:dir(rtl) {
+  background-color: powderblue;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN dir Tests</h1>
+
+<div dir="rtl">
+  <span>test1</span>
+  <div dir="ltr">
+    test2
+    <div dir="auto">עִבְרִית</div>
+  </div>
+</div>
+
+</body>
+</html>

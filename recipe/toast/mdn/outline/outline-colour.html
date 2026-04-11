@@ -4,7 +4,23 @@
 <title>MDN outline-colour tests</title>
 <style>
 .sid {
+/* <color> values */
+outline-color: #f92525;
+outline-color: rgb(30 222 121);
+outline-color: blue;
 
+/* Global values */
+outline-color: inherit;
+outline-color: initial;
+outline-color: revert;
+outline-color: revert-layer;
+outline-color: unset;
+}
+
+p {
+  outline: 2px solid; /* Set the outline width and style */
+  outline-color: blue; /* Set the outline color */
+  margin: 5px;
 }
 </style>
 </head>
@@ -12,6 +28,8 @@
 <body>
 
 <h1>MDN outline-colour Tests</h1>
+
+<p>My outline is blue, as you can see.</p>
 
 </body>
 </html>

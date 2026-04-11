@@ -106,7 +106,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                         break;
                     case css_context :
                     case css_error :
-                        nits.pick (nit_nesting, es_error, ec_css, "@", tkn_rpt (args.t_.at (kw)), " is unrecognised");
+                        nits.pick (nit_nesting, es_error, ec_css, "@", tkn_rpt (args.t_.at (kw)), " is unrecognised (4)");
                         return;
                     default :
                         nits.pick (nit_nesting, ed_css_nesting, "2.2. Nesting Other At-Rules", es_error, ec_css, "@", tkn_rpt (args.t_.at (kw)), " cannot be nested");
@@ -248,8 +248,9 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                         {   i = next_non_whitespace (args.t_, j, to); break; } }
                     i = j; }
                 break;                    
-            case ct_plus :
+            case ct_barbar :
             case ct_gt :
+            case ct_plus :
             case ct_squiggle :
                 parse (args, i, to);
                 return;

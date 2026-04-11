@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN details-content tests</title>
+<style>
+details[open]::details-content {
+  color: dodgerblue;
+  padding: 0.5em;
+  border: thin solid grey;
+}
+
+details::details-content {
+  background-color: #a29bfe;
+}
+
+details::details-content {
+  opacity: 0;
+  transition:
+    opacity 600ms,
+    content-visibility 600ms allow-discrete;
+}
+
+details[open]::details-content {
+  opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN details-content Tests</h1>
+
+<details open>
+  <summary>Example summary</summary>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+  <p>
+    Architecto cupiditate ea optio modi quas sequi, esse libero asperiores
+    debitis eveniet commodi hic ad.
+  </p>
+</details>
+
+<details>
+  <summary>Click me</summary>
+  <p>Here is some content</p>
+</details>
+
+</body>
+</html>

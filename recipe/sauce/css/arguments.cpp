@@ -153,12 +153,12 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
 
 bool arguments::has_custom_prop (const ::std::string& name) const
 {   if (dst_ != nullptr)
-        if (dst_ -> has_custom_prop (name))
+        if (dst_ -> has (name))
             return true;
     return g_.has_custom_prop (name); }
 
 void arguments::note_custom_prop (const ::std::string& name)
-{   if (dst_ != nullptr) dst_ -> insert_custom_prop (name);
+{   if (dst_ != nullptr) dst_ -> insert (cic_custom_prop, name);
     else g_.note_custom_prop (name); }
 
 bool arguments::has_custom_media (const ::std::string& name) const

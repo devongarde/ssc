@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN picker-icon tests</title>
+<style>
+select,
+::picker(select) {
+  appearance: base-select;
+}
+
+select::picker-icon {
+  color: #999999;
+  transition: 0.4s rotate;
+}
+
+select:open::picker-icon {
+  rotate: 180deg;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN picker-icon Tests</h1>
+
+</body>
+</html>

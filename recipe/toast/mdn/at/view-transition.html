@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN @view-transition tests</title>
+<style>
+@view-transition {
+  navigation: auto;
+}
+
+/* Create a custom animation */
+@keyframes move-out {
+  from {
+    transform: translateY(0%);
+  }
+
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes move-in {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0%);
+  }
+}
+
+/* Apply the custom animation to the old and new page states */
+::view-transition-old(root) {
+  animation: 0.4s ease-in both move-out;
+}
+
+::view-transition-new(root) {
+  animation: 0.4s ease-in both move-in;
+}
+
+@view-transition {
+  navigation: auto;
+  types: slide;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN @view-transition Tests</h1>
+
+</body>
+</html>

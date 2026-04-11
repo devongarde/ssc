@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN system-colour tests</title>
+<style>
+.button {
+  border: 0;
+  padding: 10px;
+  box-shadow:
+    -2px -2px 5px gray,
+    2px 2px 5px gray;
+}
+
+@media (forced-colors: active) {
+  .button {
+    /* Use a border instead, since box-shadow
+    is forced to 'none' in forced-colors mode */
+    border: 2px ButtonBorder solid;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN system-colour Tests</h1>
+
+<button class="button">Press me!</button>
+
+</body>
+</html>

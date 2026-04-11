@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN @font-feature-values tests</title>
+<style>
+@font-feature-values Font Name {
+  font-display: swap;
+  @styleset {
+    nice-style: 12;
+  }
+  @swash {
+    fancy: 2;
+  }
+}
+
+/* At-rule for "nice-style" in Font One */
+@font-feature-values Font One {
+  @styleset {
+    nice-style: 12;
+  }
+}
+
+/* At-rule for "nice-style" in Font Two */
+@font-feature-values Font Two {
+  @styleset {
+    nice-style: 4;
+  }
+}
+
+/* Apply the at-rules with a single declaration */
+.nice-look {
+  font-variant-alternates: styleset(nice-style);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN @font-feature-values Tests</h1>
+
+</body>
+</html>

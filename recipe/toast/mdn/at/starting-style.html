@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN @starting-style tests</title>
+<style>
+@starting-style {
+  [popover]:popover-open {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+
+[popover]:popover-open {
+  opacity: 1;
+  transform: scaleX(1);
+
+  @starting-style {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+
+#target {
+  transition: background-color 1.5s;
+  background-color: green;
+}
+
+@starting-style {
+  #target {
+    background-color: transparent;
+  }
+}
+
+#target {
+  transition-property: opacity, display;
+  transition-duration: 0.5s;
+  display: block;
+  opacity: 1;
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+#target.hidden {
+  display: none;
+  opacity: 0;
+}
+
+div {
+  background-color: yellow;
+  transition: background-color 3s;
+}
+
+div.showing {
+  background-color: skyblue;
+}
+
+@starting-style {
+  div.showing {
+    background-color: red;
+  }
+}
+
+html {
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+[popover]:popover-open {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+[popover] {
+  font-size: 1.2rem;
+  padding: 10px;
+
+  /* Final state of the exit animation */
+  opacity: 0;
+  transform: scaleX(0);
+
+  transition:
+    opacity 0.7s,
+    transform 0.7s,
+    overlay 0.7s allow-discrete,
+    display 0.7s allow-discrete;
+  /* Equivalent to
+  transition: all 0.7s allow-discrete; */
+}
+
+/* Include after the [popover]:popover-open rule */
+@starting-style {
+  [popover]:popover-open {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+
+/* Transition for the popover's backdrop */
+[popover]::backdrop {
+  background-color: transparent;
+  transition:
+    display 0.7s allow-discrete,
+    overlay 0.7s allow-discrete,
+    background-color 0.7s;
+  /* Equivalent to
+  transition: all 0.7s allow-discrete; */
+}
+
+[popover]:popover-open::backdrop {
+  background-color: rgb(0 0 0 / 25%);
+}
+
+/* Nesting (&) is not supported for pseudo-elements
+so specify a standalone starting-style block. */
+@starting-style {
+  [popover]:popover-open::backdrop {
+    background-color: transparent;
+  }
+}
+
+div {
+  flex: 1;
+  border: 1px solid gray;
+  position: relative;
+  opacity: 1;
+  scale: 1 1;
+
+  transition:
+    opacity 0.7s,
+    scale 0.7s,
+    display 0.7s allow-discrete,
+    all 0.7s allow-discrete;
+  /* Equivalent to
+  transition: all 0.7s allow-discrete; */
+}
+
+/* Include after the `div` rule */
+@starting-style {
+  div {
+    opacity: 0;
+    scale: 1 0;
+  }
+}
+
+.fade-out {
+  opacity: 0;
+  display: none;
+  scale: 1 0;
+}
+
+div > button {
+  font-size: 1.6rem;
+  background: none;
+  border: 0;
+  text-shadow: 2px 1px 1px white;
+  border-radius: 15px;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  cursor: pointer;
+}
+</style>
+<script>
+const btn = document.querySelector("button");
+
+btn.addEventListener("click", () => {
+  btn.disabled = true;
+  const divElem = document.createElement("div");
+  divElem.classList.add("showing");
+  document.body.append(divElem);
+
+  setTimeout(() => {
+    divElem.classList.remove("showing");
+
+    setTimeout(() => {
+      divElem.remove();
+      btn.disabled = false;
+    }, 3000);
+  }, 3000);
+});
+
+const btn = document.querySelector("button");
+const sectionElem = document.querySelector("section");
+
+btn.addEventListener("click", createColumn);
+
+function randomBackground() {
+  function randomNum() {
+    return Math.floor(Math.random() * 255);
+  }
+  const baseColor = `${randomNum()} ${randomNum()} ${randomNum()}`;
+
+  return `linear-gradient(to right, rgb(${baseColor} / 0), rgb(${baseColor} / 0.5))`;
+}
+
+function createColumn() {
+  const divElem = document.createElement("div");
+  divElem.style.background = randomBackground();
+
+  const closeBtn = document.createElement("button");
+  closeBtn.textContent = "✖";
+  closeBtn.setAttribute("aria-label", "close");
+  divElem.append(closeBtn);
+  sectionElem.append(divElem);
+
+  closeBtn.addEventListener("click", () => {
+    divElem.classList.add("fade-out");
+
+    setTimeout(() => {
+      divElem.remove();
+    }, 1000);
+  });
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN @starting-style Tests</h1>
+
+<button>Display <code>&lt;div&gt;</code></button>
+
+<button popovertarget="mypopover">Show the popover</button>
+<div popover="auto" id="mypopover">I'm a Popover! I should animate.</div>
+
+<button>Create new column</button>
+<section></section>
+
+</body>
+</html>

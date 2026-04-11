@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN view-transition-new tests</title>
+<style>
+:root::view-transition-old(*),
+:root::view-transition-new(*) {
+  position: absolute;
+  inset-block-start: 0;
+  inline-size: 100%;
+  block-size: auto;
+
+  animation-duration: inherit;
+  animation-fill-mode: inherit;
+  animation-delay: inherit;
+}
+
+/* Keyframes for blending when there are 2 images */
+@keyframes -ua-mix-blend-mode-plus-lighter {
+  from {
+    mix-blend-mode: plus-lighter;
+  }
+  to {
+    mix-blend-mode: plus-lighter;
+  }
+}
+
+@keyframes -ua-view-transition-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+figcaption {
+  view-transition-name: figure-caption;
+}
+
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes shrink-x {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+::view-transition-old(figure-caption),
+::view-transition-new(figure-caption) {
+  height: auto;
+  right: 0;
+  left: auto;
+  transform-origin: right center;
+}
+
+::view-transition-old(figure-caption) {
+  animation: 0.25s linear both shrink-x;
+}
+
+::view-transition-new(figure-caption) {
+  animation: 0.25s 0.25s linear both grow-x;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN view-transition-new Tests</h1>
+
+</body>
+</html>

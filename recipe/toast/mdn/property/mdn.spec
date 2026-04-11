@@ -166,7 +166,7 @@ PASS ../toast/mdn/property/inline-size.html
 
 PASS ../toast/mdn/property/interactivity.html
 2 naughty_lang
-5 css_keyframes css_keyframes css_keyframes css_keyframes
+5 css_keyframes css_keyframes
 96 use_quote_code
 131 use_quote_code
 134 use_quote_code

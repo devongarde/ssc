@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN placeholder tests</title>
+<style>
+input {
+  margin-top: 0.5rem;
+}
+
+input::placeholder {
+  font-weight: bold;
+  opacity: 0.5;
+  color: red;
+}
+
+input::placeholder {
+  color: red;
+  font-size: 1.2em;
+  font-style: italic;
+  opacity: 0.5;
+}
+
+input {
+  font-weight: bold;
+  color: green;
+}
+
+.explicit-color::placeholder {
+  /* use the same color as input element to avoid the browser set default color */
+  color: currentColor;
+}
+
+.opacity-change::placeholder {
+  /* less opaque text */
+  color: color-mix(in srgb, currentColor 70%, transparent);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN placeholder Tests</h1>
+
+<label for="first-name">Your phone number:</label><br />
+
+<input
+  id="first-name"
+  type="tel"
+  name="phone"
+  minlength="9"
+  maxlength="9"
+  placeholder="It must be 9 digits" />
+
+<label for="user-email">Your email address</label>
+<span id="user-email-hint" class="input-hint">Example: jane@sample.com</span>
+<input
+  id="user-email"
+  aria-describedby="user-email-hint"
+  name="email"
+  type="email" />
+
+<input placeholder="Type here" />
+
+<input placeholder="Color set by browser" />
+<input placeholder="Same color as input" class="explicit-color" />
+<input placeholder="Semi-opaque text color" class="opacity-change" />
+
+</body>
+</html>

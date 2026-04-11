@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN backdrop tests</title>
+<style>
+button {
+  font-size: 1.2rem;
+  padding: 5px 15px;
+}
+
+dialog::backdrop {
+  background-color: salmon;
+}
+
+/* Backdrop is only displayed when dialog is opened with dialog.showModal() */
+dialog::backdrop {
+  background: rgb(255 0 0 / 25%);
+}
+
+::backdrop {
+  background-image:
+    radial-gradient(
+      circle,
+      white 0 5vw,
+      transparent 5vw 20vw,
+      white 20vw 22.5vw,
+      #eeeeee 22.5vw
+    ),
+    conic-gradient(
+      #272b66 0 50grad,
+      #2d559f 50grad 100grad,
+      #9ac147 100grad 150grad,
+      #639b47 150grad 200grad,
+      #e1e23b 200grad 250grad,
+      #f7941e 250grad 300grad,
+      #662a6c 300grad 350grad,
+      #9a1d34 350grad 400grad,
+      #43a1cd 100grad 150grad,
+      #ba3e2e
+    );
+}
+</style>
+<script>
+const showDialogBtn = document.getElementById("showDialogBtn");
+const favDialog = document.getElementById("favDialog");
+
+showDialogBtn.addEventListener("click", () => favDialog.showModal());
+
+const dialog = document.querySelector("dialog");
+const showButton = document.querySelector("dialog + button");
+const closeButton = document.querySelector("dialog button");
+
+// "Show the dialog" button opens the dialog modally
+showButton.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+// "Close" button closes the dialog
+closeButton.addEventListener("click", () => {
+  dialog.close();
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN backdrop Tests</h1>
+
+<button id="showDialogBtn">Show a dialog</button>
+
+<dialog id="favDialog">
+  <form method="dialog">
+    <p>The background shown outside of this dialog is a backdrop.</p>
+    <button id="confirmBtn">Close the dialog</button>
+  </form>
+</dialog>
+
+<dialog>
+  <button autofocus>Close</button>
+  <p>This modal dialog has a beautiful backdrop!</p>
+</dialog>
+<button>Show the dialog</button>
+
+</body>
+</html>

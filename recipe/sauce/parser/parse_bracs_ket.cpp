@@ -452,7 +452,7 @@ html_version bracs_ket::parse (const ::std::string& content, const html_version&
                 {   case ';' :  if (res < html_1)
                                 {   if (! xmp_mode && ! silent_content)
                                     {   nits.set_context (line_, b, e, i);
-                                        nits.pick (nit_invalid_character_code, ed_tags, "", es_error, ec_parser, "numeric characters codes are not part of HTML tags"); } }
+                                        nits.pick (nit_invalid_character_code, ed_tags, "", es_error, ec_parser, "numeric characters codes are not part of HTML tags (2)"); } }
                                 else
                                 {   if (twas > text)
                                     {   nits.set_context (line_, b, e, text, twas);

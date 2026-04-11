@@ -146,7 +146,8 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
     if (t <= SSC_TYPES_CSS_O_MAX) return test_typed_value < SSC_TYPES_CSS_O, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_CSS_P_1_MAX) return test_typed_value < SSC_TYPES_CSS_P_1, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_CSS_P_Q_MAX) return test_typed_value < SSC_TYPES_CSS_P_Q, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPES_CSS_R_MAX) return test_typed_value < SSC_TYPES_CSS_R, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_R_1_MAX) return test_typed_value < SSC_TYPES_CSS_R_1, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_R_2_MAX) return test_typed_value < SSC_TYPES_CSS_R_2, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_CSS_S_1_MAX) return test_typed_value < SSC_TYPES_CSS_S_1, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_CSS_S_2_MAX) return test_typed_value < SSC_TYPES_CSS_S_2, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_CSS_S_3_MAX) return test_typed_value < SSC_TYPES_CSS_S_3, t_unknown > :: test (nits, v, t, s);

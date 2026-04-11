@@ -38,6 +38,10 @@ void descriptors::parse (arguments& args, const e_css_statement cs, const int fr
         prev = i; }
     if (b != -1) dsc_.emplace_back (args, cs, b, to); }
 
+void descriptors::parse (arguments& args, const e_css_statement cs, const int from, const sstr_t& params)
+{   params_ = params;
+    parse (args, cs, from, -1); }
+
 void descriptors::accumulate (stats_t* s, const element_bitset& e) const
 {   for (auto p : dsc_)
         p.accumulate (s, e); }

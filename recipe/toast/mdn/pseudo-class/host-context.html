@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN host-context tests</title>
+<style>
+/* Following CSS is being applied inside the shadow DOM. */
+
+:host-context(.container) {
+  border: 5px dashed green;
+}
+
+:host-context(h1) {
+  color: red;
+}
+
+/* Selects a shadow root host, only if it is
+   a descendant of the selector argument given */
+:host-context(h1) {
+  font-weight: bold;
+}
+
+/* Changes paragraph text color from black to white when
+   a .dark-theme class is applied to the document body */
+p {
+  color: black;
+}
+
+:host-context(body.dark-theme) p {
+  color: white;
+}
+</style>
+<script>
+const shadowDom = init();
+
+// add a <span> element in the shadow DOM
+const span = document.createElement("span");
+span.textContent = "Inside shadow DOM";
+shadowDom.appendChild(span);
+
+// attach shadow DOM to the #shadow-dom-host element
+function init() {
+  const host = document.getElementById("shadow-dom-host");
+  const shadowDom = host.attachShadow({ mode: "open" });
+
+  const cssTab = document.querySelector("#css-output");
+  const shadowStyle = document.createElement("style");
+  shadowStyle.textContent = cssTab.textContent;
+  shadowDom.appendChild(shadowStyle);
+
+  cssTab.addEventListener("change", () => {
+    shadowStyle.textContent = cssTab.textContent;
+  });
+  return shadowDom;
+}
+
+const style = document.createElement("style");
+const span = document.createElement("span");
+span.textContent = this.textContent;
+
+const shadowRoot = this.attachShadow({ mode: "open" });
+shadowRoot.appendChild(style);
+shadowRoot.appendChild(span);
+
+style.textContent =
+  "span:hover { text-decoration: underline; }" +
+  ":host-context(h1) { font-style: italic; }" +
+  ':host-context(h1)::after { content: " - no links in headers!" }' +
+  ":host(.footer) { color : red; }" +
+  ":host { background: rgb(0 0 0 / 10%); padding: 2px 5px; }";
+</script>
+</head>
+
+<body>
+
+<h1>MDN host-context Tests</h1>
+
+<div class="container">
+  <h1 id="shadow-dom-host"></h1>
+</div>
+
+<h1>
+  Host selectors <a href="#"><context-span>example</context-span></a>
+</h1>
+
+</body>
+</html>

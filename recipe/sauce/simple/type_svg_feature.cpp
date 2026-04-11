@@ -153,7 +153,7 @@ e_attribute identify_svg_animation_attribute (nitpick& nits, const html_version&
     const ident_t ns = e.verify_namespace (ss, n);
     const e_attribute ea = attr :: find (v, ss, ns);
     if (ea == a_unknown)
-        nits.pick (nit_attribute_unrecognised_here, es_error, ec_type, quote (s), " is unrecognised in ", attnam);
+        nits.pick (nit_attribute_unrecognised_here, es_error, ec_type, quote (s), " is unrecognised in ", attnam, " (11)");
     else if (! attr::first_version (ea).svg_anim (e.node ().version ().svg_version ()))
         nits.pick (nit_not_animatable, es_error, ec_type, quote (s), " cannot be animated");
     else return ea;

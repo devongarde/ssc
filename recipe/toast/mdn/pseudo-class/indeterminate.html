@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN indeterminate tests</title>
+<style>
+/* Selects any <input> whose state is indeterminate */
+input:indeterminate {
+  background: lime;
+}
+
+input:indeterminate + label {
+  background: lime;
+}
+
+progress {
+  margin: 4px;
+}
+
+progress:indeterminate {
+  width: 80vw;
+  height: 20px;
+}
+</style>
+<script>
+const inputs = document.getElementsByTagName("input");
+
+for (const input of inputs) {
+  input.indeterminate = true;
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN indeterminate Tests</h1>
+
+<fieldset>
+  <legend>Checkbox</legend>
+  <div>
+    <input type="checkbox" id="checkbox" />
+    <label for="checkbox">This checkbox label starts out lime.</label>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Radio</legend>
+  <div>
+    <input type="radio" id="radio1" name="radioButton" value="val1" />
+    <label for="radio1">First radio label starts out lime.</label>
+  </div>
+  <div>
+    <input type="radio" id="radio2" name="radioButton" value="val2" />
+    <label for="radio2">Second radio label also starts out lime.</label>
+  </div>
+</fieldset>
+
+<progress></progress>
+
+</body>
+</html>

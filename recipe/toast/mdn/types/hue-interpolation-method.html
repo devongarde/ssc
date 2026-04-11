@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN hue-interpolation-method tests</title>
+<style>
+.hsl {
+  background: linear-gradient(
+    to right in hsl,
+    hsl(39deg 100% 50%),
+    hsl(60deg 100% 50%)
+  );
+}
+.hsl-increasing {
+  background: linear-gradient(
+    to right in hsl increasing hue,
+    hsl(190deg 100% 50%),
+    hsl(180deg 100% 50%)
+  );
+}
+.hsl-decreasing {
+  background: linear-gradient(
+    to right in hsl decreasing hue,
+    hsl(39deg 100% 50%),
+    hsl(60deg 100% 50%)
+  );
+}
+.hsl-shorter {
+  background: linear-gradient(
+    to right in hsl shorter hue,
+    hsl(39deg 100% 50%),
+    hsl(60deg 100% 50%)
+  );
+}
+.hsl-longer {
+  background: linear-gradient(
+    to right in hsl longer hue,
+    hsl(39deg 100% 50%),
+    hsl(60deg 100% 50%)
+  );
+}
+.hsl-named {
+  background: linear-gradient(to right in hsl, orange, yellow);
+}
+.hsl-named-longer {
+  background: linear-gradient(to right in hsl longer hue, orange, yellow);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN hue-interpolation-method Tests</h1>
+
+<div class="hsl">
+  <p>HSL</p>
+</div>
+<div class="hsl-increasing">
+  <p>HSL increasing</p>
+</div>
+<div class="hsl-decreasing">
+  <p>HSL decreasing</p>
+</div>
+<div class="hsl-shorter">
+  <p>HSL shorter</p>
+</div>
+<div class="hsl-longer">
+  <p>HSL longer</p>
+</div>
+<div class="hsl-named">
+  <p>HSL named</p>
+</div>
+<div class="hsl-named-longer">
+  <p>HSL named (longer)</p>
+</div>
+
+</body>
+</html>

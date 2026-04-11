@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN selection tests</title>
+<style>
+p::selection {
+  color: red;
+  background-color: yellow;
+}
+
+/* Make selected text gold on a red background */
+::selection {
+  color: gold;
+  background-color: red;
+}
+
+/* Make selected text in a paragraph white on a blue background */
+p::selection {
+  color: white;
+  background-color: blue;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN selection Tests</h1>
+
+<p>
+Only certain CSS properties can be used with ::selection:
+
+    color
+    background-color
+    text-decoration and its associated properties
+    text-shadow
+    -webkit-text-stroke-color, -webkit-text-fill-color and -webkit-text-stroke-width
+
+</p>
+
+<p>
+  Select a fragment of this paragraph, to see how its appearance is affected.
+</p>
+
+This text has special styles when you highlight it.
+<p>Also try selecting text in this paragraph.</p>
+
+</body>
+</html>

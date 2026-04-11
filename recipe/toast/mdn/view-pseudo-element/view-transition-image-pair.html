@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN view-transition-image-pair tests</title>
+<style>
+:root::view-transition-image-pair(*) {
+  position: absolute;
+  inset: 0;
+
+  animation-duration: inherit;
+  animation-fill-mode: inherit;
+  animation-delay: inherit;
+}
+
+::view-transition-image-pair(root) {
+  isolation: auto;
+}
+
+::view-transition-image-pair(.card) {
+  isolation: isolate;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN view-transition-image-pair Tests</h1>
+
+</body>
+</html>

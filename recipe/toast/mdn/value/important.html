@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN important tests</title>
+<style>
+a {
+  color: red !important;
+  background-color: yellow;
+  transition: all 2s linear;
+}
+a:hover {
+  color: blue !important;
+  background-color: orange !important;
+}
+
+#myElement#myElement#myElement .myClass.myClass p:hover {
+  color: blue;
+}
+
+p {
+  color: red !important;
+}
+
+#myElement p {
+  color: green !important;
+}
+
+p {
+  color: purple !important;
+}
+
+p {
+  background: blue !important;
+}
+
+p {
+  background-image: none !important;
+  background-position: 0 0 !important;
+  background-size: auto auto !important;
+  background-repeat: repeat !important;
+  background-origin: padding-box !important;
+  background-clip: border-box !important;
+  background-attachment: scroll !important;
+  background-color: blue !important;
+}
+
+:root {
+  --my-color: red !important;
+  --my-color: blue;
+}
+p {
+  color: var(--my-color);
+}
+blockquote {
+  color: var(--my-color);
+  color: purple;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN important Tests</h1>
+
+</body>
+</html>

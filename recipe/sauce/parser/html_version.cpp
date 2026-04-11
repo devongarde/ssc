@@ -1156,7 +1156,7 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "Rub", "Ruby Annotation", ext3_, e3, H3_CSS_RUBY);
     res += single_feature (res, b, "Sco", "Scope", ext3_, e3, H3_CSS_SCOPE);
     res += single_feature (res, b, "Scr", "Scrollbar Style", ext3_, e3, H3_CSS_SCROLLBAR);
-    res += single_feature (res, b, "Sel", "Selectors", ext2_, e2, H2_CSS_SELECTOR_3, H2_CSS_SELECTOR_4);
+    res += single_feature (res, b, "Sel", "Selectors", ext2_, e2, H2_CSS_SELECTOR_3, H2_CSS_SELECTOR_4, H2_CSS_SELECTOR_5);
     res += single_feature (res, b, "Sha", "Shadow Parts", ext3_, e3, H3_CSS_SHADOW);
     res += single_feature (res, b, "Shp", "Shapes", ext3_, e3, H3_CSS_SHAPE_3, H3_CSS_SHAPE_4);
     res += single_feature (res, b, "Sda", "Scroll-driven Animation", ext3_, e3, H3_CSS_SDA);
@@ -2202,7 +2202,8 @@ template < > void html_version::set_level < c_scroll_driven_animation > (const i
     else reset_ext3 (H3_CSS_SDA); }
 
 template < > int html_version::get_level < c_selector > () const
-{   if ((ext2 () & H2_CSS_SELECTOR_4) == H2_CSS_SELECTOR_4) return 4;   
+{   if ((ext2 () & H2_CSS_SELECTOR_5) == H2_CSS_SELECTOR_5) return 5;   
+    if ((ext2 () & H2_CSS_SELECTOR_4) == H2_CSS_SELECTOR_4) return 4;   
     if ((ext2 () & H2_CSS_SELECTOR_3) == H2_CSS_SELECTOR_3) return 3; 
     if ((ext4 () & H4_LV_JAN25) == H4_LV_JAN25) if (context.html_ver () >= html_jan25) return 4;   
     return 0; }
@@ -2210,7 +2211,8 @@ template < > int html_version::get_level < c_selector > () const
 template < > void html_version::set_level < c_selector > (const int n)
 {   reset_ext2 (H2_CSS_SELECTOR_MASK);
     if (n == 3) set_ext2 (H2_CSS_SELECTOR_3);
-    else if (n == 4) set_ext2 (H2_CSS_SELECTOR); }
+    else if (n == 4) set_ext2 (H2_CSS_SELECTOR_34);
+    else if (n == 5) set_ext2 (H2_CSS_SELECTOR); }
 
 template < > int html_version::get_level < c_shadow_part > () const
 {   if (any_ext3 (H3_CSS_SHADOW)) return 3;

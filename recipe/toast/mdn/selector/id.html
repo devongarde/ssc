@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN id tests</title>
+<style>
+/* The element with id="demo" */
+#demo {
+  border: red 2px solid;
+}
+
+#id_value {
+  /* … */
+}
+
+[id="id_value"] {
+  /* … */
+}
+
+#blue {
+  background-color: skyblue;
+}
+
+/* In the next two rules, the id attributes must be escaped */
+
+#item\?one {
+  background-color: pink;
+}
+
+#\00003123item {
+  background-color: yellow;
+}
+
+/* maughty naughty */
+#item?one {
+  background-color: green;
+}
+
+#123item {
+  background-color: green;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN id Tests</h1>
+
+<p id="blue">This paragraph has a blue background.</p>
+<p>This is just a regular paragraph.</p>
+
+<!-- The next two paragraphs have id attributes
+that contain characters which must be escaped in CSS -->
+
+<p id="item?one">This paragraph has a pink background.</p>
+<p id="123item">This paragraph has a yellow background.</p>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN @import tests</title>
+<style>
+@import "custom.css";
+@import url("chrome://communicator/skin/communicator.css");
+
+@import "fine-print.css" print;
+@import "bluish.css" print, screen;
+@import "common.css" screen;
+@import "landscape.css" screen and (orientation: landscape);
+
+@import "grid.css" supports(display: grid) screen and (width <= 400px);
+@import "flex.css" supports((not (display: grid)) and (display: flex)) screen
+  and (width <= 400px);
+
+@import "whatever.css"
+  supports((selector(h2 > p)) and (font-tech(color-COLRv1)));
+
+@import "theme.css" layer(utilities);
+
+@import "theme.css" layer();
+@import "style.css" layer;
+
+@import "headings.css" layer(default);
+@import "links.css" layer(default);
+
+@layer default {
+  audio[controls] {
+    display: block;
+  }
+}
+
+@import "my-imported-styles.css";
+* {
+  margin: 0;
+  padding: 0;
+}
+/* more styles */
+</style>
+</head>
+
+<body>
+
+<h1>MDN @import Tests</h1>
+
+</body>
+</html>

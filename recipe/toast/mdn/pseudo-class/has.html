@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN has tests</title>
+<style>
+/* Selects an h1 heading with a
+paragraph element that immediately follows
+the h1 and applies the style to h1 */
+h1:has(+ p) {
+  margin-bottom: 0;
+}
+
+:has(<relative-selector-list>) {
+  /* ... */
+}
+
+section:has(.featured) {
+  border: 2px solid blue;
+}
+
+h1,
+h2 {
+  margin: 0 0 1rem 0;
+}
+
+h1:has(+ h2) {
+  margin: 0 0 0.25rem 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 1rem 0;
+}
+
+:is(h1, h2, h3):has(+ :is(h2, h3, h4)) {
+  margin: 0 0 0.25rem 0;
+}
+
+:is(h1, h2, h3):has(+ h2, + h3, + h4) {
+  margin: 0 0 0.25rem 0;
+}
+
+body:has(video, audio) {
+  /* styles to apply if the content contains audio OR video */
+}
+body:has(video):has(audio) {
+  /* styles to apply if the content contains both audio AND video */
+}
+
+/* Avoid anchoring :has() to broad elements */
+body:has(.sidebar) {
+  /* styles */
+}
+:root:has(.content) {
+  /* styles */
+}
+*:has(.item) {
+  /* styles */
+}
+
+/* Use specific containers to limit scope */
+.container:has(.sidebar-expanded) {
+  /* styles */
+}
+.content-wrapper:has(> article[data-priority="high"]) {
+  /* styles */
+}
+.gallery:has(> img[data-loaded="false"]) {
+  /* styles */
+}
+
+/* May trigger full subtree traversal */
+.ancestor:has(.foo) {
+  /* styles */
+}
+
+/* More constrained - limits traversal */
+.ancestor:has(> .foo) {
+  /* direct child */
+}
+.ancestor:has(+ .sibling .foo) {
+  /* descendant of adjacent sibling */
+}
+
+/* Might trigger ancestor traversal */
+.ancestor:has(.foo > *) {
+  /* styles */
+}
+
+/* Constrain the inner selector to avoid ancestor traversals */
+.ancestor:has(.foo > .specific-child) {
+  /* styles */
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN has Tests</h1>
+
+<section>
+  <article class="featured">Featured content</article>
+  <article>Regular content</article>
+</section>
+<section>
+  <article>Regular content</article>
+</section>
+
+<section>
+  <article>
+    <h1>Morning Times</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+  </article>
+  <article>
+    <h1>Morning Times</h1>
+    <h2>Delivering you news every morning</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+  </article>
+</section>
+
+<section>
+  <article>
+    <h1>Morning Times</h1>
+    <h2>Delivering you news every morning</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+  </article>
+  <article>
+    <h1>Morning Times</h1>
+    <h2>Delivering you news every morning</h2>
+    <h3>8:00 am</h3>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+  </article>
+</section>
+
+</body>
+</html>

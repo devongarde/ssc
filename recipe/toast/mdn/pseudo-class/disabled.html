@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN disabled tests</title>
+<style>
+label {
+  display: block;
+  margin-top: 1em;
+}
+
+*:disabled {
+  background-color: dimgrey;
+  color: linen;
+  opacity: 1;
+}
+
+input[type="text"]:disabled {
+  background: #cccccc;
+}
+</style>
+<script>
+const checkbox = document.querySelector("#billing-checkbox");
+const billingItems = document.querySelectorAll('#billing input[type="text"]');
+
+checkbox.addEventListener("change", () => {
+  billingItems.forEach((item) => {
+    item.disabled = !item.disabled;
+  });
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN disabled Tests</h1>
+
+<form>
+  <label for="name">Name:</label>
+  <input id="name" name="name" type="text" />
+
+  <label for="emp">Employed:</label>
+  <select id="emp" name="emp" disabled>
+    <option>No</option>
+    <option>Yes</option>
+  </select>
+
+  <label for="empDate">Employment Date:</label>
+  <input id="empDate" name="empDate" type="date" disabled />
+
+  <label for="resume">Resume:</label>
+  <input id="resume" name="resume" type="file" />
+</form>
+
+<form action="#">
+  <fieldset id="shipping">
+    <legend>Shipping address</legend>
+    <input type="text" placeholder="Name" />
+    <input type="text" placeholder="Address" />
+    <input type="text" placeholder="Zip Code" />
+  </fieldset>
+  <br />
+  <fieldset id="billing">
+    <legend>Billing address</legend>
+    <label for="billing-checkbox">Same as shipping address:</label>
+    <input type="checkbox" id="billing-checkbox" checked />
+    <br />
+    <input type="text" placeholder="Name" disabled />
+    <input type="text" placeholder="Address" disabled />
+    <input type="text" placeholder="Zip Code" disabled />
+  </fieldset>
+</form>
+
+</body>
+</html>

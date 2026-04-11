@@ -107,6 +107,9 @@ void descriptor::parse (arguments& args, const e_css_statement cs, const int fro
                 case css_position_try :
                     dsc_ = make_position_try_v_ptr (args, var, to, nits, k, val_, p);
                     break;
+                case css_function :
+                    dsc_ = make_function_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
                 default :
                     GRACEFUL_CRASH (__FILE__, __LINE__);
                     break; }

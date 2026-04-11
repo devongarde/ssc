@@ -45,7 +45,6 @@ PASS ../toast/stats/CSS-6/font-4-6.css
 PASS ../toast/stats/CSS-6/font-4-9.css
 0 html
 6 fontname
-8 unrecognised_value
 13 fontname
 21 fontname
 26 fontname

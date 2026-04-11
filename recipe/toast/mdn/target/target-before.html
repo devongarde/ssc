@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN target-before tests</title>
+<style>
+ol {
+  scroll-target-group: auto;
+}
+
+:target-current {
+  color: red;
+}
+
+a:target-before {
+  color: gray;
+  text-decoration: line-through;
+}
+
+a:target-after {
+  text-decoration: underline orange 2px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN target-before Tests</h1>
+
+<nav id="toc">
+  <ol>
+    <li><a href="#intro">Introduction</a></li>
+    <li><a href="#ch1">Chapter 1</a></li>
+    <li><a href="#ch2">Chapter 2</a></li>
+    <li><a href="#ch3">Chapter 3</a></li>
+    <li><a href="#ch4">Chapter 4</a></li>
+  </ol>
+</nav>
+<section id="intro" class="chapter">
+  <h1>Prose of the century</h1>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla luctus
+    aliquam dolor, eu lacinia lorem placerat vulputate. Duis felis orci,
+    pulvinar id metus ut, rutrum luctus orci. Cras porttitor imperdiet nunc, at
+    ultricies tellus laoreet sit amet.
+  </p>
+</section>
+<section id="ch1" class="chapter">
+  <h2>Chapter 1</h2>
+
+  <!-- ... -->
+</section>
+<section id="ch2" class="chapter">
+  <h2>Chapter 2</h2>
+
+  <!-- ... -->
+</section>
+
+<!-- ... -->
+
+</body>
+</html>

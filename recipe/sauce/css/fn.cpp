@@ -155,19 +155,27 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                     for (auto part : parts)
                         args.g_.get_page ().parts ().insert (part); }
                 return;
+            case efn_scroll_button :
+                if (context.css_module (c_overflow) < 5)
+                    nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Text Overflow 5");
+                test_value < t_css_scroll_button > (nits, context.html_ver (), param);
+                return;
             case efn_view_transition_group :
             case efn_view_transition_new :
             case efn_view_transition_old :
             case efn_view_transition_image_pair :
                 if (context.css_module (c_view_transition) < 3)
-                    nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS View Transitions");
+                    nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS View Transitions 3");
                 else if (param != "*")
                     if (! args.has_str (gst_view, param))
                         args.dst_ -> note_str (gst_view, param); 
                 return;
+            case efn_active_view_transition_type :
             case efn_current :
+            case efn_future :
             case efn_has :
             case efn_is :
+            case efn_past :
             case efn_where :
                 break;
             case efn_root :
@@ -209,6 +217,21 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                         if (f.at (n) > 0) vsl_.emplace_back (new selector (args, f.at (n), ket, true)); 
                         else if (! params_.at (n).empty ())
                             ve_.emplace_back (new css_element (nits, args.v_, args.ns_, params_.at (n)));
+                    break;
+                case efn_future :
+                case efn_past :
+                    PRESUME (f.size () == params_.size (), __FILE__, __LINE__);
+                    for (::std::size_t n = 0; n < params_.size (); ++n)
+                        if (! params_.at (n).empty ())
+                            ve_.emplace_back (new css_element (nits, args.v_, args.ns_, params_.at (n)));
+                    break;
+                case efn_active_view_transition_type :
+                    if (context.css_module (c_view_transition) < 4)
+                        nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS View Transitions 4");
+                    else for (::std::size_t n = 0; n < params_.size (); ++n)
+                        if (params_.at (n) != "*")
+                            if (! args.has_str (gst_view, params_.at (n)))
+                                args.dst_ -> note_str (gst_view, params_.at (n)); 
                     break;
                 default :
                     GRACEFUL_CRASH (__FILE__, __LINE__);

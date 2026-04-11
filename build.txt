@@ -38,7 +38,8 @@ install.
 
 You may need to set these environment variables:
 - BOOST: if you're not using your operating system's packaged flavour
-  of boost, then set BOOST to your boost source root directory;
+  of boost, or want to build the GUI, set BOOST to your boost source
+  root directory;
 - GSL: set it to your GSL root directory.
 - ICU_ROOT: if you're not using your operating system's packaged ICU,
   set ICU_ROOT to your ICU source root directory (not used under
@@ -199,7 +200,8 @@ Boost
 Boost is to C++ as breakfast to the working day.
 
 Most package managers support it, or you can download and build your
-own version using the source found at https://boost.org/.
+own version using the source found at https://boost.org/. SSC requires
+boost version 1.89 or better.
 
 ICU4C
 -----
@@ -220,3 +222,26 @@ wxWidgets
 This is only required if you make a GUI build. It can be found at
 https://wxwidgets.org/. Note that ssc has not been tested on many of the
 systems supported by wxWidgets.
+
+
+Browsing the source
+===================
+
+If you browse the source code, you may come across the following names:
+- recipe: a nod to Vernor Vinge's "A Fire Upon the Deep";
+- tea: without tea, nothing works; then there's builders' tea;
+- sauce: makes the dull tasty; identifies linguistically weak pedants;
+- toast: toasts code; i liked burnt toast;
+- heater: i'm not stopping now;
+- unii: my preferred plural of unix: to my ears, both unixes and unices
+        sound like they sing castrato.
+- andor: and/or sans ancienne; land of Gift (aber nicht das Gift)
+
+Regarding documentation, much professional experience maintaining other
+people's code over decades has taught me:
+
+- Specifications are essential (for some of the specifications used by
+  ssc, see https://dylanharris.org/ssc/spex/index.shtml);
+- Comments in code are rarely useful, often counterproductive, and
+  sometimes even dangerous (for my reasoning, see
+  https://dylanharris.org//prose/opinion/comments.shtml).

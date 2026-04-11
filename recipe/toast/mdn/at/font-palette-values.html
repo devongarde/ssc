@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN @font-palette-values tests</title>
+<style>
+@font-palette-values --identifier {
+  font-family: "Bixa";
+}
+.my-class {
+  font-palette: --identifier;
+}
+
+@import "https://example.com/css2?family=Bungee+Spice";
+p {
+  font-family: "Bungee Spice", fantasy;
+  font-size: 2rem;
+}
+@font-palette-values --Alternate {
+  font-family: "Bungee Spice";
+  override-colors:
+    0 #00ffbb,
+    1 #007744;
+}
+.alternate {
+  font-palette: --Alternate;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN @font-palette-values Tests</h1>
+
+<p>default colors</p>
+<p class="alternate">alternate colors</p>
+
+</body>
+</html>

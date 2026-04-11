@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN empty tests</title>
+<style>
+div:empty {
+  outline: 2px solid deeppink;
+  height: 1em;
+}
+
+.box {
+  background: pink;
+  height: 80px;
+  width: 80px;
+}
+
+.box:empty {
+  background: lime;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN empty Tests</h1>
+
+<p>Element with no content:</p>
+<div></div>
+
+<p>Element with comment:</p>
+<div><!-- A comment --></div>
+
+<p>Element with nested empty element:</p>
+<div><p></p></div>
+
+<div class="box"><!-- I will be lime. --></div>
+<div class="box">I will be pink.</div>
+<div class="box">
+  <!-- I will be pink in older browsers because of the whitespace around this comment. -->
+</div>
+<div class="box">
+  <p>
+    <!-- I will be pink in all browsers because of the non-collapsible whitespace and elements around this comment. -->
+  </p>
+</div>
+
+</body>
+</html>

@@ -390,7 +390,7 @@ e_status set_fn_trans_args_value (nitpick& nits, const html_version& v, const ::
     if (! test_esii (sii_fn, s))
     {   VERIFY_NOT_NULL (box, __FILE__, __LINE__);
         esii_scope esii (sii_fn, s);
-//        if (box -> get_page ().css ().parse_transform (interpret_string (nits, v, s), v, box -> namespaces (), box -> ancestral_elements (), false, box -> line ()))
+//        if (box -> get_page ().css ().parse_transform (interpret_string (nits, v, s, true), v, box -> namespaces (), box -> ancestral_elements (), false, box -> line ()))
             return s_good; }
     return s_invalid; }
 

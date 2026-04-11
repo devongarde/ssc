@@ -41,7 +41,7 @@ e_ontology_property json_ld::get_ontology_property (nitpick& nits, const ::std::
     ::std::string::size_type after = ::std::string::npos;
     const e_ontology es = ontology_names.starts_with_mixed (ONTOLOGY_CURIE, s, &after);
     if (es == s_error)
-    {   nits.pick (nit_jsonld_type, es_error, ec_json, "schema type ", quote (s), " is unrecognised");
+    {   nits.pick (nit_jsonld_type, es_error, ec_json, "schema type ", quote (s), " is unrecognised (6)");
         return op_illegal; }
     if (after == ::std::string::npos)
     {   nits.pick (nit_jsonld_type, es_error, ec_json, "schema type ", quote (s), " is incomplete");

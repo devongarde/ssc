@@ -4,7 +4,62 @@
 <title>MDN outline-style tests</title>
 <style>
 .sid {
+/* Keyword values */
+outline-style: auto;
+outline-style: none;
+outline-style: dotted;
+outline-style: dashed;
+outline-style: solid;
+outline-style: double;
+outline-style: groove;
+outline-style: ridge;
+outline-style: inset;
+outline-style: outset;
 
+/* Global values */
+outline-style: inherit;
+outline-style: initial;
+outline-style: revert;
+outline-style: revert-layer;
+outline-style: unset;
+}
+
+.auto {
+  outline-style: auto; /* same result as "outline: auto" */
+}
+
+.dotted {
+  outline-style: dotted; /* same result as "outline: dotted" */
+}
+.dashed {
+  outline-style: dashed;
+}
+
+.solid {
+  outline-style: solid;
+}
+.double {
+  outline-style: double;
+}
+
+.groove {
+  outline-style: groove;
+}
+.ridge {
+  outline-style: ridge;
+}
+
+.inset {
+  outline-style: inset;
+}
+.outset {
+  outline-style: outset;
+}
+
+/* To make the Demo clearer */
+* {
+  outline-width: 10px;
+  padding: 15px;
 }
 </style>
 </head>
@@ -12,6 +67,16 @@
 <body>
 
 <h1>MDN outline-style Tests</h1>
+
+<div>
+  <p class="auto">Outline Demo</p>
+</div>
+
+<div>
+  <div class="dotted">
+    <p class="dashed">Outline Demo</p>
+  </div>
+</div>
 
 </body>
 </html>

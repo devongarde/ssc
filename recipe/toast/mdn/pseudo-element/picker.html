@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN picker tests</title>
+<style>
+.sid {
+inset: auto;
+margin: 0;
+min-inline-size: anchor-size(self-inline);
+min-block-size: 1lh;
+/* Go to the edge of the viewport, and add scrollbars if needed. */
+max-block-size: stretch;
+overflow: auto;
+/* Below and span-right, by default. */
+position-area: block-end span-inline-end;
+
+position-try-order: most-block-size;
+position-try-fallbacks:
+  /* First try above and span-right, */
+  /* then below but span-left, */
+  /* then above and span-left. */
+  block-start span-inline-end,
+  block-end span-inline-start,
+  block-start span-inline-start;
+}
+
+select,
+::picker(select) {
+  appearance: base-select;
+}
+
+::picker(select) {
+  border: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN picker Tests</h1>
+
+</body>
+</html>

@@ -1702,6 +1702,27 @@ property_name namtab [] =
     { "translation", s_frbr, fp_translation },
     { "translationOf", s_frbr, fp_translationof },
 
+    // croissant geo
+    { "bandConfiguration", s_geocr, geocrp_bandconfiguration },
+    { "bandNamesList", s_geocr, geocrp_bandnameslist },
+    { "bandwidth", s_geocr, geocrp_bandwidth },
+    { "centerWavelength", s_geocr, geocrp_centerwavelength },
+    { "channelList", s_geocr, geocrp_channellist },
+    { "coordinateReferenceSystem", s_geocr, geocrp_coordinatereferencesystem },
+    { "instrument", s_geocr, geocrp_instrument },
+    { "multiWavelengthConfiguration", s_geocr, geocrp_multiwavelengthconfiguration },
+    { "observatory", s_geocr, geocrp_observatory },
+    { "recordEndpoint", s_geocr, geocrp_recordendpoint },
+    { "samplingStrategy", s_geocr, geocrp_samplingstrategy },
+    { "solarInstrumentCharacteristics", s_geocr, geocrp_solarinstrumentcharacteristics },
+    { "spatialBias", s_geocr, geocrp_spatialbias },
+    { "spatialIndex", s_geocr, geocrp_spatialindex },
+    { "spatialResolution", s_geocr, geocrp_spatialresolution },
+    { "spectralBandMetadata", s_geocr, geocrp_spectralbandmetadata },
+    { "temporalResolution", s_geocr, geocrp_temporalresolution },
+    { "timeSeriesIndex", s_geocr, geocrp_timeseriesindex },
+    { "totalBands", s_geocr, geocrp_totalbands },
+
     // good relations
     { "acceptedPaymentMethods", s_gr, gr_acceptedpaymentmethods },
     { "addOn", s_gr, gr_addon },

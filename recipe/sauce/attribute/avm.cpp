@@ -799,23 +799,27 @@ void avm_init (nitpick& )
 
 bool is_invalid_attribute_version (const html_version& v, const e_element tag, const e_attribute a)
 {   if (! v.known () || is_custom_attribute (a) || is_custom_element (tag)) return false;
-    for (   avm_t::const_iterator i = avm.at (tag).find (a);
-            (i != avm.at (tag).cend ()) && (i -> second -> a_ == a);
+    const avm_t av = avm.at (tag);
+    for (   avm_t::const_iterator i = av.find (a);
+            (i != av.cend ()) && (i -> second -> a_ == a);
             ++i)
         if (may_apply (v, i -> second -> first_, i -> second -> last_)) return false;
-    for (   avm_t::const_iterator i = avm.at (elem_undefined).find (a);
-            (i != avm.at (elem_undefined).cend ()) && (i -> second -> a_ == a);
+    const avm_t avu = avm.at (elem_undefined);
+    for (   avm_t::const_iterator i = avu.find (a);
+            (i != avu.cend ()) && (i -> second -> a_ == a);
             ++i)
         if (may_apply (v, i -> second -> first_, i -> second ->last_)) return false;
     return true; }
 
 bool is_deprecated_attribute_version (const html_version& v, const e_element tag, const e_attribute a)
 {   if (! v.known () || is_custom_attribute (a) || is_custom_element (tag)) return false;
-    for (   avm_t::const_iterator i = avm.at (tag).find (a);
+    avm_t& av = avm.at (tag);
+    for (   avm_t::const_iterator i = av.find (a);
             (i != avm.at (tag).cend ()) && (i -> second-> a_ == a);
             ++i)
         if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.deprecated (v);
-    for (   avm_t::const_iterator i = avm.at (elem_undefined).find (a);
+    av = avm.at (elem_undefined);
+    for (   avm_t::const_iterator i = av.find (a);
             (i != avm.at (elem_undefined).cend ()) && (i -> second -> a_ == a);
             ++i)
         if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.deprecated (v);
@@ -823,28 +827,31 @@ bool is_deprecated_attribute_version (const html_version& v, const e_element tag
 
 bool not_production_attribute (const html_version& v, const e_element tag, const e_attribute a)
 {   if (v.known () && v.is_5 () && (! is_custom_attribute (a)) && (! is_custom_element (tag)))
-        for (   avm_t::const_iterator i = avm.at (tag).find (a);
+    {   const avm_t& av = avm.at (tag);   
+        for (   avm_t::const_iterator i = av.find (a);
                 (i != avm.at (tag).cend ()) && (i -> second -> a_ == a);
                 ++i)
-            if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.not_production ();
+            if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.not_production (); }
     return false; }
 
 bool is_attribute_required (const html_version& v, const e_element tag, const e_attribute a)
 {   if (v.known () && (! is_custom_attribute (a)) && (! is_custom_element (tag)))
-        for (   avm_t::const_iterator i = avm.at (tag).find (a);
+    {   const avm_t& av = avm.at (tag);   
+        for (   avm_t::const_iterator i = av.find (a);
                 (i != avm.at (tag).cend ()) && (i -> second -> a_ == a);
                 ++i)
-            if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.required ();
+            if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.required (); }
     return false; }
 
 bool is_attribute_rejected (const html_version& v, const e_element tag, const e_attribute a, flags_t& flags)
 {   if (v.known () && (! is_custom_attribute (a)) && (! is_custom_element (tag)))
-        for (   avm_t::const_iterator i = avm.at (tag).find (a);
+    {   const avm_t& av = avm.at (tag);   
+        for (   avm_t::const_iterator i = av.find (a);
                 (i != avm.at (tag).cend ()) && (i -> second -> a_ == a);
                 ++i)
             if (may_apply (v, i -> second -> first_, i -> second -> last_))
             {   flags = i -> second -> flags_;
-                return i -> second -> first_.reject (); }
+                return i -> second -> first_.reject (); } }
     return false; }
 
 #ifdef DEBUG

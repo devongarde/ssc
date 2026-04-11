@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN :active-view-transition-type tests</title>
+<style>
+html:active-view-transition-type(forwards, backwards) {
+  /* ... */
+}
+
+:active-view-transition-type(<custom-ident>#) {
+  /* ... */
+}
+
+html:active-view-transition {
+  :root {
+    view-transition-name: none;
+  }
+  p {
+    view-transition-name: slide;
+  }
+}
+
+html:active-view-transition-type(forwards) {
+  &::view-transition-old(slide) {
+    animation-name: slide-out-to-left;
+  }
+  &::view-transition-new(slide) {
+    animation-name: slide-in-from-right;
+  }
+}
+
+html:active-view-transition-type(backwards) {
+  &::view-transition-old(slide) {
+    animation-name: slide-out-to-right;
+  }
+  &::view-transition-new(slide) {
+    animation-name: slide-in-from-left;
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    translate: -100vw 0;
+  }
+}
+@keyframes slide-in-from-right {
+  from {
+    translate: 100vw 0;
+  }
+}
+@keyframes slide-out-to-left {
+  to {
+    translate: -100vw 0;
+  }
+}
+@keyframes slide-out-to-right {
+  to {
+    translate: 100vw 0;
+  }
+}
+</style>
+<script>
+const backBtn = document.getElementById("backwards");
+const fwdBtn = document.getElementById("forwards");
+const content = document.querySelector("p");
+
+const first = "This is my first piece of content. I hope you like it!";
+const second = "This is my second piece of content. Is it better than the first?";
+
+backBtn.addEventListener("click", changeContent);
+fwdBtn.addEventListener("click", changeContent);
+
+function changeContent(e) {
+  const type = e.target === backBtn ? "backwards" : "forwards";
+  document.startViewTransition({
+    update() {
+      content.textContent === first
+        ? (content.textContent = second)
+        : (content.textContent = first);
+    },
+    types: [type],
+  });
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN :active-view-transition-type Tests</h1>
+
+<p>This is my first piece of content. I hope you like it!</p>
+<div>
+  <button id="backwards">Backwards</button>
+  <button id="forwards">Forwards</button>
+</div>
+
+</body>
+</html>

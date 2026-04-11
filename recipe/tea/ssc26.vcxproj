@@ -26,6 +26,18 @@
       <Configuration>LeakSeek</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|ARM64">
+      <Configuration>Profile</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|Win32">
+      <Configuration>Profile</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|x64">
+      <Configuration>Profile</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|ARM64">
       <Configuration>Release</Configuration>
       <Platform>ARM64</Platform>
@@ -262,6 +274,7 @@
     <ClInclude Include="..\heater\utility\bitset.h" />
     <ClInclude Include="..\heater\utility\byteorder.h" />
     <ClInclude Include="..\heater\utility\cache.h" />
+    <ClInclude Include="..\heater\utility\category.h" />
     <ClInclude Include="..\heater\utility\common.h" />
     <ClInclude Include="..\heater\utility\fileio.h" />
     <ClInclude Include="..\heater\utility\filesystem.h" />
@@ -289,196 +302,235 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\attribute.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\attributes.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\attribute_constructor.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\attr_state.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_a.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_b.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_c.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_e.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_f1.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_f2.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_g.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_h.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_i.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_d.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_k.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_l.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_m1.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_m2.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_n.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_o.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_p.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_q.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_r.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_rdf.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_s.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_t1.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_t2.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_u.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_v.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_w.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm_data_x.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\namespace.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\base\type_base.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\base\type_case.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\base\type_core.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\base\type_master.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\compound\type_csses.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\compound\type_mimes.cpp" />
     <ClCompile Include="..\sauce\compound\type_van.cpp" />
@@ -486,191 +538,229 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\coop\fred.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\coop\kew.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\coop\knickers.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\coop\lox.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\coop\tls.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\arguments.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\css.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\css_attribute.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\css_class.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\css_parse.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\css_state.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\decoration.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\descriptor.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\descriptors.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\descriptor_constructor.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\distilled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\css_element.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\ffv.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\ffvs.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\fn.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\global.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\group.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\css_id.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\media.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\medium.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\properties.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\property.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\property_constructor.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\rule.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\rules.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\selector.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\selectors.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\statement.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\statements.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\typed_property.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value2.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_0_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_2_9.cpp" />
@@ -710,7 +800,8 @@
     <ClCompile Include="..\sauce\css\value_types_css_o.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_p_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_p_q.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_css_r.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_r_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_r_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_s_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_s_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_s_3.cpp" />
@@ -779,346 +870,417 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\elem.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_abcd.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_aria.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_attributes.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_classes.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_efghi.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_examine.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_input.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_jkl.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_microdata.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_microformats.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_mno.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_pqr.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_s.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_tuvwxyz.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_rdfa.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\parentage.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\element\state.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\enum\type_aria.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\enum\type_charset.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\enum\type_class.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\enum\type_colour.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\enum\type_country.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\enum\type_enum.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\enum\type_lang.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\enum\type_mime.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\enum\type_property.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\enum\type_rel.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\enum\type_xmlns.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\feedback\nit.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\feedback\nitnames.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\feedback\nitout.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\feedback\nitpick.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\icu\charset.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\icu\converter.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\icu\lingo.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\icu\wrapper.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\main\context.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\main\abort.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\main\options.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\main\output.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\main\server.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\main\ssc.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\main\standard.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">main\standard.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='LeakSeek|x64'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">main\standard.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='LeakSeek|Win32'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">main\standard.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">main\standard.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="..\sauce\main\version.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\microdata\microdata_export.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\microdata\microdata_itemid.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\microdata\microdata_itemprop.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\microdata\microdata_itemscope.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\microdata\microdata_itemtype.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\microformat\family.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\microformat\field.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\microformat\microformats.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\microformat\microformat_constructor.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\microformat\microformat_export.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\microformat\property_value.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\microformat\sibling.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\ontology\jsonld.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\ontology\ontology_hierarchy.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\ontology\ontology_name.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\ontology\ontology_property.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\ontology\ontology_structure.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\ontology\ontology_type.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\ontology\ontology_version.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\parser\ads.cpp" />
     <ClCompile Include="..\sauce\parser\colonic.cpp" />
@@ -1127,51 +1289,61 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\parser\jsonic.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\parser\parse_attribute.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\parser\parse_attributes.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\parser\parse_bracs_ket.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\parser\parse_brac_ket.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\parser\parse_element.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\parser\parse_elements.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\parser\parse_ssi.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\parser\pattern.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\parser\robotic.cpp" />
     <ClCompile Include="..\sauce\parser\security.cpp" />
@@ -1179,300 +1351,360 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\parser\text.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\parser\xhtml_xml.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\rdf\rdfa_prop.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\rdf\rdf.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\rdf\rdfa_type.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_autocomplete.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_basic.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_css.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_currency.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_d.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_httpequiv.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_id.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_intent.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_jsonic.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_layout.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_measure.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_media.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_metaname.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_microdata.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_misc.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_numeric.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_paint.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_rdf.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_reals.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_sgml.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_svg_feature.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_time.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_transform.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\spell\nixspell.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\spell\spell.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\spell\winspell.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\stats\stats.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\stats\stats_impl.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\symbol\nstr.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\symbol\symbol.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\type\type.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\type\type_csp.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\url\fetch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\url\url.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\url\url_parameters.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\url\url_protocol.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\url\url_sanitise.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\url\url_scheme.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\url\wacky.cpp" />
     <ClCompile Include="..\sauce\utility\byteorder.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\utility\cache.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\utility\category.cpp" />
     <ClCompile Include="..\sauce\utility\common.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\utility\fileio.cpp" />
     <ClCompile Include="..\sauce\utility\filesystem.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\utility\list.cpp" />
     <ClCompile Include="..\sauce\utility\quote.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\corpus.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\crosslink.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\directory.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\external.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\fileindex.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\headers.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\id.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\page.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\q.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\required.cpp" />
     <ClCompile Include="..\sauce\webpage\root.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\vtt.cpp" />
   </ItemGroup>
@@ -13043,6 +13275,12 @@
     <None Include="..\toast\math\4\unary-log.html" />
     <None Include="..\toast\math\4\unary-partial.html" />
     <None Include="..\toast\math\4\unary-vector.html" />
+    <None Include="..\toast\mdn\active\active-view-transition-type.html" />
+    <None Include="..\toast\mdn\active\active-view-transition.html" />
+    <None Include="..\toast\mdn\active\active.html" />
+    <None Include="..\toast\mdn\active\index.html" />
+    <None Include="..\toast\mdn\active\mdn.conf" />
+    <None Include="..\toast\mdn\active\mdn.spec" />
     <None Include="..\toast\mdn\align\align-content.html" />
     <None Include="..\toast\mdn\align\align-items.html" />
     <None Include="..\toast\mdn\align\align-self.html" />
@@ -13119,6 +13357,31 @@
     <None Include="..\toast\mdn\attribute\title.html" />
     <None Include="..\toast\mdn\attribute\translate.html" />
     <None Include="..\toast\mdn\attribute\writingsuggestions.html" />
+    <None Include="..\toast\mdn\at\charset.html" />
+    <None Include="..\toast\mdn\at\colour-profile.html" />
+    <None Include="..\toast\mdn\at\container.html" />
+    <None Include="..\toast\mdn\at\counter-style.html" />
+    <None Include="..\toast\mdn\at\custom-media.html" />
+    <None Include="..\toast\mdn\at\document.html" />
+    <None Include="..\toast\mdn\at\font-face.html" />
+    <None Include="..\toast\mdn\at\font-feature-values.html" />
+    <None Include="..\toast\mdn\at\font-palette-values.html" />
+    <None Include="..\toast\mdn\at\function.html" />
+    <None Include="..\toast\mdn\at\import.html" />
+    <None Include="..\toast\mdn\at\index.html" />
+    <None Include="..\toast\mdn\at\keyframes.html" />
+    <None Include="..\toast\mdn\at\layer.html" />
+    <None Include="..\toast\mdn\at\mdn.conf" />
+    <None Include="..\toast\mdn\at\mdn.spec" />
+    <None Include="..\toast\mdn\at\media.html" />
+    <None Include="..\toast\mdn\at\namespace.html" />
+    <None Include="..\toast\mdn\at\page.html" />
+    <None Include="..\toast\mdn\at\position-try.html" />
+    <None Include="..\toast\mdn\at\property.html" />
+    <None Include="..\toast\mdn\at\scope.html" />
+    <None Include="..\toast\mdn\at\starting-style.html" />
+    <None Include="..\toast\mdn\at\supports.html" />
+    <None Include="..\toast\mdn\at\view-transition.html" />
     <None Include="..\toast\mdn\background\background-attachment.html" />
     <None Include="..\toast\mdn\background\background-blend-mode.html" />
     <None Include="..\toast\mdn\background\background-clip.html" />
@@ -13250,6 +13513,14 @@
     <None Include="..\toast\mdn\column\index.html" />
     <None Include="..\toast\mdn\column\mdn.conf" />
     <None Include="..\toast\mdn\column\mdn.spec" />
+    <None Include="..\toast\mdn\combinator\child.html" />
+    <None Include="..\toast\mdn\combinator\column.html" />
+    <None Include="..\toast\mdn\combinator\descendant.html" />
+    <None Include="..\toast\mdn\combinator\index.html" />
+    <None Include="..\toast\mdn\combinator\mdn.conf" />
+    <None Include="..\toast\mdn\combinator\mdn.spec" />
+    <None Include="..\toast\mdn\combinator\next-sibling.html" />
+    <None Include="..\toast\mdn\combinator\subsequent-sibling.html" />
     <None Include="..\toast\mdn\container\container-name.html" />
     <None Include="..\toast\mdn\container\container-type.html" />
     <None Include="..\toast\mdn\container\container.html" />
@@ -13431,6 +13702,12 @@
     <None Include="..\toast\mdn\fill\index.html" />
     <None Include="..\toast\mdn\fill\mdn.conf" />
     <None Include="..\toast\mdn\fill\mdn.spec" />
+    <None Include="..\toast\mdn\first\first-child.html" />
+    <None Include="..\toast\mdn\first\first-of-type.html" />
+    <None Include="..\toast\mdn\first\first.html" />
+    <None Include="..\toast\mdn\first\index.html" />
+    <None Include="..\toast\mdn\first\mdn.conf" />
+    <None Include="..\toast\mdn\first\mdn.spec" />
     <None Include="..\toast\mdn\flex\flex-basis.html" />
     <None Include="..\toast\mdn\flex\flex-direction.html" />
     <None Include="..\toast\mdn\flex\flex-flow.html" />
@@ -13441,6 +13718,12 @@
     <None Include="..\toast\mdn\flex\index.html" />
     <None Include="..\toast\mdn\flex\mdn.conf" />
     <None Include="..\toast\mdn\flex\mdn.spec" />
+    <None Include="..\toast\mdn\focus\focus-visible.html" />
+    <None Include="..\toast\mdn\focus\focus-within.html" />
+    <None Include="..\toast\mdn\focus\focus.html" />
+    <None Include="..\toast\mdn\focus\index.html" />
+    <None Include="..\toast\mdn\focus\mdn.conf" />
+    <None Include="..\toast\mdn\focus\mdn.spec" />
     <None Include="..\toast\mdn\font\font-family.html" />
     <None Include="..\toast\mdn\font\font-feature-settings.html" />
     <None Include="..\toast\mdn\font\font-kerning.html" />
@@ -13714,38 +13997,75 @@
     <None Include="..\toast\mdn\min\min-height.html" />
     <None Include="..\toast\mdn\min\min-inline-size.html" />
     <None Include="..\toast\mdn\min\min-width.html" />
-    <None Include="..\toast\mdn\moz\index.html" />
-    <None Include="..\toast\mdn\moz\mdn.conf" />
-    <None Include="..\toast\mdn\moz\mdn.spec" />
-    <None Include="..\toast\mdn\moz\moz-broken.html" />
-    <None Include="..\toast\mdn\moz\moz-colour-swatch.html" />
-    <None Include="..\toast\mdn\moz\moz-device-pixel-ratio.html" />
-    <None Include="..\toast\mdn\moz\moz-drag-over.html" />
-    <None Include="..\toast\mdn\moz\moz-first-node.html" />
-    <None Include="..\toast\mdn\moz\moz-float-edge.html" />
-    <None Include="..\toast\mdn\moz\moz-focus-inner.html" />
-    <None Include="..\toast\mdn\moz\moz-force-broken-image-icon.html" />
-    <None Include="..\toast\mdn\moz\moz-image-rect.html" />
-    <None Include="..\toast\mdn\moz\moz-image-region.html" />
-    <None Include="..\toast\mdn\moz\moz-last-node.html" />
-    <None Include="..\toast\mdn\moz\moz-list-bullet.html" />
-    <None Include="..\toast\mdn\moz\moz-list-number.html" />
-    <None Include="..\toast\mdn\moz\moz-loading.html" />
-    <None Include="..\toast\mdn\moz\moz-locale-dir.html" />
-    <None Include="..\toast\mdn\moz\moz-meter-bar.html" />
-    <None Include="..\toast\mdn\moz\moz-orient.html" />
-    <None Include="..\toast\mdn\moz\moz-outline-radius-1.html" />
-    <None Include="..\toast\mdn\moz\moz-outline-radius-2.html" />
-    <None Include="..\toast\mdn\moz\moz-outline-radius-3.html" />
-    <None Include="..\toast\mdn\moz\moz-progress-bar.html" />
-    <None Include="..\toast\mdn\moz\moz-range-progress.html" />
-    <None Include="..\toast\mdn\moz\moz-range-thumb.html" />
-    <None Include="..\toast\mdn\moz\moz-range-track.html" />
-    <None Include="..\toast\mdn\moz\moz-text-blink.html" />
-    <None Include="..\toast\mdn\moz\moz-user-focus.html" />
-    <None Include="..\toast\mdn\moz\moz-user-input.html" />
-    <None Include="..\toast\mdn\moz\moz-window-dragging.html" />
-    <None Include="..\toast\mdn\moz\moz-window-shadow.html" />
+    <None Include="..\toast\mdn\moz-property\index.html" />
+    <None Include="..\toast\mdn\moz-property\mdn.conf" />
+    <None Include="..\toast\mdn\moz-property\mdn.spec" />
+    <None Include="..\toast\mdn\moz-property\moz-broken.html" />
+    <None Include="..\toast\mdn\moz-property\moz-colour-swatch.html" />
+    <None Include="..\toast\mdn\moz-property\moz-device-pixel-ratio.html" />
+    <None Include="..\toast\mdn\moz-property\moz-drag-over.html" />
+    <None Include="..\toast\mdn\moz-property\moz-first-node.html" />
+    <None Include="..\toast\mdn\moz-property\moz-float-edge.html" />
+    <None Include="..\toast\mdn\moz-property\moz-focus-inner.html" />
+    <None Include="..\toast\mdn\moz-property\moz-force-broken-image-icon.html" />
+    <None Include="..\toast\mdn\moz-property\moz-image-rect.html" />
+    <None Include="..\toast\mdn\moz-property\moz-image-region.html" />
+    <None Include="..\toast\mdn\moz-property\moz-last-node.html" />
+    <None Include="..\toast\mdn\moz-property\moz-list-bullet.html" />
+    <None Include="..\toast\mdn\moz-property\moz-list-number.html" />
+    <None Include="..\toast\mdn\moz-property\moz-loading.html" />
+    <None Include="..\toast\mdn\moz-property\moz-locale-dir.html" />
+    <None Include="..\toast\mdn\moz-property\moz-meter-bar.html" />
+    <None Include="..\toast\mdn\moz-property\moz-orient.html" />
+    <None Include="..\toast\mdn\moz-property\moz-outline-radius-1.html" />
+    <None Include="..\toast\mdn\moz-property\moz-outline-radius-2.html" />
+    <None Include="..\toast\mdn\moz-property\moz-outline-radius-3.html" />
+    <None Include="..\toast\mdn\moz-property\moz-progress-bar.html" />
+    <None Include="..\toast\mdn\moz-property\moz-range-progress.html" />
+    <None Include="..\toast\mdn\moz-property\moz-range-thumb.html" />
+    <None Include="..\toast\mdn\moz-property\moz-range-track.html" />
+    <None Include="..\toast\mdn\moz-property\moz-text-blink.html" />
+    <None Include="..\toast\mdn\moz-property\moz-user-focus.html" />
+    <None Include="..\toast\mdn\moz-property\moz-user-input.html" />
+    <None Include="..\toast\mdn\moz-property\moz-window-dragging.html" />
+    <None Include="..\toast\mdn\moz-property\moz-window-shadow.html" />
+    <None Include="..\toast\mdn\moz-pseudo-class\index.html" />
+    <None Include="..\toast\mdn\moz-pseudo-class\mdn.conf" />
+    <None Include="..\toast\mdn\moz-pseudo-class\mdn.spec" />
+    <None Include="..\toast\mdn\moz-pseudo-class\moz-broken.html" />
+    <None Include="..\toast\mdn\moz-pseudo-class\moz-drag-over.html" />
+    <None Include="..\toast\mdn\moz-pseudo-class\moz-first-node.html" />
+    <None Include="..\toast\mdn\moz-pseudo-class\moz-handler-blocked.html" />
+    <None Include="..\toast\mdn\moz-pseudo-class\moz-handler-crashed.html" />
+    <None Include="..\toast\mdn\moz-pseudo-class\moz-handler-disabled.html" />
+    <None Include="..\toast\mdn\moz-pseudo-class\moz-last-node.html" />
+    <None Include="..\toast\mdn\moz-pseudo-class\moz-loading.html" />
+    <None Include="..\toast\mdn\moz-pseudo-class\moz-locale-dir-ltr.html" />
+    <None Include="..\toast\mdn\moz-pseudo-class\moz-locale-dir-rtl.html" />
+    <None Include="..\toast\mdn\moz-pseudo-class\moz-only-whitespace.html" />
+    <None Include="..\toast\mdn\moz-pseudo-class\moz-submit-invalid.html" />
+    <None Include="..\toast\mdn\moz-pseudo-class\moz-suppressed.html" />
+    <None Include="..\toast\mdn\moz-pseudo-class\moz-user-disabled.html" />
+    <None Include="..\toast\mdn\moz-pseudo-class\moz-window-inactive.html" />
+    <None Include="..\toast\mdn\moz-pseudo-element\index.html" />
+    <None Include="..\toast\mdn\moz-pseudo-element\mdn.conf" />
+    <None Include="..\toast\mdn\moz-pseudo-element\mdn.spec" />
+    <None Include="..\toast\mdn\moz-pseudo-element\moz-colour-swatch.html" />
+    <None Include="..\toast\mdn\moz-pseudo-element\moz-focus-inner.html" />
+    <None Include="..\toast\mdn\moz-pseudo-element\moz-list-bullet.html" />
+    <None Include="..\toast\mdn\moz-pseudo-element\moz-list-number.html" />
+    <None Include="..\toast\mdn\moz-pseudo-element\moz-meter-bar.html" />
+    <None Include="..\toast\mdn\moz-pseudo-element\moz-progress-bar.html" />
+    <None Include="..\toast\mdn\moz-pseudo-element\moz-range-progress.html" />
+    <None Include="..\toast\mdn\moz-pseudo-element\moz-range-thumb.html" />
+    <None Include="..\toast\mdn\moz-pseudo-element\moz-range-track.html" />
+    <None Include="..\toast\mdn\nth\index.html" />
+    <None Include="..\toast\mdn\nth\mdn.conf" />
+    <None Include="..\toast\mdn\nth\mdn.spec" />
+    <None Include="..\toast\mdn\nth\nth-child.html" />
+    <None Include="..\toast\mdn\nth\nth-last-child.html" />
+    <None Include="..\toast\mdn\nth\nth-last-of-type.html" />
+    <None Include="..\toast\mdn\nth\nth-of-type.html" />
     <None Include="..\toast\mdn\object\index.html" />
     <None Include="..\toast\mdn\object\mdn.conf" />
     <None Include="..\toast\mdn\object\mdn.spec" />
@@ -13908,6 +14228,96 @@
     <None Include="..\toast\mdn\property\y.html" />
     <None Include="..\toast\mdn\property\z-index.html" />
     <None Include="..\toast\mdn\property\zoom.html" />
+    <None Include="..\toast\mdn\pseudo-class\any-link.html" />
+    <None Include="..\toast\mdn\pseudo-class\autofill.html" />
+    <None Include="..\toast\mdn\pseudo-class\blank.html" />
+    <None Include="..\toast\mdn\pseudo-class\buffering.html" />
+    <None Include="..\toast\mdn\pseudo-class\checked.html" />
+    <None Include="..\toast\mdn\pseudo-class\current.html" />
+    <None Include="..\toast\mdn\pseudo-class\default.html" />
+    <None Include="..\toast\mdn\pseudo-class\defined.html" />
+    <None Include="..\toast\mdn\pseudo-class\dir.html" />
+    <None Include="..\toast\mdn\pseudo-class\disabled.html" />
+    <None Include="..\toast\mdn\pseudo-class\empty.html" />
+    <None Include="..\toast\mdn\pseudo-class\enabled.html" />
+    <None Include="..\toast\mdn\pseudo-class\fullscreen.html" />
+    <None Include="..\toast\mdn\pseudo-class\future.html" />
+    <None Include="..\toast\mdn\pseudo-class\has-slotted.html" />
+    <None Include="..\toast\mdn\pseudo-class\has.html" />
+    <None Include="..\toast\mdn\pseudo-class\heading.html" />
+    <None Include="..\toast\mdn\pseudo-class\host-context.html" />
+    <None Include="..\toast\mdn\pseudo-class\host.html" />
+    <None Include="..\toast\mdn\pseudo-class\hover.html" />
+    <None Include="..\toast\mdn\pseudo-class\in-range.html" />
+    <None Include="..\toast\mdn\pseudo-class\indeterminate.html" />
+    <None Include="..\toast\mdn\pseudo-class\index.html" />
+    <None Include="..\toast\mdn\pseudo-class\interest-source.html" />
+    <None Include="..\toast\mdn\pseudo-class\interest-target.html" />
+    <None Include="..\toast\mdn\pseudo-class\invalid.html" />
+    <None Include="..\toast\mdn\pseudo-class\is.html" />
+    <None Include="..\toast\mdn\pseudo-class\lang.html" />
+    <None Include="..\toast\mdn\pseudo-class\last-child.html" />
+    <None Include="..\toast\mdn\pseudo-class\last-of-type.html" />
+    <None Include="..\toast\mdn\pseudo-class\left.html" />
+    <None Include="..\toast\mdn\pseudo-class\link.html" />
+    <None Include="..\toast\mdn\pseudo-class\local-link.html" />
+    <None Include="..\toast\mdn\pseudo-class\mdn.conf" />
+    <None Include="..\toast\mdn\pseudo-class\mdn.spec" />
+    <None Include="..\toast\mdn\pseudo-class\modal.html" />
+    <None Include="..\toast\mdn\pseudo-class\muted.html" />
+    <None Include="..\toast\mdn\pseudo-class\not.html" />
+    <None Include="..\toast\mdn\pseudo-class\only-child.html" />
+    <None Include="..\toast\mdn\pseudo-class\only-of-type.html" />
+    <None Include="..\toast\mdn\pseudo-class\open.html" />
+    <None Include="..\toast\mdn\pseudo-class\optional.html" />
+    <None Include="..\toast\mdn\pseudo-class\out-of-range.html" />
+    <None Include="..\toast\mdn\pseudo-class\past.html" />
+    <None Include="..\toast\mdn\pseudo-class\paused.html" />
+    <None Include="..\toast\mdn\pseudo-class\picture-in-picture.html" />
+    <None Include="..\toast\mdn\pseudo-class\placeholder-shown.html" />
+    <None Include="..\toast\mdn\pseudo-class\playing.html" />
+    <None Include="..\toast\mdn\pseudo-class\popover-open.html" />
+    <None Include="..\toast\mdn\pseudo-class\read-only.html" />
+    <None Include="..\toast\mdn\pseudo-class\read-write.html" />
+    <None Include="..\toast\mdn\pseudo-class\required.html" />
+    <None Include="..\toast\mdn\pseudo-class\right.html" />
+    <None Include="..\toast\mdn\pseudo-class\root.html" />
+    <None Include="..\toast\mdn\pseudo-class\scope.html" />
+    <None Include="..\toast\mdn\pseudo-class\seeking.html" />
+    <None Include="..\toast\mdn\pseudo-class\stalled.html" />
+    <None Include="..\toast\mdn\pseudo-class\state.html" />
+    <None Include="..\toast\mdn\pseudo-class\subtitles.vtt" />
+    <None Include="..\toast\mdn\pseudo-class\user-invalid.html" />
+    <None Include="..\toast\mdn\pseudo-class\user-valid.html" />
+    <None Include="..\toast\mdn\pseudo-class\valid.html" />
+    <None Include="..\toast\mdn\pseudo-class\visited.html" />
+    <None Include="..\toast\mdn\pseudo-class\volume-locked.html" />
+    <None Include="..\toast\mdn\pseudo-class\where.html" />
+    <None Include="..\toast\mdn\pseudo-element\backdrop.html" />
+    <None Include="..\toast\mdn\pseudo-element\before.html" />
+    <None Include="..\toast\mdn\pseudo-element\checkmark.html" />
+    <None Include="..\toast\mdn\pseudo-element\column.html" />
+    <None Include="..\toast\mdn\pseudo-element\cue.html" />
+    <None Include="..\toast\mdn\pseudo-element\details-content.html" />
+    <None Include="..\toast\mdn\pseudo-element\file-selector-button.html" />
+    <None Include="..\toast\mdn\pseudo-element\first-letter.html" />
+    <None Include="..\toast\mdn\pseudo-element\first-line.html" />
+    <None Include="..\toast\mdn\pseudo-element\grammar-error.html" />
+    <None Include="..\toast\mdn\pseudo-element\highlight.html" />
+    <None Include="..\toast\mdn\pseudo-element\index.html" />
+    <None Include="..\toast\mdn\pseudo-element\marker.html" />
+    <None Include="..\toast\mdn\pseudo-element\mdn.conf" />
+    <None Include="..\toast\mdn\pseudo-element\mdn.spec" />
+    <None Include="..\toast\mdn\pseudo-element\after.html" />
+    <None Include="..\toast\mdn\pseudo-element\part.html" />
+    <None Include="..\toast\mdn\pseudo-element\picker-icon.html" />
+    <None Include="..\toast\mdn\pseudo-element\picker.html" />
+    <None Include="..\toast\mdn\pseudo-element\placeholder.html" />
+    <None Include="..\toast\mdn\pseudo-element\search-text.html" />
+    <None Include="..\toast\mdn\pseudo-element\selection.html" />
+    <None Include="..\toast\mdn\pseudo-element\slotted.html" />
+    <None Include="..\toast\mdn\pseudo-element\spelling-error.html" />
+    <None Include="..\toast\mdn\pseudo-element\target-text.html" />
     <None Include="..\toast\mdn\rel\index.html" />
     <None Include="..\toast\mdn\rel\mdn.conf" />
     <None Include="..\toast\mdn\rel\mdn.spec" />
@@ -13928,47 +14338,65 @@
     <None Include="..\toast\mdn\ruby\ruby-align.html" />
     <None Include="..\toast\mdn\ruby\ruby-overhang.html" />
     <None Include="..\toast\mdn\ruby\ruby-position.html" />
+    <None Include="..\toast\mdn\scroll-property\index.html" />
+    <None Include="..\toast\mdn\scroll-property\mdn.conf" />
+    <None Include="..\toast\mdn\scroll-property\mdn.spec" />
+    <None Include="..\toast\mdn\scroll-property\scroll-behaviour.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-initial-target.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-margin-block-end.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-margin-block-start.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-margin-block.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-margin-bottom.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-margin-inline-end.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-margin-inline-start.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-margin-inline.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-margin-left.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-margin-right.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-margin-top.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-margin.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-marker-group.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-padding-block-end.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-padding-block-start.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-padding-block.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-padding-bottom.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-padding-inline-end.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-padding-inline-start.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-padding-inline.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-padding-left.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-padding-right.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-padding-top.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-padding.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-snap-align.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-snap-stop.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-snap-type.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-target-group.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-timeline-axis.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-timeline-name.html" />
+    <None Include="..\toast\mdn\scroll-property\scroll-timeline.html" />
+    <None Include="..\toast\mdn\scroll-pseudo-element\index.html" />
+    <None Include="..\toast\mdn\scroll-pseudo-element\mdn.conf" />
+    <None Include="..\toast\mdn\scroll-pseudo-element\mdn.spec" />
+    <None Include="..\toast\mdn\scroll-pseudo-element\scroll-button.html" />
+    <None Include="..\toast\mdn\scroll-pseudo-element\scroll-marker-group.html" />
+    <None Include="..\toast\mdn\scroll-pseudo-element\scroll-marker.html" />
     <None Include="..\toast\mdn\scrollbar\index.html" />
     <None Include="..\toast\mdn\scrollbar\mdn.conf" />
     <None Include="..\toast\mdn\scrollbar\mdn.spec" />
     <None Include="..\toast\mdn\scrollbar\scrollbar-colour.html" />
     <None Include="..\toast\mdn\scrollbar\scrollbar-gutter.html" />
     <None Include="..\toast\mdn\scrollbar\scrollbar-width.html" />
-    <None Include="..\toast\mdn\scroll\index.html" />
-    <None Include="..\toast\mdn\scroll\mdn.conf" />
-    <None Include="..\toast\mdn\scroll\mdn.spec" />
-    <None Include="..\toast\mdn\scroll\scroll-behaviour.html" />
-    <None Include="..\toast\mdn\scroll\scroll-initial-target.html" />
-    <None Include="..\toast\mdn\scroll\scroll-margin-block-end.html" />
-    <None Include="..\toast\mdn\scroll\scroll-margin-block-start.html" />
-    <None Include="..\toast\mdn\scroll\scroll-margin-block.html" />
-    <None Include="..\toast\mdn\scroll\scroll-margin-bottom.html" />
-    <None Include="..\toast\mdn\scroll\scroll-margin-inline-end.html" />
-    <None Include="..\toast\mdn\scroll\scroll-margin-inline-start.html" />
-    <None Include="..\toast\mdn\scroll\scroll-margin-inline.html" />
-    <None Include="..\toast\mdn\scroll\scroll-margin-left.html" />
-    <None Include="..\toast\mdn\scroll\scroll-margin-right.html" />
-    <None Include="..\toast\mdn\scroll\scroll-margin-top.html" />
-    <None Include="..\toast\mdn\scroll\scroll-margin.html" />
-    <None Include="..\toast\mdn\scroll\scroll-marker-group.html" />
-    <None Include="..\toast\mdn\scroll\scroll-padding-block-end.html" />
-    <None Include="..\toast\mdn\scroll\scroll-padding-block-start.html" />
-    <None Include="..\toast\mdn\scroll\scroll-padding-block.html" />
-    <None Include="..\toast\mdn\scroll\scroll-padding-bottom.html" />
-    <None Include="..\toast\mdn\scroll\scroll-padding-inline-end.html" />
-    <None Include="..\toast\mdn\scroll\scroll-padding-inline-start.html" />
-    <None Include="..\toast\mdn\scroll\scroll-padding-inline.html" />
-    <None Include="..\toast\mdn\scroll\scroll-padding-left.html" />
-    <None Include="..\toast\mdn\scroll\scroll-padding-right.html" />
-    <None Include="..\toast\mdn\scroll\scroll-padding-top.html" />
-    <None Include="..\toast\mdn\scroll\scroll-padding.html" />
-    <None Include="..\toast\mdn\scroll\scroll-snap-stop.html" />
-    <None Include="..\toast\mdn\scroll\scroll-snap-type.html" />
-    <None Include="..\toast\mdn\scroll\scroll-snap-align.html" />
-    <None Include="..\toast\mdn\scroll\scroll-target-group.html" />
-    <None Include="..\toast\mdn\scroll\scroll-timeline-axis.html" />
-    <None Include="..\toast\mdn\scroll\scroll-timeline-name.html" />
-    <None Include="..\toast\mdn\scroll\scroll-timeline.html" />
+    <None Include="..\toast\mdn\selector\ampersand.html" />
+    <None Include="..\toast\mdn\selector\attribute.html" />
+    <None Include="..\toast\mdn\selector\class.html" />
+    <None Include="..\toast\mdn\selector\id.html" />
+    <None Include="..\toast\mdn\selector\index.html" />
+    <None Include="..\toast\mdn\selector\keyframe.html" />
+    <None Include="..\toast\mdn\selector\mdn.conf" />
+    <None Include="..\toast\mdn\selector\mdn.spec" />
+    <None Include="..\toast\mdn\selector\namespace.html" />
+    <None Include="..\toast\mdn\selector\selector.html" />
+    <None Include="..\toast\mdn\selector\type.html" />
+    <None Include="..\toast\mdn\selector\universal.html" />
     <None Include="..\toast\mdn\shape\index.html" />
     <None Include="..\toast\mdn\shape\mdn.conf" />
     <None Include="..\toast\mdn\shape\mdn.spec" />
@@ -13987,6 +14415,13 @@
     <None Include="..\toast\mdn\stroke\stroke-opacity.html" />
     <None Include="..\toast\mdn\stroke\stroke-width.html" />
     <None Include="..\toast\mdn\stroke\stroke.html" />
+    <None Include="..\toast\mdn\target\index.html" />
+    <None Include="..\toast\mdn\target\mdn.conf" />
+    <None Include="..\toast\mdn\target\mdn.spec" />
+    <None Include="..\toast\mdn\target\target-after.html" />
+    <None Include="..\toast\mdn\target\target-before.html" />
+    <None Include="..\toast\mdn\target\target-current.html" />
+    <None Include="..\toast\mdn\target\target.html" />
     <None Include="..\toast\mdn\text\index.html" />
     <None Include="..\toast\mdn\text\mdn.conf" />
     <None Include="..\toast\mdn\text\mdn.spec" />
@@ -14040,6 +14475,72 @@
     <None Include="..\toast\mdn\transition\transition-property.html" />
     <None Include="..\toast\mdn\transition\transition-timing-function.html" />
     <None Include="..\toast\mdn\transition\transition.html" />
+    <None Include="..\toast\mdn\types\absolute-size.html" />
+    <None Include="..\toast\mdn\types\alpha-value.html" />
+    <None Include="..\toast\mdn\types\angle-percentage.html" />
+    <None Include="..\toast\mdn\types\angle.html" />
+    <None Include="..\toast\mdn\types\axis.html" />
+    <None Include="..\toast\mdn\types\basic-shape.html" />
+    <None Include="..\toast\mdn\types\baseline-position.html" />
+    <None Include="..\toast\mdn\types\blend-mode.html" />
+    <None Include="..\toast\mdn\types\box-edge.html" />
+    <None Include="..\toast\mdn\types\calc-keyword.html" />
+    <None Include="..\toast\mdn\types\calc-sum.html" />
+    <None Include="..\toast\mdn\types\colour-interpolation-method.html" />
+    <None Include="..\toast\mdn\types\colour.html" />
+    <None Include="..\toast\mdn\types\content-distribution.html" />
+    <None Include="..\toast\mdn\types\content-position.html" />
+    <None Include="..\toast\mdn\types\corner-shape-value.html" />
+    <None Include="..\toast\mdn\types\custom-ident.html" />
+    <None Include="..\toast\mdn\types\dashed-function.html" />
+    <None Include="..\toast\mdn\types\dashed-ident.html" />
+    <None Include="..\toast\mdn\types\dimension.html" />
+    <None Include="..\toast\mdn\types\display-box.html" />
+    <None Include="..\toast\mdn\types\display-inside.html" />
+    <None Include="..\toast\mdn\types\display-internal.html" />
+    <None Include="..\toast\mdn\types\display-legacy.html" />
+    <None Include="..\toast\mdn\types\display-listitem.html" />
+    <None Include="..\toast\mdn\types\display-outside.html" />
+    <None Include="..\toast\mdn\types\easing-function.html" />
+    <None Include="..\toast\mdn\types\filter-function.html" />
+    <None Include="..\toast\mdn\types\flex.html" />
+    <None Include="..\toast\mdn\types\frequency-percentage.html" />
+    <None Include="..\toast\mdn\types\frequency.html" />
+    <None Include="..\toast\mdn\types\generic-family.html" />
+    <None Include="..\toast\mdn\types\gradient.html" />
+    <None Include="..\toast\mdn\types\hex-colour.html" />
+    <None Include="..\toast\mdn\types\hue-interpolation-method.html" />
+    <None Include="..\toast\mdn\types\hue.html" />
+    <None Include="..\toast\mdn\types\ident.html" />
+    <None Include="..\toast\mdn\types\image.html" />
+    <None Include="..\toast\mdn\types\index.html" />
+    <None Include="..\toast\mdn\types\integer.html" />
+    <None Include="..\toast\mdn\types\length-percentage.html" />
+    <None Include="..\toast\mdn\types\length.html" />
+    <None Include="..\toast\mdn\types\line-style.html" />
+    <None Include="..\toast\mdn\types\mdn.conf" />
+    <None Include="..\toast\mdn\types\mdn.spec" />
+    <None Include="..\toast\mdn\types\named-colour.html" />
+    <None Include="..\toast\mdn\types\number.html" />
+    <None Include="..\toast\mdn\types\overflow-position.html" />
+    <None Include="..\toast\mdn\types\overflow.html" />
+    <None Include="..\toast\mdn\types\percentage.html" />
+    <None Include="..\toast\mdn\types\position-area.html" />
+    <None Include="..\toast\mdn\types\position.html" />
+    <None Include="..\toast\mdn\types\ratio.html" />
+    <None Include="..\toast\mdn\types\relative-size.html" />
+    <None Include="..\toast\mdn\types\resolution.html" />
+    <None Include="..\toast\mdn\types\rule-list.html" />
+    <None Include="..\toast\mdn\types\self-position.html" />
+    <None Include="..\toast\mdn\types\shape.html" />
+    <None Include="..\toast\mdn\types\string.html" />
+    <None Include="..\toast\mdn\types\system-colour.html" />
+    <None Include="..\toast\mdn\types\text-edge.html" />
+    <None Include="..\toast\mdn\types\time-percentage.html" />
+    <None Include="..\toast\mdn\types\time.html" />
+    <None Include="..\toast\mdn\types\timeline-range-name.html" />
+    <None Include="..\toast\mdn\types\transform-function.html" />
+    <None Include="..\toast\mdn\types\url.html" />
     <None Include="..\toast\mdn\type\index.html" />
     <None Include="..\toast\mdn\type\mdn.conf" />
     <None Include="..\toast\mdn\type\mdn.spec" />
@@ -14067,34 +14568,71 @@
     <None Include="..\toast\mdn\type\type-time.html" />
     <None Include="..\toast\mdn\type\type-url.html" />
     <None Include="..\toast\mdn\type\type-week.html" />
-    <None Include="..\toast\mdn\view\index.html" />
-    <None Include="..\toast\mdn\view\mdn.conf" />
-    <None Include="..\toast\mdn\view\mdn.spec" />
-    <None Include="..\toast\mdn\view\view-timeline-axis.html" />
-    <None Include="..\toast\mdn\view\view-timeline-inset.html" />
-    <None Include="..\toast\mdn\view\view-timeline-name.html" />
-    <None Include="..\toast\mdn\view\view-timeline.html" />
-    <None Include="..\toast\mdn\view\view-transition-class.html" />
-    <None Include="..\toast\mdn\view\view-transition-name.html" />
-    <None Include="..\toast\mdn\webkit\index.html" />
-    <None Include="..\toast\mdn\webkit\mdn.conf" />
-    <None Include="..\toast\mdn\webkit\mdn.spec" />
-    <None Include="..\toast\mdn\webkit\webkit-border-before.html" />
-    <None Include="..\toast\mdn\webkit\webkit-box-align.html" />
-    <None Include="..\toast\mdn\webkit\webkit-box-reflect.html" />
-    <None Include="..\toast\mdn\webkit\webkit-mask-box-image.html" />
-    <None Include="..\toast\mdn\webkit\webkit-mask-composite.html" />
-    <None Include="..\toast\mdn\webkit\webkit-mask-position-x.html" />
-    <None Include="..\toast\mdn\webkit\webkit-mask-position-y.html" />
-    <None Include="..\toast\mdn\webkit\webkit-mask-repeat-x.html" />
-    <None Include="..\toast\mdn\webkit\webkit-mask-repeat-y.html" />
-    <None Include="..\toast\mdn\webkit\webkit-tap-highlight-colour.html" />
-    <None Include="..\toast\mdn\webkit\webkit-text-fill-colour.html" />
-    <None Include="..\toast\mdn\webkit\webkit-text-security.html" />
-    <None Include="..\toast\mdn\webkit\webkit-text-stroke-colour.html" />
-    <None Include="..\toast\mdn\webkit\webkit-text-stroke-width.html" />
-    <None Include="..\toast\mdn\webkit\webkit-text-stroke.html" />
-    <None Include="..\toast\mdn\webkit\webkit-touch-callout.html" />
+    <None Include="..\toast\mdn\value\fit-content.html" />
+    <None Include="..\toast\mdn\value\index.html" />
+    <None Include="..\toast\mdn\value\inherit.html" />
+    <None Include="..\toast\mdn\value\initial.html" />
+    <None Include="..\toast\mdn\value\max-content.html" />
+    <None Include="..\toast\mdn\value\mdn.conf" />
+    <None Include="..\toast\mdn\value\mdn.spec" />
+    <None Include="..\toast\mdn\value\important.html" />
+    <None Include="..\toast\mdn\value\min-content.html" />
+    <None Include="..\toast\mdn\value\revert-layer.html" />
+    <None Include="..\toast\mdn\value\revert.html" />
+    <None Include="..\toast\mdn\value\unset.html" />
+    <None Include="..\toast\mdn\view-property\index.html" />
+    <None Include="..\toast\mdn\view-property\mdn.conf" />
+    <None Include="..\toast\mdn\view-property\mdn.spec" />
+    <None Include="..\toast\mdn\view-property\view-timeline-axis.html" />
+    <None Include="..\toast\mdn\view-property\view-timeline-inset.html" />
+    <None Include="..\toast\mdn\view-property\view-timeline-name.html" />
+    <None Include="..\toast\mdn\view-property\view-timeline.html" />
+    <None Include="..\toast\mdn\view-property\view-transition-class.html" />
+    <None Include="..\toast\mdn\view-property\view-transition-name.html" />
+    <None Include="..\toast\mdn\view-pseudo-element\index.html" />
+    <None Include="..\toast\mdn\view-pseudo-element\mdn.conf" />
+    <None Include="..\toast\mdn\view-pseudo-element\mdn.spec" />
+    <None Include="..\toast\mdn\view-pseudo-element\view-transition-group.html" />
+    <None Include="..\toast\mdn\view-pseudo-element\view-transition-image-pair.html" />
+    <None Include="..\toast\mdn\view-pseudo-element\view-transition-new.html" />
+    <None Include="..\toast\mdn\view-pseudo-element\view-transition-old.html" />
+    <None Include="..\toast\mdn\view-pseudo-element\view-transition.html" />
+    <None Include="..\toast\mdn\webkit-property\index.html" />
+    <None Include="..\toast\mdn\webkit-property\mdn.conf" />
+    <None Include="..\toast\mdn\webkit-property\mdn.spec" />
+    <None Include="..\toast\mdn\webkit-property\webkit-border-before.html" />
+    <None Include="..\toast\mdn\webkit-property\webkit-box-align.html" />
+    <None Include="..\toast\mdn\webkit-property\webkit-box-reflect.html" />
+    <None Include="..\toast\mdn\webkit-property\webkit-mask-box-image.html" />
+    <None Include="..\toast\mdn\webkit-property\webkit-mask-composite.html" />
+    <None Include="..\toast\mdn\webkit-property\webkit-mask-position-x.html" />
+    <None Include="..\toast\mdn\webkit-property\webkit-mask-position-y.html" />
+    <None Include="..\toast\mdn\webkit-property\webkit-mask-repeat-x.html" />
+    <None Include="..\toast\mdn\webkit-property\webkit-mask-repeat-y.html" />
+    <None Include="..\toast\mdn\webkit-property\webkit-tap-highlight-colour.html" />
+    <None Include="..\toast\mdn\webkit-property\webkit-text-fill-colour.html" />
+    <None Include="..\toast\mdn\webkit-property\webkit-text-security.html" />
+    <None Include="..\toast\mdn\webkit-property\webkit-text-stroke-colour.html" />
+    <None Include="..\toast\mdn\webkit-property\webkit-text-stroke-width.html" />
+    <None Include="..\toast\mdn\webkit-property\webkit-text-stroke.html" />
+    <None Include="..\toast\mdn\webkit-property\webkit-touch-callout.html" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\index.html" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\mdn.conf" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\mdn.spec" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\webkit-inner-spin-button.html" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\webkit-meter-bar.html" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\webkit-meter-even-less-good-value.html" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\webkit-meter-inner-element.html" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\webkit-meter-optimum-value.html" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\webkit-meter-suboptimum-value.html" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\webkit-progress-bar.html" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\webkit-progress-inner-element.html" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\webkit-progress-value.html" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\webkit-scrollbar.html" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\webkit-search-cancel-button.html" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\webkit-search-results-button.html" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\webkit-slider-runnable-track.html" />
+    <None Include="..\toast\mdn\webkit-pseudo-element\webkit-slider-thumb.html" />
     <None Include="..\toast\microdata\12\index.html" />
     <None Include="..\toast\microdata\12\schema.conf" />
     <None Include="..\toast\microdata\12\schema.spec" />
@@ -16629,12 +17167,15 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='LeakSeek|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='LeakSeek|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">true</ExcludedFromBuild>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -16642,12 +17183,15 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='LeakSeek|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='LeakSeek|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">true</ExcludedFromBuild>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -16679,8 +17223,18 @@
     <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <SpectreMitigation>Spectre</SpectreMitigation>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <SpectreMitigation>Spectre</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
@@ -16708,6 +17262,13 @@
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'" Label="Configuration">
+    <PlatformToolset>v145</PlatformToolset>
+    <PreferredToolArchitecture>arm64</PreferredToolArchitecture>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
@@ -16723,6 +17284,14 @@
     <PreferredToolArchitecture>Win32</PreferredToolArchitecture>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PreferredToolArchitecture>Win32</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
@@ -16756,10 +17325,19 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -16768,6 +17346,7 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'" Label="PropertySheets" />
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'" Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -16794,6 +17373,15 @@
     <IntDir>ssc26$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(SSL)\include;$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include</IncludePath>
+    <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(SSL)\ssl\Release\;$(SSL)\crypto\Release\</LibraryPath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <OutDir>$(SolutionDir)ssc26$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>ssc26$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(SSL)\include;$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(SSL)\ssl\Release\;$(SSL)\crypto\Release\</LibraryPath>
@@ -16829,6 +17417,13 @@
     <ExecutablePath>$(VC_ExecutablePath_x86);$(CommonExecutablePath)</ExecutablePath>
     <TargetName>$(ProjectName)-x86</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(SSL)\include;$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(ICU_ROOT)\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(SSL)\lib</LibraryPath>
+    <ExecutablePath>$(VC_ExecutablePath_x86);$(CommonExecutablePath)</ExecutablePath>
+    <TargetName>$(ProjectName)-x86</TargetName>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(SSL)\include;$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(BOOST)</IncludePath>
     <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(SSL)\ssl\Debug;$(SSL)\crypto\Debug\</LibraryPath>
@@ -16842,6 +17437,12 @@
     <IntDir>ssc26$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(SSL)\include;$(WindowsSDK_IncludePath);$(GSL)\include;$(BOOST)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(SSL)\ssl\Release;$(SSL)\crypto\Release</LibraryPath>
+    <OutDir>$(SolutionDir)ssc26$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>ssc26$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(SSL)\include;$(WindowsSDK_IncludePath);$(GSL)\include;$(BOOST)</IncludePath>
     <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(SSL)\ssl\Release;$(SSL)\crypto\Release</LibraryPath>
     <OutDir>$(SolutionDir)ssc26$(Platform)\$(Configuration)\</OutDir>
@@ -16868,7 +17469,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -16905,11 +17506,13 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <ControlFlowGuard>false</ControlFlowGuard>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <GuardEHContMetadata>true</GuardEHContMetadata>
+      <IntelJCCErratum>true</IntelJCCErratum>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -16956,12 +17559,57 @@
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
+      <GuardEHContMetadata>true</GuardEHContMetadata>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;ssl.lib;crypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <HeapReserveSize>33554432</HeapReserveSize>
+      <StackReserveSize>67108864</StackReserveSize>
+      <Profile>false</Profile>
+      <GenerateMapFile>false</GenerateMapFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
+    </PostBuildEvent>
+    <ResourceCompile>
+      <Culture>0x0009</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WINSPELL;BUILD_OS="win x64";COMMAND_LINE;NDEBUG;_CONSOLE;SIGNING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <IntelJCCErratum>true</IntelJCCErratum>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <Optimization>MinSpace</Optimization>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
+      <GuardEHContMetadata>false</GuardEHContMetadata>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;ssl.lib;crypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
@@ -17070,6 +17718,41 @@
       <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">
+    <ClCompile>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;COMMAND_LINE;WINSPELL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;ssl.lib;crypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateMapFile>true</GenerateMapFile>
+      <SubSystem>Console</SubSystem>
+      <HeapReserveSize>33554432</HeapReserveSize>
+      <StackReserveSize>67108864</StackReserveSize>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <Profile>true</Profile>
+      <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
@@ -17137,6 +17820,39 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WINSPELL;BUILD_OS="win Win32";COMMAND_LINE;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <IntelJCCErratum>true</IntelJCCErratum>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <Optimization>MinSpace</Optimization>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libcurl.lib;libcrypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <Profile>true</Profile>
+      <GenerateMapFile>true</GenerateMapFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>

@@ -128,6 +128,10 @@ void stats_t::mark_str (const e_gsstr gst, const ::std::string& s)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     p_ -> mark_str (gst, s); }
 
+void stats_t::merge (const categorical& cat)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> merge (cat); }
+/*
 void stats_t::merge_class (const smsid_t& s)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> merge_class (s); }
@@ -151,7 +155,7 @@ void stats_t::merge_element_id (const smsid_t& s)
 void stats_t::merge_font (const smsid_t& s)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> merge_font (s); }
-
+*/
 void stats_t::use_class (const ::std::string& s, const ::std::size_t n)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> use_class (s, n); }

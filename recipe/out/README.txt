@@ -1,1 +1,1 @@
-This directory is used to output test results.
+Used for test reports.

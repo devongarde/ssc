@@ -92,6 +92,7 @@ void init (nitpick& nits)
     PRESUME (lexical < int > :: cast (v.at (0)) == VERSION_MAJOR, __FILE__, __LINE__);
     PRESUME (lexical < int > :: cast (v.at (1)) == VERSION_MINOR, __FILE__, __LINE__);
     PRESUME (lexical < int > :: cast (v.at (2)) == VERSION_RELEASE, __FILE__, __LINE__);
+    output_init ();
     cache_init ();
     state_init ();
     nits_init ();

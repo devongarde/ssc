@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN unset tests</title>
+<style>
+.foo {
+  color: blue;
+}
+
+.bar {
+  color: green;
+}
+
+p {
+  color: red;
+}
+
+.bar p {
+  color: unset;
+}
+
+div {
+  border: 1px solid green;
+}
+
+p {
+  border: 1px solid red;
+}
+
+.bar p {
+  border-color: unset;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN unset Tests</h1>
+
+<p>This text is red.</p>
+<div class="foo">
+  <p>This text is also red.</p>
+</div>
+<div class="bar">
+  <p>This text is green (default inherited value).</p>
+</div>
+
+<p>This text has a red border.</p>
+<div>
+  <p>This text has a red border.</p>
+</div>
+<div class="bar">
+  <p>This text has a black border (initial default, not inherited).</p>
+</div>
+
+</body>
+</html>

@@ -1,11 +1,8 @@
 cmake_minimum_required (VERSION 3.24)
 set (FULLNAME "Static-Site-Checker")
-set (VER 0.2.28)
+set (VER 0.2.29)
 project (ssc VERSION ${VER} DESCRIPTION ${FULLNAME} LANGUAGES CXX HOMEPAGE_URL "https://dylanharris.org/ssc/")
 message (NOTICE "preparing " ${FULLNAME} " ${VER}" )
-
-# if using a non-thread safe version of SSL, add this compiler definition
-# CURL_SSL_NOT_THREADSAFE
 
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_INSTALL_MODE COPY)    # not that it works; despite the command COPY the sodding thing creates links rather than copying files
@@ -115,8 +112,9 @@ set (HEATERS
         ${H}/type/type.h ${H}/type/type_csp.h
         ${H}/url/fetch.h ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h
             ${H}/url/url_schemes.h ${H}/url/wacky.h
-        ${H}/utility/bigvector.h ${H}/utility/bitset.h ${H}/utility/byteorder.h ${H}/utility/cache.h ${H}/utility/common.h ${H}/utility/fileio.h
-            ${H}/utility/filesystem.h ${H}/utility/lexical.h ${H}/utility/list.h ${H}/utility/quote.h ${H}/utility/ssl.h ${H}/utility/tuple.h
+        ${H}/utility/bigvector.h ${H}/utility/bitset.h ${H}/utility/byteorder.h ${H}/utility/cache.h ${H}/utility/category.h ${H}/utility/common.h
+			${H}/utility/fileio.h ${H}/utility/filesystem.h ${H}/utility/lexical.h ${H}/utility/list.h ${H}/utility/quote.h ${H}/utility/ssl.h
+			${H}/utility/tuple.h
         ${H}/webpage/corpus.h ${H}/webpage/crosslink.h ${H}/webpage/directory.h ${H}/webpage/external.h ${H}/webpage/fileindex.h ${H}/webpage/headers.h
             ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/q.h ${H}/webpage/required.h ${H}/webpage/root.h ${H}/webpage/vtt.h
     )
@@ -148,7 +146,7 @@ set (SAUCE
 			${S}/css/value_types_css_f_3.cpp ${S}/css/value_types_css_fn_1.cpp ${S}/css/value_types_css_fn_2.cpp ${S}/css/value_types_css_g_h.cpp
 		    ${S}/css/value_types_css_i_1.cpp ${S}/css/value_types_css_i_2.cpp ${S}/css/value_types_css_j_k.cpp ${S}/css/value_types_css_l_1.cpp
 			${S}/css/value_types_css_l_2.cpp ${S}/css/value_types_css_l_3.cpp ${S}/css/value_types_css_m_n.cpp ${S}/css/value_types_css_o.cpp
-			${S}/css/value_types_css_p_1.cpp ${S}/css/value_types_css_p_q.cpp ${S}/css/value_types_css_r.cpp ${S}/css/value_types_css_s_1.cpp
+			${S}/css/value_types_css_p_1.cpp ${S}/css/value_types_css_p_q.cpp ${S}/css/value_types_css_r_1.cpp ${S}/css/value_types_css_r_2.cpp ${S}/css/value_types_css_s_1.cpp
 			${S}/css/value_types_css_s_2.cpp ${S}/css/value_types_css_s_3.cpp ${S}/css/value_types_css_t_1.cpp ${S}/css/value_types_css_t_2.cpp
 			${S}/css/value_types_css_t_3.cpp ${S}/css/value_types_css_t_4.cpp ${S}/css/value_types_css_u.cpp ${S}/css/value_types_css_v.cpp
 			${S}/css/value_types_css_w_z.cpp ${S}/css/value_types_d_1.cpp ${S}/css/value_types_d_2.cpp
@@ -196,8 +194,8 @@ set (SAUCE
         ${S}/type/type.cpp ${S}/type/type_csp.cpp
         ${S}/url/fetch.cpp ${S}/url/url.cpp ${S}/url/url_parameters.cpp ${S}/url/url_protocol.cpp ${S}/url/url_sanitise.cpp ${S}/url/url_scheme.cpp
             ${S}/url/wacky.cpp
-        ${S}/utility/byteorder.cpp ${S}/utility/cache.cpp ${S}/utility/common.cpp ${S}/utility/fileio.cpp ${S}/utility/filesystem.cpp ${S}/utility/list.cpp
-            ${S}/utility/quote.cpp
+        ${S}/utility/byteorder.cpp ${S}/utility/cache.cpp ${S}/utility/category.cpp ${S}/utility/common.cpp ${S}/utility/fileio.cpp ${S}/utility/filesystem.cpp
+			${S}/utility/list.cpp ${S}/utility/quote.cpp
         ${S}/webpage/corpus.cpp ${S}/webpage/crosslink.cpp ${S}/webpage/directory.cpp ${S}/webpage/external.cpp ${S}/webpage/fileindex.cpp
             ${S}/webpage/headers.cpp ${S}/webpage/id.cpp ${S}/webpage/page.cpp ${S}/webpage/q.cpp ${S}/webpage/required.cpp ${S}/webpage/root.cpp
             ${S}/webpage/vtt.cpp
@@ -245,7 +243,7 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "OpenBSD")
     set (NOICU "1")
     set (Boost_USE_STATIC_LIBS ON)
     if (${CMAKE_SYSTEM_VERSION} VERSION_GREATER "7.8")
-        message (FATAL_ERROR "apologies, but ssc has only been tested against OpenBSD 7.8 and earlier")
+        message (FATAL_ERROR "apologies, but ssc has only been tested against OpenBSD versions 6.9 to 7.8")
     elseif (${CMAKE_SYSTEM_VERSION} VERSION_GREATER_EQUAL "7.0")
         set (CDEF_PROD ${CDEF_PROD} HUNSPELL) 
     elseif (${CMAKE_SYSTEM_VERSION} MATCHES "6.9")
@@ -261,24 +259,11 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "OpenBSD")
         set (NJ "1")
         set (NS "1")
     endif ()
-elseif (${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD") # needs updating
-    set (DOCU "${DD}/share/doc/ssc")
-    set (D "${DD}/bin")
-    set (INC ${INCS})
-    set (LD ${LIBS})
-    set (CDEF_PROD ${CDEF_PROD} FBSD NO_PCF_STR)
-    set (NO_CURL "1")
-    set (NJ "1")
-    set (NS "1")
-    set (NOX "1")
-    if (${CMAKE_SYSTEM_VERSION} VERSION_LESS "12.3")
-      message (WARNING "untested version of FreeBSD")
-    endif ()
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     if (DEFINED FLAVOUR)
         SET (LSB_RELEASE_ID_SHORT "${FLAVOUR}")
     elseif (DEFINED ENV{FLAVOUR})
-        SET (LSB_RELEASE_ID_SHORT ENV{FLAVOUR})
+        SET (LSB_RELEASE_ID_SHORT $ENV{FLAVOUR})
     else ()
         find_program (LSB_RELEASE lsb_release)
         execute_process (COMMAND ${LSB_RELEASE} -is
@@ -288,7 +273,7 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     if (DEFINED FLAVOUR_VER)
         SET (LSB_RELEASE_VER_SHORT "${FLAVOUR_VER}")
     elseif (DEFINED ENV{FLAVOUR_VER})
-        SET (LSB_RELEASE_VER_SHORT ENV{FLAVOUR_VER})
+        SET (LSB_RELEASE_VER_SHORT $ENV{FLAVOUR_VER})
     else ()
         find_program (LSB_RELEASE lsb_release)
         execute_process (COMMAND ${LSB_RELEASE} -rs
@@ -298,7 +283,7 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     set (CDEF_PROD ${CDEF_PROD} OMG BOOST_BIND_GLOBAL_PLACEHOLDERS)
     if ("${LSB_RELEASE_ID_SHORT}" STREQUAL "")
         set (TARGET_OS "Linux")
-        message (WARNING "Unknown flavour of Linux; please install lsb_release or specify FLAVOUR and FLAVOUR_VER")
+        message (WARNING "Unknown flavour of Linux; please install lsb_release, or specify FLAVOUR and FLAVOUR_VER")
      else ()
         set (TARGET_OS "${LSB_RELEASE_ID_SHORT} ${LSB_RELEASE_VER_SHORT}")
     endif ()
@@ -331,6 +316,8 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     if (${CMAKE_SYSTEM} MATCHES "Darwin-25")
         set (TARGET_OS "Tahoe")
         set (CDEF_PROD ${CDEF_PROD} CLEAN_SHAREDPTR_ARRAY ORDERED)
+		set (BV "1.89") # CMake on MacOS Tacky annoyingly barfs on old versions of boost::system
+		set (NO_BOO_SYS "1")
         if (${ARCHITECTURE} MATCHES "x86_64")
             set (NJ "1")
         endif ()
@@ -364,7 +351,7 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         set (NJ "1")
         set (NS "1")
     elseif (${CMAKE_SYSTEM_VERSION} VERSION_LESS_EQUAL "17")
-        message (FATAL_ERROR "apologies, but ssc requires macOS Mojave or better")
+        message (FATAL_ERROR "apologies, but ssc requires one of MacOS versions Tahoe to Mojave")
     else ()
         message (WARNING "unknown, untested MacOS")
         set (TARGET_OS "Darwin?")
@@ -400,18 +387,6 @@ if (${NJ} MATCHES "1")
   set (CDEF_ALL ${CDEF_ALL} NO_JSONIC)
 endif ()
 
-set (Boost_USE_MULTI_THREADED ON)
-
-if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
-    set (Boost_USE_DEBUG_LIBS ON)
-    set (Boost_USE_DEBUG_RUNTIME ON)
-else ()
-    set (Boost_USE_DEBUG_LIBS OFF)
-    set (Boost_USE_DEBUG_RUNTIME OFF)
-endif ()
-
-set (BOOLIB atomic container date_time filesystem chrono log program_options regex system thread)
-
 if (${NOICU} MATCHES "1")
     set (CDEF_ALL ${CDEF_ALL} NOICU)
 endif ()
@@ -422,8 +397,34 @@ else ()
     set (BOOLIB ${BOOLIB} json)
 endif ()
 
-find_package (Boost CONFIG ${BV} REQUIRED COMPONENTS system ${BOOLIB})
-set (LLPROD ${LLPROD} Boost::chrono Boost::date_time Boost::program_options Boost::regex Boost::system Boost::thread)
+set (Boost_USE_MULTI_THREADED ON)
+
+if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
+    set (Boost_USE_DEBUG_LIBS ON)
+    set (Boost_USE_DEBUG_RUNTIME ON)
+else ()
+    set (Boost_USE_DEBUG_LIBS OFF)
+    set (Boost_USE_DEBUG_RUNTIME OFF)
+endif ()
+
+if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
+    set (Boost_USE_DEBUG_LIBS ON)
+    set (Boost_USE_DEBUG_RUNTIME ON)
+else ()
+    set (Boost_USE_DEBUG_LIBS OFF)
+    set (Boost_USE_DEBUG_RUNTIME OFF)
+endif ()
+
+if (${NO_BOO_SYS} MATCHES "1")
+    set (BOOLIB atomic chrono container date_time filesystem json log program_options regex thread)
+    find_package (Boost CONFIG ${BV} REQUIRED COMPONENTS ${BOOLIB})
+    set (LLPROD ${LLPROD} Boost::chrono Boost::date_time Boost::json Boost::program_options Boost::regex Boost::thread)
+else ()
+    set (BOOLIB atomic chrono container date_time filesystem json log program_options regex system thread)
+    find_package (Boost CONFIG ${BV} REQUIRED COMPONENTS system ${BOOLIB})
+    set (LLPROD ${LLPROD} Boost::chrono Boost::date_time Boost::json Boost::program_options Boost::regex Boost::system Boost::thread)
+endif ()
+
 set (LLALL ${LLALL} Boost::filesystem pthread)
 
 if (${NJ} MATCHES "1")
@@ -431,7 +432,13 @@ else ()
     set (LLPROD ${LLPROD} Boost::json)
 endif ()
 
-message (DEBUG "Boost " ${Boost_VERSION_MAJOR}-${Boost_VERSION_MINOR} ", " ${Boost_INCLUDE_DIR} ", " ${Boost_INCLUDE_DIRS} ", " ${Boost_LIBRARY_DIR_RELEASE} ", " ${Boost_LIBRARY_DIRS} ", " ${Boost_LIBRARIES})
+if (DEFINED ENV{BOOST})
+   # bbug in findboost means it fails to record location of libraries
+   set (BOOST_LIBPATH $ENV{BOOST}lib)
+endif ()
+
+message (DEBUG "Boost " ${Boost_VERSION_MAJOR}-${Boost_VERSION_MINOR} ", " ${Boost_INCLUDE_DIR} ", " ${Boost_INCLUDE_DIRS} ", " ${Boost_LIBRARY_DIRS}
+                ", " ${Boost_LIBRARIES} ", " ${Boost_LIBRARY_DIR_RELEASE} ", " ${Boost_LIBRARY_DIR_DEBUG} ", " ${BOOST_LIBPATH} ".")
 
 if (${NOICU} MATCHES "1")
   message (VERBOSE "No ICU")
@@ -442,8 +449,9 @@ else ()
     else ()
         set (ICU_DEBUG OFF)
     endif ()
+    cmake_path (GET ICU_DT_LIBRARIES PARENT_PATH ICU_LIBRARY_DIR)
     message (DEBUG "ICU " ${ICU_VERSION} ", " ${ICU_INCLUDE_DIRS} ", " ${ICU_LIBRARIES}
-                    ", " ${ICU_DT_LIBRARIES} ", " ${ICU_I18N_LIBRARIES} ", " ${ICU_IO_LIBRARIES} ", " ${ICU_TU_LIBRARIES} ", " ${ICU_UC_LIBRARIES})
+                    ", " ${ICU_DT_LIBRARIES} ", " ${ICU_I18N_LIBRARIES} ", " ${ICU_IO_LIBRARIES} ", " ${ICU_TU_LIBRARIES} ", " ${ICU_UC_LIBRARIES} ", " ${ICU_LIBRARY_DIR} ".")
     set (LLPROD ${LLPROD} ${ICU_LIBRARIES})
     set (INC ${INC} ${ICU_INCLUDE_DIRS})
 endif ()
@@ -560,26 +568,14 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     )
 
     message (DEBUG ${LLALL} ", " ${LLPROD} ", " ${LLWAX} ", " ${LLGOOEY})
-
+ 
     # can't use FILE (...), it screws up symlinks
 
     add_custom_command (TARGET ${XAPP} POST_BUILD
-       COMMAND mkdir -p ${MCM} ${MCR}
+        COMMAND mkdir -p ${MCM} ${MCR}
         COMMAND cp -Lr ${R}/help.htb ${I}/${MCI} ${CMAKE_CURRENT_SOURCE_DIR}/README.txt ${CMAKE_CURRENT_SOURCE_DIR}/gen.txt ${CMAKE_CURRENT_SOURCE_DIR}/LICENCE.txt ${CMAKE_CURRENT_SOURCE_DIR}/LICENSE.txt ${CMAKE_CURRENT_SOURCE_DIR}/usage.txt ${MCR}
-        COMMAND cp -Lr ${wxWidgets_LIBRARY_DIRS}/libicu*dylib ${wxWidgets_LIBRARY_DIRS}/libwx*.dylib ${CURL_LIBS} ${Iconv_LIBRARIES} ${HUN} ${MCM}
+        COMMAND cp -Lr ${ICU_LIBRARY_DIR}/libicu*dylib ${wxWidgets_LIBRARY_DIRS}/libwx*.dylib ${BOOST_LIBPATH}/libboost*dylib ${Iconv_LIBRARIES} ${HUN} ${MCM}
     )
-
-    foreach (${BOOLIB})
-        if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
-            add_custom_command (TARGET ${XAPP} POST_BUILD
-                COMMAND cp -Lr ${wxWidgets_LIBRARY_DIRS}/libboost_${BL}*mt-d*${Boost_VERSION_MAJOR}_${Boost_VERSION_MINOR}*.dylib ${MCM}
-            )
-        else ()
-            add_custom_command (TARGET ${XAPP} POST_BUILD
-                COMMAND cp -Lr ${wxWidgets_LIBRARY_DIRS}/libboost_${BL}*mt-[ax]*${Boost_VERSION_MAJOR}_${Boost_VERSION_MINOR}*.dylib ${MCM}
-            )
-        endif ()
-    endforeach ()
 
     # vaguely based upon https://gist.github.com/SamuelMarks
     add_custom_command(

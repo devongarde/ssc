@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN @font-face tests</title>
+<style>
+@font-face {
+  font-family: "Trickster";
+  src:
+    local("Trickster"),
+    url("trickster-COLRv1.otf") format("opentype") tech(color-COLRv1),
+    url("trickster-outline.otf") format("opentype"),
+    url("trickster-outline.woff2") format("woff2");
+}
+
+/* naughty */
+.className {
+  @font-face {
+    font-family: "MyHelvetica";
+    src:
+      local("Helvetica Neue Bold"), local("HelveticaNeue-Bold"),
+      url("MgOpenModernaBold.woff2");
+    font-weight: bold;
+  }
+}
+
+@font-face {
+  font-family: "Bitstream Vera Serif Bold";
+  src: url("https://mdn.github.io/shared-assets/fonts/FiraSans-Regular.woff2");
+}
+
+body {
+  font-family: "Bitstream Vera Serif Bold", serif;
+}
+
+@font-face {
+  font-family: "MyHelvetica";
+  src:
+    local("Helvetica Neue Bold"), local("HelveticaNeue-Bold"),
+    url("MgOpenModernaBold.woff2");
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN @font-face Tests</h1>
+
+  This is Bitstream Vera Serif Bold.
+
+</body>
+</html>

@@ -348,13 +348,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H2_CSS_SELECTOR_3   0x0000000100000000  
 #define H2_CSS_SELECTOR_4   0x0000000200000000  
-#define H2_CSS_SELECTOR   ( H2_CSS_SELECTOR_3 | H2_CSS_SELECTOR_4 ) 
+#define H2_CSS_SELECTOR_34 ( H2_CSS_SELECTOR_3 | H2_CSS_SELECTOR_4 )  
+#define H2_CSS_SELECTOR_5   0x0000000400000000  
+#define H2_CSS_SELECTOR_45 ( H2_CSS_SELECTOR_4 | H2_CSS_SELECTOR_5 )  
+#define H2_CSS_SELECTOR   ( H2_CSS_SELECTOR_34 | H2_CSS_SELECTOR_5 ) 
 #define H2_CSS_SELECTOR_MASK H2_CSS_SELECTOR  
 
-#define H2_CSS_UI_3         0x0000000400000000  
-#define H2_CSS_UI_4         0x0000000800000000  
-#define H2_CSS_UI         ( H2_CSS_UI_3 | H2_CSS_UI_4 )  
-#define H2_CSS_UI_MASK      H2_CSS_UI 
+// bit
 
 #define H2_CSS_SVG_10       0x0000001000000000
 #define H2_CSS_SVG_11       0x0000002000000000
@@ -372,7 +372,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_SVG        ( H2_CSS_SVG_1 | H2_CSS_SVG_2 )
 #define H2_CSS_SVG_MASK     H2_CSS_SVG  
 
-// a couple of unused bits for SVG
+#define H2_CSS_UI_3         0x0000040000000000  
+#define H2_CSS_UI_4         0x0000080000000000  
+#define H2_CSS_UI         ( H2_CSS_UI_3 | H2_CSS_UI_4 )  
+#define H2_CSS_UI_MASK      H2_CSS_UI 
 
 #define H2_CSS_MEDIA_3      0x0000100000000000  
 #define H2_CSS_MEDIA_4      0x0000200000000000  
@@ -430,7 +433,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
                           H2_CSS_SVG | H2_CSS_STYLE | H2_CSS_SYNTAX | H2_CSS_UI_3 )
 #define H2_CSS_4        ( H2_CSS_ANIM_4 | H2_CSS_CASCADE_4 | H2_CSS_COMBLE_4 | H2_CSS_COND_RULE_4 | H2_CSS_FONT_4 | H2_CSS_FRAG_4 | \
                           H2_CSS_MEDIA_4 | H2_CSS_SELECTOR_4 | H2_CSS_UI_4 )
-#define H2_CSS_5        ( H2_CSS_CASCADE_5 | H2_CSS_COND_RULE_5 | H2_CSS_FONT_5 | H2_CSS_MEDIA_5 )
+#define H2_CSS_5        ( H2_CSS_CASCADE_5 | H2_CSS_COND_RULE_5 | H2_CSS_FONT_5 | H2_CSS_SELECTOR_5 | H2_CSS_MEDIA_5 )
 #define H2_CSS_6          H2_CSS_CASCADE_6
 
 #define H2_CSS_3_FULL   ( H2_CSS_3 | H2_CSS_2_2_FULL )

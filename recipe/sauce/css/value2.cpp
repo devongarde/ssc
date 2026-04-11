@@ -85,7 +85,8 @@ int check_typed_identifier (arguments& args, nitpick& nits, const int start, con
     if (t <= SSC_TYPES_CSS_O_MAX) return property_by_type < SSC_TYPES_CSS_O, t_unknown > :: check (args, start, to, nits, t);
     if (t <= SSC_TYPES_CSS_P_1_MAX) return property_by_type < SSC_TYPES_CSS_P_1, t_unknown > :: check (args, start, to, nits, t);
     if (t <= SSC_TYPES_CSS_P_Q_MAX) return property_by_type < SSC_TYPES_CSS_P_Q, t_unknown > :: check (args, start, to, nits, t);
-    if (t <= SSC_TYPES_CSS_R_MAX) return property_by_type < SSC_TYPES_CSS_R, t_unknown > :: check (args, start, to, nits, t);
+    if (t <= SSC_TYPES_CSS_R_1_MAX) return property_by_type < SSC_TYPES_CSS_R_1, t_unknown > :: check (args, start, to, nits, t);
+    if (t <= SSC_TYPES_CSS_R_2_MAX) return property_by_type < SSC_TYPES_CSS_R_2, t_unknown > :: check (args, start, to, nits, t);
     if (t <= SSC_TYPES_CSS_S_1_MAX) return property_by_type < SSC_TYPES_CSS_S_1, t_unknown > :: check (args, start, to, nits, t);
     if (t <= SSC_TYPES_CSS_S_2_MAX) return property_by_type < SSC_TYPES_CSS_S_2, t_unknown > :: check (args, start, to, nits, t);
     if (t <= SSC_TYPES_CSS_S_3_MAX) return property_by_type < SSC_TYPES_CSS_S_3, t_unknown > :: check (args, start, to, nits, t);

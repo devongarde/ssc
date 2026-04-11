@@ -583,8 +583,8 @@ template < > struct type_master < t_css_relative_size > : ENUM_N (css_relative_s
 template < > struct type_master < t_css_resize > : ENUM_N (css_resize)
 { using ENUM_N (css_resize) :: enum_n; };
 
-template < > struct type_master < t_css_ss_type_e > : ENUM_N (css_ss_type_e)
-{ using ENUM_N (css_ss_type_e) :: enum_n; };
+template < > struct type_master < t_css_scroll_button > : ENUM_N (css_scroll_button)
+{ using ENUM_N (css_scroll_button) :: enum_n; };
 
 template < > struct type_master < t_css_self_position > : ENUM_N (css_self_position)
 { using ENUM_N (css_self_position) :: enum_n; };
@@ -600,6 +600,18 @@ template < > struct type_master < t_css_speak_as_e > : ENUM_N (css_speak_as_e)
 
 template < > struct type_master < t_css_speech_rate_e > : ENUM_N (css_speech_rate_e)
 { using ENUM_N (css_speech_rate_e) :: enum_n; };
+
+template < > struct type_master < t_css_ss_scroll > : ENUM_N (css_ss_scroll)
+{ using ENUM_N (css_ss_scroll) :: enum_n; };
+
+template < > struct type_master < t_css_ss_snapped > : ENUM_N (css_ss_snapped)
+{ using ENUM_N (css_ss_snapped) :: enum_n; };
+
+template < > struct type_master < t_css_ss_stuck > : ENUM_N (css_ss_stuck)
+{ using ENUM_N (css_ss_stuck) :: enum_n; };
+
+template < > struct type_master < t_css_ss_type_e > : ENUM_N (css_ss_type_e)
+{ using ENUM_N (css_ss_type_e) :: enum_n; };
 
 template < > struct type_master < t_css_statement > : ENUM_N (css_statement)
 { using ENUM_N (css_statement) :: enum_n; };
@@ -642,6 +654,9 @@ template < > struct type_master < t_css_textemph_shape > : ENUM_N (css_textemph_
 
 template < > struct type_master < t_css_touch_action > : ENUM_N (css_touch_action)
 { using ENUM_N (css_touch_action) :: enum_n; };
+
+template < > struct type_master < t_css_trn > : ENUM_N (css_trn)
+{ using ENUM_N (css_trn) :: enum_n; };
 
 template < > struct type_master < t_css_try_tactic > : ENUM_N (css_try_tactic)
 { using ENUM_N (css_try_tactic) :: enum_n; };

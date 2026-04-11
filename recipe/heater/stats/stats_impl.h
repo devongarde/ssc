@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "stats/stats5.h"
 #include "stats/stats6.h"
 #include "parser/html_version.h"
+#include "utility/category.h"
 
 class stats
 {   element_stats element_, visible_;
@@ -83,6 +84,8 @@ class stats
     ::std::string statement_report () const;
     ::std::string version_report () const;
 public:
+    // typedef enum { cic_none, cic_class, cic_custom_, cic_custom_prop, cic_element_class, cic_element_id, cic_font, cic_fn_name, cic_fn_param, cic_id } e_id_category;
+    void dcl (const e_id_category cid, const ::std::string& s, const ::std::size_t n = 1);
     void dcl_class (const ::std::string& s, const ::std::size_t n = 1)
     {   dcl_class_.mark (s, n); }
     void dcl_custom_prop (const ::std::string& s, const ::std::size_t n = 1)
@@ -154,12 +157,13 @@ public:
     {   return dcl_id_.at (s) > 0; }
     bool has_str (const e_gsstr g, const ::std::string& s) const
     {   return str_.at (g).find (s) != str_.at (g).cend (); }
-    void merge_class (const smsid_t& s) { dcl_class_.merge (s); }
-    void merge_custom_prop (const smsid_t& s) { dcl_custom_prop_.merge (s); }
-    void merge_id (const smsid_t& s) { dcl_id_.merge (s); }
-    void merge_element_class (const smsid_t& s) { dcl_element_class_.merge (s); }
-    void merge_element_id (const smsid_t& s) { dcl_element_id_.merge (s); }
-    void merge_font (const smsid_t& s) { font_.merge (s); }
+    void merge (const categorical& cat);
+//    void merge_class (const smsid_t& s) { dcl_class_.merge (s); }
+//    void merge_custom_prop (const smsid_t& s) { dcl_custom_prop_.merge (s); }
+//    void merge_id (const smsid_t& s) { dcl_id_.merge (s); }
+//    void merge_element_class (const smsid_t& s) { dcl_element_class_.merge (s); }
+//    void merge_element_id (const smsid_t& s) { dcl_element_id_.merge (s); }
+//    void merge_font (const smsid_t& s) { font_.merge (s); }
     uint64_t file_count () const noexcept
     {   return file_count_; }
     unsigned element_count (const e_element e) const

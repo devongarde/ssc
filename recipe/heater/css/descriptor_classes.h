@@ -126,6 +126,7 @@ typedef typed_property < t_css_place_self, ec_place_self > desc_place_self;
 typedef typed_property < t_text, ec_prefix > desc_prefix;
 typedef typed_property < t_4string_ni, ec_quotes > desc_quotes;
 typedef typed_property < t_css_range_a, ec_range > desc_range;
+typedef typed_property < t_generic, ec_result > desc_result;
 typedef typed_property < t_percent, ec_size_adjust > desc_size_adjust;
 typedef typed_property < t_real, ec_slope > desc_slope;
 typedef typed_property < t_css_size_3, ec_size > desc_size;
@@ -326,6 +327,10 @@ typedef typed_property < t_unknown, ec_unknown > desc_unknown;
     desc_vertical_align, \
     desc_visibility, \
     desc_z_index
+
+#define FUNCTION_DESCRIPTORS \
+    MARGIN_DESCRIPTORS, \
+    desc_result
 
 #define PALETTE_DESCRIPTORS \
     desc_base_palette, \

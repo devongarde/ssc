@@ -37,7 +37,7 @@ css_class::css_class (arguments& args, const int i, const ::std::string& s)
     if (c.is_microformat_property ())
         nits.pick (nit_class_microformat_property, ed_microformats, "https://microformats.org/", es_warning, ec_css, quote (c.name ()), " is a microformats property class name.");
     if (args.dst_.get () != nullptr)
-        args.dst_ -> insert_class (s_); }
+        args.dst_ -> insert (cic_class, s_); }
 
 void css_class::accumulate (stats_t* s, const e_element e) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);

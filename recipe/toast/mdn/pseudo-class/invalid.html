@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN invalid tests</title>
+<style>
+label {
+  display: block;
+  margin-top: 1em;
+}
+
+input:invalid {
+  background-color: ivory;
+  border: none;
+  outline: 2px solid red;
+  border-radius: 5px;
+}
+
+label {
+  display: block;
+  margin: 1px;
+  padding: 1px;
+}
+
+.field {
+  margin: 1px;
+  padding: 1px;
+}
+
+input:invalid {
+  background-color: #ffdddd;
+}
+
+form:invalid {
+  border: 5px solid #ffdddd;
+}
+
+input:valid {
+  background-color: #ddffdd;
+}
+
+form:valid {
+  border: 5px solid #ddffdd;
+}
+
+input:required {
+  border-color: maroon;
+  border-width: 3px;
+}
+
+input:required:invalid {
+  border-color: #c00000;
+}
+
+/* Hide the fieldset after an invalid fieldset */
+fieldset:invalid ~ fieldset {
+  display: none;
+}
+
+/* Dim and disable the button while the form is invalid */
+form:invalid button {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+input,
+textarea {
+  box-sizing: border-box;
+  width: 100%;
+  font-family: monospace;
+  padding: 0.25em 0.5em;
+}
+
+button {
+  width: 100%;
+  border: thin solid darkgrey;
+  font-size: 1.25em;
+  background-color: darkgrey;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN invalid Tests</h1>
+
+<form>
+  <div class="field">
+    <label for="url_input">Enter a URL:</label>
+    <input type="url" id="url_input" />
+  </div>
+
+  <div class="field">
+    <label for="email_input">Enter an email address:</label>
+    <input type="email" id="email_input" required />
+  </div>
+</form>
+
+<form>
+  <fieldset>
+    <legend>Personal Information</legend>
+    <label for="form-name">Name</label><br />
+    <input type="text" name="name" id="form-name" required />
+  </fieldset>
+
+  <fieldset>
+    <legend>Contact Information</legend>
+    <label for="form-email">Email Address</label><br />
+    <input type="email" name="email" id="form-email" required />
+  </fieldset>
+
+  <fieldset>
+    <legend>Message</legend>
+    <label for="form-message">Message</label><br />
+    <textarea name="message" id="form-message" required></textarea>
+  </fieldset>
+
+  <button type="submit" name="send">Submit</button>
+</form>
+
+</body>
+</html>

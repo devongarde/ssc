@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN user-invalid tests</title>
+<style>
+input:user-invalid {
+  border: 2px solid red;
+}
+
+input:user-invalid + span::before {
+  content: "✖";
+  color: red;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN user-invalid Tests</h1>
+
+<form>
+  <label for="email">Email *: </label>
+  <input id="email" name="email" type="email" required />
+  <span></span>
+</form>
+
+</body>
+</html>

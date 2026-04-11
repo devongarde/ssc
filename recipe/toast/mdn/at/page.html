@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN @page tests</title>
+<style>
+/* Targets all the pages */
+@page {
+  size: 8.5in 9in;
+  margin-top: 4in;
+}
+
+/* Targets all even-numbered pages */
+@page :left {
+  margin-top: 4in;
+}
+
+/* Targets all odd-numbered pages */
+@page :right {
+  size: 11in;
+  margin-top: 4in;
+}
+
+/* Targets all selectors with `page: wide;` set */
+@page wide {
+  size: a4 landscape;
+}
+
+@page {
+  /* margin box at top right showing page number */
+  @top-right {
+    content: "Page " counter(pageNumber);
+  }
+}
+
+@page {
+  @top-left {
+    /* page-margin-properties */
+  }
+}
+
+@page {
+  size: landscape;
+  margin: 2cm;
+}
+
+section {
+  page-break-after: always;
+  break-after: page;
+}
+
+@media print {
+  button {
+    display: none;
+  }
+}
+</style>
+<script>
+const button = document.querySelector("button");
+
+button.addEventListener("click", () => {
+  window.print();
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN @page Tests</h1>
+
+<button>Print page</button>
+<article>
+  <section>
+    <h2>Header one</h2>
+    <p>Paragraph one.</p>
+  </section>
+  <section>
+    <h2>Header two</h2>
+    <p>Paragraph two.</p>
+  </section>
+  <section>
+    <h2>Header three</h2>
+    <p>Paragraph three.</p>
+  </section>
+</article>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN scroll-marker-group tests</title>
+<style>
+ul {
+  display: flex;
+  gap: 4vw;
+  padding-left: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+}
+
+li {
+  list-style-type: none;
+  background-color: #eeeeee;
+  flex: 0 0 100%;
+  height: 200px;
+  padding-top: 20px;
+  scroll-snap-align: start;
+  text-align: center;
+}
+
+ul {
+  scroll-marker-group: after;
+}
+
+ul::scroll-marker-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+li::scroll-marker {
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 50%;
+  content: "";
+}
+
+li::scroll-marker:target-current {
+  background-color: black;
+}
+
+ul {
+  anchor-name: --my-carousel;
+}
+
+ul::scroll-marker-group {
+  /* From the previous example */
+  display: flex;
+  gap: 20px;
+
+  position: absolute;
+  position-anchor: --my-carousel;
+  top: calc(anchor(bottom) - 70px);
+  justify-self: anchor-center;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN scroll-marker-group Tests</h1>
+
+<ul>
+  <li>
+    <h2>Page 1</h2>
+  </li>
+  <li>
+    <h2>Page 2</h2>
+  </li>
+  <li>
+    <h2>Page 3</h2>
+  </li>
+  <li>
+    <h2>Page 4</h2>
+  </li>
+</ul>
+
+</body>
+</html>

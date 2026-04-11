@@ -47,6 +47,7 @@ class statement
     void parse_font_feature_values (arguments& args, nitpick& nits, const int from, const int to);
     void parse_font_face (arguments& args, nitpick& nits, const int to);
     void parse_font_palette_values (arguments& args, nitpick& nits, const int from, const int to);
+    void parse_function (arguments& args, nitpick& nits, const int from, const int to);
     void parse_import (arguments& args, nitpick& nits, const int from, const int to);
     void parse_keyframes (arguments& args, nitpick& nits, const int from, const int to);
     void parse_layer (arguments& args, nitpick& nits, const int from, const int to);

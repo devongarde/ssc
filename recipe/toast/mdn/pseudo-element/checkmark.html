@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN checkmark tests</title>
+<style>
+option::checkmark {
+  color: orange;
+  font-size: 1.5rem;
+}
+
+select,
+::picker(select) {
+  appearance: base-select;
+  width: 200px;
+}
+
+select {
+  border: 2px solid #dddddd;
+  background: #eeeeee;
+  padding: 10px;
+}
+
+::picker(select) {
+  border: none;
+}
+
+option {
+  border: 2px solid #dddddd;
+  background: #eeeeee;
+  padding: 10px;
+}
+
+option:first-of-type {
+  border-radius: 8px 8px 0 0;
+}
+
+option:last-of-type {
+  border-radius: 0 0 8px 8px;
+}
+
+option:nth-of-type(odd) {
+  background: white;
+}
+
+option:not(option:last-of-type) {
+  border-bottom: none;
+}
+
+select,
+::picker(select) {
+  appearance: base-select;
+}
+
+option::checkmark {
+  order: 1;
+  margin-left: auto;
+  content: "☑️";
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN checkmark Tests</h1>
+
+<label for="pet-select">
+  Select pet:
+</label>
+<br />
+<select id="pet-select">
+  <option value="cat">Cat</option>
+  <option value="dog">Dog</option>
+  <option value="chicken">
+    Chicken
+  </option>
+</select>
+
+</body>
+</html>

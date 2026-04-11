@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN next-sibling tests</title>
+<style>
+/* Paragraphs that come immediately after any image */
+img + p {
+  font-weight: bold;
+}
+
+li:first-of-type + li {
+  color: red;
+  font-weight: bold;
+}
+
+li:has(+ li:last-of-type) {
+  color: red;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN next-sibling Tests</h1>
+
+<ul>
+  <li>One</li>
+  <li>Two!</li>
+  <li>Three</li>
+</ul>
+
+<ul>
+  <li>One</li>
+  <li>Two</li>
+  <li>Three!</li>
+  <li>Four</li>
+</ul>
+
+</body>
+</html>

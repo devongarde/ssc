@@ -63,12 +63,12 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 28
-#define VERSION_STRING "0.2.28"
+#define VERSION_RELEASE 29
+#define VERSION_STRING "0.2.29"
 
 #define BUILD_YEAR              "2026"
 #define BUILD_MONTH             "Apr"
-#define BUILD_DAY_ISH BUILD_YEAR "-04-01"
+#define BUILD_DAY_ISH BUILD_YEAR "-04-30"
 #define LATEST_CSS              "2025"
 
 #define NBSP "&nbsp;"

@@ -41,15 +41,15 @@ bool examine_custom_property (arguments& args, nitpick& nits, const int from, co
             {   nits.pick (nit_css_custom, ed_css_custom, "2. Defining Custom Properties", es_error, ec_css, "Junk found after ", quote (prop));
                 res = false; } }
         else prop = assemble_string (args.t_, from, next, false);
-        if (! args.has_custom_prop (prop))
+        if (args.has_custom_prop (prop)) args.note_custom_prop (prop);
+        else if ((args.v_.css_module (c_mixin) == 0) || (args.dst_.get () == nullptr) || (! args.dst_ -> has (cic_fn_param, prop)))
         {   if (comma < 0)
             {   nits.pick (nit_css_custom, es_warning, ec_css, quote (prop), " is not a known custom property");
                 res = false; }
             else
             {   args.note_custom_prop (prop);
                 nits.pick (nit_css_custom, es_comment, ec_css, quote (prop), " noted (with fallback value)"); }
-            res = false; }
-        else args.note_custom_prop (prop); }
+                res = false; } }
     return res; }
 
 bool check_custom_property (arguments& args, const ::std::string& s)
@@ -208,7 +208,7 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
         res = (e != cvf_none); }
     return true; }
 
-bool test_cascade (const ::std::string& s, e_iiu& iiu)
+bool test_cascade (arguments& args, const ::std::string& s, e_iiu& iiu)
 {   switch (context.css_module (c_cascade_inheritance))
     {   case 6 :
         case 5 :
@@ -263,4 +263,13 @@ bool test_cascade (const ::std::string& s, e_iiu& iiu)
                         break;
                 default: break; }
             break; }
+    if (args.v_.css_module (c_mixin) > 0)
+        if (args.dst_.get () != nullptr)
+        {   ::std::string fn (s);
+            const ::std::string::size_type pos = fn.find_first_of ('(');
+            if (pos != ::std::string::npos)
+                fn = trim_the_lot_off (fn.substr (0, pos));
+            if (args.dst_ -> has (cic_fn_name, fn))
+            {   iiu = iiu_fn;
+                return true; } }
     return false; }

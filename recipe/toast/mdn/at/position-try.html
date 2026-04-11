@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN @position-try tests</title>
+<style>
+body {
+  width: 1500px;
+  height: 500px;
+}
+
+.anchor {
+  anchor-name: --my-anchor;
+  position: absolute;
+  top: 100px;
+  left: 350px;
+}
+
+@position-try --custom-left {
+  position-area: left;
+  width: 100px;
+  margin-right: 10px;
+}
+
+@position-try --custom-bottom {
+  top: anchor(bottom);
+  justify-self: anchor-center;
+  margin-top: 10px;
+  position-area: none;
+}
+
+@position-try --custom-right {
+  left: calc(anchor(right) + 10px);
+  align-self: anchor-center;
+  width: 100px;
+  position-area: none;
+}
+
+@position-try --custom-bottom-right {
+  position-area: bottom right;
+  margin: 10px 0 0 10px;
+}
+
+.infobox {
+  position: fixed;
+  position-anchor: --my-anchor;
+  position-area: top;
+  width: 200px;
+  margin-bottom: 10px;
+  position-try-fallbacks:
+    --custom-left, --custom-bottom, --custom-right, --custom-bottom-right;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN @position-try Tests</h1>
+
+<div class="anchor">⚓︎</div>
+
+<div class="infobox">
+  <p>This is an information box.</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN hue tests</title>
+<style>
+#box {
+  background-color: hsl(0 100% 50%);
+}
+
+[data-color="hsl-red"] {
+  /* hsl(<hue> <saturation> <lightness>) */
+  background-color: hsl(0 100% 50%);
+}
+[data-color="hwb-red"] {
+  /* hwb(<hue> <whiteness> <blackness>) */
+  background-color: hwb(0 0% 0%);
+}
+[data-color="lch-red"] {
+  /* lch(<lightness> <chroma> <hue>) */
+  background-color: lch(50 150 40);
+}
+[data-color="oklch-red"] {
+  /* oklch(<lightness> <chroma> <hue>) */
+  background-color: oklch(0.6 0.4 20);
+}
+</style>
+<script>
+const hue = document.querySelector("#hue-slider");
+const box = document.querySelector("#box");
+hue.addEventListener("input", () => {
+  box.style.backgroundColor = `hsl(${hue.value} 100% 50%)`;
+  document.querySelector("#hue-value").textContent = `${hue.value}deg`;
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN hue Tests</h1>
+
+<input type="range" min="0" max="360" value="0" id="hue-slider" />
+<p>Hue: <span id="hue-value">0deg</span></p>
+<div id="box"></div>
+
+<div data-color="hsl-red">hsl()</div>
+<div data-color="hwb-red">hwb()</div>
+<div data-color="lch-red">lch()</div>
+<div data-color="oklch-red">oklch()</div>
+
+</body>
+</html>

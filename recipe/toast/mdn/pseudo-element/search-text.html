@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN search-text tests</title>
+<style>
+p::search-text {
+  color: crimson;
+  background-color: wheat;
+}
+
+p::search-text {
+  color: white;
+  background-color: purple;
+}
+
+p::search-text:current {
+  background-color: crimson;
+}
+
+::search-text {
+  background-color: purple;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+::search-text:current {
+  background-color: crimson;
+  text-decoration-line: underline;
+  text-decoration-color: yellow;
+  text-decoration-thickness: 3px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN search-text Tests</h1>
+
+<p>
+A limited subset of CSS properties can be used with ::search-text:
+
+    color
+    background-color
+    The text-decoration shorthand and associated longhand properties:
+        text-decoration-line: the grammar-error, spelling-error, line-through, none, and underline values only.
+        text-decoration-color
+        text-decoration-style
+        text-decoration-thickness
+        text-decoration-skip-ink
+    text-underline-offset
+    text-shadow
+
+</p>
+
+<p>
+  Using your browser's "Find in page" functionality, find a word or phrase that
+  appears in this sentence, and note how, in supporting browsers, each result is
+  highlighted using the specified custom styles.
+</p>
+
+</body>
+</html>

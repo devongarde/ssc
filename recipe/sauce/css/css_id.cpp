@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 css_id::css_id (arguments& args, const ::std::string& s)
     : s_ (s)
 {   if (args.dst_.get () != nullptr)
-        args.dst_ -> insert_id (s); }
+        args.dst_ -> insert (cic_id, s); }
 
 void css_id::accumulate (stats_t* s, const e_element e) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);

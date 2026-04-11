@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN user-valid tests</title>
+<style>
+input:user-valid {
+  border: 2px solid green;
+}
+
+input:user-valid + span::before {
+  content: "✓";
+  color: green;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN user-valid Tests</h1>
+
+<form>
+  <label for="email">Email *: </label>
+  <input
+    id="email"
+    name="email"
+    type="email"
+    value="test@example.com"
+    required />
+  <span></span>
+</form>
+
+</body>
+</html>

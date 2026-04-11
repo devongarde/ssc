@@ -312,7 +312,7 @@ void type_master < t_ontology > :: set_value (nitpick& nits, const html_version&
                 else
                 {   st_ = sch :: parse (nits, v, vocab_, mdr_);
                     if ((st_ != ont_illegal) && ((mdr_ == s_none) || (sch::root (st_) == s_none) || (sch::root (st_) == mdr_))) return;                        
-                    else nits.pick (nit_unrecognised_ontology, es_warning, ec_type, quote (s), " is unrecognised by " PROG); } } } }
+                    else nits.pick (nit_unrecognised_ontology, es_warning, ec_type, quote (s), " is unrecognised by " PROG " (3)"); } } } }
         catch (...) { }
     tidy_string < t_ontology > :: status (s_invalid); }
 

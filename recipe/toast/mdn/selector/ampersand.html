@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN &amp; tests</title>
+<style>
+
+parentRule {
+  /* parent rule style properties */
+  & childRule {
+    /* child rule style properties */
+  }
+}
+
+.parent-rule {
+  /* parent rule properties */
+  .child-rule {
+    /* child rule properties */
+  }
+}
+
+.parent-rule {
+  /* parent rule style properties */
+}
+
+.parent-rule .child-rule {
+  /* style properties for .child-rule descendants for .parent-rule ancestors */
+}
+
+.parent-rule {
+  /* parent rule properties */
+  :hover {
+    /* child rule properties */
+  }
+}
+
+/* the browser parses the above nested rules as shown below */
+.parent-rule {
+  /* parent rule properties */
+}
+
+.parent-rule *:hover {
+  /* child rule properties */
+}
+
+.parent-rule {
+  /* parent rule properties */
+  &:hover {
+    /* child rule properties */
+  }
+}
+
+/* the browser parses the above nested rules as shown below */
+.parent-rule {
+  /* parent rule properties */
+}
+
+.parent-rule:hover {
+  /* child rule properties */
+}
+
+.card {
+  /* .card styles */
+  .featured & {
+    /* .featured .card styles */
+  }
+}
+
+/* the browser parses above nested rules as */
+
+.card {
+  /* .card styles */
+}
+
+.featured .card {
+  /* .featured .card styles */
+}
+
+.card {
+  /* .card styles */
+  .featured & & & {
+    /* .featured .card .card .card styles */
+  }
+}
+
+/* the browser parses above nested rules as */
+
+.card {
+  /* .card styles */
+}
+
+.featured .card .card .card {
+  /* .featured .card .card .card styles */
+}
+
+.foo::before {
+  content: "Hello";
+
+  .important & {
+    color: red;
+  }
+}
+
+.foo::before {
+  content: "Hello";
+
+  @media (width < 600px) {
+    color: red;
+  }
+}
+
+.example {
+  font-family: system-ui;
+  font-size: 1.2rem;
+}
+
+.example > a {
+  color: tomato;
+}
+
+.example > a:hover,
+.example > a:focus {
+  color: ivory;
+  background-color: tomato;
+}
+
+.example {
+  font-family: system-ui;
+  font-size: 1.2rem;
+  & > a {
+    color: tomato;
+    &:hover,
+    &:focus {
+      color: ivory;
+      background-color: tomato;
+    }
+  }
+}
+
+& {
+  color: blue;
+  font-weight: bold;
+}
+
+&:hover {
+  background-color: wheat;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN &amp; Tests</h1>
+
+<p class="example">
+  This paragraph <a href="#">contains a link</a>, try hovering or focusing it.
+</p>
+
+<p>Hover over the output box to change document's background color.</p>
+
+</body>
+</html>

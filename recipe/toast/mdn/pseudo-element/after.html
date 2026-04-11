@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN after tests</title>
+<style>
+a::after {
+  content: " (" attr(href) ")";
+}
+
+.dead-link {
+  text-decoration: line-through;
+}
+
+.dead-link::after {
+  content: url("/shared-assets/images/examples/warning.svg");
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+}
+
+.exciting-text::after {
+  content: " <- EXCITING!";
+  color: darkgreen;
+  font-weight: bolder;
+}
+
+.boring-text::after {
+  content: " <- BORING";
+  color: darkviolet;
+  font-weight: bolder;
+}
+
+.ribbon {
+  background-color: #5bc8f7;
+}
+
+.ribbon::after {
+  content: "This is a fancy orange box.";
+  background-color: #ffba10;
+  border-color: black;
+  border-style: dotted;
+}
+
+span[data-description] {
+  position: relative;
+  text-decoration: underline;
+  color: blue;
+  cursor: help;
+}
+
+span[data-description]:hover::after,
+span[data-description]:focus::after {
+  content: attr(data-description);
+  position: absolute;
+  left: 0;
+  top: 24px;
+  min-width: 200px;
+  border: 1px #aaaaaa solid;
+  border-radius: 10px;
+  background-color: #ffffcc;
+  padding: 12px;
+  color: black;
+  font-size: 14px;
+  z-index: 1;
+}
+
+ul {
+  font-size: 1.5rem;
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+ul::before,
+ul::after {
+  display: list-item;
+  color: orange;
+}
+
+ul::before {
+  content: "Start";
+}
+
+ul::after {
+  content: "End";
+}
+
+ul::before::marker,
+ul::after::marker {
+  color: red;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN after Tests</h1>
+
+<p>
+  The sailfish is named for its sail-like dorsal fin and is widely considered
+  the fastest fish in the ocean.
+  <a href="https://en.wikipedia.org/wiki/Sailfish"
+    >You can read more about it here</a
+  >.
+</p>
+
+<p>
+  The red lionfish is a predatory scorpionfish that lives on coral reefs of the
+  Indo-Pacific Ocean and more recently in the western Atlantic.
+  <a href="" class="dead-link">You can read more about it here</a>.
+</p>
+
+<p class="boring-text">Here is some plain old boring text.</p>
+<p>Here is some normal text that is neither boring nor exciting.</p>
+<p class="exciting-text">Contributing to MDN is fun.</p>
+
+<span class="ribbon">Look at the orange box after this text. </span>
+
+<p>
+  Here we have some
+  <span tabindex="0" data-description="collection of words and punctuation">
+    text
+  </span>
+  with a few
+  <span tabindex="0" data-description="small popups that appear when hovering">
+    tooltips</span
+  >.
+</p>
+
+<ul>
+  <li><a href="#">Introduction</a></li>
+  <li><a href="#">Getting started</a></li>
+  <li><a href="#">Understanding the basics</a></li>
+</ul>
+
+</body>
+</html>

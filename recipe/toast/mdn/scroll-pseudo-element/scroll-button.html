@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN scroll-button tests</title>
+<style>
+ul {
+  display: flex;
+  gap: 4vw;
+  padding-left: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+}
+
+li {
+  list-style-type: none;
+  background-color: #eeeeee;
+  flex: 0 0 100%;
+  height: 100px;
+  padding-top: 20px;
+  scroll-snap-align: start;
+  text-align: center;
+}
+
+ul::scroll-button(*) {
+  border: 0;
+  font-size: 2rem;
+  background: none;
+  color: black;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+ul::scroll-button(*):hover,
+ul::scroll-button(*):focus {
+  opacity: 1;
+}
+
+ul::scroll-button(*):active {
+  translate: 1px 1px;
+}
+
+ul::scroll-button(*):disabled {
+  opacity: 0.2;
+  cursor: unset;
+}
+
+ul::scroll-button(left) {
+  content: "◄";
+}
+
+ul::scroll-button(right) {
+  content: "►";
+}
+
+ul {
+  anchor-name: --my-carousel;
+}
+
+ul::scroll-button(*) {
+  position: absolute;
+  position-anchor: --my-carousel;
+}
+
+ul::scroll-button(*) {
+  align-self: anchor-center;
+}
+
+ul::scroll-button(left) {
+  right: calc(anchor(left) - 45px);
+}
+
+ul::scroll-button(right) {
+  left: calc(anchor(right) - 45px);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN scroll-button Tests</h1>
+
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+  <li>Item 4</li>
+  <li>Item 5</li>
+  <li>Item 6</li>
+  <li>Item 7</li>
+  <li>Item 8</li>
+</ul>
+
+</body>
+</html>

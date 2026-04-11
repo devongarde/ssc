@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN child tests</title>
+<style>
+/* List items that are children of the "my-things" list */
+ul.my-things > li {
+  margin: 2em;
+}
+
+span {
+  background-color: aqua;
+}
+
+div > span {
+  background-color: yellow;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN child Tests</h1>
+
+<div>
+  <span>
+    Span #1, in the div.
+    <span>Span #2, in the span that's in the div.</span>
+  </span>
+</div>
+<span>Span #3, not in the div at all.</span>
+
+</body>
+</html>

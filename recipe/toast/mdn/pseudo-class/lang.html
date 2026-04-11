@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN lang tests</title>
+<style>
+*:lang(en-US) {
+  outline: 2px solid deeppink;
+}
+
+:lang(en) > q {
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+:lang(fr) > q {
+  quotes: "« " " »";
+}
+:lang(de) > q {
+  quotes: "»" "«" "\2039" "\203A";
+}
+
+/* Matches nl and de */
+:lang("nl", "de") {
+  color: green;
+}
+
+/* Omitting quotes & case-insensitive matching */
+:lang(EN, FR) {
+  color: blue;
+}
+
+/* Wildcard matching a language range */
+:lang("*-Latn") {
+  color: red;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN lang Tests</h1>
+
+<p lang="en-US">
+  Music during road trips and long commutes aren't a problem, but using
+  headphones isn't the best thing to do while driving in your car.
+</p>
+
+<p lang="pl-PL">
+  Gdy widzimy znak z narysowaną czaszką i napisem
+  <strong lang="en-US">DANGER</strong> to lepiej nie wchodzić do środka.
+</p>
+
+<div lang="en">
+  <q>This English quote has a <q>nested</q> quote inside.</q>
+</div>
+<div lang="fr">
+  <q>This French quote has a <q>nested</q> quote inside.</q>
+</div>
+<div lang="de">
+  <q>This German quote has a <q>nested</q> quote inside.</q>
+</div>
+
+<p lang="nl">Dit is een Nederlandse paragraaf.</p>
+<p lang="de">Dies ist ein deutscher Satz.</p>
+<p lang="en">This is an English sentence.</p>
+<p lang="en-GB">Matching the language range of English.</p>
+<p lang="fr">Ceci est un paragraphe français.</p>
+<p lang="fr-Latn-FR">Ceci est un paragraphe français en latin.</p>
+
+</body>
+</html>

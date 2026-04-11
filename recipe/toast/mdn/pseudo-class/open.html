@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN open tests</title>
+<style>
+details:open > summary {
+  background-color: pink;
+}
+
+:is(select, input):open {
+  background-color: pink;
+}
+
+select {
+  appearance: none;
+  width: 100%;
+  display: block;
+  font-family: inherit;
+  font-size: 100%;
+  padding: 5px;
+  border: 1px solid black;
+  background: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='5,5 15,5 10,15'/%3E%3C/svg%3E")
+    no-repeat right 3px center / 1em 1em;
+}
+
+label {
+  font-family: sans-serif;
+  max-width: 20em;
+  display: block;
+  padding: 20px;
+  border: 2px solid transparent;
+}
+
+select:open {
+  background-color: #f8f2dc;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='5,15 10,5 15,15'/%3E%3C/svg%3E");
+}
+
+label:has(select:open) {
+  background-color: #81adc8;
+  border-color: #cd4631;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN open Tests</h1>
+
+<details>
+  <summary>Details</summary>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pulvinar dapibus
+  lacus, sit amet finibus lectus mollis eu. Nullam quis orci dictum, porta lacus
+  et, cursus nunc. Aenean pulvinar imperdiet neque fermentum facilisis. Nulla
+  facilisi. Curabitur vitae sapien ut nunc pulvinar semper vitae vitae nisi.
+</details>
+<hr />
+
+<label for="pet-select">Choose a pet:</label>
+<select id="pet-select">
+  <option value="dog">Dog</option>
+  <option value="cat">Cat</option>
+  <option value="hamster">Hamster</option>
+</select>
+<hr />
+
+<label for="start">Start date:</label>
+<input type="date" id="start" />
+
+<label>
+  Choose your favorite fruit:
+  <select name="fruit">
+    <option>apple</option>
+    <option>banana</option>
+    <option>boysenberry</option>
+    <option>cranberry</option>
+    <option>fig</option>
+    <option>grapefruit</option>
+    <option>lemon</option>
+    <option>orange</option>
+    <option>papaya</option>
+    <option>pomegranate</option>
+    <option>tomato</option>
+  </select>
+</label>
+
+</body>
+</html>

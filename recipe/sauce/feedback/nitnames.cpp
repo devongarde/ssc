@@ -982,6 +982,8 @@ const nitname nitnames [] =
     { nit_css_position_try, "css_position_try" },
     { nit_css_type, "css_type" },
     { nit_negative, "negative" },
+    { nit_css_function, "css_function" },
+    { nit_naughty, "naughty" },
 
     { nit_incompatible, "incompatible" },
 

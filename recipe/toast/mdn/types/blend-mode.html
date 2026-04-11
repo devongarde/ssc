@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN blend-mode tests</title>
+<style>
+#div {
+  width: 150px;
+  height: 150px;
+  background: url("br.png"), url("tr.png");
+  background-blend-mode: normal;
+}
+
+.container {
+  width: 720px;
+  height: 760px;
+  display: grid;
+  grid: auto-flow 190px / repeat(4, 180px);
+  border-top: 1px solid #d8d8d8;
+  border-left: 1px solid #d8d8d8;
+}
+
+.container > div {
+  border-right: 1px solid #d8d8d8;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.container div div {
+  margin-left: 15px;
+  width: 150px;
+  height: 150px;
+  background: url("br.png"), url("tr.png");
+}
+
+.container div p {
+  line-height: 30px;
+  margin: 0;
+  color: #a33333;
+  text-align: center;
+}
+
+div {
+  width: 300px;
+  height: 300px;
+  background:
+    url("https://mdn.dev/archives/media/attachments/2020/07/29/17350/3b4892b7e820122ac6dd7678891d4507/firefox.png")
+      no-repeat center,
+    linear-gradient(to bottom, blue, orange);
+}
+</style>
+<script>
+const list = [
+  "normal",
+  "multiply",
+  "screen",
+  "overlay",
+  "darken",
+  "lighten",
+  "color-dodge",
+  "color-burn",
+  "hard-light",
+  "soft-light",
+  "difference",
+  "exclusion",
+  "hue",
+  "saturation",
+  "color",
+  "luminosity",
+];
+
+const containerElem = document.querySelector(".container");
+
+list.forEach((item) => {
+  const innerElem = document.createElement("div");
+  innerElem.style.backgroundBlendMode = item;
+
+  const textElem = document.createElement("p");
+  textElem.innerText = item;
+
+  const outerElem = document.createElement("div");
+  outerElem.appendChild(textElem);
+  outerElem.appendChild(innerElem);
+
+  containerElem.appendChild(outerElem);
+});
+
+const selectElem = document.querySelector("select");
+const divElem = document.querySelector("div");
+
+selectElem.addEventListener("change", () => {
+  divElem.style.backgroundBlendMode = selectElem.value;
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN blend-mode Tests</h1>
+
+<div></div>
+<p>Choose a blend-mode:</p>
+<select>
+  <option selected>normal</option>
+  <option>multiply</option>
+  <option>screen</option>
+  <option>overlay</option>
+  <option>darken</option>
+  <option>lighten</option>
+  <option>color-dodge</option>
+  <option>color-burn</option>
+  <option>hard-light</option>
+  <option>soft-light</option>
+  <option>difference</option>
+  <option>exclusion</option>
+  <option>hue</option>
+  <option>saturation</option>
+  <option>color</option>
+  <option>luminosity</option>
+</select>
+
+</body>
+</html>

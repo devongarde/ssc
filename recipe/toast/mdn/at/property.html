@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN @property tests</title>
+<style>
+@property --canBeAnything {
+  syntax: "*";
+  inherits: true;
+}
+
+@property --rotation {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 45deg;
+}
+
+@property --defaultSize {
+  syntax: "<length> | <percentage>";
+  inherits: true;
+  initial-value: 200px;
+}
+
+@property --myColor {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rebeccapurple;
+}
+
+@property --myWidth {
+  syntax: "<length> | <percentage>";
+  inherits: true;
+  initial-value: 200px;
+}
+
+p {
+  background-color: var(--myColor);
+  width: var(--myWidth);
+  color: white;
+}
+
+@property --progress {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 25%;
+}
+
+.bar {
+  display: inline-block;
+  --progress: 25%;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(
+    to right,
+    #00d230 var(--progress),
+    black var(--progress)
+  );
+  animation: progressAnimation 2.5s ease infinite;
+}
+
+@keyframes progressAnimation {
+  to {
+    --progress: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN @property Tests</h1>
+
+<p>Hello world!</p>
+
+<div class="bar"></div>
+
+</body>
+</html>

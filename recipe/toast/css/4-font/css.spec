@@ -76,7 +76,6 @@ PASS ../toast/css/4-font/css-9.css
 0 html
 1 css_version css_syntax css_version
 6 fontname
-8 unrecognised_value
 13 fontname
 21 fontname
 26 fontname

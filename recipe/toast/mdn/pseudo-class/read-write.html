@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN read-write tests</title>
+<style>
+label,
+input[type="submit"] {
+  display: block;
+  margin-top: 1em;
+}
+
+*:read-write {
+  background-color: ivory;
+  border: 2px solid darkorange;
+  border-radius: 5px;
+}
+
+textarea:read-only {
+  border: 0;
+}
+
+textarea:read-write {
+  box-shadow: inset 1px 1px 3px #cccccc;
+  border-radius: 5px;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+p {
+  font-size: 150%;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+p:read-only {
+  background-color: red;
+  color: white;
+}
+
+p:read-write {
+  background-color: lime;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN read-write Tests</h1>
+
+<p>Please fill in your details:</p>
+
+<form>
+  <label for="email">Email Address:</label>
+  <input id="email" name="email" type="email" value="test@example.com" />
+
+  <label for="note">Short note about yourself:</label>
+  <textarea id="note" name="note">Don't be shy</textarea>
+
+  <label for="pic">Your picture:</label>
+  <input id="pic" name="pic" type="file" />
+
+  <input type="submit" value="Submit form" />
+</form>
+
+<form>
+  <fieldset>
+    <legend>Confirm details</legend>
+    <div>
+      <label for="address">Address:</label>
+      <textarea id="address" name="address" readonly>
+123 Choco Mountain,
+Awesome Ridge,
+CA</textarea
+      >
+    </div>
+    <div>
+      <label for="instructions">Delivery instructions</label>
+      <textarea id="instructions" name="instructions"></textarea>
+    </div>
+  </fieldset>
+  <button type="submit">Confirm</button>
+</form>
+
+<p contenteditable>This paragraph is editable; it is read-write.</p>
+
+<p>This paragraph is not editable; it is read-only.</p>
+
+</body>
+</html>

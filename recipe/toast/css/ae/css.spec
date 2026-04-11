@@ -27,7 +27,6 @@ PASS ../toast/css/ae/parked.html
 
 PASS ../toast/css/ae/songlight.css
 0 html
-25 css_version
 27 fontname
 44 fontname
 131 fontname
@@ -51,7 +50,6 @@ PASS ../toast/css/ae/songlight.css
 
 PASS ../toast/css/ae/plumbing/songlight.css
 0 html
-25 css_version
 27 fontname
 44 fontname
 131 fontname

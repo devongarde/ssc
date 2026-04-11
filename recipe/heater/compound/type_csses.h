@@ -275,8 +275,8 @@ template < > struct type_master < t_css_border_styles_l > : maybe_logical_type <
 template < > struct type_master < t_css_border_width_col > : type_either_or_both < t_css_border_width_col, t_css_border_measure, sz_space_char, t_css_col >
 { using type_either_or_both < t_css_border_width_col, t_css_border_measure, sz_space_char, t_css_col > :: type_either_or_both; };
 
-template < > struct type_master < t_css_border_width_i > : type_either_or < t_css_border_width_i, t_css_border_width, t_css_inherit >
-{ using type_either_or < t_css_border_width_i, t_css_border_width, t_css_inherit > :: type_either_or; };
+template < > struct type_master < t_css_border_width_i > : type_either_or < t_css_border_width_i, t_css_border_width, t_css_length >
+{ using type_either_or < t_css_border_width_i, t_css_border_width, t_css_length > :: type_either_or; };
 
 template < > struct type_master < t_css_box_overflow > : type_opt_then_must < t_css_box_overflow, t_safe_unsafe, sz_space_char, t_css_content_position >
 { using type_opt_then_must < t_css_box_overflow, t_safe_unsafe, sz_space_char, t_css_content_position > :: type_opt_then_must; };
@@ -1621,8 +1621,8 @@ template < > struct type_master < t_font_variant_4 > : type_some_of < t_font_var
 template < > struct type_master < t_css_font_variant_4 > : type_or_either_string < t_css_font_variant_4, t_font_variant_4, sz_none, sz_normal >
 { using type_or_either_string < t_css_font_variant_4, t_font_variant_4, sz_none, sz_normal > :: type_or_either_string; };
 
-template < > struct type_master < t_css_override_colour > : type_either_or < t_css_override_colour, t_unsigned, t_css_col >
-{ using type_either_or < t_css_override_colour, t_unsigned, t_css_col > :: type_either_or; };
+template < > struct type_master < t_css_override_colour > : type_all_of < t_css_override_colour, sz_space_char, t_unsigned, t_css_col >
+{ using type_all_of < t_css_override_colour, sz_space_char, t_unsigned, t_css_col > :: type_all_of; };
 
 template < > struct type_master < t_css_override_colours > : type_some_of < t_css_override_colours, sz_comma, 1, 0, t_css_override_colour >
 {   static e_animation_type animation_type () noexcept { return at_colour; }

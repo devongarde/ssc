@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN @document tests</title>
+<style>
+@document url("https://www.example.com/")
+{
+  h1 {
+    color: green;
+  }
+}
+
+@document url("http://www.example.org/"),
+          url-prefix("http://www.example.org/Style/"),
+          domain("mozilla.org"),
+          media-document("video"),
+          regexp("https:.*") {
+  /* CSS rules here apply to:
+     - The page "http://www.w3.org/"
+     - Any page whose URL begins with "http://www.w3.org/Style/"
+     - Any page whose URL's host is "mozilla.org"
+       or ends with ".mozilla.org"
+     - Any standalone video
+     - Any page whose URL starts with "https:" */
+
+  /* Make the above-mentioned pages really ugly */
+  body {
+    color: purple;
+    background: yellow;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN @document Tests</h1>
+
+</body>
+</html>

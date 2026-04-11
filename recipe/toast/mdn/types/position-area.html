@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN position-area tests</title>
+<style>
+.sid
+{
+/* Examples: Two keywords to place the element in a single specific tile */
+position-area: top left;
+position-area: bottom right;
+position-area: start end;
+position-area: center end;
+position-area: block-start center;
+position-area: inline-start block-end;
+position-area: x-start y-end;
+position-area: center self-y-end;
+
+/* Examples: Two keywords to span the element across two tiles */
+position-area: top span-left;
+position-area: span-bottom right;
+position-area: center span-start;
+position-area: inline-start span-block-end;
+position-area: y-start span-x-end;
+
+/* Examples: Two keywords to span the element across three tiles */
+position-area: top span-all;
+position-area: block-end span-all;
+position-area: self-x-start span-all;
+
+/* Examples: One keyword with an implicit second keyword  */
+position-area: top; /* equiv: top span-all */
+position-area: inline-start; /* equiv: inline-start span-all */
+position-area: center; /* equiv: center center */
+position-area: span-all; /* equiv: center center */
+position-area: start; /* equiv: start start */
+position-area: end; /* equiv: end end */
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN position-area Tests</h1>
+
+</body>
+</html>

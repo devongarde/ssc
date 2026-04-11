@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN state tests</title>
+<style>
+labeled-checkbox {
+  border: dashed red;
+}
+labeled-checkbox:state(checked) {
+  border: solid;
+}
+
+:host(:state(checked))::before {
+  content: "[x]";
+}
+
+question-box::part(checkbox) {
+  color: red;
+}
+
+question-box::part(checkbox):state(checked) {
+  color: green;
+  outline: dashed 1px green;
+}
+</style>
+<script>
+shadowRoot.innerHTML = `<labeled-checkbox part='checkbox'>Yes</labeled-checkbox>`;
+</script>
+</head>
+
+<body>
+
+<h1>MDN state Tests</h1>
+
+</body>
+</html>

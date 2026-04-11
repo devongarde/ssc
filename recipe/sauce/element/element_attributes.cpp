@@ -519,7 +519,7 @@ void element::examine_style_attr ()
         if ((context.css_version () == css_none) && (node_.version () < html_jul07))
             pick (nit_attribute_unrecognised_here, es_error, ec_attribute, "STYLE requires a more recent version of HTML");
         else if (a_.good (a_style) && ! a_.empty (a_style))
-        {   ::std::string content = interpret_string (node_.nits (), node_.version (), a_.get_string (a_style));
+        {   ::std::string content = interpret_string (node_.nits (), node_.version (), a_.get_string (a_style), true);
             VERIFY_NOT_NULL (page_, __FILE__, __LINE__);
             page_ -> css ().parse (content, node_.version (), node_.namespaces (), ancestral_elements_, true, node_.line (), tag ()); } }
 

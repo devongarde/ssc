@@ -572,6 +572,7 @@ struct symbol_entry < html_version, e_css_property > css_property_symbol_table [
     { { HTML_CSS, 0, 0, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "rest", ec_rest },
     { { HTML_CSS, 0, 0, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "rest-after", ec_rest_after },
     { { HTML_CSS, 0, 0, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "rest-before", ec_rest_before },
+    { { HTML_CSS, 0, 0, H2_CSS_MIXIN }, { HTML_UNDEF }, "result", ec_result },
     { { HTML_CSS, 0, 0, H2_CSS_2, H3_NOT_TV }, { HTML_UNDEF }, "richness", ec_richness, ns_default, CF_NOT_STRING },
     { { HTML_CSS, 0, 0, 0, H3_NOT_MOBILE | H3_NOT_PRINT }, { HTML_UNDEF }, "right", ec_right, ns_default, CF_NOT_STRING | CF_ANCHOR | CF_ANCHOR_SIZE },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM, H4_CSS_SAFE_2021 }, { HTML_UNDEF }, "rotate", ec_rotate },

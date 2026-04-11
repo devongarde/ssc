@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN focus-within tests</title>
+<style>
+label {
+  display: block;
+  margin-top: 1em;
+}
+
+label:focus-within {
+  font-weight: bold;
+}
+
+form {
+  border: 1px solid;
+  color: gray;
+  padding: 4px;
+}
+
+form:focus-within {
+  background: #ffff88;
+  color: black;
+}
+
+input {
+  margin: 4px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN focus-within Tests</h1>
+
+<form>
+  <p>Which flavor would you like to order?</p>
+  <label>Full Name: <input name="firstName" type="text" /></label>
+  <label
+    >Flavor:
+    <select name="flavor">
+      <option>Cherry</option>
+      <option>Green Tea</option>
+      <option>Moose Tracks</option>
+      <option>Mint Chip</option>
+    </select>
+  </label>
+</form>
+
+<p>Try typing into this form.</p>
+
+<form>
+  <label for="given_name">Given Name:</label>
+  <input id="given_name" type="text" />
+  <br />
+  <label for="family_name">Family Name:</label>
+  <input id="family_name" type="text" />
+</form>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN colour tests</title>
+<style>
+.container {
+  color: blue;
+  border: 1px dashed currentColor;
+}
+.child {
+  background: currentColor;
+  height: 9px;
+}
+
+.sid
+{
+/* These are equivalent */
+color: oklab(50% none -0.25);
+color: oklab(50% 0 -0.25);
+
+/* These are equivalent */
+background-color: hsl(none 100% 50%);
+background-color: hsl(0deg 100% 50%);
+}
+
+div:nth-child(1) {
+  background-color: hsl(0 100% 50%);
+}
+div:nth-child(2) {
+  background-color: hsl(30 100% 50%);
+}
+div:nth-child(3) {
+  background-color: hsl(60 100% 50%);
+}
+div:nth-child(4) {
+  background-color: hsl(90 100% 50%);
+}
+div:nth-child(5) {
+  background-color: hsl(120 100% 50%);
+}
+div:nth-child(6) {
+  background-color: hsl(150 100% 50%);
+}
+div:nth-child(7) {
+  background-color: hsl(180 100% 50%);
+}
+div:nth-child(8) {
+  background-color: hsl(210 100% 50%);
+}
+div:nth-child(9) {
+  background-color: hsl(240 100% 50%);
+}
+div:nth-child(10) {
+  background-color: hsl(270 100% 50%);
+}
+div:nth-child(11) {
+  background-color: hsl(300 100% 50%);
+}
+div:nth-child(12) {
+  background-color: hsl(330 100% 50%);
+}
+
+div:nth-child(1) {
+  background-color: hsl(0 100% 0%);
+}
+div:nth-child(2) {
+  background-color: hsl(0 100% 20%);
+}
+div:nth-child(3) {
+  background-color: hsl(0 100% 40%);
+}
+div:nth-child(4) {
+  background-color: hsl(0 100% 60%);
+}
+div:nth-child(5) {
+  background-color: hsl(0 100% 80%);
+}
+div:nth-child(6) {
+  background-color: hsl(0 100% 100%);
+  border: solid;
+}
+
+div:nth-child(1) {
+  background-color: hsl(0 0% 50%);
+}
+div:nth-child(2) {
+  background-color: hsl(0 20% 50%);
+}
+div:nth-child(3) {
+  background-color: hsl(0 40% 50%);
+}
+div:nth-child(4) {
+  background-color: hsl(0 60% 50%);
+}
+div:nth-child(5) {
+  background-color: hsl(0 80% 50%);
+}
+div:nth-child(6) {
+  background-color: hsl(0 100% 50%);
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN colour Tests</h1>
+
+<div class="container">
+  The color of this text is blue.
+  <div class="child"></div>
+  This block is surrounded by a blue border.
+</div>
+
+<div></div>
+<hr />
+<label for="color">Enter a valid color value:</label>
+<input type="text" id="color" />
+
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+</body>
+</html>

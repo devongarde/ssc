@@ -984,7 +984,7 @@ void options::init (context_t& c)
         (CSS SCOPE, ::boost::program_options::value < int > (), "CSS Scoping level (0 or 3).")
         (CSS SCROLLBAR, ::boost::program_options::value < int > (), "CSS Scrollbar Styling level (0 or 3).")
         (CSS SDA, ::boost::program_options::value < int > (), "CSS Scroll Driven Animations level (0 or 3).")
-        (CSS SELECTOR, ::boost::program_options::value < int > (), "CSS Selector level (0, 3, or 4).")
+        (CSS SELECTOR, ::boost::program_options::value < int > (), "CSS Selector level (0, 3, 4, or 5).")
         (CSS SHAPE, ::boost::program_options::value < int > (), "CSS Shapes level (0, 3, or 4).")
         (CSS SNAP, ::boost::program_options::value < int > (), "CSS Scroll Snap level (0 or 3).")
         (CSS SNAP_POINTS, ::boost::program_options::value < int > (), "CSS Scroll Snap Points level (0 or 3).")
@@ -1871,7 +1871,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_scoping, n, nits, CSS SCOPE, "Scoping", 3);
         process_css_level (c, c_scrollbar_styling, n, nits, CSS SCROLLBAR, "Scrollbar Styling", 3);
         process_css_level (c, c_scroll_driven_animation, n, nits, CSS SDA, "Scroll Driven Animations", 3);
-        process_css_level (c, c_selector, n, nits, CSS SELECTOR, "Selector", 4);
+        process_css_level (c, c_selector, n, nits, CSS SELECTOR, "Selector", 5);
         process_css_level (c, c_shadow_part, n, nits, CSS SP, "Shadow Parts", 4);
         process_css_level (c, c_shape, n, nits, CSS SHAPE, "Shape", 4);
         process_css_level (c, c_scroll_snap, n, nits, CSS SNAP, "Scroll Snap", 3);  // 

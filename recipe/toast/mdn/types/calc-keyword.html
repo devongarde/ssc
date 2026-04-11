@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN calc-keyword tests</title>
+<style>
+div {
+  height: 50px;
+  background-color: red;
+  width: calc(1px / 0);
+}
+</style>
+<script>
+// sliders
+const eInput = document.querySelector("#e-slider");
+const piInput = document.querySelector("#pi-slider");
+// spans for displaying values
+const eValue = document.querySelector("#e-value");
+const piValue = document.querySelector("#pi-value");
+
+eInput.addEventListener("input", function () {
+  e.style.transform = `rotate(calc(1deg * pow(${this.value}, e)))`;
+  eValue.textContent = e.style.transform;
+});
+
+piInput.addEventListener("input", function () {
+  pi.style.rotate = `calc(sin(${this.value} * pi) * 100deg)`;
+  piValue.textContent = pi.style.rotate;
+});
+
+const div = document.querySelector("div");
+console.log(div.offsetWidth); // 17895698 (infinity clamped to largest value for width)
+
+function logSerializedWidth(value) {
+  div.style.width = value;
+  console.log(div.style.width);
+}
+
+logSerializedWidth("calc(1px / 0)"); // calc(infinity * 1px)
+logSerializedWidth("calc(1px / -0)"); // calc(-infinity * 1px)
+
+logSerializedWidth("calc(1px * -infinity * -infinity)"); // calc(infinity * 1px)
+logSerializedWidth("calc(1px * -infinity * infinity)"); // calc(-infinity * 1px)
+
+logSerializedWidth("calc(1px * (NaN + 1))"); // calc(NaN * 1px)
+</script>
+</head>
+
+<body>
+
+<h1>MDN calc-keyword Tests</h1>
+
+<div id="wrapper">
+  <div class="container">
+    <div id="e"></div>
+    <input type="range" min="0" max="7" step="0.01" value="0" id="e-slider" />
+    <label for="e-slider">e:</label>
+    <span id="e-value"></span>
+  </div>
+  <div class="container">
+    <div id="pi"></div>
+    <input type="range" min="0" max="1" step="0.01" value="0" id="pi-slider" />
+    <label for="pi-slider">pi:</label>
+    <span id="pi-value"></span>
+  </div>
+</div>
+
+<div></div>
+
+</body>
+</html>

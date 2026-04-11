@@ -41,4 +41,4 @@ void examine_character_code (const html_version& v, const ::std::string& text, b
 ::std::string get_extra (const ::std::string& text);
 ::std::string enwotsit (const ::std::string& s);
 
-::std::string interpret_string (nitpick& nits, const html_version& v, const ::std::string& s);
+::std::string interpret_string (nitpick& nits, const html_version& v, const ::std::string& s, const bool is_style = false);

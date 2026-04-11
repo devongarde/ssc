@@ -31,6 +31,12 @@ class nitpick;
 class wxLogWindow;
 #endif // WX
 
+#ifdef SIGNING
+    void output_init ();
+#else // SIGNING
+    inline void output_init () { }
+#endif // SIGNING
+
 class outstream
 {   fstr_p fos_;
 #ifdef WX

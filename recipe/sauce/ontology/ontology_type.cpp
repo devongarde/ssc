@@ -11932,6 +11932,14 @@ struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > 
     { { s_frbr, 1, 0 }, { 0, 0 }, "Subject", fs_subject, s_frbr },
     { { s_frbr, 1, 0 }, { 0, 0 }, "Work", fs_work, s_frbr },
 
+    // croissant geo
+    //     // croisant geo
+    // geocr_bandconfiguration, geocr_multiwavelengthconfiguration, geocr_solarinstrumentcharacteristics, geocr_spectralband,
+    { { s_geocr, 1, 0 }, { 0, 0 }, "BandConfiguration", geocr_bandconfiguration, s_geocr },
+    { { s_geocr, 1, 0 }, { 0, 0 }, "MultiWavelengthConfiguration", geocr_multiwavelengthconfiguration, s_geocr },
+    { { s_geocr, 1, 0 }, { 0, 0 }, "SolarInstrumentCharacteristics", geocr_solarinstrumentcharacteristics, s_geocr },
+    { { s_geocr, 1, 0 }, { 0, 0 }, "SpectralBand", geocr_spectralband, s_geocr },
+
     // good relations
     { { s_gr, 1, 0, 0, SV_DEPRECATED }, { 0, 0 }, "ActualProductOrServiceInstance", gr_actualproductorserviceinstance, s_gr },
     { { s_gr, 1, 0 }, { 0, 0 }, "Brand", gr_brand, s_gr },

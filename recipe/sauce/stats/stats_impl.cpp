@@ -679,3 +679,15 @@ void stats::accumulate (stats& o) const
     if (context.stats (rcb_class)) res = class_report2 ();
     if (context.stats (rcb_id)) res += id_report2 ();
     return res; }
+
+void stats::merge (const categorical& cat)
+{   for (mcic_t::const_iterator i = cat.cbegin (); i != cat.cend (); ++i)
+        switch (i -> second.cic_)
+        {   case cic_class :        dcl_class_.mark (i -> second.s_, i -> second.count_); break;
+            case cic_custom_prop :  dcl_custom_prop_.mark (i -> second.s_, i -> second.count_); break;
+            case cic_element_class :dcl_element_class_.mark (i -> second.s_, i -> second.count_); break;
+            case cic_element_id :   dcl_element_id_.mark (i -> second.s_, i -> second.count_); break;
+            case cic_font :         font_.mark (i -> second.s_, i -> second.count_); break;
+            case cic_id :           dcl_id_.mark (i -> second.s_, i -> second.count_); break;
+            // add for functions etc..
+            default : break; } }

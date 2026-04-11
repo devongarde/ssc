@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN -moz-drag-over tests</title>
+<style>
+body {
+  font-family: "Arial";
+}
+div {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border: 2px dotted black;
+  background-color: aquamarine;
+  margin: 1rem;
+}
+p {
+  padding: 1rem;
+}
+
+#drop-target {
+  background-color: cornflowerblue;
+}
+#drop-target:-moz-drag-over {
+  background-color: red;
+}
+</style>
+<script>
+const target = document.getElementById("drop-target");
+/* dragenter event fired on the drop target */
+target.addEventListener("dragenter", (event) => {
+  // prevent default to allow drop
+  event.preventDefault();
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN -moz-drag-over Tests</h1>
+
+<div id="drop-target">
+  <p>Drop target</p>
+</div>
+
+<div draggable="true">
+  <p>Draggable</p>
+</div>
+
+</body>
+</html>

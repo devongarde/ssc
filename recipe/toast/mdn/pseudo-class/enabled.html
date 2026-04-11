@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN enabled tests</title>
+<style>
+label {
+  display: block;
+  margin-top: 1em;
+}
+
+*:enabled {
+  background-color: gold;
+}
+
+input:enabled {
+  color: #22bb22;
+}
+
+input:disabled {
+  color: #aaaaaa;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN enabled Tests</h1>
+
+<form>
+  <label for="name">Name:</label>
+  <input id="name" name="name" type="text" />
+
+  <label for="emp">Employed:</label>
+  <select id="emp" name="emp" disabled>
+    <option>No</option>
+    <option>Yes</option>
+  </select>
+
+  <label for="empDate">Employment Date:</label>
+  <input id="empDate" name="empDate" type="date" disabled />
+
+  <label for="resume">Resume:</label>
+  <input id="resume" name="resume" type="file" />
+</form>
+
+<form action="url_of_form">
+  <label for="FirstField">First field (enabled):</label>
+  <input type="text" id="FirstField" value="Lorem" /><br />
+
+  <label for="SecondField">Second field (disabled):</label>
+  <input type="text" id="SecondField" value="Ipsum" disabled /><br />
+
+  <input type="button" value="Submit" />
+</form>
+
+</body>
+</html>

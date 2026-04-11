@@ -54,7 +54,7 @@ struct property_base
 bool examine_custom_property (arguments& args, nitpick& nits, const int from, const int to);
 bool check_constants (arguments& args, nitpick& nits, const int i);
 bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e_css_val_fn& e, bool& params);
-bool test_cascade (const ::std::string& s, e_iiu& iiu);
+bool test_cascade (arguments& args, const ::std::string& s, e_iiu& iiu);
 
 template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public property_base, public type_master < TYPE >
 {   typedef type_master < TYPE > base_type;
@@ -105,6 +105,7 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
             case iiu_revert : return "revert";
             case iiu_revert_layer : return "revert-layer";
             case iiu_unset : return "unset";
+            case iiu_fn : return "@function";
             default : return ""; } }
     virtual void shadow (::std::stringstream& ss, arguments& args, element* e) override
     {   if (iiu_ == iiu_none) type_master < TYPE > :: shadow (ss, args.v_, e);
@@ -118,7 +119,7 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
         {   if (s.length () >= 3)
             {   PRESUME ((start > 0) && (start < GSL_NARROW_CAST < int > (args.t_.size ())), __FILE__, __LINE__);
                 if ((args.t_.at (start).t_ == ct_keyword) || (args.t_.at (start).t_ == ct_identifier))
-                    if (test_cascade (s, iiu_))
+                    if (test_cascade (args, s, iiu_))
                     {   base_type :: status (s_good);
                         return start+1; } }
             type_master < TYPE > :: set_value (nuts, args.v_, s);
@@ -184,6 +185,8 @@ property_v_ptr make_descriptor_v_ptr (arguments& args, const int start, const in
 property_v_ptr make_descriptor_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const e_token t);
 property_v_ptr make_feature_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const e_token t);
 property_v_ptr make_feature_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const e_token t);
+property_v_ptr make_function_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const e_token t);
+property_v_ptr make_function_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const e_token t);
 property_v_ptr make_margin_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const e_token t);
 property_v_ptr make_margin_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const e_token t);
 property_v_ptr make_page_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const e_token t);

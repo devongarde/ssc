@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN defined tests</title>
+<style>
+/* Selects any defined element */
+:defined {
+  font-style: italic;
+}
+
+/* Selects any instance of a specific custom element */
+custom-element:defined {
+  display: block;
+}
+
+custom-element:not(:defined) {
+  border-color: grey;
+  color: grey;
+}
+
+custom-element:defined {
+  background-color: wheat;
+  border-color: black;
+  color: black;
+}
+
+/* show loading message */
+custom-element:not(:defined)::before {
+  content: "Loading...";
+  position: absolute;
+  inset: 0;
+  align-content: center;
+  text-align: center;
+  font-size: 2rem;
+  background-color: white;
+  border-radius: 1rem;
+}
+
+/* remove the loading message */
+custom-element:defined::before {
+  content: "";
+}
+</style>
+<script>
+const btn = document.querySelector("#btn");
+
+btn.addEventListener("click", () => {
+  customElements.define("custom-element", class extends HTMLElement {});
+  btn.remove();
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN defined Tests</h1>
+
+<custom-element>
+  <p>
+    Loaded content: Lorem ipsum tel sed tellus eiusmod tellus. Aenean. Semper
+    dolor sit nisi. Elit porttitor nisi sit vivamus.
+  </p>
+</custom-element>
+
+<button id="btn">define the <code>&lt;custom-element&gt;</code></button>
+
+</body>
+</html>

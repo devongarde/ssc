@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN column tests</title>
+<style>
+/* Table cells that belong to the "selected" column */
+col.selected||td {
+  background: gray;
+}
+
+col.selected||td {
+  background: gray;
+  color: white;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN column Tests</h1>
+
+<table border="1">
+  <colgroup>
+    <col span="2" />
+    <col class="selected" />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>A</td>
+      <td>B</td>
+      <td>C</td>
+    </tr>
+
+    <tr>
+      <td colspan="2">D</td>
+      <td>E</td>
+    </tr>
+    <tr>
+      <td>F</td>
+      <td colspan="2">G</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

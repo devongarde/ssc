@@ -218,6 +218,9 @@ template < > struct type_master < t_css_calc_size > : four_value < t_css_calc_si
 template < > struct type_master < t_css_composite > : four_value < t_css_composite, e_css_composite, sz_add, sz_exclude, sz_intersect, sz_subtract >
 { using four_value < t_css_composite, e_css_composite, sz_add, sz_exclude, sz_intersect, sz_subtract > :: four_value; };
 
+template < > struct type_master < t_css_container_query > : four_value < t_css_container_query, e_css_container_query, sz__blank, sz_anchored, sz_scroll_state, sz_style >
+{ using four_value < t_css_container_query, e_css_container_query, sz__blank, sz_anchored, sz_scroll_state, sz_style > :: four_value; };
+
 template < > struct type_master < t_css_display_legacy > : four_value < t_css_display_legacy, e_css_display_legacy, sz_inline_block, sz_inline_flex, sz_inline_grid, sz_inline_table >
 { using four_value < t_css_display_legacy, e_css_display_legacy, sz_inline_block, sz_inline_flex, sz_inline_grid, sz_inline_table > :: four_value; };
 
@@ -265,6 +268,9 @@ template < > struct type_master < t_css_pto > : four_value < t_css_pto, e_css_pt
 
 template < > struct type_master < t_css_radial_size > : four_value < t_css_radial_size, e_css_radial_size, sz_closest_corner, sz_closest_side, sz_farthest_corner, sz_farthest_side >
 { using four_value < t_css_radial_size, e_css_radial_size, sz_closest_corner, sz_closest_side, sz_farthest_corner, sz_farthest_side > :: four_value; };
+
+template < > struct type_master < t_css_scroll_state > : four_value < t_css_scroll_state, e_css_scroll_state, sz_scrollable, sz_scrolled, sz_snapped, sz_stuck >
+{ using four_value < t_css_scroll_state, e_css_scroll_state, sz_scrollable, sz_scrolled, sz_snapped, sz_stuck > :: four_value; };
 
 template < > struct type_master < t_css_shape_box > : four_value < t_css_shape_box, e_css_shape_box, sz_border_box, sz_content_box, sz_margin_box, sz_padding_box >
 { using four_value < t_css_shape_box, e_css_shape_box, sz_border_box, sz_content_box, sz_margin_box, sz_padding_box > :: four_value; };

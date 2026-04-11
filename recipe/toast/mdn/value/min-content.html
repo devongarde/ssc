@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN min-content tests</title>
+<style>
+.sid {
+/* Used as a length value */
+width: min-content;
+inline-size: min-content;
+height: min-content;
+block-size: min-content;
+
+/* Used in grid tracks */
+grid-template-columns: 200px 1fr min-content;
+}
+
+.item {
+  width: min-content;
+  background-color: #8ca0ff;
+  padding: 5px;
+  margin-bottom: 1em;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: min-content min-content 1fr;
+  grid-gap: 5px;
+  box-sizing: border-box;
+  height: 200px;
+  width: 100%;
+  background-color: #8cffa0;
+  padding: 10px;
+}
+
+#container > div {
+  background-color: #8ca0ff;
+  padding: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN min-content Tests</h1>
+
+<div class="item">Item</div>
+<div class="item">Item with more text in it.</div>
+
+<div id="container">
+  <div>Item</div>
+  <div>Item with more text in it.</div>
+  <div>Flexible item</div>
+</div>
+
+</body>
+</html>

@@ -190,9 +190,9 @@ void examine_character_code (const html_version& v, const ::std::string& text, b
     bool known = false;
     ::std::string res (interpret_character_code (v, text, known, invalid, simplify));
     if (invalid)
-        nits.pick (nit_invalid_character_code, es_error, ec_parser, quote (res), " is invalid in ", v.report ());
+        nits.pick (nit_invalid_character_code, es_error, ec_parser, quote (res), " is invalid in ", v.report (), " (3)");
     else if (! known)
-        nits.pick (nit_invalid_character_code, es_error, ec_parser, quote (res), " is unrecognised");
+        nits.pick (nit_invalid_character_code, es_error, ec_parser, quote (res), " is unrecognised (7)");
     return res; }
 
 ::std::string interpret_character_number (const ::std::string& text)
@@ -298,7 +298,7 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
             res += ";"; } }
     return res; }
 
-::std::string interpret_string (nitpick& nits, const html_version& v, const ::std::string& s)
+::std::string interpret_string (nitpick& nits, const html_version& v, const ::std::string& s, const bool is_style)
 {   ::std::string res;
     ::std::string special;
     VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);
@@ -319,9 +319,13 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
                 else if (! special.empty ())
                 {   ::std::string got;
                     if (special.length () <= tb -> max_wotsit_length_)
-                        if (special.front () != '#') got = interpret_character_code (nits, v, special, true);
-                        else if ((special.length () > 1) && (special.at (1) == 'x')) got = interpret_character_hex (nits, special.substr (2));
-                        else got = interpret_character_number (nits, special.substr (1));
+                    {   const bool bounce = is_style &&
+                                            ((special.at (0) < 'A') || ((special.at (0) > 'Z') && (special.at (0) < 'a')) || (special.at (0) > 'z')) &&
+                                            ((special.at (0) != '#'));
+                        if (! bounce)
+                            if (special.front () != '#') got = interpret_character_code (nits, v, special, true);
+                            else if ((special.length () > 1) && (special.at (1) == 'x')) got = interpret_character_hex (nits, special.substr (2));
+                            else got = interpret_character_number (nits, special.substr (1)); }
                     if (got.empty ()) { res += '&'; res += special; res += ';'; }
                     else res += got;
                     special.clear ();

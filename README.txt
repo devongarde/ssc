@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.2.28
+version 0.2.29
 (c) 2020-2026 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notices
 https://dylanharris.org/ssc/
@@ -93,18 +93,6 @@ to untrusted data sources, such as those found on the open web.
 
 
 
-Notes on names:
-- recipe: a nod to Vernor Vinge's "A Fire Upon the Deep";
-- tea: without tea, nothing works; then there's builders' tea;
-- sauce: makes the dull tasty; identifies linguistically weak pedants;
-- toast: toasts code; i liked burnt toast;
-- heater: i'm not stopping now;
-- unii: my preferred plural of unix: to my ears, both unixes and unices
-        sound like they sing castrato.
-- andor: and/or sans ancienne; land of Gift (aber nicht das Gift)
-
-
-
 Security
 Regarding the EU's Cyber Resilience Act, any security issues should be
 reported to security@dylanharris.org. Kindly email a detailed report,
@@ -128,10 +116,10 @@ SECURITY.md		 security reporting
 
 Background
 I have an online folly, arts & ego, at https://dylanharris.org/. It has
-approaching 60G of original content. It contains hand coded HTMLs 2 to
-5. It is a complete mess. Despite a long search, I could not find any
-tools to properly identify its flaws. Anything I did find was at most
-cursory.
+approaching 70G of original content. It contains hand coded HTMLs 2 to
+5. It is a complete mess. Before the cow flu, and despite a long
+search, I could not find any tools to properly identify its flaws.
+Anything I did find was at most cursory.
 
 Then came the cow flu*.
 

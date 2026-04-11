@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN modal tests</title>
+<style>
+button {
+  display: block;
+  margin: auto;
+  width: 10rem;
+  height: 2rem;
+}
+
+:modal {
+  background-color: beige;
+  border: 2px solid burlywood;
+  border-radius: 5px;
+}
+
+p {
+  color: black;
+}
+
+:modal {
+  border: 5px solid red;
+  background-color: yellow;
+  box-shadow: 3px 3px 10px rgb(0 0 0 / 50%);
+}
+</style>
+<script>
+const showNumber = document.getElementById("showNumber");
+const favDialog = document.getElementById("favDialog");
+const number = document.getElementById("number");
+
+showNumber.addEventListener("click", () => {
+  number.innerText = Math.floor(Math.random() * 1000);
+  favDialog.showModal();
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN modal Tests</h1>
+
+<p>Would you like to see a new random number?</p>
+<button id="showNumber">Show me</button>
+
+<dialog id="favDialog">
+  <form method="dialog">
+    <p>Lucky number is: <strong id="number"></strong></p>
+    <button>Close dialog</button>
+  </form>
+</dialog>
+
+</body>
+</html>

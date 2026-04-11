@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN scroll-marker tests</title>
+<style>
+ul {
+  display: flex;
+  gap: 4vw;
+  padding-left: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-marker-group: after;
+}
+
+li {
+  list-style-type: none;
+  background-color: #eeeeee;
+  flex: 0 0 33%;
+  height: 100px;
+  padding-top: 20px;
+  scroll-snap-align: start;
+  text-align: center;
+}
+
+li::scroll-marker {
+  content: "";
+  border: 1px solid red;
+  height: 1em;
+  width: 1em;
+}
+
+::scroll-marker-group {
+  display: flex;
+  gap: 0.4em;
+  place-content: center;
+}
+
+::scroll-marker:target-current {
+  background: red;
+}
+
+li {
+  counter-increment: markers;
+}
+
+li::scroll-marker {
+  content: counter(markers);
+  font-family: sans-serif;
+  width: fit-content;
+  height: 1em;
+  padding: 5px;
+  color: black;
+  text-decoration: none;
+  border: 2px solid rgb(0 0 0 / 0.15);
+  border-radius: 0.5em;
+  background-color: #eeeeee;
+}
+
+li:first-child::scroll-marker {
+  content: "First";
+}
+
+li:last-child::scroll-marker {
+  content: "Last";
+}
+
+::scroll-marker:hover {
+  background-color: #ddcccc;
+}
+
+::scroll-marker:target-current {
+  background-color: purple;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN scroll-marker Tests</h1>
+
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+  <li>Item 4</li>
+  <li>Item 5</li>
+  <li>Item 6</li>
+  <li>Item 7</li>
+  <li>Item 8</li>
+</ul>
+
+</body>
+</html>

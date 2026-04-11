@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN line-style tests</title>
+<style>
+p {
+  padding: 5px;
+  border: double 7px #bada55;
+}
+p + p {
+  columns: 3;
+  column-gap: 20px;
+  column-rule: double 7px;
+  border-color: black;
+}
+.none p {
+  border-style: none;
+  column-rule-style: none;
+}
+.hidden p {
+  border-style: hidden;
+  column-rule-style: hidden;
+}
+.dotted p {
+  border-style: dotted;
+  column-rule-style: dotted;
+}
+.dashed p {
+  border-style: dashed;
+  column-rule-style: dashed;
+}
+.solid p {
+  border-style: solid;
+  column-rule-style: solid;
+}
+.double p {
+  border-style: double;
+  column-rule-style: double;
+}
+.groove p {
+  border-style: groove;
+  column-rule-style: groove;
+}
+.ridge p {
+  border-style: ridge;
+  column-rule-style: ridge;
+}
+.inset p {
+  border-style: inset;
+  column-rule-style: inset;
+}
+.outset p {
+  border-style: outset;
+  column-rule-style: outset;
+}
+
+div {
+  border-width: 10px;
+  border-style: inset groove ridge outset;
+  padding: 5px;
+}
+</style>
+<script>
+// prettier-ignore
+const colors = [
+  "#000000", "#000001", "#ffffff",
+  "#ff00ff", "#ffff00", "#00ffff",
+  "#cc33cc", "#cccc33", "#33cccc",
+  "#ff0000", "#00ff00", "#0000ff",
+  "#cc3333", "#33cc33", "#3333cc",
+  "#993333", "#339933", "#333399",
+];
+
+for (const c of colors) {
+  const div = document.createElement("div");
+  div.style.borderColor = c;
+  div.textContent = c;
+  document.body.appendChild(div);
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN line-style Tests</h1>
+
+<div class="{line-style}">
+  <p>{line-style}</p>
+  <p>a b c d e f g h i j k l m n o p q r s t u v w x y z</p>
+</div>
+
+</body>
+</html>

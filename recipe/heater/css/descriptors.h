@@ -23,11 +23,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class descriptors
 {   vdsc_t dsc_;
+    sstr_t params_;
 public:
     DEFAULT_CONSTRUCTORS (descriptors);
     descriptors (arguments& args, const e_css_statement cs, const int from, const int to = -1)
     {   parse (args, cs, from, to); }
     void parse (arguments& args, const e_css_statement cs, const int from, const int to = -1);
+    void parse (arguments& args, const e_css_statement cs, const int from, const sstr_t& params);
     void validate  (arguments& args);
     void accumulate (stats_t* s, const element_bitset& e) const;
     void shadow (::std::stringstream& ss, arguments& args);

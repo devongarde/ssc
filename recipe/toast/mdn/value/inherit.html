@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN inherit tests</title>
+<style>
+p:nth-of-type(2) {
+  a {
+    text-decoration: inherit;
+    color: inherit;
+  }
+  em {
+    font-style: inherit;
+  }
+  strong {
+    font-weight: inherit;
+  }
+}
+
+p:nth-of-type(2) > * {
+  all: inherit;
+}
+
+main {
+  color: blue;
+}
+
+h2 {
+  color: green;
+  font-family: monospace;
+}
+
+section h2 {
+  color: inherit;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN inherit Tests</h1>
+
+<p>
+  This paragraph has <em>emphasized text</em>, <strong>strong text</strong>, and
+  <a href="#">a link to top</a>.
+</p>
+<p>
+  This paragraph has <em>emphasized text</em>, <strong>strong text</strong>, and
+  <a href="#">a link to top</a>.
+</p>
+
+<header>
+  <h1>This is my blog</h1>
+  <h2>This is the subtitle of my blog in the HEADER</h2>
+  <p>My blog is not very interesting</p>
+</header>
+<main>
+  <h2>This first blog post in MAIN</h2>
+  <p>I really have nothing to say.</p>
+  <section>
+    <h2>This second blog post is in a SECTION within MAIN</h2>
+    <p>
+      It is in a section because it is important even though it isn't the least
+      bit interesting.
+    </p>
+  </section>
+</main>
+<footer>
+  <h2>Contact in FOOTER</h2>
+  <p>Find me on Mastodon</p>
+  <section>
+    <h2>Copyright in SECTION within FOOTER</h2>
+    <p>1996</p>
+  </section>
+</footer>
+
+</body>
+</html>

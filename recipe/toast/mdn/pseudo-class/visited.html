@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN visited tests</title>
+<style>
+p {
+  font-weight: bold;
+}
+
+a:visited {
+  color: forestgreen;
+  text-decoration-color: hotpink;
+}
+
+a {
+  /* Specify non-transparent defaults to certain properties,
+     allowing them to be styled with the :visited state */
+  background-color: white;
+  border: 1px solid white;
+}
+
+a:visited {
+  background-color: yellow;
+  border-color: hotpink;
+  color: hotpink;
+}
+</style>
+</head>
+
+<body>
+
+<
+<p>Pages that you might have visited:</p>
+<ul>
+  <li>
+    <a href="https://developer.mozilla.org">MDN Web Docs</a>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/">YouTube</a>
+  </li>
+</ul>
+<p>Pages unlikely to be in your history:</p>
+<ul>
+  <li>
+    <a href="https://developer.mozilla.org/missing-1">Random MDN page</a>
+  </li>
+  <li>
+    <a href="https://example.com/missing-1">Random Example page</a>
+  </li>
+</ul>
+
+<a href="#test-visited-link">Have you visited this link yet?</a><br />
+<a href="">You've already visited this link.</a>
+
+</body>
+</html>

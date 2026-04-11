@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN only-child tests</title>
+<style>
+li:only-child {
+  color: fuchsia;
+}
+
+b:only-child {
+  text-decoration: underline;
+}
+
+div:only-child {
+  color: red;
+}
+
+div {
+  display: inline-block;
+  margin: 6px;
+  outline: 1px solid;
+}
+
+li li {
+  list-style-type: disc;
+}
+
+li:only-child {
+  color: red;
+  list-style-type: square;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN only-child Tests</h1>
+
+<p>Stars expected to attend:</p>
+<ol>
+  <li>Robert Downey, Jr.</li>
+</ol>
+
+<p>Stars yet to confirm:</p>
+<ol>
+  <li>Scarlett Johansson</li>
+  <li>Samuel L. Jackson</li>
+  <li>Chris Pratt</li>
+</ol>
+
+<div>
+  <div>I am an only child.</div>
+</div>
+
+<div>
+  <div>I am the 1st sibling.</div>
+  <div>I am the 2nd sibling.</div>
+  <div>
+    I am the 3rd sibling,
+    <div>but this is an only child.</div>
+  </div>
+</div>
+
+<ol>
+  <li>
+    First
+    <ul>
+      <li>This list has just one element.</li>
+    </ul>
+  </li>
+  <li>
+    Second
+    <ul>
+      <li>This list has three elements.</li>
+      <li>This list has three elements.</li>
+      <li>This list has three elements.</li>
+    </ul>
+  </li>
+</ol>
+
+</body>
+</html>

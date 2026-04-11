@@ -584,6 +584,7 @@ typedef typed_property < t_css_resize, ec_resize > prop_resize;
 typedef typed_property < t_css_pauses, ec_rest > prop_rest;
 typedef typed_property < t_css_pause, ec_rest_after > prop_rest_after;
 typedef typed_property < t_css_pause, ec_rest_before > prop_rest_before;
+typedef typed_property < t_naughty, ec_result > prop_result;
 typedef typed_property < t_real_i, ec_richness > prop_richness;
 typedef typed_property < t_css_length_aia, ec_right > prop_right;
 typedef typed_property < t_css_rotate, ec_rotate > prop_rotate;
@@ -2252,6 +2253,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_rest, \
     prop_rest_after, \
     prop_rest_before, \
+    prop_result, \
     prop_richness, \
     prop_right, \
     prop_rotate, \

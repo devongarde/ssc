@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN webkit-meter-inner-element tests</title>
+<style>
+body {
+  font-family: monospace;
+}
+
+.safari meter {
+  /* Reset the default appearance for Safari only */
+  /* .safari class is added via JavaScript */
+  -webkit-appearance: none;
+}
+
+#styled::-webkit-meter-inner-element {
+  -webkit-appearance: inherit;
+  box-sizing: inherit;
+  border: 1px dashed #aaaaaa;
+}
+</style>
+<script>
+// Safari requires <meter> elements to have an `appearance` of `none` for custom styling
+// using `::-webkit-meter-*` selectors, but `appearance: none` breaks rendering on Chrome.
+// Therefore, we must check if the browser is Safari-based.
+
+const isSafari =
+  navigator.userAgent.includes("AppleWebKit/") &&
+  !navigator.userAgent.includes("Chrome/");
+
+if (isSafari) {
+  document.body.classList.add("safari");
+}
+</script>
+</head>
+
+<body>
+
+<h1>MDN webkit-meter-inner-element Tests</h1>
+
+Normal: <meter min="0" max="10" value="6">Score 6/10</meter>
+<br />
+Styled: <meter id="styled" min="0" max="10" value="6">Score 6/10</meter>
+
+</body>
+</html>

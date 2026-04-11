@@ -167,7 +167,7 @@ bool pos_test (nitpick& nits, const html_version& v, bool& b, ::std::string& pos
 {   if (pos.empty ()) return true;
     nitpick nuts;
     const bool res = test_value < t_position > (nuts, v, pos);
-    if (! res) nits.pick (nit_mask, es_error, ec_css, quote (pos), " is unrecognised");
+    if (! res) nits.pick (nit_mask, es_error, ec_css, quote (pos), " is unrecognised (1)");
     else
     {   if (b) nits.pick (nit_mask, es_error, ec_css, quote (pos), ": already had a position"); 
         nits.merge (nuts);
@@ -275,7 +275,7 @@ bool bmtest (nitpick& nits, const html_version& v, ::std::string& buf, bool& sli
         must_outset = widened = sliced = false;
         outset = outsetted = true; }
     else if (! test_value < t_css_mask_border_slice > (nuts, v, buf))
-    {   nits.pick (nit_mask_border, es_error, ec_css, quote (buf), " is unrecognised");
+    {   nits.pick (nit_mask_border, es_error, ec_css, quote (buf), " is unrecognised (2)");
         res = false; }
     else
     {   if (slice)

@@ -165,6 +165,10 @@ public:
     {   stats_.mark_font (s, n); }
     void mark_str (const e_gsstr gst, const ::std::string& s)
     {   stats_.mark_str (gst, s); }
+    //     // typedef enum { cic_none, cic_class, cic_custom_, cic_custom_prop, cic_element_class, cic_element_id, cic_font, cic_fn_name, cic_fn_param, cic_id } e_id_category;
+    void merge (const categorical& cat)
+    {   stats_.merge (cat); }
+    /*
     void merge_class (const smsid_t& s)
     {   stats_.merge_class (s); }
     void merge_custom_prop (const smsid_t& s)
@@ -176,7 +180,7 @@ public:
     void merge_element_id (const smsid_t& s)
     {   stats_.merge_element_id (s); }
     void merge_font (const smsid_t& s)
-    {   stats_.merge_font (s); }
+    {   stats_.merge_font (s); } */
     void use_class (const ::std::string& s, const ::std::size_t n = 1)
     {   stats_.use_class (s, n); }
     void use_custom_prop (const ::std::string& s, const ::std::size_t n = 1)

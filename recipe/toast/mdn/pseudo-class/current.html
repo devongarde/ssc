@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN current tests</title>
+<style>
+p::search-text {
+  color: white;
+  background-color: purple;
+}
+
+p::search-text:current {
+  background-color: crimson;
+}
+
+::search-text {
+  background-color: purple;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+::search-text:current {
+  background-color: crimson;
+  text-decoration-line: underline;
+  text-decoration-color: yellow;
+  text-decoration-thickness: 3px;
+}
+
+:current(p, span) {
+  background-color: yellow;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN current Tests</h1>
+
+<video controls preload="metadata">
+  <source src="video.mp4" type="video/mp4" />
+  <source src="video.webm" type="video/webm" />
+  <track
+    label="English"
+    kind="subtitles"
+    srclang="en"
+    src="subtitles.vtt"
+    default />
+</video>
+
+</body>
+</html>

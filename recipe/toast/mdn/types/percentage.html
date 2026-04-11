@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN percentage tests</title>
+<style>
+.container {
+  background-color: navy;
+}
+
+.box1 {
+  width: 50%;
+  margin-left: 20%;
+  background-color: chartreuse;
+}
+
+.box2 {
+  width: 30%;
+  margin-left: 60%;
+  background-color: pink;
+}
+
+.container {
+  font-size: 18px;
+}
+
+.half {
+  font-size: 50%;
+}
+
+.double {
+  font-size: 200%;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN percentage Tests</h1>
+
+<div class="container">
+  <div class="box1">Width: 50%, Left margin: 20%</div>
+  <div class="box2">Width: 30%, Left margin: 60%</div>
+</div>
+
+<div class="container">
+  <p>Full-size text (18px)</p>
+  <p><span class="half">50% (9px)</span></p>
+  <p><span class="double">200% (36px)</span></p>
+</div>
+
+</body>
+</html>

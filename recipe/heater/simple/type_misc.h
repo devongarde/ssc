@@ -455,7 +455,7 @@ template < > struct type_master < t_sym > : public tidy_string < t_sym >
             {   bool known = false, invalid = false;
                 examine_character_code (v, s, known, invalid);
                 if (! known) nits.pick (nit_unrecognised_character_code, es_error, ec_type, quote (s), " is not a standard character code");
-                else if (invalid)  nits.pick (nit_invalid_character_code, es_error, ec_type, quote (s), " is not valid in ", v.report ());
+                else if (invalid)  nits.pick (nit_invalid_character_code, es_error, ec_type, quote (s), " is not valid in ", v.report (), " (1)");
                 else return; }
             tidy_string < t_sym > :: status (s_invalid); } } };
 

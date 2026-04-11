@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN scope tests</title>
+<style>
+/* Selects a scoped element */
+:scope {
+  background-color: lime;
+}
+
+:scope {
+  background-color: orange;
+}
+
+@scope (.light-scheme) {
+  :scope {
+    background-color: plum;
+  }
+
+  a {
+    color: indigo;
+  }
+}
+
+@scope (.dark-scheme) {
+  :scope {
+    background-color: indigo;
+    color: antiquewhite;
+  }
+
+  a {
+    color: plum;
+  }
+}
+</style>
+<script>
+const context = document.getElementById("context");
+const selected = context.querySelectorAll(":scope > div");
+
+document.getElementById("results").textContent = [...selected]
+  .map((element) => `#${element.id}`)
+  .join(", ");
+</script>
+</head>
+
+<body>
+
+<h1>MDN scope Tests</h1>
+
+<div class="light-scheme">
+  <p>
+    MDN contains lots of information about
+    <a href="/en-US/docs/Web/HTML">HTML</a>,
+    <a href="/en-US/docs/Web/CSS">CSS</a>, and
+    <a href="/en-US/docs/Web/JavaScript">JavaScript</a>.
+  </p>
+</div>
+
+<div class="dark-scheme">
+  <p>
+    MDN contains lots of information about
+    <a href="/en-US/docs/Web/HTML">HTML</a>,
+    <a href="/en-US/docs/Web/CSS">CSS</a>, and
+    <a href="/en-US/docs/Web/JavaScript">JavaScript</a>.
+  </p>
+</div>
+
+<div id="context">
+  <div id="element-1">
+    <div id="element-1-1"></div>
+    <div id="element-1-2"></div>
+  </div>
+  <div id="element-2">
+    <div id="element-2-1"></div>
+  </div>
+</div>
+<p>
+  Selected element ids :
+  <span id="results"></span>
+</p>
+
+</body>
+</html>

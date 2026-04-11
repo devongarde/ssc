@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN @custom-media tests</title>
+<style>
+@custom-media --no-script not (script);
+
+@media (--no-script) {
+}
+
+@custom-media --medium-screen (min-width: 40em) and (max-width: 60em);
+
+@media (--medium-screen) {
+}
+
+@custom-media --screen-or-print-1 screen, print;
+@custom-media --screen-or-print-2 screen or print;
+
+@media (--screen-or-print-1) {
+}
+
+@media (--screen-or-print-2) {
+}
+
+@custom-media --narrow-window (width < 32em);
+
+@media (--narrow-window) {
+}
+
+@media (--narrow-window) and (hover) {
+}
+
+@media (--narrow-window) and (orientation: portrait) {
+}
+
+/* general.css */
+
+@custom-media --mobile-screen (width < 480px);
+@custom-media --tablet-screen (width < 768px);
+@custom-media --laptop-screen (width < 1024px);
+@custom-media --desktop-screen (width < 1440px);
+@custom-media --widescreen (width > 1441px);
+
+/* layout.css */
+
+.container {
+  padding: 1rem;
+}
+
+@media (--mobile-screen) {
+  .container {
+    padding: 0.5rem;
+  }
+}
+
+@media (--laptop-screen) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+@media (--widescreen) {
+  .container {
+    max-width: 1400px;
+    padding: 2rem;
+  }
+}
+
+/* typography.css */
+
+@media (--tablet-screen) {
+  .container {
+    font-size: 0.9rem;
+  }
+}
+
+@media (--laptop-screen) {
+  .container {
+    font-size: 1rem;
+  }
+}
+
+@media (--widescreen) {
+  .container {
+    font-size: 1.1rem;
+  }
+}
+
+@custom-media --enabled true;
+@custom-media --disabled false;
+
+@media (--enabled) {
+  /* These styles always apply */
+  body {
+    background-color: blue;
+  }
+}
+
+@media (--disabled) {
+  /* These styles never apply */
+  body {
+    background-color: red;
+  }
+}
+
+@custom-media --mobile-breakpoint (width < 320px);
+
+@media (--mobile-breakpoint) {
+  .container {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+@custom-media --mobile-breakpoint (width < 480px);
+</style>
+</head>
+
+<body>
+
+<h1>MDN @custom-media Tests</h1>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN focus tests</title>
+<style>
+label {
+  display: block;
+  margin-top: 1em;
+}
+
+input:focus {
+  background-color: lightblue;
+}
+
+select:focus {
+  background-color: ivory;
+}
+
+.red-input:focus {
+  background: yellow;
+  color: red;
+}
+
+.blue-input:focus {
+  background: yellow;
+  color: blue;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN focus Tests</h1>
+
+<form>
+  <p>Which flavor would you like to order?</p>
+  <label>Full Name: <input name="firstName" type="text" /></label>
+  <label
+    >Flavor:
+    <select name="flavor">
+      <option>Cherry</option>
+      <option>Green Tea</option>
+      <option>Moose Tracks</option>
+      <option>Mint Chip</option>
+    </select>
+  </label>
+</form>
+
+<div><input class="red-input" value="I'll be red when focused." /></div>
+<div><input class="blue-input" value="I'll be blue when focused." /></div>
+
+</body>
+</html>

@@ -92,6 +92,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_fabio :
         case s_foaf :
         case s_frbr :
+        case s_geocr :
         case s_gr :
         case s_grddl :
         case s_gs1 :
@@ -236,6 +237,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_fabio :
         case s_foaf :
         case s_frbr :
+        case s_geocr :
         case s_gr :
         case s_grddl :
         case s_gs1 :

@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN keyframe tests</title>
+<style>
+/* Keywords */
+from {
+}
+to {
+}
+
+/* <percentage> values */
+0% {
+}
+50% {
+}
+100% {
+}
+
+/* With <timeline-range-name> */
+entry 20% {
+}
+exit 80% {
+}
+
+/* Selector lists */
+0%,
+50%,
+100% {
+}
+from,
+to {
+}
+
+@keyframes changeToPurple {
+  25%,
+  75% {
+    background-color: purple;
+  }
+}
+
+@keyframes uglyAnimation {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+    background-color: purple;
+  }
+  50% {
+    transform: translateX(0);
+    opacity: 1;
+    background-color: purple;
+  }
+  75% {
+    transform: translateX(0);
+    opacity: 0;
+    background-color: green;
+  }
+  100% {
+    transform: translateX(50vw);
+    opacity: 0;
+    background-color: purple;
+  }
+}
+
+@keyframes uglyAnimation {
+  0%,
+  50%,
+  75%,
+  100% {
+    transform: translateX(0);
+    opacity: 0;
+    background-color: purple;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    background-color: green;
+  }
+  100% {
+    transform: translateX(50vw);
+  }
+}
+
+@keyframes makeItPurpleOnly {
+  0% {
+    background-color: yellow;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    background-color: green;
+  }
+  100% {
+    transform: translateX(50vw);
+  }
+  0%,
+  50%,
+  75%,
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+    background-color: purple;
+  }
+}
+
+@keyframes in-and-out {
+  entry 0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  entry 100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  exit 0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  exit 100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+div {
+  background-color: rebeccapurple;
+  color: white;
+  width: min-content;
+  padding: 10px;
+  font: 2rem sans-serif;
+}
+
+@keyframes slide-and-fade {
+  from {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    transform: translateX(50vw);
+    opacity: 0;
+  }
+}
+
+div {
+  animation: slide-and-fade 4s ease-in infinite;
+}
+
+div {
+  animation: pulse 4s linear infinite;
+}
+
+@keyframes pulse {
+  0%,
+  75% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  25%,
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+div {
+  background-color: magenta;
+  outline: 10px dashed black;
+  color: white;
+  width: min-content;
+  padding: 10px;
+  font: 2rem sans-serif;
+  margin: 35px auto;
+
+  animation: changes 5s linear infinite;
+}
+div:first-of-type {
+  background-color: blue;
+  outline-width: 0;
+}
+div:last-of-type {
+  background-color: green;
+  outline-width: 20px;
+}
+
+@keyframes changes {
+  30%, 40% {
+    background-color: black;
+    outline-width: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN keyframe Tests</h1>
+
+<div>I am animated</div>
+
+<div>I am animated</div>
+<div>I am animated</div>
+<div>I am animated</div>
+
+</body>
+</html>

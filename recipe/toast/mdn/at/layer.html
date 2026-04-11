@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN @layer tests</title>
+<style>
+@import "theme.css" layer(utilities);
+
+@layer module, state;
+
+@layer state {
+  .alert {
+    background-color: brown;
+  }
+  p {
+    border: medium solid limegreen;
+  }
+}
+
+@layer module {
+  .alert {
+    border: medium solid violet;
+    background-color: yellow;
+    color: white;
+  }
+}
+
+@layer utilities {
+  .padding-sm {
+    padding: 0.5rem;
+  }
+
+  .padding-lg {
+    padding: 0.8rem;
+  }
+}
+
+@layer utilities;
+
+@layer theme, layout, utilities;
+
+@layer {
+  p {
+    margin-block: 1rem;
+  }
+}
+
+@layer framework {
+  @layer layout {
+  }
+}
+
+@layer framework.layout {
+  p {
+    margin-block: 1rem;
+  }
+}
+
+p {
+  color: rebeccapurple;
+}
+
+@layer type {
+  .box p {
+    font-weight: bold;
+    font-size: 1.3em;
+    color: green;
+  }
+}
+
+@layer base, special;
+
+@layer special {
+  .item {
+    color: rebeccapurple;
+  }
+}
+
+@layer base {
+  .item {
+    color: green;
+    border: 5px solid green;
+    font-size: 1.3em;
+    padding: 0.5em;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN @layer Tests</h1>
+
+<p class="alert">Beware of the zombies</p>
+
+<div class="box">
+  <p>Hello, world!</p>
+</div>
+
+<div class="item">
+  I am displayed in <code>color: rebeccapurple</code> because the
+  <code>special</code> layer comes after the <code>base</code> layer. My green
+  border, font-size, and padding come from the <code>base</code> layer.
+</div>
+
+</body>
+</html>

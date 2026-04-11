@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN spelling-error tests</title>
+<style>
+::spelling-error {
+  text-decoration: wavy red underline;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN spelling-error Tests</h1>
+
+<p>
+Only a small subset of CSS properties can be used in a rule with ::spelling-error in its selector:
+
+    color
+    background-color
+    cursor
+    caret-color
+    outline and its longhands
+    text-decoration and its associated properties
+    text-emphasis-color
+    text-shadow
+</p>
+
+<p contenteditable spellcheck="true">
+  My friends are coegdfgfddffbgning to the party tonight.
+</p>
+
+</body>
+</html>

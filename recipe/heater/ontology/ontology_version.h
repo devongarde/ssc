@@ -370,6 +370,8 @@ const ontology_version frbr_schema (s_frbr, 1, 0);
 
 const ontology_version foaf_schema (s_foaf, 0, 99);
 
+const ontology_version croissant_geo (s_geocr, 1, 0);
+
 const ontology_version good_relations (s_gr, 1, 0);
 
 const ontology_version grddl_schema (s_grddl, 1, 0);

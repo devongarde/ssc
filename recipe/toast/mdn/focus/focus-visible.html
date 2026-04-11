@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN focus-visible tests</title>
+<style>
+label {
+  display: block;
+  margin-top: 1em;
+}
+
+input:focus-visible {
+  outline: 2px solid crimson;
+  border-radius: 3px;
+}
+
+select:focus-visible {
+  border: 2px dashed crimson;
+  border-radius: 3px;
+  outline: none;
+}
+
+input,
+button {
+  margin: 10px;
+}
+
+.focus-only:focus {
+  outline: 2px solid black;
+}
+
+.focus-visible-only:focus-visible {
+  outline: 4px dashed darkorange;
+}
+
+.button {
+  margin: 10px;
+  border: 2px solid darkgray;
+  border-radius: 4px;
+}
+
+.button:focus-visible {
+  /* Draw the focus when :focus-visible is supported */
+  outline: 3px solid deepskyblue;
+  outline-offset: 3px;
+}
+
+@supports not selector(:focus-visible) {
+  .button.with-fallback:focus {
+    /* Fallback for browsers without :focus-visible support */
+    outline: 3px solid deepskyblue;
+    outline-offset: 3px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN focus-visible Tests</h1>
+
+<form>
+  <p>Which flavor would you like to order?</p>
+  <label>Full Name: <input name="firstName" type="text" /></label>
+  <label
+    >Flavor:
+    <select name="flavor">
+      <option>Cherry</option>
+      <option>Green Tea</option>
+      <option>Moose Tracks</option>
+      <option>Mint Chip</option>
+    </select>
+  </label>
+</form>
+
+<input type="text" value="Default styles" /><br />
+<button>Default styles</button><br />
+
+<input class="focus-only" type="text" value=":focus" /><br />
+<button class="focus-only">:focus</button><br />
+
+<input class="focus-visible-only" type="text" value=":focus-visible" /><br />
+<button class="focus-visible-only">:focus-visible</button>
+
+<button class="button with-fallback" type="button">Button with fallback</button>
+<button class="button without-fallback" type="button">
+  Button without fallback
+</button>
+
+</body>
+</html>

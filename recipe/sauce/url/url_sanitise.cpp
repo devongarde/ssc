@@ -137,21 +137,21 @@ void code_map_init (nitpick& nits)
 {   return enescape (s, reserved); }
 
 int char2hex (const char ch)
-{   if (ch >= '0' && ch <= '9')
+{   if ((ch >= '0') && (ch <= '9'))
         return ch - '0';
-    if (ch >= 'A' && ch <= 'F')
+    if ((ch >= 'A') && (ch <= 'F'))
         return ch - 'A' + 10;
-    if (ch >= 'a' && ch <= 'F')
+    if ((ch >= 'a') && (ch <= 'f'))
         return ch - 'a' + 10;
     GRACEFUL_CRASH (__FILE__, __LINE__);
     UNREACHABLE (return 0); }
 
 bool is_hex (const char ch) noexcept
-{   if (ch >= '0' && ch <= '9')
+{   if ((ch >= '0') && (ch <= '9'))
         return true;
-    if (ch >= 'A' && ch <= 'F')
+    if ((ch >= 'A') && (ch <= 'F'))
         return true;
-    return (ch >= 'a' && ch <= 'F'); }
+    return ((ch >= 'a') && (ch <= 'f')); }
 
 ::std::string decode (const ::std::string& url)
 {   ::std::string res;

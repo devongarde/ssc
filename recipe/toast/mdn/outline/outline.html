@@ -4,7 +4,38 @@
 <title>MDN outline tests</title>
 <style>
 .sid {
+/* style */
+outline: solid;
 
+/* style | color */
+outline: dashed #ff6666;
+
+/* width | style */
+outline: thick inset;
+
+/* width | style | color*/
+outline: 3px solid green;
+
+/* Global values */
+outline: inherit;
+outline: initial;
+outline: revert;
+outline: revert-layer;
+outline: unset;
+}
+
+a {
+  border: 1px solid;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 10px;
+  padding: 5px;
+}
+
+a:focus {
+  outline: 4px dotted #ee7733;
+  outline-offset: 4px;
+  background: #ffffaa;
 }
 </style>
 </head>
@@ -12,6 +43,8 @@
 <body>
 
 <h1>MDN outline Tests</h1>
+
+<a href="#">This link has a special focus style.</a>
 
 </body>
 </html>

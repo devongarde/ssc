@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN read-only tests</title>
+<style>
+label,
+input[type="submit"] {
+  display: block;
+  margin-top: 1em;
+}
+
+*:read-only {
+  font-weight: bold;
+  color: indigo;
+}
+
+input:read-only,
+textarea:read-only {
+  border: 0;
+  box-shadow: none;
+  background-color: #dddddd;
+}
+
+textarea:read-write {
+  outline: 1px dashed red;
+  outline-offset: 2px;
+  border-radius: 5px;
+}
+
+p {
+  font-size: 150%;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+p:read-only {
+  background-color: red;
+  color: white;
+}
+
+p:read-write {
+  background-color: lime;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN read-only Tests</h1>
+
+<p contenteditable>This paragraph is editable; it is read-write.</p>
+
+<p>This paragraph is not editable; it is read-only.</p>
+
+</body>
+</html>

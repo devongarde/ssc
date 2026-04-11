@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN easing-function tests</title>
+<style>
+body > div {
+  position: relative;
+  height: 100px;
+}
+
+div > div {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: blue;
+  background-image: radial-gradient(
+    circle at 10px 10px,
+    rgb(25 255 255 / 80%),
+    rgb(25 255 255 / 40%)
+  );
+  border-radius: 50%;
+  top: 25px;
+  animation: 1.5s infinite alternate;
+}
+
+@keyframes move-right {
+  from {
+    left: 10%;
+  }
+
+  to {
+    left: 90%;
+  }
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+</style>
+<script>
+const selectElem = document.querySelector("select");
+const startBtn = document.querySelector("button");
+const divElem = document.querySelector("div > div");
+
+startBtn.addEventListener("click", () => {
+  if (startBtn.textContent === "Start animation") {
+    divElem.style.animationName = "move-right";
+    startBtn.textContent = "Stop animation";
+    divElem.style.animationTimingFunction = selectElem.value;
+  } else {
+    divElem.style.animationName = "unset";
+    startBtn.textContent = "Start animation";
+  }
+});
+
+selectElem.addEventListener("change", () => {
+  divElem.style.animationTimingFunction = selectElem.value;
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN easing-function Tests</h1>
+
+<div>
+  <div></div>
+</div>
+<ul>
+  <li>
+    <button class="animation-button">Start animation</button>
+  </li>
+  <li>
+    <label for="easing-select">Choose an easing function:</label>
+    <select id="easing-select">
+      <option selected>linear</option>
+      <option>linear(0, 0.5 50%, 1)</option>
+      <option>ease</option>
+      <option>ease-in</option>
+      <option>ease-in-out</option>
+      <option>ease-out</option>
+      <option>cubic-bezier(0.1, -0.6, 0.2, 0)</option>
+      <option>cubic-bezier(0, 1.1, 0.8, 4)</option>
+      <option>steps(5, end)</option>
+      <option>steps(3, start)</option>
+      <option>steps(4)</option>
+    </select>
+  </li>
+</ul>
+
+</body>
+</html>

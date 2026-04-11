@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN selector tests</title>
+<style>
+span {
+  border: red 2px solid;
+}
+div {
+  border: red 2px solid;
+}
+
+span,
+div {
+  border: red 2px solid;
+}
+
+:is(span, div) {
+  border: red 2px solid;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Helvetica", "Arial";
+}
+
+#main,
+.content,
+article,
+h1 + p {
+  font-size: 1.1em;
+}
+
+h1 {
+  font-family: sans-serif;
+}
+h2:invalid-pseudo {
+  font-family: sans-serif;
+}
+h3 {
+  font-family: sans-serif;
+}
+
+h1,
+h2:invalid-pseudo,
+h3 {
+  font-family: sans-serif;
+}
+
+h1 {
+  font-family: sans-serif;
+}
+h2:maybe-unsupported {
+  font-family: sans-serif;
+}
+h3 {
+  font-family: sans-serif;
+}
+
+:is(h1, h2:maybe-unsupported, h3) {
+  font-family: sans-serif;
+}
+
+h2:has(+ p, + ul.red) {
+  font-style: italic;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>MDN selector Tests</h1>
+
+</body>
+</html>

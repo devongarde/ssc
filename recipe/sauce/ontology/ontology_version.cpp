@@ -252,6 +252,7 @@ sh_t sh [] =  // latest first
     { fabio_schema, html_jan19 },
     { foaf_schema, html_rdf_1_0 },
     { frbr_schema, xhtml_1_0 },
+    { croissant_geo, html_apr26 },
     { good_relations, html_rdf_1_0 },
     { grddl_schema, html_rdf_1_0_con },
     { gs1_16, html_gs1_16 },
@@ -542,6 +543,7 @@ e_apples_oranges ontology_to_apples_oranges (const e_ontology root) noexcept
         case s_cnt : return aoo_cnt;
         case s_content : return aoo_content;
         case s_croissant :
+        case s_geocr :
         case s_rai : return aoo_croissant;
         case s_crs2 : return aoo_crs2;
         case s_csvw : return aoo_csvw;

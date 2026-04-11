@@ -159,7 +159,7 @@ bool invalid_exportparts (nitpick& nits, const html_version& , element* box, con
         if (pos != ::std::string::npos)
         {   const ::std::string p (k.substr (0, pos));
             if (parts.find (p) == parts.cend ())
-            {   nits.pick (nit_part, es_error, ec_type, "part ", quote (p), " is unrecognised");
+            {   nits.pick (nit_part, es_error, ec_type, "part ", quote (p), " is unrecognised (8)");
                 res = true; } } }
     return res; }
 
@@ -169,7 +169,7 @@ bool invalid_parts (nitpick& nits, const html_version& , element* box, const vst
     sstr_t& parts = box -> get_page ().parts ();
     for (auto k : s)
         if (parts.find (k) == parts.cend ())
-        {   nits.pick (nit_part, es_error, ec_type, "part ", quote (k), " is unrecognised");
+        {   nits.pick (nit_part, es_error, ec_type, "part ", quote (k), " is unrecognised (9)");
             res = true; }
     return res; }
 
@@ -238,10 +238,10 @@ bool set_keychar_value (nitpick& nits, const html_version& v, const ::std::strin
             {   bool known = false, inval = false;
                 interpret_character_code (v, ss, known, inval, false);
                 if (! known)
-                {   nits.pick (nit_keychar, ed_keyboard, "3. Named key Attribute Values", es_error, ec_type, quote (GSL_AT (kcs, sz-1)), " is unrecognised");
+                {   nits.pick (nit_keychar, ed_keyboard, "3. Named key Attribute Values", es_error, ec_type, quote (GSL_AT (kcs, sz-1)), " is unrecognised (10)");
                     good = false; }
                 else if (inval)
-                {   nits.pick (nit_invalid_character_code, es_error, ec_type, quote (ss), " is invalid in ", v.report ());
+                {   nits.pick (nit_invalid_character_code, es_error, ec_type, quote (ss), " is invalid in ", v.report (), " (5)");
                     good = false; } } } }
     return good; }
 

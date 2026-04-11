@@ -26,37 +26,36 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/arguments.h"
 
 void distilled::reset ()
-{   class_.clear ();
-    id_.clear ();
-    element_class_.clear ();
-    element_id_.clear ();
-    font_.clear ();
+{   //class_.clear ();
+    //id_.clear ();
+    //element_class_.clear ();
+    //element_id_.clear ();
+    //font_.clear ();
+    cat_.clear ();
     ticks_.clear ();
     cp_.reset ();
     in_progress_ = false; }
 
 bool distilled::has_element_class (const e_element e, const ::std::string& s) const
 {   const ::std::string l (elem::name (e) + "." + s);
-    return (element_class_.find (l) != element_class_.cend ()); }
+    return (cat_.find (l) != oops_a_daisy); }
 
 bool distilled::has_element_id (const e_element e, const ::std::string& s) const
 {   const ::std::string l (elem::name (e) + "#" + s);
-    return (element_id_.find (l) != element_id_.cend ()); }
+    return (cat_.find (l) != oops_a_daisy); }
 
 void distilled::accumulate (stats_t* s) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
-    for (auto c : class_)
-        s -> dcl_class (c.first, c.second);
-    for (auto c : custom_prop_)
-        s -> dcl_custom_prop (c.first, c.second);
-    for (auto c : id_)
-        s -> dcl_id (c.first, c.second);
-    for (auto c : element_class_)
-        s -> dcl_element_class (c.first, c.second);
-    for (auto c : element_id_)
-        s -> dcl_element_id (c.first, c.second);
-    for (auto c : font_)
-        s -> mark_font (c.first, c.second);
+    for (auto c = cat_.cbegin (); c != cat_.cend (); ++c)
+        switch (c -> second.cic_)
+        {   case cic_class :        s -> dcl_class (c -> second.s_, c -> second.count_); break;
+            case cic_custom_prop :  s -> dcl_custom_prop (c -> second.s_, c -> second.count_); break;
+            case cic_id :           s -> dcl_id (c -> second.s_, c -> second.count_); break;
+            case cic_element_class :s -> dcl_element_class (c -> second.s_, c -> second.count_); break;
+            case cic_element_id :   s -> dcl_element_id (c -> second.s_, c -> second.count_); break;
+            case cic_font :         s -> mark_font (c -> second.s_, c -> second.count_); break;
+                // add for functions
+            default : break; }
     for (int i = 0; i < gst_max; ++i)
         for (auto c : str_.at (i))
             s -> mark_str (static_cast < e_gsstr > (i), c); }

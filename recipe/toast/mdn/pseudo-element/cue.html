@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN cue tests</title>
+<style>
+video {
+  width: 100%;
+}
+
+video::cue {
+  font-size: 1rem;
+  color: yellow;
+}
+
+::cue(u) {
+  color: red;
+}
+
+::cue {
+  color: white;
+  background-color: rgb(0 0 0 / 60%);
+}
+
+::cue(u) {
+  color: red;
+  text-decoration: wavy overline lime;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN cue Tests</h1>
+
+<video controls src="/shared-assets/videos/friday.mp4">
+  <track
+    default
+    kind="captions"
+    srclang="en"
+    src="/shared-assets/misc/friday.vtt" />
+  Sorry, your browser doesn't support embedded videos.
+</video>
+
+<p>
+background
+background-attachment
+background-clip
+background-color
+background-image
+background-origin
+background-position
+background-repeat
+background-size
+color
+font
+font-family
+font-size
+font-stretch
+font-style
+font-variant
+font-weight
+line-height
+opacity
+outline
+outline-color
+outline-style
+outline-width
+ruby-position
+text-combine-upright
+text-decoration
+text-decoration-color
+text-decoration-line
+text-decoration-style
+text-decoration-thickness
+text-shadow
+visibility
+white-space
+</p>
+
+</body>
+</html>

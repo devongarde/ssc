@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN :active tests</title>
+<style>
+.joinBtn {
+  width: 10em;
+  height: 5ex;
+  background-image: linear-gradient(135deg, #f34079 40%, #fc894d);
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.joinBtn:active {
+  box-shadow: 2px 2px 5px #fc894d;
+}
+
+/* Unvisited links */
+a:link {
+  color: blue;
+}
+/* Visited links */
+a:visited {
+  color: purple;
+}
+/* Hovered links */
+a:hover {
+  background: yellow;
+}
+/* Active links */
+a:active {
+  color: red;
+}
+
+/* Active paragraphs */
+p:active {
+  background: #eeeeee;
+}
+
+form :active {
+  color: red;
+}
+
+form button {
+  background: white;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN :active Tests</h1>
+
+<p>
+  This paragraph contains a link:
+  <a href="#">This link will turn red while you click on it.</a>
+  The paragraph will get a gray background while you click on it or the link.
+</p>
+
+<form>
+  <label for="my-button">My button: </label>
+  <button id="my-button" type="button">Try Clicking Me or My Label!</button>
+</form>
+
+</body>
+</html>

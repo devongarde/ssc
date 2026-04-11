@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN column tests</title>
+<style>
+ul {
+  width: 100vw;
+  height: 300px;
+  padding: 10px;
+
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+
+  columns: 1;
+  text-align: center;
+}
+
+li {
+  list-style-type: none;
+
+  display: inline-block;
+  height: 100%;
+  width: 200px;
+  text-align: left;
+
+  background-color: #eeeeee;
+  outline: 1px solid #dddddd;
+  padding: 0 20px;
+  margin: 0 10px;
+}
+
+li:nth-child(even) {
+  background-color: cyan;
+}
+
+ul::column {
+  scroll-snap-align: center;
+}
+
+ul {
+  scroll-marker-group: after;
+}
+
+::scroll-marker-group {
+  display: flex;
+  gap: 0.4em;
+  place-content: center;
+}
+
+ul::column::scroll-marker {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+ul::column::scroll-marker:target-current {
+  background-color: black;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN column Tests</h1>
+
+<ul>
+...
+  <li>
+    <h2>Item 1</h2>
+  </li>
+...
+</ul>
+
+</body>
+</html>

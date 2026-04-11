@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN autofill tests</title>
+<style>
+input {
+  border: 3px solid black;
+}
+input:autofill {
+  outline: 5px solid magenta;
+  border: 3px dashed yellow;
+}
+
+input:-internal-autofill-selected {
+  appearance: menulist-button;
+  background-image: none !important;
+  background-color:
+    light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4)) !important;
+  color: fieldtext !important;
+}
+
+input {
+  border-radius: 0px;
+}
+
+input:autofill {
+  border-radius: 0.5lh;
+  outline: 5px dashed magenta;
+  border-color: yellow;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN autofill Tests</h1>
+
+<form>
+  <p>Click on the text box and choose any option suggested by your browser.</p>
+  <p>
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" autocomplete="given-name" />
+  </p>
+  <p>
+    <label for="email">Email Address</label>
+    <input id="email" name="email" type="email" autocomplete="email" />
+  </p>
+  <p>
+    <label for="country">Country</label>
+    <input
+      id="country"
+      name="country"
+      type="text"
+      autocomplete="country-name" />
+  </p>
+</form>
+
+<form method="post" action="">
+  <p>
+    <label for="name">Name: </label>
+    <input name="n" id="name" autocomplete="given-name" />
+  </p>
+  <p>
+    <label for="email">Email: </label>
+    <input type="email" name="email" id="email" autocomplete="email" />
+  </p>
+  <p>
+    <label for="pet">Your pet's name: </label>
+    <input name="pet" id="pet" />
+  </p>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN has-slotted tests</title>
+<style>
+/* Selects the content of a <slot> element that has content that is not default  */
+:has-slotted {
+  color: green;
+}
+
+/* Selects the content of a <slot> element that has no content or default  */
+:not(:has-slotted) {
+  color: red;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN has-slotted Tests</h1>
+
+<p>
+  <template shadowrootmode="open">
+    <style>
+      :has-slotted {
+        color: rebeccapurple;
+      }
+    </style>
+    <slot name="one">Placeholder 1</slot>
+    <slot name="two">Placeholder 2</slot>
+  </template>
+  <span slot="one">Slotted content</span>
+</p>
+
+</body>
+</html>

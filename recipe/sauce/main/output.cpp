@@ -30,6 +30,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #endif // WX
 #include "utility/fileio.h"
 
+#ifdef SIGNING
+void output_init ()
+{ /*  SSL_load_error_strings ();
+    ERR_load_crypto_strings ();*/ }
+#endif // SIGNING
+
 void outstream::dup ()
 {   try
     {   const ::std::string on = context.out_name ();

@@ -59,6 +59,7 @@ struct sz_always { CONSTEXPR static char const* sz () { return "always"; } };
 struct sz_anchor { CONSTEXPR static char const* sz () { return "anchor"; } };
 struct sz_anchor_centre { CONSTEXPR static char const* sz () { return "anchor-center"; } };
 struct sz_anchor_size { CONSTEXPR static char const* sz () { return "anchor-size"; } };
+struct sz_anchored { CONSTEXPR static char const* sz () { return "anchored"; } };
 struct sz_anchors_valid { CONSTEXPR static char const* sz () { return "anchors-valid"; } };
 struct sz_anchors_visible { CONSTEXPR static char const* sz () { return "anchors-visible"; } };
 struct sz_anonymous { CONSTEXPR static char const* sz () { return "anonymous"; } };
@@ -157,8 +158,8 @@ struct sz_colgroup { CONSTEXPR static char const* sz () { return "colgroup"; } }
 struct sz_collapse { CONSTEXPR static char const* sz () { return "collapse"; } };
 struct sz_colon { CONSTEXPR static char const* sz () { return ":"; } };
 struct sz_colondot { CONSTEXPR static char const* sz () { return ":."; } };
-struct sz_color { CONSTEXPR static char const* sz () { return "color"; } }; // dialect
-struct sz_colour { CONSTEXPR static char const* sz () { return "colour"; } }; // standard
+struct sz_color { CONSTEXPR static char const* sz () { return "color"; } };
+struct sz_colour { CONSTEXPR static char const* sz () { return "colour"; } };
 struct sz_colonspace { CONSTEXPR static char const* sz () { return ": "; } };
 struct sz_column { CONSTEXPR static char const* sz () { return "column"; } };
 struct sz_column_reverse { CONSTEXPR static char const* sz () { return "column-reverse"; } };
@@ -674,7 +675,10 @@ struct sz_sample { CONSTEXPR static char const* sz () { return "sample"; } };
 struct sz_scale { CONSTEXPR static char const* sz () { return "scale"; } };
 struct sz_scale_down { CONSTEXPR static char const* sz () { return "scale-down"; } };
 struct sz_scroll { CONSTEXPR static char const* sz () { return "scroll"; } };
+struct sz_scrollable { CONSTEXPR static char const* sz () { return "scrollable"; } };
+struct sz_scrolled { CONSTEXPR static char const* sz () { return "scrolled"; } };
 struct sz_scroll_position { CONSTEXPR static char const* sz () { return "scroll-position"; } };
+struct sz_scroll_state { CONSTEXPR static char const* sz () { return "scroll-state"; } };
 struct sz_screen { CONSTEXPR static char const* sz () { return "screen"; } };
 struct sz_self { CONSTEXPR static char const* sz () { return "self"; } };
 struct sz_separate { CONSTEXPR static char const* sz () { return "separate"; } };
@@ -701,6 +705,7 @@ struct sz_small_caps { CONSTEXPR static char const* sz () { return "small-caps";
 struct sz_smaller { CONSTEXPR static char const* sz () { return "smaller"; } };
 struct sz_smooth { CONSTEXPR static char const* sz () { return "smooth"; } };
 struct sz_snap { CONSTEXPR static char const* sz () { return "snap"; } };
+struct sz_snapped { CONSTEXPR static char const* sz () { return "snapped"; } };
 struct sz_soap { CONSTEXPR static char const* sz () { return "soap"; } };
 struct sz_soft { CONSTEXPR static char const* sz () { return "soft"; } };
 struct sz_solid { CONSTEXPR static char const* sz () { return "solid"; } };
@@ -749,6 +754,7 @@ struct sz_strokepaint { CONSTEXPR static char const* sz () { return "strokePaint
 struct sz_strokewidth { CONSTEXPR static char const* sz () { return "strokeWidth"; } };
 struct sz_strongcontrast { CONSTEXPR static char const* sz () { return "strongContrast"; } };
 struct sz_structured_text { CONSTEXPR static char const* sz () { return "structured text"; } };
+struct sz_stuck { CONSTEXPR static char const* sz () { return "stuck"; } };
 struct sz_studio { CONSTEXPR static char const* sz () { return "studio"; } };
 struct sz_stupid { CONSTEXPR static char const* sz () { return "stupid"; } };
 struct sz_style { CONSTEXPR static char const* sz () { return "style"; } };
