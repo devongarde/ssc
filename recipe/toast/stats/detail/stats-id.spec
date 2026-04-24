@@ -34,18 +34,18 @@ PASS ../toast/stats/detail/md-ref.html
 
 GRAND
 Id:
-  a styled 0 times, used once
-  amanda styled 0 times, used once
-  b styled 0 times, used once
-  c styled 0 times, used once
-  comments styled 0 times, used once
-  tid styled 0 times, used once
+  a declared never, used once
+  amanda declared never, used once
+  b declared never, used once
+  c declared never, used once
+  comments declared never, used once
+  tid declared never, used once
 
 Id/Element:
-  div#amanda styled 0 times, used once
-  div#b styled 0 times, used once
-  div#c styled 0 times, used once
-  div#tid styled 0 times, used once
-  p#a styled 0 times, used once
-  span#comments styled 0 times, used once
+  div#amanda declared never, used once
+  div#b declared never, used once
+  div#c declared never, used once
+  div#tid declared never, used once
+  p#a declared never, used once
+  span#comments declared never, used once
 ===

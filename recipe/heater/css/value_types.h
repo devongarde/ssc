@@ -56,12 +56,12 @@ template < e_css_val_fn T > int split_fn_params (t_params& params, arguments& ar
             case ct_gt :
             case ct_hash :
                 if (! in_list < T, cvf_type, cvf_attr, cvf_media, cvf_if > :: yes ())
-                {   nits.pick (nit_css_value_fn, es_error, ec_css, type_master < t_css_val_fn > :: name (T), ": unexpected ", quote (tkn_rpt (args.t_.at (i))), " when checking ", quote (args.t_.at (start).val_), "(1)");
+                {   nits.pick (nit_css_value_fn, es_error, ec_css, type_master < t_css_val_fn > :: name (T), ": unexpected ", quote (tkn_rpt (args.t_.at (i))), " when checking ", quote (args.t_.at (start).val_), "(1a)");
                     prev = last = ct_error; }
                 break;
             case ct_eq :
                 if (! in_list < T, cvf_media, cvf_if > :: yes ())
-                {   nits.pick (nit_css_value_fn, es_error, ec_css, type_master < t_css_val_fn > :: name (T), ": unexpected ", quote (tkn_rpt (args.t_.at (i))), " when checking ", quote (args.t_.at (start).val_), "(1)");
+                {   nits.pick (nit_css_value_fn, es_error, ec_css, type_master < t_css_val_fn > :: name (T), ": unexpected ", quote (tkn_rpt (args.t_.at (i))), " when checking ", quote (args.t_.at (start).val_), "(1b)");
                     prev = last = ct_error; }
                 break;
             case ct_round_brac :
@@ -116,7 +116,7 @@ template < e_css_val_fn T > int split_fn_params (t_params& params, arguments& ar
                         case ct_slash :
                         case ct_splat :
                             nits.pick (nit_css_value_fn, es_error, ec_css,
-                                type_master < t_css_val_fn > :: name (T), ": unexpected ", quote (tkn_rpt (last)), " ", quote (tkn_rpt (args.t_.at (i))), " when checking ", quote (tkn_rpt (args.t_.at (start))), "(3)");
+                                type_master < t_css_val_fn > :: name (T), ": unexpected ", quote (tkn_rpt (last)), " ", quote (tkn_rpt (args.t_.at (i))), " when checking ", quote (tkn_rpt (args.t_.at (start))), "(3a)");
                             prev = last = ct_error;
                             break;
                         default :
@@ -130,7 +130,7 @@ template < e_css_val_fn T > int split_fn_params (t_params& params, arguments& ar
                         case ct_slash :
                         case ct_splat :
                             nits.pick (nit_css_value_fn, es_error, ec_css,
-                                type_master < t_css_val_fn > :: name (T), ": unexpected ", quote (tkn_rpt (last)), " ", quote (tkn_rpt (args.t_.at (i))), " when checking ", quote (tkn_rpt (args.t_.at (start))), "(3)");
+                                type_master < t_css_val_fn > :: name (T), ": unexpected ", quote (tkn_rpt (last)), " ", quote (tkn_rpt (args.t_.at (i))), " when checking ", quote (tkn_rpt (args.t_.at (start))), "(3b)");
                             prev = last = ct_error;
                             break;
                         default :
@@ -441,10 +441,20 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_cubic_bezier >
     {   if (! maybe_animatable < TYPE > (nits)) return -1;
         return value_fn < TYPE, cvf_cubic_bezier, 4, 4, t_zero_to_one, t_real, t_zero_to_one, t_real > :: check (args, start, to, nits); } };
 
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_custom >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
+    {   if (! maybe_animatable < TYPE > (nits)) return -1;
+        return value_fn < TYPE, cvf_custom, 1, 5, t_generic > :: check (args, start, to, nits); } };
+
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_device_cmyk >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
     {   if (! maybe_colour < TYPE > (nits, 3)) return -1;
         return value_fn < TYPE, cvf_device_cmyk, 4, 6, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_slash, t_css_alpha > :: check (args, start, to, nits); } };
+
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_double_rainbow >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_image (nits, id)) return -1;
+        return value_fn < TYPE, cvf_double_rainbow, 1, 2, t_position, t_css_double_rainbow > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_drop_shadow >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
@@ -739,6 +749,10 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_ornaments >
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_paint >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
     {   return value_fn < TYPE, cvf_paint, 1, -1, t_css_worklet, t_generic > :: check (args, start, to, nits); } };
+
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_param >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
+    {   return value_fn < TYPE, cvf_param, 1, 2, t_generic, t_generic > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_path >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)

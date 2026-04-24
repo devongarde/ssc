@@ -1115,6 +1115,7 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "Dev", "Device Adaption", ext3_, e3, H3_CSS_DEVICE);
     res += single_feature (res, b, "Dsp", "Display", ext5_, e5, H5_CSS_DISPLAY_3, H5_CSS_DISPLAY_4);
     res += single_feature (res, b, "Eas", "Easing Functions", ext5_, e5, H5_CSS_EASE_3, H5_CSS_EASE_4);
+    res += single_feature (res, b, "Egg", "Expressive Generalizations and Gadgetry", ext3_, e3, H3_CSS_EGG);
     res += single_feature (res, b, "Env", "Environment", ext3_, e3, H3_CSS_ENVIRONMENT);
     res += single_feature (res, b, "Exc", "Exclusions", ext3_, e3, H3_CSS_EXCLUDE);
     res += single_feature (res, b, "Fll", "Fill and Stroke", ext3_, e3, H3_CSS_FILL);
@@ -1144,20 +1145,22 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "Nst", "Nesting", ext3_, e2, H3_CSS_NESTING);
     res += single_feature (res, b, "Ofl", "Overflow", ext5_, e5, H5_CSS_OVERFLOW_3, H5_CSS_OVERFLOW_4, H5_CSS_OVERFLOW_5);
     res += single_feature (res, b, "Osc", "Overscroll Behaviour", ext3_, e3, H3_CSS_OVERSCROLL);
-    res += single_feature (res, b, "PaM", "Paged Media", ext3_, e3, H3_CSS_PAGE);
+    res += single_feature (res, b, "PaM", "Paged Media", ext3_, e3, H3_CSS_PAGE_3, H3_CSS_PAGE_4);
+    res += single_feature (res, b, "PEv", "Pointer Events", ext5_, e5, H5_CSS_PTR_EV_3, H5_CSS_PTR_EV_4, H5_CSS_PTR_EV_5, H5_CSS_PTR_EV_6);
     res += single_feature (res, b, "PFl", "Page Floats", ext3_, e3, H3_CSS_FLOAT);
     res += single_feature (res, b, "Pos", "Positions", ext3_, e3, H3_CSS_POSITION_3, H3_CSS_POSITION_4);
+    res += single_feature (res, b, "PTm", "Pagination Templates", ext2_, e2, H2_CSS_PAGETEMP);
     res += single_feature (res, b, "Pre", "Presentation Levels", ext3_, e3, H3_CSS_PRESENT);
-    res += single_feature (res, b, "PEv", "Pointer Events", ext5_, e5, H5_CSS_PTR_EV_3, H5_CSS_PTR_EV_4, H5_CSS_PTR_EV_5, H5_CSS_PTR_EV_6);
     res += single_feature (res, b, "Rou", "Round Display", ext3_, e3, H3_CSS_ROUND);
     res += single_feature (res, b, "Psd", "Pseudo-Elements", ext5_, e5, H5_CSS_PSEUDO_3, H5_CSS_PSEUDO_4);
     res += single_feature (res, b, "Reg", "Regions", ext3_, e3, H3_CSS_REGION);
     res += single_feature (res, b, "Rhy", "Rhythmic Sizing", ext3_, e3, H3_CSS_RHYTHM);
     res += single_feature (res, b, "Rub", "Ruby Annotation", ext3_, e3, H3_CSS_RUBY);
-    res += single_feature (res, b, "Sco", "Scope", ext3_, e3, H3_CSS_SCOPE);
+    res += single_feature (res, b, "Sco", "Scope/Shadow", ext3_, e3, H3_CSS_SCOPE);
     res += single_feature (res, b, "Scr", "Scrollbar Style", ext3_, e3, H3_CSS_SCROLLBAR);
     res += single_feature (res, b, "Sel", "Selectors", ext2_, e2, H2_CSS_SELECTOR_3, H2_CSS_SELECTOR_4, H2_CSS_SELECTOR_5);
     res += single_feature (res, b, "Sha", "Shadow Parts", ext3_, e3, H3_CSS_SHADOW);
+    res += single_feature (res, b, "Shd", "Shaders", ext2_, e2, H2_CSS_SHADER);
     res += single_feature (res, b, "Shp", "Shapes", ext3_, e3, H3_CSS_SHAPE_3, H3_CSS_SHAPE_4);
     res += single_feature (res, b, "Sda", "Scroll-driven Animation", ext3_, e3, H3_CSS_SDA);
     res += single_feature (res, b, "Snp", "Scroll Snap", ext3_, e3, H3_CSS_SNAP_3, H3_CSS_SNAP_4);
@@ -1833,6 +1836,14 @@ template < > void html_version::set_level < c_easing_function > (const int n)
     if (n == 4) set_ext5 (H5_CSS_EASE_34);
     else if (n == 3) set_ext5 (H5_CSS_EASE_3); }
 
+template < > int html_version::get_level < c_egg > () const
+{   if (any_ext3 (H3_CSS_EGG)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_egg > (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_EGG);
+    else reset_ext3 (H3_CSS_EGG); }
+
 template < > int html_version::get_level < c_environment > () const
 {   if (any_ext3 (H3_CSS_ENVIRONMENT)) return 3;
     return 0; }
@@ -1977,6 +1988,14 @@ template < > void html_version::set_level < c_line_grid > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_LINE_GRID);
     else reset_ext3 (H3_CSS_LINE_GRID); }
 
+template < > int html_version::get_level < c_linked_parameters > () const
+{   if (any_ext3 (H3_CSS_LINK_PARAM)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_linked_parameters > (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_LINK_PARAM);
+    else reset_ext3 (H3_CSS_LINK_PARAM); }
+
 template < > int html_version::get_level < c_list_counter > () const
 {   if (any_ext3 (H3_CSS_LIST)) return 3;
     return 0; }
@@ -2109,12 +2128,22 @@ template < > void html_version::set_level < c_overscroll_behaviour > (const int 
 {   if (n == 3) set_ext3 (H3_CSS_OVERSCROLL);
     else reset_ext3 (H3_CSS_OVERSCROLL); }
 
+template < > int html_version::get_level < c_page_template > () const
+{   if (any_ext2 (H2_CSS_PAGETEMP)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_page_template > (const int n)
+{   if (n == 3) set_ext2 (H2_CSS_PAGETEMP);
+    else reset_ext2 (H2_CSS_PAGETEMP); }
+
 template < > int html_version::get_level < c_paged_media > () const
-{   if (any_ext3 (H3_CSS_PAGE)) return 3;
+{   if (any_ext3 (H3_CSS_PAGE_4)) return 4;
+    if (any_ext3 (H3_CSS_PAGE_3)) return 3;
     return 0; }
 
 template < > void html_version::set_level < c_paged_media > (const int n)
-{   if (n == 3) set_ext3 (H3_CSS_PAGE);
+{   if (n == 4) set_ext3 (H3_CSS_PAGE_34);
+    else if (n == 3) set_ext3 (H3_CSS_PAGE_3);
     else reset_ext3 (H3_CSS_PAGE); }
 
 template < > int html_version::get_level < c_positioned_layout > () const
@@ -2213,6 +2242,14 @@ template < > void html_version::set_level < c_selector > (const int n)
     if (n == 3) set_ext2 (H2_CSS_SELECTOR_3);
     else if (n == 4) set_ext2 (H2_CSS_SELECTOR_34);
     else if (n == 5) set_ext2 (H2_CSS_SELECTOR); }
+
+template < > int html_version::get_level < c_shader > () const
+{   if (any_ext2 (H2_CSS_SHADER)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_shader > (const int n)
+{   if (n == 3) set_ext2 (H2_CSS_SHADER);
+    else reset_ext2 (H2_CSS_SHADER); }
 
 template < > int html_version::get_level < c_shadow_part > () const
 {   if (any_ext3 (H3_CSS_SHADOW)) return 3;
@@ -2428,15 +2465,24 @@ bool html_version::is_css_compatible (const flags_t& f2, const flags_t& f3, cons
 
 bool html_version::is_css_compatible (nitpick& nits, const flags_t& f2, const flags_t& f3, const flags_t& f4, const flags_t& f5) const
 {   if (is_css_compatible (f2, f3, f4, f5)) return true;
-    nits.pick (nit_css_version, es_error, ec_css, "CSS ", long_css_version_name (), " required");   
+    nits.pick (nit_css_version, es_error, ec_css, "CSS ", long_css_version_name (), " required.");   
     return false; }
 
 void html_version::check_status (nitpick& nits, const ::std::string& s) const
 {   if (context.profile_checks ())
     {   if (context.mobile_profile () && ((ext3_ & H3_NOT_MOBILE) == H3_NOT_MOBILE))
-            nits.pick (nit_profile, es_warning, ec_css, s, " may be ignored when the CSS Mobile profile applies");   
-        if (context.print_profile () && ((ext3_ & H3_NOT_PRINT) == H3_NOT_PRINT))
-            nits.pick (nit_profile, es_warning, ec_css, s, " may be ignored when the CSS Print profile applies");   
+            nits.pick (nit_profile, es_warning, ec_css, s, " may be ignored when the CSS Mobile profile applies.");   
+        if (context.print_profile ())
+        {   if ((ext4_ & H4_CSS_PRN_MASK) == H4_CSS_PRN_GOOD) 
+                nits.pick (nit_print_profile, ed_print_profile, "4. Properties", es_comment, ec_css, s, " is good when printing.");
+            else if ((ext4_ & H4_CSS_PRN_MASK) == H4_CSS_PRN_SIMILAR) 
+                nits.pick (nit_print_profile, ed_print_profile, "4. Properties", es_info, ec_css, s, " should be similar, if not identical, when printing.");
+            else if ((ext4_ & H4_CSS_PRN_MASK) == H4_CSS_PRN_PARTIAL) 
+                nits.pick (nit_print_profile, ed_print_profile, "4. Properties", es_warning, ec_css, s, " is only partially available when printing.");
+            else if ((ext4_ & H4_CSS_PRN_MASK) == H4_CSS_PRN_OPTIONAL) 
+                nits.pick (nit_print_profile, ed_print_profile, "4. Properties", es_warning, ec_css, s, " may be unavailable for printing.");
+            else if ((ext4_ & H4_CSS_PRN_MASK) == 0) 
+                nits.pick (nit_print_profile, es_comment, ec_css, s, " may be ignored when printing."); }
         if (context.tv_profile () && ((ext3_ & H3_NOT_TV) == H3_NOT_TV))
             nits.pick (nit_profile, es_warning, ec_css, s, " may be ignored when the CSS TV profile applies"); }
     if (abandoned ())

@@ -46,16 +46,16 @@ template < > inline void enum_n < t_class, e_class > :: set_value (nitpick& nits
 template < > inline void enum_vec < t_class, e_class > :: accumulate (stats_t* st, const e_element e) const
 {   VERIFY_NOT_NULL (st, __FILE__, __LINE__);
     for (auto v : enum_vec_base < e_class, t_class > :: originals_)
-    {   st -> use_class (v);
-        st -> use_element_class (elem::name (e) + "." + v); } }
+    {   st -> use (cic_class, v);
+        st -> use (cic_element_class, elem::name (e) + "." + v); } }
 
 template < > inline void enum_vec < t_class, e_class > :: accumulate (stats_t* st, const element_bitset& e) const
 {   VERIFY_NOT_NULL (st, __FILE__, __LINE__);
     for (auto v : enum_vec_base < e_class, t_class > :: originals_)
-    {   st -> use_class (v);
+    {   st -> use (cic_class, v);
         for (::std::size_t i = elem_css_all; i < last_element_tag; ++i)
             if (e.test (i))
-                st -> use_element_class (elem::name (GSL_NARROW_CAST < e_element > (i)) + "." + v); } }
+                st -> use (cic_element_class, elem::name (GSL_NARROW_CAST < e_element > (i)) + "." + v); } }
 
 template < > inline void enum_vec < t_class, e_class > :: set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
 {   enum_vec_base < e_class, t_class > :: original_ = ss;

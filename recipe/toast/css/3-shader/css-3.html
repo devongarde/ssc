@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<HTML>
+ <HEAD>
+ <TITLE>CSS 3 Shader Chapter 3 example</TITLE>
+
+<style>
+.sid
+{
+filter: sepia(0.5) custom(none url(add.fs), amount 0.2 0.2 0.2);
+}
+
+.shaded {
+    filter: custom(url(#warp));
+}
+
+.distorted {
+    filter: custom(url(distort.vs), 4 3);
+}
+
+.distorted {
+    filter: url(#distort);
+}
+</style>
+</HEAD>
+<BODY>
+
+<svg>
+
+<filter>
+    <feCustom vertexShader="vertex-shader" 
+              fragmentShader="fragment-shader" 
+              vertexMesh="vertex-mesh"
+              params="params">
+    </feCustom>
+</filter>
+
+<filter id="distort">
+    <feCustom vertexShader="url(distort.vs)" vertexMesh="4 3"></feCustom>
+</filter>
+
+<filter>
+    <feGaussianBlur stdDeviation="8" result="blur"></feGaussianBlur>
+    <feTurbulence type="fractalNoise" baseFrequency="0.4" numOctaves="4" result="turbulence"></feTurbulence>
+    <feCustom fragmentShader="url(complex.fs)" params="tex1 result(blur), tex2 result(turbulence)"></feCustom>
+</filter>
+
+</svg>
+
+<div class="distorted">
+..
+</div>
+
+</BODY>
+</HTML>

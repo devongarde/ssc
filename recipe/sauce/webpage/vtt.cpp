@@ -468,7 +468,7 @@ void vtt_t::accumulate (stats_t* s)
         if (! l.nits_.empty ())
             l.nits_.accumulate (s);
     for (auto& c : class_)
-        s -> use_class (c.first, c.second); }
+        s -> use (cic_class, c.first, c.second); }
 
 ::std::string vtt_t::review (const mmac_t& mac) const
 {   ::std::string res = nits_.review (mac);

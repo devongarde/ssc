@@ -29,19 +29,16 @@ typedef ::std::shared_ptr < css > css_ptr;
 class distilled
 {   friend class css_global;
     vsstr_t str_ = vsstr_t (gst_max);
-    categorical cat_;
-//    smsid_t class_, custom_prop_, id_, element_class_, element_id_, font_, function_;  // this can be improved!!
+    categorical dcl_, use_;
     ustr_t custom_media_;
     css_ptr cp_;
     v_np ticks_;
     bool in_progress_ = false, file_ = false, borked_ = false;
 public:
     DEFAULT_CONSTRUCTORS_NO_EMPTY (distilled);
-    explicit distilled (bool b) : in_progress_ (b) { } // set to false for a snippet
-//    explicit distilled (const smsid_t& c, const smsid_t& i, const smsid_t& eci, const smsid_t& ei)
-//        :   class_ (c), id_ (i), element_class_ (eci), element_id_ (ei)
-//    { }
-    explicit distilled (const categorical& cat) : cat_ (cat) { }
+    explicit distilled (bool b) : in_progress_ (b) { }
+    explicit distilled (const categorical& dcl, const categorical& use) : dcl_ (dcl), use_ (use)
+    { }
     bool wait () const noexcept { return in_progress_; }
     bool sort_it_out () const noexcept { return in_progress_; }
     bool borked () const noexcept { return borked_; }
@@ -51,48 +48,32 @@ public:
     void reset ();
     css_ptr expel () { css_ptr res (cp_); cp_.reset (); return res; }
     vsstr_t& ss () { return str_; }
-/*    smsid_t& cl () { return class_; }
-    smsid_t& cp () { return custom_prop_; }
-    smsid_t& id () { return id_; }
-    smsid_t& ecl () { return element_class_; }
-    smsid_t& eid () { return element_id_; }
-    smsid_t& f () { return element_id_; }
-    smsid_t& fn () { return function_; }
-    const smsid_t& cl () const { return class_; }
-    const smsid_t& cp () const { return custom_prop_; }
-    const smsid_t& id () const { return id_; }
-    const smsid_t& ecl () const { return element_class_; }
-    const smsid_t& eid () const { return element_id_; }
-    const smsid_t& f () const { return element_id_; }
-    const smsid_t& fn () const { return function_; } */
-    void accumulate (stats_t* s) const;
-    void insert (const e_id_category cat, const ::std::string& s, const ::std::size_t c = 1)
-    {   cat_.insert (cat, s, c); }
+
+    bool has (const e_id_category cic, const ::std::string& s) const
+    {   return dcl_.exists (cic, s); }
+    void use (const e_id_category cic, const ::std::string& s, const ::std::size_t n = 1)
+    {   use_.insert (cic, s, n); }
+    void dcl (const e_id_category cic, const ::std::string& s, const ::std::size_t n = 1)
+    {   dcl_.insert (cic, s, n); }
     void erase (const e_id_category cat, const ::std::string& s)
-    {   cat_.erase (cat, s); }
-    const categorical& cat () const { return cat_; }
-    bool has (const ::std::string& s) const
-    {   return cat_.find (s) != oops_a_daisy; }
-    bool has (const e_id_category cat, const ::std::string& s) const
-    {   PRESUME (cat != cic_none, __FILE__, __LINE__);
-        category k = cat_.get (s);
-        return (k.cic_ == cat); }
-/*    bool has_class (const ::std::string& s) const
-    {   return (class_.find (s) != class_.cend ()); }
-    bool has_custom_prop (const ::std::string& s) const
-    {   return (custom_prop_.find (s) != custom_prop_.cend ()); }
-    bool has_id (const ::std::string& s) const
-    {   return (id_.find (s) != id_.cend ()); }
-    bool has_element_class (const ::std::string& s) const
-    {   return (element_class_.find (s) != element_class_.cend ()); }
-    bool has_element_id (const ::std::string& s) const
-    {   return (element_id_.find (s) != element_id_.cend ()); }
-    bool has_font (const ::std::string& s) const
-    {   return (font_.find (s) != font_.cend ()); }
-    bool has_function (const ::std::string& s) const
-    {   return (function_.find (s) != function_.cend ()); } */
-    bool has_element_class (const e_element e, const ::std::string& s) const;
-    bool has_element_id (const e_element e, const ::std::string& s) const;
+    {   dcl_.erase (cat, s); use_.erase (cat, s); }
+
+    void accumulate (stats_t* s) const;
+    const categorical& dcl () const { return dcl_; }
+    const categorical& use () const { return use_; }
+//    void insert (const e_id_category cat, const ::std::string& s, const ::std::size_t c = 1)
+//    {   cat_.insert (cat, s, c); }
+//    void erase (const e_id_category cat, const ::std::string& s)
+//    {   cat_.erase (cat, s); }
+//    const categorical& cat () const { return cat_; }
+//    bool has (const ::std::string& s) const
+//    {   return cat_.find (s) != oops_a_daisy; }
+//    bool has (const e_id_category cat, const ::std::string& s) const
+//    {   PRESUME (cat != cic_none, __FILE__, __LINE__);
+//        category k = cat_.get (s);
+//        return (k.cic_ == cat); }
+//    bool has_element_class (const e_element e, const ::std::string& s) const;
+//    bool has_element_id (const e_element e, const ::std::string& s) const;
     bool has_custom_media (const ::std::string& name) const
     {   return custom_media_.find (name) != custom_media_.cend (); }
     bool note_custom_media (const ::std::string& name, const ::std::string& def)

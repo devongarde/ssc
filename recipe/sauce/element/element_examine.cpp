@@ -51,6 +51,7 @@ void element::pre_examine_element ()
         case elem_fecomponenttransfer : examine_fecomponenttransfer (); break;
         case elem_fecomposite : examine_fecomposite (); break;
         case elem_feconvolvematrix : examine_feconvolvematrix (); break;
+        case elem_fecustom : break;
         case elem_fencedframe :
         case elem_iframe : examine_iframe (); break;
         case elem_fn : examine_fn (); break;

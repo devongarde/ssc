@@ -44,18 +44,18 @@ class stats
     meta_value_stats meta_value_;
     css_property_stats css_property_;
     css_statement_stats css_statement_;
-    smsid_stats dcl_class_, dcl_custom_prop_, dcl_id_, dcl_element_class_, dcl_element_id_, font_,
-                use_class_, use_custom_prop_, use_id_, use_element_class_, use_element_id_;
+    smsid_stats font_;
     vs6_stats str_ = vs6_stats (gst_max);
     uint64_t file_count_ = 0;
     unsigned smallest_ = UINT_MAX;
     unsigned biggest_ = 0;
     double file_size_ = 0.0;
+    categorical dcl_, use_;
     ::std::string single_usage (const ::std::string name, const ::std::size_t dn, const ::std::size_t un,
         e_nit_section sc = ns_tally, e_nit_macro n = nm_tally_name, e_nit_macro i1 = nm_tally_int,
         e_nit_macro i2 = nm_tally_use_int, e_nit_macro c1 = nm_tally_count, e_nit_macro c2 = nm_tally_use_count) const;
     ::std::string report_usage (const ::std::string& category, const smsid_stats& sum) const;
-    ::std::string report_usage (const ::std::string& category, const smsid_stats& dcl, const smsid_stats& used,
+    ::std::string report_usage (const ::std::string& category, const e_id_category cid,
         e_nit_section sc = ns_tally, e_nit_section h = ns_tally_head, e_nit_section f = ns_tally_foot,
         e_nit_macro n = nm_tally_name, e_nit_macro i1 = nm_tally_int,
         e_nit_macro i2 = nm_tally_use_int, e_nit_macro c1 = nm_tally_count, e_nit_macro c2 = nm_tally_use_count,
@@ -69,6 +69,7 @@ class stats
     ::std::string custom_media_report () const;
     ::std::string custom_property_report () const;
     ::std::string definition_report () const;
+    ::std::string function_report () const;
     ::std::string value_pair_report () const;
     ::std::string element_report () const;
     ::std::string error_report () const;
@@ -79,23 +80,19 @@ class stats
     ::std::string itemid_report () const;
     ::std::string meta_report () const;
     ::std::string ontology_report () const;
+    ::std::string param_report () const;
     ::std::string property_report () const;
     ::std::string reference_report () const;
     ::std::string statement_report () const;
     ::std::string version_report () const;
 public:
-    // typedef enum { cic_none, cic_class, cic_custom_, cic_custom_prop, cic_element_class, cic_element_id, cic_font, cic_fn_name, cic_fn_param, cic_id } e_id_category;
-    void dcl (const e_id_category cid, const ::std::string& s, const ::std::size_t n = 1);
-    void dcl_class (const ::std::string& s, const ::std::size_t n = 1)
-    {   dcl_class_.mark (s, n); }
-    void dcl_custom_prop (const ::std::string& s, const ::std::size_t n = 1)
-    {   dcl_custom_prop_.mark (s, n); }
-    void dcl_id (const ::std::string& s, const ::std::size_t n = 1)
-    {   dcl_id_.mark (s, n); }
-    void dcl_element_class (const ::std::string& s, const ::std::size_t n = 1)
-    {   dcl_element_class_.mark (s, n); }
-    void dcl_element_id (const ::std::string& s, const ::std::size_t n = 1)
-    {   dcl_element_id_.mark (s, n); }
+    stats () { }
+    DEFAULT_COPY_CONSTRUCTORS (stats);
+    ~stats () = default;
+    void dcl (const e_id_category cid, const ::std::string& s, const ::std::size_t n = 1)
+    {   dcl_.insert (cid, s, n); }
+    void use (const e_id_category cid, const ::std::string& s, const ::std::size_t n = 1)
+    {   use_.insert (cid, s, n); }
     void mark (const e_element e)
     {   element_.mark (e); }
     void mark_abbr (const ::std::string& a, const ::std::string& b)
@@ -135,35 +132,16 @@ public:
     {   metaname_.mark (mn); }
     void mark_str (const e_gsstr gst, const ::std::string& s)
     {   str_.at (gst).mark (s); }
-    void use_class (const ::std::string& s, const ::std::size_t n = 1)
-    {   use_class_.mark (s, n); }
-    void use_custom_prop (const ::std::string& s, const ::std::size_t n = 1)
-    {   use_custom_prop_.mark (s, n); }
-    void use_id (const ::std::string& s, const ::std::size_t n = 1)
-    {   use_id_.mark (s, n); }
-    void use_element_class (const ::std::string& s, const ::std::size_t n = 1)
-    {   use_element_class_.mark (s, n); }
-    void use_element_id (const ::std::string& s, const ::std::size_t n = 1)
-    {   use_element_id_.mark (s, n); }
     void visible (const e_element e)
     {   visible_.mark (e); }
-    bool has_class (const ::std::string& s) const
-    {   return dcl_class_.at (s) > 0; }
+    bool has (const e_id_category cid, const ::std::string& s)
+    {   return dcl_.exists (cid, s) ||  use_.exists (cid, s); }
     bool has_custom_media (const ::std::string& name) const
     {   return custom_media_.exists (name); }
-    bool has_custom_prop (const ::std::string& s) const
-    {   return dcl_custom_prop_.at (s) > 0; }
-    bool has_id (const ::std::string& s) const
-    {   return dcl_id_.at (s) > 0; }
     bool has_str (const e_gsstr g, const ::std::string& s) const
     {   return str_.at (g).find (s) != str_.at (g).cend (); }
-    void merge (const categorical& cat);
-//    void merge_class (const smsid_t& s) { dcl_class_.merge (s); }
-//    void merge_custom_prop (const smsid_t& s) { dcl_custom_prop_.merge (s); }
-//    void merge_id (const smsid_t& s) { dcl_id_.merge (s); }
-//    void merge_element_class (const smsid_t& s) { dcl_element_class_.merge (s); }
-//    void merge_element_id (const smsid_t& s) { dcl_element_id_.merge (s); }
-//    void merge_font (const smsid_t& s) { font_.merge (s); }
+    void merge (const categorical& dcl, const categorical& use);
+    void merge_font (const smsid_t& s) { font_.merge (s); }
     uint64_t file_count () const noexcept
     {   return file_count_; }
     unsigned element_count (const e_element e) const

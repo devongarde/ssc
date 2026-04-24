@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN anchored tests</title>
+<style>
+.tooltip {
+  position: absolute;
+  position-anchor: --my-anchor;
+  position-area: top;
+  position-try-fallbacks: flip-block;
+  container-type: anchored;
+}
+
+@container anchored(fallback: flip-block) {
+  /* Descendant styles here */
+}
+
+.anchor {
+  anchor-name: --my-anchor;
+}
+
+.infobox {
+  position: fixed;
+  position-anchor: --my-anchor;
+  position-area: top;
+  position-try-fallbacks: bottom;
+  container-type: anchored;
+}
+
+.infobox::before {
+  content: "▼";
+  position: absolute;
+  top: 105%;
+}
+
+@container anchored(fallback: bottom) {
+  .infobox::before {
+    content: "▲";
+    bottom: 100%;
+    top: auto;
+  }
+}
+
+.anchor {
+  anchor-name: --my-anchor;
+  position: absolute;
+}
+
+.infobox {
+  position: absolute;
+  position-anchor: --my-anchor;
+  position-area: top left;
+  position-try-fallbacks:
+    flip-block,
+    flip-inline,
+    flip-block flip-inline;
+  container-type: anchored;
+}
+
+.infobox div {
+  color: white;
+  background-color: black;
+  font-size: 1.4em;
+  padding: 10px;
+  margin: 1px;
+
+  border-radius: 10px 10px 0 10px;
+}
+
+@container anchored(fallback: flip-block) {
+  .infobox div {
+    border-radius: 10px 0 10px 10px;
+  }
+}
+
+@container anchored(fallback: flip-inline) {
+  .infobox div {
+    border-radius: 10px 10px 10px 0;
+  }
+}
+
+@container anchored(fallback: flip-block flip-inline) {
+  .infobox div {
+    border-radius: 0 10px 10px 10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN anchored Tests</h1>
+
+<div class="anchor">⚓︎</div>
+
+<div class="infobox">Infobox</div>
+
+</body>
+</html>

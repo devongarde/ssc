@@ -13,10 +13,10 @@ PASS ../toast/stats/CSS/basic.css
 
 STATS
 Class:
-  center styled once, used 0 times
+  center declared once
 
 Class/Element:
-  p.center styled once, used 0 times
+  p.center declared once
 
 Element:
     (undefined): once
@@ -75,14 +75,14 @@ PASS ../toast/stats/CSS/css-1.css
 
 STATS
 Class:
-  pastoral styled once, used 0 times
-  reddish styled once, used 0 times
-  sidenote styled once, used 0 times
+  pastoral declared once
+  reddish declared once
+  sidenote declared once
 
 Class/Element:
-  *.pastoral styled once, used 0 times
-  *.reddish styled once, used 0 times
-  div.sidenote styled once, used 0 times
+  *.pastoral declared once
+  *.reddish declared once
+  div.sidenote declared once
 
 Element:
     (undefined): twice
@@ -102,10 +102,10 @@ Font:
   1 Font used twice
 
 Id:
-  z98y styled once, used 0 times
+  z98y declared once
 
 Id/Element:
-  h1#z98y styled once, used 0 times
+  h1#z98y declared once
 
 ItemId:
     z98y: 1
@@ -130,12 +130,12 @@ PASS ../toast/stats/CSS/css-2.css
 
 STATS
 Class:
-  external styled once, used 0 times
-  initial styled once, used 0 times
+  external declared once
+  initial declared once
 
 Class/Element:
-  a.external styled once, used 0 times
-  p.initial styled once, used 0 times
+  a.external declared once
+  p.initial declared once
 
 Element:
     a: 7 times
@@ -182,14 +182,14 @@ PASS ../toast/stats/CSS/css-5.css
 
 STATS
 Class:
-  centre styled once, used 0 times
-  icon styled thrice, used 0 times
-  square styled once, used 0 times
+  centre declared once
+  icon declared thrice
+  square declared once
 
 Class/Element:
-  div.centre styled once, used 0 times
-  img.icon styled thrice, used 0 times
-  li.square styled once, used 0 times
+  div.centre declared once
+  img.icon declared thrice
+  li.square declared once
 
 Element:
     (undefined): once
@@ -402,10 +402,10 @@ PASS ../toast/stats/CSS/css-1.html
 
 STATS
 Class:
-  center styled once, used 0 times
+  center declared once
 
 Class/Element:
-  p.center styled once, used 0 times
+  p.center declared once
 
 Element:
     (undefined): 6 times
@@ -472,12 +472,12 @@ PASS ../toast/stats/CSS/css-2.html
 
 STATS
 Class:
-  external styled once, used twice
-  initial styled once, used twice
+  external declared once, used twice
+  initial declared once, used twice
 
 Class/Element:
-  a.external styled once, used once
-  p.initial styled once, used once
+  a.external declared once, used once
+  p.initial declared once, used once
 
 Element:
     (undefined): once
@@ -511,14 +511,14 @@ Element:
   18 elements used 68 times
 
 Id:
-  z98y styled 0 times, used once
+  z98y declared never, used once
 
 Id/Element:
-  p#z98y styled 0 times, used once
+  p#z98y declared never, used once
 
 ItemId:
-    z98y: 0
-  1 ItemId used 0 times
+    z98y: never
+  1 ItemId used never
 
 Property:
     border: once
@@ -535,10 +535,10 @@ PASS ../toast/stats/CSS/css-3.html
 
 STATS
 Class:
-  pastoral styled twice, used twice
+  pastoral declared twice, used twice
 
 Class/Element:
-  h1.pastoral styled once, used once
+  h1.pastoral declared once, used once
 
 Element:
     (undefined): once
@@ -568,14 +568,14 @@ Element:
   13 elements used 32 times
 
 Id:
-  x97z styled 0 times, used once
+  x97z declared never, used once
 
 Id/Element:
-  p#x97z styled 0 times, used once
+  p#x97z declared never, used once
 
 ItemId:
-    x97z: 0
-  1 ItemId used 0 times
+    x97z: never
+  1 ItemId used never
 
 Property:
     background: once
@@ -602,12 +602,12 @@ PASS ../toast/stats/CSS/css-4.html
 
 STATS
 Class:
-  COMPACT styled 0 times, used once
-  compact styled twice, used 0 times
+  COMPACT declared never, used once
+  compact declared twice
 
 Class/Element:
-  ul.COMPACT styled 0 times, used once
-  ul.compact styled once, used 0 times
+  ul.COMPACT declared never, used once
+  ul.compact declared once
 
 Element:
     !doctype: once
@@ -658,16 +658,16 @@ PASS ../toast/stats/CSS/css-5.html
 
 STATS
 Class:
-  alpha styled twice, used twice
-  centre styled once, used 0 times
-  icon styled thrice, used 0 times
-  square styled once, used 0 times
+  alpha declared twice, used twice
+  centre declared once
+  icon declared thrice
+  square declared once
 
 Class/Element:
-  div.centre styled once, used 0 times
-  img.icon styled thrice, used 0 times
-  li.square styled once, used 0 times
-  ol.alpha styled once, used once
+  div.centre declared once
+  img.icon declared thrice
+  li.square declared once
+  ol.alpha declared once, used once
 
 Element:
     (undefined): once
@@ -819,10 +819,10 @@ PASS ../toast/stats/CSS/import.css
 
 STATS
 Class:
-  center styled once, used 0 times
+  center declared once
 
 Class/Element:
-  p.center styled once, used 0 times
+  p.center declared once
 
 Element:
     (undefined): 5 times
@@ -882,33 +882,33 @@ Category:
     URx: twice
 
 Class:
-  COMPACT styled 0 times, used once
-  alpha styled twice, used twice
-  center styled 6 times, used 0 times
-  centre styled 4 times, used 0 times
-  compact styled twice, used 0 times
-  external styled 4 times, used twice
-  icon styled 12 times, used 0 times
-  initial styled 4 times, used twice
-  pastoral styled 4 times, used twice
-  reddish styled twice, used 0 times
-  sidenote styled twice, used 0 times
-  square styled 4 times, used 0 times
+  COMPACT declared never, used once
+  alpha declared twice, used twice
+  center declared 6 times
+  centre declared 4 times
+  compact declared twice
+  external declared 4 times, used twice
+  icon declared 12 times
+  initial declared 4 times, used twice
+  pastoral declared 4 times, used twice
+  reddish declared twice
+  sidenote declared twice
+  square declared 4 times
 
 Class/Element:
-  *.pastoral styled once, used 0 times
-  *.reddish styled once, used 0 times
-  a.external styled twice, used once
-  div.centre styled twice, used 0 times
-  div.sidenote styled once, used 0 times
-  h1.pastoral styled once, used once
-  img.icon styled 6 times, used 0 times
-  li.square styled twice, used 0 times
-  ol.alpha styled once, used once
-  p.center styled thrice, used 0 times
-  p.initial styled twice, used once
-  ul.COMPACT styled 0 times, used once
-  ul.compact styled once, used 0 times
+  *.pastoral declared once
+  *.reddish declared once
+  a.external declared twice, used once
+  div.centre declared twice
+  div.sidenote declared once
+  h1.pastoral declared once, used once
+  img.icon declared 6 times
+  li.square declared twice
+  ol.alpha declared once, used once
+  p.center declared thrice
+  p.initial declared twice, used once
+  ul.COMPACT declared never, used once
+  ul.compact declared once
 
 Element:
     (undefined): 23 times
@@ -1005,16 +1005,16 @@ Font:
   11 Font used 28 times
 
 Id:
-  x97z styled 0 times, used once
-  z98y styled twice, used once
+  x97z declared never, used once
+  z98y declared twice, used once
 
 Id/Element:
-  h1#z98y styled once, used 0 times
-  p#x97z styled 0 times, used once
-  p#z98y styled 0 times, used once
+  h1#z98y declared once
+  p#x97z declared never, used once
+  p#z98y declared never, used once
 
 ItemId:
-    x97z: 0
+    x97z: never
     z98y: 2
   2 ItemId used twice
 

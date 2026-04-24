@@ -2291,6 +2291,9 @@
     <ClInclude Include="..\heater\url\wacky.h">
       <Filter>Heater\url</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\utility\category.h">
+      <Filter>Heater\utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -3175,9 +3178,6 @@
     <ClCompile Include="..\sauce\css\value_types_css_p_q.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_r.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_s_1.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
@@ -3353,6 +3353,18 @@
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_y_z.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_r_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_r_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\utility\category.cpp">
+      <Filter>Sauce\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_c_5.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
   </ItemGroup>

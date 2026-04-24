@@ -213,6 +213,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_jun23 : return "HTML 5, Jun 23";
         case ed_jul25 : return "HTML 5, Jul 25";
         case ed_aug25 : return "HTML 5, Aug 25";
+        case ed_apr26 : return "HTML 5, Apr 26";
         case ed_wx : return "wxWidgets HTML";
         case ed_owasp : return "OWASP";
         case ed_ecma : return "ECMAScript, 22.2.1 Patterns";
@@ -258,6 +259,9 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_css_media_4 : return "CSS Media 4"; 
         case ed_css_namespaces_3 : return "CSS Namespaces 3";
         case ed_css_nesting : return "CSS Nesting";
+        case ed_css_non_element : return "CSS Non-Element Selectors";
+        case ed_css_page_template : return "CSS Pagination Template 3";
+        case ed_print_profile : return "CSS Print Profile";
         case ed_css_selectors_3 : return "CSS Selectors 3";
         case ed_css_selectors_4 : return "CSS Selectors 4";
         case ed_css_syntax : return "CSS Syntax Module";
@@ -324,6 +328,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_jun23 : return "HTML 5, WhatWG, Juny 2023";
         case ed_jul25 : return "HTML 5, WhatWG, July 2025";
         case ed_aug25 : return "HTML 5, WhatWG, August 2025";
+        case ed_apr26 : return "HTML 5, WhatWG, April 2026";
         case ed_wx : return "wxWidgets HTML, list of stable HTML tags, November 2024";
         case ed_owasp : return "Open Web Application Security Project, January 2025"; 
         case ed_prism_1 : return "Publishing Requirements for Industry Standard Metadata, Version 1.0";
@@ -398,6 +403,9 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_css_media_4 : return "CSS Media Queries Level 4, July 2020"; 
         case ed_css_namespaces_3 : return "CSS Namespaces 3, September 2011";
         case ed_css_nesting : return "CSS Nesting, February 2023";
+        case ed_css_non_element : return "CSS Non-Element Selectors, January 2024";
+        case ed_css_page_template : return "CSS Pagination Template Level 3, February 2014";
+        case ed_print_profile : return "CSS Print Pofile, December 2023 draft";
         case ed_css_selectors_3 : return "CSS Selectors Level 3, November 2018";
         case ed_css_selectors_4 : return "CSS Selectors Level 4, November 2022 draft";
         case ed_css_syntax : return "CSS Syntax Module Level 3, December 2021 draft";
@@ -472,6 +480,7 @@ e_nit_link_type doc_link (const e_doc doc, ::std::string& link)
         case ed_jun23 : link = LIVING "html-whatwg-2023-06.pdf"; return nlt_pdf;
         case ed_jul25 : link = LIVING "html-whatwg-2025-07.pdf"; return nlt_pdf;
         case ed_aug25 : link = LIVING "html-whatwg-2025-08.pdf"; return nlt_pdf;
+        case ed_apr26 : link = LIVING "html-whatwg-2026-04.pdf"; return nlt_pdf;
         case ed_apache : link = "https://httpd.apache.org/docs/current/mod/mod_include.html"; return nlt_html;
         case ed_aria_1_0 : link = ARIASPEX "aria-1.0.pdf"; return nlt_pdf;
         case ed_aria_1_1 : link = ARIASPEX "aria-1.1.pdf"; return nlt_pdf;
@@ -513,6 +522,9 @@ e_nit_link_type doc_link (const e_doc doc, ::std::string& link)
         case ed_css_media_4 : link = CSSSPEX "css-media-queries-4.pdf"; return nlt_pdf; 
         case ed_css_namespaces_3 : link = CSSSPEX "css-namespaces-3.pdf"; return nlt_pdf; 
         case ed_css_nesting : link = CSSSPEX "css-nesting-aug21.pdf"; return nlt_pdf; 
+        case ed_css_non_element : link = CSSSPEX "css-non-element-selectors-1-jan24.pdf"; return nlt_pdf;  
+        case ed_css_page_template : link = CSSSPEX "css-pagination-template-feb14.pdf"; return nlt_pdf;
+        case ed_print_profile : link = CSSSPEX "css-print-profile-dec23.pdf"; return nlt_pdf;
         case ed_css_selectors_3 : link = CSSSPEX "css-selectors-3.pdf"; return nlt_pdf;
         case ed_css_selectors_4 : link = CSSSPEX "css-selectors-4-nov22.pdf"; return nlt_pdf;
         case ed_css_syntax : link = CSSSPEX "css-syntax-s-dec21.pdf"; return nlt_pdf;

@@ -1,0 +1,6 @@
+﻿@env --color2: env(--color, blue);
+
+/* Alternately, store it in a custom property: */
+:root {
+  --color: env(--color, blue);
+}

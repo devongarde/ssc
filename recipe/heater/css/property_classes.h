@@ -57,6 +57,7 @@ typedef typed_property < t_real, ec_ascent > prop_ascent;
 typedef typed_property < t_percent_flexible, ec_ascent_override > prop_ascent_override;
 typedef typed_property < t_ratio_a, ec_aspect_ratio > prop_aspect_ratio;
 typedef typed_property < t_real_i, ec_audio_level > prop_audio_level;
+typedef typed_property < t_css_required_region, ec_available_content > prop_available_content;
 typedef typed_property < t_css_azimuth, ec_azimuth > prop_azimuth;
 
 typedef typed_property < t_generic, ec_background_break > prop_background_break;
@@ -232,6 +233,7 @@ typedef typed_property < t_generic, ec_content_order > prop_content_order;
 typedef typed_property < t_auto_hidden_visible, ec_content_visibility > prop_content_visibility;
 typedef typed_property < t_generic, ec_context > prop_context;
 typedef typed_property < t_css_continue, ec_continue > prop_continue;
+typedef typed_property < t_css_copy_intos_n, ec_copy_into > prop_copy_into;
 typedef typed_property < t_css_corner_shapes, ec_corner_block_end_shape > prop_corner_block_end_shape;
 typedef typed_property < t_css_corner_shapes, ec_corner_block_start_shape > prop_corner_block_start_shape;
 typedef typed_property < t_css_corner_shape, ec_corner_bottom_left_shape > prop_corner_bottom_left_shape;
@@ -290,6 +292,13 @@ typedef typed_property < t_fill_rule, ec_fillrule > prop_fillrule;
 typedef typed_property < t_fill_rule, ec_fill_rule > prop_fill_rule;
 typedef typed_property < t_css_background_sizes, ec_fill_size > prop_fill_size;
 typedef typed_property < t_css_filters_n, ec_filter > prop_filter;
+typedef typed_property < t_css_margins_l, ec_filter_margin > prop_filter_margin;
+typedef typed_property < t_measure_ai, ec_filter_margin_bottom > prop_filter_margin_bottom;
+typedef typed_property < t_measure_ai, ec_filter_margin_left > prop_filter_margin_left;
+typedef typed_property < t_measure_ai, ec_filter_margin_right > prop_filter_margin_right;
+typedef typed_property < t_measure_ai, ec_filter_margin_top > prop_filter_margin_top;
+typedef typed_property < t_css_fit, ec_fit > prop_fit;
+typedef typed_property < t_css_fit_position, ec_fit_position > prop_fit_position;
 typedef typed_property < t_css_flex_n, ec_flex > prop_flex;
 typedef typed_property < t_css_flex_basis, ec_flex_basis > prop_flex_basis;
 typedef typed_property < t_css_flex_direction, ec_flex_direction > prop_flex_direction;
@@ -412,6 +421,7 @@ typedef typed_property < t_css_length_n, ec_line_height_step > prop_line_height_
 typedef typed_property < t_real_ai, ec_line_increment > prop_line_increment;
 typedef typed_property < t_css_length, ec_line_padding > prop_line_padding;
 typedef typed_property < t_baseline_contain_none, ec_line_snap > prop_line_snap;
+typedef typed_property < t_css_link_params_n, ec_link_parameters > prop_link_parameters;
 typedef typed_property < t_css_list_style, ec_list_style > prop_list_style;
 typedef typed_property < t_css_image, ec_list_style_image > prop_list_style_image;
 typedef typed_property < t_css_list_style_position, ec_list_style_position > prop_list_style_position;
@@ -547,11 +557,12 @@ typedef typed_property < t_css_aaalri, ec_page_break_before > prop_page_break_be
 typedef typed_property < t_css_aai, ec_page_break_inside > prop_page_break_inside;
 typedef typed_property < t_paint_orders, ec_paint_order > prop_paint_order;
 typedef typed_property < t_10_int, ec_panose_1 > prop_panose_1;
+typedef typed_property < t_css_length_inf_n, ec_path_length > prop_path_length;
 typedef typed_property < t_css_pauses, ec_pause > prop_pause;
 typedef typed_property < t_css_pause, ec_pause_after > prop_pause_after;
 typedef typed_property < t_css_pause, ec_pause_before > prop_pause_before;
 typedef typed_property < t_css_length_n, ec_perspective > prop_perspective;
-typedef typed_property < t_position, ec_perspective_origin > prop_perspective_origin;
+typedef typed_property < t_positions, ec_perspective_origin > prop_perspective_origin;
 typedef typed_property < t_css_pitch, ec_pitch > prop_pitch;
 typedef typed_property < t_real_i, ec_pitch_range > prop_pitch_range;
 typedef typed_property < t_css_place_content, ec_place_content > prop_place_content;
@@ -580,6 +591,7 @@ typedef typed_property < t_css_reading_flow, ec_reading_flow > prop_reading_flow
 typedef typed_property < t_integer, ec_reading_order > prop_reading_order;
 typedef typed_property < t_auto_break, ec_region_fragment > prop_region_fragment;
 typedef typed_property < t_svg_rendering_intent, ec_rendering_intent > prop_rendering_intent;
+typedef typed_property < t_css_required_region, ec_required_flow > prop_required_flow;
 typedef typed_property < t_css_resize, ec_resize > prop_resize;
 typedef typed_property < t_css_pauses, ec_rest > prop_rest;
 typedef typed_property < t_css_pause, ec_rest_after > prop_rest_after;
@@ -694,6 +706,7 @@ typedef typed_property < t_css_system, ec_system > prop_system;
 
 typedef typed_property < t_css_length_abs_r, ec_tab_size > prop_tab_size;
 typedef typed_property < t_css_table_layout, ec_table_layout > prop_table_layout;
+typedef typed_property < t_css_template_set, ec_template_set > prop_template_set;
 typedef typed_property < t_css_text_align_4, ec_text_align > prop_text_align;
 typedef typed_property < t_css_text_align_all, ec_text_align_all > prop_text_align_all;
 typedef typed_property < t_css_text_align_last, ec_text_align_last > prop_text_align_last;
@@ -847,13 +860,6 @@ typedef typed_property < t_generic, ec_feSpotLight > prop_feSpotLight;
 typedef typed_property < t_generic, ec_feTile > prop_feTile;
 typedef typed_property < t_generic, ec_feTurbulence > prop_feTurbulence;
 typedef typed_property < t_generic, ec_feUnsharpMask > prop_feUnsharpMask;
-typedef typed_property < t_generic, ec_filter_margin > prop_filter_margin;
-typedef typed_property < t_generic, ec_filter_margin_bottom > prop_filter_margin_bottom;
-typedef typed_property < t_generic, ec_filter_margin_left > prop_filter_margin_left;
-typedef typed_property < t_generic, ec_filter_margin_right > prop_filter_margin_right;
-typedef typed_property < t_generic, ec_filter_margin_top > prop_filter_margin_top;
-typedef typed_property < t_generic, ec_fit > prop_fit;
-typedef typed_property < t_generic, ec_fit_position > prop_fit_position;
 typedef typed_property < t_generic, ec_flex_align > prop_flex_align;
 typedef typed_property < t_generic, ec_flex_item_align > prop_flex_item_align;
 typedef typed_property < t_generic, ec_flex_line_pack > prop_flex_line_pack;
@@ -1737,6 +1743,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_ascent_override, \
     prop_aspect_ratio, \
     prop_audio_level, \
+    prop_available_content, \
     prop_azimuth, \
     prop_backdrop_filter, \
     prop_backface_visibility, \
@@ -1909,6 +1916,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_content_visibility, \
     prop_context, \
     prop_continue, \
+    prop_copy_into, \
     prop_corner_block_end_shape, \
     prop_corner_block_start_shape, \
     prop_corner_bottom_left_shape, \
@@ -1970,6 +1978,13 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_fill_rule, \
     prop_fill_size, \
     prop_filter, \
+    prop_filter_margin, \
+    prop_filter_margin_bottom, \
+    prop_filter_margin_left, \
+    prop_filter_margin_right, \
+    prop_filter_margin_top, \
+    prop_fit, \
+    prop_fit_position, \
     prop_flex, \
     prop_flex_basis, \
     prop_flex_direction, \
@@ -2088,6 +2103,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_line_increment, \
     prop_line_padding, \
     prop_line_snap, \
+    prop_link_parameters, \
     prop_list_style, \
     prop_list_style_image, \
     prop_list_style_position, \
@@ -2218,6 +2234,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_page_break_inside, \
     prop_paint_order, \
     prop_panose_1, \
+    prop_path_length, \
     prop_pause, \
     prop_pause_after, \
     prop_pause_before, \
@@ -2249,6 +2266,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_reading_order, \
     prop_region_fragment, \
     prop_rendering_intent, \
+    prop_required_flow, \
     prop_resize, \
     prop_rest, \
     prop_rest_after, \
@@ -2365,6 +2383,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_suffix, \
     prop_tab_size, \
     prop_table_layout, \
+    prop_template_set, \
     prop_text_align, \
     prop_text_align_all, \
     prop_text_align_last, \
@@ -3168,13 +3187,6 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_feTile, \
     prop_feTurbulence, \
     prop_feUnsharpMask, \
-    prop_filter_margin, \
-    prop_filter_margin_bottom, \
-    prop_filter_margin_left, \
-    prop_filter_margin_right, \
-    prop_filter_margin_top, \
-    prop_fit, \
-    prop_fit_position, \
     prop_flex_align, \
     prop_flex_item_align, \
     prop_flex_line_pack, \

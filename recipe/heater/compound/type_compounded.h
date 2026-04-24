@@ -322,20 +322,20 @@ template < > struct type_master < t_position_lr_len > : type_opt_then_must < t_p
 template < > struct type_master < t_position_lrtb_len > : type_ab_ba < t_position_lrtb_len, sz_space_char, t_position_lr_len, t_position_tb_len >
 { using type_ab_ba < t_position_lrtb_len, sz_space_char, t_position_lr_len, t_position_tb_len > :: type_ab_ba; };
 
-template < > struct type_master < t_position_lcr_len > : public type_either_or < t_position_lcr_len, t_lcralign, t_css_length >
-{   using type_either_or < t_position_lcr_len, t_lcralign, t_css_length > :: type_either_or; };
+template < > struct type_master < t_position_lcrtcb > : type_some_of < t_position_lcrtcb, sz_space_char, 1, 2, t_lcralign, t_tcbalign >
+{ using type_some_of < t_position_lcrtcb, sz_space_char, 1, 2, t_lcralign, t_tcbalign > :: type_some_of; };
 
-template < > struct type_master < t_position_tcb_len > : public type_either_or < t_position_tcb_len, t_tcbalign, t_css_length >
-{   using type_either_or < t_position_tcb_len, t_tcbalign, t_css_length > :: type_either_or; };
-
-template < > struct type_master < t_position_lcrtcb > : type_either_or_both < t_position_lcrtcb, t_lcralign, sz_space_char, t_tcbalign >
-{ using type_either_or_both < t_position_lcrtcb, t_lcralign, sz_space_char, t_tcbalign > :: type_either_or_both; };
+template < > struct type_master < t_position_lcrtcb_len > : public type_either_or_both < t_position_lcrtcb_len, t_position_lcrtcb, sz_space_char, t_css_length >
+{   using type_either_or_both < t_position_lcrtcb_len, t_position_lcrtcb, sz_space_char, t_css_length > :: type_either_or_both; };
 
 template < > struct type_master < t_position > : type_one_of < t_position, false, t_position_lcrtcb, t_position_lcrtcb_len, t_position_lrtb_len >
 { using type_one_of < t_position, false, t_position_lcrtcb, t_position_lcrtcb_len, t_position_lrtb_len > :: type_one_of; };
 
-template < > struct type_master < t_positions > : type_some_of < t_positions, sz_comma, 1, 999, t_position >
-{ using type_some_of < t_positions, sz_comma, 1, 999, t_position > :: type_some_of; };
+template < > struct type_master < t_position_tickleish > : type_some_of < t_position_tickleish, sz_space_char, 1, 0, t_lcralign, t_tcbalign, t_css_length >
+{ using type_some_of < t_position_tickleish, sz_space_char, 1, 0, t_lcralign, t_tcbalign, t_css_length > :: type_some_of; };
+
+template < > struct type_master < t_positions > : type_some_of < t_positions, sz_comma, 1, 999, t_position_tickleish >
+{ using type_some_of < t_positions, sz_comma, 1, 999, t_position_tickleish > :: type_some_of; };
 
 template < > struct type_master < t_positive_i > : type_or_string < t_positive_i, t_positive, sz_infinite >
 { using type_or_string < t_positive_i, t_positive, sz_infinite > :: type_or_string; };
@@ -354,6 +354,9 @@ template < > struct type_master < t_css_length_percent_inf_2 > : type_one_two < 
 
 template < > struct type_master < t_css_length_inf > : type_or_string < t_css_length_inf, t_css_length_pos, sz_infinity >
 { using type_or_string < t_css_length_inf, t_css_length_pos, sz_infinity > :: type_or_string; };
+
+template < > struct type_master < t_css_length_inf_n > : type_or_either_string < t_css_length_inf_n, t_css_length_pos, sz_infinity, sz_none >
+{ using type_or_either_string < t_css_length_inf_n, t_css_length_pos, sz_infinity, sz_none > :: type_or_either_string; };
 
 template < > struct type_master < t_radial_ending > : type_one_of_three < t_radial_ending, t_css_radial_size, t_css_length_inf, t_css_length_percent_inf_2 >
 { using type_one_of_three < t_radial_ending, t_css_radial_size, t_css_length_inf, t_css_length_percent_inf_2 > :: type_one_of_three; };
@@ -384,6 +387,9 @@ template < > struct type_master < t_refys > : type_at_least_one < t_refys, sz_co
 
 template < > struct type_master < t_rgbafn > : type_function_all < t_rgbafn, sz_rgba, t_integer_or_percent, t_integer_or_percent, t_integer_or_percent, t_zero_to_one >
 { using type_function_all < t_rgbafn, sz_rgba, t_integer_or_percent, t_integer_or_percent, t_integer_or_percent, t_zero_to_one > :: type_function_all; };
+
+template < > struct type_master < t_size_inlinesizes > : type_either_or_both < t_size_inlinesizes, t_size_inlinesize, sz_space_char, t_size_inlinesize >
+{ using type_either_or_both < t_size_inlinesizes, t_size_inlinesize, sz_space_char, t_size_inlinesize > :: type_either_or_both; };
 
 template < > struct type_master < t_snap > : type_string < t_snap, sz_snap >
 { using type_string < t_snap, sz_snap > :: type_string; };

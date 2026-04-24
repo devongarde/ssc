@@ -101,9 +101,11 @@ bool medium_t::value_expected (const e_media prop, e_type& t, bool& length, bool
         case md_max_colour :
         case md_max_colour_index :
         case md_max_monochrome :
+        case md_max_performance :
         case md_min_colour :
         case md_min_colour_index :
         case md_min_monochrome :
+        case md_min_performance :
         case md_monochrome :
         case md_vertical_viewport_segments :
             t = t_unsigned;
@@ -456,7 +458,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                 case md_and :
                 case md_or :
                     if (! silly)
-                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", enum_n < t_media, e_media > :: name (m.m_), " (11)");
+                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", enum_n < t_media, e_media > :: name (m.m_), " (12)");
                         res = discrete = false;
                         ignore = true;
                         device = md_error; }
@@ -478,13 +480,16 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                 case md_max_colour_index :
                 case md_max_height :
                 case md_max_monochrome :
+                case md_max_performance :
                 case md_max_width :
                 case md_min_aspect_ratio :
                 case md_min_colour :
                 case md_min_colour_index :
                 case md_min_height :
                 case md_min_monochrome :
+                case md_min_performance :
                 case md_min_width :
+                case md_performance :
                 case md_width :
                     check_feature_compatibility (nits, device, m.m_);
                     arged = value_expected (m.m_, t, len, ratio, dpi);
@@ -550,7 +555,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                     break;
                 case md_colon :
                     if (! arged)
-                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", enum_n < t_media, e_media > :: name (m.m_), " (1)");
+                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", enum_n < t_media, e_media > :: name (m.m_), " (11)");
                         res = false; }
                     else colonised = true;
                     arged = rator = false;
@@ -710,7 +715,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                 case md_interlace :
                 case md_progressive :
                     if (! colonised)
-                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", enum_n < t_media, e_media > :: name (m.m_), " (3)");
+                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", enum_n < t_media, e_media > :: name (m.m_), " (13)");
                         res = rator = false;
                         break; }
                     colonised = rator = false;
@@ -742,7 +747,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                 case md_landscape :
                 case md_portrait :
                     if (! colonised)
-                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", enum_n < t_media, e_media > :: name (m.m_), " (3)");
+                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", enum_n < t_media, e_media > :: name (m.m_), " (14)");
                         res = rator = false;
                         break; }
                     colonised = rator = false;
@@ -768,7 +773,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                 case md_negative :
                 case md_positive :
                     if (numbered)
-                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", quote (m.s_), " (9)");
+                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", quote (m.s_), " (18)");
                         res = rator = false;
                         break; }
                     argled = numbered = true;
@@ -873,7 +878,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                 case md_rect :
                 case md_round :
                     if (! colonised)
-                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", enum_n < t_media, e_media > :: name (m.m_), " (7)");
+                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", enum_n < t_media, e_media > :: name (m.m_), " (16)");
                         res = rator = false;
                         break; }
                     colonised = rator = false;
@@ -908,7 +913,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                     break;
                 case md_slash :
                     if (! numbered)
-                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", enum_n < t_media, e_media > :: name (m.m_), " (4)");
+                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", enum_n < t_media, e_media > :: name (m.m_), " (15)");
                         res = rator = false;
                         break; }
                     if (! ratio)
@@ -928,7 +933,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                     want_val = rator = false;
                     break;
                 default :
-                    nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", enum_n < t_media, e_media > :: name (m.m_), " (5)");
+                    nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", enum_n < t_media, e_media > :: name (m.m_), " (22)");
                     res = discrete = false;
                     ignore = true;
                     device = md_error;
@@ -936,7 +941,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
         else switch (m.m_)
         {   case md_comma :
                 if (status != tf_dull)
-                {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected comma (6)");
+                {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected comma (19)");
                     status = tf_dull;
                     res = false; }
                 device = md_error;
@@ -1008,14 +1013,14 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
             case md_landscape :
             case md_progressive :
             case md_interlace :
-                nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", quote (enum_n < t_media, e_media > :: name (m.m_)), " (7)");
+                nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", quote (enum_n < t_media, e_media > :: name (m.m_)), " (24)");
                 res = knot = false;
                 ignore = true;
                 device = md_error;
                 break;                    
             case md_negative :
             case md_positive :
-                nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", m.s_, " (8)");
+                nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", m.s_, " (23)");
                 res = knot = false;
                 ignore = true;
                 device = md_error;
@@ -1039,7 +1044,7 @@ void medium_t::triple_pong (const arguments& args, nitpick& nits, const int leve
         nits.pick (nit_css_version, es_error, ec_mql, "'", wot, "' in media queries require CSS Media Queries level ", level, " or better"); }
     else if ((! zero) && (brackets == 0))
     {   valid_ = false;
-        nits.pick (nit_css_syntax, es_error, ec_mql, "unexpected ", wot); }
+        nits.pick (nit_css_syntax, es_error, ec_mql, "unexpected ", wot, " (26)"); }
     else if (expecting != got)
     {   valid_ = false;
         nits.pick (nit_css_syntax, es_error, ec_mql, "malplaced ", wot); }
@@ -1081,7 +1086,7 @@ void medium_t::parse (arguments& args , const int from, const int to)
                             break;
                         default :
                             valid_ = false;
-                            nits.pick (nit_css_syntax, es_error, ec_mql, "unexpected \"", val, "\"");
+                            nits.pick (nit_css_syntax, es_error, ec_mql, "unexpected \"", val, "\" (27)");
                             break; }
                     if (valid_)
                     {   note_token (args, nits, md_custom_media);
@@ -1185,13 +1190,13 @@ void medium_t::parse (arguments& args , const int from, const int to)
                             break;
                         default :
                             valid_ = false;
-                            nits.pick (nit_css_syntax, es_error, ec_mql, quote (val), ": unexpected");
+                            nits.pick (nit_css_syntax, es_error, ec_mql, quote (val), ": unexpected (29)");
                             break; } }
                 break; }
             case ct_string :
                 if (expecting != me_val)
                 {   valid_ = false;
-                    nits.pick (nit_css_syntax, es_error, ec_mql, "unexpected \"", val, "\""); }
+                    nits.pick (nit_css_syntax, es_error, ec_mql, "unexpected \"", val, "\" (28)"); }
                 else
                 {   note_value (args, nits, val);
                     if (brackets == 0) expecting = me_after_id;
@@ -1203,7 +1208,7 @@ void medium_t::parse (arguments& args , const int from, const int to)
             case ct_number :
                 if ((expecting != me_val) && (expecting != me_number))
                 {   valid_ = false;
-                    nits.pick (nit_css_syntax, es_error, ec_mql, "unexpected ", val); }
+                    nits.pick (nit_css_syntax, es_error, ec_mql, "unexpected ", val, " (25)"); }
                 else
                 {   note_value (args, nits, val);
                     if (brackets == 0) expecting = me_after_id;
@@ -1306,8 +1311,8 @@ void medium_t::parse (arguments& args , const int from, const int to)
             default :
                 if (valid_) 
                 {   valid_ = false;
-                    if (! val.empty ()) nits.pick (nit_css_syntax, es_error, ec_mql, "unexpected ", quote (val));
-                    else nits.pick (nit_css_syntax, es_error, ec_mql, "unexpected ", tkn_rpt (args.t_.at (i).t_)); }
+                    if (! val.empty ()) nits.pick (nit_css_syntax, es_error, ec_mql, "unexpected ", quote (val), " (20)");
+                    else nits.pick (nit_css_syntax, es_error, ec_mql, "unexpected ", tkn_rpt (args.t_.at (i).t_), " (21)"); }
                 break; }
         if ((i > 0) && (args.t_.at (i).t_ != ct_whitespace) && (args.t_.at (i).t_ != ct_round_brac)) first = false; }
     if (brackets > 0) 

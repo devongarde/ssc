@@ -407,6 +407,7 @@ options::options (const context_t& c)
     INSERT_STATS (FICHIER, rcb_file);
     INSERT_STATS (FONT, rcb_font);
     INSERT_STATS (FONT_FAMILY, rcb_font_family);
+    INSERT_STATS (FUNCTION, rcb_function);
     INSERT_STATS (HIGHLIGHT, rcb_highlight);
     INSERT_STATS (HISTFORM, rcb_historical_form);
     INSERT_STATS (ID, rcb_id);
@@ -419,6 +420,7 @@ options::options (const context_t& c)
     INSERT_STATS (PAGE, rcb_page);
     INSERT_STATS (PAGE_NAME, rcb_page_name);
     INSERT_STATS (PALETTE, rcb_palette);
+    INSERT_STATS (PARAMETERS, rcb_param);
     INSERT_STATS (PROPER, rcb_property);
     INSERT_STATS (REFERENCE, rcb_reference);
     INSERT_STATS (REGION, rcb_region);
@@ -936,8 +938,9 @@ void options::init (context_t& c)
         (CSS CS, ::boost::program_options::value < int > (), "CSS Counter Style level (0 or 3).")
         (CSS CUSTOM, ::boost::program_options::value < int > (), "CSS Custom level (0 or 3).")
         (CSS DEVICE, ::boost::program_options::value < int > (), "CSS Device Adaption level (0 or 3).")
-        (CSS DISPLAY, ::boost::program_options::value < int > (), "CSS Display level (0 or 3).")
+        (CSS DISPLAY, ::boost::program_options::value < int > (), "CSS Display level (0, 3 or 4).")
         (CSS EASE, ::boost::program_options::value < int > (), "CSS Ease level (0, 3 or 4).")
+        (CSS EGG, ::boost::program_options::value < int > (), "CSS Expressive Generalizations and Gadgetry level (0 or 3).")
         (CSS ENVIRONMENT, ::boost::program_options::value < int > (), "CSS Environment level (0 or 3).")
         (CSS EXCLUDE, ::boost::program_options::value < int > (), "CSS Exclusions level (0 or 3).")
         (CSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "CSS files have this extension (default css); may be repeated.")
@@ -956,6 +959,7 @@ void options::init (context_t& c)
         (CSS IMAGE, ::boost::program_options::value < int > (), "CSS Images level (0, 3, or 4).")
         (CSS INLINE, ::boost::program_options::value < int > (), "CSS Inline Layout level (0 or 3).")
         (CSS LINE_GRID, ::boost::program_options::value < int > (), "CSS Line Grid level (0 or 3).")
+        (CSS LINK_PARAM, ::boost::program_options::value < int > (), "CSS Linked Parameters level (0 or 3).")
         (CSS LIST, ::boost::program_options::value < int > (), "CSS Lists and Counters level (0 or 3).")
         (CSS LOGIC, ::boost::program_options::value < int > (), "CSS Logical Properties and Values level (0 or 3).")
         (CSS MARQUEE, ::boost::program_options::value < int > (), "CSS Marquee level (0 or 3).")
@@ -971,7 +975,8 @@ void options::init (context_t& c)
         (CSS NESTING, ::boost::program_options::value < int > (), "CSS Nesting level (0 or 3).")
         (CSS OVERFLOH, ::boost::program_options::value < int > (), "CSS Overflow level (0, 3 or 4).")
         (CSS OVERSCROLL, ::boost::program_options::value < int > (), "CSS Overscroll Behaviour level (0 or 3).")
-        (CSS PAGE, ::boost::program_options::value < int > (), "CSS Paged Media level (0 or 3).")
+        (CSS PAGE, ::boost::program_options::value < int > (), "CSS Paged Media level (0, 3 or 4).")
+        (CSS PAGETEMP, ::boost::program_options::value < int > (), "CSS Pagination Template level (0 or 3).")
         (CSS POSITION, ::boost::program_options::value < int > (), "CSS Positions level (0 or 3).")
         (CSS PRESENT, ::boost::program_options::value < int > (), "CSS Presentation Levels level (0 or 3).")
         (CSS PRINT, ::boost::program_options::bool_switch (), "Notify if some CSS conflicts with the CSS Print Profile.")
@@ -985,6 +990,7 @@ void options::init (context_t& c)
         (CSS SCROLLBAR, ::boost::program_options::value < int > (), "CSS Scrollbar Styling level (0 or 3).")
         (CSS SDA, ::boost::program_options::value < int > (), "CSS Scroll Driven Animations level (0 or 3).")
         (CSS SELECTOR, ::boost::program_options::value < int > (), "CSS Selector level (0, 3, 4, or 5).")
+        (CSS SHADER, ::boost::program_options::value < int > (), "CSS Shader level (0 or 3).")
         (CSS SHAPE, ::boost::program_options::value < int > (), "CSS Shapes level (0, 3, or 4).")
         (CSS SNAP, ::boost::program_options::value < int > (), "CSS Scroll Snap level (0 or 3).")
         (CSS SNAP_POINTS, ::boost::program_options::value < int > (), "CSS Scroll Snap Points level (0 or 3).")
@@ -1281,6 +1287,8 @@ void options::init (context_t& c)
         (STATS DONT FONT, ::boost::program_options::bool_switch (), "Do not output font report.")
         (STATS FONT_FAMILY, ::boost::program_options::bool_switch (), "Output font_family report.")
         (STATS DONT FONT_FAMILY, ::boost::program_options::bool_switch (), "Do not output font_family report.")
+        (STATS FUNCTION, ::boost::program_options::bool_switch (), "Output function report.")
+        (STATS DONT FUNCTION, ::boost::program_options::bool_switch (), "Do not output function report.")
         (STATS HIGHLIGHT, ::boost::program_options::bool_switch (), "Output highlight report.")
         (STATS DONT HIGHLIGHT, ::boost::program_options::bool_switch (), "Do not output highlight report.")
         (STATS HISTFORM, ::boost::program_options::bool_switch (), "Output historical_form report.")
@@ -1305,6 +1313,8 @@ void options::init (context_t& c)
         (STATS DONT PAGE_NAME, ::boost::program_options::bool_switch (), "Do not output page_name report.")
         (STATS PALETTE, ::boost::program_options::bool_switch (), "Output palette report.")
         (STATS DONT PALETTE, ::boost::program_options::bool_switch (), "Do not output palette report.")
+        (STATS PARAMETERS, ::boost::program_options::bool_switch (), "Output parameters report.")
+        (STATS DONT PARAMETERS, ::boost::program_options::bool_switch (), "Do not output parameters report.")
         (STATS PROPER, ::boost::program_options::bool_switch (), "Output ontology property count report.")
         (STATS DONT PROPER, ::boost::program_options::bool_switch (), "Do not output ontology property count report.")
         (STATS REFERENCE, ::boost::program_options::bool_switch (), "Output reference report.")
@@ -1827,9 +1837,10 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_counter_style, n, nits, CSS CS, "Counter Style", 3);
         process_css_level (c, c_custom_property, n, nits, CSS CUSTOM, "Custom", 3, true);
         process_css_level (c, c_device_adaption, n, nits, CSS DEVICE, "Device Adaption", 3);
-        process_css_level (c, c_display, n, nits, CSS DISPLAY, "Display", 3);
+        process_css_level (c, c_display, n, nits, CSS DISPLAY, "Display", 4);
         process_css_level (c, c_easing_function, n, nits, CSS EASE, "Ease", 4);
-        process_css_level (c, c_environment, n, nits, CSS ENVIRONMENT, "Environment", 3);
+        process_css_level (c, c_egg, n, nits, CSS EGG, "Expressive Generalizations and Gadgetry", 3);
+        process_css_level (c, c_environment, n, nits, CSS ENVIRONMENT_, "Environment", 3);
         process_css_level (c, c_exclusion, n, nits, CSS EXCLUDE, "Exclusions", 3);
         process_css_level (c, c_flexible_box_layout, n, nits, CSS FBL, "Flexible Box Layout", 3);
         process_css_level (c, c_fill_stroke, n, nits, CSS FILL, "Fill and Stroke", 3);
@@ -1843,8 +1854,9 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_hyperlink_presentation, n, nits, CSS HYPERLINK, "Hyperlink", 5);
         process_css_level (c, c_image, n, nits, CSS IMAGE, "Image", 4);
         process_css_level (c, c_inline_layout, n, nits, CSS INLINE, "Inline Layout", 3);
-        process_css_level (c, c_list_counter, n, nits, CSS LIST, "Lists and Counters", 3);
         process_css_level (c, c_line_grid, n, nits, CSS LINE_GRID, "Line Grid", 3);
+        process_css_level (c, c_linked_parameters, n, nits, CSS LINK_PARAM, "Linked Parameters", 3);
+        process_css_level (c, c_list_counter, n, nits, CSS LIST, "Lists and Counters", 3);
         process_css_level (c, c_logical_property, n, nits, CSS LOGIC, "Logical Properties and Values", 3);
         process_css_level (c, c_marquee, n, nits, CSS MARQUEE, "Marquee", 3);
         process_css_level (c, c_math_core, n, nits, CSS MATHCORE, "Math Core", 3);
@@ -1859,8 +1871,9 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_nesting, n, nits, CSS NESTING, "Nesting", 3);
         process_css_level (c, c_overflow, n, nits, CSS OVERFLOH, "Overflow", 4);
         process_css_level (c, c_overscroll_behaviour, n, nits, CSS OVERSCROLL, "Overscroll Behaviour", 3);
-        process_css_level (c, c_paged_media, n, nits, CSS PAGE, "Paged Media", 3);
-        process_css_level (c, c_positioned_layout, n, nits, CSS POSITION, "Position", 3);
+        process_css_level (c, c_paged_media, n, nits, CSS PAGE, "Paged Media", 4);
+        process_css_level (c, c_page_template, n, nits, CSS PAGETEMP, "Pagination Template", 3);
+        process_css_level (c, c_positioned_layout, n, nits, CSS POSITION, "Positioned Layout", 3);
         process_css_level (c, c_presentation_level, n, nits, CSS PRESENT, "Presentation Levels", 3);
         yea_nay (c, &context_t::print_profile, nits, CSS PRINT, CSS DONT PRINT);
         process_css_level (c, c_pseudo_element, n, nits, CSS PSEUDO, "Pseudo-Elements", 4);
@@ -1872,6 +1885,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_scrollbar_styling, n, nits, CSS SCROLLBAR, "Scrollbar Styling", 3);
         process_css_level (c, c_scroll_driven_animation, n, nits, CSS SDA, "Scroll Driven Animations", 3);
         process_css_level (c, c_selector, n, nits, CSS SELECTOR, "Selector", 5);
+        process_css_level (c, c_shader, n, nits, CSS SHADER, "Shaders", 3);
         process_css_level (c, c_shadow_part, n, nits, CSS SP, "Shadow Parts", 4);
         process_css_level (c, c_shape, n, nits, CSS SHAPE, "Shape", 4);
         process_css_level (c, c_scroll_snap, n, nits, CSS SNAP, "Scroll Snap", 3);  // 
@@ -2203,6 +2217,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         yea_nay (c, rcb_file, nits, STATS FICHIER, STATS DONT FICHIER);
         yea_nay (c, rcb_font, nits, STATS FONT, STATS DONT FONT);
         yea_nay (c, rcb_font_family, nits, STATS FONT_FAMILY, STATS DONT FONT_FAMILY);
+        yea_nay (c, rcb_function, nits, STATS FUNCTION, STATS DONT FUNCTION);
         yea_nay (c, rcb_highlight, nits, STATS HIGHLIGHT, STATS DONT HIGHLIGHT);
         yea_nay (c, rcb_historical_form, nits, STATS HISTFORM, STATS DONT HISTFORM);
         yea_nay (c, rcb_id, nits, STATS ID, STATS DONT ID);
@@ -2215,6 +2230,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         yea_nay (c, rcb_page, nits, STATS PAGE, STATS DONT PAGE);
         yea_nay (c, rcb_page_name, nits, STATS PAGE_NAME, STATS DONT PAGE_NAME);
         yea_nay (c, rcb_palette, nits, STATS PALETTE, STATS DONT PALETTE);
+        yea_nay (c, rcb_param, nits, STATS PARAMETERS, STATS DONT PARAMETERS);
         yea_nay (c, rcb_property, nits, STATS PROPER, STATS DONT PROPER);
         yea_nay (c, rcb_reference, nits, STATS REFERENCE, STATS DONT REFERENCE);
         yea_nay (c, rcb_region, nits, STATS REGION, STATS DONT REGION);
@@ -2656,6 +2672,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, CSS, DISPLAY, css);
     RG (gr, res, int, CSS, ENVIRONMENT, css);
     RG (gr, res, int, CSS, EASE, css);
+    RG (gr, res, int, CSS, EGG, css);
     RG (gr, res, int, CSS, EXCLUDE, css);
     RG (gr, res, vstr_t, CSS, EXTENSION, css);
     RG (gr, res, int, CSS, FBL, css);
@@ -2670,8 +2687,9 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, CSS, HYPERLINK, css);
     RG (gr, res, int, CSS, IMAGE, css);
     RG (gr, res, int, CSS, INLINE, css);
-    RG (gr, res, int, CSS, LIST, css);
     RG (gr, res, int, CSS, LINE_GRID, css);
+    RG (gr, res, int, CSS, LINK_PARAM, css);
+    RG (gr, res, int, CSS, LIST, css);
     RG (gr, res, int, CSS, LOGIC, css);
     RG (gr, res, int, CSS, MARQUEE, css);
     RG (gr, res, int, CSS, MASKING, css);
@@ -2686,6 +2704,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, CSS, OVERFLOH, css);
     RG (gr, res, int, CSS, OVERSCROLL, css);
     RG (gr, res, int, CSS, PAGE, css);
+    RG (gr, res, int, CSS, PAGETEMP, css);
     RG (gr, res, int, CSS, POSITION, css);
     RG (gr, res, int, CSS, PRESENT, css);      
     RB (gr, res, CSS, PRINT, css);
@@ -2699,6 +2718,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, CSS, SDA, css);
     RG (gr, res, int, CSS, SELECTOR, css);
     RG (gr, res, int, CSS, SP, css);
+    RG (gr, res, int, CSS, SHADER, css);
     RG (gr, res, int, CSS, SHAPE, css);
     RG (gr, res, int, CSS, SPATIAL, css);
     RG (gr, res, int, CSS, SPEECH, css);
@@ -2976,6 +2996,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RB (gr, res, STATS, FICHIER, stats);
     RB (gr, res, STATS, FONT, stats);
     RB (gr, res, STATS, FONT_FAMILY, stats);
+    RB (gr, res, STATS, FUNCTION, stats);
     RB (gr, res, STATS, HIGHLIGHT, stats);
     RB (gr, res, STATS, HISTFORM, stats);
     RB (gr, res, STATS, ID, stats);
@@ -2988,6 +3009,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RB (gr, res, STATS, PAGE, stats);
     RB (gr, res, STATS, PAGE_NAME, stats);
     RB (gr, res, STATS, PALETTE, stats);
+    RB (gr, res, STATS, PARAMETERS, stats);
     RB (gr, res, STATS, PROPER, stats);
     RB (gr, res, STATS, REFERENCE, stats);
     RB (gr, res, STATS, REGION, stats);

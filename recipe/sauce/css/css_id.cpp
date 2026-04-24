@@ -27,12 +27,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 css_id::css_id (arguments& args, const ::std::string& s)
     : s_ (s)
 {   if (args.dst_.get () != nullptr)
-        args.dst_ -> insert (cic_id, s); }
+        args.dst_ -> dcl (cic_id, s); }
 
 void css_id::accumulate (stats_t* s, const e_element e) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
-    s -> dcl_id (s_);
-    s -> dcl_element_id (elem::name (e) + "#" + s_); }
+    s -> dcl (cic_id, s_);
+    s -> dcl (cic_element_id, elem::name (e) + "#" + s_); }
 
 void css_id::shadow (::std::stringstream& ss, arguments& )
 {   if (! s_.empty ()) ss << "#" << s_;   }

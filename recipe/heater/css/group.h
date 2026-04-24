@@ -36,6 +36,7 @@ class css_group
     dst_ptr snippets_, transforms_;
     namespaces_ptr ns_;
     media_t media_; 
+    mutable bool hasty_ = false;
     bool note_class (const ::std::string& s);
     bool note_element_class (const ::std::string& s);
     bool note_element_id (const ::std::string& s);
@@ -58,6 +59,9 @@ public:
     bool note_element (const e_element e);
     bool has_class (const ::std::string& id) const;
     bool has_id (const ::std::string& id) const;
+    bool has (const e_id_category cic, const ::std::string& s) const;
+    void use (const e_id_category cic, const ::std::string& s, const ::std::size_t n = 1) const;
+    void dcl (const e_id_category cic, const ::std::string& s, const ::std::size_t n = 1) const;
     void validate ();
     void accumulate (nitpick& nits) const;
     void accumulate (stats_t* s) const;

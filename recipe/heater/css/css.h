@@ -52,12 +52,12 @@ public:
     bool snippet () const noexcept { return args_.snippet_; }
     void snippet (const bool b)  noexcept { args_.snippet_ = b; }
     bool style_att () const noexcept { return args_.styled_ != elem_undefined; }
-    bool has (const ::std::string& s) const
-    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
-        return args_.dst_ -> has (s); }
+//    bool has (const ::std::string& s) const
+//    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
+//        return args_.dcl -> has (s); }
     bool has (const e_id_category cat, const ::std::string& s) const
-    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
-        return args_.dst_ -> has (cat, s); }
+    {   //VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
+        return args_.has (cat, s); }
 /*    bool has_class (const ::std::string& s) const
     {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
         return args_.dst_ -> has_class (s); }
@@ -102,6 +102,7 @@ public:
     arguments& args () { return args_; }
     const statements& stms () const { return st_; }
     statements& stms () { return st_; }
-    const element_bitset get_elements () const { return st_.get_elements (); } };
+    const element_bitset get_elements () const { return st_.get_elements (); }
+    ::std::string rpt () const { return ::std::string (); }};
 
 typedef ::std::shared_ptr < css > css_ptr;

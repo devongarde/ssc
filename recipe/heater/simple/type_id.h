@@ -50,14 +50,14 @@ template < > struct type_master < t_id > : tidy_string < t_id >
         return predefined_; }
     void accumulate (stats_t* st, const e_element e) const
     {   VERIFY_NOT_NULL (st, __FILE__, __LINE__);
-        st -> use_id (tidy_string < t_id > :: value_);
-        st -> use_element_id (elem::name (e) + "#" + tidy_string < t_id > :: value_); }
+        st -> use (cic_id, tidy_string < t_id > :: value_);
+        st -> use (cic_element_id, elem::name (e) + "#" + tidy_string < t_id > :: value_); }
     void accumulate (stats_t* st, const element_bitset& e) const
     {   VERIFY_NOT_NULL (st, __FILE__, __LINE__);
-        st -> use_id (tidy_string < t_id > :: value_);
+        st -> use (cic_id, tidy_string < t_id > :: value_);
         for (::std::size_t i = elem_css_all; i < last_element_tag; ++i)
             if (e.test (i))
-                st -> use_element_id (elem::name (GSL_NARROW_CAST < e_element > (i)) + "#" + tidy_string < t_id > :: value_); } };
+                st -> use (cic_element_id, elem::name (GSL_NARROW_CAST < e_element > (i)) + "#" + tidy_string < t_id > :: value_); } };
 
 template < > struct type_master < t_idref > : tidy_string < t_idref >
 {   using tidy_string < t_idref > :: tidy_string;

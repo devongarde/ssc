@@ -33,7 +33,7 @@ vstr_t sections;
 
 #define SPEC_NIT \
     "[class]\n" \
-    "  {{class-name|| }}{{class-decl-int|styled |}}{{class-int|, used |}}\n" \
+    "  {{class-name|| }}{{class-decl-int|declared |}}{{class-int|, used |}}\n" \
     "\n" \
     "[class-head]\n" \
     "\n" \
@@ -42,7 +42,7 @@ vstr_t sections;
     "[class-foot]\n" \
     "\n" \
     "[du]\n" \
-    "  {{tally-name|| }}{{tally-decl-int|styled |}}{{tally-use-int|, used |}}\n" \
+    "  {{tally-name|| }}{{tally-decl-int|declared |}}{{tally-use-int|, used |}}\n" \
     "\n" \
     "[du-head]\n" \
     "{{tally-title||:}}\n" \
@@ -50,7 +50,7 @@ vstr_t sections;
     "[du-foot]\n" \
     "\n" \
     "[id]\n" \
-    "  {{id-name|| }}{{id-decl-int|styled |}}{{id-int|, used |}}\n" \
+    "  {{id-name|| }}{{id-decl-int|declared |}}{{id-int|, used |}}\n" \
     "\n" \
     "[id-head]\n" \
     "\n" \
@@ -187,7 +187,7 @@ vstr_t sections;
 
 #define TEST_NIT \
     "[class]\n" \
-    "  {{class-name|| }}{{class-decl-int|styled |}}{{class-int|, used |}}\n" \
+    "  {{class-name|| }}{{class-decl-int|declared |}}{{class-int|, used |}}\n" \
     "\n" \
     "[class-head]\n" \
     "\n" \
@@ -196,7 +196,7 @@ vstr_t sections;
     "[class-foot]\n" \
     "\n" \
     "[du]\n" \
-    "  {{tally-name|| }}{{tally-decl-int|styled |}}{{tally-use-int|, used |}}\n" \
+    "  {{tally-name|| }}{{tally-decl-int|declared |}}{{tally-use-int|, used |}}\n" \
     "\n" \
     "[du-head]\n" \
     "{{tally-title||:}}\n" \
@@ -204,7 +204,7 @@ vstr_t sections;
     "[du-foot]\n" \
     "\n" \
     "[id]\n" \
-    "  {{id-name|| }}{{id-decl-int|styled |}}{{id-int|, used |}}\n" \
+    "  {{id-name|| }}{{id-decl-int|declared |}}{{id-int|, used |}}\n" \
     "\n" \
     "[id-head]\n" \
     "\n" \
@@ -344,7 +344,7 @@ vstr_t sections;
 
 #define TEXT_NIT \
     "[class]\n" \
-    "  {{class-name|| }}{{class-decl-int|styled |}}{{class-int|, used |}}\n" \
+    "  {{class-name|| }}{{class-decl-int|declared |}}{{class-int|, used |}}\n" \
     "\n" \
     "[class-head]\n" \
     "\n" \
@@ -353,7 +353,7 @@ vstr_t sections;
     "[class-foot]\n" \
     "\n" \
     "[du]\n" \
-    "  {{tally-name|| }}{{tally-decl-int|styled |}}{{tally-use-int|, used |}}\n" \
+    "  {{tally-name|| }}{{tally-decl-int|declared |}}{{tally-use-int|, used |}}\n" \
     "\n" \
     "[du-head]\n" \
     "{{tally-title||:}}\n" \
@@ -361,7 +361,7 @@ vstr_t sections;
     "[du-foot]\n" \
     "\n" \
     "[id]\n" \
-    "  {{id-name|| }}{{id-decl-int|styled |}}{{id-int|, used |}}\n" \
+    "  {{id-name|| }}{{id-decl-int|declared |}}{{id-int|, used |}}\n" \
     "\n" \
     "[id-head]\n" \
     "\n" \

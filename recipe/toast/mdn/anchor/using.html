@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN using tests</title>
+<style>
+.anchor {
+  anchor-name: --my-anchor;
+  width: fit-content;
+}
+
+.infobox {
+  position: fixed;
+  position-anchor: --my-anchor;
+}
+
+::picker(select) {
+  position-anchor: none;
+}
+
+.anchor {
+  anchor-name: --my-anchor;
+}
+
+.positioned {
+  position: absolute;
+  position-anchor: --my-anchor;
+  position-area: right;
+}
+
+.scoped {
+  anchor-scope: --my-anchor;
+}
+
+.positionedElement {
+  left: anchor(right);
+  margin-left: 10px;
+}
+
+.positionedElement {
+  inset-block-end: calc(anchor(start) + 10px);
+}
+
+.anchor {
+  anchor-name: --my-anchor;
+}
+
+.infobox {
+  position-anchor: --my-anchor;
+  position: fixed;
+  inset-block-start: anchor(end);
+  inset-inline-start: anchor(self-end);
+  margin: 5px 0 0 5px;
+}
+
+.infobox {
+  position: fixed;
+  position-anchor: --my-anchor;
+  position-area: top;
+}
+
+.infobox {
+  position: fixed;
+  position-anchor: --my-anchor;
+  top: calc(anchor(bottom) + 5px);
+  justify-self: anchor-center;
+}
+
+.elem {
+  width: anchor-size(width);
+}
+
+.elem {
+  inline-size: calc(anchor-size(self-inline) * 4);
+}
+
+.infobox {
+  position: fixed;
+  position-anchor: --my-anchor;
+  position-area: right;
+  margin-left: 5px;
+  width: calc(anchor-size(width) * 5);
+}
+
+.anchor {
+  text-align: center;
+  width: 30px;
+  transition: 1s width;
+}
+
+.anchor:hover,
+.anchor:focus {
+  width: 50px;
+}
+
+.sid
+{
+left: anchor-size(width);
+inset-inline-end: anchor-size(--my-anchor height, 100px);
+
+margin-left: calc(anchor-size(width) / 4);
+margin-block-start: anchor-size(--my-anchor self-block, 20px);
+}
+
+.anchor {
+  anchor-name: --my-anchor;
+  width: 100px;
+  height: 100px;
+  transition: 1s all;
+}
+
+.infobox {
+  position-anchor: --my-anchor;
+  position: absolute;
+  height: 100px;
+  width: 100px;
+}
+
+.anchor:hover,
+.anchor:focus {
+  width: 300px;
+}
+
+.infobox {
+  top: anchor(top);
+  left: anchor-size(width);
+  margin-left: calc(anchor-size(width) / 4);
+}
+</style>
+<script>
+const infobox = document.querySelector(".infobox");
+const selectElem = document.querySelector("select");
+
+selectElem.addEventListener("change", () => {
+  const area = selectElem.value;
+
+  // Set the position-area to the value chosen in the select box
+  infobox.style.positionArea = area;
+});
+</script>
+</head>
+
+<body>
+
+<h1>MDN using Tests</h1>
+
+<div class="anchor">⚓︎</div>
+
+<div class="infobox">
+  <p>This is an information box.</p>
+</div>
+
+<section class="scoped">
+  <div class="anchor">⚓︎</div>
+  <div class="positioned">Positioned 1</div>
+</section>
+
+<section class="scoped">
+  <div class="anchor">⚓︎</div>
+  <div class="positioned">Positioned 2</div>
+</section>
+
+<section class="scoped">
+  <div class="anchor">⚓︎</div>
+  <div class="positioned">Positioned 3</div>
+</section>
+
+<div class="anchor" tabindex="0">⚓︎</div>
+
+<div class="infobox">
+  <p>Infobox.</p>
+</div>
+
+</body>
+</html>

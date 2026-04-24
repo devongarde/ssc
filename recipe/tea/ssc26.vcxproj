@@ -782,6 +782,7 @@
     <ClCompile Include="..\sauce\css\value_types_css_c_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_c_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_c_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_c_5.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_d.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_e.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_fn_2.cpp" />
@@ -2678,6 +2679,12 @@
     <None Include="..\toast\css\3-ease\css.conf" />
     <None Include="..\toast\css\3-ease\css.spec" />
     <None Include="..\toast\css\3-ease\index.html" />
+    <None Include="..\toast\css\3-egg\css-2.css" />
+    <None Include="..\toast\css\3-egg\css-2.html" />
+    <None Include="..\toast\css\3-egg\css-3.html" />
+    <None Include="..\toast\css\3-egg\css.conf" />
+    <None Include="..\toast\css\3-egg\css.spec" />
+    <None Include="..\toast\css\3-egg\index.html" />
     <None Include="..\toast\css\3-exclude\css-3-1.html" />
     <None Include="..\toast\css\3-exclude\css-3-2.html" />
     <None Include="..\toast\css\3-exclude\css-3.css" />
@@ -2786,6 +2793,14 @@
     <None Include="..\toast\css\3-inline\css.conf" />
     <None Include="..\toast\css\3-inline\css.spec" />
     <None Include="..\toast\css\3-inline\index.html" />
+    <None Include="..\toast\css\3-linkparam\css-1.css" />
+    <None Include="..\toast\css\3-linkparam\css-1.html" />
+    <None Include="..\toast\css\3-linkparam\css-2.css" />
+    <None Include="..\toast\css\3-linkparam\css-3.css" />
+    <None Include="..\toast\css\3-linkparam\css-3.html" />
+    <None Include="..\toast\css\3-linkparam\css.conf" />
+    <None Include="..\toast\css\3-linkparam\css.spec" />
+    <None Include="..\toast\css\3-linkparam\index.html" />
     <None Include="..\toast\css\3-list\css-1.html" />
     <None Include="..\toast\css\3-list\css-3.css" />
     <None Include="..\toast\css\3-list\css-3.html" />
@@ -2867,6 +2882,13 @@
     <None Include="..\toast\css\3-overscroll\css.conf" />
     <None Include="..\toast\css\3-overscroll\css.spec" />
     <None Include="..\toast\css\3-overscroll\index.html" />
+    <None Include="..\toast\css\3-pagetemp\css-2.css" />
+    <None Include="..\toast\css\3-pagetemp\css-2.html" />
+    <None Include="..\toast\css\3-pagetemp\css-3.css" />
+    <None Include="..\toast\css\3-pagetemp\css-3.html" />
+    <None Include="..\toast\css\3-pagetemp\css.conf" />
+    <None Include="..\toast\css\3-pagetemp\css.spec" />
+    <None Include="..\toast\css\3-pagetemp\index.html" />
     <None Include="..\toast\css\3-page\css-3.css" />
     <None Include="..\toast\css\3-page\css-4.css" />
     <None Include="..\toast\css\3-page\css-5.css" />
@@ -2954,6 +2976,13 @@
     <None Include="..\toast\css\3-sel\css.conf" />
     <None Include="..\toast\css\3-sel\css.spec" />
     <None Include="..\toast\css\3-sel\index.html" />
+    <None Include="..\toast\css\3-shader\css-1.html" />
+    <None Include="..\toast\css\3-shader\css-3.html" />
+    <None Include="..\toast\css\3-shader\css-4.html" />
+    <None Include="..\toast\css\3-shader\css-6.html" />
+    <None Include="..\toast\css\3-shader\css.conf" />
+    <None Include="..\toast\css\3-shader\css.spec" />
+    <None Include="..\toast\css\3-shader\index.html" />
     <None Include="..\toast\css\3-shadow\css-2.html" />
     <None Include="..\toast\css\3-shadow\css.conf" />
     <None Include="..\toast\css\3-shadow\css.spec" />
@@ -3154,6 +3183,16 @@
     <None Include="..\toast\css\4-cr\css.conf" />
     <None Include="..\toast\css\4-cr\css.spec" />
     <None Include="..\toast\css\4-cr\index.html" />
+    <None Include="..\toast\css\4-display\css-2.html" />
+    <None Include="..\toast\css\4-display\css-3.css" />
+    <None Include="..\toast\css\4-display\css-3.html" />
+    <None Include="..\toast\css\4-display\css-4.css" />
+    <None Include="..\toast\css\4-display\css-4.html" />
+    <None Include="..\toast\css\4-display\css-5.html" />
+    <None Include="..\toast\css\4-display\css-6.html" />
+    <None Include="..\toast\css\4-display\css.conf" />
+    <None Include="..\toast\css\4-display\css.spec" />
+    <None Include="..\toast\css\4-display\index.html" />
     <None Include="..\toast\css\4-ease\css-2.css" />
     <None Include="..\toast\css\4-ease\css.conf" />
     <None Include="..\toast\css\4-ease\css.spec" />
@@ -3231,6 +3270,14 @@
     <None Include="..\toast\css\4-overflow\css.conf" />
     <None Include="..\toast\css\4-overflow\css.spec" />
     <None Include="..\toast\css\4-overflow\index.html" />
+    <None Include="..\toast\css\4-page\css-1.css" />
+    <None Include="..\toast\css\4-page\css-2.css" />
+    <None Include="..\toast\css\4-page\css-1.html" />
+    <None Include="..\toast\css\4-page\css-3.css" />
+    <None Include="..\toast\css\4-page\css-3.html" />
+    <None Include="..\toast\css\4-page\css.conf" />
+    <None Include="..\toast\css\4-page\css.spec" />
+    <None Include="..\toast\css\4-page\index.html" />
     <None Include="..\toast\css\4-pseudo\css-2.css" />
     <None Include="..\toast\css\4-pseudo\css-2.html" />
     <None Include="..\toast\css\4-pseudo\css-3.css" />
@@ -3413,6 +3460,12 @@
     <None Include="..\toast\css\marquee\css.conf" />
     <None Include="..\toast\css\marquee\css.spec" />
     <None Include="..\toast\css\marquee\index.html" />
+    <None Include="..\toast\css\print\css-2.css" />
+    <None Include="..\toast\css\print\css-4.css" />
+    <None Include="..\toast\css\print\css-8.css" />
+    <None Include="..\toast\css\print\css.conf" />
+    <None Include="..\toast\css\print\css.spec" />
+    <None Include="..\toast\css\print\index.html" />
     <None Include="..\toast\css\profile\css-1.css" />
     <None Include="..\toast\css\profile\css.conf" />
     <None Include="..\toast\css\profile\css.spec" />
@@ -13287,6 +13340,12 @@
     <None Include="..\toast\mdn\align\index.html" />
     <None Include="..\toast\mdn\align\mdn.conf" />
     <None Include="..\toast\mdn\align\mdn.spec" />
+    <None Include="..\toast\mdn\anchor\anchored.html" />
+    <None Include="..\toast\mdn\anchor\handling.html" />
+    <None Include="..\toast\mdn\anchor\index.html" />
+    <None Include="..\toast\mdn\anchor\mdn.conf" />
+    <None Include="..\toast\mdn\anchor\mdn.spec" />
+    <None Include="..\toast\mdn\anchor\using.html" />
     <None Include="..\toast\mdn\animation\animation-composition.html" />
     <None Include="..\toast\mdn\animation\animation-delay.html" />
     <None Include="..\toast\mdn\animation\animation-direction.html" />
@@ -13912,6 +13971,19 @@
     <None Include="..\toast\mdn\justify\justify-self.html" />
     <None Include="..\toast\mdn\justify\mdn.conf" />
     <None Include="..\toast\mdn\justify\mdn.spec" />
+    <None Include="..\toast\mdn\layout\breadcrumb.html" />
+    <None Include="..\toast\mdn\layout\card.html" />
+    <None Include="..\toast\mdn\layout\centre.html" />
+    <None Include="..\toast\mdn\layout\column.html" />
+    <None Include="..\toast\mdn\layout\grid.html" />
+    <None Include="..\toast\mdn\layout\index.html" />
+    <None Include="..\toast\mdn\layout\list.html" />
+    <None Include="..\toast\mdn\layout\media.html" />
+    <None Include="..\toast\mdn\layout\mdn.conf" />
+    <None Include="..\toast\mdn\layout\mdn.spec" />
+    <None Include="..\toast\mdn\layout\pagination.html" />
+    <None Include="..\toast\mdn\layout\split.html" />
+    <None Include="..\toast\mdn\layout\sticky.html" />
     <None Include="..\toast\mdn\line\index.html" />
     <None Include="..\toast\mdn\line\line-break.html" />
     <None Include="..\toast\mdn\line\line-clamp.html" />
@@ -14186,7 +14258,6 @@
     <None Include="..\toast\mdn\property\orphans.html" />
     <None Include="..\toast\mdn\property\overlay.html" />
     <None Include="..\toast\mdn\property\paint-order.html" />
-    <None Include="..\toast\mdn\property\perspective-origin.html" />
     <None Include="..\toast\mdn\property\perspective.html" />
     <None Include="..\toast\mdn\property\pointer-events.html" />
     <None Include="..\toast\mdn\property\print-colour-adjust.html" />
@@ -15747,6 +15818,8 @@
     <None Include="..\toast\stats\CSS-6\stats-font-family.spec" />
     <None Include="..\toast\stats\CSS-6\stats-font.conf" />
     <None Include="..\toast\stats\CSS-6\stats-font.spec" />
+    <None Include="..\toast\stats\CSS-6\stats-function.conf" />
+    <None Include="..\toast\stats\CSS-6\stats-function.spec" />
     <None Include="..\toast\stats\CSS-6\stats-highlight.conf" />
     <None Include="..\toast\stats\CSS-6\stats-highlight.spec" />
     <None Include="..\toast\stats\CSS-6\stats-historical-form.conf" />
@@ -15761,6 +15834,8 @@
     <None Include="..\toast\stats\CSS-6\stats-page-name.spec" />
     <None Include="..\toast\stats\CSS-6\stats-palette.conf" />
     <None Include="..\toast\stats\CSS-6\stats-palette.spec" />
+    <None Include="..\toast\stats\CSS-6\stats-param.conf" />
+    <None Include="..\toast\stats\CSS-6\stats-param.spec" />
     <None Include="..\toast\stats\CSS-6\stats-region.conf" />
     <None Include="..\toast\stats\CSS-6\stats-region.spec" />
     <None Include="..\toast\stats\CSS-6\stats-scroll-anim.conf" />
@@ -17560,7 +17635,6 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <ControlFlowGuard>Guard</ControlFlowGuard>
-      <GuardEHContMetadata>true</GuardEHContMetadata>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -370,6 +370,26 @@ template < e_type T, e_type P, e_type Q, class SZ1, class SZ2, class SZ3 > struc
             nits.merge (nets); nits.merge (gnats); nits.merge (knits); nits.merge (nuts); nits.merge (knots); }
         tidy_string < T > :: status (s_invalid); } };
 
+template < e_type T, e_type P, e_type Q, e_type R, class SZ1, class SZ2, class SZ3 > struct any_type_or_any_string : tidy_string < T >
+{   using tidy_string < T > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
+        {   const ::std::string ss (tidy_string < T > :: get_string ());
+            nitpick nets, gnats, knits, nuts, knots, aargh;
+            if (compare_complain (nets, v, SZ1 :: sz (), ss)) { nits.merge (nets); return; }
+            if (compare_complain (gnats, v, SZ2 :: sz (), ss)) { nits.merge (gnats); return; }
+            if (compare_complain (knits, v, SZ3 :: sz (), ss)) { nits.merge (knits); return; }
+            if (test_value < P > (nuts, v, ss, tidy_string < T > :: id ()))
+            {   nits.merge (nuts); return; }
+            if (test_value < Q > (knots, v, ss, tidy_string < T > :: id ()))
+            {   nits.merge (knots); return; }
+            if (test_value < Q > (aargh, v, ss, tidy_string < T > :: id ()))
+            {   nits.merge (aargh); return; }
+            nits.merge (nets); nits.merge (gnats); nits.merge (knits); nits.merge (nuts); nits.merge (knots); nits.merge (aargh); }
+        tidy_string < T > :: status (s_invalid); } };
+
 template < e_type T, e_type P, class SZ1, class SZ2, class SZ3 > struct type_or_any_string : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
     static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }

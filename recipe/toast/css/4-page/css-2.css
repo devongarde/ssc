@@ -1,0 +1,11 @@
+﻿@page body {
+  @slot center-header {
+    top: 0px;
+    left: 1em;
+    right: 1em;
+    height: 2em;
+    flow-from: header;
+    flow-persist: persist;
+    wrap-flow: clear;
+  }
+}

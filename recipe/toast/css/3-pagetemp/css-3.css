@@ -1,0 +1,52 @@
+﻿div { overflow-style: paged-x; }
+.either-one-or-two { template-set: one two; }
+.only-one { template-set: one; }
+
+@template one { }
+@template two { }
+@template three { }
+
+@template side-by-side:first {
+    @slot left {
+    //fancy styling
+    flow-from: article1;
+    }
+    @slot right {
+    //fancy styling
+    flow-from: article2;
+    }
+}
+
+body { overflow-style: paged-x; }
+.lead-story { flow-into: lead-flow; }
+.related-article { flow-into: related-flow; }
+@template related {
+    required-flow: related-flow;
+    @slot content {
+    flow-from: related-flow;
+    column-width: 20em;
+    }
+}
+@template lead {
+    required-flow: lead-flow;
+    @slot content {
+    flow-from: lead-flow;
+    column-width: 20em;
+    }
+}
+@template continued-on:first {
+    @slot lead {
+    flow-from: lead-flow;
+    width: 40%;
+    height: 90%;
+    padding: 5%;
+    float: left;
+    }
+    @slot related {
+    flow-from: related-flow;
+    width: 40%;
+    height: 90%;
+    padding: 5%
+    float: left;
+    }
+}

@@ -174,7 +174,7 @@ struct symbol_entry < html_version, e_as > as_symbol_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, "worker", as_worker } };
 
 struct symbol_entry < html_version, e_as_units > as_units_symbol_table [] =
-{   { { HTML_JAN05 }, { HTML_UNDEF }, "cm", asu_cm },
+{   { { HTML_JAN05, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "cm", asu_cm },
     { { HTML_JAN05 }, { HTML_UNDEF }, "feet", asu_feet },
     { { HTML_JAN05 }, { HTML_UNDEF }, "asu_inches", asu_inches },
     { { HTML_JAN05 }, { HTML_UNDEF }, "km", asu_km },
@@ -183,30 +183,36 @@ struct symbol_entry < html_version, e_as_units > as_units_symbol_table [] =
 
 struct symbol_entry < html_version, e_attr_unit > attr_unit_symbol_table [] =
 {   { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "angle", au_angle },
+    { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "apc", au_apc },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "color", au_colour },
-    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "cm", au_cm },
+    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "cm", au_cm },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "deg", au_deg },
-    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "em", au_em },
-    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "ex", au_ex },
+    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "em", au_em },
+    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "ex", au_ex },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "frequency", au_frequency },
+    { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "ftn", au_ftn },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "grad", au_grad },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "hz", au_hz },
-    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "in", au_in },
+    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "in", au_in },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "integer", au_integer },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "khz", au_khz },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "length", au_length },
-    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "mm", au_mm },
+    { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "ls", au_ls },
+    { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "mftn", au_mftn },
+    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "mm", au_mm },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "ms", au_ms },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "number", au_number },
-    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "pc", au_pc },
-    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "%", au_percent },
-    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "pt", au_pt },
-    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "px", au_px },
+    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "pc", au_pc },
+    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "%", au_percent },
+    { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "pls", au_pls },
+    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "pt", au_pt },
+    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "px", au_px },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "string", au_string },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "rad", au_rad },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "rem", au_rem },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "s", au_s },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "time", au_time },
+    { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "tmbl", au_tmbl },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "url", au_url },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "vh", au_vh },
     { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "vmax", au_vmax },
@@ -734,6 +740,13 @@ struct symbol_entry < html_version, e_css_container_feature > css_container_feat
     { { HTML_CSS, 0, 0, 0, H3_CSS_CONTAIN_5 }, { HTML_UNDEF }, "orientation", ccf_orientation },
     { { HTML_CSS, 0, 0, 0, H3_CSS_CONTAIN_5 }, { HTML_UNDEF }, "width", ccf_width } };
 
+struct symbol_entry < html_version, e_css_container_state > css_container_state_symbol_table [] =
+{   { { HTML_CSS, 0, 0, H2_CSS_COND_RULE_5 }, { HTML_UNDEF }, "anchored", ccs_anchored },
+    { { HTML_CSS, 0, 0, H2_CSS_COND_RULE_5 }, { HTML_UNDEF }, "inline-size", ccs_inline_size },
+    { { HTML_CSS, 0, 0, H2_CSS_COND_RULE_5 }, { HTML_UNDEF }, "normal", ccs_normal },
+    { { HTML_CSS, 0, 0, H2_CSS_COND_RULE_5 }, { HTML_UNDEF }, "scroll-state", ccs_scroll_state },
+    { { HTML_CSS, 0, 0, H2_CSS_COND_RULE_5 }, { HTML_UNDEF }, "size", ccs_size } };
+
 struct symbol_entry < html_version, e_css_content_enum > css_content_enum_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "attr", econ_attr },
     { { HTML_CSS }, { HTML_UNDEF }, "close-quote", econ_close_quote },
@@ -1016,7 +1029,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_COCO }, { HTML_UNDEF }, "backdrop", efn_backdrop },
     { { HTML_CSS, 0, 0, H2_CSS_2 | H2_CSS_COCO | H2_CSS_SELECTOR, H3_NOT_TV, 0, H5_CSS_PSEUDO_3 }, { HTML_UNDEF }, "before", efn_before },
     { { HTML_CSS, 0, 0, 0, H3_CSS_PRESENT }, { HTML_UNDEF }, "below-level", efn_below_level },
-    { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 | H3_CSS_PAGE }, { HTML_UNDEF }, "blank", efn_blank },
+    { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 | H3_CSS_PAGE_3 }, { HTML_UNDEF }, "blank", efn_blank },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "buffering", efn_buffering },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "checked", efn_checked },
     { { HTML_AUG25, 0, 0, H2_CSS_COCO, 0, H4_CSS_FCS }, { HTML_UNDEF }, "checkmark", efn_checkmark },
@@ -1024,7 +1037,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_AUG25, 0, 0, H2_CSS_COCO, 0, H4_CSS_FCS }, { HTML_UNDEF }, "clear-icon", efn_clear_icon },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "closed", efn_closed, ns_default, CF_NOT_LV_STD_JUL23 },
     { { HTML_AUG25, 0, 0, H2_CSS_COCO, 0, H4_CSS_FCS }, { HTML_UNDEF }, "color-swatch", efn_colour_swatch },
-    { { HTML_CSS, 0, 0, H2_CSS_COCO, H3_CSS_SCOPE }, { HTML_UNDEF }, "content", efn_content },
+    { { HTML_CSS, 0, 0, H2_CSS_COCO, H3_CSS_SCOPE }, { HTML_FEB26 }, "content", efn_content },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, 0, 0, H5_CSS_MULTCOL_4 }, { HTML_UNDEF }, "column", efn_column },
     { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_EASE_3 }, { HTML_UNDEF }, "cubic-bezier", efn_cubic_bezier },
     { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_COCO | H2_CSS_1_ARG, 0, H4_VTT | H4_CSS_ARG_OPTIONAL, H5_CSS_PSEUDO_3 }, { HTML_UNDEF }, "cue", efn_cue },
@@ -1042,10 +1055,11 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_AUG25, 0, 0, H2_CSS_COCO, 0, H4_CSS_FCS }, { HTML_UNDEF }, "field-separator", efn_field_separator },
     { { HTML_AUG25, 0, 0, H2_CSS_COCO, 0, H4_CSS_FCS }, { HTML_UNDEF }, "field-text", efn_field_text },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, 0, H4_CSS_FCS, H5_CSS_PSEUDO_3 }, { HTML_UNDEF }, "file-selector-button", efn_file_selector_button },
-    { { HTML_CSS, 0, 0, H2_CSS_2, H3_CSS_PAGE }, { HTML_UNDEF }, "first", efn_first, ns_default, CF_PAGE },
+    { { HTML_CSS, 0, 0, H2_CSS_2 | H2_CSS_PAGETEMP, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "first", efn_first, ns_default, CF_PAGE },
     { { HTML_CSS, 0, 0, H2_CSS_2 | H2_CSS_SELECTOR }, { HTML_UNDEF }, "first-child", efn_first_child },
     { { HTML_CSS, 0, 0, H2_CSS_1_2 | H2_CSS_COCO | H2_CSS_SELECTOR, 0, 0, H5_CSS_PSEUDO_3 }, { HTML_UNDEF }, "first-letter", efn_first_letter },
     { { HTML_CSS, 0, 0, H2_CSS_1_2 | H2_CSS_COCO | H2_CSS_SELECTOR, 0, 0, H5_CSS_PSEUDO_3 }, { HTML_UNDEF }, "first-line", efn_first_line },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_4 }, { HTML_UNDEF }, "first-of-page", efn_first_of_page },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "first-of-type", efn_first_of_type },
     { { HTML_CSS, 0, 0, H2_CSS_1_2 | H2_CSS_SELECTOR }, { HTML_UNDEF }, "focus", efn_focus },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "focus-visible", efn_focus_visible },
@@ -1054,7 +1068,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 | H2_CSS_N_ARGS, 0, H4_VTT | H4_CSS_ARG_OPTIONAL }, { HTML_UNDEF }, "future", efn_future },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, 0, 0, H5_CSS_PSEUDO_3 }, { HTML_UNDEF }, "grammar-error", efn_grammar_error },
     { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_N_ARGS, 0, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "has", efn_has },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_SHADOW }, { HTML_UNDEF }, "has-slotted", efn_has_slotted },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_SHADOW | H3_CSS_SCOPE }, { HTML_UNDEF }, "has-slotted", efn_has_slotted },
     { { HTML_CSS, 0, 0, H2_CSS_1_ARG | H2_CSS_SELECTOR_5, 0, H4_CSS_ARG_OPTIONAL | H4_CSS_LIVING_STANDARD }, { HTML_UNDEF }, "heading", efn_heading },
     { { HTML_CSS, 0, 0, H2_CSS_COCO | H2_CSS_1_ARG, H3_CSS_HIGHLIGHT }, { HTML_UNDEF }, "highlight", efn_highlight },
     { { HTML_AUG25, 0, 0, 0, 0, H4_CSS_FCS }, { HTML_UNDEF }, "high-value", efn_high_value },
@@ -1071,8 +1085,9 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_N_ARGS, 0, H4_CSS_SAFE_2025 }, { HTML_UNDEF }, "is", efn_is },
     { { HTML_CSS, 0, 0, H2_CSS_1_2_ARGS, H3_NOT_TV, H4_CSS_SAFE_2018 }, { HTML_UNDEF }, "lang", efn_lang },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "last-child", efn_last_child },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_4 }, { HTML_UNDEF }, "last-of-page", efn_last_of_page },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "last-of-type", efn_last_of_type },
-    { { HTML_CSS, 0, 0, H2_CSS_2, H3_CSS_PAGE }, { HTML_UNDEF }, "left", efn_left, ns_default, CF_PAGE },
+    { { HTML_CSS, 0, 0, H2_CSS_2, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "left", efn_left, ns_default, CF_PAGE },
     { { HTML_CSS, 0, 0, H2_CSS_1_2 | H2_CSS_SELECTOR }, { HTML_UNDEF }, "link", efn_link },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "local-link", efn_local_link },
     { { HTML_AUG25, 0, 0, 0, 0, H4_CSS_FCS }, { HTML_UNDEF }, "low-value", efn_low_value },
@@ -1157,13 +1172,14 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 | H2_CSS_1_ARG }, { HTML_UNDEF }, "nth-last-col", efn_nth_last_col },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR | H2_CSS_1_ARG }, { HTML_UNDEF }, "nth-last-of-type", efn_nth_last_of_type },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR | H2_CSS_1_ARG }, { HTML_UNDEF }, "nth-of-type", efn_nth_of_type },
+    { { HTML_CSS, 0, 0, H2_CSS_1_ARG, H3_CSS_PAGE_4 }, { HTML_UNDEF }, "nth-of-page", efn_nth_of_page },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "only-child", efn_only_child },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "only-of-type", efn_only_of_type },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4, 0, H4_LV_JAN25 }, { HTML_UNDEF }, "open", efn_open, ns_default, CF_NOT_LV_STD_JUL23 | CF_OR_LV_JAN25 },
     { { HTML_AUG25, 0, 0, 0, 0, H4_CSS_FCS }, { HTML_UNDEF }, "optimal-value", efn_optimal_value },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "optional", efn_optional },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "out-of-range", efn_out_of_range },
-    { { HTML_CSS, 0, 0, H2_CSS_COCO | H2_CSS_1_ARG, H3_CSS_SHADOW }, { HTML_UNDEF }, "part", efn_part },
+    { { HTML_CSS, 0, 0, H2_CSS_COCO | H2_CSS_1_ARG, H3_CSS_SHADOW | H3_CSS_SCOPE }, { HTML_UNDEF }, "part", efn_part },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 | H2_CSS_N_ARGS, 0, H4_VTT | H4_CSS_ARG_OPTIONAL }, { HTML_UNDEF }, "past", efn_past },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "paused", efn_paused },
     { { HTML_AUG25, 0, 0, H2_CSS_1_ARG | H2_CSS_COCO, 0, H4_CSS_FCS | H4_CSS_ARG_OPTIONAL }, { HTML_UNDEF }, "picker", efn_picker },
@@ -1179,7 +1195,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, 0, H3_CSS_LOGIC }, { HTML_UNDEF }, "recto", efn_recto, ns_default, CF_PAGE },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, H3_CSS_SCOPE }, { HTML_UNDEF }, "region", efn_region },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "required", efn_required },
-    { { HTML_CSS, 0, 0, H2_CSS_2, H3_CSS_PAGE }, { HTML_UNDEF }, "right", efn_right, ns_default, CF_PAGE },
+    { { HTML_CSS, 0, 0, H2_CSS_2, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "right", efn_right, ns_default, CF_PAGE },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "root", efn_root },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "scope", efn_scope },
     { { HTML_CSS, 0, 0, H2_CSS_COCO | H2_CSS_1_ARG, 0, 0, H5_CSS_OVERFLOW_5 }, { HTML_UNDEF }, "scroll-button", efn_scroll_button },
@@ -1192,9 +1208,10 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_AUG25, 0, 0, H2_CSS_COCO, 0, H4_CSS_FCS }, { HTML_UNDEF }, "slider-fill", efn_slider_fill },
     { { HTML_AUG25, 0, 0, H2_CSS_COCO, 0, H4_CSS_FCS }, { HTML_UNDEF }, "slider-thumb", efn_slider_thumb },
     { { HTML_AUG25, 0, 0, H2_CSS_COCO, 0, H4_CSS_FCS }, { HTML_UNDEF }, "slider-track", efn_slider_track },
-    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_COCO | H2_CSS_1_ARG }, { HTML_UNDEF }, "slotted", efn_slotted },
+    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_COCO | H2_CSS_1_ARG, H3_CSS_SCOPE }, { HTML_UNDEF }, "slotted", efn_slotted },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, 0, 0, H5_CSS_PSEUDO_3 }, { HTML_UNDEF }, "spelling-error", efn_spelling_error },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "stalled", efn_stalled },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_4 }, { HTML_UNDEF }, "start-of-page", efn_start_of_page },
     { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_1_ARG }, { HTML_UNDEF }, "state", efn_state },
     { { HTML_AUG25, 0, 0, H2_CSS_COCO, 0, H4_CSS_FCS }, { HTML_UNDEF }, "step-control", enf_step_control },
     { { HTML_AUG25, 0, 0, H2_CSS_COCO, 0, H4_CSS_FCS }, { HTML_UNDEF }, "step-down", efn_step_down },
@@ -1816,8 +1833,9 @@ struct symbol_entry < html_version, e_css_module, e_nit_macro, nm_none > css_mod
     { { HTML_CSS, 0, 0, 0, H3_CSS_DEVICE }, { HTML_UNDEF }, "Device Adaption", c_device_adaption, nm_context_css_device, MOD_ON_OFF },
     { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_DISPLAY_3 }, { HTML_UNDEF }, "Display", c_display, nm_context_css_display, MOD_LEVEL_3 },
     { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_EASE_3 }, { HTML_UNDEF }, "Easing Functions", c_easing_function, nm_context_css_ease, MOD_LEVEL_1 },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_ENVIRONMENT }, { HTML_UNDEF }, "Environment", c_environment, nm_context_css_ease, MOD_LEVEL_1 },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_ENVIRONMENT }, { HTML_UNDEF }, "Environment", c_environment, nm_context_css_environment, MOD_LEVEL_1 },
     { { HTML_CSS, 0, 0, 0, H3_CSS_EXCLUDE }, { HTML_UNDEF }, "Exclusion", c_exclusion, nm_context_css_exclude, MOD_ON_OFF },
+    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "Expressive Generalizations and Gadgetry", c_egg, nm_context_css_egg, MOD_LEVEL_1 },
     { { HTML_CSS, 0, 0, 0, H3_CSS_FILL }, { HTML_UNDEF }, "Fill and Stroke", c_fill_stroke, nm_context_css_fill, MOD_LEVEL_3 },
     { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_FILTER_3 }, { HTML_UNDEF }, "Filter Effects", c_filter_effect, nm_context_css_filter, MOD_LEVEL_1 },
     { { HTML_CSS, 0, 0, H2_CSS_FBL }, { HTML_UNDEF }, "Flexible Box Layout", c_flexible_box_layout, nm_context_css_fbl, MOD_LEVEL_1 },
@@ -1837,6 +1855,8 @@ struct symbol_entry < html_version, e_css_module, e_nit_macro, nm_none > css_mod
     { { HTML_CSS, 0, 0, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "Inline Layout", c_inline_layout, nm_context_css_inline, MOD_LEVEL_3 },
     { { HTML_CSS }, { HTML_UNDEF }, "Layout API", c_layout, nm_none, MOD_UNSUPPORTED },
     { { HTML_CSS, 0, 0, 0, H3_CSS_LINE_GRID }, { HTML_UNDEF }, "Line Grid", c_line_grid, nm_context_css_line_grid, MOD_ON_OFF },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LINK_PARAM }, { HTML_UNDEF }, "Linked Parameters", c_linked_parameters, nm_context_css_linked_parameters, MOD_LEVEL_1 },
+    // c_linked_parameters    H3_CSS_LINK_PARAM
     { { HTML_CSS, 0, 0, 0, H3_CSS_LIST }, { HTML_UNDEF }, "Lists & Counters", c_list_counter, nm_context_css_list, MOD_LEVEL_3 },
     { { HTML_AUG25, 0, 0, 0, 0, H4_CSS_LIVING_STANDARD }, { HTML_UNDEF }, "HTML5 Living Standard", c_living_standard, nm_none, MOD_ON_OFF },
     { { HTML_CSS, 0, 0, 0, H3_CSS_LOGIC }, { HTML_UNDEF }, "Logical Properties & Values", c_logical_property, nm_context_css_logic, MOD_LEVEL_1 },
@@ -1854,10 +1874,11 @@ struct symbol_entry < html_version, e_css_module, e_nit_macro, nm_none > css_mod
     { { HTML_CSS, 0, 0, 0, H3_CSS_OVERSCROLL }, { HTML_UNDEF }, "Overscroll Behaviour", c_overscroll_behaviour, nm_context_css_overscroll, MOD_LEVEL_1 },
     { { HTML_CSS, 0, 0, 0, H3_CSS_FLOAT }, { HTML_UNDEF }, "Page Floats", c_page_float, nm_context_css_float, MOD_ON_OFF },
     { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "Paged Media", c_paged_media, nm_none, MOD_LEVEL_3 | MOD_FUTURE },
+    { { HTML_CSS, 0, 0, H2_CSS_PAGETEMP }, { HTML_UNDEF }, "Pagination Templates", c_page_template, nm_none, MOD_LEVEL_3 | MOD_FUTURE },
     { { HTML_CSS }, { HTML_UNDEF }, "Painting API", c_painting_api, nm_none, MOD_UNSUPPORTED },
     { { HTML_CSS, 0, 0, 0, H3_CSS_POSITION }, { HTML_UNDEF }, "Positioned Layout", c_positioned_layout, nm_context_css_position, MOD_LEVELS_34 },
     { { HTML_CSS, 0, 0, 0, H3_CSS_PRESENT }, { HTML_UNDEF }, "Presentation Level", c_presentation_level, nm_context_css_present, MOD_ON_OFF | MOD_ABANDONED },
-    { { HTML_CSS, 0, 0, 0, H3_NOT_PRINT }, { HTML_UNDEF }, "Print Profile", c_print_profile, nm_none, MOD_ON_OFF | MOD_ABANDONED },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_PRN_OPTIONAL }, { HTML_UNDEF }, "Print Profile", c_print_profile, nm_none, MOD_ON_OFF | MOD_ABANDONED },
     { { HTML_CSS }, { HTML_UNDEF }, "Properties & Values API", c_property_value, nm_none, MOD_LEVEL_1 | MOD_UNSUPPORTED },
     { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_PSEUDO }, { HTML_UNDEF }, "Pseudo Elements", c_pseudo_element, nm_context_css_pseudo, MOD_LEVELS_34 },
     { { HTML_CSS }, { HTML_UNDEF }, "Reader Media Type", c_reader_media_type, nm_none, MOD_ON_OFF | MOD_ABANDONED },
@@ -1866,7 +1887,7 @@ struct symbol_entry < html_version, e_css_module, e_nit_macro, nm_none > css_mod
     { { HTML_CSS, 0, 0, 0, H3_CSS_RHYTHM }, { HTML_UNDEF }, "Rhythmic Sizing", c_rhythmic_sizing, nm_context_css_rhythm, MOD_LEVEL_1 },
     { { HTML_CSS, 0, 0, 0, H3_CSS_ROUND }, { HTML_UNDEF }, "Round Display", c_round_display, nm_context_css_round, MOD_LEVEL_1 },
     { { HTML_CSS, 0, 0, 0, H3_CSS_RUBY }, { HTML_UNDEF }, "Ruby Annotation", c_ruby_annotation, nm_context_css_ruby, MOD_LEVEL_1 },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_SCOPE }, { HTML_UNDEF }, "Scoping", c_scoping, nm_context_css_scope, MOD_LEVEL_1 },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_SCOPE }, { HTML_UNDEF }, "Scoping / Shadow", c_scoping, nm_context_css_scope, MOD_LEVEL_1 },
     { { HTML_CSS, 0, 0, 0, H3_CSS_ANCHOR }, { HTML_UNDEF }, "Scroll Anchoring", c_scroll_anchoring, nm_context_css_anchor, MOD_LEVEL_1 },
     { { HTML_CSS, 0, 0, 0, H3_CSS_SDA }, { HTML_UNDEF }, "Scroll-driven Animations", c_scroll_driven_animation, nm_none, MOD_ON_OFF | MOD_FUTURE },
     { { HTML_CSS, 0, 0, 0, H3_CSS_SNAP_3 }, { HTML_UNDEF }, "Scroll Snap", c_scroll_snap, nm_context_css_snap, MOD_LEVELS_12 },
@@ -1895,6 +1916,15 @@ struct symbol_entry < html_version, e_css_module, e_nit_macro, nm_none > css_mod
     { { HTML_CSS, 0, 0, 0, H3_CSS_WC }, { HTML_UNDEF }, "Will Change", c_will_change, nm_context_css_will_change, MOD_LEVEL_1 },
     { { HTML_CSS }, { HTML_UNDEF }, "Worklets", c_worklets, nm_none, MOD_LEVEL_1 | MOD_ABANDONED | MOD_UNSUPPORTED },
     { { HTML_CSS, 0, 0, 0, H3_CSS_WRITING_MASK }, { HTML_UNDEF }, "Writing Modes", c_writing_mode, nm_context_css_writing_mode, MOD_LEVELS_34 } };
+
+struct symbol_entry < html_version, e_css_overflow_style > css_overflow_style_symbol_table [] =
+{   { { HTML_CSS, 0, 0, H2_CSS_PAGETEMP, H3_CSS_PAGE_3, H4_CSS_MARQUEE }, { HTML_UNDEF }, "auto", cos_auto },
+    { { HTML_CSS, 0, 0, H2_CSS_PAGETEMP, H3_CSS_PAGE_3, H4_CSS_MARQUEE }, { HTML_UNDEF }, "marquee-block", cos_marquee_block },
+    { { HTML_CSS, 0, 0, H2_CSS_PAGETEMP, H3_CSS_PAGE_3, H4_CSS_MARQUEE }, { HTML_UNDEF }, "marquee-line", cos_marquee_line },
+    { { HTML_CSS, 0, 0, H2_CSS_PAGETEMP, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "paged-x", cos_paged_x },
+    { { HTML_CSS, 0, 0, H2_CSS_PAGETEMP, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "paged-y", cos_paged_y },
+    { { HTML_CSS, 0, 0, H2_CSS_PAGETEMP, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "paged-x-controls", cos_paged_x_controls },
+    { { HTML_CSS, 0, 0, H2_CSS_PAGETEMP, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "paged-y-controls", cos_paged_y_controls } };
 
 struct symbol_entry < html_version, e_css_paint_box > css_paint_box_symbol_table [] =
 {   { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL, 0, H5_CSS_OVERFLOW_34 }, { HTML_UNDEF }, "border-box", ecpb_border_box },
@@ -2016,6 +2046,14 @@ struct symbol_entry < html_version, e_css_position > css_position_symbol_table [
     { { HTML_CSS, 0, 0, 0, H3_CSS_POSITION_3, H4_CSS_ANCHOR_POS }, { HTML_UNDEF }, "sticky", ecp_sticky },
     { { HTML_CSS, 0, HE_BESPOKE }, { HTML_UNDEF }, "-webkit-sticky", ecp_webkit_sticky } };
 
+// t_css_print_status
+// typedef enum { cps_unknown, cps_required, cps_partial, cps_optional, cps_similar } e_css_print_status;
+struct symbol_entry < html_version, e_css_print_status > css_print_status_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_MOTION }, { HTML_UNDEF }, "required", cps_required },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_MOTION }, { HTML_UNDEF }, "partial", cps_partial },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_MOTION }, { HTML_UNDEF }, "optional", cps_optional },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_MOTION }, { HTML_UNDEF }, "similar", cps_similar } };
+
 struct symbol_entry < html_version, e_css_ray_size > css_ray_size_symbol_table [] =
 {   { { HTML_CSS, 0, 0, 0, H3_CSS_MOTION }, { HTML_UNDEF }, "closest-corner", cry_closest_corner },
     { { HTML_CSS, 0, 0, 0, H3_CSS_MOTION }, { HTML_UNDEF }, "closest-side", cry_closest_side },
@@ -2039,13 +2077,13 @@ struct symbol_entry < html_version, e_css_rgb_xyz > css_rgb_xyz_symbol_table [] 
     { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "xyz-d65", crx_xyz_d65 } };
 
 struct symbol_entry < html_version, e_css_reading_flow > css_reading_flow_symbol_table [] =
-{   { { HTML_CSS }, { HTML_UNDEF }, "flex-flow", crf_flex_flow },
-    { { HTML_CSS }, { HTML_UNDEF }, "flex-visual", crf_flex_visual },
-    { { HTML_CSS }, { HTML_UNDEF }, "grid-columns", crf_grid_columns },
-    { { HTML_CSS }, { HTML_UNDEF }, "grid-order", crf_grid_order },
-    { { HTML_CSS }, { HTML_UNDEF }, "grid-rows", crf_grid_rows },
-    { { HTML_CSS }, { HTML_UNDEF }, "normal", crf_normal },
-    { { HTML_CSS }, { HTML_UNDEF }, "source-order", crf_source_order } };
+{   { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_DISPLAY_4 }, { HTML_UNDEF }, "flex-flow", crf_flex_flow },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_DISPLAY_4 }, { HTML_UNDEF }, "flex-visual", crf_flex_visual },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_DISPLAY_4 }, { HTML_UNDEF }, "grid-columns", crf_grid_columns },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_DISPLAY_4 }, { HTML_UNDEF }, "grid-order", crf_grid_order },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_DISPLAY_4 }, { HTML_UNDEF }, "grid-rows", crf_grid_rows },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_DISPLAY_4 }, { HTML_UNDEF }, "normal", crf_normal },
+    { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_DISPLAY_4 }, { HTML_UNDEF }, "source-order", crf_source_order } };
 
 struct symbol_entry < html_version, e_css_rect > css_rect_symbol_table [] =
 {   { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "lab", ec4_lab },
@@ -2092,16 +2130,16 @@ struct symbol_entry < html_version, e_css_self_position > css_self_position_symb
     { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "start", ecsp_start } };
 
 struct symbol_entry < html_version, e_css_size_e > css_size_e_symbol_table [] =
-{   { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "A3", cse_a3 },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "A4", cse_a4 },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "A5", cse_a5 },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "B4", cse_b4 },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "B5", cse_b5 },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "JIS-B4", cse_jis_b4 },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "JIS-B5", cse_jis_b5 },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "ledger", cse_ledger },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "legal", cse_legal },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "letter", cse_letter } };
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "A3", cse_a3 },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "A4", cse_a4 },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "A5", cse_a5 },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "B4", cse_b4 },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "B5", cse_b5 },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "JIS-B4", cse_jis_b4 },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "JIS-B5", cse_jis_b5 },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "ledger", cse_ledger },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "legal", cse_legal },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "letter", cse_letter } };
 
 struct symbol_entry < html_version, e_css_sizing > css_sizing_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "auto", csz_auto },
@@ -2176,13 +2214,13 @@ struct symbol_entry < html_version, e_css_ss_type_e > css_ss_type_e_symbol_table
 
 struct symbol_entry < html_version, e_css_statement > css_statement_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "annotation", css_annotation, ns_default, CF_MUST_FONT_FV },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "bottom-center", css_bottom_centre, ns_default, CF_PRINT },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "bottom-left", css_bottom_left, ns_default, CF_PRINT },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "bottom-left-corner", css_bottom_left_corner, ns_default, CF_PRINT },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "bottom-right", css_bottom_right, ns_default, CF_PRINT },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "bottom-right-corner", css_bottom_right_corner, ns_default, CF_PRINT },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "bottom-center", css_bottom_centre, ns_default, CF_PRINT },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "bottom-left", css_bottom_left, ns_default, CF_PRINT },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "bottom-left-corner", css_bottom_left_corner, ns_default, CF_PRINT },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "bottom-right", css_bottom_right, ns_default, CF_PRINT },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "bottom-right-corner", css_bottom_right_corner, ns_default, CF_PRINT },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "character-variant", css_character_variant, ns_default, CF_MUST_FONT_FV },
-    { { HTML_CSS }, { HTML_UNDEF }, "charset", css_charset },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "charset", css_charset },
     { { HTML_SVG11, 0, HE_SVG, 0, H3_NOT_TV }, { HTML_UNDEF }, "color-profile", css_colour_profile },
     { { HTML_CSS, 0, 0, 0, H3_CSS_CONTAIN_5 }, { HTML_UNDEF }, "container", css_container },
     { { HTML_CSS, 0, 0, H2_CSS_CS }, { HTML_UNDEF }, "counter-style", css_counter_style },
@@ -2194,33 +2232,35 @@ struct symbol_entry < html_version, e_css_statement > css_statement_symbol_table
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "font-palette-values", css_font_palette_values },
     { { HTML_CSS }, { HTML_UNDEF }, "function", css_function },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "historical-forms", css_historical_forms, ns_default, CF_MUST_FONT_FV },
-    { { HTML_CSS, 0, 0, H2_CSS, H3_NOT_PRINT }, { HTML_UNDEF }, "import", css_import },
+    { { HTML_CSS, 0, 0, H2_CSS, 0, H4_CSS_PRN_OPTIONAL }, { HTML_UNDEF }, "import", css_import },
     { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "keyframes", css_keyframes },
     { { HTML_CSS, 0, 0, H2_CSS_CASCADE_5 }, { HTML_UNDEF }, "layer", css_layer },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "left-bottom", css_left_bottom, ns_default, CF_PRINT },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "left-middle", css_left_middle, ns_default, CF_PRINT },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "left-top", css_left_top, ns_default, CF_PRINT },
-    { { HTML_CSS }, { HTML_UNDEF }, "media", css_media },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "left-bottom", css_left_bottom, ns_default, CF_PRINT },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "left-middle", css_left_middle, ns_default, CF_PRINT },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "left-top", css_left_top, ns_default, CF_PRINT },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "media", css_media },
     { { HTML_CSS, 0, HE_BESPOKE }, { HTML_UNDEF }, "-moz-document", css_moz_document },
     { { HTML_CSS, 0, 0, H2_CSS_3, H3_NOT_MOBILE }, { HTML_UNDEF }, "namespace", css_namespace },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "ornaments", css_ornaments, ns_default, CF_MUST_FONT_FV },
-    { { HTML_CSS, 0, 0, H2_CSS_2, H3_NOT_TV | H3_CSS_PAGE }, { HTML_UNDEF }, "page", css_page },
+    { { HTML_CSS, 0, 0, H2_CSS_2, H3_NOT_TV | H3_CSS_PAGE_3, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "page", css_page },
     { { HTML_CSS, 0, 0, 0, 0, H4_CSS_ANCHOR_POS }, { HTML_UNDEF }, "position-try", css_position_try },
     { { HTML_CSS }, { HTML_UNDEF }, "starting-style", css_starting_style },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "right-bottom", css_right_bottom, ns_default, CF_PRINT },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "right-middle", css_right_middle, ns_default, CF_PRINT },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "right-top", css_right_top, ns_default, CF_PRINT },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "right-bottom", css_right_bottom, ns_default, CF_PRINT },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "right-middle", css_right_middle, ns_default, CF_PRINT },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3 }, { HTML_UNDEF }, "right-top", css_right_top, ns_default, CF_PRINT },
     { { HTML_CSS, 0, 0, H2_CSS_CASCADE_6, H3_CSS_SCOPE }, { HTML_UNDEF }, "scope", css_scope },
+    { { HTML_CSS, 0, 0, H2_CSS_PAGETEMP }, { HTML_UNDEF }, "slot", css_slot },
     { { HTML_CSS }, { HTML_UNDEF }, "view-transition", css_view_transition },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "styleset", css_styleset, ns_default, CF_MUST_FONT_FV },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "stylistic", css_stylistic, ns_default, CF_MUST_FONT_FV },
     { { HTML_CSS, 0, 0, H2_CSS_CASCADE_4 | H2_CSS_COND_RULE_3 }, { HTML_UNDEF }, "supports", css_supports },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "swash", css_swash, ns_default, CF_MUST_FONT_FV },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "top-center", css_top_centre, ns_default, CF_PRINT },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "top-left", css_top_left, ns_default, CF_PRINT },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "top-left-corner", css_top_left_corner, ns_default, CF_PRINT },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "top-right", css_top_right, ns_default, CF_PRINT },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "top-right-corner", css_top_right_corner, ns_default, CF_PRINT },
+    { { HTML_CSS, 0, 0, H2_CSS_PAGETEMP }, { HTML_UNDEF }, "template", css_template },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "top-center", css_top_centre, ns_default, CF_PRINT },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "top-left", css_top_left, ns_default, CF_PRINT },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "top-left-corner", css_top_left_corner, ns_default, CF_PRINT },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "top-right", css_top_right, ns_default, CF_PRINT },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_PAGE_3, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "top-right-corner", css_top_right_corner, ns_default, CF_PRINT },
     { { HTML_CSS, 0, 0, 0, H3_CSS_DEVICE }, { HTML_UNDEF }, "viewport", css_viewport },
     { { HTML_CSS }, { HTML_UNDEF }, "property", css_property },
     { { HTML_CSS, 0, 0, H2_CSS_COND_RULE_5 }, { HTML_UNDEF }, "when", css_when } };
@@ -2422,7 +2462,9 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, 0, H3_CSS_CONTENT | H3_CSS_LIST }, { HTML_UNDEF }, "counters", cvf_counters },
     { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE_4 }, { HTML_UNDEF }, "cross-fade", cvf_cross_fade },
     { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_EASE }, { HTML_UNDEF }, "cubic-bezier", cvf_cubic_bezier },
+    { { HTML_CSS, HV_ABANDONED, 0, H2_CSS_SHADER }, { HTML_UNDEF }, "custom", cvf_custom },
     { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_5, H5_CSS_VALUE }, { HTML_UNDEF }, "device-cmyk", cvf_device_cmyk },
+    { { HTML_CSS, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "double-rainbow", cvf_double_rainbow },
     { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_FILTER_3 }, { HTML_UNDEF }, "drop-shadow", cvf_drop_shadow },
     { { HTML_CSS, 0, 0, 0, 0, H4_CSS_HDR }, { HTML_UNDEF }, "dynamic-range-limit-mix", cvf_dynamic_range_limit_mix },
     { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_EASE }, { HTML_UNDEF }, "ease", cvf_ease, ns_default, CF_NO_PARAMS },
@@ -2472,6 +2514,7 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, 0, 0, 0, H5_CSS_FILTER_3 }, { HTML_UNDEF }, "opacity", cvf_opacity },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "ornaments", cvf_ornaments },
     { { HTML_CSS }, { HTML_UNDEF }, "paint", cvf_paint },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LINK_PARAM }, { HTML_UNDEF }, "param", cvf_param },
     { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE | H3_CSS_MASKING | H3_CSS_MOTION }, { HTML_UNDEF }, "path", cvf_path },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM_4 }, { HTML_UNDEF }, "perspective", cvf_perspective },
     { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE | H3_CSS_MASKING }, { HTML_UNDEF }, "polygon", cvf_polygon },
@@ -3745,13 +3788,16 @@ struct symbol_entry < html_version, e_kind > kind_symbol_table [] =
     { { HTML_JUL10 }, { HTML_UNDEF }, "metadata", k_metadata } };
 
 struct symbol_entry < html_version, e_length_absolute > length_absolute_symbol_table [] =
-{   { { HTML_4_0, 0, 0, H2_CSS_ALL }, { HTML_UNDEF }, "cm", l_cm },
-    { { HTML_4_0, 0, 0, H2_CSS_ALL }, { HTML_UNDEF }, "mm", l_mm },
+{   { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "apc", l_apc },
+    { { HTML_4_0, 0, 0, H2_CSS_ALL, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "cm", l_cm },
+    { { HTML_4_0, 0, 0, H2_CSS_ALL, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "mm", l_mm },
     { { HTML_4_0, 0, 0, 0, 0, 0, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "q", l_q },
-    { { HTML_4_0, 0, 0, H2_CSS_ALL }, { HTML_UNDEF }, "in", l_in },
-    { { HTML_4_0, 0, 0, H2_CSS_ALL }, { HTML_UNDEF }, "pc", l_pc },
-    { { HTML_4_0, 0, 0, H2_CSS_ALL }, { HTML_UNDEF }, "pt", l_pt },
-    { { HTML_4_0, 0, 0, H2_CSS_ALL }, { HTML_UNDEF }, "px", l_px } };
+    { { HTML_4_0, 0, 0, H2_CSS_ALL, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "in", l_in },
+    { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "ls", l_ls },
+    { { HTML_4_0, 0, 0, H2_CSS_ALL, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "pc", l_pc },
+    { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "pls", l_pls },
+    { { HTML_4_0, 0, 0, H2_CSS_ALL, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "pt", l_pt },
+    { { HTML_4_0, 0, 0, H2_CSS_ALL, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "px", l_px } };
 
 struct symbol_entry < html_version, e_length_relative > length_relative_symbol_table [] =
 {   { { HTML_3_2, 0, 0, H2_CSS_ALL }, { HTML_UNDEF }, "%", l_percent },
@@ -4236,6 +4282,8 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-device", nm_context_css_device },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-display", nm_context_css_display },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-ease", nm_context_css_ease },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-egg", nm_context_css_egg },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-environment", nm_context_css_environment },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-exclude", nm_context_css_exclude },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-extension", nm_context_css_extension },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-fbl", nm_context_css_fbl },
@@ -4251,6 +4299,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-image", nm_context_css_image },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-inline", nm_context_css_inline },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-line-grid", nm_context_css_line_grid },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-linked-parameters", nm_context_css_linked_parameters },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-lists", nm_context_css_list },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-logic", nm_context_css_logic },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-marquee", nm_context_css_marquee },
@@ -4419,6 +4468,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-page", nm_context_stats_page },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-summary", nm_context_stats_summary },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-abbr", nm_context_stats_abbr },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-anchor", nm_context_stats_anchor },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-annotation", nm_context_stats_annotation },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-attribute", nm_context_stats_attribute },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-category", nm_context_stats_category },
@@ -4436,6 +4486,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-file", nm_context_stats_file },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-font", nm_context_stats_font },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-font-family", nm_context_stats_font_family },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-function", nm_context_stats_function },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-highlight", nm_context_stats_highlight },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-historical-form", nm_context_stats_historical_form },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-id", nm_context_stats_id },
@@ -4447,6 +4498,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-ornament", nm_context_stats_ornament },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-page-name", nm_context_stats_page_name },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-palette", nm_context_stats_palette },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-param", nm_context_stats_param },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-property", nm_context_stats_property },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-reference", nm_context_stats_reference },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-region", nm_context_stats_region },
@@ -5940,6 +5992,7 @@ struct symbol_entry < html_version, e_text_rendering > text_rendering_symbol_tab
 
 struct symbol_entry < html_version, e_report, e_nit_macro, nm_none > report_symbol_table [] =
 {   { { HTML_TAGS }, { HTML_UNDEF }, "A&bbr.", rcb_abbreviation, nm_context_stats_abbr },
+    { { HTML_TAGS }, { HTML_UNDEF }, "A&nchor.", rcb_anchor, nm_context_stats_anchor },
     { { HTML_TAGS }, { HTML_UNDEF }, "A&nnotation", rcb_annotation, nm_context_stats_annotation },
     { { HTML_TAGS }, { HTML_UNDEF }, "A&ttribute", rcb_attribute, nm_context_stats_attribute },
     { { HTML_TAGS }, { HTML_UNDEF }, "C&ategory", rcb_category, nm_context_stats_category },
@@ -5956,6 +6009,7 @@ struct symbol_entry < html_version, e_report, e_nit_macro, nm_none > report_symb
     { { HTML_TAGS }, { HTML_UNDEF }, "&File", rcb_file, nm_context_stats_file },
     { { HTML_TAGS }, { HTML_UNDEF }, "&Font", rcb_font, nm_context_stats_font },
     { { HTML_TAGS }, { HTML_UNDEF }, "Fa&mily", rcb_font_family, nm_context_stats_font_family },
+    { { HTML_TAGS }, { HTML_UNDEF }, "F&unction", rcb_function, nm_context_stats_function },
     { { HTML_TAGS }, { HTML_UNDEF }, "Hi&ghlight", rcb_highlight, nm_context_stats_highlight },
     { { HTML_TAGS }, { HTML_UNDEF }, "H&ist. Form", rcb_historical_form, nm_context_stats_historical_form },
     { { HTML_TAGS }, { HTML_UNDEF }, "I&D", rcb_id, nm_context_stats_id },
@@ -5966,20 +6020,21 @@ struct symbol_entry < html_version, e_report, e_nit_macro, nm_none > report_symb
     { { HTML_TAGS }, { HTML_UNDEF }, "Name/&Val", rcb_name_value, nm_context_stats_dtdd },
     { { HTML_TAGS }, { HTML_UNDEF }, "&Ontology", rcb_ontology, nm_context_stats_ontology },
     { { HTML_TAGS }, { HTML_UNDEF }, "Ornaments", rcb_ornament, nm_context_stats_ornament },
-    { { HTML_TAGS }, { HTML_UNDEF }, "Page", rcb_page, nm_context_stats_page },
-    { { HTML_TAGS }, { HTML_UNDEF }, "Page Name", rcb_page_name, nm_context_stats_page_name },
-    { { HTML_TAGS }, { HTML_UNDEF }, "Palette", rcb_palette, nm_context_stats_palette },
-    { { HTML_TAGS }, { HTML_UNDEF }, "Property", rcb_property, nm_context_stats_property },
-    { { HTML_TAGS }, { HTML_UNDEF }, "Reference", rcb_reference, nm_context_stats_reference },
-    { { HTML_TAGS }, { HTML_UNDEF }, "Region", rcb_region, nm_context_stats_region },
-    { { HTML_TAGS }, { HTML_UNDEF }, "Scroll Anim", rcb_scroll_animation, nm_context_stats_scroll_anim },
-    { { HTML_TAGS }, { HTML_UNDEF }, "Statement", rcb_statement, nm_context_stats_statement },
-    { { HTML_TAGS }, { HTML_UNDEF }, "Styleset", rcb_styleset, nm_context_stats_styleset },
-    { { HTML_TAGS }, { HTML_UNDEF }, "Stylistic", rcb_stylistic, nm_context_stats_stylistic },
-    { { HTML_TAGS }, { HTML_UNDEF }, "Summary", rcb_summary, nm_context_stats_summary },
-    { { HTML_TAGS }, { HTML_UNDEF }, "Swash", rcb_swash, nm_context_stats_swash },
-    { { HTML_TAGS }, { HTML_UNDEF }, "Version", rcb_version, nm_context_stats_version },
-    { { HTML_TAGS }, { HTML_UNDEF }, "View", rcb_view, nm_context_stats_view } };
+    { { HTML_TAGS }, { HTML_UNDEF }, "&Page", rcb_page, nm_context_stats_page },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Page &Name", rcb_page_name, nm_context_stats_page_name },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Pa&lette", rcb_palette, nm_context_stats_palette },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Pa&ram", rcb_param, nm_context_stats_param },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Pr&operty", rcb_property, nm_context_stats_property },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Re&ference", rcb_reference, nm_context_stats_reference },
+    { { HTML_TAGS }, { HTML_UNDEF }, "&Region", rcb_region, nm_context_stats_region },
+    { { HTML_TAGS }, { HTML_UNDEF }, "&Scroll Anim", rcb_scroll_animation, nm_context_stats_scroll_anim },
+    { { HTML_TAGS }, { HTML_UNDEF }, "S&tatement", rcb_statement, nm_context_stats_statement },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Style&set", rcb_styleset, nm_context_stats_styleset },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Stylis&tic", rcb_stylistic, nm_context_stats_stylistic },
+    { { HTML_TAGS }, { HTML_UNDEF }, "S&ummary", rcb_summary, nm_context_stats_summary },
+    { { HTML_TAGS }, { HTML_UNDEF }, "S&wash", rcb_swash, nm_context_stats_swash },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Ve&rsion", rcb_version, nm_context_stats_version },
+    { { HTML_TAGS }, { HTML_UNDEF }, "&View", rcb_view, nm_context_stats_view } };
 
 struct symbol_entry < html_version, e_tld > tld_symbol_table [] =
 {   { { HTML_TAGS }, { HTML_UNDEF }, "aaa", tld_aaa },
@@ -7453,9 +7508,11 @@ struct symbol_entry < html_version, e_unicode_bidi > unicode_bidi_symbol_table [
     { { HTML_SVG20, 0, HE_SVG_2, H2_CSS_2 | H2_CSS_SVG_2, H3_CSS_WRITING_3 }, { HTML_UNDEF }, "plaintext", ub_plaintext } };
 
 struct symbol_entry < html_version, e_unit > unit_symbol_table [] =
-{   { { HTML_JAN21 }, { HTML_UNDEF }, "cap", eu_cap },
+{   { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "adafish", eu_adafish },
+    { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "apc", eu_apc },
+    { { HTML_JAN21 }, { HTML_UNDEF }, "cap", eu_cap },
     { { HTML_JUN19 }, { HTML_UNDEF }, "ch", eu_ch },
-    { { HTML_2_0, 0, 0, H2_CSS }, { HTML_UNDEF }, "cm", eu_cm },
+    { { HTML_2_0, 0, 0, H2_CSS, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "cm", eu_cm },
     { { HTML_2_0, 0, 0, 0, H3_CSS_CONTAIN_5 }, { HTML_UNDEF }, "cqb", eu_cqb },
     { { HTML_2_0, 0, 0, 0, H3_CSS_CONTAIN_5 }, { HTML_UNDEF }, "cqh", eu_cqh },
     { { HTML_2_0, 0, 0, 0, H3_CSS_CONTAIN_5 }, { HTML_UNDEF }, "cqi", eu_cqi },
@@ -7466,15 +7523,17 @@ struct symbol_entry < html_version, e_unit > unit_symbol_table [] =
     { { HTML_2_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "dpcm", eu_dpcm },
     { { HTML_2_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "dpi", eu_dpi },
     { { HTML_2_0, 0, 0, H2_CSS_MEDIA_4 }, { HTML_UNDEF }, "dppx", eu_dppx },
-    { { HTML_2_0, 0, 0, H2_CSS }, { HTML_UNDEF }, "em", eu_em },
-    { { HTML_2_0, 0, 0, H2_CSS }, { HTML_UNDEF }, "ex", eu_ex },
+    { { HTML_2_0, 0, 0, H2_CSS, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "em", eu_em },
+    { { HTML_2_0, 0, 0, H2_CSS, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "ex", eu_ex },
     { { HTML_JAN21 }, { HTML_UNDEF }, "ic", eu_ic },
-    { { HTML_2_0, 0, 0, H2_CSS }, { HTML_UNDEF }, "in", eu_in },
+    { { HTML_2_0, 0, 0, H2_CSS, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "in", eu_in },
     { { HTML_JAN21 }, { HTML_UNDEF }, "lh", eu_lh },
-    { { HTML_2_0, 0, 0, H2_CSS }, { HTML_UNDEF }, "mm", eu_mm },
-    { { HTML_2_0, 0, 0, H2_CSS }, { HTML_UNDEF }, "pc", eu_pc },
-    { { HTML_2_0, 0, 0, H2_CSS }, { HTML_UNDEF }, "pt", eu_pt },
-    { { HTML_2_0, 0, 0, H2_CSS }, { HTML_UNDEF }, "px", eu_px },
+    { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "ls", eu_ls },
+    { { HTML_2_0, 0, 0, H2_CSS, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "mm", eu_mm },
+    { { HTML_2_0, 0, 0, H2_CSS, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "pc", eu_pc },
+    { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "pls", eu_pls },
+    { { HTML_2_0, 0, 0, H2_CSS, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "pt", eu_pt },
+    { { HTML_2_0, 0, 0, H2_CSS, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "px", eu_px },
     { { HTML_JUN19 }, { HTML_UNDEF }, "Q", eu_q },
     { { HTML_JUN19 }, { HTML_UNDEF }, "rem", eu_rem },
     { { HTML_JAN21 }, { HTML_UNDEF }, "rlh", eu_rlh },
@@ -7487,12 +7546,15 @@ struct symbol_entry < html_version, e_unit > unit_symbol_table [] =
     { { HTML_2_0, 0, 0, H2_CSS_MEDIA_4 }, { HTML_UNDEF }, "x", eu_x } };
 
 struct symbol_entry < html_version, e_unit_abs_len > unit_abs_len_symbol_table [] =
-{   { { HTML_4_0, 0, 0, 0, 0, 0, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "cm", eua_cm },
-    { { HTML_4_0, 0, 0, 0, 0, 0, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "in", eus_in },
-    { { HTML_4_0, 0, 0, 0, 0, 0, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "mm", eua_mm },
-    { { HTML_4_0, 0, 0, 0, 0, 0, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "pc", eua_mm },
-    { { HTML_4_0, 0, 0, 0, 0, 0, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "pt", eua_pt },
-    { { HTML_4_0, 0, 0, 0, 0, 0, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "px", eua_px },
+{   { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "apc", eua_apc },
+    { { HTML_4_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "cm", eua_cm },
+    { { HTML_4_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "in", eus_in },
+    { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "ls", eua_ls },
+    { { HTML_4_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "mm", eua_mm },
+    { { HTML_4_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "pc", eua_pc },
+    { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "pls", eua_pls },
+    { { HTML_4_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "pt", eua_pt },
+    { { HTML_4_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "px", eua_px },
     { { HTML_4_0, 0, 0, 0, 0, 0, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "Q", eua_q } };
 
 struct symbol_entry < html_version, e_unit_angle > unit_angle_symbol_table [] =
@@ -7502,7 +7564,8 @@ struct symbol_entry < html_version, e_unit_angle > unit_angle_symbol_table [] =
     { { HTML_4_0, 0, 0, 0, 0, 0, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "turn", ean_turn } };
 
 struct symbol_entry < html_version, e_unit_freq > unit_freq_symbol_table [] =
-{   { { HTML_4_0, 0, 0, 0, 0, 0, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "Hz", euf_hz },
+{   { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "adafish", euf_adafish },
+    { { HTML_4_0, 0, 0, 0, 0, 0, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "Hz", euf_hz },
     { { HTML_4_0, 0, 0, 0, 0, 0, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "kHz", euf_khz } };
 
 struct symbol_entry < html_version, e_unit_rel_len > unit_rel_len_symbol_table [] =
@@ -7522,7 +7585,9 @@ struct symbol_entry < html_version, e_unit_res > unit_res_symbol_table [] =
     { { HTML_4_0, 0, 0, 0, 0, 0, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "x", eur_x } };
 
 struct symbol_entry < html_version, e_unit_time > unit_time_symbol_table [] =
-{   { { HTML_4_0, 0, 0, 0, 0, 0, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "ms", eut_ms  },
+{   { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "ftn", eut_ftn  },
+    { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "mftn", eut_mftn  },
+    { { HTML_4_0, 0, 0, 0, 0, 0, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "ms", eut_ms  },
     { { HTML_4_0, 0, 0, 0, 0, 0, H5_CSS_VALUE_3 }, { HTML_UNDEF }, "s", eur_s } };
 
 struct symbol_entry < html_version, e_url_temp_exp> url_temp_exp_symbol_table [] =
@@ -8103,6 +8168,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_content_position);
     INIT_ENUM (css_continue);
     INIT_ENUM (css_coord_box);
+    INIT_ENUM (css_container_state);
     INIT_ENUM (css_control_break);
     INIT_ENUM (css_counter_style);
     INIT_ENUM (css_cursor_e);
@@ -8148,6 +8214,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_pause_3_e);
     INIT_ENUM (css_pitch_e);
     INIT_ENUM (css_position);
+    INIT_ENUM (css_print_status);
     INIT_ENUM (css_ray_size);
     INIT_ENUM (css_rgb_xyz);
     INIT_ENUM (css_reading_flow);
@@ -8484,6 +8551,7 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (css_box_snap);
         RETURN_SIZE (css_break);
         RETURN_SIZE (css_break_inside);
+        RETURN_SIZE (css_container_state);
         RETURN_SIZE (css_corner_shape_name);
         RETURN_SIZE (css_caret_shape);
         RETURN_SIZE (css_clear);
@@ -8533,6 +8601,7 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (css_pa_start);
         RETURN_SIZE (css_pa_top);
         RETURN_SIZE (css_paint_box);
+        RETURN_SIZE (css_print_status);
         RETURN_SIZE (css_overflow);
         RETURN_SIZE (css_size_e);
         RETURN_SIZE (css_sizing);

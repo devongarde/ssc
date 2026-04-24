@@ -254,9 +254,6 @@ template < > struct type_master < t_css_margin_break > : three_value < t_css_mar
 template < > struct type_master < t_css_masking_mode > : three_value < t_css_masking_mode, e_css_masking_mode, sz_alpha, sz_luminance, sz_match_source >
 { using three_value < t_css_masking_mode, e_css_masking_mode, sz_alpha, sz_luminance, sz_match_source > :: three_value; };
 
-template < > struct type_master < t_css_overflow_style > : three_value < t_css_overflow_style, e_css_overflow_style, sz_auto, sz_marquee_block, sz_marquee_line >
-{ using three_value < t_css_overflow_style, e_css_overflow_style, sz_auto, sz_marquee_block, sz_marquee_line > :: three_value; };
-
 template < > struct type_master < t_always_auto_never > : three_value < t_always_auto_never, e_always_auto_never, sz_always, sz_auto, sz_never >
 { using three_value < t_always_auto_never, e_always_auto_never, sz_always, sz_auto, sz_never > :: three_value; };
 

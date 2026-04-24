@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>display 3 example</title>
+  </head>
+<BODY>
+
+<p>The symbolism earlier in the movie becomes obvious at the end,
+  when it’s revealed that <spoiler-text><span>Luke is his own father</span></spoiler-text>,
+  making the wizard’s cryptic riddles meaningful.
+<style>
+spoiler-text { border-bottom: 1px solid; }
+spoiler-text > span { visibility: hidden; }
+spoiler-text.shown > span { visibility: visible; }
+</style>
+<script>
+[...document.querySelectorAll("spoiler-text")].forEach(el=>{
+  el.addEventListener("click", e=>el.classList.toggle("shown"));
+});
+</script
+</body>
+</html>

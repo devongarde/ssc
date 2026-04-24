@@ -168,7 +168,8 @@ inline ::std::string decolonise (::std::string& sauce)
 
 template < class T, T MAX = UINT_MAX > ::std::string once_twice_thrice (const T x)
 {   switch (x)
-    {   case 1 : return "once";
+    {   case 0 : return "never";
+        case 1 : return "once";
         case 2 : return "twice";
         case 3 : return "thrice";
         default :

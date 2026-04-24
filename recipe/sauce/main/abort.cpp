@@ -37,6 +37,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     msg += var;
     msg += file_line (fn, line, xtra);
     context.os () -> err ("\n", msg, "\n");
+    ::std::cerr << msg << "\n";
     throw ::std::runtime_error (msg); }
 
 [[noreturn]] void throw_bad_presumption (const char* const x, const char* const fn, const ::std::size_t line, const ::std::string& xtra)
@@ -46,6 +47,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     msg += ::std::string (" failed");
     msg += file_line (fn, line, xtra);
     context.os () -> err ("\n", msg, "\n");
+    ::std::cerr << msg << "\n";
     throw ::std::runtime_error (msg); }
 
 [[noreturn]] void ugly_presumption (const char* const x, const char* const fn, const ::std::size_t line, const ::std::string& xtra)
@@ -55,6 +57,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
         msg += quote (x);
         msg += ::std::string (" failed");
         msg += file_line (fn, line, xtra);
+        ::std::cerr << msg << "\n";
         context.os () -> err ("\n", msg, "\n"); }
     catch (...)
     {   context.os () -> err ("\nugly presumption cannot state its origin\n"); }
@@ -63,6 +66,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [[noreturn]] void graceful_crash (const char* const fn, const ::std::size_t line, const ::std::string& xtra)
 {   ::std::string msg ("inconsistent internal state");
     msg += file_line (fn, line, xtra);
+    ::std::cerr << msg << "\n";
     context.os () -> err ("\n", msg, "\n");
     throw ::std::runtime_error (msg); }
 
@@ -70,6 +74,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 {   try
     {   ::std::string msg ("inconsistent internal state");
         msg += file_line (fn, line, xtra);
+        ::std::cerr << msg << "\n";
         context.os () -> err ("\n", msg, "\n"); }
     catch (...)
     {   try { context.os () -> err ("\ngraceless crash cannot state its origin\n"); } catch (...) { } }

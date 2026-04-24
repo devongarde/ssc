@@ -169,7 +169,7 @@ void boast (vtok_t& t)
                 case ct_round_ket : context.os () -> console ("round_ket"); break;
                 case ct_eof : context.os () -> console ("eof"); break;
                 case ct_error : context.os () -> console ("error"); break;
-                default: context.os () -> console ("unexpected ", t.at (i).t_); break; }
+                default: context.os () -> console ("unexpected ", t.at (i).t_, " (10)"); break; }
             context.os () -> console (" ", t.at (i).mum_, "/", t.at (i).next_, "/", t.at (i).child_, " ", quote (t.at (i).val_), "\n"); } } }
 
 bool css::parse (const ::std::string& content, const bool x, const bool mdm)

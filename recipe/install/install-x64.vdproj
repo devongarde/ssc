@@ -87,12 +87,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_83EB103319C348B5B8B8618591205389"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_A80A150C67EF408C8443EA0FB6B9BDC7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -782,20 +776,6 @@
             "Icon" = "8:"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6816DBF4649D4905ACF390008DC037A4"
-            {
-            "Name" = "8:Static Site Checker"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_83EB103319C348B5B8B8618591205389"
-            "Folder" = "8:_278EC601016A40FF905C1AC3D344040C"
-            "WorkingFolder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_91D9CFFF04154CF3A472EE7DE60245FA"
             {
             "Name" = "8:GNU GENERAL PUBLIC LICENSE version 3"
@@ -810,15 +790,29 @@
             "Icon" = "8:"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E128047883F34C65A44DECBF832B7F13"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_BDDABCC3A8EC4ED58289B7E756C2278F"
             {
-            "Name" = "8:Read Me"
+            "Name" = "8:README.txt"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:"
+            "Target" = "8:_736DB95018C24B74AFE2386E0C2CB7D2"
+            "Folder" = "8:_278EC601016A40FF905C1AC3D344040C"
+            "WorkingFolder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_BF8DD9FF65244ED791E5FFA9AE91D65D"
+            {
+            "Name" = "8:Static Site Checker"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_6A2AF39214574FDE8032B04E200075FB"
             "Folder" = "8:_278EC601016A40FF905C1AC3D344040C"
             "WorkingFolder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
             "Icon" = "8:"
@@ -1251,9 +1245,9 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_83EB103319C348B5B8B8618591205389"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_BFADF9E86355412A8A1B4155313DB3E6"
             {
-            "SourcePath" = "8:..\\tea\\ssc26x64\\Releasewx\\ssc26-wx.exe"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"

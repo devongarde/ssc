@@ -272,6 +272,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "feComponentTransfer", elem_fecomponenttransfer, ns_default, 0, EF_SVG_FILTER },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "feComposite", elem_fecomposite, ns_default, 0, EF_SVG_FILTER },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "feConvolveMatrix", elem_feconvolvematrix, ns_default, 0, EF_SVG_FILTER },
+    { { HTML_OCT11, HV_ABANDONED, 0, H2_CSS_SHADER }, { HTML_UNDEF }, "feCustom", elem_fecustom, ns_default, 0, EF_SVG_FILTER },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "feDiffuseLighting", elem_fediffuselighting, ns_default, 0, EF_SVG_FILTER },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "feDisplacementMap", elem_fedisplacementmap, ns_default, 0, EF_SVG_FILTER },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "feDistantLight", elem_fedistantlight, ns_default, 0, EF_SVG_FILTER },

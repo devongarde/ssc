@@ -151,7 +151,9 @@ public:
     {   stats_.mark_meta (mn); }
     void mark_meta (const e_metaname mn, const ::std::string& val)
     {   stats_.mark_meta (mn, val); }
-    void dcl_class (const ::std::string& s, const ::std::size_t n = 1)
+    void dcl (const e_id_category cid, const ::std::string& s, const ::std::size_t n = 1)
+    {   stats_.dcl (cid, s, n); }
+/*    void dcl_class (const ::std::string& s, const ::std::size_t n = 1)
     {   stats_.dcl_class (s, n); }
     void dcl_custom_prop (const ::std::string& s, const ::std::size_t n = 1)
     {   stats_.dcl_custom_prop (s, n); }
@@ -160,28 +162,16 @@ public:
     void dcl_element_class (const ::std::string& s, const ::std::size_t n = 1)
     {   stats_.dcl_element_class (s, n); }
     void dcl_element_id (const ::std::string& s, const ::std::size_t n = 1)
-    {   stats_.dcl_element_id (s, n); }
+    {   stats_.dcl_element_id (s, n); } */
     void mark_font (const ::std::string& s, const ::std::size_t n = 1)
     {   stats_.mark_font (s, n); }
     void mark_str (const e_gsstr gst, const ::std::string& s)
     {   stats_.mark_str (gst, s); }
-    //     // typedef enum { cic_none, cic_class, cic_custom_, cic_custom_prop, cic_element_class, cic_element_id, cic_font, cic_fn_name, cic_fn_param, cic_id } e_id_category;
-    void merge (const categorical& cat)
-    {   stats_.merge (cat); }
-    /*
-    void merge_class (const smsid_t& s)
-    {   stats_.merge_class (s); }
-    void merge_custom_prop (const smsid_t& s)
-    {   stats_.merge_custom_prop (s); }
-    void merge_id (const smsid_t& s)
-    {   stats_.merge_id (s); }
-    void merge_element_class (const smsid_t& s)
-    {   stats_.merge_element_class (s); }
-    void merge_element_id (const smsid_t& s)
-    {   stats_.merge_element_id (s); }
-    void merge_font (const smsid_t& s)
-    {   stats_.merge_font (s); } */
-    void use_class (const ::std::string& s, const ::std::size_t n = 1)
+    void merge (const categorical& dcl, const categorical& use)
+    {   stats_.merge (dcl, use); }
+    void use (const e_id_category cid, const ::std::string& s, const ::std::size_t n = 1)
+    {   stats_.use (cid, s, n); }
+/*    void use_class (const ::std::string& s, const ::std::size_t n = 1)
     {   stats_.use_class (s, n); }
     void use_custom_prop (const ::std::string& s, const ::std::size_t n = 1)
     {   stats_.use_custom_prop (s, n); }
@@ -190,15 +180,17 @@ public:
     void use_element_class (const ::std::string& s, const ::std::size_t n = 1)
     {   stats_.use_element_class (s, n); }
     void use_element_id (const ::std::string& s, const ::std::size_t n = 1)
-    {   stats_.use_element_id (s, n); }
-    bool has_class (const ::std::string& s) const
-    {   return stats_.has_class (s); }
+    {   stats_.use_element_id (s, n); } */
+    bool has (const e_id_category cid, const ::std::string& s)
+    {   return stats_.has (cid, s); }
+//    bool has_class (const ::std::string& s) const
+//    {   return stats_.has_class (s); }
     bool has_custom_media (const ::std::string& name) const
     {   return stats_.has_custom_media (name); }
-    bool has_custom_prop (const ::std::string& s) const
-    {   return stats_.has_custom_prop (s); }
-    bool has_id (const ::std::string& s) const
-    {   return stats_.has_id (s); }
+//    bool has_custom_prop (const ::std::string& s) const
+//    {   return stats_.has_custom_prop (s); }
+//    bool has_id (const ::std::string& s) const
+//    {   return stats_.has_id (s); } */
     bool has_str (const e_gsstr g, const ::std::string& s) const
     {   return stats_.has_str (g, s); }
     void check_for_standard_classes (nitpick& nits, const html_version& v) const

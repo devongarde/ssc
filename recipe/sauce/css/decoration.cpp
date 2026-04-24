@@ -66,7 +66,7 @@ void decoration::parse (arguments& args, const int from, const int to, const boo
             else sparkle_ = css_fn (args, b, to, false, knotted);
             break;
         default :
-            nits.pick (nit_selector, es_error, ec_css, "decoration ", args.t_.at (b).t_, " unexpected");
+            nits.pick (nit_selector, es_error, ec_css, "decoration ", args.t_.at (b).t_, " unexpected (9)");
             GRACEFUL_CRASH (__FILE__, __LINE__); } }
 
 bool decoration::bef_aft () const

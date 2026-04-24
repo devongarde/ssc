@@ -40,7 +40,7 @@ void property::parse (arguments& args, const int from, const int to)
     nitpick& nits = args.t_.at (b).nits_;
     const int brac = token_find (args.t_, ct_curly_brac, b);
     if (brac == b)
-    {   nits.pick (nit_nesting, ed_css_nesting, "2.1. Syntax", es_error, ec_css, "unexpected {");
+    {   nits.pick (nit_nesting, ed_css_nesting, "2.1. Syntax", es_error, ec_css, "unexpected { (30)");
         return; }
     int mx = -1, n = 1;
     if (brac > 0) mx = brac-1;
@@ -118,8 +118,8 @@ void property::parse (arguments& args, const int from, const int to)
                     if (kw < 0)
                     {   nuts.pick (nit_nesting, ed_css_nesting, "2.2. Nesting Other At-Rules", es_error, ec_css, "missing keyword after '@'");
                         return; }
-                    if ((args.t_.at (kw).t_ != ct_keyword) || (args.t_.at (kw).t_ != ct_identifier))
-                    {   nuts.pick (nit_nesting, ed_css_nesting, "2.2. Nesting Other At-Rules", es_error, ec_css, "@", tkn_rpt (args.t_.at (kw)), "??");
+                    if ((args.t_.at (kw).t_ != ct_keyword) && (args.t_.at (kw).t_ != ct_identifier))
+                    {   nuts.pick (nit_nesting, ed_css_nesting, "2.2. Nesting Other At-Rules", es_error, ec_css, "@", tkn_rpt (args.t_.at (kw)), " (", args.t_.at (kw).t_, ")??");
                         return; }
                     enum_n < t_css_statement, e_css_statement > cst;
                     cst.set_value (nuts, args.v_, args.t_.at (kw).val_);
@@ -130,6 +130,7 @@ void property::parse (arguments& args, const int from, const int to)
                         case css_scope :
                         case css_layer :
                         case css_container :
+                        case css_slot :
                             break;
                         case css_context :
                         case css_error :
@@ -191,11 +192,12 @@ void property::parse (arguments& args, const int from, const int to)
             args.ps_ -> state () |= pr;
             if (pr == ec_custom)
             {   name_ = args.t_.at (k).val_;
-                if (args.has_custom_prop (name_))
-                    nits.pick (nit_css_custom, es_comment, ec_css, quote (name_), " noted");
+                if (args.has (cic_custom_prop, name_))
+                   nits.pick (nit_css_custom, es_comment, ec_css, quote (name_), " referenced again");
                 else
-                {   args.note_custom_prop (name_);
-                    nits.pick (nit_css_custom, es_comment, ec_css, quote (name_), " referenced again"); } }
+                    nits.pick (nit_css_custom, es_comment, ec_css, quote (name_), " noted");
+  //              ::std::cout << name_ << ": dcl (1)\n";
+                args.dcl (cic_custom_prop, name_); }
             flags_ = pp.flags ();
             args.check_flags (nits, flags_, pp.name ());
             args.check_flags (nits, flags_, pp.name (), xk, xi, xn, xs, fn, kc, args.t_.at (k).val_, val_);
@@ -219,7 +221,9 @@ void property::accumulate (stats_t* s, const element_bitset& e) const
         prop_ -> accumulate (s, e); }
     w_.accumulate (s);
     if (! name_.empty ())
-        s -> use_custom_prop (name_); }
+    {   //              ::std::cout << name_ << ": use (4)\n";
+
+        s -> use (cic_custom_prop, name_); } }
 
 ::std::string property::rpt () const
 {   if (prop_.get () == nullptr) return ::std::string ();

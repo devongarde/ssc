@@ -7,14 +7,14 @@ PASS ../toast/stats/CSS-6/content-3-2.css
 
 STAT
 Class:
-  bodymatter styled once, used 0 times
-  frontmatter styled once, used 0 times
-  toc styled once, used 0 times
+  bodymatter declared once
+  frontmatter declared once
+  toc declared once
 
 Class/Element:
-  *.bodymatter styled once, used 0 times
-  *.frontmatter styled once, used 0 times
-  ol.toc styled once, used 0 times
+  *.bodymatter declared once
+  *.frontmatter declared once
+  ol.toc declared once
 
 Content-Name:
     chapter
@@ -73,28 +73,27 @@ PASS ../toast/stats/CSS-6/custom-3.css
 
 STAT
 Class:
-  component styled thrice, used 0 times
-  foo styled 4 times, used 0 times
-  header styled once, used 0 times
-  text styled once, used 0 times
+  component declared thrice
+  foo declared 4 times
+  header declared once
+  text declared once
 
 Class/Element:
-  *.component styled thrice, used 0 times
-  *.foo styled 4 times, used 0 times
-  *.header styled once, used 0 times
-  *.text styled once, used 0 times
+  *.component declared thrice
+  *.foo declared 4 times
+  *.header declared once
+  *.text declared once
 
 Custom-Property:
-    --gap: 0
-    --looks-valid: 0
-    --not-a-color: 0
-    --prop1: 0
-    --prop2: 0
-    --prop3: 0
-    --prop4: 0
-    --side: 0
-    --text-color: 0
-  9 Custom-Property used 0 times
+  --gap declared never, used twice
+  --looks-valid declared never, used once
+  --not-a-color declared never, used once
+  --prop1 declared never, used once
+  --prop2 declared never, used once
+  --prop3 declared never, used once
+  --prop4 declared never, used once
+  --side declared never, used once
+  --text-color declared never, used once
 
 Element:
     p: thrice
@@ -117,16 +116,16 @@ PASS ../toast/stats/CSS-6/extra.css
 
 STATS
 Class:
-  breaking styled once, used 0 times
-  breaking-news styled once, used 0 times
-  region styled once, used 0 times
-  top styled once, used 0 times
+  breaking declared once
+  breaking-news declared once
+  region declared once
+  top declared once
 
 Class/Element:
-  *.breaking styled once, used 0 times
-  *.breaking-news styled once, used 0 times
-  *.region styled once, used 0 times
-  *.top styled once, used 0 times
+  *.breaking declared once
+  *.breaking-news declared once
+  *.region declared once
+  *.top declared once
 
 Element:
     (undefined): thrice
@@ -211,28 +210,28 @@ PASS ../toast/stats/CSS-6/font-4-6.css
 
 STAT
 Class:
-  alt-N styled once, used 0 times
-  alt-U styled once, used 0 times
-  amount styled once, used 0 times
-  chem styled once, used 0 times
-  codeblock styled once, used 0 times
-  fleep styled once, used 0 times
-  ordinal styled once, used 0 times
-  special styled once, used 0 times
-  title styled once, used 0 times
-  wurble styled once, used 0 times
+  alt-N declared once
+  alt-U declared once
+  amount declared once
+  chem declared once
+  codeblock declared once
+  fleep declared once
+  ordinal declared once
+  special declared once
+  title declared once
+  wurble declared once
 
 Class/Element:
-  *.amount styled once, used 0 times
-  *.chem styled once, used 0 times
-  *.fleep styled once, used 0 times
-  *.ordinal styled once, used 0 times
-  *.special styled once, used 0 times
-  *.wurble styled once, used 0 times
-  h3.title styled once, used 0 times
-  p.codeblock styled once, used 0 times
-  span.alt-N styled once, used 0 times
-  span.alt-U styled once, used 0 times
+  *.amount declared once
+  *.chem declared once
+  *.fleep declared once
+  *.ordinal declared once
+  *.special declared once
+  *.wurble declared once
+  h3.title declared once
+  p.codeblock declared once
+  span.alt-N declared once
+  span.alt-U declared once
 
 Element:
     (undefined): 5 times
@@ -298,10 +297,10 @@ PASS ../toast/stats/CSS-6/font-4-9.css
 
 STAT
 Class:
-  banner styled once, used 0 times
+  banner declared once
 
 Class/Element:
-  *.banner styled once, used 0 times
+  *.banner declared once
 
 Element:
     h1: once
@@ -339,10 +338,10 @@ PASS ../toast/stats/CSS-6/media-5-10.css
 
 STATS
 Class:
-  a styled thrice, used 0 times
+  a declared thrice
 
 Class/Element:
-  *.a styled thrice, used 0 times
+  *.a declared thrice
 
 Custom-Media:
     --modern: once, (color), (hover)
@@ -401,54 +400,54 @@ Character:
   Used 15 times
 
 Class:
-  a styled 6 times, used 0 times
-  alt-N styled twice, used 0 times
-  alt-U styled twice, used 0 times
-  amount styled twice, used 0 times
-  banner styled twice, used 0 times
-  bodymatter styled twice, used 0 times
-  breaking styled twice, used 0 times
-  breaking-news styled twice, used 0 times
-  chem styled twice, used 0 times
-  codeblock styled twice, used 0 times
-  component styled 6 times, used 0 times
-  fleep styled twice, used 0 times
-  foo styled 8 times, used 0 times
-  frontmatter styled twice, used 0 times
-  header styled twice, used 0 times
-  ordinal styled twice, used 0 times
-  region styled twice, used 0 times
-  special styled twice, used 0 times
-  text styled twice, used 0 times
-  title styled twice, used 0 times
-  toc styled twice, used 0 times
-  top styled twice, used 0 times
-  wurble styled twice, used 0 times
+  a declared 6 times
+  alt-N declared twice
+  alt-U declared twice
+  amount declared twice
+  banner declared twice
+  bodymatter declared twice
+  breaking declared twice
+  breaking-news declared twice
+  chem declared twice
+  codeblock declared twice
+  component declared 6 times
+  fleep declared twice
+  foo declared 8 times
+  frontmatter declared twice
+  header declared twice
+  ordinal declared twice
+  region declared twice
+  special declared twice
+  text declared twice
+  title declared twice
+  toc declared twice
+  top declared twice
+  wurble declared twice
 
 Class/Element:
-  *.a styled thrice, used 0 times
-  *.amount styled once, used 0 times
-  *.banner styled once, used 0 times
-  *.bodymatter styled once, used 0 times
-  *.breaking styled once, used 0 times
-  *.breaking-news styled once, used 0 times
-  *.chem styled once, used 0 times
-  *.component styled thrice, used 0 times
-  *.fleep styled once, used 0 times
-  *.foo styled 4 times, used 0 times
-  *.frontmatter styled once, used 0 times
-  *.header styled once, used 0 times
-  *.ordinal styled once, used 0 times
-  *.region styled once, used 0 times
-  *.special styled once, used 0 times
-  *.text styled once, used 0 times
-  *.top styled once, used 0 times
-  *.wurble styled once, used 0 times
-  h3.title styled once, used 0 times
-  ol.toc styled once, used 0 times
-  p.codeblock styled once, used 0 times
-  span.alt-N styled once, used 0 times
-  span.alt-U styled once, used 0 times
+  *.a declared thrice
+  *.amount declared once
+  *.banner declared once
+  *.bodymatter declared once
+  *.breaking declared once
+  *.breaking-news declared once
+  *.chem declared once
+  *.component declared thrice
+  *.fleep declared once
+  *.foo declared 4 times
+  *.frontmatter declared once
+  *.header declared once
+  *.ordinal declared once
+  *.region declared once
+  *.special declared once
+  *.text declared once
+  *.top declared once
+  *.wurble declared once
+  h3.title declared once
+  ol.toc declared once
+  p.codeblock declared once
+  span.alt-N declared once
+  span.alt-U declared once
 
 Content-Name:
     chapter
@@ -472,16 +471,15 @@ Custom-Media:
     --narrow-window: once, (max-width: 30em)
 
 Custom-Property:
-    --gap: 3
-    --looks-valid: 2
-    --not-a-color: 2
-    --prop1: 2
-    --prop2: 2
-    --prop3: 2
-    --prop4: 1
-    --side: 1
-    --text-color: 1
-  9 Custom-Property used 16 times
+  --gap declared 4 times, used twice
+  --looks-valid declared twice, used once
+  --not-a-color declared twice, used once
+  --prop1 declared twice, used once
+  --prop2 declared twice, used once
+  --prop3 declared twice, used once
+  --prop4 declared once, used once
+  --side declared once, used once
+  --text-color declared once, used once
 
 Element:
     (undefined): 12 times
@@ -545,6 +543,10 @@ Font-Family:
     foo 
     the70s 
   Used 12 times
+
+Function:
+  highlight declared never, used thrice
+  lang declared never, used 6 times
 
 Highlight:
     bar

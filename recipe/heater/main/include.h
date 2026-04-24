@@ -63,8 +63,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 29
-#define VERSION_STRING "0.2.29"
+#define VERSION_RELEASE 30
+#define VERSION_STRING "0.2.30"
 
 #define BUILD_YEAR              "2026"
 #define BUILD_MONTH             "Apr"
@@ -950,6 +950,7 @@ typedef ::std::vector < bool > faux_vb_t;
 #define REPORT_ELEMENT_CLASS      "Class/Element"
 #define REPORT_ELEMENT_ID         "Id/Element"
 #define REPORT_EXPORT             "Export"
+#define REPORT_FUNCTION           "Function"
 #define REPORT_GRAND              "Grand"
 #define REPORT_ID                 "Id"
 #define REPORT_ITEMID             "ItemId"
@@ -964,6 +965,7 @@ typedef ::std::vector < bool > faux_vb_t;
 #define REPORT_UPDATE             "Update"
 #define REPORT_VERSION            "Version"
 
+#define REPORT_ANCHOR             "Anchor"
 #define REPORT_ANNOTATION         "Annotation"
 #define REPORT_CAREGORY           "Category"
 #define REPORT_CHARACTER          "Character"
@@ -971,6 +973,7 @@ typedef ::std::vector < bool > faux_vb_t;
 #define REPORT_COUNTER            "Counter-Style"
 #define REPORT_FAMILY             "Font-Family"
 #define REPORT_FONT               "Font"
+#define REPORT_FUNCTION           "Function"
 #define REPORT_HEADER             "Header"
 #define REPORT_HIGHLIGHT          "Highlight"
 #define REPORT_HISTORICAL         "Historical-Form"
@@ -980,6 +983,7 @@ typedef ::std::vector < bool > faux_vb_t;
 #define REPORT_PAGE               "Page"
 #define REPORT_PAGE_NAME          "Page-Name"
 #define REPORT_PALETTE            "Palette"
+#define REPORT_PARAM              "Param"
 #define REPORT_REFERENCE          "Reference"
 #define REPORT_REGION             "Region"
 #define REPORT_SCROLL             "Scroll-Anim"

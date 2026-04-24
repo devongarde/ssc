@@ -90,6 +90,18 @@ hav_t havt_feconvolvematrix [] =
     SVG_PRESENTATION_ATTRIBUTES (elem_feconvolvematrix),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+// elem_fecustom
+hav_t havt_fecustom [] =
+{   { { HTML_OCT11, 0, 0, H2_CSS_SHADER }, { HTML_UNDEF }, elem_fecustom, a_fragmentshader },
+    { { HTML_OCT11, 0, 0, H2_CSS_SHADER }, { HTML_UNDEF }, elem_fecustom, a_params },
+    { { HTML_OCT11, 0, 0, H2_CSS_SHADER }, { HTML_UNDEF }, elem_fecustom, a_vertexmesh },
+    { { HTML_OCT11, 0, 0, H2_CSS_SHADER }, { HTML_UNDEF }, elem_fecustom, a_vertexshader },
+    SVG_FILTER_ATTRIBUTES (elem_fecustom),
+    SVG_HTML_ATTRIBUTES (elem_fecustom),
+    SVG_PRESENTATION_ATTRIBUTES (elem_fecustom),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+
 hav_t havt_fediffuselighting [] =
 {   { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_fediffuselighting, a_in },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_fediffuselighting, a_diffuseconstant },

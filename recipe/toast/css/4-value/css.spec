@@ -6,7 +6,6 @@ PASS ../toast/css/4-value/index.html
 
 PASS ../toast/css/4-value/css-3.css
 0 html
-10 css_value_fn
 
 PASS ../toast/css/4-value/css-4.css
 0 html

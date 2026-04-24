@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 bool set_measure_value (nitpick& nits, const html_version& v, const ::std::string& ss);
 bool set_css_measure_value (nitpick& nits, const html_version& v, const ::std::string& ss, const bool absolute, const bool positive = false);
 bool set_css_dimension_value (nitpick& nits, const html_version& v, const ::std::string& ss, const bool absolute);
+bool set_css_rate_value (nitpick& nits, const html_version& v, const ::std::string& ss, const bool absolute);
 
 template < > struct type_master < t_measure > : tidy_string < t_measure > // verify against HTML 5.0, 2.4.4.4
 {   using tidy_string < t_measure > :: tidy_string;
@@ -74,3 +75,13 @@ template < > struct type_master < t_css_dimension > : tidy_string < t_css_dimens
             if (set_css_dimension_value (nits, v, tidy_string < t_css_dimension > :: get_string (), false))
                 return;
         tidy_string < t_css_dimension > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_tmbl > : tidy_string < t_css_tmbl >
+{   using tidy_string < t_css_tmbl > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_none; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_tmbl > :: set_value (nits, v, s);
+        if (tidy_string < t_css_tmbl > :: good ())
+            if (set_css_rate_value (nits, v, tidy_string < t_css_tmbl > :: get_string (), true))
+                return;
+        tidy_string < t_css_tmbl > :: status (s_invalid); } };

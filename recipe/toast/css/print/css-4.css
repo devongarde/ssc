@@ -1,0 +1,4 @@
+﻿* { object-position: top left; }
+
+* { object-position: inherit; }
+:root { object-position: top left; }

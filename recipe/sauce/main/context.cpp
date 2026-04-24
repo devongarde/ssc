@@ -456,11 +456,13 @@ context_t& context_t::root (const ::std::string& s)
 
 bool context_t::stats_gst (const e_gsstr gst)
 {   switch (gst)
-    {   case gst_annotation : return stats (rcb_annotation);
+    {   case gst_anchor : return stats (rcb_anchor);
+        case gst_annotation : return stats (rcb_annotation);
         case gst_character_variant : return stats (rcb_character_variant) ;
         case gst_content_name : return stats (rcb_content_name);
         case gst_counter_style : return stats (rcb_counter_style);
         case gst_font_family : return stats (rcb_font_family);
+        case gst_function : return stats (rcb_function);
         case gst_highlight : return stats (rcb_highlight);
         case gst_historical_form : return stats (rcb_historical_form);
         case gst_keyframe : return stats (rcb_keyframe);
@@ -468,6 +470,7 @@ bool context_t::stats_gst (const e_gsstr gst)
         case gst_ornament : return stats (rcb_ornament);
         case gst_page_name : return stats (rcb_page_name);
         case gst_palette : return stats (rcb_palette);
+        case gst_param : return stats (rcb_param);
         case gst_region : return stats (rcb_region);
         case gst_scroll_anim : return stats (rcb_scroll_animation);
         case gst_styleset : return stats (rcb_styleset);

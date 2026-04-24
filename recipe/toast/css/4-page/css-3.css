@@ -1,0 +1,34 @@
+﻿span.footnote {
+  flow-into: footnote;
+  flow-policy: copy;
+  display: block;
+}
+
+span.footnote::before {
+  content: counter(footnote) '. ';
+}
+
+span.reference::before {
+  content: counter(footnote);
+  font-variant-position: super;
+}
+
+@page {
+  @slot footnote {
+    flow-from: footnote;
+    required-flow: footnote;
+    position: absolute;
+    left: 54pt;
+    bottom: 0pt;
+    width: 352pt;
+    height: auto;
+    border-top: .25pt solid black;
+    vertical-align: bottom;
+    wrap-flow: clear;
+  }
+}
+
+span.footnote {
+  flow-into: footnote;
+  display: inline;
+}

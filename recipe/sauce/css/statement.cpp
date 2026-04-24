@@ -58,11 +58,12 @@ void statement::parse_colour_profile (arguments& args, nitpick& nits, const int 
                 if ((args.t_.at (i).t_ == ct_identifier) || (args.t_.at (i).t_ == ct_keyword))
                 {   ::std::string s (args.t_.at (i).val_);
                     if ((s.size () > 2) && (s.substr (0, 2) == "--"))
-                        if (args.has_custom_prop (s))
+                        if (args.has (cic_custom_prop, s))
                             nits.pick (nit_css_custom, es_warning, ec_css, "@color-profile identifier ", s, " previously encountered"); // dialect
                         else
                         {   nits.pick (nit_css_custom, es_info, ec_css, "noting @color-profile ", s); // dialect
-                            args.note_custom_prop (s); } } }
+//                ::std::cout << s << ": dcl (3)\n";
+                            args.dcl (cic_custom_prop, s); } } }
         fiddlesticks < statement > f (&args.st_, this);
         prop_.parse (args, args.t_.at (to).child_); } }
 
@@ -242,7 +243,6 @@ void statement::parse_container (arguments& args, nitpick& nits, const int from,
                             default :
                                 op = ct_error;
                                 nits.pick (nit_container, es_comment, ec_css, quote (args.t_.at (j).val_), ": unexpected feature (", feature, ", ", args.t_.at (j).t_, ")");
-//                                GRACEFUL_CRASH (__FILE__, __LINE__);
                                 break; }
                     }
                     break;
@@ -277,7 +277,7 @@ void statement::parse_container (arguments& args, nitpick& nits, const int from,
                     break;
                 default :
                     if (depth == 0)
-                        nits.pick (nit_container, es_error, ec_css, quote (tkn_rpt (args.t_.at (j))), ": unexpected");
+                        nits.pick (nit_container, es_error, ec_css, quote (tkn_rpt (args.t_.at (j))), ": unexpected (34)");
                     break; }
         if (! curly)
             nits.pick (nit_container, es_error, ec_css, "missing @container stylesheet");
@@ -419,7 +419,7 @@ void statement::parse_function (arguments& args, nitpick& nits, const int from, 
         else if (args.dst_ -> has (cic_fn_name, fn))
             nits.pick (nit_css_function, es_error, ec_css, quote (fn), " already defined.");
         else
-        {   args.dst_ -> insert (cic_fn_name, fn);
+        {   args.dst_ -> dcl (cic_fn_name, fn);
             i = next_non_whitespace (args.t_, i, to); 
             if ((i < 0) || (to <= i))
             {   nits.pick (nit_css_function, es_error, ec_css, "missing '(': expecting parameters after function name (1)."); return; }
@@ -444,8 +444,8 @@ void statement::parse_function (arguments& args, nitpick& nits, const int from, 
                                     nits.pick (nit_css_function, es_error, ec_css, quote (kw), ": previously specified.");
                                 else
                                 {   params.insert (kw);
-                                args.dst_ -> insert (cic_fn_param, kw);
-                                arg = true; } }
+                                    args.dst_ -> dcl (cic_fn_param, kw);
+                                    arg = true; } }
                             break;
                         case ct_comma :
                             if (bk < 1)
@@ -676,7 +676,7 @@ void statement::parse_keyframes (arguments& args, nitpick& nits, const int from,
                                 more = false;
                                 break;
                             default :
-                                nits.pick (nit_css_syntax, ed_css_animation_3, "3. Keyframes", es_error, ec_css, "unexpected ", quote (args.t_.at (i).val_));
+                                nits.pick (nit_css_syntax, ed_css_animation_3, "3. Keyframes", es_error, ec_css, "unexpected ", quote (args.t_.at (i).val_), " (35)");
                                 break; }
                     switch (num)
                     {   case 0 :
@@ -715,7 +715,7 @@ void statement::parse_layer (arguments& args, nitpick& nits, const int from, con
 
 void statement::parse_margin (arguments& args, nitpick& nits, const int from, const int to, const e_css_statement cs)
 {   if (context.html_ver ().css_module (c_paged_media) < 3)
-        nits.pick (nit_css_version, es_error, ec_css, "CSS Page level 3 required");
+        nits.pick (nit_css_version, es_error, ec_css, "CSS Page level 3 or higher required");
     else
     {   int i = from;
         if ((i >= 0) && (args.t_.at (i).t_ != ct_curly_brac) && (i < to))
@@ -795,33 +795,39 @@ void statement::parse_page (arguments& args, nitpick& nits, const int from, cons
     else
     {   int i = from;
         if ((from < to) && (from > 0) && (to > 0)) i = next_non_whitespace (args.t_, i, to); 
-        if ((i > 0) && (args.t_.at (i).t_ == ct_colon))
-        {   fiddlesticks < statement > f (&args.st_, this);
-            rules_.parse (args, i, to);
-            return; }
-        if ((i > 0) && ((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier)))
-        {   const ::std::string n (::boost::to_lower_copy (args.t_.at (i).val_));
-            VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
-            if (args.has_str (gst_layer, n) || ! args.dst_ -> note_str (gst_page_name, n))
-                nits.pick (nit_page_name_again, es_error, ec_css, quote (args.t_.at (i).val_), " previously used.");
-            i = next_non_whitespace (args.t_, i, to); }
-        if ((i > 0) && (args.t_.at (i).t_ == ct_colon))
-        {   i = next_non_whitespace (args.t_, i, to);
+        bool more = false;
+        do
+        {   if ((i > 0) && (args.t_.at (i).t_ == ct_colon))
+            {   fiddlesticks < statement > f (&args.st_, this);
+                rules_.parse (args, i, to);
+                return; }
             if ((i > 0) && ((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier)))
-            {   enum_n < t_css_fn, e_css_fn > fn;
-                fn.set_value (nits, context.html_ver (), args.t_.at (i).val_);
-                args.check_flags (nits, fn.flags (), fn.name ());
-                switch (fn.get ())
-                {   case efn_blank :
-                    case efn_first :
-                    case efn_left :
-                    case efn_right :
-                        break;
-                    default :
-                        nits.pick (nit_bad_page, es_error, ec_css, "Only :blank, :first, :left, or :right can accompany @page");
-                        break; } }
-            i = next_non_whitespace (args.t_, i, to); }
-        if ((i > 0) && (i != to)) nits.pick (nit_css_syntax, es_error, ec_css, quote (args.t_.at (i).val_), ": unexpected");
+            {   const ::std::string n (::boost::to_lower_copy (args.t_.at (i).val_));
+                VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
+                if (args.has_str (gst_layer, n) || ! args.dst_ -> note_str (gst_page_name, n))
+                    nits.pick (nit_page_name_again, es_error, ec_css, quote (args.t_.at (i).val_), " previously used.");
+                i = next_non_whitespace (args.t_, i, to); }
+            if ((i > 0) && (args.t_.at (i).t_ == ct_colon))
+            {   i = next_non_whitespace (args.t_, i, to);
+                if ((i > 0) && ((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier)))
+                {   enum_n < t_css_fn, e_css_fn > fn;
+                    fn.set_value (nits, context.html_ver (), args.t_.at (i).val_);
+                    args.check_flags (nits, fn.flags (), fn.name ());
+                    switch (fn.get ())
+                    {   case efn_blank :
+                        case efn_first :
+                        case efn_left :
+                        case efn_right :
+                            break;
+                        default :
+                            nits.pick (nit_bad_page, es_error, ec_css, "Only :blank, :first, :left, or :right can accompany @page");
+                            break; }
+                    i = next_non_whitespace (args.t_, i, to); } }
+            more = ((i > 0) && (args.t_.at (i).t_ == ct_comma));
+            if (more) i = next_non_whitespace (args.t_, i, to);
+            else if ((i > 0) && (i != to))
+                nits.pick (nit_css_syntax, es_error, ec_css, quote (args.t_.at (i).val_), ": unexpected (", args.t_.at (i).t_, ", 33)"); }
+        while (more);
         if ((i < 0) || (to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
             nits.pick (nit_bad_page, es_error, ec_css, "expecting { property... } after @page");
         else
@@ -839,7 +845,8 @@ void statement::parse_position_try (arguments& args, nitpick& nits, const int fr
         else
         {   if ((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier))
             {   type_master < t_css_anchor_id > aid;
-                aid.set_value (nits, context.html_ver (), args.t_.at (i).val_); }
+                aid.set_value (nits, context.html_ver (), args.t_.at (i).val_);
+                if (aid.good ()) args.g_.note_str (gst_anchor, args.t_.at (i).val_); }
             else
                 nits.pick (nit_css_position_try, ed_css_anchor, "6.4 The @position-try Rule", es_error, ec_css, "expecting an anchor name after @position-try");
             i = next_non_whitespace (args.t_, i, to);
@@ -917,6 +924,28 @@ void statement::parse_scope (arguments& args, nitpick& nits, const int from, con
                 fiddlesticks < statement > f (&args.st_, this);
                 vst_.emplace_back (pst_t (new statements (args, args.t_.at (i).child_))); } } } }
 
+void statement::parse_slot (arguments& args, nitpick& nits, const int from, const int to)
+{   int i = next_non_whitespace (args.t_, from, to); 
+    if ((context.css_module (c_page_template) < 3) && (context.css_module (c_paged_media) < 4))
+        nits.pick (nit_css_version, ed_css_page_template, "2. Pagination Templates and Slots", es_error, ec_css, "@slot requires CSS Pagination Template 3 or CSS Paged Media 4");
+    else if ((args.st_ == nullptr) || ((args.st_ -> st_.get () != css_template) && (args.st_ -> st_.get () != css_page)))
+        nits.pick (nit_pagination_template, ed_css_page_template, "2. Pagination Templates and Slots", es_error, ec_css, "@slot must be a child of @template or @page");
+    else if ((i < 0) || ((args.t_.at (i).t_ != ct_string) && (args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_number) && (args.t_.at (i).t_ != ct_keyword)))
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting an identifier after @slot");
+    else
+    {   ::std::string name (args.t_.at (i).val_);
+        VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
+        if (args.dst_ -> has (cic_slot, name))
+            nits.pick (nit_pagination_template, es_info, ec_css, "@slot: ", quote (name), " is defined more than once");
+        else
+        {   args.dst_ -> dcl (cic_slot, name);
+            args.slots_.push_back (name); }
+        i = next_non_whitespace (args.t_, i, to);
+        if ((i < 0) || (to < 0) || (args.t_.at (to).t_ != ct_curly_brac)) return;
+        PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
+        fiddlesticks < statement > f (&args.st_, this);
+        vst_.emplace_back (pst_t (new statements (args, args.t_.at (i).child_))); } }
+
 void statement::parse_supports (arguments& args, nitpick& nits, const int from, const int to)
 {   if ((args.v_.css_module (c_cascade_inheritance) < 4) && (args.v_.css_module (c_conditional_rule) < 3))
         nits.pick (nit_css_version, es_error, ec_css, "@supports requires CSS Cascade 4, or CSS Conditional Rules 3");
@@ -942,6 +971,28 @@ void statement::parse_supports (arguments& args, nitpick& nits, const int from, 
                 if ((args.t_.at (i).t_ != ct_round_brac) && (su == su_none)) prop_.parse (args, i, ket);
                 else if (i < ket-1) bracketed_property (args, nits, ket-1, i, true, su);
                 vst_.emplace_back (pst_t (new statements (args, args.t_.at (ket).child_))); } } } }
+
+void statement::parse_template (arguments& args, nitpick& nits, const int from, const int to)
+{   int i = next_non_whitespace (args.t_, from, to); 
+    if (context.css_module (c_page_template) < 3)
+        nits.pick (nit_css_version, ed_css_page_template, "2. Pagination Templates and Slots", es_error, ec_css, "@template requires CSS Pagination Template 3");
+    else if ((i < 0) || ((args.t_.at (i).t_ != ct_string) && (args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_number) && (args.t_.at (i).t_ != ct_keyword)))
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting an identifier after @template");
+    else
+    {   ::std::string name (args.t_.at (i).val_);
+        VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
+        if (args.dst_ -> has (cic_template, name))
+            nits.pick (nit_pagination_template, es_info, ec_css, "@template: ", quote (name), " is defined more than once");
+        else args.dst_ -> dcl (cic_template, name);
+        i = next_non_whitespace (args.t_, i, to);
+        if ((i < 0) || (to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
+        {   nits.pick (nit_pagination_template, ed_css_page_template, "2. Pagination Templates and Slots", es_error, ec_css, "missing {...} after @template name");
+            return; }
+        PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
+        fiddlesticks < statement > f (&args.st_, this);
+        vst_.emplace_back (pst_t (new statements (args, args.t_.at (i).child_)));
+        for (auto s : args.slots_)
+            args.dst_ -> erase (cic_slot, s); } }
 
 void statement::parse_viewport (arguments& args, nitpick& nits, const int from, const int to)
 {   if (args.v_.css_module (c_device_adaption) < 3) // NOT CSS Viewport!
@@ -1083,10 +1134,16 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_scope :
                 parse_scope (args, nits, b, to);
                 break;
+            case css_slot :
+                parse_slot (args, nits, b, to);
+                break;
             case css_starting_style :
                 break;
             case css_supports :
                 parse_supports (args, nits, b, to);
+                break;
+            case css_template :
+                parse_template (args, nits, b, to);
                 break;
             case css_viewport :
                 parse_viewport (args, nits, b, to);

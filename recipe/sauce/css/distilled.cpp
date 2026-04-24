@@ -24,38 +24,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/elem.h"
 #include "stats/stats.h"
 #include "css/arguments.h"
+#include "css/css.h"
 
 void distilled::reset ()
-{   //class_.clear ();
-    //id_.clear ();
-    //element_class_.clear ();
-    //element_id_.clear ();
-    //font_.clear ();
-    cat_.clear ();
+{   dcl_.clear ();
+    use_.clear ();
     ticks_.clear ();
     cp_.reset ();
     in_progress_ = false; }
 
-bool distilled::has_element_class (const e_element e, const ::std::string& s) const
-{   const ::std::string l (elem::name (e) + "." + s);
-    return (cat_.find (l) != oops_a_daisy); }
-
-bool distilled::has_element_id (const e_element e, const ::std::string& s) const
-{   const ::std::string l (elem::name (e) + "#" + s);
-    return (cat_.find (l) != oops_a_daisy); }
-
 void distilled::accumulate (stats_t* s) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
-    for (auto c = cat_.cbegin (); c != cat_.cend (); ++c)
-        switch (c -> second.cic_)
-        {   case cic_class :        s -> dcl_class (c -> second.s_, c -> second.count_); break;
-            case cic_custom_prop :  s -> dcl_custom_prop (c -> second.s_, c -> second.count_); break;
-            case cic_id :           s -> dcl_id (c -> second.s_, c -> second.count_); break;
-            case cic_element_class :s -> dcl_element_class (c -> second.s_, c -> second.count_); break;
-            case cic_element_id :   s -> dcl_element_id (c -> second.s_, c -> second.count_); break;
-            case cic_font :         s -> mark_font (c -> second.s_, c -> second.count_); break;
-                // add for functions
-            default : break; }
+    for (auto c = dcl_.cbegin (); c != dcl_.cend (); ++c)
+        s -> dcl (c -> second.cic_, c -> second.s_, c -> second.count_);
+    for (auto c = use_.cbegin (); c != use_.cend (); ++c)
+        s -> use (c -> second.cic_, c -> second.s_, c -> second.count_);
     for (int i = 0; i < gst_max; ++i)
         for (auto c : str_.at (i))
             s -> mark_str (static_cast < e_gsstr > (i), c); }
@@ -69,6 +52,13 @@ void distilled::accumulate (stats_t* s) const
     return res; }
 
 ::std::string distilled::report () const
-{   ::std::string res;
-
+{   ::std::string res ("distilled:\ndcl:\n");
+    res += dcl_.rpt ();
+    res += "use:\n";
+    res += use_.rpt ();
+    res += "media:\n";
+    for (auto i = custom_media_.cbegin (); i != custom_media_.cend (); ++i)
+        res += i -> first + ":" + i -> second + "\n";
+    if (cp_.get () != nullptr) res += cp_ -> rpt ();
+    res += ::boost::lexical_cast < ::std::string > (ticks_.size ()) + " ticks\n";
     return res; }

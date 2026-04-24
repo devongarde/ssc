@@ -358,6 +358,7 @@ typedef typed_attribute < t_existential, a_formnovalidate > attr_formnovalidate;
 typedef typed_attribute < t_onoff, a_forms > attr_forms;
 typedef typed_attribute < t_target, a_formtarget > attr_formtarget;
 typedef typed_attribute < t_length, a_fr > attr_fr;
+typedef typed_attribute < t_url, a_fragmentshader > attr_fragmentshader;
 typedef typed_attribute < t_frame, a_frame > attr_frame;
 typedef typed_attribute < t_10, a_frameborder > attr_frameborder;
 typedef typed_attribute < t_framespacing, a_framespacing > attr_framespacing;
@@ -759,6 +760,7 @@ typedef typed_attribute < t_unsigned, a_pagex > attr_pagex;
 typedef typed_attribute < t_unsigned, a_pagey > attr_pagey;
 typedef typed_attribute < t_paint_order, a_paint_order > attr_paint_order;
 typedef typed_attribute < t_panose1, a_panose_1 > attr_panose1;
+typedef typed_attribute < t_generic, a_params > attr_params;
 typedef typed_attribute < t_part, a_part > attr_part;
 typedef typed_attribute < t_d, a_path > attr_path;
 typedef typed_attribute < t_unsigned, a_pathlength > attr_pathlength;
@@ -1035,6 +1037,8 @@ typedef typed_attribute < t_vector_effect, a_vector_effect > attr_vector_effect;
 typedef typed_attribute < t_coordinatesystem, a_vectoreffectunits > attr_vectoreffectunits;
 typedef typed_attribute < t_version, a_version > attr_version;
 typedef typed_attribute < t_real, a_vert_adv_y > attr_vertadvy;
+typedef typed_attribute < t_generic, a_vertexmesh > attr_vertexmesh;
+typedef typed_attribute < t_url, a_vertexshader > attr_vertexshader;
 typedef typed_attribute < t_vertical_align, a_vertical_align > attr_vertical_align;
 typedef typed_attribute < t_real, a_vert_origin_x > attr_vertoriginx;
 typedef typed_attribute < t_real, a_vert_origin_y > attr_vertoriginy;
@@ -1430,6 +1434,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_forms, \
     attr_formtarget, \
     attr_fr, \
+    attr_fragmentshader, \
     attr_frame, \
     attr_frameborder, \
     attr_framespacing, \
@@ -1840,6 +1845,7 @@ const e_attribute last_2 = a_overlay_host;
     attr_pagey, \
     attr_paint_order, \
     attr_panose1, \
+    attr_params, \
     attr_part, \
     attr_path, \
     attr_pathlength, \
@@ -2116,6 +2122,8 @@ const e_attribute last_2 = a_overlay_host;
     attr_vectoreffectunits, \
     attr_version, \
     attr_vertadvy, \
+    attr_vertexmesh, \
+    attr_vertexshader, \
     attr_vertical_align, \
     attr_vertoriginx, \
     attr_vertoriginy, \

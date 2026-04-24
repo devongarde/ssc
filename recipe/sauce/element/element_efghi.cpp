@@ -509,6 +509,8 @@ void element::examine_img ()
                                                 break; }
                             break; } }
             if (alt_empty || ! alt_known)
+            {   if (a_.known (a_controls))
+                    pick (nit_naughty_alt, ed_apr26, "4.8.3 The img element", es_error, ec_attribute, "CONTROLS must not be specified on an element that does not have an ALT attribute, or whose ALT attribute's value is the empty string.");
                 if (ancestor_a)
                 {   bool alt_required = true, alone = true;
                     for (element* p = parent_; p != nullptr; p = p -> parent_)
@@ -531,7 +533,7 @@ void element::examine_img ()
                     complained = true; } // even if not
                 else if (! complained && ! has_title && ! figured)
                     if (! alt_known && ! context.wx ())
-                    {   complained = true; pick (nit_naughty_alt, ed_50, "4.7.1 The img element", es_error, ec_element, "here, ALT is required on <IMG>"); } }
+                    {   complained = true; pick (nit_naughty_alt, ed_50, "4.7.1 The img element", es_error, ec_element, "here, ALT is required on <IMG>"); } } }
         if (! complained && ! context.wx ())
             if (node_.version () < html_feb21)
                 if ((! ancestor_figure) || (node_.version () == html_5_0))

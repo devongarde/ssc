@@ -239,8 +239,12 @@ type_cvf a_tc [] =
     { t_css_fn_calc, cvf_calc },
     { t_css_fn_calc_size, cvf_calc_size },
     { t_css_fn_character_variant, cvf_character_variant },
+    { t_css_fn_counter, cvf_counter },
+    { t_css_fn_counters, cvf_counters },
+    { t_css_fn_cross_fade, cvf_cross_fade },
     { t_css_fn_cross_fade, cvf_cross_fade },
     { t_css_fn_cubic_bezier, cvf_cubic_bezier },
+    { t_css_fn_custom, cvf_custom },
     { t_css_fn_dylm, cvf_dynamic_range_limit_mix },
     { t_css_fn_element, cvf_element },
     { t_css_fn_fit_content, cvf_fit_content },
@@ -253,6 +257,7 @@ type_cvf a_tc [] =
     { t_css_fn_linear, cvf_linear },
     { t_css_fn_moz_image_rect, cvf_moz_image_rect },
     { t_css_fn_ornaments, cvf_ornaments },
+    { t_css_fn_param, cvf_param },
     { t_css_fn_rect, cvf_rect },
     { t_css_fn_round_t, cvf_round },
     { t_css_fn_steps, cvf_steps },
@@ -307,7 +312,7 @@ bool set_calc_ex (nitpick& nits, const html_version& v, char ch, e_status& st, :
                     if (((ch >= 'A') && (ch <= 'Z')) || ((ch >= 'a') && (ch <= 'z')) || ((ch >= '0') && (ch <= '9')) || (ch == '_') || (ch == '-'))
                     {   had_op = false; n += ch; break; }
                 if (ch <= ' ') break;
-                nits.pick (nit_css_type, ed_mdn, "calc ()", es_error, ec_css, quote (ch), ": unexpected");
+                nits.pick (nit_css_type, ed_mdn, "calc ()", es_error, ec_css, quote (ch), ": unexpected (39)");
                 st = s_invalid;
                 break; }
     else
@@ -328,7 +333,7 @@ bool set_calc_ex (nitpick& nits, const html_version& v, char ch, e_status& st, :
                 {   had_op = false; n += ch; break; }
                 n.clear ();
                 if (ch <= ' ') break;
-                nits.pick (nit_css_type, ed_mdn, "calc ()", es_error, ec_css, quote (ch), ": unexpected");
+                nits.pick (nit_css_type, ed_mdn, "calc ()", es_error, ec_css, quote (ch), ": unexpected (40)");
                 st = s_invalid;
                 break; }
     if (is_op) n.clear ();
@@ -473,6 +478,14 @@ e_status set_region_value (nitpick& , const html_version& , const ::std::string&
     g.note_str (gst_region, s);
     return s_good; }
 
+e_status test_region_value (nitpick& nits, const html_version& , const ::std::string& s, element* box)
+{   if (s.empty ()) return s_invalid;
+    VERIFY_NOT_NULL (box, __FILE__, __LINE__);
+    css_group& g = box -> get_page ().css ();
+    if (g.has_str (gst_region, s)) return s_good;
+    nits.pick (nit_pagination_template, es_error, ec_css, quote (s), ": unknown flow.");
+    return s_invalid; }
+
 e_status set_stn_value (nitpick& nits, const html_version& , const vstr_t& vs, element* box)
 {   if (vs.empty ()) return s_empty;
     VERIFY_NOT_NULL (box, __FILE__, __LINE__);
@@ -501,3 +514,16 @@ e_status test_css_anchor (nitpick& nits, const e_status st, const html_version& 
             nits.pick (nit_anchor, ed_css_anchor, "2.1. Creating an Anchor: the anchor-name property", es_error, ec_type, "an anchor name must begin with --");
         else return s_good;
     return s_invalid; }
+
+e_status test_css_template_set (nitpick& nits, const e_status st, arguments* a, const vstr_t& val)
+{   if ((a == nullptr) || (st != s_good)) return st;
+    if (a -> dst_ == nullptr) return s_invalid;
+    if (context.css_module (c_page_template) < 3)
+    {   nits.pick (nit_css_version, ed_css_page_template, "2. Pagination Templates and Slots", es_error, ec_css, "@slot requires CSS Pagination Template 3");
+        return s_invalid; }
+    e_status res = s_good;
+    for (::std::size_t i = 0; i < val.size (); ++i)
+        if (! a -> dst_ -> has (cic_template, val.at (i)))
+        {   nits.pick (nit_pagination_template, ed_css_page_template, "2. Pagination Templates and Slots", es_error, ec_css, "No such @template as ", quote (val.at (i)));
+            res = s_invalid; }
+    return res; }

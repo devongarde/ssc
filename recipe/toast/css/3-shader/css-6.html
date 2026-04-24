@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<HTML>
+ <HEAD>
+ <TITLE>CSS 3 Shader Chapter 6 example</TITLE>
+
+<style>
+.shaded {
+    filter: custom(
+            url(distort.vs) url(tint.fs), 
+            distortAmount 0.5, lightVector 1.0 1.0 0.0, 
+            disp texture(disp.png)
+        );
+}
+</style>
+ </HEAD>
+
+ <BODY>
+
+</BODY>
+
+</HTML>

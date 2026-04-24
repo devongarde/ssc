@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN breadcrumb tests</title>
+<style>
+body {
+  font: 1.2em sans-serif;
+}
+
+.breadcrumb {
+  padding: 0 0.5rem;
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: end;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  display: inline-block;
+  margin: 0 0.25rem;
+  content: "→";
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN breadcrumb Tests</h1>
+
+<nav aria-label="Breadcrumb" class="breadcrumb">
+  <ol>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Category</a></li>
+    <li><a href="#">Sub Category</a></li>
+    <li><a href="#">Type</a></li>
+    <li><span aria-current="page">Product</span></li>
+  </ol>
+</nav>
+
+</body>
+</html>

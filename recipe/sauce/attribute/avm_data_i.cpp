@@ -125,6 +125,7 @@ hav_t havt_img [] =
     { { HTML_FEB21 }, { HTML_UNDEF }, elem_img, a_alt },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_img, a_border },
     { { HTML_DEC25 }, { HTML_UNDEF }, elem_img, a_colourspace },
+    { { HTML_MAY26 }, { HTML_UNDEF }, elem_img, a_controls },
     { { HTML_JUL11 }, { HTML_UNDEF }, elem_img, a_crossorigin },
     { { HTML_5_3 }, { HTML_UNDEF }, elem_img, a_decoding },
     { { HTML_APR23 }, { HTML_UNDEF }, elem_img, a_fetchpriority },

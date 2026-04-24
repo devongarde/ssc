@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<HTML>
+ <HEAD>
+ <TITLE>CSS 3 Shader Chapter 1 example</TITLE>
+
+<style>
+.waving      {
+    filter: custom(url('wave.vs'), 20 20, phase 0, amplitude 50);
+    transition-property: filter;
+    transition-duration: 0.2s;
+}
+
+.waving:hover {
+    filter: custom(url('wave.vs'), 20 20, phase 90, amplitude 20);
+}
+
+.old-book-page {
+    filter: grayscale(1.0) 
+            custom(url('book.vs') url('old-page-paper.fs'));
+}
+
+</style>
+ </HEAD>
+
+ <BODY>
+
+<div class='waving'>
+    <h2>Hello CSS Shaders</h2>
+    ...
+</div>
+
+<div class='old-book-page'>
+    <h2>Hello CSS Shaders</h2>
+    ...
+</div>
+
+</BODY>
+
+</HTML>

@@ -285,11 +285,13 @@ mmac_t mac_subtitle (const ::std::string& title)
     return res; }
 
 const char* str_name [] =
-{   REPORT_ANNOTATION,
+{   REPORT_ANCHOR,
+    REPORT_ANNOTATION,
     REPORT_CHARACTER,
     REPORT_CONTENT,
     REPORT_COUNTER,
     REPORT_FAMILY,
+    REPORT_FUNCTION,
     REPORT_HIGHLIGHT,
     REPORT_HISTORICAL,
     REPORT_KEYFRAME,
@@ -297,6 +299,7 @@ const char* str_name [] =
     REPORT_ORNAMENT,
     REPORT_PAGE_NAME,
     REPORT_PALETTE,
+    REPORT_PARAM,
     REPORT_REGION,
     REPORT_SCROLL,
     REPORT_STYLESET,
@@ -491,46 +494,62 @@ const char* str_name [] =
 ::std::string stats::single_usage (const ::std::string name, const ::std::size_t dn, const ::std::size_t un,
         e_nit_section sc, e_nit_macro n, e_nit_macro i1, e_nit_macro i2, e_nit_macro c1, e_nit_macro c2) const
 {   mmac_t mac;
+    if ((un == 0) && (dn == 0)) return ::std::string ();
     mac.emplace (n, name);
-    mac.emplace (i1, ::boost::lexical_cast < ::std::string > (dn));
-    mac.emplace (i2, ::boost::lexical_cast < ::std::string > (un));
-    mac.emplace (c1, once_twice_thrice < ::std::size_t > (dn));
-    mac.emplace (c2, once_twice_thrice < ::std::size_t > (un));
+    if (dn > 0)
+    {   mac.emplace (i1, ::boost::lexical_cast < ::std::string > (dn));
+        mac.emplace (c1, once_twice_thrice < ::std::size_t > (dn)); }
+    else
+    {   mac.emplace (i1, "never");
+        mac.emplace (c1, "never"); }
+    if (un > 0)
+    {   mac.emplace (i2, ::boost::lexical_cast < ::std::string > (un));
+        mac.emplace (c2, once_twice_thrice < ::std::size_t > (un)); }
+    else
+    {   mac.emplace (i2, ::std::string ());
+        mac.emplace (c2, ::std::string ()); }
     return macro -> apply (sc, mac); }
 
-::std::string stats::report_usage (const ::std::string& category, const smsid_stats& dcl, const smsid_stats& used,
+::std::string stats::report_usage (const ::std::string& category, const e_id_category cid,
         e_nit_section sc, e_nit_section h, e_nit_section f, e_nit_macro n,
         e_nit_macro i1, e_nit_macro i2, e_nit_macro c1, e_nit_macro c2,
         e_nit_macro ttl, e_nit_macro t1, e_nit_macro t2, e_nit_macro sum1, e_nit_macro sum2) const
 {   mmac_t table = mac_title (category);
     ::std::string s;
-    ::smsid_t::const_iterator di = dcl.cbegin ();
-    ::smsid_t::const_iterator ui = used.cbegin ();
+    ::smsid_t::const_iterator di = dcl_.rbegin (cid);
+    ::smsid_t::const_iterator ui = use_.rbegin (cid);
     ::std::size_t count = 0, gd = 0, gu = 0;
     for (;;)
-    {   if (di == dcl.cend ())
-        {   if (ui == used.cend ()) break; 
-            s += single_usage (ui -> first, 0, ui -> second, sc, n, i1, i2, c1, c2);
-            gu += ui -> second; 
-            ++ui; }
-        else if (ui == used.cend ())
-        {   s += single_usage (di -> first, di -> second, 0, sc, n, i1, i2, c1, c2);
-            gd += di -> second; 
-            ++di; }
+    {   if (di == dcl_.rend (cid))
+        {   if (ui == use_.rend (cid)) break; 
+            const ::std::size_t qu = use_.get (ui -> second).count_;
+            s += single_usage (ui -> first, 0, qu, sc, n, i1, i2, c1, c2);
+            gu += qu; 
+            use_.ritinc (ui, cid); }
+        else if (ui == use_.rend (cid))
+        {   const ::std::size_t qd = dcl_.get (di -> second).count_;
+            s += single_usage (di -> first, qd, 0, sc, n, i1, i2, c1, c2);
+            gd += qd; 
+            dcl_.ritinc (di, cid); }
         else if (di -> first < ui -> first)
-        {   s += single_usage (di -> first, di -> second, 0, sc, n, i1, i2, c1, c2);
-            gd += di -> second; 
-            ++di; }
+        {   const ::std::size_t qd = dcl_.get (di -> second).count_;
+            s += single_usage (di -> first, qd, 0, sc, n, i1, i2, c1, c2);
+            gd += qd; 
+            dcl_.ritinc (di, cid); }
         else if (ui -> first < di -> first)
-        {   s += single_usage (ui -> first, 0, ui -> second, sc, n, i1, i2, c1, c2);
-            gu += ui -> second; 
-            ++ui; }
+        {   const ::std::size_t qu = use_.get (ui -> second).count_;
+            s += single_usage (ui -> first, 0, qu, sc, n, i1, i2, c1, c2);
+            gu += qu; 
+            use_.ritinc (ui, cid); }
         else
         {   PRESUME (ui -> first == di -> first, __FILE__, __LINE__);
-            s += single_usage (ui -> first, di -> second, ui -> second, sc, n, i1, i2, c1, c2);
-            gu += ui -> second; 
-            gd += di -> second; 
-            ++ui; ++di; }
+            const ::std::size_t qd = dcl_.get (di -> second).count_;
+            const ::std::size_t qu = use_.get (ui -> second).count_;
+            s += single_usage (ui -> first, qd, qu, sc, n, i1, i2, c1, c2);
+            gu += qu; 
+            gd += qd; 
+            use_.ritinc (ui, cid);
+            dcl_.ritinc (di, cid); }
         ++count; }
     if (! s.empty ())
     {   mmac_t mac;
@@ -547,34 +566,43 @@ const char* str_name [] =
 {   return report_usage (REPORT_FONT, font_); }
 
 ::std::string stats::class_report () const
-{   return  report_usage (REPORT_CLASS, dcl_class_, use_class_, ns_du, ns_du_head, ns_du_foot,
+{   return  report_usage (REPORT_CLASS, cic_class, ns_du, ns_du_head, ns_du_foot,
                 nm_tally_name, nm_tally_decl_count, nm_tally_use_count, nm_tally_decl_int, nm_tally_use_int, nm_tally_title) +
-            report_usage (REPORT_ELEMENT_CLASS, dcl_element_class_, use_element_class_, ns_du, ns_du_head, ns_du_foot,
+            report_usage (REPORT_ELEMENT_CLASS, cic_element_class, ns_du, ns_du_head, ns_du_foot,
                 nm_tally_name, nm_tally_decl_count, nm_tally_use_count, nm_tally_decl_int, nm_tally_use_int, nm_tally_title); }
 
 ::std::string stats::class_report2 () const
-{   return  report_usage (REPORT_CLASS, dcl_class_, use_class_, ns_class, ns_class_head, ns_class_foot,
+{   return  report_usage (REPORT_CLASS, cic_class, ns_class, ns_class_head, ns_class_foot,
                 nm_class_name, nm_class_decl_int, nm_class_int, nm_class_decl_count, nm_class_count, nm_class_title) +
-            report_usage (REPORT_ELEMENT_CLASS, dcl_element_class_, use_element_class_, ns_class, ns_class_head, ns_class_foot,
+            report_usage (REPORT_ELEMENT_CLASS, cic_element_class, ns_class, ns_class_head, ns_class_foot,
                 nm_class_name, nm_class_decl_int, nm_class_int, nm_class_decl_count, nm_class_count, nm_class_title); }
 
 ::std::string stats::itemid_report () const
-{   return report_usage (REPORT_ITEMID, dcl_id_, use_id_) ; }
+{   return report_usage (REPORT_ITEMID, cic_id) ; }
 
 ::std::string stats::id_report () const
-{   return  report_usage (REPORT_ID, dcl_id_, use_id_, ns_du, ns_du_head, ns_du_foot,
+{   return  report_usage (REPORT_ID, cic_id, ns_du, ns_du_head, ns_du_foot,
                 nm_tally_name, nm_tally_decl_count, nm_tally_use_count, nm_tally_decl_int, nm_tally_use_int, nm_tally_title) +
-            report_usage (REPORT_ELEMENT_ID, dcl_element_id_, use_element_id_, ns_du, ns_du_head, ns_du_foot,
+            report_usage (REPORT_ELEMENT_ID, cic_element_id, ns_du, ns_du_head, ns_du_foot,
                 nm_tally_name, nm_tally_decl_count, nm_tally_use_count, nm_tally_decl_int, nm_tally_use_int, nm_tally_title); }
 
 ::std::string stats::id_report2 () const
-{   return  report_usage (REPORT_ID, dcl_id_, use_id_, ns_nsid, ns_id_head, ns_id_foot,
+{   return  report_usage (REPORT_ID, cic_id, ns_nsid, ns_id_head, ns_id_foot,
                 nm_id_name, nm_id_decl_int, nm_id_int, nm_id_decl_count, nm_id_count, nm_id_title) +
-            report_usage (REPORT_ELEMENT_ID, dcl_element_id_, use_element_id_, ns_nsid, ns_id_head, ns_id_foot,
+            report_usage (REPORT_ELEMENT_ID, cic_element_id, ns_nsid, ns_id_head, ns_id_foot,
                 nm_id_name, nm_id_decl_int, nm_id_int, nm_id_decl_count, nm_id_count, nm_id_title); }
 
 ::std::string stats::custom_property_report () const
-{   return report_usage (REPORT_CUSTARD_PROPERTY, dcl_custom_prop_, use_custom_prop_); }
+{   return report_usage (REPORT_CUSTARD_PROPERTY, cic_custom_prop, ns_du, ns_du_head, ns_du_foot,
+                nm_tally_name, nm_tally_decl_count, nm_tally_use_count, nm_tally_decl_int, nm_tally_use_int, nm_tally_title); }
+
+::std::string stats::function_report () const
+{   return report_usage (REPORT_FUNCTION, cic_fn_name, ns_du, ns_du_head, ns_du_foot,
+                nm_tally_name, nm_tally_decl_count, nm_tally_use_count, nm_tally_decl_int, nm_tally_use_int, nm_tally_title); }
+
+::std::string stats::param_report () const
+{   return report_usage (REPORT_PARAM, cic_fn_param, ns_du, ns_du_head, ns_du_foot,
+                nm_tally_name, nm_tally_decl_count, nm_tally_use_count, nm_tally_decl_int, nm_tally_use_int, nm_tally_title); }
 
 ::std::string stats::report (const bool grand) const
 {   ::std::string res;
@@ -584,6 +612,7 @@ const char* str_name [] =
     else g.emplace (nm_grand_title, REPORT_STAT);
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     res += macro -> apply (ns_grand_head, g);
+    if (context.stats_gst (gst_anchor)) res += css_str_report (gst_anchor);
     if (context.stats (rcb_abbreviation)) res += abbr_report ();
     if (context.stats_gst (gst_annotation)) res += css_str_report (gst_annotation);
     if (grand && context.stats (rcb_category) ) res += category_report ();
@@ -599,6 +628,7 @@ const char* str_name [] =
     if (grand && (file_count_ > 1) && context.stats (rcb_file)) res += file_report ();
     if (context.stats (rcb_font)) res += font_report ();
     if (context.stats_gst (gst_font_family)) res += css_str_report (gst_font_family);
+    if (context.stats_gst (gst_function)) res += function_report ();
     if (context.stats_gst (gst_highlight)) res += css_str_report (gst_highlight);
     if (context.stats_gst (gst_historical_form)) res += css_str_report (gst_historical_form);
     if (context.stats (rcb_id)) res += id_report ();
@@ -610,6 +640,7 @@ const char* str_name [] =
     if (context.stats_gst (gst_ornament)) res += css_str_report (gst_ornament);
     if (context.stats_gst (gst_page_name)) res += css_str_report (gst_page_name);
     if (context.stats_gst (gst_palette)) res += css_str_report (gst_palette);
+    if (context.stats_gst (gst_param)) res += css_str_report (gst_param);
     if (context.stats (rcb_css_property)) res += property_report ();
     if (grand && (file_count_ > 1) && context.stats (rcb_reference)) res += reference_report ();
     if (context.stats_gst (gst_region)) res += css_str_report (gst_region);
@@ -630,7 +661,7 @@ bool stats::severity_exceeded () const
     return false; }
 
 void stats::check_for_standard_classes (nitpick& nits, const html_version& v) const
-{   for (auto id = dcl_class_.cbegin (); id != dcl_class_.cend (); ++id)
+{   for (auto id = dcl_.rbegin (cic_class); id != dcl_.rend (cic_class); dcl_.ritinc (id, cic_class))
     {   html_class c (nits, v, id -> first);
         if (c.is_microformat_property ())
             nits.pick (nit_class_microformat_property, es_warning, ec_css, "CSS identifier ", quote (id -> first), " is a microformat property");
@@ -654,19 +685,11 @@ void stats::accumulate (stats& o) const
     httpequiv_.accumulate (o.httpequiv_);
     metaname_.accumulate (o.metaname_);
     meta_value_.accumulate (o.meta_value_);
-    dcl_class_.accumulate (o.dcl_class_);
-    dcl_custom_prop_.accumulate (o.dcl_custom_prop_);
-    dcl_id_.accumulate (o.dcl_id_);
-    dcl_element_class_.accumulate (o.dcl_element_class_);
-    dcl_element_id_.accumulate (o.dcl_element_id_);
+    dcl_.accumulate (o.dcl_);
+    use_.accumulate (o.use_);
     css_property_.accumulate (o.css_property_);
     css_statement_.accumulate (o.css_statement_);
     font_.accumulate (o.font_);
-    use_class_.accumulate (o.use_class_);
-    use_custom_prop_.accumulate (o.use_custom_prop_);
-    use_id_.accumulate (o.use_id_);
-    use_element_class_.accumulate (o.use_element_class_);
-    use_element_id_.accumulate (o.use_element_id_);
     for (int i = 0; i < gst_max; ++i)
         str_.at (static_cast < e_gsstr > (i)).accumulate (o.str_.at (static_cast < e_gsstr > (i)));
     if (smallest_ < o.smallest_) o.smallest_ = smallest_;
@@ -680,14 +703,8 @@ void stats::accumulate (stats& o) const
     if (context.stats (rcb_id)) res += id_report2 ();
     return res; }
 
-void stats::merge (const categorical& cat)
-{   for (mcic_t::const_iterator i = cat.cbegin (); i != cat.cend (); ++i)
-        switch (i -> second.cic_)
-        {   case cic_class :        dcl_class_.mark (i -> second.s_, i -> second.count_); break;
-            case cic_custom_prop :  dcl_custom_prop_.mark (i -> second.s_, i -> second.count_); break;
-            case cic_element_class :dcl_element_class_.mark (i -> second.s_, i -> second.count_); break;
-            case cic_element_id :   dcl_element_id_.mark (i -> second.s_, i -> second.count_); break;
-            case cic_font :         font_.mark (i -> second.s_, i -> second.count_); break;
-            case cic_id :           dcl_id_.mark (i -> second.s_, i -> second.count_); break;
-            // add for functions etc..
-            default : break; } }
+void stats::merge (const categorical& dcl, const categorical& use)
+{   for (mcic_t::const_iterator i = dcl.cbegin (); i != dcl.cend (); ++i)
+        dcl_.insert (i -> second.cic_, i -> second.s_, i -> second.count_);
+    for (mcic_t::const_iterator i = use.cbegin (); i != use.cend (); ++i)
+        use_.insert (i -> second.cic_, i -> second.s_, i -> second.count_); }

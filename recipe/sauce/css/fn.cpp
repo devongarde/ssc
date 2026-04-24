@@ -67,11 +67,13 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
         ::std::string param (assemble_string (args.t_, b, ket));
         params_.clear ();
         params_.push_back (param);
+        args.use (cic_fn_name, fn.get_string ());
         switch (fn_)
         {   case efn_attr :
                 if (context.css_module (c_non_element_selector) < 3)
                     nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Non-Element Selectors");
-                else
+                else if (param.find_first_of (" ") != ::std::string::npos)
+                    nits.pick (nit_css_syntax, ed_css_non_element, "2.1. Attribute node selector", es_error, ec_css, quote (fn.name ()), ": its arguments may not contain spaces");
                 {   const ::std::string::size_type bar = param.find ('|');
                     ::std::string ns, at (param);
                     if (bar != ::std::string::npos)
@@ -80,9 +82,11 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                             return; }
                         ns = at.substr (0, bar - 1);
                         at = at.substr (bar+1); }
-                    const attr a (nits, args.v_, args.ns_, at, ns);
-                    if (a.get () == a_unknown)
-                        nits.pick (nit_attribute_unrecognised, es_error, ec_css, quote (param), ": unknown attribute"); }
+                    if ((ns.size () != 1) || (ns != "*"))
+                        if ((at.size () != 1) || (at != "*"))
+                        {   const attr a (nits, args.v_, args.ns_, at, ns);
+                            if (a.get () == a_unknown)
+                                nits.pick (nit_attribute_unrecognised, es_error, ec_css, quote (param), ": unknown attribute"); } }
                 return;
             case efn_auto :
                 test_value < t_lang > (nits, context.html_ver (), param);
@@ -110,7 +114,11 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                 return;
             case efn_host :
             case efn_host_context :
-                if (context.css_module (c_view_transition) > 0)
+                if ((context.css_module (c_view_transition) > 0) || (context.css_module (c_scoping) > 0))
+                    vsl_.emplace_back (new selector (args, b, ket, true));
+                break;
+            case efn_slotted :
+                if (context.css_module (c_scoping) > 0)
                     vsl_.emplace_back (new selector (args, b, ket, true));
                 break;
             case efn_lang :
@@ -140,6 +148,11 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
             case efn_nth_fragment :
                 if (context.css_module (c_overflow) < 4)
                     nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Text Overflow 4");
+                test_value < t_positive > (nits, context.html_ver (), param);
+                break;
+            case efn_nth_of_page :
+                if (context.css_module (c_paged_media) < 4)
+                    nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Paged Media 4");
                 test_value < t_positive > (nits, context.html_ver (), param);
                 break;
             case efn_not :

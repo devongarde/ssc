@@ -216,7 +216,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                     nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": [...] requires CSS 2.0 or better");
                 else
                 {   if (context.print_profile ())
-                        nits.pick (nit_profile, es_warning, ec_css, "Attribute selectors may be ignored by the CSS Print profile");   
+                        nits.pick (nit_print_profile, ed_print_profile, "3. Selectors", es_warning, ec_css, "Attribute selectors may be ignored when printing");   
                     if (context.tv_profile ())
                         nits.pick (nit_profile, es_warning, ec_css, "Attribute selectors may be ignored by the CSS TV profile");   
                     decore_.emplace_back (args, b); }
@@ -263,7 +263,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                 if (context.css_module (c_nesting) >= 3) return;
                 FALLTHROUGH;
             default :
-                nits.pick (nit_css_syntax, es_error, ec_css, quote (tkn_rpt (args.t_.at (i))), ": unexpected (", args.t_.at (i).t_, ",4)");
+                nits.pick (nit_css_syntax, es_error, ec_css, quote (tkn_rpt (args.t_.at (i))), ": unexpected (", args.t_.at (i).t_, ", 6)");
                 return; } }
 
 bool css_element::bef_aft () const

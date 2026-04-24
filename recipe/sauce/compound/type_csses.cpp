@@ -133,10 +133,10 @@ e_status set_css_font_size_adjust_value (nitpick& nits, const html_version& v, c
     {   const ::std::size_t len (vs.size ());
         PRESUME (len > 0, __FILE__, __LINE__);  
         if (v.css_module (c_font) < 5)
-        {   if (len > 1) nits.pick (nit_css_syntax, es_warning, ec_css, "ignoring unexpected junk following ", quote (vs.at (0))); 
+        {   if (len > 1) nits.pick (nit_css_syntax, es_warning, ec_css, "ignoring unexpected junk following ", quote (vs.at (0)), " (2)"); 
             if (test_value < t_real_ni > (nits, v, vs.at (0))) return s_good; }
         else if (compare_no_case (vs.at (0), "none"))
-        {   if (len > 1) nits.pick (nit_css_syntax, es_warning, ec_css, "ignoring unexpected junk following ", quote (vs.at (0))); 
+        {   if (len > 1) nits.pick (nit_css_syntax, es_warning, ec_css, "ignoring unexpected junk following ", quote (vs.at (0)), " (3)"); 
             return s_good; }
         else
         {   ::std::size_t pos = 0;
@@ -147,7 +147,7 @@ e_status set_css_font_size_adjust_value (nitpick& nits, const html_version& v, c
             if ((len > pos) && compare_no_case (vs.at (pos), "from-font"))
                 if (len == ++pos) return s_good;
             if ((len > pos) && test_value < t_real > (nits, v, vs.at (pos)))
-            {   if (len > ++pos) nits.pick (nit_css_syntax, es_warning, ec_css, "ignoring unexpected junk following ", quote (vs.at (pos))); 
+            {   if (len > ++pos) nits.pick (nit_css_syntax, es_warning, ec_css, "ignoring unexpected junk following ", quote (vs.at (pos)), " (4)"); 
                 return s_good; }
             nits.pick (nit_css_syntax, es_error, ec_css, "number expected after ", quote (vs.at (pos-1))); } }
     return s_invalid; }
@@ -475,7 +475,7 @@ e_status set_css_container_value (nitpick& nits, const html_version& v, const ::
                     state = cs_done;
                     break;
                 case cs_done :
-                    nits.pick (nit_container, es_error, ec_type, quote (s), ": unexpected");
+                    nits.pick (nit_container, es_error, ec_type, quote (s), ": unexpected (1)");
                     res = false; break;
                 default :
                     nits.pick (nit_container, es_error, ec_type, quote (s), " is not a known container property value");
@@ -507,7 +507,7 @@ e_status set_css_content_3_value (nitpick& nits, const html_version& v, const ::
                 {   state = con_str; break; }
                 nits.merge (nuts);
                 nits.merge (knits);
-                nits.pick (nit_content, es_error, ec_type, quote (s), ": unexpected");
+                nits.pick (nit_content, es_error, ec_type, quote (s), ": unexpected (2)");
                 state = con_list;
                 res = false; break;
             case con_str :
@@ -521,7 +521,7 @@ e_status set_css_content_3_value (nitpick& nits, const html_version& v, const ::
             case con_done :
                 nits.merge (knots);
                 nits.merge (nets);
-                nits.pick (nit_content, es_error, ec_type, quote (s), ": unexpected");
+                nits.pick (nit_content, es_error, ec_type, quote (s), ": unexpected (3)");
                 res = false; break;
             default :
                 nits.pick (nit_content, es_error, ec_type, quote (s), " is not a known container property value");

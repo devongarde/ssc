@@ -67,14 +67,13 @@ PASS ../toast/stats/CSS-6/index.html
 
 GRAND
 Custom-Property:
-    --gap: 3
-    --looks-valid: 2
-    --not-a-color: 2
-    --prop1: 2
-    --prop2: 2
-    --prop3: 2
-    --prop4: 1
-    --side: 1
-    --text-color: 1
-  9 Custom-Property used 16 times
+  --gap declared 4 times, used twice
+  --looks-valid declared twice, used once
+  --not-a-color declared twice, used once
+  --prop1 declared twice, used once
+  --prop2 declared twice, used once
+  --prop3 declared twice, used once
+  --prop4 declared once, used once
+  --side declared once, used once
+  --text-color declared once, used once
 ===

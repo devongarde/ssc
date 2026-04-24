@@ -39,11 +39,7 @@ public:
     void reset ()
     {   stats_t tmp;
         swap (tmp); }
-    void dcl_class (const ::std::string& s, const ::std::size_t n = 1);
-    void dcl_custom_prop (const ::std::string& s, const ::std::size_t n = 1);
-    void dcl_id (const ::std::string& s, const ::std::size_t n = 1);
-    void dcl_element_class (const ::std::string& s, const ::std::size_t n = 1);
-    void dcl_element_id (const ::std::string& s, const ::std::size_t n = 1);
+    void dcl (const e_id_category cid, const ::std::string& s, const ::std::size_t n = 1);
     void mark (const e_element e);
     void mark_abbr (const ::std::string& a, const ::std::string& b);
     void mark_custom_media (const ::std::string& str, const ::std::string& def);
@@ -64,24 +60,13 @@ public:
     void mark_meta (const e_metaname mn);
     void mark_meta (const e_metaname mn, const ::std::string& val);
     void mark_str (const e_gsstr gst, const ::std::string& s);
-    void use_class (const ::std::string& s, const ::std::size_t n = 1);
-    void use_custom_prop (const ::std::string& s, const ::std::size_t n = 1);
-    void use_id (const ::std::string& s, const ::std::size_t n = 1);
-    void use_element_class (const ::std::string& s, const ::std::size_t n = 1);
-    void use_element_id (const ::std::string& s, const ::std::size_t n = 1);
+    void use (const e_id_category cid, const ::std::string& s, const ::std::size_t n = 1);
     void visible (const e_element e);
-    bool has_class (const ::std::string& s) const;
+    bool has (const e_id_category cid, const ::std::string& s);
     bool has_custom_media (const ::std::string& name) const;
-    bool has_custom_prop (const ::std::string& s) const;
-    bool has_id (const ::std::string& s) const;
     bool has_str (const e_gsstr g, const ::std::string& s) const;
-    void merge (const categorical& cat);
-//    void merge_class (const smsid_t& s);
-//    void merge_custom_prop (const smsid_t& s);
-//    void merge_id (const smsid_t& s);
-//    void merge_element_class (const smsid_t& s);
-//    void merge_element_id (const smsid_t& s);
-//    void merge_font (const smsid_t& s);
+    void merge (const categorical& dcl, const categorical& use);
+    void merge_font (const smsid_t& s);
     uint64_t file_count () const;
     unsigned count (const e_element e) const;
     unsigned count (const e_severity s) const;

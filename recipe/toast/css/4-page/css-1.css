@@ -1,0 +1,47 @@
+﻿h1 {
+  copy-into: chapter-title element;
+  font-size: 1.5em;
+}
+
+@page {
+  @top-center {
+    content: chapter-title '.';
+    font-size: .9em;
+    font-variant: small-caps;
+    }
+}
+
+h1::before {
+  content: 'Chapter 'counter(chapterNumber);
+}
+h1:first-of-page {
+  copy-into: headerP1 counter(chapter), headerP2;
+}
+h1::after {
+  content: '.' copy-into: headerP3;
+}
+
+@top-center {
+  content: headerP1 ": " headerP2 headerP3;
+}
+
+section:first-of-page { copy-into: header attr(title) }
+
+@page {
+   size: 15cm 10cm;
+   margin: 1.5cm;
+
+   @top-left {
+   content: "first: " heading1;
+   }
+   @top-center {
+   content: "start: " heading2;
+   }
+    @top-right {
+    content: "last: " heading3;
+   }
+  }
+
+h2:first-of-page { copy-into: heading1 }
+h2:start-of-page { copy-into: heading2 }
+h2:last-of-page { copy-into: heading3 }

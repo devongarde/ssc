@@ -7,14 +7,14 @@ PASS ../toast/stats/detail/extra.html
 
 STATS
 Class:
-  goodbye styled 0 times, used once
-  hello styled 0 times, used once
-  kitty styled 0 times, used once
+  goodbye declared never, used once
+  hello declared never, used once
+  kitty declared never, used once
 
 Class/Element:
-  p.goodbye styled 0 times, used once
-  p.hello styled 0 times, used once
-  p.kitty styled 0 times, used once
+  p.goodbye declared never, used once
+  p.hello declared never, used once
+  p.kitty declared never, used once
 
 Element:
     !doctype: once
@@ -103,26 +103,26 @@ Element:
   13 elements used 60 times
 
 Id:
-  a styled 0 times, used once
-  amanda styled 0 times, used once
-  b styled 0 times, used once
-  c styled 0 times, used once
-  comments styled 0 times, used once
+  a declared never, used once
+  amanda declared never, used once
+  b declared never, used once
+  c declared never, used once
+  comments declared never, used once
 
 Id/Element:
-  div#amanda styled 0 times, used once
-  div#b styled 0 times, used once
-  div#c styled 0 times, used once
-  p#a styled 0 times, used once
-  span#comments styled 0 times, used once
+  div#amanda declared never, used once
+  div#b declared never, used once
+  div#c declared never, used once
+  p#a declared never, used once
+  span#comments declared never, used once
 
 ItemId:
-    a: 0
-    amanda: 0
-    b: 0
-    c: 0
-    comments: 0
-  5 ItemId used 0 times
+    a: never
+    amanda: never
+    b: never
+    c: never
+    comments: never
+  5 ItemId used never
 
 Ontology:
     http://schema.org/BlogPosting: twice
@@ -283,14 +283,14 @@ Element:
   12 elements used 46 times
 
 Id:
-  tid styled 0 times, used once
+  tid declared never, used once
 
 Id/Element:
-  div#tid styled 0 times, used once
+  div#tid declared never, used once
 
 ItemId:
-    tid: 0
-  1 ItemId used 0 times
+    tid: never
+  1 ItemId used never
 
 Ontology:
     http://schema.org/Organization: twice
@@ -321,14 +321,14 @@ Category:
     URx: once
 
 Class:
-  goodbye styled 0 times, used once
-  hello styled 0 times, used once
-  kitty styled 0 times, used once
+  goodbye declared never, used once
+  hello declared never, used once
+  kitty declared never, used once
 
 Class/Element:
-  p.goodbye styled 0 times, used once
-  p.hello styled 0 times, used once
-  p.kitty styled 0 times, used once
+  p.goodbye declared never, used once
+  p.hello declared never, used once
+  p.kitty declared never, used once
 
 Definition:
     Chemin de Fer Luxembourg: once, "CFL operates trains."
@@ -404,29 +404,29 @@ File Info:
     smallest file: 252 bytes, largest file: 1019 bytes
 
 Id:
-  a styled 0 times, used once
-  amanda styled 0 times, used once
-  b styled 0 times, used once
-  c styled 0 times, used once
-  comments styled 0 times, used once
-  tid styled 0 times, used once
+  a declared never, used once
+  amanda declared never, used once
+  b declared never, used once
+  c declared never, used once
+  comments declared never, used once
+  tid declared never, used once
 
 Id/Element:
-  div#amanda styled 0 times, used once
-  div#b styled 0 times, used once
-  div#c styled 0 times, used once
-  div#tid styled 0 times, used once
-  p#a styled 0 times, used once
-  span#comments styled 0 times, used once
+  div#amanda declared never, used once
+  div#b declared never, used once
+  div#c declared never, used once
+  div#tid declared never, used once
+  p#a declared never, used once
+  span#comments declared never, used once
 
 ItemId:
-    a: 0
-    amanda: 0
-    b: 0
-    c: 0
-    comments: 0
-    tid: 0
-  6 ItemId used 0 times
+    a: never
+    amanda: never
+    b: never
+    c: never
+    comments: never
+    tid: never
+  6 ItemId used never
 
 Header:
   pragma:

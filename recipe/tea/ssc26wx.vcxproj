@@ -285,6 +285,7 @@
     <ClInclude Include="..\heater\utility\bitset.h" />
     <ClInclude Include="..\heater\utility\byteorder.h" />
     <ClInclude Include="..\heater\utility\cache.h" />
+    <ClInclude Include="..\heater\utility\category.h" />
     <ClInclude Include="..\heater\utility\common.h" />
     <ClInclude Include="..\heater\utility\fileio.h" />
     <ClInclude Include="..\heater\utility\filesystem.h" />
@@ -782,6 +783,7 @@
     <ClCompile Include="..\sauce\css\value_types_css_c_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_c_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_c_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_c_5.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_d.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_e.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_fn_1.cpp" />
@@ -800,7 +802,8 @@
     <ClCompile Include="..\sauce\css\value_types_css_o.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_p_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_p_q.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_css_r.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_r_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_r_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_s_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_s_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_s_3.cpp" />
@@ -1758,6 +1761,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\utility\category.cpp" />
     <ClCompile Include="..\sauce\utility\common.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>

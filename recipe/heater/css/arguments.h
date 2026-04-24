@@ -41,6 +41,7 @@ struct arguments
     bool snippet_ = false;
     bool had_rule_ = false;
     bool nested_ = false;
+    mutable bool hazard_ = false;
     e_element styled_ = elem_undefined;
     ::std::string abs_;
     dst_ptr dst_;
@@ -52,6 +53,7 @@ struct arguments
     media_t* media_ = nullptr;
     element_bitset eb_;
     sstr_t anchors_;
+    vstr_t slots_;
     arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g);
     arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const e_element styled, const element_bitset eb);
     arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst, const e_element styled, const element_bitset eb);
@@ -61,8 +63,9 @@ struct arguments
     bool prep_for_make (nitpick& nits, const int from, int& b, const int to, int& var, int& bang, e_token& p, bool& xs, bool& xk, bool& xn, bool& xi, bool& fn, bool& clean, int& kc, ::std::string& val);
     void check_flags (nitpick& nits, const flags_t f, const ::std::string& s) const;
     void check_flags (nitpick& nits, const flags_t f, const ::std::string& s, const bool xk, const bool xi, const bool xn, const bool xs, const bool fn, const int kc, const ::std::string& item, const ::std::string& val) const;
-    bool has_custom_prop (const ::std::string& name) const;
-    void note_custom_prop (const ::std::string& name);
+    bool has (const e_id_category cic, const ::std::string& s) const;
+    void use (const e_id_category cic, const ::std::string& s, const ::std::size_t n = 1) const;
+    void dcl (const e_id_category cic, const ::std::string& s, const ::std::size_t n = 1) const;
     bool has_custom_media (const ::std::string& name) const;
     void note_custom_media (const ::std::string& name, const ::std::string& def);
     sstr_t font_feature (const e_css_statement st) const; 

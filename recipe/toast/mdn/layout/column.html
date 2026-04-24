@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN column tests</title>
+<style>
+.container {
+  border: 2px solid rgb(75 70 74);
+  border-radius: 0.5em;
+  padding: 20px;
+  font: 1.2em sans-serif;
+
+  column-width: 10em;
+  column-rule: 1px solid rgb(75 70 74);
+}
+
+.container {
+  border: 2px solid rgb(75 70 74);
+  border-radius: 0.5em;
+  padding: 20px 10px;
+  font: 1.2em sans-serif;
+
+  display: flex;
+}
+
+.container > * {
+  padding: 10px;
+  border: 2px solid rgb(95 97 110);
+  border-radius: 0.5em;
+
+  margin: 0 10px;
+  flex: 1;
+}
+
+.container {
+  border: 2px solid rgb(75 70 74);
+  border-radius: 0.5em;
+  padding: 20px 10px;
+  width: 500px;
+  font: 1.2em sans-serif;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container > * {
+  padding: 10px;
+  border: 2px solid rgb(95 97 110);
+  border-radius: 0.5em;
+
+  margin: 0 10px;
+  flex: 1 1 200px;
+}
+
+.container {
+  border: 2px solid rgb(75 70 74);
+  border-radius: 0.5em;
+  padding: 20px;
+  width: 500px;
+  font: 1.2em sans-serif;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.container > * {
+  padding: 10px;
+  border: 2px solid rgb(95 97 110);
+  border-radius: 0.5em;
+  margin: 0;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN column Tests</h1>
+
+<div class="container">
+  <p>
+    Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion
+    daikon amaranth tatsoi tomatillo melon azuki bean garlic.
+  </p>
+  <p>
+    Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette
+    tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.
+    Dandelion cucumber earthnut pea peanut soko zucchini.
+  </p>
+  <p>
+    Turnip greens yarrow ricebean rutabaga endive cauliflower sea lettuce
+    kohlrabi amaranth water spinach avocado daikon napa cabbage asparagus winter
+    purslane kale. Celery potato scallion desert raisin horseradish spinach
+  </p>
+</div>
+
+</body>
+</html>

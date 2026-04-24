@@ -42,7 +42,10 @@ e_status set_region_value (nitpick& nits, const html_version& v, const ::std::st
 e_status set_stn_value (nitpick& nits, const html_version& v, const vstr_t& vs, element* box);
 e_status set_vtn_value (nitpick& nits, const html_version& v, const vstr_t& vs, element* box);
 e_status test_css_anchor (nitpick& nits, const e_status st, const html_version& v, const ::std::string& ss);
-
+e_status test_css_template_set (nitpick& nits, const e_status st, arguments* a, const vstr_t& val);
+e_status test_region_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box);
+void validate_anchor_idref (nitpick& nits, type_master < t_css_anchor_idref >& cai, arguments& args, const ::std::string& s);  // typed_property.cpp
+        
 template < > struct type_master < t_css > : public tidy_string < t_css >
 {   using tidy_string < t_css > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -65,8 +68,7 @@ template < > struct type_master < t_css_anchor_idref > : public tidy_string < t_
     {   tidy_string < t_css_anchor_idref > :: set_value (nits, v, trim_the_lot_off (s));
         tidy_string < t_css_anchor_idref > :: status (test_css_anchor (nits, tidy_string < t_css_anchor_idref > :: status (), v, s)); }
     void argue (nitpick& nits, arguments* a)
-    {   void validate_anchor_idref (nitpick& nits, type_master < t_css_anchor_idref >& cai, arguments& args, const ::std::string& s);  // typed_property.cpp
-        if ((a != nullptr) && tidy_string < t_css_anchor_idref > :: good ())
+    {   if ((a != nullptr) && tidy_string < t_css_anchor_idref > :: good ())
             validate_anchor_idref (nits, *this, *a, tidy_string < t_css_anchor_idref > :: get_string ()); } };
 
 template < > struct type_master < t_css_all > : public tidy_string < t_css_all >
@@ -207,6 +209,14 @@ template < > struct type_master < t_css_stn > : public string_vector < t_css_stn
             set_stn_value (nits, v, string_vector < t_css_stn, sz_space_char > :: get (), e);
         return true; } };
 
+template < > struct type_master < t_css_template_set > : public string_vector < t_css_template_set, sz_space_char >
+{   using string_vector < t_css_template_set, sz_space_char > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector < t_css_template_set, sz_space_char > :: set_value (nits, v, trim_the_lot_off (s)); }
+    void argue (nitpick& nits, arguments* a)
+    {   string_vector < t_css_template_set, sz_space_char > :: status (test_css_template_set (
+            nits, string_vector < t_css_template_set, sz_space_char > :: status (), a, string_vector < t_css_template_set, sz_space_char > :: get ())); } };
+
 template < > struct type_master < t_css_unicode_from_to > : public tidy_string < t_css_unicode_from_to >
 {   using tidy_string < t_css_unicode_from_to > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -267,6 +277,20 @@ template < > struct type_master < t_css_region_id > : public tidy_string < t_css
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
     {   if (tidy_string < t_css_region_id > :: good ())
             if (set_region_value (nits, v, tidy_string < t_css_region_id > :: get (), e) == s_good)
+                return false;
+        return true; } };
+
+template < > struct type_master < t_css_required_region > : public tidy_string < t_css_required_region >
+{   using tidy_string < t_css_required_region > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_none; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_required_region > :: set_value (nits, v, s);
+        if (! tidy_string < t_css_required_region > :: empty ()) return;
+        nits.pick (nit_empty, es_error, ec_type, "missing region name");
+        tidy_string < t_css_required_region > :: status (s_invalid); }
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
+    {   if (tidy_string < t_css_required_region > :: good ())
+            if (test_region_value (nits, v, tidy_string < t_css_required_region > :: get (), e) == s_good)
                 return false;
         return true; } };
 

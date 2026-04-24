@@ -321,8 +321,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H2_CSS_SYNTAX       0x0000000000100000
 #define H2_CSS_CUSTOM       0x0000000000200000
-
-// bitz
+#define H2_CSS_PAGETEMP     0x0000000000400000
+#define H2_CSS_SHADER       0x0000000000800000
 
 #define H2_CSS_1_ARG        0x0000000001000000
 #define H2_CSS_2_ARGS       0x0000000002000000
@@ -429,8 +429,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CLACKS           0x8000000000000000
 
 #define H2_CSS_3        ( H2_CSS_ANIM_3 | H2_CSS_CASCADE_3 | H2_CSS_COMBLE_3 | H2_CSS_COND_RULE_3 | H2_CSS_CS | H2_CSS_CUSTOM | \
-                          H2_CSS_FBL | H2_CSS_FONT_3 | H2_CSS_FRAG_3 | H2_CSS_MEDIA_3 | H2_CSS_MIXIN | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | \
-                          H2_CSS_SVG | H2_CSS_STYLE | H2_CSS_SYNTAX | H2_CSS_UI_3 )
+                          H2_CSS_FBL | H2_CSS_FONT_3 | H2_CSS_FRAG_3 | H2_CSS_MEDIA_3 | H2_CSS_MIXIN | H2_CSS_NAMESPACE | H2_CSS_PAGETEMP | \
+                          H2_CSS_SELECTOR_3 | H2_CSS_SHADER | H2_CSS_SVG | H2_CSS_STYLE | H2_CSS_SYNTAX | H2_CSS_UI_3 )
 #define H2_CSS_4        ( H2_CSS_ANIM_4 | H2_CSS_CASCADE_4 | H2_CSS_COMBLE_4 | H2_CSS_COND_RULE_4 | H2_CSS_FONT_4 | H2_CSS_FRAG_4 | \
                           H2_CSS_MEDIA_4 | H2_CSS_SELECTOR_4 | H2_CSS_UI_4 )
 #define H2_CSS_5        ( H2_CSS_CASCADE_5 | H2_CSS_COND_RULE_5 | H2_CSS_FONT_5 | H2_CSS_SELECTOR_5 | H2_CSS_MEDIA_5 )
@@ -588,11 +588,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_TEXT           H3_CSS_TEXT_34  
 #define H3_CSS_TEXT_MASK      H3_CSS_TEXT
 
+#define H3_CSS_EGG            0x0000008000000000
+#define H3_CSS_LINK_PARAM     0x0000010000000000
+
+// bitz
+
 #define H3_CSS_SNAP_3        0x0000008000000000
 #define H3_CSS_SNAP_4        0x0000010000000000
-#define H3_CSS_SNAP_34      ( H3_CSS_SNAP_3 | H3_CSS_SNAP_4 )  
-#define H3_CSS_SNAP           H3_CSS_SNAP_34  
-#define H3_CSS_SNAP_MASK      H3_CSS_SNAP
+#define H3_CSS_SNAP_34     ( H3_CSS_SNAP_3 | H3_CSS_SNAP_4 )  
+#define H3_CSS_SNAP          H3_CSS_SNAP_34  
+#define H3_CSS_SNAP_MASK     H3_CSS_SNAP
 
 #define H3_CSS_ROUND         0x0000020000000000
 #define H3_CSS_RHYTHM        0x0000040000000000
@@ -604,9 +609,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_NES           0x0001000000000000
 #define H3_CSS_SHADOW        0x0002000000000000
 #define H3_CSS_HIGHLIGHT     0x0004000000000000
-#define H3_CSS_PAGE          0x0008000000000000
-#define H3_CSS_SDA           0x0010000000000000
-// bit
+#define H3_CSS_SDA           0x0008000000000000
+
+#define H3_CSS_PAGE_3        0x0010000000000000
+#define H3_CSS_PAGE_4        0x0020000000000000
+#define H3_CSS_PAGE_34     ( H3_CSS_PAGE_3 | H3_CSS_PAGE_4 )  
+#define H3_CSS_PAGE          H3_CSS_PAGE_34  
+#define H3_CSS_PAGE_MASK     H3_CSS_PAGE_3
+
 #define H3_CSS_SCOPE         0x0040000000000000
 #define H3_CSS_MOTION        0x0080000000000000
 #define H3_CSS_FILL          0x0100000000000000
@@ -622,13 +632,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_DEPRECATED    0x8000000000000000
 
 #define H3_CSS_3          ( H3_CSS_ADJUST | H3_CSS_ANCHOR | H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING_3 | H3_CSS_CONTAIN_3 | H3_CSS_CONTENT | \
-                            H3_CSS_DEVICE | H3_CSS_ENVIRONMENT | H3_CSS_EXCLUDE | H3_CSS_FILL | H3_CSS_FLOAT | H3_CSS_GRID_3 | H3_CSS_HIGHLIGHT | \
-                            H3_CSS_HYPERLINK | H3_CSS_IMAGE_3 | H3_CSS_INLINE | H3_CSS_LINE_GRID | H3_CSS_LIST | H3_CSS_LOGIC | H3_CSS_MASKING | \
-                            H3_CSS_MOTION | H3_CSS_NES | H3_CSS_NESTING | H3_CSS_OVERSCROLL |  H3_CSS_PAGE | H3_CSS_POSITION_3 | \
+                            H3_CSS_DEVICE | H3_CSS_EGG | H3_CSS_ENVIRONMENT | H3_CSS_EXCLUDE | H3_CSS_FILL | H3_CSS_FLOAT | H3_CSS_GRID_3 | H3_CSS_HIGHLIGHT | \
+                            H3_CSS_HYPERLINK | H3_CSS_IMAGE_3 | H3_CSS_INLINE | H3_CSS_LINE_GRID | H3_CSS_LINK_PARAM | H3_CSS_LIST | H3_CSS_LOGIC | \
+                            H3_CSS_MASKING | H3_CSS_MOTION | H3_CSS_NES | H3_CSS_NESTING | H3_CSS_OVERSCROLL | H3_CSS_PAGE_3 | H3_CSS_POSITION_3 | \
                             H3_CSS_PRESENT | H3_CSS_REGION | H3_CSS_RHYTHM | H3_CSS_ROUND | H3_CSS_RUBY | H3_CSS_SCOPE | H3_CSS_SCROLLBAR | H3_CSS_SDA | \
                             H3_CSS_SHAPE_3 | H3_CSS_SHADOW | H3_CSS_SNAP_3 | H3_CSS_SPEECH | H3_CSS_TABLE | H3_CSS_TEXT_3 | H3_CSS_TEXTDEC_3 | \
                             H3_CSS_TRANSFORM_3 | H3_CSS_WC | H3_CSS_WRITING_3 )
-#define H3_CSS_4          ( H3_CSS_BOX_MODEL_4 | H3_CSS_BOX_SIZING_4 | H3_CSS_CONTAIN_4 | H3_CSS_GRID_4 | H3_CSS_IMAGE_4 | H3_CSS_POSITION_4 | H3_CSS_SHAPE_4 | \
+#define H3_CSS_4          ( H3_CSS_BOX_MODEL_4 | H3_CSS_BOX_SIZING_4 | H3_CSS_CONTAIN_4 | H3_CSS_GRID_4 | H3_CSS_IMAGE_4 | H3_CSS_PAGE_4 | H3_CSS_POSITION_4 | H3_CSS_SHAPE_4 | \
                             H3_CSS_SNAP_4 | H3_CSS_TEXT_4 |  H3_CSS_TEXTDEC_4 | H3_CSS_TRANSFORM_4 | H3_CSS_WRITING_4 )
 #define H3_CSS_5          ( H3_CSS_CONTAIN_5 | H3_CSS_IMAGE_5 )
 #define H3_CSS_6            0
@@ -847,6 +857,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H4_ARIA_FEW         0x0350000000000000
 #define H4_ARIA_PARTIAL     0x0750000000000000
 #define H4_ARIA_FULL        0x0FF0000000000000
+
+#define H4_CSS_PRN_GOOD     0x1000000000000000
+#define H4_CSS_PRN_SIMILAR  0x2000000000000000
+#define H4_CSS_PRN_PARTIAL  0x3000000000000000
+#define H4_CSS_PRN_OPTIONAL 0x4000000000000000
+#define H4_CSS_PRN_MASK     0x7000000000000000
 
 #define H4_LV_JAN25         0x8000000000000000
 
@@ -1267,9 +1283,11 @@ public:
     void reset_profile () { ext3_ &= ~H3_NOT_MASK; }
     void set_profile (const flags_t f) { ext3_ |= f; }
     void reset_profile (const flags_t f) { ext3_ &= ~f; }
+    void set_print_profile (const flags_t f) { ext4_ |= f; }
+    void reset_print_profile (const flags_t f) { ext4_ &= ~f; }
     bool profile_checks () const { return (ext3_ & H3_NOT_MASK) != 0; }
     bool mobile_profile () const { return (ext3_ & H3_NOT_MOBILE) == H3_NOT_MOBILE; }
-    bool print_profile () const { return (ext3_ & H3_NOT_PRINT) == H3_NOT_PRINT; }
+    bool print_profile () const { return ((ext3_ & H3_NOT_PRINT) == H3_NOT_PRINT) || ((ext4_ & H4_CSS_PRN_MASK) != 0); }
     bool tv_profile () const { return (ext3_ & H3_NOT_TV) == H3_NOT_TV; }
     bool css_deprecated () const { return (ext3_ & H3_CSS_DEPRECATED) == H3_CSS_DEPRECATED; }
     bool valid_context (const html_version& v) const noexcept;

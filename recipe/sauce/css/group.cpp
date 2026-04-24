@@ -100,8 +100,7 @@ bool css_group::parse_file (nitpick& nits, const namespaces_ptr& ns, const url& 
                 res = (cp != css_ptr ());
                 if (xyzzy) nits.pick (nit_cache, es_info, ec_cache, "parsed: ", res); 
                 if (res && (local || context.ext_css ()))
-                {   dsp -> css (cp); 
-                    /* if (xyzzy) nits.pick (nit_cache, es_info, ec_cache, u.absolute (), " loaded with ", dsp -> cl ().size (), " classes, ", dsp -> id ().size (), " ids"); */ } }
+                    dsp -> css (cp); }
             global_css.release (dsp);
             return res; }
         catch (const ::std::system_error& e)
@@ -113,14 +112,7 @@ bool css_group::parse_file (nitpick& nits, const namespaces_ptr& ns, const url& 
         dsp -> borked (true);
         global_css.release (dsp);
         return false; }
-
-    page_.merge (dsp -> cat ());
-//    page_.merge_class (dsp -> cl ());
-//    page_.merge_custom_prop (dsp -> cp ());
-//    page_.merge_id (dsp -> id ());
-//    page_.merge_element_class (dsp -> ecl ());
-//    page_.merge_element_id (dsp -> eid ());
-//    page_.merge_font (dsp -> f ());
+    page_.merge (dsp -> dcl (), dsp -> use ());
     for (int i = 0; i < gst_max; ++i)
         for (auto c : dsp -> ss ().at (i))
             page_.mark_str (static_cast < e_gsstr > (i), c);
@@ -161,16 +153,31 @@ sstr_t css_group::get_strs (const e_gsstr g) const
         res.insert (cs.second -> get_str (g).cbegin (), cs.second -> get_str (g).cend ());
     return res; }
 
+void css_group::dcl (const e_id_category cic, const ::std::string& s, const ::std::size_t n) const
+{   page_.dcl (cic, s, n); }
+
+void css_group::use (const e_id_category cic, const ::std::string& s, const ::std::size_t n) const
+{   page_.use (cic, s, n); }
+
+bool css_group::has (const e_id_category cic, const ::std::string& s) const
+{   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
+    if (hasty_) return false;
+    fiddlesticks < bool > urk (&hasty_, true);
+    for (auto cs : mcss_)
+        if (cs.second -> has (cic, s)) return true;
+    if (snippets_ -> has (cic, s)) return true;
+    return page_.has (cic, s); }
+
 bool css_group::has_custom_prop (const ::std::string& name) const
 {   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
     for (auto cs : mcss_)
-        if (cs.second -> has (name)) return true;
-    if (snippets_ -> has (name)) return true;
-    return page_.has_custom_prop (name); }
+        if (cs.second -> has (cic_custom_prop, name)) return true;
+    if (snippets_ -> has (cic_custom_prop, name)) return true;
+    return page_.has (cic_custom_prop, name); }
 
 void css_group::note_custom_prop (const ::std::string& name)
 {   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
-    page_.use_custom_prop (name); }
+    page_.dcl (cic_custom_prop, name); }
 
 bool css_group::has_custom_media (const ::std::string& name) const
 {   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
@@ -189,26 +196,26 @@ bool css_group::has_id (const ::std::string& id) const
     if (snippets_ -> has (cic_id, id)) return true;
     for (auto cs : mcss_)
         if (cs.second -> has (cic_id, id)) return true;
-    return page_.has_id (id); }
+    return page_.has (cic_id, id); }
 
 bool css_group::has_class (const ::std::string& s) const
 {   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
     if (snippets_ -> has (cic_class, s)) return true;
     for (auto cs : mcss_)
         if (cs.second -> has (cic_class, s)) return true;
-    return page_.has_class (s); }
+    return page_.has (cic_class, s); }
 
 bool css_group::note_class (const ::std::string& s)
 {   if (! has_class (s))
     {   if (compare_no_case (s, "LHS-front"))
             global_css.report ();
         return false; }
-    page_.use_class (s);
+    page_.use (cic_class, s);
     return true; }
 
 bool css_group::note_element_class (const ::std::string& s)
 {   if (! note_class (s)) return false;
-    page_.use_element_class (s);
+    page_.use (cic_element_class, s);
     return true; }
 
 bool css_group::note_element (const e_element e)
@@ -224,12 +231,12 @@ bool css_group::note_element (const e_element e)
 
 bool css_group::note_id (const ::std::string& s)
 {   if (! has_id (s)) return false;
-    page_.use_id (s);
+    page_.use (cic_id, s);
     return true; }
 
 bool css_group::note_element_id (const ::std::string& s)
 {   if (! note_id (s)) return false;
-    page_.use_element_id (s);
+    page_.use (cic_element_id, s);
     return true; }
 
 bool css_group::note_class (const e_element e, const ::std::string& s)

@@ -151,15 +151,21 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
     if (((f & CF_MUST_PALETTE) == CF_MUST_PALETTE) && (st != css_font_palette_values))
         nits.pick (nit_not_here, ed_css_font_4, "9. Colour Font Support", es_error, ec_css, quote (item), " can only be used with @font-palette-values"); }
 
-bool arguments::has_custom_prop (const ::std::string& name) const
-{   if (dst_ != nullptr)
-        if (dst_ -> has (name))
-            return true;
-    return g_.has_custom_prop (name); }
+void arguments::dcl (const e_id_category cic, const ::std::string& s, const ::std::size_t n) const
+{   if (dst_ != nullptr) dst_ -> dcl (cic, s, n);
+    else g_.dcl (cic, s, n); }
 
-void arguments::note_custom_prop (const ::std::string& name)
-{   if (dst_ != nullptr) dst_ -> insert (cic_custom_prop, name);
-    else g_.note_custom_prop (name); }
+void arguments::use (const e_id_category cic, const ::std::string& s, const ::std::size_t n) const
+{   if (dst_ != nullptr) dst_ -> use (cic, s, n);
+    else g_.use (cic, s, n); }
+
+bool arguments::has (const e_id_category cic, const ::std::string& s) const
+{   if (hazard_) return false;
+    fiddlesticks < bool > nb (&hazard_, true);
+    if (dst_ != nullptr)
+        if (dst_ -> has (cic, s))
+            return true;
+    return g_.has (cic, s); }
 
 bool arguments::has_custom_media (const ::std::string& name) const
 {   if (dst_ != nullptr)

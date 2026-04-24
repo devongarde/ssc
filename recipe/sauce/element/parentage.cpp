@@ -553,6 +553,9 @@ parentage parent_table [] =
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_feconvolvematrix, elem_script },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_feconvolvematrix, elem_set },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_feconvolvematrix, elem_undefined, 0, EF_SVG_DESC },
+    { { HTML_OCT11, 0, 0, H2_CSS_SHADER }, { HTML_UNDEF }, elem_fecustom, elem_animate },
+    { { HTML_OCT11, 0, 0, H2_CSS_SHADER }, { HTML_UNDEF }, elem_fecustom, elem_set },
+    { { HTML_OCT11, 0, 0, H2_CSS_SHADER }, { HTML_UNDEF }, elem_fecustom, elem_undefined, 0, EF_SVG_DESC },
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, elem_fediffuselighting, elem_animate },
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, elem_fediffuselighting, elem_animatecolour },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_fediffuselighting, elem_fedistantlight },
@@ -2331,6 +2334,7 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
         case elem_fecolourmatrix :
         case elem_fecomponenttransfer :
         case elem_feconvolvematrix :
+        case elem_fecustom :
         case elem_fediffuselighting :
         case elem_fedisplacementmap :
         case elem_fedropshadow :

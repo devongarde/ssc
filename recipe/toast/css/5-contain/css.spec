@@ -2,7 +2,7 @@
 
 PASS ../toast/css/5-contain/css-4.css
 0 html
-27 isnt unrecognised_value
+27 unrecognised_value
 30 unrecognised_value unrecognised_value
 
 PASS ../toast/css/5-contain/css-5.css

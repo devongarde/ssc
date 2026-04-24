@@ -85,11 +85,11 @@ PASS ../toast/other/vtt/index.html
 
 GRAND
 Class:
-  bg_blue styled 0 times, used once
-  first styled 0 times, used once
-  lime styled 0 times, used once
-  loud styled twice, used once
-  yellow styled 0 times, used once
+  bg_blue declared never, used once
+  first declared never, used once
+  lime declared never, used once
+  loud declared twice, used once
+  yellow declared never, used once
 
 Nits Reported:
     Abhorrences: twice

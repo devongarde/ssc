@@ -121,7 +121,7 @@ typedef typed_property < t_measure_i, ec_padding_left > desc_padding_left;
 typedef typed_property < t_measure_i, ec_padding_right > desc_padding_right;
 typedef typed_property < t_measure_i, ec_padding_top > desc_padding_top;
 typedef typed_property < t_rotate_upright, ec_page_orientation > desc_page_orientation;
-typedef typed_property < t_10_int, ec_panose_1 > desc_panose_1;
+typedef typed_property < t_css_length, ec_path_length > desc_panose_1;
 typedef typed_property < t_css_place_self, ec_place_self > desc_place_self;
 typedef typed_property < t_text, ec_prefix > desc_prefix;
 typedef typed_property < t_4string_ni, ec_quotes > desc_quotes;

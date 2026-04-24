@@ -119,7 +119,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
                 eat_ = eat_in_list;
                 break; 
             default :
-                nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (b)), ": unexpected (2)");
+                nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (b)), ": unexpected (5)");
                 return; }
         if ((b == -1) || (args.t_.at (b).t_ == ct_square_ket))
         {   nits.pick (nit_css_syntax, es_error, ec_css, args.t_.at (b).val_, ": missing value (for an empty string, use \"\")");
@@ -137,7 +137,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
         b = next_non_whitespace (args.t_, b, to);
         if ((b == -1) || (args.t_.at (b).t_ == ct_square_ket)) return;
         if (args.t_.at (b).t_ != ct_keyword)
-        {   nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (b)), ": unexpected (3)");
+        {   nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (b)), ": unexpected (4)");
             return; }
         if (context.css_module (c_selector) < 4)
         {   nits.pick (nit_css_version, ed_css_selectors_4, "2 Selectors Overview", es_error, ec_css, "case sensitivity selectors require CSS Selectors Level 4");

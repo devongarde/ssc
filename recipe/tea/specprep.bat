@@ -182,22 +182,80 @@ ssc.exe -T --nits.spec -o ../out/apr25living.tst -f ../toast/living/apr25/living
 ssc.exe -T --nits.spec -o ../out/jul25living.tst -f ../toast/living/jul25/living.conf
 ssc.exe -T --nits.spec -o ../out/oct25living.tst -f ../toast/living/oct25/living.conf
 ssc.exe -T --nits.spec -o ../out/jan26living.tst -f ../toast/living/jan26/living.conf
+ssc.exe -T --nits.spec -o ../out/aor26living.tst -f ../toast/living/apr26/living.conf
 ssc.exe -T --nits.spec -o ../out/1math.tst -f ../toast/math/1/math.conf
 ssc.exe -T --nits.spec -o ../out/2math.tst -f ../toast/math/2/math.conf
 ssc.exe -T --nits.spec -o ../out/3math.tst -f ../toast/math/3/math.conf
 ssc.exe -T --nits.spec -o ../out/4math.tst -f ../toast/math/4/math.conf
 ssc.exe -T --nits.spec -o ../out/4cmath.tst -f ../toast/math/4-core/math.conf
-ssc.exe -T --nits.spec -o ../out/mdnalign.tst -f ../toast/mdn/align/mdn.conf
-ssc.exe -T --nits.spec -o ../out/mdnanimation.tst -f ../toast/mdn/animation/mdn.conf
-ssc.exe -T --nits.spec -o ../out/mdnattribute.tst -f ../toast/mdn/attribute/mdn.conf
-ssc.exe -T --nits.spec -o ../out/mdnelement.tst -f ../toast/mdn/element/mdn.conf
-ssc.exe -T --nits.spec -o ../out/mdnfont.tst -f ../toast/mdn/font/mdn.conf
-ssc.exe -T --nits.spec -o ../out/mdnmeta.tst -f ../toast/mdn/meta/mdn.conf
-ssc.exe -T --nits.spec -o ../out/mdnmoz.tst -f ../toast/mdn/moz/mdn.conf
-ssc.exe -T --nits.spec -o ../out/mdnproperty.tst -f ../toast/mdn/property/mdn.conf
-ssc.exe -T --nits.spec -o ../out/mdnrel.tst -f ../toast/mdn/rel/mdn.conf
-ssc.exe -T --nits.spec -o ../out/mdntype.tst -f ../toast/mdn/type/mdn.conf
-ssc.exe -T --nits.spec -o ../out/mdnwebkit.tst -f ../toast/mdn/webkit/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnactive.tst ../toast/mdn/active/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnalign.tst ../toast/mdn/align/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnanimation.tst ../toast/mdn/animation/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnat.tst ../toast/mdn/at/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnattribute.tst ../toast/mdn/attribute/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnborder.tst ../toast/mdn/border/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnbox.tst ../toast/mdn/box/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnbreak.tst ../toast/mdn/break/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdncaret.tst ../toast/mdn/caret/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdncolour.tst ../toast/mdn/colour/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdncolumn.tst ../toast/mdn/column/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdncombinator.tst ../toast/mdn/combinator/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdncorner.tst ../toast/mdn/corner/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdncounter.tst ../toast/mdn/counter/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnfill.tst ../toast/mdn/fill/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnfirst.tst ../toast/mdn/first/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnflex.tst ../toast/mdn/flex/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnfocus.tst ../toast/mdn/focus/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnfont.tst ../toast/mdn/font/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnfunction.tst ../toast/mdn/function/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdngrid.tst ../toast/mdn/grid/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnimage.tst ../toast/mdn/image/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdninset.tst ../toast/mdn/inset/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdninterest.tst ../toast/mdn/interest/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnjustify.tst ../toast/mdn/justify/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnline.tst ../toast/mdn/line/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnlist.tst ../toast/mdn/list/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnmargin.tst ../toast/mdn/margin/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnmarker.tst ../toast/mdn/marker/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnmask.tst ../toast/mdn/mask/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnmath.tst ../toast/mdn/math/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnmax.tst ../toast/mdn/max/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnmeta.tst ../toast/mdn/meta/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnmin.tst ../toast/mdn/min/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnmoz-property.tst ../toast/mdn/moz-property/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnmoz-pseudo-class.tst ../toast/mdn/moz-pseudo-class/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnmoz-pseudo-element.tst ../toast/mdn/moz-pseudo-element/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnnth.tst ../toast/mdn/nth/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnobject.tst ../toast/mdn/object/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnoffset.tst ../toast/mdn/offset/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnoutline.tst ../toast/mdn/outline/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnoverflow.tst ../toast/mdn/overflow/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnoverscroll.tst ../toast/mdn/overscroll/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnpage.tst ../toast/mdn/page/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnplace.tst ../toast/mdn/place/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnposition.tst ../toast/mdn/position/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnproperty.tst ../toast/mdn/property/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnpseudo-class.tst ../toast/mdn/pseudo-class/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnpseudo-element.tst ../toast/mdn/pseudo-element/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnrel.tst ../toast/mdn/rel/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnruby.tst ../toast/mdn/ruby/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnscroll-property.tst ../toast/mdn/scroll-property/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnscroll-pseudo-element.tst ../toast/mdn/scroll-pseudo-element/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnscrollbar.tst ../toast/mdn/scrollbar/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnselector.tst ../toast/mdn/selector/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnshape.tst ../toast/mdn/shape/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnstroke.tst ../toast/mdn/stroke/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdntarget.tst ../toast/mdn/target/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdntext.tst ../toast/mdn/text/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdntransform.tst ../toast/mdn/transform/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdntransition.tst ../toast/mdn/transition/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdntype.tst ../toast/mdn/type/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdntypes.tst ../toast/mdn/types/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnvalue.tst ../toast/mdn/value/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnview-property.tst ../toast/mdn/view-property/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnview-pseudo-element.tst ../toast/mdn/view-pseudo-element/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnwebkit-property.tst ../toast/mdn/webkit-property/mdn.conf
+ssc.exe -T --nits.spec -o ../out/mdnwebkit-pseudo-element.tst ../toast/mdn/webkit-pseudo-element/mdn.conf
 ssc.exe -T --nits.spec -o ../out/12schema.tst -f ../toast/microdata/12/schema.conf
 ssc.exe -T --nits.spec -o ../out/addendumadd.tst -f ../toast/microdata/addendum/add.conf
 ssc.exe -T --nits.spec -o ../out/basicbasic.tst -f ../toast/microdata/basic/basic.conf

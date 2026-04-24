@@ -24,14 +24,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define STANDARD_COLOURS(PREFIX,VERSION) \
     { { VERSION }, { HTML_UNDEF }, "aliceblue", PREFIX ## aliceblue }, \
     { { VERSION }, { HTML_UNDEF }, "antiquewhite", PREFIX ## antiquewhite }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "aqua", PREFIX ## aqua }, \
+    { { HTML_2_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "aqua", PREFIX ## aqua }, \
     { { VERSION }, { HTML_UNDEF }, "aquamarine", PREFIX ## aquamarine }, \
     { { VERSION }, { HTML_UNDEF }, "azure", PREFIX ## azure }, \
     { { VERSION }, { HTML_UNDEF }, "beige", PREFIX ## beige }, \
     { { VERSION }, { HTML_UNDEF }, "bisque", PREFIX ## bisque }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "black", PREFIX ## black }, \
+    { { HTML_2_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "black", PREFIX ## black }, \
     { { VERSION }, { HTML_UNDEF }, "blanchedalmond", PREFIX ## blanchedalmond }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "blue", PREFIX ## blue }, \
+    { { HTML_2_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "blue", PREFIX ## blue }, \
     { { VERSION }, { HTML_UNDEF }, "blueviolet", PREFIX ## blueviolet }, \
     { { VERSION }, { HTML_UNDEF }, "brown", PREFIX ## brown }, \
     { { VERSION }, { HTML_UNDEF }, "burlywood", PREFIX ## burlywood }, \
@@ -70,13 +70,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     { { VERSION }, { HTML_UNDEF }, "firebrick", PREFIX ## firebrick }, \
     { { VERSION }, { HTML_UNDEF }, "floralwhite", PREFIX ## floralwhite }, \
     { { VERSION }, { HTML_UNDEF }, "forestgreen", PREFIX ## forestgreen }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "fuchsia", PREFIX ## fuchsia }, \
+    { { HTML_2_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "fuchsia", PREFIX ## fuchsia }, \
     { { VERSION }, { HTML_UNDEF }, "gainsboro", PREFIX ## gainsboro }, \
     { { VERSION }, { HTML_UNDEF }, "ghostwhite", PREFIX ## ghostwhite }, \
     { { VERSION }, { HTML_UNDEF }, "gold", PREFIX ## gold }, \
     { { VERSION }, { HTML_UNDEF }, "goldenrod", PREFIX ## goldenrod }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "gray", PREFIX ## gray }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "green", PREFIX ## green }, \
+    { { HTML_2_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "gray", PREFIX ## gray }, \
+    { { HTML_2_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "green", PREFIX ## green }, \
     { { VERSION }, { HTML_UNDEF }, "grey", PREFIX ## grey }, \
     { { VERSION }, { HTML_UNDEF }, "greenyellow", PREFIX ## greenyellow }, \
     { { VERSION }, { HTML_UNDEF }, "honeydew", PREFIX ## honeydew }, \
@@ -104,11 +104,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     { { VERSION }, { HTML_UNDEF }, "lightslategrey", PREFIX ## lightslategrey }, \
     { { VERSION }, { HTML_UNDEF }, "lightsteelblue", PREFIX ## lightsteelblue }, \
     { { VERSION }, { HTML_UNDEF }, "lightyellow", PREFIX ## lightyellow }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "lime", PREFIX ## lime }, \
+    { { HTML_2_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "lime", PREFIX ## lime }, \
     { { VERSION }, { HTML_UNDEF }, "limegreen", PREFIX ## limegreen }, \
     { { VERSION }, { HTML_UNDEF }, "linen", PREFIX ## linen }, \
     { { VERSION }, { HTML_UNDEF }, "magenta", PREFIX ## magenta }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "maroon", PREFIX ## maroon }, \
+    { { HTML_2_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "maroon", PREFIX ## maroon }, \
     { { VERSION }, { HTML_UNDEF }, "mediumaquamarine", PREFIX ## mediumaquamarine }, \
     { { VERSION }, { HTML_UNDEF }, "mediumblue", PREFIX ## mediumblue }, \
     { { VERSION }, { HTML_UNDEF }, "mediumorchid", PREFIX ## mediumorchid }, \
@@ -123,9 +123,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     { { VERSION }, { HTML_UNDEF }, "mistyrose", PREFIX ## mistyrose }, \
     { { VERSION }, { HTML_UNDEF }, "moccasin", PREFIX ## moccasin }, \
     { { VERSION }, { HTML_UNDEF }, "navajowhite", PREFIX ## navajowhite }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "navy", PREFIX ## navy }, \
+    { { HTML_2_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "navy", PREFIX ## navy }, \
     { { VERSION }, { HTML_UNDEF }, "oldlace", PREFIX ## oldlace }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "olive", PREFIX ## olive }, \
+    { { HTML_2_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "olive", PREFIX ## olive }, \
     { { VERSION }, { HTML_UNDEF }, "olivedrab", PREFIX ## olivedrab }, \
     { { VERSION }, { HTML_UNDEF }, "orange", PREFIX ## orange }, \
     { { VERSION }, { HTML_UNDEF }, "orangered", PREFIX ## orangered }, \
@@ -140,9 +140,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     { { VERSION }, { HTML_UNDEF }, "pink", PREFIX ## pink }, \
     { { VERSION }, { HTML_UNDEF }, "plum", PREFIX ## plum }, \
     { { VERSION }, { HTML_UNDEF }, "powderblue", PREFIX ## powderblue }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "purple", PREFIX ## purple }, \
+    { { HTML_2_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "purple", PREFIX ## purple }, \
     { { VERSION }, { HTML_UNDEF }, "rebeccapurple", PREFIX ## rebeccapurple  }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "red", PREFIX ## red }, \
+    { { HTML_2_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "red", PREFIX ## red }, \
     { { VERSION }, { HTML_UNDEF }, "rosybrown", PREFIX ## rosybrown }, \
     { { VERSION }, { HTML_UNDEF }, "royalblue", PREFIX ## royalblue }, \
     { { VERSION }, { HTML_UNDEF }, "saddlebrown", PREFIX ## saddlebrown }, \
@@ -151,7 +151,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     { { VERSION }, { HTML_UNDEF }, "seagreen", PREFIX ## seagreen }, \
     { { VERSION }, { HTML_UNDEF }, "seashell", PREFIX ## seashell }, \
     { { VERSION }, { HTML_UNDEF }, "sienna", PREFIX ## sienna }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "silver", PREFIX ## silver }, \
+    { { HTML_2_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "silver", PREFIX ## silver }, \
     { { VERSION }, { HTML_UNDEF }, "skyblue", PREFIX ## skyblue }, \
     { { VERSION }, { HTML_UNDEF }, "slateblue", PREFIX ## slateblue }, \
     { { VERSION }, { HTML_UNDEF }, "slategray", PREFIX ## slategray }, \
@@ -160,16 +160,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     { { VERSION }, { HTML_UNDEF }, "springgreen", PREFIX ## springgreen }, \
     { { VERSION }, { HTML_UNDEF }, "steelblue", PREFIX ## steelblue }, \
     { { VERSION }, { HTML_UNDEF }, "tan", PREFIX ## tan }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "teal", PREFIX ## teal }, \
+    { { HTML_2_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "teal", PREFIX ## teal }, \
     { { VERSION }, { HTML_UNDEF }, "thistle", PREFIX ## thistle }, \
     { { VERSION }, { HTML_UNDEF }, "tomato", PREFIX ## tomato }, \
     { { HTML_MATH2 }, { HTML_UNDEF }, "transparent", PREFIX ## transparent }, \
     { { VERSION }, { HTML_UNDEF }, "turquoise", PREFIX ## turquoise }, \
     { { VERSION }, { HTML_UNDEF }, "violet", PREFIX ## violet }, \
     { { VERSION }, { HTML_UNDEF }, "wheat", PREFIX ## wheat }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "white", PREFIX ## white }, \
+    { { HTML_2_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "white", PREFIX ## white }, \
     { { VERSION }, { HTML_UNDEF }, "whitesmoke", PREFIX ## whitesmoke }, \
-    { { HTML_2_0 }, { HTML_UNDEF }, "yellow", PREFIX ## yellow }, \
+    { { HTML_2_0, 0, 0, 0, 0, H4_CSS_PRN_GOOD }, { HTML_UNDEF }, "yellow", PREFIX ## yellow }, \
     { { VERSION }, { HTML_UNDEF }, "yellowgreen", PREFIX ## yellowgreen }
 
 struct symbol_entry < html_version, e_css_colour > css_colour_symbol_table [] =

@@ -530,6 +530,7 @@ PASS ../toast/css/2.0/css-15-3.html
 
 PASS ../toast/css/2.0/css-15-5.css
 0 html
+23 not_here
 24 fontname
 44 fontname
 49 fontname

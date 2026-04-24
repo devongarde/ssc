@@ -29,7 +29,11 @@ struct category
     static ::std::size_t ids_;
     category () : cic_ (cic_none), count_ (0) { }
     category (const e_id_category cic, const ::std::string& s)
-        : cic_ (cic), s_ (s), count_ (1) { } };
+        : cic_ (cic), s_ (s), count_ (1) { }
+    category (const e_id_category cic, const ::std::string& s, const ::std::size_t c)
+        : cic_ (cic), s_ (s), count_ (c) { }
+    ::std::string rpt () const
+    {   return s_ + " ("+ ::boost::lexical_cast < ::std::string > (cic_) + ", " + ::boost::lexical_cast < ::std::string > (count_) + ", " + ::boost::lexical_cast < ::std::string > (id_) + ")"; } };
 
 typedef ssc_map < ::std::size_t, category > mcic_t;
 typedef ssc_mm < e_id_category, ::std::size_t > mmcid_t;
@@ -40,12 +44,14 @@ class categorical
     mmcid_t cid_;
 public:
     DEFAULT_CONSTRUCTORS (categorical);
+    explicit categorical (const ::std::string& ) { }
     const category get (const ::std::size_t& n) const;
     const category get (const ::std::string& s) const;
     ::std::size_t inc (const ::std::size_t& n, const ::std::size_t c = 1);
     ::std::size_t dec (const ::std::size_t& n, const ::std::size_t c = 1);
     ::std::size_t find (const ::std::string& s) const;
-    ::std::size_t insert (const category& cic, const ::std::size_t c = 1);
+    ::std::size_t insert (const category& cic, const ::std::size_t c);
+    ::std::size_t insert (const category& cic);
     void erase (const ::std::size_t& n);
     void erase (const e_id_category cic, const ::std::string& s);
     void merge (const categorical& ee);
@@ -56,16 +62,25 @@ public:
      e_id_category id_category (const ::std::string& s) const
     {   const category& cic = get (s);
         return cic.cic_; }
+    bool exists (const e_id_category cic, const ::std::string& s) const
+    {   return (id_category (s) == cic); }
     ::std::size_t insert (const e_id_category cic, const ::std::string& s, const ::std::size_t c = 1)
-    {   return insert (category (cic, s), c); }
+    {   return insert (category (cic, s, c)); }
     mcic_t::const_iterator cbegin () const
     {   return cics_.cbegin (); }
     mcic_t::const_iterator cend () const
     {   return cics_.cend (); }
+    smsid_t::const_iterator rbegin (const e_id_category cic) const;
+    smsid_t::const_iterator rend (const e_id_category cic) const;
+    void ritinc (smsid_t::const_iterator& ri, const e_id_category cic) const;
     mmcid_t::const_iterator cbegin (const e_id_category cic) const
     {   return cid_.find (cic); }
+    mmcid_t::const_iterator cend (const e_id_category ) const
+    {   return cid_.cend (); }
     bool another (const e_id_category cic, mmcid_t::const_iterator& i) const
     {   if ((++i) -> first != cic) return false;
         return i != cid_.cend (); }
     bool more (const mmcid_t::const_iterator& i)
-    {   return i != cid_.cend (); } };
+    {   return i != cid_.cend (); }
+    void accumulate (categorical& o) const;
+    ::std::string rpt () const; };

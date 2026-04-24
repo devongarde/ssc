@@ -227,6 +227,9 @@ template < > struct type_master < t_css_display_legacy > : four_value < t_css_di
 template < > struct type_master < t_css_empty_cells > : four_value < t_css_empty_cells, e_css_empty_cells, sz_hide, sz_inherit, sz_moz_show_background, sz_show >
 { using four_value < t_css_empty_cells, e_css_empty_cells, sz_hide, sz_inherit, sz_moz_show_background, sz_show > :: four_value; };
 
+template < > struct type_master < t_css_fit > : four_value < t_css_fit, e_css_fit, sz_fill, sz_hidden, sz_meet, sz_slice >
+{ using four_value < t_css_fit, e_css_fit, sz_fill, sz_hidden, sz_meet, sz_slice > :: four_value; };
+
 template < > struct type_master < t_css_flex_content > : four_value < t_css_flex_content, e_css_flex_content, sz_content, sz_fit_content, sz_max_content, sz_min_content >
 { using four_value < t_css_flex_content, e_css_flex_content, sz_content, sz_fit_content, sz_max_content, sz_min_content > :: four_value; };
 
@@ -428,8 +431,8 @@ template < > struct type_master < t_user_modify > : four_value < t_user_modify, 
 template < > struct type_master < t_valign3 > : four_value < t_valign3, e_valign3, sz_top, sz_middle, sz_bottom, sz_baseline >
 { using four_value < t_valign3, e_valign3, sz_top, sz_middle, sz_bottom, sz_baseline > :: four_value; };
 
-template < > struct type_master < t_visibility11 > : four_value < t_visibility11, e_visibility11, sz_visible, sz_hidden, sz_collapse, sz_inherit >
-{ using four_value < t_visibility11, e_visibility11, sz_visible, sz_hidden, sz_collapse, sz_inherit > :: four_value; };
+template < > struct type_master < t_visibility11 > : four_value < t_visibility11, e_visibility11, sz_visible, sz_hidden, sz_force_hidden, sz_collapse >
+{ using four_value < t_visibility11, e_visibility11, sz_visible, sz_hidden, sz_force_hidden, sz_collapse > :: four_value; };
 
 template < > struct type_master < t_vkind > : four_value < t_vkind, e_vkind, sz_individual, sz_organisation, sz_group, sz_location >
 { using four_value < t_vkind, e_vkind, sz_individual, sz_organisation, sz_group, sz_location > :: four_value; };

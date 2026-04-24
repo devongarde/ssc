@@ -427,6 +427,9 @@ template < > struct type_master < t_css_colour > : ENUM_N (css_colour)
 {   static bool is_colourful () { return true; }
     using ENUM_N (css_colour) :: enum_n; };
 
+template < > struct type_master < t_css_container_state > : ENUM_N (css_container_state)
+{ using ENUM_N (css_container_state) :: enum_n; };
+
 template < > struct type_master < t_css_content_enum > : ENUM_N (css_content_enum)
 { using ENUM_N (css_content_enum) :: enum_n; };
 
@@ -526,6 +529,9 @@ template < > struct type_master < t_css_module > : enum_n < t_css_module, e_css_
 template < > struct type_master < t_css_overflow > : ENUM_N (css_overflow)
 { using ENUM_N (css_overflow) :: enum_n; };
 
+template < > struct type_master < t_css_overflow_style > : ENUM_N (css_overflow_style)
+{ using ENUM_N (css_overflow_style) :: enum_n; };
+
 template < > struct type_master < t_css_pa_left > : ENUM_N (css_pa_left)
 { using ENUM_N (css_pa_left) :: enum_n; };
 
@@ -561,6 +567,9 @@ template < > struct type_master < t_css_pitch_e > : ENUM_N (css_pitch_e)
 
 template < > struct type_master < t_css_position > : ENUM_N (css_position)
 { using ENUM_N (css_position) :: enum_n; };
+
+template < > struct type_master < t_css_print_status > : ENUM_N (css_print_status)
+{ using ENUM_N (css_print_status) :: enum_n; };
 
 template < > struct type_master < t_css_property > : ENUM_N (css_property)
 { using ENUM_N (css_property) :: enum_n; };

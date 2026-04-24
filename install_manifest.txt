@@ -59,6 +59,7 @@
 /Applications/Static-Site-Checker.app/Contents/MacOS/libwx_osx_cocoau_propgrid-3.3.2.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libboost_nowide.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libboost_program_options.dylib
+/Applications/Static-Site-Checker.app/Contents/MacOS/libiconv.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libboost_type_erasure.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libwx_osx_cocoau_aui-3.3.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libwx_osx_cocoau_core-3.3.2.dylib
@@ -104,7 +105,6 @@
 /Applications/Static-Site-Checker.app/Contents/MacOS/libwx_osx_cocoau_qa-3.3.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libwx_osx_cocoau_webview-3.3.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libwx_baseu_xml-3.3.2.0.0.dylib
-/Applications/Static-Site-Checker.app/Contents/MacOS/libiconv.tbd
 /Applications/Static-Site-Checker.app/Contents/MacOS/libwx_osx_cocoau_richtext-3.3.2.0.0.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libicuuc.78.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libboost_math_c99.dylib

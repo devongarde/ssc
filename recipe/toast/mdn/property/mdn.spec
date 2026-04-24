@@ -219,9 +219,6 @@ PASS ../toast/mdn/property/paint-order.html
 PASS ../toast/mdn/property/perspective.html
 2 naughty_lang
 
-PASS ../toast/mdn/property/perspective-origin.html
-2 naughty_lang
-
 PASS ../toast/mdn/property/pointer-events.html
 2 naughty_lang
 

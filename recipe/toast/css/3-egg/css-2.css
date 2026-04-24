@@ -1,0 +1,31 @@
+﻿#space {
+  background:black;
+  overflow:hidden;
+  position: relative;
+}
+.celestial-body {
+  position:absolute;
+  left: 50%; top: 50%;
+  border-radius: 50%;
+  border-style:solid attr(data-radius length, 0) attr(data-color color, white);
+  margin: calc(-1 * attr(data-radius length, 0));
+  transform-origin: attr(data-radius length, 0)
+                    calc(attr(data-radius length, 0) + attr(data-semimajor-axis length, 0));
+  animation: orbit linear infinite attr(data-orbital-period time, 0);
+}
+@keyframes orbit {
+  from { transform: translateY(calc(attr(data-semimajor-axis length, 0) * -1)) rotate(0); }
+  to { transform: translateY(calc(attr(data-semimajor-axis length, 0) * -1)) rotate(-360deg); }
+}
+
+@media (min-performance: 1000adafish) {
+  #very-cool-demo-with-blinky-lights {
+    display: block;
+  }
+}
+
+@media (max-performance: 1000adafish) {
+  #really-bad-demo-with-no-blinky-lights-whatsoever {
+    display: block;
+  }
+}

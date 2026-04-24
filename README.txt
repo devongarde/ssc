@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.2.29
+version 0.2.30
 (c) 2020-2026 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notices
 https://dylanharris.org/ssc/
@@ -127,6 +127,16 @@ Hence ssc is a covid project that grew out of hand.
 
 * corvid means crow, thus covid means cow**.
 ** by the laws of sympathetic spelling.
+
+
+
+Why support old standards
+I write poetry. A lot of people read poetry. Many people who do so
+have little interest in technology. Many others are in poorer regions
+of the world. In other words, many of my potential readers use ancient
+kit. I want my website to work on ancient browsers, as well as modern
+ones. In terms of SSC, that means it's useful to check my code against
+old standards.
 
 
 

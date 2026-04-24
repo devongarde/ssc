@@ -5,7 +5,6 @@ PASS ../toast/css/3-page/css-3.css
 
 PASS ../toast/css/3-page/css-4.css
 0 html
-40 css_syntax
 60 page_name_again
 61 page_name_again
 

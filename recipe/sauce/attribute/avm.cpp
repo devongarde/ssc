@@ -63,7 +63,7 @@ void avm_init (nitpick& )
             havt_dispatchevent [], havt_div [], havt_divergence [], havt_divide [], havt_dl [], havt_domain [], havt_domainofapplication [], havt_dot [], havt_dt [],
         havt_element [], havt_elementdef [], havt_ellipse [], havt_em [], havt_embed [], havt_emptyset [], havt_eq [], havt_equivalent [], havt_eulergamma [], havt_event_source [],
             havt_eventsource [], havt_exists [], havt_exp [], havt_exponentiale [], havt_extensiondefs [],
-        havt_factorial [], havt_factorof [], havt_false [], havt_feblend [], havt_fecolourmatrix [], havt_fecomponenttransfer [], havt_fecomposite [], havt_feconvolvematrix [],
+        havt_factorial [], havt_factorof [], havt_false [], havt_feblend [], havt_fecolourmatrix [], havt_fecomponenttransfer [], havt_fecomposite [], havt_feconvolvematrix [], havt_fecustom [],
             havt_fediffuselighting [], havt_fedisplacementmap [], havt_fedistantlight [], havt_fedropshadow [], havt_feflood [], havt_fefunca [], havt_fefuncb [], havt_fefuncg [],
             havt_fefuncr [], havt_fegaussianblur [], havt_feimage [], havt_femerge [], havt_femergenode [], havt_femorphology [], havt_fencedframe [], havt_feoffset [], havt_fepointlight [],
             havt_fespecularlighting [], havt_fespotlight [], havt_fetile [], havt_feturbulence [], havt_fieldset [], havt_fig [], havt_figcaption [], havt_figure [], havt_filter [],
@@ -309,6 +309,7 @@ void avm_init (nitpick& )
     AVM_INIT (fecomponenttransfer);
     AVM_INIT (fecomposite);
     AVM_INIT (feconvolvematrix);
+    AVM_INIT (fecustom);
     AVM_INIT (fediffuselighting);
     AVM_INIT (fedisplacementmap);
     AVM_INIT (fedistantlight);

@@ -1,0 +1,6 @@
+﻿.foo {
+  background-image: url(
+    "http://example.com/image.svg"
+    param(--color, var(--primary-color))
+  );
+}

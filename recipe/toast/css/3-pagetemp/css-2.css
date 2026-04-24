@@ -1,0 +1,56 @@
+﻿@template paged-display {
+    @slot header { content: "header string"; }
+    @slot content { }
+    @slot footer { content: "footer string"; }
+}
+
+body { overflow-style: paged-x; }
+
+body { overflow-style: paged-x; }
+@template paged-display {
+    @slot content { }
+}
+
+body { overflow-style: paged-x; }
+body > * { flow-into: body-flow; }
+@template paged-display {
+    @slot content { flow-from: body-flow; }
+}
+
+body { overflow-style: paged-x; }
+    .english { flow-into: english-flow; }
+    .french { flow-into: french-flow; }
+    @template side-by-side {
+      @slot left {
+        flow-from: english-flow;
+        width: 40%;
+        height: 90%;
+        padding: 5%;
+        float: left;
+      }
+      @slot right {
+        flow-from: french-flow;
+        width: 40%;
+        height: 90%;
+        padding: 5%
+        float: right;
+      }
+    }
+
+body { overflow-style: paged-x; }
+    .english { flow-into: english-flow; }
+    .french { flow-into: french-flow; }
+    @template side-by-side {
+      display: grid;
+      grid-columns: 1fr 1fr;
+      @slot left {
+        flow-from: english-flow;
+        padding: 5%;
+        grid-column: 1;
+      }
+      @slot right {
+        flow-from: french-flow;
+        padding: 5%
+        grid-column: 2;
+      }
+    }

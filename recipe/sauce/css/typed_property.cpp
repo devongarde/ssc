@@ -41,20 +41,25 @@ bool examine_custom_property (arguments& args, nitpick& nits, const int from, co
             {   nits.pick (nit_css_custom, ed_css_custom, "2. Defining Custom Properties", es_error, ec_css, "Junk found after ", quote (prop));
                 res = false; } }
         else prop = assemble_string (args.t_, from, next, false);
-        if (args.has_custom_prop (prop)) args.note_custom_prop (prop);
+               
+        if (args.has (cic_custom_prop, prop))
+        {   //::std::cout << prop << ": dcl (7)\n";
+            args.dcl (cic_custom_prop, prop); }
         else if ((args.v_.css_module (c_mixin) == 0) || (args.dst_.get () == nullptr) || (! args.dst_ -> has (cic_fn_param, prop)))
         {   if (comma < 0)
             {   nits.pick (nit_css_custom, es_warning, ec_css, quote (prop), " is not a known custom property");
                 res = false; }
             else
-            {   args.note_custom_prop (prop);
+            {   args.dcl (cic_custom_prop, prop);
+//                ::std::cout << prop << ": dcl (5)\n";
                 nits.pick (nit_css_custom, es_comment, ec_css, quote (prop), " noted (with fallback value)"); }
                 res = false; } }
     return res; }
 
 bool check_custom_property (arguments& args, const ::std::string& s)
-{   if (! args.has_custom_prop (s)) return false;
-    args.note_custom_prop (s);
+{   if (! args.has (cic_custom_prop, s)) return false;
+//                ::std::cout << s << ": use (6)\n";
+    args.use (cic_custom_prop, s);
     return true; }
 
 void validate_anchor_id (const ::std::string& s, arguments& args)

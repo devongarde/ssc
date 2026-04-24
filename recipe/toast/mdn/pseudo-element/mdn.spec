@@ -79,7 +79,7 @@ PASS ../toast/mdn/pseudo-element/slotted.html
 89 h1_h6
 94 unknown_element
 95 unknown
-96 unrecognised_value unknown
+96 unknown
 97 unknown_element
 101 h1_h6
 110 unknown_element

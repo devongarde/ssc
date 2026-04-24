@@ -52,10 +52,27 @@ const category categorical::get (const ::std::string& s) const
     else ci -> second.count_ = 0;
     return ci -> second.count_; }
 
+::std::size_t categorical::insert (const category& cic)
+{   smsid_t::const_iterator ri = rev_.find (cic.s_);
+    if (ri != rev_.cend ())
+    {   if (ri -> second == oops_a_daisy)
+            return oops_a_daisy;
+        if (cic.count_ > 0)
+        {   mcic_t::iterator i = cics_.find (ri -> second);
+            PRESUME (i != cics_.end (), __FILE__, __LINE__);
+            i -> second.count_ += cic.count_; }
+        return ri -> second; }
+    ::std::size_t id = ++(cic.ids_);
+    cics_.insert (mcic_t::value_type (id, cic));
+    rev_.insert (smsid_t::value_type (cic.s_, id));
+    cid_.insert (mmcid_t::value_type (cic.cic_, id));
+    return id; }
+
 ::std::size_t categorical::insert (const category& cic, const ::std::size_t c)
 {   smsid_t::const_iterator ri = rev_.find (cic.s_);
     if (ri != rev_.cend ())
-    {   if (ri -> second == oops_a_daisy) return oops_a_daisy;
+    {   if (ri -> second == oops_a_daisy)
+            return oops_a_daisy;
         if (c > 0)
         {   mcic_t::iterator i = cics_.find (ri -> second);
             PRESUME (i != cics_.end (), __FILE__, __LINE__);
@@ -95,3 +112,28 @@ void categorical::clear ()
 {   cics_.clear ();
     rev_.clear ();
     cid_.clear (); }
+
+smsid_t::const_iterator categorical::rbegin (const e_id_category cic) const
+{   for (smsid_t::const_iterator i = rev_.cbegin (); i != rev_.cend (); ++i)
+        if (get (i -> second).cic_ == cic)
+            return i;
+    return rev_.cend (); }
+
+smsid_t::const_iterator categorical::rend (const e_id_category ) const
+{   return rev_.cend (); }
+
+void categorical::ritinc (smsid_t::const_iterator& ri, const e_id_category cic) const
+{   for (++ri; ri != rev_.cend (); ++ri)
+        if (get (ri -> second).cic_ == cic)
+            return;
+    ri = rev_.cend (); }
+
+void categorical::accumulate (categorical& o) const
+{   for (mcic_t::const_iterator i = cics_.cbegin (); i != cics_.cend (); ++i)
+        o.insert (i -> second.cic_, i -> second.s_, i -> second.count_); }   
+
+::std::string categorical::rpt () const
+{   ::std::string res;
+    for (auto c : cics_)
+        res += ::boost::lexical_cast < ::std::string > (c.first) + ": " + c.second.rpt () + "\n";
+    return res; }

@@ -1,0 +1,7 @@
+﻿img {
+  link-parameters: param(--color, green);
+}
+
+.foo {
+  background-image: url("image.svg", param(--color, green));
+}
