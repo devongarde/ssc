@@ -41,8 +41,6 @@ css_class::css_class (arguments& args, const int i, const ::std::string& s)
 
 void css_class::accumulate (stats_t* s, const e_element e) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
-//    s -> dcl_class (s_);
-//    s -> dcl_element_class (elem::name (e) + "." + s_);
     s -> dcl (cic_class, s_);
     s -> dcl (cic_element_class, elem::name (e) + "." + s_); }
 

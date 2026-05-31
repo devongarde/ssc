@@ -324,12 +324,13 @@ bool set_calc_ex (nitpick& nits, const html_version& v, char ch, e_status& st, :
                 had_op = true;
                 n.clear ();
                 break;
+            case '%' :
             case ')' :
                 break;
             case '(' :
                 return true;
             default :
-                if (((ch >= 'A') && (ch <= 'Z')) || ((ch >= 'a') && (ch <= 'z')) || ((ch >= '0') && (ch <= '9')) || (ch == '_') || (ch == '-'))
+                if (((ch >= 'A') && (ch <= 'Z')) || ((ch >= 'a') && (ch <= 'z')) || ((ch >= '0') && (ch <= '9')) || (ch == '_') || (ch == '-') || (ch == '.'))
                 {   had_op = false; n += ch; break; }
                 n.clear ();
                 if (ch <= ' ') break;

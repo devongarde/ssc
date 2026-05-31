@@ -1,10 +1,6 @@
 -Y 1 -7 original -f ../toast/css/3-ruby/css.conf
 
-PASS ../toast/css/3-ruby/css-4.css
-0 html
-
 PASS ../toast/css/3-ruby/css-a.css
-0 html
 7 unrecognised_value
 11 unrecognised_value
 

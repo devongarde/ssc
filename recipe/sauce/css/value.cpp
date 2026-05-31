@@ -27,123 +27,123 @@ void add_param (const arguments& args, t_params& params, int& from, const int i)
     from = next_non_whitespace (args.t_, i, -1); }
 
 bool maybe_anchor (nitpick& nits, const e_css_property id)
-{   if (id < ec_custom) return true;
+{   if (id <= ec_custom) return true;
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_ANCHOR) == CF_ANCHOR) return true;
     if (! test_esii (sii_hush, HIDE_ME))
-        nits.pick (nit_css_value_fn, ed_css_image_3, "2. Anchor Values: the <anchor> type", es_error, ec_css, "not an anchor property");
+        nits.pick (nit_css_value_fn, ed_css_image_3, "2. Anchor Values: the <anchor> type", es_error, ec_css, type_master < t_css_property > :: name (id), ": not an anchor property");
     return false; }
 
 bool maybe_anchor_size (nitpick& nits, const e_css_property id)
-{   if (id < ec_custom) return true;
+{   if (id <= ec_custom) return true;
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_ANCHOR_SIZE) == CF_ANCHOR_SIZE) return true;
     if (! test_esii (sii_hush, HIDE_ME))
-        nits.pick (nit_css_value_fn, ed_css_image_3, "2. Anchor Values: the <anchor> type", es_error, ec_css, "not an anchor-size property");
+        nits.pick (nit_css_value_fn, ed_css_image_3, "2. Anchor Values: the <anchor> type", es_error, ec_css, type_master < t_css_property > :: name (id), ": not an anchor-size property");
     return false; }
 
 bool maybe_content (nitpick& nits, const e_css_property id)
-{   if (id < ec_custom) return true;
+{   if (id <= ec_custom) return true;
     if (context.css_module (c_generated_content) < 3)
-    {   nits.pick (nit_css_version, ed_css_content, "1. Inserting and replacing content with the content property", es_error, ec_css, "Requires CSS Generated Content");
+    {   nits.pick (nit_css_version, ed_css_content, "1. Inserting and replacing content with the content property", es_error, ec_css, type_master < t_css_property > :: name (id), ": requires CSS Generated Content");
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_CONTENT) == CF_CONTENT) return true;
     if (! test_esii (sii_hush, HIDE_ME))
-        nits.pick (nit_css_value_fn, ed_css_content, "1. Inserting and replacing content with the content property", es_error, ec_css, "not a content property");
+        nits.pick (nit_css_value_fn, ed_css_content, "1. Inserting and replacing content with the content property", es_error, ec_css, type_master < t_css_property > :: name (id), ": not a content property");
     return false; }
 
 bool maybe_corner (nitpick& nits, const e_css_property id)
-{   if (id < ec_custom) return true;
+{   if (id <= ec_custom) return true;
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_CORNER) == CF_CORNER) return true;
     if (! test_esii (sii_hush, HIDE_ME))
-        nits.pick (nit_css_value_fn, ed_css_bb_4, "3.7. Corner Shaping: the corner-*-shape properties", es_error, ec_css, "not a superellipse corner property");
+        nits.pick (nit_css_value_fn, ed_css_bb_4, "3.7. Corner Shaping: the corner-*-shape properties", es_error, ec_css, type_master < t_css_property > :: name (id), ": not a superellipse corner property");
     return false; }
 
 bool maybe_filter (nitpick& nits, const e_css_property id)
-{   if (id < ec_custom) return true;
+{   if (id <= ec_custom) return true;
     if (context.css_module (c_filter_effect) < 3)
-    {   nits.pick (nit_css_version, ed_css_filter_3, "6. Filter Functions", es_error, ec_css, "Requires CSS Filter 3 or better");
+    {   nits.pick (nit_css_version, ed_css_filter_3, "6. Filter Functions", es_error, ec_css, type_master < t_css_property > :: name (id), ": requires CSS Filter 3 or better");
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_FILTER) == CF_FILTER) return true;
     if (! test_esii (sii_hush, HIDE_ME))
-        nits.pick (nit_css_value_fn, ed_css_filter_3, "6. Filter Functions", es_error, ec_css, "not a filter property");
+        nits.pick (nit_css_value_fn, ed_css_filter_3, "6. Filter Functions", es_error, ec_css, type_master < t_css_property > :: name (id), ": not a filter property");
     return false; }
 
 bool maybe_float (nitpick& nits, const e_css_property id)
-{   if (id < ec_custom) return true;
+{   if (id <= ec_custom) return true;
     if (context.css_module (c_page_float) < 3)
-    {   nits.pick (nit_css_version, es_error, ec_css, "Requires CSS Page Floats 3 or better");
+    {   nits.pick (nit_css_version, es_error, ec_css, type_master < t_css_property > :: name (id), ": requires CSS Page Floats 3 or better");
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_FLOAT) == CF_FLOAT) return true;
     if (! test_esii (sii_hush, HIDE_ME))
-        nits.pick (nit_css_value_fn, es_error, ec_css, "not a Page Float property");
+        nits.pick (nit_css_value_fn, es_error, ec_css, type_master < t_css_property > :: name (id), ": not a Page Float property");
     return false; }
 
 bool maybe_image (nitpick& nits, const e_css_property id)
-{   if (id < ec_custom) return true;
+{   if (id <= ec_custom) return true;
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_IMAGE) == CF_IMAGE) return true;
     if (! test_esii (sii_hush, HIDE_ME))
-        nits.pick (nit_css_value_fn, ed_css_image_3, "2. Image Values: the <image> type", es_error, ec_css, "not an image property");
+        nits.pick (nit_css_value_fn, ed_css_image_3, "2. Image Values: the <image> type", es_error, ec_css, type_master < t_css_property > :: name (id), ": not an image property");
     return false; }
 
 bool maybe_math (nitpick& nits, const e_css_property id)
-{   if (id < ec_custom) return true;
+{   if (id <= ec_custom) return true;
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & (CF_EXPECT_STRING | CF_EXPECT_KEYWORDS)) == 0) return true;
     if (! test_esii (sii_hush, HIDE_ME))
-        nits.pick (nit_css_value_fn, ed_css_value_4, "10 Mathematical Expressions", es_error, ec_css, "not a numeric property");
+        nits.pick (nit_css_value_fn, ed_css_value_4, "10 Mathematical Expressions", es_error, ec_css, type_master < t_css_property > :: name (id), ": not a numeric property");
     return false; }
 
 bool maybe_offset_path (nitpick& nits, const e_css_property id)
-{   if (id < ec_custom) return true;
+{   if (id <= ec_custom) return true;
     if (context.css_module (c_motion_path) >= 3) return true;
-    nits.pick (nit_css_version, es_error, ec_css, "Requires CSS Motion Path 3 or better");
+    nits.pick (nit_css_version, es_error, ec_css, type_master < t_css_property > :: name (id), ": requires CSS Motion Path 3 or better");
     return false; }
 
 bool maybe_text_4 (nitpick& nits, const e_css_property id)
-{   if (id < ec_custom) return true;
+{   if (id <= ec_custom) return true;
     if (context.css_module (c_text) < 4)
-    {   nits.pick (nit_css_version, es_error, ec_css, "Requires CSS Text 4 or better");
+    {   nits.pick (nit_css_version, es_error, ec_css, type_master < t_css_property > :: name (id), ": requires CSS Text 4 or better");
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_TEXT_4) == CF_TEXT_4) return true;
     if (! test_esii (sii_hush, HIDE_ME))
-        nits.pick (nit_css_value_fn, es_error, ec_css, "not a CSS Text 4 property (2)");
+        nits.pick (nit_css_value_fn, es_error, ec_css, type_master < t_css_property > :: name (id), ": not a CSS Text 4 property (2)");
     return false; }
 
 bool maybe_text_overflow (nitpick& nits, const e_css_property id)
-{   if (id < ec_custom) return true;
+{   if (id <= ec_custom) return true;
     if (context.css_module (c_overflow) < 4)
-    {   nits.pick (nit_css_version, es_error, ec_css, "Requires CSS Text Overflow 4 or better");
+    {   nits.pick (nit_css_version, es_error, ec_css, type_master < t_css_property > :: name (id), ": requires CSS Text Overflow 4 or better");
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_FADE) == CF_FADE) return true;
     if (! test_esii (sii_hush, HIDE_ME))
-        nits.pick (nit_css_value_fn, es_error, ec_css, "fade() only applies to text-overflow");
+        nits.pick (nit_css_value_fn, es_error, ec_css, type_master < t_css_property > :: name (id), ": fade() only applies to text-overflow");
     return false; }
 
 bool maybe_transform (nitpick& nits, const e_css_property id, const bool t4)
-{   if (id < ec_custom) return true;
+{   if (id <= ec_custom) return true;
     switch (context.css_module (c_transform))
     {   case 3 :
             if (t4)
-            {   nits.pick (nit_css_version, es_error, ec_css, "Requires CSS Transform 4 or better");
+            {   nits.pick (nit_css_version, es_error, ec_css, type_master < t_css_property > :: name (id), ": requires CSS Transform 4 or better");
                 return false; }
             break;
         case 4 :
             break;
         default :
-            nits.pick (nit_css_version, es_error, ec_css, "Requires CSS Transform 3 or better");
+            nits.pick (nit_css_version, es_error, ec_css, type_master < t_css_property > :: name (id), ": requires CSS Transform 3 or better");
             return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_TRANSFORM) == CF_TRANSFORM) return true;
     if (! test_esii (sii_hush, HIDE_ME))
-        nits.pick (nit_css_value_fn, ed_css_transform, "9. The Transform Functions", es_error, ec_css, "not transform property");
+        nits.pick (nit_css_value_fn, ed_css_transform, "9. The Transform Functions", es_error, ec_css, type_master < t_css_property > :: name (id), ": not transform property");
     return false; }
 
 int check_typed_feature (arguments& args, nitpick& nits, const int start, const int to, const e_css_statement cs, const char* const sz)

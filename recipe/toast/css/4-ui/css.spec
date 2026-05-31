@@ -1,20 +1,9 @@
 -Y 1 -7 original -f ../toast/css/4-ui/css.conf
 
-PASS ../toast/css/4-ui/css-3.css
-0 html
-
-PASS ../toast/css/4-ui/css-4.css
-0 html
-
 PASS ../toast/css/4-ui/css-5.css
-0 html
 47 abandoned
 
-PASS ../toast/css/4-ui/css-6.css
-0 html
-
 PASS ../toast/css/4-ui/css-7.css
-0 html
 12 css_version
 
 PASS ../toast/css/4-ui/index.html

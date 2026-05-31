@@ -26,7 +26,6 @@ PASS ../toast/css/ae/parked.html
 44 mixed_mess missing_open
 
 PASS ../toast/css/ae/songlight.css
-0 html
 27 fontname
 44 fontname
 131 fontname
@@ -47,9 +46,7 @@ PASS ../toast/css/ae/songlight.css
 624 class_microformat_property
 626 fontname
 
-
 PASS ../toast/css/ae/plumbing/songlight.css
-0 html
 27 fontname
 44 fontname
 131 fontname

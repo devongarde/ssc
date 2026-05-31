@@ -193,8 +193,8 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
     if (t.empty ())
         nits.pick (nit_empty, es_error, ec_type, "empty value (", type_name (E), ")");
     else if (! symbol < html_version, ENUM, CATEGORY, INIT, LC > :: parse (nits, v, t))
-    {   check_identifier_spelling (nits, v, t);
-        nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is not a valid ", type_name (E), " value"); }
+    {   if (E != t_class) check_identifier_spelling (nits, v, t);
+        nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is not a valid ", type_name (E), " value (10)"); }
     else
     {   enum_base < ENUM, E > :: value_ = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: get (); // ooops, two values :-(
         careless_case < LC > :: validate (nits, v, get_string (), pret);
@@ -217,7 +217,7 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
             if ((f.ext () & HE_M3_NONSTAND) != 0)
                 nits.pick (nit_non_standard_value, es_warning, ec_type, quote (s), " is non-standard in ", v.report (), ", and unlikely to be supported by many browsers");
             else if (f.bespoke ())
-                nits.pick (nit_bespoke_obsolete, es_warning, ec_type, quote (s), " is bespoke, obsolete, or both, so is unlikely to be supported by every browser.");
+                nits.pick (nit_bespoke_obsolete, es_comment, ec_type, quote (s), " is bespoke, obsolete, or both, so is unlikely to be supported by every browser.");
             enum_base < ENUM, E > :: status (s_good);
             enum_base < ENUM, E > :: post_set_value (nits, v);
             return; } }
@@ -660,6 +660,9 @@ template < > struct type_master < t_css_textdec_style > : ENUM_N (css_textdec_st
 
 template < > struct type_master < t_css_textemph_shape > : ENUM_N (css_textemph_shape)
 { using ENUM_N (css_textemph_shape) :: enum_n; };
+
+template < > struct type_master < t_css_text_spacing_trim > : ENUM_N (css_text_spacing_trim)
+{ using ENUM_N (css_text_spacing_trim) :: enum_n; };
 
 template < > struct type_master < t_css_touch_action > : ENUM_N (css_touch_action)
 { using ENUM_N (css_touch_action) :: enum_n; };

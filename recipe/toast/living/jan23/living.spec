@@ -1,7 +1,6 @@
 -Y 1 -7 original -f ../toast/living/jan23/living.conf
 
 PASS ../toast/living/jan23/404.html
-12 bespoke_obsolete
 47 css_version
 50 link_rel_off
 64 unrecognised_value
@@ -623,7 +622,6 @@ PASS ../toast/living/jan23/hs-9.html
 4 inserted_missing_parent inserted_missing_closure missing_close
 
 PASS ../toast/living/jan23/html4.css
-0 html
 61 pseud
 
 PASS ../toast/living/jan23/i.html

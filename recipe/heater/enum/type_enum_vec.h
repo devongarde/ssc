@@ -151,7 +151,7 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT >
         enum_vec_base < ENUM, E > :: value_.push_back (t);
         if (t.invalid ())
         {   res = false;
-            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is not a valid value"); }
+            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is not a valid value (2)"); }
         else if (t.first ().dinosaur ())
             nits.pick (nit_dinosaur, es_info, ec_type, "been dancing with the dinosaurs, have we? (", quote (s), " is archaic)"); }
     if (strs.size () == 0) enum_vec_base < ENUM, E > :: status (s_empty);

@@ -6,6 +6,7 @@ PASS ../toast/mdn/pseudo-element/after.html
 
 PASS ../toast/mdn/pseudo-element/backdrop.html
 2 naughty_lang
+5 unrecognised_value 
 
 PASS ../toast/mdn/pseudo-element/before.html
 2 naughty_lang
@@ -25,7 +26,7 @@ PASS ../toast/mdn/pseudo-element/details-content.html
 
 PASS ../toast/mdn/pseudo-element/file-selector-button.html
 2 naughty_lang
-5 ie bespoke_obsolete bespoke_obsolete
+5 ie
 71 id_exists
 
 PASS ../toast/mdn/pseudo-element/first-letter.html

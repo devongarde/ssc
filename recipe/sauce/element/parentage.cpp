@@ -1721,6 +1721,7 @@ parentage parent_table [] =
     { { HTML_2_0 }, { HTML_UNDEF }, elem_table, elem_colgroup },
     { { HTML_2_0 }, { XHTML_2_0 }, elem_table, elem_col },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_table, elem_summary },
+    { { HTML_2_0 }, { HTML_UNDEF }, elem_table, elem_table },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_table, elem_tbody },
     { { HTML_PLUS }, { HTML_PLUS }, elem_table, elem_td },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_table, elem_tfoot },

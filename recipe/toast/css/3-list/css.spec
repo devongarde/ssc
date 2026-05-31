@@ -1,16 +1,10 @@
 -Y 1 -7 original -f ../toast/css/3-list/css.conf
 
 PASS ../toast/css/3-list/css-3.css
-0 html
 13 class_microformat_property
 
 PASS ../toast/css/3-list/css-4.css
-0 html
 36 class_microformat_property
-
-PASS ../toast/css/3-list/css-a.css
-0 html
-27 unrecognised_value css_type function
 
 PASS ../toast/css/3-list/css-1.html
 2 naughty_lang

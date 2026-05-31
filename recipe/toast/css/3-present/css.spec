@@ -1,11 +1,5 @@
 -Y 1 -7 original -f ../toast/css/3-present/css.conf
 
-PASS ../toast/css/3-present/css-1.css
-0 html
-
-PASS ../toast/css/3-present/css-5.css
-0 html
-
 PASS ../toast/css/3-present/css-3.html
 0 title_required
 2 missing_close

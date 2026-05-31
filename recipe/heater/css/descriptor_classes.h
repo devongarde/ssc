@@ -65,7 +65,8 @@ typedef typed_property < t_real, ec_descent > desc_descent;
 typedef typed_property < t_percent_flexible, ec_descent_override > desc_descent_override;
 typedef typed_property < t_percents_n, ec_descent_override > desc_descent_override_5;
 typedef typed_property < t_svg_direction, ec_direction > desc_direction;
-typedef typed_property < t_css_counter_style_name, ec_fallback > desc_fallback;
+typedef typed_property < t_text, ec_expansion > desc_expansion;
+typedef typed_property < t_fallback, ec_fallback > desc_fallback;
 typedef typed_property < t_css_font, ec_font > desc_font;
 typedef typed_property < t_css_font_display, ec_font_display > desc_font_display;
 typedef typed_property < t_css_font_families, ec_font_family > desc_font_family;
@@ -81,6 +82,7 @@ typedef typed_property < t_css_font_weights, ec_font_weight > desc_font_weight;
 typedef typed_property < t_css_font_width, ec_font_width > desc_font_width;
 typedef typed_property < t_css_length_2, ec_height > desc_height;
 typedef typed_property < t_css_length_xtz, ec_height > desc_vp_height;
+typedef typed_property < t_text, ec_initial > desc_initial;
 typedef typed_property < t_css_lengths_aa_l, ec_inset > desc_inset;
 typedef typed_property < t_css_length_aa2, ec_inset_block > desc_inset_block;
 typedef typed_property < t_css_length_aia, ec_inset_block_end > desc_inset_block_end;
@@ -127,10 +129,12 @@ typedef typed_property < t_text, ec_prefix > desc_prefix;
 typedef typed_property < t_4string_ni, ec_quotes > desc_quotes;
 typedef typed_property < t_css_range_a, ec_range > desc_range;
 typedef typed_property < t_generic, ec_result > desc_result;
+typedef typed_property < t_css_scope, ec_scope > desc_scope;
+typedef typed_property < t_css_size_3, ec_size > desc_size;
 typedef typed_property < t_percent, ec_size_adjust > desc_size_adjust;
 typedef typed_property < t_real, ec_slope > desc_slope;
-typedef typed_property < t_css_size_3, ec_size > desc_size;
 typedef typed_property < t_css_speak_as, ec_speak_as > desc_speak_as;
+typedef typed_property < t_text, ec_specificity > desc_specificity;
 typedef typed_property < t_css_srcs, ec_src > desc_src;
 typedef typed_property < t_real, ec_stemh > desc_stemh;
 typedef typed_property < t_real, ec_stemv > desc_stemv;
@@ -151,6 +155,7 @@ typedef typed_property < t_css_unicode_ranges, ec_unicode_range > desc_unicode_r
 typedef typed_property < t_real, ec_units_per_em > desc_units_per_em;
 typedef typed_property < t_fixed_zoom, ec_user_zoom > desc_user_zoom;
 typedef typed_property < t_css_vertal_2, ec_vertical_align > desc_vertical_align;
+typedef typed_property < t_text, ec_value > desc_value;
 typedef typed_property < t_auto_contain_cover, ec_viewport_fit > desc_viewport_fit;
 typedef typed_property < t_visibility11, ec_visibility > desc_visibility;
 typedef typed_property < t_css_whitespace_2, ec_white_space > desc_white_space;
@@ -234,6 +239,15 @@ typedef typed_property < t_unknown, ec_unknown > desc_unknown;
     desc_superscript_position_override, \
     desc_subscript_size_override, \
     desc_superscript_size_override
+
+#define CUSTARD_PROP_DESCRIPTORS \
+    desc_initial, \
+    desc_scope, \
+    desc_value
+
+#define CUSTARD_SEL_DESCRIPTORS \
+    desc_expansion, \
+    desc_specificity
 
 #define FEATURE_DESCRIPTORS \
     desc_font_display

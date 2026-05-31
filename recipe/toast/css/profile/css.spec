@@ -1,7 +1,6 @@
 -Y 1 -7 original -f ../toast/css/profile/css.conf
 
 PASS ../toast/css/profile/css-1.css
-0 html
 2 profile profile profile profile profile
 5 print_profile profile profile profile profile
 8 profile profile profile profile profile

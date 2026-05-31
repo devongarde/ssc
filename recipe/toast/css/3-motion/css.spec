@@ -1,8 +1,5 @@
 -Y 1 -7 original -f ../toast/css/3-motion/css.conf
 
-PASS ../toast/css/3-motion/css-4.css
-0 html
-
 PASS ../toast/css/3-motion/css-4.html
 2 naughty_lang
 111 class_microformat_property

@@ -1,8 +1,5 @@
 -Y 1 -7 original -f ../toast/css/3-filter/css.conf
 
-PASS ../toast/css/3-filter/css-1.css
-0 html
-
 PASS ../toast/css/3-filter/css-1.svg
 0 title_required
 1 xhtml_5_0

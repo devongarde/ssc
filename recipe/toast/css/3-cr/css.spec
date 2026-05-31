@@ -1,21 +1,17 @@
 -Y 1 -7 original -f ../toast/css/3-cr/css.conf
 
 PASS ../toast/css/3-cr/css-2.css
-0 html
 11 class_microformat_property
 
 PASS ../toast/css/3-cr/css-3.css
-0 html
 2 namespace_unknown
-
-PASS ../toast/css/3-cr/css-5.css
-0 html
+3 css_value_fn
+6 css_value_fn
 
 PASS ../toast/css/3-cr/css-6.css
-0 html
-22 unrecognised_value
-23 css_bespoke
-24 unrecognised_value
+22 mozilla
+23 chrome
+24 opera
 
 PASS ../toast/css/3-cr/index.html
 2 naughty_lang

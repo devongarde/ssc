@@ -1,15 +1,8 @@
 -Y 1 -7 original -f ../toast/css/5-contain/css.conf
 
 PASS ../toast/css/5-contain/css-4.css
-0 html
 27 unrecognised_value
 30 unrecognised_value unrecognised_value
-
-PASS ../toast/css/5-contain/css-5.css
-0 html
-
-PASS ../toast/css/5-contain/css-6.css
-0 html
 
 PASS ../toast/css/5-contain/css-3.html
 2 naughty_lang

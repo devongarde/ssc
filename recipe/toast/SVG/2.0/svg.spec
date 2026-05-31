@@ -259,20 +259,14 @@ PASS ../toast/SVG/2.0/script.svg
 PASS ../toast/SVG/2.0/shape.html
 2 naughty_lang
 17 newline_in_string newline_in_string
-19 css_version
-26 css_version
-34 css_version
-41 css_version newline_in_string newline_in_string
-42 bespoke_obsolete
-43 bespoke_obsolete
+19 unrecognised_value
+41 newline_in_string newline_in_string
 44 fontname
 46 unrecognised_value
-47 css_version newline_in_string newline_in_string
-48 bespoke_obsolete
+47 newline_in_string newline_in_string
 49 fontname
 51 unrecognised_value
-57 css_version newline_in_string newline_in_string
-58 bespoke_obsolete
+57 newline_in_string newline_in_string
 60 unrecognised_value
 
 PASS ../toast/SVG/2.0/styling-1.svg

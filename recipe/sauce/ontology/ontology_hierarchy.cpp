@@ -17313,6 +17313,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 3, 5 }, { 0, 0 }, sch_medicalbusiness, sch_nursing },
     { { 3, 5 }, { 0, 0 }, sch_medicalbusiness, sch_obstetric },
     { { 3, 5 }, { 0, 0 }, sch_medicalbusiness, sch_oncologic },
+    { { 30, 1 }, { 0, 0 }, sch_medicalbusiness, sch_ophthalmology },
     { { 3, 5 }, { 0, 0 }, sch_medicalbusiness, sch_optician },
     { { 3, 5 }, { 0, 0 }, sch_medicalbusiness, sch_optometric },
     { { 3, 5 }, { 0, 0 }, sch_medicalbusiness, sch_otolaryngologic },

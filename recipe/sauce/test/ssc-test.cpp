@@ -599,6 +599,7 @@ bool examine_results (  knotted& expected, vstr_t& results, unsigned& passed, un
         bool itemid = false;
         bool file_stats = false;
         bool overall_stats = false;
+        bool got_gen = true;
         vstr_t overall, file;
         for (size_t r = 3; r < results.size (); ++r)
         {   vstr_t line;
@@ -695,17 +696,17 @@ bool examine_results (  knotted& expected, vstr_t& results, unsigned& passed, un
                     if (i != expected.end ()) fn = xfn; }
                 catch (...) { }
                 if (i == expected.end ())
-                {   if (fn == REPORT_CLASS) classes = true;
-                    else if (fn == REPORT_ELEMENT_CLASS) elementclasses = true;
-                    else if (fn == REPORT_ID) ids = true;
-                    else if (fn == REPORT_ELEMENT_ID) elementids = true;
-                    else if (fn == REPORT_LINK) lynx = true;
-                    else if (fn == REPORT_ITEMID) itemid = true;
-                    else if (fn == REPORT_UPDATE) examine = true;
-                    else if (fn == REPORT_SHADOW) shadow = true;
-                    else if (fn == REPORT_EXPORT) exporterrors = true;
-                    else if (fn == REPORT_STAT) file_stats = true;
-                    else if (fn == REPORT_GRAND) overall_stats = true;
+                {   if (fn == REPORT_CLASS) classes = got_gen = true;
+                    else if (fn == REPORT_ELEMENT_CLASS) elementclasses = got_gen = true;
+                    else if (fn == REPORT_ID) ids = got_gen = true;
+                    else if (fn == REPORT_ELEMENT_ID) elementids = got_gen = true;
+                    else if (fn == REPORT_LINK) lynx = got_gen = true;
+                    else if (fn == REPORT_ITEMID) itemid = got_gen = true;
+                    else if (fn == REPORT_UPDATE) examine = got_gen = true;
+                    else if (fn == REPORT_SHADOW) shadow = got_gen = true;
+                    else if (fn == REPORT_EXPORT) exporterrors = got_gen = true;
+                    else if (fn == REPORT_STAT) file_stats = got_gen = true;
+                    else if (fn == REPORT_GRAND) overall_stats = got_gen = true;
                     else
                     {   if (fn != CONFIGURE)
                         {   if (verbose) ::std::cout << "results for unexpected file " << fn << " found\n";
@@ -714,7 +715,8 @@ bool examine_results (  knotted& expected, vstr_t& results, unsigned& passed, un
                 else
                 {   previous = fn;
                     expect = i -> second;
-                    if ((expect.flags_ & NW_IGNORE) != 0) shush = true; } } }
+                    if ((expect.flags_ & NW_IGNORE) != 0) shush = true; }
+                if (! fn.empty () && got_gen) expected.erase (fn); } }
         if (! file.empty ()) if (! previous.empty ()) if (! check_file_stats (previous, file, page_stats)) { ++failed; res = false; }
         if (! overall.empty () || ! grand_stats.empty ())
         {   if (! check_overall_stats (overall, grand_stats)) { ++failed; res = false; }

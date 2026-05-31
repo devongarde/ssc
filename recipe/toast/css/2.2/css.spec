@@ -1,11 +1,5 @@
 -Y 1 -7 original -f ../toast/css/2.2/css.conf
 
-PASS ../toast/css/2.2/css-1.css
-0 html
-
-PASS ../toast/css/2.2/css-2-1.css
-0 html
-
 PASS ../toast/css/2.2/css-2-1.html
 0 charset_mismatch charset_used
 8 missing_close
@@ -41,7 +35,6 @@ PASS ../toast/css/2.2/css-3-1.html
 12 inserted_missing_closure
 
 PASS ../toast/css/2.2/css-4-1.css
-0 html
 1 url_not_found
 3 bad_import url_not_found
 6 bad_import bad_import url_not_found
@@ -52,23 +45,22 @@ PASS ../toast/css/2.2/css-4-1.css
 21 css_syntax
 26 css_version
 55 css_version
-58 unrecognised_value unrecognised_value
+58 unrecognised_value
 59 css_syntax
-62 unrecognised_value unrecognised_value
+62 unrecognised_value
 63 unrecognised_value
 71 fontname css_syntax
 
 PASS ../toast/css/2.2/css-4-2.css
-0 html
 1 css_version
-6 unrecognised_value unrecognised_value
+6 unrecognised_value
 7 css_syntax
 16 css_syntax property
 17 css_syntax property
 18 property
 19 property
 20 css_syntax css_colour
-21 css_syntax css_colour css_colour
+21 css_syntax css_colour
 23 css_syntax nesting unrecognised_value
 24 unrecognised_value
 25 css_syntax
@@ -80,7 +72,6 @@ PASS ../toast/css/2.2/css-4-2.css
 38 css_version naughty_content css_syntax
 
 PASS ../toast/css/2.2/css-4-3.css
-0 html
 31 css_version
 32 naughty_content
 44 bad_rgb
@@ -92,43 +83,19 @@ PASS ../toast/css/2.2/css-4-3.css
 51 css_element
 
 PASS ../toast/css/2.2/css-4-4.css
-0 html
 1 deprecated_value
 3 unrecognised_value
 
-PASS ../toast/css/2.2/css-5-2.css
-0 html
-
 PASS ../toast/css/2.2/css-5-3.css
-0 html
 3 whatwg_class
 4 whatwg_class
-
-PASS ../toast/css/2.2/css-5-4.css
-0 html
-
-PASS ../toast/css/2.2/css-5-5.css
-0 html
 
 PASS ../toast/css/2.2/css-5-5.html
 9 unrecognised_value
 
-PASS ../toast/css/2.2/css-5-6.css
-0 html
-
-PASS ../toast/css/2.2/css-5-7.css
-0 html
-
 PASS ../toast/css/2.2/css-5-8.css
-0 html
 14 correct_spelling
 17 correct_spelling
-
-PASS ../toast/css/2.2/css-5-9.css
-0 html
-
-PASS ../toast/css/2.2/css-5-11.css
-0 html
 
 PASS ../toast/css/2.2/css-5-11.html
 10 inserted_missing_closure
@@ -140,7 +107,6 @@ PASS ../toast/css/2.2/css-5-11.html
 24 inserted_missing_closure
 
 PASS ../toast/css/2.2/css-5-12.css
-0 html
 10 css_version
 11 naughty_content
 13 css_version naughty_content
@@ -148,21 +114,16 @@ PASS ../toast/css/2.2/css-5-12.css
 PASS ../toast/css/2.2/css-5-12-1.html
 5 long_title
 
-PASS ../toast/css/2.2/css-6-2.css
-0 html
-
 PASS ../toast/css/2.2/css-6-2.html
 10 unrecognised_value
 
 PASS ../toast/css/2.2/css-6-3.css
-0 html
 1 url_not_found
 2 url_not_found
 3 url_not_found
 4 url_not_found
 
 PASS ../toast/css/2.2/css-6-4.css
-0 html
 20 css_syntax
 
 PASS ../toast/css/2.2/css-6-4.html
@@ -170,7 +131,6 @@ PASS ../toast/css/2.2/css-6-4.html
 11 inserted_missing_closure
 
 PASS ../toast/css/2.2/css-7.css
-0 html
 1 url_not_found
 16 unrecognised_value
 
@@ -183,18 +143,6 @@ PASS ../toast/css/2.2/css-8-2.html
 30 inserted_missing_closure missing_close
 32 inserted_missing_closure
 
-PASS ../toast/css/2.2/css-8-3.css
-0 html
-
-PASS ../toast/css/2.2/css-8-4.css
-0 html
-
-PASS ../toast/css/2.2/css-8-5.css
-0 html
-
-PASS ../toast/css/2.2/css-9-2.css
-0 html
-
 PASS ../toast/css/2.2/css-9-2-1.html
 11 missing_close
 12 inserted_missing_closure
@@ -204,7 +152,7 @@ PASS ../toast/css/2.2/css-9-2-2.html
 3 long_title
 
 PASS ../toast/css/2.2/css-9-2-3.html
-5 css_version css_version
+5 css_version
 13 inserted_missing_closure
 14 inserted_missing_closure inserted_missing_closure
 15 inserted_missing_closure missing_close
@@ -215,17 +163,8 @@ PASS ../toast/css/2.2/css-9-2-4.html
 11 missing_close
 13 inserted_missing_closure
 
-PASS ../toast/css/2.2/css-9-3.css
-0 html
-
 PASS ../toast/css/2.2/css-9-4-2.html
 4 long_title
-
-PASS ../toast/css/2.2/css-9-4.css
-0 html
-
-PASS ../toast/css/2.2/css-9-5.css
-0 html
 
 PASS ../toast/css/2.2/css-9-5-1.html
 11 missing_close
@@ -239,9 +178,6 @@ PASS ../toast/css/2.2/css-9-5-2.html
 22 inserted_missing_closure
 25 inserted_missing_closure missing_close
 28 inserted_missing_closure
-
-PASS ../toast/css/2.2/css-9-8.css
-0 html
 
 PASS ../toast/css/2.2/css-9-8-1.html
 4 long_title
@@ -257,23 +193,8 @@ PASS ../toast/css/2.2/css-9-9.html
 19 url_not_found
 21 inserted_missing_closure
 
-PASS ../toast/css/2.2/css-10-1.css
-0 html
-
 PASS ../toast/css/2.2/css-10-1.html
 4 long_title
-
-PASS ../toast/css/2.2/css-10-2.css
-0 html
-
-PASS ../toast/css/2.2/css-10-5.css
-0 html
-
-PASS ../toast/css/2.2/css-10-8.css
-0 html
-
-PASS ../toast/css/2.2/css-11-1.css
-0 html
 
 PASS ../toast/css/2.2/css-11-1.html
 0 charset_mismatch charset_used
@@ -287,7 +208,6 @@ PASS ../toast/css/2.2/css-11-2.html
 39 inserted_missing_closure
 
 PASS ../toast/css/2.2/css-12-1.css
-0 html
 1 css_version naughty_content
 3 css_version naughty_content
 4 class_microformat_property
@@ -301,13 +221,12 @@ PASS ../toast/css/2.2/css-12-1.css
 22 naughty_content
 
 PASS ../toast/css/2.2/css-12-2.css
-0 html css_version
+0 css_version
 2 naughty_content
 5 css_version
 10 naughty_content
 
 PASS ../toast/css/2.2/css-12-3.css
-0 html
 4 css_version
 5 naughty_content
 5 css_version
@@ -330,7 +249,6 @@ PASS ../toast/css/2.2/css-12-3-2.html
 10 inserted_missing_closure
 
 PASS ../toast/css/2.2/css-12-4.css
-0 html
 3 css_version
 5 naughty_content
 10 css_version
@@ -355,9 +273,6 @@ PASS ../toast/css/2.2/css-12-4-1.html
 PASS ../toast/css/2.2/css-12-4-2.html
 6 only_once
 
-PASS ../toast/css/2.2/css-12-5.css
-0 html
-
 PASS ../toast/css/2.2/css-12-5-1.html
 5 only_once
 13 inserted_missing_closure
@@ -380,24 +295,11 @@ PASS ../toast/css/2.2/css-12-5-3.html
 16 inserted_missing_closure
 17 inserted_missing_closure
 
-PASS ../toast/css/2.2/css-13-2.css
-0 html
-
-PASS ../toast/css/2.2/css-13-4.css
-0 html
-
-PASS ../toast/css/2.2/css-14-1.css
-0 html
-
-PASS ../toast/css/2.2/css-14-2.css
-0 html
-
 PASS ../toast/css/2.2/css-14-2.html
 10 missing_close
 11 inserted_missing_closure
 
 PASS ../toast/css/2.2/css-15-3.css
-0 html
 1 fontname
 4 fontname
 5 fontname
@@ -411,51 +313,15 @@ PASS ../toast/css/2.2/css-15-3.html
 6 missing_open
 8 fontname
 
-PASS ../toast/css/2.2/css-15-4.css
-0 html
-
-PASS ../toast/css/2.2/css-15-5.css
-0 html
-
-PASS ../toast/css/2.2/css-15-6.css
-0 html
-
-PASS ../toast/css/2.2/css-15-7.css
-0 html
-
-PASS ../toast/css/2.2/css-15-8.css
-0 html
-
-PASS ../toast/css/2.2/css-16-1.css
-0 html
-
-PASS ../toast/css/2.2/css-16-2.css
-0 html
-
-PASS ../toast/css/2.2/css-16-3.css
-0 html
-
 PASS ../toast/css/2.2/css-16-3.html
 0 charset_mismatch charset_used
 6 missing_open
 9 inserted_missing_parent missing_close
 25 inserted_missing_closure
 
-PASS ../toast/css/2.2/css-16-4.css
-0 html
-
-PASS ../toast/css/2.2/css-16-5.css
-0 html
-
-PASS ../toast/css/2.2/css-16-6.css
-0 html
-
 PASS ../toast/css/2.2/css-16-6.html
 6 missing_open
 9 unknown_element unknown_element unknown_element unknown_element
-
-PASS ../toast/css/2.2/css-17-1.css
-0 html
 
 PASS ../toast/css/2.2/css-17-1.html
 10 inserted_missing_parent missing_close
@@ -468,18 +334,6 @@ PASS ../toast/css/2.2/css-17-1.html
 15 inserted_missing_closure
 15 wrong_parent inserted_missing_closure missing_close
 16 inserted_missing_closure inserted_missing_closure inserted_missing_closure
-
-PASS ../toast/css/2.2/css-17-2.css
-0 html
-
-PASS ../toast/css/2.2/css-17-3.css
-0 html
-
-PASS ../toast/css/2.2/css-17-4.css
-0 html
-
-PASS ../toast/css/2.2/css-17-5.css
-0 html
 
 PASS ../toast/css/2.2/css-17-5-1.html
 2 missing_close
@@ -497,9 +351,6 @@ PASS ../toast/css/2.2/css-17-5-2.html
 19 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
 21 wrong_parent inserted_missing_closure missing_close
 22 inserted_missing_closure inserted_missing_closure inserted_missing_closure
-
-PASS ../toast/css/2.2/css-17-6.css
-0 html
 
 PASS ../toast/css/2.2/css-17-6.html
 10 inserted_missing_closure
@@ -527,18 +378,10 @@ PASS ../toast/css/2.2/css-17-7.html
 10 inserted_missing_parent missing_close
 73 inserted_missing_closure
 
-PASS ../toast/css/2.2/css-18-1.css
-0 html
-
 PASS ../toast/css/2.2/css-18-2.css
-1 css_colour css_colour css_colour
-0 html
-
-PASS ../toast/css/2.2/css-18-4.css
-0 html
+1 css_colour css_colour
 
 PASS ../toast/css/2.2/html4.css
-0 html
 60 css_version
 61 naughty_content
 

@@ -1,19 +1,11 @@
 -Y 1 -7 original -f ../toast/css/3-textdec/css.conf
 
-PASS ../toast/css/3-textdec/css-1.css
-0 html
-
 PASS ../toast/css/3-textdec/css-2.css
-0 html
 7 css_version css_version
 8 css_version
 10 css_version
 
-PASS ../toast/css/3-textdec/css-3.css
-0 html
-
 PASS ../toast/css/3-textdec/css-b.css
-0 html
 20 css_version
 24 css_version
 25 css_version

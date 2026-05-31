@@ -2,7 +2,6 @@
 
 PASS ../toast/mdn/pseudo-class/any-link.html
 2 naughty_lang
-5 bespoke_obsolete
 53 chocolate_teapot use_quote_code
 
 PASS ../toast/mdn/pseudo-class/autofill.html

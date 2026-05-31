@@ -15358,6 +15358,7 @@ struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > 
     { { 0, 99 }, { 0, 0 }, "OpeningHoursSpecification", sch_openinghoursspecification },
     { { 0, 95, 0, SV_NOT_3034 }, { 0, 0 }, "OpenTrial", sch_opentrial },
     { { 29, 4 }, { 0, 0 }, "OperatingSystem", sch_operatingsystem },
+    { { 30, 1 }, { 0, 0 }, "Ophthalmology", sch_ophthalmology },
     { { 3, 5 }, { 0, 0 }, "OpinionNewsArticle", sch_opinionnewsarticle },
     { { 0, 10, 0, SV_NOT_3034 }, { 0, 0 }, "Optician", sch_optician },
     { { 0, 95, 0, SV_NOT_3034 }, { 0, 0 }, "Optometric", sch_optometric },

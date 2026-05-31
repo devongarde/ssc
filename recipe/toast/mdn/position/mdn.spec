@@ -5,14 +5,12 @@ PASS ../toast/mdn/position/index.html
 
 PASS ../toast/mdn/position/position.html
 2 naughty_lang
-5 bespoke_obsolete
 184 naughty_alt
 214 id_exists
 262 use_quote_code
 
 PASS ../toast/mdn/position/position-anchor.html
 2 naughty_lang
-5 bespoke_obsolete
 102 unrecognised_value
 103 unrecognised_value
 104 unrecognised_value
@@ -22,7 +20,7 @@ PASS ../toast/mdn/position/position-anchor.html
 
 PASS ../toast/mdn/position/position-area.html
 2 naughty_lang
-5 css_bespoke
+5 chrome
 96 unrecognised_value
 
 PASS ../toast/mdn/position/position-try.html

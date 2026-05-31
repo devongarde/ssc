@@ -1,7 +1,6 @@
 -Y 1 -7 original -f ../toast/css/3-pagetemp/css.conf
 
 PASS ../toast/css/3-pagetemp/css-2.css
-0 html
 1 pagination_template
 7 abandoned
 9 abandoned
@@ -10,7 +9,7 @@ PASS ../toast/css/3-pagetemp/css-2.css
 16 pagination_template
 20 abandoned
 23 pagination_template
-35 immeasurable immeasurable immeasurable
+35 immeasurable immeasurable
 40 abandoned
 43 pagination_template
 44 css_version
@@ -18,7 +17,6 @@ PASS ../toast/css/3-pagetemp/css-2.css
 49 css_version
 
 PASS ../toast/css/3-pagetemp/css-3.css
-0 html
 1 abandoned
 5 pagination_template
 6 pagination_template

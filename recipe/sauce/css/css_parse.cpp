@@ -33,8 +33,9 @@ bool hexen (::std::string& s, ::std::string& hex)
     hex.clear ();
     return true; }
 
-void bonk (vtok_t& vt, e_token t, const int line, ::std::string& s, ::std::string& hex, const ::std::string& x, bool& commented, bool& sgml_cmt, bool& xml_cmt)
-{   hexen (s, hex);
+void bonk (arguments& args, e_token t, const int line, ::std::string& s, ::std::string& hex, const ::std::string& x, bool& commented, bool& sgml_cmt, bool& xml_cmt)
+{   vtok_t& vt = args.t_;
+    hexen (s, hex);
     if (t == ct_root) commented = sgml_cmt = xml_cmt = false;
     bool shush = false;
     if (! s.empty ())
@@ -193,7 +194,7 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
     {   if (args_.snippet_ || args_.part ())
             args_.t_.at (0).nits_.pick (nit_css_version, es_comment, ec_css, "Presuming CSS version ", args_.v_.css_version_name ());
         else if (context.html_ver () != html_default)
-            args_.t_.at (0).nits_.pick (nit_html, es_info, ec_css, "Presuming CSS intended for use with ", context.html_ver ().name ());
+            args_.t_.at (0).nits_.pick (nit_html, es_comment, ec_css, "Presuming CSS intended for use with ", context.html_ver ().name ());
         args_.g_.told (true); }
 
     for (::std::string::const_iterator i = b; i != e; ++i)
@@ -218,7 +219,7 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
             else if (sq || dq) switch (*i)
             {   case '\\' : backslash = true; break;
                 case '\v' :
-                case '\n' : bonk (args_.t_, ct_string, line_++, v, hex, c, commented, sgml_cmt, xml_cmt);
+                case '\n' : bonk (args_, ct_string, line_++, v, hex, c, commented, sgml_cmt, xml_cmt);
                             if (args_.t_.size () > 0)
                                 args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_syntax, es_warning, ec_css, "end of line in string");
                             sq = dq = false;
@@ -227,81 +228,82 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
                             if (sq) break;
                             PRESUME (dq, __FILE__, __LINE__);
                             dq = false;
-                            bonk (args_.t_, ct_string, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                            bonk (args_, ct_string, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                             break;
                 case '\'' : v += *i;
                             if (dq) break;
                             PRESUME (sq, __FILE__, __LINE__);
                             sq = false;
-                            bonk (args_.t_, ct_string, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                            bonk (args_, ct_string, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                             break;
                 default :   v += *i; break; }
             else switch (*i)
             {   case '\t' :
                 case '\r' :
-                case ' ' : bonk (args_.t_, ct_whitespace, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case ' ' : bonk (args_, ct_whitespace, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case '\v' :
-                case '\n' :bonk (args_.t_, ct_whitespace, line_++, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case '\n' :bonk (args_, ct_whitespace, line_++, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case '\\' :backslash = true; break;
                 case '/' : if (anticipate (i, e, "/*"))
-                           {    bonk (args_.t_, ct_comment, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                           {    bonk (args_, ct_comment, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                                 commented = true; }
-                           else bonk (args_.t_, ct_slash, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                           else bonk (args_, ct_slash, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            break;
                 case '*' : if (anticipate (i, e, "*/")) commented = false;
-                           else bonk (args_.t_, ct_splat, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                           else bonk (args_, ct_splat, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            break;
-                case '{' : bonk (args_.t_, ct_curly_brac, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
-                case '}' : bonk (args_.t_, ct_curly_ket, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
-                case '[' : bonk (args_.t_, ct_square_brac, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case '{' : bonk (args_, ct_curly_brac, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case '}' : bonk (args_, ct_curly_ket, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case '[' : bonk (args_, ct_square_brac, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case ']' : if (xml_cmt && anticipate (i, e, "]]>")) xml_cmt = false;
-                           else bonk (args_.t_, ct_square_ket, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                           else bonk (args_, ct_square_ket, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            break;
-                case '(' : bonk (args_.t_, ct_round_brac, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
-                case ')' : bonk (args_.t_, ct_round_ket, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
-                case '@' : bonk (args_.t_, ct_at, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case '(' : bonk (args_, ct_round_brac, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case ')' : bonk (args_, ct_round_ket, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case '@' : bonk (args_, ct_at, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case '.' : if ((! v.empty ()) && (v.find_first_not_of (EXPONENTIAL) == ::std::string::npos)) v += '.';
+                           else if ((! v.empty ()) && ((v.at (v.size () - 1)) >= '0') && (v.at (v.size () - 1) <= '9')) v += '.';
                            else if (v.empty () && (i+1 < e) && ((*(i+1) >= '-') && (*(i+1) <= '9'))) v = '.'; 
-                           else bonk (args_.t_, ct_dot, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                           else bonk (args_, ct_dot, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            break;
-                case ',' : bonk (args_.t_, ct_comma, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
-                case ':' : if (! anticipate (i, e, "::")) bonk (args_.t_, ct_colon, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
-                           else if (args_.v_.css_module (c_selector) >= 3) bonk (args_.t_, ct_coco, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                case ',' : bonk (args_, ct_comma, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case ':' : if (! anticipate (i, e, "::")) bonk (args_, ct_colon, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                           else if (args_.v_.css_module (c_selector) >= 3) bonk (args_, ct_coco, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_selectors_3, "2. Selectors", es_error, ec_css, ":: requires CSS Selector 3 or better");
                            break;
-                case ';' : bonk (args_.t_, ct_semicolon, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
-                case '!' : bonk (args_.t_, ct_bang, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
-                case '^' : bonk (args_.t_, ct_hat, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
-                case '$' : bonk (args_.t_, ct_dollar, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case ';' : bonk (args_, ct_semicolon, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case '!' : bonk (args_, ct_bang, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case '^' : bonk (args_, ct_hat, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case '$' : bonk (args_, ct_dollar, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case '>' : if (anticipate (i, e, ">="))
-                                bonk (args_.t_, ct_gteq, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                                bonk (args_, ct_gteq, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else if (! anticipate (i, e, ">>"))
-                                bonk (args_.t_, ct_gt, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                                bonk (args_, ct_gt, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else if (context.html_ver ().css_module (c_cascade_inheritance) >= 6)
-                                bonk (args_.t_, ct_gtgt, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                                bonk (args_, ct_gtgt, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_cascade_6, "2.6. Scoped Descendant Combinator", es_error, ec_css, ">> requires CSS Cascade 6");
                            break;
                 case '<' : if (anticipate (i, e, "<="))
-                                bonk (args_.t_, ct_lteq, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                                bonk (args_, ct_lteq, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else if (x && (! xml_cmt) && anticipate (i, e, "<![CDATA["))
-                           {    bonk (args_.t_, ct_whitespace, line_, v, hex, c, commented, sgml_cmt, xml_cmt); xml_cmt = true; }
+                           {    bonk (args_, ct_whitespace, line_, v, hex, c, commented, sgml_cmt, xml_cmt); xml_cmt = true; }
                            else if ((! sgml_cmt) && anticipate (i, e, "<!--"))
-                           {    bonk (args_.t_, ct_whitespace, line_, v, hex, c, commented, sgml_cmt, xml_cmt); sgml_cmt = true; }
-                           else bonk (args_.t_, ct_lt, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                           {    bonk (args_, ct_whitespace, line_, v, hex, c, commented, sgml_cmt, xml_cmt); sgml_cmt = true; }
+                           else bonk (args_, ct_lt, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            break;
-                case '=' : bonk (args_.t_, ct_eq, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
-                case '~' : bonk (args_.t_, ct_squiggle, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case '=' : bonk (args_, ct_eq, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case '~' : bonk (args_, ct_squiggle, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case '|' : if (! anticipate (i, e, "||"))
-                               bonk (args_.t_, ct_bar, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                               bonk (args_, ct_bar, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else if (context.html_ver ().css_module (c_selector) >= 4)
-                               bonk (args_.t_, ct_barbar, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                               bonk (args_, ct_barbar, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_selectors_4, "2. Selectors Overview", es_error, ec_css, "|| requires CSS Selector 4");
                            break;
                 case '&' : if ((context.html_ver ().css_module (c_cascade_inheritance) >= 6) || ((context.html_ver ().css_module (c_view_transition) >= 3)))
-                               bonk (args_.t_, ct_ampersand, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                               bonk (args_, ct_ampersand, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_cascade_6, "2.5.3. Scoped Style Rules", es_error, ec_css, "& requires CSS Cascade 6 or CSS Nesting");
                            break;
-                case '+' : bonk (args_.t_, ct_plus, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case '+' : bonk (args_, ct_plus, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case '"' :
                     v += *i;
                     if (v.size () == 1)
@@ -316,7 +318,7 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
                     break;
                 case '#' :
                     if (v.empty ()) v = *i;
-                    else bonk (args_.t_, ct_hash, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                    else bonk (args_, ct_hash, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                     break;
                 case '0' :
                 case '1' :
@@ -357,7 +359,7 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
                 default :
                     if (::std::iswspace (*i) || ::std::iswblank (*i))
                     {   if (! hexen (v, hex))
-                            bonk (args_.t_, ct_whitespace, line_, v, hex, c, commented, sgml_cmt, xml_cmt); }
+                            bonk (args_, ct_whitespace, line_, v, hex, c, commented, sgml_cmt, xml_cmt); }
 #ifdef STR_IT_BYTE
                     else if (::std::iscntrl (*i))
 #else // STR_IT_BYTE
@@ -367,7 +369,7 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
                         {   args_.t_.at (0).nits_.pick (nit_css_syntax, es_warning, ec_css, "Unexpected control characters ignored.");
                             controlled = true; }
                         if (! hexen (v, hex))
-                            bonk (args_.t_, ct_whitespace, line_, v, hex, c, commented, sgml_cmt, xml_cmt); }
+                            bonk (args_, ct_whitespace, line_, v, hex, c, commented, sgml_cmt, xml_cmt); }
                     else
                     {   hexen (v, hex); v += *i; }
                     break; } }
@@ -383,7 +385,7 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
                 nits.pick (nit_eof_in_comment, es_warning, ec_css, "CSS ends in a comment"); }
 
     // these function calls are dedicated to my younger brother-in-law!!
-    bonk (args_.t_, ct_eof, line_, v, hex, near_here (b, e, e), commented, sgml_cmt, xml_cmt);
+    bonk (args_, ct_eof, line_, v, hex, near_here (b, e, e), commented, sgml_cmt, xml_cmt);
     breed (ticks_, args_.t_, b, e);
     boast (args_.t_);
 

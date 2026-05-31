@@ -82,7 +82,7 @@ template < bool HIDES > struct many_ids : string_vector < t_idrefs, sz_space_cha
         for (auto m : string_vector < t_idrefs, sz_space_char > :: get ())
             if (! ids_t::is_good_id (e, m, ec_type, nit_bad_id, HIDES)) allgood = false;
         if (! allgood)
-        {   tidy_string < t_idrefs > :: status (s_invalid);
+        {   string_vector < t_idrefs, sz_space_char > :: status (s_invalid);
             value_.clear (); } } };
 
 template < > struct type_master < t_idrefs > : many_ids < true >

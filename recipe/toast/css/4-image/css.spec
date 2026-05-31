@@ -1,17 +1,5 @@
 -Y 1 -7 original -f ../toast/css/4-image/css.conf
 
-PASS ../toast/css/4-image/css-2.css
-0 html
-
-PASS ../toast/css/4-image/css-3.css
-0 html
-
-PASS ../toast/css/4-image/css-6.css
-0 html
-
-PASS ../toast/css/4-image/css-8.css
-0 html
-
 PASS ../toast/css/4-image/css-2.html
 0 charset_mismatch charset_used charset_invalid
 2 naughty_lang

@@ -1,7 +1,6 @@
 -Y 1 -7 original -f ../toast/css/4-media/css.conf
 
 PASS ../toast/css/4-media/css-1.css
-0 html
 1 url_not_found
 2 url_not_found deprecated_media
 8 deprecated_media
@@ -14,7 +13,6 @@ PASS ../toast/css/4-media/css-1.html
 10 long_title
 
 PASS ../toast/css/4-media/css-2.css
-0 html
 1 url_not_found
 3 deprecated_media
 6 css_syntax
@@ -30,7 +28,6 @@ PASS ../toast/css/4-media/css-2.html
 8 deprecated_media deprecated_media url_not_found
 
 PASS ../toast/css/4-media/css-3.css
-0 html
 1 unrecognised_value css_syntax css_syntax css_syntax
 2 css_syntax unrecognised_value
 4 unrecognised_value css_syntax css_syntax css_syntax
@@ -41,18 +38,9 @@ PASS ../toast/css/4-media/css-3.css
 PASS ../toast/css/4-media/css-3.html
 4 unrecognised_value unrecognised_value url_not_found
 
-PASS ../toast/css/4-media/css-4.css
-0 html
-
 PASS ../toast/css/4-media/css-4.html
 0 charset_mismatch charset_used
 4 attribute_required
-
-PASS ../toast/css/4-media/css-5.css
-0 html
-
-PASS ../toast/css/4-media/css-6.css
-0 html
 
 PASS ../toast/css/4-media/css-6.html
 0 charset_mismatch charset_used
@@ -63,11 +51,7 @@ PASS ../toast/css/4-media/css-6.html
 0 charset_mismatch charset_used
 4 bad_media
 
-PASS ../toast/css/4-media/css-7.css
-0 html
-
 PASS ../toast/css/4-media/css-a.css
-0 html
 1 deprecated_media
 3 deprecated_media
 4 deprecated_media

@@ -52,27 +52,8 @@ public:
     bool snippet () const noexcept { return args_.snippet_; }
     void snippet (const bool b)  noexcept { args_.snippet_ = b; }
     bool style_att () const noexcept { return args_.styled_ != elem_undefined; }
-//    bool has (const ::std::string& s) const
-//    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
-//        return args_.dcl -> has (s); }
     bool has (const e_id_category cat, const ::std::string& s) const
-    {   //VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
-        return args_.has (cat, s); }
-/*    bool has_class (const ::std::string& s) const
-    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
-        return args_.dst_ -> has_class (s); }
-    bool has_custom_prop (const ::std::string& s) const
-    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
-        return args_.dst_ -> has_custom_prop (s); }
-    bool has_id (const ::std::string& s) const
-    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
-        return args_.dst_ -> has_id (s); }
-    bool has_element_class (const ::std::string& s) const
-    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
-        return args_.dst_ -> has_element_class (s); }
-    bool has_element_id (const ::std::string& s) const
-    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
-        return args_.dst_ -> has_element_id (s); } */
+    {   return args_.has (cat, s); }
     bool has_namespace (const ::std::string& ) const
     {   return false; }
     bool has_custom_media (const ::std::string& name) const

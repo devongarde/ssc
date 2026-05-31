@@ -22,37 +22,37 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "compound/type_one_of.h"
 
 template < e_type T, ::std::size_t MAX, ::std::size_t MIN > struct range_ok
-{   static bool ok (nitpick& nits, const ::std::size_t vs)
+{   static bool ok (nitpick& nits, const ::std::size_t vs, const ::std::string& s)
     {   if ((vs >= MIN) && ((MAX == 0) || (vs <= MAX))) return true;
-        nits.pick (nit_range, es_error, ec_type, vs, " values found, but between ", MIN, " and ", MAX, " value expected (", type_name (T), ")");
+        nits.pick (nit_range, es_error, ec_type, quoted_limited_string (s, short_quote_cut), ": ", vs, " value/s found, but between ", MIN, " and ", MAX, " value expected (", type_name (T), ")");
         return false; } };
 
 template < e_type T, ::std::size_t MAX > struct range_ok < T, MAX, 0 >
-{   static bool ok (nitpick& nits, const ::std::size_t vs)
+{   static bool ok (nitpick& nits, const ::std::size_t vs, const ::std::string& s)
     {   if ((MAX == 0) || (vs <= MAX)) return true;
-        nits.pick (nit_at_most, es_error, ec_type, vs, " values found, but at most ", MAX, " value(s) expected (", type_name (T), ")");
+        nits.pick (nit_at_most, es_error, ec_type, quoted_limited_string (s, short_quote_cut), ": ", vs, " value/s found, but at most ", MAX, " value/s expected (", type_name (T), ")");
         return false; } };
  
 template < e_type T, ::std::size_t MIN, ::std::size_t MAX, ::std::size_t DIFF > struct precisely_ok : range_ok < T, MAX, MIN >
 {   using range_ok < T, MAX, MIN > :: range_ok; };
 
 template < e_type T, ::std::size_t MIN, ::std::size_t MAX > struct precisely_ok < T, MIN, MAX, 0 >
-{   static bool ok (nitpick& nits, const ::std::size_t vs)
+{   static bool ok (nitpick& nits, const ::std::size_t vs, const ::std::string& s)
     {   if (vs == MIN) return true;
-        nits.pick (nit_precisely, es_error, ec_type, vs, " values found, but ", MIN, " value(s) expected (", type_name (T), ")");
+        nits.pick (nit_precisely, es_error, ec_type, quoted_limited_string (s, short_quote_cut), ": ", vs, " value/s found, but ", MIN, " value/s expected (", type_name (T), ")");
         return false; } };
  
 template < e_type T, ::std::size_t MIN, ::std::size_t MAX > struct min_max_ok : precisely_ok < T, MIN, MAX, MAX-MIN >
 {   using precisely_ok < T, MIN, MAX, MAX-MIN > :: precisely_ok; };
  
 template < e_type T, ::std::size_t MIN > struct min_max_ok < T, MIN, 0 >
-{   static bool ok (nitpick& nits, const ::std::size_t vs)
+{   static bool ok (nitpick& nits, const ::std::size_t vs, const ::std::string& s)
     {   if (vs >= MIN) return true;
-        nits.pick (nit_at_least, es_error, ec_type, vs, " values found, but at least ", MIN, " value(s) required (", type_name (T), ")");
+        nits.pick (nit_at_least, es_error, ec_type, quoted_limited_string (s, short_quote_cut), ": ", vs, " value/s found, but at least ", MIN, " value/s expected (", type_name (T), ")");
         return false; } };
 
 template < e_type T > struct min_max_ok < T, 0, 0 >
-{   static bool ok (nitpick& , const ::std::size_t ) { return true; } };
+{   static bool ok (nitpick& , const ::std::size_t , const ::std::string& ) { return true; } };
 
  
 template < e_type T, class SZ, int F, int MIN, int MAX, e_type... A > struct type_some_flagged_of : string_vector < T, SZ, F > 
@@ -119,7 +119,7 @@ template < e_type T, class SZ, int F, int MIN, int MAX, e_type... A > struct typ
             if (! one.good ()) { awful.merge (knots); good = false; }
             else if (good) great.merge (knots);
             voo_.push_back (one); }
-        if (! min_max_ok < T, MIN, MAX > :: ok (nuts, voo_.size ()))
+        if (! min_max_ok < T, MIN, MAX > :: ok (nuts, voo_.size (), s))
         {   awful.merge (nuts); good = false; }
         else if (good) great.merge (nuts);
         if (good)

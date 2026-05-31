@@ -37,7 +37,7 @@ PASS ../toast/mdn/font/font-size-adjust.html
 
 PASS ../toast/mdn/font/font-smooth.html
 2 naughty_lang
-5 bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete unrecognised_value abandoned bespoke_obsolete unrecognised_value
+5 chrome unrecognised_value abandoned unrecognised_value
 
 PASS ../toast/mdn/font/font-stretch.html
 2 naughty_lang
@@ -75,7 +75,7 @@ PASS ../toast/mdn/font/font-variant.html
 PASS ../toast/mdn/font/font-variant-alternates.html
 2 naughty_lang
 4 long_title
-5 css_font_feature css_font_feature css_font_feature css_font_feature css_font_feature css_font_feature css_font_feature fontname fontname
+5  css_font_feature css_font_feature css_font_feature css_font_feature css_font_feature css_font_feature css_font_feature css_font_feature fontname fontname
 
 PASS ../toast/mdn/font/font-variant-caps.html
 2 naughty_lang

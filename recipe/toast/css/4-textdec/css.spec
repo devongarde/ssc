@@ -1,17 +1,7 @@
 -Y 1 -7 original -f ../toast/css/4-textdec/css.conf
 
-PASS ../toast/css/4-textdec/css-1.css
-0 html
-
 PASS ../toast/css/4-textdec/css-2.css
-0 html
 12 unrecognised_value
-
-PASS ../toast/css/4-textdec/css-3.css
-0 html
-
-PASS ../toast/css/4-textdec/css-b.css
-0 html
 
 PASS ../toast/css/4-textdec/css-1.html
 0 charset_mismatch charset_used charset_invalid

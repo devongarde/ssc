@@ -226,6 +226,9 @@ template < > struct type_master < t_css_mark > : two_value < t_css_mark, e_css_m
 template < > struct type_master < t_css_mask_border_mode > : two_value < t_css_mask_border_mode, e_css_mask_border_mode, sz_alpha, sz_luminance >
 { using two_value < t_css_mask_border_mode, e_css_mask_border_mode, sz_alpha, sz_luminance > :: two_value; };
 
+template < > struct type_master < t_css_scope > : two_value < t_css_scope, e_css_scope, sz_inherit, sz_local >
+{ using two_value < t_css_scope, e_css_scope, sz_inherit, sz_local > :: two_value; };
+
 template < > struct type_master < t_css_shape_fillrule > : two_value < t_css_shape_fillrule, e_css_shape_fillrule, sz_evenodd, sz_nonzero >
 { using two_value < t_css_shape_fillrule, e_css_shape_fillrule, sz_evenodd, sz_nonzero > :: two_value; };
 

@@ -25,6 +25,7 @@ PASS ../toast/mdn/property/aspect-ratio.html
 
 PASS ../toast/mdn/property/backdrop-filter.html
 2 naughty_lang
+5 css_value_fn
 50 unrecognised_value
 
 PASS ../toast/mdn/property/backface-visibility.html
@@ -51,6 +52,7 @@ PASS ../toast/mdn/property/columns.html
 
 PASS ../toast/mdn/property/content.html
 2 naughty_lang
+5 unrecognised_value
 171 use_quote_code use_quote_code
 198 id_exists
 200 id_exists
@@ -101,6 +103,7 @@ PASS ../toast/mdn/property/dominant-baseline.html
 
 PASS ../toast/mdn/property/dominant-range-limit.html
 2 naughty_lang
+5 unrecognised_value unrecognised_value unrecognised_value
 
 PASS ../toast/mdn/property/empty-cells.html
 2 naughty_lang
@@ -111,6 +114,7 @@ PASS ../toast/mdn/property/field-sizing.html
 
 PASS ../toast/mdn/property/filter.html
 2 naughty_lang
+5 css_value_fn css_value_fn css_value_fn css_value_fn css_value_fn css_value_fn
 
 PASS ../toast/mdn/property/float.html
 2 naughty_lang
@@ -148,7 +152,7 @@ PASS ../toast/mdn/property/height.html
 
 PASS ../toast/mdn/property/hyphenate-character.html
 2 naughty_lang
-5 bespoke_obsolete
+5 chrome
 30 use_double_quote_code
 
 PASS ../toast/mdn/property/hyphenate-limit-chars.html
@@ -159,7 +163,7 @@ PASS ../toast/mdn/property/hyphens.html
 
 PASS ../toast/mdn/property/initial-letter.html
 2 naughty_lang
-5 bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete
+5 chrome chrome chrome chrome chrome chrome chrome
 
 PASS ../toast/mdn/property/inline-size.html
 2 naughty_lang
@@ -179,7 +183,6 @@ PASS ../toast/mdn/property/isolation.html
 2 naughty_lang
 
 PASS ../toast/mdn/property/left.html
-0 anchor
 2 naughty_lang
 
 PASS ../toast/mdn/property/letter-spacing.html
@@ -211,10 +214,12 @@ PASS ../toast/mdn/property/orphans.html
 
 PASS ../toast/mdn/property/overlay.html
 2 naughty_lang
+5 safari safari safari safari safari safari safari safari safari
 87 use_quote_code
 
 PASS ../toast/mdn/property/paint-order.html
 2 naughty_lang
+5 chrome chrome
 
 PASS ../toast/mdn/property/perspective.html
 2 naughty_lang
@@ -249,7 +254,6 @@ PASS ../toast/mdn/property/resize.html
 56 naughty_grave naughty_grave naughty_grave naughty_grave
 
 PASS ../toast/mdn/property/right.html
-0 anchor
 2 naughty_lang
 
 PASS ../toast/mdn/property/rotate.html
@@ -347,6 +351,7 @@ PASS ../toast/mdn/property/top.html
 
 PASS ../toast/mdn/property/touch-action.html
 2 naughty_lang
+5 safari safari safari safari safari safari safari safari safari safari safari safari safari safari safari safari
 
 PASS ../toast/mdn/property/translate.html
 2 naughty_lang
@@ -356,11 +361,11 @@ PASS ../toast/mdn/property/unicode-bidi.html
 
 PASS ../toast/mdn/property/user-modify.html
 2 naughty_lang
-5 deprecated deprecated deprecated deprecated deprecated deprecated deprecated abandoned bespoke_obsolete css_bespoke
+5 deprecated deprecated deprecated deprecated deprecated deprecated deprecated abandoned chrome
 
 PASS ../toast/mdn/property/user-select.html
 2 naughty_lang
-5 css_bespoke css_bespoke
+5 chrome chrome
 38 use_quote_code
 
 PASS ../toast/mdn/property/vector-effect.html
@@ -392,6 +397,7 @@ PASS ../toast/mdn/property/widows.html
 
 PASS ../toast/mdn/property/width.html
 2 naughty_lang
+5 unrecognised_value unrecognised_value
 124 unrecognised_value
 126 unrecognised_value
 

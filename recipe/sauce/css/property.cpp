@@ -192,12 +192,11 @@ void property::parse (arguments& args, const int from, const int to)
             args.ps_ -> state () |= pr;
             if (pr == ec_custom)
             {   name_ = args.t_.at (k).val_;
-                if (args.has (cic_custom_prop, name_))
+                if (args.has (cic_custom_property, name_))
                    nits.pick (nit_css_custom, es_comment, ec_css, quote (name_), " referenced again");
                 else
                     nits.pick (nit_css_custom, es_comment, ec_css, quote (name_), " noted");
-  //              ::std::cout << name_ << ": dcl (1)\n";
-                args.dcl (cic_custom_prop, name_); }
+                args.dcl (cic_custom_property, name_); }
             flags_ = pp.flags ();
             args.check_flags (nits, flags_, pp.name ());
             args.check_flags (nits, flags_, pp.name (), xk, xi, xn, xs, fn, kc, args.t_.at (k).val_, val_);
@@ -221,9 +220,7 @@ void property::accumulate (stats_t* s, const element_bitset& e) const
         prop_ -> accumulate (s, e); }
     w_.accumulate (s);
     if (! name_.empty ())
-    {   //              ::std::cout << name_ << ": use (4)\n";
-
-        s -> use (cic_custom_prop, name_); } }
+        s -> use (cic_custom_property, name_); }
 
 ::std::string property::rpt () const
 {   if (prop_.get () == nullptr) return ::std::string ();

@@ -1,7 +1,6 @@
 -Y 1 -7 original -f ../toast/living/jul21/living.conf
 
 PASS ../toast/living/jul21/404.html
-12 bespoke_obsolete
 47 css_version
 50 link_rel_off
 64 unrecognised_value

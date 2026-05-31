@@ -1,0 +1,59 @@
+﻿#anchored { container-type: anchored; }
+#anchored-size { container-type: anchored inline-size; }
+
+#container {
+  container-type: anchored;
+  position: absolute;
+  position-anchor: --a;
+  position-area: left;
+  position-try-fallbacks: right;
+  &::before { content: ">"; }
+
+  @container anchored(fallback: right) {
+    &::before { content: "<"; };
+  }
+}
+
+.anchored {
+  container-type: anchored;
+  position-try-fallbacks: --foo, --bar flip-inline;
+
+  @container anchored(fallback: --bar flip-inline) {
+    /* Applies if the '--bar' fallback applies */
+    .inner { background-color: green; }
+  }
+  @container anchored(fallback: --bar) {
+    /* Does not apply because the try-tactic also must match */
+    .inner { background-color: red; }
+  }
+}
+
+.anchored {
+  container-type: anchored;
+  position-anchor: --a;
+  position-try-fallbacks: right;
+  writing-mode: vertical-rl;
+
+  @container anchored(fallback: self-block-start) {
+    /* Applies if the 'right' fallback applies since block-start is 'right'
+        in 'vertical-rl'. */
+    .inner { background-color: green; }
+  }
+}
+
+.anchored {
+  container-type: anchored;
+  position-anchor: --a;
+  position-try-fallbacks: bottom right;
+  writing-mode: vertical-rl;
+
+  @container anchored(fallback: bottom any) {
+    /* Applies because 'any' matches 'right'. */
+    .inner { color: lime; }
+  }
+  @container anchored(fallback: right) {
+    /* Applies because implicit 'any' in the vertical axis matches 'bottom'. */
+    .inner { background-color: green; }
+  }
+}
+

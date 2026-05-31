@@ -63,12 +63,12 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 30
-#define VERSION_STRING "0.2.30"
+#define VERSION_RELEASE 31
+#define VERSION_STRING "0.2.31"
 
 #define BUILD_YEAR              "2026"
-#define BUILD_MONTH             "Apr"
-#define BUILD_DAY_ISH BUILD_YEAR "-04-30"
+#define BUILD_MONTH             "May"
+#define BUILD_DAY_ISH BUILD_YEAR "-05-01"
 #define LATEST_CSS              "2025"
 
 #define NBSP "&nbsp;"
@@ -945,6 +945,7 @@ typedef ::std::vector < bool > faux_vb_t;
 #define REPORT_CLASS              "Class"
 #define REPORT_CUSTARD_MEDIA      "Custom-Media"
 #define REPORT_CUSTARD_PROPERTY   "Custom-Property"
+#define REPORT_CUSTARD_SELECTOR   "Custom-Selector"
 #define REPORT_DEFINITION         "Definition"
 #define REPORT_ELEMENT            "Element"
 #define REPORT_ELEMENT_CLASS      "Class/Element"

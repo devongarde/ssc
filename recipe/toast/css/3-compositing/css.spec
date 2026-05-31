@@ -1,8 +1,5 @@
 -Y 1 -7 original -f ../toast/css/3-compositing/css.conf
 
-PASS ../toast/css/3-compositing/css-3.css
-0 html
-
 PASS ../toast/css/3-compositing/css-3-1.html
 2 naughty_lang
 11 url_not_found naughty_alt

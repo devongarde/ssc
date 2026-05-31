@@ -1,16 +1,6 @@
 -Y 1 -7 original -f ../toast/css/3-table/css.conf
 
-PASS ../toast/css/3-table/css-2.css
-0 html
-
-PASS ../toast/css/3-table/css-3.css
-0 html
-
-PASS ../toast/css/3-table/css-5.css
-0 html
-
 PASS ../toast/css/3-table/css-10.css
-0 html
 36 unrecognised_value pseud
 41 unrecognised_value pseud
 42 unrecognised_value pseud

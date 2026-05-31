@@ -287,9 +287,6 @@ template < > struct type_master < t_css_synthesis > : four_value < t_css_synthes
 template < > struct type_master < t_css_textemph_skip > : four_value < t_css_textemph_skip, e_css_textemph_skip, sz_narrow, sz_punctuation, sz_spaces, sz_symbols >
 { using four_value < t_css_textemph_skip, e_css_textemph_skip, sz_narrow, sz_punctuation, sz_spaces, sz_symbols > :: four_value; };
 
-template < > struct type_master < t_css_text_spacing_trim > : four_value < t_css_text_spacing_trim, e_css_text_spacing_trim, sz_normal, sz_space_all, sz_space_first, sz_trim_start >
-{ using four_value < t_css_text_spacing_trim, e_css_text_spacing_trim, sz_normal, sz_space_all, sz_space_first, sz_trim_start > :: four_value; };
-
 template < > struct type_master < t_css_text_wrap_style > : four_value < t_css_text_wrap_style, e_css_text_wrap_style, sz_auto, sz_balance, sz_pretty, sz_stable >
 { using four_value < t_css_text_wrap_style, e_css_text_wrap_style, sz_auto, sz_balance, sz_pretty, sz_stable > :: four_value; };
 

@@ -36,7 +36,7 @@ template < > struct type_master < t_itemprop > : string_vector < t_itemprop, sz_
     {   string_vector < t_itemprop, sz_space_char > :: set_value (nits, v, s);
         if (string_vector < t_itemprop, sz_space_char > :: empty ())
         {   nits.pick (nit_bad_itemprop, ed_jul20, "5.2.2 Items", es_error, ec_type, "ITEMPROP requires a value");
-            tidy_string < t_itemprop > :: status (s_invalid); }
+            string_vector < t_itemprop, sz_space_char > :: status (s_invalid); }
         else if (string_vector < t_itemprop, sz_space_char > :: good ())
             if (v.mjr () >= 10)
                 for (auto t : string_vector < t_itemprop, sz_space_char > :: get ())
@@ -45,10 +45,10 @@ template < > struct type_master < t_itemprop > : string_vector < t_itemprop, sz_
                         url u (nuts, v, t);
                         if (u.invalid ())
                         {   nits.merge (nuts);
-                            tidy_string < t_itemprop > :: status (s_invalid); }
+                            string_vector < t_itemprop, sz_space_char > :: status (s_invalid); }
                         else if (u.is_local () || ! u.has_absolute_path () || u.deduced_path ())
                         {   nits.pick (nit_bad_itemprop, es_error, ec_type, quote (t), " is neither an absolute url nor an identifier that has no colons, no full stops");
-                            tidy_string < t_itemprop > :: status (s_invalid); } } } };
+                            string_vector < t_itemprop, sz_space_char > :: status (s_invalid); } } } };
 
 template < > struct type_master < t_itemtype > : string_vector < t_itemtype, sz_space_char >
 {   using string_vector < t_itemtype, sz_space_char > :: string_vector;

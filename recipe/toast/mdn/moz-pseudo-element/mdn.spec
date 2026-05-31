@@ -6,36 +6,27 @@ PASS ../toast/mdn/moz-pseudo-element/index.html
 
 PASS ../toast/mdn/moz-pseudo-element/moz-colour-swatch.html
 2 naughty_lang
-5 bespoke_obsolete
 
 PASS ../toast/mdn/moz-pseudo-element/moz-focus-inner.html
 2 naughty_lang
-5 bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete
 
 PASS ../toast/mdn/moz-pseudo-element/moz-list-bullet.html
 2 naughty_lang
-5 bespoke_obsolete
 
 PASS ../toast/mdn/moz-pseudo-element/moz-list-number.html
 2 naughty_lang
-5 bespoke_obsolete
 
 PASS ../toast/mdn/moz-pseudo-element/moz-meter-bar.html
 2 naughty_lang
-5 bespoke_obsolete
 
 PASS ../toast/mdn/moz-pseudo-element/moz-progress-bar.html
 2 naughty_lang
-5 bespoke_obsolete bespoke_obsolete
 
 PASS ../toast/mdn/moz-pseudo-element/moz-range-progress.html
 2 naughty_lang
-5 bespoke_obsolete
 
 PASS ../toast/mdn/moz-pseudo-element/moz-range-thumb.html
 2 naughty_lang
-5 bespoke_obsolete
 
 PASS ../toast/mdn/moz-pseudo-element/moz-range-track.html
 2 naughty_lang
-5 bespoke_obsolete

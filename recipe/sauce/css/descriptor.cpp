@@ -71,6 +71,12 @@ void descriptor::parse (arguments& args, const e_css_statement cs, const int fro
             {   case css_counter_style :
                     dsc_ = make_counter_style_v_ptr (args, var, to, nits, k, val_, p);
                     break;
+                case css_custom_property :
+                    dsc_ = make_custard_prop_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
+                case css_custom_selector :
+                    dsc_ = make_custard_sel_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
                 case css_font_face :
                     dsc_ = make_descriptor_v_ptr (args, var, to, nits, k, val_, p);
                     break;

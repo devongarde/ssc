@@ -24,7 +24,8 @@
 ../toast/css/2.1/css.spec
 ../toast/css/2.2/css.spec
 ../toast/css/3-adjust/css.spec
-../toast/css/3-anchor-positioning
+../toast/css/3-anchor-positioning/css.spec
+../toast/css/4-anchor-positioning/css.spec
 ../toast/css/3-animation/css.spec
 ../toast/css/4-animation/css.spec
 ../toast/css/3-background/css.spec
@@ -56,6 +57,7 @@
 ../toast/css/4-ease/css.spec
 ../toast/css/3-egg/css.spec
 ../toast/css/3-exclude/css.spec
+../toast/css/3-extensions/css.spec
 ../toast/css/3-fbl/css.spec
 ../toast/css/3-fcs/css.spec
 ../toast/css/3-fill/css.spec
@@ -71,6 +73,7 @@
 ../toast/css/3-image/css.spec
 ../toast/css/4-image/css.spec
 ../toast/css/3-inline/css.spec
+../toast/css/3-linkparam/css.spec
 ../toast/css/3-list/css.spec
 ../toast/css/3-logic/css.spec
 ../toast/css/3-masking/css.spec

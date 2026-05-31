@@ -435,6 +435,7 @@ void element::examine_self (
                 if (hv.invalid_addendum (node_.version ())) pick (nit_invalid_addendum, es_error, ec_element, "<", elem :: name (tag), "> is part of an extension that is being ignored");
                 else if (hv.netscape ()) pick (nit_netscape, es_warning, ec_browser, "<", elem :: name (tag), ">: avoid (ancient) Netscape bespoke elements");
                 else if (hv.mozilla ()) pick (nit_mozilla, es_warning, ec_browser, "<", elem :: name (tag), ">: avoid non-standard Firefox / Mozilla elements");
+                else if (hv.konqueror ()) pick (nit_bespoke_element, es_warning, ec_browser, "<", elem :: name (tag), ">: avoid non-standard Konqueror elements");
                 else if (hv.ie ()) pick (nit_ie, es_warning, ec_browser, "<", elem :: name (tag), ">: avoid (ancient) Internet Explorer bespoke elements");
                 else if (hv.chrome ()) pick (nit_chrome, es_warning, ec_browser, "<", elem :: name (tag), ">: avoid non-standard Chrome bespoke elements");
                 else if (hv.safari ()) pick (nit_safari, es_warning, ec_browser, "<", elem :: name (tag), ">: avoid non-standard Safari bespoke elements");

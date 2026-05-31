@@ -9,6 +9,7 @@ PASS ../toast/mdn/transition/transition.html
 
 PASS ../toast/mdn/transition/transition-behaviour.html
 2 naughty_lang
+5 safari
 71 use_quote_code
 
 PASS ../toast/mdn/transition/transition-delay.html
@@ -19,7 +20,7 @@ PASS ../toast/mdn/transition/transition-duration.html
 
 PASS ../toast/mdn/transition/transition-property.html
 2 naughty_lang
-5 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
+5 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
 
 PASS ../toast/mdn/transition/transition-timing-function.html
 2 naughty_lang

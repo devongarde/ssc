@@ -55,6 +55,9 @@ template < > struct type_master < t_aria_relevants > : type_at_least_one < t_ari
 template < > struct type_master < t_bixys > : type_at_least_one < t_bixys, sz_space_char, t_bixy >
 { using type_at_least_one < t_bixys, sz_space_char, t_bixy > :: type_at_least_one; };
 
+template < > struct type_master < t_block_inline_2 > : type_at_least_one < t_block_inline_2, sz_space_char, t_block_inline >
+{ using type_at_least_one < t_block_inline_2, sz_space_char, t_block_inline > :: type_at_least_one; };
+
 template < > struct type_master < t_contents > : type_string < t_contents, sz_contents >
 { using type_string < t_contents, sz_contents > :: type_string; };
 
@@ -253,9 +256,6 @@ template < > struct type_master < t_linear_colour_more > : type_either_or < t_li
 template < > struct type_master < t_linear_colour_stops > : type_some_of < t_linear_colour_stops, sz_comma, 1, 0, t_linear_colour_stop, t_linear_colour_more, t_linear_colour_stop >
 { using type_some_of < t_linear_colour_stops, sz_comma, 1, 0, t_linear_colour_stop, t_linear_colour_more, t_linear_colour_stop > :: type_some_of; };
 
-//template < > struct type_master < t_angular_colour_stop > : type_ab_ba < t_angular_colour_stop, sz_space_char, t_css_col, t_angle_p >
-//{ using type_ab_ba < t_angular_colour_stop, sz_space_char, t_css_col, t_angle_p > :: type_ab_ba; };
-
 template < > struct type_master < t_angular_colour_stop > : type_some_of < t_angular_colour_stop, sz_space_char, 1, 0, t_css_col, t_angle_p >
 { using type_some_of < t_angular_colour_stop, sz_space_char, 1, 0, t_css_col, t_angle_p > :: type_some_of; };
 
@@ -387,9 +387,6 @@ template < > struct type_master < t_refys > : type_at_least_one < t_refys, sz_co
 
 template < > struct type_master < t_rgbafn > : type_function_all < t_rgbafn, sz_rgba, t_integer_or_percent, t_integer_or_percent, t_integer_or_percent, t_zero_to_one >
 { using type_function_all < t_rgbafn, sz_rgba, t_integer_or_percent, t_integer_or_percent, t_integer_or_percent, t_zero_to_one > :: type_function_all; };
-
-template < > struct type_master < t_size_inlinesizes > : type_either_or_both < t_size_inlinesizes, t_size_inlinesize, sz_space_char, t_size_inlinesize >
-{ using type_either_or_both < t_size_inlinesizes, t_size_inlinesize, sz_space_char, t_size_inlinesize > :: type_either_or_both; };
 
 template < > struct type_master < t_snap > : type_string < t_snap, sz_snap >
 { using type_string < t_snap, sz_snap > :: type_string; };

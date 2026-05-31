@@ -1,7 +1,6 @@
 -7 original -f ../toast/coop/oct21/living.conf
 
 PASS ../toast/coop/oct21/404.html
-12 bespoke_obsolete
 50 link_rel_off
 64 unrecognised_value
 71 unrecognised_value unrecognised_value

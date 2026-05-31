@@ -109,7 +109,7 @@ template < e_type T, e_type P, class SZ = sz_logical > struct maybe_logical_type
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: empty ())
-            nits.pick (nit_syntax, es_error, ec_type, "value(s) expected");
+            nits.pick (nit_syntax, es_error, ec_type, "value/s expected");
         else if (tidy_string < T > :: good ())
         {   ::std::string ss (tidy_string < T > :: get_string ());
             const ::std::size_t len = strlen (SZ :: sz ());
@@ -669,6 +669,43 @@ template < e_type T, e_type U, class SZ, e_type P, int MN = 0, int MX = 1 > stru
                     if (! test_value < P > (nuts, v, ss.at (i)))
                     {   nits.merge (nuts);
                         res = false; } }
+                if (res) return; } }
+        tidy_string < T > :: status (s_invalid); }
+    ::std::size_t size () const { return size_; } };
+
+template < e_type T, e_type U, class SZ, e_type P1, e_type P2 > struct type_must_then_opts : tidy_string < T >
+{   using tidy_string < T > :: tidy_string;
+    ::std::size_t size_ = 0;
+    static e_animation_type animation_type () noexcept { return grab_animation_type < U > (); }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        if (tidy_string < T > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "value expected (", type_name (T), ")");
+        else if (tidy_string < T > :: good ())
+        {   PRESUME (SZ :: sz () != nullptr, __FILE__, __LINE__);
+            vstr_t ss (split_by_charset (tidy_string < T > :: get_string (), SZ::sz ()));
+            PRESUME (! ss.empty (), __FILE__, __LINE__);
+            size_ = ss.size ();
+            if (ss.size () == 0)
+                nits.pick (nit_empty, es_error, ec_type, "content expected (", type_name (T), ")");
+            else
+            {   bool res = true;
+                bool had_p1 = false;
+                if (! test_value < U > (nits, v, ss.at (0))) res = false;
+                for (::std::size_t i = 1; i < ss.size (); ++i)
+                {   nitpick nuts, nets;
+                    if ((! had_p1) && test_value < P1 > (nuts, v, ss.at (i)))
+                    {   nits.merge (nuts);
+                        had_p1 = true;
+                        continue; }
+                    if (test_value < P2 > (nets, v, ss.at (i)))
+                    {   nits.merge (nets);
+                        if (i < ss.size () - 1)
+                            nits.pick (nit_too_many, es_warning, ec_type, "ignoring extra values after ", quote (ss.at (i)));
+                        break; }
+                    nits.merge (nuts);
+                    nits.merge (nets);
+                    res = false; }
                 if (res) return; } }
         tidy_string < T > :: status (s_invalid); }
     ::std::size_t size () const { return size_; } };

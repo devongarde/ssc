@@ -1,11 +1,5 @@
 -Y 1 -7 original -f ../toast/css/3-overflow/css.conf
 
-PASS ../toast/css/3-overflow/css-4.css
-0 html
-
-PASS ../toast/css/3-overflow/css-5.css
-0 html
-
 PASS ../toast/css/3-overflow/css-4.html
 2 naughty_lang
 

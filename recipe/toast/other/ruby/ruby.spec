@@ -100,6 +100,3 @@ PASS ../toast/other/ruby/ruby-b.html
 12 inserted_missing_closure inserted_missing_closure
 13 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
 14 inserted_missing_closure
-
-PASS ../toast/other/ruby/ruby.css
-0 html

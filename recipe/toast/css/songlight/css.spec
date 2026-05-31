@@ -4,7 +4,6 @@ PASS ../toast/css/songlight/index.html
 2 naughty_lang
 
 PASS ../toast/css/songlight/songlight.css
-0 html
 39 fontname
 40 fontname
 41 fontname
@@ -12,7 +11,6 @@ PASS ../toast/css/songlight/songlight.css
 420 fontname
 
 PASS ../toast/css/songlight/yukontoast.css
-0 html
 39 fontname
 40 fontname
 41 fontname

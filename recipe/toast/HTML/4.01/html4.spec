@@ -4,7 +4,7 @@ PASS ../toast/HTML/4.01/css-good.css
 4 whatwg_class whatwg_class
 
 PASS ../toast/HTML/4.01/html4-bad.html
-5 bespoke_obsolete mime
+5 mime
 12 deprecated_element deprecated_attribute
 15 inserted_missing_closure
 16 missing_open
@@ -130,9 +130,8 @@ PASS ../toast/HTML/4.01/html4-deprecated.html
 
 PASS ../toast/HTML/4.01/html4-example.html
 0 charset_mismatch charset_used
-10 bespoke_obsolete
 22 dinosaur
-62 function unrecognised_value function unrecognised_value function unrecognised_value isnt unrecognised_value function unrecognised_value function unrecognised_value function unrecognised_value isnt unrecognised_value
+62 function unrecognised_value function unrecognised_value
 96 inserted_missing_closure inserted_missing_closure missing_close missing_close
 97 inserted_missing_closure inserted_missing_closure
 107 missing_close
@@ -203,7 +202,6 @@ PASS ../toast/HTML/4.01/html4-example.html
 324 wrong_parent inserted_missing_closure missing_close
 325 inserted_missing_closure
 328 inserted_missing_parent
-342 inserted_missing_closure
 344 inserted_missing_closure
 345 inserted_missing_closure missing_close
 346 missing_close missing_close
@@ -292,6 +290,7 @@ PASS ../toast/HTML/4.01/html4-example.html
 598 inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure
 599 inserted_missing_closure wrong_parent inserted_missing_closure missing_close wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure wrong_parent inserted_missing_closure missing_close
 600 inserted_missing_closure inserted_missing_closure inserted_missing_closure
+602 inserted_missing_closure
 608 inserted_missing_closure id_exists
 620 id_exists
 631 url_not_found

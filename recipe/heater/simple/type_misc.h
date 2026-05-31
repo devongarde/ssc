@@ -287,7 +287,7 @@ template < > struct type_master < t_key > : string_vector < t_key, sz_space_char
                     else check.insert (k);
                 if (string_vector < t_key, sz_space_char > :: size () == check.size ()) return; }
             else if ((s.length () == 1) || (! ::std::iswspace (s.at (0)) && ! ::std::iswcntrl (s.at (0)))) return;
-            else nits.pick (nit_single_character, ed_41, "17.11.2 Access keys", es_error, ec_type, quote (tidy_string < t_key > :: get_string ()), " is not a single character (which cannot be a space)");
+            else nits.pick (nit_single_character, ed_41, "17.11.2 Access keys", es_error, ec_type, quote (string_vector < t_key, sz_space_char > :: get_string ()), " is not a single character (which cannot be a space)");
         string_vector < t_key, sz_space_char > :: status (s_invalid); }
    bool invalid_access (nitpick& nits, const html_version& , sstr_t* keys)
    {    VERIFY_NOT_NULL (keys, __FILE__, __LINE__);

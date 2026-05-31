@@ -206,6 +206,9 @@ template < > struct type_master < t_controlslist > : three_value < t_controlslis
 template < > struct type_master < t_corp > : three_value < t_corp, e_corp, sz_same_origin, sz_same_site, sz_cross_origin, true >
 { using three_value < t_corp, e_corp, sz_same_origin, sz_same_site, sz_cross_origin, true > :: three_value; };
 
+template < > struct type_master < t_cpp > : three_value < t_cpp, e_cpp, sz_consistent, sz_per_line, sz_per_line_all >
+{ using three_value < t_cpp, e_cpp, sz_consistent, sz_per_line, sz_per_line_all > :: three_value; };
+
 template < > struct type_master < t_css_aai > : three_value < t_css_aai, e_css_aai, sz_auto, sz_avoid, sz_inherit >
 { using three_value < t_css_aai, e_css_aai, sz_auto, sz_avoid, sz_inherit > :: three_value; };
 
@@ -337,6 +340,9 @@ template < > struct type_master < t_ftpte > : three_value < t_ftpte, e_ftpte, sz
 
 template < > struct type_master < t_gamut > : three_value < t_gamut, e_gamut, sz_p3, sz_rec2020, sz_srgb >
 { using three_value < t_gamut, e_gamut, sz_p3, sz_rec2020, sz_srgb > :: three_value; };
+
+template < > struct type_master < t_gns > : three_value < t_gns, e_gns, sz_grow, sz_none, sz_shrink >
+{ using three_value < t_gns, e_gns, sz_grow, sz_none, sz_shrink > :: three_value; };
 
 template < > struct type_master < t_huv > : three_value < t_huv, e_huv, sz_horizontal, sz_undefined, sz_vertical >
 { using three_value < t_huv, e_huv, sz_horizontal, sz_undefined, sz_vertical > :: three_value; };

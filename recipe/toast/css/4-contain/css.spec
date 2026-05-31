@@ -1,8 +1,5 @@
 -Y 1 -7 original -f ../toast/css/4-contain/css.conf
 
-PASS ../toast/css/4-contain/css-3.css
-0 html
-
 PASS ../toast/css/4-contain/css-2.html
 0 charset_mismatch charset_used charset_invalid
 2 naughty_lang

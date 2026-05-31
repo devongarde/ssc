@@ -1,24 +1,8 @@
 -Y 1 -7 original -f ../toast/css/3-page/css.conf
 
-PASS ../toast/css/3-page/css-3.css
-0 html
-
 PASS ../toast/css/3-page/css-4.css
-0 html
 60 page_name_again
 61 page_name_again
-
-PASS ../toast/css/3-page/css-5.css
-0 html
-
-PASS ../toast/css/3-page/css-6.css
-0 html
-
-PASS ../toast/css/3-page/css-7.css
-0 html
-
-PASS ../toast/css/3-page/css-8.css
-0 html
 
 PASS ../toast/css/3-page/css-8.html
 0 title_required

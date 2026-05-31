@@ -1,11 +1,5 @@
 -Y 1 -7 original -f ../toast/css/4-display/css.conf
 
-PASS ../toast/css/4-display/css-3.css
-0 html
-
-PASS ../toast/css/4-display/css-4.css
-0 html
-
 PASS ../toast/css/4-display/css-2.html
 2 naughty_lang
 

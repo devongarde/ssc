@@ -1,11 +1,7 @@
 -Y 1 -7 original -f ../toast/css/3-region/css.conf
 
 PASS ../toast/css/3-region/css-1.css
-0 html
 11 class_microformat_property
-
-PASS ../toast/css/3-region/css-3.css
-0 html
 
 PASS ../toast/css/3-region/css-1.html
 2 naughty_lang

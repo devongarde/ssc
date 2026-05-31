@@ -9,7 +9,7 @@ PASS ../toast/mdn/mask/mask.html
 
 PASS ../toast/mdn/mask/mask-border.html
 2 naughty_lang
-5 css_bespoke
+5 chrome
 56 use_quote_code
 
 PASS ../toast/mdn/mask/mask-border-mode.html
@@ -17,23 +17,23 @@ PASS ../toast/mdn/mask/mask-border-mode.html
 
 PASS ../toast/mdn/mask/mask-border-outset.html
 2 naughty_lang
-5 css_bespoke
+5 chrome
 
 PASS ../toast/mdn/mask/mask-border-repeat.html
 2 naughty_lang
-5 css_bespoke
+5 chrome
 
 PASS ../toast/mdn/mask/mask-border-slice.html
 2 naughty_lang
-5 css_bespoke
+5 chrome
 
 PASS ../toast/mdn/mask/mask-border-source.html
 2 naughty_lang
-5 css_bespoke
+5 chrome
 
 PASS ../toast/mdn/mask/mask-border-width.html
 2 naughty_lang
-5 css_bespoke
+5 chrome
 
 PASS ../toast/mdn/mask/mask-clip.html
 2 naughty_lang

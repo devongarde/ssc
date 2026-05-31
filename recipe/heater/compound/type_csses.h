@@ -420,8 +420,8 @@ template < > struct type_master < t_css_contain > : type_or_any_string < t_css_c
 template < > struct type_master < t_css_container_name > : type_or_string < t_css_container_name, t_text, sz_none >
 { using type_or_string < t_css_container_name, t_text, sz_none > :: type_or_string; };
 
-template < > struct type_master < t_css_container_type > : type_either_or < t_css_container_type, t_css_container_state, t_size_inlinesizes >
-{ using type_either_or < t_css_container_type, t_css_container_state, t_size_inlinesizes > :: type_either_or; };
+template < > struct type_master < t_css_container_type > : type_some_of < t_css_container_type, sz_space_char, 1, 2, t_size_inlinesize, t_css_container_state >
+{ using type_some_of < t_css_container_type, sz_space_char, 1, 2, t_size_inlinesize, t_css_container_state > :: type_some_of; };
 
 template < > struct type_master < t_css_coord_boxen > : type_some_of < t_css_coord_boxen, sz_comma, 1, 999, t_css_coord_box >
 { using type_some_of < t_css_coord_boxen, sz_comma, 1, 999, t_css_coord_box > :: type_some_of; };
@@ -984,8 +984,8 @@ template < > struct type_master < t_css_list_style > : type_range < t_css_list_s
 template < > struct type_master < t_css_margins_trim_inner > : type_some_of < t_css_margins_trim_inner, sz_space_char, 1, 4, t_css_margin_trim_inner >
 { using type_some_of < t_css_margins_trim_inner, sz_space_char, 1, 4, t_css_margin_trim_inner > :: type_some_of; };
 
-template < > struct type_master < t_css_margin_trim > : type_or_any_string < t_css_margin_trim, t_css_margins_trim_inner, sz_block, sz_inline, sz_none >
-{ using type_or_any_string < t_css_margin_trim, t_css_margins_trim_inner, sz_block, sz_inline, sz_none > :: type_or_any_string; };
+template < > struct type_master < t_css_margin_trim > : either_type_or_string < t_css_margin_trim, t_css_margins_trim_inner, t_block_inline_2, sz_none >
+{ using either_type_or_string < t_css_margin_trim, t_css_margins_trim_inner, t_block_inline_2, sz_none > :: either_type_or_string; };
 
 template < > struct type_master < t_css_margins > : type_either_or < t_css_margins, t_measures_a, t_css_inherit >
 { using type_either_or < t_css_margins, t_measures_a, t_css_inherit > :: type_either_or; };
@@ -1297,6 +1297,9 @@ template < > struct type_master < t_css_text_emphases > : type_range < t_css_tex
 
 template < > struct type_master < t_css_textemph_string > : type_either_or < t_css_textemph_string, t_css_text_emphases, t_char >
 { using type_either_or < t_css_textemph_string, t_css_text_emphases, t_char > :: type_either_or; };
+
+template < > struct type_master < t_css_text_fit > : type_must_then_opts < t_css_text_fit, t_gns, sz_space_char, t_cpp, t_percent >
+{ using type_must_then_opts < t_css_text_fit, t_gns, sz_space_char, t_cpp, t_percent > :: type_must_then_opts; };
 
 template < > struct type_master < t_css_text_spacing > : type_ab_ba < t_css_text_spacing, sz_space_char, t_css_tst, t_css_text_autospaces >
 { using type_ab_ba < t_css_text_spacing, sz_space_char, t_css_tst, t_css_text_autospaces > :: type_ab_ba; };

@@ -1,7 +1,6 @@
 -Y 1 -7 original -f ../toast/stats/CSS-6/stats.conf
 
 PASS ../toast/stats/CSS-6/content-3-2.css
-0 html
 7 pseud
 8 pseud
 
@@ -50,7 +49,6 @@ Statement:
 ===
 
 PASS ../toast/stats/CSS-6/cs-3-3.css
-0 html
 
 STAT
 Property:
@@ -66,7 +64,6 @@ Statement:
 ===
 
 PASS ../toast/stats/CSS-6/custom-3.css
-0 html
 3 css_syntax unrecognised_value
 8 css_custom
 11 css_custom
@@ -108,7 +105,6 @@ Property:
 ===
 
 PASS ../toast/stats/CSS-6/extra.css
-0 html
 5 fontname
 19 fontname
 26 fontname
@@ -188,14 +184,12 @@ Statement:
 ===
 
 PASS ../toast/stats/CSS-6/font-4-6.css
-0 html
 18 pseud
 24 class_microformat_property
 29 fontname
 33 css_font_feature
 37 css_font_feature css_font_feature
 40 css_font_feature css_font_feature
-43 class_microformat_property
 45 fontname fontname
 75 unrecognised_value not_here
 76 css_font_feature
@@ -218,7 +212,6 @@ Class:
   fleep declared once
   ordinal declared once
   special declared once
-  title declared once
   wurble declared once
 
 Class/Element:
@@ -228,22 +221,20 @@ Class/Element:
   *.ordinal declared once
   *.special declared once
   *.wurble declared once
-  h3.title declared once
   p.codeblock declared once
   span.alt-N declared once
   span.alt-U declared once
 
 Element:
-    (undefined): 5 times
+    (undefined): 6 times
     annotation: once
     blockquote: twice
     body: thrice
-    h3: once
     p: 6 times
     span: twice
     sub: twice
     sup: once
-  10 elements used 29 times
+  9 elements used 29 times
 
 Font:
     Mercury Serif: once
@@ -280,9 +271,9 @@ Statement:
 ===
 
 PASS ../toast/stats/CSS-6/font-4-9.css
-0 html
 6 fontname
 13 fontname
+15 css_custom
 21 fontname
 26 fontname
 31 fontname
@@ -292,6 +283,7 @@ PASS ../toast/stats/CSS-6/font-4-9.css
 47 fontname
 52 fontname fontname
 57 fontname
+59 css_custom
 65 fontname
 70 fontname
 
@@ -333,7 +325,6 @@ Statement:
 ===
 
 PASS ../toast/stats/CSS-6/media-5-10.css
-0 html
 20 unrecognised_value
 
 STATS
@@ -419,7 +410,6 @@ Class:
   region declared twice
   special declared twice
   text declared twice
-  title declared twice
   toc declared twice
   top declared twice
   wurble declared twice
@@ -443,7 +433,6 @@ Class/Element:
   *.text declared once
   *.top declared once
   *.wurble declared once
-  h3.title declared once
   ol.toc declared once
   p.codeblock declared once
   span.alt-N declared once
@@ -471,18 +460,18 @@ Custom-Media:
     --narrow-window: once, (max-width: 30em)
 
 Custom-Property:
-  --gap declared 4 times, used twice
-  --looks-valid declared twice, used once
-  --not-a-color declared twice, used once
-  --prop1 declared twice, used once
-  --prop2 declared twice, used once
-  --prop3 declared twice, used once
+  --gap declared twice, used 4 times
+  --looks-valid declared once, used twice
+  --not-a-color declared once, used twice
+  --prop1 declared once, used thrice
+  --prop2 declared once, used thrice
+  --prop3 declared once, used thrice
   --prop4 declared once, used once
   --side declared once, used once
   --text-color declared once, used once
 
 Element:
-    (undefined): 12 times
+    (undefined): 13 times
     !doctype: once
     a: 6 times
     annotation: once
@@ -491,7 +480,7 @@ Element:
     body: 4 times
     h1: 6 times
     h2: twice
-    h3: twice
+    h3: once
     head: once
     html: thrice
     nav: twice
@@ -545,8 +534,28 @@ Font-Family:
   Used 12 times
 
 Function:
+  annotation declared never, used twice
+  attr declared never, used twice
+  calc declared never, used twice
+  character-variant declared never, used 12 times
+  content declared never, used 6 times
+  counter declared never, used twice
   highlight declared never, used thrice
+  historical-forms declared never, used twice
   lang declared never, used 6 times
+  leader declared never, used 6 times
+  ornaments declared never, used twice
+  rgb declared never, used 4 times
+  rgba declared never, used once
+  string declared never, used 6 times
+  styleset declared never, used 4 times
+  stylistic declared never, used twice
+  swash declared never, used 4 times
+  target-counter declared never, used 8 times
+  target-text declared never, used twice
+  translateX declared never, used 4 times
+  url declared never, used once
+  var declared never, used 28 times
 
 Highlight:
     bar

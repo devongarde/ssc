@@ -61,19 +61,6 @@ public:
     void accumulate (stats_t* s) const;
     const categorical& dcl () const { return dcl_; }
     const categorical& use () const { return use_; }
-//    void insert (const e_id_category cat, const ::std::string& s, const ::std::size_t c = 1)
-//    {   cat_.insert (cat, s, c); }
-//    void erase (const e_id_category cat, const ::std::string& s)
-//    {   cat_.erase (cat, s); }
-//    const categorical& cat () const { return cat_; }
-//    bool has (const ::std::string& s) const
-//    {   return cat_.find (s) != oops_a_daisy; }
-//    bool has (const e_id_category cat, const ::std::string& s) const
-//    {   PRESUME (cat != cic_none, __FILE__, __LINE__);
-//        category k = cat_.get (s);
-//        return (k.cic_ == cat); }
-//    bool has_element_class (const e_element e, const ::std::string& s) const;
-//    bool has_element_id (const e_element e, const ::std::string& s) const;
     bool has_custom_media (const ::std::string& name) const
     {   return custom_media_.find (name) != custom_media_.cend (); }
     bool note_custom_media (const ::std::string& name, const ::std::string& def)

@@ -1,8 +1,5 @@
 -Y 1 -7 original -f ../toast/css/3-sda/css.conf
 
-PASS ../toast/css/3-sda/css-a.css
-0 html
-
 PASS ../toast/css/3-sda/css-4.html
 2 naughty_lang
 9 sda sda

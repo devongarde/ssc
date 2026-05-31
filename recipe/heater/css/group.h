@@ -65,8 +65,6 @@ public:
     void validate ();
     void accumulate (nitpick& nits) const;
     void accumulate (stats_t* s) const;
-    bool has_custom_prop (const ::std::string& name) const;
-    void note_custom_prop (const ::std::string& name);
     bool has_custom_media (const ::std::string& name) const;
     void note_custom_media (const ::std::string& name, const ::std::string& def);
     const page& get_page () const { return page_; }

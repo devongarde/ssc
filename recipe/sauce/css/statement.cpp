@@ -58,12 +58,11 @@ void statement::parse_colour_profile (arguments& args, nitpick& nits, const int 
                 if ((args.t_.at (i).t_ == ct_identifier) || (args.t_.at (i).t_ == ct_keyword))
                 {   ::std::string s (args.t_.at (i).val_);
                     if ((s.size () > 2) && (s.substr (0, 2) == "--"))
-                        if (args.has (cic_custom_prop, s))
+                        if (args.has (cic_custom_property, s))
                             nits.pick (nit_css_custom, es_warning, ec_css, "@color-profile identifier ", s, " previously encountered"); // dialect
                         else
                         {   nits.pick (nit_css_custom, es_info, ec_css, "noting @color-profile ", s); // dialect
-//                ::std::cout << s << ": dcl (3)\n";
-                            args.dcl (cic_custom_prop, s); } } }
+                            args.dcl (cic_custom_property, s); } } }
         fiddlesticks < statement > f (&args.st_, this);
         prop_.parse (args, args.t_.at (to).child_); } }
 
@@ -301,6 +300,130 @@ void statement::parse_custom_media (arguments& args, nitpick& nits, const int fr
         {   ::std::string def (assemble_string (args.t_, i, to, true));
             args.note_custom_media (name, def); } } }
 
+void statement::parse_custom_property (arguments& args, nitpick& nits, const int from, const int to)
+{   int i = next_non_whitespace (args.t_, from, to); 
+    if (context.html_ver ().css_module (c_extension) < 3)
+        nits.pick (nit_css_version, es_error, ec_css, "@custom-property requires CSS Extensions");
+    else if ((i < 0) || ((args.t_.at (i).t_ != ct_string) && (args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_number) && (args.t_.at (i).t_ != ct_keyword)))
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting an identifier after @custom-property");
+    else
+    {   ::std::string name (args.t_.at (i).val_);
+        i = next_non_whitespace (args.t_, i, to);
+        if (i < 0) nits.pick (nit_css_syntax, es_error, ec_css, "missing @custom-property definition after ", quote (name));
+        else
+        {   ::std::string def (assemble_string (args.t_, i, to, true));
+            if (args.has (cic_custom_property, name))
+                nits.pick (nit_css_custom, es_warning, ec_css, quote (name), " previously defined");
+            else nits.pick (nit_css_custom, es_comment, ec_css, quote (def), " noted");
+            args.dcl (cic_custom_property, name); } } }
+
+void statement::parse_custom_selector (arguments& args, nitpick& nits, const int from, const int to)
+{   int i = next_non_whitespace (args.t_, from, to); 
+    if (context.html_ver ().css_module (c_extension) < 3)
+        nits.pick (nit_css_version, es_error, ec_css, "@custom-selector requires CSS Extensions");
+    else if (i < 0)
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting content after @custom-selector");
+    else
+    {   bool res = true;
+        ::std::string def, select, twas;
+        sstr_t param;
+        typedef enum { st_undef, st_var_dollar, st_var, st_colon, st_sel, st_round_brac, st_param_dollar, st_param, st_comma, st_round_ket, st_curly_brac, st_done } sst_t;
+        sst_t state = st_undef;
+        while ((state < st_curly_brac) && (i > 0))
+        {   switch (args.t_.at (i).t_)
+            {   case ct_colon :
+                    if (state < st_colon)
+                    {   if (state == st_var_dollar)
+                        {   nits.pick (nit_css_syntax, es_error, ec_css, "'$' alone is insufficient, a custom selection name is required after ", quote (twas), ", (", state, ")");
+                            res = false; }
+                        state = st_colon; }
+                    else
+                    {   nits.pick (nit_css_syntax, es_error, ec_css, "unexpected ':' after ", quote (twas), ", (", state, ")");
+                        return; }
+                   break;
+                case ct_dollar :
+                    if (state < st_colon)
+                        state = st_var_dollar;
+                    else if ((state == st_round_brac) || (state == st_comma))
+                        state = st_param_dollar;
+                    else
+                    {   nits.pick (nit_css_syntax, es_error, ec_css, "unexpected '$' after ", quote (twas), ", (", state, ")");
+                        return; }
+                    break;
+                case ct_identifier :
+                case ct_keyword :
+                    switch (state)
+                    {   case st_var_dollar :
+                            def = args.t_.at (i).val_;
+                            state = st_var;
+                            break;
+                        case st_param_dollar :
+                            {   const ::std::string& val = args.t_.at (i).val_;
+                                if (param.find (val) == param.cend ())
+                                    param.insert (val);
+                                else nits.pick (nit_css_syntax, es_error, ec_css, quote (val), ": previously mentioned");
+                                state = st_param; }
+                            break;
+                        case st_colon :
+                            state = st_sel;
+                            select = args.t_.at (i).val_;
+                            break;
+                        case st_sel :
+                        case st_round_ket :
+                            state = st_done;
+                            break;
+                        default :
+                            nits.pick (nit_css_syntax, es_error, ec_css, quote (args.t_.at (i).val_), ": unexpected (", state, ")"); 
+                            return; }
+                    break;
+                case ct_curly_brac :
+                    if (state < st_colon)
+                    {   nits.pick (nit_css_syntax, es_error, ec_css, "at least a colon and a custom selected name are required after @custom-selector after ", quote (twas), ", (", state, ")");
+                        res = false; }
+                    else if ((state >= st_round_brac) && (state < st_round_ket))
+                    {   nits.pick (nit_css_syntax, es_error, ec_css, "missing ')' after ", quote (twas), ", (", state, ")");
+                        res = false; }
+                    state = st_curly_brac;
+                    break;
+                case ct_round_ket :
+                    if ((state != st_round_ket) && (state != st_param))
+                    {   nits.pick (nit_css_syntax, es_error, ec_css, "unexpected ')' after ", quote (twas), ", (", state, ")");
+                        res = false; }
+                    state = st_round_ket;
+                    break;
+                case ct_round_brac :
+                    if ((state <= st_colon) || ((state >= st_round_brac) && (state < st_round_ket)))
+                    {   nits.pick (nit_css_syntax, es_error, ec_css, "unexpected '(' after ", quote (twas), ", (", state, ")");
+                        res = false; }
+                    state = st_round_brac;
+                    break;
+                case ct_comma :
+                    if (state != st_param)
+                    {   nits.pick (nit_css_syntax, es_error, ec_css, "unexpected ',' after ", quote (twas), ", (", state, ")");
+                        res = false; }
+                    state = st_comma;
+                    break;
+                default  :
+                    nits.pick (nit_css_syntax, es_error, ec_css, "unexpected ", quote (args.t_.at (i).val_), " after @custom_selector (", args.t_.at (i).t_, ")");
+                    res = false;
+                    return; }
+            twas = args.t_.at (i).val_;
+            i = next_non_whitespace (args.t_, i, to); }
+        if (state < st_colon)
+        {   nits.pick (nit_css_syntax, es_error, ec_css, "at least a colon and a custom selected name are required after @custom-selector");
+            res = false; }
+        else if ((state >= st_round_brac) && (state < st_round_ket))
+        {   nits.pick (nit_css_syntax, es_error, ec_css, "missing ')'");
+            res = false; }
+        if ((i > 0) && res)
+        {   i = next_non_whitespace (args.t_, i, to);
+            if (i < 0) nits.pick (nit_css_syntax, es_error, ec_css, "missing @custom-selector definition after ", quote (select));
+            if (! select.empty ()) 
+                if (args.has (cic_custom_selector, select))
+                    nits.pick (nit_css_custom, es_warning, ec_css, quote (select), " previously defined");
+                else nits.pick (nit_css_custom, es_comment, ec_css, quote (select), " noted");
+                args.dcl (cic_custom_selector, select); } } }
+
 void statement::conditional (arguments& args, nitpick& , const int from, const int to)
 {   media_.parse (args, from, to); }
 
@@ -331,6 +454,22 @@ void statement::parse_else (arguments& args, nitpick& nits, const int from, cons
                 fiddlesticks < statement > f (&args.st_, this);
                 conditional (args, nits, i, brac-1);
                 vst_.emplace_back (pst_t (new statements (args, args.t_.at (brac).child_))); } } } }
+
+void statement::parse_env (arguments& args, nitpick& nits, const int from, const int to)
+{   if (context.css_module (c_linked_parameters) < 3)
+        nits.pick (nit_css_version, es_error, ec_css, "@env requires CSS Linked Parameters");
+    else
+    {   int i = next_non_whitespace (args.t_, from, to);
+        if (i < 0)
+            nits.pick (nit_css_syntax, es_error, ec_css, "expecting a custom variable name after @env");
+        else
+        {   ::std::string name (args.t_.at (i).val_);
+            if ((name.size () < 3) || (name.substr (0, 2) != "--"))
+                nits.pick (nit_css_syntax, es_error, ec_css, "@env custom variable names must begin with double minus, e.g. \"--\"");
+            else args.dcl (cic_custom_property, name);
+            i = next_non_whitespace (args.t_, i, to);
+            if (i < 0) nits.pick (nit_css_syntax, es_error, ec_css, "missing @env custom variable default value after ", quote (name));
+            else if (args.t_.at (i).t_ != ct_colon) nits.pick (nit_css_syntax, es_error, ec_css, "missing a colon after @env ", quote (name)); } } }
 
 void statement::parse_feature_value (arguments& args, nitpick& nits, const int to, const e_css_statement cs, font_features& ffv)
 {   if (context.css_module (c_font) < 4)
@@ -419,7 +558,7 @@ void statement::parse_function (arguments& args, nitpick& nits, const int from, 
         else if (args.dst_ -> has (cic_fn_name, fn))
             nits.pick (nit_css_function, es_error, ec_css, quote (fn), " already defined.");
         else
-        {   args.dst_ -> dcl (cic_fn_name, fn);
+        {   args.dcl (cic_fn_name, fn);
             i = next_non_whitespace (args.t_, i, to); 
             if ((i < 0) || (to <= i))
             {   nits.pick (nit_css_function, es_error, ec_css, "missing '(': expecting parameters after function name (1)."); return; }
@@ -428,28 +567,33 @@ void statement::parse_function (arguments& args, nitpick& nits, const int from, 
             else
             {   bool id = true, good = true, arg = false;
                 int bk = -1;
+                ::std::string prev_id;
                 for (i = next_non_whitespace (args.t_, i, to); good; i = next_non_whitespace (args.t_, i, to))
                     if ((i < 0) || (to <= i))
-                    {   nits.pick (nit_css_function, es_error, ec_css, "malformed parameter list."); return; }
+                    {   if (prev_id.empty ()) nits.pick (nit_css_function, es_error, ec_css, "malformed @function parameter list.");
+                        else nits.pick (nit_css_function, es_error, ec_css, "malformed @function parameter list near ", prev_id, ".");
+                        return; }
                     else switch (args.t_.at (i).t_)
                     {   case ct_identifier :
                         case ct_keyword :
+                            prev_id = args.t_.at (i).val_;
                             if ((bk < 1) && ! arg)
-                            {   const ::std::string& kw = args.t_.at (i).val_;
-                                if ((kw.size () <= 2) || (kw.substr (0, 2) != "--"))
-                                    nits.pick (nit_css_function, es_error, ec_css, quote (kw), ": parameter names must start with '--'.");
-                                if (! id) nits.pick (nit_css_function, es_error, ec_css, quote (kw), ": missing comma.");
+                            {   if ((prev_id.size () <= 2) || (prev_id.substr (0, 2) != "--"))
+                                    nits.pick (nit_css_function, es_error, ec_css, quote (prev_id), ": @function parameter names must start with '--'.");
+                                if (! id) nits.pick (nit_css_function, es_error, ec_css, quote (prev_id), ": missing comma.");
                                 else id = false;
-                                if (params.find (kw) != params.cend ())
-                                    nits.pick (nit_css_function, es_error, ec_css, quote (kw), ": previously specified.");
+                                if (params.find (prev_id) != params.cend ())
+                                    nits.pick (nit_css_function, es_error, ec_css, quote (prev_id), ": previously specified.");
                                 else
-                                {   params.insert (kw);
-                                    args.dst_ -> dcl (cic_fn_param, kw);
+                                {   params.insert (prev_id);
+                                    args.dst_ -> dcl (cic_fn_param, prev_id);
                                     arg = true; } }
                             break;
                         case ct_comma :
                             if (bk < 1)
-                            {   if (id) nits.pick (nit_css_function, es_error, ec_css, "unexpected comma.");
+                            {   if (id) 
+                                    if (prev_id.empty ()) nits.pick (nit_css_function, es_error, ec_css, "@function: unexpected comma.");
+                                    else nits.pick (nit_css_function, es_error, ec_css, "@function: unexpected comma near ", prev_id, ".");
                                 else id = true;
                                 arg = false; }
                             break;
@@ -460,14 +604,17 @@ void statement::parse_function (arguments& args, nitpick& nits, const int from, 
                         case ct_round_ket :
                             if (--bk == 0) bk = -1;
                             else if (bk < 0)
-                            {   if (id) nits.pick (nit_css_function, es_error, ec_css, "missing parameter or extra comma.");
+                            {   if (id) 
+                                    if (prev_id.empty ()) nits.pick (nit_css_function, es_error, ec_css, "missing @function parameter or extra comma.");
+                                    else nits.pick (nit_css_function, es_error, ec_css, "missing @function parameter or extra comma near ", prev_id, ".");
                                 good = false; }
                             break;
                         default :
                             break; }
                 for (i = next_non_whitespace (args.t_, i, to); good; i = next_non_whitespace (args.t_, i, to))
                     if ((i < 0) || (to <= i))
-                    {   nits.pick (nit_css_function, es_error, ec_css, "missing function body.");
+                    {   if (prev_id.empty ()) nits.pick (nit_css_function, es_error, ec_css, "missing @function body.");
+                        else nits.pick (nit_css_function, es_error, ec_css, "missing @function body near ", prev_id, ".");
                         return; }
                     else
                     if (args.t_.at (i).t_ == ct_curly_brac) break;
@@ -1096,6 +1243,15 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_custom_media :
                 parse_custom_media (args, nits, b, to);
                 break;
+            case css_custom_property :
+                parse_custom_property (args, nits, b, to);
+                break;
+            case css_custom_selector :
+                parse_custom_selector (args, nits, b, to);
+                break;
+            case css_env :
+                parse_env (args, nits, b, to);
+                break;
             case css_font_feature_values :
                 parse_font_feature_values (args, nits, b, to);
                 break;
@@ -1217,6 +1373,9 @@ void statement::accumulate (stats_t* s) const
             break;
         case css_document :
             res = "@document;";
+            break;
+        case css_env :
+            res = "@env;";
             break;
         case css_else :
             res = "@else;";

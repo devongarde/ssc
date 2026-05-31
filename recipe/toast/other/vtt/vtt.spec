@@ -33,37 +33,11 @@ PASS ../toast/other/vtt/ex22i.vtt
 10 vtt_region vtt_region unrecognised_value
 19 vtt_region 
 
-PASS ../toast/other/vtt/ex6.css
-0 html
-
-PASS ../toast/other/vtt/ex22a.css
-0 html
-
-PASS ../toast/other/vtt/ex22b.css
-0 html
-
 PASS ../toast/other/vtt/ex22c.css
-0 html
 1 selector  selector selector selector selector selector
 
-PASS ../toast/other/vtt/ex22d.css
-0 html
-
 PASS ../toast/other/vtt/ex22e.css
-0 html
 9 css_syntax pseud
-
-PASS ../toast/other/vtt/ex22f.css
-0 html
-
-PASS ../toast/other/vtt/ex22g.css
-0 html
-
-PASS ../toast/other/vtt/ex22h.css
-0 html
-
-PASS ../toast/other/vtt/ex22i.css
-0 html
 
 PASS ../toast/other/vtt/ex2.html
 2 naughty_lang

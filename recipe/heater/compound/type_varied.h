@@ -281,7 +281,7 @@ template < > struct type_master < t_fill_v > : varied < t_fill_v >
 {   using varied < t_fill_v > :: varied;
     static e_animation_type animation_type () noexcept { return at_paint; }
     void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
-    {   if (good () || empty ())
+    {   if (! fn ()) if (good () || empty ())
             if ((e.get () == elem_vefill) || (e.get () == elem_vestroke))
                 validate_type < type_master < t_fill_ve > > (nits, v);
             else if (((elem :: categories (e) & EF_SVG_ANIM) != 0) || (e.get () == elem_animation))
@@ -1031,7 +1031,6 @@ template < > struct type_master < t_xlinkactuate_onload > : type_string < t_xlin
 
 template < > struct type_master < t_xlinkactuate_onrequest > : type_string < t_xlinkactuate_onrequest, sz_onrequest >
 { using type_string < t_xlinkactuate_onrequest, sz_onrequest > :: type_string; };
-
 
 template < > struct type_master < t_xlinkactuate > : varied < t_xlinkactuate >
 {   using varied < t_xlinkactuate > :: varied;

@@ -690,20 +690,19 @@ PASS ../toast/living/oct25/15.html
 33 wrong_parent inefficient
 
 PASS ../toast/living/oct25/15.css
-0 html
 26 bad_media
 216 abandoned
 224 abandoned
 768 dialect
-901 unrecognised_value unrecognised_value unrecognised_value
-902 unrecognised_value unrecognised_value unrecognised_value
-918 css_colour css_colour
-922 css_colour css_colour
-926 css_colour css_colour
+901 unrecognised_value unrecognised_value
+902 unrecognised_value unrecognised_value
+918 css_colour
+922 css_colour
+926 css_colour
 940 css_version
 941 css_version
 942 css_version
-950 unrecognised_value unrecognised_value
+950 unrecognised_value
 
 PASS ../toast/living/oct25/16.html
 7 attribute_unrecognised_here unrecognised_attribute unrecognised_value

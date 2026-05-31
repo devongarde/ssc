@@ -37,6 +37,12 @@ template < > struct type_master < t_empty > : string_value < t_empty >
         {   nits.pick (nit_empty, es_error, ec_type, quote (val), " is insufficiently empty");
             string_value < t_empty > :: status (s_invalid); } } };
 
+template < > struct type_master < t_anchor_centre > : type_string < t_anchor_centre, sz_anchor_centre >
+{ using type_string < t_anchor_centre, sz_anchor_centre > :: type_string; };
+
+template < > struct type_master < t_auto > : type_string < t_auto, sz_auto >
+{ using type_string < t_auto, sz_auto > :: type_string; };
+
 template < > struct type_master < t_char > : string_value < t_char >
 {   using string_value < t_char > :: string_value;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -65,12 +71,6 @@ template < > struct type_master < t_custom_element_new > : tidy_string < t_custo
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_value < t_custom_element_new > :: set_value (nits, v, s);
         tidy_string < t_custom_element_new > :: status (set_custom_new_value (nits, v, tidy_string < t_custom_element_new > :: get_string ())); } };
-
-template < > struct type_master < t_anchor_centre > : type_string < t_anchor_centre, sz_anchor_centre >
-{ using type_string < t_anchor_centre, sz_anchor_centre > :: type_string; };
-
-template < > struct type_master < t_auto > : type_string < t_auto, sz_auto >
-{ using type_string < t_auto, sz_auto > :: type_string; };
 
 template < > struct type_master < t_digits > : type_string < t_digits, sz_digits >
 { using type_string < t_digits, sz_digits > :: type_string; };
@@ -131,12 +131,12 @@ template < > struct type_master < t_slash > : type_string < t_slash, sz_slash >
 template < > struct type_master < t_stretch > : type_string < t_stretch, sz_stretch >
 { using type_string < t_stretch, sz_stretch > :: type_string; };
 
-template < > struct type_master < t_text > : public tidy_string < t_text >
-{   using tidy_string < t_text > :: tidy_string;
+template < > struct type_master < t_text > : public string_value < t_text >
+{   using string_value < t_text > :: string_value;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_text > :: set_value (nits, v, uq3 (s));
-        const ::std::string ss (tidy_string < t_text > :: get_string ());
-        if (ss.empty ()) tidy_string < t_text > :: status (s_good); } };
+    {   string_value < t_text > :: set_value (nits, v, uq3 (s));
+        if (string_value < t_text > :: status () == s_empty)
+            string_value < t_text > :: status (s_good); } };
 
 template < > struct type_master < t_wanted > : public tidy_string < t_wanted >
 {   using tidy_string < t_wanted > :: tidy_string;

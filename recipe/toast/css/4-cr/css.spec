@@ -1,7 +1,6 @@
 -Y 1 -7 original -f ../toast/css/4-cr/css.conf
 
 PASS ../toast/css/4-cr/css-2.css
-0 html
 8 css_element
 11 css_namespace
 13 css_element

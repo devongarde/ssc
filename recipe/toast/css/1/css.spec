@@ -1,7 +1,6 @@
 -Y 1 -7 original -f ../toast/css/1/css.conf
 
 PASS ../toast/css/1/basic.css
-0 html
 4 css_colour
 7 dialect
 9 unrecognised_value
@@ -12,47 +11,33 @@ PASS ../toast/css/1/basic.css
 20 fontname
 
 PASS ../toast/css/1/cool.css
-0 html
 6 unrecognised_value
 6 unrecognised_value
 8 selector
 10 unrecognised_value
 10 unrecognised_value
 
-PASS ../toast/css/1/css-1.css
-0 html
-
-PASS ../toast/css/1/css-2.css
-0 html
-
 PASS ../toast/css/1/css-3.css
-0 html
 1 reputation
 2 reputation
 
 PASS ../toast/css/1/css-5.css
-0 html
 1 fontname
 2 fontname
-143 unrecognised_value unrecognised_value
+143 unrecognised_value
 
 PASS ../toast/css/1/css-6.css
-0 html
 29 bad_rgb
 30 bad_rgb
 
 PASS ../toast/css/1/css-7.css
-0 html
 1 css_version
-6 unrecognised_value unrecognised_value
+6 unrecognised_value
 7 css_syntax
 15 unrecognised_value
 27 css_version
-33 unrecognised_value unrecognised_value
+33 unrecognised_value
 34 unrecognised_value
-
-PASS ../toast/css/1/html2.css
-0 html
 
 PASS ../toast/css/1/css-1.html
 2 naughty_lang
@@ -73,6 +58,7 @@ PASS ../toast/css/1/css-2.html
 
 PASS ../toast/css/1/css-3.html
 2 naughty_lang
+14 unrecognised_value
 15 missing_close
 16 inserted_missing_closure
 
@@ -99,7 +85,6 @@ PASS ../toast/css/1/css-6.html
 2 naughty_lang
 
 PASS ../toast/css/1/import.css
-0 html
 3 url_not_found
 4 css_colour
 6 unrecognised_value unrecognised_value

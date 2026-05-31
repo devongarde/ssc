@@ -33,12 +33,12 @@ CONSTEXPR bool def_absolute_path = true, def_ads = true, def_aria = true, def_ar
     def_body = true, def_case = false, def_cgi = false,
     def_chrome = false, def_classic = false, def_clear = false, def_comms = true, def_crosslinks = true, def_expand = false, def_example = true,
     def_excl = true, def_external = false, def_ext_css = false, def_extra = false, def_force_version = false, def_forwarded = true,
-    def_gui = false, def_icu = true, def_ie = false, def_info = false, def_iterate = false, def_jsonld = false, def_local = true,
-    def_links = true, def_load_css = true, def_load_vtt = true, def_main = false, def_md_export = false, def_md_pretty = true,
-    def_meta_all = true, def_meta_sign = true, def_mf_export = false, def_mf_pretty = true, def_mf_verify = true, def_microdata = true,
-    def_mozilla = false, def_netscape = false, def_nids = false, def_nits = false, def_nits_nits_nits = false, def_not_root = false,
-    def_opera = false, def_once = true, def_presume_tags = false, def_pretty = true, def_progress = false, def_rdfa = false, def_rel = false,
-    def_revoke = false, def_rfc_1867 = true, def_rfc_1942 = true, def_rfc_1980 = true, def_rfc_2070 = true, def_robots = true, def_rpt_opens = false, def_rsl_verify = true, def_rss_verify = true,
+    def_gui = false, def_icu = true, def_ie = false, def_info = false, def_iterate = false, def_jsonld = false, def_konqueror = true, def_local = true,
+    def_links = true, def_load_css = true, def_load_vtt = true, def_main = false, def_md_export = false, def_md_pretty = true, def_meta_all = true,
+    def_meta_sign = true, def_mf_export = false, def_mf_pretty = true, def_mf_verify = true, def_microdata = true, def_mozilla = false,
+    def_netscape = false, def_nids = false, def_nits = false, def_nits_nits_nits = false, def_not_root = false, def_opera = false, def_once = true,
+    def_presume_tags = false, def_pretty = true, def_progress = false, def_rdfa = false, def_rel = false, def_revoke = false, def_rfc_1867 = true,
+    def_rfc_1942 = true, def_rfc_1980 = true, def_rfc_2070 = true, def_robots = true, def_rpt_opens = false, def_rsl_verify = true, def_rss_verify = true,
     def_ruby = false, def_ontology = true, def_safari = false, def_sectxt = true, def_serve = false, def_shadow_changed = false, def_shadow_comment = true,
     def_shadow_enable = false, def_shadow_space = true, def_shadow_ssi = true, def_sign = false, def_sloven = false, def_spec = false,
     def_special = true, def_spell = true, def_spell_deduced = false, def_ssi = true, def_ssi_exec_run = false, def_test = false,
@@ -75,8 +75,8 @@ class context_t
                     crosslinks_ = def_crosslinks, example_ = def_example, excl_ = def_excl, expand_ = def_expand, external_ = def_external,
                     ext_css_ = def_ext_css, extra_ = def_extra, force_version_ = def_force_version, forwarded_ = def_forwarded, gui_ = def_gui,
                     icu_ = def_icu, ie_ = def_ie, info_ = def_info, iterate_ = def_iterate, jsonld_ = def_jsonld, local_ = def_local, load_css_ = def_load_css,
-                    load_vtt_ = def_load_vtt,links_ = def_links, main_ = def_main, md_export_ = def_md_export, md_pretty_ = def_md_pretty,
-                    output_sign_ = def_meta_sign, mf_export_ = def_mf_export, mf_pretty_ = def_mf_pretty, mf_verify_ = def_mf_verify,
+                    konqueror_ = def_konqueror, load_vtt_ = def_load_vtt,links_ = def_links, main_ = def_main, md_export_ = def_md_export,
+                    md_pretty_ = def_md_pretty, output_sign_ = def_meta_sign, mf_export_ = def_mf_export, mf_pretty_ = def_mf_pretty, mf_verify_ = def_mf_verify,
                     microdata_ = def_microdata, mozilla_ = def_mozilla, netscape_ = def_netscape, nids_ = def_nids, nits_ = def_nits,
                     nits_nits_nits_ = def_nits_nits_nits, not_root_ = def_not_root, once_ = def_once, ontology_ = def_ontology, opera_ = def_opera,
                     presume_tags_ = def_presume_tags, pretty_ = def_pretty, progress_ = def_progress, rdfa_ = def_rdfa, rel_ = def_rel, revoke_ = def_revoke,
@@ -236,6 +236,7 @@ public:
     context_t& jsonld_extension (const vstr_t& s) { jsonld_ext_ = vtos (s); mac (nm_context_jsonld_extension, s); return *this; }
     context_t& jsonld_ontology (const vstr_t& vs) { populate_jsonld_ont (vs); mac (nm_context_jsonld_ontology, vs); return *this; }
     context_t& jsonld_version (const e_jsonld_version v) { version_.jsonld_version (v); mac < int > (nm_context_jsonld_version, v); return *this; }
+    context_t& konqueror (const bool b) { konqueror_ = b; mac (nm_context_konqueror, b); return *this; }
     context_t& lang (const ::std::string& s) { lang_ = s; mac (nm_context_lang, s); return *this; }
     context_t& line_length (const long l) { if ((l >= MIN_LINE_LENGTH) && (l < (INT8_MAX - 16))) line_length_ = l; mac (nm_contect_line_length, l); return *this; }
     context_t& links (const bool b);
@@ -470,6 +471,7 @@ public:
     const vstr_t& jsonld_ontology () const { return jsonld_ont_; }
     const vstr_t& jsonld_value () { return jsonld_val_; }
     e_jsonld_version jsonld_version () const noexcept { return version_.jsonld_version (); }
+    bool konqueror () const noexcept { return konqueror_; }
     const ::std::string& lang () const { return lang_; }
     bool local () const noexcept { return local_; }
     long line_length () const noexcept { return line_length_; }

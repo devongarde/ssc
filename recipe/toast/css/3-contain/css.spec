@@ -1,7 +1,6 @@
 -Y 1 -7 original -f ../toast/css/3-contain/css.conf
 
 PASS ../toast/css/3-contain/css-3.css
-0 html
 7 css_version
 8 css_version
 

@@ -277,7 +277,7 @@ typedef typed_property < t_css_empty_cells, ec_empty_cells > prop_empty_cells;
 typedef typed_property < t_enable_background, ec_enable_background > prop_enable_background;
 typedef typed_property < t_generic, ec_error > prop_error;
 
-typedef typed_property < t_css_counter_style_name, ec_fallback > prop_fallback;
+typedef typed_property < t_fallback, ec_fallback > prop_fallback;
 typedef typed_property < t_css_content_fixed, ec_field_sizing > prop_field_sizing;
 typedef typed_property < t_fill_v, ec_fill > prop_fill;
 typedef typed_property < t_bcs, ec_fill_break > prop_fill_break;
@@ -734,6 +734,7 @@ typedef typed_property < t_css_col, ec_text_emphasis_colour > prop_text_emphasis
 typedef typed_property < t_css_textemph_pos, ec_text_emphasis_position > prop_text_emphasis_position;
 typedef typed_property < t_css_textemph_skip, ec_text_emphasis_skip > prop_text_emphasis_skip;
 typedef typed_property < t_css_textemph_style, ec_text_emphasis_style > prop_text_emphasis_style;
+typedef typed_property < t_css_text_fit, ec_text_fit > prop_text_fit;
 typedef typed_property < t_celnrs, ec_text_group_align > prop_text_group_align;
 typedef typed_property < t_css_texts_indent, ec_text_indent > prop_text_indent;
 typedef typed_property < t_css_text_justify_nc, ec_text_justify > prop_text_justify;
@@ -866,8 +867,8 @@ typedef typed_property < t_generic, ec_flex_line_pack > prop_flex_line_pack;
 typedef typed_property < t_generic, ec_flex_order > prop_flex_order;
 typedef typed_property < t_generic, ec_flex_pack > prop_flex_pack;
 typedef typed_property < t_generic, ec_float_displace > prop_float_displace;
-typedef typed_property < t_generic, ec_float_displace__alternative_2 > prop_float_displace__alternative_2;
-typedef typed_property < t_generic, ec_float_displace__alternative_3 > prop_float_displace__alternative_3;
+typedef typed_property < t_generic, ec_float_displace_alternative_2 > prop_float_displace_alternative_2;
+typedef typed_property < t_generic, ec_float_displace_alternative_3 > prop_float_displace_alternative_3;
 typedef typed_property < t_generic, ec_font_max_size > prop_font_max_size;
 typedef typed_property < t_generic, ec_font_min_size > prop_font_min_size;
 typedef typed_property < t_generic, ec_font_presentation > prop_font_presentation;
@@ -1052,7 +1053,249 @@ typedef typed_property < t_generic, ec_wrap_padding > prop_wrap_padding;
 
 typedef typed_property < t_generic, ec_align_tracks > prop_align_tracks;
 
+typedef typed_property < t_css_bespoke, ec_apple_align_content > prop_apple_align_content;
+typedef typed_property < t_css_bespoke, ec_apple_align_items > prop_apple_align_items;
+typedef typed_property < t_css_bespoke, ec_apple_align_self > prop_apple_align_self;
+typedef typed_property < t_css_bespoke, ec_apple_alt > prop_apple_alt;
+typedef typed_property < t_css_animations, ec_apple_animation > prop_apple_animation;
+typedef typed_property < t_datetime, ec_apple_animation_delay > prop_apple_animation_delay;
+typedef typed_property < t_css_anim_dirs, ec_apple_animation_direction > prop_apple_animation_direction;
+typedef typed_property < t_datetime_autos, ec_apple_animation_duration > prop_apple_animation_duration;
+typedef typed_property < t_css_anim_fill_modes, ec_apple_animation_fill_mode > prop_apple_animation_fill_mode;
+typedef typed_property < t_css_anim_iter_count, ec_apple_animation_iteration_count > prop_apple_animation_iteration_count;
+typedef typed_property < t_css_anim_name, ec_apple_animation_name > prop_apple_animation_name;
+typedef typed_property < t_css_anim_play_states, ec_apple_animation_play_state > prop_apple_animation_play_state;
+typedef typed_property < t_css_atfs, ec_apple_animation_timing_function > prop_apple_animation_timing_function;
+typedef typed_property < t_css_bespoke, ec_apple_animation_trigger > prop_apple_animation_trigger;
+typedef typed_property < t_drag_nodrag, ec_apple_app_region > prop_apple_app_region;
+typedef typed_property < t_css_appearance, ec_apple_appearance > prop_apple_appearance;
+typedef typed_property < t_css_bespoke, ec_apple_aspect_ratio > prop_apple_aspect_ratio;
+typedef typed_property < t_css_bespoke, ec_apple_backdrop_filter > prop_apple_backdrop_filter;
+typedef typed_property < t_css_bespoke, ec_apple_backface_visibility > prop_apple_backface_visibility;
+typedef typed_property < t_css_bespoke, ec_apple_background_clip > prop_apple_background_clip;
+typedef typed_property < t_css_bespoke, ec_apple_background_composite > prop_apple_background_composite;
+typedef typed_property < t_css_bespoke, ec_apple_background_origin > prop_apple_background_origin;
+typedef typed_property < t_css_bespoke, ec_apple_background_size > prop_apple_background_size;
+typedef typed_property < t_css_column_rules, ec_apple_border_after > prop_apple_border_after;
+typedef typed_property < t_css_cols, ec_apple_border_after_colour > prop_apple_border_after_colour;
+typedef typed_property < t_css_border_styles_l, ec_apple_border_after_style > prop_apple_border_after_style;
+typedef typed_property < t_css_borders_measure_l, ec_apple_border_after_width > prop_apple_border_after_width;
+typedef typed_property < t_css_column_rules, ec_apple_border_before > prop_apple_border_before;
+typedef typed_property < t_css_cols, ec_apple_border_before_colour > prop_apple_border_before_colour;
+typedef typed_property < t_css_border_styles_l, ec_apple_border_before_style > prop_apple_border_before_style;
+typedef typed_property < t_css_borders_measure_l, ec_apple_border_before_width > prop_apple_border_before_width;
+typedef typed_property < t_css_bespoke, ec_apple_border_bottom_left_radius > prop_apple_border_bottom_left_radius;
+typedef typed_property < t_css_bespoke, ec_apple_border_bottom_right_radius > prop_apple_border_bottom_right_radius;
+typedef typed_property < t_css_column_rules, ec_apple_border_end > prop_apple_border_end;
+typedef typed_property < t_css_cols, ec_apple_border_end_colour > prop_apple_border_end_colour;
+typedef typed_property < t_css_border_styles_l, ec_apple_border_end_style > prop_apple_border_end_style;
+typedef typed_property < t_css_borders_measure_l, ec_apple_border_end_width > prop_apple_border_end_width;
+typedef typed_property < t_css_bespoke, ec_apple_border_fit > prop_apple_border_fit;
+typedef typed_property < t_css_bespoke, ec_apple_border_horizontal_spacing > prop_apple_border_horizontal_spacing;
+typedef typed_property < t_css_bespoke, ec_apple_border_image > prop_apple_border_image;
+typedef typed_property < t_css_bespoke, ec_apple_border_radius > prop_apple_border_radius;
+typedef typed_property < t_css_column_rules, ec_apple_border_start > prop_apple_border_start;
+typedef typed_property < t_css_cols, ec_apple_border_start_colour > prop_apple_border_start_colour;
+typedef typed_property < t_css_border_styles_l, ec_apple_border_start_style > prop_apple_border_start_style;
+typedef typed_property < t_css_borders_measure_l, ec_apple_border_start_width > prop_apple_border_start_width;
+typedef typed_property < t_css_bespoke, ec_apple_border_top_left_radius > prop_apple_border_top_left_radius;
+typedef typed_property < t_css_bespoke, ec_apple_border_top_right_radius > prop_apple_border_top_right_radius;
+typedef typed_property < t_css_bespoke, ec_apple_border_vertical_spacing > prop_apple_border_vertical_spacing;
 typedef typed_property < t_bcess, ec_apple_box_align > prop_apple_box_align;
+typedef typed_property < t_css_bespoke, ec_apple_box_decoration_break > prop_apple_box_decoration_break;
+typedef typed_property < t_css_box_direction, ec_apple_box_direction > prop_apple_box_direction;
+typedef typed_property < t_fixedpoint, ec_apple_box_flex > prop_apple_box_flex;
+typedef typed_property < t_integer, ec_apple_box_flex_group > prop_apple_box_flex_group;
+typedef typed_property < t_multiple_single, ec_apple_box_lines > prop_apple_box_lines;
+typedef typed_property < t_integer, ec_apple_box_ordinal_group > prop_apple_box_ordinal_group;
+typedef typed_property < t_css_box_orient, ec_apple_box_orient > prop_apple_box_orient;
+typedef typed_property < t_css_box_pack, ec_apple_box_pack > prop_apple_box_pack;
+typedef typed_property < t_css_box_reflect, ec_apple_box_reflect > prop_apple_box_reflect;
+typedef typed_property < t_css_bespoke, ec_apple_box_shadow > prop_apple_box_shadow;
+typedef typed_property < t_css_bespoke, ec_apple_box_sizing > prop_apple_box_sizing;
+typedef typed_property < t_css_bespoke, ec_apple_clip_path > prop_apple_clip_path;
+typedef typed_property < t_css_bespoke, ec_apple_colour_correction > prop_apple_colour_correction;
+typedef typed_property < t_css_bespoke, ec_apple_column_axis > prop_apple_column_axis;
+typedef typed_property < t_css_break, ec_apple_column_break_after > prop_apple_column_break_after;
+typedef typed_property < t_css_break, ec_apple_column_break_before > prop_apple_column_break_before;
+typedef typed_property < t_css_break_inside, ec_apple_column_break_inside > prop_apple_column_break_inside;
+typedef typed_property < t_css_bespoke, ec_apple_column_count > prop_apple_column_count;
+typedef typed_property < t_css_bespoke, ec_apple_column_fill > prop_apple_column_fill;
+typedef typed_property < t_css_bespoke, ec_apple_column_gap > prop_apple_column_gap;
+typedef typed_property < t_css_bespoke, ec_apple_column_progression > prop_apple_column_progression;
+typedef typed_property < t_css_bespoke, ec_apple_column_rule > prop_apple_column_rule;
+typedef typed_property < t_css_bespoke, ec_apple_column_rule_colour > prop_apple_column_rule_colour;
+typedef typed_property < t_css_bespoke, ec_apple_column_rule_style > prop_apple_column_rule_style;
+typedef typed_property < t_css_bespoke, ec_apple_column_rule_width > prop_apple_column_rule_width;
+typedef typed_property < t_css_bespoke, ec_apple_column_span > prop_apple_column_span;
+typedef typed_property < t_css_bespoke, ec_apple_column_width > prop_apple_column_width;
+typedef typed_property < t_css_bespoke, ec_apple_columns > prop_apple_columns;
+typedef typed_property < t_css_bespoke, ec_apple_cursor_visibility > prop_apple_cursor_visibility;
+typedef typed_property < t_css_bespoke, ec_apple_dashboard_region > prop_apple_dashboard_region;
+typedef typed_property < t_css_bespoke, ec_apple_device_pixel_ratio > prop_apple_device_pixel_ratio;
+typedef typed_property < t_css_bespoke, ec_apple_filter > prop_apple_filter;
+typedef typed_property < t_css_bespoke, ec_apple_flex > prop_apple_flex;
+typedef typed_property < t_css_bespoke, ec_apple_flex_basis > prop_apple_flex_basis;
+typedef typed_property < t_css_bespoke, ec_apple_flex_direction > prop_apple_flex_direction;
+typedef typed_property < t_css_bespoke, ec_apple_flex_flow > prop_apple_flex_flow;
+typedef typed_property < t_css_bespoke, ec_apple_flex_grow > prop_apple_flex_grow;
+typedef typed_property < t_css_bespoke, ec_apple_flex_shrink > prop_apple_flex_shrink;
+typedef typed_property < t_css_bespoke, ec_apple_flex_wrap > prop_apple_flex_wrap;
+typedef typed_property < t_css_bespoke, ec_apple_flow_from > prop_apple_flow_from;
+typedef typed_property < t_css_bespoke, ec_apple_flow_into > prop_apple_flow_into;
+typedef typed_property < t_css_font_feature_settings, ec_apple_font_feature_settings > prop_apple_font_feature_settings;
+typedef typed_property < t_css_bespoke, ec_apple_font_kerning > prop_apple_font_kerning;
+typedef typed_property < t_css_bespoke, ec_apple_font_size_delta > prop_apple_font_size_delta;
+typedef typed_property < t_css_font_smooth, ec_apple_font_smoothing > prop_apple_font_smoothing;
+typedef typed_property < t_css_bespoke, ec_apple_font_variant_ligatures > prop_apple_font_variant_ligatures;
+typedef typed_property < t_css_bespoke, ec_apple_grid > prop_apple_grid;
+typedef typed_property < t_css_bespoke, ec_apple_grid_area > prop_apple_grid_area;
+typedef typed_property < t_css_bespoke, ec_apple_grid_auto_columns > prop_apple_grid_auto_columns;
+typedef typed_property < t_css_bespoke, ec_apple_grid_auto_flow > prop_apple_grid_auto_flow;
+typedef typed_property < t_css_bespoke, ec_apple_grid_auto_rows > prop_apple_grid_auto_rows;
+typedef typed_property < t_css_bespoke, ec_apple_grid_column > prop_apple_grid_column;
+typedef typed_property < t_css_bespoke, ec_apple_grid_column_end > prop_apple_grid_column_end;
+typedef typed_property < t_css_bespoke, ec_apple_grid_column_gap > prop_apple_grid_column_gap;
+typedef typed_property < t_css_bespoke, ec_apple_grid_column_start > prop_apple_grid_column_start;
+typedef typed_property < t_css_bespoke, ec_apple_grid_columns > prop_apple_grid_columns;
+typedef typed_property < t_css_bespoke, ec_apple_grid_gap > prop_apple_grid_gap;
+typedef typed_property < t_css_bespoke, ec_apple_grid_row > prop_apple_grid_row;
+typedef typed_property < t_css_bespoke, ec_apple_grid_row_end > prop_apple_grid_row_end;
+typedef typed_property < t_css_bespoke, ec_apple_grid_row_gap > prop_apple_grid_row_gap;
+typedef typed_property < t_css_bespoke, ec_apple_grid_row_start > prop_apple_grid_row_start;
+typedef typed_property < t_css_bespoke, ec_apple_grid_rows > prop_apple_grid_rows;
+typedef typed_property < t_css_bespoke, ec_apple_grid_template > prop_apple_grid_template;
+typedef typed_property < t_css_bespoke, ec_apple_grid_template_areas > prop_apple_grid_template_areas;
+typedef typed_property < t_css_bespoke, ec_apple_grid_template_columns > prop_apple_grid_template_columns;
+typedef typed_property < t_css_bespoke, ec_apple_grid_template_rows > prop_apple_grid_template_rows;
+typedef typed_property < t_css_bespoke, ec_apple_highlight > prop_apple_highlight;
+typedef typed_property < t_text_a, ec_apple_hyphenate_character > prop_apple_hyphenate_character;
+typedef typed_property < t_css_bespoke, ec_apple_hyphenate_charset > prop_apple_hyphenate_charset;
+typedef typed_property < t_css_bespoke, ec_apple_hyphenate_limit_after > prop_apple_hyphenate_limit_after;
+typedef typed_property < t_css_bespoke, ec_apple_hyphenate_limit_before > prop_apple_hyphenate_limit_before;
+typedef typed_property < t_css_bespoke, ec_apple_hyphenate_limit_lines > prop_apple_hyphenate_limit_lines;
+typedef typed_property < t_css_bespoke, ec_apple_hyphens > prop_apple_hyphens;
+typedef typed_property < t_css_bespoke, ec_apple_image_set > prop_apple_image_set;
+typedef typed_property < t_css_initial_letter_n, ec_apple_initial_letter > prop_apple_initial_letter;
+typedef typed_property < t_css_bespoke, ec_apple_justify_content > prop_apple_justify_content;
+typedef typed_property < t_css_bespoke, ec_apple_justify_items > prop_apple_justify_items;
+typedef typed_property < t_css_bespoke, ec_apple_justify_self > prop_apple_justify_self;
+typedef typed_property < t_css_bespoke, ec_apple_line_align > prop_apple_line_align;
+typedef typed_property < t_css_bespoke, ec_apple_line_box_contain > prop_apple_line_box_contain;
+typedef typed_property < t_css_bespoke, ec_apple_line_break > prop_apple_line_break;
+typedef typed_property < t_positive_n, ec_apple_line_clamp > prop_apple_line_clamp;
+typedef typed_property < t_css_bespoke, ec_apple_line_grid > prop_apple_line_grid;
+typedef typed_property < t_css_bespoke, ec_apple_line_snap > prop_apple_line_snap;
+typedef typed_property < t_css_bespoke, ec_apple_locale > prop_apple_locale;
+typedef typed_property < t_css_bespoke, ec_apple_logical_height > prop_apple_logical_height;
+typedef typed_property < t_css_bespoke, ec_apple_logical_width > prop_apple_logical_width;
+typedef typed_property < t_css_bespoke, ec_apple_margin_after > prop_apple_margin_after;
+typedef typed_property < t_css_bespoke, ec_apple_margin_after_collapse > prop_apple_margin_after_collapse;
+typedef typed_property < t_css_bespoke, ec_apple_margin_before > prop_apple_margin_before;
+typedef typed_property < t_css_bespoke, ec_apple_margin_before_collapse > prop_apple_margin_before_collapse;
+typedef typed_property < t_css_bespoke, ec_apple_margin_bottom_collapse > prop_apple_margin_bottom_collapse;
+typedef typed_property < t_css_bespoke, ec_apple_margin_collapse > prop_apple_margin_collapse;
+typedef typed_property < t_measure_ai, ec_apple_margin_end > prop_apple_margin_end;
+typedef typed_property < t_measure_ai, ec_apple_margin_start > prop_apple_margin_start;
+typedef typed_property < t_css_bespoke, ec_apple_margin_top_collapse > prop_apple_margin_top_collapse;
+typedef typed_property < t_css_bespoke, ec_apple_marquee > prop_apple_marquee;
+typedef typed_property < t_css_bespoke, ec_apple_marquee_direction > prop_apple_marquee_direction;
+typedef typed_property < t_css_bespoke, ec_apple_marquee_increment > prop_apple_marquee_increment;
+typedef typed_property < t_css_bespoke, ec_apple_marquee_repetition > prop_apple_marquee_repetition;
+typedef typed_property < t_css_bespoke, ec_apple_marquee_speed > prop_apple_marquee_speed;
+typedef typed_property < t_css_bespoke, ec_apple_marquee_style > prop_apple_marquee_style;
+typedef typed_property < t_css_bespoke, ec_apple_mask > prop_apple_mask;
+typedef typed_property < t_css_bespoke, ec_apple_mask_attachment > prop_apple_mask_attachment;
+typedef typed_property < t_css_mask_border_outsets, ec_apple_mask_border_outset > prop_apple_mask_border_outset;
+typedef typed_property < t_css_mask_border_repeats, ec_apple_mask_border_repeat > prop_apple_mask_border_repeat;
+typedef typed_property < t_css_val_fn_n, ec_apple_mask_border_source > prop_apple_mask_border_source;
+typedef typed_property < t_css_bespoke, ec_apple_mask_box_image > prop_apple_mask_box_image;
+typedef typed_property < t_css_bespoke, ec_apple_mask_box_image_outset > prop_apple_mask_box_image_outset;
+typedef typed_property < t_css_bespoke, ec_apple_mask_box_image_repeat > prop_apple_mask_box_image_repeat;
+typedef typed_property < t_css_bespoke, ec_apple_mask_box_image_slice > prop_apple_mask_box_image_slice;
+typedef typed_property < t_css_bespoke, ec_apple_mask_box_image_source > prop_apple_mask_box_image_source;
+typedef typed_property < t_css_bespoke, ec_apple_mask_box_image_width > prop_apple_mask_box_image_width;
+typedef typed_property < t_css_bespoke, ec_apple_mask_clip > prop_apple_mask_clip;
+typedef typed_property < t_css_mask_composites, ec_apple_mask_composite > prop_apple_mask_composite;
+typedef typed_property < t_css_bespoke, ec_apple_mask_image > prop_apple_mask_image;
+typedef typed_property < t_css_coord_boxen, ec_apple_mask_origin > prop_apple_mask_origin;
+typedef typed_property < t_positions, ec_apple_mask_position > prop_apple_mask_position;
+typedef typed_property < t_refxs, ec_apple_mask_position_x > prop_apple_mask_position_x;
+typedef typed_property < t_refys, ec_apple_mask_position_y > prop_apple_mask_position_y;
+typedef typed_property < t_css_background_repeats, ec_apple_mask_repeat > prop_apple_mask_repeat;
+typedef typed_property < t_css_mask_repeats, ec_apple_mask_repeat_x > prop_apple_mask_repeat_x;
+typedef typed_property < t_css_mask_repeats, ec_apple_mask_repeat_y > prop_apple_mask_repeat_y;
+typedef typed_property < t_css_bespoke, ec_apple_mask_size > prop_apple_mask_size;
+typedef typed_property < t_css_bespoke, ec_apple_mask_source_type > prop_apple_mask_source_type;
+typedef typed_property < t_css_bespoke, ec_apple_match_nearest_mail_blockquote_colour > prop_apple_match_nearest_mail_blockquote_colour;
+typedef typed_property < t_css_bespoke, ec_apple_max_logical_height > prop_apple_max_logical_height;
+typedef typed_property < t_css_bespoke, ec_apple_max_logical_width > prop_apple_max_logical_width;
+typedef typed_property < t_css_bespoke, ec_apple_media_text_track_container > prop_apple_media_text_track_container;
+typedef typed_property < t_css_bespoke, ec_apple_min_logical_height > prop_apple_min_logical_height;
+typedef typed_property < t_css_bespoke, ec_apple_min_logical_width > prop_apple_min_logical_width;
+typedef typed_property < t_css_bespoke, ec_apple_nbsp_mode > prop_apple_nbsp_mode;
+typedef typed_property < t_css_bespoke, ec_apple_opacity > prop_apple_opacity;
+typedef typed_property < t_css_bespoke, ec_apple_order > prop_apple_order;
+typedef typed_property < t_css_bespoke, ec_apple_overflow_scrolling > prop_apple_overflow_scrolling;
+typedef typed_property < t_measure_i, ec_apple_padding_after > prop_apple_padding_after;
+typedef typed_property < t_measure_i, ec_apple_padding_before > prop_apple_padding_before;
+typedef typed_property < t_measure_i, ec_apple_padding_end > prop_apple_padding_end;
+typedef typed_property < t_measure_i, ec_apple_padding_start > prop_apple_padding_start;
+typedef typed_property < t_css_bespoke, ec_apple_perspective > prop_apple_perspective;
+typedef typed_property < t_css_bespoke, ec_apple_perspective_origin > prop_apple_perspective_origin;
+typedef typed_property < t_css_bespoke, ec_apple_perspective_origin_x > prop_apple_perspective_origin_x;
+typedef typed_property < t_css_bespoke, ec_apple_perspective_origin_y > prop_apple_perspective_origin_y;
+typedef typed_property < t_css_bespoke, ec_apple_print_colour_adjust > prop_apple_print_colour_adjust;
+typedef typed_property < t_css_bespoke, ec_apple_region_break_after > prop_apple_region_break_after;
+typedef typed_property < t_css_bespoke, ec_apple_region_break_before > prop_apple_region_break_before;
+typedef typed_property < t_css_bespoke, ec_apple_region_break_inside > prop_apple_region_break_inside;
+typedef typed_property < t_css_bespoke, ec_apple_region_fragment > prop_apple_region_fragment;
+typedef typed_property < t_css_bespoke, ec_apple_rtl_ordering > prop_apple_rtl_ordering;
+typedef typed_property < t_css_bespoke, ec_apple_ruby_position > prop_apple_ruby_position;
+typedef typed_property < t_css_bespoke, ec_apple_scroll_snap_type > prop_apple_scroll_snap_type;
+typedef typed_property < t_css_bespoke, ec_apple_shape_image_threshold > prop_apple_shape_image_threshold;
+typedef typed_property < t_css_bespoke, ec_apple_shape_inside > prop_apple_shape_inside;
+typedef typed_property < t_css_bespoke, ec_apple_shape_margin > prop_apple_shape_margin;
+typedef typed_property < t_css_bespoke, ec_apple_shape_outside > prop_apple_shape_outside;
+typedef typed_property < t_css_bespoke, ec_apple_svg_shadow > prop_apple_svg_shadow;
+typedef typed_property < t_css_col, ec_apple_tap_highlight_colour > prop_apple_tap_highlight_colour;
+typedef typed_property < t_css_bespoke, ec_apple_text_colour_decoration > prop_apple_text_colour_decoration;
+typedef typed_property < t_css_bespoke, ec_apple_text_combine > prop_apple_text_combine;
+typedef typed_property < t_css_bespoke, ec_apple_text_decoration_line > prop_apple_text_decoration_line;
+typedef typed_property < t_css_bespoke, ec_apple_text_decoration_skip > prop_apple_text_decoration_skip;
+typedef typed_property < t_css_bespoke, ec_apple_text_decoration_style > prop_apple_text_decoration_style;
+typedef typed_property < t_css_bespoke, ec_apple_text_decorations_in_effect > prop_apple_text_decorations_in_effect;
+typedef typed_property < t_css_bespoke, ec_apple_text_emphasis > prop_apple_text_emphasis;
+typedef typed_property < t_css_bespoke, ec_apple_text_emphasis_colour > prop_apple_text_emphasis_colour;
+typedef typed_property < t_css_bespoke, ec_apple_text_emphasis_position > prop_apple_text_emphasis_position;
+typedef typed_property < t_css_bespoke, ec_apple_text_emphasis_style > prop_apple_text_emphasis_style;
+typedef typed_property < t_css_col, ec_apple_text_fill_colour > prop_apple_text_fill_colour;
+typedef typed_property < t_css_bespoke, ec_apple_text_justify > prop_apple_text_justify;
+typedef typed_property < t_css_bespoke, ec_apple_text_orientation > prop_apple_text_orientation;
+typedef typed_property < t_dsc2, ec_apple_text_security > prop_apple_text_security;
+typedef typed_property < t_css_bespoke, ec_apple_text_size_adjust > prop_apple_text_size_adjust;
+typedef typed_property < t_css_border_width_col, ec_apple_text_stroke > prop_apple_text_stroke;
+typedef typed_property < t_css_col, ec_apple_text_stroke_colour > prop_apple_text_stroke_colour;
+typedef typed_property < t_css_border_measure, ec_apple_text_stroke_width > prop_apple_text_stroke_width;
+typedef typed_property < t_css_bespoke, ec_apple_text_underline_position > prop_apple_text_underline_position;
+typedef typed_property < t_css_bespoke, ec_apple_text_zoom > prop_apple_text_zoom;
+typedef typed_property < t_default_none, ec_apple_touch_callout > prop_apple_touch_callout;
+typedef typed_property < t_css_transform_n, ec_apple_transform > prop_apple_transform;
+typedef typed_property < t_css_bespoke, ec_apple_transform_2d > prop_apple_transform_2d;
+typedef typed_property < t_css_bespoke, ec_apple_transform_3d > prop_apple_transform_3d;
+typedef typed_property < t_css_bespoke, ec_apple_transform_origin > prop_apple_transform_origin;
+typedef typed_property < t_css_bespoke, ec_apple_transform_origin_x > prop_apple_transform_origin_x;
+typedef typed_property < t_css_bespoke, ec_apple_transform_origin_y > prop_apple_transform_origin_y;
+typedef typed_property < t_css_bespoke, ec_apple_transform_origin_z > prop_apple_transform_origin_z;
+typedef typed_property < t_css_bespoke, ec_apple_transform_style > prop_apple_transform_style;
+typedef typed_property < t_css_bespoke, ec_apple_transition > prop_apple_transition;
+typedef typed_property < t_css_bespoke, ec_apple_transition_delay > prop_apple_transition_delay;
+typedef typed_property < t_css_bespoke, ec_apple_transition_duration > prop_apple_transition_duration;
+typedef typed_property < t_css_bespoke, ec_apple_transition_property > prop_apple_transition_property;
+typedef typed_property < t_css_bespoke, ec_apple_transition_timing_function > prop_apple_transition_timing_function;
+typedef typed_property < t_css_bespoke, ec_apple_user_drag > prop_apple_user_drag;
+typedef typed_property < t_css_bespoke, ec_apple_user_modify > prop_apple_user_modify;
+typedef typed_property < t_css_bespoke, ec_apple_user_select > prop_apple_user_select;
 
 typedef typed_property < t_css_bespoke, ec_epub_text_decoration > prop_epub_text_decoration;
 typedef typed_property < t_css_bespoke, ec_epub_text_emphasis > prop_epub_text_emphasis;
@@ -1061,7 +1304,253 @@ typedef typed_property < t_css_bespoke, ec_epub_text_emphasis_style > prop_epub_
 typedef typed_property < t_css_bespoke, ec_epub_word_break > prop_epub_word_break;
 typedef typed_property < t_css_bespoke, ec_epub_writing_mode > prop_epub_writing_mode;
 
+typedef typed_property < t_css_bespoke, ec_khtml_align_content > prop_khtml_align_content;
+typedef typed_property < t_css_bespoke, ec_khtml_align_items > prop_khtml_align_items;
+typedef typed_property < t_css_bespoke, ec_khtml_align_self > prop_khtml_align_self;
+typedef typed_property < t_css_bespoke, ec_khtml_alt > prop_khtml_alt;
+typedef typed_property < t_css_animations, ec_khtml_animation > prop_khtml_animation;
+typedef typed_property < t_datetime, ec_khtml_animation_delay > prop_khtml_animation_delay;
+typedef typed_property < t_css_anim_dirs, ec_khtml_animation_direction > prop_khtml_animation_direction;
+typedef typed_property < t_datetime_autos, ec_khtml_animation_duration > prop_khtml_animation_duration;
+typedef typed_property < t_css_anim_fill_modes, ec_khtml_animation_fill_mode > prop_khtml_animation_fill_mode;
+typedef typed_property < t_css_anim_iter_count, ec_khtml_animation_iteration_count > prop_khtml_animation_iteration_count;
+typedef typed_property < t_css_anim_name, ec_khtml_animation_name > prop_khtml_animation_name;
+typedef typed_property < t_css_anim_play_states, ec_khtml_animation_play_state > prop_khtml_animation_play_state;
+typedef typed_property < t_css_atfs, ec_khtml_animation_timing_function > prop_khtml_animation_timing_function;
+typedef typed_property < t_css_bespoke, ec_khtml_animation_trigger > prop_khtml_animation_trigger;
+typedef typed_property < t_drag_nodrag, ec_khtml_app_region > prop_khtml_app_region;
+typedef typed_property < t_css_appearance, ec_khtml_appearance > prop_khtml_appearance;
+typedef typed_property < t_css_bespoke, ec_khtml_aspect_ratio > prop_khtml_aspect_ratio;
+typedef typed_property < t_css_bespoke, ec_khtml_backdrop_filter > prop_khtml_backdrop_filter;
+typedef typed_property < t_css_bespoke, ec_khtml_backface_visibility > prop_khtml_backface_visibility;
+typedef typed_property < t_css_bespoke, ec_khtml_background_clip > prop_khtml_background_clip;
+typedef typed_property < t_css_bespoke, ec_khtml_background_composite > prop_khtml_background_composite;
+typedef typed_property < t_css_bespoke, ec_khtml_background_origin > prop_khtml_background_origin;
+typedef typed_property < t_css_bespoke, ec_khtml_background_size > prop_khtml_background_size;
+typedef typed_property < t_css_column_rules, ec_khtml_border_after > prop_khtml_border_after;
+typedef typed_property < t_css_cols, ec_khtml_border_after_colour > prop_khtml_border_after_colour;
+typedef typed_property < t_css_border_styles_l, ec_khtml_border_after_style > prop_khtml_border_after_style;
+typedef typed_property < t_css_borders_measure_l, ec_khtml_border_after_width > prop_khtml_border_after_width;
+typedef typed_property < t_css_column_rules, ec_khtml_border_before > prop_khtml_border_before;
+typedef typed_property < t_css_cols, ec_khtml_border_before_colour > prop_khtml_border_before_colour;
+typedef typed_property < t_css_border_styles_l, ec_khtml_border_before_style > prop_khtml_border_before_style;
+typedef typed_property < t_css_borders_measure_l, ec_khtml_border_before_width > prop_khtml_border_before_width;
+typedef typed_property < t_css_bespoke, ec_khtml_border_bottom_left_radius > prop_khtml_border_bottom_left_radius;
+typedef typed_property < t_css_bespoke, ec_khtml_border_bottom_right_radius > prop_khtml_border_bottom_right_radius;
+typedef typed_property < t_css_column_rules, ec_khtml_border_end > prop_khtml_border_end;
+typedef typed_property < t_css_cols, ec_khtml_border_end_colour > prop_khtml_border_end_colour;
+typedef typed_property < t_css_border_styles_l, ec_khtml_border_end_style > prop_khtml_border_end_style;
+typedef typed_property < t_css_borders_measure_l, ec_khtml_border_end_width > prop_khtml_border_end_width;
+typedef typed_property < t_css_bespoke, ec_khtml_border_fit > prop_khtml_border_fit;
+typedef typed_property < t_css_bespoke, ec_khtml_border_horizontal_spacing > prop_khtml_border_horizontal_spacing;
+typedef typed_property < t_css_bespoke, ec_khtml_border_image > prop_khtml_border_image;
+typedef typed_property < t_css_bespoke, ec_khtml_border_radius > prop_khtml_border_radius;
+typedef typed_property < t_css_bespoke, ec_khtml_border_radius_bottomleft > prop_khtml_border_radius_bottomleft;
+typedef typed_property < t_css_bespoke, ec_khtml_border_radius_bottomright > prop_khtml_border_radius_bottomright;
+typedef typed_property < t_css_bespoke, ec_khtml_border_radius_topleft > prop_khtml_border_radius_topleft;
+typedef typed_property < t_css_bespoke, ec_khtml_border_radius_topright > prop_khtml_border_radius_topright;
+typedef typed_property < t_css_column_rules, ec_khtml_border_start > prop_khtml_border_start;
+typedef typed_property < t_css_cols, ec_khtml_border_start_colour > prop_khtml_border_start_colour;
+typedef typed_property < t_css_border_styles_l, ec_khtml_border_start_style > prop_khtml_border_start_style;
+typedef typed_property < t_css_borders_measure_l, ec_khtml_border_start_width > prop_khtml_border_start_width;
+typedef typed_property < t_css_bespoke, ec_khtml_border_top_left_radius > prop_khtml_border_top_left_radius;
+typedef typed_property < t_css_bespoke, ec_khtml_border_top_right_radius > prop_khtml_border_top_right_radius;
+typedef typed_property < t_css_bespoke, ec_khtml_border_vertical_spacing > prop_khtml_border_vertical_spacing;
 typedef typed_property < t_bcess, ec_khtml_box_align > prop_khtml_box_align;
+typedef typed_property < t_css_bespoke, ec_khtml_box_decoration_break > prop_khtml_box_decoration_break;
+typedef typed_property < t_css_box_direction, ec_khtml_box_direction > prop_khtml_box_direction;
+typedef typed_property < t_fixedpoint, ec_khtml_box_flex > prop_khtml_box_flex;
+typedef typed_property < t_integer, ec_khtml_box_flex_group > prop_khtml_box_flex_group;
+typedef typed_property < t_multiple_single, ec_khtml_box_lines > prop_khtml_box_lines;
+typedef typed_property < t_integer, ec_khtml_box_ordinal_group > prop_khtml_box_ordinal_group;
+typedef typed_property < t_css_box_orient, ec_khtml_box_orient > prop_khtml_box_orient;
+typedef typed_property < t_css_box_pack, ec_khtml_box_pack > prop_khtml_box_pack;
+typedef typed_property < t_css_box_reflect, ec_khtml_box_reflect > prop_khtml_box_reflect;
+typedef typed_property < t_css_bespoke, ec_khtml_box_shadow > prop_khtml_box_shadow;
+typedef typed_property < t_css_bespoke, ec_khtml_box_sizing > prop_khtml_box_sizing;
+typedef typed_property < t_css_bespoke, ec_khtml_clip_path > prop_khtml_clip_path;
+typedef typed_property < t_css_bespoke, ec_khtml_colour_correction > prop_khtml_colour_correction;
+typedef typed_property < t_css_bespoke, ec_khtml_column_axis > prop_khtml_column_axis;
+typedef typed_property < t_css_break, ec_khtml_column_break_after > prop_khtml_column_break_after;
+typedef typed_property < t_css_break, ec_khtml_column_break_before > prop_khtml_column_break_before;
+typedef typed_property < t_css_break_inside, ec_khtml_column_break_inside > prop_khtml_column_break_inside;
+typedef typed_property < t_css_bespoke, ec_khtml_column_count > prop_khtml_column_count;
+typedef typed_property < t_css_bespoke, ec_khtml_column_fill > prop_khtml_column_fill;
+typedef typed_property < t_css_bespoke, ec_khtml_column_gap > prop_khtml_column_gap;
+typedef typed_property < t_css_bespoke, ec_khtml_column_progression > prop_khtml_column_progression;
+typedef typed_property < t_css_bespoke, ec_khtml_column_rule > prop_khtml_column_rule;
+typedef typed_property < t_css_bespoke, ec_khtml_column_rule_colour > prop_khtml_column_rule_colour;
+typedef typed_property < t_css_bespoke, ec_khtml_column_rule_style > prop_khtml_column_rule_style;
+typedef typed_property < t_css_bespoke, ec_khtml_column_rule_width > prop_khtml_column_rule_width;
+typedef typed_property < t_css_bespoke, ec_khtml_column_span > prop_khtml_column_span;
+typedef typed_property < t_css_bespoke, ec_khtml_column_width > prop_khtml_column_width;
+typedef typed_property < t_css_bespoke, ec_khtml_columns > prop_khtml_columns;
+typedef typed_property < t_css_bespoke, ec_khtml_cursor_visibility > prop_khtml_cursor_visibility;
+typedef typed_property < t_css_bespoke, ec_khtml_dashboard_region > prop_khtml_dashboard_region;
+typedef typed_property < t_css_bespoke, ec_khtml_device_pixel_ratio > prop_khtml_device_pixel_ratio;
+typedef typed_property < t_css_bespoke, ec_khtml_filter > prop_khtml_filter;
+typedef typed_property < t_css_bespoke, ec_khtml_flex > prop_khtml_flex;
+typedef typed_property < t_css_bespoke, ec_khtml_flex_basis > prop_khtml_flex_basis;
+typedef typed_property < t_css_bespoke, ec_khtml_flex_direction > prop_khtml_flex_direction;
+typedef typed_property < t_css_bespoke, ec_khtml_flex_flow > prop_khtml_flex_flow;
+typedef typed_property < t_css_bespoke, ec_khtml_flex_grow > prop_khtml_flex_grow;
+typedef typed_property < t_css_bespoke, ec_khtml_flex_shrink > prop_khtml_flex_shrink;
+typedef typed_property < t_css_bespoke, ec_khtml_flex_wrap > prop_khtml_flex_wrap;
+typedef typed_property < t_css_bespoke, ec_khtml_flow_from > prop_khtml_flow_from;
+typedef typed_property < t_css_bespoke, ec_khtml_flow_into > prop_khtml_flow_into;
+typedef typed_property < t_css_font_feature_settings, ec_khtml_font_feature_settings > prop_khtml_font_feature_settings;
+typedef typed_property < t_css_bespoke, ec_khtml_font_kerning > prop_khtml_font_kerning;
+typedef typed_property < t_css_bespoke, ec_khtml_font_size_delta > prop_khtml_font_size_delta;
+typedef typed_property < t_css_font_smooth, ec_khtml_font_smoothing > prop_khtml_font_smoothing;
+typedef typed_property < t_css_bespoke, ec_khtml_font_variant_ligatures > prop_khtml_font_variant_ligatures;
+typedef typed_property < t_css_bespoke, ec_khtml_grid > prop_khtml_grid;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_area > prop_khtml_grid_area;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_auto_columns > prop_khtml_grid_auto_columns;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_auto_flow > prop_khtml_grid_auto_flow;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_auto_rows > prop_khtml_grid_auto_rows;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_column > prop_khtml_grid_column;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_column_end > prop_khtml_grid_column_end;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_column_gap > prop_khtml_grid_column_gap;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_column_start > prop_khtml_grid_column_start;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_columns > prop_khtml_grid_columns;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_gap > prop_khtml_grid_gap;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_row > prop_khtml_grid_row;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_row_end > prop_khtml_grid_row_end;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_row_gap > prop_khtml_grid_row_gap;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_row_start > prop_khtml_grid_row_start;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_rows > prop_khtml_grid_rows;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_template > prop_khtml_grid_template;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_template_areas > prop_khtml_grid_template_areas;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_template_columns > prop_khtml_grid_template_columns;
+typedef typed_property < t_css_bespoke, ec_khtml_grid_template_rows > prop_khtml_grid_template_rows;
+typedef typed_property < t_css_bespoke, ec_khtml_highlight > prop_khtml_highlight;
+typedef typed_property < t_text_a, ec_khtml_hyphenate_character > prop_khtml_hyphenate_character;
+typedef typed_property < t_css_bespoke, ec_khtml_hyphenate_charset > prop_khtml_hyphenate_charset;
+typedef typed_property < t_css_bespoke, ec_khtml_hyphenate_limit_after > prop_khtml_hyphenate_limit_after;
+typedef typed_property < t_css_bespoke, ec_khtml_hyphenate_limit_before > prop_khtml_hyphenate_limit_before;
+typedef typed_property < t_css_bespoke, ec_khtml_hyphenate_limit_lines > prop_khtml_hyphenate_limit_lines;
+typedef typed_property < t_css_bespoke, ec_khtml_hyphens > prop_khtml_hyphens;
+typedef typed_property < t_css_bespoke, ec_khtml_image_set > prop_khtml_image_set;
+typedef typed_property < t_css_initial_letter_n, ec_khtml_initial_letter > prop_khtml_initial_letter;
+typedef typed_property < t_css_bespoke, ec_khtml_justify_content > prop_khtml_justify_content;
+typedef typed_property < t_css_bespoke, ec_khtml_justify_items > prop_khtml_justify_items;
+typedef typed_property < t_css_bespoke, ec_khtml_justify_self > prop_khtml_justify_self;
+typedef typed_property < t_css_bespoke, ec_khtml_line_align > prop_khtml_line_align;
+typedef typed_property < t_css_bespoke, ec_khtml_line_box_contain > prop_khtml_line_box_contain;
+typedef typed_property < t_css_bespoke, ec_khtml_line_break > prop_khtml_line_break;
+typedef typed_property < t_positive_n, ec_khtml_line_clamp > prop_khtml_line_clamp;
+typedef typed_property < t_css_bespoke, ec_khtml_line_grid > prop_khtml_line_grid;
+typedef typed_property < t_css_bespoke, ec_khtml_line_snap > prop_khtml_line_snap;
+typedef typed_property < t_css_bespoke, ec_khtml_locale > prop_khtml_locale;
+typedef typed_property < t_css_bespoke, ec_khtml_logical_height > prop_khtml_logical_height;
+typedef typed_property < t_css_bespoke, ec_khtml_logical_width > prop_khtml_logical_width;
+typedef typed_property < t_css_bespoke, ec_khtml_margin_after > prop_khtml_margin_after;
+typedef typed_property < t_css_bespoke, ec_khtml_margin_after_collapse > prop_khtml_margin_after_collapse;
+typedef typed_property < t_css_bespoke, ec_khtml_margin_before > prop_khtml_margin_before;
+typedef typed_property < t_css_bespoke, ec_khtml_margin_before_collapse > prop_khtml_margin_before_collapse;
+typedef typed_property < t_css_bespoke, ec_khtml_margin_bottom_collapse > prop_khtml_margin_bottom_collapse;
+typedef typed_property < t_css_bespoke, ec_khtml_margin_collapse > prop_khtml_margin_collapse;
+typedef typed_property < t_measure_ai, ec_khtml_margin_end > prop_khtml_margin_end;
+typedef typed_property < t_measure_ai, ec_khtml_margin_start > prop_khtml_margin_start;
+typedef typed_property < t_css_bespoke, ec_khtml_margin_top_collapse > prop_khtml_margin_top_collapse;
+typedef typed_property < t_css_bespoke, ec_khtml_marquee > prop_khtml_marquee;
+typedef typed_property < t_css_bespoke, ec_khtml_marquee_direction > prop_khtml_marquee_direction;
+typedef typed_property < t_css_bespoke, ec_khtml_marquee_increment > prop_khtml_marquee_increment;
+typedef typed_property < t_css_bespoke, ec_khtml_marquee_repetition > prop_khtml_marquee_repetition;
+typedef typed_property < t_css_bespoke, ec_khtml_marquee_speed > prop_khtml_marquee_speed;
+typedef typed_property < t_css_bespoke, ec_khtml_marquee_style > prop_khtml_marquee_style;
+typedef typed_property < t_css_bespoke, ec_khtml_mask > prop_khtml_mask;
+typedef typed_property < t_css_bespoke, ec_khtml_mask_attachment > prop_khtml_mask_attachment;
+typedef typed_property < t_css_mask_border_outsets, ec_khtml_mask_border_outset > prop_khtml_mask_border_outset;
+typedef typed_property < t_css_mask_border_repeats, ec_khtml_mask_border_repeat > prop_khtml_mask_border_repeat;
+typedef typed_property < t_css_val_fn_n, ec_khtml_mask_border_source > prop_khtml_mask_border_source;
+typedef typed_property < t_css_bespoke, ec_khtml_mask_box_image > prop_khtml_mask_box_image;
+typedef typed_property < t_css_bespoke, ec_khtml_mask_box_image_outset > prop_khtml_mask_box_image_outset;
+typedef typed_property < t_css_bespoke, ec_khtml_mask_box_image_repeat > prop_khtml_mask_box_image_repeat;
+typedef typed_property < t_css_bespoke, ec_khtml_mask_box_image_slice > prop_khtml_mask_box_image_slice;
+typedef typed_property < t_css_bespoke, ec_khtml_mask_box_image_source > prop_khtml_mask_box_image_source;
+typedef typed_property < t_css_bespoke, ec_khtml_mask_box_image_width > prop_khtml_mask_box_image_width;
+typedef typed_property < t_css_bespoke, ec_khtml_mask_clip > prop_khtml_mask_clip;
+typedef typed_property < t_css_mask_composites, ec_khtml_mask_composite > prop_khtml_mask_composite;
+typedef typed_property < t_css_bespoke, ec_khtml_mask_image > prop_khtml_mask_image;
+typedef typed_property < t_css_coord_boxen, ec_khtml_mask_origin > prop_khtml_mask_origin;
+typedef typed_property < t_positions, ec_khtml_mask_position > prop_khtml_mask_position;
+typedef typed_property < t_refxs, ec_khtml_mask_position_x > prop_khtml_mask_position_x;
+typedef typed_property < t_refys, ec_khtml_mask_position_y > prop_khtml_mask_position_y;
+typedef typed_property < t_css_background_repeats, ec_khtml_mask_repeat > prop_khtml_mask_repeat;
+typedef typed_property < t_css_mask_repeats, ec_khtml_mask_repeat_x > prop_khtml_mask_repeat_x;
+typedef typed_property < t_css_mask_repeats, ec_khtml_mask_repeat_y > prop_khtml_mask_repeat_y;
+typedef typed_property < t_css_bespoke, ec_khtml_mask_size > prop_khtml_mask_size;
+typedef typed_property < t_css_bespoke, ec_khtml_mask_source_type > prop_khtml_mask_source_type;
+typedef typed_property < t_css_bespoke, ec_khtml_match_nearest_mail_blockquote_colour > prop_khtml_match_nearest_mail_blockquote_colour;
+typedef typed_property < t_css_bespoke, ec_khtml_max_logical_height > prop_khtml_max_logical_height;
+typedef typed_property < t_css_bespoke, ec_khtml_max_logical_width > prop_khtml_max_logical_width;
+typedef typed_property < t_css_bespoke, ec_khtml_media_text_track_container > prop_khtml_media_text_track_container;
+typedef typed_property < t_css_bespoke, ec_khtml_min_logical_height > prop_khtml_min_logical_height;
+typedef typed_property < t_css_bespoke, ec_khtml_min_logical_width > prop_khtml_min_logical_width;
+typedef typed_property < t_css_bespoke, ec_khtml_nbsp_mode > prop_khtml_nbsp_mode;
+typedef typed_property < t_css_bespoke, ec_khtml_opacity > prop_khtml_opacity;
+typedef typed_property < t_css_bespoke, ec_khtml_order > prop_khtml_order;
+typedef typed_property < t_css_bespoke, ec_khtml_overflow_scrolling > prop_khtml_overflow_scrolling;
+typedef typed_property < t_measure_i, ec_khtml_padding_after > prop_khtml_padding_after;
+typedef typed_property < t_measure_i, ec_khtml_padding_before > prop_khtml_padding_before;
+typedef typed_property < t_measure_i, ec_khtml_padding_end > prop_khtml_padding_end;
+typedef typed_property < t_measure_i, ec_khtml_padding_start > prop_khtml_padding_start;
+typedef typed_property < t_css_bespoke, ec_khtml_perspective > prop_khtml_perspective;
+typedef typed_property < t_css_bespoke, ec_khtml_perspective_origin > prop_khtml_perspective_origin;
+typedef typed_property < t_css_bespoke, ec_khtml_perspective_origin_x > prop_khtml_perspective_origin_x;
+typedef typed_property < t_css_bespoke, ec_khtml_perspective_origin_y > prop_khtml_perspective_origin_y;
+typedef typed_property < t_css_bespoke, ec_khtml_print_colour_adjust > prop_khtml_print_colour_adjust;
+typedef typed_property < t_css_bespoke, ec_khtml_region_break_after > prop_khtml_region_break_after;
+typedef typed_property < t_css_bespoke, ec_khtml_region_break_before > prop_khtml_region_break_before;
+typedef typed_property < t_css_bespoke, ec_khtml_region_break_inside > prop_khtml_region_break_inside;
+typedef typed_property < t_css_bespoke, ec_khtml_region_fragment > prop_khtml_region_fragment;
+typedef typed_property < t_css_bespoke, ec_khtml_rtl_ordering > prop_khtml_rtl_ordering;
+typedef typed_property < t_css_bespoke, ec_khtml_ruby_position > prop_khtml_ruby_position;
+typedef typed_property < t_css_bespoke, ec_khtml_scroll_snap_type > prop_khtml_scroll_snap_type;
+typedef typed_property < t_css_bespoke, ec_khtml_shape_image_threshold > prop_khtml_shape_image_threshold;
+typedef typed_property < t_css_bespoke, ec_khtml_shape_inside > prop_khtml_shape_inside;
+typedef typed_property < t_css_bespoke, ec_khtml_shape_margin > prop_khtml_shape_margin;
+typedef typed_property < t_css_bespoke, ec_khtml_shape_outside > prop_khtml_shape_outside;
+typedef typed_property < t_css_bespoke, ec_khtml_svg_shadow > prop_khtml_svg_shadow;
+typedef typed_property < t_css_col, ec_khtml_tap_highlight_colour > prop_khtml_tap_highlight_colour;
+typedef typed_property < t_css_bespoke, ec_khtml_text_colour_decoration > prop_khtml_text_colour_decoration;
+typedef typed_property < t_css_bespoke, ec_khtml_text_combine > prop_khtml_text_combine;
+typedef typed_property < t_css_bespoke, ec_khtml_text_decoration_line > prop_khtml_text_decoration_line;
+typedef typed_property < t_css_bespoke, ec_khtml_text_decoration_skip > prop_khtml_text_decoration_skip;
+typedef typed_property < t_css_bespoke, ec_khtml_text_decoration_style > prop_khtml_text_decoration_style;
+typedef typed_property < t_css_bespoke, ec_khtml_text_decorations_in_effect > prop_khtml_text_decorations_in_effect;
+typedef typed_property < t_css_bespoke, ec_khtml_text_emphasis > prop_khtml_text_emphasis;
+typedef typed_property < t_css_bespoke, ec_khtml_text_emphasis_colour > prop_khtml_text_emphasis_colour;
+typedef typed_property < t_css_bespoke, ec_khtml_text_emphasis_position > prop_khtml_text_emphasis_position;
+typedef typed_property < t_css_bespoke, ec_khtml_text_emphasis_style > prop_khtml_text_emphasis_style;
+typedef typed_property < t_css_col, ec_khtml_text_fill_colour > prop_khtml_text_fill_colour;
+typedef typed_property < t_css_bespoke, ec_khtml_text_justify > prop_khtml_text_justify;
+typedef typed_property < t_css_bespoke, ec_khtml_text_orientation > prop_khtml_text_orientation;
+typedef typed_property < t_dsc2, ec_khtml_text_security > prop_khtml_text_security;
+typedef typed_property < t_css_bespoke, ec_khtml_text_size_adjust > prop_khtml_text_size_adjust;
+typedef typed_property < t_css_border_width_col, ec_khtml_text_stroke > prop_khtml_text_stroke;
+typedef typed_property < t_css_col, ec_khtml_text_stroke_colour > prop_khtml_text_stroke_colour;
+typedef typed_property < t_css_border_measure, ec_khtml_text_stroke_width > prop_khtml_text_stroke_width;
+typedef typed_property < t_css_bespoke, ec_khtml_text_underline_position > prop_khtml_text_underline_position;
+typedef typed_property < t_css_bespoke, ec_khtml_text_zoom > prop_khtml_text_zoom;
+typedef typed_property < t_default_none, ec_khtml_touch_callout > prop_khtml_touch_callout;
+typedef typed_property < t_css_transform_n, ec_khtml_transform > prop_khtml_transform;
+typedef typed_property < t_css_bespoke, ec_khtml_transform_2d > prop_khtml_transform_2d;
+typedef typed_property < t_css_bespoke, ec_khtml_transform_3d > prop_khtml_transform_3d;
+typedef typed_property < t_css_bespoke, ec_khtml_transform_origin > prop_khtml_transform_origin;
+typedef typed_property < t_css_bespoke, ec_khtml_transform_origin_x > prop_khtml_transform_origin_x;
+typedef typed_property < t_css_bespoke, ec_khtml_transform_origin_y > prop_khtml_transform_origin_y;
+typedef typed_property < t_css_bespoke, ec_khtml_transform_origin_z > prop_khtml_transform_origin_z;
+typedef typed_property < t_css_bespoke, ec_khtml_transform_style > prop_khtml_transform_style;
+typedef typed_property < t_css_bespoke, ec_khtml_transition > prop_khtml_transition;
+typedef typed_property < t_css_bespoke, ec_khtml_transition_delay > prop_khtml_transition_delay;
+typedef typed_property < t_css_bespoke, ec_khtml_transition_duration > prop_khtml_transition_duration;
+typedef typed_property < t_css_bespoke, ec_khtml_transition_property > prop_khtml_transition_property;
+typedef typed_property < t_css_bespoke, ec_khtml_transition_timing_function > prop_khtml_transition_timing_function;
+typedef typed_property < t_css_bespoke, ec_khtml_user_drag > prop_khtml_user_drag;
+typedef typed_property < t_css_bespoke, ec_khtml_user_modify > prop_khtml_user_modify;
+typedef typed_property < t_css_bespoke, ec_khtml_user_select > prop_khtml_user_select;
 
 typedef typed_property < t_css_animations, ec_moz_animation > prop_moz_animation;
 typedef typed_property < t_datetime, ec_moz_animation_delay > prop_moz_animation_delay;
@@ -1086,6 +1575,11 @@ typedef typed_property < t_css_border_style, ec_moz_border_end_style > prop_moz_
 typedef typed_property < t_css_border_measure, ec_moz_border_end_width > prop_moz_border_end_width;
 typedef typed_property < t_css_border_measure, ec_moz_border_image > prop_moz_border_image;
 typedef typed_property < t_css_cols, ec_moz_border_left_colours > prop_moz_border_left_colours;
+typedef typed_property < t_css_bespoke, ec_moz_border_radius > prop_moz_border_radius;
+typedef typed_property < t_css_bespoke, ec_moz_border_radius_bottomleft > prop_moz_border_radius_bottomleft;
+typedef typed_property < t_css_bespoke, ec_moz_border_radius_bottomright > prop_moz_border_radius_bottomright;
+typedef typed_property < t_css_bespoke, ec_moz_border_radius_topleft > prop_moz_border_radius_topleft;
+typedef typed_property < t_css_bespoke, ec_moz_border_radius_topright > prop_moz_border_radius_topright;
 typedef typed_property < t_css_cols, ec_moz_border_right_colours > prop_moz_border_right_colours;
 typedef typed_property < t_css_column_rule, ec_moz_border_start > prop_moz_border_start;
 typedef typed_property < t_css_col, ec_moz_border_start_colour > prop_moz_border_start_colour;
@@ -1098,6 +1592,7 @@ typedef typed_property < t_fixedpoint, ec_moz_box_flex > prop_moz_box_flex;
 typedef typed_property < t_integer, ec_moz_box_ordinal_group > prop_moz_box_ordinal_group;
 typedef typed_property < t_css_box_orient, ec_moz_box_orient > prop_moz_box_orient;
 typedef typed_property < t_css_box_pack, ec_moz_box_pack > prop_moz_box_pack;
+typedef typed_property < t_css_bespoke, ec_moz_box_shadow > prop_moz_box_shadow;
 typedef typed_property < t_css_box_sizing, ec_moz_box_sizing > prop_moz_box_sizing;
 typedef typed_property < t_unsigned_1_more_a, ec_moz_column_count > prop_moz_column_count;
 typedef typed_property < t_css_column_fill, ec_moz_column_fill > prop_moz_column_fill;
@@ -1155,6 +1650,7 @@ typedef typed_property < t_user_modify, ec_moz_user_modify > prop_moz_user_modif
 typedef typed_property < t_css_user_select, ec_moz_user_select > prop_moz_user_select;
 typedef typed_property < t_drag_nodrag, ec_moz_window_dragging > prop_moz_window_dragging;
 typedef typed_property < t_css_win_shad, ec_moz_window_shadow > prop_moz_window_shadow;
+
 typedef typed_property < t_css_bespoke, ec_webkit_align_content > prop_webkit_align_content;
 typedef typed_property < t_css_bespoke, ec_webkit_align_items > prop_webkit_align_items;
 typedef typed_property < t_css_bespoke, ec_webkit_align_self > prop_webkit_align_self;
@@ -1398,6 +1894,7 @@ typedef typed_property < t_css_bespoke, ec_webkit_transition_timing_function > p
 typedef typed_property < t_css_bespoke, ec_webkit_user_drag > prop_webkit_user_drag;
 typedef typed_property < t_css_bespoke, ec_webkit_user_modify > prop_webkit_user_modify;
 typedef typed_property < t_css_bespoke, ec_webkit_user_select > prop_webkit_user_select;
+
 typedef typed_property < t_css_bespoke, ec_background_origin_x > prop_background_origin_x;
 typedef typed_property < t_css_bespoke, ec_background_origin_y > prop_background_origin_y;
 typedef typed_property < t_css_bespoke, ec_overflow_clip_box > prop_overflow_clip_box;
@@ -1672,6 +2169,7 @@ typedef typed_property < t_css_bespoke, ec_ms_transition_timing_function > prop_
 typedef typed_property < t_css_bespoke, ec_ms_wrap_margin > prop_ms_wrap_margin;
 typedef typed_property < t_css_animations, ec_o_animation > prop_o_animation;
 typedef typed_property < t_css_bespoke, ec_o_border_image > prop_o_border_image;
+typedef typed_property < t_css_bespoke, ec_o_box_shadow > prop_o_box_shadow;
 typedef typed_property < t_css_bespoke, ec_o_device_pixel_ratio > prop_o_device_pixel_ratio;
 typedef typed_property < t_css_bespoke, ec_o_focus_opacity > prop_o_focus_opacity;
 typedef typed_property < t_css_bespoke, ec_o_link > prop_o_link;
@@ -2089,7 +2587,6 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_justify_items, \
     prop_justify_self, \
     prop_kerning, \
-    prop_khtml_box_align, \
     prop_leading_trim, \
     prop_left, \
     prop_letter_spacing, \
@@ -2411,6 +2908,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_text_emphasis_position, \
     prop_text_emphasis_skip, \
     prop_text_emphasis_style, \
+    prop_text_fit, \
     prop_text_group_align, \
     prop_text_indent, \
     prop_text_justify, \
@@ -2519,6 +3017,11 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_moz_border_end_width, \
     prop_moz_border_image, \
     prop_moz_border_left_colours, \
+    prop_moz_border_radius, \
+    prop_moz_border_radius_bottomleft, \
+    prop_moz_border_radius_bottomright, \
+    prop_moz_border_radius_topleft, \
+    prop_moz_border_radius_topright, \
     prop_moz_border_right_colours, \
     prop_moz_border_start, \
     prop_moz_border_start_colour, \
@@ -2531,6 +3034,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_moz_box_ordinal_group, \
     prop_moz_box_orient, \
     prop_moz_box_pack, \
+    prop_moz_box_shadow, \
     prop_moz_box_sizing, \
     prop_moz_column_count, \
     prop_moz_column_fill, \
@@ -3049,7 +3553,249 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
 #define LAST_CSS_4_PROP ec_o_text_overflow
 
 #define CSS_PROPERTIES_5 \
+    prop_apple_align_content, \
+    prop_apple_align_items, \
+    prop_apple_align_self, \
+    prop_apple_alt, \
+    prop_apple_animation, \
+    prop_apple_animation_delay, \
+    prop_apple_animation_direction, \
+    prop_apple_animation_duration, \
+    prop_apple_animation_fill_mode, \
+    prop_apple_animation_iteration_count, \
+    prop_apple_animation_name, \
+    prop_apple_animation_play_state, \
+    prop_apple_animation_timing_function, \
+    prop_apple_animation_trigger, \
+    prop_apple_app_region, \
+    prop_apple_appearance, \
+    prop_apple_aspect_ratio, \
+    prop_apple_backdrop_filter, \
+    prop_apple_backface_visibility, \
+    prop_apple_background_clip, \
+    prop_apple_background_composite, \
+    prop_apple_background_origin, \
+    prop_apple_background_size, \
+    prop_apple_border_after, \
+    prop_apple_border_after_colour, \
+    prop_apple_border_after_style, \
+    prop_apple_border_after_width, \
+    prop_apple_border_before, \
+    prop_apple_border_before_colour, \
+    prop_apple_border_before_style, \
+    prop_apple_border_before_width, \
+    prop_apple_border_bottom_left_radius, \
+    prop_apple_border_bottom_right_radius, \
+    prop_apple_border_end, \
+    prop_apple_border_end_colour, \
+    prop_apple_border_end_style, \
+    prop_apple_border_end_width, \
+    prop_apple_border_fit, \
+    prop_apple_border_horizontal_spacing, \
+    prop_apple_border_image, \
+    prop_apple_border_radius, \
+    prop_apple_border_start, \
+    prop_apple_border_start_colour, \
+    prop_apple_border_start_style, \
+    prop_apple_border_start_width, \
+    prop_apple_border_top_left_radius, \
+    prop_apple_border_top_right_radius, \
+    prop_apple_border_vertical_spacing, \
+    prop_apple_box_align, \
+    prop_apple_box_decoration_break, \
+    prop_apple_box_direction, \
+    prop_apple_box_flex, \
+    prop_apple_box_flex_group, \
+    prop_apple_box_lines, \
+    prop_apple_box_ordinal_group, \
+    prop_apple_box_orient, \
+    prop_apple_box_pack, \
+    prop_apple_box_reflect, \
+    prop_apple_box_shadow, \
+    prop_apple_box_sizing, \
+    prop_apple_clip_path, \
+    prop_apple_colour_correction, \
+    prop_apple_column_axis, \
+    prop_apple_column_break_after, \
+    prop_apple_column_break_before, \
+    prop_apple_column_break_inside, \
+    prop_apple_column_count, \
+    prop_apple_column_fill, \
+    prop_apple_column_gap, \
+    prop_apple_column_progression, \
+    prop_apple_column_rule, \
+    prop_apple_column_rule_colour, \
+    prop_apple_column_rule_style, \
+    prop_apple_column_rule_width, \
+    prop_apple_column_span, \
+    prop_apple_column_width, \
+    prop_apple_columns, \
+    prop_apple_cursor_visibility, \
     prop_apple_dashboard_region, \
+    prop_apple_device_pixel_ratio, \
+    prop_apple_filter, \
+    prop_apple_flex, \
+    prop_apple_flex_basis, \
+    prop_apple_flex_direction, \
+    prop_apple_flex_flow, \
+    prop_apple_flex_grow, \
+    prop_apple_flex_shrink, \
+    prop_apple_flex_wrap, \
+    prop_apple_flow_from, \
+    prop_apple_flow_into, \
+    prop_apple_font_feature_settings, \
+    prop_apple_font_kerning, \
+    prop_apple_font_size_delta, \
+    prop_apple_font_smoothing, \
+    prop_apple_font_variant_ligatures, \
+    prop_apple_grid, \
+    prop_apple_grid_area, \
+    prop_apple_grid_auto_columns, \
+    prop_apple_grid_auto_flow, \
+    prop_apple_grid_auto_rows, \
+    prop_apple_grid_column, \
+    prop_apple_grid_column_end, \
+    prop_apple_grid_column_gap, \
+    prop_apple_grid_column_start, \
+    prop_apple_grid_columns, \
+    prop_apple_grid_gap, \
+    prop_apple_grid_row, \
+    prop_apple_grid_row_end, \
+    prop_apple_grid_row_gap, \
+    prop_apple_grid_row_start, \
+    prop_apple_grid_rows, \
+    prop_apple_grid_template, \
+    prop_apple_grid_template_areas, \
+    prop_apple_grid_template_columns, \
+    prop_apple_grid_template_rows, \
+    prop_apple_highlight, \
+    prop_apple_hyphenate_character, \
+    prop_apple_hyphenate_charset, \
+    prop_apple_hyphenate_limit_after, \
+    prop_apple_hyphenate_limit_before, \
+    prop_apple_hyphenate_limit_lines, \
+    prop_apple_hyphens, \
+    prop_apple_image_set, \
+    prop_apple_initial_letter, \
+    prop_apple_justify_content, \
+    prop_apple_justify_items, \
+    prop_apple_justify_self, \
+    prop_apple_line_align, \
+    prop_apple_line_box_contain, \
+    prop_apple_line_break, \
+    prop_apple_line_clamp, \
+    prop_apple_line_grid, \
+    prop_apple_line_snap, \
+    prop_apple_locale, \
+    prop_apple_logical_height, \
+    prop_apple_logical_width, \
+    prop_apple_margin_after, \
+    prop_apple_margin_after_collapse, \
+    prop_apple_margin_before, \
+    prop_apple_margin_before_collapse, \
+    prop_apple_margin_bottom_collapse, \
+    prop_apple_margin_collapse, \
+    prop_apple_margin_end, \
+    prop_apple_margin_start, \
+    prop_apple_margin_top_collapse, \
+    prop_apple_marquee, \
+    prop_apple_marquee_direction, \
+    prop_apple_marquee_increment, \
+    prop_apple_marquee_repetition, \
+    prop_apple_marquee_speed, \
+    prop_apple_marquee_style, \
+    prop_apple_mask, \
+    prop_apple_mask_attachment, \
+    prop_apple_mask_border_outset, \
+    prop_apple_mask_border_repeat, \
+    prop_apple_mask_border_source, \
+    prop_apple_mask_box_image, \
+    prop_apple_mask_box_image_outset, \
+    prop_apple_mask_box_image_repeat, \
+    prop_apple_mask_box_image_slice, \
+    prop_apple_mask_box_image_source, \
+    prop_apple_mask_box_image_width, \
+    prop_apple_mask_clip, \
+    prop_apple_mask_composite, \
+    prop_apple_mask_image, \
+    prop_apple_mask_origin, \
+    prop_apple_mask_position, \
+    prop_apple_mask_position_x, \
+    prop_apple_mask_position_y, \
+    prop_apple_mask_repeat, \
+    prop_apple_mask_repeat_x, \
+    prop_apple_mask_repeat_y, \
+    prop_apple_mask_size, \
+    prop_apple_mask_source_type, \
+    prop_apple_match_nearest_mail_blockquote_colour, \
+    prop_apple_max_logical_height, \
+    prop_apple_max_logical_width, \
+    prop_apple_media_text_track_container, \
+    prop_apple_min_logical_height, \
+    prop_apple_min_logical_width, \
+    prop_apple_nbsp_mode, \
+    prop_apple_opacity, \
+    prop_apple_order, \
+    prop_apple_overflow_scrolling, \
+    prop_apple_padding_after, \
+    prop_apple_padding_before, \
+    prop_apple_padding_end, \
+    prop_apple_padding_start, \
+    prop_apple_perspective, \
+    prop_apple_perspective_origin, \
+    prop_apple_perspective_origin_x, \
+    prop_apple_perspective_origin_y, \
+    prop_apple_print_colour_adjust, \
+    prop_apple_region_break_after, \
+    prop_apple_region_break_before, \
+    prop_apple_region_break_inside, \
+    prop_apple_region_fragment, \
+    prop_apple_rtl_ordering, \
+    prop_apple_ruby_position, \
+    prop_apple_scroll_snap_type, \
+    prop_apple_shape_image_threshold, \
+    prop_apple_shape_inside, \
+    prop_apple_shape_margin, \
+    prop_apple_shape_outside, \
+    prop_apple_svg_shadow, \
+    prop_apple_tap_highlight_colour, \
+    prop_apple_text_colour_decoration, \
+    prop_apple_text_combine, \
+    prop_apple_text_decoration_line, \
+    prop_apple_text_decoration_skip, \
+    prop_apple_text_decoration_style, \
+    prop_apple_text_decorations_in_effect, \
+    prop_apple_text_emphasis, \
+    prop_apple_text_emphasis_colour, \
+    prop_apple_text_emphasis_position, \
+    prop_apple_text_emphasis_style, \
+    prop_apple_text_fill_colour, \
+    prop_apple_text_justify, \
+    prop_apple_text_orientation, \
+    prop_apple_text_security, \
+    prop_apple_text_size_adjust, \
+    prop_apple_text_stroke, \
+    prop_apple_text_stroke_colour, \
+    prop_apple_text_stroke_width, \
+    prop_apple_text_underline_position, \
+    prop_apple_text_zoom, \
+    prop_apple_touch_callout, \
+    prop_apple_transform, \
+    prop_apple_transform_2d, \
+    prop_apple_transform_3d, \
+    prop_apple_transform_origin, \
+    prop_apple_transform_origin_x, \
+    prop_apple_transform_origin_y, \
+    prop_apple_transform_origin_z, \
+    prop_apple_transform_style, \
+    prop_apple_transition, \
+    prop_apple_transition_delay, \
+    prop_apple_transition_duration, \
+    prop_apple_transition_property, \
+    prop_apple_transition_timing_function, \
+    prop_apple_user_drag, \
+    prop_apple_user_modify, \
+    prop_apple_user_select, \
     prop_epub_caption_side, \
     prop_epub_hyphens, \
     prop_epub_text_combine, \
@@ -3114,6 +3860,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_ms_wrap_margin, \
     prop_o_animation, \
     prop_o_border_image, \
+    prop_o_box_shadow, \
     prop_o_device_pixel_ratio, \
     prop_o_focus_opacity, \
     prop_o_link, \
@@ -3193,8 +3940,8 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_flex_order, \
     prop_flex_pack, \
     prop_float_displace, \
-    prop_float_displace__alternative_2, \
-    prop_float_displace__alternative_3, \
+    prop_float_displace_alternative_2, \
+    prop_float_displace_alternative_3, \
     prop_font_max_size, \
     prop_font_min_size, \
     prop_font_presentation, \
@@ -3377,6 +4124,253 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_wrap, \
     prop_wrap_margin, \
     prop_wrap_option, \
-    prop_wrap_padding
+    prop_wrap_padding, \
+    prop_khtml_align_content, \
+    prop_khtml_align_items, \
+    prop_khtml_align_self, \
+    prop_khtml_alt, \
+    prop_khtml_animation, \
+    prop_khtml_animation_delay, \
+    prop_khtml_animation_direction, \
+    prop_khtml_animation_duration, \
+    prop_khtml_animation_fill_mode, \
+    prop_khtml_animation_iteration_count, \
+    prop_khtml_animation_name, \
+    prop_khtml_animation_play_state, \
+    prop_khtml_animation_timing_function, \
+    prop_khtml_animation_trigger, \
+    prop_khtml_app_region, \
+    prop_khtml_appearance, \
+    prop_khtml_aspect_ratio, \
+    prop_khtml_backdrop_filter, \
+    prop_khtml_backface_visibility, \
+    prop_khtml_background_clip, \
+    prop_khtml_background_composite, \
+    prop_khtml_background_origin, \
+    prop_khtml_background_size, \
+    prop_khtml_border_after, \
+    prop_khtml_border_after_colour, \
+    prop_khtml_border_after_style, \
+    prop_khtml_border_after_width, \
+    prop_khtml_border_before, \
+    prop_khtml_border_before_colour, \
+    prop_khtml_border_before_style, \
+    prop_khtml_border_before_width, \
+    prop_khtml_border_bottom_left_radius, \
+    prop_khtml_border_bottom_right_radius, \
+    prop_khtml_border_end, \
+    prop_khtml_border_end_colour, \
+    prop_khtml_border_end_style, \
+    prop_khtml_border_end_width, \
+    prop_khtml_border_fit, \
+    prop_khtml_border_horizontal_spacing, \
+    prop_khtml_border_image, \
+    prop_khtml_border_radius, \
+    prop_khtml_border_radius_bottomleft, \
+    prop_khtml_border_radius_bottomright, \
+    prop_khtml_border_radius_topleft, \
+    prop_khtml_border_radius_topright, \
+    prop_khtml_border_start, \
+    prop_khtml_border_start_colour, \
+    prop_khtml_border_start_style, \
+    prop_khtml_border_start_width, \
+    prop_khtml_border_top_left_radius, \
+    prop_khtml_border_top_right_radius, \
+    prop_khtml_border_vertical_spacing, \
+    prop_khtml_box_align, \
+    prop_khtml_box_decoration_break, \
+    prop_khtml_box_direction, \
+    prop_khtml_box_flex, \
+    prop_khtml_box_flex_group, \
+    prop_khtml_box_lines, \
+    prop_khtml_box_ordinal_group, \
+    prop_khtml_box_orient, \
+    prop_khtml_box_pack, \
+    prop_khtml_box_reflect, \
+    prop_khtml_box_shadow, \
+    prop_khtml_box_sizing, \
+    prop_khtml_clip_path, \
+    prop_khtml_colour_correction, \
+    prop_khtml_column_axis, \
+    prop_khtml_column_break_after, \
+    prop_khtml_column_break_before, \
+    prop_khtml_column_break_inside, \
+    prop_khtml_column_count, \
+    prop_khtml_column_fill, \
+    prop_khtml_column_gap, \
+    prop_khtml_column_progression, \
+    prop_khtml_column_rule, \
+    prop_khtml_column_rule_colour, \
+    prop_khtml_column_rule_style, \
+    prop_khtml_column_rule_width, \
+    prop_khtml_column_span, \
+    prop_khtml_column_width, \
+    prop_khtml_columns, \
+    prop_khtml_cursor_visibility, \
+    prop_khtml_dashboard_region, \
+    prop_khtml_device_pixel_ratio, \
+    prop_khtml_filter, \
+    prop_khtml_flex, \
+    prop_khtml_flex_basis, \
+    prop_khtml_flex_direction, \
+    prop_khtml_flex_flow, \
+    prop_khtml_flex_grow, \
+    prop_khtml_flex_shrink, \
+    prop_khtml_flex_wrap, \
+    prop_khtml_flow_from, \
+    prop_khtml_flow_into, \
+    prop_khtml_font_feature_settings, \
+    prop_khtml_font_kerning, \
+    prop_khtml_font_size_delta, \
+    prop_khtml_font_smoothing, \
+    prop_khtml_font_variant_ligatures, \
+    prop_khtml_grid, \
+    prop_khtml_grid_area, \
+    prop_khtml_grid_auto_columns, \
+    prop_khtml_grid_auto_flow, \
+    prop_khtml_grid_auto_rows, \
+    prop_khtml_grid_column, \
+    prop_khtml_grid_column_end, \
+    prop_khtml_grid_column_gap, \
+    prop_khtml_grid_column_start, \
+    prop_khtml_grid_columns, \
+    prop_khtml_grid_gap, \
+    prop_khtml_grid_row, \
+    prop_khtml_grid_row_end, \
+    prop_khtml_grid_row_gap, \
+    prop_khtml_grid_row_start, \
+    prop_khtml_grid_rows, \
+    prop_khtml_grid_template, \
+    prop_khtml_grid_template_areas, \
+    prop_khtml_grid_template_columns, \
+    prop_khtml_grid_template_rows, \
+    prop_khtml_highlight, \
+    prop_khtml_hyphenate_character, \
+    prop_khtml_hyphenate_charset, \
+    prop_khtml_hyphenate_limit_after, \
+    prop_khtml_hyphenate_limit_before, \
+    prop_khtml_hyphenate_limit_lines, \
+    prop_khtml_hyphens, \
+    prop_khtml_image_set, \
+    prop_khtml_initial_letter, \
+    prop_khtml_justify_content, \
+    prop_khtml_justify_items, \
+    prop_khtml_justify_self, \
+    prop_khtml_line_align, \
+    prop_khtml_line_box_contain, \
+    prop_khtml_line_break, \
+    prop_khtml_line_clamp, \
+    prop_khtml_line_grid, \
+    prop_khtml_line_snap, \
+    prop_khtml_locale, \
+    prop_khtml_logical_height, \
+    prop_khtml_logical_width, \
+    prop_khtml_margin_after, \
+    prop_khtml_margin_after_collapse, \
+    prop_khtml_margin_before, \
+    prop_khtml_margin_before_collapse, \
+    prop_khtml_margin_bottom_collapse, \
+    prop_khtml_margin_collapse, \
+    prop_khtml_margin_end, \
+    prop_khtml_margin_start, \
+    prop_khtml_margin_top_collapse, \
+    prop_khtml_marquee, \
+    prop_khtml_marquee_direction, \
+    prop_khtml_marquee_increment, \
+    prop_khtml_marquee_repetition, \
+    prop_khtml_marquee_speed, \
+    prop_khtml_marquee_style, \
+    prop_khtml_mask, \
+    prop_khtml_mask_attachment, \
+    prop_khtml_mask_border_outset, \
+    prop_khtml_mask_border_repeat, \
+    prop_khtml_mask_border_source, \
+    prop_khtml_mask_box_image, \
+    prop_khtml_mask_box_image_outset, \
+    prop_khtml_mask_box_image_repeat, \
+    prop_khtml_mask_box_image_slice, \
+    prop_khtml_mask_box_image_source, \
+    prop_khtml_mask_box_image_width, \
+    prop_khtml_mask_clip, \
+    prop_khtml_mask_composite, \
+    prop_khtml_mask_image, \
+    prop_khtml_mask_origin, \
+    prop_khtml_mask_position, \
+    prop_khtml_mask_position_x, \
+    prop_khtml_mask_position_y, \
+    prop_khtml_mask_repeat, \
+    prop_khtml_mask_repeat_x, \
+    prop_khtml_mask_repeat_y, \
+    prop_khtml_mask_size, \
+    prop_khtml_mask_source_type, \
+    prop_khtml_match_nearest_mail_blockquote_colour, \
+    prop_khtml_max_logical_height, \
+    prop_khtml_max_logical_width, \
+    prop_khtml_media_text_track_container, \
+    prop_khtml_min_logical_height, \
+    prop_khtml_min_logical_width, \
+    prop_khtml_nbsp_mode, \
+    prop_khtml_opacity, \
+    prop_khtml_order, \
+    prop_khtml_overflow_scrolling, \
+    prop_khtml_padding_after, \
+    prop_khtml_padding_before, \
+    prop_khtml_padding_end, \
+    prop_khtml_padding_start, \
+    prop_khtml_perspective, \
+    prop_khtml_perspective_origin, \
+    prop_khtml_perspective_origin_x, \
+    prop_khtml_perspective_origin_y, \
+    prop_khtml_print_colour_adjust, \
+    prop_khtml_region_break_after, \
+    prop_khtml_region_break_before, \
+    prop_khtml_region_break_inside, \
+    prop_khtml_region_fragment, \
+    prop_khtml_rtl_ordering, \
+    prop_khtml_ruby_position, \
+    prop_khtml_scroll_snap_type, \
+    prop_khtml_shape_image_threshold, \
+    prop_khtml_shape_inside, \
+    prop_khtml_shape_margin, \
+    prop_khtml_shape_outside, \
+    prop_khtml_svg_shadow, \
+    prop_khtml_tap_highlight_colour, \
+    prop_khtml_text_colour_decoration, \
+    prop_khtml_text_combine, \
+    prop_khtml_text_decoration_line, \
+    prop_khtml_text_decoration_skip, \
+    prop_khtml_text_decoration_style, \
+    prop_khtml_text_decorations_in_effect, \
+    prop_khtml_text_emphasis, \
+    prop_khtml_text_emphasis_colour, \
+    prop_khtml_text_emphasis_position, \
+    prop_khtml_text_emphasis_style, \
+    prop_khtml_text_fill_colour, \
+    prop_khtml_text_justify, \
+    prop_khtml_text_orientation, \
+    prop_khtml_text_security, \
+    prop_khtml_text_size_adjust, \
+    prop_khtml_text_stroke, \
+    prop_khtml_text_stroke_colour, \
+    prop_khtml_text_stroke_width, \
+    prop_khtml_text_underline_position, \
+    prop_khtml_text_zoom, \
+    prop_khtml_touch_callout, \
+    prop_khtml_transform, \
+    prop_khtml_transform_2d, \
+    prop_khtml_transform_3d, \
+    prop_khtml_transform_origin, \
+    prop_khtml_transform_origin_x, \
+    prop_khtml_transform_origin_y, \
+    prop_khtml_transform_origin_z, \
+    prop_khtml_transform_style, \
+    prop_khtml_transition, \
+    prop_khtml_transition_delay, \
+    prop_khtml_transition_duration, \
+    prop_khtml_transition_property, \
+    prop_khtml_transition_timing_function, \
+    prop_khtml_user_drag, \
+    prop_khtml_user_modify, \
+    prop_khtml_user_select
 
-#define LAST_CSS_6_PROP prop_wrap_padding
+#define LAST_CSS_6_PROP prop_khtml_user_select

@@ -1,7 +1,6 @@
 -Y 1 -7 original -f ../toast/stats/CSS/stats.conf
 
 PASS ../toast/stats/CSS/basic.css
-0 html
 4 css_colour
 7 dialect
 9 unrecognised_value
@@ -48,7 +47,6 @@ Statement:
 ===
 
 PASS ../toast/stats/CSS/cool.css
-0 html
 6 unrecognised_value
 6 unrecognised_value
 8 selector
@@ -71,7 +69,6 @@ Property:
 ===
 
 PASS ../toast/stats/CSS/css-1.css
-0 html
 
 STATS
 Class:
@@ -126,7 +123,6 @@ Property:
 ===
 
 PASS ../toast/stats/CSS/css-2.css
-0 html
 
 STATS
 Class:
@@ -152,7 +148,6 @@ Property:
 ===
 
 PASS ../toast/stats/CSS/css-3.css
-0 html
 1 reputation
 2 reputation
 
@@ -175,10 +170,9 @@ Statement:
 ===
 
 PASS ../toast/stats/CSS/css-5.css
-0 html
 1 fontname
 2 fontname
-143 unrecognised_value unrecognised_value
+143 unrecognised_value
 
 STATS
 Class:
@@ -269,7 +263,6 @@ Property:
 ===
 
 PASS ../toast/stats/CSS/css-6.css
-0 html
 29 bad_rgb
 30 bad_rgb
 
@@ -295,13 +288,12 @@ Property:
 ===
 
 PASS ../toast/stats/CSS/css-7.css
-0 html
 1 css_version
-6 unrecognised_value unrecognised_value
+6 unrecognised_value
 7 css_syntax
 15 unrecognised_value
 27 css_version
-33 unrecognised_value unrecognised_value
+33 unrecognised_value
 34 unrecognised_value
 
 STATS
@@ -325,7 +317,6 @@ Property:
 ===
 
 PASS ../toast/stats/CSS/html2.css
-0 html
 
 STATS
 Element:
@@ -530,21 +521,22 @@ Property:
 
 PASS ../toast/stats/CSS/css-3.html
 2 naughty_lang
+14 unrecognised_value
 15 missing_close
 16 inserted_missing_closure
 
 STATS
 Class:
-  pastoral declared twice, used twice
+  pastoral declared never, used once
 
 Class/Element:
-  h1.pastoral declared once, used once
+  h1.pastoral declared never, used once
 
 Element:
-    (undefined): once
+    (undefined): twice
     !doctype: once
     body: once
-    h1: 4 times
+    h1: thrice
       class: once
     head: once
     html: once
@@ -634,6 +626,9 @@ Element:
     style: twice
     type: 4 times
   16 elements used 83 times
+
+Function:
+  url declared never, used once
 
 Property:
     background: 4 times
@@ -804,7 +799,6 @@ Property:
 ===
 
 PASS ../toast/stats/CSS/import.css
-0 html
 3 url_not_found
 4 css_colour
 6 unrecognised_value unrecognised_value
@@ -878,7 +872,7 @@ Category:
     Element: 28 times
     Namespace: twice
     Parser: once
-    Type: once
+    Type: twice
     URx: twice
 
 Class:
@@ -890,7 +884,7 @@ Class:
   external declared 4 times, used twice
   icon declared 12 times
   initial declared 4 times, used twice
-  pastoral declared 4 times, used twice
+  pastoral declared twice, used once
   reddish declared twice
   sidenote declared twice
   square declared 4 times
@@ -901,7 +895,7 @@ Class/Element:
   a.external declared twice, used once
   div.centre declared twice
   div.sidenote declared once
-  h1.pastoral declared once, used once
+  h1.pastoral declared never, used once
   img.icon declared 6 times
   li.square declared twice
   ol.alpha declared once, used once
@@ -911,7 +905,7 @@ Class/Element:
   ul.compact declared once
 
 Element:
-    (undefined): 23 times
+    (undefined): 24 times
     !doctype: 7 times
     a: 27 times
       class: once
@@ -931,7 +925,7 @@ Element:
     dt: twice
     em: 46 times
     form: once
-    h1: 90 times
+    h1: 89 times
       class: once
     h2: 15 times
     h3: 11 times
@@ -983,7 +977,7 @@ Element:
 
 Nits Reported:
     Errors: 4 times
-    Warnings: 36 times
+    Warnings: 37 times
     Info: once
 
 File Info:
@@ -1003,6 +997,10 @@ Font:
     sans-serif: twice
     serif: 6 times
   11 Font used 28 times
+
+Function:
+  rgb declared never, used 12 times
+  url declared never, used 26 times
 
 Id:
   x97z declared never, used once

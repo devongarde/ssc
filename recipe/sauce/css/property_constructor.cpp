@@ -63,6 +63,12 @@ property_v_ptr make_property_v_ptr (arguments& args, const int start, const int 
 #endif // LIMITED_META_COMPLEXITY
 }
 
+// https://www.w3.org/TR/CSS2/syndata.html#vendor-keyword-history
+// https://stackoverflow.com/questions/5411026/list-of-css-vendor-prefixes
+#define VENDOR_PREFIXES "-ms-", "mso-", "-moz-", "-o-", "-xv-", "-atsc-", "-wap-", "-webkit-", "-khtml-", "-konq-", "-apple-", \
+                        "prince-", "-ah-", "-hp-", "-ro-", "-rim-", "-tc-", "-fx-", nullptr
+static const char* const vendor_prefixes [] = { VENDOR_PREFIXES };
+
 property_v_ptr make_property_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const e_token t)
 {   PRESUME ((i >= 0) && (i < GSL_NARROW_CAST < int > (args.t_.size ())), __FILE__, __LINE__);
     ::std::string n (args.t_.at (i).val_);
@@ -75,4 +81,10 @@ property_v_ptr make_property_v_ptr (arguments& args, const int start, const int 
             return make_property_v_ptr (args, start, to, nits, ec_unknown, value, t); }   
         return make_property_v_ptr (args, start, to, nits, ec_custom, value, t); }
     auto p = examine_value < t_css_property > (nits, args.v_, n);
+    if ((p == ec_unknown) || (p == ec_error))
+        for (int k = 0; vendor_prefixes [k] != nullptr; ++k)
+        {   const ::std::size_t sz = strlen (vendor_prefixes [k]);
+            if ((sz <= n.size ()) && compare_no_case (n.substr (0, sz), vendor_prefixes [k]))
+            {   nits.pick (nit_css_vendor, es_warning, ec_css, PROG, " doesn't recognise ", quote (n), ". Use the equivalent standard property, presuming.");
+                break; } }
     return make_property_v_ptr (args, start, to, nits, p, value, t); }

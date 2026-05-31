@@ -50,3 +50,10 @@
   system: extends decimal;
   suffix: ") ";
 }
+
+@counter-style circled-lower-latin {
+  system: alphabetic;
+  speak-as: lower-latin;
+  symbols: ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ;
+  suffix: " ";
+}

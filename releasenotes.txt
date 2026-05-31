@@ -3,13 +3,22 @@ static site checker
 https://dylanharris.org/ssc/
 (c) 2020-2026 Dylan Harris
 
+0.2.31
+- OpenBSD 7.9
+- CSS Anchor Positioning 4
+- CSS Extensions
+- updated CSS Text 4
+- ignoring script only CSS Web Animations
+- various bug fixes
+- underlying work
+
 0.2.30
 - CSS Display 4
 - CSS Expressive Generalizations and Gadgetry 1
 - CSS Generated Content for Paged Media 4
 - CSS Pagination Templates 3
 - CSS Shaders 3
-- CSS Print Profile updated
+- updated CSS Print Profile
 - SVG path-length property
 - CONTROLS on <IMG>
 - various bug fixes

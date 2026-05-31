@@ -1,0 +1,20 @@
+﻿@custom-selector :--heading {
+  expansion: h1, h2, h3, h4, h5, h6;
+}
+
+@custom-selector $rest:--n-siblings($n, $sel) {
+  specificity: $sel;
+  expansion: $rest:nth-child(1 of $sel):nth-last-child($n of $sel),
+    :nth-child(1 of $sel):nth-last-child($n of $sel) ~ $rest;
+}
+
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+
+:--heading { /* styles for all headings */ }
+:--heading + p { /* more styles */ }
+
+@custom-property --foo {
+  scope: local;
+  initial: whoops;
+  value: 1 1 red;
+}

@@ -186,6 +186,16 @@ e_status set_duration_media_value (const e_status es, nitpick& nits, const html_
     nits.pick (nit_dur, ed_svg_1_1, "19.2.8 Attributes to control the timing of the animation", es_error, ec_type, "a duration, or 'media', is expected");
     return s_invalid; }
 
+e_status set_fallback (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s)
+{   if (es == s_good)
+    {   nitpick nuts, knots;
+        if (test_value < t_css_counter_style_name > (nuts, v, s))
+        {   nits.merge (nuts); return s_good; }
+        if (test_value < t_css_try_fallbacks > (knots, v, s))
+        {   nits.merge (knots); return s_good; }
+        nits.merge (nuts); nits.merge (knots); }
+    return s_invalid; }
+
 e_status set_enable_background_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (es == s_empty) nits.pick (nit_background, es_error, ec_type, "a value is required");
     else if (es == s_good)

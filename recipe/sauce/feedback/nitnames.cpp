@@ -986,6 +986,8 @@ const nitname nitnames [] =
     { nit_naughty, "naughty" },
     { nit_pagination_template, "pagination_template" },
     { nit_print_profile, "print_profile" },
+    { nit_css_vendor, "css_vendor" },
+    { nit_konqueror, "konqueror" },
 
     { nit_incompatible, "incompatible" },
 

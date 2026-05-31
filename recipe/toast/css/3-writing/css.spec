@@ -1,20 +1,7 @@
 -Y 1 -7 original -f ../toast/css/3-writing/css.conf
 
-PASS ../toast/css/3-writing/css-2.css
-0 html
-
 PASS ../toast/css/3-writing/css-3.css
-0 html
 1 namespace_unknown
-
-PASS ../toast/css/3-writing/css-4.css
-0 html
-
-PASS ../toast/css/3-writing/css-5.css
-0 html
-
-PASS ../toast/css/3-writing/css-9.css
-0 html
 
 PASS ../toast/css/3-writing/css-2.html
 2 naughty_lang

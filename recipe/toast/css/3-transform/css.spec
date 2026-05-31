@@ -1,14 +1,5 @@
 -Y 1 -7 original -f ../toast/css/3-transform/css.conf
 
-PASS ../toast/css/3-transform/css-3.css
-0 html
-
-PASS ../toast/css/3-transform/css-5.css
-0 html
-
-PASS ../toast/css/3-transform/css-12.css
-0 html
-
 PASS ../toast/css/3-transform/css-3.html
 2 naughty_lang
 51 id_exists

@@ -168,17 +168,6 @@ bool css_group::has (const e_id_category cic, const ::std::string& s) const
     if (snippets_ -> has (cic, s)) return true;
     return page_.has (cic, s); }
 
-bool css_group::has_custom_prop (const ::std::string& name) const
-{   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
-    for (auto cs : mcss_)
-        if (cs.second -> has (cic_custom_prop, name)) return true;
-    if (snippets_ -> has (cic_custom_prop, name)) return true;
-    return page_.has (cic_custom_prop, name); }
-
-void css_group::note_custom_prop (const ::std::string& name)
-{   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
-    page_.dcl (cic_custom_prop, name); }
-
 bool css_group::has_custom_media (const ::std::string& name) const
 {   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
     for (auto cs : mcss_)

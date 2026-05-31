@@ -45,6 +45,7 @@ template < typename VALUE_TYPE, e_type E > class type_base
 {   ::std::string id_;
     e_status status_ = s_unset;
     element* box_ = nullptr;
+    bool fn_ = false;
 public:
     typedef VALUE_TYPE value_type;
     typedef VALUE_TYPE base_type;
@@ -81,6 +82,8 @@ public:
     bool good () const noexcept { return status_ == s_good; }
     bool bad () const noexcept { return ! good (); }
     bool invalid () const noexcept { return status_ == s_invalid; }
+    bool fn () const noexcept { return fn_; }
+    void fn (const bool b) noexcept { fn_ = b; }
     void verify_id (element& ) noexcept { }
     e_status status () const noexcept { return status_; }
     void status (const e_status s) noexcept { status_ = s; }

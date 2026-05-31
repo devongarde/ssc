@@ -72,9 +72,6 @@ PASS ../toast/living/jan10/caption.html
 9 inserted_missing_closure missing_close
 13 inserted_missing_closure
 
-PASS ../toast/living/jan10/clock.css
-0 html
-
 PASS ../toast/living/jan10/command.html
 7 no_such_folder url_not_found unknown
 8 no_such_folder url_not_found unknown

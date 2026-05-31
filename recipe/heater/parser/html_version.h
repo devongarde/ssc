@@ -212,21 +212,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_GROUP_SHIFT  24
 #define HE_GROUP(XXXX)  ((flags_t) XXXX << HE_GROUP_SHIFT)
 
-// 2 unused bits
+#define HE_INSECURE     0x0000000010000000
+#define HE_EXPERIMENTAL 0x0000000020000000
 
-#define HE_INSECURE     0x0000000040000000
-#define HE_EXPERIMENTAL 0x0000000080000000
+#define HE_NETSCAPE     0x0000000040000000
+#define HE_IE           0x0000000080000000
+#define HE_KONQUEROR    0x0000000100000000
+#define HE_MOZILLA      0x0000000200000000
+#define HE_CHROME       0x0000000400000000
+#define HE_OPERA        0x0000000800000000
+#define HE_SAFARI       0x0000001000000000
+#define HE_WEBCOMP      0x0000002000000000
+// one extra browser
+#define HE_BESPOKE      0x0000008000000000
 
-#define HE_NETSCAPE     0x0000000100000000
-#define HE_IE           0x0000000200000000
-#define HE_WEBCOMP      0x0000000400000000
-#define HE_BESPOKE      0x0000000800000000
-#define HE_MOZILLA      0x0000001000000000
-#define HE_CHROME       0x0000002000000000
-#define HE_OPERA        0x0000004000000000
-#define HE_SAFARI       0x0000008000000000
-
-#define HE_BROWSERS     ( HE_CHROME | HE_IE | HE_MOZILLA | HE_NETSCAPE | HE_OPERA | HE_SAFARI )
+#define HE_BROWSERS     ( HE_CHROME | HE_IE | HE_KONQUEROR | HE_MOZILLA | HE_NETSCAPE | HE_OPERA | HE_SAFARI )
 
 #define HE_NOT_SVG_10   0x0000010000000000
 #define HE_NOT_SVG_11   0x0000020000000000
@@ -354,7 +354,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_SELECTOR   ( H2_CSS_SELECTOR_34 | H2_CSS_SELECTOR_5 ) 
 #define H2_CSS_SELECTOR_MASK H2_CSS_SELECTOR  
 
-// bit
+#define H2_CSS_SVG_ABANDONED 0x0000000800000000 // plus code
 
 #define H2_CSS_SVG_10       0x0000001000000000
 #define H2_CSS_SVG_11       0x0000002000000000
@@ -590,8 +590,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H3_CSS_EGG            0x0000008000000000
 #define H3_CSS_LINK_PARAM     0x0000010000000000
+#define H3_CSS_EXTENSION      0x0000020000000000
 
-// bitz
+// bit
 
 #define H3_CSS_SNAP_3        0x0000008000000000
 #define H3_CSS_SNAP_4        0x0000010000000000
@@ -632,9 +633,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_DEPRECATED    0x8000000000000000
 
 #define H3_CSS_3          ( H3_CSS_ADJUST | H3_CSS_ANCHOR | H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING_3 | H3_CSS_CONTAIN_3 | H3_CSS_CONTENT | \
-                            H3_CSS_DEVICE | H3_CSS_EGG | H3_CSS_ENVIRONMENT | H3_CSS_EXCLUDE | H3_CSS_FILL | H3_CSS_FLOAT | H3_CSS_GRID_3 | H3_CSS_HIGHLIGHT | \
-                            H3_CSS_HYPERLINK | H3_CSS_IMAGE_3 | H3_CSS_INLINE | H3_CSS_LINE_GRID | H3_CSS_LINK_PARAM | H3_CSS_LIST | H3_CSS_LOGIC | \
-                            H3_CSS_MASKING | H3_CSS_MOTION | H3_CSS_NES | H3_CSS_NESTING | H3_CSS_OVERSCROLL | H3_CSS_PAGE_3 | H3_CSS_POSITION_3 | \
+                            H3_CSS_DEVICE | H3_CSS_EGG | H3_CSS_ENVIRONMENT | H3_CSS_EXCLUDE | H3_CSS_EXTENSION | H3_CSS_FILL | H3_CSS_FLOAT | H3_CSS_GRID_3 | \
+                            H3_CSS_HIGHLIGHT | H3_CSS_HYPERLINK | H3_CSS_IMAGE_3 | H3_CSS_INLINE | H3_CSS_LINE_GRID | H3_CSS_LINK_PARAM | H3_CSS_LIST | \
+                            H3_CSS_LOGIC | H3_CSS_MASKING | H3_CSS_MOTION | H3_CSS_NES | H3_CSS_NESTING | H3_CSS_OVERSCROLL | H3_CSS_PAGE_3 | H3_CSS_POSITION_3 | \
                             H3_CSS_PRESENT | H3_CSS_REGION | H3_CSS_RHYTHM | H3_CSS_ROUND | H3_CSS_RUBY | H3_CSS_SCOPE | H3_CSS_SCROLLBAR | H3_CSS_SDA | \
                             H3_CSS_SHAPE_3 | H3_CSS_SHADOW | H3_CSS_SNAP_3 | H3_CSS_SPEECH | H3_CSS_TABLE | H3_CSS_TEXT_3 | H3_CSS_TEXTDEC_3 | \
                             H3_CSS_TRANSFORM_3 | H3_CSS_WC | H3_CSS_WRITING_3 )
@@ -725,7 +726,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H4_CSS_COLOUR     ( H4_CSS_COLOUR_34 | H4_CSS_COLOUR_56 )
 #define H4_CSS_COLOUR_MASK  H4_CSS_COLOUR
 
-#define H4_CSS_ANCHOR_POS   0x0000000000000040
+// bitz
+
 #define H4_CSS_MARQUEE      0x0000000000000080
 #define H4_CSS_SPATIAL      0x0000000000000100
 #define H4_CSS_ADVLAY       0x0000000000000200
@@ -744,7 +746,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H4_CSS_LIVING_STANDARD 0x0000000000020000
 #define H4_CSS_HDR          0x0000000000040000
 
-#define H4_CSS_3          ( H4_CSS_ADVLAY | H4_CSS_ANCHOR_POS | H4_CSS_COLOUR_3 | H4_CSS_FCS | H4_CSS_HDR | H4_CSS_MARQUEE | H4_CSS_MATH_CORE | \
+#define H4_CSS_3          ( H4_CSS_ADVLAY | H4_CSS_COLOUR_3 | H4_CSS_FCS | H4_CSS_HDR | H4_CSS_MARQUEE | H4_CSS_MATH_CORE | \
                             H4_CSS_SPATIAL | H4_CSS_SNAP_POINTS | H4_CSS_TRANSITION_3 | H4_CSS_VIEWPORT )
 #define H4_CSS_4          ( H4_CSS_COLOUR_4 | H4_CSS_TRANSITION_4 )
 #define H4_CSS_5            H4_CSS_COLOUR_5
@@ -936,21 +938,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H5_CSS_PTR_EV        H5_CSS_PTR_EV_3456
 #define H5_CSS_PTR_EV_MASK   H5_CSS_PTR_EV
 
-#define H5_CSS_3          ( H5_CSS_BACKGROUND_3 | H5_CSS_DISPLAY_3 | H5_CSS_EASE_3 | H5_CSS_FILTER_3 | H5_CSS_MULTCOL_3 | H5_CSS_OVERFLOW_3 | H5_CSS_PSEUDO_3 | \
-                            H5_CSS_PTR_EV_3 | H5_CSS_VALUE_3 | H5_CSS_VIEWTRAN_3 )
-#define H5_CSS_4          ( H5_CSS_BACKGROUND_4 | H5_CSS_BORD_BOX_4 | H5_CSS_DISPLAY_4 | H5_CSS_EASE_4 | H5_CSS_FILTER_4 | H5_CSS_MULTCOL_4 | H5_CSS_OVERFLOW_4 | \
-                            H5_CSS_PSEUDO_4 | H5_CSS_PTR_EV_4 | H5_CSS_VALUE_4 | H5_CSS_VIEWTRAN_4 )
+#define H5_CSS_ANCHOR_POS_3  0x0000000000800000
+#define H5_CSS_ANCHOR_POS_4  0x0000000001000000
+#define H5_CSS_ANCHOR_POS_34 ( H5_CSS_ANCHOR_POS_3 | H5_CSS_ANCHOR_POS_4 )
+#define H5_CSS_ANCHOR_POS      H5_CSS_ANCHOR_POS_34  
+#define H5_CSS_ANCHOR_POS_MASK H5_CSS_ANCHOR_POS
+
+#define H5_CSS_3          ( H5_CSS_ANCHOR_POS_3 | H5_CSS_BACKGROUND_3 | H5_CSS_DISPLAY_3 | H5_CSS_EASE_3 | H5_CSS_FILTER_3 | H5_CSS_MULTCOL_3 | H5_CSS_OVERFLOW_3 | \
+                            H5_CSS_PSEUDO_3 | H5_CSS_PTR_EV_3 | H5_CSS_VALUE_3 | H5_CSS_VIEWTRAN_3 )
+#define H5_CSS_4          ( H5_CSS_ANCHOR_POS_4 | H5_CSS_BACKGROUND_4 | H5_CSS_BORD_BOX_4 | H5_CSS_DISPLAY_4 | H5_CSS_EASE_4 | H5_CSS_FILTER_4 | H5_CSS_MULTCOL_4 | \
+                            H5_CSS_OVERFLOW_4 | H5_CSS_PSEUDO_4 | H5_CSS_PTR_EV_4 | H5_CSS_VALUE_4 | H5_CSS_VIEWTRAN_4 )
 #define H5_CSS_5          ( H5_CSS_OVERFLOW_5 | H5_CSS_PTR_EV_5 | H5_CSS_VALUE_5 )
 #define H5_CSS_6            H5_CSS_PTR_EV_6
 
-#define H5_CSS_3_FULL   ( H5_CSS_3 )
-#define H5_CSS_4_FULL   ( H5_CSS_4 | H5_CSS_3_FULL )
-#define H5_CSS_5_FULL   ( H5_CSS_5 | H5_CSS_4_FULL )
-#define H5_CSS_6_FULL   ( H5_CSS_6 | H5_CSS_5_FULL )
+#define H5_CSS_3_FULL     ( H5_CSS_3 )
+#define H5_CSS_4_FULL     ( H5_CSS_4 | H5_CSS_3_FULL )
+#define H5_CSS_5_FULL     ( H5_CSS_5 | H5_CSS_4_FULL )
+#define H5_CSS_6_FULL     ( H5_CSS_6 | H5_CSS_5_FULL )
 
-#define H5_CSS_3_4      ( H5_CSS_3 | H5_CSS_4 )
-#define H5_CSS_3_4_5    ( H5_CSS_3_4 | H5_CSS_5 )
-#define H5_CSS_3_4_5_6  ( H5_CSS_3_4_5 | H5_CSS_6 )
+#define H5_CSS_3_4        ( H5_CSS_3 | H5_CSS_4 )
+#define H5_CSS_3_4_5      ( H5_CSS_3_4 | H5_CSS_5 )
+#define H5_CSS_3_4_5_6    ( H5_CSS_3_4_5 | H5_CSS_6 )
 
 #define H5_CSS_5_PLUS     ( H5_CSS_5 | H5_CSS_6 )
 #define H5_CSS_4_PLUS     ( H5_CSS_4 | H5_CSS_5_PLUS )
@@ -959,7 +967,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H5_CSS_MASK         H5_CSS_ALL
 #define H5_CSS              H5_CSS_ALL
 
-#define H5_FULL_CSS_MASK    0x00000000000FFFFF
+#define H5_FULL_CSS_MASK    0x0000000001FFFFFF
 
 #define H5_CSS_2007         0
 #define H5_CSS_2010       ( H5_CSS_2007 )
@@ -1197,6 +1205,7 @@ public:
     int xlink () const noexcept { return GSL_NARROW_CAST < int > ((ext () & XLINK_MASK) >> XLINK_SHIFT); }
     bool check_math_svg (nitpick& nits, const html_version& a, const ::std::string& x) const;
     bool atom () const noexcept { return all_ext4 (H4_ATOM); }
+    bool konqueror () const noexcept { return any_ext (HE_KONQUEROR); }
     bool microdata () const noexcept { return any_ext (HE_MICRODATA); }
     bool mozilla () const noexcept { return any_ext (HE_MOZILLA); }
     bool netscape () const noexcept { return any_ext (HE_NETSCAPE); }

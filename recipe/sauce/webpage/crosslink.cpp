@@ -157,6 +157,10 @@ void declare_crosslinks (const ::boost::filesystem::path& sought, const ids_t& i
 void add_sought (const fileindex_t seeker, const ::std::size_t line, const fileindex_t sought, const ::std::string& id, const bool hidden, const vit_t& itemtypes, const e_element e)
 {   if (! context.crosslinks ()) return;
     if (seeker == sought) return;
+    if (context.css_module (c_linked_parameters))
+        if (id.size () > 5)
+            if (compare_no_case ("param(", id.substr (0, 6)))
+                return;
     lox l (lox_xlynx);
     vx_t::iterator sought_i = xlynx -> find (sought);
     if (sought_i == xlynx -> cend ())

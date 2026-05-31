@@ -84,7 +84,8 @@ html_version::html_version (const ::boost::gregorian::date& d)
         case 23 : css_version (css_2023); break; 
         case 24 : css_version (css_2024); break;
         case 25 : css_version (css_2025); break;
-        default : css_version (css_2025); break; } }
+        case 26 : css_version (css_2026); break;
+        default : css_version (css_2026); break; } }
 
 html_version::html_version (const boost::gregorian::date& d, const flags_t flags, const flags_t extensions, const flags_t e2, const flags_t e3, const flags_t e4, const flags_t e5)
         :   version (0, 0, flags | HV_WHATWG, ao_html), ext_ (extensions), ext2_ (e2), ext3_ (e3), ext4_ (e4), ext5_ (e5)
@@ -390,6 +391,7 @@ void html_version::init (const unsigned short mjr)
     if (has_css ()) res << "/CSS-" << css_version_name ();
     if (chrome ()) res << "/Chrome";
     if (ie ()) res << "/IE";
+    if (konqueror ()) res << "/Konqueror";
     if (mozilla ()) res << "/Mozilla";
     if (netscape ()) res << "/Netscape";
     if (opera ()) res << "/Opera";
@@ -769,12 +771,17 @@ bool html_version::deprecated (const html_version& current) const
             break;
         case sv_2_0 :
             if (current.all_ext (HE_SVG_DEPR_20)) return true;
+            if ((current >= html_apr26) && current.any_ext2 (H2_CSS_SVG_ABANDONED)) return true;
             break;
         case sv_2_1 :
             if (current.all_ext (HE_SVG_DEPR_21)) return true;
+            if ((current >= html_apr26) && current.any_ext2 (H2_CSS_SVG_ABANDONED)) return true;
             break;
         default : break; }
-    if ((context.css_version () > 0) && current.css_deprecated ()) return true;
+    if (context.css_version () > 0)
+    {   if (current.css_deprecated ()) return true;
+        if ((current >= html_apr26) && (! current.any_ext3 (H3_CSS_SHAPE_MASK)) && current.any_ext2 (H2_CSS_SVG_ABANDONED)) return true; }
+
     switch (current.mjr ())
     {   case 1 : return (current.any_flags (HV_DEPRECATEDX10));
         case 2 : return (current.any_flags (HV_DEPRECATED2));
@@ -1095,7 +1102,7 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     else if (compare_css (H2_CSS_2_0, 0, 0, 0, e2, e3, e4, e5)) res = "2.0";
     else if (compare_css (H2_CSS_1, 0, 0, 0, e2, e3, e4, e5)) res = "1";
 
-    res += single_feature (res, b, "AcP", "Anchor Positioning", ext4_, e4, H4_CSS_ANCHOR_POS);
+    res += single_feature (res, b, "AcP", "Anchor Positioning", ext5_, e5, H5_CSS_ANCHOR_POS_3, H5_CSS_ANCHOR_POS_4);
     res += single_feature (res, b, "Adj", "Colour Adjustment", ext3_, e3, H3_CSS_ADJUST);
     res += single_feature (res, b, "Anc", "Scrollbar Anchoring", ext3_, e3, H3_CSS_ANCHOR);
     res += single_feature (res, b, "Ani", "Animation", ext2_, H2_CSS_ANIM_3, H2_CSS_ANIM_4);
@@ -1651,12 +1658,14 @@ template < > void html_version::set_level < c_scroll_anchoring > (const int n)
     else reset_ext4 (H3_CSS_ANCHOR); }
 
 template < > int html_version::get_level < c_anchor_pos > () const
-{   if (any_ext4 (H4_CSS_ANCHOR_POS)) return 3;
+{   if ((ext5 () & H5_CSS_ANCHOR_POS_4) == H5_CSS_ANCHOR_POS_4) return 4;   
+    if ((ext5 () & H5_CSS_ANCHOR_POS_3) == H5_CSS_ANCHOR_POS_3) return 3;   
     return 0; }
 
 template < > void html_version::set_level < c_anchor_pos > (const int n)
-{   if (n == 3) set_ext4 (H4_CSS_ANCHOR_POS);
-    else reset_ext4 (H4_CSS_ANCHOR_POS); }
+{   if (n == 4) set_ext5 (H5_CSS_ANCHOR_POS_4);
+    else if (n == 3) set_ext5 (H5_CSS_ANCHOR_POS_3);
+    else reset_ext5 (H5_CSS_ANCHOR_POS); }
 
 template < > int html_version::get_level < c_animation > () const
 {   if ((ext2 () & H2_CSS_ANIM_4) == H2_CSS_ANIM_4) return 4;   
@@ -1670,7 +1679,7 @@ template < > void html_version::set_level < c_animation > (const int n)
 
 template < > int html_version::get_level < c_background_border > () const
 {   if ((ext5 () & H5_CSS_BACKGROUND_4) == H5_CSS_BACKGROUND_4) return 4;   
-    if ((ext5 () & H5_CSS_BACKGROUND_3) == H5_CSS_BACKGROUND_3) return 3;   
+    else if ((ext5 () & H5_CSS_BACKGROUND_3) == H5_CSS_BACKGROUND_3) return 3;   
     return 0; }
 
 template < > void html_version::set_level < c_background_border > (const int n)
@@ -1859,6 +1868,15 @@ template < > int html_version::get_level < c_exclusion > () const
 template < > void html_version::set_level < c_exclusion > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_EXCLUDE);
     else reset_ext3 (H3_CSS_DEVICE); }
+
+// H3_CSS_EXTENSION
+template < > int html_version::get_level < c_extension > () const
+{   if (any_ext3 (H3_CSS_EXTENSION)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_extension > (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_EXTENSION);
+    else reset_ext3 (H3_CSS_EXTENSION); }
 
 template < > int html_version::get_level < c_flexible_box_layout > () const
 {   if (any_ext2 (H2_CSS_FBL)) return 3;
@@ -2453,7 +2471,6 @@ bool html_version::is_css_compatible (const flags_t& f2, const flags_t& f3, cons
     if (((f2 & ext2_concerned) == 0) && ((f3 & H3_FULL_CSS_MASK) == 0) && ((f4 & H4_FULL_CSS_MASK) == 0) && ((f5 & H5_FULL_CSS_MASK) == 0)) return true;
     if (((ext2_ & f2) != 0) || ((ext3_ & f3) != 0) || ((ext4_ & f4) != 0) || ((ext5_ & f5) != 0)) return true;
     if (((ext4_ & f4) & H4_CSS_SAFE) != 0) return true;
-//    if ((ext4_ & H4_VTT) && (f4 & H4_VTT)) return true;
     if (((ext4_ & f4) & H4_VTT) != 0) return true;
     if (has_svg ())
     {   if (((f2 & H2_CSS_SVG_10) == H2_CSS_SVG_10) && ((ext_ & HE_SVG_10) == HE_SVG_10)) return true;
@@ -2498,6 +2515,7 @@ void html_version::check_status (nitpick& nits, const ::std::string& s) const
     if (bizarritude ())
     {   if (chrome () && ! context.chrome ()) nits.pick (nit_chrome, es_warning, ec_browser, quote (s), " requires an appropriate version of a Chrome-based browser");
         if (ie () && ! context.ie ()) nits.pick (nit_ie, es_warning, ec_browser, quote (s), " requires an appropriate version of Internet Explorer");
+        if (konqueror () && ! context.konqueror ()) nits.pick (nit_konqueror, es_warning, ec_browser, quote (s), " requires an appropriate version of the Konqueror browser");
         if (mozilla () && ! context.mozilla ()) nits.pick (nit_mozilla, es_warning, ec_browser, quote (s), " requires an appropriate version of a Mozilla browser, such as Firefox");
         if (netscape () && ! context.netscape ()) nits.pick (nit_netscape, es_warning, ec_browser, quote (s), " requires an appropriate version of the Netscape browser");
         if (opera () && ! context.opera ()) nits.pick (nit_opera, es_warning, ec_browser, quote (s), " requires an appropriate version of the Opera browser");
@@ -2519,13 +2537,6 @@ bool does_html_apply (const html_version& v, const html_version& from, const htm
     if (from.requires_extension ())
         if (extension_conflict (v, from) != emi_good) return false;
     if (! from.valid_context (v)) return false;
-//    if (from.bizarritude ())
-//    {   if (from.chrome () && ! context.chrome ()) return false;
-//        if (from.ie () && ! context.ie ()) return false;
-//        if (from.mozilla () && ! context.mozilla ()) return false;
-//        if (from.netscape () && ! context.netscape ()) return false;
-//        if (from.opera () && ! context.opera ()) return false;
-//        if (from.safari () && ! context.safari ()) return false; }
     switch (v.mjr ())
     {   case 0 :    break;
         case 1 :    if (v.mnr () == 0) return ! from.not10 ();
@@ -2600,7 +2611,8 @@ const char *default_charset (const html_version& v) noexcept
         case 2 :
         case 3 :
         case 4 : return LATIN_1;
-        case 5 : return LATIN_1;
+        case 5 : if (v >= html_jul09) return UTF_8;
+                 return LATIN_1;
         default : return UTF_8; } }
 
 const char *alternative_charset (const html_version& v) noexcept
@@ -2651,11 +2663,10 @@ bool is_css_identical (const html_version& lhs, const html_version& rhs)
     return (lhs.ext5 () & H5_FULL_CSS_MASK) == (rhs.ext5 () & H5_FULL_CSS_MASK); }
 
 bool has_css_crossover (const html_version& lhs, const html_version& rhs, const flags_t f2, const flags_t f3, const flags_t f4, const flags_t f5) noexcept
-{   const bool b2 = (((lhs.ext2 () & rhs.ext2 ()) & f2) != 0);
-    const bool b3 = (((lhs.ext3 () & rhs.ext3 ()) & f3) != 0);
-    const bool b4 = (((lhs.ext4 () & rhs.ext4 ()) & f4) != 0);
-    const bool b5 = (((lhs.ext5 () & rhs.ext5 ()) & f5) != 0);
-    return  b2 || b3 || b4 || b5; }
+{   if (((lhs.ext2 () & rhs.ext2 ()) & f2) != 0) return true;
+    if (((lhs.ext3 () & rhs.ext3 ()) & f3) != 0) return true;
+    if (((lhs.ext4 () & rhs.ext4 ()) & f4) != 0) return true;
+    return (((lhs.ext5 () & rhs.ext5 ()) & f5) != 0); }
 
 bool has_css_crossover (const e_css_version c, const html_version& lhs, const html_version& rhs) noexcept
 {   switch (c)

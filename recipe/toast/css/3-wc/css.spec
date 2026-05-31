@@ -1,7 +1,6 @@
 -Y 1 -7 original -f ../toast/css/3-wc/css.conf
 
 PASS ../toast/css/3-wc/css-1.css
-0 html
 4 unrecognised_value
 13 css_version
 17 css_version

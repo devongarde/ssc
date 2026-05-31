@@ -31,7 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class stats
 {   element_stats element_, visible_;
-    term_stats dfn_, abbr_, dtdd_, custom_media_;
+    term_stats dfn_, abbr_, dtdd_, custom_media_, custom_property_, custom_selector_;
     severity_stats severity_;
     category_stats category_;
     ref_stats ref_;
@@ -68,6 +68,7 @@ class stats
     ::std::string css_str_report (const e_gsstr gst) const;
     ::std::string custom_media_report () const;
     ::std::string custom_property_report () const;
+    ::std::string custom_selector_report () const;
     ::std::string definition_report () const;
     ::std::string function_report () const;
     ::std::string value_pair_report () const;

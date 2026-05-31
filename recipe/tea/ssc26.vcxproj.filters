@@ -1866,6 +1866,12 @@
     <Filter Include="Toast\CSS\3-linkparam">
       <UniqueIdentifier>{c111f4af-6256-4431-a172-a6dd7ab09b8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\4-anchor-positioning">
+      <UniqueIdentifier>{12a17911-b32c-44c9-96c0-e8e813e17468}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-extensions">
+      <UniqueIdentifier>{0c2521a3-248f-446e-96bc-4b17bfee54e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -49469,6 +49475,36 @@
     </None>
     <None Include="..\toast\stats\CSS-6\stats-param.spec">
       <Filter>Toast\Stats\CSS-6</Filter>
+    </None>
+    <None Include="..\toast\css\3-shape\css-6.css">
+      <Filter>Toast\CSS\3-shape</Filter>
+    </None>
+    <None Include="..\toast\css\4-frag\css-5.css">
+      <Filter>Toast\CSS\4-frag</Filter>
+    </None>
+    <None Include="..\toast\css\4-anchor-positioning\css.conf">
+      <Filter>Toast\CSS\4-anchor-positioning</Filter>
+    </None>
+    <None Include="..\toast\css\4-anchor-positioning\css.spec">
+      <Filter>Toast\CSS\4-anchor-positioning</Filter>
+    </None>
+    <None Include="..\toast\css\4-anchor-positioning\css-2.css">
+      <Filter>Toast\CSS\4-anchor-positioning</Filter>
+    </None>
+    <None Include="..\toast\css\4-anchor-positioning\index.html">
+      <Filter>Toast\CSS\4-anchor-positioning</Filter>
+    </None>
+    <None Include="..\toast\css\3-extensions\css.conf">
+      <Filter>Toast\CSS\3-extensions</Filter>
+    </None>
+    <None Include="..\toast\css\3-extensions\css.spec">
+      <Filter>Toast\CSS\3-extensions</Filter>
+    </None>
+    <None Include="..\toast\css\3-extensions\css-3.css">
+      <Filter>Toast\CSS\3-extensions</Filter>
+    </None>
+    <None Include="..\toast\css\3-extensions\index.html">
+      <Filter>Toast\CSS\3-extensions</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,6 @@
 -Y 1 -7 original -f ../toast/HTML/5.1/html5.conf
 
 PASS ../toast/HTML/5.1/css-good.css
-0 html
 4 whatwg_class whatwg_class
 
 PASS ../toast/HTML/5.1/example-1.html
@@ -61,7 +60,7 @@ PASS ../toast/HTML/5.1/example-5.html
 
 PASS ../toast/HTML/5.1/html5-bad.html
 2 deprecated_attribute naughty_lang
-5 bespoke_obsolete mime
+5 mime
 7 only_once
 10 default_role
 16 missing_close not_an_integer not_an_integer

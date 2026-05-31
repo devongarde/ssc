@@ -42,24 +42,21 @@ bool examine_custom_property (arguments& args, nitpick& nits, const int from, co
                 res = false; } }
         else prop = assemble_string (args.t_, from, next, false);
                
-        if (args.has (cic_custom_prop, prop))
-        {   //::std::cout << prop << ": dcl (7)\n";
-            args.dcl (cic_custom_prop, prop); }
+        if (args.has (cic_custom_property, prop))
+            args.use (cic_custom_property, prop);
         else if ((args.v_.css_module (c_mixin) == 0) || (args.dst_.get () == nullptr) || (! args.dst_ -> has (cic_fn_param, prop)))
         {   if (comma < 0)
             {   nits.pick (nit_css_custom, es_warning, ec_css, quote (prop), " is not a known custom property");
                 res = false; }
             else
-            {   args.dcl (cic_custom_prop, prop);
-//                ::std::cout << prop << ": dcl (5)\n";
+            {   args.dcl (cic_custom_property, prop);
                 nits.pick (nit_css_custom, es_comment, ec_css, quote (prop), " noted (with fallback value)"); }
                 res = false; } }
     return res; }
 
-bool check_custom_property (arguments& args, const ::std::string& s)
-{   if (! args.has (cic_custom_prop, s)) return false;
-//                ::std::cout << s << ": use (6)\n";
-    args.use (cic_custom_prop, s);
+bool check_custom_property (const arguments& args, const ::std::string& s)
+{   if (! args.has (cic_custom_property, s)) return false;
+    args.use (cic_custom_property, s);
     return true; }
 
 void validate_anchor_id (const ::std::string& s, arguments& args)
@@ -97,7 +94,7 @@ bool check_constants (arguments& args, nitpick& nits, const int i)
     if (! test_value < t_css_val_con > (nets, args.v_, args.t_.at (i).val_)) return false;
     nits.merge (nets);
     if (args.v_.css_module (c_value_unit) < 4)
-        nits.pick (nit_css_value, ed_css_value_4, "10.7 Numeric Constants", es_error, ec_css, quote (args.t_.at (i).val_), " requires CSS Values 4");
+        nits.pick (nit_css_value, ed_css_value_4, "10.7 Numeric Constants", es_warning, ec_css, "if ", quote (args.t_.at (i).val_), " refers to the mathematical constant, then it requires CSS Values 4");
     return true; }
 
 bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e_css_val_fn& e, bool& params)
@@ -120,21 +117,31 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
         {   if (args.v_.any_ext5 (H5_CSS_EASE_4))
             {   e = cvf.get (); params = false; return true; }
             nits.pick (nit_css_ease, ed_css_ease, "", es_error, ec_css, quote (cvf.name ()), " requires CSS Easing Functions level 2");
-            return false; }
-        nits.pick (nit_css_syntax, es_error, ec_css, "expecting '(' after ", quote (cvf.name ())); }
+            return false; } }
     else
     {   i = next_non_whitespace (args.t_, i, to);
         params = true;
         if (i > 0)
         {   switch (cvf.get ()) // dear visual studio, I do understand the dislike of C style casts, but would you care to point out where one is on this line?
-            {   case cvf_annotation :
+            {   case cvf_anchor :
+                case cvf_anchor_size :
+                    if (context.css_module (c_anchor_pos) < 3)
+                        nits.pick (nit_css_version, es_error, ec_css, quote (cvf.name ()), " requires CSS Anchor Positioning");
+                    else e = cvf.get ();
+                    break;
+                case cvf_annotation :
                 case cvf_character_variant :
                 case cvf_ornaments :
                 case cvf_styleset :
                 case cvf_stylistic :
                 case cvf_swash :
                     if (context.css_module (c_font) < 4)
-                        nits.pick (nit_css_custom, es_error, ec_css, quote (cvf.name ()), " requires CSS Fonts 4");
+                        nits.pick (nit_css_font, es_error, ec_css, quote (cvf.name ()), " requires CSS Fonts 4");
+                    else e = cvf.get ();
+                    break;
+                case cvf_attr :
+                    if ((context.css_module (c_value_unit) < 5) && (context.css_module (c_generated_content) < 3))
+                        nits.pick (nit_css_value, es_error, ec_css, quote (cvf.name ()), " requires CSS Generated Content or CSS Values and Units 5");
                     else e = cvf.get ();
                     break;
                 case cvf_colour :
@@ -153,9 +160,14 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                         nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Colour 5");
                     else e = cvf.get ();
                     break;
+                case cvf_env :
+                    if (context.css_module (c_linked_parameters) < 3)
+                        nits.pick (nit_css_version, es_error, ec_css, quote (cvf.name ()), " requires CSS Linked Parameters");
+                    else e = cvf.get ();
+                    break;
                 case cvf_format :
                     if (context.css_module (c_font) < 3)
-                        nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Font 3");
+                        nits.pick (nit_css_font, es_error, ec_css, quote (cvf.name ()), " requires CSS Font 3");
                     else e = cvf.get ();
                     break;
                 case cvf_hsl :
@@ -179,10 +191,9 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                         nits.pick (nit_css_version, es_error, ec_css, quote (cvf.name ()), " requires CSS Borders and Box Decorations 4");
                     else e = cvf.get ();
                     break;
-
                 case cvf_tech :
                     if (context.css_module (c_font) < 4)
-                        nits.pick (nit_css_version, es_error, ec_css, quote (cvf.name ()), " requires CSS Font 4");
+                        nits.pick (nit_css_font, es_error, ec_css, quote (cvf.name ()), " requires CSS Font 4");
                     else e = cvf.get ();
                     break;
                 case cvf_var :
@@ -198,14 +209,14 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                     break;
                 default :
                     switch (context.css_module (c_value_unit))
-                    {   case 4 :
+                    {   case 3 :
+                            if (cvf.get () == cvf_calc) e = cvf_calc;
+                            else nits.pick (nit_css_value, es_error, ec_css, quote (cvf.name ()), " requires CSS Values 4");
+                            break;
+                        case 4 :
                         case 5 :
                         case 6 :
                             e = cvf.get ();
-                            break;
-                        case 3 :
-                            if (cvf.get () == cvf_calc) e = cvf_calc;
-                            else nits.pick (nit_css_value, es_error, ec_css, quote (cvf.name ()), " requires CSS Values 4");
                             break;
                         default :
                             nits.pick (nit_css_value, es_error, ec_css, quote (cvf.name ()), " requires CSS Values");
@@ -213,7 +224,7 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
         res = (e != cvf_none); }
     return true; }
 
-bool test_cascade (arguments& args, const ::std::string& s, e_iiu& iiu)
+bool test_cascade (const arguments& args, const ::std::string& s, e_iiu& iiu)
 {   switch (context.css_module (c_cascade_inheritance))
     {   case 6 :
         case 5 :
@@ -276,5 +287,6 @@ bool test_cascade (arguments& args, const ::std::string& s, e_iiu& iiu)
                 fn = trim_the_lot_off (fn.substr (0, pos));
             if (args.dst_ -> has (cic_fn_name, fn))
             {   iiu = iiu_fn;
+                args.dst_ -> use (cic_fn_name, fn);
                 return true; } }
     return false; }

@@ -16,12 +16,11 @@ PASS ../toast/coop/corrupt/search.shtml
 145 no_such_folder url_not_found
 
 PASS ../toast/coop/corrupt/plumbing/songshade.css
-0 html
-19 css_bespoke
-41 abandoned mozilla bespoke_obsolete
-42 css_bespoke
-43 css_bespoke
-104 bespoke_obsolete mozilla bespoke_obsolete bespoke_obsolete
+19 chrome
+41 abandoned mozilla
+42 opera
+43 chrome
+104 chrome mozilla opera
 
 PASS ../toast/coop/corrupt/w/weak.shtml
 178 character_code

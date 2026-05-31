@@ -35,7 +35,7 @@ PASS ../toast/mdn/at/font-palette-values.html
 
 PASS ../toast/mdn/at/function.html
 2 naughty_lang
-5 css_function css_function css_function unrecognised_value unrecognised_value unrecognised_value css_function css_custom css_function css_custom unrecognised_value css_custom css_function sunk immeasurable
+5 css_function css_function css_function unrecognised_value unrecognised_value css_custom css_custom unrecognised_value css_function css_custom css_custom css_function css_custom unrecognised_value css_custom css_function sunk immeasurable
 
 PASS ../toast/mdn/at/import.html
 2 naughty_lang
@@ -79,11 +79,12 @@ PASS ../toast/mdn/at/scope.html
 
 PASS ../toast/mdn/at/starting-style.html
 2 naughty_lang
+5 safari safari
 224 use_quote_code
 
 PASS ../toast/mdn/at/supports.html
 2 naughty_lang
-5 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value css_syntax unrecognised_value unrecognised_value css_syntax fontname fontname fontname fontname fontname fontname fontname fontname fontname fontname fontname fontname
+5 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value css_syntax unrecognised_value unrecognised_value css_syntax fontname fontname fontname fontname fontname fontname fontname fontname fontname fontname fontname fontname
 
 PASS ../toast/mdn/at/view-transition.html
 2 naughty_lang

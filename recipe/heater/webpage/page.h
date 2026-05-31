@@ -171,26 +171,10 @@ public:
     {   stats_.merge (dcl, use); }
     void use (const e_id_category cid, const ::std::string& s, const ::std::size_t n = 1)
     {   stats_.use (cid, s, n); }
-/*    void use_class (const ::std::string& s, const ::std::size_t n = 1)
-    {   stats_.use_class (s, n); }
-    void use_custom_prop (const ::std::string& s, const ::std::size_t n = 1)
-    {   stats_.use_custom_prop (s, n); }
-    void use_id (const ::std::string& s, const ::std::size_t n = 1)
-    {   stats_.use_id (s, n); }
-    void use_element_class (const ::std::string& s, const ::std::size_t n = 1)
-    {   stats_.use_element_class (s, n); }
-    void use_element_id (const ::std::string& s, const ::std::size_t n = 1)
-    {   stats_.use_element_id (s, n); } */
     bool has (const e_id_category cid, const ::std::string& s)
     {   return stats_.has (cid, s); }
-//    bool has_class (const ::std::string& s) const
-//    {   return stats_.has_class (s); }
     bool has_custom_media (const ::std::string& name) const
     {   return stats_.has_custom_media (name); }
-//    bool has_custom_prop (const ::std::string& s) const
-//    {   return stats_.has_custom_prop (s); }
-//    bool has_id (const ::std::string& s) const
-//    {   return stats_.has_id (s); } */
     bool has_str (const e_gsstr g, const ::std::string& s) const
     {   return stats_.has_str (g, s); }
     void check_for_standard_classes (nitpick& nits, const html_version& v) const

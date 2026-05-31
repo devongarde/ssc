@@ -1,7 +1,6 @@
 -Y 1 -7 original -f ../toast/css/3-nes/css.conf
 
 PASS ../toast/css/3-nes/css-2.css
-0 html
 1 css_namespace
 3 attribute_unrecognised
 

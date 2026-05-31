@@ -1,0 +1,11 @@
+﻿.float {
+width: 100px;
+height: 100px;
+shape-outside: polygon(10px 10px, 90px 50px, 40px 50px, 90px 90px, 10px 90px);
+shape-margin: 10px;
+}
+
+#CSSlogo {
+shape-margin: 35px;
+margin-right: 35px;
+}

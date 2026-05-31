@@ -5,7 +5,7 @@ PASS ../toast/mdn/text/index.html
 
 PASS ../toast/mdn/text/text-align.html
 2 naughty_lang
-5 bespoke_obsolete safari bespoke_obsolete whatwg_class whatwg_class whatwg_class
+5 safari whatwg_class whatwg_class whatwg_class
 
 PASS ../toast/mdn/text/text-align-last.html
 2 naughty_lang
@@ -19,6 +19,7 @@ PASS ../toast/mdn/text/text-autospace.html
 
 PASS ../toast/mdn/text/text-box.html
 2 naughty_lang
+5 safari safari safari safari safari safari safari safari safari safari safari safari
 
 PASS ../toast/mdn/text/text-box-edge.html
 2 naughty_lang
@@ -37,6 +38,7 @@ PASS ../toast/mdn/text/text-decoration-colour.html
 
 PASS ../toast/mdn/text/text-decoration-inset.html
 2 naughty_lang
+5 safari safari safari safari safari safari safari safari safari safari safari safari safari safari safari safari
 67 id_exists
 69 id_exists
 
@@ -76,7 +78,7 @@ PASS ../toast/mdn/text/text-emphasis-position.html
 
 PASS ../toast/mdn/text/text-emphasis-style.html
 2 naughty_lang
-5 unrecognised_value unrecognised_value single_character css_bespoke
+5 unrecognised_value unrecognised_value single_character chrome
 
 PASS ../toast/mdn/text/text-indent.html
 2 naughty_lang
@@ -102,7 +104,7 @@ PASS ../toast/mdn/text/text-shadow.html
 
 PASS ../toast/mdn/text/text-size-adjust.html
 2 naughty_lang
-5 css_bespoke
+5 chrome
 
 PASS ../toast/mdn/text/text-spacing-trim.html
 2 naughty_lang

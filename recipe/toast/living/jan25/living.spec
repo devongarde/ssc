@@ -1,7 +1,6 @@
 -Y 1 -7 original -f ../toast/living/jan25/living.conf
 
 PASS ../toast/living/jan25/404.html
-12 bespoke_obsolete
 47 css_version
 50 link_rel_off
 64 unrecognised_value
@@ -2339,7 +2338,6 @@ PASS ../toast/living/jan25/ww-9.html
 5 long_title
 
 PASS ../toast/living/jan25/bidi.css
-0 html
 3 css_version
 10 css_version css_version css_version
 16 css_version
@@ -2348,11 +2346,7 @@ PASS ../toast/living/jan25/bidi.css
 29 css_version
 30 css_version css_version
 
-PASS ../toast/living/jan25/details.css
-0 html
-
 PASS ../toast/living/jan25/fieldset.css
-0 html
 12 css_version
 19 css_version
 20 css_version
@@ -2362,7 +2356,6 @@ PASS ../toast/living/jan25/fieldset.css
 28 css_version
 
 PASS ../toast/living/jan25/form.css
-0 html
 9 css_version
 10 css_version
 15 css_version
@@ -2371,18 +2364,13 @@ PASS ../toast/living/jan25/form.css
 42 css_namespace
 
 PASS ../toast/living/jan25/hr.css
-0 html
 14 css_namespace
 16 css_version
 17 css_version
 18 css_version
 19 dialect
 
-PASS ../toast/living/jan25/html4.css
-0 html
-
 PASS ../toast/living/jan25/lists.css
-0 html
 4 css_version
 28 css_namespace
 31 css_version css_version
@@ -2395,18 +2383,13 @@ PASS ../toast/living/jan25/lists.css
 38 css_version css_version
 
 PASS ../toast/living/jan25/meter.css
-0 html
 3 css_version
 
-PASS ../toast/living/jan25/marquee.css
-0 html
-
 PASS ../toast/living/jan25/phrasing.css
-0 html
 13 css_version
 14 css_version
 21 css_version
-25 unrecognised_value unrecognised_value
+25 unrecognised_value
 32 css_version
 34 css_version
 37 css_namespace
@@ -2415,11 +2398,9 @@ PASS ../toast/living/jan25/phrasing.css
 41 css_version css_version
 
 PASS ../toast/living/jan25/progress.css
-0 html
 3 css_version
 
 PASS ../toast/living/jan25/replaced.css
-0 html
 6 css_namespace
 10 css_version
 13 css_namespace
@@ -2445,11 +2426,9 @@ PASS ../toast/living/jan25/replaced.css
 55 css_version css_version css_version
 
 PASS ../toast/living/jan25/sections.css
-0 html
 14 css_namespace
 
 PASS ../toast/living/jan25/tables.css
-0 html
 32 css_version css_version css_version
 33 css_version css_version css_version
 34 css_version css_version css_version

@@ -1,18 +1,8 @@
 -Y 1 -7 original -f ../toast/css/3-inline/css.conf
 
-PASS ../toast/css/3-inline/css-4.css
-0 html
-
-PASS ../toast/css/3-inline/css-5.css
-0 html
-
 PASS ../toast/css/3-inline/css-6.css
-0 html
 42 pseud
 49 pseud
-
-PASS ../toast/css/3-inline/css-a.css
-0 html
 
 PASS ../toast/css/3-inline/css-4.html
 2 naughty_lang

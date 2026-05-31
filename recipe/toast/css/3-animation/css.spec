@@ -3,11 +3,7 @@
 PASS ../toast/css/3-animation/index.html
 2 naughty_lang
 
-PASS ../toast/css/3-animation/css-2.css
-0 html
-
 PASS ../toast/css/3-animation/css-3.css
-0 html
 1 css_keyframes
 2 css_keyframes
 4 css_keyframes
@@ -19,6 +15,3 @@ PASS ../toast/css/3-animation/css-3.css
 29 css_version
 38 css_keyframes
 46 css_version
-
-PASS ../toast/css/3-animation/css-5.css
-0 html

@@ -130,7 +130,7 @@ bool set_coords_value (nitpick& nits, const html_version& v, const ::std::string
         for (auto c : coords)
         {   const ::std::string ss (trim_the_lot_off (c));
             if (ss.find_first_not_of (okch) != ::std::string::npos)
-            {   nits.pick (nit_bad_coords, es_error, ec_attribute, quote (ss), " is not a valid value");
+            {   nits.pick (nit_bad_coords, es_error, ec_attribute, quote (ss), " is not a valid value (3)");
                 whoops = true; }
             else val.push_back (lexical < int > :: cast (ss)); }
         if (! whoops)

@@ -1,18 +1,8 @@
 -Y 1 -7 original -f ../toast/css/3-content/css.conf
 
-PASS ../toast/css/3-content/css-0.css
-0 html
-
-PASS ../toast/css/3-content/css-1.css
-0 html
-
 PASS ../toast/css/3-content/css-2.css
-0 html
 7 pseud
 8 pseud
-
-PASS ../toast/css/3-content/css-4.css
-0 html
 
 PASS ../toast/css/3-content/css-2-2.html
 0 charset_mismatch charset_used charset_invalid

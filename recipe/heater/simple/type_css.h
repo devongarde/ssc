@@ -100,7 +100,7 @@ template < > struct type_master < t_css_bespoke > : public tidy_string < t_css_b
     {   tidy_string < t_css_bespoke > :: set_value (nits, v, s);
         tidy_string < t_css_bespoke > :: status (s_good); }
     void verify_attribute (nitpick& nits, const html_version& , const elem& , element* , const ::std::string& attnam)
-    {   nits.pick (nit_css_bespoke, es_warning, ec_type, "bespoke properties, such as ", attnam, ", are processed neither by " PROG " nor many browsers"); } };
+    {   nits.pick (nit_css_bespoke, es_comment, ec_type, "bespoke properties, such as ", attnam, ", are processed neither by " PROG " nor many browsers"); } };
 
 template < > struct type_master < t_css_content_name > : public tidy_string < t_css_content_name >
 {   using tidy_string < t_css_content_name > :: tidy_string;
@@ -294,11 +294,23 @@ template < > struct type_master < t_css_required_region > : public tidy_string <
                 return false;
         return true; } };
 
+template < > struct type_master < t_custom_id > : tidy_string < t_custom_id >
+{   using tidy_string < t_custom_id > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_custom; }
+    static bool is_colourful () { return true; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_custom_id > :: set_value (nits, v, s);
+        const ::std::string& id = tidy_string < t_custom_id > :: get_string ();
+        if (s.empty () || (id.size () < 3) || (id.substr (0, 2) != "--"))
+        {   nits.pick (nit_css_syntax, es_error, ec_css, "CSS custom ids must start with '--'");
+            tidy_string < t_custom_id > :: status (s_invalid); }
+        else tidy_string < t_custom_id > :: status (s_good); } };
+
 template < > struct type_master < t_custom_property > : tidy_string < t_custom_property >
 {   using tidy_string < t_custom_property > :: tidy_string;
     static e_animation_type animation_type () noexcept { return at_custom; }
     static bool is_colourful () { return true; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   string_value < t_custom_property > :: set_value (nits, v, s);
-        if (s.empty ()) string_value < t_custom_property > :: status (s_empty);
-        else string_value < t_custom_property > :: status (s_good); } };
+    {   tidy_string < t_custom_property > :: set_value (nits, v, s);
+        if (s.empty ()) tidy_string < t_custom_property > :: status (s_empty);
+        else tidy_string < t_custom_property > :: status (s_good); } };

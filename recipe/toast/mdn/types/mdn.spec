@@ -38,12 +38,13 @@ PASS ../toast/mdn/types/calc-keyword.html
 PASS ../toast/mdn/types/calc-sum.html
 2 naughty_lang
 
+PASS ../toast/mdn/types/colour.html
+2 naughty_lang
+
 PASS ../toast/mdn/types/colour-interpolation-method.html
 2 naughty_lang
 4 long_title
-
-PASS ../toast/mdn/types/colour.html
-2 naughty_lang
+5 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
 
 PASS ../toast/mdn/types/content-distribution.html
 2 naughty_lang
@@ -87,6 +88,7 @@ PASS ../toast/mdn/types/display-outside.html
 
 PASS ../toast/mdn/types/easing-function.html
 2 naughty_lang
+5 unrecognised_value
 74 unrecognised_value
 
 PASS ../toast/mdn/types/filter-function.html
@@ -110,12 +112,13 @@ PASS ../toast/mdn/types/gradient.html
 PASS ../toast/mdn/types/hex-colour.html
 2 naughty_lang
 
+PASS ../toast/mdn/types/hue.html
+2 naughty_lang
+
 PASS ../toast/mdn/types/hue-interpolation-method.html
 2 naughty_lang
 4 long_title
-
-PASS ../toast/mdn/types/hue.html
-2 naughty_lang
+5 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
 
 PASS ../toast/mdn/types/ident.html
 2 naughty_lang
@@ -180,6 +183,7 @@ PASS ../toast/mdn/types/self-position.html
 
 PASS ../toast/mdn/types/shape.html
 2 naughty_lang
+5 css_value_fn isnt isnt isnt isnt isnt isnt
 
 PASS ../toast/mdn/types/string.html
 2 naughty_lang

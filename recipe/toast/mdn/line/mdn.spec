@@ -8,7 +8,7 @@ PASS ../toast/mdn/line/line-break.html
 
 PASS ../toast/mdn/line/line-clamp.html
 2 naughty_lang
-5 abandoned chrome chrome bespoke_obsolete
+5 abandoned chrome chrome chrome
 
 PASS ../toast/mdn/line/line-height.html
 2 naughty_lang

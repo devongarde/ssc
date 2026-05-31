@@ -2691,6 +2691,10 @@
     <None Include="..\toast\css\3-exclude\css.conf" />
     <None Include="..\toast\css\3-exclude\css.spec" />
     <None Include="..\toast\css\3-exclude\index.html" />
+    <None Include="..\toast\css\3-extensions\css-3.css" />
+    <None Include="..\toast\css\3-extensions\css.conf" />
+    <None Include="..\toast\css\3-extensions\css.spec" />
+    <None Include="..\toast\css\3-extensions\index.html" />
     <None Include="..\toast\css\3-fbl\css-1.css" />
     <None Include="..\toast\css\3-fbl\css-1.html" />
     <None Include="..\toast\css\3-fbl\css-4.css" />
@@ -2992,6 +2996,7 @@
     <None Include="..\toast\css\3-shape\css-3.css" />
     <None Include="..\toast\css\3-shape\css-4.html" />
     <None Include="..\toast\css\3-shape\css-5.css" />
+    <None Include="..\toast\css\3-shape\css-6.css" />
     <None Include="..\toast\css\3-shape\css.conf" />
     <None Include="..\toast\css\3-shape\css.spec" />
     <None Include="..\toast\css\3-shape\index.html" />
@@ -3119,6 +3124,10 @@
     <None Include="..\toast\css\3-writing\css.conf" />
     <None Include="..\toast\css\3-writing\css.spec" />
     <None Include="..\toast\css\3-writing\index.html" />
+    <None Include="..\toast\css\4-anchor-positioning\css-2.css" />
+    <None Include="..\toast\css\4-anchor-positioning\css.conf" />
+    <None Include="..\toast\css\4-anchor-positioning\css.spec" />
+    <None Include="..\toast\css\4-anchor-positioning\index.html" />
     <None Include="..\toast\css\4-animation\css-4.css" />
     <None Include="..\toast\css\4-animation\css.conf" />
     <None Include="..\toast\css\4-animation\css.spec" />
@@ -3212,6 +3221,7 @@
     <None Include="..\toast\css\4-font\css.spec" />
     <None Include="..\toast\css\4-font\css-9.css" />
     <None Include="..\toast\css\4-font\index.html" />
+    <None Include="..\toast\css\4-frag\css-5.css" />
     <None Include="..\toast\css\4-frag\css-5.html" />
     <None Include="..\toast\css\4-frag\css.conf" />
     <None Include="..\toast\css\4-frag\css.spec" />

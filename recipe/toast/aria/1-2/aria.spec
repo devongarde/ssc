@@ -1,8 +1,5 @@
 -Y 1 -7 original -f ../toast/aria/1-2/aria.conf
 
-PASS ../toast/aria/1-2/4.css
-0 html
-
 PASS ../toast/aria/1-2/4.html
 0 charset_mismatch charset_used charset_invalid
 12 inserted_missing_parent missing_close

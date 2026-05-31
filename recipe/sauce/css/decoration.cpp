@@ -63,6 +63,12 @@ void decoration::parse (arguments& args, const int from, const int to, const boo
             else if ((args.t_.at (b).t_ != ct_keyword) && (args.t_.at (b).t_ != ct_identifier) && (args.t_.at (b).t_ != ct_colon))
                 if (args.v_.css_module (c_selector) < 3) nits.pick (nit_selector, ed_css_20, "5 Selectors", es_error, ec_css, "invalid pseudo element");
                 else nits.pick (nit_selector, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "invalid pseudo class");
+            else if ((b > 0) && 
+                    ((to < 0) || (b < to)) && 
+                    ((args.t_.at (b).t_ == ct_keyword) || (args.t_.at (b).t_ == ct_identifier)) && 
+                    (args.v_.css_module (c_extension) > 0) &&
+                    args.has (cic_custom_selector, args.t_.at (b).val_))
+                args.use (cic_custom_selector, args.t_.at (b).val_);
             else sparkle_ = css_fn (args, b, to, false, knotted);
             break;
         default :

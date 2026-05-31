@@ -19,7 +19,6 @@ PASS ../toast/external/cleberg.net/index.html
 6 url_not_found
 
 PASS ../toast/external/cleberg.net/styles.min.css
-0 html
 1 css_version bad_media
 
 PASS ../toast/external/cleberg.net/blog/cloudflare-dns-api/index.html

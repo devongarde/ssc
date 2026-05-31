@@ -7,7 +7,7 @@ PASS ../toast/w3/imnop/invalid_meta_multibyte.html
 0 charset_mismatch charset_used
 
 PASS ../toast/w3/imnop/iso-html.html
-0 html_unknown_sgml
+0  html_unknown_sgml
 
 PASS ../toast/w3/imnop/long-lines.html
 1 xhtml_1_0

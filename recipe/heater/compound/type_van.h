@@ -36,6 +36,7 @@ e_status set_css_whitespace_2_value (const e_status es, nitpick& nits, const htm
 e_status set_custom_element_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_duration_media_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_enable_background_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
+e_status set_fallback (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_hidden_ex_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s, element* box);
 e_status set_inputaccept_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s, element* box);
 e_status set_lcrdss_value (nitpick& nits, const html_version& v, const ::std::string& s);
@@ -151,6 +152,12 @@ template < > struct type_master < t_enable_background > : tidy_string < t_enable
     {   tidy_string < t_enable_background > :: set_value (nits, v, s);
         tidy_string < t_enable_background > :: status (set_enable_background_value (status (), nits, v, tidy_string < t_enable_background > :: get_string ())); } };
 
+template < > struct type_master < t_fallback > : tidy_string < t_fallback >
+{   using tidy_string < t_fallback > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_fallback > :: set_value (nits, v, s);
+        tidy_string < t_fallback > :: status (set_fallback (status (), nits, v, tidy_string < t_fallback > :: get_string ())); } };
+
 template < > struct type_master < t_font_families > : type_at_least_one < t_font_families, sz_comma, t_font_family >
 { using type_at_least_one < t_font_families, sz_comma, t_font_family > :: type_at_least_one; };
 
@@ -184,8 +191,8 @@ template < > struct type_master < t_lcrds > : type_at_least_one < t_lcrds, sz_sp
 template < > struct type_master < t_lcrdss > : string_vector < t_lcrdss, sz_space_char >
 {   using string_vector < t_lcrdss, sz_space_char > :: string_vector;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_lcrdss > :: set_value (nits, v, s);
-        tidy_string < t_lcrdss > :: status (set_lcrdss_value (nits, v, tidy_string < t_lcrdss > :: get_string ())); } };
+    {   string_vector < t_lcrdss, sz_space_char > :: set_value (nits, v, s);
+        string_vector < t_lcrdss, sz_space_char > :: status (set_lcrdss_value (nits, v, string_vector < t_lcrdss, sz_space_char > :: get_string ())); } };
 
 template < > struct type_master < t_length > : type_either_or < t_length, t_length_absolute, t_length_relative >
 { using type_either_or < t_length, t_length_absolute, t_length_relative > :: type_either_or; };
@@ -200,8 +207,8 @@ template < > struct type_master < t_linethickness > : tidy_string < t_linethickn
 template < > struct type_master < t_mathalign_n > : string_vector < t_mathalign_n, sz_space_char >
 {   using string_vector < t_mathalign_n, sz_space_char > :: string_vector;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_mathalign_n > :: set_value (nits, v, s);
-        tidy_string < t_mathalign_n > :: status (set_mathalign_n_value (status (), nits, v, string_vector < t_mathalign_n, sz_space_char > :: get ())); } };
+    {   string_vector < t_mathalign_n, sz_space_char > :: set_value (nits, v, s);
+        string_vector < t_mathalign_n, sz_space_char > :: status (set_mathalign_n_value (status (), nits, v, string_vector < t_mathalign_n, sz_space_char > :: get ())); } };
 
 template < > struct type_master < t_mathaligns > : type_at_least_one < t_mathaligns, sz_space_char, t_mathalign >
 { using type_at_least_one < t_mathaligns, sz_space_char, t_mathalign > :: type_at_least_one; };

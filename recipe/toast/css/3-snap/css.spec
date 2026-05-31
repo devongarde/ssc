@@ -1,14 +1,12 @@
 -Y 1 -7 original -f ../toast/css/3-snap/css.conf
 
 PASS ../toast/css/3-snap/css-2.css
-0 html
 9 css_version
 10 css_version
 25 css_version
 26 css_version
 
 PASS ../toast/css/3-snap/css-4.css
-0 html
 10 css_version
 12 css_version
 14 naughty_content

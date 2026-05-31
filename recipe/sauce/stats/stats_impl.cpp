@@ -290,6 +290,8 @@ const char* str_name [] =
     REPORT_CHARACTER,
     REPORT_CONTENT,
     REPORT_COUNTER,
+    REPORT_CUSTARD_PROPERTY,
+    REPORT_CUSTARD_SELECTOR,
     REPORT_FAMILY,
     REPORT_FUNCTION,
     REPORT_HIGHLIGHT,
@@ -577,6 +579,18 @@ const char* str_name [] =
             report_usage (REPORT_ELEMENT_CLASS, cic_element_class, ns_class, ns_class_head, ns_class_foot,
                 nm_class_name, nm_class_decl_int, nm_class_int, nm_class_decl_count, nm_class_count, nm_class_title); }
 
+::std::string stats::custom_property_report () const
+{   return report_usage (REPORT_CUSTARD_PROPERTY, cic_custom_property, ns_du, ns_du_head, ns_du_foot,
+                nm_tally_name, nm_tally_decl_count, nm_tally_use_count, nm_tally_decl_int, nm_tally_use_int, nm_tally_title); }
+
+::std::string stats::custom_selector_report () const
+{   return report_usage (REPORT_CUSTARD_SELECTOR, cic_custom_selector, ns_du, ns_du_head, ns_du_foot,
+                nm_tally_name, nm_tally_decl_count, nm_tally_use_count, nm_tally_decl_int, nm_tally_use_int, nm_tally_title); }
+
+::std::string stats::function_report () const
+{   return report_usage (REPORT_FUNCTION, cic_fn_name, ns_du, ns_du_head, ns_du_foot,
+                nm_tally_name, nm_tally_decl_count, nm_tally_use_count, nm_tally_decl_int, nm_tally_use_int, nm_tally_title); }
+
 ::std::string stats::itemid_report () const
 {   return report_usage (REPORT_ITEMID, cic_id) ; }
 
@@ -591,14 +605,6 @@ const char* str_name [] =
                 nm_id_name, nm_id_decl_int, nm_id_int, nm_id_decl_count, nm_id_count, nm_id_title) +
             report_usage (REPORT_ELEMENT_ID, cic_element_id, ns_nsid, ns_id_head, ns_id_foot,
                 nm_id_name, nm_id_decl_int, nm_id_int, nm_id_decl_count, nm_id_count, nm_id_title); }
-
-::std::string stats::custom_property_report () const
-{   return report_usage (REPORT_CUSTARD_PROPERTY, cic_custom_prop, ns_du, ns_du_head, ns_du_foot,
-                nm_tally_name, nm_tally_decl_count, nm_tally_use_count, nm_tally_decl_int, nm_tally_use_int, nm_tally_title); }
-
-::std::string stats::function_report () const
-{   return report_usage (REPORT_FUNCTION, cic_fn_name, ns_du, ns_du_head, ns_du_foot,
-                nm_tally_name, nm_tally_decl_count, nm_tally_use_count, nm_tally_decl_int, nm_tally_use_int, nm_tally_title); }
 
 ::std::string stats::param_report () const
 {   return report_usage (REPORT_PARAM, cic_fn_param, ns_du, ns_du_head, ns_du_foot,
@@ -615,13 +621,14 @@ const char* str_name [] =
     if (context.stats_gst (gst_anchor)) res += css_str_report (gst_anchor);
     if (context.stats (rcb_abbreviation)) res += abbr_report ();
     if (context.stats_gst (gst_annotation)) res += css_str_report (gst_annotation);
-    if (grand && context.stats (rcb_category) ) res += category_report ();
+    if (grand && context.stats (rcb_category)) res += category_report ();
     if (context.stats_gst (gst_character_variant)) res += css_str_report (gst_character_variant);
     if (context.stats (rcb_class)) res += class_report ();
     if (context.stats_gst (gst_content_name)) res += css_str_report (gst_content_name);
     if (context.stats_gst (gst_counter_style)) res += css_str_report (gst_counter_style);
     if (context.stats (rcb_custom_media)) res += custom_media_report ();
-    if (context.stats (rcb_custom_property) ) res += custom_property_report ();
+    if (context.stats (rcb_custom_property)) res += custom_property_report ();
+    if (context.stats (rcb_custom_selector)) res += custom_selector_report ();
     if (context.stats (rcb_definition)) res += definition_report ();
     if (context.stats (rcb_element)) res += element_report ();
     if (grand && context.stats (rcb_error)) res += error_report ();

@@ -1,33 +1,15 @@
 -Y 1 -7 original -f ../toast/css/4-text/css.conf
 
-PASS ../toast/css/4-text/css-2.css
-0 html
-
 PASS ../toast/css/4-text/css-4.css
-0 html
 1 namespace_unknown
 10 pseud
 
 PASS ../toast/css/4-text/css-5.css
-0 html
 1 lingo
 
-PASS ../toast/css/4-text/css-6.css
-0 html
-
-PASS ../toast/css/4-text/css-7.css
-0 html
-
 PASS ../toast/css/4-text/css-8.css
-0 html
 21 unrecognised_value
 33 unrecognised_value
-
-PASS ../toast/css/4-text/css-9.css
-0 html
-
-PASS ../toast/css/4-text/css-c.css
-0 html
 
 PASS ../toast/css/4-text/css-2.html
 2 naughty_lang

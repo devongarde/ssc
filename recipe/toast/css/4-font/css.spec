@@ -1,11 +1,9 @@
 -Y 1 -7 original -f ../toast/css/4-font/css.conf
 
 PASS ../toast/css/4-font/css-2.css
-0 html
-7 unrecognised_value unrecognised_value
+7 unrecognised_value
 
 PASS ../toast/css/4-font/css-4.css
-0 html
 2 fontname
 6 fontname
 9 fontname
@@ -39,14 +37,12 @@ PASS ../toast/css/4-font/css-4.css
 169 fontname
 
 PASS ../toast/css/4-font/css-6.css
-0 html
 18 pseud
 24 class_microformat_property
 29 fontname
 33 css_font_feature
 37 css_font_feature css_font_feature
 40 css_font_feature css_font_feature
-43 class_microformat_property
 45 fontname fontname
 75 unrecognised_value not_here
 76 css_font_feature
@@ -60,7 +56,6 @@ PASS ../toast/css/4-font/css-6.css
 198 lingo
 
 PASS ../toast/css/4-font/css-7.css
-0 html
 10 fontname
 12 not_here
 16 fontname
@@ -73,10 +68,10 @@ PASS ../toast/css/4-font/css-7.css
 41 fontname
 
 PASS ../toast/css/4-font/css-9.css
-0 html
 1 css_version css_syntax css_version
 6 fontname
 13 fontname
+15 css_custom
 21 fontname
 26 fontname
 31 fontname
@@ -86,11 +81,11 @@ PASS ../toast/css/4-font/css-9.css
 47 fontname
 52 fontname fontname
 57 fontname
+59 css_custom
 65 fontname
 70 fontname
 
 PASS ../toast/css/4-font/css-11.css
-0 html
 2 fontname
 
 PASS ../toast/css/4-font/css-2.html

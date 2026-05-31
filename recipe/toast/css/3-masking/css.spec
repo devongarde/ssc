@@ -1,14 +1,5 @@
 -Y 1 -7 original -f ../toast/css/3-masking/css.conf
 
-PASS ../toast/css/3-masking/css-5.css
-0 html
-
-PASS ../toast/css/3-masking/css-7.css
-0 html
-
-PASS ../toast/css/3-masking/css-8.css
-0 html
-
 PASS ../toast/css/3-masking/css-5.html
 2 naughty_lang
 16 bad_namespace attribute_unrecognised unrecognised_attribute

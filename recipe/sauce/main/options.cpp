@@ -169,6 +169,7 @@ options::options (const context_t& c)
 
     if (c.atomic_ext () != def.atomic_ext ())
         INSERT_SSTR (ATOMIC, EXTENSION, atomic_ext);
+
     INSERT_BOOL (ATOMIC, VERIFY, atomic_verify);
 
     INSERT_PATH (CORPUS, OUTPUT_, corpus);
@@ -178,6 +179,7 @@ options::options (const context_t& c)
 
     if (c.css_extension () != def.css_extension ())
         INSERT_SSTR (CSS, EXTENSION, css_extension);
+
     INSERT_BOOL (CSS, EXTERNAL, ext_css);
     INSERT_BOOL (CSS, VERIFY, load_css);
     INSERT_ENUM (t_css_version, CSS, VERSION, css_version);
@@ -222,6 +224,7 @@ options::options (const context_t& c)
 
     if (def.analysis () != c.analysis ())
         insert < ::std::string > (HTML ANALYSIS, ::boost::lexical_cast < ::std::string > (static_cast < int > (c.analysis ())));
+
     INSERT_BOOL (HTML, ARIA, aria);
     INSERT_BOOL (HTML, CHROME, chrome);
     INSERT_SSTR (HTML, CUSTOM, custom_elements);
@@ -229,6 +232,7 @@ options::options (const context_t& c)
     INSERT_BOOL (HTML, FORCE, force_version);
     INSERT_BOOL (HTML, IE, ie);
     INSERT_VSTR (HTML, IGNORED, ignore);
+    INSERT_BOOL (HTML, KONQUEROR, konqueror);
     INSERT_STRING (HTML, LANG, lang);
     INSERT_BOOL (HTML, MOZILLA, mozilla);
     INSERT_BOOL (HTML, OPERA, opera);
@@ -248,6 +252,7 @@ options::options (const context_t& c)
     INSERT_STRING (HTML, WX_SNIPPET, wx_snippet);
 
     if (c.jsonld_extension () != def.jsonld_extension ()) INSERT_SSTR (JSONLD, EXTENSION, jsonld_extension);
+
     INSERT_VSTR (JSONLD, ONTOLOGY_, jsonld_ontology);
     INSERT_BOOL (JSONLD, PRETTY, pretty);
     INSERT_BOOL (JSONLD, VERIFY, jsonld);
@@ -299,6 +304,7 @@ options::options (const context_t& c)
     INSERT_BOOL (ONTOLOGY, VERIFY, ontology);
     INSERT_STRING (ONTOLOGY, ROOT, export_root);
     INSERT_VSTR (ONTOLOGY, VIRTUAL, exports);
+
     for (int i = s_none + 1; i < s_error; ++i)
     {   const e_ontology es = static_cast < e_ontology > (i);
         if (is_faux_schema (es)) continue;
@@ -330,10 +336,12 @@ options::options (const context_t& c)
 
     if (c.rsl_ext () != def.rsl_ext ())
         INSERT_SSTR (RSL, EXTENSION, rsl_ext);
+
     INSERT_BOOL (RSL, VERIFY, rsl_verify);
 
     if (c.rss_ext () != def.rss_ext ())
         INSERT_SSTR (RSS, EXTENSION, rss_ext);
+
     INSERT_BOOL (RSS, VERIFY, rss_verify);
     INSERT_ENUM (t_rss_version, RSS, VERSION, rss_version);
 
@@ -358,6 +366,7 @@ options::options (const context_t& c)
 
     if (c.extensions () != def.extensions ())
         INSERT_SSTR (WEBSITE, EXTENSION, extensions);
+
     INSERT_STRING (WEBSITE, INDEX, index);
     INSERT_STRING (WEBSITE, ROOT, root);
     INSERT_SSTR (WEBSITE, SITE, site);
@@ -399,6 +408,7 @@ options::options (const context_t& c)
     INSERT_STATS (CSSPROP, rcb_css_property);
     INSERT_STATS (CUSTMED, rcb_custom_media);
     INSERT_STATS (CUSTPROP, rcb_custom_property);
+    INSERT_STATS (CUSTSEL, rcb_custom_selector);
     INSERT_STATS (DFN, rcb_definition);
     INSERT_STATS (DTDD, rcb_name_value);
     INSERT_STATS (ELEMENT, rcb_element);
@@ -603,6 +613,7 @@ options::options (const context_t& c)
 
     if (c.vtt_extension () != def.vtt_extension ())
         INSERT_SSTR (VTT, EXTENSION, vtt_extension);
+
     INSERT_BOOL (VTT, VERIFY, load_vtt);
 
 #undef INSERT
@@ -941,9 +952,10 @@ void options::init (context_t& c)
         (CSS DISPLAY, ::boost::program_options::value < int > (), "CSS Display level (0, 3 or 4).")
         (CSS EASE, ::boost::program_options::value < int > (), "CSS Ease level (0, 3 or 4).")
         (CSS EGG, ::boost::program_options::value < int > (), "CSS Expressive Generalizations and Gadgetry level (0 or 3).")
-        (CSS ENVIRONMENT, ::boost::program_options::value < int > (), "CSS Environment level (0 or 3).")
+        (CSS ENVIRONMENT_, ::boost::program_options::value < int > (), "CSS Environment level (0 or 3).")
         (CSS EXCLUDE, ::boost::program_options::value < int > (), "CSS Exclusions level (0 or 3).")
         (CSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "CSS files have this extension (default css); may be repeated.")
+        (CSS EXTENSIONS, ::boost::program_options::value < int > (), "CSS Extensions level (0 or 3).")
         (CSS EXTERNAL, ::boost::program_options::bool_switch (), "Nitpick css files imported from external sites.")
         (CSS DONT EXTERNAL, ::boost::program_options::bool_switch (), "Do not nitpick imported CSS files.")
         (CSS FBL, ::boost::program_options::value < int > (), "CSS Flexible Box Layout level (0 or 3).")
@@ -1037,6 +1049,9 @@ void options::init (context_t& c)
         (HTML IE, ::boost::program_options::bool_switch (), "Ignore certain naughtitudes accepted by versions of Internet Explorer.")
         (HTML DONT IE, ::boost::program_options::bool_switch (), "Mention certain naughtitudes accepted by versions of Internet Explorer.")
         (HTML IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore attributes and content of specified element; may be repeated.")
+            // KONQUEROR
+        (HTML KONQUEROR, ::boost::program_options::bool_switch (), "Ignore certain naughtitudes accepted by versions of Konqueror and its derivative.")
+        (HTML DONT KONQUEROR, ::boost::program_options::bool_switch (), "Mention certain naughtitudes accepted by versions of Konqueror and its derivatives.")
         (HTML LANG, ::boost::program_options::value < ::std::string > () -> composing (), "Default language (such as 'en_GB', 'lb_LU', etc.).")
         (HTML MOZILLA, ::boost::program_options::bool_switch (), "Ignore certain naughtitudes accepted by versions of Firefox.")
         (HTML DONT MOZILLA, ::boost::program_options::bool_switch (), "Mention certain naughtitudes accepted by versions of Firefox.")
@@ -1270,8 +1285,10 @@ void options::init (context_t& c)
         (STATS DONT CSSPROP, ::boost::program_options::bool_switch (), "Do not output css_property report.")
         (STATS CUSTMED, ::boost::program_options::bool_switch (), "Output custom_media report.")
         (STATS DONT CUSTMED, ::boost::program_options::bool_switch (), "Do not output custom_media report.")
-        (STATS CUSTPROP, ::boost::program_options::bool_switch (), "Output custom_property report.")
-        (STATS DONT CUSTPROP, ::boost::program_options::bool_switch (), "Do not output custom_property report.")
+        (STATS CUSTPROP, ::boost::program_options::bool_switch (), "Output custom property report.")
+        (STATS DONT CUSTPROP, ::boost::program_options::bool_switch (), "Do not output custom property report.")
+        (STATS CUSTSEL, ::boost::program_options::bool_switch (), "Output custom selector report.")
+        (STATS DONT CUSTSEL, ::boost::program_options::bool_switch (), "Do not output custom selector report.")
         (STATS DFN, ::boost::program_options::bool_switch (), "Output dfn report.")
         (STATS DONT DFN, ::boost::program_options::bool_switch (), "Do not output dfn report.")
         (STATS DTDD, ::boost::program_options::bool_switch (), "Output dtdd report.")
@@ -1821,7 +1838,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_colour_adjustment, n, nits, CSS ADJUST, "Colour Adjust", 4);
         process_css_level (c, c_advanced_layout, n, nits, CSS ADVLAY, "Advanced Layout", 3);
         process_css_level (c, c_scroll_anchoring, n, nits, CSS ANCHOR, "Scrollbar Anchoring", 4);
-        process_css_level (c, c_anchor_pos, n, nits, CSS ANCHOR_POS, "Anchor Positioning", 3);
+        process_css_level (c, c_anchor_pos, n, nits, CSS ANCHOR_POS, "Anchor Positioning", 4);
         process_css_level (c, c_animation, n, nits, CSS ANIMATION, "Animation", 4);
         process_css_level (c, c_background_border, n, nits, CSS BACKGROUND, "Background Border", 4);
         process_css_level (c, c_box_alignment, n, nits, CSS BOX_ALIGN, "Background Alignment", 3);
@@ -1842,6 +1859,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_egg, n, nits, CSS EGG, "Expressive Generalizations and Gadgetry", 3);
         process_css_level (c, c_environment, n, nits, CSS ENVIRONMENT_, "Environment", 3);
         process_css_level (c, c_exclusion, n, nits, CSS EXCLUDE, "Exclusions", 3);
+        process_css_level (c, c_extension, n, nits, CSS EXTENSIONS, "Extensions", 3);
         process_css_level (c, c_flexible_box_layout, n, nits, CSS FBL, "Flexible Box Layout", 3);
         process_css_level (c, c_fill_stroke, n, nits, CSS FILL, "Fill and Stroke", 3);
         process_css_level (c, c_filter_effect, n, nits, CSS FILTER, "Filter Effects", 3);
@@ -1923,6 +1941,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         yea_nay (c, &context_t::force_version, nits, HTML FORCE, HTML DONT FORCE);
         yea_nay (c, &context_t::ie, nits, HTML IE, HTML DONT IE);
         if (var_.count (HTML IGNORED)) c.ignore (nits, var_ [HTML IGNORED].as < vstr_t > ());
+        yea_nay (c, &context_t::konqueror, nits, HTML KONQUEROR, HTML DONT KONQUEROR);
         if (var_.count (HTML LANG)) c.lang (var_ [HTML LANG].as < ::std::string > ());
         yea_nay (c, &context_t::mozilla, nits, HTML MOZILLA, HTML DONT MOZILLA);
         yea_nay (c, &context_t::netscape, nits, HTML NETSCAPE, HTML DONT NETSCAPE);
@@ -2209,6 +2228,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         yea_nay (c, rcb_css_property, nits, STATS CSSPROP, STATS DONT CSSPROP);
         yea_nay (c, rcb_custom_media, nits, STATS CUSTMED, STATS DONT CUSTMED);
         yea_nay (c, rcb_custom_property, nits, STATS CUSTPROP, STATS DONT CUSTPROP);
+        yea_nay (c, rcb_custom_selector, nits, STATS CUSTSEL, STATS DONT CUSTSEL);
         yea_nay (c, rcb_definition, nits, STATS DFN, STATS DONT DFN);
         yea_nay (c, rcb_name_value, nits, STATS DTDD, STATS DONT DTDD);
         yea_nay (c, rcb_element, nits, STATS ELEMENT, STATS DONT ELEMENT);
@@ -2670,11 +2690,12 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, CSS, CUSTOM, css);
     RG (gr, res, int, CSS, DEVICE, css);
     RG (gr, res, int, CSS, DISPLAY, css);
-    RG (gr, res, int, CSS, ENVIRONMENT, css);
     RG (gr, res, int, CSS, EASE, css);
     RG (gr, res, int, CSS, EGG, css);
+    RG (gr, res, int, CSS, ENVIRONMENT_, css);
     RG (gr, res, int, CSS, EXCLUDE, css);
     RG (gr, res, vstr_t, CSS, EXTENSION, css);
+    RG (gr, res, int, CSS, EXTENSIONS, css);
     RG (gr, res, int, CSS, FBL, css);
     RG (gr, res, int, CSS, FILL, css);
     RG (gr, res, int, CSS, FILTER, css);
@@ -2772,7 +2793,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RB (gr, res, GENERAL, COMMS, general);
     RI (gr, res, GENERAL, DATAPATH, def_path, general);
     RG (gr, res, int, GENERAL, DEFTHRD, general);
-    RG (gr, res, vstr_t, GENERAL, ENVIRONMENT, general);
+//    RG (gr, res, vstr_t, GENERAL, ENVIRONMENT_, general);
     RG (gr, res, vstr_t, GENERAL, EXCLUDE, general);
     RI (gr, res, GENERAL, FICHIER, def_persisted, general);
     RB (gr, res, GENERAL, INFO, general);
@@ -2806,6 +2827,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RB (gr, res, HTML, FORCE, html);
     RB (gr, res, HTML, IE, html);
     RG (gr, res, vstr_t, HTML, IGNORED, html);
+    RB (gr, res, HTML, KONQUEROR, html);
     RG (gr, res, ::std::string, HTML, LANG, html);
     RB (gr, res, HTML, MOZILLA, html);
     RB (gr, res, HTML, NETSCAPE, html);
@@ -2988,6 +3010,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RB (gr, res, STATS, CSSPROP, stats);
     RB (gr, res, STATS, CUSTMED, stats);
     RB (gr, res, STATS, CUSTPROP, stats);
+    RB (gr, res, STATS, CUSTSEL, stats);
     RB (gr, res, STATS, DFN, stats);
     RB (gr, res, STATS, DTDD, stats);
     RB (gr, res, STATS, ELEMENT, stats);

@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define JUSTQUOTES "\"'"
 
 CONSTEXPR ::std::size_t def_quote_cut = 60;
+CONSTEXPR ::std::size_t short_quote_cut = 24;
 
 ::std::string slash_quote (const ::std::string& str);
 ::std::string enquote (const ::std::string& str, const char space, const ::std::string& qs = ::std::string (QUOTESEP));
