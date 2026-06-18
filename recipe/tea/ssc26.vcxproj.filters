@@ -1491,9 +1491,6 @@
     <Filter Include="Toast\Type\rel">
       <UniqueIdentifier>{6db1c435-d029-4bf9-8f50-087105ce22b0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\Output\stylesheet">
-      <UniqueIdentifier>{cbcebbab-188c-4546-ba43-2e11f7ca64a6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Other\silenced">
       <UniqueIdentifier>{a253490c-abd3-4dd4-bfb3-3f774ea8da1d}</UniqueIdentifier>
     </Filter>
@@ -1871,6 +1868,15 @@
     </Filter>
     <Filter Include="Toast\CSS\3-extensions">
       <UniqueIdentifier>{0c2521a3-248f-446e-96bc-4b17bfee54e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Output\stylesheet">
+      <UniqueIdentifier>{cbcebbab-188c-4546-ba43-2e11f7ca64a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\4-background">
+      <UniqueIdentifier>{c2c7db3e-7bec-408e-86b3-bf8aa8eddf1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\5-image">
+      <UniqueIdentifier>{0aaaad99-a410-4d4f-8656-df722b64f5d3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -49505,6 +49511,39 @@
     </None>
     <None Include="..\toast\css\3-extensions\index.html">
       <Filter>Toast\CSS\3-extensions</Filter>
+    </None>
+    <None Include="..\toast\css\4-background\css-3.css">
+      <Filter>Toast\CSS\4-background</Filter>
+    </None>
+    <None Include="..\toast\css\4-background\css-4.html">
+      <Filter>Toast\CSS\4-background</Filter>
+    </None>
+    <None Include="..\toast\css\4-background\index.html">
+      <Filter>Toast\CSS\4-background</Filter>
+    </None>
+    <None Include="..\toast\css\4-background\css.conf">
+      <Filter>Toast\CSS\4-background</Filter>
+    </None>
+    <None Include="..\toast\css\4-background\css.spec">
+      <Filter>Toast\CSS\4-background</Filter>
+    </None>
+    <None Include="..\toast\css\4-background\css-2.css">
+      <Filter>Toast\CSS\4-background</Filter>
+    </None>
+    <None Include="..\toast\css\5-image\css.conf">
+      <Filter>Toast\CSS\5-image</Filter>
+    </None>
+    <None Include="..\toast\css\5-image\css.spec">
+      <Filter>Toast\CSS\5-image</Filter>
+    </None>
+    <None Include="..\toast\css\5-image\css-2.css">
+      <Filter>Toast\CSS\5-image</Filter>
+    </None>
+    <None Include="..\toast\css\5-image\index.html">
+      <Filter>Toast\CSS\5-image</Filter>
+    </None>
+    <None Include="..\toast\css\5-image\css-2.html">
+      <Filter>Toast\CSS\5-image</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -20,14 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "webpage/required.h"
-
-static req_vt req_g;
-
-void reset_required ()
-{   req_g.clear (); }
-
-::std::size_t required_count ()
-{   return req_g.size (); }
+#include "type/type.h"
 
 bool decode_required_page (nitpick& nits, required_t& rq)
 {   vstr_t a = uq2_sep (rq.s_,  UQ_DQ | UQ_SQ | UQ_BS | UQ_BLANK);
@@ -64,21 +57,21 @@ bool decode_required_page (nitpick& nits, required_t& rq)
                                     rq.desc_ = a.at (6); } } } } }
     return res; }
 
-bool add_required_page (nitpick& nits, const ::std::string& arg)
+bool add_required_page (req_vt& req, nitpick& nits, const ::std::string& arg)
 {   required_t rq;
     rq.s_ = arg;
     if (! decode_required_page (nits, rq)) return false;
-    req_g.push_back (rq);
+    req.push_back (rq);
     return true; }
 
-bool add_required_pages (nitpick& nits, const vstr_t& arg)
+bool add_required_pages (req_vt& req, nitpick& nits, const vstr_t& arg)
 {   bool res = true;
-    for (auto s : arg) if (! add_required_page (nits, s)) res = false;
+    for (auto s : arg) if (! add_required_page (req, nits, s)) res = false;
     return res; }
 
-int check_required_pages (const html_version& v, const e_required_page rqp_type, const ::std::string& page_name, const vurl_t& uref, const element_bitset ancestral_elements, const e_lang l)
-{   for (::std::size_t i = 0; i < required_count (); ++i)
-    {   const required_t& rq = GSL_AT (req_g, i);
+int check_required_pages (const req_vt& req, const html_version& v, const e_required_page rqp_type, const ::std::string& page_name, const vurl_t& uref, const element_bitset ancestral_elements, const e_lang l)
+{   for (::std::size_t i = 0; i < req.size (); ++i)
+    {   const required_t& rq = GSL_AT (req, i);
         if ((rq.lang_ == la_context) || (rq.lang_ == l))
             if ((rq.e_ == elem_undefined) || ancestral_elements.test (rq.e_))
                 if (rq.from_.unknown () || (rq.from_ <= v))
@@ -103,34 +96,39 @@ int check_required_pages (const html_version& v, const e_required_page rqp_type,
                                 return static_cast < int > (i); } }
     return -1; }
 
-vstr_t required_page_list ()
+vstr_t required_page_list (const req_vt& req)
 {   vstr_t res;
-    for (auto rq : req_g)
+    for (auto rq : req)
         res.push_back (rq.s_);
     return res; }
 
-e_required_page get_required_page_type (const ::std::string& page_name, const bool root, faux_vb_t& req, faux_vb_t& check)
-{   req.resize (required_count ());
-    check.resize (required_count ());
+e_required_page get_required_page_type (const req_vt& rq, const ::std::string& page_name, const bool root, faux_vb_t& req, faux_vb_t& check)
+{   const ::std::size_t rz = rq.size ();
+    req.resize (rz);
+    check.resize (rz);
     e_required_page res = rqp_all;
     if (! compare_no_case (page_name, context.index ())) res = rqp_none;
     else if (root) res = rqp_front;
     else res = rqp_index;
-    for (::std::size_t n = 0; n < required_count (); ++n)
-        switch (GSL_AT (req_g, n).rq_)
+    for (::std::size_t n = 0; n < rz; ++n)
+        switch (GSL_AT (rq, n).rq_)
         {   case rqp_all : GSL_AT (check, n) = true; break;
             case rqp_front : if (res == rqp_front) GSL_AT (check, n) = true; break;
             case rqp_index : if ((res == rqp_front) || (res == rqp_index)) GSL_AT (check, n) = true; break;
             default : break; }
     return res; }
 
-void check_required_state (nitpick& nits, const ::std::string& name, const faux_vb_t& req, const faux_vb_t& check)
-{   for (int i = 0; i < GSL_NARROW_CAST < int > (required_count ()); ++i)
+void check_required_state (const req_vt& rq, nitpick& nits, const ::std::string& name, const faux_vb_t& req, const faux_vb_t& check)
+{   for (int i = 0; i < GSL_NARROW_CAST < int > (rq.size ()); ++i)
         if (GSL_AT (check, i) && ! GSL_AT (req, i))
-            if (GSL_AT (req_g, i).rq_ > rqp_none)
+            if (GSL_AT (rq, i).rq_ > rqp_none)
             {   ::std::string rqt;
-                if (GSL_AT (req_g, i).rq_ > rqp_all)
-                    rqt = type_master < t_required_page > :: name (GSL_AT (req_g, i).rq_) + " ";
-                if (! GSL_AT (req_g, i).desc_.empty ())
-                    nits.pick (nit_required, es_error, ec_page, name, ": missing required ", rqt, "link for ", GSL_AT (req_g, i).desc_);
-                else nits.pick (nit_required, es_error, ec_page, name, ": missing required ", rqt, "link to ", GSL_AT (req_g, i).url_.absolute ()); } }
+                if (GSL_AT (rq, i).rq_ > rqp_all)
+                    rqt = type_master < t_required_page > :: name (GSL_AT (rq, i).rq_) + " ";
+                if (! GSL_AT (rq, i).desc_.empty ())
+                    nits.pick (nit_required, es_error, ec_page, name, ": missing required ", rqt, "link for ", GSL_AT (rq, i).desc_);
+                else nits.pick (nit_required, es_error, ec_page, name, ": missing required ", rqt, "link to ", GSL_AT (rq, i).url_.absolute ()); } }
+
+::std::string required_t :: rpt () const
+{   return url_.get () + "," + type_master < t_lang > :: name (lang_) + "," + type_master < t_required_page > ::name (rq_) + ",<" +
+          elem :: name (e_) + ">\n" + from_.name () + "," + to_.name () + "\n" + desc_; }

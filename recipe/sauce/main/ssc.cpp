@@ -75,7 +75,6 @@ int cycle_start (nitpick& nits)
     reset_itemprop ();
     reset_macro ();
     reset_rdfa_prop ();
-    reset_required ();
     reset_spell ();
     overall.reset ();
     directory::reinit ();
@@ -127,9 +126,6 @@ void init (nitpick& nits)
 #ifdef DEBUG
     avm_elem_crosscheck ();
 #endif
-#ifdef WX
-    gui_init ();
-#endif // WX
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__); }
 
 int ciao ()

@@ -49,6 +49,9 @@ END_EVENT_TABLE ()
 IMPLEMENT_CLASS (css_t, d1_t)
 
 #define CBSZ "off", "on", "1", "2", "3", "4", "5", "6"
+#define MOD_NAME "Module"
+#define LEV_NAME "Level"
+
 const char* cbsz [] = { CBSZ };
 typedef enum { rb_off, rb_on, rb_1, rb_2, rb_3, rb_4, rb_5, rb_6 } canable_butt;
 
@@ -62,13 +65,13 @@ bool css_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
     return true; }
 
 void css_t :: create_controls (wxWindow *parent)
-{	if (drop_.concoct (parent, box_, choice_css_version, "CSS &version: "))
+{	if (drop_.concoct < wxBoxSizer > (parent, box_, choice_css_version, "CSS &version: "))
     {   drop_.box_.box_ -> SetMinSize (wxSize (-1, 50));
         module_ = GSL_OWNER (wxDataViewListCtrl) (new wxDataViewListCtrl (parent, list_css_module, wxDefaultPosition, wxDefaultSize, wxVSCROLL));
         if (module_ != nullptr)
         {   module_ -> SetMinSize (wxSize (-1, 150));
-            col_mod_ = module_ -> AppendTextColumn ("Module", wxDATAVIEW_CELL_INERT, 250, static_cast <wxAlignment> (wxALIGN_RIGHT), wxDATAVIEW_COL_RESIZABLE);
-            col_ver_ = module_ -> AppendTextColumn ("Level", wxDATAVIEW_CELL_INERT, -1, static_cast <wxAlignment> (wxALIGN_LEFT), wxDATAVIEW_COL_RESIZABLE);
+            col_mod_ = module_ -> AppendTextColumn (MOD_NAME, wxDATAVIEW_CELL_INERT, 250, static_cast <wxAlignment> (wxALIGN_RIGHT), wxDATAVIEW_COL_RESIZABLE);
+            col_ver_ = module_ -> AppendTextColumn (LEV_NAME, wxDATAVIEW_CELL_INERT, -1, static_cast <wxAlignment> (wxALIGN_LEFT), wxDATAVIEW_COL_RESIZABLE);
             for (int n = 0; n < c_bad; ++n)
             {   wxVector < wxVariant > val;
                 ::std::string nim (type_master < t_css_module > :: name (static_cast < e_css_module > (n)));
@@ -82,7 +85,7 @@ void css_t :: create_controls (wxWindow *parent)
             box_ -> Add (module_, 0, wxALL | wxEXPAND, 5);
             if (    level_.concoct (parent, box_, radio_css_level, "Module Level", { CBSZ }) &&
                     line1_.concoct (parent, box_) &&
-                    homme_.construct (parent, box_, "File Extensions:", CSS_EXT))
+                    homme_.concoct (parent, box_, "File Extensions:", CSS_EXT))
                 line2_.concoct (parent, box_); } } }
 
 void css_t :: CreateControls ()
@@ -205,7 +208,7 @@ void css_t :: modulo_level ()
     switch (cv)
     {	case css_none :
             if (! v_.css_any_3_4_5_6 ())
-            {	drop_.select (css_none);
+            {	drop_.select (css_none);                
                 return; }
             break;
         case css_bespoke :
@@ -239,7 +242,8 @@ void css_t :: Disenable ()
         if (sel != css_bespoke)
         {	v_.css_version (sel);
             for (unsigned int i = 0; i < c_bad; ++i)
-                set_module (static_cast < e_css_module > (i)); } } }
+                set_module (static_cast < e_css_module > (i)); }
+        dataview_fake_enable (sel == css_bespoke); } }
 
 void css_t :: OnHelpClick (wxCommandEvent& )
 {	if (app != nullptr) app -> help (hp_css); }
@@ -346,5 +350,14 @@ void css_t :: load_from_context (const context_t& c)
 void css_t :: save_to_context (context_t& c) const
 {	c.css_extension (ext ());
     c.html_ver (version ()); }
+
+void css_t :: dataview_fake_enable (const bool enable)
+{   module_ -> Enable (enable);
+    if (enable)
+    {   col_mod_ -> SetTitle (MOD_NAME);
+        col_ver_ -> SetTitle (LEV_NAME); }
+    else
+    {   col_mod_ -> SetTitle (" ");
+        col_ver_ -> SetTitle (" "); } }
 
 #endif // WX

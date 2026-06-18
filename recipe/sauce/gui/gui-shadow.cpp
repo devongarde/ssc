@@ -138,7 +138,7 @@ void shadow_t :: create_controls (wxWindow *parent)
                 if (line_cache_ != nullptr)
                     box_ -> Add (line_cache_, 0, wxEXPAND | wxALL, 5); } } }
 
-    ignore_.construct (parent, box_, "ignore files with extensions:");
+    ignore_.concoct (parent, box_, "ignore files with extensions:");
 
     line_base_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
         if (line_base_ != nullptr)

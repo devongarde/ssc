@@ -33,7 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define VALID_X       100
 #define VALID_Y       100
 #define VALID_WIDTH   450
-#define VALID_HEIGHT  575
+#define VALID_HEIGHT  580
 
 BEGIN_EVENT_TABLE (welcome_t, d2_t)
   EVT_BUTTON (wxID_ABOUT, welcome_t::OnAboutClick)
@@ -63,7 +63,7 @@ void welcome_t :: CreateControls ()
     line_summary_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
     if (line_summary_ != nullptr)
     {   static_title_ = GSL_OWNER (wxStaticText) (new wxStaticText (this, wxID_ANY, 
-                FULLNAME " v" VERSION_STRING " (" WEBADDR "), " COPYRIGHT_TEXT "\n(" __DATE__ " " __TIME__ ", " BUILD_INFO ")",
+                FULLNAME " v" VERSION_STRING ", " WEBADDR "\n" __DATE__ " " __TIME__ " (" BUILD_INFO")\n" COPYRIGHT_TEXT,
                 wxDefaultPosition, wxDefaultSize, 0));
         if (static_title_ != nullptr)
         {	static_title_ -> Wrap (-1);
@@ -131,10 +131,13 @@ void welcome_t :: OnConfigClick (wxCommandEvent& )
     const ::boost::scoped_ptr < standard_t > w (new standard_t (this, c_, gp_summary));
     if (w.get () != nullptr)
         if (! w -> invalid ())
+        {   w -> def (::boost::filesystem::path (dir_root_ -> GetPath ().c_str ()));
             if (w -> ShowModal () == wxID_OK)
             {	c_ = w -> c ();
                 text_summary_ -> SetValue (c_.report (gr_summary, false).c_str ());
-                write_continuity_ = true; } }
+                write_continuity_ = true; 
+                root_ = w -> def ();
+                dir_root_ -> SetPath (root_.c_str ()); } } }
 
 void welcome_t :: OnAboutClick (wxCommandEvent& )
 {	if (app != nullptr) app -> help (hp_about); }

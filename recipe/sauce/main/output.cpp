@@ -80,12 +80,11 @@ bool outstream::depre (nitpick& nits)
             fos_.reset ();
             return false; }
         inited_ = true; }
-    if (! pre_.empty ())
-    {   
 #ifdef SIGNING
-        if (status_ == sis_unknown) status_ = sis_none;
+    if (status_ == sis_unknown) status_ = sis_none;
 #endif // SIGNING
-        out (pre_);
+    if (! pre_.empty ())
+    {   out (pre_);
         pre_.clear (); }
     return true; }
 
@@ -165,6 +164,9 @@ void outstream::out (const ::std::string& s) const
 #endif // SIGNING
         *fos_ << ss;
 #ifdef WX
-    else if (wx_) app -> console (ss);
+    else if (wx_)
+//        app -> console (ss);
+        app -> append (ss);
 #endif // WX
-    else ::std::cout << ss; }
+    else 
+        ::std::cout << ss; }

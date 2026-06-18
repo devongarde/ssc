@@ -37,8 +37,7 @@ class ssi_t : public d1_t < wx_ssi >
 public:
     DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (ssi_t);
     explicit ssi_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SSI_CAPTION);
-    bool invalid () const noexcept
-    {   return process_.invalid () || text_line_.invalid () || exec_line_.invalid (); }
+    bool invalid () const noexcept { return now_.invalid (); }
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SSI_CAPTION);
     void CreateControls ();

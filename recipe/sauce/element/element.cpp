@@ -303,7 +303,7 @@ void element::accumulate (stats_t* st) const
             c -> accumulate (st); } }
 
 void element::check_required_page (const html_version& v, const vurl_t& u)
-{   const int n = check_required_pages (v, page_ -> required_page_type (), name_, u, ancestral_elements_, page_ -> elang ());
+{   const int n = check_required_pages (context.required (), v, page_ -> required_page_type (), name_, u, ancestral_elements_, page_ -> elang ());
     if (n >= 0) page_ -> mark_required_page (n); }
 
 void element::count_col_row (int& col, int& row, rowcount_t& rowcount)

@@ -28,6 +28,84 @@ const char* doctype = "DOCTYPE";
 CONSTEXPR ::std::size_t doctype_len = 7;
 const char* docdot = "<!DOCTYPE ...>";
 
+html_ver_vt standard_html_ver =
+{	html_tags,
+    html_1,
+    html_plus,
+    html_2,
+    html_2_level_1,
+    html_2_level_2,
+    html_3_0,
+    html_3_2,
+    html_4_0,
+    html_4_1,
+    xhtml_1_0,
+    xhtml_1_1,
+    xhtml_2,
+    html_5_0,
+    html_5_1,
+    html_5_2,
+    html_5_3,
+    html_jan05,
+    html_jul05,
+    html_jan06,
+    html_jul06,
+    html_jan07,
+    html_jul07,
+    html_jan08,
+    html_jul08,
+    html_jan09,
+    html_jul09,
+    html_jan10,
+    html_jul10,
+    html_jan11,
+    html_jul11,
+    html_jan12,
+    html_jul12,
+    html_jan13,
+    html_may13,
+    html_jul13,
+    html_jan14,
+    html_jan15,
+    html_jun15,
+    html_jan16,
+    html_jul16,
+    html_jan17,
+    html_jul17,
+    html_jan18,
+    html_jul18,
+    html_oct18,
+    html_jan19,
+    html_jul19,
+    html_jan20,
+    html_jul20,
+    html_jan21,
+    html_feb21,
+    html_apr21,
+    html_jul21,
+    html_oct21,
+    html_nov21,
+    html_jan22,
+    html_apr22,
+    html_jul22,
+    html_oct22,
+    html_jan23,
+    html_apr23,
+    html_jul23,
+    html_oct23,
+    html_jan24,
+    html_apr24,
+    html_jul24,
+    html_oct24,
+    html_jan25,
+    html_apr25,
+    html_jul25,
+    html_aug25,
+    html_oct25,
+    html_jan26,
+    html_apr26,
+    html_jul26 };
+
 html_version::html_version (const ::boost::gregorian::date& d)
         :   version (0, 0, HV_WHATWG, ao_html), ext_ (NOFLAGS), ext2_ (NOFLAGS), ext3_ (NOFLAGS), ext4_ (NOFLAGS), ext5_ (NOFLAGS)
 {   if (d.is_not_a_date ()) { reset (html_1); return; }
@@ -2721,3 +2799,9 @@ bool has_css_crossover (const e_css_version c, const html_version& lhs, const ht
 bool comparable (const html_version& lhs, const html_version& rhs) noexcept
 {   if (lhs.is_css () != rhs.is_css ()) return false;
     return comparable (static_cast < version > (lhs), static_cast < version > (rhs)); }
+
+int which_standard (const html_version& v)
+{   for (int i = 0; i < GSL_NARROW_CAST < int > (standard_html_ver.size ()); ++i)
+        if (v == standard_html_ver.at (i))
+            return i;
+    return GSL_NARROW_CAST < int > (standard_html_ver.size ()) - 1; }

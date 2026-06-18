@@ -49,21 +49,18 @@ bool ssi_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
     return true; }
 
 void ssi_t :: create_controls (wxWindow *parent)
-{	process_.concoct (parent, box_, check_ssi_process, "Process Server Side Includes");
-
-    if (args_.concoct (parent, box_, wxID_ANY, "DOCUMENT_ARGS: "))
-        if (echomsg_.concoct (parent, box_, wxID_ANY, "echomsg: "))
-            if (errmsg_.concoct (parent, box_, wxID_ANY, "errmsg: "))
-                if (query_.concoct (parent, box_, wxID_ANY, "QUERY_STRING_UNESCAPED: "))
-                    if (timefmt_.concoct (parent, box_, wxID_ANY, "TIMEFMT: "))
-                        if (user_.concoct (parent, box_, wxID_ANY, "USER_NAME: "))
-                            text_line_.concoct (parent, box_);
-
-    if (exec_.concoct (parent, box_, check_ssi_exec, "Run <!--#exec ... -->", "Or say: "))
-        exec_line_.concoct (parent, box_); 
-
-    if (lastmod_.concoct (parent, box_, check_ssi_lastmod, "Last Modification Time:"))
-        now_.concoct (parent, box_, check_ssi_now, "'Current' Time: ");  }
+{	if (    process_.concoct (parent, box_, check_ssi_process, "Process Server Side Includes")  &&
+            args_.concoct (parent, box_, wxID_ANY, "DOCUMENT_ARGS: ") &&
+            echomsg_.concoct (parent, box_, wxID_ANY, "echomsg: ") &&
+            errmsg_.concoct (parent, box_, wxID_ANY, "errmsg: ") &&
+            query_.concoct (parent, box_, wxID_ANY, "QUERY_STRING_UNESCAPED: ") &&
+            timefmt_.concoct (parent, box_, wxID_ANY, "TIMEFMT: ") &&
+            user_.concoct (parent, box_, wxID_ANY, "USER_NAME: ") &&
+            text_line_.concoct (parent, box_) &&
+            exec_.concoct (parent, box_, check_ssi_exec, "Run <!--#exec ... -->", "Or say: ") &&
+            exec_line_.concoct (parent, box_) && 
+            lastmod_.concoct (parent, box_, check_ssi_lastmod, "Last Modification Time:"))
+        now_.concoct (parent, box_, check_ssi_now, "'Current' Time: "); }
 
 void ssi_t :: CreateControls ()
 {	if (d1_t :: invalid ()) return;

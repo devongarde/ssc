@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "gui/gui-dialogue.h"
 #include "gui/gui-listedit.h"
 
-bool listedit_manager :: construct (wxWindow* parent, wxBoxSizer* box, const char* desc, const char* def, bool file, bool comma, bool line)
+bool listedit_manager :: concoct (wxWindow* parent, wxBoxSizer* box, const char* desc, const char* def, bool file, bool comma, bool line)
 {	VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
     VERIFY_NOT_NULL (box, __FILE__, __LINE__); 
     VERIFY_NOT_NULL (desc, __FILE__, __LINE__);

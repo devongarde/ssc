@@ -3,6 +3,13 @@ static site checker
 https://dylanharris.org/ssc/
 (c) 2020-2026 Dylan Harris
 
+0.2.32
+- CSS Background and Borders 4
+- CSS Image 5
+- Update CSS Page Floats 3
+- various bug fixes
+- underlying work
+
 0.2.31
 - OpenBSD 7.9
 - CSS Anchor Positioning 4

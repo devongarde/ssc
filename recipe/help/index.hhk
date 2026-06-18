@@ -37,7 +37,7 @@
   </li>
   <li>
     <object type="text/sitemap">
-      <param name="Name" value="general"/>
+      <param name="Name" value="bobs"/>
       <param name="Local" value="general.html"/>
     </object>
   </li>
@@ -121,8 +121,14 @@
   </li>
   <li>
     <object type="text/sitemap">
-      <param name="Name" value="lynx"/>
+      <param name="Name" value="links"/>
       <param name="Local" value="links.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="listedit"/>
+      <param name="Local" value="listedit.html"/>
     </object>
   </li>
 </ul>

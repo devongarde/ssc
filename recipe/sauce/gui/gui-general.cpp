@@ -31,16 +31,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define GEN_WIDTH   400
 #define GEN_HEIGHT  360
 #define MIN_FILE_SIZE 1024
+#define STRINGIZE_BORKED_MIN_FILE_SIZE "1024"
 
 #define DEFAULT_PERSIST_FN "www.ssc"
 
 BEGIN_EVENT_TABLE (general_t, d1_t)
   EVT_BUTTON (wxID_HELP, general_t::OnHelpClick)
+  EVT_BUTTON (button_general_add, general_t::OnAdd)
+  EVT_BUTTON (button_general_erase, general_t::OnErase)
+  EVT_LISTBOX (list_general_ext, general_t::OnExclude)
+  EVT_LISTBOX_DCLICK (list_general_ext, general_t::OnImpatience)
+  EVT_BUTTON (button_general_rename, general_t::OnRename)
   EVT_CHECKBOX (check_file_size, general_t::OnMax)
 #ifndef NO_FRED
   EVT_CHECKBOX (check_fred, general_t::OnFred)
 #endif // NO_FRED
   EVT_CHECKBOX (check_file_persist, general_t::OnPersist)
+  EVT_CHECKBOX (file_general_name, general_t::OnConfig)
+  EVT_TEXT (text_general_ext, general_t::OnText)
 END_EVENT_TABLE ()
 
 IMPLEMENT_CLASS (general_t, d1_t)
@@ -55,111 +63,33 @@ bool general_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& captio
     return true; }
 
 void general_t :: create_controls (wxWindow *parent)
-{	bool rational = true;
-    if (parent == this) rational = app -> frame () -> rational ();
-
-    box_check_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
-    if (box_check_ != nullptr)
-    {	static_check_ = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, "verify:   ", wxDefaultPosition, wxDefaultSize, 0));
-        if (static_check_ != nullptr)
-        {	static_check_ -> Wrap (-1);
-            box_check_ -> Add (static_check_, 0, wxALIGN_CENTRE_VERTICAL, 5);
-            check_class_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "styled classes  ", wxDefaultPosition, wxDefaultSize, 0));
-            if (check_class_ != nullptr)
-            {	box_check_ -> Add (check_class_, 0, wxALIGN_CENTRE_VERTICAL, 5 );
-                check_other_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "every class  ", wxDefaultPosition, wxDefaultSize, 0));
-                if (check_other_ != nullptr)
-                {	box_check_ -> Add (check_other_, 0, wxALIGN_CENTRE_VERTICAL, 5 );   
-                    check_rdfa_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "RDFa", wxDefaultPosition, wxDefaultSize, 0));
-                    if (check_rdfa_ != nullptr)
-                    {   box_check_ -> Add (check_rdfa_, 0, wxALIGN_CENTRE_VERTICAL, 5 );
-                        check_vtt_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "VTT", wxDefaultPosition, wxDefaultSize, 0));
-                        if (check_vtt_ != nullptr)
-                            box_check_ -> Add (check_vtt_, 0, wxALIGN_CENTRE_VERTICAL, 5 ); } } } }
-        box_ -> Add (box_check_, 0, wxALIGN_CENTRE_HORIZONTAL, 5); }
-
-    line_5_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
-    if (line_5_ != nullptr)
-        box_ -> Add (line_5_, 0, wxEXPAND | wxALL, 5);
-
-    check_vcs_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "ignore version control files", wxDefaultPosition, wxDefaultSize, 0));
-    if (check_vcs_ != nullptr)
-        box_ -> Add (check_vcs_, 0, wxALL | wxALIGN_CENTRE_HORIZONTAL, 5 );
-
+{	cwd_ = get_working_directory () / ".ssc";
+    if (    check_box_.template concoct < wxBoxSizer > (parent, box_, wxALIGN_CENTRE) &&
+            check_static_.concoct < wxBoxSizer > (parent, check_box_.box_, "verify:   ") &&
+            class_ctrl_.concoct (parent, check_box_.box_, wxID_ANY, "styled classes  ", wxALIGN_CENTRE_VERTICAL) &&
+            other_ctrl_.concoct (parent, check_box_.box_, wxID_ANY, "every class  ", wxALIGN_CENTRE_VERTICAL) &&
+            l5_.concoct (parent, box_) &&
+            type_box_.template concoct < wxBoxSizer > (parent, box_, wxALIGN_CENTRE) &&
+            rdfa_ctrl_.concoct (parent, type_box_.box_, wxID_ANY, "nitpick RDFa files   ", wxALIGN_CENTRE_VERTICAL) &&
+            vtt_ctrl_.concoct (parent, type_box_.box_, wxID_ANY, "nitpick VTT files", wxALIGN_CENTRE_VERTICAL) &&
+            vcs_ctrl_.concoct (parent, box_, wxID_ANY, "ignore version control files", wxALL | wxALIGN_CENTRE_HORIZONTAL) &&
 #ifndef NO_FRED
-    line_1_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
-    if (line_1_ != nullptr)
-        box_ -> Add (line_1_, 0, wxEXPAND | wxALL, 5);
-
-    box_fred_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
-    if (box_fred_ != nullptr)
-    {	check_fred_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_fred, "limit threads to:", wxDefaultPosition, wxDefaultSize, 0));
-        if (check_fred_ != nullptr)
-        {	box_fred_ -> Add (check_fred_, 0, wxALIGN_CENTRE_VERTICAL, 5 );
-            spin_fred_ = GSL_OWNER (wxSpinCtrl) (new wxSpinCtrl (parent, spin_fred, "1", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, GSL_NARROW_CAST < int > (fred_t :: no_more_than ()), 0));
-            if (spin_fred_ != nullptr)
-            {	if (rational) spin_fred_ -> SetIncrement (-1); // hit down, the number goes down
-                box_fred_ -> Add (spin_fred_, 0, wxALIGN_CENTRE_VERTICAL, 5); }
-            box_ -> Add (box_fred_, 0, wxALIGN_CENTRE_HORIZONTAL, 5); } }
+            l1_.concoct (parent, box_) &&
+            fred_box_.template concoct < wxBoxSizer > (parent, box_, wxALIGN_CENTRE) &&
+            fred_ctrl_.concoct (parent, fred_box_.box_, check_fred, "limit thread count", wxALIGN_CENTRE_VERTICAL) &&
+            fred_spin_.concoct (parent, fred_box_.box_, spin_fred, ::std::string ("max:"), ::std::string ("1"), 1, 1, GSL_NARROW_CAST < int > (fred_t :: no_more_than ())) &&
 #endif // NO_FRED
-
-    line_2_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
-    if (line_2_ != nullptr)
-        box_ -> Add (line_2_, 0, wxEXPAND | wxALL, 5);
-
-    exclude_.construct (parent, box_, "exclude these extensions:", "tmp");
-
-    line_3_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
-    if (line_3_ != nullptr)
-        box_ -> Add (line_3_, 0, wxEXPAND | wxALL, 5);
-
-    box_max_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
-    if (box_max_ != nullptr)
-    {	check_max_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_file_size, "maximum file size (bytes):", wxDefaultPosition, wxDefaultSize, 0));
-        if (check_max_ != nullptr)
-        {	box_max_ -> Add (check_max_, 0, wxALIGN_CENTRE_VERTICAL, 5 );
-            BOOST_STATIC_ASSERT (def_max_file_size >= MIN_FILE_SIZE);
-            spin_max_ = GSL_OWNER (wxSpinCtrl) (new wxSpinCtrl (parent, spin_file_size, "1024", wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, MIN_FILE_SIZE, def_max_file_size, 0));
-            if (spin_max_ != nullptr)
-            {	if (rational) spin_max_ -> SetIncrement (-1); // hit down, the number goes down
-                box_max_ -> Add (spin_max_, 0, wxALIGN_CENTRE_VERTICAL, 5); }
-            box_ -> Add (box_max_, 0, wxALIGN_CENTRE_HORIZONTAL, 5); } }
-
-    line_4_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
-    if (line_4_ != nullptr)
-        box_ -> Add (line_4_, 0, wxEXPAND | wxALL, 5);
-
-    box_config_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
-    if (box_config_ != nullptr)
-    {	stat_config_ = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, "Configuration directory: ", wxDefaultPosition, wxDefaultSize, 0));
-        if (stat_config_ != nullptr)
-        {	box_config_ -> Add (stat_config_, 0, wxALIGN_CENTER_VERTICAL, 5);
-            dir_config_ = GSL_OWNER (wxDirPickerCtrl) (new wxDirPickerCtrl( parent, wxID_ANY, wxEmptyString, "Select a " REPERTOIRE, wxDefaultPosition, wxDefaultSize, wxDIRP_DEFAULT_STYLE));
-            if (dir_config_ !=  nullptr)
-                box_config_ -> Add (dir_config_, 0, wxALL, 5); }
-        box_ -> Add (box_config_, 0, wxALIGN_CENTER_HORIZONTAL, 5); }
-
-    line_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
-    if (line_ != nullptr) box_ -> Add (line_, 0, wxEXPAND | wxALL, 5);
-        
-    box_persist_ =  GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
-    if (box_persist_ != nullptr)
-    {	check_persist_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_file_persist, "Cache scan results", wxDefaultPosition, wxDefaultSize, 0));
-        if (check_persist_ != nullptr)
-        {	box_ -> Add (check_persist_, 0, wxALL, 5);
-            pick_persist_ = GSL_OWNER (wxFilePickerCtrl) (new wxFilePickerCtrl (parent, wxID_ANY, wxEmptyString, "Select a file", "*.ssc", wxDefaultPosition, wxDefaultSize, wxFLP_DEFAULT_STYLE));
-            if (pick_persist_ != nullptr)
-            {	box_persist_ -> Add (pick_persist_, 1, wxALL | wxEXPAND, 5);
-                if (! out_.empty ()) pick_persist_ -> SetFileName (wxFileName (persist_.c_str ()));
-                else try
-                {	pick_persist_ -> SetFileName (wxFileName ((context.cwd () / "www.ssc").c_str ())); }
-                catch (...)
-                {	pick_persist_ -> SetFileName (wxFileName ("www.ssc")); } } }
-        box_ -> Add (box_persist_, 0, wxALIGN_CENTER_HORIZONTAL, 5); }
-
-    sl2_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
-    if (sl2_ != nullptr)
-        box_ -> Add (sl2_, 0, wxEXPAND | wxALL, 5); }
+            l2_.concoct (parent, box_) &&
+            exclude_.concoct (parent, box_, "exclude these extensions:", "tmp") &&
+            l3_.concoct (parent, box_) &&
+            max_box_.template concoct < wxBoxSizer > (parent, box_, wxALIGN_CENTRE) &&
+            max_ctrl_.concoct (parent, max_box_.box_, check_file_size, "limit file size", wxALIGN_CENTRE_VERTICAL) &&
+            max_spin_.concoct (parent, max_box_.box_, spin_file_size, ::std::string ("max bytes:"), ::std::string (STRINGIZE_BORKED_MIN_FILE_SIZE), def_max_file_size, MIN_FILE_SIZE, def_max_file_size) &&
+            l4_.concoct (parent, box_) &&
+            config_folder_.concoct (parent, box_, file_general_name, "Configuration " REPERTOIRE ":", ::boost::filesystem::path (), cwd_.string ()) &&
+            l6_.concoct (parent, box_) &&
+            persist_file_.concoct (parent, box_, check_file_persist, "Cache scan results", "cache.ssc", "cache file:", "*.ssc"))
+        l7_.concoct (parent, box_); }
 
 void general_t :: CreateControls ()
 {	if (d1_t :: invalid ()) return;
@@ -174,90 +104,87 @@ void general_t :: OnHelpClick (wxCommandEvent& )
 
 #ifndef NO_FRED
 void general_t :: enable_fred (const bool b)
-{	PRESUME (spin_fred_ != nullptr, __FILE__, __LINE__);
-    spin_fred_ -> Enable (b);
-    spin_fred_ -> Refresh (); }
+{	fred_spin_.enable (b); }
 #endif // NO_FRED
 
 void general_t :: enable_max (const bool b)
-{	PRESUME (spin_max_ != nullptr, __FILE__, __LINE__);
-    spin_max_ -> Enable (b);
-    spin_max_ -> Refresh (); }
+{	max_spin_.enable (b); }
 
-void general_t :: enable_persist (const bool b)
-{	pick_persist_ -> Enable (b); }
+void general_t :: OnConfig (wxCommandEvent& )
+{	if (invalid ()) return;
+    config_folder_.click (); }
 
 void general_t :: OnPersist (wxCommandEvent& )
 {	if (invalid ()) return;
-    PRESUME (check_persist_ != nullptr, __FILE__, __LINE__);
-    const bool persisted = check_persist_ -> IsChecked ();
-    if (persist_.empty () && persisted)
-    {	persist_ = get_working_directory ();
-        persist_ /= DEFAULT_PERSIST_FN;
-        wxFileName fn (persist_.string ());
-        pick_persist_ -> SetFileName (fn); }
-    enable_persist (persisted); }
+    persist_file_.click (); }
 
 void general_t :: OnMax (wxCommandEvent& )
 {	if (invalid ()) return;
-    PRESUME (check_max_ != nullptr, __FILE__, __LINE__);
-    enable_max (check_max_ -> IsChecked ()); }
+    enable_max (max_ctrl_.selected ()); }
 
 #ifndef NO_FRED
 void general_t :: OnFred (wxCommandEvent& )
 {	if (invalid ()) return;
-    PRESUME (check_fred_ != nullptr, __FILE__, __LINE__);
-    enable_fred (check_fred_ -> IsChecked ()); }
+    enable_fred (fred_ctrl_.selected ()); }
 #endif // NO_FRED
+
+void general_t :: OnAdd (wxCommandEvent& e)
+{	exclude_.OnAdd (e); }
+
+void general_t :: OnErase (wxCommandEvent& e)
+{	exclude_.OnErase (e); }
+
+void general_t :: OnExclude (wxCommandEvent& e)
+{	exclude_.OnTap (e); }
+
+void general_t :: OnImpatience (wxCommandEvent& e)
+{	exclude_.OnImpatience (e); }
+
+void general_t :: OnRename (wxCommandEvent& e)
+{	exclude_.OnRename (e); }
+
+void general_t :: OnText (wxCommandEvent& e)
+{	exclude_.OnText (e); }
 
 bool general_t :: TransferDataToWindow ()
 {	if (invalid ()) return false;
-    if (class_) check_class_ -> Set3StateValue (wxCHK_CHECKED);
-    else check_class_ -> Set3StateValue (wxCHK_UNCHECKED);
-    if (other_) check_other_ -> Set3StateValue (wxCHK_CHECKED);
-    else check_other_ -> Set3StateValue (wxCHK_UNCHECKED);
-    if (rdfa_) check_rdfa_ -> Set3StateValue (wxCHK_CHECKED);
-    else check_rdfa_ -> Set3StateValue (wxCHK_UNCHECKED);
-    if (vcs_) check_vcs_ -> Set3StateValue (wxCHK_CHECKED);
-    else check_vcs_ -> Set3StateValue (wxCHK_UNCHECKED);
-    if (vtt_) check_vtt_ -> Set3StateValue (wxCHK_CHECKED);
-    else check_vtt_ -> Set3StateValue (wxCHK_UNCHECKED);
-    spin_max_ -> SetValue (max_);
-    if (max_ == 0)
-    {	check_max_ -> Set3StateValue (wxCHK_UNCHECKED);
-        spin_max_ -> Enable (false); }
-    else
-    {	check_max_ -> Set3StateValue (wxCHK_CHECKED);
-        spin_max_ -> Enable (true); }
+    class_ctrl_.select (class_);
+    other_ctrl_.select (other_);
+    rdfa_ctrl_.select (rdfa_);
+    vcs_ctrl_.select (vcs_);
+    vtt_ctrl_.select (vtt_);
+    max_spin_.value (max_);
+    max_ctrl_.select (max_ != 0);
 #ifndef NO_FRED
-    spin_fred_ -> SetValue (fred_);
-    if (fred_ == 0)
-    {	check_fred_ -> Set3StateValue (wxCHK_UNCHECKED);
-        spin_fred_ -> Enable (false); }
-    else
-    {	check_fred_ -> Set3StateValue (wxCHK_CHECKED);
-        spin_fred_ -> Enable (true); }
+    fred_spin_.value (fred_);
+    fred_ctrl_.select (fred_ != 0);
 #endif // NO_FRED
-    if (config_.empty ()) config_ = get_working_directory ();
-    dir_config_ -> SetPath (config_.c_str ());
-    enable_persist (! persist_.empty ());
+    if (config_.empty ()) config_ = cwd_;
+    config_folder_.value (config_);
+    exclude_.preload < vstr_t > (exc_);
+    persist_file_.value (persist_);
+    config_folder_.TransferDataToWindow ();
+    persist_file_.TransferDataToWindow ();
     return true; }
 
 bool general_t :: TransferDataFromWindow ()
 {	if (invalid ()) return false;	
-    class_ = check_class_ -> IsChecked ();
-    other_ = check_other_ -> IsChecked ();
-    rdfa_ = check_rdfa_ -> IsChecked ();
-    vcs_ = check_vcs_ -> IsChecked ();
-    vtt_ = check_vtt_ -> IsChecked ();
-    if (! check_max_ -> IsChecked ()) max_ = 0;
-    else max_ = spin_max_ -> GetValue ();
+    config_folder_.TransferDataFromWindow ();
+    persist_file_.TransferDataFromWindow ();
+    other_ = other_ctrl_.selected ();
+    class_ = class_ctrl_.selected ();
+    rdfa_ = rdfa_ctrl_.selected ();
+    vcs_ = vcs_ctrl_.selected ();
+    vtt_ = vtt_ctrl_.selected ();
+    if (! max_ctrl_.selected ()) max_ = 0;
+    else max_ = max_spin_.value ();
 #ifndef NO_FRED
-    if (! check_fred_ -> IsChecked ()) fred_ = 0;
-    else fred_ = spin_fred_ -> GetValue ();
+    if (! fred_ctrl_.selected ()) fred_ = 0;
+    else fred_ = fred_spin_.value ();
 #endif // NO_FRED
-    config_ = ::std::string (dir_config_ -> GetPath ().c_str ());
-    persist_ = ::std::string (pick_persist_ -> GetFileName ().GetFullPath ().c_str ());
+    config_ = config_folder_.value ();
+    persist_ = persist_file_.value ();
+    exclude_.acquire < vstr_t > (exc_);
     return true; }
 
 void general_t :: max_file_size (const unsigned int& m)
@@ -292,6 +219,7 @@ void general_t :: load_from_context (const context_t& c)
 #endif // NO_FRED
     max_file_size (GSL_NARROW_CAST < unsigned int > (c.max_file_size ()));
     config (c.path ().c_str ());
+    exc (c.exclude ());
     persist (c.persisted ()); }
 
 void general_t :: save_to_context (context_t& c) const
@@ -305,6 +233,8 @@ void general_t :: save_to_context (context_t& c) const
 #endif // NO_FRED
     c.max_file_size (max_file_size ());
     c.path (config ().string ());
+    nitpick nits;
+    c.exclude (nits, exc ());
     c.persisted (persist ().string ()); }
 
 #endif // WX

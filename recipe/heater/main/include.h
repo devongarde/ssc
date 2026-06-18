@@ -29,7 +29,7 @@ d   DEBUG
 e
 f   FUDDY
 g
-h
+h   HOMAGE
 i   ICU
 j   JSNIC
 k
@@ -63,11 +63,11 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 31
-#define VERSION_STRING "0.2.31"
+#define VERSION_RELEASE 32
+#define VERSION_STRING "0.2.32"
 
 #define BUILD_YEAR              "2026"
-#define BUILD_MONTH             "May"
+#define BUILD_MONTH             "June"
 #define BUILD_DAY_ISH BUILD_YEAR "-05-01"
 #define LATEST_CSS              "2025"
 
@@ -99,6 +99,9 @@ z
 #define DEFAULT_PORT    10438
 #define DEFAULT_PORT_S  "10438"
 #define DEFAULT_ADDRESS "127.0.0.1"
+
+// include homages to literature and the arts
+#define HOMAGE
 
 #ifdef __clang__
 #define CPP17
@@ -687,6 +690,8 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define UTF_8 "UTF-8"
 #define STANDARD_ENGLISH "en-GB"
 #define WEB_ENGLISH "en-US"
+#define DEFAULT_LANG "en"
+#define DEFAULT_LOCALE DEFAULT_LANG
 
 #define EVIL "nonce" // Why the f*ck the powers that be decided to embed a word for paedophile in the standards, I have no clue, but I do not like it.
 
@@ -851,10 +856,16 @@ typedef ::std::vector < bool > faux_vb_t;
 #define WXS
 #endif // WXS
 
+#ifdef HOMAGE
+#define HOMAGE_OR_NO "h"
+#else // HOMAGE
+#define HOMAGE_OR_NO
+#endif // HOMAGE
+
 // Enable this to see full messages that would otherwise be generated when using -T switch, roughly speaking
 // #define EXPAND_TEST "t"
 
-#define BUILD_INFO   DBG_STATUS FUDDY ICU_CHAR JSNIC LEAKY NPS_GEN SIGNCHAR SPELT UGLY_TEXT WXS ":" TARGET_OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
+#define BUILD_INFO   DBG_STATUS FUDDY HOMAGE_OR_NO ICU_CHAR JSNIC LEAKY NPS_GEN SIGNCHAR SPELT UGLY_TEXT WXS ":" TARGET_OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
 #define SSC_VERSION  FULLNAME " v" VERSION_STRING EDITION
 #define BASE_TITLE   SSC_VERSION " (" WEBADDR ")\n"
 #define SIMPLE_TITLE BASE_TITLE COPYRIGHT_TEXT "\n"

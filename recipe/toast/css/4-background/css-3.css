@@ -1,0 +1,11 @@
+﻿.sid {
+background-image: url(flower.png), url(ball.png), url(grass.png);
+background-position: center center, 20% 80%, top left, bottom right;
+background-origin: border-box, content-box;
+background-repeat: no-repeat;
+
+background-image: url(flower.png), url(ball.png), url(grass.png);
+background-position: center center, 20% 80%, top left;
+background-origin: border-box, content-box, border-box;
+background-repeat: no-repeat, no-repeat, no-repeat;
+}

@@ -42,7 +42,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DOCDOT DOCTYPE " ... >"
 
 void page::init (const ::std::string& name, ::std::string& content, const fileindex_t x, const e_verifiable_file vf)
-{   req_.resize (required_count ());
+{   req_.resize (context.required ().size ());
     ids_.ndx (x);
     names_.ndx (x, false);
     const ::std::string& xx = context.x ();
@@ -68,7 +68,7 @@ page::page (const ::std::string& name, const ::std::time_t updated, ::std::strin
 
 page::page (const ::std::string& content, const bool outsider)
     :   css_ (*this)
-{   req_.resize (required_count ());
+{   req_.resize (context.required ().size ());
     if (outsider) outsider_ = true;
     else snippet_ = true;
     ::std::string x (content);
@@ -150,7 +150,7 @@ void page::examine ()
         try
         {   if (! snippet_ && ! outsider_)
             {   VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
-                rq_type_ = get_required_page_type (name_, directory_ -> is_root (), req_, req_check_); }
+                rq_type_ = get_required_page_type (context.required (), name_, directory_ -> is_root (), req_, req_check_); }
             document_ = new element (name_, nodes_.top (), nullptr, this);
             stats_.mark (version ());
             VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
@@ -161,7 +161,7 @@ void page::examine ()
             if (context.tell (es_structure) && ! s.empty ()) context.os () -> out (s);
             document_ -> examine_self (lingo (nits_, context.lang ()));
             document_ -> verify_document ();
-            check_required_state (nits_, name_, req_, req_check_);
+            check_required_state (context.required (), nits_, name_, req_, req_check_);
             if (! snippet_ && ! outsider_)
             {   if (has_corpus ())
                     extend_corpus (nits_, title_, get_site_path (), corpus_, author_, keywords_, description_);

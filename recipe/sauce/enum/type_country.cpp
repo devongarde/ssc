@@ -61,13 +61,16 @@ struct symbol_entry < html_version, e_country > country_symbol_table [] =
     { { HTML_PLUS }, { HTML_UNDEF }, "BI", cou_bi },
     { { HTML_PLUS }, { HTML_UNDEF }, "CV", cou_cv },
     { { HTML_PLUS }, { HTML_UNDEF }, "KH", cou_kh },
-    { { HTML_PLUS }, { HTML_UNDEF }, "CM", cou_cm },
     { { HTML_PLUS }, { HTML_UNDEF }, "CA", cou_ca },
+    { { HTML_PLUS }, { HTML_UNDEF }, "CM", cou_cm },
     { { HTML_PLUS }, { HTML_UNDEF }, "KY", cou_ky },
     { { HTML_PLUS }, { HTML_UNDEF }, "CF", cou_cf },
     { { HTML_PLUS }, { HTML_UNDEF }, "TD", cou_td },
     { { HTML_PLUS }, { HTML_UNDEF }, "CL", cou_cl },
     { { HTML_PLUS }, { HTML_UNDEF }, "CN", cou_cn },
+#ifdef HOMAGE
+    { { HTML_PLUS }, { HTML_UNDEF }, "CT", cou_ct },
+#endif // HOMAGE
     { { HTML_PLUS }, { HTML_UNDEF }, "CX", cou_cx },
     { { HTML_PLUS }, { HTML_UNDEF }, "CC", cou_cc },
     { { HTML_PLUS }, { HTML_UNDEF }, "CO", cou_co },

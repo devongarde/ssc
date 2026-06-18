@@ -96,11 +96,11 @@ void spell_t :: create_controls (wxWindow *parent)
                 }
 #endif // NOICU
 
-    dict_.construct (parent, box_, "Files of valid words:", "*.dict", true, false, true);
+    dict_.concoct (parent, box_, "Files of valid words:", "*.dict", true, false, true);
 #ifdef HUNDO
-    hun_.construct (parent, box_, "HUNSPELL dictionaries & languages:", "*.*", true, true, true);
+    hun_.concoct (parent, box_, "HUNSPELL dictionaries & languages:", "*.*", true, true, true);
 #endif // HUNDO
-    word_.construct (parent, box_, "Extra valid words:", "rumplestiltskin-on-toast", false, false, true);
+    word_.concoct (parent, box_, "Extra valid words:", "rumplestiltskin-on-toast", false, false, true);
 
     base_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
     if (base_ != nullptr)

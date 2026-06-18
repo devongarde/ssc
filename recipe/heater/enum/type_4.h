@@ -272,11 +272,11 @@ template < > struct type_master < t_css_pto > : four_value < t_css_pto, e_css_pt
 template < > struct type_master < t_css_radial_size > : four_value < t_css_radial_size, e_css_radial_size, sz_closest_corner, sz_closest_side, sz_farthest_corner, sz_farthest_side >
 { using four_value < t_css_radial_size, e_css_radial_size, sz_closest_corner, sz_closest_side, sz_farthest_corner, sz_farthest_side > :: four_value; };
 
+template < > struct type_master < t_css_repeat_bixy > : four_value < t_css_repeat_bixy, e_css_repeat_bixy, sz_repeat_block, sz_repeat_inline, sz_repeat_x, sz_repeat_y >
+{ using four_value < t_css_repeat_bixy, e_css_repeat_bixy, sz_repeat_block, sz_repeat_inline, sz_repeat_x, sz_repeat_y > :: four_value; };
+
 template < > struct type_master < t_css_scroll_state > : four_value < t_css_scroll_state, e_css_scroll_state, sz_scrollable, sz_scrolled, sz_snapped, sz_stuck >
 { using four_value < t_css_scroll_state, e_css_scroll_state, sz_scrollable, sz_scrolled, sz_snapped, sz_stuck > :: four_value; };
-
-template < > struct type_master < t_css_shape_box > : four_value < t_css_shape_box, e_css_shape_box, sz_border_box, sz_content_box, sz_margin_box, sz_padding_box >
-{ using four_value < t_css_shape_box, e_css_shape_box, sz_border_box, sz_content_box, sz_margin_box, sz_padding_box > :: four_value; };
 
 template < > struct type_master < t_css_speak_2 > : four_value < t_css_speak_2, e_css_speak_2, sz_inherit, sz_none, sz_normal, sz_spell_out >
 { using four_value < t_css_speak_2, e_css_speak_2, sz_inherit, sz_none, sz_normal, sz_spell_out > :: four_value; };

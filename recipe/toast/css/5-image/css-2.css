@@ -1,0 +1,13 @@
+﻿body      { color: black; background: white; }
+p.special { color: white; background: url("dark.png") black; }
+
+body      { color: black; background: white; }
+p.special { color: white; background: image("dark.png", black); }
+
+.sid {
+    background-image: image('sprites.svg#xywh=40,0,20,20');
+    background-image: url('swirl.png'); /* old UAs */
+    background-image: image('sprites.png#xywh=10,30,60,20'); /* new UAs */
+    background-image: image(rgba(0, 0, 255, .5)), url("bg-image.png");
+    background-image: linear-gradient(rgba(0, 0, 255, .5)), url("bg-image.png");
+}

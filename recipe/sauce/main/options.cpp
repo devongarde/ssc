@@ -267,7 +267,7 @@ options::options (const context_t& c)
     INSERT_BOOL (LINKS, ONCE, once);
     INSERT_VSTR (LINKS, PRETEND, pretend);
     INSERT_VSTR (LINKS, REPORT, report);
-    { const vstr_t& v = required_page_list (); if (! v.empty ()) { const ::boost::any a = v; insert < ::boost::any > (LINKS REQUIRED, a); } }
+    { const vstr_t& v = required_page_list (c.required ()); if (! v.empty ()) { const ::boost::any a = v; insert < ::boost::any > (LINKS REQUIRED, a); } }
     INSERT_BOOL (LINKS, REVOKE, revoke);
     INSERT_BOOL (LINKS, SPECIAL, special);
     INSERT_BOOL (LINKS, XLINK, crosslinks);
@@ -968,7 +968,7 @@ void options::init (context_t& c)
         (CSS HDR, ::boost::program_options::value < int > (), "CSS HDR level (0 or 3).")
         (CSS HIGHLIGHT, ::boost::program_options::value < int > (), "CSS Custom Highlight level (0, 3, or 4).")
         (CSS HYPERLINK, ::boost::program_options::value < int > (), "CSS Hyperlink level (0 or 3).")
-        (CSS IMAGE, ::boost::program_options::value < int > (), "CSS Images level (0, 3, or 4).")
+        (CSS IMAGE, ::boost::program_options::value < int > (), "CSS Images level (0, 3, 4, or 5).")
         (CSS INLINE, ::boost::program_options::value < int > (), "CSS Inline Layout level (0 or 3).")
         (CSS LINE_GRID, ::boost::program_options::value < int > (), "CSS Line Grid level (0 or 3).")
         (CSS LINK_PARAM, ::boost::program_options::value < int > (), "CSS Linked Parameters level (0 or 3).")
@@ -1870,7 +1870,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_hdr, n, nits, CSS HDR, "HDR", 3);
         process_css_level (c, c_custom_highlight, n, nits, CSS HIGHLIGHT, "Custom Highlight", 4);
         process_css_level (c, c_hyperlink_presentation, n, nits, CSS HYPERLINK, "Hyperlink", 5);
-        process_css_level (c, c_image, n, nits, CSS IMAGE, "Image", 4);
+        process_css_level (c, c_image, n, nits, CSS IMAGE, "Image", 5);
         process_css_level (c, c_inline_layout, n, nits, CSS INLINE, "Inline Layout", 3);
         process_css_level (c, c_line_grid, n, nits, CSS LINE_GRID, "Line Grid", 3);
         process_css_level (c, c_linked_parameters, n, nits, CSS LINK_PARAM, "Linked Parameters", 3);
@@ -1983,7 +1983,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         yea_nay (c, &context_t::once, nits, LINKS ONCE, LINKS DONT ONCE);
         if (var_.count (LINKS PRETEND)) c.pretend (nits, var_ [LINKS PRETEND].as < vstr_t > ());
         if (var_.count (LINKS REPORT)) c.report (var_ [LINKS REPORT].as < vstr_t > ());
-        if (var_.count (LINKS REQUIRED)) add_required_pages (nits, var_ [LINKS REQUIRED].as < vstr_t > ());
+        if (var_.count (LINKS REQUIRED)) add_required_pages (c.required (), nits, var_ [LINKS REQUIRED].as < vstr_t > ());
         yea_nay (c, &context_t::revoke, nits, LINKS REVOKE, LINKS DONT REVOKE);
         yea_nay (c, &context_t::special, nits, LINKS SPECIAL, LINKS DONT SPECIAL);
         yea_nay (c, &context_t::crosslinks, nits, LINKS XLINK, LINKS DONT XLINK);

@@ -647,6 +647,8 @@ struct sz_remove { CONSTEXPR static char const* sz () { return "remove"; } };
 struct sz_render { CONSTEXPR static char const* sz () { return "render"; } };
 struct sz_rent { CONSTEXPR static char const* sz () { return "rent"; } };
 struct sz_repeat { CONSTEXPR static char const* sz () { return "repeat"; } };
+struct sz_repeat_block { CONSTEXPR static char const* sz () { return "repeat-block"; } };
+struct sz_repeat_inline { CONSTEXPR static char const* sz () { return "repeat-inline"; } };
 struct sz_repeat_x { CONSTEXPR static char const* sz () { return "repeat-x"; } };
 struct sz_repeat_y { CONSTEXPR static char const* sz () { return "repeat-y"; } };
 struct sz_replace { CONSTEXPR static char const* sz () { return "replace"; } };

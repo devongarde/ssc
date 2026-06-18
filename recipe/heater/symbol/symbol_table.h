@@ -119,6 +119,12 @@ public:
                 res += e.first.first; }
         return res; }
     ::std::size_t value_count () const { return symbol_.size (); }
+    vstr_t value_vector (const V& v) const
+    {   vstr_t res;
+        for (auto e : symbol_)
+            if (does_apply < V > (v, e.second.first_, e.second.last_))
+                res.push_back (e.first.first);
+        return res; }
     bool is_invalid_version (const V& v, const ::std::size_t x) const
     {   auto i = reverse_.find (x);
         return ((i != reverse_.end ()) && ! may_apply < V > (v, i -> second.first_, i -> second.last_)); }

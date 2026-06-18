@@ -55,6 +55,10 @@ e_status set_css_background_repeat_3_value (nitpick& nits, const html_version& v
         {   type_master < t_css_background_repeat > tst (box);
             tst.set_value (nits, v, s);
             if (tst.good ()) return s_good; }
+        else if (v.css_module (c_background_border) >= 4)
+        {   type_master < t_css_repeat_styles > tst (box);
+            tst.set_value (nits, v, s);
+            if (tst.good ()) return s_good; }
         else
         {   type_master < t_css_background_repeats > tst (box);
             tst.set_value (nits, v, s);

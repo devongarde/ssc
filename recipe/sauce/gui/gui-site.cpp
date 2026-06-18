@@ -39,10 +39,13 @@ BEGIN_EVENT_TABLE (site_t, d1_t)
   EVT_BUTTON (button_site_rename, site_t::OnRename)
   EVT_TEXT (button_site_rename, site_t::OnTap)
   EVT_TEXT (text_site_ext, site_t::OnText)
-  EVT_LISTBOX (button_site_rename, site_t::OnExtension)
-  EVT_LISTBOX_DCLICK (button_site_rename, site_t::OnImpatience)
+  EVT_LISTBOX (list_site_ext, site_t::OnExtension)
+  EVT_LISTBOX_DCLICK (list_site_ext, site_t::OnImpatience)
   EVT_CHECKBOX (check_account, site_t::OnAccount)
   EVT_CHECKBOX (check_username, site_t::OnUsername)
+#ifdef SIGNING
+  EVT_CHECKBOX (check_site_sign, site_t::OnSigning)
+#endif // SIGNING
 END_EVENT_TABLE ()
 
 IMPLEMENT_CLASS (site_t, d1_t)
@@ -57,14 +60,20 @@ bool site_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
     return true; }
 
 void site_t :: create_controls (wxWindow *parent)
-{	if (default_.concoct (parent, box_, wxID_ANY, def_, "Default root " REPERTOIRE ": ") &&
-        domain_.construct (parent, box_, "Site domain/s:") &&
+{	if (default_.concoct (parent, box_, wxID_ANY, def_, "Website root " REPERTOIRE ": ") &&
+        top_.concoct (parent, box_) &&
+        domain_.concoct (parent, box_, "Site domain/s:") &&
         mid_.concoct (parent, box_) &&
-        account_.concoct (parent, box_, check_account, "Name the actual account used to run " PROG, "False account: ") &&
-        username_.concoct (parent, box_, check_username, "Name the actual user running " PROG, "False username: ") &&
+        account_.concoct (parent, box_, check_account, "True account", "Account: ") &&
+        username_.concoct (parent, box_, check_username, "True username", "Username: ") &&
         line_.concoct (parent, box_) &&
         description_.concoct (parent, box_, wxID_ANY, "Report description: ") &&
         relative_.concoct (parent, box_, wxID_ANY, "Report relative paths", wxALL | wxALIGN_CENTRE_HORIZONTAL) &&
+#ifdef SIGNING
+        sline_.concoct (parent, box_) &&
+        keys_.concoct (parent, box_, check_site_sign, "Sign output file", "private key", "public key",
+            "", "ssc.key", "*.key", "", "ssc.crt", "*.crt") &&
+#endif // SIGNING
         base_.concoct (parent, box_))
     {   account_.select (acc_.empty ());
         username_.select (user_.empty ()); } }
@@ -98,6 +107,11 @@ void site_t :: OnImpatience (wxCommandEvent& e)
 void site_t :: OnRename (wxCommandEvent& e)
 {	domain_.OnRename (e); }
 
+#ifdef SIGNING
+void site_t :: OnSigning (wxCommandEvent& )
+{	keys_.click (); }
+#endif // SIGNING
+
 void site_t :: OnTap (wxCommandEvent& e)
 {	domain_.OnTap (e); }
 
@@ -115,10 +129,34 @@ bool site_t :: TransferDataToWindow ()
     account_.value (acc_);
     description_.value (desc_);
     username_.value (user_);
+#ifdef SIGNING
+    if (pri_.empty ()) sign_ = false;
+    keys_.select (sign_);
+    keys_.value1 (pri_);
+    keys_.value2 (pub_);
+    keys_.TransferDataToWindow ();
+#endif // SIGNING
+    account_.TransferDataToWindow ();
+    default_.TransferDataToWindow ();
+    description_.TransferDataToWindow ();
+    relative_.TransferDataToWindow ();
+    username_.TransferDataToWindow ();
     return true; }
 
 bool site_t :: TransferDataFromWindow ()
 {	if (invalid ()) return false;
+    account_.TransferDataFromWindow ();
+    default_.TransferDataFromWindow ();
+    description_.TransferDataFromWindow ();
+    relative_.TransferDataFromWindow ();
+    username_.TransferDataFromWindow ();
+#ifdef SIGNING
+    keys_.TransferDataFromWindow ();
+    sign_ = keys_.selected ();
+    pri_ = keys_.value1 ();
+    pub_ = keys_.value2 ();
+    if (pri_.empty ()) sign_ = false;
+#endif // SIGNING
     def_ = default_.value ();
     site_ = vtos (domain_.acquire ());
     absolute_ = ! relative_.selected ();
@@ -145,6 +183,11 @@ void site_t :: load_from_context (const context_t& c)
     acc_ = c.account ();
     for (auto s : c.output_description ())
         desc_ += s;
+#ifdef SIGNING
+    sign_ = c.sign ();
+    pri_ = c.output_private ();
+    pub_ = c.output_public ();
+#endif // SIGNING
     user_ = c.username (); }
 
 void site_t :: save_to_context (context_t& c) const
@@ -155,6 +198,11 @@ void site_t :: save_to_context (context_t& c) const
     vstr_t vs;
     vs.push_back (desc_);
     c.output_description (vs);
+#ifdef SIGNING
+    c.sign (sign_);
+    c.output_private (pri_);
+    c.output_public (pub_);
+#endif // SIGNING
     c.username (user_); }
 
 #endif // WX

@@ -141,7 +141,6 @@
     <ClInclude Include="..\heater\gui\gui-css.h" />
     <ClInclude Include="..\heater\gui\gui-ctrl.h" />
     <ClInclude Include="..\heater\gui\gui-ctrls.h" />
-    <ClInclude Include="..\heater\gui\gui-data.h" />
     <ClInclude Include="..\heater\gui\gui-dialogue.h" />
     <ClInclude Include="..\heater\gui\gui-frame.h" />
     <ClInclude Include="..\heater\gui\gui-general.h" />
@@ -1102,7 +1101,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\sauce\gui\gui-data.cpp" />
     <ClCompile Include="..\sauce\gui\gui-dialogue.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
@@ -1860,6 +1858,7 @@
     <None Include="..\help\index.html" />
     <None Include="..\help\legal.html" />
     <None Include="..\help\links.html" />
+    <None Include="..\help\listedit.html" />
     <None Include="..\help\nits.html" />
     <None Include="..\help\ontology.html" />
     <None Include="..\help\shadow.html" />
@@ -3236,6 +3235,12 @@
     <None Include="..\toast\css\4-animation\css.conf" />
     <None Include="..\toast\css\4-animation\css.spec" />
     <None Include="..\toast\css\4-animation\index.html" />
+    <None Include="..\toast\css\4-background\css-2.css" />
+    <None Include="..\toast\css\4-background\css-3.css" />
+    <None Include="..\toast\css\4-background\css-4.html" />
+    <None Include="..\toast\css\4-background\css.conf" />
+    <None Include="..\toast\css\4-background\css.spec" />
+    <None Include="..\toast\css\4-background\index.html" />
     <None Include="..\toast\css\4-box-model\css-3.css" />
     <None Include="..\toast\css\4-box-model\css-4.css" />
     <None Include="..\toast\css\4-box-model\css.conf" />
@@ -14444,6 +14449,20 @@
     <None Include="..\toast\webapps\jul06\em.html" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\help\bobs.gif" />
+    <Image Include="..\help\listedit.gif" />
+    <Image Include="..\help\summary.gif" />
+    <Image Include="..\help\css.gif" />
+    <Image Include="..\help\data.gif" />
+    <Image Include="..\help\html.gif" />
+    <Image Include="..\help\lynx.gif" />
+    <Image Include="..\help\nit.gif" />
+    <Image Include="..\help\output.gif" />
+    <Image Include="..\help\shadow.gif" />
+    <Image Include="..\help\spell.gif" />
+    <Image Include="..\help\ssi.gif" />
+    <Image Include="..\help\stats.gif" />
+    <Image Include="..\help\valid.gif" />
     <Image Include="..\help\welcome.gif" />
     <Image Include="..\toast\coop\corrupt\a\add.gif" />
     <Image Include="..\toast\coop\corrupt\a\ant.jpg" />

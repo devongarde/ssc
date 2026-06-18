@@ -2,10 +2,10 @@
 
 <html lang="en">
 <head>
-<title>ssc welcome</title>
+<title>static site checker welcome</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="alternate" hreflang="x-default" href="https://dylanharris.org/ssc/index.shtml">
+<link rel="alternate" hreflang="x-default" href="https://dylanharris.org/ssc.shtml">
 <meta name="author" content="Dylan Harris">
 <meta name="contact" content="ssc@dylanharris.org">
 <meta name="copyright" content="&copy; 2020-2026 Dylan Harris">
@@ -30,52 +30,61 @@
   <link itemprop="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
   <meta itemprop="name headline" content="static site checker">
   <h1>
-  static site checker
+  static site checker welcome
   </h1>
 </div>
+
+<p>
+<img src="welcome.gif" width=50%>
+</p>
 
 <h2>introduction</h2>
 
 <p>
-The welcome dialogue appears when you first run the GUI version of SSC.
+The welcome dialogue appears when you run the GUI version of SSC.
+</p>
+
+<h2>analysis</h2>
+
+<p>
+Here, you specify what you want SSC to analyse, either website source code, or an HTML snippet.
+</p>
+
+<ul>
+<li>
+To analyse a website at source, select <kbd>Website root</kbd>, <kbd>Browse</kbd>, then specify the website directory.
+Alternatively, paste a full directory name into the small edit box. If the website has many directories, choose the topmost.
+</li>
+<li>
+To analyse a snippet of HTML, select <kbd>HTML snippet</kbd>, and enter it into the box immediately below.
+</li>
+</ul>
+
+<h2>standards and options</h2>
+
+<p>
+By default, SSC will apply the HTML and other standards that were current when that version of SSC was written.
+These details, along with a list of SSC options to be applied, is shown in the summary.
 </p>
 
 <p>
-At the top of the welcome dialogue is a copyright message and some build information.
+If you prefer to apply earlier standards andor other options, click on <a href="config.html">Configure</a>.
 </p>
 
-<h2>usage</h2>
-
-<p>
-To analyse a website at source, click on <kbd>Website root</kbd>, then <kbd>Browse</kbd>, and select the website&rsquo;s directory.
-If the website has lots of directories, select the topmost.
-</p>
-
-<p>
-If, on the other hand, you want to check a snippet of HTML, click on <kbd>HTML snippet</kbd>, and paste the snippet into the box immediately below.
-</p>
+<h2>buttons</h2>
 
 <p>
 When you have specified what you want SSC to analyse, click on <kbd>OK</kbd>.
 </p>
 
 <p>
-<img src="welcome.gif" align=center>
-</p>
-
-<p>
-You can see the current standards and options the ssc will apply when checking.
-If you prefer to use alternative definitions of HTML, CSS, etc., or would like to use certain other features of SSC, click <kbd>Modify...</kbd>.
-</p>
-
-<p>
-The <kbd>About</kbd>, <kbd>Cancel</kbd>, and <kbd>Help</kbd> buttons behave in the usual way.
+The <a href="about.html">About</a>, <kbd>Cancel</kbd>, and <kbd>Help</kbd> buttons behave in the usual way.
 </p>
 
 <h2>additional information</h2>
 
 <p>
-SSC can also be controlled with
+SSC can also be managed with
 <a href="cmd.html">command line switches</a>
 and
 <a href="conf.html">configuration files</a>.

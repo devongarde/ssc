@@ -27,7 +27,7 @@ template < typename CTRL > struct base_ctrl_t
     template < class BOX > bool concocted (BOX* pen, const int window = 0, const int flag = 0, const int border = 0)
     {   VERIFY_NOT_NULL (pen, __FILE__, __LINE__);
         if (ctrl_ == nullptr) return false;
-        pen -> Add (ctrl_, window, flag ,border);
+        pen -> Add (ctrl_, window, flag, border);
         return true; }
     void enable (const bool b)
     {   if (! invalid ()) ctrl_ -> Enable (b); }
@@ -84,16 +84,13 @@ struct button_t : base_ctrl_t < wxButton >
         return base_ctrl_t < wxButton > :: concocted (pen, 0, style, 5); } };
 
 struct check_t : base_ctrl_t < wxCheckBox >
-{   bool set_ = false;
+{   mutable bool set_ = false;
     template < class BOX > bool concoct (wxWindow *mummy, BOX* pen, const int id, const ::std::string& caption, const long style = wxALL, const long chst = 0)
     {	VERIFY_NOT_NULL (mummy, __FILE__, __LINE__);
         ctrl_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (mummy, id, caption.c_str (), wxDefaultPosition, wxDefaultSize, chst));
         return base_ctrl_t < wxCheckBox > :: concocted (pen, 0, style, 5); }
-    bool selected () const
-    {	if (invalid ()) return false;
-        return (ctrl_ -> GetValue () != 0); }
-    void select (const bool b) const
-    {	if (! invalid ()) ctrl_ -> SetValue (b); }
+    bool selected () const;
+    void select (const bool b);
     bool TransferDataToWindow ();
     bool TransferDataFromWindow (); };
 
@@ -126,10 +123,7 @@ struct datetime_t
                 pen -> Add (time_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
                 return true; } }
         return false; }
-    void enable (const bool b)
-    {	if (! invalid ())
-        {	date_ -> Enable (b);
-            time_ -> Enable (b); } }
+    void enable (const bool b);
     bool TransferDataToWindow ();
     bool TransferDataFromWindow ();
     bool invalid () const noexcept { return time_ == nullptr || date_ == nullptr; } };
@@ -137,7 +131,7 @@ struct datetime_t
 template < class CTRL > struct pathpick_t : base_ctrl_t < CTRL >
 {   ::boost::filesystem::path value_;
     void value (const ::boost::filesystem::path& p) { value_ = p; }
-    ::boost::filesystem::path value () const { return value_; }};
+    ::boost::filesystem::path value () const { return value_; } };
 
 struct filepick_t : pathpick_t < wxFilePickerCtrl >
 {   template < class BOX > bool concoct (wxWindow *mummy, BOX* pen, const int id, const ::boost::filesystem::path& value, const ::std::string& text, const ::std::string& pattern, const long style = wxFLP_OVERWRITE_PROMPT | wxFLP_SAVE | wxFLP_USE_TEXTCTRL)
@@ -145,16 +139,8 @@ struct filepick_t : pathpick_t < wxFilePickerCtrl >
         value_ = value;
         ctrl_ = GSL_OWNER (wxFilePickerCtrl) (new wxFilePickerCtrl (mummy, id, value.string ().c_str (), text.c_str (), pattern.c_str (), wxDefaultPosition, wxDefaultSize, style));
         return pathpick_t < wxFilePickerCtrl > :: concocted (pen, 0, wxALL | wxALIGN_CENTRE_HORIZONTAL, 5); }
-    bool TransferDataToWindow ()
-    {	if (pathpick_t < wxFilePickerCtrl > :: invalid ()) return false;
-        wxFileName fn (value_.string ());
-        pathpick_t < wxFilePickerCtrl > :: ctrl_ -> SetFileName (fn);
-        return true; }
-    bool TransferDataFromWindow ()
-    {	if (pathpick_t < wxFilePickerCtrl > :: invalid ()) return false;
-        wxFileName fn (pathpick_t < wxFilePickerCtrl > :: ctrl_ -> GetFileName ());
-        value_ = ::std::string (fn.GetName ().c_str ());
-        return true; } };
+    bool TransferDataToWindow ();
+    bool TransferDataFromWindow (); };
 
 struct folder_t : pathpick_t < wxDirPickerCtrl >
 {   template < class BOX > bool concoct (wxWindow *mummy, BOX* pen, const int id, const ::boost::filesystem::path& value, const ::std::string& text = ::std::string (), const long style = wxDIRP_DEFAULT_STYLE)
@@ -163,16 +149,8 @@ struct folder_t : pathpick_t < wxDirPickerCtrl >
         value_ = value;
         ctrl_ = GSL_OWNER (wxDirPickerCtrl) (new wxDirPickerCtrl (mummy, id, value.string ().c_str (), text.c_str (), wxDefaultPosition, wxDefaultSize, style));
         return pathpick_t < wxDirPickerCtrl > :: concocted (pen, 0, wxALL | wxEXPAND, 5); }
-    bool TransferDataToWindow ()
-    {	if (pathpick_t < wxDirPickerCtrl > :: invalid ()) return false;
-        wxFileName fn (value_.string ());
-        pathpick_t < wxDirPickerCtrl > :: ctrl_ -> SetDirName (fn);
-        return true; }
-    bool TransferDataFromWindow ()
-    {	if (pathpick_t < wxDirPickerCtrl > :: invalid ()) return false;
-        wxFileName fn (pathpick_t < wxDirPickerCtrl > :: ctrl_ -> GetDirName ());
-        value_ = ::std::string (fn.GetName ().c_str ());
-        return true; } };
+    bool TransferDataToWindow ();
+    bool TransferDataFromWindow (); };
 
 struct grid_t
 {   typedef wxGridSizer box_ptr;
@@ -237,6 +215,7 @@ struct text_t : base_ctrl_t < wxTextCtrl >
         if (width > 0) ctrl_ -> SetMinSize (wxSize (width, -1));
         pen -> Add (ctrl_, 0, wxALL, 5);
         return true; }
+    void clear () { value_.clear (); }
     void value (const ::std::string& i) { value_ = i; }
     ::std::string value () const { return value_; }
     bool TransferDataToWindow ();

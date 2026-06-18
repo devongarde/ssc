@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "ontology/ontology_version.h"
 #include "utility/filesystem.h"
 #include "utility/list.h"
+#include "webpage/required.h"
 
 CONSTEXPR e_severity default_output = es_warning;
 CONSTEXPR bool def_absolute_path = true, def_ads = true, def_aria = true, def_article = false, def_atom_verify = true,
@@ -123,6 +124,7 @@ class context_t
     mutable robotic_ptr     robbie_;
     mutable sec_ptr         security_;
     static ::std::string update_info_;
+    req_vt          required_;
 #ifdef LEAK_SEEK
 public:
     static _CrtMemState ls_old_;
@@ -542,6 +544,8 @@ public:
     const vstr_t& replace () const { return replace_; }
     const vstr_t& report () const { return report_; }
     e_severity report_error () const noexcept { return report_error_; }
+    const req_vt& required () const { return required_; }
+    req_vt& required () { return required_; }
     bool revoke () const noexcept { return revoke_; }
     bool rfc_1867 () const noexcept { return rfc_1867_; }
     bool rfc_1942 () const noexcept { return rfc_1942_; }

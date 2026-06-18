@@ -30,13 +30,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class site_t : public d1_t < wx_site >
 {   check_t relative_;
     check_or_text_t account_, username_;
+#ifdef SIGNING
+    check_or_files_t keys_;
+#endif // SIGNING
     label_text_t description_;
-    line_t base_, line_, mid_;
+    line_t base_, top_, line_, mid_, sline_;
     text_folder_t default_;
     listedit_manager domain_ = listedit_manager (button_site_add, button_site_erase, button_site_rename, file_site_name, list_site_ext, text_site_ext);
     bool absolute_ = false;
-    ::std::string acc_, desc_, user_;
     ::boost::filesystem::path def_;
+#ifdef SIGNING
+    bool sign_ = false;
+    ::boost::filesystem::path pub_, pri_;
+#endif // SIGNING
+    ::std::string acc_, desc_, user_;
     sstr_t site_;
     DECLARE_CLASS (site_t)
     DECLARE_EVENT_TABLE ()
@@ -54,6 +61,9 @@ public:
     void OnHelpClick (wxCommandEvent& event);
     void OnImpatience (wxCommandEvent& event);
     void OnRename (wxCommandEvent& event);
+#ifdef SIGNING
+    void OnSigning (wxCommandEvent& event);
+#endif // SIGNING
     void OnTap (wxCommandEvent& event);
     void OnText (wxCommandEvent& event);
     void OnUsername (wxCommandEvent& event);

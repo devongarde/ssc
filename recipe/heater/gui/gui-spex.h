@@ -93,6 +93,13 @@ public:
     void OnCSSExtension (wxCommandEvent& event) { css_.OnExtension (event); }
     void OnCSSText (wxCommandEvent& event) { css_.OnText (event); }
     void OnCSSImpatience (wxCommandEvent& event) { css_.OnImpatience (event); }
+    void OnGenAdd (wxCommandEvent& event) { general_.OnAdd (event); }
+    void OnGenConfig (wxCommandEvent& event) { general_.OnConfig (event); }
+    void OnGenErase (wxCommandEvent& event) { general_.OnErase (event); }
+    void OnGenExclude (wxCommandEvent& event) { general_.OnExclude (event); }
+    void OnGenText (wxCommandEvent& event) { general_.OnText (event); }
+    void OnGenImpatience (wxCommandEvent& event) { general_.OnImpatience (event); }
+    void OnGenRename (wxCommandEvent& event) { general_.OnRename (event); }
 #ifndef NO_FRED
     void OnGenFred (wxCommandEvent& event) { general_.OnFred (event); }
 #endif // NO_FRED
@@ -132,9 +139,14 @@ public:
     void OnSiteExtension (wxCommandEvent& event) { site_.OnExtension (event); }
     void OnSiteImpatience (wxCommandEvent& event) { site_.OnImpatience (event); }
     void OnSiteRename (wxCommandEvent& event) { site_.OnRename (event); }
+#ifdef SIGNING
+    void OnSiteSign (wxCommandEvent& event) { site_.OnSigning (event); }
+#endif // SIGNING
     void OnSiteTap (wxCommandEvent& event) { site_.OnTap (event); }
     void OnSiteText (wxCommandEvent& event) { site_.OnText (event); }
     void OnSiteUsername (wxCommandEvent& event) { site_.OnUsername (event); }
+    void def (const ::boost::filesystem::path& d) { site_.def (d); }
+    const ::boost::filesystem::path& def () const { return site_.def (); }
 #ifndef NOSPELL
     void OnSpellCheck (wxCommandEvent& event) { spell_.OnCheck (event); }
     void OnSpellDictAdd (wxCommandEvent& event) { spell_.OnDictAdd (event); }

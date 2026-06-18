@@ -18,14 +18,3 @@ Licence along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-#pragma once
-
-#ifdef WX
-#include "parser/html_version.h"
-
-extern html_version selection_version [];
-extern const char* selection_lang [];
-extern ::std::size_t selection_count;
-
-void gui_init ();
-#endif // WX

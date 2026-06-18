@@ -1479,6 +1479,9 @@
     <Filter Include="Help">
       <UniqueIdentifier>{097fd4e3-af2f-4ad1-996f-88bf1a4a1f2c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\4-background">
+      <UniqueIdentifier>{50261a8c-ff07-4d58-baa8-31f74a452e75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -2255,9 +2258,6 @@
     <ClInclude Include="..\heater\webpage\required.h">
       <Filter>Heater\webpage</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\gui\gui-data.h">
-      <Filter>Heater\gui</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\gui\gui-link.h">
       <Filter>Heater\gui</Filter>
     </ClInclude>
@@ -3006,9 +3006,6 @@
     </ClCompile>
     <ClCompile Include="..\sauce\css\value.cpp">
       <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\gui\gui-data.cpp">
-      <Filter>Sauce\gui</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\gui\gui-link.cpp">
       <Filter>Sauce\gui</Filter>
@@ -41163,6 +41160,27 @@
     <None Include="..\help\welcome.html">
       <Filter>Help</Filter>
     </None>
+    <None Include="..\help\listedit.html">
+      <Filter>Help</Filter>
+    </None>
+    <None Include="..\toast\css\4-background\css.conf">
+      <Filter>Toast\CSS\4-background</Filter>
+    </None>
+    <None Include="..\toast\css\4-background\css.spec">
+      <Filter>Toast\CSS\4-background</Filter>
+    </None>
+    <None Include="..\toast\css\4-background\index.html">
+      <Filter>Toast\CSS\4-background</Filter>
+    </None>
+    <None Include="..\toast\css\4-background\css-2.css">
+      <Filter>Toast\CSS\4-background</Filter>
+    </None>
+    <None Include="..\toast\css\4-background\css-3.css">
+      <Filter>Toast\CSS\4-background</Filter>
+    </None>
+    <None Include="..\toast\css\4-background\css-4.html">
+      <Filter>Toast\CSS\4-background</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -41658,6 +41676,48 @@
       <Filter>Resources</Filter>
     </Image>
     <Image Include="..\help\welcome.gif">
+      <Filter>Help</Filter>
+    </Image>
+    <Image Include="..\help\bobs.gif">
+      <Filter>Help</Filter>
+    </Image>
+    <Image Include="..\help\summary.gif">
+      <Filter>Help</Filter>
+    </Image>
+    <Image Include="..\help\css.gif">
+      <Filter>Help</Filter>
+    </Image>
+    <Image Include="..\help\data.gif">
+      <Filter>Help</Filter>
+    </Image>
+    <Image Include="..\help\html.gif">
+      <Filter>Help</Filter>
+    </Image>
+    <Image Include="..\help\lynx.gif">
+      <Filter>Help</Filter>
+    </Image>
+    <Image Include="..\help\nit.gif">
+      <Filter>Help</Filter>
+    </Image>
+    <Image Include="..\help\output.gif">
+      <Filter>Help</Filter>
+    </Image>
+    <Image Include="..\help\shadow.gif">
+      <Filter>Help</Filter>
+    </Image>
+    <Image Include="..\help\spell.gif">
+      <Filter>Help</Filter>
+    </Image>
+    <Image Include="..\help\ssi.gif">
+      <Filter>Help</Filter>
+    </Image>
+    <Image Include="..\help\stats.gif">
+      <Filter>Help</Filter>
+    </Image>
+    <Image Include="..\help\valid.gif">
+      <Filter>Help</Filter>
+    </Image>
+    <Image Include="..\help\listedit.gif">
       <Filter>Help</Filter>
     </Image>
   </ItemGroup>

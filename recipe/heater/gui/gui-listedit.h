@@ -60,7 +60,7 @@ struct listedit_manager
     void OnTap (wxCommandEvent& event);
     void OnImpatience (wxCommandEvent& event);
     bool able_enable () const;
-    bool construct (wxWindow* parent, wxBoxSizer* box, const char* desc, const char* def = nullptr, bool file = false, bool comma = false, bool line = false);
+    bool concoct (wxWindow* parent, wxBoxSizer* box, const char* desc, const char* def = nullptr, bool file = false, bool comma = false, bool line = false);
     void enable (const bool e);
     bool invalid () const noexcept; 
     ::std::size_t size () const

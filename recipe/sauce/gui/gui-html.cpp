@@ -43,7 +43,7 @@ IMPLEMENT_CLASS (html_t, d1_t)
 #define DEFAULT_CORPUS_FN	"corpus.xml"
 
 html_t :: html_t (wxWindow *mummy, wxWindowID id, const wxString& caption)
-    : d1_t (wxPoint (HTML_X, HTML_Y), wxSize (HTML_WIDTH, HTML_HEIGHT)), hv_ (selection_count - 1)
+    : d1_t (wxPoint (HTML_X, HTML_Y), wxSize (HTML_WIDTH, HTML_HEIGHT)), hv_ (standard_html_ver.size () - 1)
 {	Create (mummy, id, caption); } 
 
 bool html_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
@@ -55,13 +55,13 @@ void html_t :: create_controls (wxWindow *parent)
 {	constexpr long rg = (wxALL);
     constexpr long al = wxALIGN_RIGHT;
 
-    if (    html_ctrl_.concoct (parent, box_, choice_html_version, "&X/HTML version: ") &&
-            math_ctrl_.concoct (parent, box_, choice_math_version, "&MathML version: ") &&
-            svg_ctrl_.concoct (parent, box_, choice_svg_version, "S&VG version: ") &&
+    if (    html_ctrl_.concoct < wxBoxSizer > (parent, box_, choice_html_version, "&X/HTML version: ") &&
+            math_ctrl_.concoct < wxBoxSizer > (parent, box_, choice_math_version, "&MathML version: ") &&
+            svg_ctrl_.concoct < wxBoxSizer > (parent, box_, choice_svg_version, "S&VG version: ") &&
             line_ctrl_.concoct < wxBoxSizer > (parent, box_) &&
             stray_ctrl_.concoct (parent, box_, wxID_ANY, "if no <!DOCTYPE...>, presume", { "H&TML Tags", "HT&ML 1.0", "&default" }) &&
             title_ctrl_.concoct < wxBoxSizer > (parent, box_) &&
-            lingo_ctrl_.concoct (parent, box_, wxID_ANY, "default &language: ") &&
+            lingo_ctrl_.concoct (parent, box_, context.html_ver (), wxID_ANY, "default &language: ") &&
             width_ctrl_.concoct (parent, box_, wxID_ANY, "<TITLE> less than (chars.):", ::std::string (), max_, 0, 75) &&
             option_ctrl_.concoct < wxBoxSizer > (parent, box_) &&
             czech_ctrl_.concoct (parent, box_, 2) &&
@@ -95,7 +95,7 @@ void html_t :: OnHelpClick (wxCommandEvent& )
 void html_t :: enable ()
 {	bool h2 = false;
     bool ms = true;
-    const bool nowx = wx_ctrl_.selected ();
+    const bool nowx = ! wx_ctrl_.selected ();
     switch (html_ctrl_.selected ())
     {	case 0 :
         case 1 :
@@ -129,7 +129,7 @@ void html_t :: enable_corpus (const bool b)
 
 void html_t :: enable_wx (const bool b)
 {	math_ctrl_.enable (b);	
-    svg_ctrl_.enable (b);	}
+    svg_ctrl_.enable (b); }
 
 void html_t :: OnWX (wxCommandEvent& )
 {	if (invalid ()) return;
@@ -173,16 +173,15 @@ bool html_t :: TransferDataToWindow ()
     rfc1980_ctrl_.select (b1980_);
     rfc2070_ctrl_.select (b2070_);
     wx_ctrl_.select (bwx_);
-    if (lang_.empty ()) lang_ = "en";
+    if (lang_.empty ()) lang_ = DEFAULT_LANG;
     int ls = lingo_ctrl_.find (lang_);
     if (ls == wxNOT_FOUND)
     {   lingo_ctrl_.append (lang_);
         ls = lingo_ctrl_.find (lang_);
         PRESUME (ls != wxNOT_FOUND, __FILE__, __LINE__); }
     lingo_ctrl_.select (ls);
-    PRESUME (selection_count > 0, __FILE__, __LINE__);
-    if (hv_ >= selection_count)
-        html_ctrl_.select (GSL_NARROW_CAST < int > (selection_count - 1));
+    if (hv_ >= standard_html_ver.size ())
+        html_ctrl_.select (GSL_NARROW_CAST < int > (standard_html_ver.size () - 1));
     else html_ctrl_.select (GSL_NARROW_CAST < int > (hv_));
     math_ctrl_.select (math_);
     svg_ctrl_.select (svg_);
@@ -219,15 +218,16 @@ bool html_t :: TransferDataFromWindow ()
     return true; }
 
 html_version html_t :: ver () const
-{	if (hv_ >= selection_count) return html_current;
-    return selection_version [hv_]; }
+{	if (hv_ >= standard_html_ver.size ())
+        return standard_html_ver.at (standard_html_ver.size () - 1);
+    return standard_html_ver.at (hv_); }
 
 void html_t :: ver (const html_version& v)
-{	for (::std::size_t n = 0; n < selection_count; ++n)
-        if (selection_version [n] == v)
-        {	hv_ = GSL_NARROW_CAST < unsigned short > (n);
+{	for (::std::size_t n = 0; n < standard_html_ver.size (); ++n)
+        if (standard_html_ver.at (n) == v)
+        {	hv_ = n;
             return; }
-    hv_ = selection_count - 1; }
+    hv_ = standard_html_ver.size () - 1; }
 
 bool html_t :: create_panel (wxWindow *mummy, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
 {	PRESUME (invalid_panel (), __FILE__, __LINE__);

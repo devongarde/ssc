@@ -46,7 +46,7 @@ class html_t : public d1_t < wx_html >
     e_math_version math_ = math_none;
     e_svg_version svg_ = sv_none;
     ::std::size_t dt_ = 0, hv_ = 0;
-    ::std::string lang_ = "en";
+    ::std::string lang_ = DEFAULT_LANG;
     ::boost::filesystem::path path_;
     void enable ();
     void enable_corpus (const bool b);

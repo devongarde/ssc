@@ -42,6 +42,7 @@ class css_t : public d1_t < wx_css >
     void OnHelpClick (wxCommandEvent& event);
     void set_module (const e_css_module m);
     void modulo_level ();
+    void dataview_fake_enable (const bool enable);
     DECLARE_CLASS (css_t)
     DECLARE_EVENT_TABLE ()
 public:

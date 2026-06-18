@@ -76,8 +76,13 @@ typedef typed_property < t_css_background_position_3, ec_background_position_x >
 typedef typed_property < t_css_background_position_3, ec_background_position_y > prop_background_position_y;
 typedef typed_property < t_generic, ec_background_quantity > prop_background_quantity;
 typedef typed_property < t_css_background_repeat_3, ec_background_repeat > prop_background_repeat;
+typedef typed_property < t_css_mask_repeats, ec_background_repeat_block > prop_background_repeat_block;
+typedef typed_property < t_css_mask_repeats, ec_background_repeat_inline > prop_background_repeat_inline;
+typedef typed_property < t_css_mask_repeats, ec_background_repeat_x > prop_background_repeat_x;
+typedef typed_property < t_css_mask_repeats, ec_background_repeat_y > prop_background_repeat_y;
 typedef typed_property < t_css_background_sizes, ec_background_size > prop_background_size;
 typedef typed_property < t_generic, ec_background_spacing > prop_background_spacing;
+typedef typed_property < t_css_background_tbd, ec_background_tbd > prop_background_tbd;
 typedef typed_property < t_real, ec_baseline > prop_baseline;
 typedef typed_property < t_svg_baselineshift, ec_baseline_shift > prop_baseline_shift;
 typedef typed_property < t_auto_first_last, ec_baseline_source > prop_baseline_source;
@@ -308,7 +313,7 @@ typedef typed_property < t_fixedpoint, ec_flex_shrink > prop_flex_shrink;
 typedef typed_property < t_css_flex_wrap, ec_flex_wrap > prop_flex_wrap;
 typedef typed_property < t_css_float_fn, ec_float > prop_float;
 typedef typed_property < t_integer_ln, ec_float_defer > prop_float_defer;
-typedef typed_property < t_css_length, ec_float_offset > prop_float_offset;
+typedef typed_property < t_css_length_percent, ec_float_offset > prop_float_offset;
 typedef typed_property < t_cipr, ec_float_reference > prop_float_reference;
 typedef typed_property < t_css_col, ec_flood_colour > prop_flood_colour;
 typedef typed_property < t_css_opacity, ec_flood_opacity > prop_flood_opacity;
@@ -647,7 +652,7 @@ typedef typed_property < t_css_scrollbar_gutter, ec_scrollbar_gutter > prop_scro
 typedef typed_property < t_auto_none_thin, ec_scrollbar_width > prop_scrollbar_width;
 typedef typed_property < t_zero_to_one, ec_shape_image_threshold > prop_shape_image_threshold;
 typedef typed_property < t_css_shape_inside, ec_shape_inside > prop_shape_inside;
-typedef typed_property < t_css_length, ec_shape_margin > prop_shape_margin;
+typedef typed_property < t_css_length_percent, ec_shape_margin > prop_shape_margin;
 typedef typed_property < t_css_shape_outside, ec_shape_outside > prop_shape_outside;
 typedef typed_property < t_measure, ec_shape_padding > prop_shape_padding;
 typedef typed_property < t_shape_rendering, ec_shape_rendering > prop_shape_rendering;
@@ -2257,10 +2262,15 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_background_position_x, \
     prop_background_position_y, \
     prop_background_repeat, \
+    prop_background_repeat_block, \
+    prop_background_repeat_inline, \
+    prop_background_repeat_x, \
+    prop_background_repeat_y, \
     prop_background_size, \
     prop_background_image_transform, \
     prop_background_quantity, \
     prop_background_spacing, \
+    prop_background_tbd, \
     prop_baseline, \
     prop_baseline_shift, \
     prop_baseline_source, \

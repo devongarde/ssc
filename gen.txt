@@ -123,7 +123,7 @@ defined at w3.org.
                         4.
 
 --css.background X      Use CSS Backgrounds and Borders level X, where
-                        X is 0 or 3.
+                        X is 0, 3, or 4.
                         
 --css.box-align X       Use CSS Box Alignment level X, where X is 0 or
                         3.
@@ -190,7 +190,8 @@ defined at w3.org.
 --css.highlight X       Use CSS Custom Highlights level X, where X is 0
                         or 3.
 
---css.image X           Use CSS Images level X, where X is 0, 3 or 4.
+--css.image X           Use CSS Images level X, where X is 0, 3, 4, or
+						5.
 
 --css.inline X          Use CSS Inline Layout level X, where X is 0 or
                         3.

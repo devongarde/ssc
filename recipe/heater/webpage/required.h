@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "feedback/nitpick.h"
-#include "type/type.h"
+//#include "type/type.h"
 #include "url/url.h"
 
 struct required_t
@@ -29,15 +29,14 @@ struct required_t
     e_required_page rq_ = rqp_none;
     html_version from_ = html_0, to_ = html_max;
     url url_;
-    ::std::string s_, rq_lang_, rq_page_, desc_; };
+    ::std::string s_, rq_lang_, rq_page_, desc_;
+    ::std::string rpt () const; };
 typedef ::std::vector < required_t > req_vt;
 
-void reset_required ();
 bool decode_required_page (nitpick& nits, required_t& rq);
-bool add_required_page (nitpick& nits, const ::std::string& arg);
-bool add_required_pages (nitpick& nits, const vstr_t& arg);
-::std::size_t required_count ();
-int check_required_pages (const html_version& v, const e_required_page rqp_type, const ::std::string& page_name, const vurl_t& uref, const element_bitset ancestral_elements, const e_lang l); 
-vstr_t required_page_list ();
-e_required_page get_required_page_type (const ::std::string& page_name, const bool root, faux_vb_t& req, faux_vb_t& check);
-void check_required_state (nitpick& nits, const ::std::string& name, const faux_vb_t& req, const faux_vb_t& check);
+bool add_required_page (req_vt& req, nitpick& nits, const ::std::string& arg);
+bool add_required_pages (req_vt& req, nitpick& nits, const vstr_t& arg);
+int check_required_pages (const req_vt& req, const html_version& v, const e_required_page rqp_type, const ::std::string& page_name, const vurl_t& uref, const element_bitset ancestral_elements, const e_lang l); 
+vstr_t required_page_list (const req_vt& req);
+e_required_page get_required_page_type (const req_vt& rq, const ::std::string& page_name, const bool root, faux_vb_t& req, faux_vb_t& check);
+void check_required_state (const req_vt& rq, nitpick& nits, const ::std::string& name, const faux_vb_t& req, const faux_vb_t& check);

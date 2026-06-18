@@ -86,7 +86,7 @@ void vv_t :: create_virtual_dir_controls (wxWindow *parent, wxGridSizer* grid, w
             grid -> Add (dir, 5, wxALL | wxEXPAND | wxALIGN_CENTER_VERTICAL, 5); } } }
 
 void vv_t :: create_controls (wxWindow *parent)
-{	virt_.construct (parent, box_, "Virtual " RREPERTOIRES);
+{	virt_.concoct (parent, box_, "Virtual " RREPERTOIRES);
     if (! virt_.invalid ())
     {	grid_virt_ = GSL_OWNER (wxGridSizer) (new wxGridSizer (0, 2, 0, 0));	
         if (grid_virt_ != nullptr)
@@ -123,7 +123,7 @@ void vv_t :: create_controls (wxWindow *parent)
                 box_for_ -> Add (choice_for_, 0, wxALL, 5);
                 box_ -> Add (box_for_, 0, wxALIGN_CENTER_HORIZONTAL, 5); } } }
 
-    val_.construct (parent, box_, "");
+    val_.concoct (parent, box_, "");
 
     line_base_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
     if (line_base_ != nullptr)

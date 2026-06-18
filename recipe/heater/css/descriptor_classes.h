@@ -30,7 +30,7 @@ typedef typed_property < t_css_background, ec_background > desc_background;
 typedef typed_property < t_css_background_attachments, ec_background_attachment > desc_background_attachment;
 typedef typed_property < t_css_col, ec_background_colour > desc_background_colour;
 typedef typed_property < t_css_image, ec_background_image > desc_background_image;
-typedef typed_property < t_css_background_position_3, ec_background_position > desc_background_position;
+typedef typed_property < t_css_background_position_3s, ec_background_position > desc_background_position;
 typedef typed_property < t_css_background_repeat_3, ec_background_repeat > desc_background_repeat;
 typedef typed_property < t_real, ec_baseline > desc_baseline;
 typedef typed_property < t_css_base_palette, ec_base_palette > desc_base_palette;

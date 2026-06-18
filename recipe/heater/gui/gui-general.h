@@ -28,57 +28,43 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define GEN_CAPTION "general"
 
 class general_t : public d1_t < wx_general >
-{   wxBoxSizer* box_check_ = nullptr;
-    wxBoxSizer* box_config_ = nullptr;
-    wxBoxSizer* box_max_ = nullptr;
-    wxBoxSizer* box_persist_ = nullptr;
+{   box_t check_box_, max_box_, persist_box_, type_box_;
 #ifndef NO_FRED
-    wxBoxSizer* box_fred_ = nullptr;
-    wxCheckBox* check_fred_ = nullptr;   
+    box_t fred_box_;
+    check_t fred_ctrl_;
+    label_spin_t fred_spin_;
 #endif // NO_FRED
-    wxCheckBox* check_class_ = nullptr;   
-    wxCheckBox* check_max_ = nullptr;   
-    wxCheckBox* check_other_ = nullptr;   
-    wxCheckBox* check_persist_ = nullptr;   
-    wxCheckBox* check_rdfa_ = nullptr;   
-    wxCheckBox* check_vcs_ = nullptr;
-    wxCheckBox* check_vtt_ = nullptr;   
-    wxDirPickerCtrl* dir_config_ = nullptr;
-    wxFilePickerCtrl* pick_persist_ = nullptr;
-    wxSpinCtrl* spin_max_ = nullptr;
-#ifndef NO_FRED
-    wxSpinCtrl* spin_fred_ = nullptr;
-#endif // NO_FRED
-    wxStaticLine* line_1_ = nullptr;
-    wxStaticLine* line_2_ = nullptr;
-    wxStaticLine* line_3_ = nullptr;
-    wxStaticLine* line_4_ = nullptr;
-    wxStaticLine* line_5_ = nullptr;
-    wxStaticLine* line_ = nullptr;
-    wxStaticLine* sl2_ = nullptr;
-    wxStaticText* static_check_ = nullptr;
-    wxStaticText* stat_config_ = nullptr;  
-    ::boost::filesystem::path config_, out_, persist_; 
+    check_t class_ctrl_, max_ctrl_, other_ctrl_, persist_ctrl_, rdfa_ctrl_, vcs_ctrl_, vtt_ctrl_;
+    check_folder_t config_folder_;
+    check_file_t persist_file_;
+    label_spin_t max_spin_;
+    label_t check_static_;
+    line_t l1_, l2_, l3_, l4_, l5_, l6_, l7_;
     listedit_manager exclude_ = listedit_manager (button_general_add, button_general_erase, button_general_rename, file_general_name, list_general_ext, text_general_ext);
+    ::boost::filesystem::path config_, out_, persist_, cwd_; 
     bool class_ = false, other_ = false, rdfa_ = false, vcs_ = true, vtt_ = true;
 #ifndef NO_FRED
     unsigned int fred_ = 1;
 #endif // NO_FRED
     unsigned int max_ = def_max_file_size;
+    vstr_t exc_;
     void enable_max (const bool b);
 #ifndef NO_FRED
     void enable_fred (const bool b);
 #endif // NO_FRED
-    void enable_persist (const bool b);
     DECLARE_CLASS (general_t)
     DECLARE_EVENT_TABLE ()
 public:
     DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (general_t);
     explicit general_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = GEN_CAPTION);
-    bool invalid () const noexcept { return exclude_.invalid () || check_vtt_ == nullptr || spin_max_ == nullptr || dir_config_ == nullptr || pick_persist_ == nullptr; }
+    bool invalid () const noexcept { return l7_.invalid (); }
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = GEN_CAPTION);
     void CreateControls ();
+    void OnAdd (wxCommandEvent& event);
+    void OnConfig (wxCommandEvent& event);
+    void OnErase (wxCommandEvent& event);
+    void OnExclude (wxCommandEvent& event);
 #ifdef NO_FRED
     void OnFred (wxCommandEvent& ) constexpr { }
 #else // NO_FRED
@@ -86,7 +72,10 @@ public:
 #endif // NO_FRED
     void OnHelpClick (wxCommandEvent& event);
     void OnMax (wxCommandEvent& e);
+    void OnImpatience (wxCommandEvent& event);
     void OnPersist (wxCommandEvent& e);
+    void OnRename (wxCommandEvent& event);
+    void OnText (wxCommandEvent& event);
     bool TransferDataToWindow ();
     bool TransferDataFromWindow ();
     bool invalid_panel () const { return invalid () || (panel_ == nullptr); }
@@ -104,6 +93,8 @@ public:
     void vcs (const bool b) noexcept { vcs_ = b; }
     bool vtt () const noexcept { return vtt_; }
     void vtt (const bool b) noexcept { vtt_ = b; }
+    void exc (const vstr_t& vs) { exc_ = vs; }
+    vstr_t exc () const { return exc_; }
 #ifndef NO_FRED
     unsigned short fred () const noexcept { return GSL_NARROW_CAST < unsigned short > (fred_); }    
     void fred (const unsigned short& t);

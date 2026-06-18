@@ -598,6 +598,9 @@ template < > struct type_master < t_css_scroll_button > : ENUM_N (css_scroll_but
 template < > struct type_master < t_css_self_position > : ENUM_N (css_self_position)
 { using ENUM_N (css_self_position) :: enum_n; };
 
+template < > struct type_master < t_css_shape_box > : ENUM_N (css_shape_box)
+{ using ENUM_N (css_shape_box) :: enum_n; };
+
 template < > struct type_master < t_css_size_e > : ENUM_N (css_size_e)
 { using ENUM_N (css_size_e) :: enum_n; };
 
@@ -865,6 +868,9 @@ template < > struct type_master < t_listtype > : enum_n < t_listtype, e_listtype
 
 template < > struct type_master < t_lrnialign > : ENUM_N (lrnialign)
 { using ENUM_N (lrnialign) :: enum_n; };
+
+template < > struct type_master < t_locale > : ENUM_N (locale)
+{ using ENUM_N (locale) :: enum_n; };
 
 template < > struct type_master < t_longdivstyle > : ENUM_N (longdivstyle)
 { using ENUM_N (longdivstyle) :: enum_n; };

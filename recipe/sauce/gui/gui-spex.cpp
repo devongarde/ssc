@@ -53,6 +53,13 @@ BEGIN_EVENT_TABLE (standard_t, wxDialog)
   EVT_CHECKBOX (check_fred, standard_t::OnGenFred)
 #endif // NO_FRED
   EVT_CHECKBOX (check_file_size, standard_t::OnGenMax)
+  EVT_BUTTON (button_general_add, standard_t::OnGenAdd)
+  EVT_CHECKBOX (file_general_name, standard_t::OnGenConfig)
+  EVT_BUTTON (button_general_erase, standard_t::OnGenErase)
+  EVT_LISTBOX (list_general_ext, standard_t::OnGenExclude)
+  EVT_LISTBOX_DCLICK (list_general_ext, standard_t::OnGenImpatience)
+  EVT_BUTTON (button_general_rename, standard_t::OnGenRename)
+  EVT_TEXT (text_general_ext, standard_t::OnGenText)
   EVT_CHECKBOX (check_file_persist, standard_t::OnGenPersist)
   EVT_CHECKBOX (check_corpus_output, standard_t::OnHTMLOutput)
   EVT_CHOICE (choice_html_version, standard_t::OnHTMLVersion)
@@ -88,6 +95,9 @@ BEGIN_EVENT_TABLE (standard_t, wxDialog)
   EVT_LISTBOX (list_site_ext, standard_t::OnSiteExtension)
   EVT_LISTBOX_DCLICK (list_site_ext, standard_t::OnSiteImpatience)
   EVT_BUTTON (button_site_rename, standard_t::OnSiteRename)
+#ifdef SIGNING
+  EVT_CHECKBOX (check_site_sign, standard_t::OnSiteSign)
+#endif // SIGNING
   EVT_TEXT (button_site_rename, standard_t::OnSiteTap)
   EVT_TEXT (text_site_ext, standard_t::OnSiteText)
   EVT_CHECKBOX (check_username, standard_t::OnSiteUsername)
@@ -179,21 +189,21 @@ void standard_t :: CreateControls (const e_gui_panel gp)
     {	if (summary_.create_panel (choice_, panel_statistics, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
             choice_ -> AddPage (summary_.panel (), "summary", false); 
         if (html_.create_panel (choice_, panel_html, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-            choice_ -> AddPage (html_.panel (), "HTML etc., corpus", false); 
+            choice_ -> AddPage (html_.panel (), "HTML et al / corpus", false); 
         if (css_.create_panel (choice_, panel_css, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
             choice_ -> AddPage (css_.panel (), "CSS", false); 
         if (site_.create_panel (choice_, panel_site, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-            choice_ -> AddPage (site_.panel (), "root, output", false); 
+            choice_ -> AddPage (site_.panel (), "root / output", false); 
         if (general_.create_panel (choice_, panel_general, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
             choice_ -> AddPage (general_.panel (), "bits / bobs", false); 
         if (lynx_.create_panel (choice_, panel_links, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
             choice_ -> AddPage (lynx_.panel (), "links", false); 
         if (nits_.create_panel (choice_, panel_nits, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-            choice_ -> AddPage (nits_.panel (), "errors, warnings, nitpicking", false); 
+            choice_ -> AddPage (nits_.panel (), "nits", false); 
         if (ontology_.create_panel (choice_, panel_ontology, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
             choice_ -> AddPage (ontology_.panel (), "ontologies", false); 
         if (shadow_.create_panel (choice_, panel_shadow, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-            choice_ -> AddPage (shadow_.panel (), "shadow, deduplicate, resolve", false); 
+            choice_ -> AddPage (shadow_.panel (), "shadow", false); 
 #ifndef NOSPELL
         if (spell_.create_panel (choice_, panel_spell, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
             choice_ -> AddPage (spell_.panel (), "spelling", false); 
@@ -201,9 +211,9 @@ void standard_t :: CreateControls (const e_gui_panel gp)
         if (ssi_.create_panel (choice_, panel_ssi, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
             choice_ -> AddPage (ssi_.panel (), "server side includes", false); 
         if (stats_.create_panel (choice_, panel_statistics, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-            choice_ -> AddPage (stats_.panel (), "statistics, reports", false); 
+            choice_ -> AddPage (stats_.panel (), "statistics & reports", false); 
         if (vv_.create_panel (choice_, panel_validation, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-            choice_ -> AddPage (vv_.panel (), "validation, virtual", false);
+            choice_ -> AddPage (vv_.panel (), "validation / virtual", false);
         box_ -> Add (choice_, 12, wxEXPAND | wxALL, 5); }
     d3_t :: CreateButtons (1);
     SetSizer (box_);

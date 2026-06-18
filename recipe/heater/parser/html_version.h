@@ -545,6 +545,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_IMAGE_5        0x0000000000040000
 #define H3_CSS_IMAGE_34     ( H3_CSS_IMAGE_3 | H3_CSS_IMAGE_4 )  
 #define H3_CSS_IMAGE_345    ( H3_CSS_IMAGE_34 | H3_CSS_IMAGE_5 )  
+#define H3_CSS_IMAGE_45     ( H3_CSS_IMAGE_4 | H3_CSS_IMAGE_5 )  
 #define H3_CSS_IMAGE          H3_CSS_IMAGE_345  
 #define H3_CSS_IMAGE_MASK     H3_CSS_IMAGE
 
@@ -1305,6 +1306,11 @@ public:
     ::std::string nice_name () const;
     ::std::string report () const; };
 
+typedef ::std::vector < html_version > html_ver_vt;
+
+extern html_ver_vt standard_html_ver;
+int which_standard (const html_version& v);
+
 bool comparable (const html_version& lhs, const html_version& rhs) noexcept;
 
 const html_version html_0 (HTML_NULL);
@@ -1733,6 +1739,7 @@ const html_version html_oct25 (HTML_OCT25, css_ls_2025, HV_WHATWG, HE_MICRODATA 
 const html_version html_dec25 (HTML_DEC25, css_ls_2025, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_2025, H3_CSS_LS_2025, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_2025, H5_CSS_LS_2025);
 const html_version html_jan26 (HTML_JAN26, css_ls_2025, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_2025, H3_CSS_LS_2025, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_2025, H5_CSS_LS_2025);
 const html_version html_apr26 (HTML_APR26, css_ls_2026, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_2026, H3_CSS_LS_2026, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_2026, H5_CSS_LS_2026);
+const html_version html_jul26 (HTML_JUL26, css_ls_2026, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_2026, H3_CSS_LS_2026, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_2026, H5_CSS_LS_2026);
 const html_version html_5_0 (HTML_5_0, css_2010, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_1 (HTML_5_1, css_2015, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_2 (HTML_5_2, css_2017, HV_W3, HE_SVG_11, H2_MATH_3);

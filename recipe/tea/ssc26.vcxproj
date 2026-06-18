@@ -3132,6 +3132,12 @@
     <None Include="..\toast\css\4-animation\css.conf" />
     <None Include="..\toast\css\4-animation\css.spec" />
     <None Include="..\toast\css\4-animation\index.html" />
+    <None Include="..\toast\css\4-background\css-2.css" />
+    <None Include="..\toast\css\4-background\css-3.css" />
+    <None Include="..\toast\css\4-background\css-4.html" />
+    <None Include="..\toast\css\4-background\css.conf" />
+    <None Include="..\toast\css\4-background\css.spec" />
+    <None Include="..\toast\css\4-background\index.html" />
     <None Include="..\toast\css\4-box-model\css-3.css" />
     <None Include="..\toast\css\4-box-model\css-4.css" />
     <None Include="..\toast\css\4-box-model\css.conf" />
@@ -3418,6 +3424,11 @@
     <None Include="..\toast\css\5-font\css.conf" />
     <None Include="..\toast\css\5-font\css.spec" />
     <None Include="..\toast\css\5-font\index.html" />
+    <None Include="..\toast\css\5-image\css-2.css" />
+    <None Include="..\toast\css\5-image\css-2.html" />
+    <None Include="..\toast\css\5-image\css.conf" />
+    <None Include="..\toast\css\5-image\css.spec" />
+    <None Include="..\toast\css\5-image\index.html" />
     <None Include="..\toast\css\5-media\css-1.css" />
     <None Include="..\toast\css\5-media\css-1.html" />
     <None Include="..\toast\css\5-media\css-10.css" />

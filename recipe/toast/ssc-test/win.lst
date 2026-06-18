@@ -20,6 +20,7 @@
 ../toast/css/3-animation/css.spec
 ../toast/css/4-animation/css.spec
 ../toast/css/3-background/css.spec
+../toast/css/4-background/css.spec
 ../toast/css/3-box-model/css.spec
 ../toast/css/4-box-model/css.spec
 ../toast/css/3-box-sizing/css.spec
@@ -63,6 +64,7 @@
 ../toast/css/3-highlight/css.spec
 ../toast/css/3-image/css.spec
 ../toast/css/4-image/css.spec
+../toast/css/5-image/css.spec
 ../toast/css/3-inline/css.spec
 ../toast/css/3-linkparam/css.spec
 ../toast/css/3-list/css.spec

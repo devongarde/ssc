@@ -125,6 +125,9 @@ struct symbol_entry < html_version, e_lang > lang_symbol_table [] =
     { { HTML_PLUS }, { HTML_UNDEF }, "lt", la_lt },
     { { HTML_PLUS }, { HTML_UNDEF }, "lu", la_lu },
     { { HTML_PLUS }, { HTML_UNDEF }, "lv", la_lv },
+#ifdef HOMAGE
+    { { HTML_JUN13 }, { HTML_UNDEF }, "ma", la_ma },
+#endif // HOMAGE
     { { HTML_PLUS }, { HTML_UNDEF }, "mg", la_mg },
     { { HTML_PLUS }, { HTML_UNDEF }, "mh", la_mh },
     { { HTML_PLUS }, { HTML_UNDEF }, "mi", la_mi },

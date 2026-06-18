@@ -52,7 +52,7 @@ context_t::context_t (nitpick& nits, const ::boost::filesystem::path& fn)
     options o (*this, nits, fn);
     if (nits.worst () <= es_error) valid_ = false;
     else
-    {   outstream ost;
+    {
 #ifdef DARWIN
         if (context.excl_def_excl ()) excludable_filenames.insert (".DS_Store");
 #endif // DARWIN

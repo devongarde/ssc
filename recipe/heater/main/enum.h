@@ -333,7 +333,7 @@ typedef enum {  button_all,
                 check_internal,
                 check_mf_export, check_mf_verify,
                 check_process,
-                check_site, check_spell, check_stats_export,
+                check_site, check_site_sign, check_spell, check_stats_export,
                 check_ssi_exec, check_ssi_lastmod, check_ssi_now, check_ssi_process,
                 check_username,
                 check_verify,
@@ -341,7 +341,7 @@ typedef enum {  button_all,
                 choice_css_version, choice_html_version, choice_lingo_version, choice_math_version, choice_nit_format, choice_ontology_version,
                     choice_req_from, choice_req_lang, choice_req_page, choice_req_to, choice_svg_version, choice_validation_version,
                 dir_physical, dir_ontology, dir_root, dir_shadow,
-                file_css_name, file_dict_name, file_general_name, file_hun_name, file_req_name, file_shadow_name, file_site_name, file_validation_name, file_virtual_name, file_word_name,
+                file_css_name, file_dict_name, file_general_name, file_hun_name, file_private_, file_public_, file_req_name, file_shadow_name, file_site_name, file_validation_name, file_virtual_name, file_word_name,
                 list_css_ext, list_dict_ext, list_general_ext, list_hun_ext, list_req_ext, list_shadow_ext, list_site_ext, list_validation, list_virtual, list_word_ext,
                 list_level,
                 list_css_module,
@@ -585,7 +585,11 @@ typedef enum { cou_context,
     cou_pk, cou_pw, cou_ps, cou_pa, cou_pg, cou_py, cou_pe, cou_ph, cou_pn, cou_pl, cou_pt, cou_pr, cou_qa, cou_re, cou_ro, cou_ru, cou_rw, cou_bl, cou_sh, cou_kn, cou_lc, cou_mf, cou_pm, cou_vc,
     cou_ws, cou_sm, cou_st, cou_sa, cou_sn, cou_rs, cou_sc, cou_sl, cou_sg, cou_sx, cou_sk, cou_si, cou_sb, cou_so, cou_za, cou_gs, cou_ss, cou_es, cou_lk, cou_sd, cou_sr, cou_sj, cou_se, cou_ch,
     cou_sy, cou_tw, cou_tj, cou_tz, cou_th, cou_tl, cou_tg, cou_tk, cou_to, cou_tt, cou_tn, cou_tr, cou_tm, cou_tc, cou_tv, cou_ug, cou_ua, cou_ae, cou_gb, cou_um, cou_us, cou_uy, cou_uz, cou_vu,
-    cou_ve, cou_vn, cou_vg, cou_vi, cou_wf, cou_eh, cou_ye, cou_zm, cou_zw, cou_error
+    cou_ve, cou_vn, cou_vg, cou_vi, cou_wf, cou_eh, cou_ye, cou_zm, cou_zw,
+#ifdef HOMAGE
+    cou_ct,
+#endif // HOMAGE
+    cou_error
 } e_country;
 
 typedef enum { cpp_consistent, cpp_per_line, cpp_per_line_all } e_cpp;
@@ -997,7 +1001,8 @@ typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                     ec_background_clip, ec_background_colour, ec_background_image, ec_background_image_transform, ec_background_origin,
                     ec_background_origin_x, ec_background_origin_y,
                     ec_background_position, ec_background_position_x, ec_background_position_y, ec_background_quantity, ec_background_repeat,
-                    ec_background_size, ec_background_spacing, ec_baseline, ec_baseline_shift, ec_baseline_source, ec_base_palette, ec_bbox,
+                    ec_background_repeat_block, ec_background_repeat_inline, ec_background_repeat_x, ec_background_repeat_y, ec_background_size,
+                    ec_background_spacing, ec_background_tbd, ec_baseline, ec_baseline_shift, ec_baseline_source, ec_base_palette, ec_bbox,
                     ec_bikeshedding, ec_bleed, ec_block_ellipsis, ec_block_overflow, ec_block_progression, ec_block_size, ec_block_step,
                     ec_block_step_align, ec_block_step_insert, ec_block_step_round, ec_block_step_size, ec_bookmark_label, ec_bookmark_level,
                     ec_bookmark_state, ec_bookmark_target, ec_border, ec_border_block, ec_border_block_colour, ec_border_block_end,
@@ -1443,6 +1448,7 @@ typedef enum {  crx_a98_rgb, crx_display_p3, crx_display_p3_linear, crx_prophoto
                 crx_srgb, crx_srgb_linear, crx_xyz, crx_xyz_d50, crx_xyz_d65 } e_css_rgb_xyz;
 typedef enum { ec4_lab, ec4_oklab, ec4_srgb, ec4_srgb_linear, ec4_xyz, ec4_xyz_d50, ec4_xyz_d65 } e_css_rect;
 typedef enum { ecr_inherit, ecr_larger, ecr_smaller } e_css_relative_size;
+typedef enum { crb_block, crb_inline, crb_x, crb_y } e_css_repeat_bixy;
 typedef enum { ecz_block, ecz_both, ecz_horizontal, ecz_inherit, ecz_inline, ecz_none, ecz_vertical } e_css_resize;
 typedef enum { csc_inherit, csc_local } e_css_scope;
 typedef enum { csb_block_end, csb_block_start, csb_down, csb_inline_end, csb_inline_start, csb_left, csb_right, csb_splat, csb_up } e_css_scroll_button;
@@ -1451,7 +1457,7 @@ typedef enum { sss_na, sss_block, sss_block_end, sss_block_start, sss_bottom, ss
 typedef enum { ssn_na, ssn_block, ssn_both, ssn_inline, ssn_none, ssn_x, ssn_y } e_css_ss_snapped;
 typedef enum { sst_na, sst_block_end, sst_block_start, sst_bottom, sst_inline_end, sst_inline_start, sst_left, sst_none, sst_right, sst_top } e_css_ss_stuck;
 typedef enum { ecsp_anchor_centre, ecsp_centre, ecsp_end, ecsp_flex_end, ecsp_flex_start, ecsp_self_end, ecsp_self_start, ecsp_start } e_css_self_position;
-typedef enum { ecsb_border_box, ecsb_content_box, ecsb_margin_box, ecsb_padding_box } e_css_shape_box;
+typedef enum { ecsb_border_box, ecsb_content_box, ecsb_half_border_box, ecsb_margin_box, ecsb_padding_box } e_css_shape_box;
 typedef enum { csfr_evenodd, csfr_nonzero } e_css_shape_fillrule;
 typedef enum { cse_a3, cse_a4, cse_a5, cse_b4, cse_b5, cse_jis_b4, cse_jis_b5, cse_ledger, cse_legal, cse_letter } e_css_size_e;
 typedef enum {  csz_auto, csz_contain, csz_fit_content, csz_max_content, csz_min_content, csz_moz_available, csz_moz_fit_content,
@@ -1557,7 +1563,7 @@ typedef enum {  css_none, css_bespoke, css_1, css_2_0, css_2_1, css_2_2, css_3, 
                 css_unknown } e_css_version;
 constexpr e_css_version css_version_max = css_ls_2026;
 typedef enum { ecva_inherit, ecv_baseline, ecv_bottom, ecv_middle, ecv_sub, ecv_super, ecv_text_bottom, ecv_text_top, ecv_top } e_css_vertical_align;
-typedef enum { eccl_border_area, eccl_border_box, eccl_content_box, eccl_padding_box, eccl_text } e_css_visual_box;
+typedef enum { eccl_border_area, eccl_border_box, eccl_clip, eccl_content_box, eccl_padding_box, eccl_text } e_css_visual_box;
 typedef enum { cva_child, cva_old, cva_young  } e_css_voice_age;
 typedef enum { cvg_female, cvg_male, cvg_neutral  } e_css_voice_gender;
 typedef enum { evb_centre, evb_left, evb_leftwards, evb_right, evb_rightwards } e_css_voice_balance_e;
@@ -1897,11 +1903,12 @@ typedef enum { gns_grow, gns_none, gns_shrink } e_gns;
 typedef enum { gu_userspaceonuse, gu_objectboundingbox } e_gradientunits;
 typedef enum {  // MUST correspond to IDs in content.hhc
     hp_legal, hp_about, hp_cmd, hp_conf, hp_configuration, hp_css, hp_file, hp_bobs, hp_HTML, hp_introduction, hp_nits,
-    hp_ontology, hp_shadow, hp_general, hp_snippet, hp_spell, hp_ssi, hp_stats, hp_summary, hp_validation, hp_welcome, hp_lynx
+    hp_ontology, hp_shadow, hp_general, hp_snippet, hp_spell, hp_ssi, hp_stats, hp_summary, hp_validation, hp_welcome, hp_lynx,
+    hp_listdit
 } e_gui_help_id;
 typedef enum { gn_grid, gn_normal } e_grid_normal;
 typedef enum { // MUST correspond to order in standard_t :: CreateControls
-    gp_summary, gp_html, gp_css, gp_gen, gp_lynx, gp_bits, gp_nits, gp_data, gp_shadow,
+    gp_summary, gp_html, gp_css, gp_gen, gp_bits, gp_lynx, gp_nits, gp_data, gp_shadow,
 #ifndef NOSPELL
         gp_spell,
 #endif // NOSPELL
@@ -2165,6 +2172,10 @@ typedef enum
     // archaic but accepted for historic reasons
     la_i,
 
+#ifdef HOMAGE
+    la_ma,
+#endif // HOMAGE
+
     la_illegal } e_lang;
 
 typedef enum { lar_left, lar_all, lar_right, lar_none } e_larnalign;
@@ -2187,6 +2198,177 @@ typedef enum { li_1, li_a, li_A, li_i, li_I } e_listtype;
 typedef enum { ln_literal_punctuation, ln_no_punctuation } e_literal_or_not;
 typedef enum { lnr_left, lnr_near, lnr_right } e_lnr;
 typedef enum { b_eager, b_lazy } e_loading;
+
+typedef enum {
+    loc_context,
+    loc_aa, loc_aa_DJ, loc_aa_ER, loc_aa_ET,
+    loc_af, loc_af_ZA,
+    loc_am, loc_am_ET,
+    loc_an, loc_an_ES,
+    loc_ar, loc_ar_AE, loc_ar_BH, loc_ar_DZ, loc_ar_EG, loc_ar_IN, loc_ar_IQ, loc_ar_JO, loc_ar_KW, loc_ar_LB, loc_ar_LY, loc_ar_MA, loc_ar_OM, loc_ar_QA, loc_ar_SA, loc_ar_SD,
+        loc_ar_SY, loc_ar_TN, loc_ar_YE,
+    loc_as, loc_as_IN,
+    loc_ast, loc_ast_ES,
+    loc_az, loc_az_AZ,
+    loc_be, loc_be_BY,
+    loc_bem, loc_bem_ZM,
+    loc_ber, loc_ber_DZ, loc_ber_MA,
+    loc_bg, loc_bg_BG,
+    loc_bho, loc_bho_IN,
+    loc_bn, loc_bn_BD, loc_bn_IN,
+    loc_bo, loc_bo_CN, loc_bo_IN,
+    loc_br, loc_br_FR,
+    loc_brx, loc_brx_IN,
+    loc_bs, loc_bs_BA,
+    loc_byn, loc_byn_ER,
+    loc_ca, loc_ca_AD, loc_ca_ES, loc_ca_FR, loc_ca_IT,
+    loc_crh, loc_crh_UA,
+    loc_cs, loc_cs_CZ,
+    loc_csb, loc_csb_PL,
+    loc_cv, loc_cv_RU,
+    loc_cy, loc_cy_GB,
+    loc_da, loc_da_DK,
+    loc_de, loc_de_AT, loc_de_BE, loc_de_CH, loc_de_DE, loc_de_LU,
+    loc_dv, loc_dv_MV,
+    loc_dz, loc_dz_BT,
+    loc_el, loc_el_CY, loc_el_GR,
+        loc_en, loc_en_AG, loc_en_AU, loc_en_BW, loc_en_CA, loc_en_DK, loc_en_GB, loc_en_HK, loc_en_IE, loc_en_IN, loc_en_NG, loc_en_NZ, loc_en_PH, loc_en_SG, loc_en_US, loc_en_ZA,
+    loc_en_ZM, loc_en_ZW,
+    loc_es, loc_es_AR, loc_es_BO, loc_es_CL, loc_es_CO, loc_es_CR, loc_es_CU, loc_es_DO, loc_es_EC, loc_es_ES, loc_es_GT, loc_es_HN, loc_es_MX, loc_es_NI, loc_es_PA, loc_es_PE,
+        loc_es_PR, loc_es_PY, loc_es_SV, loc_es_US, loc_es_UY, loc_es_VE,
+    loc_et, loc_et_EE,
+    loc_eu, loc_eu_ES,
+    loc_fa, loc_fa_IR,
+    loc_ff, loc_ff_SN,
+    loc_fi, loc_fi_FI,
+    loc_fil, loc_fil_PH,
+    loc_fo, loc_fo_FO,
+    loc_fr, loc_fr_BE, loc_fr_CA, loc_fr_CH, loc_fr_FR, loc_fr_LU,
+    loc_fur, loc_fur_IT,
+    loc_fy, loc_fy_DE, loc_fy_NL,
+    loc_ga, loc_ga_IE,
+    loc_gd, loc_gd_GB,
+    loc_gez, loc_gez_ER, loc_gez_ET,
+    loc_gl, loc_gl_ES,
+    loc_gu, loc_gu_IN,
+    loc_gv, loc_gv_GB,
+    loc_ha, loc_ha_NG,
+    loc_he, loc_he_IL,
+    loc_hi, loc_hi_IN,
+    loc_hne, loc_hne_IN,
+    loc_hr, loc_hr_HR,
+    loc_hsb, loc_hsb_DE,
+    loc_ht, loc_ht_HT,
+    loc_hu, loc_hu_HU,
+    loc_hy, loc_hy_AM,
+    loc_id, loc_id_ID,
+    loc_ig, loc_ig_NG,
+    loc_ik, loc_ik_CA,
+    loc_is, loc_is_IS,
+    loc_it, loc_it_CH, loc_it_IT,
+    loc_iu, loc_iu_CA,
+    loc_iw, loc_iw_IL,
+    loc_ja, loc_ja_JP,
+    loc_ka, loc_ka_GE,
+    loc_kk, loc_kk_KZ,
+    loc_kl, loc_kl_GL,
+    loc_km, loc_km_KH,
+    loc_kn, loc_kn_IN,
+    loc_ko, loc_ko_KR,
+    loc_kok, loc_kok_IN,
+    loc_ks, loc_ks_IN,
+    loc_ku, loc_ku_TR,
+    loc_kw, loc_kw_GB,
+    loc_ky, loc_ky_KG,
+    loc_lb, loc_lb_LU,
+    loc_lg, loc_lg_UG,
+    loc_li, loc_li_BE, loc_li_NL,
+    loc_lij, loc_lij_IT,
+    loc_lo, loc_lo_LA,
+    loc_lt, loc_lt_LT,
+    loc_lv, loc_lv_LV,
+#ifdef HOMAGE
+    loc_ma, loc_ma_CT,
+#endif // HOMAGE
+    loc_mag, loc_mag_IN,
+    loc_mai, loc_mai_IN,
+    loc_mg, loc_mg_MG,
+    loc_mhr, loc_mhr_RU,
+    loc_mi, loc_mi_NZ,
+    loc_mk, loc_mk_MK,
+    loc_ml, loc_ml_IN,
+    loc_mn, loc_mn_MN,
+    loc_mr, loc_mr_IN,
+    loc_ms, loc_ms_MY,
+    loc_mt, loc_mt_MT,
+    loc_my, loc_my_MM,
+    loc_nan, loc_nan_TW,
+    loc_nb, loc_nb_NO,
+    loc_nds, loc_nds_DE, loc_nds_NL,
+    loc_ne, loc_ne_NP,
+    loc_nl, loc_nl_AW, loc_nl_BE, loc_nl_NL,
+    loc_nn, loc_nn_NO,
+    loc_nr, loc_nr_ZA,
+    loc_nso, loc_nso_ZA,
+    loc_oc, loc_oc_FR,
+    loc_om, loc_om_ET, loc_om_KE,
+    loc_or, loc_or_IN,
+    loc_os, loc_os_RU,
+    loc_pa, loc_pa_IN, loc_pa_PK,
+    loc_pap, loc_pap_AN,
+    loc_pl, loc_pl_PL,
+    loc_ps, loc_ps_AF,
+    loc_pt, loc_pt_BR, loc_pt_PT,
+    loc_ro, loc_ro_RO,
+    loc_ru, loc_ru_RU, loc_ru_UA,
+    loc_rw, loc_rw_RW,
+    loc_sa, loc_sa_IN,
+    loc_sc, loc_sc_IT,
+    loc_sd, loc_sd_IN,
+    loc_se, loc_se_NO,
+    loc_shs, loc_shs_CA,
+    loc_si, loc_si_LK,
+    loc_sid, loc_sid_ET,
+    loc_sk, loc_sk_SK,
+    loc_sl, loc_sl_SI,
+    loc_so, loc_so_DJ, loc_so_ET, loc_so_KE, loc_so_SO,
+    loc_sq, loc_sq_AL, loc_sq_MK,
+    loc_sr, loc_sr_ME, loc_sr_RS,
+    loc_ss, loc_ss_ZA,
+    loc_st, loc_st_ZA,
+    loc_sv, loc_sv_FI, loc_sv_SE,
+    loc_sw, loc_sw_KE, loc_sw_TZ,
+    loc_ta, loc_ta_IN, loc_ta_LK,
+    loc_te, loc_te_IN,
+    loc_tg, loc_tg_TJ,
+    loc_th, loc_th_TH,
+    loc_ti, loc_ti_ER, loc_ti_ET,
+    loc_tig, loc_tig_ER,
+    loc_tk, loc_tk_TM,
+    loc_tl, loc_tl_PH,
+    loc_tn, loc_tn_ZA,
+    loc_tr, loc_tr_CY, loc_tr_TR,
+    loc_ts, loc_ts_ZA,
+    loc_tt, loc_tt_RU,
+    loc_ug, loc_ug_CN,
+    loc_uk, loc_uk_UA,
+    loc_unm, loc_unm_US,
+    loc_ur, loc_ur_IN, loc_ur_PK,
+    loc_uz, loc_uz_UZ,
+    loc_ve, loc_ve_ZA,
+    loc_vi, loc_vi_VN,
+    loc_wa, loc_wa_BE,
+    loc_wae, loc_wae_CH,
+    loc_wal, loc_wal_ET,
+    loc_wo, loc_wo_SN,
+    loc_xh, loc_xh_ZA,
+    loc_yi, loc_yi_US,
+    loc_yo, loc_yo_NG,
+    loc_yue, loc_yue_HK,
+    loc_zh, loc_zh_CN, loc_zh_HK, loc_zh_SG, loc_zh_TW,
+    loc_zu, loc_zu_ZA,
+    loc_error } e_locale;
+
 typedef enum {  ls_lefttop, ls_stackedrightright, ls_mediumstackedrightright, ls_shortstackedrightright, ls_righttop,
                 ls_leftslashright, ls_leftketbraright, ls_rightequalright, ls_stackedleftleft, ls_stackedleftlinetop } e_longdivstyle;
 typedef enum {  lox_none, lox_cache, lox_crosslinks, lox_css, lox_dear, lox_eleanor, lox_external, lox_fetch, lox_fileindex, lox_flox, lox_itemid,
@@ -8622,7 +8804,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_CSS_B_1_MAX t_css_background_repeats
 
 #define SSC_TYPES_CSS_B_2 \
-            t_css_background_size, t_css_background_sizes, t_css_backval, t_css_base_palette, t_css_baseline_position, t_css_bespoke, t_css_bespoker, \
+            t_css_background_size, t_css_background_sizes, t_css_background_tbd, t_css_backval, t_css_base_palette, t_css_baseline_position, t_css_bespoke, t_css_bespoker, \
             t_css_blend_mode, t_css_blend_modes, t_css_block_step, t_css_border_collapse, t_css_border_image, t_css_border_image_repeat, t_css_border_images_repeat, \
             t_css_border_image_slice, t_css_border_image_src, t_css_border_measure, t_css_border_radius, t_css_border_spacing, t_css_border_spacing_2
 #define SSC_TYPES_CSS_B_2_MAX t_css_border_spacing_2
@@ -8711,8 +8893,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_CSS_FN_2 \
             t_css_fn_image, t_css_fn_image_set, t_css_fn_inset, t_css_fn_linear, t_css_fn_moz_image_rect, t_css_fn_ornaments, t_css_fn_param, t_css_fn_path_args, \
-            t_css_fn_rect, t_css_fn_round_t, t_css_fn_steps, t_css_fn_styleset, t_css_fn_stylistic, t_css_fn_superellipse, t_css_fn_swash, t_css_fn_trans_args, \
-            t_css_fn_type, t_css_fn_type_args, t_css_fn_var, t_css_fn_xywh
+            t_css_fn_rect, t_css_fn_round_t, t_css_fn_snap_block, t_css_fn_snap_inline, t_css_fn_steps, t_css_fn_styleset, t_css_fn_stylistic, t_css_fn_superellipse, \
+            t_css_fn_swash, t_css_fn_trans_args, t_css_fn_type, t_css_fn_type_args, t_css_fn_var, t_css_fn_xywh
 #define SSC_TYPES_CSS_FN_2_MAX t_css_fn_xywh
 
 #define SSC_TYPES_CSS_G_H \
@@ -8790,8 +8972,9 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_CSS_R_1_MAX t_css_ref_stylistic
 
 #define SSC_TYPES_CSS_R_2 \
-            t_css_relative_size, t_css_region_flow_into, t_css_region_flow_into_n, t_css_region_id, t_css_region_id_ni, t_css_required_region, t_css_resize, \
-            t_css_rgb_xyz, t_css_rotate,t_css_rotate_angle, t_css_rotate_x, t_css_rotate_y, t_css_rotate_z, t_css_ruby_pos, t_css_ruby_pos_in
+            t_css_relative_size, t_css_region_flow_into, t_css_region_flow_into_n, t_css_region_id, t_css_region_id_ni, t_css_repeat_bixy, t_css_repeat_style, \
+            t_css_repeat_style_xr, t_css_repeat_styles, t_css_required_region, t_css_resize, t_css_rgb_xyz, t_css_rotate, t_css_rotate_angle, \
+            t_css_rotate_x, t_css_rotate_y, t_css_rotate_z, t_css_ruby_pos, t_css_ruby_pos_in
 #define SSC_TYPES_CSS_R_2_MAX t_css_ruby_pos_in
 
 #define SSC_TYPES_CSS_S_1 \
@@ -8930,7 +9113,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_L_2 \
         t_linear_colour_stops, t_linebreak, t_linebreakstyle, t_linecap, t_line_height, t_linejoin, t_linethickness, t_link, t_linkarg, \
         t_linkargs, t_linkitself, t_linkparam, t_links, t_listtype, t_literal, t_literal_or_not, t_lnr, t_loading, t_localfn, t_local_url, \
-        t_location
+        t_locale, t_location
 #define SSC_TYPES_L_2_MAX t_location
 
 #define SSC_TYPES_L_3 \

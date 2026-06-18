@@ -20,14 +20,14 @@
       <param name="Local" value="cmd.html"/>
     </object>
   </li>
-<li>
-  <object type="text/sitemap">
-    <param name="Name" value="conf"/>
-    <param name="ID" value="3"/>
-    <param name="Local" value="conf.html"/>
-  </object>
-</li>
-<li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="conf"/>
+      <param name="ID" value="3"/>
+      <param name="Local" value="conf.html"/>
+    </object>
+  </li>
+  <li>
     <object type="text/sitemap">
       <param name="Name" value="configuration"/>
       <param name="ID" value="4"/>
@@ -50,7 +50,7 @@
   </li>
   <li>
     <object type="text/sitemap">
-      <param name="Name" value="general"/>
+      <param name="Name" value="bobs"/>
       <param name="ID" value="7"/>
       <param name="Local" value="general.html"/>
     </object>
@@ -119,13 +119,13 @@
     </object>
   </li>
   <li>
-  <li>
     <object type="text/sitemap">
       <param name="Name" value="stats"/>
       <param name="ID" value="17"/>
       <param name="Local" value="stats.html"/>
     </object>
   </li>
+  <li>
     <object type="text/sitemap">
       <param name="Name" value="summary"/>
       <param name="ID" value="18"/>
@@ -148,9 +148,16 @@
   </li>
   <li>
     <object type="text/sitemap">
-      <param name="Name" value="lynx"/>
+      <param name="Name" value="links"/>
       <param name="ID" value="21"/>
       <param name="Local" value="links.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="listedit"/>
+      <param name="ID" value="21"/>
+      <param name="Local" value="listedit.html"/>
     </object>
   </li>
 </ul>

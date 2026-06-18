@@ -28,38 +28,30 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define LINK_CAPTION "Links"
 
 class link_t : public d1_t < wx_link >
-{   wxCheckBox* check_example_ = nullptr;
-    wxCheckBox* check_external_ = nullptr;
-    wxCheckBox* check_forwarded_ = nullptr;
-    wxCheckBox* check_id_ = nullptr;
-    wxCheckBox* check_internal_ = nullptr;
-    wxCheckBox* check_local_ = nullptr;
-    wxCheckBox* check_once_ = nullptr;
-    wxCheckBox* check_revoke_ = nullptr;
-    wxCheckBox* check_special_ = nullptr;
-    wxChoice* choice_from_ = nullptr;
-    wxChoice* choice_lang_ = nullptr;
-    wxChoice* choice_page_ = nullptr;
-    wxChoice* choice_to_ = nullptr;
-    wxGridSizer* grid_check_ = nullptr;
-    wxGridSizer* grid_desc_ = nullptr;
-    wxGridSizer* grid_req_ = nullptr; 
-    wxStaticLine* line_ = nullptr;
-    wxStaticText* static_desc_ = nullptr;
-    wxStaticText* static_from_ = nullptr;
-    wxStaticText* static_lang_ = nullptr;
-    wxStaticText* static_page_ = nullptr;
-    wxStaticText* static_to_ = nullptr;
-    wxTextCtrl* text_desc_ = nullptr;
-    bool example_ = false, external_ = false, forwarded_ = false, id_ = false, internal_ = false, local_ = false, once_ = false, revoke_ = false, special_ = false;
+{   check_t example_check_, external_check_, forwarded_check_, id_check_, internal_check_, local_check_, once_check_, revoke_check_, special_check_;
+    element_choice_t element_choice_;
+    grid_t check_grid_;
+    html_version_t from_html_, to_html_;
+    label_text_t desc_text_;
+    line_t l_;
+    lingo_t lingo_;
     listedit_manager required_ = listedit_manager (button_req_add, button_req_erase, button_req_rename, file_req_name, list_req_ext, text_req_ext);
+    text_drop_t < choice_t > type_choice_;
+    bool example_ = false, external_ = false, forwarded_ = false, id_ = false, internal_ = false, local_ = false, once_ = false, revoke_ = false, special_ = false;
+    ::std::string def_lang_ = "en";
     req_vt vreq_;
+    int sel_ = -1;
+    void fill_require (const int sel = 0);
+    void select_require (const int sel = 0);
+    void externaliser ();
+    void internaliser ();
+    required_t gather_require (int& sel) const;
     DECLARE_CLASS (link_t)
     DECLARE_EVENT_TABLE ()
 public:
     DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (link_t);
     explicit link_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = LINK_CAPTION);
-    bool invalid () const noexcept { return (panel_ == nullptr) || (grid_check_ == nullptr) || (grid_desc_ == nullptr) || (grid_req_ == nullptr); }
+    bool invalid () const noexcept { return l_.invalid (); }
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = LINK_CAPTION);
     void CreateControls ();
@@ -94,6 +86,9 @@ public:
     void local (const bool b) noexcept { local_ = b; }
     bool once () const noexcept { return once_; }
     void once (const bool b) noexcept { once_ = b; }
+    const req_vt& required () const noexcept { return vreq_; }
+    req_vt& required () noexcept { return vreq_; }
+    void required (const req_vt& rq) noexcept { vreq_ = rq; }
     bool revoke () const noexcept { return revoke_; }
     void revoke (const bool b) noexcept { revoke_ = b; }
     bool special () const noexcept { return special_; }

@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.24)
 set (FULLNAME "Static-Site-Checker")
-set (VER 0.2.31)
+set (VER 0.2.32)
 project (ssc VERSION ${VER} DESCRIPTION ${FULLNAME} LANGUAGES CXX HOMEPAGE_URL "https://dylanharris.org/ssc/")
 message (NOTICE "preparing " ${FULLNAME} " ${VER}" )
 
@@ -201,16 +201,15 @@ set (SAUCE
             ${S}/webpage/vtt.cpp
     )
 set (GOOEY
-        ${H}/gui/gui-app.h ${H}/gui/gui-css.h ${H}/gui/gui-ctrl.h ${H}/gui/gui-ctrls.h ${H}/gui/gui-dialogue.h ${H}/gui/gui-data.h ${H}/gui/gui-frame.h
-            ${H}/gui/gui-general.h ${H}/gui/gui-html.h ${H}/gui/gui-icon.h ${H}/gui/gui-link.h ${H}/gui/gui-listedit.h ${H}/gui/gui-menu.h
-            ${H}/gui/gui-nits.h ${H}/gui/gui-ontology.h ${H}/gui/gui-output.h ${H}/gui/gui-screen.h ${H}/gui/gui-shadow.h ${H}/gui/gui-site.h
-            ${H}/gui/gui-snippet.h ${H}/gui/gui-spell.h ${H}/gui/gui-spex.h ${H}/gui/gui-ssi.h ${H}/gui/gui-stats.h ${H}/gui/gui-summarise.h
-            ${H}/gui/gui-validation.h ${H}/gui/gui-welcome.h
-        ${S}/gui/gui-app.cpp ${S}/gui/gui-css.cpp ${S}/gui/gui-ctrl.cpp ${S}/gui/gui-ctrls.cpp ${S}/gui/gui-data.cpp ${S}/gui/gui-dialogue.cpp
-            ${S}/gui/gui-frame.cpp ${S}/gui/gui-general.cpp ${S}/gui/gui-html.cpp ${S}/gui/gui-icon.cpp ${S}/gui/gui-link.cpp ${S}/gui/gui-listedit.cpp
-            ${S}/gui/gui-menu.cpp ${S}/gui/gui-nits.cpp ${S}/gui/gui-ontology.cpp ${S}/gui/gui-output.cpp ${S}/gui/gui-screen.cpp ${S}/gui/gui-shadow.cpp
-            ${S}/gui/gui-site.cpp ${S}/gui/gui-snippet.cpp ${S}/gui/gui-spell.cpp ${S}/gui/gui-snippet.cpp ${S}/gui/gui-spex.cpp ${S}/gui/gui-ssi.cpp
-            ${S}/gui/gui-stats.cpp ${S}/gui/gui-summarise.cpp ${S}/gui/gui-validation.cpp ${S}/gui/gui-welcome.cpp
+        ${H}/gui/gui-app.h ${H}/gui/gui-css.h ${H}/gui/gui-ctrl.h ${H}/gui/gui-ctrls.h ${H}/gui/gui-dialogue.h ${H}/gui/gui-frame.h ${H}/gui/gui-general.h
+			${H}/gui/gui-html.h ${H}/gui/gui-icon.h ${H}/gui/gui-link.h ${H}/gui/gui-listedit.h ${H}/gui/gui-menu.h ${H}/gui/gui-nits.h ${H}/gui/gui-ontology.h
+			${H}/gui/gui-output.h ${H}/gui/gui-screen.h ${H}/gui/gui-shadow.h ${H}/gui/gui-site.h ${H}/gui/gui-snippet.h ${H}/gui/gui-spell.h ${H}/gui/gui-spex.h
+			${H}/gui/gui-ssi.h ${H}/gui/gui-stats.h ${H}/gui/gui-summarise.h ${H}/gui/gui-validation.h ${H}/gui/gui-welcome.h
+        ${S}/gui/gui-app.cpp ${S}/gui/gui-css.cpp ${S}/gui/gui-ctrl.cpp ${S}/gui/gui-ctrls.cpp ${S}/gui/gui-dialogue.cpp ${S}/gui/gui-frame.cpp
+			${S}/gui/gui-general.cpp ${S}/gui/gui-html.cpp ${S}/gui/gui-icon.cpp ${S}/gui/gui-link.cpp ${S}/gui/gui-listedit.cpp ${S}/gui/gui-menu.cpp
+			${S}/gui/gui-nits.cpp ${S}/gui/gui-ontology.cpp ${S}/gui/gui-output.cpp ${S}/gui/gui-screen.cpp ${S}/gui/gui-shadow.cpp ${S}/gui/gui-site.cpp
+			${S}/gui/gui-snippet.cpp ${S}/gui/gui-spell.cpp ${S}/gui/gui-snippet.cpp ${S}/gui/gui-spex.cpp ${S}/gui/gui-ssi.cpp ${S}/gui/gui-stats.cpp
+			${S}/gui/gui-summarise.cpp ${S}/gui/gui-validation.cpp ${S}/gui/gui-welcome.cpp
     )
 
 set (PREHEAD ${H}/main/include.h)

@@ -86,6 +86,9 @@ public:
     static ::std::size_t value_count ()
     {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
         return table_ -> value_count (); }
+    static vstr_t value_vector (const V& v)
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> value_vector (v); }
     static ::std::string base_name (const VALUE x)
     {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
         return table_ -> base_name (x); }

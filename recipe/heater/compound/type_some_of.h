@@ -244,3 +244,6 @@ template < e_type T, class SZ, int F, int MIN, int MAX, e_type... A > struct typ
 
 template < e_type T, class SZ, int MIN, int MAX, e_type... A > struct type_some_of : type_some_flagged_of < T, SZ, BS_FN, MIN, MAX, A... >
 {   using type_some_flagged_of < T, SZ, BS_FN, MIN, MAX, A... > :: type_some_flagged_of; };
+
+template < e_type T, class SZ, e_type... A > struct type_one_or_more : type_some_of < T, SZ, 1, 0, A... >
+{   using type_some_of < T, SZ, 1, 0, A... > :: type_some_of; };

@@ -26,6 +26,54 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/arguments.h"
 #include "parser/text.h"
 
+struct type_cvf
+{   e_type type_ = t_error;
+    e_css_val_fn cvf_ = cvf_none; };
+
+type_cvf a_tc [] =
+{   { t_css_fn_anchor, cvf_anchor },
+    { t_css_fn_anchor_size, cvf_anchor_size },
+    { t_css_fn_annotation, cvf_annotation },
+    { t_css_fn_attr, cvf_attr },
+    { t_css_fn_calc, cvf_calc },
+    { t_css_fn_calc_size, cvf_calc_size },
+    { t_css_fn_character_variant, cvf_character_variant },
+    { t_css_fn_counter, cvf_counter },
+    { t_css_fn_counters, cvf_counters },
+    { t_css_fn_cross_fade, cvf_cross_fade },
+    { t_css_fn_cross_fade, cvf_cross_fade },
+    { t_css_fn_cubic_bezier, cvf_cubic_bezier },
+    { t_css_fn_custom, cvf_custom },
+    { t_css_fn_dylm, cvf_dynamic_range_limit_mix },
+    { t_css_fn_element, cvf_element },
+    { t_css_fn_fit_content, cvf_fit_content },
+    { t_css_fn_if_media, cvf_media },
+    { t_css_fn_if_style, cvf_style },
+    { t_css_fn_if_supports, cvf_supports },
+    { t_css_fn_image, cvf_image },
+    { t_css_fn_image_set, cvf_image_set },
+    { t_css_fn_inset, cvf_inset },
+    { t_css_fn_linear, cvf_linear },
+    { t_css_fn_moz_image_rect, cvf_moz_image_rect },
+    { t_css_fn_ornaments, cvf_ornaments },
+    { t_css_fn_param, cvf_param },
+    { t_css_fn_rect, cvf_rect },
+    { t_css_fn_round_t, cvf_round },
+    { t_css_fn_snap_block, cvf_snap_block },
+    { t_css_fn_snap_inline, cvf_snap_inline },
+    { t_css_fn_steps, cvf_steps },
+    { t_css_fn_styleset, cvf_styleset },
+    { t_css_fn_stylistic, cvf_stylistic },
+    { t_css_fn_superellipse, cvf_superellipse },
+    { t_css_fn_swash, cvf_swash },
+    { t_css_fn_type, cvf_type },
+    { t_css_fn_var, cvf_var },
+    { t_css_fn_xywh, cvf_xywh },
+    { t_error, cvf_none } };
+
+typedef ssc_map < e_css_val_fn, e_type > m_cvf_t;
+static m_cvf_t mct;
+
 bool process_css (nitpick& nits, const html_version& v, const ::std::string& s, element* e)
 {   try
     {   if (e == nullptr)
@@ -227,52 +275,6 @@ e_status set_css_unicode_wildcard_value (nitpick& nits, const html_version& , co
         else return s_good; }
     return s_invalid; }
 
-struct type_cvf
-{   e_type type_ = t_error;
-    e_css_val_fn cvf_ = cvf_none; };
-
-type_cvf a_tc [] =
-{   { t_css_fn_anchor, cvf_anchor },
-    { t_css_fn_anchor_size, cvf_anchor_size },
-    { t_css_fn_annotation, cvf_annotation },
-    { t_css_fn_attr, cvf_attr },
-    { t_css_fn_calc, cvf_calc },
-    { t_css_fn_calc_size, cvf_calc_size },
-    { t_css_fn_character_variant, cvf_character_variant },
-    { t_css_fn_counter, cvf_counter },
-    { t_css_fn_counters, cvf_counters },
-    { t_css_fn_cross_fade, cvf_cross_fade },
-    { t_css_fn_cross_fade, cvf_cross_fade },
-    { t_css_fn_cubic_bezier, cvf_cubic_bezier },
-    { t_css_fn_custom, cvf_custom },
-    { t_css_fn_dylm, cvf_dynamic_range_limit_mix },
-    { t_css_fn_element, cvf_element },
-    { t_css_fn_fit_content, cvf_fit_content },
-    { t_css_fn_if_media, cvf_media },
-    { t_css_fn_if_style, cvf_style },
-    { t_css_fn_if_supports, cvf_supports },
-    { t_css_fn_image, cvf_image },
-    { t_css_fn_image_set, cvf_image_set },
-    { t_css_fn_inset, cvf_inset },
-    { t_css_fn_linear, cvf_linear },
-    { t_css_fn_moz_image_rect, cvf_moz_image_rect },
-    { t_css_fn_ornaments, cvf_ornaments },
-    { t_css_fn_param, cvf_param },
-    { t_css_fn_rect, cvf_rect },
-    { t_css_fn_round_t, cvf_round },
-    { t_css_fn_steps, cvf_steps },
-    { t_css_fn_styleset, cvf_styleset },
-    { t_css_fn_stylistic, cvf_stylistic },
-    { t_css_fn_superellipse, cvf_superellipse },
-    { t_css_fn_swash, cvf_swash },
-    { t_css_fn_type, cvf_type },
-    { t_css_fn_var, cvf_var },
-    { t_css_fn_xywh, cvf_xywh },
-    { t_error, cvf_none } };
-
-typedef ssc_map < e_css_val_fn, e_type > m_cvf_t;
-static m_cvf_t mct;
-
 template < e_type TYPE, e_type... TYPES > struct fn_by_type : public fn_by_type < TYPES... >
 {   static e_status check (const e_type e, nitpick& nits, const html_version& v, const ::std::string& s)
     {   if (e != TYPE) return fn_by_type < TYPES... > :: check (e, nits, v, s);
@@ -391,7 +393,7 @@ e_status set_fn_calc_args_value (nitpick& nits, const html_version& v, const ::s
         st = s_invalid; }
     return st; }
 
-e_status set_fn_trans_args_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box)
+e_status set_fn_trans_args_value (nitpick& , const html_version& , const ::std::string& s, element* box)
 {   if (s.empty ()) return s_good;
     if (! test_esii (sii_fn, s))
     {   VERIFY_NOT_NULL (box, __FILE__, __LINE__);

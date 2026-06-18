@@ -147,7 +147,8 @@ template < > struct type_master < t_auto_focus_scroll > : three_value < t_auto_f
 { using three_value < t_auto_focus_scroll, e_auto_focus_scroll, sz_auto, sz_focus, sz_scroll > :: three_value; };
 
 template < > struct type_master < t_auto_hidden_visible > : three_value < t_auto_hidden_visible, e_auto_hidden_visible, sz_auto, sz_hidden, sz_visible >
-{ using three_value < t_auto_hidden_visible, e_auto_hidden_visible, sz_auto, sz_hidden, sz_visible > :: three_value; };
+{   static e_animation_type animation_type () noexcept { return at_paint; }
+    using three_value < t_auto_hidden_visible, e_auto_hidden_visible, sz_auto, sz_hidden, sz_visible > :: three_value; };
 
 template < > struct type_master < t_auto_manual_none > : three_value < t_auto_manual_none, e_auto_manual_none, sz_auto, sz_manual, sz_none >
 { using three_value < t_auto_manual_none, e_auto_manual_none, sz_auto, sz_manual, sz_none > :: three_value; };
