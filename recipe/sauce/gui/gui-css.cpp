@@ -359,5 +359,4 @@ void css_t :: dataview_fake_enable (const bool enable)
     else
     {   col_mod_ -> SetTitle (" ");
         col_ver_ -> SetTitle (" "); } }
-
 #endif // WX

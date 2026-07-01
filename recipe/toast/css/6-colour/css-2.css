@@ -1,0 +1,15 @@
+﻿.boo
+{
+    background-color: contrast-color(wheat tbd-bg wcag2(aa), bisque, darkgoldenrod, olive, sienna, darkgreen, maroon);
+    background-color: contrast-color(wheat tbd-bg wcag2(5.8), bisque, darkgoldenrod, olive, sienna, darkgreen, maroon);
+    background-color: contrast-color(wheat tbd-bg wcag2(AA), bisque, darkgoldenrod, olive);
+    --myAccent: #b22222;
+    color: contrast-color(wheat tbd-bg wcag2, tan, sienna, var(--myAccent), #d2691e);
+    color: color(display-p3 0.38 0.11 0.05);
+}
+
+.foo {
+  --bg: hsl(200 50% 80%);
+  --purple-in-hsl: hsl(300 100% 25%);
+  color: contrast-color(var(--bg) tbd-fg wcag2, hsl(200 83% 23%), purple, var(--purple-in-hsl));
+}

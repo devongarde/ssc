@@ -61,8 +61,8 @@ template < > struct type_master < t_2string > : type_exactly_n < t_2string, sz_s
 template < > struct type_master < t_4string > : type_exactly_n < t_4string, sz_space_char, t_text, 4 >
 { using type_exactly_n < t_4string, sz_space_char, t_text, 4 > :: type_exactly_n; };
 
-template < > struct type_master < t_4string_ni > : one_of_three_or_string < t_4string_ni, t_4string, t_2string, t_css_inherit, sz_none >
-{ using one_of_three_or_string < t_4string_ni, t_4string, t_2string, t_css_inherit, sz_none > :: one_of_three_or_string; };
+template < > struct type_master < t_4string_ni > : any_type_or_any_string < t_4string_ni, t_4string, t_2string, t_css_inherit, sz_auto, sz_none, sz_match_parent >
+{ using any_type_or_any_string < t_4string_ni, t_4string, t_2string, t_css_inherit, sz_auto, sz_none, sz_match_parent > :: any_type_or_any_string; };
 
 template < > struct type_master < t_bandwidth > : type_or_string < t_bandwidth, t_real, sz_auto >
 { using type_or_string < t_bandwidth, t_real, sz_auto > :: type_or_string; };

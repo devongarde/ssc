@@ -101,7 +101,7 @@ void statement::parse_counter_style (arguments& args, nitpick& nits, const int f
 void statement::parse_container (arguments& args, nitpick& nits, const int from, const int to)
 {   int i = next_non_whitespace (args.t_, from, to); 
     if (context.html_ver ().css_module (c_containment) < 5)
-        nits.pick (nit_css_version, es_error, ec_css, "@ccontainer requires CSS Contain 5");
+        nits.pick (nit_css_version, es_error, ec_css, "@container requires CSS Contain 5");
     else if (i < 0)
         nits.pick (nit_container, es_error, ec_css, "expecting container details after @container");
     else
@@ -936,6 +936,179 @@ void statement::parse_namespace (arguments& args, nitpick& nits, const int from,
             VERIFY_NOT_NULL (args.ns_, __FILE__, __LINE__);
             args.ns_ -> declare (nits, args.v_, empty_namespace_names, prefix, name); } } }
 
+void statement::parse_navigation (arguments& args, nitpick& nits, const int from, const int to)
+{   int i = next_non_whitespace (args.t_, from, to); 
+    if (context.html_ver ().css_module (c_route) < 3)
+        nits.pick (nit_css_version, es_error, ec_css, "@navigation requires CSS route 3");
+    else if (i < 0)
+        nits.pick (nit_container, es_error, ec_css, "expecting conditions details after @navigation");
+    else
+    {   int depth = 0, fn = 0;  
+        e_token prev = ct_error;
+        bool more = true, route = false, routed = false;
+        e_css_navigation_keyword nk = cnk_context, twas = cnk_context;
+        for (int j = i; more && (j > 0); j = next_non_whitespace (args.t_, j, to))
+        {   switch (args.t_.at (j).t_)
+            {   case ct_round_brac :
+                    switch (prev)
+                    {   case ct_colon :
+                            nits.pick (nit_route, es_error, ec_css, "missing argument following ':'");
+                            break;
+                        case ct_round_ket :
+                            nits.pick (nit_route, es_error, ec_css, "syntax errror, ')' then '('");
+                            break;
+                        case ct_keyword :
+                        case ct_identifier :
+                            switch (twas)
+                            {   case cnk_and :
+                                case cnk_or :
+                                case cnk_url :
+                                case cnk_url_pattern :
+                                    break;
+                                default :
+                                    nits.pick (nit_route, es_error, ec_css, "missing argument following ", type_master < t_css_navigation_keyword > :: name (twas), " (a)");
+                                    break; }
+                            break;
+                        default :
+                            break; }
+                    ++depth;
+                    break;
+                case ct_round_ket :
+                    if (depth <= 0)
+                    {   nits.pick (nit_route, es_error, ec_css, "unexpected ket (')')");
+                        break; }
+                    switch (prev)
+                    {   case ct_colon :
+                            nits.pick (nit_route, es_error, ec_css, "missing argument following ':'");
+                            break;
+                        case ct_keyword :
+                        case ct_identifier :
+                            switch (twas)
+                            {   case cnk_and :
+                                case cnk_at :
+                                case cnk_back :
+                                case cnk_committed :
+                                case cnk_forward :
+                                case cnk_from :
+                                case cnk_reload :
+                                case cnk_traverse :
+                                case cnk_loading :
+                                case cnk_ready :
+                                case cnk_to :
+                                case cnk_with :
+                                    break;
+                                default :
+                                    nits.pick (nit_route, es_error, ec_css, "missing argument following ", type_master < t_css_navigation_keyword > :: name (twas), " (b)");
+                                    break; }
+                            break;
+                        default :
+                            break; }
+                    depth -= 1;
+                    if (depth <= fn) fn = 0;
+                    break;
+                case ct_curly_brac :
+                    if (depth > 0) nits.pick (nit_route, es_error, ec_css, "missing ket/s (')')");
+                    i = j;
+                    more = false;
+                    continue;
+                case ct_keyword :
+                case ct_identifier :
+                case ct_string :
+                    if ((fn > 0) && (fn < depth)) break;
+                    if ((args.t_.at (j).val_.size () > 2) && (args.t_.at (j).val_.substr (0, 2) == "--"))
+                    {   if ((prev != ct_keyword) && (prev != ct_colon))
+                            nits.pick (nit_route, es_error, ec_css, quote (args.t_.at (j).val_), ": unexpected (missing ':'?)");
+                        else switch (twas)
+                        {   case cnk_and :
+                            case cnk_at :
+                            case cnk_from :
+                            case cnk_to :
+                            case cnk_with :
+                                break;
+                            case cnk_between :
+                                route = true;
+                                break;
+                            default :
+                                nits.pick (nit_route, es_error, ec_css, quote (args.t_.at (j).val_), ": unexpected here");
+                                break; }
+                        if (! args.has (cic_route, args.t_.at (j).val_))
+                            nits.pick (nit_route, es_error, ec_css, quote (args.t_.at (j).val_), ": unknown @route name"); }
+                    else
+                    {   nk = examine_value < t_css_navigation_keyword > (nits, args.v_, args.t_.at (j).val_);
+                        switch (nk)
+                        {   case cnk_not :
+                                if ((depth > 0) && (prev != ct_round_brac))
+                                    nits.pick (nit_route, es_error, ec_css, quote (args.t_.at (j).val_), ": unexpected (a)");
+                                break;
+                            case cnk_and :
+                                if (routed) break;
+                                FALLTHROUGH;
+                            case cnk_or :
+                                if (prev != ct_round_ket)
+                                    nits.pick (nit_route, es_error, ec_css, quote (args.t_.at (j).val_), ": unexpected (b)");
+                                break;
+                            case cnk_at :
+                            case cnk_between :
+                            case cnk_history :
+                            case cnk_phase :
+                            case cnk_from :
+                            case cnk_to :
+                            case cnk_with :
+                                if ((depth == 0) || (prev != ct_round_brac))
+                                    nits.pick (nit_route, es_error, ec_css, quote (args.t_.at (j).val_), ": unexpected (c)");
+                                break;
+                            case cnk_back :
+                            case cnk_forward :
+                            case cnk_reload :
+                            case cnk_traverse :
+                                if ((depth == 0) || (prev != ct_colon) || (twas != cnk_history))
+                                    nits.pick (nit_route, es_error, ec_css, quote (args.t_.at (j).val_), ": unexpected; it must follow 'history :'");
+                                break;
+                            case cnk_committed :
+                            case cnk_loading :
+                            case cnk_ready :
+                                if ((depth == 0) || (prev != ct_colon) || (twas != cnk_phase))
+                                    nits.pick (nit_route, es_error, ec_css, quote (args.t_.at (j).val_), ": unexpected; it must follow 'phase :'");
+                                break;
+                            case cnk_url :
+                            case cnk_url_pattern :
+                                if ((depth == 0) || (prev != ct_colon) || ((twas != cnk_at) && (twas != cnk_from) && (twas != cnk_to) && (twas != cnk_with)))
+                                    nits.pick (nit_route, es_error, ec_css, quote (args.t_.at (j).val_), ": unexpected; it must follow 'at/with/from/to :'");
+                                fn = depth;
+                                break;
+                            default :
+                                break; } }
+                    twas = nk;
+                    break;
+                case ct_colon :
+                    if ((prev != ct_keyword) && (prev != ct_identifier) && (prev != ct_string))
+                        nits.pick (nit_route, es_error, ec_css, ": unexpected colon (':')");
+                    else switch (twas)
+                    {   case cnk_at :
+                        case cnk_between :
+                        case cnk_history :
+                        case cnk_phase :
+                        case cnk_from :
+                        case cnk_to :
+                        case cnk_with :
+                            break;
+                        default :
+                            nits.pick (nit_route, es_error, ec_css, ": unexpected colon (':')");
+                            break; }
+                    break;
+                case ct_root :
+                case ct_error :
+                case ct_eof :
+                    more = false;
+                    break;
+                default :
+                    if (depth == 0)
+                        nits.pick (nit_route, es_error, ec_css, quote (tkn_rpt (args.t_.at (j))), ": unexpected (38)");
+                    break; }
+            routed = route;
+            route = false;
+            prev = args.t_.at (j).t_; } } }
+
 void statement::parse_page (arguments& args, nitpick& nits, const int from, const int to)
 {   if (context.html_ver ().css_version () == css_1)
         nits.pick (nit_css_dubious, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, "@page was undefined in the CSS 1 specification, although it did get a mention");
@@ -1003,6 +1176,31 @@ void statement::parse_position_try (arguments& args, nitpick& nits, const int fr
             {   PRESUME (args.t_.at (i).child_ > 0, __FILE__, __LINE__);
                 fiddlesticks < statement > f (&args.st_, this);
                 dsc_.parse (args, css_position_try, args.t_.at (i).child_); } } } }
+
+void statement::parse_route (arguments& args, nitpick& nits, const int from, const int to)
+{   int i = next_non_whitespace (args.t_, from, to); 
+    VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
+    if (context.html_ver ().css_module (c_route) < 3)
+        nits.pick (nit_css_version, es_error, ec_css, "@route requires CSS Route");
+    else if ((i < 0) || ((args.t_.at (i).t_ != ct_string) && (args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_keyword)))
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting an identifier after @route");
+    else if ((to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting { descriptor... } after @route");
+    else
+    {   ::std::string name (args.t_.at (i).val_);
+        if ((name.size () < 3) || (name.substr (0, 2) != "--"))
+            nits.pick (nit_route, es_error, ec_css, "@route: a route name (", quote (name), ") must start with '--'");
+        else
+        {   VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
+            if (args.dst_ -> has (cic_route, name))
+                nits.pick (nit_route, es_info, ec_css, "@route: ", quote (name), " is defined more than once");
+            else
+                args.dst_ -> dcl (cic_route, name);
+            i = next_non_whitespace (args.t_, i, to);
+            if ((i < 0) || (to < 0) || (args.t_.at (to).t_ != ct_curly_brac)) return;
+            PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
+            fiddlesticks < statement > f (&args.st_, this);
+            dsc_.parse (args, css_route, args.t_.at (to).child_); } } }
 
 void statement::parse_scope (arguments& args, nitpick& nits, const int from, const int to)
 {   if ((context.css_module (c_cascade_inheritance) < 6) && (context.css_module (c_scoping) < 3))
@@ -1150,7 +1348,7 @@ void statement::parse_viewport (arguments& args, nitpick& nits, const int from, 
             nits.pick (nit_css_scope, es_error, ec_css, "@viewport requires { ... }");
         else
         {   fiddlesticks < statement > f (&args.st_, this);
-            dsc_.parse (args, css_counter_style, args.t_.at (ket).child_); } } }
+            dsc_.parse (args, css_viewport, args.t_.at (ket).child_); } } }
 
 void statement::parse_when (arguments& args, nitpick& nits, const int from, const int to)
 {   if (args.v_.css_module (c_conditional_rule) < 5)
@@ -1279,6 +1477,9 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_namespace :
                 parse_namespace (args, nits, b, to);
                 break;
+            case css_navigation :
+                parse_navigation (args, nits, b, to);
+                break;
             case css_page :
                 parse_page (args, nits, b, to);
                 break;
@@ -1286,6 +1487,9 @@ void statement::parse (arguments& args, const int from, const int to)
                 parse_position_try (args, nits, b, to);
                 break;
             case css_property :
+                break;
+            case css_route :
+                parse_route (args, nits, b, to);
                 break;
             case css_scope :
                 parse_scope (args, nits, b, to);
@@ -1419,6 +1623,9 @@ void statement::accumulate (stats_t* s) const
         case css_namespace :
             res = "@namespace;";
             break;
+        case css_navigation :
+            res = "@navigation;";
+            break;
         case css_ornaments :
             res = "@ornaments ();";
             break;
@@ -1436,6 +1643,9 @@ void statement::accumulate (stats_t* s) const
             break;
         case css_right_top :
             res = "@right-top ();";
+            break;
+        case css_route :
+            res = "@route;";
             break;
         case css_supports :
             res = "@supports;";

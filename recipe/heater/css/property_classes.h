@@ -48,6 +48,7 @@ typedef typed_property < t_css_anim_iter_count, ec_animation_iteration_count > p
 typedef typed_property < t_css_anim_name, ec_animation_name > prop_animation_name;
 typedef typed_property < t_css_anim_play_states, ec_animation_play_state > prop_animation_play_state;
 typedef typed_property < t_css_anim_range_2s, ec_animation_range > prop_animation_range;
+typedef typed_property < t_generic, ec_animation_range_centre > prop_animation_range_centre;
 typedef typed_property < t_css_anim_ranges, ec_animation_range_end > prop_animation_range_end;
 typedef typed_property < t_css_anim_ranges, ec_animation_range_start > prop_animation_range_start;
 typedef typed_property < t_css_anim_timeline, ec_animation_timeline > prop_animation_timeline;
@@ -66,12 +67,14 @@ typedef typed_property < t_visibility10, ec_backface_visibility > prop_backface_
 typedef typed_property < t_css_background, ec_background > prop_background;
 typedef typed_property < t_css_background_attachments, ec_background_attachment > prop_background_attachment;
 typedef typed_property < t_css_blend_modes, ec_background_blend_mode > prop_background_blend_mode;
-typedef typed_property < t_css_background_boxes, ec_background_clip > prop_background_clip;
+typedef typed_property < t_css_background_clips, ec_background_clip > prop_background_clip;
 typedef typed_property < t_css_col, ec_background_colour > prop_background_colour;
 typedef typed_property < t_css_image_background, ec_background_image > prop_background_image;
 typedef typed_property < t_generic, ec_background_image_transform > prop_background_image_transform;
 typedef typed_property < t_css_background_boxes, ec_background_origin > prop_background_origin;
 typedef typed_property < t_css_background_position_3s, ec_background_position > prop_background_position;
+typedef typed_property < t_css_background_position_rels, ec_background_position_block > prop_background_position_block;
+typedef typed_property < t_css_background_position_rels, ec_background_position_inline > prop_background_position_inline;
 typedef typed_property < t_css_background_position_3, ec_background_position_x > prop_background_position_x;
 typedef typed_property < t_css_background_position_3, ec_background_position_y > prop_background_position_y;
 typedef typed_property < t_generic, ec_background_quantity > prop_background_quantity;
@@ -87,6 +90,7 @@ typedef typed_property < t_real, ec_baseline > prop_baseline;
 typedef typed_property < t_svg_baselineshift, ec_baseline_shift > prop_baseline_shift;
 typedef typed_property < t_auto_first_last, ec_baseline_source > prop_baseline_source;
 typedef typed_property < t_css_base_palette, ec_base_palette > prop_base_palette;
+typedef typed_property < t_css_descriptor, ec_base_url > prop_base_url;
 typedef typed_property < t_generic, ec_bbox > prop_bbox;
 typedef typed_property < t_text_na, ec_block_ellipsis > prop_block_ellipsis;
 typedef typed_property < t_generic, ec_bikeshedding > prop_bikeshedding;
@@ -374,7 +378,9 @@ typedef typed_property < t_css_grid_template, ec_grid_template_columns > prop_gr
 typedef typed_property < t_css_grid_template, ec_grid_template_rows > prop_grid_template_rows;
 
 typedef typed_property < t_css_hang_punct_n, ec_hanging_punctuation > prop_hanging_punctuation;
+typedef typed_property < t_css_descriptor, ec_hash > prop_hash;
 typedef typed_property < t_css_length_amm, ec_height > prop_height;
+typedef typed_property < t_css_descriptor, ec_hostname > prop_hostname;
 typedef typed_property < t_text_a, ec_hyphenate_character > prop_hyphenate_character;
 typedef typed_property < t_integers_a, ec_hyphenate_limit_chars > prop_hyphenate_limit_chars;
 typedef typed_property < t_css_hll, ec_hyphenate_limit_last > prop_hyphenate_limit_last;
@@ -563,6 +569,8 @@ typedef typed_property < t_css_aai, ec_page_break_inside > prop_page_break_insid
 typedef typed_property < t_paint_orders, ec_paint_order > prop_paint_order;
 typedef typed_property < t_10_int, ec_panose_1 > prop_panose_1;
 typedef typed_property < t_css_length_inf_n, ec_path_length > prop_path_length;
+typedef typed_property < t_css_descriptor, ec_pathname > prop_pathname;
+typedef typed_property < t_css_descriptor, ec_pattern > prop_pattern;
 typedef typed_property < t_css_pauses, ec_pause > prop_pause;
 typedef typed_property < t_css_pause, ec_pause_after > prop_pause_after;
 typedef typed_property < t_css_pause, ec_pause_before > prop_pause_before;
@@ -575,6 +583,10 @@ typedef typed_property < t_css_place_items, ec_place_items > prop_place_items;
 typedef typed_property < t_css_place_self, ec_place_self > prop_place_self;
 typedef typed_property < t_css_play_during, ec_play_during > prop_play_during;
 typedef typed_property < t_pointer_events, ec_pointer_events > prop_pointer_events;
+typedef typed_property < t_css_pointer_timelines, ec_pointer_timeline > prop_pointer_timeline;
+typedef typed_property < t_bixies, ec_pointer_timeline_axis > prop_pointer_timeline_axis;
+typedef typed_property < t_custom_ids_n, ec_pointer_timeline_name > prop_pointer_timeline_name;
+typedef typed_property < t_css_descriptor, ec_port > prop_port;
 typedef typed_property < t_css_position, ec_position > prop_position;
 typedef typed_property < t_css_anchor_idref_na, ec_position_anchor > prop_position_anchor;
 typedef typed_property < t_css_position_area_n, ec_position_area > prop_position_area;
@@ -587,6 +599,7 @@ typedef typed_property < t_css_position_visibility, ec_position_visibility > pro
 typedef typed_property < t_text, ec_prefix > prop_prefix;
 typedef typed_property < t_integer_is, ec_presentation_level > prop_presentation_level;
 typedef typed_property < t_economy_exact, ec_print_colour_adjust > prop_print_colour_adjust;
+typedef typed_property < t_css_descriptor, ec_protocol > prop_protocol;
 
 typedef typed_property < t_css_quotes_3, ec_quotes > prop_quotes;
 
@@ -650,6 +663,7 @@ typedef typed_property < t_css_stn_n, ec_scroll_timeline_name > prop_scroll_time
 typedef typed_property < t_css_cols_2_a, ec_scrollbar_colour > prop_scrollbar_colour;
 typedef typed_property < t_css_scrollbar_gutter, ec_scrollbar_gutter > prop_scrollbar_gutter;
 typedef typed_property < t_auto_none_thin, ec_scrollbar_width > prop_scrollbar_width;
+typedef typed_property < t_css_descriptor, ec_search > prop_search;
 typedef typed_property < t_zero_to_one, ec_shape_image_threshold > prop_shape_image_threshold;
 typedef typed_property < t_css_shape_inside, ec_shape_inside > prop_shape_inside;
 typedef typed_property < t_css_length_percent, ec_shape_margin > prop_shape_margin;
@@ -2237,6 +2251,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_animation_name, \
     prop_animation_play_state, \
     prop_animation_range, \
+    prop_animation_range_centre, \
     prop_animation_range_end, \
     prop_animation_range_start, \
     prop_animation_timeline, \
@@ -2259,6 +2274,8 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_background_image, \
     prop_background_origin, \
     prop_background_position, \
+    prop_background_position_block, \
+    prop_background_position_inline, \
     prop_background_position_x, \
     prop_background_position_y, \
     prop_background_repeat, \
@@ -2275,6 +2292,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_baseline_shift, \
     prop_baseline_source, \
     prop_base_palette, \
+    prop_base_url, \
     prop_bbox, \
     prop_bikeshedding, \
     prop_bleed, \
@@ -2561,7 +2579,9 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_grid_template_columns, \
     prop_grid_template_rows, \
     prop_hanging_punctuation, \
+    prop_hash, \
     prop_height, \
+    prop_hostname, \
     prop_hyphenate_character, \
     prop_hyphenate_limit_chars, \
     prop_hyphenate_limit_last, \
@@ -2742,6 +2762,8 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_paint_order, \
     prop_panose_1, \
     prop_path_length, \
+    prop_pathname, \
+    prop_pattern, \
     prop_pause, \
     prop_pause_after, \
     prop_pause_before, \
@@ -2754,6 +2776,10 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_place_self, \
     prop_play_during, \
     prop_pointer_events, \
+    prop_pointer_timeline, \
+    prop_pointer_timeline_axis, \
+    prop_pointer_timeline_name, \
+    prop_port, \
     prop_position, \
     prop_position_anchor, \
     prop_position_area, \
@@ -2766,6 +2792,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_prefix, \
     prop_presentation_level, \
     prop_print_colour_adjust, \
+    prop_protocol, \
     prop_quotes, \
     prop_r, \
     prop_range, \
@@ -2826,6 +2853,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_scrollbar_colour, \
     prop_scrollbar_gutter, \
     prop_scrollbar_width, \
+    prop_search, \
     prop_shape_image_threshold, \
     prop_shape_inside, \
     prop_shape_margin, \

@@ -28,134 +28,123 @@ bool listedit_manager :: concoct (wxWindow* parent, wxBoxSizer* box, const char*
 {	VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
     VERIFY_NOT_NULL (box, __FILE__, __LINE__); 
     VERIFY_NOT_NULL (desc, __FILE__, __LINE__);
+    const wxSize butt (30, -1);
+    const ::std::string d ((def == nullptr) ? "" : def);
     has_file_ = file;
     has_text_ = comma || ! has_file_;
-    if (line)
-    {	line_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
-        if (line_ != nullptr)
-            box -> Add (line_, 0, wxEXPAND | wxALL, 5); }
-    box_ext_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
-    if (box_ext_ != nullptr)
-    {   box_ext_bloc_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxVERTICAL));
-        if (box_ext_bloc_ != nullptr)
-        {   stat_ext_ = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, desc, wxDefaultPosition, wxDefaultSize, 0));
-            if (stat_ext_ != nullptr)
-            {   stat_ext_ -> Wrap (-1);
-                box_ext_bloc_ -> Add (stat_ext_, 1, wxALL, 5); }
-            box_file_text_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
-            if (box_file_text_ != nullptr)
-            {	if (has_file_)
-                {	filename_ = GSL_OWNER (wxFilePickerCtrl) (new wxFilePickerCtrl (parent, file_id_, wxEmptyString, "Select a file", "*.*", wxDefaultPosition, wxDefaultSize, wxFLP_DEFAULT_STYLE | wxFLP_FILE_MUST_EXIST | wxFLP_OPEN));
-                    if (filename_ != nullptr)
-                        box_file_text_ -> Add (filename_, 1, wxALL, 5); }
-                if (has_text_)
-                {	text_ = GSL_OWNER (wxTextCtrl) (new wxTextCtrl (parent, text_id_, wxEmptyString, wxDefaultPosition, wxSize (150, -1), 0));
-                    if (text_ != nullptr)
-                        box_file_text_ -> Add (text_, 1, wxALL, 5); }
-                box_ext_bloc_ -> Add (box_file_text_, 1, wxALIGN_CENTRE_HORIZONTAL, 5 ); }
-            box_ext_butt_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
-            if (box_ext_butt_ != nullptr)
-            {   add_ = GSL_OWNER (wxButton) (new wxButton (parent, add_id_, ADD_TEXT, wxDefaultPosition, wxSize (30, -1), 0));
-                if (add_ != nullptr)
-                {   box_ext_butt_ -> Add (add_, 1, wxALL, 5);
-                    erase_ = GSL_OWNER (wxButton) (new wxButton (parent, erase_id_, REMOVE_TEXT, wxDefaultPosition, wxSize (30, -1), 0));
-                    if (erase_ != nullptr)
-                    {	box_ext_butt_ -> Add (erase_, 1, wxALL, 5);
-                        rename_ = GSL_OWNER (wxButton) (new wxButton (parent, rename_id_, RENAME_TEXT, wxDefaultPosition, wxSize (30, -1), 0));
-                        if (rename_ != nullptr)
-                            box_ext_butt_ -> Add (rename_, 1, wxALL, 5); } }
-                box_ext_bloc_ -> Add (box_ext_butt_, 1, wxALIGN_CENTRE_HORIZONTAL, 5 ); }
-            box_ext_ -> Add (box_ext_bloc_, 1, wxALIGN_CENTRE_VERTICAL, 5 ); }
-        list_ = GSL_OWNER (wxListBox) (new wxListBox (parent, list_id_, wxDefaultPosition, wxSize (100, 90), 0, NULL, 0));
-        if (list_ != nullptr)
-        {   if (def != nullptr) list_ -> Append (def);
-            box_ext_ -> Add (list_, 2, wxALL, 5); }
-                box -> Add (box_ext_, 0, wxALIGN_CENTRE_HORIZONTAL, 5); }
-    return ! invalid (); }
+    if (line) l_.concoct < wxBoxSizer > (parent, box);
+    if (    ext_.concoct < wxBoxSizer > (parent, box) &&
+            bloc_.concoct < wxBoxSizer > (parent, ext_.box_, wxALIGN_CENTRE_VERTICAL, wxVERTICAL, 1) &&
+            label_.concoct < wxBoxSizer > (parent, bloc_.box_, desc, wxALL) && 
+            file_text_.concoct < wxBoxSizer > (parent, bloc_.box_, wxALIGN_CENTRE_HORIZONTAL) &&
+            ((! has_file_) || file_.concoct < wxBoxSizer > (parent, file_text_.box_, file_id_, d, 
+                                                            "Select a file", "*.*", wxFLP_DEFAULT_STYLE | wxFLP_FILE_MUST_EXIST | wxFLP_OPEN, wxALL)) &&
+            ((! has_text_) || t_.concoct < wxBoxSizer > (parent, file_text_.box_, text_id_, d, 150)) &&
+            but_.concoct < wxBoxSizer > (parent, bloc_.box_) &&
+            add_.concoct < wxBoxSizer > (parent, but_.box_, add_id_, ADD_TEXT, butt) &&
+            del_.concoct < wxBoxSizer > (parent, but_.box_, erase_id_, REMOVE_TEXT, butt) &&
+            ren_.concoct < wxBoxSizer > (parent, but_.box_, rename_id_, RENAME_TEXT, butt) &&
+            list_.concoct < wxBoxSizer > (parent, ext_.box_, list_id_, vstr_t (), -1, 100))
+    {   if (! d.empty ()) list_.append (d);
+        fex ();
+        return true; }
+    return false; }
 
-::std::string listedit_manager :: tiswot () const
-{	PRESUME ((! has_file_) || (filename_ != nullptr), __FILE__, __LINE__);
-    PRESUME ((! has_text_) || (text_ != nullptr), __FILE__, __LINE__);
+::std::string listedit_manager :: tiswot ()
+{	PRESUME ((! has_file_) || (! file_.invalid ()), __FILE__, __LINE__);
+    PRESUME ((! has_text_) || (! t_.invalid ()), __FILE__, __LINE__);
     ::std::string f, s, r;
     if (has_text_)
-    {	s = ::std::string (text_ -> GetValue ().c_str ());
+    {	t_.TransferDataFromWindow ();
+        s = t_.value ();
         if (! has_file_) r = s; }
     if (has_file_)
-    {	f = ::std::string (filename_ -> GetFileName ().GetFullPath ().c_str ());
+    {	file_.TransferDataFromWindow ();
+        f = ::boost::filesystem::absolute (file_.value ()).string ();
         if (! f.empty ()) 
             if (s.empty ()) r = f;
             else r = f + "," + s; }
     return r; }
 
 void listedit_manager :: OnAdd (wxCommandEvent& )
-{	const ::std::string s (tiswot ());
+{	if (invalid ()) return;
+    const ::std::string s (tiswot ());
     if (! s.empty ())
-    {   int n = list_ -> FindString (s.c_str (), true);
+    {   int n = list_.find (s);
         if (n == wxNOT_FOUND)
-        {	list_ -> Append (s.c_str ());
-            n = list_ -> FindString (s.c_str (), true);
-            list_ -> SetSelection (n);
-            list_ -> EnsureVisible (n);
-            fex (); } } }
+        {	list_.append (s);
+            n = list_.find (s); }
+        list_.select (n);
+        list_.scroll (n);
+        fex (); } }
 
 void listedit_manager :: OnErase (wxCommandEvent& )
-{	VERIFY_NOT_NULL (list_, __FILE__, __LINE__);
-    const int l = list_ -> GetSelection ();
+{	if (invalid ()) return;
+    const int l = list_.selected ();
     if (l != wxNOT_FOUND)
-    {	::std::string s (list_ -> GetString (l));
-        list_ -> Delete (l);
-        text_ -> SetValue (s.c_str ());
+    {	::std::string s (list_.value (l));
+        list_.erase (l);
+        t_.value (s);
         fex (); } }
 
 void listedit_manager :: OnRename (wxCommandEvent& )
-{	const ::std::string s (tiswot ());
+{	if (invalid ()) return;
+    const ::std::string s (tiswot ());
     if (! s.empty ())
-    {   int n = list_ -> FindString (s.c_str (), true);
+    {   int n = list_.find (s);
         if (n == wxNOT_FOUND)
-        {	const int l = list_ -> GetSelection ();
+        {	const int l = list_.selected ();
             if (l != wxNOT_FOUND)
-            {	list_ -> Delete (l);
-                list_ -> Append (s.c_str ());
-                n = list_ -> FindString (s.c_str (), true);
-                list_ -> SetSelection (n);
-                list_ -> EnsureVisible (n);
+            {	list_.erase (l);
+                list_.append (s);
+                n = list_.find (s);
+                list_.select (n);
+                list_.scroll (n);
                 fex (); } } } }
 
 void listedit_manager :: OnTap (wxCommandEvent& e)
-{	VERIFY_NOT_NULL (list_, __FILE__, __LINE__);
-    const int l = list_ -> GetSelection ();
-    if (l == wxNOT_FOUND) erase_ -> Disable ();
-    else erase_ -> Enable ();
+{	if (invalid ()) return;
+    const int l = list_.selected ();
+    del_.enable (l != wxNOT_FOUND);
     OnText (e); }
 
-bool listedit_manager :: able_enable () const
+bool listedit_manager :: TransferDataToWindow ()
+{   if (invalid ()) return false;
+    return (((! has_file_) || file_.TransferDataToWindow ()) &&
+            ((! has_text_) || t_.TransferDataToWindow ()) &&
+            list_.TransferDataToWindow ()); }
+
+bool listedit_manager :: TransferDataFromWindow ()
+{   if (invalid ()) return false;
+    return (((! has_file_) || file_.TransferDataFromWindow ()) &&
+            ((! has_text_) || t_.TransferDataFromWindow ()) &&
+            list_.TransferDataFromWindow ()); }
+
+bool listedit_manager :: able_enable ()
 {	if (invalid ()) return false;
     const ::std::string r (tiswot ());
     if (r.empty ()) return false;
-    return (list_ -> FindString (r.c_str (), true) == wxNOT_FOUND); }
+    return (list_.find (r) == wxNOT_FOUND); }
 
 void listedit_manager :: fex ()
-{	PRESUME ((! has_file_) || (filename_ != nullptr), __FILE__, __LINE__);
-    PRESUME ((! has_text_) || (text_ != nullptr), __FILE__, __LINE__);
-    VERIFY_NOT_NULL (list_, __FILE__, __LINE__);
-    const int l = list_ -> GetSelection ();
-    if (l == wxNOT_FOUND) erase_ -> Disable ();
-    else erase_ -> Enable ();
+{	PRESUME ((! has_file_) || (! file_.invalid ()), __FILE__, __LINE__);
+    PRESUME ((! has_text_) || (! t_.invalid ()), __FILE__, __LINE__);
+    if (invalid ()) return;
+    const int l = list_.selected ();
+    del_.enable (l != wxNOT_FOUND);
     const ::std::string r (tiswot ());
     if (r.empty ())
-    {	add_ -> Disable ();
-        rename_ -> Disable (); }
+    {	add_.enable (false);
+        ren_.enable (false); }
     else
-    {	const int n = list_ -> FindString (r.c_str (), true);
-        if (n == wxNOT_FOUND) add_ -> Enable ();
-        else add_ -> Disable ();
-        if ((l != wxNOT_FOUND) && ((l != n) || (n == wxNOT_FOUND))) rename_ -> Enable ();
-        else rename_ -> Disable (); } }
+    {	const int n = list_.find (r);
+        add_.enable (n == wxNOT_FOUND);
+        ren_.enable ((l != wxNOT_FOUND) && ((l != n) || (n == wxNOT_FOUND))); } }
 
 bool listedit_manager :: invalid () const noexcept
-{   if (has_file_ && (filename_ == nullptr)) return true;
-    if (has_text_ && (text_ == nullptr)) return true;
-    return (rename_ == nullptr) || (list_ == nullptr) || (stat_ext_ == nullptr); }
+{   if (has_file_ && file_.invalid ()) return true;
+    if (has_text_ && t_.invalid ()) return true;
+    return list_.invalid (); }
 
 void listedit_manager :: OnText (wxCommandEvent& )
 {	fex (); }
@@ -168,21 +157,27 @@ void listedit_manager :: OnImpatience (wxCommandEvent& )
 
 void listedit_manager :: enable (const bool e)
 {	if (invalid ()) return;
-    add_ -> Enable (e);	
-    erase_ -> Enable (e);	
-    list_ -> Enable (e);	
-    rename_ -> Enable (e);
-    stat_ext_ -> Enable (e);
-    if (has_file_) filename_ -> Enable (e);	
-    if (has_text_) text_ -> Enable (e);	
+    add_.enable (e);	
+    del_.enable (e);	
+    list_.enable (e);	
+    ren_.enable (e);
+    label_.enable (e);
+    if (has_file_) file_.enable (e);	
+    if (has_text_) t_.enable (e);	
     if (e) fex (); }
 
 vstr_t listedit_manager :: acquire () const
-{	VERIFY_NOT_NULL (list_, __FILE__, __LINE__);
+{	if (invalid ()) return vstr_t ();
     vstr_t res;
-    const unsigned int nx = list_ -> GetCount ();
+    const unsigned int nx = list_.count ();
     for (unsigned int i = 0; i < nx; ++i)
-        res.push_back (::std::string (list_ -> GetString (i).c_str ()));
+        res.push_back (list_.value (i));
     return res; }
 
+void listedit_manager :: value (const ::std::string& s, const ::std::string& t)
+{   if (has_text_ && has_file_)
+    {   t_.value (s);
+        file_.value (t); }
+    else if (has_text_) t_.value (s);
+    else file_.value (s); }
 #endif // WX

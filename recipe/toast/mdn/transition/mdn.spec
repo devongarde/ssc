@@ -9,7 +9,6 @@ PASS ../toast/mdn/transition/transition.html
 
 PASS ../toast/mdn/transition/transition-behaviour.html
 2 naughty_lang
-5 safari
 71 use_quote_code
 
 PASS ../toast/mdn/transition/transition-delay.html

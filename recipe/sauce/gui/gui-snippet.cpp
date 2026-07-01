@@ -75,5 +75,4 @@ bool snippet_t :: TransferDataFromWindow ()
 {	if (invalid ()) return false;
     snippet_ = stc_ -> GetValue ().c_str (); 
     return true; }
-
 #endif // WX

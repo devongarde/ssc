@@ -61,5 +61,4 @@ bool get_default_window_size (unsigned& x, unsigned& y)
 bool get_default_window_position (unsigned& x, unsigned& y, unsigned& w, unsigned& h)
 {   if (! get_default_window_size (w, h)) return false;
     return centre_on_screen (x, y, w, h); }
-
 #endif // WX

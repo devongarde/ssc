@@ -131,4 +131,4 @@ void check_required_state (const req_vt& rq, nitpick& nits, const ::std::string&
 
 ::std::string required_t :: rpt () const
 {   return url_.get () + "," + type_master < t_lang > :: name (lang_) + "," + type_master < t_required_page > ::name (rq_) + ",<" +
-          elem :: name (e_) + ">\n" + from_.name () + "," + to_.name () + "\n" + desc_; }
+          elem :: name (e_) + ">\n" + from_.name () + "," + to_.name () + "\n'" + desc_ + "'"; }

@@ -1,0 +1,102 @@
+﻿:link-to(url-pattern("/")) {
+  font-weight: bold;
+}
+
+@route --homepage {
+  pattern: url-pattern("/");
+}
+
+:link-to(--homepage) {
+  font-weight: bold;
+}
+
+:link-to(url("/")) {
+  font-weight: bold;
+}
+
+@route --homepage {
+  pathname: "/";
+  base-url: document;
+}
+
+:link-to(--homepage) {
+  font-weight: bold;
+}
+
+@route --homepage {
+  pattern: url-pattern("/");
+}
+
+:link-to(--homepage) {
+  color: lime;
+}
+
+:active-navigation(--homepage) {
+  color: hotpink;
+}
+
+@route --movie-detail {
+  pattern: url-pattern("/movies/:id");
+}
+
+:active-navigation(--movie-detail) {
+  color: lime;
+}
+
+:active-navigation(from --movie-detail) {
+  color: hotpink;
+}
+
+:active-navigation(to --movie-detail) {
+  color: yellow;
+}
+
+@view-transition {
+  /* allow cross-document view transitions */
+  navigation: auto;
+}
+
+@route --movie-detail {
+  /* match URLs like /en/movies/123 which is the English page
+     about a movie with ID 123.  Be careful to specify the
+     language part with a "*" but the ID part with a named
+     :id parameter so that matching will require equal IDs
+     but allow differences of language. */
+  pattern: url-pattern("/*/movies/:id");
+}
+
+/* capture the overall area representing the movie, and a
+   sub-area for its poster image */
+
+/* match an element with class movie-container with a child
+   link that links to a movie whose id is the same as the
+   movie we are currently navigating to or from.  (lang can
+   be different, though.)
+
+   This depends on the --movie-detail route
+   declaring the ID but not the language with a named
+   parameter, and the use of the 'with' keyword.
+
+   This means that both the of the link and the other URL of
+   the current navigation match the URL pattern defined by
+   the "@route --movie-detail" rule, and that the
+   id named group from both matches be the same.  (However,
+   the URLs can be different because the * part of the
+   match, containing the language, can be different.)
+   */
+.movie-container:has(
+    > .movie-title:active-navigation(with --movie-detail)) {
+
+  view-transition-name: movie-container;
+
+  > .movie-poster {
+    view-transition-name: movie-poster;
+  }
+
+  /* leave the default cross-fade animation for both image
+     captures */
+}
+
+:trigger-link .thumb {
+  view-transition-name: active-image;
+}

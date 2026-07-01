@@ -25,6 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 #include "gui/gui-data.h"
 
+#define ANY_LINGO "*"
+
 bool check_datetime_t :: TransferDataToWindow ()
 {	if	(invalid () ||
         ! check_.TransferDataToWindow () ||
@@ -206,14 +208,18 @@ int lingo_t::max_sel () const
 
 vstr_t lingo_t::inner_concoct (const html_version& v) const
 {	vstr_t vs;
-    if (wild_) vs.push_back ("*");
+    if (wild_) vs.push_back (ANY_LINGO);
     for (auto s : enum_n < t_lang, e_lang > :: value_vector (v))
         vs.push_back (s);
     return vs; }
 
 ::std::string lingo_t :: chosen () const
 {   if (invalid ()) return ::std::string ();
-    return ::std::string (drop_.ctrl_ -> GetValue ().c_str ()); } /* works elsewhere, not here. why? */
+    const int sel = selected ();
+    if (sel < 0) return ::std::string (drop_.ctrl_ -> GetValue ().c_str ()); 
+    if (! wild_) return drop_.value (sel);
+    if (sel == 0) return ANY_LINGO;
+    return drop_.value (sel-1); }
 
 vstr_t math_version_t::inner_concoct () const
 {	vstr_t vs;
@@ -243,5 +249,4 @@ bool text_folder_t::TransferDataToWindow ()
 bool text_folder_t::TransferDataFromWindow ()
 {   return	(! invalid ()) &&
             folder_.TransferDataFromWindow (); }
-
 #endif // WX

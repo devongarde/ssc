@@ -3,6 +3,14 @@ static site checker
 https://dylanharris.org/ssc/
 (c) 2020-2026 Dylan Harris
 
+0.2.33
+- Added CSS Pointer-Driven Animation 1
+- Added CSS Route
+- Updated CSSs Background 4, Colour 6, Cascade 5, Text 4, Viewport 1, among others
+- Living Standard july 2026
+- various bug fixes
+- underlying work
+
 0.2.32
 - CSS Background and Borders 4
 - CSS Image 5

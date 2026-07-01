@@ -165,5 +165,4 @@ void bar_t :: init ()
     bar_ -> Append (edit_, "&edit");
     bar_ -> Append (config_, "&configure");
     bar_ -> Append (help_, "&help"); }
-
 #endif // WX

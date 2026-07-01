@@ -214,7 +214,6 @@ PASS ../toast/mdn/property/orphans.html
 
 PASS ../toast/mdn/property/overlay.html
 2 naughty_lang
-5 safari safari safari safari safari safari safari safari safari
 87 use_quote_code
 
 PASS ../toast/mdn/property/paint-order.html

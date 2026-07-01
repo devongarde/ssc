@@ -7,10 +7,6 @@ PASS ../toast/css/4-text/css-4.css
 PASS ../toast/css/4-text/css-5.css
 1 lingo
 
-PASS ../toast/css/4-text/css-8.css
-21 unrecognised_value
-33 unrecognised_value
-
 PASS ../toast/css/4-text/css-2.html
 2 naughty_lang
 10 missing_close inserted_missing_closure

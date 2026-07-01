@@ -63,13 +63,13 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 32
-#define VERSION_STRING "0.2.32"
+#define VERSION_RELEASE 33
+#define VERSION_STRING "0.2.33"
 
 #define BUILD_YEAR              "2026"
-#define BUILD_MONTH             "June"
-#define BUILD_DAY_ISH BUILD_YEAR "-05-01"
-#define LATEST_CSS              "2025"
+#define BUILD_MONTH             "July"
+#define BUILD_DAY_ISH BUILD_YEAR "-07-01"
+#define LATEST_CSS              "2026"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_AMP "&copy;"
@@ -177,7 +177,7 @@ z
 #define SULKINGSTRINGVIEW
 #define VS2017
 #else // _MSC_VER
-#error ssc only builds with VS 2019 / 2022 / 2026.
+#error ssc only builds with VS 2022 / 2026.
 #endif // _MSC_VER
 
     // The MSVC linter is generally useful, but it has (had?) some serious problems.

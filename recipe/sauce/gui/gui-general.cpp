@@ -236,5 +236,4 @@ void general_t :: save_to_context (context_t& c) const
     nitpick nits;
     c.exclude (nits, exc ());
     c.persisted (persist ().string ()); }
-
 #endif // WX

@@ -1,0 +1,20 @@
+﻿@layer one {
+  div { height: 100px }
+}
+
+@layer two {
+  div { height: 200px }
+  div { height: revert-layer }
+}
+
+@layer two {
+  div { height: 200px }
+  div { block-size: revert-layer }
+}
+
+div {
+  border-radius: 5px;
+}
+.apply-sharp {
+  border-radius: if(style(--mode:sharp): 0px; else: revert-rule);
+}

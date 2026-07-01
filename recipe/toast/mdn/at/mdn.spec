@@ -72,14 +72,13 @@ PASS ../toast/mdn/at/property.html
 
 PASS ../toast/mdn/at/scope.html
 2 naughty_lang
-195 empty_link
-207 empty_link
-212 empty_link
-219 empty_link
+195 slash_gt empty_link
+207 slash_gt empty_link
+212 slash_gt empty_link
+219 slash_gt empty_link
 
 PASS ../toast/mdn/at/starting-style.html
 2 naughty_lang
-5 safari safari
 224 use_quote_code
 
 PASS ../toast/mdn/at/supports.html

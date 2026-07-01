@@ -150,3 +150,38 @@ display: block;
 display: block;
 }
 }
+
+/* bootstrap-base.css */
+/* unnamed wrapper layers around each sub-file */
+@import url(base-forms.css) layer;
+@import url(base-links.css) layer;
+@import url(base-headings.css) layer;
+
+/* bootstrap.css */
+/* the internal names are hidden from access, subsumed in "base" */
+@import url(bootstrap-base.css) layer(base);
+
+/* author.css */
+/* author has access to bootstrap.base layer, but not into unnamed layers */
+@import url(bootstrap.css) layer(bootstrap);
+
+/* Adds additional styles to the bootstrap layer: */
+@layer bootstrap {...}
+
+h1 { color: darkslateblue; }
+
+@layer reset.type {
+  strong { font-weight: bold; }
+}
+
+@layer framework {
+  .title { font-weight: 100; }
+
+  @layer theme {
+    h1, h2 { color: maroon; }
+  }
+}
+
+@layer reset {
+  [hidden] { display: none; }
+}

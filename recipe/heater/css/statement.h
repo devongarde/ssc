@@ -57,8 +57,10 @@ class statement
     void parse_margin (arguments& args, nitpick& nits, const int from, const int to, const e_css_statement cs);
     void parse_media (arguments& args, nitpick& nits, const int from, const int to);
     void parse_namespace (arguments& args, nitpick& nits, const int from, const int to);
+    void parse_navigation (arguments& args, nitpick& nits, const int from, const int to);
     void parse_page (arguments& args, nitpick& nits, const int from, const int to);
     void parse_position_try (arguments& args, nitpick& nits, const int from, const int to);
+    void parse_route (arguments& args, nitpick& nits, const int from, const int to);
     void parse_scope (arguments& args, nitpick& nits, const int from, const int to);
     void parse_slot (arguments& args, nitpick& nits, const int from, const int to);
     void parse_supports (arguments& args, nitpick& nits, const int from, const int to);

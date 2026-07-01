@@ -71,11 +71,11 @@ void link_t :: create_controls (wxWindow *parent)
             once_check_.concoct (parent, check_grid_.box_, wxID_ANY, "Test once") &&
             revoke_check_.concoct (parent, check_grid_.box_, wxID_ANY, "Revocation") &&
             required_.concoct (parent, box_, "Required link/s:", "", false, true, true) &&
-            type_choice_.concoct < wxBoxSizer > (parent, box_, choice_req_page, "Type:", type_vals) &&
+            type_choice_.concoct < wxBoxSizer > (parent, box_, choice_req_page, "Type:", type_vals, 0) &&
             lingo_.concoct < wxBoxSizer > (parent, box_, context.html_ver (), choice_req_lang, "Lang:", 0, true) &&
             from_html_.concoct < wxBoxSizer > (parent, box_, choice_req_from, "From:", 0) &&
-            to_html_.concoct < wxBoxSizer > (parent, box_, choice_req_from, "To:") &&
-            element_choice_.concoct < wxBoxSizer > (parent, box_, choice_req_from, "Element:") &&
+            to_html_.concoct < wxBoxSizer > (parent, box_, choice_req_to, "To:") &&
+            element_choice_.concoct < wxBoxSizer > (parent, box_, choice_req_element, "Element:", 0) &&
             desc_text_.concoct (parent, box_, wxID_ANY, "Description:"))
         l_.concoct < wxBoxSizer > (parent, box_); }
 
@@ -92,13 +92,13 @@ void link_t :: OnHelpClick (wxCommandEvent& )
 
 void link_t :: OnAdd (wxCommandEvent& e)
 {   required_.OnAdd (e);
+    TransferDataFromWindow ();
     required_t req = gather_require (sel_);
-    wxMessageBox (req.rpt ());
-    if (! required_.tiswot ().empty ())
+    if (! required_.value ().empty ())
         vreq_.push_back (req); }
 
 void link_t :: OnErase (wxCommandEvent& e)
-{	sel_ = required_.sel ();
+{	sel_ = required_.selected ();
     const int sz = GSL_NARROW_CAST < int > (vreq_.size ());
     if ((sel_ >= 0) && (sel_ < sz))
     {   req_vt ffs;
@@ -110,7 +110,7 @@ void link_t :: OnErase (wxCommandEvent& e)
 
 void link_t :: OnExtension (wxCommandEvent& e)
 {	required_.OnText (e);
-    select_require (required_.sel ()); }
+    select_require (required_.selected ()); }
 
 void link_t :: select_require (const int sel)
 {   const int sz = GSL_NARROW_CAST < int > (vreq_.size ());
@@ -124,11 +124,8 @@ void link_t :: select_require (const int sel)
     to_html_.select (which_standard (req.to_));
     type_choice_.select (req.rq_); }
 
-required_t link_t :: gather_require (int& sel) const
+required_t link_t :: gather_require (int& )
 {   required_t res, yuk;
-    sel = required_.sel ();
-    const int sz = GSL_NARROW_CAST < int > (vreq_.size ());
-    if ((sel < 0) || (sel >= sz)) return res;
     res.desc_ = desc_text_.value ();
     res.from_ = standard_html_ver.at (from_html_.selected ());
     res.e_ = element_choice_.selected ();
@@ -136,9 +133,9 @@ required_t link_t :: gather_require (int& sel) const
     res.to_ = standard_html_ver.at (to_html_.selected ());
     res.rq_ = GSL_NARROW_CAST < e_required_page > (type_choice_.selected ());
     nitpick nits;
-    res.url_ = url (nits, res.to_, required_.tiswot ());
+    res.url_ = url (nits, res.to_, required_.value ());
     wxMessageBox (res.rpt ());
-    if ((res.to_ < res.from_) || (nits.worst () <= es_error) || required_.tiswot ().empty ())
+    if ((res.to_ < res.from_) || (nits.worst () <= es_error) || required_.value ().empty ())
         return yuk;
     return res; }
 
@@ -171,7 +168,7 @@ void link_t :: OnExternal (wxCommandEvent& )
 
 void link_t :: OnImpatience (wxCommandEvent& e)
 {	required_.OnImpatience (e);
-    select_require (required_.sel ()); }
+    select_require (required_.selected ()); }
 
 void link_t :: OnInternal (wxCommandEvent& )
 {	internaliser (); }
@@ -180,11 +177,9 @@ void link_t :: OnRename (wxCommandEvent& e)
 {	required_.OnRename (e); }
 
 void link_t :: OnTap (wxCommandEvent& e)
-{	const int sz = GSL_NARROW_CAST < int > (vreq_.size ());
+{	//const int sz = GSL_NARROW_CAST < int > (vreq_.size ());
     required_.OnTap (e);
-    if ((sel_ >= 0) && (sel_ < sz))
-        select_require (sel_);
-    sel_ = required_.sel ();
+    sel_ = required_.selected ();
     select_require (sel_); }
 
 void link_t :: OnText (wxCommandEvent& e)
@@ -202,7 +197,13 @@ bool link_t :: TransferDataToWindow ()
     revoke_check_.select (revoke_);
     special_check_.select (special_);
     internaliser ();
-    fill_require (sel_);
+    select_require (sel_);
+    desc_text_.TransferDataToWindow ();
+    element_choice_.TransferDataToWindow ();
+    from_html_.TransferDataToWindow ();
+    lingo_.TransferDataToWindow ();
+    to_html_.TransferDataToWindow ();
+    type_choice_.TransferDataToWindow ();
     return true; }
 
 bool link_t :: TransferDataFromWindow ()
@@ -216,8 +217,21 @@ bool link_t :: TransferDataFromWindow ()
     once_ = once_check_.selected ();
     revoke_ = revoke_check_.selected ();
     special_ = special_check_.selected ();
-    gather_require (sel_);
+    desc_text_.TransferDataFromWindow ();
+    element_choice_.TransferDataFromWindow ();
+    from_html_.TransferDataFromWindow ();
+    lingo_.TransferDataFromWindow ();
+    to_html_.TransferDataFromWindow ();
+    type_choice_.TransferDataFromWindow ();
+    sanitise ();
     return true; }
+
+void link_t :: sanitise ()
+{   if (from_html_.selected () > to_html_.selected ())
+    {   const int f = from_html_.selected ();
+        from_html_.select (to_html_.selected ());
+        to_html_.select (f);
+        TransferDataToWindow (); } }
 
 bool link_t :: create_panel (wxWindow *mummy, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
 {	PRESUME (invalid_panel (), __FILE__, __LINE__);
@@ -254,5 +268,4 @@ void link_t :: save_to_context (context_t& c) const
     c.required () = required ();
     c.revoke (revoke ());
     c.special (special ()); }
-
 #endif // WX

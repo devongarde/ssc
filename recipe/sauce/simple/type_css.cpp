@@ -67,7 +67,9 @@ type_cvf a_tc [] =
     { t_css_fn_superellipse, cvf_superellipse },
     { t_css_fn_swash, cvf_swash },
     { t_css_fn_type, cvf_type },
+    { t_css_fn_url_pattern, cvf_url_pattern },
     { t_css_fn_var, cvf_var },
+    { t_css_fn_wcag2, cvf_wcag2 },
     { t_css_fn_xywh, cvf_xywh },
     { t_error, cvf_none } };
 
@@ -530,3 +532,12 @@ e_status test_css_template_set (nitpick& nits, const e_status st, arguments* a, 
         {   nits.pick (nit_pagination_template, ed_css_page_template, "2. Pagination Templates and Slots", es_error, ec_css, "No such @template as ", quote (val.at (i)));
             res = s_invalid; }
     return res; }
+
+e_status test_route_name (nitpick& nits, const e_status st, const ::std::string& n, arguments* a)
+{   if ((a == nullptr) || (st != s_good)) return st;
+    if (context.css_module (c_route) < 3)
+    {   nits.pick (nit_css_version, es_error, ec_css, "CSS Route 3 required");
+        return s_invalid; }
+    if (a -> has (cic_route, n)) return s_good;
+    nits.pick (nit_route, es_error, ec_css, "@route ", quote (n), " undefined");
+    return s_invalid; }

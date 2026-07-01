@@ -253,5 +253,4 @@ void frame_t :: OnUpdateSelectAll (wxUpdateUIEvent& e)
 
 void frame_t :: OnSpin (wxCommandEvent& )
 {   rational_ = bar_.config () -> IsChecked (menu_spin); }
-
 #endif // WX

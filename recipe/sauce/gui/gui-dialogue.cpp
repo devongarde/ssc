@@ -104,5 +104,4 @@ void d3_t :: CreateButtons (const int bs)
                         ok_ -> SetDefault ();
                         box_ -> Add (grid_ls_, bs, wxEXPAND, 1);
                         box_ -> Add (grid_, bs, wxEXPAND, 1); } } } } } }
-
 #endif // WX

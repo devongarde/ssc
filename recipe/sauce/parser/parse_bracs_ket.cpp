@@ -572,7 +572,7 @@ html_version bracs_ket::parse (const ::std::string& content, const html_version&
                     {   if (! had_doctype) nodoctype (nits, res, b, e, i);
                         if (! php_warn)
                         {   nits.set_context (line_, b, e, i);
-                            nits.pick (nit_embedded_lingo, es_warning, ec_parser, "incorrectly presuming PHP; prefer <?php to <? --- also, " PROG " is a *STATIC* site checker, it does not understand PHP");
+                            nits.pick (nit_embedded_lingo, es_warning, ec_parser, "incorrectly presuming an embedded script: " PROG " is a *STATIC* site checker, it ignores scripts (also, just in case, prefer '<?php' to '<?')");
                             php_warn = true; }
                         status = s_php; }
                     else
@@ -595,6 +595,18 @@ html_version bracs_ket::parse (const ::std::string& content, const html_version&
                 {   case '?' :  status = s_php_closing; break;
                     case '"' :  status = s_php_double_quote; break;
                     case '\'' : status = s_php_quote; break;
+                    case '>' :  if ((res >= html_jul26) && (! res.xhtml ()))
+                                {   nits.pick (nit_embedded_lingo, es_comment, ec_parser, "From July 2026, '>', & not just '?>', closes embedded PHP in HTML.");
+                                    if (twas > text)
+                                    {   nits.set_context (line_, b, e, text, twas);
+                                        ve_.emplace_back (nits, line_, text, twas);
+                                        nits.reset (); }
+                                    nits.set_context (line_, b, e, soe, i-1);
+                                    ve_.emplace_back (nits, line_, bk_php, collect, i-1);
+                                    aftercab = true;
+                                    nits.reset ();
+                                    status = s_dull; text = twas = i+1; }
+                                break;
                     default : break; }
                 break;
             case s_x :
@@ -611,6 +623,12 @@ html_version bracs_ket::parse (const ::std::string& content, const html_version&
                 {   case '?' :  status = s_q_closing; break;
                     case '"' :  status = s_q_double_quote; break;
                     case '\'' : status = s_q_quote; break;
+                    case '>' :  if ((res >= html_jul26) && (! res.xhtml ()))
+                                {   nits.pick (nit_embedded_lingo, es_comment, ec_parser, "From July 2026, '>', & not just '?>', closes embedded scripts in HTML.");
+                                    if (twas > text) ve_.emplace_back (nits, line_, text, twas);
+                                    if (had_doctype) status = s_dull; else status = s_start;
+                                    text = twas = i+1; }
+                                break;
                     default : break; }
                 break;
             case s_asp :

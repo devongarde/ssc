@@ -289,5 +289,4 @@ void shadow_t :: save_to_context (context_t& c) const
     c.shadow_root (shadow ().string ());
     c.shadow_space (whitespace ());
     c.shadow_ssi (ssi ()); }
-
 #endif // WX

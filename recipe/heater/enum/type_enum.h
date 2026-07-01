@@ -526,6 +526,9 @@ template < > struct type_master < t_css_mask_composite > : ENUM_N (css_mask_comp
 template < > struct type_master < t_css_module > : enum_n < t_css_module, e_css_module, e_nit_macro, nm_none >
 { using enum_n < t_css_module, e_css_module, e_nit_macro, nm_none > :: enum_n; };
 
+template < > struct type_master < t_css_navigation_keyword > : ENUM_N (css_navigation_keyword)
+{ using ENUM_N (css_navigation_keyword) :: enum_n; };
+
 template < > struct type_master < t_css_overflow > : ENUM_N (css_overflow)
 { using ENUM_N (css_overflow) :: enum_n; };
 
@@ -678,6 +681,9 @@ template < > struct type_master < t_css_try_tactic > : ENUM_N (css_try_tactic)
 
 template < > struct type_master < t_css_text_wrap > : ENUM_N (css_text_wrap)
 { using ENUM_N (css_text_wrap) :: enum_n; };
+
+template < > struct type_master < t_css_text_wrap_style > : ENUM_N (css_text_wrap_style)
+{ using ENUM_N (css_text_wrap_style) :: enum_n; };
 
 template < > struct type_master < t_css_transform_box > : ENUM_N (css_transform_box)
 { using ENUM_N (css_transform_box) :: enum_n; };

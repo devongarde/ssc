@@ -335,5 +335,4 @@ int app_t::recycle (nitpick& nits, const int c, char** v)
     frame_ -> clear_console ();
     frame_ -> cursor (wxCURSOR_ARROW);
     return res; }
-
 #endif // WX

@@ -989,6 +989,7 @@ void options::init (context_t& c)
         (CSS OVERSCROLL, ::boost::program_options::value < int > (), "CSS Overscroll Behaviour level (0 or 3).")
         (CSS PAGE, ::boost::program_options::value < int > (), "CSS Paged Media level (0, 3 or 4).")
         (CSS PAGETEMP, ::boost::program_options::value < int > (), "CSS Pagination Template level (0 or 3).")
+        (CSS PDA, ::boost::program_options::value < int > (), "CSS Pointer-Driven Animations level (0 or 3).")
         (CSS POSITION, ::boost::program_options::value < int > (), "CSS Positions level (0 or 3).")
         (CSS PRESENT, ::boost::program_options::value < int > (), "CSS Presentation Levels level (0 or 3).")
         (CSS PRINT, ::boost::program_options::bool_switch (), "Notify if some CSS conflicts with the CSS Print Profile.")
@@ -997,6 +998,7 @@ void options::init (context_t& c)
         (CSS REGION, ::boost::program_options::value < int > (), "CSS Regions level (0 or 3).")
         (CSS RHYTHM, ::boost::program_options::value < int > (), "CSS Rhythmic Sizing level (0 or 3).")
         (CSS ROUND, ::boost::program_options::value < int > (), "CSS Round Display level (0 or 3).")
+        (CSS ROUTE, ::boost::program_options::value < int > (), "CSS Route level (0 or 3).")
         (CSS RUBY, ::boost::program_options::value < int > (), "CSS Ruby Annotation Layout level (0 or 3).")
         (CSS SCOPE, ::boost::program_options::value < int > (), "CSS Scoping level (0 or 3).")
         (CSS SCROLLBAR, ::boost::program_options::value < int > (), "CSS Scrollbar Styling level (0 or 3).")
@@ -1891,6 +1893,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_overscroll_behaviour, n, nits, CSS OVERSCROLL, "Overscroll Behaviour", 3);
         process_css_level (c, c_paged_media, n, nits, CSS PAGE, "Paged Media", 4);
         process_css_level (c, c_page_template, n, nits, CSS PAGETEMP, "Pagination Template", 3);
+        process_css_level (c, c_pda, n, nits, CSS PDA, "Pointer-Driven Animations", 3);
         process_css_level (c, c_positioned_layout, n, nits, CSS POSITION, "Positioned Layout", 3);
         process_css_level (c, c_presentation_level, n, nits, CSS PRESENT, "Presentation Levels", 3);
         yea_nay (c, &context_t::print_profile, nits, CSS PRINT, CSS DONT PRINT);
@@ -1898,6 +1901,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_region, n, nits, CSS REGION, "Regions", 3);
         process_css_level (c, c_rhythmic_sizing, n, nits, CSS RHYTHM, "Rhythmic Sizing", 4);
         process_css_level (c, c_round_display, n, nits, CSS ROUND, "Round Display", 4);
+        process_css_level (c, c_route, n, nits, CSS ROUTE, "Route", 3);
         process_css_level (c, c_ruby_annotation, n, nits, CSS RUBY, "Ruby Annotation Layout", 4);
         process_css_level (c, c_scoping, n, nits, CSS SCOPE, "Scoping", 3);
         process_css_level (c, c_scrollbar_styling, n, nits, CSS SCROLLBAR, "Scrollbar Styling", 3);
@@ -2726,6 +2730,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, CSS, OVERSCROLL, css);
     RG (gr, res, int, CSS, PAGE, css);
     RG (gr, res, int, CSS, PAGETEMP, css);
+    RG (gr, res, int, CSS, PDA, css);
     RG (gr, res, int, CSS, POSITION, css);
     RG (gr, res, int, CSS, PRESENT, css);      
     RB (gr, res, CSS, PRINT, css);
@@ -2733,6 +2738,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, CSS, REGION, css);
     RG (gr, res, int, CSS, RHYTHM, css);
     RG (gr, res, int, CSS, ROUND, css);
+    RG (gr, res, int, CSS, ROUTE, css);
     RG (gr, res, int, CSS, RUBY, css);
     RG (gr, res, int, CSS, SCOPE, css);
     RG (gr, res, int, CSS, SCROLLBAR, css);

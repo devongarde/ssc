@@ -1,0 +1,7 @@
+﻿.boo
+{
+    background-color: contrast-color(rgb(179 213 230) tbd-bg wcag2(AA), cadetblue, hsl(200 83% 23%));
+    background-color: rgb(10 75 107);
+    background-color: contrast-color(currentColor tbd-bg wcag2(AA), hsl(200 83% 23%), purple);
+    background-color: contrast-color(currentColor tbd-bg wcag2(4.5), rgb(10 75 107), rgb(128 0 128));
+}

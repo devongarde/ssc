@@ -78,5 +78,4 @@ public:
     const ::boost::filesystem::path& def () const { return def_; }
     void site (const sstr_t& s) { site_ = s; }
     const sstr_t& site () const { return site_; } };
-
 #endif // WX

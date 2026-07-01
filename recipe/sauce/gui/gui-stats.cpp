@@ -194,5 +194,4 @@ void report_t :: save_to_context (context_t& c) const
     {   const e_report r = GSL_NARROW_CAST < e_report > (i);
         c.stats_report (r, report (r)); }
     c.stats (dump ().string ()); }
-
 #endif // WX

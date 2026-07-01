@@ -343,5 +343,4 @@ void standard_t :: set_panel (const e_gui_panel gp)
 {	if (invalid ()) return;
     if (gp == gp_validation) vv_.yer_actual (html_.folder (), shadow_.shadow (), ontology_.path ());
     choice_ -> SetSelection (gp); }
-
 #endif // WX

@@ -1,0 +1,27 @@
+﻿@navigation (at: url-pattern("/")) {
+  /* These styles only apply to the site's homepage
+     (including any URL with a search or hash). */
+}
+
+@route --search-results-page {
+  pattern: url-pattern("/search-results");
+}
+@route --product-page {
+  pattern: url-pattern("/product/:id");
+}
+
+@navigation (from: --search-results-page) and
+            (to: --product-page) {
+  /* These styles apply when a navigation is in progress
+     from a search results page to a product page (as
+     defined by the @route rules above), but not in the
+     reverse direction. */
+}
+
+@navigation (between: --search-results-page and --product-page) {
+  /* These styles apply when a navigation is in progress
+     between a search results page and a product page (as
+     defined by the @route rules above), in either
+     direction. */
+}
+

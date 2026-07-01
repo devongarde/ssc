@@ -186,6 +186,11 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                 case cvf_url :
                     e = cvf.get ();
                     break;
+                case cvf_url_pattern :
+                    if (context.css_module (c_route) < 3)
+                        nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Route 3");
+                    else e = cvf.get ();
+                    break;
                 case cvf_superellipse :
                     if (context.css_module (c_border_box) < 4)
                         nits.pick (nit_css_version, es_error, ec_css, quote (cvf.name ()), " requires CSS Borders and Box Decorations 4");
@@ -233,6 +238,9 @@ bool test_cascade (const arguments& args, const ::std::string& s, e_iiu& iiu)
                 case 'R' :
                     if (compare_no_case (s, "revert-layer"))
                     {   iiu = iiu_revert_layer;
+                        return true; }
+                    if (compare_no_case (s, "revert-rule"))
+                    {   iiu = iiu_revert_rule;
                         return true; }
                     break;
                 default: break; }

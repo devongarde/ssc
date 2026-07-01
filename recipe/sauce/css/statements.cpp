@@ -28,10 +28,11 @@ void statements::parse (arguments& args, const int start, const int finish)
     {   const int i = first_non_whitespace (args.t_, start, finish);
         if (i > 0)
             if ((args.t_.at (i).t_ == ct_identifier) || (args.t_.at (i).t_ == ct_keyword))
-            {   nitpick nuts;
-                if (test_value < t_css_property > (nuts, args.v_, args.t_.at (i).val_))
-                {   props_.parse (args, start, finish);
-                    return; } } } 
+                if (elem::find (args.v_, args.t_.at (i).val_) == elem_undefined)
+                {   nitpick nuts;
+                    if (test_value < t_css_property > (nuts, args.v_, args.t_.at (i).val_))
+                    {   props_.parse (args, start, finish);
+                        return; } } } 
     int from = -1, at = -1;
     const int last = (finish >= 0) ? finish : GSL_NARROW_CAST < int > (args.t_.size ());
     int prev = -1;

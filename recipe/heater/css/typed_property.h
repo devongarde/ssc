@@ -148,6 +148,7 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
             case iiu_moz_initial : return "-moz-initial";
             case iiu_revert : return "revert";
             case iiu_revert_layer : return "revert-layer";
+            case iiu_revert_rule : return "revert-rule";
             case iiu_unset : return "unset";
             case iiu_fn : return "@function";
             default : return ""; } }
@@ -245,6 +246,8 @@ property_v_ptr make_palette_v_ptr (arguments& args, const int start, const int t
 property_v_ptr make_palette_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const e_token t);
 property_v_ptr make_position_try_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const e_token t);
 property_v_ptr make_position_try_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const e_token t);
+property_v_ptr make_route_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const e_token t);
+property_v_ptr make_route_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const e_token t);
 property_v_ptr make_viewport_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const e_token t);
 property_v_ptr make_viewport_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const e_token t);
 

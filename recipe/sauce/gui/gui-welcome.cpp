@@ -208,5 +208,4 @@ bool welcome_t :: TransferDataFromWindow ()
 
 void welcome_t :: set_default ()
 {	c_.html_ver (html_default); }
-
 #endif // WX

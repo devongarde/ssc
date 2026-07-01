@@ -1,0 +1,19 @@
+﻿@route --movie-list {
+  pattern: url-pattern("/movies");
+}
+
+@route --movie-list {
+  pathname: "/movies";
+}
+
+@route --movie-detail {
+  pattern: url-pattern("/movies/:id");
+}
+
+@route --movie-detail {
+  pattern: url-pattern("/movies/:id(\\d+)");
+}
+
+@route --movie-detail {
+  pattern: url-pattern("/movies/(\\d+)");
+}

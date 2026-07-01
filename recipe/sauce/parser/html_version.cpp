@@ -1240,6 +1240,7 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "Psd", "Pseudo-Elements", ext5_, e5, H5_CSS_PSEUDO_3, H5_CSS_PSEUDO_4);
     res += single_feature (res, b, "Reg", "Regions", ext3_, e3, H3_CSS_REGION);
     res += single_feature (res, b, "Rhy", "Rhythmic Sizing", ext3_, e3, H3_CSS_RHYTHM);
+    res += single_feature (res, b, "Rte", "Route", ext4_, e4, H4_CSS_ROUTE);
     res += single_feature (res, b, "Rub", "Ruby Annotation", ext3_, e3, H3_CSS_RUBY);
     res += single_feature (res, b, "Sco", "Scope/Shadow", ext3_, e3, H3_CSS_SCOPE);
     res += single_feature (res, b, "Scr", "Scrollbar Style", ext3_, e3, H3_CSS_SCROLLBAR);
@@ -1947,7 +1948,6 @@ template < > void html_version::set_level < c_exclusion > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_EXCLUDE);
     else reset_ext3 (H3_CSS_DEVICE); }
 
-// H3_CSS_EXTENSION
 template < > int html_version::get_level < c_extension > () const
 {   if (any_ext3 (H3_CSS_EXTENSION)) return 3;
     return 0; }
@@ -2242,6 +2242,14 @@ template < > void html_version::set_level < c_paged_media > (const int n)
     else if (n == 3) set_ext3 (H3_CSS_PAGE_3);
     else reset_ext3 (H3_CSS_PAGE); }
 
+template < > int html_version::get_level < c_pda > () const
+{   if (any_ext3 (H3_CSS_PDA)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_pda > (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_PDA);
+    else reset_ext3 (H3_CSS_PDA); }
+
 template < > int html_version::get_level < c_positioned_layout > () const
 {   if (any_ext3 (H3_CSS_POSITION_4)) return 4;
     if (any_ext3 (H3_CSS_POSITION_3)) return 3;
@@ -2293,6 +2301,14 @@ template < > int html_version::get_level < c_round_display > () const
 template < > void html_version::set_level < c_round_display > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_ROUND);
     else reset_ext3 (H3_CSS_ROUND); }
+
+template < > int html_version::get_level < c_route > () const
+{   if (any_ext4 (H4_CSS_ROUTE)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_route > (const int n)
+{   if (n == 3) set_ext4 (H4_CSS_ROUTE);
+    else reset_ext4 (H4_CSS_ROUTE); }
 
 template < > int html_version::get_level < c_ruby_annotation > () const
 {   if (any_ext3 (H3_CSS_RUBY)) return 3;

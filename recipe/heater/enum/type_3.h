@@ -122,6 +122,9 @@ template < > struct type_master < t_all_auto_none > : three_value < t_all_auto_n
 template < > struct type_master < t_alp > : three_value < t_alp, e_alp, sz_auto, sz_landscape, sz_portrait >
 { using three_value < t_alp, e_alp, sz_auto, sz_landscape, sz_portrait > :: three_value; };
 
+template < > struct type_master < t_always_auto_never > : three_value < t_always_auto_never, e_always_auto_never, sz_always, sz_auto, sz_never >
+{ using three_value < t_always_auto_never, e_always_auto_never, sz_always, sz_auto, sz_never > :: three_value; };
+
 template < > struct type_master < t_anywhere_break_normal > : three_value < t_anywhere_break_normal, e_anywhere_break_normal, sz_anywhere, sz_break_word, sz_normal >
 { using three_value < t_anywhere_break_normal, e_anywhere_break_normal, sz_anywhere, sz_break_word, sz_normal > :: three_value; };
 
@@ -258,8 +261,8 @@ template < > struct type_master < t_css_margin_break > : three_value < t_css_mar
 template < > struct type_master < t_css_masking_mode > : three_value < t_css_masking_mode, e_css_masking_mode, sz_alpha, sz_luminance, sz_match_source >
 { using three_value < t_css_masking_mode, e_css_masking_mode, sz_alpha, sz_luminance, sz_match_source > :: three_value; };
 
-template < > struct type_master < t_always_auto_never > : three_value < t_always_auto_never, e_always_auto_never, sz_always, sz_auto, sz_never >
-{ using three_value < t_always_auto_never, e_always_auto_never, sz_always, sz_auto, sz_never > :: three_value; };
+template < > struct type_master < t_css_pointer_source > : three_value < t_css_pointer_source, e_css_pointer_source, sz_nearest, sz_self, sz_source >
+{ using three_value < t_css_pointer_source, e_css_pointer_source, sz_nearest, sz_self, sz_source > :: three_value; };
 
 template < > struct type_master < t_css_speak_header > : three_value < t_css_speak_header, e_css_speak_header, sz_always, sz_inherit, sz_once >
 { using three_value < t_css_speak_header, e_css_speak_header, sz_always, sz_inherit, sz_once > :: three_value; };

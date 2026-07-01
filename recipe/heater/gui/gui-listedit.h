@@ -19,32 +19,29 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+#include "gui/gui-ctrl.h"
 
 #ifdef WX
 #define ADD_TEXT    "&add"
 #define REMOVE_TEXT "&del"
 #define RENAME_TEXT "&ren"
 
-struct listedit_manager
-{   wxBoxSizer* box_ext_ = nullptr;
-    wxBoxSizer* box_ext_bloc_ = nullptr;
-    wxBoxSizer* box_ext_butt_ = nullptr;
-    wxBoxSizer* box_file_text_ = nullptr;
-    wxButton* add_ = nullptr;
-    wxButton* erase_ = nullptr;
-    wxButton* rename_ = nullptr;
-    wxFilePickerCtrl* filename_ = nullptr;
-    wxListBox* list_ = nullptr;
-    wxStaticLine* line_ = nullptr;
-    wxStaticText* stat_ext_ = nullptr;   
-    wxTextCtrl* text_ = nullptr;
-    wxWindowID add_id_, erase_id_, file_id_, list_id_, rename_id_, text_id_;
+class listedit_manager
+{   box_t ext_, bloc_, but_, file_text_;
+    button_t add_, del_, ren_;
+    filepick_t file_;
+    label_t label_;
+    line_t l_;
+    list_t list_;
+    text_t t_;
+    int add_id_ = -1, erase_id_ = -1, file_id_ = -1, list_id_ = -1, rename_id_ = -1, text_id_ = -1;
     bool has_file_ = false, has_text_ = true;
     void fex ();
-    ::std::string tiswot () const;
+    ::std::string tiswot ();
+public:
     listedit_manager () = default;
-    listedit_manager (  const wxWindowID add_id, const wxWindowID erase_id, const wxWindowID rename_id,
-                        const wxWindowID file_id, const wxWindowID list_id, const wxWindowID text_id) noexcept
+    listedit_manager (  const int add_id, const int erase_id, const int rename_id,
+                        const int file_id, const int list_id, const int text_id) noexcept
         : add_id_ (add_id), erase_id_ (erase_id), file_id_ (file_id), list_id_ (list_id), rename_id_ (rename_id), text_id_ (text_id)
     { }
     listedit_manager (const listedit_manager& l) = default;
@@ -59,38 +56,54 @@ struct listedit_manager
     void OnText (wxCommandEvent& event);
     void OnTap (wxCommandEvent& event);
     void OnImpatience (wxCommandEvent& event);
-    bool able_enable () const;
+    bool TransferDataToWindow ();
+    bool TransferDataFromWindow ();
+    bool able_enable ();
     bool concoct (wxWindow* parent, wxBoxSizer* box, const char* desc, const char* def = nullptr, bool file = false, bool comma = false, bool line = false);
     void enable (const bool e);
     bool invalid () const noexcept; 
+    int selected () const
+    {	if (invalid ()) return -1;
+        return list_.selected (); }
+    void select (const int n)
+    {   list_.select (n); }
+    ::std::string value ()
+    {   return tiswot (); }
+    ::std::string value (const int n) const
+    {   return list_.value (n); }
+    void value (const ::std::string& s, const ::std::string& t = ::std::string ());
+    int count () const
+    {   return list_.count (); }
     ::std::size_t size () const
     {   if (invalid ()) return 0;
-        return list_ -> GetCount (); }
+        return list_.count (); }
     vstr_t acquire () const;
-    template < class T > inline void acquire (T& s) const
-    {	VERIFY_NOT_NULL (list_, __FILE__, __LINE__);
+    template < class T > inline void acquire (T& s)
+    {	if (list_.invalid ()) return;
+        TransferDataFromWindow ();
         s.clear ();
-        const unsigned int nx = list_ -> GetCount ();
+        const unsigned int nx = list_.count ();
         for (unsigned int i = 0; i < nx; ++i)
-            s.emplace (::std::string (list_ -> GetString (i).c_str ())); }
-    template < > inline void acquire < vstr_t > (vstr_t& s) const
-    {	VERIFY_NOT_NULL (list_, __FILE__, __LINE__);
+            s.emplace (list_.value (i)); }
+    template < > inline void acquire < vstr_t > (vstr_t& s)
+    {	if (list_.invalid ()) return;
+        TransferDataFromWindow ();
         s.clear ();
-        const unsigned int nx = list_ -> GetCount ();
+        const unsigned int nx = list_.count ();
         for (unsigned int i = 0; i < nx; ++i)
-            s.emplace_back (::std::string (list_ -> GetString (i).c_str ())); }
+            s.push_back (list_.value (i)); }
     template < class VT > void preload (const VT& vs)
-    {	VERIFY_NOT_NULL (list_, __FILE__, __LINE__);
-        list_ -> Clear ();
-        for (auto s : vs) list_ -> Append (s.c_str ());
+    {	if (list_.invalid ()) return;
+        list_.clear ();
+        for (auto s : vs) list_.append (s);
+        TransferDataToWindow ();
         fex (); }
-    template < class VT > VT unload () const
-    {   VERIFY_NOT_NULL (list_, __FILE__, __LINE__);
+    template < class VT > VT unload ()
+    {	PRESUME (! list_.invalid (), __FILE__, __LINE__);
         VT res;
-        const unsigned int m = list_ -> GetCount ();
+        TransferDataFromWindow ();
+        const unsigned int m = list_.count ();
         for (unsigned int u = 0; u < m; ++u)
-            res.push_back (typename VT::value_type (list_ -> GetString (u).c_str ()));
-        return res; }
-    int sel () const
-    {	return list_ -> GetSelection (); } };
+            res.push_back (typename VT::value_type (list_.value (u)));
+        return res; } };
 #endif // WX

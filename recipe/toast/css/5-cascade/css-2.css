@@ -1,5 +1,5 @@
 ﻿@import url("tabs.css") layer(framework.component);
-@import url("override.css") layer();
+@import url("override.css") layer;
 
 @import "mystyle.css";
 @import url("mystyle.css");
@@ -15,3 +15,5 @@
 
 @import "mystyle.css" supports(display: flex);
 @import "mystyle.css" supports((display: flex));
+
+@import url("narrow.css") supports(display: flex) handheld and (max-width: 400px);

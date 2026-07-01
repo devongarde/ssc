@@ -98,11 +98,12 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                 cst.set_value (nits, args.v_, args.t_.at (kw).val_);
                 const e_css_statement st = cst.get ();
                 switch (st)
-                {   case css_media :
-                    case css_supports :
-                    case css_scope :
+                {   case css_container :
+                    case css_media :
                     case css_layer :
-                    case css_container :
+                    case css_route :
+                    case css_scope :
+                    case css_supports :
                         break;
                     case css_context :
                     case css_error :

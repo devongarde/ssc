@@ -14516,6 +14516,7 @@ struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > 
     { { 0, 95 }, { 0, 0 }, "Audience", sch_audience },
     { { 3, 5 }, { 0, 0 }, "Audiobook", sch_audiobook },
     { { 3, 5 }, { 0, 0 }, "AudiobookFormat", sch_audiobookformat },
+    { { 31, 1 }, { 0, 0 }, "Audiology", sch_audiology },
     { { 0, 10 }, { 0, 0 }, "AudioObject", sch_audioobject },
     { { 13, 0 }, { 0, 0 }, "AudioObjectSnapshot", sch_audioobjectsnapshot },
     { { 29, 4 }, { 0, 0 }, "AuthenticateAction", sch_authenticateaction },

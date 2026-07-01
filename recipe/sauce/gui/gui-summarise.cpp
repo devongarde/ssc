@@ -98,5 +98,4 @@ void summarise_t :: load_from_context (const context_t& c)
 {	config_ = c.report (gr_config, false);
     summary_ = c.report (gr_summary, false);
     switches_ = c.report (gr_switches, false); }
-
 #endif // WX

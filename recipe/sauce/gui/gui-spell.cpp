@@ -274,6 +274,5 @@ void spell_t :: save_to_context (context_t& c) const
     reset_spell ();
     nitpick nits;
     add_spell_list (nits, dict ()); }
-
 #endif // NOSPELL
 #endif // WX

@@ -1878,6 +1878,15 @@
     <Filter Include="Toast\CSS\5-image">
       <UniqueIdentifier>{0aaaad99-a410-4d4f-8656-df722b64f5d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Living\jul26">
+      <UniqueIdentifier>{4714a7c4-e88c-45a9-9d06-fd0f4667570c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\6-colour">
+      <UniqueIdentifier>{dcbdb519-ec15-4a78-822a-f2f9745b813f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-route">
+      <UniqueIdentifier>{af977d45-b854-489a-b029-94a44d3c112a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -49544,6 +49553,738 @@
     </None>
     <None Include="..\toast\css\5-image\css-2.html">
       <Filter>Toast\CSS\5-image</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\3.2.1.6.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\3.2.2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\3.2.5.1.xhtml">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\3.2.5.2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\3.2.6.1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\3.2.6.2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.3.11-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.3.11-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.3.11-3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.3.11-4.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.3.11-5.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.3.11-6.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.3.11-7.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.3.11-8.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.3.11-9.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.3.12-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.3.12-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.7.4.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.7.5.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.7.6.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.8.11.3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.8.11.11.7.vtt">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.9.13.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.10.19.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.10.22.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.11.3.6.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\4.14.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\5.1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\5.2-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\5.2-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\5.3.1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\5.3.2-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\5.3.2-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\5.3.3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\5.3.4.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\6.1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\6.3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\6.6.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\6.7.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\6.8.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\6.11.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\6.12.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\7.2-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\7.2-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\7.2-3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\7.2-4.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\7.3-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\7.3-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\7.5-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\7.5-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\7.5-3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\7.5-4.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\8.1-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\8.1-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\8.1-3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\8.1-4.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\8.1-5.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\8.1-6.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\8.1-7.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\8.1-8.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\8.1-9.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\8.9.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\10-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\10-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\10-3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\10-4.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\10-5.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\10-6.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\10-7.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\10-8.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\10-9.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\10-10.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\12.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.1-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.1-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.1-3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.1-4.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.1-5.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.1-6.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.1-7.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.1-8.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.1-9.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.1-10.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.1-11.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.1-12.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.1-13.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.1-14.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.2-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.2-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\13.2-3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\15.css">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\15.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\16.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\a.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\abbr.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\address.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\alternate.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\area.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\article-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\article-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\aside-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\aside-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\b.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\base.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\bdi.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\blockquote.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\body.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\bookmark.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\br.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\button.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\canvas.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\caption.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\cite.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\code.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\custom.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\data.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\datalist.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\dd.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\del.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\details.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\dfn.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\dialogue.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\div.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\dl.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\dt.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\em.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\fieldset.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\figcaption.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\figure-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\figure-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\footer-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\footer-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\footer-3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\form.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\h1-h6-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\h1-h6-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\head-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\head-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\header-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\header-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\help.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\hgroup.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\hr.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\html.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\i.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\icon.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\iframe.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\img-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\img-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\img-3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\index.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\input.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\ins.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\kbd.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\label.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\licence.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\link.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\living.conf">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\living.spec">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\main-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\main-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\map.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\mark.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\mathml.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\menu.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\meta-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\meta-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\meta-3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\meta-4.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\meter.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\modulepreload.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\nav-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\nav-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\nav-3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\noopener.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\noreferrer.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\noscript.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\object.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\ol.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\opener.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\optgroup.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\output.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\p.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\pre.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\progress.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\q.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\rp.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\ruby.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\s.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\samp.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\script.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\search-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\search-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\section-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\section-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\select.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\small.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\source.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\span.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\strong.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\style.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\supsub.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\table.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\tag-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\tag-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\td.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\template-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\template-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\textarea.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\th.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\thead.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\time.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\title-1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\title-2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\track.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\u.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\ul.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\var.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\video.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\wbr.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\1.10.1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\1.10.2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\1.10.3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\1.11.2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\1.11.3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\2.3.2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\3.1.6.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\3.2.1.1.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\3.2.1.2.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\3.2.1.3.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\3.2.1.4.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\living\jul26\3.2.1.5.html">
+      <Filter>Toast\Living\jul26</Filter>
+    </None>
+    <None Include="..\toast\css\5-cascade\css-7.css">
+      <Filter>Toast\CSS\5-cascade</Filter>
+    </None>
+    <None Include="..\toast\css\6-colour\css.conf">
+      <Filter>Toast\CSS\6-colour</Filter>
+    </None>
+    <None Include="..\toast\css\6-colour\css.spec">
+      <Filter>Toast\CSS\6-colour</Filter>
+    </None>
+    <None Include="..\toast\css\6-colour\css-2.css">
+      <Filter>Toast\CSS\6-colour</Filter>
+    </None>
+    <None Include="..\toast\css\6-colour\css-4.css">
+      <Filter>Toast\CSS\6-colour</Filter>
+    </None>
+    <None Include="..\toast\css\6-colour\index.html">
+      <Filter>Toast\CSS\6-colour</Filter>
+    </None>
+    <None Include="..\toast\css\3-route\css.conf">
+      <Filter>Toast\CSS\3-route</Filter>
+    </None>
+    <None Include="..\toast\css\3-route\css.spec">
+      <Filter>Toast\CSS\3-route</Filter>
+    </None>
+    <None Include="..\toast\css\3-route\css-1.css">
+      <Filter>Toast\CSS\3-route</Filter>
+    </None>
+    <None Include="..\toast\css\3-route\css-2.css">
+      <Filter>Toast\CSS\3-route</Filter>
+    </None>
+    <None Include="..\toast\css\3-route\css-3.css">
+      <Filter>Toast\CSS\3-route</Filter>
+    </None>
+    <None Include="..\toast\css\3-route\index.html">
+      <Filter>Toast\CSS\3-route</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -34,6 +34,7 @@ typedef typed_property < t_css_background_position_3s, ec_background_position > 
 typedef typed_property < t_css_background_repeat_3, ec_background_repeat > desc_background_repeat;
 typedef typed_property < t_real, ec_baseline > desc_baseline;
 typedef typed_property < t_css_base_palette, ec_base_palette > desc_base_palette;
+typedef typed_property < t_css_base_url, ec_base_url > desc_base_url;
 typedef typed_property < t_reals, ec_bbox > desc_bbox;
 typedef typed_property < t_css_length_a, ec_bleed > desc_bleed;
 typedef typed_property < t_css_border_wsc_i, ec_border > desc_border;
@@ -66,6 +67,7 @@ typedef typed_property < t_percent_flexible, ec_descent_override > desc_descent_
 typedef typed_property < t_percents_n, ec_descent_override > desc_descent_override_5;
 typedef typed_property < t_svg_direction, ec_direction > desc_direction;
 typedef typed_property < t_text, ec_expansion > desc_expansion;
+typedef typed_property < t_generic, ec_extend_to_zoom > desc_extend_to_zoom;
 typedef typed_property < t_fallback, ec_fallback > desc_fallback;
 typedef typed_property < t_css_font, ec_font > desc_font;
 typedef typed_property < t_css_font_display, ec_font_display > desc_font_display;
@@ -80,8 +82,10 @@ typedef typed_property < t_svg_fontvariant, ec_font_variant > desc_font_variant;
 typedef typed_property < t_css_font_variation_settings, ec_font_variation_settings > desc_font_variation_settings;
 typedef typed_property < t_css_font_weights, ec_font_weight > desc_font_weight;
 typedef typed_property < t_css_font_width, ec_font_width > desc_font_width;
+typedef typed_property < t_text, ec_hash > desc_hash;
 typedef typed_property < t_css_length_2, ec_height > desc_height;
 typedef typed_property < t_css_length_xtz, ec_height > desc_vp_height;
+typedef typed_property < t_text, ec_hostname > desc_hostname;
 typedef typed_property < t_text, ec_initial > desc_initial;
 typedef typed_property < t_css_lengths_aa_l, ec_inset > desc_inset;
 typedef typed_property < t_css_length_aa2, ec_inset_block > desc_inset_block;
@@ -90,6 +94,7 @@ typedef typed_property < t_css_length_aia, ec_inset_block_start > desc_inset_blo
 typedef typed_property < t_css_length_aa2, ec_inset_inline > desc_inset_inline;
 typedef typed_property < t_css_length_aia, ec_inset_inline_end > desc_inset_inline_end;
 typedef typed_property < t_css_length_aia, ec_inset_inline_start > desc_inset_inline_start;
+typedef typed_property < t_interactive_widget, ec_interactive_widget > desc_interactive_widget;
 typedef typed_property < t_css_box_justself, ec_justify_self > desc_justify_self;
 typedef typed_property < t_css_length_norm, ec_letter_spacing > desc_letter_spacing;
 typedef typed_property < t_percent_flexible, ec_line_gap_override > desc_line_gap_override;
@@ -124,12 +129,17 @@ typedef typed_property < t_measure_i, ec_padding_right > desc_padding_right;
 typedef typed_property < t_measure_i, ec_padding_top > desc_padding_top;
 typedef typed_property < t_rotate_upright, ec_page_orientation > desc_page_orientation;
 typedef typed_property < t_css_length, ec_path_length > desc_panose_1;
+typedef typed_property < t_text, ec_pathname > desc_pathname;
+typedef typed_property < t_css_fn_url_pattern, ec_pattern > desc_pattern;
 typedef typed_property < t_css_place_self, ec_place_self > desc_place_self;
+typedef typed_property < t_port, ec_port > desc_port;
 typedef typed_property < t_text, ec_prefix > desc_prefix;
+typedef typed_property < t_protocol, ec_protocol > desc_protocol;
 typedef typed_property < t_4string_ni, ec_quotes > desc_quotes;
 typedef typed_property < t_css_range_a, ec_range > desc_range;
 typedef typed_property < t_generic, ec_result > desc_result;
 typedef typed_property < t_css_scope, ec_scope > desc_scope;
+typedef typed_property < t_text, ec_search > desc_search;
 typedef typed_property < t_css_size_3, ec_size > desc_size;
 typedef typed_property < t_percent, ec_size_adjust > desc_size_adjust;
 typedef typed_property < t_real, ec_slope > desc_slope;
@@ -374,8 +384,19 @@ typedef typed_property < t_unknown, ec_unknown > desc_unknown;
     desc_place_self, \
     desc_width
 
+#define ROUTE_DESCRIPTORS \
+    desc_base_url, \
+    desc_hash, \
+    desc_hostname, \
+    desc_pathname, \
+    desc_pattern, \
+    desc_port, \
+    desc_protocol, \
+    desc_search
+
 #define VIEWPORT_DESCRIPTORS \
-    desc_vp_height, \
+    desc_extend_to_zoom, \
+    desc_interactive_widget, \
     desc_max_height, \
     desc_max_width, \
     desc_max_zoom, \
@@ -385,5 +406,6 @@ typedef typed_property < t_unknown, ec_unknown > desc_unknown;
     desc_orientation, \
     desc_user_zoom, \
     desc_viewport_fit, \
+    desc_vp_height, \
     desc_vp_width, \
     desc_zoom

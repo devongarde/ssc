@@ -254,5 +254,4 @@ void nits_t :: save_to_context (context_t& c) const
     c.verbose (verbosity ());
     nitpick::mns (severity ());
     c.output_format (format ().string ()); }
-
 #endif // WX

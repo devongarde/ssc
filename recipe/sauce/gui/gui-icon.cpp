@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifdef WX
 #include "gui/gui-icon.h"
 
-// thanks to John Burkardt of the University of South Carolina
+// with apologies to John Burkardt of the University of South Carolina
 // https://people.math.sc.edu/Burkardt/data/xpm/xpm.html
 static const char* teapot_xpm [] = {
 "234 149 34 1",

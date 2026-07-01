@@ -119,6 +119,9 @@ template < > struct type_master < t_aces > : four_value < t_aces, e_aces, sz_aut
 template < > struct type_master < t_actiontype2 > : four_value < t_actiontype2, e_actiontype, sz_toggle, sz_statusline, sz_tooltip, sz_highlight >
 { using four_value < t_actiontype2, e_actiontype, sz_toggle, sz_statusline, sz_tooltip, sz_highlight > :: four_value; };
 
+template < > struct type_master < t_aftw > : four_value < t_aftw, e_aftw, sz_at, sz_from, sz_to, sz_with >
+{ using four_value < t_aftw, e_aftw, sz_at, sz_from, sz_to, sz_with > :: four_value; };
+
 template < > struct type_master < t_align2070 > : four_value < t_align2070, e_align2070, sz_centre, sz_justify, sz_left, sz_right >
 { using four_value < t_align2070, e_align2070, sz_centre, sz_justify, sz_left, sz_right > :: four_value; };
 
@@ -155,7 +158,7 @@ template < > struct type_master < t_benrs > : four_value < t_benrs, e_benrs, sz_
 template < > struct type_master < t_bihv > : four_value < t_bihv, e_bihv, sz_block, sz_horizontal, sz_inline, sz_vertical >
 { using four_value < t_bihv, e_bihv, sz_block, sz_horizontal, sz_inline, sz_vertical > :: four_value; };
 
-template < > struct type_master < t_bixy > : four_value < t_bixy, e_bixy, sz_block, sz_inline, sz_x, sz_y  >
+template < > struct type_master < t_bixy > : four_value < t_bixy, e_bixy, sz_block, sz_inline, sz_x, sz_y >
 { using four_value < t_bixy, e_bixy, sz_block, sz_inline, sz_x, sz_y > :: four_value; };
 
 template < > struct type_master < t_btyy > : four_value < t_btyy, e_btyy, sz_bottom, sz_top, sz_y_end, sz_y_start >
@@ -287,8 +290,9 @@ template < > struct type_master < t_css_synthesis > : four_value < t_css_synthes
 template < > struct type_master < t_css_textemph_skip > : four_value < t_css_textemph_skip, e_css_textemph_skip, sz_narrow, sz_punctuation, sz_spaces, sz_symbols >
 { using four_value < t_css_textemph_skip, e_css_textemph_skip, sz_narrow, sz_punctuation, sz_spaces, sz_symbols > :: four_value; };
 
-template < > struct type_master < t_css_text_wrap_style > : four_value < t_css_text_wrap_style, e_css_text_wrap_style, sz_auto, sz_balance, sz_pretty, sz_stable >
-{ using four_value < t_css_text_wrap_style, e_css_text_wrap_style, sz_auto, sz_balance, sz_pretty, sz_stable > :: four_value; };
+//template < > struct type_master < t_css_text_wrap_style > : four_value < t_css_text_wrap_style, e_css_text_wrap_style, sz_auto, sz_balance, sz_pretty, sz_stable >
+//{ using four_value < t_css_text_wrap_style, e_css_text_wrap_style, sz_auto, sz_balance, sz_pretty, sz_stable > :: four_value; };
+// typedef enum { ctws_auto, ctws_avoid_orphans, ctws_balance, ctws_pretty, ctws_stable } e_css_text_wrap_style;
 
 template < > struct type_master < t_css_val_con > : four_value < t_css_val_con, e_css_val_con, sz_e, sz_infinity, sz_nan, sz_pi >
 { using four_value < t_css_val_con, e_css_val_con, sz_e, sz_infinity, sz_nan, sz_pi > :: four_value; };

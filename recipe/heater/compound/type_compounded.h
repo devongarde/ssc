@@ -34,6 +34,9 @@ template < > struct type_master < t_acn_2 > : type_range < t_acn_2, sz_space_cha
 template < > struct type_master < t_aesfs > : type_range < t_aesfs, sz_space_char, t_aesf, 1, 2 >
 { using type_range < t_aesfs, sz_space_char, t_aesf, 1, 2 > :: type_range; };
 
+template < > struct type_master < t_aftws > : type_at_least_none < t_aftws, sz_space_char, t_aftw >
+{ using type_at_least_none < t_aftws, sz_space_char, t_aftw > :: type_at_least_none; };
+
 template < > struct type_master < t_allow_list > : type_at_least_none < t_allow_list, sz_semicolon, t_permpol >
 { using type_at_least_none < t_allow_list, sz_semicolon, t_permpol > :: type_at_least_none; };
 
@@ -52,6 +55,9 @@ template < > struct type_master < t_angle_p > : public type_either_or < t_angle_
 template < > struct type_master < t_aria_relevants > : type_at_least_one < t_aria_relevants, sz_space_char, t_aria_relevant >
 { using type_at_least_one < t_aria_relevants, sz_space_char, t_aria_relevant > :: type_at_least_one; };
 
+template < > struct type_master < t_bixies > : type_at_least_one < t_bixies, sz_comma, t_bixy >
+{ using type_at_least_one < t_bixies, sz_comma, t_bixy > :: type_at_least_one; };
+
 template < > struct type_master < t_bixys > : type_at_least_one < t_bixys, sz_space_char, t_bixy >
 { using type_at_least_one < t_bixys, sz_space_char, t_bixy > :: type_at_least_one; };
 
@@ -60,6 +66,12 @@ template < > struct type_master < t_block_inline_2 > : type_at_least_one < t_blo
 
 template < > struct type_master < t_contents > : type_string < t_contents, sz_contents >
 { using type_string < t_contents, sz_contents > :: type_string; };
+
+template < > struct type_master < t_custom_ids > : type_at_least_one < t_custom_ids, sz_comma, t_custom_id >
+{ using type_at_least_one < t_custom_ids, sz_comma, t_custom_id > :: type_at_least_one; };
+
+template < > struct type_master < t_custom_ids_n > : type_or_string < t_custom_ids_n, t_custom_ids, sz_none >
+{ using  type_or_string < t_custom_ids_n, t_custom_ids, sz_none > :: type_or_string; };
 
 template < > struct type_master < t_datetime_auto > : type_or_string < t_datetime_auto, t_datetime, sz_auto >
 { using  type_or_string < t_datetime_auto, t_datetime, sz_auto > :: type_or_string; };

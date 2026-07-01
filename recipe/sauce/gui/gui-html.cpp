@@ -284,5 +284,4 @@ void html_t :: save_to_context (context_t& c) const
     c.article (article ());
     c.body (body ());
     c.main (main ()); }
-
 #endif // WX

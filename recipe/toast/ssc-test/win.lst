@@ -32,6 +32,7 @@
 ../toast/css/3-colour/css.spec
 ../toast/css/4-colour/css.spec
 ../toast/css/5-colour/css.spec
+../toast/css/6-colour/css.spec
 ../toast/css/3-compositing/css.spec
 ../toast/css/4-compositing/css.spec
 ../toast/css/3-contain/css.spec
@@ -90,6 +91,7 @@
 ../toast/css/3-region/css.spec
 ../toast/css/3-rhythm/css.spec
 ../toast/css/3-round/css.spec
+../toast/css/3-route/css.spec
 ../toast/css/3-ruby/css.spec
 ../toast/css/3-scope/css.spec
 ../toast/css/3-scrollbar/css.spec
@@ -207,6 +209,7 @@
 ../toast/living/oct25/living.spec
 ../toast/living/jan26/living.spec
 ../toast/living/apr26/living.spec
+../toast/living/jul26/living.spec
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec

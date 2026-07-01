@@ -204,5 +204,4 @@ void site_t :: save_to_context (context_t& c) const
     c.output_public (pub_);
 #endif // SIGNING
     c.username (user_); }
-
 #endif // WX

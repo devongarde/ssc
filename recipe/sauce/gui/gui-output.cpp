@@ -181,5 +181,4 @@ void output_t :: OnUpdateCopy (wxUpdateUIEvent& event)
 
 void output_t :: OnUpdateSelectAll (wxUpdateUIEvent& event)
 {   event.Enable (GetLastPosition () > 0); }
-
 #endif // WX

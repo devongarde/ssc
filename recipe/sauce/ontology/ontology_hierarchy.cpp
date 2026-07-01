@@ -17423,6 +17423,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 0, 95 }, { 0, 0 }, sch_medicalsignorsymptom, sch_medicalsign },
     { { 0, 95 }, { 0, 0 }, sch_medicalsignorsymptom, sch_medicalsymptom },
     { { 0, 95 }, { 0, 0 }, sch_medicalspeciality, sch_anaesthesia },
+    { { 30, 1 }, { 0, 0 }, sch_medicalspeciality, sch_audiology },
     { { 0, 95 }, { 0, 0 }, sch_medicalspeciality, sch_cardiovascular },
     { { 0, 95 }, { 0, 0 }, sch_medicalspeciality, sch_communityhealth },
     { { 0, 95 }, { 0, 0 }, sch_medicalspeciality, sch_dentistry },

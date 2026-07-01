@@ -68,31 +68,7 @@ void descriptor::parse (arguments& args, const e_css_statement cs, const int fro
             if (! args.prep_for_make (nits, from, b, to, var, bang, p, xs, xk, xn, xi, fn, clean, kc, val_)) return;
             if (bang > 0) nits.pick (nit_weight, es_warning, ec_css, "weights cannot be applied to descriptors.");
             switch (args.cs ())
-            {   case css_counter_style :
-                    dsc_ = make_counter_style_v_ptr (args, var, to, nits, k, val_, p);
-                    break;
-                case css_custom_property :
-                    dsc_ = make_custard_prop_v_ptr (args, var, to, nits, k, val_, p);
-                    break;
-                case css_custom_selector :
-                    dsc_ = make_custard_sel_v_ptr (args, var, to, nits, k, val_, p);
-                    break;
-                case css_font_face :
-                    dsc_ = make_descriptor_v_ptr (args, var, to, nits, k, val_, p);
-                    break;
-                case css_font_feature_values :
-                    dsc_ = make_feature_v_ptr (args, var, to, nits, k, val_, p);
-                    break;
-                case css_font_palette_values :
-                    dsc_ = make_palette_v_ptr (args, var, to, nits, k, val_, p);
-                    break;
-                case css_viewport :
-                    dsc_ = make_viewport_v_ptr (args, var, to, nits, k, val_, p);
-                    break;
-                case css_page :
-                    dsc_ = make_page_v_ptr (args, var, to, nits, k, val_, p);
-                    break;
-                case css_bottom_centre :
+            {   case css_bottom_centre :
                 case css_bottom_left :
                 case css_bottom_left_corner :
                 case css_bottom_right :
@@ -110,11 +86,38 @@ void descriptor::parse (arguments& args, const e_css_statement cs, const int fro
                 case css_top_right_corner :
                     dsc_ = make_margin_v_ptr (args, var, to, nits, k, val_, p);
                     break;
-                case css_position_try :
-                    dsc_ = make_position_try_v_ptr (args, var, to, nits, k, val_, p);
+                case css_counter_style :
+                    dsc_ = make_counter_style_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
+                case css_custom_property :
+                    dsc_ = make_custard_prop_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
+                case css_custom_selector :
+                    dsc_ = make_custard_sel_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
+                case css_font_face :
+                    dsc_ = make_descriptor_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
+                case css_font_feature_values :
+                    dsc_ = make_feature_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
+                case css_font_palette_values :
+                    dsc_ = make_palette_v_ptr (args, var, to, nits, k, val_, p);
                     break;
                 case css_function :
                     dsc_ = make_function_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
+                case css_page :
+                    dsc_ = make_page_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
+                case css_position_try :
+                    dsc_ = make_position_try_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
+                case css_route :
+                    dsc_ = make_route_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
+                case css_viewport :
+                    dsc_ = make_viewport_v_ptr (args, var, to, nits, k, val_, p);
                     break;
                 default :
                     GRACEFUL_CRASH (__FILE__, __LINE__);

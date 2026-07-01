@@ -1,0 +1,113 @@
+﻿<!doctype html>
+<html lang=en>
+ <head>
+  <title>13.2</title>
+
+<?xml-stylesheet type="text/css" href="style.css"?>
+
+ </head>
+
+<body>
+  <h1>13.2</h1>
+
+  <script>
+ document.write('<p>');
+  </script>
+
+  <42></42>
+
+<div/><span></span><span></span>
+
+                   <div foo<div>
+
+<div id'bar'>
+
+    <div foo=b'ar'>
+
+        <div foo="bar" ="baz">
+
+            A
+            <script>
+                var script = document.getElementsByTagName('script')[0];
+                document.body.removeChild(script);
+            </script>B
+
+            A
+            <script>
+                var text = document.createTextNode('B');
+                document.body.appendChild(text);
+            </script>C
+
+            A
+            <script>
+                var text = document.getElementsByTagName('script')[0].firstChild;
+                text.data = 'B';
+                document.body.appendChild(text);
+            </script>C
+
+            A<table>B<tr>C</tr>D</table>
+
+            A<table><tr> B</tr> C</table>
+
+            A<table><tr> B</tr> </em>C</table>
+
+<p>1<b>2<i>3</b>4</i>5</p>
+
+<table><b><tr><td>aaa</td></tr>bbb</table>ccc
+
+<div id=a>
+ <script>
+  var div = document.getElementById('a');
+  parent.document.body.appendChild(div);
+ </script>
+ <script>
+  alert(document.URL);
+ </script>
+</div>
+<script>
+ alert(document.URL);
+</script>
+
+<form id="outer"><div></form><form id="inner"><input>
+
+<a><table><a>
+
+<pre>
+
+Hello.</pre>
+
+<script>
+window.SuperP = class extends HTMLParagraphElement {};
+customElements.define("super-p", SuperP, { extends: "p" });
+</script>
+
+<div id="container"><p is="super-p">Superb!</p></div>
+
+<script>
+console.log(container.innerHTML); // <p is="super-p">
+container.innerHTML = container.innerHTML;
+console.log(container.innerHTML); // <p is="super-p">
+console.assert(container.firstChild instanceof SuperP);
+</script>
+
+<script>
+container.innerHTML = "";
+const p = document.createElement("p", { is: "super-p" });
+container.appendChild(p);
+
+// The is attribute is not present in the DOM:
+console.assert(!p.hasAttribute("is"));
+
+// But the element is still a super-p:
+console.assert(p instanceof SuperP);
+</script>
+
+<script>
+console.log(container.innerHTML); // <p is="super-p">
+container.innerHTML = container.innerHTML;
+console.log(container.innerHTML); // <p is="super-p">
+console.assert(container.firstChild instanceof SuperP);
+</script>
+
+</body>
+</html>

@@ -112,5 +112,4 @@ bool text_t :: TransferDataFromWindow ()
 {	if (invalid ()) return false;
 	value_ = ctrl_ -> GetValue ();
 	return true; }
-
 #endif // WX

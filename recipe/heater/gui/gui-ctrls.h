@@ -177,7 +177,7 @@ struct label_text_t
     text_t text_;
     bool TransferDataToWindow ();
     bool TransferDataFromWindow ();
-    void value (const ::std::string& i) { text_.value (i); }
+    void value (const ::std::string& s) { text_.value (s); }
     ::std::string value () const { return text_.value (); }
     template < typename BOX > bool concoct (wxWindow *mummy, BOX* pen, const int id, const ::std::string& label, const ::std::string& def = ::std::string ())
     {	VERIFY_NOT_NULL (pen, __FILE__, __LINE__);
@@ -226,8 +226,8 @@ struct element_choice_t : text_drop_t < choice_t >
     vstr_t inner_concoct () const;
     template < class BOX > bool concoct (wxWindow *mummy, BOX* pen, const int id, const ::std::string& label, const data_t sel = def_sel ())
     {	return text_drop_t < choice_t > :: concoct < BOX > (mummy, pen, id, label, inner_concoct (), sel, 180); }
-    data_t selected () const { return GSL_NARROW_CAST < data_t > (text_drop_t < choice_t >::selected ()); }
-    void select (const data_t sel) { text_drop_t < choice_t >::select (sel); } };
+    data_t selected () const { return GSL_NARROW_CAST < data_t > (text_drop_t < choice_t >::selected () + first_element_tag - 1); }
+    void select (const data_t sel) { text_drop_t < choice_t >::select (sel - first_element_tag + 1); } };
 
 struct html_version_t : text_drop_t < choice_t >
 {   vstr_t inner_concoct () const;
@@ -295,5 +295,4 @@ struct text_folder_t
     ::boost::filesystem::path value () const { return folder_.value (); }
     void enable (const bool b) { label_.enable (b); folder_.enable (b); }
     bool invalid () const noexcept { return folder_.invalid () || label_.invalid (); } };
-
 #endif // WX

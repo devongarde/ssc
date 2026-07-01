@@ -142,6 +142,10 @@ template < > struct type_master < t_auto_smooth > : two_value < t_auto_smooth, e
 template < > struct type_master < t_auto_stable > : two_value < t_auto_stable, e_auto_smooth, sz_auto, sz_stable >
 { using two_value < t_auto_stable, e_auto_smooth, sz_auto, sz_stable > :: two_value; };
 
+// typedef enum { bgfg_bg, bgfg_fg } e_bgfg;
+template < > struct type_master < t_bgfg > : two_value < t_bgfg, e_bgfg, sz_tbd_bg, sz_tbd_fg >
+{ using two_value < t_bgfg, e_bgfg, sz_tbd_bg, sz_tbd_fg > :: two_value; };
+
 template < > struct type_master < t_blink_none > : two_value < t_blink_none, e_blink_none, sz_blink, sz_none >
 { using two_value < t_blink_none, e_blink_none, sz_blink, sz_none > :: two_value; };
 
@@ -477,6 +481,9 @@ template < > struct type_master < t_settype > : two_value < t_settype, e_settype
 
 template < > struct type_master < t_size_inlinesize > : two_value < t_size_inlinesize, e_size_inlinesize, sz_inline_size, sz_size >
 { using two_value < t_size_inlinesize, e_size_inlinesize, sz_inline_size, sz_size > :: two_value; };
+
+template < > struct type_master < t_source_target > : two_value < t_source_target, e_source_target, sz_source, sz_target >
+{ using two_value < t_source_target, e_source_target, sz_source, sz_target > :: two_value; };
 
 template < > struct type_master < t_spacing > : two_value < t_spacing, e_spacing, sz_auto, sz_exact >
 { using two_value < t_spacing, e_spacing, sz_auto, sz_exact > :: two_value; };

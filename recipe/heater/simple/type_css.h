@@ -44,6 +44,7 @@ e_status set_vtn_value (nitpick& nits, const html_version& v, const vstr_t& vs, 
 e_status test_css_anchor (nitpick& nits, const e_status st, const html_version& v, const ::std::string& ss);
 e_status test_css_template_set (nitpick& nits, const e_status st, arguments* a, const vstr_t& val);
 e_status test_region_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box);
+e_status test_route_name (nitpick& nits, const e_status st, const ::std::string& n, arguments* a);
 void validate_anchor_idref (nitpick& nits, type_master < t_css_anchor_idref >& cai, arguments& args, const ::std::string& s);  // typed_property.cpp
         
 template < > struct type_master < t_css > : public tidy_string < t_css >
@@ -130,6 +131,12 @@ template < > struct type_master < t_css_counter_style_name > : public tidy_strin
         if (s -> find (x) != s -> cend ()) return false;
         nits.pick (nit_counter_style, es_error, ec_css, "@counter-style ", quote (x), " is referenced but not defined");
         return true; } };
+
+template < > struct type_master < t_css_descriptor > : tidy_string < t_css_descriptor >
+{   using tidy_string < t_css_descriptor > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& , const ::std::string& )
+    {   nits.pick (nit_descriptor, es_error, ec_css, "invalid: descriptors can only be used with @statements");
+        tidy_string < t_css_descriptor > :: status (s_invalid); } };
 
 template < > struct type_master < t_css_font > : tidy_string < t_css_font >
 {   using tidy_string < t_css_font > :: tidy_string;
@@ -305,6 +312,18 @@ template < > struct type_master < t_custom_id > : tidy_string < t_custom_id >
         {   nits.pick (nit_css_syntax, es_error, ec_css, "CSS custom ids must start with '--'");
             tidy_string < t_custom_id > :: status (s_invalid); }
         else tidy_string < t_custom_id > :: status (s_good); } };
+
+template < > struct type_master < t_css_route_name > : tidy_string < t_css_route_name >
+{   using tidy_string < t_css_route_name > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_route_name > :: set_value (nits, v, s);
+        const ::std::string& id = tidy_string < t_css_route_name > :: get_string ();
+        if (s.empty () || (id.size () < 3) || (id.substr (0, 2) != "--"))
+        {   nits.pick (nit_css_syntax, es_error, ec_css, "CSS route names must start with '--'");
+            tidy_string < t_css_route_name > :: status (s_invalid); }
+        else tidy_string < t_css_route_name > :: status (s_good); }
+    void argue (nitpick& nits, arguments* a)
+    {   tidy_string < t_css_route_name > :: status (test_route_name (nits, tidy_string < t_css_route_name > :: status (), tidy_string < t_css_route_name > :: get_string (), a)); } };
 
 template < > struct type_master < t_custom_property > : tidy_string < t_custom_property >
 {   using tidy_string < t_custom_property > :: tidy_string;

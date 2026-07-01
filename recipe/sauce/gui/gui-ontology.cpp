@@ -589,5 +589,4 @@ void ontology_t :: save_to_context (context_t& c) const
     c.mf_pretty (mf_pretty ());
     c.mf_verify (mf_verify ());
     *vsv_u_ = lvsv (); }
-
 #endif // WX

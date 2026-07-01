@@ -45,7 +45,8 @@ class link_t : public d1_t < wx_link >
     void select_require (const int sel = 0);
     void externaliser ();
     void internaliser ();
-    required_t gather_require (int& sel) const;
+    required_t gather_require (int& sel);
+    void sanitise ();
     DECLARE_CLASS (link_t)
     DECLARE_EVENT_TABLE ()
 public:

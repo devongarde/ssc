@@ -125,12 +125,13 @@ void property::parse (arguments& args, const int from, const int to)
                     cst.set_value (nuts, args.v_, args.t_.at (kw).val_);
                     const e_css_statement st = cst.get ();
                     switch (st)
-                    {   case css_media :
-                        case css_supports :
-                        case css_scope :
+                    {   case css_container :
                         case css_layer :
-                        case css_container :
+                        case css_media :
+                        case css_route :
+                        case css_scope :
                         case css_slot :
+                        case css_supports :
                             break;
                         case css_context :
                         case css_error :
@@ -173,7 +174,8 @@ void property::parse (arguments& args, const int from, const int to)
     b = next_non_whitespace (args.t_, b, to);
     if ((b > 0) && (args.t_.at (b).t_ == ct_colon)) b = next_token_at (args.t_, b, to);
     else if (b < 0) nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (k)), ": missing colon after property name (zilch)");
-    else nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (k)), ": missing colon after property name (", tkn_rpt (args.t_.at (b)), ")");
+    else
+        nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (k)), ": missing colon after property name (", tkn_rpt (args.t_.at (b)), ", ", b, ")");
     b = first_non_whitespace (args.t_, b, to);
     if ((b < 0) || ((b > 0) && (args.t_.at (b).t_ == ct_curly_ket)))
         nits.pick (nit_property, es_error, ec_css, tkn_rpt (args.t_.at (k)), ": missing property value");

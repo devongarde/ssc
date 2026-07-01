@@ -1,4 +1,12 @@
 ../toast/css/3-ease/css.spec
 ../toast/css/3-float/css.spec
+../toast/css/3-route/css.spec
 ../toast/css/4-background/css.spec
+../toast/css/4-text/css.spec
+../toast/css/5-cascade/css.spec
 ../toast/css/5-image/css.spec
+../toast/css/6-colour/css.spec
+../toast/mdn/at/mdn.spec
+../toast/mdn/property/mdn.spec
+../toast/mdn/transition/mdn.spec
+../toast/living/jul26/living.spec

@@ -142,14 +142,14 @@ void vv_t :: depopulate ()
     if (prior_ != wxNOT_FOUND)
     {	const e_css_version sel = GSL_NARROW_CAST < e_css_version > (prior_);
         const ::std::size_t fm = vvfix_.size ();
-        const ::std::size_t sz = val_.list_ -> GetCount ();
+        const ::std::size_t sz = val_.count ();
         PRESUME (sel < fm, __FILE__, __LINE__);
         PRESUME (sel < vvextra_.size (), __FILE__, __LINE__);
         const ::std::size_t fr = vvfix_.at (sel).size ();
         if (sz >= fr)
         {   vvextra_.at (sel).clear ();
             for (::std::size_t i = fr; i < sz; ++i)
-                vvextra_.at (sel).push_back (::std::string (val_.list_ -> GetString (GSL_NARROW_CAST < unsigned int > (i)).c_str ())); }
+                vvextra_.at (sel).push_back (val_.value (GSL_NARROW_CAST < unsigned int > (i))); }
         prior_ = wxNOT_FOUND; } }
 
 void vv_t :: repopulate ()
@@ -195,14 +195,13 @@ void vv_t :: OnValImpatience (wxCommandEvent& e)
 void vv_t :: OnVirtAdd (wxCommandEvent& e)
 {   if (! invalid ())
     {   virt_.OnAdd (e);
-        pvirt_ = virt_.sel ();
+        pvirt_ = virt_.selected ();
         part_de_virt (pvirt_);
         en_virt (); } }
 
 void vv_t :: OnVirtErase (wxCommandEvent& e)
-{   // this, it must be said, is dismal
-    if (! invalid ())
-    {   const ::std::size_t zap = virt_.list_ -> GetSelection ();
+{   if (! invalid ())
+    {   const ::std::size_t zap = virt_.selected ();
         const ::std::size_t mx = virts_.size () - 1;
         virt_.OnErase (e);
         if (mx == 0)
@@ -244,21 +243,21 @@ void vv_t :: OnVirtText (wxCommandEvent& e)
 
 void vv_t :: OnPhys (wxFileDirPickerEvent& )
 {   if (! invalid ())
-    {   const ::std::size_t sel = virt_.sel ();
+    {   const ::std::size_t sel = virt_.selected ();
         bpsize (sel + 1);
         phys_.at (sel) = ::boost::filesystem::path (dir_folder_ -> GetPath ().c_str ());
         en_virt (); } }
 
 void vv_t :: OnOntology (wxFileDirPickerEvent& )
 {   if (! invalid ())
-    {   const ::std::size_t sel = virt_.sel ();
+    {   const ::std::size_t sel = virt_.selected ();
         bpsize (sel + 1);
         export_.at (sel) = ::boost::filesystem::path (dir_folder_ -> GetPath ().c_str ());
         en_virt (); } }
 
 void vv_t :: OnShadow (wxFileDirPickerEvent& )
 {   if (! invalid ())
-    {   const ::std::size_t sel = virt_.sel ();
+    {   const ::std::size_t sel = virt_.selected ();
         bpsize (sel + 1);
         shadow_.at (sel) = ::boost::filesystem::path (dir_folder_ -> GetPath ().c_str ());
         en_virt (); } }
@@ -281,8 +280,8 @@ void vv_t :: part_de_virt (const int z)
 
 void vv_t :: en_virt ()
 {	PRESUME (! invalid (), __FILE__, __LINE__);
-    const bool txt = ! virt_.text_ -> GetValue ().empty ();
-    const int sel = virt_.sel ();
+    const bool txt = ! virt_.value ().empty ();
+    const int sel = virt_.selected ();
     const bool sltd = (sel >= 0);
     if (pvirt_ != sel)
     {   part_de_virt (pvirt_);
@@ -300,7 +299,8 @@ void vv_t :: en_virt ()
     stat_ontology_ -> Enable (sltd || txt);
     stat_folder_ -> Enable (sltd || txt);
     stat_shadow_ -> Enable (sltd || txt);
-    if (virt_.able_enable ()) virt_.add_ -> Enable (txt && f); }
+    if (virt_.able_enable ()) virt_.enable (txt && f); }
+//    if (virt_.able_enable ()) virt_.add_ -> Enable (txt && f); }
 
 bool same_dirs (::std::string& note, const ::std::string& m, const ::std::string& n, const ::boost::filesystem::path& lhs, const ::boost::filesystem::path& rhs, const char* const ln, const char* const rn)
 {   ::std::stringstream ss;
@@ -344,17 +344,26 @@ void vv_t :: reval ()
     const int sel = choice_for_ -> GetSelection ();
     PRESUME (sel < GSL_NARROW_CAST < int > (vvfix_.size ()), __FILE__, __LINE__);
     PRESUME (sel < GSL_NARROW_CAST < int > (vvextra_.size ()), __FILE__, __LINE__);
-    const int vv = val_.sel ();
-    const ::std::string txt (val_.text_ -> GetValue ());
-    if (sel < 0) val_.add_ -> Enable (false);
+    const int vv = val_.selected ();
+    const ::std::string txt (val_.value ());
     if ((sel < 0) || (vv < 0))
-    {   val_.erase_ -> Enable (false);        
-        val_.rename_ -> Enable (false); }       
+        val_.enable (false);        
     else
     {   const bool bes = (vv >= GSL_NARROW_CAST < int > (vvfix_.at (sel).size ()));
-        val_.erase_ -> Enable (bes);
-        if (val_.rename_ -> IsEnabled ()) // already tested by listedit
-            val_.rename_ -> Enable (bes && ! txt.empty ()); } }
+        val_.enable (bes); } }
+//        if (val_.ren_.enabled ()) // already tested by listedit
+//            val_.ren_.enable (bes && ! txt.empty ()); } }
+
+//    const ::std::string txt (val_.text_ -> GetValue ());
+//    if (sel < 0) val_.add_ -> Enable (false);
+//    if ((sel < 0) || (vv < 0))
+//    {   val_.erase_ -> Enable (false);        
+//        val_.rename_ -> Enable (false); }       
+//    else
+//    {   const bool bes = (vv >= GSL_NARROW_CAST < int > (vvfix_.at (sel).size ()));
+//        val_.erase_ -> Enable (bes);
+//        if (val_.rename_ -> IsEnabled ()) // already tested by listedit
+//            val_.rename_ -> Enable (bes && ! txt.empty ()); } }
 
 bool vv_t :: TransferDataToWindow ()
 {	if (invalid ()) return false;
@@ -1115,5 +1124,4 @@ void vv_t :: save_to_context (context_t& c) const
     foxvv < t_xmpdm_time_format > (count, c);
     foxvv < t_xmpdm_time_signature > (count, c);
     foxvv < t_xmpdm_video_pixeldepth > (count, c); }
-
 #endif // WX
