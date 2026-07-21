@@ -326,7 +326,7 @@ int cycle (nitpick& nits, const int argc, char** argv)
                     server.clear ();
                     break; } }
         else
-        {   constexpr ::std::size_t max_len = 65536;
+        {   CONSTEXPR ::std::size_t max_len = 65536;
             context.os () -> out ("\n" PROG " ");
             char* psz = new char [max_len];
             if (psz != nullptr) try

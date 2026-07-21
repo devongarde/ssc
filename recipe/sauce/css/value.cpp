@@ -83,6 +83,28 @@ bool maybe_float (nitpick& nits, const e_css_property id)
         nits.pick (nit_css_value_fn, es_error, ec_css, type_master < t_css_property > :: name (id), ": not a Page Float property");
     return false; }
 
+bool maybe_gap (nitpick& nits, const e_css_property id, const flags_t fl)
+{   if (id <= ec_custom) return true;
+    if (context.css_module (c_gap) < 3)
+    {   nits.pick (nit_css_version, es_error, ec_css, type_master < t_css_property > :: name (id), ": requires CSS Gap");
+        return false; }
+    const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
+    if ((f & fl) == fl) return true;
+    if (! test_esii (sii_hush, HIDE_ME))
+        nits.pick (nit_grid, ed_css_gap, "4. Color, style, and width", es_error, ec_css, type_master < t_css_property > :: name (id), ": not an appropriate gap property");
+    return false; }
+
+bool maybe_grid (nitpick& nits, const e_css_property id, const flags_t fl)
+{   if (id <= ec_custom) return true;
+    if (context.css_module (c_grid_layout) < 3)
+    {   nits.pick (nit_css_version, es_error, ec_css, type_master < t_css_property > :: name (id), ": requires CSS Grid Layout");
+        return false; }
+    const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
+    if ((f & fl) == fl) return true;
+    if (! test_esii (sii_hush, HIDE_ME))
+        nits.pick (nit_grid, ed_css_grid_3, "7.2.3. Repeating Rows and Columns: the repeat() notation", es_error, ec_css, type_master < t_css_property > :: name (id), ": not an appropriate grid layout repeat() property");
+    return false; }
+
 bool maybe_image (nitpick& nits, const e_css_property id)
 {   if (id <= ec_custom) return true;
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
@@ -196,8 +218,9 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     int test_value_fns_css_l_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_l_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_l_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_css_m_n (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
-    int test_value_fns_css_o (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_css_m_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_css_m_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_css_n_o (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_p_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_p_q (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_r_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
@@ -302,8 +325,9 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     if (t <= SSC_TYPES_CSS_L_1_MAX) return test_value_fns_css_l_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_L_2_MAX) return test_value_fns_css_l_2 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_L_3_MAX) return test_value_fns_css_l_3 (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_CSS_M_N_MAX) return test_value_fns_css_m_n (args, start, to, nits, t, fn, id);
-    if (t <= SSC_TYPES_CSS_O_MAX) return test_value_fns_css_o (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_CSS_M_1_MAX) return test_value_fns_css_m_1 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_CSS_M_2_MAX) return test_value_fns_css_m_2 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_CSS_N_O_MAX) return test_value_fns_css_n_o (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_P_1_MAX) return test_value_fns_css_p_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_P_Q_MAX) return test_value_fns_css_p_q (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_R_1_MAX) return test_value_fns_css_r_1 (args, start, to, nits, t, fn, id);

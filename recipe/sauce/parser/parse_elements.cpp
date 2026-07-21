@@ -233,6 +233,7 @@ element_node* elements_node::insert_closed (const html_version& v, element_node*
                 case elem_faux_code :
                 case elem_faux_comment :
                 case elem_faux_php :
+                case elem_faux_question :
                 case elem_faux_ssi :
                 case elem_faux_stylesheet :
                 case elem_faux_text :
@@ -309,6 +310,7 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
                                 break;
             case bk_num :       id.reset (elem_faux_code); break;
             case bk_php :       id.reset (elem_faux_php); break;
+            case bk_question :  id.reset (elem_faux_question); break;
             case bk_ssi :       id.reset (elem_faux_ssi); break;
             case bk_stylesheet: id.reset (elem_faux_stylesheet); break;
             case bk_xml :       id.reset (elem_faux_xml); break;

@@ -1924,6 +1924,7 @@ parentage parent_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_undefined, elem_faux_comment },
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_undefined, elem_faux_doctype, DENY },
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_undefined, elem_faux_php },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_undefined, elem_faux_question },
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_undefined, elem_faux_ssi },
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_undefined, elem_faux_stylesheet },
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_undefined, elem_faux_whitespace },

@@ -60,6 +60,7 @@ struct arguments
     sstr_t get_str (const e_gsstr gst) const;
     bool has_str (const e_gsstr gst, const ::std::string& name) const;
     bool note_str (const e_gsstr gst, const ::std::string& name);
+    ::std::string tkn_family (const int b, const int to) const;
     bool prep_for_make (nitpick& nits, const int from, int& b, const int to, int& var, int& bang, e_token& p, bool& xs, bool& xk, bool& xn, bool& xi, bool& fn, bool& clean, int& kc, ::std::string& val);
     void check_flags (nitpick& nits, const flags_t f, const ::std::string& s) const;
     void check_flags (nitpick& nits, const flags_t f, const ::std::string& s, const bool xk, const bool xi, const bool xn, const bool xs, const bool fn, const int kc, const ::std::string& item, const ::std::string& val) const;

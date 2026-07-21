@@ -32,7 +32,7 @@ public:
     using type_base < base_type, TYPE > :: type_base;
     static e_animation_type animation_type () noexcept
     {   return at_other; }
-    static constexpr ::std::size_t value_count () noexcept { return 3; }
+    static CONSTEXPR ::std::size_t value_count () noexcept { return 3; }
     ::std::string get_string () const;
      ::std::string name () const { return get_string (); }
     static ::std::string name (const base_type e)
@@ -125,6 +125,9 @@ template < > struct type_master < t_alp > : three_value < t_alp, e_alp, sz_auto,
 template < > struct type_master < t_always_auto_never > : three_value < t_always_auto_never, e_always_auto_never, sz_always, sz_auto, sz_never >
 { using three_value < t_always_auto_never, e_always_auto_never, sz_always, sz_auto, sz_never > :: three_value; };
 
+template < > struct type_master < t_anw > : three_value < t_anw, e_anw, sz_auto, sz_nowrap, sz_wrap >
+{ using three_value < t_anw, e_anw, sz_auto, sz_nowrap, sz_wrap > :: three_value; };
+
 template < > struct type_master < t_anywhere_break_normal > : three_value < t_anywhere_break_normal, e_anywhere_break_normal, sz_anywhere, sz_break_word, sz_normal >
 { using three_value < t_anywhere_break_normal, e_anywhere_break_normal, sz_anywhere, sz_break_word, sz_normal > :: three_value; };
 
@@ -170,6 +173,9 @@ template < > struct type_master < t_baseline_contain_none > : three_value < t_ba
 
 template < > struct type_master < t_bcs > : three_value < t_bcs, e_bcs, sz_bounding_box, sz_clone, sz_slice >
 { using three_value < t_bcs, e_bcs, sz_bounding_box, sz_clone, sz_slice > :: three_value; };
+
+template < > struct type_master < t_bdn > : three_value < t_bdn, e_bdn, sz_balance, sz_dense, sz_normal >
+{ using three_value < t_bdn, e_bdn, sz_balance, sz_dense, sz_normal > :: three_value; };
 
 template < > struct type_master < t_behaviour > : three_value < t_behaviour, e_behaviour, sz_alternate, sz_scroll, sz_slide >
 { using three_value < t_behaviour, e_behaviour, sz_alternate, sz_scroll, sz_slide > :: three_value; };
@@ -360,6 +366,9 @@ template < > struct type_master < t_infixlinebreakstyle > : three_value < t_infi
 template < > struct type_master < t_inn > : three_value < t_inn, e_inn, sz_ignore, sz_none, sz_normal >
 { using three_value < t_inn, e_inn, sz_ignore, sz_none, sz_normal > :: three_value; };
 
+template < > struct type_master < t_inn2 > : three_value < t_inn2, e_inn2, sz_intersection, sz_none, sz_normal >
+{ using three_value < t_inn2, e_inn2, sz_intersection, sz_none, sz_normal > :: three_value; };
+
 template < > struct type_master < t_interactive_widget > : three_value < t_interactive_widget, e_interactive_widget, sz_overlays_content, sz_resizes_content, sz_resizes_visual >
 { using three_value < t_interactive_widget, e_interactive_widget, sz_overlays_content, sz_resizes_content, sz_resizes_visual > :: three_value; };
 
@@ -428,6 +437,9 @@ template < > struct type_master < t_mrss_expression > : three_value < t_mrss_exp
 
 template < > struct type_master < t_mrss_state > : three_value < t_mrss_state, e_mrss_state, sz_active, sz_blocked, sz_deleted >
 { using three_value < t_mrss_state, e_mrss_state, sz_active, sz_blocked, sz_deleted > :: three_value; };
+
+template < > struct type_master < t_mtt > : three_value < t_mtt, e_mtt, sz_medium, sz_thick, sz_thin >
+{ using three_value < t_mtt, e_mtt, sz_medium, sz_thick, sz_thin > :: three_value; };
 
 template < > struct type_master < t_nsd > : three_value < t_nsd, e_nsd, sz_none, sz_spaced, sz_dashed >
 { using three_value < t_nsd, e_nsd, sz_none, sz_spaced, sz_dashed > :: three_value; };

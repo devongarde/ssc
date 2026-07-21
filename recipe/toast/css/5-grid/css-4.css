@@ -1,0 +1,12 @@
+﻿.container {
+  grid-template-columns: repeat(3, auto);
+}
+.container > :nth-child(2) {
+  /* auto-placed, but spanning. */
+  grid-column: span 2;
+}
+.container > :nth-child(3) {
+  /* manually placed */
+  grid-column: 3;
+}
+/* all other children are auto-placed */

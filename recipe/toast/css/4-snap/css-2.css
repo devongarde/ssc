@@ -1,0 +1,14 @@
+﻿.carousel {
+    overflow-inline: auto;
+}
+.carousel .origin {
+    scroll-initial-target: nearest;
+}
+
+.scrollport {
+    overflow-block: auto;
+}
+
+main {
+    scroll-initial-target: nearest;
+}

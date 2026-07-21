@@ -8,7 +8,7 @@ PASS ../toast/mdn/font/font.html
 
 PASS ../toast/mdn/font/font-family.html
 2 naughty_lang
-5 fontname fontname fontname fontname fontname fontname fontname weight css_syntax fontname
+5 fontname fontname fontname fontname fontname fontname fontname weight fontname
 
 PASS ../toast/mdn/font/font-feature-settings.html
 2 naughty_lang

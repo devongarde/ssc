@@ -34,6 +34,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "(comment)", elem_faux_comment, ns_default, EP_CLOSED | EP_IGNORE, EF_FAUX | EF_5_FLOW | EF_5_PHRASE },
     { { HTML_TAGS }, { HTML_UNDEF }, "(document)", elem_faux_document, ns_default, EP_HOLDS_ALL, EF_FAUX | EF_DOCUMENT },
     { { HTML_2_0 }, { HTML_UNDEF }, "(php)", elem_faux_php, ns_default, EP_CLOSED | EP_IGNORE, EF_FAUX | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
+    { { HTML_TAGS }, { HTML_UNDEF }, "(question?)", elem_faux_question, ns_default, EP_CLOSED | EP_IGNORE, EF_FAUX | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_2_0 }, { HTML_UNDEF }, "(ssi)", elem_faux_ssi, ns_default, EP_CLOSED | EP_IGNORE, EF_FAUX | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_3_0 }, { HTML_UNDEF }, "(stylesheet)", elem_faux_stylesheet, ns_default, EP_CLOSED | EP_IGNORE, EF_FAUX },
     { { HTML_TAGS }, { HTML_UNDEF }, "(text)", elem_faux_text, ns_default, EP_CLOSED | EP_IGNORE, EF_FAUX | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },

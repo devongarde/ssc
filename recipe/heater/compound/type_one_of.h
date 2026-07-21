@@ -38,7 +38,7 @@ template < e_type T, bool EMPTY > struct emptiness
         return s_invalid; } };
 
 template < e_type T > struct emptiness < T, true > 
-{   constexpr static bool could_be_empty (const e_status s) { return s == s_empty; }
+{   CONSTEXPR static bool could_be_empty (const e_status s) { return s == s_empty; }
     static e_status content_status (nitpick& , const ::std::string& s)
     {   if (! s.empty ()) return s_good;
         return s_empty; }

@@ -960,11 +960,12 @@ void options::init (context_t& c)
         (CSS DONT EXTERNAL, ::boost::program_options::bool_switch (), "Do not nitpick imported CSS files.")
         (CSS FBL, ::boost::program_options::value < int > (), "CSS Flexible Box Layout level (0 or 3).")
         (CSS FILL, ::boost::program_options::value < int > (), "CSS Fill and Stroke level (0 or 3).")
-        (CSS FILTER, ::boost::program_options::value < int > (), "CSS Filter Effects level (0 or 3).")
+        (CSS FILTER, ::boost::program_options::value < int > (), "CSS Filter Effects level (0, 3 or 4).")
         (CSS FLOAT, ::boost::program_options::value < int > (), "CSS Page Floats level (0 or 3).")
         (CSS FONT, ::boost::program_options::value < int > (), "CSS Font level (0, 3, 4, or 5).")
         (CSS FRAG, ::boost::program_options::value < int > (), "CSS Fragmentation level (0, 3, or 4).")
-        (CSS GRID, ::boost::program_options::value < int > (), "CSS Grid level (0, 3, or 4).")
+        (CSS GAP, ::boost::program_options::value < int > (), "CSS Gap level (0 or 3).")
+        (CSS GRID, ::boost::program_options::value < int > (), "CSS Grid level (0, 3, 4, or 5).")
         (CSS HDR, ::boost::program_options::value < int > (), "CSS HDR level (0 or 3).")
         (CSS HIGHLIGHT, ::boost::program_options::value < int > (), "CSS Custom Highlight level (0, 3, or 4).")
         (CSS HYPERLINK, ::boost::program_options::value < int > (), "CSS Hyperlink level (0 or 3).")
@@ -1051,7 +1052,6 @@ void options::init (context_t& c)
         (HTML IE, ::boost::program_options::bool_switch (), "Ignore certain naughtitudes accepted by versions of Internet Explorer.")
         (HTML DONT IE, ::boost::program_options::bool_switch (), "Mention certain naughtitudes accepted by versions of Internet Explorer.")
         (HTML IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore attributes and content of specified element; may be repeated.")
-            // KONQUEROR
         (HTML KONQUEROR, ::boost::program_options::bool_switch (), "Ignore certain naughtitudes accepted by versions of Konqueror and its derivative.")
         (HTML DONT KONQUEROR, ::boost::program_options::bool_switch (), "Mention certain naughtitudes accepted by versions of Konqueror and its derivatives.")
         (HTML LANG, ::boost::program_options::value < ::std::string > () -> composing (), "Default language (such as 'en_GB', 'lb_LU', etc.).")
@@ -1864,11 +1864,12 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_extension, n, nits, CSS EXTENSIONS, "Extensions", 3);
         process_css_level (c, c_flexible_box_layout, n, nits, CSS FBL, "Flexible Box Layout", 3);
         process_css_level (c, c_fill_stroke, n, nits, CSS FILL, "Fill and Stroke", 3);
-        process_css_level (c, c_filter_effect, n, nits, CSS FILTER, "Filter Effects", 3);
+        process_css_level (c, c_filter_effect, n, nits, CSS FILTER, "Filter Effects", 4);
         process_css_level (c, c_page_float, n, nits, CSS FLOAT, "Page Floats", 3);
         process_css_level (c, c_font, n, nits, CSS FONT, "Font", 5);
         process_css_level (c, c_fragmentation, n, nits, CSS FRAG, "Fragmentation", 4);
-        process_css_level (c, c_grid_layout, n, nits, CSS GRID, "Grid", 4);
+        process_css_level (c, c_gap, n, nits, CSS GAP, "Gap", 3);
+        process_css_level (c, c_grid_layout, n, nits, CSS GRID, "Grid", 5);
         process_css_level (c, c_hdr, n, nits, CSS HDR, "HDR", 3);
         process_css_level (c, c_custom_highlight, n, nits, CSS HIGHLIGHT, "Custom Highlight", 4);
         process_css_level (c, c_hyperlink_presentation, n, nits, CSS HYPERLINK, "Hyperlink", 5);
@@ -1910,7 +1911,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_shader, n, nits, CSS SHADER, "Shaders", 3);
         process_css_level (c, c_shadow_part, n, nits, CSS SP, "Shadow Parts", 4);
         process_css_level (c, c_shape, n, nits, CSS SHAPE, "Shape", 4);
-        process_css_level (c, c_scroll_snap, n, nits, CSS SNAP, "Scroll Snap", 3);  // 
+        process_css_level (c, c_scroll_snap, n, nits, CSS SNAP, "Scroll Snap", 4);
         process_css_level (c, c_scroll_snap_point, n, nits, CSS SNAP_POINTS, "Scroll Snap Points", 3);
         process_css_level (c, c_spatial_navigation, n, nits, CSS SPATIAL, "Spatial Navigation", 3);
         process_css_level (c, c_speech, n, nits, CSS SPEECH, "Speech", 3);
@@ -2706,6 +2707,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, CSS, FLOAT, css);
     RG (gr, res, int, CSS, FONT, css);
     RG (gr, res, int, CSS, FRAG, css);
+    RG (gr, res, int, CSS, GAP, css);
     RG (gr, res, int, CSS, GRID, css);
     RG (gr, res, int, CSS, HDR, css);
     RG (gr, res, int, CSS, HIGHLIGHT, css);

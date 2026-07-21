@@ -33,7 +33,6 @@ PASS ../toast/mdn/column/column-span.html
 51 naughty_grave naughty_grave
 55 naughty_grave naughty_grave
 
-
 PASS ../toast/mdn/column/column-width.html
 2 naughty_lang
 

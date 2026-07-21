@@ -43,8 +43,15 @@ arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, c
 {   ns_.reset (new namespaces_t ());
     ns_ -> up (namespaces.get ()); }
 
+::std::string arguments::tkn_family (const int b, const int to) const
+{   ::std::string res (tkn_rpt (t_.at (b)));
+    if (t_.at (b).child_ >= 0)
+        for (int i = t_.at (b).child_; (i >= 0) && ((to == -1) || (i <= to)); i = next_token_at (t_, i, to))
+            res += tkn_family (i, -1);
+    return res; }
+
 bool arguments::prep_for_make (nitpick& , const int , int& b, const int to, int& var, int& bang, e_token& p, bool& xs, bool& xk, bool& xn, bool& xi, bool& fn, bool& clean, int& kc, ::std::string& val)
-{   int pre = to, rc = 0;
+{   int pre = to, rc = 0, sc = 0;
     var = b;
     bang = token_find (t_, ct_bang, b, to, &pre);
     if (bang < 0) pre = to;
@@ -53,7 +60,7 @@ bool arguments::prep_for_make (nitpick& , const int , int& b, const int to, int&
     kc = 0;
     if ((b > 0) && (t_.at (b).t_ != ct_curly_ket))
         while ((b > 0) && ((to == -1) || (b <= pre)))
-        {   if ((rc == 0) && (t_.at (b).t_ == ct_round_ket)) break;
+        {   if ((rc == 0) && (sc == 0) && (t_.at (b).t_ == ct_round_ket)) break;
             if ((p == ct_error) || (p <= ct_comment)) p = t_.at (b).t_;
             switch (t_.at (b).t_)
             {   case ct_keyword : xk = true; break;
@@ -63,8 +70,10 @@ bool arguments::prep_for_make (nitpick& , const int , int& b, const int to, int&
                 case ct_round_brac : fn = true; ++rc; break;
                 case ct_round_ket : if (rc > 0) --rc; break;
                 case ct_comma: clean = nff; break;
+                case ct_square_brac :++sc; break;
+                case ct_square_ket : if (sc > 0) --sc; break;
                 default : break; }                    
-            if (clean) val += tkn_rpt (t_.at (b));
+            if (clean) val += tkn_family (b, -1);
             int c = next_token_at (t_, b, pre);
             if ((c > 0) && (token_category (t_.at (c).t_) == TC_SQUIGGLE)) break;
             b = c;

@@ -66,7 +66,7 @@ public:
     void OnErase (wxCommandEvent& event);
     void OnExclude (wxCommandEvent& event);
 #ifdef NO_FRED
-    void OnFred (wxCommandEvent& ) constexpr { }
+    void OnFred (wxCommandEvent& ) CONSTEXPR { }
 #else // NO_FRED
     void OnFred (wxCommandEvent& e);
 #endif // NO_FRED

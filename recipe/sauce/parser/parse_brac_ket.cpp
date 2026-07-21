@@ -33,6 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
         case bk_node : break;
         case bk_num : return ln (l) + ::std::string ("&#") + ::std::string (s, e) + ::std::string (";");
         case bk_php : return (ln (l) + "PHP...");
+        case bk_question : return (ln (l) + "question...");
         case bk_ssi : return (ln (l) + "SSI...");
         case bk_stylesheet : return (ln (l) + "<?xml.stylesheet ... ?>");
         case bk_text : return (ln (l) + "text...");

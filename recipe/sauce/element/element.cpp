@@ -241,6 +241,7 @@ void element::do_shadow (::std::stringstream& ss, const html_version& v, bool& w
                                         ", " WEBADDR ", " << ::boost::posix_time::second_clock::local_time () << " -->\n";
             break;
         case elem_faux_php : ss << "<$" << node_.raw () << "$>"; was_nl = false; break;
+        case elem_faux_question : ss << "<?" << node_.raw () << "?>"; was_nl = false; break;
         case elem_faux_ssi : if (context.shadow_comment ()) { ss << "<!--" << node_.raw () << "-->"; was_nl = false; } break;
         case elem_faux_stylesheet : ss << "<?xml.stylesheet" << node_.raw () << "?>"; was_nl = false; break;
         case elem_faux_text : ss << node_.raw (); was_nl = false; break;

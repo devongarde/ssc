@@ -25,6 +25,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 template < > struct type_master < t_css_fn_calc > : type_function < t_css_fn_calc, sz_calc, t_css_fn_calc_args >
 { using type_function < t_css_fn_calc, sz_calc, t_css_fn_calc_args > :: type_function; };
 
+template < > struct type_master < t_css_fn_if > : type_function < t_css_fn_if, sz_if, t_generic >
+{   using type_function < t_css_fn_if, sz_if, t_generic  > :: type_function; };
+
 template < > struct type_master < t_css_length > : type_either_or < t_css_length, t_css_fn_calc, t_css_length_base >
 { using type_either_or < t_css_length, t_css_fn_calc, t_css_length_base > :: type_either_or; };
 
@@ -54,6 +57,9 @@ template < > struct type_master < t_angle_p > : public type_either_or < t_angle_
 
 template < > struct type_master < t_aria_relevants > : type_at_least_one < t_aria_relevants, sz_space_char, t_aria_relevant >
 { using type_at_least_one < t_aria_relevants, sz_space_char, t_aria_relevant > :: type_at_least_one; };
+
+template < > struct type_master < t_bdns > : type_at_least_one < t_bdns, sz_space_char, t_bdn >
+{ using type_at_least_one < t_bdns, sz_space_char, t_bdn > :: type_at_least_one; };
 
 template < > struct type_master < t_bixies > : type_at_least_one < t_bixies, sz_comma, t_bixy >
 { using type_at_least_one < t_bixies, sz_comma, t_bixy > :: type_at_least_one; };
@@ -358,7 +364,7 @@ template < > struct type_master < t_positive_n > : type_or_string < t_positive_n
 template < > struct type_master < t_radial_size > : type_one_or_both < t_radial_size, t_css_radial_size, sz_space_char, t_css_length >
 { using type_one_or_both < t_radial_size, t_css_radial_size, sz_space_char, t_css_length > :: type_one_or_both; };
 
-template < > struct type_master < t_css_length_percent_inf > :either_type_or_either_string < t_css_length_percent_inf, t_percent, t_css_length_pos, sz_infinity, sz_auto >
+template < > struct type_master < t_css_length_percent_inf > : either_type_or_either_string < t_css_length_percent_inf, t_percent, t_css_length_pos, sz_infinity, sz_auto >
 { using either_type_or_either_string < t_css_length_percent_inf, t_percent, t_css_length_pos, sz_infinity, sz_auto > :: either_type_or_either_string; };
 
 template < > struct type_master < t_css_length_percent_inf_2 > : type_one_two < t_css_length_percent_inf_2, t_css_length_percent_inf, t_css_length_percent_inf, sz_space_char >
@@ -367,8 +373,14 @@ template < > struct type_master < t_css_length_percent_inf_2 > : type_one_two < 
 template < > struct type_master < t_css_length_inf > : type_or_string < t_css_length_inf, t_css_length_pos, sz_infinity >
 { using type_or_string < t_css_length_inf, t_css_length_pos, sz_infinity > :: type_or_string; };
 
+template < > struct type_master < t_css_length_inf_mtt > : either_type_or_string < t_css_length_inf_mtt, t_mtt, t_css_length_pos, sz_infinity >
+{ using either_type_or_string < t_css_length_inf_mtt, t_mtt, t_css_length_pos, sz_infinity > :: either_type_or_string; };
+
 template < > struct type_master < t_css_length_inf_n > : type_or_either_string < t_css_length_inf_n, t_css_length_pos, sz_infinity, sz_none >
 { using type_or_either_string < t_css_length_inf_n, t_css_length_pos, sz_infinity, sz_none > :: type_or_either_string; };
+
+template < > struct type_master < t_css_length_inf_no > : type_or_either_string < t_css_length_inf_no, t_css_length_pos, sz_infinity, sz_normal >
+{ using type_or_either_string < t_css_length_inf_no, t_css_length_pos, sz_infinity, sz_normal > :: type_or_either_string; };
 
 template < > struct type_master < t_radial_ending > : type_one_of_three < t_radial_ending, t_css_radial_size, t_css_length_inf, t_css_length_percent_inf_2 >
 { using type_one_of_three < t_radial_ending, t_css_radial_size, t_css_length_inf, t_css_length_percent_inf_2 > :: type_one_of_three; };

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>grid 5 example</title>
+    <LINK rel="stylesheet" href="css-2.css" type="text/css">
+  </head>
+
+<BODY>
+
+<section class=masonry>
+  <div class=item>1</div>
+  <div class=item>2</div>
+  <div class="item tall">3</div>
+  <div class="item wide">4</div>
+  <div class=item>5</div>
+  <div class=item>6</div>
+  <div class=item>7</div>
+</section>
+<style>
+.masonry {
+  display: grid-lanes;
+  grid-template-columns: repeat(5, auto);
+}
+.item { height: 50px; }
+.item.wide { grid-column: span 3; }
+.item.tall { height: 90px; }
+</style>
+
+</body>
+</html>

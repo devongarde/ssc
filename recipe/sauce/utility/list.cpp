@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microformat/field.h"
 #include "type/type.h"
 
-constexpr const char* const naughty_list_sep = ",";
+CONSTEXPR const char* const naughty_list_sep = ",";
 
 ::std::string wblist::inner_sub (const ::std::size_t n) const
 {   const misd_t::const_iterator i = dim_.find (n);

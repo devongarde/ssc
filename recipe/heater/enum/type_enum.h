@@ -193,7 +193,14 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
     if (t.empty ())
         nits.pick (nit_empty, es_error, ec_type, "empty value (", type_name (E), ")");
     else if (! symbol < html_version, ENUM, CATEGORY, INIT, LC > :: parse (nits, v, t))
+#ifdef VS2022
+#pragma warning (push, 3)
+#pragma warning (disable : 4127)
+#endif // VS2022
     {   if (E != t_class) check_identifier_spelling (nits, v, t);
+#ifdef VS2022
+#pragma warning (pop)
+#endif // VS2022
         nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is not a valid ", type_name (E), " value (10)"); }
     else
     {   enum_base < ENUM, E > :: value_ = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: get (); // ooops, two values :-(

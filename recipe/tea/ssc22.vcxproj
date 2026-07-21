@@ -708,8 +708,9 @@
     <ClCompile Include="..\sauce\css\value_types_css_l_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_l_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_l_3.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_css_m_n.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_css_o.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_m_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_m_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_n_o.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_p_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_p_q.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_r_1.cpp" />

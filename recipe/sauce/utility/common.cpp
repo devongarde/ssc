@@ -498,7 +498,7 @@ bool is_plain_old_decimal (const ::std::string& ss)
 
 ::std::string diff_snippet (const ::std::string& s, const ::std::string::size_type from, const ::std::string::size_type to, const ::std::string::size_type len, const bool numeric)
 {   ::std::string res;
-    constexpr ::std::string::size_type sweet = 5;
+    CONSTEXPR ::std::string::size_type sweet = 5;
     if (from < sweet) res += s.substr (0, from);
     else
     {   res += "... ";
@@ -569,4 +569,13 @@ vstr_t lineate (const ::std::string& s)
                 break; }
     if (! l.empty ())
         res.push_back (l);
+    return res; }
+
+::std::string::size_type find_corresponding_ket (const ::std::string& s, const ::std::string::size_type from, const char brac, const char ket)
+{   ::std::string::size_type res = ::std::string::npos;
+    unsigned int count = 1;
+    for (::std::string::size_type i = from + 1; i < s.size (); ++i)
+        if (s.at (i) == brac) ++count;
+        else if (s.at (i) == ket)
+            if (--count == 0) return i;
     return res; }

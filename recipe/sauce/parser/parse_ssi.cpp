@@ -103,7 +103,7 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
     return false; }
 
 ::std::string timefmt (const ::std::string& fmt, const ::std::string& def, const struct tm* const t)
-{   constexpr ::std::size_t maxlen = DEFAULT_LINE_LENGTH;
+{   CONSTEXPR ::std::size_t maxlen = DEFAULT_LINE_LENGTH;
     char sz [maxlen] = { 0 };
     ::std::string f (fmt);
     if (f.empty ()) f = def;

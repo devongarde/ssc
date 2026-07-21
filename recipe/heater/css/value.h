@@ -34,6 +34,8 @@ bool maybe_content (nitpick& nits, const e_css_property id);
 bool maybe_corner (nitpick& nits, const e_css_property id);
 bool maybe_filter (nitpick& nits, const e_css_property id);
 bool maybe_float (nitpick& nits, const e_css_property id);
+bool maybe_gap (nitpick& nits, const e_css_property id, const flags_t fl);
+bool maybe_grid (nitpick& nits, const e_css_property id, const flags_t fl);
 bool maybe_image (nitpick& nits, const e_css_property id);
 bool maybe_math (nitpick& nits, const e_css_property id);
 bool maybe_offset_path (nitpick& nits, const e_css_property id);

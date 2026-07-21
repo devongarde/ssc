@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>grid 5 example</title>
+    <LINK rel="stylesheet" href="css-4.css" type="text/css">
+  </head>
+
+<BODY>
+
+<style>
+  .grid {
+    display: inline-grid-lanes;
+    direction: rtl;
+    grid-template-columns: repeat(4, 2ch);
+    border: 1px solid;
+  }
+
+  p { background: silver }
+  p:nth-child(2n+1) {
+    background: pink;
+    height: 4em;
+  }
+  </style>
+
+<div class="grid">
+  <p>1</p>
+  <p style="grid-column:span 2">2</p>
+  <p>3</p>
+  <p>4</p>
+</div>
+
+<style>
+.grid {
+  display: inline-grid-lanes;
+  direction: rtl;
+  width: 10ch;
+  column-gap: 1ch;
+  grid-template-rows: repeat(4, 2em);
+  border: 1px solid;
+}
+
+p { background: silver }
+p:nth-child(2n+1) {
+  background: pink;
+  width: 4ch;
+}
+</style>
+
+<div class="grid">
+  <p>1</p>
+  <p style="grid-row:span 2">2</p>
+  <p>3</p>
+  <p>4</p>
+</div>
+
+
+</BODY>
+</html>

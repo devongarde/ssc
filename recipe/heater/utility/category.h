@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
-constexpr ::std::size_t oops_a_daisy = SIZE_MAX;
+CONSTEXPR ::std::size_t oops_a_daisy = SIZE_MAX;
 
 struct category
 {   e_id_category cic_ = cic_none;

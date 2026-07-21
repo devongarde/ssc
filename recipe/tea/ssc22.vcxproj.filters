@@ -3109,12 +3109,6 @@
     <ClCompile Include="..\sauce\css\value_types_css_l_3.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_m_n.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_o.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_p_1.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
@@ -3326,6 +3320,15 @@
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_c_5.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_m_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_m_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_n_o.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
   </ItemGroup>

@@ -63,8 +63,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 33
-#define VERSION_STRING "0.2.33"
+#define VERSION_RELEASE 34
+#define VERSION_STRING "0.2.34"
 
 #define BUILD_YEAR              "2026"
 #define BUILD_MONTH             "July"
@@ -307,6 +307,7 @@ z
 #include <set>
 #include <assert.h>
 #include <map>
+#include <stdint.h>
 
 #ifdef UNIX
 #include <unistd.h>

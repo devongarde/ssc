@@ -288,6 +288,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define FRAG        "frag"
 #define FUNCTION    "function"
 #define FV          "fv"
+#define GAP         "gap"
 #define GIT         "git"
 #define GRID        "grid"
 #define HDR         "hdr"

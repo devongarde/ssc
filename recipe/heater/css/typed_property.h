@@ -143,7 +143,8 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
             type_master < TYPE > :: accumulate (s, e); }
     ::std::string iiu () const
     {   switch (iiu_)
-        {   case iiu_inherit : return "inherit";
+        {   case iiu_if : return "if";
+            case iiu_inherit : return "inherit";
             case iiu_initial : return "initial";
             case iiu_moz_initial : return "-moz-initial";
             case iiu_revert : return "revert";

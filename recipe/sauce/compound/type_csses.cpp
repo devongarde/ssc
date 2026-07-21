@@ -156,6 +156,14 @@ e_status set_css_font_size_adjust_value (nitpick& nits, const html_version& v, c
             nits.pick (nit_css_syntax, es_error, ec_css, "number expected after ", quote (vs.at (pos-1))); } }
     return s_invalid; }
 
+e_status set_css_gap_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "must be empty ... NOT");
+    else if (v.css_module (c_gap) >= 3)
+    {   if (test_value < t_css_gap_3 > (nits, v, s))  return s_good; }
+    else
+    {   if (test_value < t_css_gap > (nits, v, s))  return s_good; }
+    return s_invalid; }
+
 e_status set_css_lang_value (nitpick& nits, const html_version& v, const vstr_t& vs)
 {   if (vs.empty ())
         nits.pick (nit_bad_itemprop, es_error, ec_type, "lang() requires a parameter");

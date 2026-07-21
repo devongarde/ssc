@@ -129,6 +129,11 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                         nits.pick (nit_css_version, es_error, ec_css, quote (cvf.name ()), " requires CSS Anchor Positioning");
                     else e = cvf.get ();
                     break;
+                case cvf_anchored :
+                    if (context.css_module (c_anchor_pos) < 4)
+                        nits.pick (nit_css_version, es_error, ec_css, quote (cvf.name ()), " requires CSS Anchor Positioning 4 (aka 2)");
+                    else e = cvf.get ();
+                    break;
                 case cvf_annotation :
                 case cvf_character_variant :
                 case cvf_ornaments :
@@ -234,7 +239,13 @@ bool test_cascade (const arguments& args, const ::std::string& s, e_iiu& iiu)
     {   case 6 :
         case 5 :
             switch (s.at (0))
-            {   case 'r' :
+            {   case 'i' :
+                case 'I' :
+                    if (compare_no_case (s, "if"))
+                    {   iiu = iiu_if;
+                        return true; }
+                    break;
+                case 'r' :
                 case 'R' :
                     if (compare_no_case (s, "revert-layer"))
                     {   iiu = iiu_revert_layer;

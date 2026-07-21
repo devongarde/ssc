@@ -84,7 +84,7 @@ private:
     meid_t ids_;
     ::std::size_t max_ = 0;
 public:
-    constexpr ::std::size_t cend () const { return static_cast < ::std::size_t > (-1); } 
+    CONSTEXPR ::std::size_t cend () const { return static_cast < ::std::size_t > (-1); } 
 private:
 #ifdef _MSC_VER
 #pragma warning (push, 3)

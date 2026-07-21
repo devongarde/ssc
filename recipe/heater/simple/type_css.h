@@ -318,12 +318,23 @@ template < > struct type_master < t_css_route_name > : tidy_string < t_css_route
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_route_name > :: set_value (nits, v, s);
         const ::std::string& id = tidy_string < t_css_route_name > :: get_string ();
-        if (s.empty () || (id.size () < 3) || (id.substr (0, 2) != "--"))
+        if ((id.size () < 3) || (id.substr (0, 2) != "--"))
         {   nits.pick (nit_css_syntax, es_error, ec_css, "CSS route names must start with '--'");
             tidy_string < t_css_route_name > :: status (s_invalid); }
         else tidy_string < t_css_route_name > :: status (s_good); }
     void argue (nitpick& nits, arguments* a)
     {   tidy_string < t_css_route_name > :: status (test_route_name (nits, tidy_string < t_css_route_name > :: status (), tidy_string < t_css_route_name > :: get_string (), a)); } };
+
+template < > struct type_master < t_css_track_name > : tidy_string < t_css_track_name >
+{   using tidy_string < t_css_track_name > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_track_name > :: set_value (nits, v, s);
+        const ::std::string& id = tidy_string < t_css_track_name > :: get_string ();
+        const ::std::string::size_type sz = id.size ();
+        if ((sz < 2) || (id.at (0) != '[') || (id.at (sz - 1) != ']'))
+        {   nits.pick (nit_css_syntax, es_error, ec_css, "CSS track list names be enclosed in square brackets ('[' & ']')");
+            tidy_string < t_css_track_name > :: status (s_invalid); }
+        else tidy_string < t_css_track_name > :: status (s_good); } };
 
 template < > struct type_master < t_custom_property > : tidy_string < t_custom_property >
 {   using tidy_string < t_custom_property > :: tidy_string;

@@ -179,6 +179,7 @@ void element_node::parse_attributes (const html_version& , const ::std::string::
             res += ln (line_) + "(whitespace)\n"; break;
         case elem_faux_asp :
         case elem_faux_php :
+        case elem_faux_question :
         case elem_faux_ssi :
             {   ::std::string s (trim_the_lot_off (text ()));
                 if (! s.empty ()) res += ln (line_) + elem_.name () + quoted_limited_string (s, 30) + "\n"; }

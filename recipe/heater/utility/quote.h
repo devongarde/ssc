@@ -113,4 +113,6 @@ inline ::std::string uq3 (const ::std::string& s, const unsigned int flags = UQ_
 
 inline vstr_t uq5 (const ::std::string& s)
 {   return uq2 (s, UQ_TRIM, " \t"); }
- 
+
+inline vstr_t uq6 (const ::std::string& s)
+{   return uq2 (s, BS_FN | UQ_SQUARE, " \t"); }

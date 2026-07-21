@@ -18627,9 +18627,9 @@ static e_ontology_type aot_nonned [] =
     dpv_loc_za, dpv_loc_zm, dpv_loc_zw, 
     ont_context };
 
-constexpr ::std::size_t max_nonable = sizeof (aot_nonable) / sizeof (e_ontology_type);
-constexpr ::std::size_t max_nonned = sizeof (aot_nonned) / sizeof (e_ontology_type);
-constexpr ::std::size_t max_nonsense = max_nonable * max_nonned;
+CONSTEXPR ::std::size_t max_nonable = sizeof (aot_nonable) / sizeof (e_ontology_type);
+CONSTEXPR ::std::size_t max_nonned = sizeof (aot_nonned) / sizeof (e_ontology_type);
+CONSTEXPR ::std::size_t max_nonsense = max_nonable * max_nonned;
 static microdata_hierachy nonsense [max_nonsense];
 static ::std::size_t nonsense_on_toast = 0;
 

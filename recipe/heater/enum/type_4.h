@@ -31,7 +31,7 @@ public:
     typedef true_type has_int_type;
     using type_base < base_type, TYPE > :: type_base;
     static e_animation_type animation_type () noexcept { return at_other; }
-    static constexpr ::std::size_t value_count () noexcept { return 4; }
+    static CONSTEXPR ::std::size_t value_count () noexcept { return 4; }
     ::std::string get_string () const;
     ::std::string name () const { return get_string (); }
     static ::std::string name (const base_type e)
@@ -106,6 +106,9 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, cla
     ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: c_;
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
     ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: d_;
+
+template < > struct type_master < t_aabn > : four_value < t_aabn, e_aabn, sz_all, sz_around, sz_between, sz_normal >
+{ using four_value < t_aabn, e_aabn, sz_all, sz_around, sz_between, sz_normal > :: four_value; };
 
 template < > struct type_master < t_abcfl > : four_value < t_abcfl, e_abcfl, sz_after, sz_before, sz_content, sz_first_letter >
 { using four_value < t_abcfl, e_abcfl, sz_after, sz_before, sz_content, sz_first_letter > :: four_value; };

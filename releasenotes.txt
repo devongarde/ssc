@@ -3,6 +3,13 @@ static site checker
 https://dylanharris.org/ssc/
 (c) 2020-2026 Dylan Harris
 
+0.2.34
+- CSS Gap Decorations Module 3 (labelled 1)
+- CSS Grid Layout 5 (labelled 3)
+- CSS Scroll Snap 2
+- various bug fixes
+- underlying work
+
 0.2.33
 - Added CSS Pointer-Driven Animation 1
 - Added CSS Route

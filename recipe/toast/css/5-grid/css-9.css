@@ -1,0 +1,6 @@
+﻿.doris
+{
+    display: grid;
+    display: grid-lanes; /* ignored in UAs that don't support grid lanes layout */
+    grid-template-columns: 150px 100px 50px;
+}

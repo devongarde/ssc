@@ -1209,7 +1209,8 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "FCS", "Form Control Styling", ext4_, e4, H4_CSS_FCS);
     res += single_feature (res, b, "Fon", "Fonts", ext2_, e2, H2_CSS_FONT_3, H2_CSS_FONT_4, H2_CSS_FONT_5);
     res += single_feature (res, b, "Fra", "Fragmentation", ext2_, e2, H2_CSS_FRAG_3, H2_CSS_FRAG_4);
-    res += single_feature (res, b, "Grd", "Grid", ext3_, e3, H3_CSS_GRID_3, H3_CSS_GRID_4);
+    res += single_feature (res, b, "Gap", "Gap", ext3_, e3, H3_CSS_GAP);
+    res += single_feature (res, b, "Grd", "Grid", ext5_, e5, H5_CSS_GRID_3, H5_CSS_GRID_4, H5_CSS_GRID_5);
     res += single_feature (res, b, "HiL", "Custom Highlight", ext3_, e3, H3_CSS_HIGHLIGHT);
     res += single_feature (res, b, "HTM", "HTML5 Living Standard", ext4_, e4, H4_CSS_LIVING_STANDARD);
     res += single_feature (res, b, "Img", "Images", ext3_, e3, H3_CSS_IMAGE_3, H3_CSS_IMAGE_4, H3_CSS_IMAGE_5);
@@ -2022,15 +2023,25 @@ template < > void html_version::set_level < c_fragmentation > (const int n)
     if (n == 4) set_ext2 (H2_CSS_FRAG_34);
     else if (n == 3) set_ext2 (H2_CSS_FRAG_3); }
 
+template < > int html_version::get_level < c_gap > () const
+{   if (any_ext3 (H3_CSS_GAP)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_gap > (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_GAP);
+    else reset_ext3 (H3_CSS_GAP); }
+
 template < > int html_version::get_level < c_grid_layout > () const
-{   if ((ext3 () & H3_CSS_GRID_4) == H3_CSS_GRID_4) return 4;
-    if ((ext3 () & H3_CSS_GRID_3) == H3_CSS_GRID_3) return 3;
+{   if ((ext5 () & H5_CSS_GRID_5) == H5_CSS_GRID_5) return 5;
+    if ((ext5 () & H5_CSS_GRID_4) == H5_CSS_GRID_4) return 4;
+    if ((ext5 () & H5_CSS_GRID_3) == H5_CSS_GRID_3) return 3;
     return 0; }
 
 template < > void html_version::set_level < c_grid_layout > (const int n)
-{   reset_ext3 (H3_CSS_GRID_MASK);
-    if ((n == 2) || (n == 4)) set_ext3 (H3_CSS_GRID);
-    else if ((n == 1) || (n == 3)) set_ext3 (H3_CSS_GRID_3); }
+{   reset_ext5 (H5_CSS_GRID_MASK);
+    if (n == 5) set_ext5 (H5_CSS_GRID);
+    else if (n == 4) set_ext5 (H5_CSS_GRID_34);
+    else if (n == 3) set_ext5 (H5_CSS_GRID_3); }
 
 template < > int html_version::get_level < c_custom_highlight > () const
 {   if (any_ext3 (H3_CSS_HIGHLIGHT)) return 3;
@@ -2560,7 +2571,7 @@ void html_version::css_module (const e_css_module m, const int n)
 {   process_module < CSS_MODULES > :: set_level (*this, m, n); }
 
 bool html_version::is_css_compatible (const flags_t& f2, const flags_t& f3, const flags_t& f4, const flags_t& f5) const
-{   constexpr flags_t ext2_concerned = H2_FULL_CSS_MASK & ~H2_CSS_SYNTAX_MASK;
+{   CONSTEXPR flags_t ext2_concerned = H2_FULL_CSS_MASK & ~H2_CSS_SYNTAX_MASK;
     if (((ext2_ & ext2_concerned) == 0) && ((ext3_ & H3_FULL_CSS_MASK) == 0) && ((ext4_ & H4_FULL_CSS_MASK) == 0) && ((ext5_ & H5_FULL_CSS_MASK) == 0)) return true;
     if (((f2 & ext2_concerned) == 0) && ((f3 & H3_FULL_CSS_MASK) == 0) && ((f4 & H4_FULL_CSS_MASK) == 0) && ((f5 & H5_FULL_CSS_MASK) == 0)) return true;
     if (((ext2_ & f2) != 0) || ((ext3_ & f3) != 0) || ((ext4_ & f4) != 0) || ((ext5_ & f5) != 0)) return true;

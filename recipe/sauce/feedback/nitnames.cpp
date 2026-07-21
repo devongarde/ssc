@@ -989,6 +989,8 @@ const nitname nitnames [] =
     { nit_css_vendor, "css_vendor" },
     { nit_konqueror, "konqueror" },
     { nit_route, "route" },
+    { nit_gap, "gap" },
+    { nit_grid, "grid" },
 
     { nit_incompatible, "incompatible" },
 

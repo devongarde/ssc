@@ -82,7 +82,7 @@ void nits_t :: create_controls (wxWindow *parent)
         if (static_verbosity_ != nullptr)
         {	static_verbosity_ -> Wrap (-1);
             box_verbosity_ -> Add (static_verbosity_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
-            constexpr int count = sizeof (vrb) / sizeof (wxString);
+            CONSTEXPR int count = sizeof (vrb) / sizeof (wxString);
             choice_verbosity_ = GSL_OWNER (wxChoice) (new wxChoice (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, count, vrb, 0));
             if (choice_verbosity_ != nullptr)
             {	choice_verbosity_ -> SetSelection (0);
@@ -95,7 +95,7 @@ void nits_t :: create_controls (wxWindow *parent)
         if (static_format_ != nullptr)
         {	static_format_ -> Wrap (-1);
             box_format_ -> Add (static_format_, 0, wxALIGN_CENTER_VERTICAL, 5);
-            constexpr int count = sizeof (frm) / sizeof (wxString);
+            CONSTEXPR int count = sizeof (frm) / sizeof (wxString);
             choice_format_ = GSL_OWNER (wxChoice) (new wxChoice (parent, choice_nit_format, wxDefaultPosition, wxDefaultSize, count, frm, 0));
             if (choice_format_ != nullptr)
             {	choice_format_ -> SetSelection (0);
@@ -124,7 +124,7 @@ void nits_t :: create_controls (wxWindow *parent)
             list_level_ -> Append (nn.c_str ()); }
         list_level_ ->  SetSelection (0);
         box_ -> Add (list_level_, 0, wxALL | wxEXPAND, 5);
-        constexpr int count = sizeof (lvl) / sizeof (wxString);
+        CONSTEXPR int count = sizeof (lvl) / sizeof (wxString);
         radio_level_ = GSL_OWNER (wxRadioBox) (new wxRadioBox (parent, radio_nits_level, "set nit level to", wxDefaultPosition, wxDefaultSize, count, lvl, 4, wxRA_SPECIFY_COLS));
         if (radio_level_ != nullptr)
         {	radio_level_ ->  SetSelection (0);

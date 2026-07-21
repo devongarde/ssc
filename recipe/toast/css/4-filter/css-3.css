@@ -1,0 +1,17 @@
+﻿div {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 70px;
+    left: 70px;
+}
+
+.box {
+    background: white;
+    filter: invert(1);
+}
+
+.dialog {
+    border: 10px solid blue;
+    backdrop-filter: blur(2px);
+}

@@ -189,8 +189,8 @@ template < > struct type_master < t_urange > : type_at_least_one < t_urange, sz_
 {   using type_at_least_one < t_urange, sz_comma, t_text > :: type_at_least_one;
     static e_animation_type animation_type () noexcept { return at_other; } };
 
-template < > struct type_master < t_urifn > : type_function < t_urifn, sz_url, t_url >
-{   using type_function < t_urifn, sz_url, t_url > :: type_function;
+template < > struct type_master < t_urifn > : type_function_some < t_urifn, sz_url, 1, 2, t_url, t_css_fn_param >
+{   using type_function_some < t_urifn, sz_url, 1, 2, t_url, t_css_fn_param > :: type_function_some;
     static e_animation_type animation_type () noexcept { return at_url; } };
 
 template < > struct type_master < t_urifn_ni > : type_id_or_either_string < t_urifn_ni, t_urifn, sz_none, sz_inherit >

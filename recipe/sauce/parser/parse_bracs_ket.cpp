@@ -702,7 +702,7 @@ html_version bracs_ket::parse (const ::std::string& content, const html_version&
             case s_q_closing :
                 if (context.tell (es_all)) form_.pick (nit_all, es_all, ec_parser, "s_q_closing ", ch);
                 switch (ch)
-                {   case '>' :  if (twas > text) ve_.emplace_back (nits, line_, text, twas);
+                {   case '>' :  if (twas > text) ve_.emplace_back (nits, line_, bk_question, text, twas);
                                 if (had_doctype) status = s_dull; else status = s_start;
                                 text = twas = i+1; break;
                     default  :  status = s_q; break; }

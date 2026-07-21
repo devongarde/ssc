@@ -28,11 +28,13 @@ void statements::parse (arguments& args, const int start, const int finish)
     {   const int i = first_non_whitespace (args.t_, start, finish);
         if (i > 0)
             if ((args.t_.at (i).t_ == ct_identifier) || (args.t_.at (i).t_ == ct_keyword))
-                if (elem::find (args.v_, args.t_.at (i).val_) == elem_undefined)
+            {   const int j = next_token_at (args.t_, i, finish);
+                const bool colonised = (args.t_.at (j).t_ == ct_colon);
+                if (colonised || (elem::find (args.v_, args.t_.at (i).val_) == elem_undefined))
                 {   nitpick nuts;
                     if (test_value < t_css_property > (nuts, args.v_, args.t_.at (i).val_))
                     {   props_.parse (args, start, finish);
-                        return; } } } 
+                        return; } } } }
     int from = -1, at = -1;
     const int last = (finish >= 0) ? finish : GSL_NARROW_CAST < int > (args.t_.size ());
     int prev = -1;

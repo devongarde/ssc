@@ -1,0 +1,93 @@
+﻿.doris
+{
+column-rule-width: 1px;
+column-rule-style: solid;
+column-rule-color: red, blue;
+}
+
+@keyframes example {
+  from { column-rule-width: 10px; }
+  to   { column-rule-width: 20px, 40px; }
+}
+
+@keyframes example {
+  from { column-rule-width: repeat(2, 5px, 10px); }
+  to   { column-rule-width: repeat(2, 15px, 20px); }
+}
+
+@keyframes example {
+  from { column-rule-width: repeat(2, 10px, 20px); }
+  to   { column-rule-width: 20px; }
+}
+
+@keyframes example {
+  from { column-rule-width: repeat(2, 10px, 20px); }
+  to   { column-rule-width: 20px, 30px; }
+}
+
+@keyframes example {
+  from { column-rule-width: 10px, repeat(auto, 20px), 30px }
+  to   { column-rule-width: 20px, repeat(auto, 40px), 40px }
+}
+
+@keyframes example {
+  from { column-rule-width: 10px, 20px, repeat(auto, 20px), 30px }
+  to   { column-rule-width: 20px, 30px, repeat(auto, 40px, 50px), 40px }
+}
+
+@keyframes example {
+  from { column-rule-width: 10px, repeat(auto, 20px) }
+  to   { column-rule-width: 20px, 30px, repeat(auto, 40px, 50px) }
+}
+
+@keyframes example {
+  from { column-rule-width: 10px, repeat(auto, 20px), 30px }
+  to   { column-rule-width: 20px, repeat(auto, 40px), 40px, 50px }
+}
+
+@keyframes example {
+  from { column-rule-width: 10px, repeat(auto, 20px), 30px }
+  to   { column-rule-width: 20px }
+}
+
+.cedric
+{
+    column-rule: 1px solid red, 2px dashed green, 3px dotted blue;
+
+    column-rule-width: 1px, 2px, 3px;
+    column-rule-style: solid, dashed, dotted;
+    column-rule-color: red, green, blue;
+
+    column-rule: 1px solid red, repeat(2, 2px dashed green);
+
+    column-rule-width: 1px, repeat(2, 2px);
+    column-rule-style: solid, repeat(2, dashed);
+    column-rule-color: red, repeat(2, green);
+
+    column-rule: repeat(auto, 1px solid red, 2px dashed green);
+
+    column-rule-width: repeat(auto, 1px, 2px);
+    column-rule-style: repeat(auto, solid, dashed);
+    column-rule-color: repeat(auto, red, green);
+
+    column-rule: repeat(auto, 1px solid red, 2px dashed green);
+    column-rule-width: repeat(auto, 3px, 4px, 5px);
+
+    column-rule-width: repeat(auto, 3px, 4px, 5px);
+    column-rule-style: repeat(auto, solid, dashed);
+    column-rule-color: repeat(auto, red, green);
+
+    column-rule: repeat(2, 1px solid red, 2px dashed green);
+    column-rule-style: dashed, dotted, solid;
+
+    column-rule-width: repeat(2, 1px, 2px);
+    column-rule-style: dashed, dotted, solid;
+    column-rule-color: repeat(2, red, green);
+
+    column-rule: repeat(2, 1px solid red, 2px dashed green);
+    column-rule-color: repeat(4, red, cyan);
+
+    column-rule-width: repeat(2, 1px, 2px);
+    column-rule-style: repeat(2, solid, dashed);
+    column-rule-color: repeat(4, red, cyan);
+}

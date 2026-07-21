@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "icu/charset.h"
 #include "spell/spell.h"
 
-constexpr int32_t arbitrary_max = 2048;
+CONSTEXPR int32_t arbitrary_max = 2048;
 vstr_t lingo::dicts_;
 bool lingo::borked_ = false;
 

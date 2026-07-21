@@ -29,21 +29,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 template < class NAME > bool function_name (nitpick& nits, const html_version& v, const ::std::string& ss, ::std::string& p)
 {   const ::std::string::size_type brac = ss.find ('(');
     if (brac == ::std::string::npos)
-        nits.pick (nit_function, es_error, ec_type, "'(' expected in ", quote (ss));
+        nits.pick (nit_function, es_error, ec_type, "'(' expected in ", quote (ss), " (", NAME :: sz (), ")");
     else
     {   ::std::string fn (trim_the_lot_off (ss.substr (0, brac)));
         if (! compare_complain (nits, v, NAME :: sz (), fn))
-            nits.pick (nit_isnt, es_error, ec_type, quote (NAME :: sz ()), "() sought, not ", quote (fn));
+            nits.pick (nit_isnt, es_error, ec_type, quote (NAME :: sz ()), "() sought, not ", quote (fn), " (", NAME :: sz (), ")");
         else
-        {   const ::std::string::size_type ket = ss.find (')');
+        {   const ::std::string::size_type ket = find_corresponding_ket (ss, brac, '(', ')');
             if (ket == ::std::string::npos)
-                nits.pick (nit_function, es_error, ec_type, "')' expected in ", quote (ss));
+                nits.pick (nit_function, es_error, ec_type, "')' expected in ", quote (ss), " (", NAME :: sz (), ")");
             else
             {   ::std::string args (trim_the_lot_off (ss.substr (brac+1, ket-brac-1)));
                 if (ket < ss.length () - 1)
                 {   ::std::string post (trim_the_lot_off (ss.substr (ket+1)));
                     if (! post.empty ())
-                    {   nits.pick (nit_function, es_error, ec_type, "unexpected characters '", post, "' after ')' in ", quote (ss));
+                    {   nits.pick (nit_function, es_error, ec_type, "unexpected characters '", post, "' after ')' in ", quote (ss), " (", NAME :: sz (), ")");
                         return false; } }
                 p = args;
                 return true; } } }

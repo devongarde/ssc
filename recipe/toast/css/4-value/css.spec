@@ -5,7 +5,9 @@ PASS ../toast/css/4-value/index.html
 4 long_title
 
 PASS ../toast/css/4-value/css-3.css
-4 css_colour
+4 css_colour css_syntax property css_syntax unrecognised_value
+7 css_syntax property css_syntax unrecognised_value
+10 unrecognised_value css_syntax property css_syntax unrecognised_value
 
 PASS ../toast/css/4-value/css-4.css
 1 url_not_found

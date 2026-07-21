@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.24)
 set (FULLNAME "Static-Site-Checker")
-set (VER 0.2.33)
+set (VER 0.2.34)
 project (ssc VERSION ${VER} DESCRIPTION ${FULLNAME} LANGUAGES CXX HOMEPAGE_URL "https://dylanharris.org/ssc/")
 message (NOTICE "preparing " ${FULLNAME} " ${VER}" )
 
@@ -145,8 +145,8 @@ set (SAUCE
 			${S}/css/value_types_css_c_5.cpp ${S}/css/value_types_css_d.cpp ${S}/css/value_types_css_e.cpp ${S}/css/value_types_css_f_1.cpp
 			${S}/css/value_types_css_f_2.cpp ${S}/css/value_types_css_f_3.cpp ${S}/css/value_types_css_fn_1.cpp ${S}/css/value_types_css_fn_2.cpp
 			${S}/css/value_types_css_g_h.cpp ${S}/css/value_types_css_i_1.cpp ${S}/css/value_types_css_i_2.cpp ${S}/css/value_types_css_j_k.cpp
-			${S}/css/value_types_css_l_1.cpp ${S}/css/value_types_css_l_2.cpp ${S}/css/value_types_css_l_3.cpp ${S}/css/value_types_css_m_n.cpp
-			${S}/css/value_types_css_o.cpp ${S}/css/value_types_css_p_1.cpp ${S}/css/value_types_css_p_q.cpp ${S}/css/value_types_css_r_1.cpp
+			${S}/css/value_types_css_l_1.cpp ${S}/css/value_types_css_l_2.cpp ${S}/css/value_types_css_l_3.cpp ${S}/css/value_types_css_m_1.cpp ${S}/css/value_types_css_m_2.cpp
+			${S}/css/value_types_css_n_o.cpp ${S}/css/value_types_css_p_1.cpp ${S}/css/value_types_css_p_q.cpp ${S}/css/value_types_css_r_1.cpp
 			${S}/css/value_types_css_r_2.cpp ${S}/css/value_types_css_s_1.cpp ${S}/css/value_types_css_s_2.cpp ${S}/css/value_types_css_s_3.cpp
 			${S}/css/value_types_css_t_1.cpp ${S}/css/value_types_css_t_2.cpp ${S}/css/value_types_css_t_3.cpp ${S}/css/value_types_css_t_4.cpp
 			${S}/css/value_types_css_u.cpp ${S}/css/value_types_css_v.cpp ${S}/css/value_types_css_w_z.cpp ${S}/css/value_types_d_1.cpp ${S}/css/value_types_d_2.cpp

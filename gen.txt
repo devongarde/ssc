@@ -174,8 +174,8 @@ defined at w3.org.
 --css.fbl X             Use CSS Flexible Box Layout level X, where X is
                         0 or 3.
 
---css.filter X          Use CSS Filter Effects level X, where X is 0 or
-                        3.
+--css.filter X          Use CSS Filter Effects level X, where X is 0, 3
+                        or 4.
 
 --css.float X           Use CSS Page Floats level X, where X is 0 or 3.
 
@@ -241,6 +241,9 @@ defined at w3.org.
                         or 3.
 
 --css.round X           Use CSS Round Display level X, where X is 0 or
+                        3.
+
+--css.route X           Use CSS Route Matching level X, where X is 0 or
                         3.
 
 --css.ruby X            Use CSS Ruby Annotations level X, where X is 0

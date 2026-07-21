@@ -31,7 +31,7 @@ void properties::parse (arguments& args, const int from, const int to)
     const int len = GSL_NARROW_CAST <int> (args.t_.size ());
     PRESUME (from < len, __FILE__, __LINE__);
     PRESUME ((to < len) || (to < 0), __FILE__, __LINE__);
-    int b = -1; int prev = -1, brack = 0, atat = -1;
+    int b = -1; int prev = -1,  atat = -1;
     bool burnt = false;
     fiddlesticks < properties > f (&args.ps_, this);
     for (int i = from; i > 0; i = next_token_at (args.t_, i, to))
@@ -39,64 +39,63 @@ void properties::parse (arguments& args, const int from, const int to)
         if (atat >= 0)
             switch (args.t_.at (i).t_)
             {   case ct_at :
-                    if (brack == 0)
-                        if (! burnt)
-                        {   nitpick& nits = args.t_.at (b).nits_;
-                            nits.pick (nit_css_syntax, es_error, ec_css, "two @s for the price of one?!");
-                            burnt = true; }
-                        else
-                        {   nitpick& nits = args.t_.at (i).nits_;
-                            nits.pick (nit_css_syntax, es_error, ec_css, "unexpected second @..."); }
+                    if (! burnt)
+                    {   nitpick& nits = args.t_.at (b).nits_;
+                        nits.pick (nit_css_syntax, es_error, ec_css, "two @s for the price of one?!");
+                        burnt = true; }
+                    else
+                    {   nitpick& nits = args.t_.at (i).nits_;
+                        nits.pick (nit_css_syntax, es_error, ec_css, "unexpected second @..."); }
                     break; 
                 case ct_curly_brac :
                 {   PRESUME (args.t_.at (i).child_ > 0, __FILE__, __LINE__);
                     i = close_bracket_for (args.t_, i, to);
-                    if (brack > 0)
-                    {   nitpick& nits = args.t_.at (atat).nits_;
-                        nits.pick (nit_css_syntax, es_warning, ec_css, "unbalanced brackets before {"); }
+//                    if (brack > 0)
+//                    {   nitpick& nits = args.t_.at (atat).nits_;
+//                        nits.pick (nit_css_syntax, es_warning, ec_css, "unbalanced brackets before {"); }
                     if (st_.get () == nullptr) st_ = pst_t (new statements (args, atat, i));
                     else st_ -> parse (args, atat, i);
                     atat = b = -1; }
                     break;
-                case ct_keyword :
-                case ct_identifier :
-                case ct_dash :
-                case ct_whitespace :
+                case ct_colon :
                 case ct_comment :
+                case ct_dash :
+                case ct_identifier :
+                case ct_keyword :
+                case ct_whitespace :
                     break;
                 case ct_round_brac :
                 case ct_square_brac :
-                    ++brack;
-                    break;
+//                    ++brack;
+//                    break;
                 case ct_round_ket :
                 case ct_square_ket :
-                    if (brack > 0) --brack;
+//                    if (brack > 0) --brack;
                     break;
                 default :
-                    if ((! burnt) && (brack == 0))
+                    if (! burnt)
                     {   nitpick& nits = args.t_.at (atat).nits_;
-                        nits.pick (nit_css_syntax, es_error, ec_css, quote (tkn_rpt (args.t_.at (i))), ": unexpected; expecting { ... }");
+                        nits.pick (nit_css_syntax, es_comment, ec_css, quote (tkn_rpt (args.t_.at (i))), ": unexpected; expecting { ... }");
                         burnt = true; }
                     break; }
         else switch (args.t_.at (i).t_)
         {   case ct_at :
-                if ((context.css_module (c_paged_media) >= 3) && (brack == 0)) atat = i;
+                if (context.css_module (c_paged_media) >= 3) atat = i;
                 break;
             case ct_semicolon :
-                if (brack == 0)
-                {   if (b != i) prop_.emplace_back (new property (args, b, prev));
-                    b = -1; }
+                if (b != i) prop_.emplace_back (new property (args, b, prev));
+                b = -1;
                 break;
-            case ct_round_brac :
-            case ct_square_brac :
-            case ct_curly_brac :
-                ++brack;
-                break;
-            case ct_round_ket :
-            case ct_square_ket :
-            case ct_curly_ket :
-                if (brack > 0) --brack;
-                break;
+//            case ct_round_brac :
+//            case ct_square_brac :
+//            case ct_curly_brac :
+//                ++brack;
+//                break;
+//            case ct_round_ket :
+//            case ct_square_ket :
+//            case ct_curly_ket :
+//                if (brack > 0) --brack;
+//                break;
             default :
                 break; }
         prev = i; }

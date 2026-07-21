@@ -1,9 +1,5 @@
 -Y 1 -7 original -f ../toast/css/3-fcs/css.conf
 
-PASS ../toast/css/3-fcs/css-4.css
-3 url_not_found
-5 url_not_found
-
 PASS ../toast/css/3-fcs/css-a.css
 14 not_not
 96 unrecognised_value unrecognised_value

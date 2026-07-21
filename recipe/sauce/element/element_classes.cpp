@@ -402,6 +402,7 @@ element_init_t ei [] =
     { elem_faux_doctype, { a_html, a_math, a_svg, a_system, a_public, a_unknown } },
     { elem_faux_document, { a_unknown } },
     { elem_faux_php, { a_unknown } },
+    { elem_faux_question, { a_unknown } },
     { elem_faux_ssi, { a_unknown } },
     { elem_faux_stylesheet, { a_unknown } },
     { elem_faux_text, { a_unknown } },

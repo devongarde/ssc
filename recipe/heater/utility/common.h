@@ -249,37 +249,37 @@ template < > struct fiddlesticks < bool >
 
 int hex_value (const ::std::string_view str);
 
-inline constexpr ::std::size_t stp (const int i, const int n = 1)
+inline CONSTEXPR ::std::size_t stp (const int i, const int n = 1)
 {   const ::std::size_t res (i);
     return res + n; }
 
-inline constexpr ::std::size_t stm (const int i, const int n = 1)
+inline CONSTEXPR ::std::size_t stm (const int i, const int n = 1)
 {   const ::std::size_t res (i);
     return res - n; }
 
-inline constexpr ::std::size_t stt (const int i, const int n = 2)
+inline CONSTEXPR ::std::size_t stt (const int i, const int n = 2)
 {   const ::std::size_t res (i);
     return res * n; }
 
 template < e_css_val_fn K, e_css_val_fn T, e_css_val_fn... TS > struct in_list
-{   static constexpr bool yes ()
+{   static CONSTEXPR bool yes ()
     {   return in_list < K, T > :: yes () || in_list < K, TS... > :: yes (); } }; 
 
 template < e_css_val_fn K, e_css_val_fn T > struct in_list < K, T >
-{   static constexpr bool yes ()
+{   static CONSTEXPR bool yes ()
     {   return false; } };
 
 template < e_css_val_fn K > struct in_list < K, K >
-{   static constexpr bool yes ()
+{   static CONSTEXPR bool yes ()
     {   return true; } };
 
 template < e_css_val_fn T, e_css_val_fn... TS > struct listed
-{   static constexpr bool yes (const e_css_val_fn t)
+{   static CONSTEXPR bool yes (const e_css_val_fn t)
     {   if (T == t) return true;
         return listed < TS... > :: yes (t); } };
 
 template < e_css_val_fn T > struct listed < T >
-{   static constexpr bool yes (e_css_val_fn t)
+{   static CONSTEXPR bool yes (e_css_val_fn t)
     {   return T == t; } };
 
 inline ::std::string::size_type find_no_case (const ::std::string& s, const ::std::string& x)
@@ -333,3 +333,4 @@ public:
     {   return xp_ == nullptr; } };
 
 vstr_t lineate (const ::std::string& s);
+::std::string::size_type find_corresponding_ket (const ::std::string& s, const ::std::string::size_type from, const char brac, const char ket);

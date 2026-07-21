@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.2.33
+version 0.2.34
 (c) 2020-2026 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notices
 https://dylanharris.org/ssc/

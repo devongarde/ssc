@@ -1,0 +1,216 @@
+﻿.grid-with-spans {
+  display: grid;
+  grid-template: repeat(4, 100px) / repeat(4, 100px);
+  gap: 20px;
+  background: rgb(255 255 128);
+}
+.grid > * {
+  border: 1px dashed black;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 500px;
+  background: rgb(255 255 128);
+}
+.flex > * {
+  border: 1px dashed black;
+}
+
+.multi-column {
+  column-count: 3;
+  column-width: 100px;
+  column-height: 50px;
+  column-wrap: wrap;
+  gap: 20px;
+  background: rgb(255 255 128);
+}
+
+.multi-column > * {
+  height: 100px;
+  border: 1px dashed black;
+}
+
+.break-normal-grid {
+  display: grid;
+  grid-template: repeat(4, 100px) / repeat(4, 100px);
+  gap: 20px;
+  row-rule: 6px solid red;
+  column-rule: 6px solid blue;
+  rule-break: normal;
+}
+
+.break-none-grid {
+  display: grid;
+  grid-template: repeat(4, 100px) / repeat(4, 100px);
+  gap: 20px;
+  row-rule: 6px solid red;
+  column-rule: 6px solid blue;
+  rule-break: none;
+}
+
+.break-intersection-grid {
+  display: grid;
+  grid-template: repeat(4, 100px) / repeat(4, 100px);
+  gap: 20px;
+  row-rule: 6px solid red;
+  column-rule: 6px solid blue;
+  rule-break: intersection;
+}
+
+.break-normal-multicol {
+  column-width: 150px;
+  column-height: 300px;
+  gap: 1em;
+  row-rule: 4px solid red;
+  column-rule: 4px solid blue;
+  rule-break: normal;
+}
+
+.break-intersection-multicol {
+  column-width: 150px;
+  column-height: 300px;
+  gap: 1em;
+  row-rule: 4px solid red;
+  column-rule: 4px solid blue;
+  rule-break: intersection;
+}
+
+.break-normal-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  row-rule: 6px solid red;
+  column-rule: 6px solid blue;
+  rule-break: normal;
+}
+
+.break-intersection-flex {
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+  gap: 20px;
+  row-rule: 6px solid red;
+  column-rule: 6px solid blue;
+  rule-break: intersection;
+}
+
+.simple-grid {
+  rule-break: intersection;
+  rule-visibility-items: between;
+}
+
+.simple-grid-with-empty-cells {
+  rule-break: intersection;
+  rule-visibility-items: between;
+}
+
+.donut-grid-layout {
+  rule-break: intersection;
+  rule-visibility-items: between;
+}
+
+.inset-overlap-join {
+  rule-inset: overlap-join;
+  rule-break: intersection;
+  rule-visibility-items: between;
+}
+
+.inset-overlap-join {
+  rule-inset: overlap-join;
+  rule-break: intersection;
+  rule-visibility-items: between;
+}
+
+.inset-end {
+  row-rule: 3px solid red;
+  row-rule-break: intersection;
+  row-rule-inset-end: 10px;
+}
+
+.inset-start-8px-end-0px {
+  column-rule-inset-start: 8px;
+  column-rule-inset-end: 0px;
+}
+
+.inset-cap-0px-inset-junction-negative-5px {
+  column-rule-inset-cap: 0px;
+  column-rule-inset-junction: -5px;
+  column-rule-break: intersection;
+}
+
+.inset-0px {
+  column-rule-inset: 0px;
+  column-rule-break: intersection;
+}
+
+.inset-positive-5px {
+  column-rule-inset: 5px;
+  column-rule-break: intersection;
+}
+
+.inset-negative-5px {
+  column-rule-inset: -5px;
+  column-rule-break: intersection;
+}
+
+.inset-negative-50percent {
+  column-rule-inset: -50%;
+  column-rule-break: intersection;
+}
+
+.break-normal-with-all-grid {
+  display: grid;
+  grid-template: repeat(3, 100px) / repeat(3, 100px);
+  gap: 20px;
+  row-rule: 6px solid red;
+  column-rule: 6px solid blue;
+  rule-visibility-items: all;
+}
+
+.break-normal-with-around-grid {
+  display: grid;
+  grid-template: repeat(3, 100px) / repeat(3, 100px);
+  gap: 20px;
+  row-rule: 6px solid red;
+  column-rule: 6px solid blue;
+  rule-visibility-items: around;
+}
+
+.break-normal-with-between-grid {
+  display: grid;
+  grid-template: repeat(3, 100px) / repeat(3, 100px);
+  gap: 20px;
+  row-rule: 6px solid red;
+  column-rule: 6px solid blue;
+  rule-visibility-items: between;
+}
+
+.break-normal-with-all-grid {
+  display: grid;
+  grid-template: repeat(3, 100px) / repeat(3, 100px);
+  gap: 20px;
+  row-rule: 6px solid red;
+  column-rule: 6px solid blue;
+  rule-visibility-items: all;
+}
+
+.break-normal-with-around-grid {
+  display: grid;
+  grid-template: repeat(3, 100px) / repeat(3, 100px);
+  gap: 20px;
+  row-rule: 6px solid red;
+  column-rule: 6px solid blue;
+  rule-visibility-items: around;
+}
+
+.break-normal-with-between-grid {
+  display: grid;
+  grid-template: repeat(3, 100px) / repeat(3, 100px);
+  gap: 20px;
+  row-rule: 6px solid red;
+  column-rule: 6px solid blue;
+  rule-visibility-items: between;
+}

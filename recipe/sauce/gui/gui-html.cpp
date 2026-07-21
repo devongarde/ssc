@@ -52,8 +52,8 @@ bool html_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
     return true; }
 
 void html_t :: create_controls (wxWindow *parent)
-{	constexpr long rg = (wxALL);
-    constexpr long al = wxALIGN_RIGHT;
+{	CONSTEXPR long rg = (wxALL);
+    CONSTEXPR long al = wxALIGN_RIGHT;
 
     if (    html_ctrl_.concoct < wxBoxSizer > (parent, box_, choice_html_version, "&X/HTML version: ") &&
             math_ctrl_.concoct < wxBoxSizer > (parent, box_, choice_math_version, "&MathML version: ") &&

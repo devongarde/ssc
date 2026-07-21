@@ -40,7 +40,7 @@ END_EVENT_TABLE ()
 
 #define NO_IDEA_WHY_THIS_OFFSET_IS_NECESSARY    4
 
-constexpr bool not_in_word (const char ch)
+CONSTEXPR bool not_in_word (const char ch)
 {   return (((ch < '0') || (ch > '9')) &&
             ((ch < 'A') || (ch > 'Z')) &&
             ((ch < 'a') || (ch > 'z'))); }
@@ -105,7 +105,7 @@ void output_t :: Next ()
     if (con.empty ()) return;
     if (GSL_NARROW_CAST < ::std::size_t > (GetInsertionPoint ()) >= con.length ()) SetInsertionPoint (0);
     ::std::size_t f = found_;
-    constexpr ::std::size_t cycle = 0;
+    CONSTEXPR ::std::size_t cycle = 0;
     for (;;)
     {   ::std::size_t start = 0;
         if (f == con.length () - 1) start = cycle; 

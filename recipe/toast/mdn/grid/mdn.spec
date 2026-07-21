@@ -56,6 +56,8 @@ PASS ../toast/mdn/grid/grid-template-areas.html
 
 PASS ../toast/mdn/grid/grid-template-columns.html
 2 naughty_lang
+5 unrecognised_value function unrecognised_value function
 
 PASS ../toast/mdn/grid/grid-template-rows.html
 2 naughty_lang
+5 unrecognised_value function unrecognised_value function

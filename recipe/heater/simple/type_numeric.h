@@ -26,14 +26,14 @@ bool within_unsigned_limits (nitpick& nits, const html_version& v, const int val
 bool within_real_limits (nitpick& nits, const html_version& , const double val);
 
 template < typename BASE, BASE FROM, BASE TO, bool B > struct check_min_or_min_max
-{   static constexpr bool ok (const BASE n) { return n >= FROM; }  
+{   static CONSTEXPR bool ok (const BASE n) { return n >= FROM; }  
     static void bad_count (nitpick& nits, const ::std::string& s)
     {   nits.pick (nit_not_n, es_error, ec_type, quote (s), ": atl least ", FROM, " items expected"); }     
     static void bad_value (nitpick& nits, const ::std::string& s)
     {   nits.pick (nit_not_n, es_error, ec_type, quote (s), ": ", FROM, " is the minimum value"); } };     
 
 template < typename BASE, BASE FROM, BASE TO > struct check_min_or_min_max < BASE, FROM, TO, true >
-{   static constexpr bool ok (const BASE n) { return (n >= FROM) && (n <= TO); }  
+{   static CONSTEXPR bool ok (const BASE n) { return (n >= FROM) && (n <= TO); }  
     static void bad_count (nitpick& nits, const ::std::string& s)
     {   nits.pick (nit_not_n, es_error, ec_type, quote (s), ": between ", FROM, " and ", TO, " items expected"); }   
     static void bad_value (nitpick& nits, const ::std::string& s)
@@ -53,7 +53,7 @@ template < e_type T, typename BASE, BASE FROM, BASE TO > struct type_integer_bet
 template < e_type T, typename BASE, BASE X, BASE... Y > struct one_integer_of : one_integer_of < T, BASE, Y... >
 {   using one_integer_of < T, BASE, Y... > :: one_integer_of;
     static bool is_numeric () { return true; }
-    static constexpr bool set_value_ex (const int n)
+    static CONSTEXPR bool set_value_ex (const int n)
     {   if (n == X) return true;
         return one_integer_of < T, BASE, Y... > :: set_value_ex (n); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -66,7 +66,7 @@ template < e_type T, typename BASE, BASE X, BASE... Y > struct one_integer_of : 
 template < e_type T, typename BASE, BASE X > struct one_integer_of < T, BASE, X > : numeric_value < T, BASE >
 {   using numeric_value < T, BASE > :: numeric_value;
     static bool is_numeric () { return true; }
-    static constexpr bool set_value_ex (const int n)
+    static CONSTEXPR bool set_value_ex (const int n)
     {   return (n == X); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < T, BASE > :: set_value (nits, v, s);

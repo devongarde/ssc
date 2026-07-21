@@ -48,7 +48,7 @@ element_bitset script_bitset = empty_element_bitset;
 
 void state_init ()
 {   pure_faux_bitset = empty_element_bitset | elem_faux_document | elem_faux_asp | elem_faux_cdata | elem_faux_char | elem_faux_code | elem_faux_comment |
-            elem_faux_doctype | elem_faux_php | elem_faux_ssi | elem_faux_stylesheet | elem_faux_text | elem_faux_xml | elem_faux_whitespace;
+            elem_faux_doctype | elem_faux_php | elem_faux_question | elem_faux_ssi | elem_faux_stylesheet | elem_faux_text | elem_faux_xml | elem_faux_whitespace;
     css_faux_bitset = empty_element_bitset | elem_css_all | elem_css_cell | elem_css_child | elem_css_precede | elem_css_precede_immediate |
             elem_css_scope_descendent | elem_css_scope_root;
     faux_bitset = pure_faux_bitset | css_faux_bitset;

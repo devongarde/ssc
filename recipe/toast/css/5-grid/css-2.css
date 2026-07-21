@@ -1,0 +1,9 @@
+﻿.container {
+  display: grid-lanes;
+  grid-template-columns: 100px 200px;
+}
+
+.container {
+  display: grid-lanes;
+  grid-template-rows: 100px 200px;
+}

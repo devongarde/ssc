@@ -254,6 +254,10 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_css_ease : return "CSS Easing Functions";
         case ed_css_filter_3 : return "CSS Filter Effects 3";
         case ed_css_font_4 : return "CSS Fonts 4";
+        case ed_css_gap : return "CSS Gaps";
+        case ed_css_grid_3 : return "CSS Grid Layout 1";
+        case ed_css_grid_4 : return "CSS Grid Layout 4";
+        case ed_css_grid_5 : return "CSS Grid Layout 5";
         case ed_css_image_3 : return "CSS Images 3";
         case ed_css_media_3 : return "CSS Media 3"; 
         case ed_css_media_4 : return "CSS Media 4"; 
@@ -398,6 +402,10 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_css_ease : return "CSS Easing Functions Level 1, February 2023";
         case ed_css_filter_3 : return "CSS Filter Effects Level 3, December 2018";
         case ed_css_font_4 : return "CSS Fonts Level 4, December 2021";
+        case ed_css_gap : return "CSS Gap Decorations, draft, 24 June 2026";
+        case ed_css_grid_3 : return "CSS Grid Layout 1, draft, October 2023";
+        case ed_css_grid_4 : return "CSS Grid Layout 2, draft, October 2023";
+        case ed_css_grid_5 : return "CSS Grid Layout 3, draft, May 2026";
         case ed_css_image_3 : return "CSS Images Level 3, December 2020"; 
         case ed_css_media_3 : return "CSS Media Queries Level 3, April 2022"; 
         case ed_css_media_4 : return "CSS Media Queries Level 4, July 2020"; 
@@ -517,6 +525,10 @@ e_nit_link_type doc_link (const e_doc doc, ::std::string& link)
         case ed_css_ease : link = CSSSPEX "css-easing-1-feb23.pdf"; return nlt_pdf;
         case ed_css_filter_3 : link = CSSSPEX "css-filter-effects-1-dec18.pdf"; return nlt_pdf;
         case ed_css_font_4 : link = CSSSPEX "css-fonts-4-dec21.pdf"; return nlt_pdf;
+        case ed_css_gap : link = CSSSPEX "css-gap-jun26.pdf"; return nlt_pdf;
+        case ed_css_grid_3 : link = CSSSPEX "css-grid-layout-1-oct23.pdf"; return nlt_pdf;
+        case ed_css_grid_4 : link = CSSSPEX "css-grid-layout-2-oct23.pdf"; return nlt_pdf;
+        case ed_css_grid_5 : link = CSSSPEX "css-grid-layout-3-may26.pdf"; return nlt_pdf;
         case ed_css_image_3 : link = CSSSPEX "css-images-3.pdf"; return nlt_pdf;
         case ed_css_media_3 : link = CSSSPEX "css-media-queries-3-apr-22.pdf"; return nlt_pdf; 
         case ed_css_media_4 : link = CSSSPEX "css-media-queries-4.pdf"; return nlt_pdf; 
