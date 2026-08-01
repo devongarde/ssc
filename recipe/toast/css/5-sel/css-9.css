@@ -1,0 +1,4 @@
+﻿label:is(:hover, :focus) /for/ input,       /* association by "for" attribute */
+label:is(:hover, :focus):not([for]) input { /* association by containment */
+  box-shadow: yellow 0 0 10px;
+}

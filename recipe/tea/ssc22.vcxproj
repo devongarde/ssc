@@ -695,9 +695,11 @@
     <ClCompile Include="..\sauce\css\value_types_css_c_4.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_c_5.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_d.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_css_e.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_e_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_e_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_fn_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_fn_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_fn_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_f_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_f_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_f_3.cpp" />
@@ -722,6 +724,7 @@
     <ClCompile Include="..\sauce\css\value_types_css_t_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_t_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_t_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_t_5.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_u.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_v.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_w_z.cpp" />
@@ -15338,6 +15341,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
+      <AdditionalOptions> /PDBCOMPRESS /pdbpagesize:8192 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
@@ -15379,6 +15383,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
+      <AdditionalOptions> /PDBCOMPRESS /pdbpagesize:8192 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
@@ -15428,6 +15433,7 @@
       <StackReserveSize>67108864</StackReserveSize>
       <Profile>true</Profile>
       <GenerateMapFile>false</GenerateMapFile>
+      <AdditionalOptions> /PDBCOMPRESS /pdbpagesize:8192 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
@@ -15469,6 +15475,7 @@
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;ssl.lib;tls.lib;crypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/PDBCOMPRESS /pdbpagesize:8192 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
@@ -15499,6 +15506,7 @@
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;ssl.lib;tls.lib;crypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/PDBCOMPRESS /pdbpagesize:8192 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
@@ -15534,6 +15542,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <Profile>true</Profile>
       <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <AdditionalOptions>/PDBCOMPRESS /pdbpagesize:8192 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>

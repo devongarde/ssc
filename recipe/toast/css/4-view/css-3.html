@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<HTML>
+ <HEAD>
+ <LINK REL=STYLESHEET TYPE="text/css" HREF="css-3.css">
+ <TITLE>CSS 4 View Transitions Chapter 3 example</TITLE>
+ </HEAD>
+
+ <BODY>
+
+<style>
+.scope { view-transition-scope: all; }
+#a { view-transition-name: a; }
+#b { view-transition-name: b; }
+#c { view-transition-name: c; }
+#d { view-transition-name: d; }
+</style>
+
+<div id=a>
+  <div id=b class=scope>
+    <div id=c></div>
+  </div>
+  <div id=d></div>
+</div>
+
+<script>
+...
+a.startViewTransition(); // Will discover "a" and "d" view-transition-names
+b.startViewTransition(); // Will discover "b" and "c" view-transition-names
+...
+</script>
+
+<style>
+#a { view-transition-name: a; }
+#b { view-transition-name: b; }
+#c { view-transition-name: c; }
+#d { view-transition-name: d; }
+</style>
+
+<div id=a>
+  <div id=b>
+    <div id=c></div>
+  </div>
+  <div id=d></div>
+</div>
+
+<script>
+...
+b.startViewTransition(); // Will discover "b" and "d" view-transition-names
+
+// While b's transition is active and running, the following will only discover
+// "a" and "d" view transition names, since b has a forced view-transition-scope: all.
+b.startViewTransition()
+...
+</script>
+
+<section class="container">
+  <article>Content</article>
+</section>
+
+</BODY>
+
+</HTML>

@@ -116,10 +116,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #endif // _MSC_VER
 
 #ifdef _MSC_VER
-#ifndef VS2017
 ::std::wstring convert_to_wstring (const ::std::string& s)
 {   ::std::wstring_convert < ::std::codecvt_utf8_utf16 < wchar_t > > converter;
     return converter.from_bytes (s); }
-#endif // VS2017
 #endif // _MSC_VER
 #endif // NOICU

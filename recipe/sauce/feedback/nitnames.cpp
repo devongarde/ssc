@@ -991,6 +991,8 @@ const nitname nitnames [] =
     { nit_route, "route" },
     { nit_gap, "gap" },
     { nit_grid, "grid" },
+    { nit_archaic, "archaic" },
+    { nit_refcomb, "refcomb" },
 
     { nit_incompatible, "incompatible" },
 

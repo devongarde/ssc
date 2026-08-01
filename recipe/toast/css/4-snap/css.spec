@@ -1,5 +1,9 @@
 -Y 1 -f ../toast/css/4-snap/css.conf
 
+PASS ../toast/css/4-snap/css-2.css
+2 abandoned
+9 abandoned
+
 PASS ../toast/css/4-snap/css-2.html
 2 naughty_lang
 10 url_not_found naughty_alt

@@ -91,6 +91,9 @@ template < > struct type_master < t_dsss > : public type_either_or < t_dsss, t_d
 template < > struct type_master < t_hue_n > : either_type_or_string < t_hue_n, t_angle, t_hue, sz_none >
 { using  either_type_or_string < t_hue_n, t_angle, t_hue, sz_none > :: either_type_or_string; };
 
+template < > struct type_master < t_css_fn_keypress > : type_function < t_css_fn_keypress, sz_keypress, t_text >
+{   using type_function < t_css_fn_keypress, sz_keypress, t_text  > :: type_function; };
+
 template < > struct type_master < t_real_04 > : public type_master < t_real >
 {   const double from = -0.4;
     const double to = 0.4;

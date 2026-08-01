@@ -30,6 +30,7 @@ int check_typed_identifier (arguments& args, nitpick& nits, const int start, con
 int check_typed_feature (arguments& args, nitpick& nits, const int start, const int to, const e_css_statement cs, const char* const sz);
 bool maybe_anchor (nitpick& nits, const e_css_property id);
 bool maybe_anchor_size (nitpick& nits, const e_css_property id);
+bool maybe_anim_trigger (nitpick& nits, const e_css_property id);
 bool maybe_content (nitpick& nits, const e_css_property id);
 bool maybe_corner (nitpick& nits, const e_css_property id);
 bool maybe_filter (nitpick& nits, const e_css_property id);

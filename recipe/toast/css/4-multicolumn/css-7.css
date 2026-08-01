@@ -1,0 +1,32 @@
+﻿h2 { column-span: all; background: silver }
+
+article {
+  columns: 2;
+}
+
+section {
+  transform: rotate(90deg);
+}
+
+.spanner {
+  column-span: all;
+  background: silver;
+}
+
+section {
+  border: 2px solid red;
+  margin-top: 65px;
+  padding-top: 20px;
+}
+
+h2 {
+  column-span: all;
+  background: silver
+}
+
+h2 {
+  margin: 16px 0;
+  column-span: all;
+  background: silver
+}
+p { margin-top: 16px }

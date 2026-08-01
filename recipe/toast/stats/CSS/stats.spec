@@ -626,9 +626,6 @@ Element:
     type: 4 times
   16 elements used 83 times
 
-Function:
-  url declared never, used once
-
 Property:
     background: 4 times
     color: once
@@ -996,10 +993,6 @@ Font:
     sans-serif: twice
     serif: 6 times
   11 Font used 28 times
-
-Function:
-  rgb declared never, used 12 times
-  url declared never, used 26 times
 
 Id:
   x97z declared never, used once

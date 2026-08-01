@@ -1,0 +1,64 @@
+﻿:root {
+  view-transition-name: root;
+}
+
+::view-transition {
+  position: absolute;
+  inset: 0;
+}
+
+::view-transition-group(*) {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  animation-duration: 0.25s;
+  animation-fill-mode: both;
+}
+
+::view-transition-image-pair(*) {
+  position: absolute;
+  inset: 0;
+}
+
+::view-transition-old(*),
+::view-transition-new(*) {
+  position: absolute;
+  display: block;
+  inset-block-start: 0;
+  inline-size: 100%;
+  block-size: auto;
+}
+
+::view-transition-image-pair(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: inherit;
+  animation-fill-mode: inherit;
+  animation-delay: inherit;
+  animation-timing-function: inherit;
+  animation-iteration-count: inherit;
+  animation-direction: inherit;
+  animation-play-state: inherit;
+}
+
+::view-transition-group-children(*) {
+  position: absolute;
+  inset: 0;
+  border-style: solid;
+  border-color: transparent;
+}
+
+/* Default cross-fade transition */
+@keyframes -ua-view-transition-fade-out {
+  to { opacity: 0; }
+}
+@keyframes -ua-view-transition-fade-in {
+  from { opacity: 0; }
+}
+
+/* Keyframes for blending when there are 2 images */
+@keyframes -ua-mix-blend-mode-plus-lighter {
+  from { mix-blend-mode: plus-lighter }
+  to { mix-blend-mode: plus-lighter }
+}

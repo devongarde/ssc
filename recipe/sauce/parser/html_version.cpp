@@ -1183,7 +1183,8 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "AcP", "Anchor Positioning", ext5_, e5, H5_CSS_ANCHOR_POS_3, H5_CSS_ANCHOR_POS_4);
     res += single_feature (res, b, "Adj", "Colour Adjustment", ext3_, e3, H3_CSS_ADJUST);
     res += single_feature (res, b, "Anc", "Scrollbar Anchoring", ext3_, e3, H3_CSS_ANCHOR);
-    res += single_feature (res, b, "Ani", "Animation", ext2_, H2_CSS_ANIM_3, H2_CSS_ANIM_4);
+    res += single_feature (res, b, "Ani", "Animation", ext2_, e2, H2_CSS_ANIM_3, H2_CSS_ANIM_4);
+    res += single_feature (res, b, "AnT", "Animation Trigger", ext3_, e3, H3_CSS_ANIM_TRIG);
     res += single_feature (res, b, "Bac", "Background (and Borders)", ext5_, e5, H5_CSS_BACKGROUND_3, H5_CSS_BACKGROUND_4);
     res += single_feature (res, b, "BrB", "Borders and Boxes", ext5_, e5, 0, H5_CSS_BORD_BOX_4);
     res += single_feature (res, b, "BxA", "Box Alignment", ext3_, e3, H3_CSS_BOX_ALIGN);
@@ -1232,6 +1233,7 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "Ofl", "Overflow", ext5_, e5, H5_CSS_OVERFLOW_3, H5_CSS_OVERFLOW_4, H5_CSS_OVERFLOW_5);
     res += single_feature (res, b, "Osc", "Overscroll Behaviour", ext3_, e3, H3_CSS_OVERSCROLL);
     res += single_feature (res, b, "PaM", "Paged Media", ext3_, e3, H3_CSS_PAGE_3, H3_CSS_PAGE_4);
+    res += single_feature (res, b, "PaA", "Painting API", ext4_, e4, H4_CSS_PAINTAPI);
     res += single_feature (res, b, "PEv", "Pointer Events", ext5_, e5, H5_CSS_PTR_EV_3, H5_CSS_PTR_EV_4, H5_CSS_PTR_EV_5, H5_CSS_PTR_EV_6);
     res += single_feature (res, b, "PFl", "Page Floats", ext3_, e3, H3_CSS_FLOAT);
     res += single_feature (res, b, "Pos", "Positions", ext3_, e3, H3_CSS_POSITION_3, H3_CSS_POSITION_4);
@@ -1713,14 +1715,6 @@ template < e_css_module MOD > void html_version::set_level (const int ) { }
 
 template < e_css_module MOD > int html_version::get_level () const { return 0; }
 
-template < > int html_version::get_level < c_colour_adjustment > () const
-{   if (any_ext3 (H3_CSS_ADJUST)) return 3;
-    return 0; }
-
-template < > void html_version::set_level < c_colour_adjustment > (const int n)
-{   if (n == 3) set_ext3 (H3_CSS_ADJUST);
-    else reset_ext3 (H3_CSS_ADJUST); }
-
 template < > int html_version::get_level < c_advanced_layout > () const
 {   if (any_ext4 (H4_CSS_ADVLAY)) return 3;
     return 0; }
@@ -1756,6 +1750,14 @@ template < > void html_version::set_level < c_animation > (const int n)
 {   reset_ext2 (H2_CSS_ANIM_MASK);
     if (n == 4) set_ext2 (H2_CSS_ANIM_34);
     else if (n == 3) set_ext2 (H2_CSS_ANIM_3); }
+
+template < > int html_version::get_level < c_animation_trigger > () const
+{   if (any_ext3 (H3_CSS_ANIM_TRIG)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_animation_trigger > (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_ANIM_TRIG);
+    else reset_ext3 (H3_CSS_ANIM_TRIG); }
 
 template < > int html_version::get_level < c_background_border > () const
 {   if ((ext5 () & H5_CSS_BACKGROUND_4) == H5_CSS_BACKGROUND_4) return 4;   
@@ -1834,6 +1836,14 @@ template < > void html_version::set_level < c_colour > (const int n)
         case 4 : set_ext4 (H4_CSS_COLOUR_34); break;
         case 3 : set_ext4 (H4_CSS_COLOUR_3); break;
         default : break; } }
+
+template < > int html_version::get_level < c_colour_adjustment > () const
+{   if (any_ext3 (H3_CSS_ADJUST)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_colour_adjustment > (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_ADJUST);
+    else reset_ext3 (H3_CSS_ADJUST); }
 
 template < > int html_version::get_level < c_compositing_blending > () const
 {   if ((ext2 () & H2_CSS_COMBLE_4) == H2_CSS_COMBLE_4) return 4;
@@ -2079,6 +2089,14 @@ template < > void html_version::set_level < c_image > (const int n)
     else if (n == 4) set_ext3 (H3_CSS_IMAGE_34);
     else if (n == 3) set_ext3 (H3_CSS_IMAGE_3); }
 
+template < > int html_version::get_level < c_image_animation > () const
+{   if (any_ext4 (H4_CSS_IMG_ANIM)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_image_animation > (const int n)
+{   if (n == 3) set_ext4 (H4_CSS_IMG_ANIM);
+    else reset_ext4 (H4_CSS_IMG_ANIM); }
+
 template < > int html_version::get_level < c_inline_layout > () const
 {   if (any_ext3 (H3_CSS_INLINE)) return 3;
     return 0; }
@@ -2223,7 +2241,7 @@ template < > int html_version::get_level < c_overflow > () const
 
 template < > void html_version::set_level < c_overflow > (const int n)
 {   reset_ext5 (H5_CSS_OVERFLOW_MASK);
-    if (n == 5) set_ext5 (H5_CSS_OVERFLOW);
+    if (n == 5) set_ext5 (H5_CSS_OVERFLOW_345);
     else if (n == 4) set_ext5 (H5_CSS_OVERFLOW_34);
     else if (n == 3) set_ext5 (H5_CSS_OVERFLOW_3); }
 
@@ -2252,6 +2270,14 @@ template < > void html_version::set_level < c_paged_media > (const int n)
 {   if (n == 4) set_ext3 (H3_CSS_PAGE_34);
     else if (n == 3) set_ext3 (H3_CSS_PAGE_3);
     else reset_ext3 (H3_CSS_PAGE); }
+
+template < > int html_version::get_level < c_painting_api > () const
+{   if (any_ext3 (H4_CSS_PAINTAPI)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_painting_api > (const int n)
+{   if (n == 3) set_ext4 (H4_CSS_PAINTAPI);
+    else reset_ext4 (H4_CSS_PAINTAPI); }
 
 template < > int html_version::get_level < c_pda > () const
 {   if (any_ext3 (H3_CSS_PDA)) return 3;

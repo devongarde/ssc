@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ::std::string make_tidy (nitpick& nits, const html_version& v, const ::std::string& s);
 void shadow_core (::std::stringstream& ss, const html_version& v, const ::std::string& s);
 
-template < e_type TYPE > struct string_value : public type_base < ::std::string, TYPE >
+template < e_type TYPE > struct string_value : type_base < ::std::string, TYPE >
 {   ::std::string value_;
     using type_base < ::std::string, TYPE > :: type_base;
     static ::std::string default_value () noexcept { return ::std::string (); }
@@ -39,13 +39,15 @@ template < e_type TYPE > struct string_value : public type_base < ::std::string,
     {   return value_; }
     ::std::string get () const
     {   return value_; }
-    void set_value (nitpick& nits, const html_version& , const ::std::string& ss)
-    {   ::std::string s (ss);
-        if (context.naughty_test (TYPE, s))
+    void naughty (nitpick& nits, ::std::string& s)
+    {   if (context.naughty_test (TYPE, s))
         {   const ::std::string alt (context.naughty_sub (TYPE));
             naughty_fix (type_base < ::std::string, TYPE > :: box (), s, alt);
             nits.pick (nit_naughty_type, es_info, ec_naughty, "ignorance is strength: concealing ", quote (s));
-            s = alt; }
+            s = alt; } }
+    void set_value (nitpick& nits, const html_version& , const ::std::string& ss)
+    {   ::std::string s (ss);
+        naughty (nits, s);
         value_.assign (s);
         if (value_.empty ()) type_base < ::std::string, TYPE > :: status (s_empty);
         else type_base < ::std::string, TYPE > :: status (s_good); }
@@ -235,5 +237,5 @@ template < e_type TYPE, typename NUMERIC_TYPE, NUMERIC_TYPE def = 0 > struct num
         value_ = lexical < NUMERIC_TYPE > :: cast2 (trim_the_lot_off (s), b);
         if (b) type_base < NUMERIC_TYPE, TYPE > :: status (s_good);
         else
-        {   nits.pick (nit_not_an_integer, es_error, ec_type, quote (s), " is not a number");
+        {   nits.pick (nit_not_an_integer, es_error, ec_type, quote (s), " is not an integer");
             type_base < NUMERIC_TYPE, TYPE > :: status (s_invalid); } } };

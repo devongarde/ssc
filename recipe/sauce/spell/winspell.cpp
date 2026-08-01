@@ -23,9 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifndef NOSPELL
 #ifdef WINSPELL
 
-#if _MSC_VER < 1920
-typedef struct IUnknown IUnknown;
-#endif // VS2017
+//#if _MSC_VER < 1920
+//typedef struct IUnknown IUnknown;
+//#endif // VS2017
 
 #include <spellcheck.h>
 #include "spell/spell.h"

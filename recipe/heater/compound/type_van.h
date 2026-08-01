@@ -41,6 +41,7 @@ e_status set_hidden_ex_value (const e_status es, nitpick& nits, const html_versi
 e_status set_inputaccept_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s, element* box);
 e_status set_lcrdss_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_linethickness_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
+e_status set_margin_padding_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_mathalign_n_value (const e_status es, nitpick& nits, const html_version& v, const vstr_t& args);
 e_status set_og_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_pseudonamedspace_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
@@ -203,6 +204,12 @@ template < > struct type_master < t_linethickness > : tidy_string < t_linethickn
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_linethickness > :: set_value (nits, v, s);
         tidy_string < t_linethickness > :: status (set_linethickness_value (status (), nits, v, tidy_string < t_linethickness > :: get_string ())); } };
+
+template < > struct type_master < t_margin_padding > : tidy_string < t_margin_padding >
+{   using tidy_string < t_margin_padding > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_margin_padding > :: set_value (nits, v, s);
+        tidy_string < t_margin_padding > :: status (set_margin_padding_value (status (), nits, v, tidy_string < t_margin_padding > :: get_string ())); } };
 
 template < > struct type_master < t_mathalign_n > : string_vector < t_mathalign_n, sz_space_char >
 {   using string_vector < t_mathalign_n, sz_space_char > :: string_vector;

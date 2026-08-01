@@ -1,0 +1,31 @@
+﻿:root::view-transition-new(transitionName) {
+    animation-name: -ua-view-transition-fade-in;
+}
+
+:root::view-transition-old(transitionName) {
+    animation-name: -ua-view-transition-fade-out;
+}
+
+@keyframes -ua-view-transition-group-anim-transitionName {
+  from {
+    transform: transform;
+    width: width;
+    height: height;
+    backdrop-filter: backdropFilter;
+  }
+}
+
+:root::view-transition-group(transitionName) {
+  animation-name: -ua-view-transition-group-anim-transitionName;
+}
+
+:root::view-transition-image-pair(transitionName) {
+  isolation: isolate;
+}
+
+:root::view-transition-old(transitionName) {
+  animation-name: -ua-view-transition-fade-out, -ua-mix-blend-mode-plus-lighter;
+}
+:root::view-transition-new(transitionName) {
+  animation-name: -ua-view-transition-fade-in, -ua-mix-blend-mode-plus-lighter;
+}

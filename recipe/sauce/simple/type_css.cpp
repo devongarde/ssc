@@ -55,14 +55,19 @@ type_cvf a_tc [] =
     { t_css_fn_image, cvf_image },
     { t_css_fn_image_set, cvf_image_set },
     { t_css_fn_inset, cvf_inset },
+    { t_css_fn_keypress, cvf_keypress },
     { t_css_fn_linear, cvf_linear },
+    { t_css_fn_linear_gradient, cvf_linear_gradient },
     { t_css_fn_minmax, cvf_minmax },
     { t_css_fn_mix, cvf_mix },
     { t_css_fn_moz_image_rect, cvf_moz_image_rect },
     { t_css_fn_ornaments, cvf_ornaments },
     { t_css_fn_param, cvf_param },
+    { t_css_fn_radial_gradient, cvf_radial_gradient },
     { t_css_fn_rect, cvf_rect },
     { t_css_fn_repeat, cvf_repeat },
+    { t_css_fn_repeating_linear_gradient, cvf_linear_gradient },
+    { t_css_fn_repeating_radial_gradient, cvf_repeating_radial_gradient },
     { t_css_fn_round_t, cvf_round },
     { t_css_fn_snap_block, cvf_snap_block },
     { t_css_fn_snap_inline, cvf_snap_inline },
@@ -77,6 +82,9 @@ type_cvf a_tc [] =
     { t_css_fn_var, cvf_var },
     { t_css_fn_wcag2, cvf_wcag2 },
     { t_css_fn_xywh, cvf_xywh },
+    { t_hslafn, cvf_hsla },
+    { t_hslfn, cvf_hsl },
+    //{ t_hslfn4, cvf_hsl },
     { t_error, cvf_none } };
 
 typedef ssc_map < e_css_val_fn, e_type > m_cvf_t;
@@ -384,7 +392,7 @@ e_status set_fn_calc_args_value (nitpick& nits, const html_version& v, const ::s
                             if (t == mct.cend ())
                             {   nits.pick (nit_css_type, ed_mdn, "calc ()", es_warning, ec_css, "cannot convert ", fnn, " to internal type"); 
                                 st = s_invalid; }
-                            else fn_by_type < SSC_TYPES_CSS_FN_1, SSC_TYPES_CSS_FN_2, t_error > :: check (t -> second, nits, v, fna); }
+                            else fn_by_type < SSC_TYPES_CSS_FN_1, SSC_TYPES_CSS_FN_2, SSC_TYPES_CSS_FN_3, t_error > :: check (t -> second, nits, v, fna); }
                         fnn.clear ();
                         n.clear (); }
                 if (rounds == 0)
@@ -466,7 +474,7 @@ e_status set_fn_type_args_value (nitpick& nits, const html_version& v, const ::s
                 {   if (! n.empty ()) had_word = true;
                     break; }
                 if (had_word || had_type)
-                {   nits.pick (nit_css_type, ed_mdn, "type ()", es_error, ec_css, "is a '|' missing after ", quote (n));
+                {   nits.pick (nit_css_type, ed_mdn, "type ()", es_error, ec_css, "is a '|' missing after ", quote (n), " (", quote (s), ")");
                     n.clear ();
                     st = s_invalid;
                     had_word = had_type = false; }

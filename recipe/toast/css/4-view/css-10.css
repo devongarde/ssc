@@ -1,0 +1,22 @@
+﻿div.box {
+  view-transition-class: any-box;
+  width: 100px;
+  height: 100px;
+}
+#red-box {
+  view-transition-name: red-box;
+  background: red;
+}
+#green-box {
+  view-transition-name: green-box;
+  background: green;
+}
+#yellow-box {
+  view-transition-name: yellow-box;
+  background: yellow;
+}
+
+/* The following style would apply to all the boxes, thanks to 'view-transition-class' */
+::view-transition-group(*.any-box) {
+  animation-duration: 1s;
+}

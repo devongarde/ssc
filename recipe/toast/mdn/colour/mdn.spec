@@ -5,7 +5,6 @@ PASS ../toast/mdn/colour/index.html
 
 PASS ../toast/mdn/colour/colour.html
 2 naughty_lang
-5 css_value_fn css_value_param sunk not_n angle
 
 PASS ../toast/mdn/colour/colour-scheme.html
 2 naughty_lang

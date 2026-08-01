@@ -515,6 +515,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                 case md_browser :
                 case md_fullscreen :
                 case md_minimal_ui :
+                case md_picture_in_picture :
                 case md_standalone :
                     if (t != t_media_display_mode)
                     {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (m.m_), " only applies to any-pointer or pointer");

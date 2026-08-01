@@ -1,5 +1,11 @@
 -Y 1 -7 original -f ../toast/css/3-gap/css.conf
 
+PASS ../toast/css/3-gap/css-3.css
+25 css_version
+26 css_version
+65 css_version
+74 css_version
+
 PASS ../toast/css/3-gap/css-4.css
 13 css_keyframes
 18 css_keyframes

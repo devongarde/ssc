@@ -114,6 +114,7 @@ PASS ../toast/mdn/function/ellipse.html
 
 PASS ../toast/mdn/function/env.html
 2 naughty_lang
+5 experimental experimental experimental experimental experimental experimental experimental
 94 use_quote_code
 99 only_once
 
@@ -203,6 +204,7 @@ PASS ../toast/mdn/function/matrix3d.html
 PASS ../toast/mdn/function/max.html
 2 naughty_lang
 29 use_quote_code
+30 unrecognised_value
 
 PASS ../toast/mdn/function/min.html
 2 naughty_lang
@@ -246,7 +248,7 @@ PASS ../toast/mdn/function/pow.html
 
 PASS ../toast/mdn/function/progress.html
 2 naughty_lang
-5 css_custom css_custom css_value_fn css_custom css_custom css_custom css_custom css_custom css_custom
+5 css_custom css_custom unrecognised_value css_syntax css_custom css_custom css_custom css_custom css_custom css_custom
 
 PASS ../toast/mdn/function/radial-gradient.html
 2 naughty_lang
@@ -362,6 +364,7 @@ PASS ../toast/mdn/function/superellipse.html
 
 PASS ../toast/mdn/function/symbols.html
 2 naughty_lang
+5 unrecognised_value not_n
 
 PASS ../toast/mdn/function/tan.html
 2 naughty_lang

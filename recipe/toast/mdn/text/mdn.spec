@@ -38,7 +38,7 @@ PASS ../toast/mdn/text/text-decoration-colour.html
 
 PASS ../toast/mdn/text/text-decoration-inset.html
 2 naughty_lang
-5 safari safari safari safari safari safari safari safari safari safari safari safari safari safari safari safari
+5 unrecognised_value unrecognised_value
 67 id_exists
 69 id_exists
 
@@ -64,7 +64,6 @@ PASS ../toast/mdn/text/text-decoration-thickness.html
 
 PASS ../toast/mdn/text/text-emphasis.html
 2 naughty_lang
-5 unrecognised_value unrecognised_value unrecognised_value
 
 PASS ../toast/mdn/text/text-emphasis-colour.html
 2 naughty_lang

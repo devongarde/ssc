@@ -1,0 +1,13 @@
+﻿body { column-width: 12em }
+
+body { column-count: 2 }
+
+body { column-height: 10em; column-count: 3 }
+
+body { columns: 2 }
+body { columns: 12em }
+body { columns: 2 12em }
+body { columns: 12em / 14em }
+
+div { column-fill: balance }
+h2 { column-span: all }

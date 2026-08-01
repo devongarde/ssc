@@ -281,6 +281,21 @@ e_status set_linethickness_value (const e_status es, nitpick& nits, const html_v
     if (test_value < t_vunit > (nits, v, s)) return s_good;
     return s_invalid; }
 
+e_status set_margin_padding_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s)
+{   if (es == s_empty) nits.pick (nit_empty, es_error, ec_type, "value required");
+    else if (es == s_good )
+    {   nitpick nuts;
+        const bool newer = (v > html_jan26);
+        if (newer && test_value < t_margin_padding_new > (nuts, v, s))
+        {   nits.merge (nuts);
+            return s_good; }
+        if (test_value < t_margin_padding_old > (nits, v, s))
+        {   if (! newer) return s_good;
+            nits.pick (nit_archaic, es_error, ec_type, quote (s), " is archaic, use ", quote (s + "-box"), " instead.");
+            return s_invalid; }
+        nits.merge (nuts); }
+    return s_invalid; }
+
 e_status set_mathalign_n_value (const e_status es, nitpick& nits, const html_version& v, const vstr_t& args)
 {   if (es == s_empty) nits.pick (nit_empty, es_error, ec_type, "TYPE requires a value");
     else if (es == s_good)

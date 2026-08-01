@@ -1,0 +1,20 @@
+﻿@font-face {
+  font-family: "foo";
+  font-weight: 200 200;
+}
+
+@font-face {
+  font-family: "foo";
+  font-weight: 200;
+}
+
+/* Repeated declaration names, and multiple blocks of the same type*/
+@font-feature-values foo {
+  @swash { pretty: 0; cool: 2; }
+  @swash { pretty: 1; }
+}
+
+/* Canonical serialization */
+@font-feature-values foo {
+  @swash { cool: 2; pretty: 1; }
+}

@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>CSS 3 cssom chapter 5 test pages</title>
+</head>
+
+<body>
+
+<h1>CSS 3 cssom chapter 5 test pages</h1>
+
+<style>
+    .scroller { overflow: auto; scroll-padding: 8px; }
+    .slide { scroll-margin: 16px; scroll-snap-align: center; }
+</style>
+<div class="carousel">
+    <div class="slides scroller">
+        <div id="s1" class="slide">
+        <div id="s2" class="slide">
+        <div id="s3" class="slide">
+    </div>
+    <div class="markers">
+        <button data-target="s1">1</button>
+        <button data-target="s2">2</button>
+        <button data-target="s3">3</button>
+    </div>
+</div>
+<script>
+    document.querySelector('.markers').addEventListener('click', (evt) => {
+        const target = document.getElementById(evt.target.dataset.target);
+        if (!target) return;
+        // scrollIntoView correctly aligns target item respecting scroll-snap-align,
+        // scroll-margin, and the scroll container's scroll-padding.
+        target.scrollIntoView({
+            // Only scroll the nearest scroll container.
+            container: 'nearest',
+            behavior: 'smooth'
+        });
+    });
+</script>
+
+</body>
+</html>

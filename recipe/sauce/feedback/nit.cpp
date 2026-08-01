@@ -241,6 +241,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_css_22 : return "CSS Level 2.2";
         case ed_css_anchor : return "CSS Anchor Positioning";
         case ed_css_animation_3 : return "CSS Animation 3";
+        case ed_css_anim_trig : return "CSS Animation Trigger";
         case ed_css_bb_4 : return "CSS Borders Box 4";
         case ed_css_cascade_4 : return "CSS Cascade 4"; 
         case ed_css_cascade_5 : return "CSS Cascade 5"; 
@@ -248,6 +249,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_css_colour_3 : return "CSS Colour 3";
         case ed_css_colour_4 : return "CSS Colour 4";
         case ed_css_colour_5 : return "CSS Colour 5";
+        case ed_css_colour_hdr : return "CSS Coloour HDR";
         case ed_css_content : return "CSS Generated Content";
         case ed_css_cs_3 : return "CSS Counter Styles 3";
         case ed_css_custom : return "CSS Custom Properties";
@@ -389,6 +391,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_css_22 : return "CSS Level 2.2 (February 2022 draft)";
         case ed_css_anchor : return "CSS Anchor Positioning Level '1', December 2025";
         case ed_css_animation_3 : return "CSS Animation Level '1', March 2023"; 
+        case ed_css_anim_trig : return "CSS Animation Triggers, May 2026";
         case ed_css_bb_4 : return "CSS Borders and Box Decorations Level 4, December 2025";
         case ed_css_cascade_4 : return "CSS Cascade Level 4, January 2022"; 
         case ed_css_cascade_5 : return "CSS Cascade Level 5, January 2022"; 
@@ -396,6 +399,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_css_colour_3 : return "CSS Colour 3, January 2022";
         case ed_css_colour_4 : return "CSS Colour 4, November 2022";
         case ed_css_colour_5 : return "CSS Colour 5 (June 2022 draft)";
+        case ed_css_colour_hdr : return "CSS Colour HDR (June 2026 draft)";
         case ed_css_content : return "CSS Generated Content (August 2019 draft)";
         case ed_css_cs_3 : return "CSS Counter Stylse 3, July 2021";
         case ed_css_custom : return "CSS Custom Properties for Cascading Variables Level 1, June 2022";
@@ -512,6 +516,7 @@ e_nit_link_type doc_link (const e_doc doc, ::std::string& link)
         case ed_css_22 : link = CSSSPEX "css-2.2-feb22.pdf"; return nlt_pdf;
         case ed_css_anchor : link = CSSSPEX "css-anchor-positioning-1-dec25.pdf"; return nlt_pdf;
         case ed_css_animation_3 : link = CSSSPEX "css-animations-1-mar23.pdf"; return nlt_pdf; 
+        case ed_css_anim_trig : link = CSSSPEX "css-animation-triggers-may26.pdf"; return nlt_pdf; 
         case ed_css_bb_4 : link = CSSSPEX "css-borders-box-4-dec25.pdf"; return nlt_pdf; 
         case ed_css_cascade_4 : link = CSSSPEX "css-cascading-inheritance-4-jan22.pdf"; return nlt_pdf; 
         case ed_css_cascade_5 : link = CSSSPEX "css-cascading-inheritance-5-jan22.pdf"; return nlt_pdf; 
@@ -519,6 +524,7 @@ e_nit_link_type doc_link (const e_doc doc, ::std::string& link)
         case ed_css_colour_3 : link = CSSSPEX "css-colour-3-jan22.pdf"; return nlt_pdf;  
         case ed_css_colour_4 : link = CSSSPEX "css-colour-4-nov22.pdf"; return nlt_pdf;  
         case ed_css_colour_5 : link = CSSSPEX "css-colour-5-jun22.pdf"; return nlt_pdf;  
+        case ed_css_colour_hdr : link = CSSSPEX "css-colour-hdr-jun26.pdf"; return nlt_pdf;
         case ed_css_content : link = CSSSPEX "css-generated-content-3-dec20.pdf"; return nlt_pdf;
         case ed_css_cs_3 : link = CSSSPEX "css-counter-styles-3-jul21.pdf"; return nlt_pdf;
         case ed_css_custom : link = CSSSPEX "css-cpcv-1-jun22.pdf"; return nlt_pdf;

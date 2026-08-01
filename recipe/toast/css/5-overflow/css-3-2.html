@@ -1,0 +1,34 @@
+﻿<!DOCTYPE HTML>
+<title>:target-before and :target-after example</title>
+<style>
+  ol {
+    background-color: gray;
+    right: 10px;
+    top: 10px;
+    position: fixed;
+    scroll-target-group: auto;
+  }
+  a:target-before {
+    color: #888;
+  }
+  a:target-current {
+    color: red;
+    font-weight: bold;
+  }
+  a:target-after {
+    color: #444;
+  }
+  .chapter {
+    background: lightgray;
+    height: 60vh;
+    margin: 10px;
+  }
+</style>
+<ol>
+  <li><a href="#intro">Introduction</a></li>
+  <li><a href="#ch1">Chapter 1</a></li>
+  <li><a href="#ch2">Chapter 2</a></li>
+</ol>
+<div id="intro" class="chapter">Introduction content</div>
+<div id="ch1" class="chapter">Chapter 1 content</div>
+<div id="ch2" class="chapter">Chapter 2 content</div>

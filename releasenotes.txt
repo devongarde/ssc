@@ -3,9 +3,17 @@ static site checker
 https://dylanharris.org/ssc/
 (c) 2020-2026 Dylan Harris
 
+0.2.35
+- Added CSSs Animation Triggers, Colour HDR, Image Animation, Multicolumn
+    Layout 2, Selector 5
+- updated CSSs Environment Variables, Multicolumn Layout 1, Overflow 3/4/5,
+	Rhythmic Sizing 3, Selector 4, Text Decoration 4, View Transitions 2, more
+- various bug fixes
+- underlying work
+
 0.2.34
-- CSS Gap Decorations Module 3 (labelled 1)
-- CSS Grid Layout 5 (labelled 3)
+- CSS Gap Decorations Module 1
+- CSS Grid Layout 3
 - CSS Scroll Snap 2
 - various bug fixes
 - underlying work

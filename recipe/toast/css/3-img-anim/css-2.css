@@ -1,0 +1,6 @@
+﻿:root { /* propagates through the document by inheritance */
+  image-animation: paused;
+}
+img {
+  image-animation: normal;
+}

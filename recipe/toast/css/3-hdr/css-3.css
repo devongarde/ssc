@@ -1,0 +1,2 @@
+﻿body { dynamic-range-limit: standard; }
+div.photogrid img { dynamic-range-limit: constrained }

@@ -1,0 +1,9 @@
+﻿img:animated-image {
+  image-animation: paused;
+  filter: grayscale(10%) contrast(50%) brightness(80%);
+}
+img:animated-image:hover,
+img:animated-image:focus {
+  filter: none;
+  image-animation: running;
+}

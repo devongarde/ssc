@@ -1,0 +1,18 @@
+﻿.sid
+{
+color: color-hdr(
+  color(rec2100-linear 0.9 1.0 0.8) 0,
+  color(rec2100-linear 1.8 2.0 1.5) 2);
+
+color: color(rec2100-linear 0.9 1.0 0.8);
+
+color: color(rec2100-linear 1.8 2.0 1.5) 2);
+
+color: color(xyz-d65 0.9505 1 1.089);
+
+color: color-hdr(
+  var(--c1) 0,
+  var(--c2) 4
+)
+
+}

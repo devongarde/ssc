@@ -1,0 +1,5 @@
+﻿col.selected || td {
+  background: gray;
+  color: white;
+  font-weight: bold;
+}

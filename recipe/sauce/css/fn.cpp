@@ -109,8 +109,12 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                 test_value < t_ltr_rtl > (nits, context.html_ver (), param);
                 return;
             case efn_heading :
-                if (args.v_ < html_aug25)
-                    nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires the HTML Living Standard, August 2025 or later");
+                if ((args.v_ < html_aug25) && (context.css_module (c_selector) < 5))
+                    nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires the HTML Living Standard, August 2025 or later, or CSS Selectors 5");
+                else
+                {   vstr_t parts = split_by_comma (param);
+                    for (auto part : parts)
+                        test_value < t_integer > (nits, context.html_ver (), part); }
                 return;
             case efn_highlight :
                 if (context.css_module (c_custom_highlight) < 3)
@@ -133,19 +137,33 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                     nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Route");
                 else test_value < t_css_link_to > (nits, context.html_ver (), param); // t_css_link_to
                 return;
-            case efn_nth_child :
+            case efn_local_link :
+                if (context.css_module (c_selector) < 5)
+                    nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Selectors 5");
+                else test_value < t_unsigned > (nits, context.html_ver (), param);
+                return;
             case efn_nth_col :
-            case efn_nth_last_child :
             case efn_nth_last_col :
+                if (context.css_module (c_selector) < 5)
+                {   nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Selectors 5");
+                    break; }
+                FALLTHROUGH;
+            case efn_nth_child :
+            case efn_nth_last_child :
             case efn_nth_last_of_type :
             case efn_nth_of_type :
-                {   if (args.v_.css_module (c_selector) >= 4)
-                    {   int prev = -1;
-                        int of = ident_find (args.t_, "of", b, to, &prev);
-                        if (of != -1)
+                if (context.css_module (c_selector) < 3)
+                    nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Selectors");
+                else
+                {   int prev = -1;
+                    int of = ident_find (args.t_, "of", b, to, &prev);
+                    if (of != -1)
+                        if (context.css_module (c_selector) < 4)
+                            nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " with 'of' requires CSS Selectors 4");
+                        else
                         {   of = next_non_whitespace (args.t_, of, to);
                             vsl_.emplace_back (new selector (args, of, ket, true));
-                            param = assemble_string (args.t_, b, prev); } }
+                            param = assemble_string (args.t_, b, prev); }
                     test_value < t_css_nth_oe > (nits, context.html_ver (), param); }
                 return;
             case efn_nth_fragment :
@@ -165,7 +183,7 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                 break;
             case efn_part :
                 if (context.css_module (c_shadow_part) < 3)
-                    nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Shadow Parts");
+                    nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Shadow");
                 else
                 {   vstr_t parts = split_by_space (param);
                     for (auto part : parts)
@@ -184,10 +202,18 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                 if (context.css_module (c_scoping) > 0)
                     vsl_.emplace_back (new selector (args, b, ket, true));
                 break;
+            case efn_state :
+                test_value < t_idref > (nits, context.html_ver (), param);
+                return;
             case efn_trigger_link :
                 if (context.css_module (c_route) < 3)
                     nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Route");
                 break;
+            case efn_view_transition_group_children :
+                if (context.css_module (c_view_transition) < 4)
+                {   nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS View Transitions 4");
+                    return; }
+                FALLTHROUGH;
             case efn_view_transition_group :
             case efn_view_transition_new :
             case efn_view_transition_old :

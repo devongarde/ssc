@@ -130,6 +130,10 @@ template < > struct type_master < t_real_infinity > : type_or_either_string < t_
 {   static bool is_numeric () { return true; }
     using type_or_either_string < t_real_infinity, t_real, sz_infinity, sz_minus_infinity > :: type_or_either_string; };
 
+template < > struct type_master < t_real_infinity_pos > : type_or_string < t_real_infinity_pos, t_real, sz_infinity >
+{   static bool is_numeric () { return true; }
+    using type_or_string < t_real_infinity_pos, t_real, sz_infinity > :: type_or_string; };
+
 template < > struct type_master < t_real_ai > : type_or_either_string < t_real_ai, t_real, sz_auto, sz_inherit >
 {   static bool is_numeric () { return true; }
     using type_or_either_string < t_real_ai, t_real, sz_auto, sz_inherit > :: type_or_either_string; };
@@ -150,6 +154,9 @@ template < > struct type_master < t_integer_1_up_inf_aa > : type_or_any_string <
 
 template < > struct type_master < t_integer_1_up_inf_aaa > : type_or_any_string_4 < t_integer_1_up_inf_aaa, t_integer_1_up, sz_infinity, sz_auto, sz_auto_fill, sz_auto_fit >
 {   using type_or_any_string_4 < t_integer_1_up_inf_aaa, t_integer_1_up, sz_infinity, sz_auto, sz_auto_fill, sz_auto_fit > :: type_or_any_string_4; };
+
+template < > struct type_master < t_integer_1_up_inf_aan > : type_or_any_string_4 < t_integer_1_up_inf_aan, t_integer_1_up, sz_infinity, sz_all, sz_auto, sz_none >
+{   using type_or_any_string_4 < t_integer_1_up_inf_aan, t_integer_1_up, sz_infinity, sz_all, sz_auto, sz_none > :: type_or_any_string_4; };
 
 template < > struct type_master < t_real_int_1_up > : type_one_two < t_real_int_1_up, t_real_1_up_inf, t_integer_1_up_inf, sz_space_char >
 {   static bool is_numeric () { return true; }

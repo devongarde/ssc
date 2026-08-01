@@ -1,0 +1,10 @@
+﻿nav :local-link { text-decoration: none; } 
+
+:not(:local-link(0)) { text-decoration-style: dashed; } 
+
+a:local-link {...}
+a:local-link(0) {...}
+a:local-link(1) {...}
+a:local-link(2) {...}
+a:local-link(3) {...}
+a:local-link(4) {...} 

@@ -18,7 +18,7 @@ PASS ../toast/mdn/view-property/view-timeline-name.html
 
 PASS ../toast/mdn/view-property/view-transition-class.html
 2 naughty_lang
-5 class_microformat_property class_microformat_property class_microformat_property
+5 vtn vtn class_microformat_property vtn class_microformat_property class_microformat_property
 
 PASS ../toast/mdn/view-property/view-transition-name.html
 2 naughty_lang

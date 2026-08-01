@@ -87,3 +87,4 @@ PASS ../toast/mdn/at/supports.html
 
 PASS ../toast/mdn/at/view-transition.html
 2 naughty_lang
+5 unrecognised_value

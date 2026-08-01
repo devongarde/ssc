@@ -367,6 +367,9 @@ template < > struct type_master < t_css_anchor_side_e > : ENUM_N (css_anchor_sid
 template < > struct type_master < t_css_anchor_size_e > : ENUM_N (css_anchor_size_e)
 { using ENUM_N (css_anchor_size_e) :: enum_n; };
 
+template < > struct type_master < t_css_anim_act > : ENUM_N (css_anim_act)
+{ using ENUM_N (css_anim_act) :: enum_n; };
+
 template < > struct type_master < t_css_appearance > : ENUM_N (css_appearance)
 { using ENUM_N (css_appearance) :: enum_n; };
 
@@ -472,6 +475,12 @@ template < > struct type_master < t_css_ellipse_pos_x_2_e > : ENUM_N (css_ellips
 
 template < > struct type_master < t_css_ellipse_pos_y_2_e > : ENUM_N (css_ellipse_pos_y_2_e)
 { using ENUM_N (css_ellipse_pos_y_2_e) :: enum_n; };
+
+template < > struct type_master < t_css_env_var_predef > : ENUM_N (css_env_var_predef)
+{ using ENUM_N (css_env_var_predef) :: enum_n; };
+
+template < > struct type_master < t_css_etee > : ENUM_N (css_etee)
+{ using ENUM_N (css_etee) :: enum_n; };
 
 template < > struct type_master < t_css_float > : ENUM_N (css_float)
 { using ENUM_N (css_float) :: enum_n; };
@@ -748,6 +757,9 @@ template < > struct type_master < t_cursor > : ENUM_N (cursor)
 
 template < > struct type_master < t_decalign > : ENUM_N (decalign)
 { using ENUM_N (decalign) :: enum_n; };
+
+template < > struct type_master < t_dcmitype > : ENUM_N (dcmitype)
+{ using ENUM_N (dcmitype) :: enum_n; };
 
 template < > struct type_master < t_determiner > : ENUM_N (determiner)
 { using ENUM_N (determiner) :: enum_n; };

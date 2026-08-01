@@ -251,6 +251,9 @@ template < > struct type_master < t_css_font_style_e > : four_value < t_css_font
 template < > struct type_master < t_css_hue_interpolation > : four_value < t_css_hue_interpolation, e_css_hue_interpolation, sz_decreasing, sz_increasing, sz_longer, sz_shorter >
 { using four_value < t_css_hue_interpolation, e_css_hue_interpolation, sz_decreasing, sz_increasing, sz_longer, sz_shorter > :: four_value; };
 
+template < > struct type_master < t_css_image_animation > : four_value < t_css_image_animation, e_css_image_animation, sz_normal, sz_paused, sz_running, sz_stopped >
+{ using four_value < t_css_image_animation, e_css_image_animation, sz_normal, sz_paused, sz_running, sz_stopped > :: four_value; };
+
 template < > struct type_master < t_css_initial_letter_align > : four_value < t_css_initial_letter_align, e_css_initial_letter_align, sz_alphabetic, sz_hanging, sz_ideographic, sz_leading >
 { using four_value < t_css_initial_letter_align, e_css_initial_letter_align, sz_alphabetic, sz_hanging, sz_ideographic, sz_leading > :: four_value; };
 

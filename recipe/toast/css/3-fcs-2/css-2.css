@@ -1,0 +1,24 @@
+﻿input, textarea, meter, progress, button, select {
+  appearance: base;
+}
+
+form {
+  font-family: "American Typewriter";
+  background-color: rgb(254, 252, 221);
+  color: rgb(131, 17, 0);
+}
+
+input, textarea, meter, progress, button, select {
+  appearance: base;
+}
+
+form {
+  font-family: "Courier New";
+  font-size: 14px;
+  background-color: rgb(0, 0, 0);
+  color: rgb(0, 249, 0);
+}
+
+input, textarea, meter, progress, button, select {
+  appearance: base;
+}

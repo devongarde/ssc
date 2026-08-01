@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.24)
 set (FULLNAME "Static-Site-Checker")
-set (VER 0.2.34)
+set (VER 0.2.35)
 project (ssc VERSION ${VER} DESCRIPTION ${FULLNAME} LANGUAGES CXX HOMEPAGE_URL "https://dylanharris.org/ssc/")
 message (NOTICE "preparing " ${FULLNAME} " ${VER}" )
 
@@ -142,14 +142,15 @@ set (SAUCE
             ${S}/css/value_types_c_5.cpp ${S}/css/value_types_css_a_1.cpp ${S}/css/value_types_css_a_2.cpp ${S}/css/value_types_css_a_3.cpp
 			${S}/css/value_types_css_b_1.cpp ${S}/css/value_types_css_b_2.cpp ${S}/css/value_types_css_b_3.cpp ${S}/css/value_types_css_b_4.cpp
 			${S}/css/value_types_css_c_1.cpp ${S}/css/value_types_css_c_2.cpp ${S}/css/value_types_css_c_3.cpp ${S}/css/value_types_css_c_4.cpp
-			${S}/css/value_types_css_c_5.cpp ${S}/css/value_types_css_d.cpp ${S}/css/value_types_css_e.cpp ${S}/css/value_types_css_f_1.cpp
+			${S}/css/value_types_css_c_5.cpp ${S}/css/value_types_css_d.cpp ${S}/css/value_types_css_e_1.cpp ${S}/css/value_types_css_e_2.cpp ${S}/css/value_types_css_f_1.cpp
 			${S}/css/value_types_css_f_2.cpp ${S}/css/value_types_css_f_3.cpp ${S}/css/value_types_css_fn_1.cpp ${S}/css/value_types_css_fn_2.cpp
-			${S}/css/value_types_css_g_h.cpp ${S}/css/value_types_css_i_1.cpp ${S}/css/value_types_css_i_2.cpp ${S}/css/value_types_css_j_k.cpp
-			${S}/css/value_types_css_l_1.cpp ${S}/css/value_types_css_l_2.cpp ${S}/css/value_types_css_l_3.cpp ${S}/css/value_types_css_m_1.cpp ${S}/css/value_types_css_m_2.cpp
-			${S}/css/value_types_css_n_o.cpp ${S}/css/value_types_css_p_1.cpp ${S}/css/value_types_css_p_q.cpp ${S}/css/value_types_css_r_1.cpp
-			${S}/css/value_types_css_r_2.cpp ${S}/css/value_types_css_s_1.cpp ${S}/css/value_types_css_s_2.cpp ${S}/css/value_types_css_s_3.cpp
-			${S}/css/value_types_css_t_1.cpp ${S}/css/value_types_css_t_2.cpp ${S}/css/value_types_css_t_3.cpp ${S}/css/value_types_css_t_4.cpp
-			${S}/css/value_types_css_u.cpp ${S}/css/value_types_css_v.cpp ${S}/css/value_types_css_w_z.cpp ${S}/css/value_types_d_1.cpp ${S}/css/value_types_d_2.cpp
+			${S}/css/value_types_css_fn_3.cpp ${S}/css/value_types_css_g_h.cpp ${S}/css/value_types_css_i_1.cpp ${S}/css/value_types_css_i_2.cpp
+			${S}/css/value_types_css_j_k.cpp ${S}/css/value_types_css_l_1.cpp ${S}/css/value_types_css_l_2.cpp ${S}/css/value_types_css_l_3.cpp
+			${S}/css/value_types_css_m_1.cpp ${S}/css/value_types_css_m_2.cpp ${S}/css/value_types_css_n_o.cpp ${S}/css/value_types_css_p_1.cpp
+			${S}/css/value_types_css_p_q.cpp ${S}/css/value_types_css_r_1.cpp ${S}/css/value_types_css_r_2.cpp ${S}/css/value_types_css_s_1.cpp
+			${S}/css/value_types_css_s_2.cpp ${S}/css/value_types_css_s_3.cpp ${S}/css/value_types_css_t_1.cpp ${S}/css/value_types_css_t_2.cpp
+			${S}/css/value_types_css_t_3.cpp ${S}/css/value_types_css_t_4.cpp ${S}/css/value_types_css_t_5.cpp ${S}/css/value_types_css_u.cpp
+			${S}/css/value_types_css_v.cpp ${S}/css/value_types_css_w_z.cpp ${S}/css/value_types_d_1.cpp ${S}/css/value_types_d_2.cpp
 			${S}/css/value_types_e.cpp ${S}/css/value_types_f_1.cpp ${S}/css/value_types_f_2.cpp ${S}/css/value_types_f_3.cpp ${S}/css/value_types_g.cpp
             ${S}/css/value_types_h.cpp ${S}/css/value_types_i_1.cpp ${S}/css/value_types_i_2.cpp ${S}/css/value_types_i_3.cpp ${S}/css/value_types_j_k.cpp
 			${S}/css/value_types_l_1.cpp ${S}/css/value_types_l_2.cpp ${S}/css/value_types_l_3.cpp ${S}/css/value_types_m_1.cpp ${S}/css/value_types_m_2.cpp
@@ -396,21 +397,8 @@ endif ()
 
 set (Boost_USE_MULTI_THREADED ON)
 
-if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
-    set (Boost_USE_DEBUG_LIBS ON)
-    set (Boost_USE_DEBUG_RUNTIME ON)
-else ()
-    set (Boost_USE_DEBUG_LIBS OFF)
-    set (Boost_USE_DEBUG_RUNTIME OFF)
-endif ()
-
-if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
-    set (Boost_USE_DEBUG_LIBS ON)
-    set (Boost_USE_DEBUG_RUNTIME ON)
-else ()
-    set (Boost_USE_DEBUG_LIBS OFF)
-    set (Boost_USE_DEBUG_RUNTIME OFF)
-endif ()
+set (Boost_USE_DEBUG_LIBS OFF)
+set (Boost_USE_DEBUG_RUNTIME OFF)
 
 if (${NO_BOO_SYS} MATCHES "1")
     set (BOOLIB atomic chrono container date_time filesystem json log program_options regex thread)
@@ -609,4 +597,5 @@ endif()
 enable_testing ()
 
 add_test (NAME toasty_toast WORKING_DIRECTORY ${TEA} COMMAND ssc-test -d -i ${TT}/output.txt ${TT}/input.spec)
+MESSAGE (NOTICE "To test: ./ssc-test -v -x " ${CMAKE_CURRENT_BINARY_DIR} "/ssc -f " ${TT} "/nix.lst")
 add_test (NAME toast WORKING_DIRECTORY ${TEA} COMMAND ssc-test -v -x ${CMAKE_CURRENT_BINARY_DIR}/ssc -f ${TT}/nix.lst)

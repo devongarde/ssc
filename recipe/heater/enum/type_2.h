@@ -356,8 +356,8 @@ template < > struct type_master < t_manual_normal > : two_value < t_manual_norma
 template < > struct type_master < t_markerunits > : two_value < t_markerunits, e_markerunits, sz_strokewidth, sz_userspaceonuse >
 { using two_value < t_markerunits, e_markerunits, sz_strokewidth, sz_userspaceonuse > :: two_value; };
 
-template < > struct type_master < t_margin_padding > : two_value < t_margin_padding, e_margin_padding, sz_margin, sz_padding >
-{ using two_value < t_margin_padding, e_margin_padding, sz_margin, sz_padding > :: two_value; };
+template < > struct type_master < t_margin_padding_old > : two_value < t_margin_padding_old, e_margin_padding_old, sz_margin, sz_padding >
+{ using two_value < t_margin_padding_old, e_margin_padding_old, sz_margin, sz_padding > :: two_value; };
 
 template < > struct type_master < t_match_self_parent > : two_value < t_match_self_parent, e_match_self_parent, sz_match_parent, sz_match_self >
 { using two_value < t_match_self_parent, e_match_self_parent, sz_match_parent, sz_match_self > :: two_value; };

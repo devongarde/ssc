@@ -1,0 +1,32 @@
+﻿article {
+  width: 60em;
+  height: auto;
+  columns: 4;
+  column-fill: balance;
+}
+
+article {
+  width: 60em;
+  height: 4em;
+  columns: 4;
+  column-fill: auto;
+}
+
+article {
+  width: 60em;
+  height: auto;
+  columns: 4;
+  column-fill: balance;
+}
+
+p {
+  break-after: column;
+}
+
+article {
+  width: 60em;
+  height: auto;
+  columns: 4;
+  column-fill: balance;
+}
+

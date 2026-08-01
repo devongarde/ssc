@@ -119,6 +119,9 @@ void descriptor::parse (arguments& args, const e_css_statement cs, const int fro
                 case css_viewport :
                     dsc_ = make_viewport_v_ptr (args, var, to, nits, k, val_, p);
                     break;
+                case css_view_transition :
+                    dsc_ = make_view_transition_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
                 default :
                     GRACEFUL_CRASH (__FILE__, __LINE__);
                     break; }

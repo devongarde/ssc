@@ -113,7 +113,7 @@ void breed (v_np& , vtok_t& t, const ::std::string::const_iterator , const ::std
                     if (((t.at (i).t_ == ct_curly_ket) && (brat.at (pos) != ct_curly_brac)) ||
                         ((t.at (i).t_ == ct_round_ket) && (brat.at (pos) != ct_round_brac)) ||
                         ((t.at (i).t_ == ct_square_ket) && (brat.at (pos) != ct_square_brac)))
-                    {   t.at (i).nits_.pick (nit_css_syntax, es_error, ec_css, "contradictory close and open brackets");
+                    {   t.at (i).nits_.pick (nit_css_syntax, es_error, ec_css, "contradictory open and close brackets ('", tkn_rpt (brat.at (brat.size () - 1)), "' / '", tkn_rpt (t.at (i).t_), "')");
                         break; }
                     brat.pop_back (); }
                 if (i != last) t.at (mum).next_ = i + 1;
@@ -123,7 +123,7 @@ void breed (v_np& , vtok_t& t, const ::std::string::const_iterator , const ::std
             default :
                 break; } }
     if (brat.size () > 0)
-        t.at (last).nits_.pick (nit_css_syntax, es_error, ec_css, "unclosed brackets at end of CSS"); }
+        t.at (last).nits_.pick (nit_css_syntax, es_error, ec_css, brat.size (), " unclosed brackets at end of CSS (open: '", tkn_rpt (brat.at (brat.size () - 1)), "')"); }
 
 void boast (vtok_t& t)
 {   if (context.tell (es_detail))

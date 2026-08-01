@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<HTML>
+ <HEAD>
+ <TITLE>CSS 3 Paint API Chaper 8 example</TITLE>
+ </HEAD>
+
+ <BODY>
+
+<h1>
+    Heading 1
+</h1>
+
+<h1>
+    Another heading
+</h1>
+
+<style>
+h1 {
+    background-image: paint(heading-color);
+}
+</style>
+
+<script>
+    CSS.paintWorklet.addModule('heading-color.js');
+</script>
+
+<style>
+#overdraw {
+    --border-width: 10;
+
+    border-style: solid;
+    border-width: calc(var(--border-width) * 1px);
+
+    border-image-source: paint(overdraw);
+    border-image-slice: 0 fill;
+    border-image-outset: calc(var(--border-width) * 1px);
+
+    width: 200px;
+    height: 200px;
+}
+</style>
+<div id="overdraw"></div>
+<script>
+    CSS.paintWorklet.addModule('overdraw.js');
+</script>
+
+</BODY>
+
+</HTML>

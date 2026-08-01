@@ -273,7 +273,6 @@ Statement:
 PASS ../toast/stats/CSS-6/font-4-9.css
 6 fontname
 13 fontname
-15 css_custom
 21 fontname
 26 fontname
 31 fontname
@@ -283,7 +282,6 @@ PASS ../toast/stats/CSS-6/font-4-9.css
 47 fontname
 52 fontname fontname
 57 fontname
-59 css_custom
 65 fontname
 70 fontname
 
@@ -545,7 +543,7 @@ Function:
   lang declared never, used 6 times
   leader declared never, used 6 times
   ornaments declared never, used twice
-  rgb declared never, used 4 times
+  rgb declared never, used twice
   rgba declared never, used once
   string declared never, used 6 times
   styleset declared never, used 4 times
@@ -555,7 +553,7 @@ Function:
   target-text declared never, used twice
   translateX declared never, used 4 times
   url declared never, used once
-  var declared never, used 28 times
+  var declared never, used 24 times
 
 Highlight:
     bar

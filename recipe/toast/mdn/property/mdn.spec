@@ -25,7 +25,6 @@ PASS ../toast/mdn/property/aspect-ratio.html
 
 PASS ../toast/mdn/property/backdrop-filter.html
 2 naughty_lang
-5 css_value_fn
 50 unrecognised_value
 
 PASS ../toast/mdn/property/backface-visibility.html
@@ -103,7 +102,7 @@ PASS ../toast/mdn/property/dominant-baseline.html
 
 PASS ../toast/mdn/property/dominant-range-limit.html
 2 naughty_lang
-5 unrecognised_value unrecognised_value unrecognised_value
+5 unrecognised_value unrecognised_value
 
 PASS ../toast/mdn/property/empty-cells.html
 2 naughty_lang
@@ -114,7 +113,6 @@ PASS ../toast/mdn/property/field-sizing.html
 
 PASS ../toast/mdn/property/filter.html
 2 naughty_lang
-5 css_value_fn css_value_fn css_value_fn css_value_fn css_value_fn css_value_fn
 
 PASS ../toast/mdn/property/float.html
 2 naughty_lang

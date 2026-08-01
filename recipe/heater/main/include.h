@@ -63,8 +63,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 34
-#define VERSION_STRING "0.2.34"
+#define VERSION_RELEASE 35
+#define VERSION_STRING "0.2.35"
 
 #define BUILD_YEAR              "2026"
 #define BUILD_MONTH             "July"
@@ -136,9 +136,7 @@ z
 #endif
 
 #ifdef WIN32
-#define X32
-#define SMALLINT
-#define PROCSIZE "32"
+#error ssc requires 64-bit builds.
 #else // WIN32
 #define X64
 #define PROCSIZE "64"
@@ -165,17 +163,6 @@ z
 #define WINICU
 #define GETUSERNAMEEX
 #define VS2022
-#elif _MSC_VER >= 1920
-#define WINICU
-#define _WIN32_WINNT 0x0A00 // 10
-#define VS2019
-#elif _MSC_VER >= 1910
-#define NOICU
-#define _WIN32_WINNT 0x0603 // 8.1
-#define SMALLINT
-#define NOMERGE
-#define SULKINGSTRINGVIEW
-#define VS2017
 #else // _MSC_VER
 #error ssc only builds with VS 2022 / 2026.
 #endif // _MSC_VER
@@ -322,9 +309,7 @@ z
 #endif // NO_FRED
 #include <bitset>
 #include <chrono>
-#ifndef VS2017  // https://social.msdn.microsoft.com/Forums/azure/en-US/999a5b68-a1d3-4a76-8f3b-65655257c301/vs2017-stdcodecvt-linker-error?forum=vcgeneral
 #include <codecvt>
-#endif // VS2017
 #include <cstddef>
 #include <cstdlib>
 #include <ctime>
@@ -1046,6 +1031,11 @@ typedef ::std::array < int, rcb_max > aset_t;
 #else // REALLY_BUGGY_VECTOR_BOOL
 typedef ::std::array < bool, rcb_max > aset_t;
 #endif // REALLY_BUGGY_VECTOR_BOOL
+
+#define WARN_INT_MIN    -2147483648
+#define WARN_INT_MAX    2147483647
+#define WARN_FLOAT_MIN  -3.4e+38F
+#define WARN_FLOAT_MAX  3.4e+38F
 
 // Hearty thanks given for these coding guidelines:
 // https://cs.fit.edu/~kgallagher/Schtick/How%20To%20Write%20Unmaintainable%20Code.html

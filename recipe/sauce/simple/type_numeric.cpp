@@ -21,25 +21,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/type.h"
 
-#ifdef SMALLINT
-bool mad_max (nitpick& , const html_version& , const int )
-{   return true; }
-#else // X32
 bool mad_max (nitpick& nits, const html_version& , const int val)
-{   if (val < 2147483647) return true;
+{   if (val < WARN_INT_MAX) return true;
     nits.pick (nit_out_of_range, ed_svg_1_0, "4.1 Basic data types", es_warning, ec_type, "some browsers may find ", quote (::boost::lexical_cast < ::std::string > (val)), " too high to handle");
     return false; }
-#endif // X32
 
-#ifdef SMALLINT
-bool within_integer_limits (nitpick& , const html_version& , const int )
-{   return true; }
-#else // SMALLINT
 bool within_integer_limits (nitpick& nits, const html_version& v, const int val)
-{   if (val > -2147483648) return mad_max (nits, v, val);
+{   if (val > WARN_INT_MIN) return mad_max (nits, v, val);
     nits.pick (nit_out_of_range, ed_svg_1_0, "4.1 Basic data types", es_warning, ec_type, "some browsers may find ", quote (::boost::lexical_cast < ::std::string > (val)), " too low to handle");
     return false; }
-#endif // SMALLINT
 
 bool within_unsigned_limits (nitpick& nits, const html_version& v, const int val)
 {   if (val >= 0) return mad_max (nits, v, val);
@@ -47,9 +37,9 @@ bool within_unsigned_limits (nitpick& nits, const html_version& v, const int val
     return false; }
 
 bool within_real_limits (nitpick& nits, const html_version& , const double val)
-{   if (val < -3.4e+38F)
+{   if (val < WARN_FLOAT_MIN)
         nits.pick (nit_out_of_range, ed_svg_1_0, "4.1 Basic data types", es_warning, ec_type, "some browsers may find ", quote (::boost::lexical_cast < ::std::string > (val)), " too low to handle");
-    else if (val > 3.4e+38F)
+    else if (val > WARN_FLOAT_MAX)
         nits.pick (nit_out_of_range, ed_svg_1_0, "4.1 Basic data types", es_warning, ec_type, "some browsers may find ", quote (::boost::lexical_cast < ::std::string > (val)), " too high to handle");
     else return true;
     return false; }

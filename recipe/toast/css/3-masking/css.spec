@@ -14,6 +14,9 @@ PASS ../toast/css/3-masking/css-6.html
 PASS ../toast/css/3-masking/css-7.html
 2 naughty_lang
 
+PASS ../toast/css/3-masking/css-8.css
+5 css_version
+
 PASS ../toast/css/3-masking/css-9.html
 2 naughty_lang
 15 unrecognised_value

@@ -784,8 +784,10 @@
     <ClCompile Include="..\sauce\css\value_types_css_c_4.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_c_5.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_d.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_css_e.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_e_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_e_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_fn_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_fn_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_f_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_f_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_f_3.cpp" />
@@ -811,6 +813,7 @@
     <ClCompile Include="..\sauce\css\value_types_css_t_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_t_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_t_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_t_5.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_u.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_v.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_w_z.cpp" />
@@ -2651,6 +2654,10 @@
     <None Include="..\toast\css\3-cr\css.conf" />
     <None Include="..\toast\css\3-cr\css.spec" />
     <None Include="..\toast\css\3-cr\index.html" />
+    <None Include="..\toast\css\3-cssom\css-5.html" />
+    <None Include="..\toast\css\3-cssom\css.conf" />
+    <None Include="..\toast\css\3-cssom\css.spec" />
+    <None Include="..\toast\css\3-cssom\index.html" />
     <None Include="..\toast\css\3-cs\css-10.css" />
     <None Include="..\toast\css\3-cs\css-3.css" />
     <None Include="..\toast\css\3-cs\css-4.css" />
@@ -2708,6 +2715,15 @@
     <None Include="..\toast\css\3-fbl\css.conf" />
     <None Include="..\toast\css\3-fbl\css.spec" />
     <None Include="..\toast\css\3-fbl\index.html" />
+    <None Include="..\toast\css\3-fcs-2\css-2.css" />
+    <None Include="..\toast\css\3-fcs-2\css-3.css" />
+    <None Include="..\toast\css\3-fcs-2\css-4.css" />
+    <None Include="..\toast\css\3-fcs-2\css-6.css" />
+    <None Include="..\toast\css\3-fcs-2\css-7.css" />
+    <None Include="..\toast\css\3-fcs-2\css-a.css" />
+    <None Include="..\toast\css\3-fcs-2\css.conf" />
+    <None Include="..\toast\css\3-fcs-2\css.spec" />
+    <None Include="..\toast\css\3-fcs-2\index.html" />
     <None Include="..\toast\css\3-fcs\css-2.css" />
     <None Include="..\toast\css\3-fcs\css-3.css" />
     <None Include="..\toast\css\3-fcs\css-4.css" />
@@ -2780,6 +2796,13 @@
     <None Include="..\toast\css\3-grid\css.conf" />
     <None Include="..\toast\css\3-grid\css.spec" />
     <None Include="..\toast\css\3-grid\index.html" />
+    <None Include="..\toast\css\3-hdr\css-3.css" />
+    <None Include="..\toast\css\3-hdr\css-5.css" />
+    <None Include="..\toast\css\3-hdr\css-6.css" />
+    <None Include="..\toast\css\3-hdr\css-8.css" />
+    <None Include="..\toast\css\3-hdr\css.conf" />
+    <None Include="..\toast\css\3-hdr\css.spec" />
+    <None Include="..\toast\css\3-hdr\index.html" />
     <None Include="..\toast\css\3-highlight\css-1.html" />
     <None Include="..\toast\css\3-highlight\css-3.html" />
     <None Include="..\toast\css\3-highlight\css-4.html" />
@@ -2793,6 +2816,11 @@
     <None Include="..\toast\css\3-image\css.conf" />
     <None Include="..\toast\css\3-image\css.spec" />
     <None Include="..\toast\css\3-image\index.html" />
+    <None Include="..\toast\css\3-img-anim\css-2.css" />
+    <None Include="..\toast\css\3-img-anim\css-3.css" />
+    <None Include="..\toast\css\3-img-anim\css.conf" />
+    <None Include="..\toast\css\3-img-anim\css.spec" />
+    <None Include="..\toast\css\3-img-anim\index.html" />
     <None Include="..\toast\css\3-inline\css-4.css" />
     <None Include="..\toast\css\3-inline\css-4.html" />
     <None Include="..\toast\css\3-inline\css-5.css" />
@@ -2864,6 +2892,18 @@
     <None Include="..\toast\css\3-motion\css.conf" />
     <None Include="..\toast\css\3-motion\css.spec" />
     <None Include="..\toast\css\3-motion\index.html" />
+    <None Include="..\toast\css\3-multicolumn\css-1.css" />
+    <None Include="..\toast\css\3-multicolumn\css-2.css" />
+    <None Include="..\toast\css\3-multicolumn\css-3.css" />
+    <None Include="..\toast\css\3-multicolumn\css-3.html" />
+    <None Include="..\toast\css\3-multicolumn\css-4.css" />
+    <None Include="..\toast\css\3-multicolumn\css-6.css" />
+    <None Include="..\toast\css\3-multicolumn\css-6.html" />
+    <None Include="..\toast\css\3-multicolumn\css-7.css" />
+    <None Include="..\toast\css\3-multicolumn\css-8.css" />
+    <None Include="..\toast\css\3-multicolumn\css.conf" />
+    <None Include="..\toast\css\3-multicolumn\css.spec" />
+    <None Include="..\toast\css\3-multicolumn\index.html" />
     <None Include="..\toast\css\3-nesting\css-1.css" />
     <None Include="..\toast\css\3-nesting\css-2.css" />
     <None Include="..\toast\css\3-nesting\css-3.css" />
@@ -2909,6 +2949,15 @@
     <None Include="..\toast\css\3-page\css.conf" />
     <None Include="..\toast\css\3-page\css.spec" />
     <None Include="..\toast\css\3-page\index.html" />
+    <None Include="..\toast\css\3-paint-api\css-5.html" />
+    <None Include="..\toast\css\3-paint-api\css-7.html" />
+    <None Include="..\toast\css\3-paint-api\css-8-1.html" />
+    <None Include="..\toast\css\3-paint-api\css-8-2.html" />
+    <None Include="..\toast\css\3-paint-api\css-8-3.html" />
+    <None Include="..\toast\css\3-paint-api\css-8-4.html" />
+    <None Include="..\toast\css\3-paint-api\css.conf" />
+    <None Include="..\toast\css\3-paint-api\css.spec" />
+    <None Include="..\toast\css\3-paint-api\index.html" />
     <None Include="..\toast\css\3-position\css-1.css" />
     <None Include="..\toast\css\3-position\css-2.css" />
     <None Include="..\toast\css\3-position\css-2.html" />
@@ -3229,6 +3278,22 @@
     <None Include="..\toast\css\4-filter\css.conf" />
     <None Include="..\toast\css\4-filter\css.spec" />
     <None Include="..\toast\css\4-filter\index.html" />
+    <None Include="..\toast\css\4-font-2\css-11.css" />
+    <None Include="..\toast\css\4-font-2\css-13.css" />
+    <None Include="..\toast\css\4-font-2\css-2.css" />
+    <None Include="..\toast\css\4-font-2\css-2.html" />
+    <None Include="..\toast\css\4-font-2\css-4.css" />
+    <None Include="..\toast\css\4-font-2\css-4.html" />
+    <None Include="..\toast\css\4-font-2\css-6-1.html" />
+    <None Include="..\toast\css\4-font-2\css-6-2.html" />
+    <None Include="..\toast\css\4-font-2\css-6-3.html" />
+    <None Include="..\toast\css\4-font-2\css-6.css" />
+    <None Include="..\toast\css\4-font-2\css-7.css" />
+    <None Include="..\toast\css\4-font-2\css-9.css" />
+    <None Include="..\toast\css\4-font-2\css-9.html" />
+    <None Include="..\toast\css\4-font-2\css.conf" />
+    <None Include="..\toast\css\4-font-2\css.spec" />
+    <None Include="..\toast\css\4-font-2\index.html" />
     <None Include="..\toast\css\4-font\css-11.css" />
     <None Include="..\toast\css\4-font\css-2.css" />
     <None Include="..\toast\css\4-font\css-2.html" />
@@ -3291,6 +3356,17 @@
     <None Include="..\toast\css\4-media\css.conf" />
     <None Include="..\toast\css\4-media\css.spec" />
     <None Include="..\toast\css\4-media\index.html" />
+    <None Include="..\toast\css\4-multicolumn\css-1.css" />
+    <None Include="..\toast\css\4-multicolumn\css-3.css" />
+    <None Include="..\toast\css\4-multicolumn\css-4.css" />
+    <None Include="..\toast\css\4-multicolumn\css-4.html" />
+    <None Include="..\toast\css\4-multicolumn\css-7.css" />
+    <None Include="..\toast\css\4-multicolumn\css-7.html" />
+    <None Include="..\toast\css\4-multicolumn\css-8.css" />
+    <None Include="..\toast\css\4-multicolumn\css-9.css" />
+    <None Include="..\toast\css\4-multicolumn\css.conf" />
+    <None Include="..\toast\css\4-multicolumn\css.spec" />
+    <None Include="..\toast\css\4-multicolumn\index.html" />
     <None Include="..\toast\css\4-overflow\css-4.css" />
     <None Include="..\toast\css\4-overflow\css-4.html" />
     <None Include="..\toast\css\4-overflow\css-5.css" />
@@ -3397,6 +3473,20 @@
     <None Include="..\toast\css\4-value\css.conf" />
     <None Include="..\toast\css\4-value\css.spec" />
     <None Include="..\toast\css\4-value\index.html" />
+    <None Include="..\toast\css\4-view\css-1.css" />
+    <None Include="..\toast\css\4-view\css-10.css" />
+    <None Include="..\toast\css\4-view\css-10.html" />
+    <None Include="..\toast\css\4-view\css-11.css" />
+    <None Include="..\toast\css\4-view\css-11.html" />
+    <None Include="..\toast\css\4-view\css-12.css" />
+    <None Include="..\toast\css\4-view\css-3.css" />
+    <None Include="..\toast\css\4-view\css-3.html" />
+    <None Include="..\toast\css\4-view\css-7.css" />
+    <None Include="..\toast\css\4-view\css-8.css" />
+    <None Include="..\toast\css\4-view\css-8.html" />
+    <None Include="..\toast\css\4-view\css.conf" />
+    <None Include="..\toast\css\4-view\css.spec" />
+    <None Include="..\toast\css\4-view\index.html" />
     <None Include="..\toast\css\4-writing\css-2.css" />
     <None Include="..\toast\css\4-writing\css-2.html" />
     <None Include="..\toast\css\4-writing\css-3.css" />
@@ -3484,6 +3574,28 @@
     <None Include="..\toast\css\5-media\css.conf" />
     <None Include="..\toast\css\5-media\css.spec" />
     <None Include="..\toast\css\5-media\index.html" />
+    <None Include="..\toast\css\5-overflow\css-3-2.html" />
+    <None Include="..\toast\css\5-overflow\css-3.css" />
+    <None Include="..\toast\css\5-overflow\css-3-1.html" />
+    <None Include="..\toast\css\5-overflow\css-a-1.html" />
+    <None Include="..\toast\css\5-overflow\css-a-2.html" />
+    <None Include="..\toast\css\5-overflow\css-a-3.html" />
+    <None Include="..\toast\css\5-overflow\css-a-4.html" />
+    <None Include="..\toast\css\5-overflow\css-a-5.html" />
+    <None Include="..\toast\css\5-overflow\css-a.css" />
+    <None Include="..\toast\css\5-overflow\css.conf" />
+    <None Include="..\toast\css\5-overflow\css.spec" />
+    <None Include="..\toast\css\5-overflow\index.html" />
+    <None Include="..\toast\css\5-sel\css-2.css" />
+    <None Include="..\toast\css\5-sel\css-2.html" />
+    <None Include="..\toast\css\5-sel\css-5.css" />
+    <None Include="..\toast\css\5-sel\css-7.css" />
+    <None Include="..\toast\css\5-sel\css-8.css" />
+    <None Include="..\toast\css\5-sel\css-8.html" />
+    <None Include="..\toast\css\5-sel\css-9.css" />
+    <None Include="..\toast\css\5-sel\css.conf" />
+    <None Include="..\toast\css\5-sel\css.spec" />
+    <None Include="..\toast\css\5-sel\index.html" />
     <None Include="..\toast\css\6-cascade\css-2.css" />
     <None Include="..\toast\css\6-cascade\css-2.html" />
     <None Include="..\toast\css\6-cascade\css.conf" />
@@ -17837,14 +17949,18 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck>true</BufferSecurityCheck>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;crypto.lib;ssl.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
+      <AdditionalOptions> /PDBCOMPRESS /pdbpagesize:8192 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
@@ -17888,6 +18004,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
+      <AdditionalOptions> /PDBCOMPRESS /pdbpagesize:8192 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
@@ -17938,6 +18055,7 @@
       <StackReserveSize>67108864</StackReserveSize>
       <Profile>false</Profile>
       <GenerateMapFile>false</GenerateMapFile>
+      <AdditionalOptions> /PDBCOMPRESS /pdbpagesize:8192 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
@@ -17981,6 +18099,7 @@
       <StackReserveSize>67108864</StackReserveSize>
       <Profile>true</Profile>
       <GenerateMapFile>false</GenerateMapFile>
+      <AdditionalOptions> /PDBCOMPRESS /pdbpagesize:8192 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
@@ -18014,6 +18133,7 @@
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;ssl.lib;crypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/PDBCOMPRESS /pdbpagesize:8192 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
@@ -18044,6 +18164,7 @@
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;ssl.lib;crypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/PDBCOMPRESS /pdbpagesize:8192 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
@@ -18079,6 +18200,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <Profile>true</Profile>
       <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <AdditionalOptions>/PDBCOMPRESS /pdbpagesize:8192 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
@@ -18114,6 +18236,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <Profile>true</Profile>
       <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <AdditionalOptions>/PDBCOMPRESS /pdbpagesize:8192 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>

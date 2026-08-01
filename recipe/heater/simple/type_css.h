@@ -135,7 +135,7 @@ template < > struct type_master < t_css_counter_style_name > : public tidy_strin
 template < > struct type_master < t_css_descriptor > : tidy_string < t_css_descriptor >
 {   using tidy_string < t_css_descriptor > :: tidy_string;
     void set_value (nitpick& nits, const html_version& , const ::std::string& )
-    {   nits.pick (nit_descriptor, es_error, ec_css, "invalid: descriptors can only be used with @statements");
+    {   nits.pick (nit_descriptor, es_error, ec_css, "invalid: descriptors can only be used with @statements. Some can only be used with specific @statements");
         tidy_string < t_css_descriptor > :: status (s_invalid); } };
 
 template < > struct type_master < t_css_font > : tidy_string < t_css_font >

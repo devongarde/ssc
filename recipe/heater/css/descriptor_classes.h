@@ -114,6 +114,7 @@ typedef typed_property < t_css_length_a, ec_min_height > desc_min_height;
 typedef typed_property < t_css_length_a, ec_min_width > desc_min_width;
 typedef typed_property < t_real_perflex, ec_min_zoom > desc_min_zoom;
 typedef typed_property < t_text_2, ec_negative > desc_negative;
+typedef typed_property < t_auto_none, ec_navigation > desc_navigation;
 typedef typed_property < t_alp, ec_orientation > desc_orientation;
 typedef typed_property < t_css_override_colours, ec_override_colours > desc_override_colours;
 typedef typed_property < t_css_outline_i, ec_outline > desc_outline;
@@ -160,6 +161,7 @@ typedef typed_property < t_css_textdec_short, ec_text_decoration > desc_text_dec
 typedef typed_property < t_css_texts_indent, ec_text_indent > desc_text_indent;
 typedef typed_property < t_css_text_transform_n, ec_text_transform > desc_text_transform;
 typedef typed_property < t_real, ec_topline > desc_topline;
+typedef typed_property < t_css_ids_n, ec_types > desc_types;
 typedef typed_property < t_unicode_bidi, ec_unicode_bidi > desc_unicode_bidi;
 typedef typed_property < t_css_unicode_ranges, ec_unicode_range > desc_unicode_range;
 typedef typed_property < t_real, ec_units_per_em > desc_units_per_em;
@@ -409,3 +411,7 @@ typedef typed_property < t_unknown, ec_unknown > desc_unknown;
     desc_vp_height, \
     desc_vp_width, \
     desc_zoom
+
+#define VIEW_TRANSITION_DESCRIPTORS \
+    desc_navigation, \
+    desc_types

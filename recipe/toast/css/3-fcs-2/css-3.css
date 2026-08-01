@@ -1,0 +1,7 @@
+﻿select, select::picker(select) {
+  appearance: base;
+}
+select::picker(select) {
+  border: 5px solid red;
+  background-color: blue;
+}

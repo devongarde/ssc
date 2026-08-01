@@ -33,9 +33,9 @@ void property::parse (arguments& args, const int from, const int to)
     PRESUME (from < len, __FILE__, __LINE__);
     PRESUME (to < len, __FILE__, __LINE__);
     int b = first_non_whitespace (args.t_, from, to);
-    if (b < 0) return;
-    while ((token_category (args.t_.at (b).t_) & TC_ROUND) != 0)
+    while ((b >= 0) && ((token_category (args.t_.at (b).t_) & TC_ROUND) != 0))
         b = next_non_whitespace (args.t_, b, to);
+    if (b < 0) return;
     from_ = b;
     nitpick& nits = args.t_.at (b).nits_;
     const int brac = token_find (args.t_, ct_curly_brac, b);

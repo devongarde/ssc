@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<HTML>
+ <HEAD>
+ <TITLE>CSS 3 Paint API Chaper 7 example</TITLE>
+ </HEAD>
+
+ <BODY>
+
+<style>
+    .example-1 {
+        background-image: paint(failing-argument-syntax, red);
+    }
+    .example-2 {
+        background-image: paint(failing-argument-syntax, 1px, 2px);
+    }
+</style>
+<div class=example-1></div>
+<div class=example-2></div>
+<script>
+    CSS.paintWorklet.addModule('paint.js');
+</script>
+
+<style>
+    .div-1 {
+        width: 50px;
+        height: 50px;
+        background-image: paint(simple);
+    }
+    .div-2 {
+        width: 100px;
+        height: 100px;
+
+        background-size: 50% 50%;
+        background-image: paint(simple);
+    }
+</style>
+<div class=div-1></div>
+<div class=div-2></div>
+<script>
+    CSS.paintWorklet.addModule('paint.js');
+</script>
+
+</BODY>
+
+</HTML>

@@ -333,6 +333,20 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_none >
 {   static int check (arguments& , const int , const int , nitpick& , const e_css_property )
     {   GRACEFUL_CRASH (__FILE__, __LINE__); } };
 
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_alpha >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
+    {   if (! maybe_colour < TYPE > (nits, 5)) return -1;
+        nitpick nuts, nets;
+        int i = value_fn < TYPE, cvf_alpha, 0, 2, t_slash, t_css_alpha_n > :: check (args, start, to, nuts);
+        if (nuts.worst () > es_error) { nits.merge (nuts); return i; }
+        i = value_fn < TYPE, cvf_alpha, 2, 4, t_from, t_css_col, t_slash, t_css_alpha_n > :: check (args, start, to, nets);
+        if (nets.worst () > es_error) { nits.merge (nets); return i; }
+        nits.pick (nit_css_value_fn, ed_css_colour_5, "4.10. Relative Alpha Colors", es_error, ec_css, "invalid");
+        if (context.extra () || context.tell (es_debug))
+        {   nits.merge (nuts);
+            nits.merge (nets); }
+        return start; } };
+
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_clamp >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
     {   if (! maybe_math (nits, id)) return -1;
@@ -549,7 +563,7 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_ellipse >
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_env >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
-    {   return value_fn < TYPE, cvf_env, 1, 2, t_css_env_vars, t_text > :: check (args, start, to, nits); } };
+    {   return value_fn < TYPE, cvf_env, 1, 999, t_css_env_var, t_text > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_exp >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
@@ -582,6 +596,11 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_greyscale >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
     {   if (! maybe_filter (nits, id)) return -1;
         return value_fn < TYPE, cvf_greyscale, 0, 1, t_real_percent > :: check (args, start, to, nits); } };
+
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_hdr_colour >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
+    {   if (! maybe_colour < TYPE > (nits, 17)) return -1;
+        return value_fn < TYPE, cvf_hdr_colour, 2, 2, t_css_col_rs > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_historical_forms >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
@@ -630,6 +649,20 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_hypot >
     {   if (! maybe_math (nits, id)) return -1;
         return value_fn < TYPE, cvf_hypot, 1, 999, t_css_calc_value > :: check (args, start, to, nits); } };
 
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_ictcp >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
+    {   if (! maybe_colour < TYPE > (nits, 5)) return -1;
+        nitpick nuts, nets;
+        int i = value_fn < TYPE, cvf_ictcp, 3, 5, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_slash, t_css_alpha_n > :: check (args, start, to, nuts);
+        if (nuts.worst () > es_error) { nits.merge (nuts); return i; }
+        i = value_fn < TYPE, cvf_ictcp, 5, 7, t_from, t_css_col, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_slash, t_css_alpha_n > :: check (args, start, to, nets);
+        if (nets.worst () > es_error) { nits.merge (nets); return i; }
+        nits.pick (nit_css_value_fn, ed_css_colour_hdr, "4. The <color> syntax", es_error, ec_css, "invalid");
+        if (context.extra () || context.tell (es_debug))
+        {   nits.merge (nuts);
+            nits.merge (nets); }
+        return start; } };
+
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_if >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
     {   return value_fn_one_or_more < TYPE, cvf_if, t_css_if > :: check (args, start, to, nits); } };
@@ -655,6 +688,39 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_invert >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
     {   if (! maybe_filter (nits, id)) return -1;
         return value_fn < TYPE, cvf_invert, 0, 1, t_real_percent > :: check (args, start, to, nits); } };
+
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_jzazbz >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
+    {   if (! maybe_colour < TYPE > (nits, 5)) return -1;
+        nitpick nuts, nets;
+        int i = value_fn < TYPE, cvf_jzazbz, 3, 5, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_slash, t_css_alpha_n > :: check (args, start, to, nuts);
+        if (nuts.worst () > es_error) { nits.merge (nuts); return i; }
+        i = value_fn < TYPE, cvf_jzazbz, 5, 7, t_from, t_css_col, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_slash, t_css_alpha_n > :: check (args, start, to, nets);
+        if (nets.worst () > es_error) { nits.merge (nets); return i; }
+        nits.pick (nit_css_value_fn, ed_css_colour_hdr, "4. The <color> syntax", es_error, ec_css, "invalid");
+        if (context.extra () || context.tell (es_debug))
+        {   nits.merge (nuts);
+            nits.merge (nets); }
+        return start; } };
+
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_jzczhz >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
+    {   if (! maybe_colour < TYPE > (nits, 5)) return -1;
+        nitpick nuts, nets;
+        int i = value_fn < TYPE, cvf_jzczhz, 3, 5, t_real_percent_n, t_real_percent_n, t_hue_n, t_slash, t_css_alpha_n > :: check (args, start, to, nuts);
+        if (nuts.worst () > es_error) { nits.merge (nuts); return i; }
+        i = value_fn < TYPE, cvf_jzczhz, 5, 7, t_from, t_css_col, t_real_percent_n, t_real_percent_n, t_hue_n, t_slash, t_css_alpha_n > :: check (args, start, to, nets);
+        if (nets.worst () > es_error) { nits.merge (nets); return i; }
+        nits.pick (nit_css_value_fn, ed_css_colour_hdr, "4. The <color> syntax", es_error, ec_css, "invalid");
+        if (context.extra () || context.tell (es_debug))
+        {   nits.merge (nuts);
+            nits.merge (nets); }
+        return start; } };
+
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_keypress >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_anim_trigger (nits, id)) return -1;
+        return value_fn_one < TYPE, cvf_keypress, t_text > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_lab >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
@@ -691,7 +757,17 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_leader >
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_light_dark >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
-    {   return value_fn < TYPE, cvf_light_dark, 2, 2, t_css_colour_ld > :: check (args, start, to, nits); } };
+    {   if (! maybe_colour < TYPE > (nits)) return -1;
+        nitpick nuts, nets;
+        int i = value_fn < TYPE, cvf_light_dark, 2, 2, t_css_colour_ld > :: check (args, start, to, nuts);
+        if (nuts.worst () > es_error) { nits.merge (nuts); return i; }
+        i = value_fn < TYPE, cvf_light_dark, 2, 2, t_css_gradient_image_n > :: check (args, start, to, nets);
+        if (nets.worst () > es_error) { nits.merge (nets); return i; }
+        nits.pick (nit_css_value_fn, es_error, ec_css, "invalid");
+        if (context.extra () || context.tell (es_debug))
+        {   nits.merge (nuts);
+            nits.merge (nets); }
+        return start; } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_local >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )

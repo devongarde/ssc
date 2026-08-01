@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    < !-- This will be render-blocking by default -->
+    <link rel="stylesheet" href="style.css">
+
+    < !-- Since this script fixes up the layout, marking it as render blocking will
+        ensure it's run before the view transition is activated -->
+    <script async href="fixup.js" blocking="render"></script>
+
+    < !-- Wait until the main-article element is seen and fully parsed before
+        activating the transition -->
+    <link rel="expect" href="#main-article" blocking="render">
+  </head>
+  <body>
+    <header>...</header>
+    <main>
+      <article id="main-article">...</article>
+    </main>
+    <article id="secondary-article">...</article>
+  </body>
+</html>

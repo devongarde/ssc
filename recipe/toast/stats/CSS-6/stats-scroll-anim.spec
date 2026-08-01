@@ -37,7 +37,6 @@ PASS ../toast/stats/CSS-6/font-4-6.css
 PASS ../toast/stats/CSS-6/font-4-9.css
 6 fontname
 13 fontname
-15 css_custom
 21 fontname
 26 fontname
 31 fontname
@@ -47,7 +46,6 @@ PASS ../toast/stats/CSS-6/font-4-9.css
 47 fontname
 52 fontname fontname
 57 fontname
-59 css_custom
 65 fontname
 70 fontname
 

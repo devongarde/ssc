@@ -1,0 +1,30 @@
+﻿<!DOCTYPE HTML>
+<title>scroll-target-group example with a table of contents</title>
+<style>
+  ol {
+    background-color: gray;
+    right: 10px;
+    top: 10px;
+    position: fixed;
+    /* Triggers the browser's algorithm for calculating :target-current. */
+    scroll-target-group: auto;
+  }
+
+  a:target-current {
+    color: red;
+  }
+
+  .chapter {
+    background: lightgray;
+    height: 60vh;
+    margin: 10px;
+  }
+</style>
+<ol>
+  <li><a href="#intro">Introduction</a></li>
+  <li><a href="#ch1">Chapter 1</a></li>
+  <li><a href="#ch2">Chapter 2</a></li>
+</ol>
+<div id="intro" class="chapter">Introduction content</div>
+<div id="ch1" class="chapter">Chapter 1 content</div>
+<div id="ch2" class="chapter">Chapter 2 content</div>

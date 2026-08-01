@@ -1,0 +1,15 @@
+﻿@view-transition {
+  navigation: auto;
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+@media (max-width: 600px) {
+  navigation: none;
+}
+
+@view-transition {
+  navigation: auto;
+}

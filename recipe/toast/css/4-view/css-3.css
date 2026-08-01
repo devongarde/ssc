@@ -1,0 +1,13 @@
+﻿.container {
+  view-transition-name: container;
+}
+
+.container,
+::view-transition-group-children(container) {
+  clip-path: circle();
+}
+
+article {
+  view-transition-name: article;
+  view-transition-group: container;
+}

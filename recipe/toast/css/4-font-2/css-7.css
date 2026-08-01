@@ -1,0 +1,29 @@
+﻿body {
+  font-variant-numeric: proportional-nums;
+}
+
+table.prices td {
+  font-variant-numeric: tabular-nums;
+}
+
+@font-face {
+  font-family: BodyText;
+  src: local("HiraMaruPro-W4");
+  font-variant: proportional-width;
+  font-feature-settings: "ital"; /* Latin italics within CJK text feature */
+}
+
+body { font-family: BodyText, serif; }
+
+@font-face {
+  font-family: main;
+  src: url(fonts/ffmeta.woff) format("woff");
+  font-variant: discretionary-ligatures;
+}
+
+body         { font-family: main, Helvetica; }
+span.special { font-variant-ligatures: no-discretionary-ligatures; }
+
+body         { font-family: main, Helvetica; }
+span         { font-feature-settings: "dlig"; }
+span.special { font-variant-ligatures: no-discretionary-ligatures; }

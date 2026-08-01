@@ -53,6 +53,7 @@ typedef typed_property < t_css_anim_ranges, ec_animation_range_end > prop_animat
 typedef typed_property < t_css_anim_ranges, ec_animation_range_start > prop_animation_range_start;
 typedef typed_property < t_css_anim_timeline, ec_animation_timeline > prop_animation_timeline;
 typedef typed_property < t_css_atfs, ec_animation_timing_function > prop_animation_timing_function;
+typedef typed_property < t_css_atsns, ec_animation_trigger > prop_animation_trigger;
 typedef typed_property < t_css_appearance, ec_appearance > prop_appearance;
 typedef typed_property < t_real, ec_ascent > prop_ascent;
 typedef typed_property < t_percent_flexible, ec_ascent_override > prop_ascent_override;
@@ -221,7 +222,7 @@ typedef typed_property < t_generic, ec_column_break_before > prop_column_break_b
 typedef typed_property < t_unsigned_1_more_a, ec_column_count > prop_column_count;
 typedef typed_property < t_css_column_fill, ec_column_fill > prop_column_fill;
 typedef typed_property < t_css_gap_2, ec_column_gap > prop_column_gap;
-typedef typed_property < t_generic, ec_column_height > prop_column_height;
+typedef typed_property < t_measure_a, ec_column_height > prop_column_height;
 typedef typed_property < t_css_line_rules, ec_column_rule > prop_column_rule;
 typedef typed_property < t_inn2, ec_column_rule_break > prop_column_rule_break;
 typedef typed_property < t_css_line_colours, ec_column_rule_colour > prop_column_rule_colour;
@@ -237,8 +238,8 @@ typedef typed_property < t_css_rule_inset, ec_column_rule_inset_start > prop_col
 typedef typed_property < t_css_line_styles, ec_column_rule_style > prop_column_rule_style;
 typedef typed_property < t_aabn, ec_column_rule_visibility_items > prop_column_rule_visibility_items;
 typedef typed_property < t_css_line_widths, ec_column_rule_width > prop_column_rule_width;
-typedef typed_property < t_generic, ec_column_wrap > prop_column_wrap;
-typedef typed_property < t_all_none, ec_column_span > prop_column_span;
+typedef typed_property < t_anw, ec_column_wrap > prop_column_wrap;
+typedef typed_property < t_integer_1_up_inf_aan, ec_column_span > prop_column_span;
 typedef typed_property < t_measure_a, ec_column_width > prop_column_width;
 typedef typed_property < t_css_columns, ec_columns > prop_columns;
 typedef typed_property < t_css_contain, ec_contain > prop_contain;
@@ -292,13 +293,16 @@ typedef typed_property < t_svg_direction, ec_direction > prop_direction;
 typedef typed_property < t_css_display_1, ec_display > prop_display;
 typedef typed_property < t_display_align, ec_display_align > prop_display_align;
 typedef typed_property < t_dominantbaseline, ec_dominant_baseline > prop_dominant_baseline;
-typedef typed_property < t_generic, ec_dynamic_range_limit > prop_dynamic_range_limit;
+typedef typed_property < t_css_dynamic_range_limit, ec_dynamic_range_limit > prop_dynamic_range_limit;
 
 typedef typed_property < t_css_elevation, ec_elevation > prop_elevation;
 typedef typed_property < t_generic, ec_else > prop_else;
 typedef typed_property < t_css_empty_cells, ec_empty_cells > prop_empty_cells;
 typedef typed_property < t_enable_background, ec_enable_background > prop_enable_background;
 typedef typed_property < t_generic, ec_error > prop_error;
+typedef typed_property < t_css_etnssn, ec_event_trigger > prop_event_trigger;
+typedef typed_property < t_css_ids_n, ec_event_trigger_name > prop_event_trigger_name;
+typedef typed_property < t_css_eteeks2ns, ec_event_trigger_source > prop_event_trigger_source;
 
 typedef typed_property < t_fallback, ec_fallback > prop_fallback;
 typedef typed_property < t_css_content_fixed, ec_field_sizing > prop_field_sizing;
@@ -404,6 +408,7 @@ typedef typed_property < t_css_length, ec_hyphenate_limit_zone > prop_hyphenate_
 typedef typed_property < t_auto_manual_none, ec_hyphens > prop_hyphens;
 
 typedef typed_property < t_svg_colour_profile, ec_icc_profile > prop_icc_profile;
+typedef typed_property < t_css_image_animation, ec_image_animation > prop_image_animation;
 typedef typed_property < t_css_image_processing, ec_image_orientation > prop_image_orientation;
 typedef typed_property < t_image_rendering, ec_image_rendering > prop_image_rendering;
 typedef typed_property < t_css_image_resolution, ec_image_resolution > prop_image_resolution;
@@ -521,11 +526,12 @@ typedef typed_property < t_css_length_amm, ec_min_width > prop_min_width;
 typedef typed_property < t_css_mix_blend_mode, ec_mix_blend_mode > prop_mix_blend_mode;
 
 typedef typed_property < t_text, ec_name > prop_name;
+typedef typed_property < t_text_2, ec_negative > prop_negative;
 typedef typed_property < t_css_kdb_nav, ec_nav_down > prop_nav_down;
 typedef typed_property < t_css_kdb_nav, ec_nav_left > prop_nav_left;
 typedef typed_property < t_css_kdb_nav, ec_nav_right > prop_nav_right;
 typedef typed_property < t_css_kdb_nav, ec_nav_up > prop_nav_up;
-typedef typed_property < t_text_2, ec_negative > prop_negative;
+typedef typed_property < t_css_descriptor, ec_navigation > prop_navigation;
 
 typedef typed_property < t_css_object_fit, ec_object_fit > prop_object_fit;
 typedef typed_property < t_css_background_0, ec_object_position > prop_object_position;
@@ -783,13 +789,14 @@ typedef typed_property < t_bens, ec_text_box_trim > prop_text_box_trim;
 typedef typed_property < t_css_text_combine_upright, ec_text_combine_upright > prop_text_combine_upright;
 typedef typed_property < t_css_textdec_short, ec_text_decoration > prop_text_decoration;
 typedef typed_property < t_css_col, ec_text_decoration_colour > prop_text_decoration_colour;
-typedef typed_property < t_generic, ec_text_decoration_inset > prop_text_decoration_inset;
+typedef typed_property < t_css_length_2, ec_text_decoration_inset > prop_text_decoration_inset;
 typedef typed_property < t_css_textdec_line, ec_text_decoration_line > prop_text_decoration_line;
 typedef typed_property < t_css_textdec_skips, ec_text_decoration_skip > prop_text_decoration_skip;
 typedef typed_property < t_all_none, ec_text_decoration_skip_box > prop_text_decoration_skip_box;
+typedef typed_property < t_css_length_2, ec_text_decoration_skip_edges > prop_text_decoration_skip_edges;
 typedef typed_property < t_all_auto_none, ec_text_decoration_skip_ink > prop_text_decoration_skip_ink;
 typedef typed_property < t_auto_none, ec_text_decoration_skip_inset > prop_text_decoration_skip_inset;
-typedef typed_property < t_none_objects, ec_text_decoration_skip_self > prop_text_decoration_skip_self;
+typedef typed_property < t_css_skip_self, ec_text_decoration_skip_self > prop_text_decoration_skip_self;
 typedef typed_property < t_css_textdec_skip_space, ec_text_decoration_skip_spaces > prop_text_decoration_skip_spaces;
 typedef typed_property < t_css_textdec_style, ec_text_decoration_style > prop_text_decoration_style;
 typedef typed_property < t_css_textdec_thickness, ec_text_decoration_thickness > prop_text_decoration_thickness;
@@ -818,6 +825,15 @@ typedef typed_property < t_css_text_wrap, ec_text_wrap > prop_text_wrap;
 typedef typed_property < t_css_text_wrap_mode, ec_text_wrap_mode > prop_text_wrap_mode;
 typedef typed_property < t_css_text_wrap_style, ec_text_wrap_style > prop_text_wrap_style;
 typedef typed_property < t_css_stn_n, ec_timeline_scope > prop_timeline_scope;
+typedef typed_property < t_css_ttaran2s, ec_timeline_trigger_active_range > prop_timeline_trigger_active_range;
+typedef typed_property < t_css_ttarans, ec_timeline_trigger_active_range_start > prop_timeline_trigger_active_range_start;
+typedef typed_property < t_css_ttarans, ec_timeline_trigger_active_range_end > prop_timeline_trigger_active_range_end;
+typedef typed_property < t_css_ttarn2s, ec_timeline_trigger_activation_range > prop_timeline_trigger_activation_range;
+typedef typed_property < t_css_ttarns, ec_timeline_trigger_activation_range_start > prop_timeline_trigger_activation_range_start;
+typedef typed_property < t_css_ttarns, ec_timeline_trigger_activation_range_end > prop_timeline_trigger_activation_range_end;
+typedef typed_property < t_css_ids_n, ec_timeline_trigger_name > prop_timeline_trigger_name;
+typedef typed_property < t_css_anim_timeline, ec_timeline_trigger_source > prop_timeline_trigger_source;
+typedef typed_property < t_generic, ec_timeline_trigger > prop_timeline_trigger;
 typedef typed_property < t_css_length_aia, ec_top > prop_top;
 typedef typed_property < t_real, ec_topline > prop_topline;
 typedef typed_property < t_css_touch_action, ec_touch_action > prop_touch_action;
@@ -832,6 +848,8 @@ typedef typed_property < t_css_durations, ec_transition_duration > prop_transiti
 typedef typed_property < t_css_trans_props_n, ec_transition_property > prop_transition_property;
 typedef typed_property < t_css_easing_fns, ec_transition_timing_function > prop_transition_timing_function;
 typedef typed_property < t_css_translate_n, ec_translate > prop_translate;
+typedef typed_property < t_css_ids_an, ec_trigger_scope > prop_trigger_scope;
+typedef typed_property < t_css_descriptor, ec_types > prop_types;
 
 typedef typed_property < t_unicode_bidi, ec_unicode_bidi > prop_unicode_bidi;
 typedef typed_property < t_css_unicode_ranges, ec_unicode_range > prop_unicode_range;
@@ -846,7 +864,9 @@ typedef typed_property < t_bixys, ec_view_timeline_axis > prop_view_timeline_axi
 typedef typed_property < t_css_length_a2, ec_view_timeline_inset > prop_view_timeline_inset;
 typedef typed_property < t_css_stn_n, ec_view_timeline_name > prop_view_timeline_name;
 typedef typed_property < t_css_vtn, ec_view_transition_class > prop_view_transition_class;
+typedef typed_property < t_css_vtg, ec_view_transition_group > prop_view_transition_group;
 typedef typed_property < t_css_vtn_n, ec_view_transition_name > prop_view_transition_name;
+typedef typed_property < t_all_none, ec_view_transition_scope > prop_view_transition_scope;
 typedef typed_property < t_colour_ni, ec_viewport_fill > prop_viewport_fill;
 typedef typed_property < t_real_ni, ec_viewport_fill_opacity > prop_viewport_fill_opacity;
 typedef typed_property < t_auto_contain_cover, ec_viewport_fit > prop_viewport_fit;
@@ -2302,6 +2322,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_animation_range_start, \
     prop_animation_timeline, \
     prop_animation_timing_function, \
+    prop_animation_trigger, \
     prop_appearance, \
     prop_ascent, \
     prop_ascent_override, \
@@ -2549,6 +2570,9 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_epub_word_break, \
     prop_epub_writing_mode, \
     prop_error, \
+    prop_event_trigger_name, \
+    prop_event_trigger_source, \
+    prop_event_trigger, \
     prop_fallback, \
     prop_field_sizing, \
     prop_fill, \
@@ -2650,6 +2674,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_hyphenate_limit_zone, \
     prop_hyphens, \
     prop_icc_profile, \
+    prop_image_animation, \
     prop_image_orientation, \
     prop_image_rendering, \
     prop_image_resolution, \
@@ -2763,6 +2788,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_min_width, \
     prop_mix_blend_mode, \
     prop_name, \
+    prop_navigation, \
     prop_nav_down, \
     prop_nav_left, \
     prop_nav_right, \
@@ -3026,6 +3052,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_text_decoration_line, \
     prop_text_decoration_skip, \
     prop_text_decoration_skip_box, \
+    prop_text_decoration_skip_edges, \
     prop_text_decoration_skip_ink, \
     prop_text_decoration_skip_inset, \
     prop_text_decoration_skip_self, \
@@ -3056,6 +3083,15 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_text_wrap_mode, \
     prop_text_wrap_style, \
     prop_timeline_scope, \
+    prop_timeline_trigger_active_range, \
+    prop_timeline_trigger_active_range_start, \
+    prop_timeline_trigger_active_range_end, \
+    prop_timeline_trigger_activation_range, \
+    prop_timeline_trigger_activation_range_start, \
+    prop_timeline_trigger_activation_range_end, \
+    prop_timeline_trigger_name, \
+    prop_timeline_trigger_source, \
+    prop_timeline_trigger, \
     prop_top, \
     prop_topline, \
     prop_touch_action, \
@@ -3069,7 +3105,9 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_transition_duration, \
     prop_transition_property, \
     prop_transition_timing_function, \
-    prop_translate
+    prop_translate, \
+    prop_trigger_scope, \
+    prop_types
 
 #define LAST_CSS_2_PROP ec_translate
 
@@ -3086,7 +3124,10 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_view_timeline_axis, \
     prop_view_timeline_inset, \
     prop_view_timeline_name, \
+    prop_view_transition_class, \
+    prop_view_transition_group, \
     prop_view_transition_name, \
+    prop_view_transition_scope, \
     prop_viewport_fill, \
     prop_viewport_fill_opacity, \
     prop_viewport_fit, \

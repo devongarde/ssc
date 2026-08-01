@@ -204,6 +204,9 @@ template < > struct type_master < t_clllr > : three_value < t_clllr, e_clllr, sz
 template < > struct type_master < t_closedby > : three_value < t_closedby, e_closedby, sz_any, sz_closerequest, sz_none, false, true >
 { using three_value < t_closedby, e_closedby, sz_any, sz_closerequest, sz_none, false, true > :: three_value; };
 
+template < > struct type_master < t_cnn > : three_value < t_cnn, e_cnn, sz_contain, sz_nearest, sz_normal >
+{ using three_value < t_cnn, e_cnn,  sz_contain, sz_nearest, sz_normal > :: three_value; };
+
 template < > struct type_master < t_command > : three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio >
 { using three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio > :: three_value; };
 
@@ -278,6 +281,9 @@ template < > struct type_master < t_css_speak_numeral > : three_value < t_css_sp
 
 template < > struct type_master < t_css_shape_inside_e > : three_value < t_css_shape_inside_e, e_css_shape_inside_e, sz_auto, sz_display, sz_outside_shape >
 { using three_value < t_css_shape_inside_e, e_css_shape_inside_e, sz_auto, sz_display, sz_outside_shape > :: three_value; };
+
+template < > struct type_master < t_css_skip_line > : three_value < t_css_skip_line, e_css_skip_line, sz_skip_overline, sz_skip_line_through, sz_skip_underline >
+{ using three_value < t_css_skip_line, e_css_skip_line, sz_skip_overline, sz_skip_line_through, sz_skip_underline > :: three_value; };
 
 template < > struct type_master < t_css_speak_punctuation > : three_value < t_css_speak_punctuation, e_css_speak_punctuation, sz_code, sz_inherit, sz_none >
 { using three_value < t_css_speak_punctuation, e_css_speak_punctuation, sz_code, sz_inherit, sz_none > :: three_value; };
@@ -452,6 +458,9 @@ template < > struct type_master < t_nuf > : three_value < t_nuf, e_nuf, sz_refur
 
 template < > struct type_master < t_onetwothree > : three_value < t_onetwothree, e_onetwothree, sz_one, sz_two, sz_three >
 { using three_value < t_onetwothree, e_onetwothree, sz_one, sz_two, sz_three > :: three_value; };
+
+template < > struct type_master < t_margin_padding_new > : three_value < t_margin_padding_new, e_margin_padding_new, sz_content_box, sz_margin_box, sz_padding_box >
+{ using three_value < t_margin_padding_new, e_margin_padding_new, sz_content_box, sz_margin_box, sz_padding_box > :: three_value; };
 
 template < > struct type_master < t_popover > : three_value < t_popover, e_popover, sz_auto, sz_hint, sz_manual, false, true >
 { using three_value < t_popover, e_popover, sz_auto, sz_hint, sz_manual, false, true > :: three_value; };

@@ -18,12 +18,14 @@ PASS ../toast/mdn/overflow/overflow-anchor.html
 
 PASS ../toast/mdn/overflow/overflow-block.html
 2 naughty_lang
+5 abandoned abandoned abandoned abandoned abandoned abandoned abandoned abandoned abandoned abandoned abandoned abandoned abandoned abandoned abandoned
 
 PASS ../toast/mdn/overflow/overflow-clip-margin.html
 2 naughty_lang
 
 PASS ../toast/mdn/overflow/overflow-inline.html
 2 naughty_lang
+5 abandoned abandoned abandoned abandoned abandoned abandoned abandoned abandoned abandoned abandoned abandoned abandoned abandoned abandoned abandoned
 
 PASS ../toast/mdn/overflow/overflow-wrap.html
 2 naughty_lang

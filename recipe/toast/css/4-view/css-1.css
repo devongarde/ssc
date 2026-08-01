@@ -1,0 +1,70 @@
+﻿::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 5s;
+}
+
+@keyframes fade-in {
+	from { opacity: 0; }
+}
+
+@keyframes fade-out {
+	to { opacity: 0; }
+}
+
+@keyframes slide-from-right {
+	from { transform: translateX(30px); }
+}
+
+@keyframes slide-to-left {
+	to { transform: translateX(-30px); }
+}
+
+::view-transition-old(root) {
+	animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+		300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+}
+
+::view-transition-new(root) {
+	animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+		300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+}
+
+.main-header {
+	view-transition-name: main-header;
+}
+
+.main-header-text {
+	view-transition-name: main-header-text;
+	/* Give the element a consistent size, assuming identical text: */
+	width: fit-content;
+}
+
+.sidebar {
+	view-transition-name: sidebar;
+}
+
+@keyframes slide-to-right {
+	to { transform: translateX(30px); }
+}
+
+/* Entry transition */
+::view-transition-new(sidebar):only-child {
+	animation: 300ms cubic-bezier(0, 0, 0.2, 1) both fade-in,
+		300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+}
+
+/* Exit transition */
+::view-transition-old(sidebar):only-child {
+	animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+		300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
+}
+
+::view-transition-image-pair(root) {
+	isolation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation: none;
+	mix-blend-mode: normal;
+}

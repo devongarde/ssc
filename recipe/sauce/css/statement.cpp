@@ -767,7 +767,7 @@ void statement::parse_keyframes (arguments& args, nitpick& nits, const int from,
         if (test_value < t_css_wide > (nuts, args.v_, name))
             nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_error, ec_css, quote (name), " is a CSS wide keyword, so cannot be used as a @keyframes name");
         else if (args.has_str (gst_keyframe, name) || ! args.dst_ -> note_str (gst_keyframe, name))
-            nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_warning, ec_css, "@keyframes ", quote (name), " previously defined");
+            nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_warning, ec_css, "@keyframes ", quote (name), " defined elsewhere");
         i = next_non_whitespace (args.t_, i, to);
         int num = 0;
         sstr_t pcnts;
@@ -1350,6 +1350,17 @@ void statement::parse_viewport (arguments& args, nitpick& nits, const int from, 
         {   fiddlesticks < statement > f (&args.st_, this);
             dsc_.parse (args, css_viewport, args.t_.at (ket).child_); } } }
 
+void statement::parse_view_transition (arguments& args, nitpick& nits, const int from, const int to)
+{   if (args.v_.css_module (c_view_transition) < 4)
+        nits.pick (nit_css_version, es_error, ec_css, "@viewport requires CSS View Transition 4");
+    else
+    {   const int ket = token_find (args.t_, ct_curly_brac, from, to);
+        if (ket < 0)
+            nits.pick (nit_css_scope, es_error, ec_css, "@view-transition requires { ... }");
+        else
+        {   fiddlesticks < statement > f (&args.st_, this);
+            dsc_.parse (args, css_view_transition, args.t_.at (ket).child_); } } }
+
 void statement::parse_when (arguments& args, nitpick& nits, const int from, const int to)
 {   if (args.v_.css_module (c_conditional_rule) < 5)
         nits.pick (nit_css_version, es_error, ec_css, "@when requires CSS Conditional Rule level 5");
@@ -1509,6 +1520,7 @@ void statement::parse (arguments& args, const int from, const int to)
                 parse_viewport (args, nits, b, to);
                 break;
             case css_view_transition :
+                parse_view_transition (args, nits, b, to);
                 break;
             case css_document :
             case css_moz_document :
@@ -1679,6 +1691,9 @@ void statement::accumulate (stats_t* s) const
             break;
         case css_viewport :
             res = "@viewport;";
+            break;
+        case css_view_transition :
+            res = "@css_view_transition";
             break;
         case css_when :
             res = "@when;";

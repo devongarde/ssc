@@ -55,6 +55,7 @@
 ./ssc -f ../toast/css/4-cr/css.conf
 ./ssc -f ../toast/css/5-cr/css.conf
 ./ssc -f ../toast/css/3-cs/css.conf
+./ssc -f ../toast/css/3-cssom/css.conf
 ./ssc -f ../toast/css/3-device/css.conf
 ./ssc -f ../toast/css/3-display/css.conf
 ./ssc -f ../toast/css/4-display/css.conf
@@ -65,6 +66,7 @@
 ./ssc -f ../toast/css/3-extensions/css.conf
 ./ssc -f ../toast/css/3-fbl/css.conf
 ./ssc -f ../toast/css/3-fcs/css.conf
+./ssc -f ../toast/css/3-fcs-2/css.conf
 ./ssc -f ../toast/css/3-fill/css.conf
 ./ssc -f ../toast/css/3-filter/css.conf
 ./ssc -f ../toast/css/4-filter/css.conf
@@ -77,10 +79,12 @@
 ./ssc -f ../toast/css/3-grid/css.conf
 ./ssc -f ../toast/css/4-grid/css.conf
 ./ssc -f ../toast/css/5-grid/css.conf
+./ssc -f ../toast/css/3-hdr/css.conf
 ./ssc -f ../toast/css/3-highlight/css.conf
 ./ssc -f ../toast/css/3-image/css.conf
 ./ssc -f ../toast/css/4-image/css.conf
 ./ssc -f ../toast/css/5-image/css.conf
+./ssc -f ../toast/css/3-img-anim/css.conf
 ./ssc -f ../toast/css/3-inline/css.conf
 ./ssc -f ../toast/css/3-linkparam/css.conf
 ./ssc -f ../toast/css/3-list/css.conf
@@ -91,15 +95,19 @@
 ./ssc -f ../toast/css/4-media/css.conf
 ./ssc -f ../toast/css/5-media/css.conf
 ./ssc -f ../toast/css/3-motion/css.conf
+./ssc -f ../toast/css/3-multicolumn/css.conf
+./ssc -f ../toast/css/4-multicolumn/css.conf
 ./ssc -f ../toast/css/3-nes/css.conf
 ./ssc -f ../toast/css/3-nesting/css.conf
 ./ssc -f ../toast/css/3-ns/css.conf
 ./ssc -f ../toast/css/3-overflow/css.conf
 ./ssc -f ../toast/css/4-overflow/css.conf
+./ssc -f ../toast/css/5-overflow/css.conf
 ./ssc -f ../toast/css/3-overscroll/css.conf
 ./ssc -f ../toast/css/3-page/css.conf
 ./ssc -f ../toast/css/4-page/css.conf
 ./ssc -f ../toast/css/3-pagetemp/css.conf
+./ssc -f ../toast/css/3-paint-api/css.conf
 ./ssc -f ../toast/css/3-position/css.conf
 ./ssc -f ../toast/css/3-present/css.conf
 ./ssc -f ../toast/css/4-pseudo/css.conf
@@ -113,6 +121,7 @@
 ./ssc -f ../toast/css/3-sda/css.conf
 ./ssc -f ../toast/css/3-sel/css.conf
 ./ssc -f ../toast/css/4-sel/css.conf
+./ssc -f ../toast/css/5-sel/css.conf
 ./ssc -f ../toast/css/3-shadow/css.conf
 ./ssc -f ../toast/css/3-shape/css.conf
 ./ssc -f ../toast/css/3-snap/css.conf
@@ -134,6 +143,7 @@
 ./ssc -f ../toast/css/3-value/css.conf
 ./ssc -f ../toast/css/4-value/css.conf
 ./ssc -f ../toast/css/3-view/css.conf
+./ssc -f ../toast/css/4-view/css.conf
 ./ssc -f ../toast/css/3-wc/css.conf
 ./ssc -f ../toast/css/3-writing/css.conf
 ./ssc -f ../toast/css/4-writing/css.conf

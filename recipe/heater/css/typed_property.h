@@ -251,6 +251,8 @@ property_v_ptr make_route_v_ptr (arguments& args, const int start, const int to,
 property_v_ptr make_route_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const e_token t);
 property_v_ptr make_viewport_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const e_token t);
 property_v_ptr make_viewport_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const e_token t);
+property_v_ptr make_view_transition_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const e_token t);
+property_v_ptr make_view_transition_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const e_token t);
 
 #ifdef _MSC_VER
 #pragma warning (pop)

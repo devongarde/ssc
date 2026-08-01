@@ -84,9 +84,14 @@ e_status set_css_col_value (nitpick& nits, const html_version& v, const ::std::s
         nits.pick (nit_empty, es_error, ec_type, "a colour expected");
     else
     {   nitpick nuts, nets, nots, nats;
-        switch (v.css_module (c_colour))
+        const int m = (v.css_module (c_hdr) > 0) ? 5 : v.css_module (c_colour);
+        switch (m)
         {   case 6 :
             case 5 :
+                if (test_value < t_css_colour_5 > (nuts, v, s))
+                {   nits.merge (nuts);
+                    return s_good; }
+                FALLTHROUGH;
             case 4 :
                 if (test_value < t_css_colour_4 > (nuts, v, s))
                 {   nits.merge (nuts);

@@ -130,6 +130,7 @@ struct symbol_entry < html_version, e_media > media_symbol_table [] =
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "overflow-inline", md_overflow_inline, ns_default, CF_MEDIA_PROPERTY },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "paged", md_paged, ns_default, CF_MEDIA_VALUE },
     { { HTML_FEB23, 0, HE_EXPERIMENTAL, 0, H3_CSS_EGG }, { HTML_UNDEF }, "performance", md_performance, ns_default, CF_MEDIA_PROPERTY },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "picture-in-picture", md_picture_in_picture, ns_default, CF_MEDIA_VALUE },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "pointer", md_pointer, ns_default, CF_MEDIA_PROPERTY },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "portrait", md_portrait, ns_default, CF_MEDIA_VALUE },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "(+ve number)", md_positive },

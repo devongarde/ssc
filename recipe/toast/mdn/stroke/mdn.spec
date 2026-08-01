@@ -5,7 +5,6 @@ PASS ../toast/mdn/stroke/index.html
 
 PASS ../toast/mdn/stroke/stroke.html
 2 naughty_lang
-5 css_custom
 61 inserted_missing_closure
 62 inserted_missing_closure
 68 inserted_missing_closure

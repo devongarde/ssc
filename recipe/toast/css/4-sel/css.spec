@@ -26,6 +26,9 @@ PASS ../toast/css/4-sel/css-8.css
 5 class_microformat_property
 8 css_syntax pseud
 
+PASS ../toast/css/4-sel/css-10.css
+1 css_version
+
 PASS ../toast/css/4-sel/css-13.html
 2 naughty_lang
 5 long_title

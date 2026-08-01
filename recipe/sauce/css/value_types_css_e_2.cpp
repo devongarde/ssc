@@ -24,6 +24,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/value.h"
 #include "css/value_types.h"
 
-int test_value_fns_css_e (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id)
-{   return value_types < SSC_TYPES_CSS_E, t_unknown > :: check (args, start, to, nits, t, fn, id); }
+int test_value_fns_css_e_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id)
+{   return value_types < SSC_TYPES_CSS_E_2, t_unknown > :: check (args, start, to, nits, t, fn, id); }
 #endif // LIMITED_META_COMPLEXITY

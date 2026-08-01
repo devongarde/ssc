@@ -970,6 +970,7 @@ void options::init (context_t& c)
         (CSS HIGHLIGHT, ::boost::program_options::value < int > (), "CSS Custom Highlight level (0, 3, or 4).")
         (CSS HYPERLINK, ::boost::program_options::value < int > (), "CSS Hyperlink level (0 or 3).")
         (CSS IMAGE, ::boost::program_options::value < int > (), "CSS Images level (0, 3, 4, or 5).")
+        (CSS IMG_ANIM, ::boost::program_options::value < int > (), "CSS Image Animation level (0 or 3).")
         (CSS INLINE, ::boost::program_options::value < int > (), "CSS Inline Layout level (0 or 3).")
         (CSS LINE_GRID, ::boost::program_options::value < int > (), "CSS Line Grid level (0 or 3).")
         (CSS LINK_PARAM, ::boost::program_options::value < int > (), "CSS Linked Parameters level (0 or 3).")
@@ -986,11 +987,12 @@ void options::init (context_t& c)
         (CSS NAMESPACE, ::boost::program_options::value < int > (), "CSS Namespace level (0 or 3).")
         (CSS NES, ::boost::program_options::value < int > (), "CSS Non-Element Selectors level (0 or 3).")
         (CSS NESTING, ::boost::program_options::value < int > (), "CSS Nesting level (0 or 3).")
-        (CSS OVERFLOH, ::boost::program_options::value < int > (), "CSS Overflow level (0, 3 or 4).")
+        (CSS OVERFLOH, ::boost::program_options::value < int > (), "CSS Overflow level (0, 3, 4 or 5).")
         (CSS OVERSCROLL, ::boost::program_options::value < int > (), "CSS Overscroll Behaviour level (0 or 3).")
         (CSS PAGE, ::boost::program_options::value < int > (), "CSS Paged Media level (0, 3 or 4).")
         (CSS PAGETEMP, ::boost::program_options::value < int > (), "CSS Pagination Template level (0 or 3).")
         (CSS PDA, ::boost::program_options::value < int > (), "CSS Pointer-Driven Animations level (0 or 3).")
+        (CSS PAINT_API, ::boost::program_options::value < int > (), "CSS Painting API level (0 or 3).")
         (CSS POSITION, ::boost::program_options::value < int > (), "CSS Positions level (0 or 3).")
         (CSS PRESENT, ::boost::program_options::value < int > (), "CSS Presentation Levels level (0 or 3).")
         (CSS PRINT, ::boost::program_options::bool_switch (), "Notify if some CSS conflicts with the CSS Print Profile.")
@@ -1842,6 +1844,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_scroll_anchoring, n, nits, CSS ANCHOR, "Scrollbar Anchoring", 4);
         process_css_level (c, c_anchor_pos, n, nits, CSS ANCHOR_POS, "Anchor Positioning", 4);
         process_css_level (c, c_animation, n, nits, CSS ANIMATION, "Animation", 4);
+        process_css_level (c, c_animation_trigger, n, nits, CSS ANIM_TRIG, "Animation Trigger", 3);
         process_css_level (c, c_background_border, n, nits, CSS BACKGROUND, "Background Border", 4);
         process_css_level (c, c_box_alignment, n, nits, CSS BOX_ALIGN, "Background Alignment", 3);
         process_css_level (c, c_border_box, n, nits, CSS BORDER, "Border Box", 4);
@@ -1874,6 +1877,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_custom_highlight, n, nits, CSS HIGHLIGHT, "Custom Highlight", 4);
         process_css_level (c, c_hyperlink_presentation, n, nits, CSS HYPERLINK, "Hyperlink", 5);
         process_css_level (c, c_image, n, nits, CSS IMAGE, "Image", 5);
+        process_css_level (c, c_image_animation, n, nits, CSS IMG_ANIM, "Image Animation", 3);
         process_css_level (c, c_inline_layout, n, nits, CSS INLINE, "Inline Layout", 3);
         process_css_level (c, c_line_grid, n, nits, CSS LINE_GRID, "Line Grid", 3);
         process_css_level (c, c_linked_parameters, n, nits, CSS LINK_PARAM, "Linked Parameters", 3);
@@ -1890,10 +1894,11 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_namespace, n, nits, CSS NAMESPACE, "Namespace", 3);
         process_css_level (c, c_non_element_selector, n, nits, CSS NES, "non-Element Selectors", 3);
         process_css_level (c, c_nesting, n, nits, CSS NESTING, "Nesting", 3);
-        process_css_level (c, c_overflow, n, nits, CSS OVERFLOH, "Overflow", 4);
+        process_css_level (c, c_overflow, n, nits, CSS OVERFLOH, "Overflow", 5);
         process_css_level (c, c_overscroll_behaviour, n, nits, CSS OVERSCROLL, "Overscroll Behaviour", 3);
         process_css_level (c, c_paged_media, n, nits, CSS PAGE, "Paged Media", 4);
         process_css_level (c, c_page_template, n, nits, CSS PAGETEMP, "Pagination Template", 3);
+        process_css_level (c, c_painting_api, n, nits, CSS PAINT_API, "Painting API", 3);
         process_css_level (c, c_pda, n, nits, CSS PDA, "Pointer-Driven Animations", 3);
         process_css_level (c, c_positioned_layout, n, nits, CSS POSITION, "Positioned Layout", 3);
         process_css_level (c, c_presentation_level, n, nits, CSS PRESENT, "Presentation Levels", 3);
@@ -1925,7 +1930,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         yea_nay (c, &context_t::tv_profile, nits, CSS TV, CSS DONT TV);
         process_css_level (c, c_basic_user_interface, n, nits, CSS UI, "UI", 4);
         process_css_level (c, c_value_unit, n, nits, CSS VAL, "Values and Units", 4);
-        process_css_level (c, c_view_transition, n, nits, CSS VIEW, "View Transitions", 3);
+        process_css_level (c, c_view_transition, n, nits, CSS VIEW, "View Transitions", 4);
         process_css_level (c, c_viewport, n, nits, CSS VIEWPORT, "Viewport", 3);
         process_css_level (c, c_will_change, n, nits, CSS WC, "Will Change", 3);
         process_css_level (c, c_writing_mode, n, nits, CSS WRITING, "Writing Mode", 4);
@@ -2713,6 +2718,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, CSS, HIGHLIGHT, css);
     RG (gr, res, int, CSS, HYPERLINK, css);
     RG (gr, res, int, CSS, IMAGE, css);
+    RG (gr, res, int, CSS, IMG_ANIM, css);
     RG (gr, res, int, CSS, INLINE, css);
     RG (gr, res, int, CSS, LINE_GRID, css);
     RG (gr, res, int, CSS, LINK_PARAM, css);
@@ -2732,6 +2738,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, CSS, OVERSCROLL, css);
     RG (gr, res, int, CSS, PAGE, css);
     RG (gr, res, int, CSS, PAGETEMP, css);
+    RG (gr, res, int, CSS, PAINT_API, css);
     RG (gr, res, int, CSS, PDA, css);
     RG (gr, res, int, CSS, POSITION, css);
     RG (gr, res, int, CSS, PRESENT, css);      

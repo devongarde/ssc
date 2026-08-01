@@ -66,6 +66,7 @@ class statement
     void parse_supports (arguments& args, nitpick& nits, const int from, const int to);
     void parse_template (arguments& args, nitpick& nits, const int from, const int to);
     void parse_viewport (arguments& args, nitpick& nits, const int from, const int to);
+    void parse_view_transition (arguments& args, nitpick& nits, const int from, const int to);
     void parse_when (arguments& args, nitpick& nits, const int from, const int to);
     void bracketed_property (arguments& args, nitpick& nits, const int to, int& i, const bool atsupports = false, const e_supports su = su_none);
     void conditional (arguments& args, nitpick& nits, const int from, const int to);
