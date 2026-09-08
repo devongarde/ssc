@@ -6,7 +6,7 @@ PASS ../toast/RDFa/cc/cc.html
 56 unrecognised_namespace unrecognised_namespace unrecognised_value unrecognised_value unrecognised_value
 59 missing_close
 61 unrecognised_value
-73 wrong_parent wrong_parent no_such_folder url_not_found interactive
+73 wrong_parent no_such_folder url_not_found interactive
 75 unrecognised_value
 78 missing_close not_ontology_property bad_property missing_open
 80 unrecognised_value

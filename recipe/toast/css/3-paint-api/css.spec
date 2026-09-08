@@ -9,17 +9,17 @@ PASS ../toast/css/3-paint-api/css-7.html
 
 PASS ../toast/css/3-paint-api/css-8-1.html
 0 title_required
-2 unrecognised_value inserted_missing_parent inefficient naughty_lang inserted_missing_parent inefficient inefficient
+2 unrecognised_value inserted_missing_parent inefficient naughty_lang inserted_missing_parent inefficient
 17 inserted_missing_parent inefficient inserted_missing_parent missing_close
 
 PASS ../toast/css/3-paint-api/css-8-2.html
 0 title_required
-2 inserted_missing_parent inefficient naughty_lang inserted_missing_parent inefficient inefficient
+2 inserted_missing_parent inefficient naughty_lang inserted_missing_parent inefficient
 9 inserted_missing_parent inefficient
 
 PASS ../toast/css/3-paint-api/css-8-3.html
 0 title_required
-2 inserted_missing_parent inefficient naughty_lang inserted_missing_parent inefficient inefficient
+2 inserted_missing_parent inefficient naughty_lang inserted_missing_parent inefficient
 14 inserted_missing_parent inefficient
 
 PASS ../toast/css/3-paint-api/css-8-4.html

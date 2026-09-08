@@ -1435,7 +1435,7 @@ struct symbol_entry < html_version, e_mimetype > mimetype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "application/xml-patch+xml", mime_application_xml_patch_xml, ns_default, MIME_APPLICATION | MIME_XML },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/xmpp+xml", mime_application_xmpp_xml, ns_default, MIME_APPLICATION | MIME_XML },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/xop+xml", mime_application_xop_xml, ns_default, MIME_APPLICATION | MIME_XML },
-    { { HTML_4_0 }, { HTML_UNDEF }, "application/xslt+xml", mime_application_xslt_xml, ns_default, MIME_APPLICATION | MIME_XML },
+    { { HTML_4_0 }, { HTML_SEP26 }, "application/xslt+xml", mime_application_xslt_xml, ns_default, MIME_APPLICATION | MIME_XML },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/xv+xml", mime_application_xv_xml, ns_default, MIME_APPLICATION | MIME_XML },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/yang", mime_application_yang, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/yang-data+json", mime_application_yang_data_json, ns_default, MIME_APPLICATION | MIME_JSON },

@@ -3376,6 +3376,9 @@
     <ClCompile Include="..\sauce\css\value_types_css_e_2.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_b_5.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\toast\stats\single\index.html">

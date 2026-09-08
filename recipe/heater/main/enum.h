@@ -117,7 +117,7 @@ typedef enum { csp_always, csp_auto, csp_never } e_always_auto_never;
 typedef enum { ean_always, ean_normal } e_always_normal;
 typedef enum { anal_default, anal_original, anal_aug25, anal_dec25 } e_analysis;
 CONSTEXPR e_analysis max_analysis = anal_dec25;
-typedef enum {  at_none, at_custom, at_angle, at_colour, at_coordinate, at_frequency, at_integer, at_percentage, at_length, at_list, at_number, at_paint, at_time,
+typedef enum {  at_none, at_custom, at_angle, at_colour, at_coordinate, at_discrete, at_frequency, at_integer, at_percentage, at_length, at_list, at_number, at_paint, at_time,
                 at_transform, at_url, at_other } e_animation_type;
 typedef enum { anw_auto, anw_nowrap, anw_wrap } e_anw;
 typedef enum { ebn_anywhere, ebn_break_word, ebn_normal } e_anywhere_break_normal;
@@ -392,6 +392,7 @@ typedef enum { btyy_bottom, btyy_top, btyy_y_end, btyy_y_start } e_btyy;
 typedef enum { br_auto, br_dynamic, br_static, br_inherit } e_buffered_rendering;
 typedef enum { bu_button, bu_submit, bu_reset } e_button;
 typedef enum { bm_ansi, bm_utf8, bm_utf16_be, bm_utf16_le, bm_utf32_be, bm_utf32_le, bm_utf7, bm_utf1, bm_utf_ebcdic, bm_scsu, bm_bocu_1, bm_gb_1830, bm_error } byte_order_mark;
+typedef enum { bt_by, bt_to } e_byto;
 typedef enum { ck_maxage, ck_maxstale, ck_minfresh, ck_nocache, ck_nostore, ck_notransform, ck_onlyifcached } e_cachekey;
 typedef enum { cs_free, cs_loading, cs_empty, cs_content, cs_error } e_cache_state;
 typedef enum { cm_discrete, cm_linear, cm_paced, cm_spline } e_calcmode;
@@ -742,6 +743,7 @@ typedef enum { eccb_border_box, eccb_content_box, eccb_fill_box, eccb_match_pare
 typedef enum { eccp_centre, eccp_end, eccp_flex_end, eccp_flex_start, eccp_self_end, eccp_self_start, eccp_start } e_css_content_position;
 typedef enum { ecxp_fill, ecxp_fill_opacity, ecxp_stroke, ecxp_stroke_opacity } e_css_context_properties;
 typedef enum { ccsn_bevel, ccsn_notch, ccsn_round, ccsn_scoop, ccsn_square, ccsn_squircle } e_css_corner_shape_name;
+typedef enum { cs_corners, cs_sides } e_corners_sides;
 typedef enum {  eccs_inherit, eccs_initial, eccs_moz_initial, eccs_none, eccs_revert, eccs_revert_layer, eccs_unset,
                 eccs_arabic_indic, eccs_armenian, eccs_bengali, eccs_cambodian, eccs_circle, eccs_cjk_decimal, eccs_cjk_earthly_branch, eccs_cjk_heavenly_stem,
                 eccs_decimal, eccs_decimal_leading_zero, eccs_devanagari, eccs_disc, eccs_disclosure_closed, eccs_disclosure_open, eccs_ethiopic_numeric, eccs_georgian,
@@ -840,10 +842,11 @@ typedef enum {  ecff_aalt, ecff_abvf, ecff_abvm, ecff_abvs, ecff_afrc, ecff_akhn
                 ecff_vrtr, ecff_zero } e_css_font_feature;
 
 typedef enum {  efsa_cap_height, efsa_ch_width, efsa_ex_height, efsa_ic_height, efsa_ic_width } e_css_font_size_adjust_e;
-typedef enum {  ecft_colour_cbdt, ecft_colour_colrv0, ecft_colour_colrv1, ecft_colour_sbix, ecft_colour_svg, ecft_feature_aat, ecft_feature_graphite, ecft_feature_opentype, ecft_incremental,
-                ecft_palette, ecft_variations } e_css_font_tech;
+typedef enum {  ecft_avar2, ecft_colour_cbdt, ecft_colour_colrv0, ecft_colour_colrv1, ecft_colour_sbix, ecft_colour_svg, ecft_feature_aat, ecft_feature_graphite,
+                ecft_feature_opentype, ecft_incremental, ecft_palette, ecft_variations } e_css_font_tech;
 typedef enum { ecfn_down, ecfn_nearest, ecfn_to_zero, ecfn_up } e_css_fn_round_t;
-typedef enum { ecfw_all, ecfw_normal, ecfw_bold, ecfw_bolder, ecfw_lighter, ecfw_100, ecfw_200, ecfw_300, ecfw_400, ecfw_500, ecfw_600, ecfw_700, ecfw_800, ecfw_900, ecfw_inherit } e_css_font_weight;
+typedef enum {  ecfw_all, ecfw_normal, ecfw_bold, ecfw_bolder, ecfw_lighter, ecfw_100, ecfw_200, ecfw_300, ecfw_400, ecfw_500, ecfw_600, ecfw_700, ecfw_800,
+                ecfw_900, ecfw_inherit } e_css_font_weight;
 typedef enum {  efn_none,
                 efn_above_level, efn_active, efn_active_navigation, efn_active_view_transition, efn_active_view_transition_type, efn_after, efn_animated_image,
                     efn_any_link, efn_at_level, efn_attr, efn_auto, efn_autofill,
@@ -914,6 +917,7 @@ typedef enum { eci_auto, eci_isolate } e_css_isolation;
 typedef enum { ejc_centre, ejc_end, ejc_flex_end, ejc_flex_start, ejc_left, ejc_right, ejc_space_around, ejc_space_between, ejc_space_evenly, ejc_start, ejc_stretch } e_css_justify_content;
 typedef enum { eclb_border_box, eclb_content_box, eclb_margin_box, eclb_padding_box } e_css_layout_box;
 typedef enum { clb_anywhere, clb_auto, clb_loose, clb_normal, clb_strict } e_css_line_break;
+typedef enum { lwe_hairline, lwe_medium, lwe_thick, lwe_thin } e_css_line_width_e;
 typedef enum {  ecls_inherit,
                 ecl_arabic_indic, ecl_armenian,
                 ecl_bengali,
@@ -1019,27 +1023,29 @@ typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                 ec_backdrop_filter, ec_backface_visibility, ec_background, ec_background_attachment, ec_background_blend_mode, ec_background_break,
                     ec_background_clip, ec_background_colour, ec_background_image, ec_background_image_transform, ec_background_origin,
                     ec_background_origin_x, ec_background_origin_y, ec_background_position, ec_background_position_block, ec_background_position_inline,
-                    ec_background_position_x, ec_background_position_y, ec_background_quantity, ec_background_repeat,
-                    ec_background_repeat_block, ec_background_repeat_inline, ec_background_repeat_x, ec_background_repeat_y, ec_background_size,
-                    ec_background_spacing, ec_background_tbd, ec_baseline, ec_baseline_shift, ec_baseline_source, ec_base_palette, ec_base_url, ec_bbox,
-                    ec_bikeshedding, ec_bleed, ec_block_ellipsis, ec_block_overflow, ec_block_progression, ec_block_size, ec_block_step,
-                    ec_block_step_align, ec_block_step_insert, ec_block_step_round, ec_block_step_size, ec_bookmark_label, ec_bookmark_level,
-                    ec_bookmark_state, ec_bookmark_target, ec_border, ec_border_block, ec_border_block_colour, ec_border_block_end,
-                    ec_border_block_end_colour, ec_border_block_end_style, ec_border_block_end_width, ec_border_block_start,
-                    ec_border_block_start_colour, ec_border_block_start_style, ec_border_block_start_width, ec_border_block_style,
-                    ec_border_block_width, ec_border_bottom, ec_border_bottom_colour, ec_border_bottom_left_radius, ec_border_bottom_right_radius,
-                    ec_border_bottom_style, ec_border_bottom_width, ec_border_boundary, ec_border_break, ec_border_collapse, ec_border_colour,
-                    ec_border_end_end_radius, ec_border_end_start_radius, ec_border_image, ec_border_image_outset, ec_border_image_repeat,
-                    ec_border_image_slice, ec_border_image_source, ec_border_image_transform, ec_border_image_width, ec_border_inline,
-                    ec_border_inline_colour, ec_border_inline_end, ec_border_inline_end_colour, ec_border_inline_end_style,
-                    ec_border_inline_end_width, ec_border_inline_start, ec_border_inline_start_colour, ec_border_inline_start_style,
-                    ec_border_inline_start_width, ec_border_inline_style, ec_border_inline_width, ec_border_left, ec_border_left_colour,
-                    ec_border_left_style, ec_border_left_width, ec_border_length, ec_border_radius, ec_border_right, ec_border_right_colour,
-                    ec_border_right_style, ec_border_right_width, ec_border_spacing, ec_border_start_end_radius, ec_border_start_start_radius,
-                    ec_border_style, ec_border_top, ec_border_top_colour, ec_border_top_left_radius, ec_border_top_right_radius,
-                    ec_border_top_style, ec_border_top_width, ec_border_width, ec_bottom, ec_box_align, ec_box_decoration_break, ec_box_break,
-                    ec_box_direction, ec_box_flex, ec_box_flex_group, ec_box_height, ec_box_lines, ec_box_ordinal_group, ec_box_orient, ec_box_pack,
-                    ec_box_suppress, ec_box_width,ec_box_shadow, ec_box_sizing, ec_box_snap, ec_break_after, ec_break_before, ec_break_inside,
+                    ec_background_position_x, ec_background_position_y, ec_background_quantity, ec_background_repeat, ec_background_repeat_block,
+                    ec_background_repeat_inline, ec_background_repeat_x, ec_background_repeat_y, ec_background_size, ec_background_spacing, ec_background_tbd,
+                    ec_baseline, ec_baseline_shift, ec_baseline_source, ec_base_palette, ec_base_url, ec_bbox, ec_bikeshedding, ec_bleed, ec_block_ellipsis,
+                    ec_block_overflow, ec_block_progression, ec_block_size, ec_block_step, ec_block_step_align, ec_block_step_insert, ec_block_step_round,
+                    ec_block_step_size, ec_bookmark_label, ec_bookmark_level, ec_bookmark_state, ec_bookmark_target, ec_border, ec_border_block,
+                    ec_border_block_clip, ec_border_block_colour, ec_border_block_end, ec_border_block_end_clip, ec_border_block_end_colour,
+                    ec_border_block_end_radius, ec_border_block_end_style, ec_border_block_end_width, ec_border_block_start, ec_border_block_start_clip,
+                    ec_border_block_start_colour, ec_border_block_start_radius, ec_border_block_start_style, ec_border_block_start_width, ec_border_block_style,
+                    ec_border_block_width, ec_border_bottom, ec_border_bottom_clip, ec_border_bottom_colour, ec_border_bottom_left_radius, ec_border_bottom_radius,
+                    ec_border_bottom_right_radius, ec_border_bottom_style, ec_border_bottom_width, ec_border_boundary, ec_border_break, ec_border_clip,
+                    ec_border_collapse, ec_border_colour, ec_border_end_end_radius, ec_border_end_start_radius, ec_border_image, ec_border_image_outset,
+                    ec_border_image_repeat, ec_border_image_slice, ec_border_image_source, ec_border_image_transform, ec_border_image_width, ec_border_inline,
+                    ec_border_inline_clip, ec_border_inline_colour, ec_border_inline_end, ec_border_inline_end_clip, ec_border_inline_end_colour,
+                    ec_border_inline_end_radius, ec_border_inline_end_style, ec_border_inline_end_width, ec_border_inline_start, ec_border_inline_start_clip,
+                    ec_border_inline_start_colour, ec_border_inline_start_radius, ec_border_inline_start_style, ec_border_inline_start_width, ec_border_inline_style,
+                    ec_border_inline_width, ec_border_left, ec_border_left_clip, ec_border_left_colour, ec_border_left_radius, ec_border_left_style,
+                    ec_border_left_width, ec_border_length, ec_border_limit, ec_border_radius, ec_border_right, ec_border_right_clip, ec_border_right_colour,
+                    ec_border_right_radius, ec_border_right_style, ec_border_right_width, ec_border_shape, ec_border_spacing, ec_border_start_end_radius,
+                    ec_border_start_start_radius, ec_border_style, ec_border_top, ec_border_top_clip, ec_border_top_colour, ec_border_top_left_radius,
+                    ec_border_top_radius, ec_border_top_right_radius, ec_border_top_style, ec_border_top_width, ec_border_width, ec_bottom, ec_box_align,
+                    ec_box_decoration_break, ec_box_break, ec_box_direction, ec_box_flex, ec_box_flex_group, ec_box_height, ec_box_lines, ec_box_ordinal_group,
+                    ec_box_orient, ec_box_pack, ec_box_shadow, ec_box_shadow_blur, ec_box_shadow_colour, ec_box_shadow_offset, ec_box_shadow_position,
+                    ec_box_shadow_spread, ec_box_suppress, ec_box_width, ec_box_sizing, ec_box_snap, ec_break_after, ec_break_before, ec_break_inside,
                     ec_buffered_rendering,
                 ec_cap_height, ec_caption_side, ec_caret, ec_caret_animation, ec_caret_colour, ec_caret_shape, ec_centre_line, ec_chains, ec_clear,
                     ec_clear_after, ec_clip, ec_clip_path, ec_clippath, ec_clip_rule, ec_cliprule, ec_colour, ec_colour_adjust, ec_colour_interpolation,
@@ -1075,7 +1081,7 @@ typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                     ec_grid_template, ec_grid_template_areas, ec_grid_template_columns, ec_grid_template_rows,
                 ec_hanging_punctuation, ec_hash, ec_height, ec_hostname, ec_hyphenate_character, ec_hyphenate_limit_chars, ec_hyphenate_limit_last,
                     ec_hyphenate_limit_lines, ec_hyphenate_limit_zone, ec_hyphens,
-                ec_icc_profile, ec_image_animation, ec_image_orientation, ec_image_rendering, ec_image_resolution, ec_initial, ec_initial_letter,
+                ec_icc_profile, ec_if, ec_image_animation, ec_image_orientation, ec_image_rendering, ec_image_resolution, ec_initial, ec_initial_letter,
                     ec_initial_letter_align, ec_initial_letter_wrap, ec_inline_size, ec_inline_sizing, ec_input_security, ec_inset, ec_inset_block,
                     ec_inset_block_end, ec_inset_block_start, ec_inset_inline, ec_inset_inline_end, ec_inset_inline_start, ec_interactive_widget,
                     ec_interactivity, ec_interest_delay, ec_interest_delay_start, ec_interest_delay_end, ec_interpolate_size, ec_isolation,
@@ -1088,12 +1094,11 @@ typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                 ec_margin, ec_margin_block, ec_margin_block_end, ec_margin_block_start, ec_margin_bottom, ec_margin_break, ec_margin_inline,
                     ec_margin_inline_end, ec_margin_inline_start, ec_margin_left, ec_margin_right, ec_margin_top, ec_margin_trim, ec_marker,
                     ec_marker_end, ec_marker_knockout_left, ec_marker_knockout_right, ec_marker_mid, ec_marker_offset, ec_marker_pattern, ec_marker_segment,
-                    ec_marker_side, ec_marker_start, ec_marks, ec_mask,
-                    ec_mask_border, ec_mask_border_mode, ec_mask_border_outset, ec_mask_border_repeat, ec_mask_border_slice, ec_mask_border_source,
-                    ec_mask_border_width, ec_mask_clip, ec_mask_composite, ec_mask_image, ec_mask_mode, ec_mask_origin, ec_mask_position, ec_mask_repeat,
-                    ec_mask_size, ec_mask_type, ec_math_depth, ec_mathline, ec_math_shift, ec_math_style, ec_max_block_size, ec_max_height, ec_max_inline_size,
-                    ec_max_lines, ec_max_width, ec_max_zoom, ec_min_block_size, ec_min_height, ec_min_inline_size, ec_min_intrinsic_sizing, ec_min_width,
-                    ec_min_zoom, ec_mix_blend_mode,
+                    ec_marker_side, ec_marker_start, ec_marks, ec_mask, ec_mask_border, ec_mask_border_mode, ec_mask_border_outset, ec_mask_border_repeat,
+                    ec_mask_border_slice, ec_mask_border_source, ec_mask_border_width, ec_mask_clip, ec_mask_composite, ec_mask_image, ec_mask_mode,
+                    ec_mask_origin, ec_mask_position, ec_mask_repeat, ec_mask_size, ec_mask_type, ec_math_depth, ec_mathline, ec_math_shift, ec_math_style,
+                    ec_max_block_size, ec_max_height, ec_max_inline_size, ec_max_lines, ec_max_width, ec_max_zoom, ec_media, ec_min_block_size,
+                    ec_min_height, ec_min_inline_size, ec_min_intrinsic_sizing, ec_min_width, ec_min_zoom, ec_mix_blend_mode,
                 ec_name, ec_negative, ec_nav_down, ec_nav_left, ec_nav_right, ec_nav_up, ec_navigation,
                 ec_object_fit, ec_object_position, ec_object_view_box, ec_offset, ec_offset_anchor, ec_offset_distance, ec_offset_path, ec_offset_position,
                     ec_offset_rotate, ec_orientation, ec_opacity, ec_order, ec_orphans, ec_outline, ec_outline_colour, ec_outline_offset, ec_outline_style,
@@ -1128,10 +1133,10 @@ typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                     ec_spatial_navigation_action, ec_spatial_navigation_contain, ec_spatial_navigation_function, ec_speak, ec_speak_as, ec_speak_header, ec_speak_numeral,
                     ec_speak_punctuation, ec_specificity, ec_speech_rate, ec_src, ec_stemh, ec_stemv, ec_stress, ec_string_set, ec_stop_colour, ec_stop_opacity, ec_stroke,
                     ec_stroke_align, ec_stroke_alignment, ec_stroke_break, ec_stroke_colour, ec_stroke_dashadjust, ec_stroke_dasharray, ec_stroke_dashcorner,
-                    ec_stroke_dash_corner, ec_stroke_dash_justify, ec_stroke_dashoffset,
-                    ec_stroke_image, ec_stroke_linecap, ec_stroke_linejoin, ec_stroke_miterlimit, ec_stroke_opacity, ec_stroke_origin, ec_stroke_params,
-                    ec_stroke_position, ec_stroke_repeat, ec_stroke_size, ec_stroke_width, ec_subscript_position_override, ec_subscript_size_override,
-                    ec_suffix, ec_superscript_position_override, ec_superscript_size_override, ec_symbols, ec_system,
+                    ec_stroke_dash_corner, ec_stroke_dash_justify, ec_stroke_dashoffset, ec_stroke_image, ec_stroke_linecap, ec_stroke_linejoin, ec_stroke_miterlimit,
+                    ec_stroke_opacity, ec_stroke_origin, ec_stroke_params, ec_stroke_position, ec_stroke_repeat, ec_stroke_size, ec_stroke_width, ec_style,
+                    ec_subscript_position_override, ec_subscript_size_override, ec_suffix, ec_superscript_position_override, ec_superscript_size_override, ec_supports,
+                    ec_symbols, ec_system,
                 ec_tab_size, ec_table_layout, ec_template_set, ec_text_align, ec_text_align_all, ec_text_align_last, ec_text_anchor, ec_text_autospace, ec_text_box,
                     ec_text_box_edge, ec_text_box_trim, ec_text_combine_upright, ec_text_decoration, ec_text_decoration_colour, ec_text_decoration_inset,
                     ec_text_decoration_line, ec_text_decoration_skip, ec_text_decoration_skip_box, ec_text_decoration_skip_edges, ec_text_decoration_skip_ink,
@@ -1471,12 +1476,12 @@ typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                 ec_error } e_css_property;
 
 typedef enum { cpto_most_block_size, cpto_most_height, cpto_most_inline_size, cpto_most_width } e_css_pto;
-typedef enum { crs_closest_corner, crs_closest_side, crs_farthest_corner, crs_farthest_size } e_css_radial_size;
+typedef enum { crs_closest_corner, crs_closest_side, crs_farthest_corner, crs_farthest_side } e_css_radial_size;
 typedef enum { cry_closest_corner, cry_closest_side, cry_farthest_corner, cry_farthest_side, cry_sides  } e_css_ray_size;
 typedef enum {  crx_a98_rgb, crx_display_p3, crx_display_p3_linear, crx_prophoto_rgb, crx_rec2020, crx_rec2020_hlg, crx_rec2020_linear, crx_rec2020_pq,
                 crx_rec2100_hlg, crx_rec2100_linear, crx_rec2100_pq,
                 crx_srgb, crx_srgb_linear, crx_xyz, crx_xyz_d50, crx_xyz_d65 } e_css_rgb_xyz;
-typedef enum { ec4_lab, ec4_oklab, ec4_srgb, ec4_srgb_linear, ec4_xyz, ec4_xyz_d50, ec4_xyz_d65 } e_css_rect;
+typedef enum { ec4_a98_rgb, ec4_display_p3, ec4_display_p3_linear, ec4_lab, ec4_oklab, ec4_prophoto_rgb, ec4_rec2020, ec4_srgb, ec4_srgb_linear } e_css_rect;
 typedef enum { ecr_inherit, ecr_larger, ecr_smaller } e_css_relative_size;
 typedef enum { crb_block, crb_inline, crb_x, crb_y } e_css_repeat_bixy;
 typedef enum { ecz_block, ecz_both, ecz_horizontal, ecz_inherit, ecz_inline, ecz_none, ecz_vertical } e_css_resize;
@@ -1564,27 +1569,29 @@ typedef enum { cvc_e, cvc_infinity, cvc_nan, cvc_pi } e_css_val_con;
                 cvf_abs, cvf_acos, cvf_alpha, cvf_anchor, cvf_anchor_size, cvf_anchored, cvf_annotation, cvf_asin, cvf_atan, cvf_atan2, cvf_attr, \
                     cvf_auto, \
                 cvf_blur, cvf_brightness, \
-                cvf_calc, cvf_calc_size, cvf_character_variant, cvf_circle, cvf_clamp, cvf_colour, cvf_colour_layers, cvf_colour_mix, cvf_conic_gradient, \
-                    cvf_content, cvf_contrast, cvf_contrast_colour, cvf_cos, cvf_counter, cvf_counters, cvf_cross_fade, cvf_cubic_bezier, cvf_custom, \
+                cvf_calc, cvf_calc_interpolate, cvf_calc_mix, cvf_calc_size, cvf_character_variant, cvf_circle, cvf_clamp, cvf_colour, cvf_colour_interpolate, \
+                    cvf_colour_layers, cvf_colour_mix, cvf_conic_gradient, cvf_content, cvf_contrast, cvf_contrast_colour, cvf_cos, cvf_counter, cvf_counters, \
+                    cvf_cross_fade, cvf_cross_origin, cvf_cubic_bezier, cvf_custom, cvf_cycle, \
                 cvf_device_cmyk, cvf_double_rainbow, cvf_drop_shadow, cvf_dynamic_range_limit_mix, \
                 cvf_ease, cvf_ease_in, cvf_ease_in_out, cvf_ease_out, cvf_element, cvf_ellipse, cvf_env, cvf_exp, \
                 cvf_fade, cvf_filter, cvf_fit_content, cvf_format, \
                 cvf_greyscale, \
                 cvf_hdr_colour, cvf_historical_forms, cvf_hsl, cvf_hsla, cvf_hue_rotate, cvf_hwb, cvf_hypot, \
-                cvf_ictcp, cvf_if, cvf_image, cvf_image_set, cvf_inset, cvf_invert, \
+                cvf_ictcp, cvf_ident, cvf_if, cvf_image, cvf_image_set, cvf_inherit, cvf_inset, cvf_integrity, cvf_interpolate, cvf_interpolate_size, cvf_invert, \
                 cvf_jzazbz, cvf_jzczhz, \
                 cvf_keypress, \
                 cvf_lab, cvf_lch, cvf_leader, cvf_light_dark, cvf_linear, cvf_linear_gradient, cvf_local, cvf_log, \
                 cvf_matrix, cvf_matrix3d, cvf_max, cvf_media, cvf_min, cvf_minmax, cvf_mix, cvf_mod, cvf_moz_calc, cvf_moz_image_rect, \
                 cvf_oklab, cvf_oklch, cvf_opacity, cvf_ornaments, \
-                cvf_paint, cvf_param, cvf_path, cvf_perspective, cvf_pointer, cvf_polygon, cvf_pow, cvf_progress, \
-                cvf_radial_gradient, cvf_ray, cvf_rect, cvf_rem, cvf_repeat, cvf_repeating_conic_gradient, cvf_repeating_linear_gradient, \
-                    cvf_repeating_radial_gradient, cvf_rgb, cvf_rgba, cvf_rotate, cvf_rotate3d, cvf_rotatex, cvf_rotatey, cvf_rotatez, cvf_round, \
+                cvf_paint, cvf_palette_mix, cvf_param, cvf_path, cvf_perspective, cvf_pointer, cvf_polygon, cvf_pow, cvf_progress, \
+                cvf_radial_gradient, cvf_random, cvf_random_item, cvf_ray, cvf_rect, cvf_referrer_policy, cvf_rem, cvf_repeat, cvf_repeating_conic_gradient, \
+                    cvf_repeating_linear_gradient, cvf_repeating_radial_gradient, cvf_rgb, cvf_rgba, cvf_rotate, cvf_rotate3d, cvf_rotatex, cvf_rotatey, \
+                    cvf_rotatez, cvf_round, \
                 cvf_saturate, cvf_scale, cvf_scale3d, cvf_scalex, cvf_scaley, cvf_scalez, cvf_sepia, cvf_shape, cvf_sibling_count, cvf_sibling_index, \
                     cvf_sign, cvf_sin, cvf_skew, cvf_skewx, cvf_skewy, cvf_snap_block, cvf_snap_inline, cvf_sqrt, cvf_src, cvf_step_end, cvf_step_start, \
                     cvf_steps, cvf_string, cvf_stripes, cvf_style, cvf_styleset, cvf_stylistic, cvf_superellipse, cvf_supports, cvf_swash, cvf_symbols, \
-                cvf_tan, cvf_target_counter, cvf_target_counters, cvf_target_text, cvf_tech, cvf_translate, cvf_translate3d, cvf_translatex, \
-                    cvf_translatey, cvf_translatez, cvf_type, \
+                cvf_tan, cvf_target_counter, cvf_target_counters, cvf_target_text, cvf_tech, cvf_transform_interpolate, cvf_transform_mix, cvf_translate, \
+                    cvf_translate3d, cvf_translatex, cvf_translatey, cvf_translatez, cvf_type, \
                 cvf_url, cvf_url_pattern, \
                 cvf_var, \
                 cvf_wcag2, \
@@ -1702,7 +1709,7 @@ typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32,
                 ed_css_page_template, ed_print_profile,
                 ed_css_selectors_3, ed_css_selectors_4, ed_css_syntax,
                 ed_css_table, ed_css_transform,
-                ed_css_ui_3, ed_css_ui_4, ed_css_value_3, ed_css_value_4,
+                ed_css_ui_3, ed_css_ui_4, ed_css_value_3, ed_css_value_4, ed_css_value_5,
                 ed_json, ed_jsonld_1_0, ed_jsonld_1_1,
                 ed_doctype,
                 ed_clacks,
@@ -1837,6 +1844,7 @@ typedef enum {  env_args, env_auth_type, env_config, env_content_length, env_con
                 env_server_port, env_server_protocol, env_server_software } e_environment;
 CONSTEXPR ::std::size_t env_max = static_cast < ::std::size_t > (env_server_software) + 1;
 typedef enum { eeb_additive, eeb_opaque, eeb_subtractive } e_environment_blending;
+typedef enum { eso_end, eso_origin, eso_start } e_eso;
 typedef enum {  evt_converted, evt_copied, evt_created, evt_cropped, evt_edited, evt_filtered, evt_formatted, evt_managed,
                 evt_printed, evt_produced, evt_published, evt_resized, evt_saved, evt_version_updated } e_evt_action;
 typedef enum { eii_r03, eii_r98, eii_thm } e_exif_intind;
@@ -1875,27 +1883,27 @@ typedef enum { fnrs_fast, fnrs_normal, fnrs_slow } e_fnrs;
 typedef enum { fns_fast, fns_none, fns_slow } e_fns;
 typedef enum { fe_caption, fe_icon, fe_menu, fe_message_box, fe_small_caption, fe_status_bar, fe_inherit } e_font_enum;
 
-typedef enum {  fn_context, fn_serif, fn_sans_serif, fn_cursive, fn_fantasy, fn_monospace,
-                fn_emoji, fn_fangsong, fn_math, fn_system_ui, fn_ui_monospace, fn_ui_rounded, fn_ui_sans_serif, fn_ui_serif,
-                fn_al_bayan, fn_american_typewriter, fn_andale_mono, fn_apple_casual, fn_apple_chancery, fn_apple_garamond, fn_apple_gothic, fn_apple_ligothic, fn_apple_lisung,
-                fn_apple_myungjo, fn_apple_symbols, fn_aquakana, fn_arial, fn_arial_black, fn_arial_hebrew, fn_ayuthaya, fn_baghdad, fn_bahnschrift, fn_baskerville, fn_beijing,
-                fn_biaukai, fn_big_caslon, fn_browallia_new, fn_browalliaupc, fn_brush_script, fn_calibri, fn_cambria, fn_cambria_math, fn_candara, fn_cascadia_code,
-                fn_cascadia_mono, fn_chalkboard, fn_chalkduster, fn_charcoal, fn_charcoal_cy, fn_chicago, fn_cochin, fn_comic_sans, fn_comic_sans_ms, fn_consolas, fn_constantia,
-                fn_cooper, fn_copperplate, fn_corbel, fn_corsiva_hebrew, fn_courier, fn_courier_new, fn_decotype_naskh, fn_devanagari, fn_didot, fn_droid_sans, fn_droid_sans_mono,
-                fn_droid_serif, fn_ebrima, fn_euphemia_ucas, fn_franklin_gothic_medium, fn_futura, fn_gabriola, fn_gadget, fn_gadugi, fn_geeza_pro, fn_geezah, fn_geneva,
-                fn_geneva_cy, fn_georgia, fn_gill_sans, fn_gujarati, fn_gung_seoche, fn_gurmukhi, fn_hangangche, fn_headlinea, fn_hei, fn_helvetica, fn_helvetica_cy,
-                fn_helvetica_neue, fn_herculanum, fn_hiragino_kaku_gothic_pro,
-                fn_hiragino_kaku_gothic_pron, fn_hiragino_kaku_gothic_std, fn_hiragino_kaku_gothic_stdn, fn_hiragino_maru_gothic_pro, fn_hiragino_maru_gothic_pron,
-                fn_hiragino_mincho_pro, fn_hiragino_mincho_pron, fn_hoefler_text, fn_hololens_mdl2_assets, fn_impact, fn_inai_mathi, fn_ink_free, fn_javanese_text, fn_jung_gothic,
-                fn_kai, fn_keyboard, fn_krungthep, fn_kuenstler_script, fn_kufistandard_gk, fn_lastresort, fn_leelawadee_ui, fn_lihei_pro, fn_lisong_pro, fn_lucida_console,
-                fn_lucida_sans, fn_lucida_sans_unicode, fn_ms_gothic, fn_mv_boli, fn_malgun_gothic, fn_marker_felt, fn_marlett, fn_menlo, fn_microsoft_himalaya, fn_microsoft_jhenghei,
-                fn_microsoft_new_tai_lue, fn_microsoft_phagspa, fn_microsoft_sans_serif, fn_microsoft_tai_le, fn_microsoft_yahei, fn_microsoft_yi_baiti, fn_mingliu_extb,
-                fn_monaco, fn_monaco_cy, fn_mongolian_baiti, fn_moz_fixed, fn_mshtakan, fn_myanmar_text, fn_nisc_gb18030, fn_nadeem, fn_new_peninim, fn_new_york, fn_nirmala_ui, fn_noto, fn_optima,
-                fn_osaka, fn_pc_myungjo, fn_palatino, fn_palatino_linotype, fn_papyrus, fn_pilgiche, fn_plantagenet_cherokee, fn_raanana, fn_roboto, fn_st_fangsong, fn_st_fangsong_2,
-                fn_st_heiti, fn_st_kaiti, fn_st_song, fn_sand, fn_sathu, fn_segoe_fluent_icons, fn_segoe_mdl2_assets, fn_segoe_print, fn_segoe_script, fn_segoe_ui,
-                fn_segoe_ui_emoji, fn_segoe_ui_historic, fn_segoe_ui_symbol, fn_segoe_ui_variable, fn_seoul, fn_shin_myungjo_neue, fn_silom, fn_simsun, fn_sitka, fn_skia,
-                fn_snell_roundhand, fn_sylfaen, fn_symbol, fn_tae_graphic, fn_tahoma, fn_taipei, fn_techno, fn_textile, fn_thonburi, fn_times, fn_times_cy, fn_times_new_roman,
-                fn_trebuchet_ms, fn_verdana, fn_webdings, fn_wingdings, fn_yu_gothic, fn_zapf_chancery, fn_zapf_dingbats, fn_zapfino, fn_bespoke } e_fontname;
+typedef enum {  fn_context, fn_serif, fn_sans_serif, fn_cursive, fn_fantasy, fn_monospace, fn_emoji, fn_fangsong, fn_math, fn_system_ui, fn_ui_monospace, fn_ui_rounded,
+                fn_ui_sans_serif, fn_ui_serif, fn_al_bayan, fn_american_typewriter, fn_andale_mono, fn_apple_casual, fn_apple_chancery, fn_apple_garamond, fn_apple_gothic,
+                fn_apple_ligothic, fn_apple_lisung, fn_apple_myungjo, fn_apple_symbols, fn_aquakana, fn_arial, fn_arial_black, fn_arial_hebrew, fn_arial_narrow, fn_ayuthaya, fn_baghdad,
+                fn_bahnschrift, fn_baskerville, fn_beijing, fn_biaukai, fn_big_caslon, fn_book_antiqua, fn_browallia_new, fn_browalliaupc, fn_brush_script, fn_calibri,
+                fn_cambria, fn_cambria_math, fn_candara, fn_cascadia_code, fn_cascadia_mono, fn_chalkboard, fn_chalkduster, fn_charcoal, fn_charcoal_cy, fn_chicago, fn_cochin,
+                fn_comic_sans, fn_comic_sans_ms, fn_consolas, fn_constantia, fn_cooper, fn_copperplate, fn_corbel, fn_corsiva_hebrew, fn_courier, fn_courier_new,
+                fn_decotype_naskh, fn_devanagari, fn_didot, fn_droid_sans, fn_droid_sans_mono, fn_droid_serif, fn_ebrima, fn_euphemia_ucas, fn_franklin_gothic_medium,
+                fn_futura, fn_gabriola, fn_gadget, fn_gadugi, fn_geeza_pro, fn_geezah, fn_geneva, fn_geneva_cy, fn_georgia, fn_gill_sans, fn_gujarati, fn_gung_seoche,
+                fn_gurmukhi, fn_hangangche, fn_headlinea, fn_hei, fn_helvetica, fn_helvetica_black, fn_helvetica_cy, fn_helvetica_narrow, fn_helvetica_neue, fn_herculanum,
+                fn_hiragino_kaku_gothic_pro, fn_hiragino_kaku_gothic_pron, fn_hiragino_kaku_gothic_std, fn_hiragino_kaku_gothic_stdn, fn_hiragino_maru_gothic_pro,
+                fn_hiragino_maru_gothic_pron, fn_hiragino_mincho_pro, fn_hiragino_mincho_pron, fn_hoefler_text, fn_hololens_mdl2_assets, fn_impact, fn_inai_mathi, fn_ink_free,
+                fn_javanese_text, fn_jung_gothic, fn_kai, fn_keyboard, fn_krungthep, fn_kuenstler_script, fn_kufistandard_gk, fn_lastresort, fn_leelawadee_ui, fn_lihei_pro,
+                fn_lisong_pro, fn_lucida_console, fn_lucida_sans, fn_lucida_sans_unicode, fn_ms_gothic, fn_mv_boli, fn_malgun_gothic, fn_marker_felt, fn_marlett, fn_menlo,
+                fn_microsoft_himalaya, fn_microsoft_jhenghei, fn_microsoft_new_tai_lue, fn_microsoft_phagspa, fn_microsoft_sans_serif, fn_microsoft_tai_le, fn_microsoft_yahei,
+                fn_microsoft_yi_baiti, fn_mingliu_extb, fn_minion_web, fn_monaco, fn_monaco_cy, fn_mongolian_baiti, fn_monotype_com, fn_moz_fixed, fn_mshtakan, fn_myanmar_text, fn_myriad_web,
+                fn_nisc_gb18030, fn_nadeem, fn_new_peninim, fn_new_york, fn_nirmala_ui, fn_noto, fn_optima, fn_osaka, fn_pc_myungjo, fn_palatino, fn_palatino_linotype,
+                fn_papyrus, fn_pilgiche, fn_plantagenet_cherokee, fn_raanana, fn_roboto, fn_st_fangsong, fn_st_fangsong_2, fn_st_heiti, fn_st_kaiti, fn_st_song, fn_sand,
+                fn_sathu, fn_segoe_fluent_icons, fn_segoe_mdl2_assets, fn_segoe_print, fn_segoe_script, fn_segoe_ui, fn_segoe_ui_emoji, fn_segoe_ui_historic, fn_segoe_ui_symbol,
+                fn_segoe_ui_variable, fn_seoul, fn_shin_myungjo_neue, fn_silom, fn_simsun, fn_sitka, fn_skia, fn_snell_roundhand, fn_sylfaen, fn_symbol, fn_syntax,
+                fn_tae_graphic, fn_tahoma, fn_taipei, fn_techno, fn_textile, fn_thonburi, fn_times, fn_times_cy, fn_times_new_roman, fn_trebuchet_ms, fn_utopia, fn_verdana,
+                fn_webdings, fn_wingdings, fn_yu_gothic, fn_zapf_chancery, fn_zapf_dingbats, fn_zapfino, fn_bespoke } e_fontname;
 
 typedef enum { fs_italic, fs_normal } e_fontstyle;
 typedef enum { fn_normal, fn_italic, fn_oblique } e_fontnia;
@@ -2030,6 +2038,7 @@ typedef enum
     he_error } e_httpequiv;
 
 typedef enum { ehv_horizontal, ehv_undefined, ehv_vertical } e_huv;
+typedef enum { hl_by, hl_centre, hl_left, hl_right, hl_to, hl_xend, hl_xstart } e_hline;
 typedef enum { if_sec, ical_min, ical_hour, ical_day, ical_week, ical_month, ical_year } e_icalfreq;
 typedef enum {  icc_CGATS21_2_CRPC1, icc_CGATS21_2_CRPC2, icc_CGATS21_2_CRPC3, icc_CGATS21_2_CRPC4, icc_CGATS21_2_CRPC5, icc_CGATS21_2_CRPC6, icc_CGATS21_2_CRPC7,
                 icc_CGATS_GRACoL_TR006_2007, icc_CGATS_SNAP_TR002_2007, icc_CGATS_SWOP_TR003_2007, icc_CGATS_SWOP_TR005_2007, icc_FOGRA39, icc_FOGRA40, icc_FOGRA47,
@@ -2060,6 +2069,7 @@ typedef enum {  i5_button, i5_checkbox, i5_colour, i5_date, i5_datetime, i5_date
 typedef enum { ih_infix, ih_postfix, ih_prefix, ih_silent } e_intent_hint;
 typedef enum { iw_overlays_content, iw_resizes_content, iw_resizes_visual } e_interactive_widget;
 typedef enum { eic_inverted, eic_none } e_inverted_colours;
+typedef enum { io_inset, io_outset } e_io;
 typedef enum { itemprop_bespoke, itemprop_ontology, itemprop_microformat } e_itemprop_category;
 typedef enum { itemtype_none, itemtype_ontology, itemtype_microformat, itemtype_rel } e_itemtype_category;
 typedef enum { jsonld_none, jsonld_1_0, jsonld_1_1 } e_jsonld_version;
@@ -2221,12 +2231,12 @@ typedef enum { lay_irrelevant, lay_relevant } e_layout;
 typedef enum { lcr_left, lcr_centre, lcr_right } e_lcralign;
 typedef enum { crd_left, crd_centre, crd_right, crd_decimalpoint } e_lcrd;
 typedef enum { ln_left, ln_centre, ln_right, ln_none } e_lcrnalign;
-typedef enum { lcrn_left, lcrn_right, lcrn_none } e_lrnalign;
-typedef enum { li_clear, li_float, li_left, li_right, li_none, li_inherit } e_lrnialign;
+typedef enum { ls_legacy, ls_scale } e_legacy_scale;
 typedef enum { l_apc, l_cm, l_ls, l_mm, l_q, l_in, l_pc, l_pls, l_pt, l_px } e_length_absolute;
 typedef enum { l_percent, l_star, l_em, l_ex, l_cap, l_ch, l_ic, l_rem, l_lh, l_rlh, l_vw, l_vh, l_vi, l_vb, l_vmin, l_vmax } e_length_relative;
 typedef enum { lad_spacing, lad_spacingandglyphs } e_lengthadjust;
 typedef enum { ld_dark, ld_light } e_light_dark;
+typedef enum { ela_no, ela_ok, ela_external, ela_hyperlink, ela_popup, c_annotation, ela_external_contextual } e_linkaarea;
 typedef enum { lb_auto, lb_newline, lb_indentingnewline, lb_nobreak, lb_goodbreak, lb_badbreak } e_linebreak;
 typedef enum { ls_before, ls_after, ls_duplicate, ls_infixlinebreakstyle } e_linebreakstyle;
 typedef enum { lc_butt, lc_round, lc_square, lc_inherit } e_linecap;
@@ -2413,6 +2423,8 @@ typedef enum {  lox_none, lox_cache, lox_crosslinks, lox_css, lox_dear, lox_elea
                 lox_itemprop, lox_nits, lox_ns, lox_out, lox_q, lox_rdfa, lox_stats, lox_time, lox_xlynx, lox_error } e_lox;
 typedef enum { lra_all, lra_left, lra_right } e_lraalign;
 typedef enum { lr_left, lr_right } e_lralign;
+typedef enum { lcrn_left, lcrn_right, lcrn_none } e_lrnalign;
+typedef enum { li_clear, li_float, li_left, li_right, li_none, li_inherit } e_lrnialign;
 typedef enum { lrxx_left, lrxx_right, lrxx_x_end, lrxx_x_start } e_lrxx;
 typedef enum { lzz_legacy, lzz_zero_if_extrinsic, lzz_zero_if_scroll } e_lzz;
 typedef enum { mah_go, mah_done, mah_next, mah_search, mah_send } e_mah;
@@ -2491,7 +2503,7 @@ typedef enum { md_delete, md_dialogue, md_get, md_post, md_put } e_method;
 
 typedef enum {
     mn_context,
-// https://www.w3.org/attribute/wiki/Elements/meta
+    // https://www.w3.org/attribute/wiki/Elements/meta
     mn_application, mn_author, mn_description, mn_generator, mn_keywords,
     // HTML 4.01 specification
     mn_identifier,
@@ -2533,6 +2545,9 @@ typedef enum {
     mn_da_contactlastname, mn_da_contactname, mn_da_contacttelephone, mn_da_conversioncurrency, mn_da_conversionid,
     mn_da_conversionvalue, mn_da_goalcurrency, mn_da_goalid, mn_da_goalvalue, mn_da_interactionselector, mn_da_pagerole,
     mn_da_pagetaxonomy, mn_da_pagetitle, mn_da_pageversion, mn_da_sessionid, mn_da_userid, mn_date,
+
+    // CSS Font 5
+    mn_text_scale,
 
     // https://en.wikipedia.org/wiki/Dublin_Core
     mn_dc_contributor, mn_dc_coverage, mn_dc_creator, mn_dc_date, mn_dc_description, mn_dc_format, mn_dc_identifier,
@@ -2637,7 +2652,7 @@ typedef enum {
     mn_validator,
     mn_wget, mn_windows,
     mn_yacybot, mn_yandexbot, mn_yandeximages,        
-    // that's it
+
     mn_illegal } e_metaname;
 CONSTEXPR e_metaname metaname_first_w3 = mn_application;
 CONSTEXPR e_metaname metaname_first_eu = mn_classification;
@@ -2737,7 +2752,7 @@ typedef enum {
     mime_application_tei_xml, mime_application_TETRA_ISI, mime_application_thraud_xml, mime_application_timestamp_query, mime_application_timestamp_reply, mime_application_timestamped_data,
     mime_application_tlsrpt_gzip, mime_application_tlsrpt_json, mime_application_tnauthlist, mime_application_trickle_ice_sdpfrag, mime_application_trig, mime_application_ttml_xml,
     mime_application_tve_trigger, mime_application_tzif, mime_application_tzif_leap, mime_application_ulpfec, mime_application_urc_grpsheet_xml, mime_application_urc_ressheet_xml,
-    mime_application_urc_targetdesc_xml, mime_application_urc_uisocketdesc_xml, mime_application_vbscript, // nearly HTML 4.01 specification example
+    mime_application_urc_targetdesc_xml, mime_application_urc_uisocketdesc_xml, mime_application_vbscript,
     mime_application_vcard_json, mime_application_vcard_xml, mime_application_vemmi, mime_application_vnd_1000minds_decision_model_xml, mime_application_vnd_3gpp_access_transfer_events_xml,
     mime_application_vnd_3gpp_bsf_xml, mime_application_vnd_3gpp_GMOP_xml, mime_application_vnd_3gpp_mc_signalling_ear, mime_application_vnd_3gpp_mcdata_affiliation_command_xml,
     mime_application_vnd_3gpp_mcdata_info_xml, mime_application_vnd_3gpp_mcdata_payload, mime_application_vnd_3gpp_mcdata_service_config_xml, mime_application_vnd_3gpp_mcdata_signalling,
@@ -3142,8 +3157,8 @@ typedef enum {
     mime_text_markdown, mime_text_mizar, mime_text_n3, mime_text_parameters, mime_text_parityfec, mime_text_ping, mime_text_plain,
     mime_text_provenance_notation, mime_text_prs_fallenstein_rst, mime_text_prs_lines_tag, mime_text_prs_prop_logic, mime_text_raptorfec,
     mime_text_RED, mime_text_rfc822_headers, mime_text_richtext, mime_text_rsl, mime_text_rtf, mime_text_rtp_enc_aescm128, mime_text_rtploopback,
-    mime_text_rtx, mime_text_SGML, mime_text_strings, mime_text_t140, mime_text_tab_separated_values, mime_text_tcl, // HTML 4.01 spec example
-    mime_text_troff, mime_text_turtle, mime_text_ulpfec, mime_text_uri_list, mime_text_vbscript, // HTML 4.01 spec example
+    mime_text_rtx, mime_text_SGML, mime_text_strings, mime_text_t140, mime_text_tab_separated_values, mime_text_tcl,
+    mime_text_troff, mime_text_turtle, mime_text_ulpfec, mime_text_uri_list, mime_text_vbscript,
     mime_text_vcard, mime_text_vnd_a, mime_text_vnd_abc, mime_text_vnd_ascii_art, mime_text_vnd_curl, mime_text_vnd_debian_copyright,
     mime_text_vnd_DMClientScript, mime_text_vnd_dvb_subtitle, mime_text_vnd_esmertec_theme_descriptor, mime_text_vnd_ficlab_flt,
     mime_text_vnd_fly, mime_text_vnd_fmi_flexstor, mime_text_vnd_gml, mime_text_vnd_graphviz, mime_text_vnd_hgl, mime_text_vnd_in3d_3dml,
@@ -3395,7 +3410,7 @@ typedef enum
     nit_local_datetime, nit_absolute_datetime, nit_bad_value, nit_cc, nit_mrss, nit_rdfa, nit_ipv4, nit_ipv6, nit_root_cert,
     nit_cert, nit_et, nit_input_type, nit_known_insecure, nit_borked, nit_anchor, nit_css_position_try, nit_css_type,
     nit_negative, nit_css_function, nit_naughty, nit_pagination_template, nit_print_profile, nit_css_vendor, nit_konqueror,
-    nit_route, nit_gap, nit_grid, nit_archaic, nit_refcomb,
+    nit_route, nit_gap, nit_grid, nit_archaic, nit_refcomb, nit_gradient, nit_shape,
 
     nit_incompatible,
 
@@ -3446,7 +3461,7 @@ typedef enum
         nm_context_ssi_exec_text, nm_context_ssi_lastmod, nm_context_ssi_query_string, nm_context_ssi_timefmt, nm_context_ssi_user_name,
         nm_context_stats_export, nm_context_stats_page, nm_context_stats_summary, nm_context_stats_abbr, nm_context_stats_anchor, nm_context_stats_annotation,
         nm_context_stats_attribute, nm_context_stats_category, nm_context_stats_character_variant, nm_context_stats_class, nm_context_stats_content_name,
-        nm_context_stats_counter_style, nm_context_stats_css_property, nm_context_stats_custom_media, //  nm_context_stats_custom_prop,
+        nm_context_stats_counter_style, nm_context_stats_css_property, nm_context_stats_custom_media,
         nm_context_stats_custom_property, nm_context_stats_custom_selector, nm_context_stats_dfn, nm_context_stats_dtdd, nm_context_stats_element,
         nm_context_stats_error, nm_context_stats_file, nm_context_stats_font, nm_context_stats_font_family, nm_context_stats_function, nm_context_stats_highlight,
         nm_context_stats_historical_form, nm_context_stats_id, nm_context_stats_itemid, nm_context_stats_keyframe, nm_context_stats_layer,
@@ -3464,7 +3479,7 @@ typedef enum
     nm_level_name, nm_level_symbol,
     nm_output_account, nm_output_build, nm_output_description, nm_output_operator, nm_output_time,
     nm_note_content, nm_note_title, nm_note_note,
-    nm_nit_after, nm_nit_before, nm_nit_code, nm_nit_doc, nm_nit_doc_link, nm_nit_doc_long, nm_nit_doc_pdf, nm_nit_doc_text, nm_nit_doc_zip,
+    nm_nit_after, nm_nit_before, nm_nit_code, nm_nit_count, nm_nit_doc, nm_nit_doc_link, nm_nit_doc_long, nm_nit_doc_pdf, nm_nit_doc_text, nm_nit_doc_zip,
         nm_nit_explanation, nm_nit_id, nm_nit_line, nm_nit_mote, nm_nit_ns, nm_nit_ref, mn_nits_lost,
     nm_output_format,
     nm_page_error, nm_page_name, nm_page_disk_path, nm_page_site_path, nm_page_path, nm_prog_abbrev, nm_prog_build, nm_prog_fullname, nm_prog_version,
@@ -3534,7 +3549,7 @@ typedef enum { ot_one, ot_two } e_onetwo;
 typedef enum { ott_one, ott_two, ott_three } e_onetwothree;
 typedef enum { oo_off, oo_on } e_onoff;
 
-// (good grief : https://lov.linkeddata.es/dataset/lov/vocabs )
+// (good grief : https://lov.linkeddata.es/dataset/lov/vocabs --- follow up)
 
 // also e_apples_oranges
 #define ONTOLOGIES \
@@ -6182,27 +6197,32 @@ typedef enum
 
     sch_damagedcondition, sch_danceevent, sch_dancegroup, sch_dangerousgoodconsideration, sch_datacatalogue, sch_datadownload, sch_datafeed,
     sch_datafeeditem, sch_datatype, sch_dataset, sch_date, sch_datedmoneyspecification, sch_datetime, sch_dayofweek, sch_dayspa, sch_ddxelement, 
-    sch_deactivateaction, sch_decooperativecharity, sch_decontextualisedcontent, sch_defenceestablishment, sch_definedregion, sch_definedterm,
-    sch_definedtermset, sch_definitivelegalvalue, sch_defoundationcharity, sch_dejointstockcompanycharity, sch_deleteaction, sch_deliverychargespecification, 
-    sch_deliveryevent, sch_delimitedliabilitycharity, sch_deliverymethod, sch_deliverytimesettings, sch_demand, sch_demoalbum, sch_demogameavailability,
-    sch_denonprofittype, sch_denotregisteredassociationcharity, sch_dentist, sch_dentistry, sch_departaction, sch_departmentstore, sch_depositaccount,
-    sch_depubliccharity, sch_deregisteredassociationcharity, sch_dermatology, sch_desktopwebplatform, sch_diabeticdiet,
-    sch_diagnostic, sch_diagnosticlab, sch_diagnosticprocedure, sch_diet, sch_dietarysupplement, sch_dietnutrition, sch_digitalaudiotapeformat, sch_digitaldocument, sch_digitaldocumentpermission,
-    sch_digitaldocumentpermissiontype, sch_digitalformat, sch_digitalplatformenumeration, sch_directdebit, sch_disabilitysupport, sch_disagreeaction, sch_discontinued, sch_discoveraction,
-    sch_discussionforumposting, sch_dislikeaction, sch_distance, sch_distancefee, sch_distillery, sch_djmixalbum, sch_donateaction, sch_doseschedule, sch_doubleblindedtrial, sch_downloadaction,
-    sch_downpayment, sch_drawaction, sch_drawing, sch_drinkaction, sch_drivewheelconfigurationvalue, sch_drivingschoolvehicleusage, sch_drug, sch_drugclass, sch_drugcost, sch_drugcostcategory,
-    sch_druglegalstatus, sch_drugpregnancycategory, sch_drugprescriptionstatus, sch_drugstrength, sch_drycleaningorlaundry, sch_duration, sch_dvdformat, sch_dystopianhealthinsuranceplan,
-    sch_dystopianhealthplancostsharingspecification, sch_dystopianhealthplanformulary, sch_dystopianhealthplannetwork,
+    sch_deactivateaction, sch_declarationofconformity, sch_decooperativecharity, sch_decontextualisedcontent, sch_defenceestablishment, sch_definedregion,
+    sch_definedterm, sch_definedtermset, sch_definitivelegalvalue, sch_defoundationcharity, sch_dejointstockcompanycharity, sch_deleteaction,
+    sch_deliverychargespecification, sch_deliveryevent, sch_delimitedliabilitycharity, sch_deliverymethod, sch_deliverytimesettings, sch_demand,
+    sch_demoalbum, sch_demogameavailability, sch_denonprofittype, sch_denotregisteredassociationcharity, sch_dentist, sch_dentistry, sch_departaction,
+    sch_departmentstore, sch_depositaccount, sch_depubliccharity, sch_deregisteredassociationcharity, sch_dermatology, sch_desktopwebplatform,
+    sch_diabeticdiet, sch_diagnostic, sch_diagnosticlab, sch_diagnosticprocedure, sch_diet, sch_dietarysupplement, sch_dietnutrition, sch_digitalaudiotapeformat,
+    sch_digitaldocument, sch_digitaldocumentpermission, sch_digitaldocumentpermissiontype, sch_digitalformat, sch_digitalplatformenumeration,
+    sch_digitalproductpassport, sch_directdebit, sch_disabilitysupport, sch_disagreeaction, sch_discontinued, sch_discoveraction, sch_discussionforumposting,
+    sch_dislikeaction, sch_distance, sch_distancefee, sch_distillery, sch_djmixalbum, sch_donateaction, sch_doseschedule, sch_doubleblindedtrial,
+    sch_downloadaction, sch_downpayment, sch_drawaction, sch_drawing, sch_drinkaction, sch_drivewheelconfigurationvalue, sch_drivingschoolvehicleusage,
+    sch_drug, sch_drugclass, sch_drugcost, sch_drugcostcategory, sch_druglegalstatus, sch_drugpregnancycategory, sch_drugprescriptionstatus, sch_drugstrength,
+    sch_drycleaningorlaundry, sch_duration, sch_dvdformat, sch_dystopianhealthinsuranceplan, sch_dystopianhealthplancostsharingspecification,
+    sch_dystopianhealthplanformulary, sch_dystopianhealthplannetwork,
 
-    sch_ear, sch_eataction, sch_ebook, sch_editedorcroppedcontent, sch_educationaudience, sch_educationoccupationcredential, sch_educationoccupationprogramme, sch_educationorganisation,
-    sch_educationevent, sch_effectivenesshealthaspect, sch_electrician, sch_electronicsshop, sch_elementaryschool, sch_emailmessage, sch_embassy, sch_emergency, sch_emergencyservice, sch_employeerole,
-    sch_employeraggregaterating, sch_employerreview, sch_employmentagency, sch_endocrine, sch_endorseaction, sch_endorsementrating, sch_energy, sch_energyconsumptiondetails,
-    sch_energyefficiencyenumeration, sch_energystarcertified, sch_energystarenergyefficiencyenumeration, sch_enginespecification, sch_enrollingbyinvitation, sch_entertainmentbusiness, sch_entrypoint,
-    sch_enumeration, sch_episode, sch_eprelease, sch_error, sch_euenergyefficiencycategorya, sch_euenergyefficiencycategorya1plus, sch_euenergyefficiencycategorya2plus, sch_euenergyefficiencycategorya3plus,
-    sch_euenergyefficiencycategoryb, sch_euenergyefficiencycategoryc, sch_euenergyefficiencycategoryd, sch_euenergyefficiencycategorye, sch_euenergyefficiencycategoryf, sch_euenergyefficiencycategoryg,
-    sch_euenergyefficiencyenumeration, sch_event, sch_eventattendancemodeenumeration, sch_eventcancelled, sch_eventmovedonline, sch_eventpostponed, sch_eventrescheduled, sch_eventreservation,
-    sch_eventscheduled, sch_eventseries, sch_eventstatustype, sch_eventvenue, sch_evidencelevela, sch_evidencelevelb, sch_evidencelevelc, sch_examplemeasurementmethodenum, sch_exchangeratespecification,
-    sch_exchangerefund, sch_exerciseaction, sch_exercisegym, sch_exerciseplan, sch_exhibitionevent, sch_eye,
+    sch_ear, sch_eataction, sch_ebook, sch_editedorcroppedcontent, sch_educationaudience, sch_educationoccupationcredential, sch_educationoccupationprogramme,
+    sch_educationorganisation, sch_educationevent, sch_effectivenesshealthaspect, sch_electrician, sch_electronicsshop, sch_elementaryschool, sch_emailmessage,
+    sch_embassy, sch_emergency, sch_emergencyservice, sch_employeerole, sch_employeraggregaterating, sch_employerreview, sch_employmentagency, sch_endocrine,
+    sch_endorseaction, sch_endorsementrating, sch_energy, sch_energyconsumptiondetails, sch_energyefficiencyenumeration, sch_energystarcertified,
+    sch_energystarenergyefficiencyenumeration, sch_enginespecification, sch_enrollingbyinvitation, sch_entertainmentbusiness, sch_entrypoint,
+    sch_enumeration, sch_environmentalproductdeclaration, sch_episode, sch_eprelease, sch_error, sch_euenergyefficiencycategorya,
+    sch_euenergyefficiencycategorya1plus, sch_euenergyefficiencycategorya2plus, sch_euenergyefficiencycategorya3plus, sch_euenergyefficiencycategoryb,
+    sch_euenergyefficiencycategoryc, sch_euenergyefficiencycategoryd, sch_euenergyefficiencycategorye, sch_euenergyefficiencycategoryf,
+    sch_euenergyefficiencycategoryg, sch_euenergyefficiencyenumeration, sch_event, sch_eventattendancemodeenumeration, sch_eventcancelled, sch_eventmovedonline,
+    sch_eventpostponed, sch_eventrescheduled, sch_eventreservation, sch_eventscheduled, sch_eventseries, sch_eventstatustype, sch_eventvenue, sch_evidencelevela,
+    sch_evidencelevelb, sch_evidencelevelc, sch_examplemeasurementmethodenum, sch_exchangeratespecification, sch_exchangerefund, sch_exerciseaction,
+    sch_exercisegym, sch_exerciseplan, sch_exhibitionevent, sch_eye,
 
     sch_failedactionstatus, sch_false, sch_faqpage, sch_fastfoodrestaurant, sch_fdacategorya, sch_fdacategoryb, sch_fdacategoryc, sch_fdacategoryd, sch_fdacategoryx, sch_fdanotevaluated, sch_female,
     sch_festival, sch_filmaction, sch_financialproduct, sch_financialservice, sch_findaction, sch_firestation, sch_flexibility, sch_flight, sch_flightreservation, sch_float, sch_floorplan, sch_florist,
@@ -6224,13 +6244,14 @@ typedef enum
     sch_infectiousagentclass, sch_infectiousdisease, sch_inforce, sch_informaction, sch_ingredientshealthaspect, sch_insertaction, sch_installaction, sch_installment, sch_instock,
     sch_instoreonly, sch_instoreprepay, sch_insuranceagency, sch_intangible, sch_integer, sch_interactaction, sch_interactioncounter, sch_internationaltrial, sch_internetcafe,
     sch_instantaneousevent, sch_investmentfund, sch_investmentordeposit, sch_inviteaction, sch_invoice, sch_invoiceprice, sch_iosplatform, sch_iptcdigitalsourceenumeration,
-    sch_iptcalgorithmicmediadigitalsource, sch_iptcalgorithmicallyenhanceddigitalsource, sch_iptccompositecapturedigitalsource, sch_iptccompositedigitalsource, sch_iptccompositesyntheticdigitalsource,
-    sch_iptccompositewithtrainedalgorithmicmediadigitalsource, sch_iptcdatadrivenmediadigitalsource, sch_iptcdigitalartdigitalsource, sch_iptcdigitalcapturedigitalsource,
-    sch_iptcminorhumaneditsdigitalsource, sch_iptcmultiframecomputationalcapturedigitalsource, sch_iptcnegativefilmdigitalsource, sch_iptcpositivefilmdigitalsource,
-    sch_iptcprintdigitalsource, sch_iptcscreencapturedigitalsource,sch_iptctrainedalgorithmicmediadigitalsource, sch_iptcvirtualrecordingdigitalsource,
-    sch_itcooperativecharity, sch_itemavailability, sch_itemlist, sch_itemlistorderascending, sch_itemlistorderdescending, sch_itemlistordertype,
-    sch_itemlistunordered, sch_itempage, sch_itmutualaidcharity, sch_itnonprofittype, sch_itsocialcompanycharity, sch_itsocialpromotioncharity,
-    sch_itsportcompanycharity, sch_itvolunteerassociationcharity,
+    sch_iptcalgorithmicmediadigitalsource, sch_iptcalgorithmicallyenhanceddigitalsource, sch_iptccompositecapturedigitalsource, sch_iptccompositedigitalsource,
+    sch_iptccompositesyntheticdigitalsource, sch_iptccompositewithtrainedalgorithmicmediadigitalsource, sch_iptcdatadrivenmediadigitalsource, sch_iptcdigitalartdigitalsource,
+    sch_iptcdigitalcapturedigitalsource, sch_iptcminorhumaneditsdigitalsource, sch_iptcmultiframecomputationalcapturedigitalsource, sch_iptcnegativefilmdigitalsource,
+    sch_iptcpositivefilmdigitalsource, sch_iptcprintdigitalsource, sch_iptcscreencapturedigitalsource, sch_iptctrainedalgorithmicmediadigitalsource,
+    sch_iptcvirtualrecordingdigitalsource, sch_itamateursportsclubcharity, sch_itassociativenetworkcharity, sch_itcooperativecharity, sch_itemavailability, sch_itemlist,
+    sch_itemlistorderascending, sch_itemlistorderdescending, sch_itemlistordertype, sch_itemlistunordered, sch_itempage, sch_itmutualaidcharity, sch_itnonprofittype,
+    sch_itotherthirdsectorentitycharity, sch_itphilanthropicentitycharity, sch_itsocialcompanycharity, sch_itsocialcooperativecharity, sch_itsocialenterprisecharity,
+    sch_itsocialpromotioncharity, sch_itsportcompanycharity, sch_itvolunteerassociationcharity,
     
     sch_jewellers, sch_jobposting, sch_joinaction, sch_joint,
 
@@ -6243,13 +6264,13 @@ typedef enum
     sch_locationfeaturespecification, sch_lockerdelivery, sch_locksmith, sch_lodgingbusiness, sch_lodgingreservation, sch_loginaction, sch_longitudinal, sch_loseaction, sch_lowcaloriediet,
     sch_lowfatdiet, sch_lowlactosediet, sch_lowsaltdiet, sch_lung, sch_lymphaticvessel,
 
-    sch_madetoorder, sch_male, sch_manuscript, sch_map, sch_mapcategorytype, sch_marryaction, sch_mass, sch_mathsolver, sch_maximumdoseschedule, sch_maytreathealthaspect, sch_measurementmethodenum,
-    sch_measurementtypeenumeration, sch_mediagallery, sch_mediamanipulationratingenumeration, sch_mediaobject, sch_mediareview, sch_mediareviewitem, sch_mediasubscription, sch_medicalaudience,
-    sch_medicalaudiencetype, sch_medicalbusiness, sch_medicalcause, sch_medicalclinic, sch_medicalcode, sch_medicalcondition, sch_medicalconditionstage, sch_medicalcontraindication, sch_medicaldevice,
-    sch_medicaldevicepurpose, sch_medicalentity, sch_medicalenumeration, sch_medicalevidencelevel, sch_medicalguideline, sch_medicalguidelinecontraindication, sch_medicalguidelinerecommendation,
-    sch_medicalimagingtechnique, sch_medicalindication, sch_medicalintangible, sch_medicalobservationalstudy, sch_medicalobservationalstudydesign, sch_medicalorganisation, sch_medicalprocedure,
-    sch_medicalproceduretype, sch_medicalresearcher, sch_medicalriskcalculator, sch_medicalriskestimator, sch_medicalriskfactor, sch_medicalriskscore, sch_medicalscholarlyarticle, sch_medicalsign,
-    sch_medicalsignorsymptom, sch_medicalspeciality, sch_medicalstudy, sch_medicalstudystatus, sch_medicalsymptom, sch_medicaltest, sch_medicaltestpanel, sch_medicaltherapy, sch_medicaltrial,
+    sch_madetoorder, sch_male, sch_manuscript, sch_map, sch_mapcategorytype, sch_marryaction, sch_mass, sch_mathsolver, sch_maximumdoseschedule, sch_maximumretailprice, sch_maytreathealthaspect,
+    sch_measurementmethodenum, sch_measurementtypeenumeration, sch_mediagallery, sch_mediamanipulationratingenumeration, sch_mediaobject, sch_mediareview, sch_mediareviewitem, sch_mediasubscription,
+    sch_medicalaudience, sch_medicalaudiencetype, sch_medicalbusiness, sch_medicalcause, sch_medicalclinic, sch_medicalcode, sch_medicalcondition, sch_medicalconditionstage, sch_medicalcontraindication,
+    sch_medicaldevice, sch_medicaldevicepurpose, sch_medicalentity, sch_medicalenumeration, sch_medicalevidencelevel, sch_medicalguideline, sch_medicalguidelinecontraindication,
+    sch_medicalguidelinerecommendation, sch_medicalimagingtechnique, sch_medicalindication, sch_medicalintangible, sch_medicalobservationalstudy, sch_medicalobservationalstudydesign, sch_medicalorganisation,
+    sch_medicalprocedure, sch_medicalproceduretype, sch_medicalresearcher, sch_medicalriskcalculator, sch_medicalriskestimator, sch_medicalriskfactor, sch_medicalriskscore, sch_medicalscholarlyarticle,
+    sch_medicalsign, sch_medicalsignorsymptom, sch_medicalspeciality, sch_medicalstudy, sch_medicalstudystatus, sch_medicalsymptom, sch_medicaltest, sch_medicaltestpanel, sch_medicaltherapy, sch_medicaltrial,
     sch_medicaltrialdesign, sch_medicalwebpage, sch_medicinesystem, sch_memberprogramme, sch_memberprogrammetier, sch_meetingroom, sch_tailors, sch_menu, sch_menuitem, sch_menusection,
     sch_merchantreturnenumeration, sch_merchantreturnfinitereturnwindow, sch_merchantreturnnotpermitted, sch_merchantreturnpolicy, sch_merchantreturnpolicyseasonaloverride,
     sch_merchantreturnunlimitedwindow, sch_merchantreturnunspecified, sch_message, sch_middleschool, sch_midwifery, sch_minimumadvertisedprice, sch_misconceptionshealthaspect, sch_missingcontext,
@@ -7572,9 +7593,9 @@ typedef enum
     sp_archivedat, sp_archiveheld, sp_areaserved, sp_arrivalairport, sp_arrivalboatterminal, sp_arrivalbusstop, sp_arrivalgate, sp_arrivalplatform, sp_arrivalstation, sp_arrivalterminal,
     sp_arrivaltime, sp_artedition, sp_arterialbranch, sp_artform, sp_articlebody, sp_articlesection, sp_artist, sp_artmedium, sp_artworksurface, sp_asin, sp_aspect, sp_assemblyversion, sp_assess,
     sp_assesses, sp_associatedanatomy, sp_associatedarticle, sp_associatedclaimreview, sp_associateddisease, sp_associatedmedia, sp_associatedmediareview, sp_associatedpathophysiology,
-    sp_associatedreview, sp_athlete, sp_attendee, sp_attendees, sp_audience, sp_audiencetype, sp_audio, sp_auditdate, sp_authenticator, sp_author, sp_availability, sp_availabilityends,
-    sp_availabilitystarts, sp_availableatorfrom, sp_availablechannel, sp_availabledeliverymethod, sp_availablefrom, sp_availablein, sp_availablelanguage, sp_availablelocation, sp_availableondevice,
-    sp_availableservice, sp_availablestrength, sp_availabletest, sp_availableuntil, sp_award, sp_awards, sp_awayteam,
+    sp_associatedreview, sp_athlete, sp_attendee, sp_attendees, sp_audience, sp_audiencetype, sp_audio, sp_auditdate, sp_authenticator, sp_author, sp_authorisedrepresentative, sp_availability,
+    sp_availabilityends, sp_availabilitystarts, sp_availableatorfrom, sp_availablechannel, sp_availabledeliverymethod, sp_availablefrom, sp_availablein, sp_availablelanguage, sp_availablelocation,
+    sp_availableondevice, sp_availableservice, sp_availablestrength, sp_availabletest, sp_availableuntil, sp_award, sp_awards, sp_awayteam,
 
     sp_bankaccounttype, sp_background, sp_backstory, sp_basesalary, sp_bccrecipient, sp_bed, sp_beforemedia, sp_beneficiarybank, sp_benefits, sp_benefitssummaryurl, sp_bestrating,
     sp_billingaddress, sp_billingduration, sp_billingincrement, sp_billingperiod, sp_billingstart, sp_biocheminteraction, sp_biochemsimilarity, sp_biologicalrole, sp_biomechanicalclass,
@@ -7585,18 +7606,19 @@ typedef enum
     sp_busnumber, sp_buyer, sp_byartist, sp_byday, sp_bymonth, sp_bymonthday, sp_bymonthweek,
 
     sp_callsign, sp_calories, sp_candidate, sp_caption, sp_carbohydratecontent, sp_cargovolume, sp_carrierrequirements, sp_cashback, sp_catalogue, sp_cataloguenumber, sp_category, sp_cause, sp_causeof,
-    sp_ccrecipient, sp_certificationidentification, sp_certificationrating, sp_certificationstatus, sp_character, sp_characterattribute, sp_charactername, sp_cheatcode, sp_checkintime, sp_checkoutpageurltemplate,
-    sp_checkouttime, sp_chemicalcomposition, sp_chemicalrole, sp_childmaxage, sp_childminage, sp_children, sp_childtaxon, sp_cholesterolcontent, sp_circle, sp_citation, sp_claiminterpreter, sp_claimreviewed,
-    sp_clinicalpharamcology, sp_clipnumber, sp_closes, sp_coach, sp_code, sp_coderepository, sp_codesampletype, sp_codevalue, sp_codingsystem, sp_colleague, sp_colleagues, sp_collection, sp_collectionsize,
-    sp_colour, sp_colourist, sp_colourswatch, sp_comment, sp_commentcount, sp_commenttext, sp_commenttime, sp_companyregistration, sp_competencyrequired, sp_competitor, sp_composer, sp_comprisedof,
-    sp_conditionsofaccess, sp_confirmationnumber, sp_connectedto, sp_constrainingproperty, sp_constraintproperty, sp_contactlesspayment, sp_contactoption, sp_contactpoint, sp_contactpoints, sp_contacttype,
-    sp_containedin, sp_containedinplace, sp_containsplace, sp_containsseason, sp_contentlocation, sp_contentrating, sp_contentreferencetime, sp_contentsize, sp_contenttype, sp_contenturl, sp_contraindication,
-    sp_contributor, sp_cookingmethod, sp_cooktime, sp_copyrightholder, sp_copyrightnotice, sp_copyrightyear, sp_correction, sp_correctionspolicy, sp_cost, sp_costcategory, sp_costcurrency, sp_costorigin,
-    sp_costperunit, sp_countriesnotsupported, sp_countriessupported, sp_countryofassembly, sp_countryoflastprocessing, sp_countryoforigin, sp_course, sp_coursecode, sp_courselength, sp_coursemode,
-    sp_coursepresequisites, sp_courseschedule, sp_courseworkload, sp_coverageendtime, sp_coveragestarttime, sp_creativeworkstatus, sp_creator, sp_credentialcategory, sp_creditedto, sp_credittext, sp_cssselector,
-    sp_currenciesaccepted, sp_currency, sp_currentexchangerate, sp_customer, sp_cutofftime, sp_cvdcollectiondate, sp_cvdfacilitycounty, sp_cvdfacilityid, sp_cvdnumbeds, sp_cvdnumbedsocc, sp_cvdnumc19died,
-    sp_cvdnumc19hopats, sp_cvdnumc19hosppats, sp_cvdnumc19mechventpats, sp_cvdnumc19ofmechventpats, sp_cvdnumc19overflowpats, sp_cvdnumicubeds, sp_cvdnumicubedsocc, sp_cvdnumtotbeds, sp_cvdnumvent,
-    sp_customerremorsereturnfees, sp_customerremorsereturnlabelsource, sp_customerremorsereturnshippingfeesamount, sp_cvdnumventuse,
+    sp_ccrecipient, sp_certificationidentification, sp_certificationrating, sp_certificationstatus, sp_character, sp_characterattribute, sp_charactername, sp_cheatcode, sp_checkintime,
+    sp_checkoutpageurltemplate, sp_checkouttime, sp_chemicalcomposition, sp_chemicalrole, sp_childmaxage, sp_childminage, sp_children, sp_childtaxon, sp_cholesterolcontent, sp_circle, sp_citation,
+    sp_claiminterpreter, sp_claimreviewed, sp_clinicalpharamcology, sp_clipnumber, sp_closes, sp_coach, sp_code, sp_coderepository, sp_codesampletype, sp_codevalue, sp_codingsystem, sp_colleague,
+    sp_colleagues, sp_collection, sp_collectionsize, sp_colour, sp_colourist, sp_colourswatch, sp_comment, sp_commentcount, sp_commenttext, sp_commenttime, sp_companyregistration, sp_competencyrequired,
+    sp_competitor, sp_composer, sp_comprisedof, sp_conditionsofaccess, sp_confirmationnumber, sp_connectedto, sp_constrainingproperty, sp_constraintproperty, sp_consumernotice, sp_contactlesspayment,
+    sp_contactoption, sp_contactpoint, sp_contactpoints, sp_contacttype, sp_containedin, sp_containedinplace, sp_containsplace, sp_containsseason, sp_contentlocation, sp_contentrating,
+    sp_contentreferencetime, sp_contentsize, sp_contenttype, sp_contenturl, sp_contraindication, sp_contributor, sp_cookingmethod, sp_cooktime, sp_copyrightholder, sp_copyrightnotice, sp_copyrightyear,
+    sp_correction, sp_correctionspolicy, sp_cost, sp_costcategory, sp_costcurrency, sp_costorigin, sp_costperunit, sp_countriesnotsupported, sp_countriessupported, sp_countryofassembly,
+    sp_countryoflastprocessing, sp_countryoforigin, sp_course, sp_coursecode, sp_courselength, sp_coursemode, sp_coursepresequisites, sp_courseschedule, sp_courseworkload, sp_coverageendtime,
+    sp_coveragestarttime, sp_creativeworkstatus, sp_creator, sp_credentialcategory, sp_creditedto, sp_credittext, sp_cssselector, sp_currenciesaccepted, sp_currency, sp_currentexchangerate, sp_customer,
+    sp_cutofftime, sp_cvdcollectiondate, sp_cvdfacilitycounty, sp_cvdfacilityid, sp_cvdnumbeds, sp_cvdnumbedsocc, sp_cvdnumc19died, sp_cvdnumc19hopats, sp_cvdnumc19hosppats, sp_cvdnumc19mechventpats,
+    sp_cvdnumc19ofmechventpats, sp_cvdnumc19overflowpats, sp_cvdnumicubeds, sp_cvdnumicubedsocc, sp_cvdnumtotbeds, sp_cvdnumvent, sp_customerremorsereturnfees, sp_customerremorsereturnlabelsource,
+    sp_customerremorsereturnshippingfeesamount, sp_cvdnumventuse,
 
     sp_data, sp_datafeedelement, sp_dataset, sp_datasettimeinterval, sp_datecreated, sp_datedeleted, sp_dateissued, sp_dateline, sp_datemodified, sp_dateposted, sp_datepublished, sp_dateread,
     sp_datereceived, sp_datesent, sp_datevehiclefirstregistered, sp_dayofweek, sp_deathdate, sp_deathplace, sp_defaultvalue, sp_deliveryaddress, sp_deliveryleadtime, sp_deliverymethod,
@@ -7619,33 +7641,35 @@ typedef enum
     sp_expectedarrivalfrom, sp_expectedarrivaluntil, sp_expectedprognosis, sp_expectsacceptanceof, sp_experiencerequirements, sp_experienceinplaceofeducation, sp_expires,
     sp_exportconsiderations, sp_expressedin, sp_extendedaddress,
 
-    sp_familyname, sp_fatcontent, sp_faxnumber, sp_featurelist, sp_feesandcommissionsspecification, sp_fibrecontent, sp_fileformat, sp_filesize, sp_financialaideligible, sp_firstappearance, sp_firstperformance, sp_flightdistance,
-    sp_flightnumber, sp_floorlevel, sp_floorlimit, sp_floorsize, sp_followee, sp_follows, sp_followup, sp_foodestablishment, sp_foodevent, sp_foodwarning, sp_founder, sp_founders, sp_foundingdate, sp_foundinglocation, sp_free, sp_freeshippingthreshold,
-    sp_frequency, sp_fromlocation, sp_fuelcapacity, sp_fuelconsumption, sp_fuelefficiency, sp_fueltype, sp_fulfilmenttype, sp_functionalclass, sp_function, sp_fundeditem, sp_funder, sp_funding,
+    sp_familyname, sp_fatcontent, sp_faxnumber, sp_featurelist, sp_feesandcommissionsspecification, sp_fibrecontent, sp_fileformat, sp_filesize, sp_financialaideligible, sp_firstappearance,
+    sp_firstperformance, sp_flightdistance, sp_flightnumber, sp_floorlevel, sp_floorlimit, sp_floorsize, sp_followee, sp_follows, sp_followup, sp_foodestablishment, sp_foodevent, sp_foodwarning,
+    sp_founder, sp_founders, sp_foundingdate, sp_foundinglocation, sp_free, sp_freeshippingthreshold, sp_frequency, sp_fromlocation, sp_fuelcapacity, sp_fuelconsumption, sp_fuelefficiency,
+    sp_fueltype, sp_fulfilmenttype, sp_functionalclass, sp_function, sp_fundeditem, sp_funder, sp_funding,
 
-    sp_game, sp_gameavailabilitytype, sp_gameedition, sp_gameitem, sp_gamelocation, sp_gameplatform, sp_gameserver, sp_gametip, sp_gender, sp_genre, sp_geo, sp_geocontains, sp_geocoveredby, sp_geocovers, sp_geocrosses, sp_geodisjoint, sp_geoequals,
-    sp_geographicarea, sp_geointersects, sp_geomidpoint, sp_geooverlaps, sp_georadius, sp_geotouches, sp_geowithin, sp_gettingtestedinfo, sp_givenname, sp_globallocationnumber, sp_governmentbenefitsinfo, sp_graceperiod, sp_grantee,
-    sp_greater, sp_greaterorequal, sp_gtin, sp_gtin12, sp_gtin13, sp_gtin14, sp_gtin8, sp_guideline, sp_guidelinedate, sp_guidelinesubject,
+    sp_game, sp_gameavailabilitytype, sp_gameedition, sp_gameitem, sp_gamelocation, sp_gameplatform, sp_gameserver, sp_gametip, sp_gender, sp_genre, sp_geo, sp_geocontains, sp_geocoveredby,
+    sp_geocovers, sp_geocrosses, sp_geodisjoint, sp_geoequals, sp_geographicarea, sp_geointersects, sp_geomidpoint, sp_geooverlaps, sp_georadius, sp_geotouches, sp_geowithin, sp_gettingtestedinfo,
+    sp_givenname, sp_globallocationnumber, sp_governmentbenefitsinfo, sp_graceperiod, sp_grantee, sp_greater, sp_greaterorequal, sp_gtin, sp_gtin12, sp_gtin13, sp_gtin14, sp_gtin8, sp_guideline,
+    sp_guidelinedate, sp_guidelinesubject,
 
     sp_handlingtime, sp_hasadultconsideration, sp_hasbiochementitypart, sp_hasbiopolymersequence, sp_hasbroadcastchannel, sp_hascategorycode, sp_hascertification, sp_hascourse, sp_hascourseinstance,
-    sp_hascredential, sp_hasdefinedterm, sp_hasdeliverymethod, sp_hasdigitaldocumentpermission, sp_hasdrivethroughservice, sp_hasenergyconsumptiondetails, sp_hasenergyefficiencycategory,
-    sp_hasgs1digitallink, sp_hashealthaspect, sp_hasmap, sp_hasmeasurement, sp_hasmemberprogramme, sp_hasmenu, sp_hasmenuitem, sp_hasmenusection, sp_hasmerchantreturnpolicy, sp_hasmolecularfunction,
-    sp_hasoccupation, sp_hasoffercatalogue, sp_haspart, sp_hasparticipationoffer, sp_haspos, sp_hasproductreturnpolicy, sp_hasrepresentation, sp_hasshippingservice, sp_hassponsorshipoffer, sp_hasstore,
-    sp_hastierbenefit, sp_hastierrequirement, sp_hastiers, sp_hasvariant, sp_headline, sp_healthcarereportingdata, sp_healthcondition, sp_healthplancoinsuranceoption, sp_healthplancoinsurancerate,
-    sp_healthplancopay, sp_healthplancopayoption, sp_healthplancostsharing, sp_healthplandrugoption, sp_healthplandrugtier, sp_healthplanid, sp_healthplanmarketingurl, sp_healthplannetworkid,
-    sp_healthplannetworktier, sp_healthplanpharmacycategory, sp_height, sp_highprice, sp_hiringorganisation, sp_holdingarchive, sp_homelocation, sp_hometeam, sp_honourificprefix, sp_honourificsuffix,
-    sp_hospitalaffiliation, sp_hostingorganisation, sp_hoursavailable, sp_howperformed, sp_httpmethod,
+    sp_hascredential, sp_hasdefinedterm, sp_hasdeliverymethod, sp_hasdigitaldocumentpermission, sp_hasdigitalproductpassport, sp_hasdrivethroughservice, sp_hasenergyconsumptiondetails,
+    sp_hasenergyefficiencycategory, sp_hasgs1digitallink, sp_hashealthaspect, sp_hasmap, sp_hasmeasurement, sp_hasmemberprogramme, sp_hasmenu, sp_hasmenuitem, sp_hasmenusection,
+    sp_hasmerchantreturnpolicy, sp_hasmolecularfunction, sp_hasoccupation, sp_hasoffercatalogue, sp_haspart, sp_hasparticipationoffer, sp_haspos, sp_hasproductreturnpolicy, sp_hasrepresentation,
+    sp_hasshippingservice, sp_hassponsorshipoffer, sp_hasstore, sp_hastierbenefit, sp_hastierrequirement, sp_hastiers, sp_hasvariant, sp_headline, sp_healthcarereportingdata, sp_healthcondition,
+    sp_healthplancoinsuranceoption, sp_healthplancoinsurancerate, sp_healthplancopay, sp_healthplancopayoption, sp_healthplancostsharing, sp_healthplandrugoption, sp_healthplandrugtier, sp_healthplanid,
+    sp_healthplanmarketingurl, sp_healthplannetworkid, sp_healthplannetworktier, sp_healthplanpharmacycategory, sp_height, sp_highprice, sp_hiringorganisation, sp_holdingarchive, sp_homelocation,
+    sp_hometeam, sp_honourificprefix, sp_honourificsuffix, sp_hospitalaffiliation, sp_hostingorganisation, sp_hoursavailable, sp_howperformed, sp_httpmethod,
 
-    sp_iatacode, sp_identifier, sp_identifyingexam, sp_identifyingtest, sp_illustrator, sp_image, sp_imagingtechnique, sp_inalbum, sp_inbroadcastlineup, sp_incentives, sp_incentivecompensation,
+    sp_iatacode, sp_identifier, sp_identifyingexam, sp_identifyingtest, sp_illustrator, sp_image, sp_imagingtechnique, sp_importer, sp_inalbum, sp_inbroadcastlineup, sp_incentives, sp_incentivecompensation,
     sp_inchi, sp_inchikey, sp_includedcomposition, sp_includeddatacatalog, sp_includedinhealthinsuranceplan, sp_includedriskfactor, sp_includesattraction, sp_includeshealthplanformulary,
     sp_includeshealthplannetwork, sp_includesobject, sp_incodeset, sp_incomelimit, sp_increasesriskof, sp_indefinedtermset, sp_indication, sp_industry, sp_ineligibleregion, sp_infectiousagent,
     sp_infectiousagentclass, sp_ingredients, sp_inker, sp_inlanguage, sp_inplaylist, sp_inproductgroupwithid, sp_insertion, sp_installurl, sp_instorereturnsoffered, sp_instructor, sp_instrument,
     sp_insupportof, sp_intensity, sp_interactingdrug, sp_interactioncount, sp_interactionservice, sp_interactionstatistic, sp_interactiontype, sp_interactivitytype, sp_interestrate,
     sp_interpretedasclaim, sp_inventorylevel, sp_inverseof, sp_isacceptingnewpatients, sp_isaccessibleforfree, sp_isaccessoryorsparepartfor, sp_isavailablegenerally, sp_isbasedon, sp_isbasedonurl,
     sp_isbn, sp_isconsumablefor, sp_isencodedbybiochementity, sp_isfamilyfriendly, sp_isgift, sp_isicv4, sp_isinvolvedinbiologicalprocess, sp_islocatedinsubcellularlocation, sp_islivebroadcast,
-    sp_iso6523code, sp_ispartof, sp_ispartofbiochementity, sp_isplanforapartment, sp_isproprietary, sp_isrccode, sp_isrelatedto, sp_isresizable, sp_issimilarto, sp_issn, sp_isstoreon, sp_issuedby,
-    sp_issuedthrough, sp_issuenumber, sp_istierof, sp_isunlabelledfallback, sp_isvariantof, sp_iswccode, sp_item, sp_itemcondition, sp_itemdefectreturnfees, sp_itemdefectreturnlabelsource,
-    sp_itemdefectreturnshippingfeesamount, sp_itemlistelement, sp_itemlistorder, sp_itemlocation, sp_itemoffered, sp_itemreviewed, sp_itemshipped, sp_itinerary, sp_iupacname,
+    sp_iso6523code, sp_isoftenboughtwith, sp_ispartof, sp_ispartofbiochementity, sp_isplanforapartment, sp_isproprietary, sp_isrccode, sp_isrelatedto, sp_isresizable, sp_issimilarto, sp_issn, sp_isstoreon,
+    sp_issuedby, sp_issuedthrough, sp_issuenumber, sp_istierof, sp_isunlabelledfallback, sp_isvariantof, sp_iswccode, sp_item, sp_itemcondition, sp_itemdefectreturnfees, sp_itemdefectreturnlabelsource,
+    sp_itemdefectreturnshippingfeesamount, sp_itemlistelement, sp_itemlistorder, sp_itemlocation, sp_itemoffered, sp_itempopularity, sp_itemreviewed, sp_itemshipped, sp_itinerary, sp_iupacname,
 
     sp_jobbenefits, sp_jobduration, sp_jobimmediatestart, sp_joblocation, sp_joblocationtype, sp_jobstartdate, sp_jobtitle, sp_jurisdiction,
 
@@ -7664,8 +7688,8 @@ typedef enum
     sp_maxvalue, sp_mealservice, sp_measuredproperty, sp_measuredvalue, sp_measurementdenominator, sp_measurementmethod, sp_measurementqualifier, sp_measurementtechnique, sp_mechanismofaction,
     sp_mediaauthenticitycategory, sp_mediaitemappearance, sp_median, sp_medicalaudience, sp_medicalspeciality, sp_medicinesystem, sp_meetsemissionstandard, sp_member, sp_memberof, sp_members,
     sp_membershipnumber, sp_membershippointsearned, sp_memoryrequirements, sp_mentions, sp_menu, sp_menuaddon, sp_merchant, sp_merchantreturndays, sp_merchantreturnlink, sp_messageattachment,
-    sp_mileagefromodometer, sp_minimummonthlyrepaymentamount, sp_minimumpaymentdue, sp_minprice, sp_minvalue, sp_missioncoverageprioritiespolicy, sp_model, sp_modeldate, sp_modifiedtime,
-    sp_molecularformula, sp_molecularweight, sp_monoistopicmolecularweight, sp_monthsofexperience, sp_mpn, sp_multiplevalues, sp_muscleaction, sp_musicalkey, sp_musicarrangement,
+    sp_mileagefromodometer, sp_minimummonthlyrepaymentamount, sp_minimumordervalue, sp_minimumpaymentdue, sp_minprice, sp_minvalue, sp_missioncoverageprioritiespolicy, sp_model, sp_modeldate,
+    sp_modifiedtime, sp_molecularformula, sp_molecularweight, sp_monoistopicmolecularweight, sp_monthsofexperience, sp_mpn, sp_multiplevalues, sp_muscleaction, sp_musicalkey, sp_musicarrangement,
     sp_musicby, sp_musiccompositionform, sp_musicgroupmember, sp_musicreleaseformat,
 
     sp_naics, sp_name, sp_nationality, sp_naturalprogression, sp_negativenotes, sp_nerve, sp_nervemotor, sp_networth, sp_newupdatesandguidelines, sp_nextitem, sp_nobylinespolicy, sp_nonequal, sp_nonprofitstatus,
@@ -7695,26 +7719,29 @@ typedef enum
     sp_qualifications, sp_qualifiedexpense, sp_quarantineguidelines, sp_query, sp_quest, sp_question,
 
     sp_rangeincludes, sp_ratingcount, sp_ratingexplanation, sp_ratingvalue, sp_readby, sp_readonlyvalue, sp_realestateagent, sp_recipe, sp_recipecategory, sp_recipecuisine, sp_recipeingredient,
-    sp_recipeinstructions, sp_recipeyield, sp_recipient, sp_recognisedby, sp_recognizedby, sp_recognisingauthority, sp_recommendationstrength, sp_recommendedintake, sp_recordedas, sp_recordedat, sp_recordedin,
-    sp_recordingof, sp_recordlabel, sp_recourseloan, sp_referee, sp_referencequantity, sp_referencesorder, sp_refundtype, sp_regiondrained, sp_regionsallowed, sp_relatedanatomy, sp_relatedcondition,
-    sp_relateddrug, sp_relatedlink, sp_relatedstructure, sp_relatedtherapy, sp_relatedto, sp_releasedate, sp_releasedevent, sp_releasenotes, sp_releaseof, sp_relevantoccupation, sp_relevantspeciality,
-    sp_remainingattendeecapacity, sp_renegotiableloan, sp_repeatcount, sp_repeatfrequency, sp_repetitions, sp_replacee, sp_replacer, sp_replytourl, sp_reportnumber, sp_representativeofpage, sp_requiredcollateral,
-    sp_requiredgender, sp_requiredmaxage, sp_requiredminage, sp_requiredquantity, sp_requirements, sp_requiressubscription, sp_reservationfor, sp_reservationid, sp_reservationstatus, sp_reservedticket,
-    sp_responsibilities, sp_restockingfee, sp_restperiods, sp_result, sp_resultcomment, sp_resultreview, sp_returnfees, sp_returnlabelsource, sp_returnmethod, sp_returnpolicycategory, sp_returnpolicycountry,
-    sp_returnpolicyseasonaloverride, sp_returnshippingfeesamount, sp_review, sp_reviews, sp_reviewaspect, sp_reviewbody, sp_reviewcount, sp_reviewedby, sp_reviewrating, sp_riskfactor, sp_risks, sp_rolename,
-    sp_roofload, sp_rsvpresponse, sp_runsto, sp_runtime, sp_runtimeplatform, sp_rxcui,
+    sp_recipeinstructions, sp_recipeyield, sp_recipient, sp_recognisedby, sp_recognizedby, sp_recognisingauthority, sp_recycledcontentpercentage, sp_recommendationstrength, sp_recommendedintake,
+    sp_recordedas, sp_recordedat, sp_recordedin, sp_recordingof, sp_recordlabel, sp_recourseloan, sp_referee, sp_referencequantity, sp_referencesorder, sp_refundtype, sp_regiondrained,
+    sp_regionsallowed, sp_relatedanatomy, sp_relatedcondition, sp_relateddrug, sp_relatedlink, sp_relatedstructure, sp_relatedtherapy, sp_relatedto, sp_releasedate, sp_releasedevent, sp_releasenotes,
+    sp_releaseof, sp_relevantoccupation, sp_relevantspeciality, sp_remainingattendeecapacity, sp_renegotiableloan, sp_repeatcount, sp_repeatfrequency, sp_repetitions, sp_replacee, sp_replacer,
+    sp_replytourl, sp_reportnumber, sp_representativeofpage, sp_requiredcollateral, sp_requiredgender, sp_requiredmaxage, sp_requiredminage, sp_requiredquantity, sp_requirements,
+    sp_requiressubscription, sp_reservationfor, sp_reservationid, sp_reservationstatus, sp_reservedticket, sp_responsibilities, sp_restockingfee, sp_restperiods, sp_result, sp_resultcomment,
+    sp_resultreview, sp_returnfees, sp_returnlabelsource, sp_returnmethod, sp_returnpolicycategory, sp_returnpolicycountry, sp_returnpolicyseasonaloverride, sp_returnshippingfeesamount, sp_review,
+    sp_reviews, sp_reviewaspect, sp_reviewbody, sp_reviewcount, sp_reviewedby, sp_reviewrating, sp_riskfactor, sp_risks, sp_rolename, sp_roofload, sp_rsvpresponse, sp_runsto, sp_runtime,
+    sp_runtimeplatform, sp_rxcui,
 
     sp_safetyconsideration, sp_salarycurrency, sp_salaryuponcompletion, sp_sameas, sp_sampletype, sp_saturatedfatcontent, sp_scheduledpaymentdate, sp_scheduledtime, sp_scheduletimezone, sp_schemaversion,
-    sp_schoolclosuresinfo, sp_screencount, sp_screenshot, sp_sddatepublished, sp_sdlicence, sp_sdpublisher, sp_season, sp_seasonaloverride, sp_seasons, sp_seasonnumber, sp_seatingcapacity, sp_seatingtype, sp_seatnumber, sp_seatrow,
-    sp_seatsection, sp_secondaryprevention, sp_securityclearancerequirement, sp_securityscreening, sp_seeks, sp_seller, sp_sender, sp_sensoryclearancerequirement, sp_sensoryunit, sp_serialnumber,
-    sp_seriousadverseoutcome, sp_serverstatus, sp_servescuisine, sp_servicearea, sp_serviceaudience, sp_servicelocation, sp_serviceoperator, sp_serviceoutput, sp_servicephone, sp_servicepostaladdress,
-    sp_servicesmsnumber, sp_servicetype, sp_serviceurl, sp_servingsize, sp_sha256, sp_sharedcontent, sp_shippingconditions, sp_shippingdestination, sp_shippinglabel, sp_shippingorigin, sp_shippingrate,
-    sp_shippingsettingslink, sp_sibling, sp_siblings, sp_signdetected, sp_significance, sp_significantlink, sp_significantlinks, sp_signorsymptom, sp_size, sp_sizegroup, sp_sizesystem, sp_skills, sp_sku, sp_slogan, sp_smiles, sp_smokingallowed, sp_sodiumcontent, sp_softwareaddon, sp_softwarehelp,
-    sp_softwarerequirements, sp_softwareversion, sp_source, sp_sourcedfrom, sp_sourceorganisation, sp_spatial, sp_spatialcoverage, sp_speakable, sp_specialcommitments, sp_speciality, sp_specialopeninghoursspecification,
-    sp_speechtotextmarkup, sp_speed, sp_spokenbycharacter, sp_sponsor, sp_sport, sp_sportsactivitylocation, sp_sportsevent, sp_sportsteam, sp_spouse, sp_stage, sp_stageasnumber, sp_starrating, sp_startdate, sp_startoffset,
-    sp_starttime, sp_stattype, sp_status, sp_steeringposition, sp_step, sp_steps, sp_stepvalue, sp_storagerequirements, sp_streetaddress, sp_strengthunit, sp_strengthvalue, sp_structuralclass, sp_study, sp_studydesign, sp_studylocation, sp_studysubject,
-    sp_stupidproperty, sp_subevent, sp_subevents, sp_subjectof, sp_suborganisation, sp_subreservation, sp_substagesuffix, sp_substructure, sp_subtitlelanguage, sp_subtrip, sp_subtype, sp_successorof, sp_sugarcontent, sp_suggestedage, sp_suggestedanswer,
-    sp_suggestedgender, sp_suggestedmaxage, sp_suggestedmeasurement, sp_suggestedminage, sp_suitablefordiet, sp_superevent, sp_supersededby, sp_supply, sp_supplyto, sp_supportingdata, sp_syllabussections,
+    sp_schoolclosuresinfo, sp_screencount, sp_screenshot, sp_sddatepublished, sp_sdlicence, sp_sdpublisher, sp_season, sp_seasonaloverride, sp_seasons, sp_seasonnumber, sp_seatingcapacity, sp_seatingtype,
+    sp_seatnumber, sp_seatrow, sp_seatsection, sp_secondaryprevention, sp_securityclearancerequirement, sp_securityscreening, sp_seeks, sp_seller, sp_sender, sp_sensoryclearancerequirement, sp_sensoryunit,
+    sp_serialnumber, sp_seriousadverseoutcome, sp_serverstatus, sp_servescuisine, sp_servicearea, sp_serviceaudience, sp_servicelocation, sp_serviceoperator, sp_serviceoutput, sp_servicephone,
+    sp_servicepostaladdress, sp_servicesmsnumber, sp_servicetype, sp_serviceurl, sp_servingsize, sp_sha256, sp_sharedcontent, sp_shippingconditions, sp_shippingdestination, sp_shippinglabel,
+    sp_shippingorigin, sp_shippingrate, sp_shippingsettingslink, sp_sibling, sp_siblings, sp_signdetected, sp_significance, sp_significantlink, sp_significantlinks, sp_signorsymptom, sp_size, sp_sizegroup,
+    sp_sizesystem, sp_skills, sp_sku, sp_slogan, sp_smiles, sp_smokingallowed, sp_sodiumcontent, sp_softwareaddon, sp_softwarehelp, sp_softwarerequirements, sp_softwareversion, sp_source, sp_sourcedfrom,
+    sp_sourceorganisation, sp_specification, sp_spatial, sp_spatialcoverage, sp_speakable, sp_specialcommitments, sp_speciality, sp_specialopeninghoursspecification, sp_speechtotextmarkup, sp_speed,
+    sp_spokenbycharacter, sp_sponsor, sp_sport, sp_sportsactivitylocation, sp_sportsevent, sp_sportsteam, sp_spouse, sp_stage, sp_stageasnumber, sp_starrating, sp_startdate, sp_startoffset,  sp_starttime,
+    sp_stattype, sp_status, sp_steeringposition, sp_step, sp_steps, sp_stepvalue, sp_storagerequirements, sp_streetaddress, sp_strengthunit, sp_strengthvalue, sp_structuralclass, sp_study, sp_studydesign,
+    sp_studylocation, sp_studysubject, sp_stupidproperty, sp_subevent, sp_subevents, sp_subjectof, sp_suborganisation, sp_subreservation, sp_substagesuffix, sp_substanceofconcern, sp_substructure,
+    sp_subtitlelanguage, sp_subtrip, sp_subtype, sp_successorof, sp_sugarcontent, sp_suggestedage, sp_suggestedanswer, sp_suggestedgender, sp_suggestedmaxage, sp_suggestedmeasurement, sp_suggestedminage,
+    sp_suitablefordiet, sp_superevent, sp_supersededby, sp_supply, sp_supplyto, sp_supportingdata, sp_syllabussections,
 
     sp_target, sp_targetcollection, sp_targetdescription, sp_targetname, sp_targetplatform, sp_targetpopulation, sp_targetproduct, sp_targeturl, sp_taxid, sp_taxonomicrange, sp_taxonrank,
     sp_teaches, sp_telephone, sp_temporal, sp_temporalcoverage, sp_termcode, sp_termduration, sp_termsofservice, sp_termsperyear, sp_text, sp_textvalue, sp_thumbnail, sp_thumbnailurl,
@@ -7727,7 +7754,7 @@ typedef enum
     sp_undername, sp_unitcode, sp_unittext, sp_unnamedsourcespolicy, sp_unsaturatedfatcontent, sp_uploaddate, sp_upvotecount, sp_url, sp_urltemplate, sp_usageinfo, sp_usedtodiagnose,
     sp_userinteractioncount, sp_usesdevice, sp_useshealthplanidstandard, sp_usnpi, sp_utterances,
 
-    sp_validfor, sp_validformembertier, sp_validfrom, sp_validin, sp_validto, sp_validuntil, sp_value, sp_valueaddedtaxincluded, sp_valuemaxlength, sp_valueminlength, sp_valuename,
+    sp_validfor, sp_validformembertier, sp_validfrom, sp_validin, sp_validto, sp_validuntil, sp_value, sp_valueaddedtaxincluded, sp_valuegroup, sp_valuemaxlength, sp_valueminlength, sp_valuename,
     sp_valuepattern, sp_valuereference, sp_valuerequired, sp_variablemeasured, sp_variablesmeasured, sp_variantcover, sp_variesby, sp_vatid, sp_vehicleconfiguration, sp_vehicleengine,
     sp_vehicleidentificationnumber, sp_vehicleinteriorcolour, sp_vehicleinteriortype, sp_vehiclemodeldate, sp_vehicleseatingcapacity, sp_vehiclespecialusage, sp_vehicletransmission,
     sp_vendor, sp_verificationfactcheckingpolicy, sp_version, sp_video, sp_videoformat, sp_videoframesize, sp_videoquality, sp_volumenumber,
@@ -8494,6 +8521,7 @@ typedef enum { sh_error, sh_no, sh_pages, sh_hard, sh_soft, sh_copy, sh_dedu, sh
 typedef enum { sh_ondefine, sh_onuse, sh_none, sh_inherit } e_shadowinherit;
 typedef enum { sh_circle, sh_default, sh_poly, sh_rect } e_shape4;
 typedef enum { s7_circ, s7_default, s7_poly, s7_rect } e_shape7;
+typedef enum { esc_arc, esc_close, esc_curve, esc_hline, esc_line, esc_move, esc_smooth, esc_vline } e_shape_cmd;
 typedef enum { sie_auto, sie_display, sie_outside_shape } e_css_shape_inside_e;
 typedef enum { rcp_circle, rcp_poly, rcp_rect } e_shape_rcp;
 typedef enum { sr_auto, sr_optimisespeed, sr_crispedges, sr_geometricprecision, sr_inherit } e_shape_rendering;
@@ -8731,9 +8759,10 @@ typedef enum
 typedef enum {
     ct_root, ct_whitespace, ct_comment, // root must be zero, all empty content must precede comment which must precede remaining values
     ct_identifier, ct_keyword, ct_number, ct_string,
-    ct_ampersand, ct_at, ct_bang, ct_bar, ct_barbar, ct_coco, ct_colon, ct_comma, ct_dash, ct_dollar, ct_dot, ct_eq,
-    ct_gt, ct_gteq, ct_gtgt, ct_lt, ct_lteq, ct_hash, ct_hat, ct_plus, ct_semicolon, ct_slash, ct_splat, ct_squiggle,
-    ct_curly_brac, ct_curly_ket, ct_round_brac, ct_round_ket, ct_square_brac, ct_square_ket,
+    ct_ampersand, ct_at, ct_bang, ct_bar, ct_barbar, ct_coco, ct_colon, ct_comma, ct_dash, ct_dollar, ct_dot,
+    ct_eq, ct_gt, ct_gteq, ct_gtgt, ct_lt, ct_lteq,
+    ct_hash, ct_hat, ct_plus, ct_semicolon, ct_slash, ct_splat, ct_squiggle, ct_vu5_colon, ct_vu5_semicolon,
+    ct_curly_brac, ct_curly_ket, ct_round_brac, ct_round_ket, ct_square_brac, ct_square_ket, ct_vu5_curly_brac, ct_vu5_curly_ket,
     ct_eof,
     ct_error } e_token;
 
@@ -8759,18 +8788,18 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_A_1 \
     t_a_b_c_d, t_a_v, t_aabn, t_abcfl, t_abfmt, t_ablr, t_abn, t_about, t_absolute_url, t_accept, t_accrual_method, t_accrual_periodicity, \
         t_accrual_policy, t_accumulate, t_accumulate0, t_accumulate1, t_accumulate2, t_aces, t_acm, t_acn, t_acn_2, t_action, \
-        t_actiontype 
-#define SSC_TYPES_A_1_MAX t_actiontype
+        t_actiontype, t_actiontype2
+#define SSC_TYPES_A_1_MAX t_actiontype2
 
 #define SSC_TYPES_A_2 \
-        t_actiontype2, t_additive, t_advar, t_aesf, t_aesfs, t_aftw, t_aftws, t_align, t_align2070, t_align3, t_aligndec, t_alignfig, \
+        t_additive, t_advar, t_aesf, t_aesfs, t_aftw, t_aftws, t_align, t_align2070, t_align3, t_aligndec, t_alignfig, \
         t_alignment_baseline, t_alignplus, t_all_auto_none, t_all_none, t_allow_ad_n, t_allow_deny, t_allow_list, t_allow_force, \
         t_allow_numeric, t_alp, t_always_auto_never, t_always_normal 
 #define SSC_TYPES_A_2_MAX t_always_normal
 
 #define SSC_TYPES_A_3 \
-        t_analysis, t_anchor_centre, t_angle, t_angle_0, t_angle_a, t_angle_ai, t_angle_ar, t_angle_ars, t_angle_i, t_angle_lrtb, \
-        t_angle_lrtb_col, t_angle_n, t_angle_p, t_angular_colour_more, t_angular_colour_stop, t_anw, t_anywhere_break_normal, t_arabicenum, \
+        t_analysis, t_anchor_centre, t_angle, t_angle_0, t_angle_a, t_angle_ai, t_angle_ar, t_angle_ars, t_angle_i, \
+        t_angle_n, t_angle_p, t_angular_colour_more, t_angular_colour_stop, t_anw, t_anywhere_break_normal, t_arabicenum, \
         t_arabic_form, t_aria_autocomplete, t_aria_current, t_aria_invalidity, t_aria_live, t_aria_popup 
 #define SSC_TYPES_A_3_MAX t_aria_popup
 
@@ -8791,9 +8820,9 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_B_1_MAX t_blink_none
 
 #define SSC_TYPES_B_2 \
-        t_blocking, t_block, t_block_inline, t_block_inline_2, t_bns, t_bool, t_bools, t_border, t_braille, t_braille_or_not, t_brs, t_btyy, \
-        t_buffered_rendering, t_button, \
-    t_cache, t_cachekey, t_calcmode, t_captionalign, t_capture, t_cc_permits, t_cc_prohibits, t_cc_requires
+        t_blocking, t_block, t_block_inline, t_block_inline_2, t_blrt, t_bns, t_bool, t_bools, t_border, t_braille, t_braille_or_not, t_brs, t_btyy, \
+        t_buffered_rendering, t_button, t_byto, \
+    t_cache, t_cachekey, t_calcmode, t_capture, t_cc_permits, t_cc_prohibits, t_cc_requires
 #define SSC_TYPES_B_2_MAX t_cc_requires
 
 #define SSC_TYPES_C_1 \
@@ -8802,25 +8831,25 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_C_1_MAX t_closed_open
 
 #define SSC_TYPES_C_2 \
-        t_closure, t_cnn, t_cntype, t_coden, t_colour, t_colour_a, t_colour_ci, t_colour_cii, t_colour_i, t_colour_ii, t_colour_interpolation, \
-        t_colour_ni, t_colour_profile, t_colour_profile_name, t_colour_profile_name_or_uri, t_colour_rendering, t_colour_scheme, t_colour_scheme_o, \
-        t_colour_schemes, t_colour_schemes_n, t_colour_schemes_o
+        t_closure, t_cmx_1, t_cmx_2, t_cmx_12, t_cnn, t_cntype, t_coden, t_colour, t_colour_a, t_colour_ci, t_colour_cii, t_colour_i, t_colour_ii, \
+        t_colour_interpolation, t_colour_ni, t_colour_profile, t_colour_profile_name, t_colour_profile_name_or_uri, t_colour_rendering, \
+        t_colour_scheme, t_colour_scheme_o, t_colour_schemes, t_colour_schemes_n, t_colour_schemes_o
 #define SSC_TYPES_C_2_MAX t_colour_schemes_o
 
 #define SSC_TYPES_C_3 \
         t_colour_space, t_colour_trans, t_colour_trans_i, t_colour_v, t_colourfn, t_colourspace, t_command, t_command2, t_command3, t_compact, \
-        t_compact_normal, t_comp_op, t_composite_operator, t_compositing, t_conlit, t_conic_1, t_conic_2, t_connect, t_contain, t_contain_cover, \
-        t_contain_cover_sd, t_container_condition
+        t_compact_normal, t_comp_op, t_composite_operator, t_compositing, t_conlit, t_conic_1, t_conic_2, t_conic_12, t_connect, t_contain, \
+        t_contain_cover, t_contain_cover_sd, t_container_condition
 #define SSC_TYPES_C_3_MAX t_container_condition
 
 #define SSC_TYPES_C_4 \
         t_content_encoding, t_content_encodings, t_content_type, t_context_menu, t_contents, t_controlslist, t_cookie, t_cookieid, t_cookies, \
-        t_coordinatesystem, t_coords, t_copy, t_corp, t_cors, t_countries, t_country, t_cpp, t_create_parent, t_cr_fileproperty, t_crossout, \
-        t_crs_tonecurvename, t_crs_whitebalance, t_cs, t_csp
-#define SSC_TYPES_C_4_MAX t_csp
+        t_coordinatesystem, t_coords, t_copy, t_corners_sides, t_corp, t_cors, t_countries, t_country, t_cpp, t_create_parent, t_cr_fileproperty, \
+        t_crossout, t_crs_tonecurvename, t_crs_whitebalance
+#define SSC_TYPES_C_4_MAX t_crs_whitebalance
 
 #define SSC_TYPES_C_5 \
-        t_csp_ancestor, t_csp_directive, t_csp_keyword, t_csp_sauce, t_csp_source, t_csvw_direction, t_curie, t_curie_safe, t_curies, t_currency, \
+        t_cs, t_csp, t_csp_ancestor, t_csp_directive, t_csp_keyword, t_csp_sauce, t_csp_source, t_csvw_direction, t_curie, t_curie_safe, t_curies, t_currency, \
         t_current_colour_sz, t_cursor, t_cursor_f, t_cursor_i, t_custom_element, t_custom_element_old, t_custom_element_new, t_custom_id, \
         t_custom_ids, t_custom_ids_n, t_custom_property
 #define SSC_TYPES_C_5_MAX t_custom_property
@@ -8854,34 +8883,38 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_CSS_B_2 \
             t_css_background_size, t_css_background_sizes, t_css_background_tbd, t_css_backval, t_css_base_palette, t_css_baseline_position, t_css_base_url, \
-            t_css_bespoke, t_css_bespoker, t_css_blend_colour, t_css_blend_mode, t_css_blend_modes, t_css_block_step, t_css_border_collapse, t_css_border_image, \
-            t_css_border_image_repeat, t_css_border_images_repeat, t_css_border_image_slice, t_css_border_image_src, t_css_border_measure, t_css_border_radius, \
-            t_css_border_spacing, t_css_border_spacing_2
-#define SSC_TYPES_CSS_B_2_MAX t_css_border_spacing_2
+            t_css_bespoke, t_css_bespoker, t_css_blend_colour, t_css_blend_mode, t_css_blend_modes, t_css_block_step, t_css_border_clip, t_css_border_clips, \
+            t_css_border_collapse, t_css_border_image
+#define SSC_TYPES_CSS_B_2_MAX t_css_border_image
 
 #define SSC_TYPES_CSS_B_3 \
-            t_css_border_style, t_css_border_style_i, t_css_border_styles, t_css_border_styles_2, t_css_border_styles_l, t_css_border_width, \
-            t_css_border_width_col, t_css_border_width_i, t_css_border_wsc, t_css_borders_measure, t_css_borders_measure_2, \
-            t_css_borders_measure_i, t_css_borders_measure_l, t_css_box_alignitems, t_css_box_alignitems_ns, t_css_box_alignself, t_css_box_alignself_acs, \
-            t_css_box_alignself_mess, t_css_box_content, t_css_box_content_n, t_css_box_direction, t_css_box_justify
-#define SSC_TYPES_CSS_B_3_MAX t_css_box_justify
+            t_css_border_image_repeat, t_css_border_images_repeat, t_css_border_image_slice, t_css_border_image_width, t_css_border_image_src, \
+            t_css_border_juice, t_css_border_juice_2, t_css_border_juice_4, t_css_border_limit, t_css_border_limit_part, t_css_border_limit_side, \
+            t_css_border_measure, t_css_border_radius, t_css_border_shape, t_css_border_shapes, t_css_border_spacing, t_css_border_spacing_2, t_css_border_style, \
+            t_css_border_style_i, t_css_border_styles, t_css_border_styles_2, t_css_border_styles_l
+#define SSC_TYPES_CSS_B_3_MAX t_css_border_styles_l
 
 #define SSC_TYPES_CSS_B_4 \
-            t_css_box_justify_n, t_css_box_justitems, t_css_box_justitems_ns, t_css_box_justself, t_css_box_justself_ans, t_css_box_legacy, t_css_box_orient, \
-            t_css_box_overflow, t_css_box_pack, t_css_box_reflect, t_css_box_reflect_img, t_css_box_shadow, t_css_box_shadows, t_css_box_shadows_n, t_css_box_sizing, \
-            t_css_box_snap, t_css_break, t_css_break_box, t_css_break_inside
-#define SSC_TYPES_CSS_B_4_MAX t_css_break_inside
+            t_css_border_width, t_css_border_width_col, t_css_border_width_i, t_css_border_wsc, t_css_borders_measure, t_css_borders_measure_2, \
+            t_css_borders_measure_i, t_css_borders_measure_l, t_css_box_alignitems, t_css_box_alignitems_ns, t_css_box_alignself, t_css_box_alignself_acs, \
+            t_css_box_alignself_mess, t_css_box_content, t_css_box_content_n, t_css_box_direction, t_css_box_justify, t_css_box_justify_n, t_css_box_justitems
+#define SSC_TYPES_CSS_B_4_MAX t_css_box_justitems
+
+#define SSC_TYPES_CSS_B_5 \
+            t_css_box_justitems_ns, t_css_box_justself, t_css_box_legacy, t_css_box_orient, t_css_box_overflow, t_css_box_pack, t_css_box_reflect, \
+            t_css_box_reflect_img, t_css_box_shadow, t_css_box_shadows, t_css_box_shadows_n, t_css_box_sizing, t_css_box_snap, \
+            t_css_break, t_css_break_box, t_css_break_inside
+#define SSC_TYPES_CSS_B_5_MAX t_css_break_inside
 
 #define SSC_TYPES_CSS_C_1 \
-            t_css_calc_size, t_css_calc_size_fn, t_css_calc_value, t_css_caret, t_css_caret_shape, t_css_clear, t_css_clip_coord_box, \
-            t_css_clip_coord_boxen, t_css_clip_path, t_css_clip_path_box, t_css_clip_path_shape, t_css_coin1, t_css_coin2, t_css_coin3, \
-            t_css_col, t_css_col_img, t_css_col_img_per, t_css_col_img_str_url, t_css_colour, t_css_colour_3, t_css_colour_4, \
-            t_css_colour_5, t_css_colour_a 
+            t_css_calc_size, t_css_calc_size_fn, t_css_calc_value, t_css_caret, t_css_caret_shape, t_css_clear, t_css_clip_coord_box, t_css_clip_coord_boxen, \
+            t_css_clip_path, t_css_clip_path_box, t_css_clip_path_shape, t_css_coin1, t_css_coin2, t_css_coin3, t_css_col, t_css_col_img, t_css_col_img_per, \
+            t_css_col_img_str_url, t_css_colour, t_css_colour_3, t_css_colour_4, t_css_colour_5, t_css_colour_a 
 #define SSC_TYPES_CSS_C_1_MAX t_css_colour_a
 
 #define SSC_TYPES_CSS_C_2 \
             t_css_colour_ld, t_css_colour_interpolation, t_css_colour_percent, t_css_colour_percent_n, t_css_colour_stop_list, t_css_col_r, t_css_col_rs, \
-            t_css_cols, t_css_cols_2, t_css_cols_2_a, t_css_cols_l, t_css_col_s_url, t_css_column_fill, t_css_column_rule, \
+            t_css_cols, t_css_cols_2, t_css_cols_2_a, t_css_cols_comma, t_css_cols_l, t_css_col_s_url, t_css_column_fill, t_css_column_rule, \
             t_css_column_rules, t_css_column_width, t_css_columns, t_css_composite, t_css_composite_mode, t_css_composites, t_css_contain, \
             t_css_contain_e, t_css_contain_slp
 #define SSC_TYPES_CSS_C_2_MAX t_css_contain_slp
@@ -8913,7 +8946,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_CSS_E_1 \
             t_css_earnest, t_css_easing_fn, t_css_easing_fns, t_css_elevation, t_css_elevation_e, t_css_ellipse_pos, t_css_ellipse_pos_1, t_css_ellipse_pos_2, \
             t_css_ellipse_pos_2a, t_css_ellipse_pos_2b, t_css_ellipse_pos_2c, t_css_ellipse_pos_2c_block, t_css_ellipse_pos_2c_inline, t_css_ellipse_pos_4, \
-            t_css_ellipse_pos_4a, t_css_ellipse_pos_4ax, t_css_ellipse_pos_4ay, t_css_ellipse_pos_4b, t_css_ellipse_pos_4bx, t_css_ellipse_pos_4by
+            t_css_ellipse_pos_4a, t_css_ellipse_pos_4b, t_css_ellipse_pos_4bx, t_css_ellipse_pos_4by
 #define SSC_TYPES_CSS_E_1_MAX t_css_ellipse_pos_4by
 
 #define SSC_TYPES_CSS_E_2 \
@@ -8925,7 +8958,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_CSS_F_1 \
             t_css_fca, t_css_feature_annotation, t_css_feature_character_variant, t_css_feature_historical_forms, t_css_feature_ornaments, \
             t_css_feature_swash, t_css_feature_styleset, t_css_feature_stylistic, t_css_ffv, t_css_filter, t_css_filters, t_css_filters_n, \
-            t_css_fit, t_css_fit_position, t_css_flex, t_css_flex_basis, t_css_flex_content, t_css_flex_direction, t_css_flex_direction_a, \
+            t_css_fit, t_css_fit_position, t_css_flex, t_css_flexes, t_css_flex_basis, t_css_flex_content, t_css_flex_direction, t_css_flex_direction_a, \
             t_css_flex_flow, t_css_flex_n, t_css_flex_wrap 
 #define SSC_TYPES_CSS_F_1_MAX t_css_flex_wrap
 
@@ -8944,20 +8977,20 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 // update any of the three below, also update type_css.cpp
 #define SSC_TYPES_CSS_FN_1 \
             t_css_fn_anchor, t_css_fn_anchor_size, t_css_fn_anchored, t_css_fn_annotation, t_css_fn_attr, t_css_fn_calc, t_css_fn_calc_args, t_css_fn_calc_size, \
-            t_css_fn_character_variant, t_css_fn_counter, t_css_fn_counters, t_css_fn_cross_fade, t_css_fn_cubic_bezier, t_css_fn_custom, t_css_fn_dylm, \
-            t_css_fn_element, t_css_fn_fit_content
+            t_css_fn_character_variant, t_css_fn_conic_gradient, t_css_fn_counter, t_css_fn_counters, t_css_fn_cross_fade, t_css_fn_cubic_bezier, t_css_fn_custom, \
+            t_css_fn_dylm, t_css_fn_element, t_css_fn_fit_content
 #define SSC_TYPES_CSS_FN_1_MAX t_css_fn_fit_content
 
 #define SSC_TYPES_CSS_FN_2 \
             t_css_fn_if, t_css_fn_keypress, t_css_fn_if_media, t_css_fn_if_supports, t_css_fn_if_style, t_css_fn_image, t_css_fn_image_set, \
             t_css_fn_inset, t_css_fn_linear, t_css_fn_linear_gradient, t_css_fn_minmax, t_css_fn_mix, t_css_fn_moz_image_rect, t_css_fn_ornaments, t_css_fn_param, \
-            t_css_fn_path_args, t_css_fn_radial_gradient, t_css_fn_rect
+            t_css_fn_path_args, t_css_fn_progress, t_css_fn_radial_gradient, t_css_fn_ray, t_css_fn_rect
 #define SSC_TYPES_CSS_FN_2_MAX t_css_fn_rect
 
 #define SSC_TYPES_CSS_FN_3 \
-            t_css_fn_repeat, t_css_fn_repeating_linear_gradient, t_css_fn_repeating_radial_gradient, t_css_fn_round_t, t_css_fn_snap_block, t_css_fn_snap_inline, \
-            t_css_fn_steps, t_css_fn_styleset, t_css_fn_stylistic, t_css_fn_superellipse, t_css_fn_swash, t_css_fn_trans_args, t_css_fn_type, t_css_fn_type_args, \
-            t_css_fn_url_pattern, t_css_fn_var, t_css_fn_wcag2, t_css_fn_xywh, t_hslafn, t_hslfn, t_hslfn4
+            t_css_fn_repeat, t_css_fn_repeating_conic_gradient, t_css_fn_repeating_linear_gradient, t_css_fn_repeating_radial_gradient, t_css_fn_round_t, \
+            t_css_fn_shape, t_css_fn_snap_block, t_css_fn_snap_inline, t_css_fn_steps, t_css_fn_styleset, t_css_fn_stylistic, t_css_fn_superellipse, t_css_fn_swash, \
+            t_css_fn_trans_args, t_css_fn_type, t_css_fn_type_args, t_css_fn_url_pattern, t_css_fn_var, t_css_fn_wcag2, t_css_fn_xywh, t_hslafn, t_hslfn, t_hslfn4
 #define SSC_TYPES_CSS_FN_3_MAX t_hslfn4
 
 #define SSC_TYPES_CSS_G_H \
@@ -8985,28 +9018,28 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_CSS_L_1 \
             t_css_lang, t_css_langs, t_css_layout_box, t_css_length, t_css_length_2, t_css_length_2_a, t_css_length_3, t_css_length_4, t_css_length_a, \
             t_css_length_aa, t_css_length_a2, t_css_length_aa2, t_css_length_abs, t_css_length_abs_r, t_css_length_ai, t_css_length_aia, \
-            t_css_length_amm, t_css_length_an, t_css_length_base, t_css_length_f, t_css_length_inf, t_css_length_inf_mtt, \
-            t_css_length_inf_n, t_css_length_inf_no
-#define SSC_TYPES_CSS_L_1_MAX t_css_length_inf_no
+            t_css_length_amm, t_css_length_an, t_css_length_base, t_css_length_f, t_css_length_reals, t_css_length_w, t_css_length_inf, t_css_length_inf_mtt
+#define SSC_TYPES_CSS_L_1_MAX t_css_length_inf_mtt
 
 #define SSC_TYPES_CSS_L_2 \
-            t_css_length_math, t_css_length_minmax, t_css_length_n, t_css_length_norm, t_css_length_percent, t_css_length_percent_2, \
-            t_css_length_percent_inf, t_css_length_percent_inf_2, t_css_length_pos, t_css_length_real, t_css_length_xtz, t_css_lengths, \
-            t_css_lengths_a, t_css_lengths_aa, t_css_lengths_a_l, t_css_lengths_aa_l, t_css_lengths_l, t_css_lengths_n, t_css_length_size, \
-            t_css_length_twice, t_css_line_break, t_css_line_clamp
-#define SSC_TYPES_CSS_L_2_MAX t_css_line_clamp
+            t_css_length_inf_n, t_css_length_inf_no, t_css_length_math, t_css_length_minmax, t_css_length_n, t_css_length_norm, t_css_length_percent, \
+            t_css_length_percent_2, t_css_length_percent_inf, t_css_length_percent_inf_a, t_css_length_percent_inf_2, t_css_length_infs, t_css_length_pos, \
+            t_css_length_real, t_css_length_xtz, t_css_lengths, t_css_lengths_a, t_css_lengths_aa, t_css_lengths_a_l, t_css_lengths_aa_l, t_css_lengths_comma, \
+            t_css_lengths_l, t_css_lengths_n, t_css_lengths_n_comma
+#define SSC_TYPES_CSS_L_2_MAX t_css_lengths_n_comma
 
 #define SSC_TYPES_CSS_L_3 \
-            t_css_line_clamp_n, t_css_line_colour, t_css_line_colours, t_css_line_height, t_css_line_rule, t_css_line_rules, \
-            t_css_line_style, t_css_line_styles, t_css_line_width, t_css_line_widths, t_css_link_params, t_css_link_params_n, t_css_link_to, \
-            t_css_link_to_h, t_css_list_style, t_css_list_style_position, t_css_list_style_type, t_css_list_style_type_cs, t_css_local_url, \
-            t_css_ls_val
-#define SSC_TYPES_CSS_L_3_MAX t_css_ls_val
+            t_css_length_size, t_css_length_twice, t_css_line_break, t_css_line_clamp, t_css_line_clamp_n, t_css_line_colour, t_css_line_colours, \
+            t_css_line_height, t_css_line_rule, t_css_line_rules, t_css_line_style, t_css_line_styles, t_css_line_width, t_css_line_width_border, \
+            t_css_line_width_border_2, t_css_line_width_border_4, t_css_line_width_e, t_css_line_widths, t_css_link_params, t_css_link_params_n, \
+            t_css_link_to, t_css_link_to_h, t_css_list_style
+#define SSC_TYPES_CSS_L_3_MAX t_css_list_style
 
 #define SSC_TYPES_CSS_M_1 \
-            t_css_margin_break,  t_css_margin_trim, t_css_margin_trim_inner, t_css_margins_trim_inner, t_css_margins, t_css_margins_l, \
-            t_css_mark, t_css_marks, t_css_marx, t_css_mask, t_css_mask_border, t_css_mask_border_mode, t_css_mask_border_outsets, \
-            t_css_mask_border_repeat, t_css_mask_border_repeats, t_css_mask_border_slice
+            t_css_list_style_position, t_css_list_style_type, t_css_list_style_type_cs, t_css_local_url, t_css_ls_val, t_css_margin_break, \
+            t_css_margin_trim, t_css_margin_trim_inner, t_css_margins_trim_inner, t_css_margins, t_css_margins_l, t_css_mark, t_css_marks, t_css_marx, \
+            t_css_mask, t_css_mask_border, t_css_mask_border_mode, t_css_mask_border_outsets, t_css_mask_border_repeat, t_css_mask_border_repeats, \
+            t_css_mask_border_slice
 #define SSC_TYPES_CSS_M_1_MAX t_css_mask_border_slice
 
 #define SSC_TYPES_CSS_M_2 \
@@ -9035,8 +9068,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_CSS_P_Q_MAX t_css_quotes_3
 
 #define SSC_TYPES_CSS_R_1 \
-            t_css_range, t_css_range_a, t_css_ranges, t_css_radial_size, t_css_ray_size, t_css_reading_flow, t_css_rect, t_css_rect_ai, \
-            t_css_rect_fn, t_css_ref_annotation, t_css_ref_character_variant, t_css_ref_historical_forms, t_css_ref_ornaments, \
+            t_css_radial_size, t_css_range, t_css_range_a, t_css_ranges, t_css_ray, t_css_ray_size, t_css_reading_flow, t_css_rect, \
+            t_css_rect_ai, t_css_rect_fn, t_css_ref_annotation, t_css_ref_character_variant, t_css_ref_historical_forms, t_css_ref_ornaments, \
             t_css_ref_swash, t_css_ref_styleset, t_css_ref_stylistic
 #define SSC_TYPES_CSS_R_1_MAX t_css_ref_stylistic
 
@@ -9049,15 +9082,15 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_CSS_S_1 \
             t_css_scale, t_css_scale_3, t_css_scope, t_css_scroll_button, t_css_scrollbar_gutter, t_css_scroll_state, t_css_ss_scroll, \
-            t_css_ss_stuck, t_css_ss_snapped, t_css_self_position, t_css_shape_box, t_css_shape_ellipse, t_css_shape_fillrule, t_css_shape_inside, \
-            t_css_shape_inside_box, t_css_shape_inside_boxen, t_css_shape_inside_e, t_css_shape_outside, t_css_shape_position, t_css_shape_radius
-#define SSC_TYPES_CSS_S_1_MAX t_css_shape_radius
+            t_css_ss_stuck, t_css_ss_snapped, t_css_self_position, t_css_shadow_spread, t_css_shape_box, t_css_shape_ellipse, t_css_shape_fillrule, \
+            t_css_shape_inside, t_css_shape_inside_box, t_css_shape_inside_boxen, t_css_shape_inside_e, t_css_shape_outside, t_css_shape_position, \
+            t_css_size, t_css_size_3, t_css_size_e
+#define SSC_TYPES_CSS_S_1_MAX t_css_size_e
 
 #define SSC_TYPES_CSS_S_2 \
-            t_css_size, t_css_size_3, t_css_size_e, t_css_size_es, t_css_sizing, t_css_skip_line, t_css_skip_lines, t_css_skip_self, t_css_slider_orientation, \
-            t_css_speak, t_css_speak_2, t_css_speak_as, t_css_speak_as_2, t_css_speak_as_3, t_css_speak_as_e, t_css_speak_header, \
-            t_css_speak_punctuation, t_css_speech_rate, t_css_speech_rate_e, t_css_speech_rate_p, t_css_speech_rate_t, t_css_src, \
-            t_css_src_2, t_css_src_3
+            t_css_size_es, t_css_sizing, t_css_skip_line, t_css_skip_lines, t_css_skip_self, t_css_slider_orientation, t_css_speak, t_css_speak_2, \
+            t_css_speak_as, t_css_speak_as_2, t_css_speak_as_3, t_css_speak_as_e, t_css_speak_header, t_css_speak_punctuation, t_css_speech_rate, \
+            t_css_speech_rate_e, t_css_speech_rate_p, t_css_speech_rate_t, t_css_spread_shadow, t_css_spread_shadows, t_css_src, t_css_src_2, t_css_src_3
 #define SSC_TYPES_CSS_S_2_MAX t_css_src_3
 
 #define SSC_TYPES_CSS_S_3 \
@@ -9127,7 +9160,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_E \
     t_e_w, t_economy_exact, t_edgemode, t_edi, t_edit, t_editable, t_effect, t_email, t_emails, t_empty, t_ems, t_enable_background, t_enctype, \
-        t_end, t_endvaluelist, t_ens, t_enterkeyhint, t_environment_blending, t_evt_action, t_exif_intind, t_existential, t_expected, t_exportpart
+        t_end, t_endvaluelist, t_ens, t_enterkeyhint, t_environment_blending, t_eso, t_evt_action, t_exif_intind, t_existential, t_expected, t_exportpart
 #define SSC_TYPES_E_MAX t_exportpart
 
 #define SSC_TYPES_F_1 \
@@ -9153,8 +9186,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_G_MAX t_gtin14
 
 #define SSC_TYPES_H \
-    t_halign, t_hash_ref, t_hash_fn, t_height, t_hex, t_hidden, t_hidden_ex, t_hour, t_html, t_html_boolean, t_httpequiv, t_hue, t_hue_n, \
-        t_hunit, t_huv, t_hwbfn
+    t_halign, t_hash_ref, t_hash_fn, t_height, t_hex, t_hidden, t_hidden_ex, t_hline, t_hour, t_html, t_html_boolean, t_httpequiv, t_hue, \
+        t_hue_n, t_hunit, t_huv, t_hwbfn
 #define SSC_TYPES_H_MAX t_hwbfn
 
 #define SSC_TYPES_I_1 \
@@ -9166,13 +9199,13 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_I_2 \
         t_inline, t_inlist, t_inn, t_inn2, t_inputaccept, t_inputmode, t_inputplus, t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, \
         t_inputtype5,  t_inset, t_integer, t_integer_1_up, t_integer_1_up_inf, t_integer_1_up_inf_a, t_integer_1_up_inf_aa, \
-        t_integer_1_up_inf_aaa, t_integer_1_up_inf_aan, t_integer_ai, t_integer_i, t_integer_is
-#define SSC_TYPES_I_2_MAX t_integer_is
+        t_integer_1_up_inf_aaa, t_integer_1_up_inf_aan, t_integer_ai, t_integer_i, t_integer_is, t_integer_ln
+#define SSC_TYPES_I_2_MAX t_integer_ln
 
 #define SSC_TYPES_I_3 \
-        t_integer_ln, t_integer_n, t_integer_nl, t_integer_oo, t_integer_or_percent, t_integers, t_integers_a, t_intent, t_intent_app, \
-        t_intent_args, t_intent_conlit, t_intent_hint, t_intent_ref, t_interactive_widget, t_inverted_colours, t_ip_address, t_is, t_isbn, \
-        t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref
+        t_integer_n, t_integer_nl, t_integer_oo, t_integer_or_percent, t_integers, t_integers_a, t_intent, t_intent_app, \
+        t_intent_args, t_intent_conlit, t_intent_hint, t_intent_ref, t_interactive_widget, t_inverted_colours, t_io, t_ios, t_ip_address, \
+        t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref
 #define SSC_TYPES_I_3_MAX t_itemref
 
 #define SSC_TYPES_J_K \
@@ -9182,18 +9215,18 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_L_1 \
     t_labfn, t_lang, t_lang_n, t_langq, t_langs, t_langqs, t_larnalign, t_layout, t_lchfn, t_lcralign, t_lcraligns, t_lcrnalign, \
-        t_lcrd, t_lcrds, t_lcrdss, t_length, t_length_absolute, t_length_relative, t_lengthadjust, t_light_dark, t_linear_arg, \
-        t_linear_colour_more, t_linear_colour_stop
-#define SSC_TYPES_L_1_MAX t_linear_colour_stop
+        t_lcrd, t_lcrds, t_lcrdss, t_legacy_scale, t_length, t_length_absolute, t_length_relative, t_lengthadjust, t_light_dark
+#define SSC_TYPES_L_1_MAX t_light_dark
 
 #define SSC_TYPES_L_2 \
-        t_linear_colour_stops, t_linebreak, t_linebreakstyle, t_linecap, t_line_height, t_linejoin, t_linethickness, t_link, t_linkarg, \
-        t_linkargs, t_linkitself, t_linkparam, t_links, t_listtype, t_literal, t_literal_or_not, t_lnr, t_loading, t_localfn, t_local_url, \
-        t_locale, t_location
-#define SSC_TYPES_L_2_MAX t_location
+        t_linear_1, t_linear_2, t_linear_12, t_linear_arg, t_linear_colour_more, t_linear_colour_stop, t_linear_colour_stops, t_linebreak, \
+        t_linebreakstyle, t_linecap, t_line_height, t_linejoin, t_linethickness, t_link, t_linkarg, t_linkargs, t_linkitself, t_linkparam, \
+        t_links, t_listtype, t_literal, t_literal_or_not, t_lnr, t_loading 
+#define SSC_TYPES_L_2_MAX t_loading
 
 #define SSC_TYPES_L_3 \
-        t_longdivstyle, t_loop, t_loopie, t_lraalign, t_lralign, t_lrnalign, t_lrnialign, t_lrtb, t_lrxx, t_lspace, t_ltr_rtl, t_lzz
+        t_localfn, t_local_url, t_locale, t_location, t_longdivstyle, t_loop, t_loopie, t_lraalign, t_lralign, t_lrnalign, t_lrnialign, \
+        t_lrtb, t_lrxx, t_lspace, t_ltr_rtl, t_lzz
 #define SSC_TYPES_L_3_MAX t_lzz
 
 #define SSC_TYPES_M_1 \
@@ -9233,7 +9266,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_M_6_MAX t_naughty
 
 #define SSC_TYPES_N \
-    t_nav_controls, t_navigation, t_nearest_none, t_negative, t_nit_macro, t_nit_section, t_no_braille, t_none_objects, t_none_wrap, t_normal, t_normal_spell, \
+    t_nav_controls, t_navigation, t_nearest_none, t_negative, t_nit_macro, t_nit_section, t_no_braille, t_none_objects, t_none, t_none_wrap, t_normal, t_normal_spell, \
         t_normal_stretch, t_not_0, t_not_empty, t_not_neg, t_not_pos, t_notation, t_notations, t_nsd, t_nsds, t_nss, t_nuf, t_num
 #define SSC_TYPES_N_MAX t_num
 
@@ -9268,8 +9301,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_P_4_MAX t_quote_style
 
 #define SSC_TYPES_R_1 \
-    t_r0_to_1, t_radial_1, t_radial_2, t_radial_3, t_radial_4, t_radial_ending, t_radial_size, t_radial_start, t_rap, t_ratio, t_ratio_a, t_rational, \
-        t_rationals, t_rating, t_rdf_parsetype, t_rdfa_typeof, t_real, t_real_1_2, t_real_1_up, t_real_1_up_inf, t_real_04, t_real_100, t_real_125, t_real_360
+    t_r0_to_1, t_radial_3, t_radial_4, t_radial_34, t_radial_ending, t_radial_size, t_radial_start, t_rap, t_ratio, t_ratio_a, t_rational, t_rationals, t_rating, \
+        t_rdf_parsetype, t_rdfa_typeof, t_real, t_real_1_2, t_real_1_up, t_real_1_up_inf, t_real_04, t_real_100, t_real_125, t_real_360
 #define SSC_TYPES_R_1_MAX t_real_360
 
 #define SSC_TYPES_R_2 \
@@ -9304,30 +9337,32 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_S_1_MAX t_shadow
 
 #define SSC_TYPES_S_2 \
-        t_shape, t_shape3, t_shape4, t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse, t_shape_fn_polygon, t_shape_uri, \
-        t_shape_rendering, t_shape_rcp, t_shadowinherit, t_short, t_side, t_simple_neg, t_size, t_size3, t_size_inlinesize, t_sizes
-#define SSC_TYPES_S_2_MAX t_sizes
+        t_shape, t_shape_1, t_shape_12, t_shape_2, t_shape3, t_shape4, t_shape7, t_shape_cmd, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, \
+        t_shape_fn_ellipse, t_shape_fn_polygon, t_shape_uri, t_shape_rendering, t_shape_rcp, t_shadowinherit, t_short, t_side, t_simple_neg, t_size, \
+        t_size3
+#define SSC_TYPES_S_2_MAX t_size3
 
 #define SSC_TYPES_S_3 \
-        t_sizex, t_slash, t_smei, t_snap, t_source_target, t_spacer, t_spacing, t_speculationrules, t_spreadmethod, t_srcset, t_ssi, t_ssi_comparison, \
-        t_ssi_config, t_ssi_echo, t_ssi_encoding, t_ssi_env, t_ssi_exec, t_ssi_f, t_ssi_include, t_ssi_set, t_ssi_sizefmt
-#define SSC_TYPES_S_3_MAX t_ssi_sizefmt
+        t_size_inlinesize, t_sizes, t_sizex, t_slash, t_smei, t_snap, t_source_target, t_spacer, t_spacing, t_speculationrules, t_spreadmethod, \
+        t_srcset, t_ssi, t_ssi_comparison, t_ssi_config, t_ssi_echo, t_ssi_encoding, t_ssi_env, t_ssi_exec, t_ssi_f, t_ssi_include, t_ssi_set
+#define SSC_TYPES_S_3_MAX t_ssi_set
 
 #define SSC_TYPES_S_4 \
-        t_start, t_startend, t_startends, t_step, t_step_position, t_stitchtiles, t_streamedcontents, t_stress, t_stretch, t_stripe, t_style, t_supports, \
+        t_ssi_sizefmt, t_start, t_startend, t_startends, t_step, t_step_position, t_stitchtiles, t_streamedcontents, t_stress, t_stretch, t_stripe, t_style, t_supports, \
         t_sym, t_syncbehaviour, t_syncbehaviourdefault, t_svg_align, t_svg_baselineshift, t_svg_baseprofile, t_svg_clip, t_svg_colour_profile, t_svg_content, \
-        t_svg_direction, t_svg_display
-#define SSC_TYPES_S_4_MAX t_svg_display
+        t_svg_direction
+#define SSC_TYPES_S_4_MAX t_svg_direction
 
 #define SSC_TYPES_S_5 \
-        t_svg_duration, t_svg_feature, t_svg_features, t_svg_fontstretch, t_svg_fontstretch_ff, t_svg_fontstyle, t_svg_fontstyle_ff, t_svg_fontvariant, \
-        t_svg_fontvariant_ff, t_svg_fontweight, t_svg_fontweight_ff, t_svg_fontweights, t_svg_host, t_svg_method, t_svg_mode, t_svg_name_iri, \
-        t_svg_overflow, t_svg_phase, t_svg_playbackorder, t_svg_profile_name, t_svg_rendering_intent
-#define SSC_TYPES_S_5_MAX t_svg_rendering_intent
+        t_svg_display, t_svg_duration, t_svg_feature, t_svg_features, t_svg_fontstretch, t_svg_fontstretch_ff, t_svg_fontstyle, t_svg_fontstyle_ff, \
+        t_svg_fontvariant, t_svg_fontvariant_ff, t_svg_fontweight, t_svg_fontweight_ff, t_svg_fontweights, t_svg_host, t_svg_method, t_svg_mode, \
+        t_svg_name_iri, t_svg_overflow, t_svg_phase, t_svg_playbackorder, t_svg_profile_name
+#define SSC_TYPES_S_5_MAX t_svg_profile_name
 
 #define SSC_TYPES_S_6 \
-        t_svg_shape, t_svg_shapefn, t_svg_side, t_svg_src, t_svg_svg, t_svg_time, t_svg_time_default, t_svg_time_inherit, t_svg_time_none, t_svg_timelinebegin, \
-        t_svg_transform, t_svg_two_profile, t_svg_type, t_svg_units, t_svg_values, t_svg_version, t_svg_version_grand, t_svg_viewbox, t_svg_viewboxrect
+        t_svg_rendering_intent, t_svg_shape, t_svg_shapefn, t_svg_side, t_svg_src, t_svg_svg, t_svg_time, t_svg_time_default, t_svg_time_inherit, \
+        t_svg_time_none, t_svg_timelinebegin, t_svg_transform, t_svg_two_profile, t_svg_type, t_svg_units, t_svg_values, t_svg_version, t_svg_version_grand, \
+        t_svg_viewbox, t_svg_viewboxrect
 #define SSC_TYPES_S_6_MAX t_svg_viewboxrect
 
 #define SSC_TYPES_T_1 \
@@ -9358,8 +9393,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_V_2 \
         t_viewport_height, t_viewport_initial_scale, t_viewport_interactive_widget, t_viewport_maximum_scale, t_viewport_minimum_scale, t_viewport_scale, \
-        t_viewport_semi, t_viewport_setting, t_viewport_target_densitydpi, t_viewport_user_scalable, t_viewport_width, \
-        t_viewportscreen, t_visibility, t_visibility10, t_visibility11, t_vkind, t_vocab, t_vrel, t_vtt_token, t_vtype, t_vunit, t_vunits
+        t_viewport_semi, t_viewport_setting, t_viewport_target_densitydpi, t_viewport_user_scalable, t_viewport_width, t_viewportscreen, t_visibility, \
+        t_visibility10, t_visibility11, t_vkind, t_vline, t_vocab, t_vrel, t_vtt_token, t_vtype, t_vunit, t_vunits
 #define SSC_TYPES_V_2_MAX t_vunits
 
 #define SSC_TYPES_W \
@@ -9375,8 +9410,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_X_2 \
         t_xmpdm_camera_angle, t_xmpdm_camera_move, t_xmpdm_pulldown, t_xmpdm_quality, t_xmpdm_scaletype, t_xmpdm_shotsize, t_xmpdm_stretchmode, \
         t_xmpdm_time_format, t_xmpdm_time_signature, t_xmpdm_type, t_xmpdm_video_alphamode, t_xmpdm_video_colourspace, t_xmpdm_video_fieldorder, \
-        t_xmpdm_video_videoframerate, t_xmpdm_video_pixeldepth, t_xmpg_type, t_xorder, t_xsdbool
-#define SSC_TYPES_X_2_MAX t_xsdbool
+        t_xmpdm_video_videoframerate, t_xmpdm_video_pixeldepth, t_xmpg_type, t_xorder, t_xsdbool, t_xywh
+#define SSC_TYPES_X_2_MAX t_xywh
 
 #define SSC_TYPES_Y_Z \
     t_year, t_yearmonth, t_yesno, t_yesnoempty, \
@@ -9385,7 +9420,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES   SSC_TYPES_0_1, SSC_TYPES_2_9, SSC_TYPES_A_1, SSC_TYPES_A_2, SSC_TYPES_A_3, SSC_TYPES_A_4, SSC_TYPES_A_5, SSC_TYPES_B_1, SSC_TYPES_B_2, \
                     SSC_TYPES_C_1, SSC_TYPES_C_2, SSC_TYPES_C_3, SSC_TYPES_C_4, SSC_TYPES_C_5, SSC_TYPES_CSS_A_1, SSC_TYPES_CSS_A_2, SSC_TYPES_CSS_A_3, \
-                    SSC_TYPES_CSS_B_1, SSC_TYPES_CSS_B_2, SSC_TYPES_CSS_B_3, SSC_TYPES_CSS_B_4, SSC_TYPES_CSS_C_1, SSC_TYPES_CSS_C_2, SSC_TYPES_CSS_C_3, \
+                    SSC_TYPES_CSS_B_1, SSC_TYPES_CSS_B_2, SSC_TYPES_CSS_B_3, SSC_TYPES_CSS_B_4, SSC_TYPES_CSS_B_5, SSC_TYPES_CSS_C_1, SSC_TYPES_CSS_C_2, SSC_TYPES_CSS_C_3, \
                     SSC_TYPES_CSS_C_4, SSC_TYPES_CSS_C_5, SSC_TYPES_CSS_D, SSC_TYPES_CSS_E_1, SSC_TYPES_CSS_E_2, SSC_TYPES_CSS_F_1, SSC_TYPES_CSS_F_2, \
                     SSC_TYPES_CSS_F_3, SSC_TYPES_CSS_FN_1, SSC_TYPES_CSS_FN_2, SSC_TYPES_CSS_FN_3, SSC_TYPES_CSS_G_H, SSC_TYPES_CSS_I_1, SSC_TYPES_CSS_I_2, \
                     SSC_TYPES_CSS_J_K, SSC_TYPES_CSS_L_1, SSC_TYPES_CSS_L_2, SSC_TYPES_CSS_L_3, SSC_TYPES_CSS_M_1, SSC_TYPES_CSS_M_2, SSC_TYPES_CSS_N_O, \
@@ -9425,11 +9460,12 @@ typedef enum { v12_inherit, v12_none, v12_nonscalingstroke } e_vector_effect_12;
 typedef enum { v2_fixedposition, v2_none, v2_nonrotation, v2_nonscalingstroke, v2_nonscalingsize } e_vector_effect_2;
 typedef enum { vf_none, vf_ads, vf_atomic, vf_css, vf_directory, vf_jsonld, vf_markup, vf_rdf, vf_robotic, vf_rsl, vf_rss, vf_security, vf_vtt, vf_error } e_verifiable_file;
 typedef enum { eva_baseline, eva_sub, eva_super, eva_top, eva_text_top, eva_middle, eva_bottom, eva_text_bottom, eva_inherit } e_vertical_align_enum;
+typedef enum { vg_female, vg_male, vg_none, vg_other, vg_unknown } e_vgender;
 typedef enum { vs_viewport, vs_screen } e_viewportscreen;
 typedef enum { vi0_visible, vi0_hidden, vi0_inherit } e_visibility10;
 typedef enum { vi1_visible, vi1_hidden, vi1_force_hidden, vi1_collapse } e_visibility11;
-typedef enum { vg_female, vg_male, vg_none, vg_other, vg_unknown } e_vgender;
 typedef enum { vk_individual, vk_organisation, vk_group, vk_location } e_vkind;
+typedef enum { vl_bottom, vl_by, vl_centre, vl_to, vl_top, vl_yend, vl_ystart } e_vline;
 typedef enum {  vr_acquaintance, vr_agent, vr_child, vr_colleague, vr_contact, vr_coresident, vr_coworker, vr_crush, vr_date,
                 vr_emergency, vr_friend, vr_kin, vr_me, vr_met, vr_muse, vr_neighbor, vr_parent, vr_sibling, vr_spouse, vr_sweetheart } e_vrel;
 typedef enum { vtf_any, vtf_caption, vtf_chapter, vtf_metadata } e_vtt_filetype;

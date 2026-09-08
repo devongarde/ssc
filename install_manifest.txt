@@ -21,6 +21,7 @@
 /Applications/Static-Site-Checker.app/Contents/MacOS/libwx_osx_cocoau_qa-3.3.3.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libwx_osx_cocoau_webview-3.3.3.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libicutest.dylib
+/Applications/Static-Site-Checker.app/Contents/MacOS/libboost_stacktrace_dump.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libwx_osx_cocoau_qa-3.3.3.0.0.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libwx_osx_cocoau_propgrid-3.3.3.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libboost_iostreams.dylib
@@ -57,6 +58,7 @@
 /Applications/Static-Site-Checker.app/Contents/MacOS/libboost_regex.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libboost_stacktrace_addr2line.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libboost_coroutine.dylib
+/Applications/Static-Site-Checker.app/Contents/MacOS/libboost_stacktrace_from_exception.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libboost_nowide.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libboost_program_options.dylib
 /Applications/Static-Site-Checker.app/Contents/MacOS/libiconv.dylib

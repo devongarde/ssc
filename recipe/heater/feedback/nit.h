@@ -27,6 +27,7 @@ class nit
     e_severity severity_ = es_illegal;
     e_category category_ = ec_undefined;
     e_doc doc_ = ed_mishmash;
+    int count_ = 0;
     ::std::string ref_; // location in doc; presumes hard coded string
     ::std::string msg_;
     friend bool operator < (const nit& lhs, const nit& rhs);
@@ -37,15 +38,20 @@ public:
     nit (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, const ::std::string& msg);
     nit (const e_nit code, const e_severity severity, const e_category category, const ::std::string& msg);
     ~nit() = default;
+    friend bool operator == (const nit& lhs, const nit& rhs);
     void swap (nit& n) noexcept;
     void reset ();
     void reset (const nit& n);
+    void mention (const int x) noexcept { count_ += x; }
+    int mention () const noexcept { return count_; }
     ::std::string review (const e_nit_section& entry, const mmac_t& mac, const mmac_t& outer) const;
     e_nit code () const noexcept { return code_; }
     e_severity severity () const noexcept { return severity_; }
     e_category category () const noexcept { return category_; }
     e_doc doc () const noexcept { return doc_; }
     ::std::string msg () const { return msg_; }
+    bool deja_vu (const e_nit code, const e_severity severity, const ::std::string& msg) const
+    {   return (code == code_) && (severity == severity_) && (msg_ == msg); }
     bool empty () const noexcept { return code_ == nit_free; } };
 
 #ifdef _MSC_VER
@@ -58,6 +64,11 @@ inline bool operator < (const nit& lhs, const nit& rhs)
     if (lhs.code_ < rhs.code_) return true;
     if (lhs.code_ > rhs.code_) return false;
     return (lhs.msg_.compare (rhs.msg_) < 0); }
+
+inline bool operator == (const nit& lhs, const nit& rhs)
+{   if (lhs.severity_ != rhs.severity_) return false;
+    if (lhs.code_ != rhs.code_) return false;
+    return (lhs.msg_.compare (rhs.msg_) == 0); }
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER

@@ -5,7 +5,6 @@ PASS ../toast/mdn/list/index.html
 
 PASS ../toast/mdn/list/list-style.html
 2 naughty_lang
-5 protocol
 56 default_role
 
 PASS ../toast/mdn/list/list-style-image.html

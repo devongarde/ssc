@@ -206,12 +206,12 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_3_2 }, { HTML_UNDEF }, "codebase", a_codebase },
     { { HTML_4_0 }, { HTML_UNDEF }, "codetype", a_codetype },
     { { HTML_3_0 }, { HTML_3_0 }, "coldef", a_coldef },
-    { { HTML_3_2, 0, HE_ANIM_1, H2_MATH_1_2_3 }, { HTML_UNDEF }, "color", a_colour, ns_default, AF_SVG2_PROPERTY }, // dialect
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "color-interpolation", a_colour_interpolation, ns_default, AF_SVG2_PROPERTY }, // dialect
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "color-interpolation-filters", a_colour_interpolation_filters, ns_default, AF_SVG2_PROPERTY }, // dialect
-    { { HTML_SVG10, 0, HE_SVG_10_11 | HE_ANIM_10_11 }, { HTML_UNDEF }, "color-profile", a_colour_profile, ns_default, AF_SVG2_PROPERTY | AP_SET_XLINKCAT (se_colour_profile) }, // dialect
-    { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "color-rendering", a_colour_rendering, ns_default, AF_SVG2_PROPERTY }, // dialect
-    { { HTML_NOV24, 0, HTML_UNDEF }, { HTML_UNDEF }, "colorspace", a_colourspace }, // dialect
+    { { HTML_3_2, 0, HE_ANIM_1, H2_MATH_1_2_3 }, { HTML_UNDEF }, "color", a_colour, ns_default, AF_SVG2_PROPERTY }, 
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "color-interpolation", a_colour_interpolation, ns_default, AF_SVG2_PROPERTY }, 
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "color-interpolation-filters", a_colour_interpolation_filters, ns_default, AF_SVG2_PROPERTY }, 
+    { { HTML_SVG10, 0, HE_SVG_10_11 | HE_ANIM_10_11 }, { HTML_UNDEF }, "color-profile", a_colour_profile, ns_default, AF_SVG2_PROPERTY | AP_SET_XLINKCAT (se_colour_profile) }, 
+    { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "color-rendering", a_colour_rendering, ns_default, AF_SVG2_PROPERTY }, 
+    { { HTML_NOV24, 0, HTML_UNDEF }, { HTML_UNDEF }, "colorspace", a_colourspace }, 
     { { HTML_PLUS, HV_RFC_1942 }, { HTML_UNDEF }, "cols", a_cols },
     { { HTML_PLUS, HV_RFC_1942 }, { HTML_UNDEF }, "colspan", a_colspan },
     { { HTML_3_0 }, { HTML_3_0 }, "colspec", a_colspec },
@@ -340,7 +340,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11 | HE_ANIM_11 }, { HTML_UNDEF }, "filterRes", a_filterres },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_11_2 }, { HTML_UNDEF }, "filterUnits", a_filterunits },
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, "flatness", a_flatness },
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "flood-color", a_flood_colour, ns_default, AF_SVG2_PROPERTY }, // dialect
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "flood-color", a_flood_colour, ns_default, AF_SVG2_PROPERTY }, 
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "flood-opacity", a_flood_opacity, ns_default, AF_SVG2_PROPERTY },
     { { HTML_SVG12, 0, HE_SVG_12 | HE_ANIM_12 }, { HTML_UNDEF }, "focusable", a_focusable },
     { { HTML_SVG12, 0, HE_SVG_12 | HE_ANIM_12 }, { HTML_UNDEF }, "focusHighlight", a_focushighlight },
@@ -502,7 +502,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "length", a_atom_length, ns_atom },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "lengthAdjust", a_lengthadjust },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "letter-spacing", a_letter_spacing, ns_default, AF_SVG2_PROPERTY },
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "lighting-color", a_lighting_colour, ns_default, AF_SVG2_PROPERTY }, // dialect
+    { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "lighting-color", a_lighting_colour, ns_default, AF_SVG2_PROPERTY }, 
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "limitingConeAngle", a_limitingconeangle },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "linebreak", a_linebreak },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "line-break", a_line_break, ns_default, AF_PROPERTY },
@@ -821,7 +821,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_1_0, 0, HE_ANIM_12_2 }, { HTML_UNDEF }, "rel", a_rel },
     { { HTML_ATOM, 0, 0, 0, 0, H4_ATOM }, { HTML_UNDEF }, "rel", a_atom_rel, ns_atom },
     { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, "relationship", a_mrss_relationship, ns_mrss },
-    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "rendering-color-space", a_rendering_colour_space, ns_default, AF_PROPERTY }, // dialect
+    { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "rendering-color-space", a_rendering_colour_space, ns_default, AF_PROPERTY }, 
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "rendering-intent", a_rendering_in_tents },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "repeatCount", a_repeatcount },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "repeatDur", a_repeatdur },
@@ -907,7 +907,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_JUL16 }, { HTML_UNDEF }, "slot", a_slot },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "snap", a_snap, ns_default, AF_PROPERTY },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, "snapshotTime", a_snapshottime },
-    { { HTML_SVG12, 0, HE_SVG_12 | HE_ANIM_12 }, { HTML_UNDEF }, "solid-color", a_solid_colour }, // dialect
+    { { HTML_SVG12, 0, HE_SVG_12 | HE_ANIM_12 }, { HTML_UNDEF }, "solid-color", a_solid_colour }, 
     { { HTML_SVG12, 0, HE_SVG_12 | HE_ANIM_12 }, { HTML_UNDEF }, "solid-opacity", a_solid_opacity },
     { { HTML_JAN05 }, { HTML_UNDEF }, "sortable", a_sortable },
     { { HTML_JAN05 }, { HTML_UNDEF }, "sorted", a_sorted },
@@ -938,7 +938,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "stemv", a_stemv },
     { { HTML_JAN05 }, { HTML_UNDEF }, "step", a_step },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "stitchTiles", a_stitchtiles },
-    { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "stop-color", a_stop_colour, ns_default, AF_SVG2_PROPERTY }, // dialect
+    { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "stop-color", a_stop_colour, ns_default, AF_SVG2_PROPERTY }, 
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "stop-opacity", a_stop_opacity, ns_default, AF_SVG2_PROPERTY },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "streamedContents", a_streamedcontents },
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, "stretchy", a_stretchy },
@@ -985,7 +985,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "text-align-last", a_text_align_last },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "text-anchor", a_text_anchor, ns_default, AF_SVG2_PROPERTY },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "text-decoration", a_text_decoration, ns_default, AF_SVG2_PROPERTY },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "text-decoration-color", a_text_decoration_colour, ns_default, AF_PROPERTY }, // dialect
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "text-decoration-color", a_text_decoration_colour, ns_default, AF_PROPERTY }, 
     { { HTML_SVG20, 0, HE_SVG_2 | HE_ANIM_2 }, { HTML_UNDEF }, "text-decoration-fill", a_text_decoration_fill, ns_default, AF_PROPERTY },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "text-decoration-line", a_text_decoration_line, ns_default, AF_PROPERTY },
     { { HTML_SVG20, 0, HE_SVG_2 | HE_ANIM_2 }, { HTML_UNDEF }, "text-decoration-stroke", a_text_decoration_stroke, ns_default, AF_PROPERTY },

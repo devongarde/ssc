@@ -22,9 +22,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/value.h"
 #include "css/flags.h"
 
-void add_param (const arguments& args, t_params& params, int& from, const int i)
-{   params.emplace_back (from, i-1);
-    from = next_non_whitespace (args.t_, i, -1); }
+int add_param (const arguments& args, t_params& params, const int from, const int i)
+{   //::std::cout << "inserting: " << ::boost::lexical_cast < ::std::string > (from) << ":" << ::boost::lexical_cast < ::std::string > (i-1) << "\n";
+    params.emplace_back (from, i-1);
+    return next_non_whitespace (args.t_, i, -1); }
+
+::std::string rpt_params (const t_params& params)
+{   ::std::string res (::boost::lexical_cast < ::std::string > (params.size ()));
+    for (auto p : params)
+    {   res += " ";
+        res += ::boost::lexical_cast < ::std::string > (p.first) + ":" + ::boost::lexical_cast < ::std::string > (p.second); }
+    return res; }
 
 bool maybe_anchor (nitpick& nits, const e_css_property id)
 {   if (id <= ec_custom) return true;
@@ -177,7 +185,7 @@ bool maybe_transform (nitpick& nits, const e_css_property id, const bool t4)
     return false; }
 
 int check_typed_feature (arguments& args, nitpick& nits, const int start, const int to, const e_css_statement cs, const char* const sz)
-{   ::std::string name (assemble_string (args.t_, start, to, true));
+{   ::std::string name (trim_the_lot_off (assemble_string (args.t_, start, to, true)));
     if (name.empty ()) return to;
     if (args.has_font_feature (cs, name)) return to;
     if (name.find_first_not_of (DENARY) == ::std::string::npos) return to;
@@ -207,6 +215,7 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     int test_value_fns_css_b_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_b_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_b_4 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_css_b_5 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_c_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_c_2 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_c_3 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
@@ -317,6 +326,7 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     if (t <= SSC_TYPES_CSS_B_2_MAX) return test_value_fns_css_b_2 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_B_3_MAX) return test_value_fns_css_b_3 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_B_4_MAX) return test_value_fns_css_b_4 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPES_CSS_B_5_MAX) return test_value_fns_css_b_5 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_C_1_MAX) return test_value_fns_css_c_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_C_2_MAX) return test_value_fns_css_c_2 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_C_3_MAX) return test_value_fns_css_c_3 (args, start, to, nits, t, fn, id);

@@ -7,9 +7,9 @@ PASS ../toast/mdn/nth/nth-child.html
 2 naughty_lang
 105 h1_h6
 129 use_quote_code
-134 naughty_grave naughty_grave
+134 naughty_grave
 151 use_quote_code
-158 naughty_grave naughty_grave
+158 naughty_grave
 
 PASS ../toast/mdn/nth/nth-last-child.html
 2 naughty_lang

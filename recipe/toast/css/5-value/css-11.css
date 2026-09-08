@@ -1,0 +1,25 @@
+﻿.fark
+{
+    height: calc-size(auto, 0);           /* used height is zero */
+    height: calc-size(auto, 50%);         /* used height is 50% of the container */
+    height: calc-size(auto, size / 2);    /* used height is 50% of auto */
+    height: calc-size(auto, size);        /* used height is auto */
+    height: calc-size(auto, size + 10px); /* used height is auto + 10px */
+    height: calc-size(auto, round(up, size, 20px));
+                                          /* used height is rounded up to the
+                                             nearest multiple of 20px */
+    height: calc-size(any,  size / 2);    /* declaration is invalid */
+}
+
+details {
+  transition: height 1s;
+}
+details::details-content {
+  display: block;
+}
+details[open]::details-content {
+  height: auto;
+}
+details:not([open])::details-content {
+  height: calc-size(any, 0px);
+}

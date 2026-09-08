@@ -190,7 +190,7 @@ bool external::verify (nitpick& nits, const html_version& v, const url& u, int& 
             url_.insert (value_t (ua, code)); } }
     if ((code >= 400) && (code < 500)) return false;
     if (! context.forwarded ()) return true;
-    return ((code != 301) && (code != 308)); };   // consider checking for ids
+    return ((code != 301) && (code != 308)); };
 
 ::std::string external::load (nitpick& nits, const url& u)
 {   ::std::string res;

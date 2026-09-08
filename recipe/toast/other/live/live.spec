@@ -20,15 +20,15 @@ PASS ../toast/other/live/index.html
 PASS ../toast/other/live/index.shtml
 180 css_version
 134 dinosaur content_language
-197 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
-203 bad_property bad_property bad_property
-212 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
-216 bad_property bad_property bad_property
-228 bad_property bad_property bad_property
-233 bad_property bad_property bad_property
-238 bad_property bad_property bad_property
-243 bad_property bad_property bad_property
-248 bad_property bad_property bad_property
-254 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+197 bad_property
+203 bad_property
+212 bad_property
+216 bad_property
+228 bad_property
+233 bad_property
+238 bad_property
+243 bad_property
+248 bad_property
+254 bad_property
 315 alt_title
 494 lingo

@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class brac_element_ket
 {   friend class elements_node;
-    ::std::string arg_; // must occur before start_, eofe_ & end_
+    ::std::string arg_; // must be before start_, eofe_ & end_
     ::std::string::const_iterator start_;
     ::std::string::const_iterator eofe_;
     ::std::string::const_iterator end_;

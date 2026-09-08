@@ -1,0 +1,31 @@
+﻿h1 {
+  transition: background-color 1.5s;
+  background-color: green;
+}
+@starting-style {
+  h1 {
+    background-color: transparent;
+  }
+}
+
+h1 {
+  transition: background-color 1.5s;
+  background-color: green;
+  @starting-style {
+    background-color: transparent;
+  }
+}
+
+#target {
+  transition-property: opacity, display;
+  transition-duration: 0.5s;
+  display: block;
+  opacity: 1;
+  @starting-style {
+    opacity: 0;
+  }
+}
+#target.hidden {
+  display: none;
+  opacity: 0;
+}

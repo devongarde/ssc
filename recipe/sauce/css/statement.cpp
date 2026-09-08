@@ -43,13 +43,13 @@ void statement::parse_colour_profile (arguments& args, nitpick& nits, const int 
 {   if (args.v_.css_module (c_colour) < 5)
     {   if (args.snippet_)
             if (! args.eb_.test (elem_svg))
-            {   nits.pick (nit_css_svg, ed_svg_1_1, "12.3.4 The CSS @color-profile rule", es_warning, ec_css, "@color-profile expects an ancestral <SVG>, or CSS Colour 5"); // dialect, standard
+            {   nits.pick (nit_css_svg, ed_svg_1_1, "12.3.4 The CSS @color-profile rule", es_warning, ec_css, "@color-profile expects an ancestral <SVG>, or CSS Colour 5");
                 return; }
         if ((args.v_.svg_version () != sv_none) && (args.v_.svg_version () != sv_1_1))
-        {   nits.pick (nit_svg_version, ed_svg_1_1, "12.3.4 The CSS @color-profile rule", es_warning, ec_css, "@color-profile requires SVG 1.1 or CSS Colour 5"); // dialect, standard
+        {   nits.pick (nit_svg_version, ed_svg_1_1, "12.3.4 The CSS @color-profile rule", es_warning, ec_css, "@color-profile requires SVG 1.1 or CSS Colour 5");
             return; } }
     if ((to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
-        nits.pick (nit_css_syntax, es_error, ec_css, "expecting { property... } after @color-profile"); // dialect
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting { property... } after @color-profile"); 
     else
     {   PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
         if ((from != to) && (from > 0))
@@ -59,9 +59,9 @@ void statement::parse_colour_profile (arguments& args, nitpick& nits, const int 
                 {   ::std::string s (args.t_.at (i).val_);
                     if ((s.size () > 2) && (s.substr (0, 2) == "--"))
                         if (args.has (cic_custom_property, s))
-                            nits.pick (nit_css_custom, es_warning, ec_css, "@color-profile identifier ", s, " previously encountered"); // dialect
+                            nits.pick (nit_css_custom, es_warning, ec_css, "@color-profile identifier ", s, " previously encountered"); 
                         else
-                        {   nits.pick (nit_css_custom, es_info, ec_css, "noting @color-profile ", s); // dialect
+                        {   nits.pick (nit_css_custom, es_info, ec_css, "noting @color-profile ", s); 
                             args.dcl (cic_custom_property, s); } } }
         fiddlesticks < statement > f (&args.st_, this);
         prop_.parse (args, args.t_.at (to).child_); } }
@@ -952,6 +952,7 @@ void statement::parse_navigation (arguments& args, nitpick& nits, const int from
             {   case ct_round_brac :
                     switch (prev)
                     {   case ct_colon :
+                        case ct_vu5_colon :
                             nits.pick (nit_route, es_error, ec_css, "missing argument following ':'");
                             break;
                         case ct_round_ket :
@@ -979,6 +980,7 @@ void statement::parse_navigation (arguments& args, nitpick& nits, const int from
                         break; }
                     switch (prev)
                     {   case ct_colon :
+                        case ct_vu5_colon :
                             nits.pick (nit_route, es_error, ec_css, "missing argument following ':'");
                             break;
                         case ct_keyword :
@@ -1016,7 +1018,7 @@ void statement::parse_navigation (arguments& args, nitpick& nits, const int from
                 case ct_string :
                     if ((fn > 0) && (fn < depth)) break;
                     if ((args.t_.at (j).val_.size () > 2) && (args.t_.at (j).val_.substr (0, 2) == "--"))
-                    {   if ((prev != ct_keyword) && (prev != ct_colon))
+                    {   if ((prev != ct_keyword) && (prev != ct_colon) && (prev != ct_vu5_colon))
                             nits.pick (nit_route, es_error, ec_css, quote (args.t_.at (j).val_), ": unexpected (missing ':'?)");
                         else switch (twas)
                         {   case cnk_and :
@@ -1061,18 +1063,18 @@ void statement::parse_navigation (arguments& args, nitpick& nits, const int from
                             case cnk_forward :
                             case cnk_reload :
                             case cnk_traverse :
-                                if ((depth == 0) || (prev != ct_colon) || (twas != cnk_history))
+                                if ((depth == 0) || ((prev != ct_colon) && (prev != ct_vu5_colon)) || (twas != cnk_history))
                                     nits.pick (nit_route, es_error, ec_css, quote (args.t_.at (j).val_), ": unexpected; it must follow 'history :'");
                                 break;
                             case cnk_committed :
                             case cnk_loading :
                             case cnk_ready :
-                                if ((depth == 0) || (prev != ct_colon) || (twas != cnk_phase))
+                                if ((depth == 0) || ((prev != ct_colon) && (prev != ct_vu5_colon)) || (twas != cnk_phase))
                                     nits.pick (nit_route, es_error, ec_css, quote (args.t_.at (j).val_), ": unexpected; it must follow 'phase :'");
                                 break;
                             case cnk_url :
                             case cnk_url_pattern :
-                                if ((depth == 0) || (prev != ct_colon) || ((twas != cnk_at) && (twas != cnk_from) && (twas != cnk_to) && (twas != cnk_with)))
+                                if ((depth == 0) || ((prev != ct_colon) && (prev != ct_vu5_colon)) || ((twas != cnk_at) && (twas != cnk_from) && (twas != cnk_to) && (twas != cnk_with)))
                                     nits.pick (nit_route, es_error, ec_css, quote (args.t_.at (j).val_), ": unexpected; it must follow 'at/with/from/to :'");
                                 fn = depth;
                                 break;
@@ -1081,6 +1083,7 @@ void statement::parse_navigation (arguments& args, nitpick& nits, const int from
                     twas = nk;
                     break;
                 case ct_colon :
+                case ct_vu5_colon :
                     if ((prev != ct_keyword) && (prev != ct_identifier) && (prev != ct_string))
                         nits.pick (nit_route, es_error, ec_css, ": unexpected colon (':')");
                     else switch (twas)
@@ -1117,7 +1120,7 @@ void statement::parse_page (arguments& args, nitpick& nits, const int from, cons
         if ((from < to) && (from > 0) && (to > 0)) i = next_non_whitespace (args.t_, i, to); 
         bool more = false;
         do
-        {   if ((i > 0) && (args.t_.at (i).t_ == ct_colon))
+        {   if ((i > 0) && ((args.t_.at (i).t_ == ct_colon) || (args.t_.at (i).t_ == ct_vu5_colon)))
             {   fiddlesticks < statement > f (&args.st_, this);
                 rules_.parse (args, i, to);
                 return; }
@@ -1127,7 +1130,7 @@ void statement::parse_page (arguments& args, nitpick& nits, const int from, cons
                 if (args.has_str (gst_layer, n) || ! args.dst_ -> note_str (gst_page_name, n))
                     nits.pick (nit_page_name_again, es_error, ec_css, quote (args.t_.at (i).val_), " previously used.");
                 i = next_non_whitespace (args.t_, i, to); }
-            if ((i > 0) && (args.t_.at (i).t_ == ct_colon))
+            if ((i > 0) && ((args.t_.at (i).t_ == ct_colon) || (args.t_.at (i).t_ == ct_vu5_colon)))
             {   i = next_non_whitespace (args.t_, i, to);
                 if ((i > 0) && ((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier)))
                 {   enum_n < t_css_fn, e_css_fn > fn;
@@ -1576,7 +1579,7 @@ void statement::accumulate (stats_t* s) const
             res = "@charset ();";
             break;
         case css_colour_profile :
-            res = "@color-profile;"; // dialect
+            res = "@color-profile;"; 
             break;
         case css_counter_style :
             res = "@counter-style;";

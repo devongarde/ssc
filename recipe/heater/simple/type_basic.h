@@ -113,6 +113,9 @@ template < > struct type_master < t_naughty > : string_value < t_naughty >
         nits.pick (nit_naughty, es_error, ec_type, "result can only be used in a function body");
         string_value < t_naughty > :: status (s_invalid); } };
 
+template < > struct type_master < t_none > : type_string < t_none, sz_none >
+{ using type_string < t_none, sz_none > :: type_string; };
+
 template < > struct type_master < t_not_empty > : string_value < t_not_empty >
 {   using string_value < t_not_empty > :: string_value;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

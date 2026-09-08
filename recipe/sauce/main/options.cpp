@@ -2808,7 +2808,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RB (gr, res, GENERAL, COMMS, general);
     RI (gr, res, GENERAL, DATAPATH, def_path, general);
     RG (gr, res, int, GENERAL, DEFTHRD, general);
-//    RG (gr, res, vstr_t, GENERAL, ENVIRONMENT_, general);
+    RG (gr, res, vstr_t, GENERAL, ENVIRONMENT_, general);
     RG (gr, res, vstr_t, GENERAL, EXCLUDE, general);
     RI (gr, res, GENERAL, FICHIER, def_persisted, general);
     RB (gr, res, GENERAL, INFO, general);

@@ -1,9 +1,11 @@
 ﻿/* make option elements align together */
 option { text-align: match-parent; }
 
-
 /* do not allow white space to collapse in textarea */
 textarea { white-space-collapse: preserve !important; }
 
 /* preserve character grid in preformatted text */
-pre, code, kbd, samp, tt { text-spacing: none; }
+pre, code, kbd, samp, tt, listing, xmp, plaintext { text-spacing: none; }
+
+/* Avoid hanging punctuation inheriting into preformatted blocks */
+pre { hanging-punctuation: none; }

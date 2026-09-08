@@ -60,7 +60,7 @@ PASS ../toast/w3/xhtml/xhtml1-missing-doctype-has-xmlns.html
 1 presume_html_1 attribute_unrecognised_here attribute_unrecognised unrecognised_attribute unrecognised_attribute
 
 PASS ../toast/w3/xhtml/xhtml1-strict.html
-25 attempted_escape attempted_escape url_not_found
+25 attempted_escape url_not_found
 
 PASS ../toast/w3/xhtml/xhtml1-strict-minimal.html
 1 xhtml_1_0

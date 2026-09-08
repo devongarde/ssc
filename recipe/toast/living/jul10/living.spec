@@ -59,7 +59,7 @@ PASS ../toast/living/jul10/autofocus.html
 6 autofocus
 8 missing_close invalid_attribute_version wrong_version autofocus
 8 missing_close
-10 inserted_missing_closure inserted_missing_closure
+10 inserted_missing_closure
 
 PASS ../toast/living/jul10/b-1.html
 3 missing_close
@@ -208,7 +208,7 @@ PASS ../toast/living/jul10/example.html
 26 missing_close
 26 missing_close
 26 missing_close
-26 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure
+26 inserted_missing_closure
 28 character_code
 30 character_code
 32 character_code
@@ -554,10 +554,10 @@ PASS ../toast/living/jul10/json.html
 3 inserted_missing_parent missing_close
 4 inserted_missing_parent inserted_missing_closure missing_close
 11 use_quote_code
-14 wrong_version wrong_version wrong_version wrong_version wrong_version wrong_version
-17 wrong_version wrong_version wrong_version wrong_version wrong_version wrong_version
-24 wrong_version wrong_version wrong_version wrong_version wrong_version wrong_version
-27 wrong_version wrong_version wrong_version wrong_version wrong_version wrong_version
+14 wrong_version
+17 wrong_version
+24 wrong_version
+27 wrong_version
 32 use_double_quote_code
 
 PASS ../toast/living/jul10/keygen.html
@@ -761,13 +761,10 @@ PASS ../toast/living/jul10/nav-2.html
 25 only_elements
 
 PASS ../toast/living/jul10/navigating-1.html
-0 charset_mismatch charset_used charset_invalid
-0 title_required
-3 inserted_missing_parent
-3 inserted_missing_parent
-8 orphan inserted_missing_closure orphan inserted_missing_closure
-9 inserted_missing_parent missing_close only_once
-9 inserted_missing_parent missing_close only_once
+0 charset_mismatch charset_used charset_invalid title_required
+3 inserted_missing_parent inserted_missing_parent
+8 orphan inserted_missing_closure inserted_missing_closure
+9 inserted_missing_parent missing_close only_once inserted_missing_parent missing_close only_once
 
 PASS ../toast/living/jul10/navigating-2.html
 0 title_required
@@ -824,10 +821,10 @@ PASS ../toast/living/jul10/param.html
 PASS ../toast/living/jul10/pm.html
 13 mixed_mess
 13 missing_close
-15 attribute_name_unexpected_character attribute_name_unexpected_character missing_close
-17 enquote_value enquote_value enquote_value enquote_value attribute_unrecognised missing_close unrecognised_attribute
+15 attribute_name_unexpected_character missing_close
+17 enquote_value attribute_unrecognised missing_close unrecognised_attribute
 19 attribute_unrecognised attribute_name_unexpected_character missing_close unrecognised_attribute
-23 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure
+23 inserted_missing_closure
 
 PASS ../toast/living/jul10/q.html
 7 use_double_quote_code
@@ -911,9 +908,9 @@ PASS ../toast/living/jul10/shf-1.html
 6 inserted_missing_closure
 6 missing_close
 6 missing_close chocolate_teapot
-6 inserted_missing_closure missing_close wrong_parent wrong_parent chocolate_teapot
+6 inserted_missing_closure missing_close wrong_parent chocolate_teapot
 15 attribute_unrecognised_here unrecognised_attribute
-39 inserted_missing_closure inserted_missing_closure inserted_missing_closure
+39 inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/jul10/shf-2.html
 0 title_required
@@ -1244,22 +1241,10 @@ PASS ../toast/living/jul10/tls.html
 
 PASS ../toast/living/jul10/ufe.html
 0 title_required
-2 inserted_missing_parent missing_close
-2 inserted_missing_parent missing_close
-2 unrecognised_value
-2 unrecognised_value
-2 unrecognised_value
-2 unrecognised_value
-3 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure
-4 inserted_missing_closure
-4 unrecognised_value
-5 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
-5 missing_open
-5 missing_open
-5 missing_open
-5 missing_open
-5 missing_open
-5 missing_open
+2 inserted_missing_parent missing_close inserted_missing_parent missing_close unrecognised_value unrecognised_value unrecognised_value unrecognised_value
+3 inserted_missing_closure inserted_missing_closure
+4 inserted_missing_closure unrecognised_value
+5 inserted_missing_closure inserted_missing_closure missing_close missing_open missing_open missing_open missing_open missing_open missing_open
 
 PASS ../toast/living/jul10/ul.html
 9 inserted_missing_closure
@@ -1281,7 +1266,7 @@ PASS ../toast/living/jul10/vcard.html
 44 use_quote_code
 45 use_quote_code
 47 use_quote_code
-49 bad_property bad_property bad_property bad_property
+49 bad_property bad_property
 53 missing_close
 56 inserted_missing_closure
 

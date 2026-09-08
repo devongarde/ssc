@@ -91,7 +91,7 @@ public:
             if (! tin.second)
             {   nits.pick (nit_mf_export, es_splurge, ec_microformat, "t_export insert 1 failed");
                 return; } }
-        us_t& ss = target_.at (key); // phew, single threaded!
+        us_t& ss = target_.at (key);
         if (! ss.insert (data).second)
             nits.pick (nit_mf_export, es_splurge, ec_microformat, "t_export insert 2 failed"); }
     void put (::boost::property_tree::ptree& tree)

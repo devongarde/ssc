@@ -553,7 +553,7 @@ bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string&
         if (default_)
         {   if (lc.find (AT) != ::std::string::npos)
                 nits.pick (nit_protocol, es_warning, ec_url, "if ", lc, " is to link an email address, consider using ", quote (::std::string (PR_MAILTO ":") + lc));
-            if ((lc.at (0) == '+') && (lc.find_first_not_of (TEL) == ::std::string::npos))
+            if ((lc.size () > 1) && (lc.at (0) == '+') && (lc.find_first_not_of (TEL) == ::std::string::npos))
                 nits.pick (nit_protocol, es_warning, ec_url, "if ", lc, " is to link a phone number, use ", quote (::std::string (PR_TEL ":") + lc));
             set (v, current); }
         else if (colon == 0 || colon == lc.length () - 1)

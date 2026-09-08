@@ -68,7 +68,7 @@ PASS ../toast/webapps/jan05/menu.html
 1 draft_html_5
 6 missing_close
 8 missing_close
-10 inserted_missing_closure inserted_missing_closure
+10 inserted_missing_closure
 
 PASS ../toast/webapps/jan05/p.html
 1 draft_html_5

@@ -349,7 +349,6 @@ struct hav_t
     { { HTML_ATOM }, { HTML_UNDEF }, ELEM, a_xmlns }, \
     RDFA_ATTRIBUTES (ELEM, HE_RDFA)
 
-// RDFa_META
 #define RDFa_META_ATTRIBUTES(ELEM) \
     RDFA_ATTRIBUTES_EX (ELEM, HE_RDFA)
 

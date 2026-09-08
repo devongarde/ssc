@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 // most locks are mutually exclusive; if one lock is applied, no others can be, except flox (outputting nits), dear (updating fileindices)
-// and eleanor (initing enums) can be applied when another lock is applied
+// and eleanor (initiating enums) can be applied when another lock is applied
 
 // no locks are recursive
 

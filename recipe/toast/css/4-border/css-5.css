@@ -1,0 +1,36 @@
+﻿
+@footnote {
+  border-top: thin solid black;
+  border-clip: 4em;
+}
+
+.sid
+{
+border-top-clip: 10px 1fr 10px;
+border-bottom-clip: 10px 1fr 10px;
+border-right-clip: 5px 1fr 5px;
+border-left-clip: 5px 1fr 5px;
+
+border-top-clip: 0 10px 1fr 10px;
+border-bottom-clip: 0 10px 1fr 10px;
+border-right-clip: 0 5px 1fr 5px;
+border-left-clip: 0 5px 1fr 5px;
+
+border: thin solid black;
+border-clip: 0 1fr; /* hide borders */
+border-top-clip: 10px 1fr 10px; /* make certain borders visible */
+border-bottom-clip: 10px 1fr 10px;
+
+border-top: thin solid black;
+border-bottom: thin solid black;
+border-top-clip: 10px;
+border-bottom-clip: 10px;
+
+border-top: thin solid black;
+border-clip: 10px;
+
+border: 4px solid black;
+border-top-clip: 40px 20px 0 1fr 20px 20px 0 1fr 40px;
+
+border: 4px solid black;
+border-top-clip: 3fr 10px 2fr 10px 1fr 10px 10px 10px 1fr 10px 2fr 10px 3fr; }

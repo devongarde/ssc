@@ -76,7 +76,7 @@ PASS ../toast/HTML/5.1/html5-bad.html
 49 missing_open
 50 bad_email
 51 attribute_unrecognised unrecognised_attribute unrecognised_value
-52 unrecognised_value unrecognised_value unrecognised_value
+52 unrecognised_value property unrecognised_value unrecognised_value property
 53 inserted_missing_closure
 55 unrecognised_value
 56 attributes_on_closure
@@ -141,7 +141,7 @@ PASS ../toast/HTML/5.1/html5-example.html
 125 use_quote_code
 135 unrecognised_value
 137 unrecognised_value
-149 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave
+149 use_quote_code naughty_grave
 151 use_double_quote_code
 153 use_double_quote_code
 156 excluded_attribute excluded_attribute
@@ -294,23 +294,23 @@ PASS ../toast/HTML/5.1/html5-example.html
 1156 no_rp no_rp
 1157 no_rp no_rp
 1158 no_rp no_rp
-1160 no_rp no_rp no_rp
+1160 no_rp
 1161 no_rp
-1162 no_rp no_rp
+1162 no_rp
 1164 no_rp missing_close inserted_missing_closure
-1166 no_rp no_rp no_rp inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure
-1168 no_rp no_rp inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure
+1166 no_rp inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure
+1168 no_rp inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure
 1170 no_rp inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure
-1172 no_rp no_rp no_rp no_rp inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure
-1174 no_rp no_rp no_rp inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure missing_close inserted_missing_closure inserted_missing_closure
-1176 no_rp no_rp no_rp no_rp no_rp no_rp
+1172 no_rp inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure
+1174 no_rp inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close inserted_missing_closure missing_close inserted_missing_closure inserted_missing_closure
+1176 no_rp
 1177 inserted_missing_closure
 1178 inserted_missing_closure
 1179 inserted_missing_closure missing_close
 1180 inserted_missing_closure
-1182 no_rp no_rp no_rp no_rp no_rp no_rp
+1182 no_rp no_rp
 1188 no_rp
-1197 no_rp no_rp no_rp no_rp no_rp
+1197 no_rp
 1205 inserted_missing_closure
 1206 inserted_missing_closure missing_close
 1207 inserted_missing_closure

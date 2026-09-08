@@ -20,11 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
-// once windows and unix paths are handled properly and interchangeably with
-// url paths, then this type should be integrated deeply into the rest of the code
-// issues: not just / versus \  but also root version X: and \\xyzzy\ and how
-// WSL and other utilities mount windows volumes in 'nix
-
 typedef unsigned long long fileindex_t;
 typedef unsigned int fileindex_flags;
 typedef ::std::set < fileindex_t > sndx_t;

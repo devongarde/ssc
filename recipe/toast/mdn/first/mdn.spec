@@ -10,14 +10,14 @@ PASS ../toast/mdn/first/first.html
 PASS ../toast/mdn/first/first-child.html
 2 naughty_lang
 50 use_quote_code
-54 use_quote_code naughty_grave naughty_grave
+54 use_quote_code naughty_grave
 55 use_quote_code
 
 PASS ../toast/mdn/first/first-of-type.html
 2 naughty_lang
-50 naughty_grave naughty_grave
-51 naughty_grave naughty_grave
-53 naughty_grave naughty_grave naughty_grave naughty_grave
-55 naughty_grave naughty_grave
-56 naughty_grave naughty_grave
-57 naughty_grave naughty_grave
+50 naughty_grave
+51 naughty_grave
+53 naughty_grave naughty_grave
+55 naughty_grave
+56 naughty_grave
+57 naughty_grave

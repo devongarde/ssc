@@ -5,7 +5,7 @@ PASS ../toast/mdn/flex/index.html
 
 PASS ../toast/mdn/flex/flex.html
 2 naughty_lang
-70 naughty_grave naughty_grave
+70 naughty_grave
 
 PASS ../toast/mdn/flex/flex-basis.html
 2 naughty_lang

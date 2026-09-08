@@ -1,0 +1,66 @@
+﻿body{ font-family: Geneva, Arial, Helvetica, sans-serif; margin: 2em; }
+
+#mainbody { 
+    padding: 1em; 
+}
+
+#colorswitch {
+    float: right; 
+    width: 12em; 
+    border: 1px #000066 solid; 
+    padding:0 1em 1em 1em; margin:0;
+}
+
+#colorswitch p { 
+    padding-top:.5em; 
+    font-weight:bold;
+}
+
+body, p { 
+    color:#000000; 
+    background-color:#FFFFFF; 
+}
+
+h1, h2, h3 {
+        color:#990000; 
+        background-color:#FFFFFF;
+}
+
+body, h1, h2, h3, p, a { 
+    color:#000066; 
+    background-color:#FFFFFF; 
+}
+
+body, h1, h2, h3, p, a { 
+    color:#FFFF33; 
+       background-color:#000000; 
+}
+
+body, h1, h2, h3, p, a { 
+    color:#000000; 
+    background-color:#FFFF99; 
+}
+
+body, h1, h2, h3, p, a { 
+    color:#000000; 
+    background-color:#FFFFFF; 
+}
+ 
+body { color:#000000; background-color:#FFFFFF; }
+
+.hghltLightYellow { color: #000000; background-color: #FFFF99; font-style:oblique; }
+.hghltBrightYellow { color: #000000; background-color: #FFFF00; font-style:oblique; }
+.hghltLightBlue { color: #000000; background-color: #33FFFF; font-style:oblique; }
+.hghltBrightBlue { color: #FFFFFF; background-color: #0000FF; font-style:oblique; }
+.hghltLightRed { color: #000000; background-color: #FF6266; font-style:oblique; }
+.hghltDrkRed { color: #FFFFFF; background-color: #993300; font-style:oblique; }
+
+.inlinePara {display:inline; }
+.inline {display: inline; margin-left:0px; padding-left:0px; line-height:3em; }
+.inline li { display:inline; }
+.inline li a {padding: 0.5em 1em; border: 2px solid #000000; }
+ 
+ body, p { color:#000000; background-color:#FFFFFF; }
+  h1, h2, h3 {color:#990000; background-color:#FFFFFF; }
+
+  body, h1, h2, h3, p, a { color:#FFFF00; background-color:#000000; }

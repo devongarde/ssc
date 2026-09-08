@@ -111,6 +111,7 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
             if (inner_set_value (nuts, v, ss)) nits.merge (nuts);
             else
             {   nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid (", type_name (T), ", ", type_name (A), ", 1)");
+                if (s.find_first_of (':') != ::std::string::npos) nits.pick (nit_property, es_info, ec_css, "is a semi-colon missing?");
                 if (context.extra () || context.tell (es_debug)) nits.merge (nuts); } } }
     void set_id (const ::std::string& s)
     {   type_one_of < T, EMPTY, B... > :: set_id (s); }
@@ -252,6 +253,7 @@ template < e_type T, bool EMPTY, e_type A > struct type_one_of < T, EMPTY, A > :
             if (inner_set_value (nuts, v, ss)) nits.merge (nuts);
             else
             {   nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid (", type_name (T), ", ", type_name (A), ", 2)");
+                if (s.find_first_of (':') != ::std::string::npos) nits.pick (nit_property, es_info, ec_css, "is a semi-colon missing?");
                 if (context.extra () || context.tell (es_debug)) nits.merge (nuts); } } }
     void set_id (const ::std::string& s)
     {   tidy_string < T > :: set_id (s); }

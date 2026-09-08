@@ -151,9 +151,12 @@ template < > struct type_master < t_percent > : type_master < t_fixedpoint >
         {   if (ss.at (len - 1) == '%')
             {   type_master < t_fixedpoint > :: set_value (nits, v, ss.substr (0, len - 1));
                 if (type_master < t_fixedpoint > :: good ())
-                    if ((type_master < t_fixedpoint > :: value_ >= 0.0) && (type_master < t_fixedpoint > :: value_ <= 100.0)) return; } }
+                {   if ((type_master < t_fixedpoint > :: value_ >= 0.0) && (type_master < t_fixedpoint > :: value_ <= 100.0)) return;
+                    const ::std::string sss = ss.substr (0, len-1);
+                    if ((sss == "0") || (sss == "100")) return; } } }
         else if (v.is_5 () && (ss == "0"))
-        {   type_master < t_fixedpoint > :: status (s_good);
+        {   type_master < t_fixedpoint > :: value_ = 0.0;
+            type_master < t_fixedpoint > :: status (s_good);
             return; }
         nits.pick (nit_percent, es_error, ec_type, quote (ss), ": expecting a value between 0.0 and 100.0, followed by '%'");
         type_base < double, t_fixedpoint > :: status (s_invalid); }
@@ -173,7 +176,9 @@ template < > struct type_master < t_percent_100 > : type_master < t_fixedpoint >
         {   if (ss.at (len - 1) == '%')
             {   type_master < t_fixedpoint > :: set_value (nits, v, ss.substr (0, len - 1));
                 if (type_master < t_fixedpoint > :: good ())
-                    if ((type_master < t_fixedpoint > :: value_ >= -100.0) && (type_master < t_fixedpoint > :: value_ <= 100.0)) return; } }
+                    if ((type_master < t_fixedpoint > :: value_ >= -100.0) && (type_master < t_fixedpoint > :: value_ <= 100.0)) return;
+                    const ::std::string sss = ss.substr (0, len-1);
+                    if ((sss == "100") || (sss == "-100")) return; } }
         else if (v.is_5 () && (ss == "0"))
         {   type_master < t_fixedpoint > :: status (s_good);
             return; }

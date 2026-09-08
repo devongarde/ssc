@@ -110,23 +110,23 @@ PASS ../toast/mdn/pseudo-class/last-child.html
 2 naughty_lang
 58 use_quote_code
 63 use_quote_code
-64 use_quote_code naughty_grave naughty_grave
+64 use_quote_code naughty_grave
 
 PASS ../toast/mdn/pseudo-class/last-of-type.html
 2 naughty_lang
 5 class_microformat_property
-59 naughty_grave naughty_grave
-60 naughty_grave naughty_grave
-62 naughty_grave naughty_grave naughty_grave naughty_grave
-64 naughty_grave naughty_grave
-65 naughty_grave naughty_grave
-68 naughty_grave naughty_grave
-69 naughty_grave naughty_grave
-73 naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave
-75 naughty_grave naughty_grave
-76 naughty_grave naughty_grave
-80 naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave
-84 naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave
+59 naughty_grave
+60 naughty_grave
+62 naughty_grave naughty_grave
+64 naughty_grave
+65 naughty_grave
+68 naughty_grave
+69 naughty_grave
+73 naughty_grave
+75 naughty_grave
+76 naughty_grave
+80 naughty_grave
+84 naughty_grave
 
 PASS ../toast/mdn/pseudo-class/left.html
 2 naughty_lang
@@ -164,12 +164,12 @@ PASS ../toast/mdn/pseudo-class/only-child.html
 
 PASS ../toast/mdn/pseudo-class/only-of-type.html
 2 naughty_lang
-43 naughty_grave naughty_grave
-44 naughty_grave naughty_grave
-45 naughty_grave naughty_grave
-48 naughty_grave naughty_grave naughty_grave naughty_grave
-49 naughty_grave naughty_grave
-50 naughty_grave naughty_grave
+43 naughty_grave
+44 naughty_grave
+45 naughty_grave
+48 naughty_grave naughty_grave
+49 naughty_grave
+50 naughty_grave
 
 PASS ../toast/mdn/pseudo-class/open.html
 2 naughty_lang

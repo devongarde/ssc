@@ -47,11 +47,10 @@ PASS ../toast/mdn/property/clear.html
 
 PASS ../toast/mdn/property/columns.html
 2 naughty_lang
-40 naughty_grave naughty_grave
+40 naughty_grave
 
 PASS ../toast/mdn/property/content.html
 2 naughty_lang
-5 unrecognised_value
 171 use_quote_code use_quote_code
 198 id_exists
 200 id_exists
@@ -102,7 +101,6 @@ PASS ../toast/mdn/property/dominant-baseline.html
 
 PASS ../toast/mdn/property/dominant-range-limit.html
 2 naughty_lang
-5 unrecognised_value unrecognised_value
 
 PASS ../toast/mdn/property/empty-cells.html
 2 naughty_lang
@@ -248,7 +246,7 @@ PASS ../toast/mdn/property/reading-order.html
 
 PASS ../toast/mdn/property/resize.html
 2 naughty_lang
-56 naughty_grave naughty_grave naughty_grave naughty_grave
+56 naughty_grave
 
 PASS ../toast/mdn/property/right.html
 2 naughty_lang
@@ -394,7 +392,6 @@ PASS ../toast/mdn/property/widows.html
 
 PASS ../toast/mdn/property/width.html
 2 naughty_lang
-5 unrecognised_value unrecognised_value
 124 unrecognised_value
 126 unrecognised_value
 

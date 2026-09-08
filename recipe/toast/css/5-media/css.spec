@@ -25,7 +25,7 @@ PASS ../toast/css/5-media/css-2.html
 8 deprecated_media deprecated_media url_not_found
 
 PASS ../toast/css/5-media/css-3.css
-1 unrecognised_value css_syntax css_syntax css_syntax
+1 unrecognised_value css_syntax css_syntax
 2 css_syntax unrecognised_value
 4 unrecognised_value css_syntax css_syntax css_syntax
 6 unrecognised_value css_syntax css_syntax

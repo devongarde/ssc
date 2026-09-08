@@ -14,7 +14,7 @@ PASS ../toast/RDFa/gr/example-1.html
 168 unknown_protocol no_itemscope
 169 unknown_protocol no_itemscope
 173 unrecognised_value unknown_rel
-206 data_vocabulary data_vocabulary
+206 data_vocabulary
 221 use_quote_code
 240 requires_itemscope bad_itemid
 276 requires_itemscope bad_itemid
@@ -36,4 +36,4 @@ PASS ../toast/RDFa/gr/example-1.html
 467 missing_close
 481 missing_close
 492 missing_close
-494 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure
+494 inserted_missing_closure

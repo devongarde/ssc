@@ -10,11 +10,11 @@ PASS ../toast/css/3-filter/css-9-1.svg
 10 id_exists
 20 sunk unrecognised_value bad_result
 21 immeasurable immeasurable
-22 dialect unrecognised_value dialect unrecognised_value bad_colour sunk sunk
+22 dialect unrecognised_value dialect unrecognised_value bad_colour sunk
 26 unrecognised_value bad_result
 29 sunk unrecognised_value bad_result
 31 immeasurable immeasurable
-33 dialect unrecognised_value dialect unrecognised_value bad_colour sunk sunk
+33 dialect unrecognised_value dialect unrecognised_value bad_colour sunk
 39 unrecognised_value bad_result
 
 PASS ../toast/css/3-filter/css-9-2.svg

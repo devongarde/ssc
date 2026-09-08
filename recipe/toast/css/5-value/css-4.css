@@ -1,0 +1,13 @@
+﻿@import url("base-theme.css");
+@import "base-theme.css";
+
+.fop
+{
+    background-position: left 10px top 15px;   /* 10px, 15px */
+    background-position: left      top     ;   /*  0px,  0px */
+    background-position:      10px     15px;   /* 10px, 15px */
+    background-position: left          15px;   /*  0px, 15px */
+    background-position:      10px top     ;   /* 10px,  0px */
+
+    background-position: right 3em bottom 10px
+}

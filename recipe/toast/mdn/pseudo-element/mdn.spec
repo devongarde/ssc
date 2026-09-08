@@ -6,7 +6,6 @@ PASS ../toast/mdn/pseudo-element/after.html
 
 PASS ../toast/mdn/pseudo-element/backdrop.html
 2 naughty_lang
-5 unrecognised_value 
 
 PASS ../toast/mdn/pseudo-element/before.html
 2 naughty_lang

@@ -339,6 +339,9 @@ template < > struct type_master < t_ens > : three_value < t_ens, e_ens, sz_end, 
 template < > struct type_master < t_environment_blending > : three_value < t_environment_blending, e_environment_blending, sz_additive, sz_opaque, sz_subtractive >
 { using three_value < t_environment_blending, e_environment_blending, sz_additive, sz_opaque, sz_subtractive > :: three_value; };
 
+template < > struct type_master < t_eso > : three_value < t_eso, e_eso, sz_end, sz_origin, sz_start >
+{ using three_value < t_eso, e_eso, sz_end, sz_origin, sz_start > :: three_value; };
+
 template < > struct type_master < t_exif_intind > : three_value < t_exif_intind, e_exif_intind, sz_r03, sz_r98, sz_thm >
 { using three_value < t_exif_intind, e_exif_intind, sz_r03, sz_r98, sz_thm > :: three_value; };
 
@@ -468,8 +471,8 @@ template < > struct type_master < t_popover > : three_value < t_popover, e_popov
 template < > struct type_master < t_popovertargetaction > : three_value < t_popovertargetaction, e_popovertargetaction, sz_hide, sz_show, sz_toggle >
 { using three_value < t_popovertargetaction, e_popovertargetaction, sz_hide, sz_show, sz_toggle > :: three_value; };
 
-template < > struct type_master < t_css_position_vvo > : three_value < t_css_position_vvo, e_css_position_vvo, sz_anchors_valid, sz_anchors_visible, sz_no_overflow >
-{ using three_value < t_css_position_vvo, e_css_position_vvo, sz_anchors_valid, sz_anchors_visible, sz_no_overflow > :: three_value; };
+template < > struct type_master < t_css_position_vvo > : three_value < t_css_position_vvo, e_css_position_vvo, sz_anchor_valid, sz_anchor_visible, sz_no_overflow >
+{ using three_value < t_css_position_vvo, e_css_position_vvo, sz_anchor_valid, sz_anchor_visible, sz_no_overflow > :: three_value; };
 
 template < > struct type_master < t_preload5 > : three_value < t_preload5, e_preload, sz_auto, sz_metadata, sz_none >
 { using three_value < t_preload5, e_preload, sz_auto, sz_metadata, sz_none > :: three_value; };

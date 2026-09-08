@@ -1,0 +1,6 @@
+﻿h1 { font-size: 2em; }
+            p, label, input { font-size: 1em; }
+
+input.geomsize {
+width: 1.2em;
+height: 1.2em;}

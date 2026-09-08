@@ -3,7 +3,7 @@
 PASS ../toast/microdata/schema-defg/datacatalogue.html
 23 use_double_quote_code
 25 use_double_quote_code
-65 missing_close invalid_attribute_version wrong_version svg_rdf bad_year bad_year rather_too_vague rather_too_vague nahtch
+65 missing_close invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague nahtch
 66 invalid_attribute_version wrong_version svg_rdf
 67 inserted_missing_closure
 
@@ -23,9 +23,9 @@ PASS ../toast/microdata/schema-defg/deliverychargespecification.html
 
 PASS ../toast/microdata/schema-defg/depositaccount.html
 0 charset_mismatch charset_used charset_invalid
-19 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf sunk sunk
-26 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf sunk sunk
-33 invalid_attribute_version wrong_version svg_rdf sunk sunk invalid_attribute_version wrong_version svg_rdf sunk sunk
+19 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf sunk
+26 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf sunk
+33 invalid_attribute_version wrong_version svg_rdf sunk invalid_attribute_version wrong_version svg_rdf sunk
 
 PASS ../toast/microdata/schema-defg/drugclass.html
 23 missing_close
@@ -64,55 +64,55 @@ PASS ../toast/microdata/schema-defg/event.html
 88 url_not_found
 89 url_not_found url_not_found url_not_found url_not_found url_not_found url_not_found
 92 unrecognised_value
-93 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+93 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 96 unrecognised_value
 99 unrecognised_value
 101 unrecognised_value
 106 unrecognised_value
 108 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 113 unrecognised_value
-114 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+114 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 117 unrecognised_value
 121 unrecognised_value
 123 unrecognised_value
 128 unrecognised_value
 130 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 136 unrecognised_value
-137 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+137 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 140 unrecognised_value
-143 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year
+143 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 144 unrecognised_value
 146 unrecognised_value
 151 unrecognised_value
 155 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 160 unrecognised_value
-161 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+161 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 164 unrecognised_value
 167 unrecognised_value
 169 unrecognised_value
 174 unrecognised_value
 177 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 189 no_such_folder url_not_found
-196 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+196 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 221 no_such_folder url_not_found
 225 no_such_folder url_not_found
 230 no_such_folder url_not_found
 232 no_such_folder url_not_found
 240 use_quote_code
 247 no_such_folder url_not_found
-249 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+249 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 260 unrecognised_value
 263 requires_itemscope
-265 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+265 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 266 unrecognised_value
-271 invalid_attribute_version wrong_version svg_rdf rather_too_vague rather_too_vague
-272 invalid_attribute_version wrong_version svg_rdf rather_too_vague rather_too_vague bad_year bad_year
+271 invalid_attribute_version wrong_version svg_rdf rather_too_vague
+272 invalid_attribute_version wrong_version svg_rdf rather_too_vague bad_year
 273 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf
-277 invalid_attribute_version wrong_version svg_rdf rather_too_vague rather_too_vague
-278 invalid_attribute_version wrong_version svg_rdf rather_too_vague rather_too_vague bad_year bad_year
+277 invalid_attribute_version wrong_version svg_rdf rather_too_vague
+278 invalid_attribute_version wrong_version svg_rdf rather_too_vague bad_year
 279 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf
-283 invalid_attribute_version wrong_version svg_rdf rather_too_vague rather_too_vague
-284 invalid_attribute_version wrong_version svg_rdf rather_too_vague rather_too_vague bad_year bad_year
+283 invalid_attribute_version wrong_version svg_rdf rather_too_vague
+284 invalid_attribute_version wrong_version svg_rdf rather_too_vague bad_year
 285 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf
 297 requires_itemscope
 305 use_quote_code
@@ -125,13 +125,13 @@ PASS ../toast/microdata/schema-defg/event.html
 PASS ../toast/microdata/schema-defg/examples.html
 0 charset_mismatch charset_used charset_invalid
 15 attempted_escape no_such_folder url_not_found
-21 bad_year bad_year
+21 bad_year
 24 attempted_escape no_such_folder url_not_found
 28 url_not_found
 31 url_not_found
 42 no_itemscope
 59 use_quote_code
-71 bad_property bad_property
+71 bad_property
 72 attribute_required url_not_found naughty_alt
 
 PASS ../toast/microdata/schema-defg/exchangeratespecification.html
@@ -145,7 +145,7 @@ PASS ../toast/microdata/schema-defg/exhibitionevent.html
 
 PASS ../toast/microdata/schema-defg/financialproduct.html
 0 charset_mismatch charset_used charset_invalid
-12 bad_property invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf sunk sunk invalid_attribute_version wrong_version svg_rdf sunk sunk
+12 bad_property invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf sunk invalid_attribute_version wrong_version svg_rdf sunk
 
 PASS ../toast/microdata/schema-defg/foodestablishment.html
 40 use_quote_code
@@ -153,7 +153,7 @@ PASS ../toast/microdata/schema-defg/foodestablishment.html
 
 PASS ../toast/microdata/schema-defg/game.html
 0 charset_mismatch charset_used charset_invalid
-15 character_code character_code no_such_folder url_not_found
+15 character_code no_such_folder url_not_found
 19 lonely_ampersand
 22 inserted_missing_closure
 

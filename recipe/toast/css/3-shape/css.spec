@@ -1,7 +1,7 @@
--Y 1 -7 original -f ../toast/css/3-shape/css.conf
+-Y 1 -f ../toast/css/3-shape/css.conf
 
 PASS ../toast/css/3-shape/css-3.css
-67 css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom
+67 css_custom css_custom css_custom css_custom css_custom
 
 PASS ../toast/css/3-shape/css-2.html
 0 charset_mismatch charset_used charset_invalid

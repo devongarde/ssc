@@ -120,6 +120,136 @@ e_status set_css_col_value (nitpick& nits, const html_version& v, const ::std::s
             nits.merge (nats); } }
     return s_invalid; }
 
+e_status set_css_cmx_value_0 (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   e_status res = s_invalid;
+    const ::std::string s (trim_the_lot_off (ss));
+    if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "arguments required");
+    else if (v.css_module (c_colour) < 5)
+        nits.pick (nit_css_version, es_error, ec_css, "color-mix () requires CSS Colour 5");
+    else if (! s.empty ())
+    {   vstr_t vr (split_by_space (s));
+        if (vr.size () > 1)
+            if (! compare_no_case (vr.at (0), "in"))
+                nits.pick (nit_gradient, es_error, ec_type, vr.at (0), " is not 'in'");
+            else
+            {   res = s_good;
+                for (::std::size_t i = 1; i < vr.size (); ++i)
+                {   nitpick gnats, nets, knots, nuts;
+                    const ::std::string& vs (vr.at (i));
+                    if (test_value < t_css_rect > (gnats, v, vs))
+                        nits.merge (gnats);
+                    else if (test_value < t_css_polar > (nets, v, vs))
+                        nits.merge (nets);
+                    else if (test_value < t_css_id > (knots, v, vs))
+                        nits.merge (knots);
+                    else if (test_value < t_css_hue_interpolation > (nuts, v, vs))
+                        nits.merge (nuts);
+                    else if (compare_no_case ("hue", vs))
+                        break;
+                    else
+                    {   nits.pick (nit_gradient, es_error, ec_type, quote (vs), ": invalid color-mix syntax");
+                        if (context.extra ())
+                        {   nits.merge (gnats);
+                            nits.merge (nets);
+                            nits.merge (knots);
+                            nits.merge (nuts); }
+                        res = s_invalid; } } } }                        
+    return res; }
+
+e_status set_css_conic_value_0 (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   e_status res = s_empty;
+    const ::std::string s (trim_the_lot_off (ss));
+    if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "arguments required");
+    else if (v.css_module (c_image) < 4)
+        nits.pick (nit_css_version, es_error, ec_css, "Conic functions require CSS Images 4");
+    else
+    {   res = s_good;
+        if (! s.empty ())
+        {   vstr_t vr (split_by_space (s));
+            int step = 0;
+            for (auto vs : vr)
+            {   nitpick gnats, nets, knots, nuts;
+                if (step < 3)
+                {   if (compare_no_case (vs, "from"))
+                    {   step = 1; continue; }
+                    if (compare_no_case (vs, "at"))
+                    {   step = 2; continue; }
+                    if (compare_no_case (vs, "in"))
+                    {   step = 3; continue; }
+                    if (step == 0)
+                    {   nits.pick (nit_gradient, es_error, ec_type, quote (vs), ": invalid syntax for first parameter in conic gradient function (0)");
+                        res = s_invalid;
+                        continue; } }
+                switch (step)
+                {   case 1 :
+                        if (vs != "0")
+                            if (! test_value < t_angle > (nits, v, vs))
+                                res = s_invalid;
+                        break;
+                    case 2 :
+                    {   nitpick gnats1, nets1, knots1;
+                        if (test_value < t_css_length_percent > (gnats1, v, vs))
+                            nits.merge (gnats1);
+                        else if (test_value < t_css_ellipse_pos > (nets1, v, vs))
+                            nits.merge (nets1);
+                        else if (test_value < t_ces > (knots1, v, vs))
+                            nits.merge (knots1);
+                        else
+                        {   nits.pick (nit_gradient, es_error, ec_type, quote (vs), ": invalid syntax for first parameter in conic gradient function (1)");
+                            if (context.extra ())
+                            {   nits.merge (gnats1);
+                                nits.merge (nets1);
+                                nits.merge (knots1); }
+                            res = s_invalid; }
+                        break; }
+                    case 3 :
+                    {   nitpick gnats2, nets2, knots2, nuts2;
+                        if (test_value < t_css_rgb_xyz > (gnats2, v, vs))
+                            nits.merge (gnats2);
+                        else if (test_value < t_css_polar > (nets2, v, vs))
+                            nits.merge (nets2);
+                        else if (test_value < t_css_id > (knots2, v, vs))
+                            nits.merge (knots2);
+                        else if (test_value < t_css_hue_interpolation > (nuts2, v, vs))
+                            nits.merge (nuts2);
+                        else if (compare_no_case ("hue", vs))
+                            break;
+                        else
+                        {   nits.pick (nit_gradient, es_error, ec_type, quote (vs), ": invalid syntax for first parameter in conic gradient function (2)");
+                            if (context.extra ())
+                            {   nits.merge (gnats2);
+                                nits.merge (nets2);
+                                nits.merge (knots2);
+                                nits.merge (nuts2); }
+                            res = s_invalid; } }
+                    default :
+                        nits.pick (nit_gradient, es_error, ec_type, quote (vs), ": invalid syntax for first parameter in conic gradient function (3)");
+                        return s_invalid; } } } }
+    return res; }
+
+e_status set_css_conic_value_n (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   e_status res = s_empty;
+    const ::std::string s (trim_the_lot_off (ss));
+    if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "arguments required");
+    else if (v.css_module (c_image) < 4)
+        nits.pick (nit_css_version, es_error, ec_css, "Conic functions require CSS Images 4");
+    else
+    {   res = s_good;
+        vstr_t vr (split_by_space (s));
+        for (auto vs : vr)
+        {   nitpick gnats, nets;
+            if (test_value < t_css_col > (gnats, v, vs))
+                nits.merge (gnats);
+            else if (test_value < t_angle_p > (nets, v, vs))
+                nits.merge (nets);
+            else if (vs != "0")
+            {   nits.pick (nit_gradient, es_error, ec_type, quote (vs), ": invalid syntax for subsequent parameter in conic function");
+                if (context.extra ())
+                {   nits.merge (gnats);
+                    nits.merge (nets); }
+                res = s_invalid; } } }
+    return res; }
+
 e_status set_css_display_1_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (s.empty ()) nits.pick (nit_key, es_error, ec_type, "display cannot be empty");
     nitpick nuts;
@@ -179,6 +309,63 @@ e_status set_css_lang_value (nitpick& nits, const html_version& v, const vstr_t&
                 ok = false;
         if (ok) return s_good; }
     return s_invalid; }
+
+e_status set_css_linear_value_0 (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   e_status res = s_empty;
+    const ::std::string s (trim_the_lot_off (ss));
+    if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "arguments required");
+    else if (v.css_module (c_image) < 3)
+        nits.pick (nit_css_version, es_error, ec_css, "Radial functions require CSS Images 3");
+    else
+    {   res = s_good;
+        if (! s.empty ())
+        {   vstr_t vr (split_by_space (s));
+            int step = 0;
+            for (auto vs : vr)
+            {   nitpick gnats;
+                if (step == 0)
+                    if (test_value < t_css_angle > (gnats, v, vs))
+                    {   nits.merge (gnats); continue; }
+                    if (compare_no_case (vs, "0")) continue;
+                if (step < 2)
+                {   if (compare_no_case (vs, "to"))
+                    {   step = 1; continue; }
+                    if (compare_no_case (vs, "in"))
+                    {   step = 2; continue; }
+                    if (step == 0)
+                    {   nits.pick (nit_gradient, es_error, ec_type, quote (vs), ": invalid syntax for first parameter in linear gradient function (0)");
+                        if (context.extra ())
+                            nits.merge (gnats);
+                        res = s_invalid;
+                        continue; } }
+                if (step == 1)
+                {   if (! test_value < t_blrt > (nits, v, vs))
+                        res = s_invalid;
+                    continue; }
+                PRESUME (step == 2, __FILE__, __LINE__);
+                nitpick gnats2, nets2, knots2, nuts2;
+                if (test_value < t_css_rect > (gnats2, v, vs))
+                    nits.merge (gnats2);
+                else if (test_value < t_css_polar > (nets2, v, vs))
+                    nits.merge (nets2);
+                else if (test_value < t_css_id > (knots2, v, vs))
+                    nits.merge (knots2);
+                else if (test_value < t_css_hue_interpolation > (nuts2, v, vs))
+                    nits.merge (nuts2);
+                else if (compare_no_case ("hue", vs))
+                    break;
+                else
+                {   nits.pick (nit_gradient, es_error, ec_type, quote (vs), ": invalid syntax for first parameter in linear gradient function (2)");
+                    if (context.extra ())
+                    {   nits.merge (gnats2);
+                        nits.merge (nets2);
+                        nits.merge (knots2);
+                        nits.merge (nuts2); }
+                    res = s_invalid; } } } }
+    return res; }
+
+e_status set_css_linear_value_n (nitpick& nits, const html_version& v, const ::std::string& s)
+{   return set_css_radial_value_n (nits, v, s); }
 
 bool pos_test (nitpick& nits, const html_version& v, bool& b, ::std::string& pos)
 {   if (pos.empty ()) return true;
@@ -438,6 +625,274 @@ e_status set_css_quotes_3_value (nitpick& nits, const html_version& v, const ::s
     if (test_value < t_4string_ni > (nits, v, s)) return s_good;
     nits.merge (nuts);
     return s_invalid; }
+
+e_status set_css_radial_value_0 (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   e_status res = s_empty;
+    const ::std::string s (trim_the_lot_off (ss));
+    if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "arguments required");
+    else if (v.css_module (c_image) < 3)
+        nits.pick (nit_css_version, es_error, ec_css, "Radial functions require CSS Images 3");
+    else
+    {   res = s_good;
+        if (! s.empty ())
+        {   vstr_t vr (split_by_space (s));
+            int step = 0;
+            for (auto vs : vr)
+            {   nitpick gnats, nets, knots, nuts;
+                if (step == 0)
+                {   if (test_value < t_circle_ellipse > (gnats, v, vs))
+                    {   nits.merge (gnats); continue; }
+                    if (test_value < t_css_radial_size > (nets, v, vs))
+                    {   nits.merge (nets); continue; }
+                    if (test_value < t_css_length_inf > (knots, v, vs))
+                    {   nits.merge (knots); continue; }
+                    if (test_value < t_css_length_percent_inf_a > (nuts, v, vs))
+                    {   nits.merge (nuts); continue; } }
+                if (step < 2)
+                {   if (compare_no_case (vs, "at"))
+                    {   step = 1; continue; }
+                    if (compare_no_case (vs, "in"))
+                    {   step = 2; continue; }
+                    if (step == 0)
+                    {   nits.pick (nit_gradient, es_error, ec_type, quote (vs), ": invalid syntax for first parameter in radial gradient function (0)");
+                        if (context.extra ())
+                        {   nits.merge (gnats);
+                            nits.merge (nets);
+                            nits.merge (knots);
+                            nits.merge (nuts); }
+                        res = s_invalid;
+                        continue; } }
+                if (step == 1)
+                {   nitpick gnats1, nets1, knots1;
+                    if (test_value < t_css_length_percent > (gnats1, v, vs))
+                        nits.merge (gnats1);
+                    else if (test_value < t_css_ellipse_pos > (nets1, v, vs))
+                        nits.merge (nets1);
+                    else if (test_value < t_ces > (knots1, v, vs))
+                        nits.merge (knots1);
+                    else
+                    {   nits.pick (nit_gradient, es_error, ec_type, quote (vs), ": invalid syntax for first parameter in radial gradient function (1)");
+                        if (context.extra ())
+                        {   nits.merge (gnats1);
+                            nits.merge (nets1);
+                            nits.merge (knots1); }
+                        res = s_invalid; }
+                    continue; }
+                PRESUME (step == 2, __FILE__, __LINE__);
+                nitpick gnats2, nets2, knots2, nuts2;
+                if (test_value < t_css_rgb_xyz > (gnats2, v, vs))
+                    nits.merge (gnats2);
+                else if (test_value < t_css_polar > (nets2, v, vs))
+                    nits.merge (nets2);
+                else if (test_value < t_css_id > (knots2, v, vs))
+                    nits.merge (knots2);
+                else if (test_value < t_css_hue_interpolation > (nuts2, v, vs))
+                    nits.merge (nuts2);
+                else if (compare_no_case ("hue", vs))
+                    break;
+                else
+                {   nits.pick (nit_gradient, es_error, ec_type, quote (vs), ": invalid syntax for first parameter in radial gradient function (2)");
+                    if (context.extra ())
+                    {   nits.merge (gnats2);
+                        nits.merge (nets2);
+                        nits.merge (knots2);
+                        nits.merge (nuts2); }
+                    res = s_invalid; } } } }
+    return res; }
+
+e_status set_css_radial_value_n (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   e_status res = s_empty;
+    const ::std::string s (trim_the_lot_off (ss));
+    if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "arguments required");
+    else if (v.css_module (c_image) < 3)
+        nits.pick (nit_css_version, es_error, ec_css, "Radial functions require CSS Images 3");
+    else
+    {   res = s_good;
+        vstr_t vr (split_by_space (s));
+        for (auto vs : vr)
+        {   nitpick gnats, nets;
+            if (test_value < t_css_col > (gnats, v, vs))
+                nits.merge (gnats);
+            else if (test_value < t_css_length_percent > (nets, v, vs))
+                nits.merge (nets);
+            else
+            {   nits.pick (nit_gradient, es_error, ec_type, quote (vs), ": invalid syntax for subsequent parameter in gradient function");
+                if (context.extra ())
+                {   nits.merge (gnats);
+                    nits.merge (nets); }
+                res = s_invalid; } } }
+    return res; }
+
+e_status set_css_ray_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   e_status res = s_empty;
+    const ::std::string s (trim_the_lot_off (ss));
+    if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "arguments required");
+    else if (v.css_module (c_motion_path) < 3)
+        nits.pick (nit_css_version, es_error, ec_css, "Ray require CSS Motion Path");
+    else
+    {   res = s_good;
+        if (! s.empty ())
+        {   vstr_t vr (split_by_space (s));
+            bool at = false, angled = false;
+            for (auto vs : vr)
+            {   nitpick gnats, nets,  gnats1, nets1, knots1;
+                if (at)
+                {   if (test_value < t_css_length_percent > (gnats1, v, vs))
+                    {   nits.merge (gnats1); continue; }
+                    if (test_value < t_css_ellipse_pos > (nets1, v, vs))
+                    {   nits.merge (nets1); continue; }
+                    if (test_value < t_ces > (knots1, v, vs))
+                    {   nits.merge (knots1); continue; }
+                    at = false; }
+                else if (compare_no_case (vs, "at"))
+                {   at = true; continue; }
+                if (compare_no_case (vs, "contain")) continue;
+                if (test_value < t_angle > (gnats, v, vs))
+                {   nits.merge (gnats); angled = true; continue; }
+                if (test_value < t_css_ray_size > (nets, v, vs))
+                {   nits.merge (nets); continue; }
+                nits.pick (nit_gradient, es_error, ec_type, quote (vs), ": invalid ray () parameter");
+                if (context.extra ())
+                {   nits.merge (gnats);
+                    nits.merge (nets);
+                    nits.merge (gnats1);
+                    nits.merge (nets1);
+                    nits.merge (knots1); }
+                res = s_invalid; }
+            if (! angled)
+            {   nits.pick (nit_gradient, es_error, ec_type, quote (s), ": ray () require an angle");
+                res = s_invalid; } } }
+    return res; }
+
+e_status set_css_shape_value_0 (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   e_status res = s_invalid;
+    const ::std::string s (trim_the_lot_off (ss));
+    if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "arguments required");
+    else if (v.css_module (c_shape) < 3)
+        nits.pick (nit_css_version, es_error, ec_css, "Shape functions require CSS Shapes");
+    else
+    {   res = s_good;
+        if (! s.empty ())
+        {   vstr_t vr (split_by_space (s));
+            bool step = true, fillrule = false;
+            ::std::string pos;
+            for (auto vs : vr)
+            {   if (step)
+                {   if (compare_no_case (vs, "from"))
+                    {   step = false; continue; }
+                    if (compare_no_case (vs, "nonzero") || compare_no_case (vs, "evenodd"))
+                    {   if (! fillrule) fillrule = true;
+                        else
+                        {   nits.pick (nit_shape, es_error, ec_type, quote (vs), ": only one of 'nonzero' or 'evenodd'.");
+                            res = s_invalid; }
+                        continue; }
+                    nits.pick (nit_shape, es_error, ec_type, quote (vs), ": invalid syntax for first parameter in shape function");
+                    res = s_invalid;
+                    continue; }
+                if (! pos.empty ()) pos += " ";
+                pos += vs; }
+            if (pos.empty ())
+            {   nits.pick (nit_shape, es_error, ec_type, "position expected after 'from'");
+                res = s_invalid; }
+            else
+            {   nitpick nuts, knots;
+                if (test_value < t_css_length_percent_2 > (nuts, v, pos))
+                    nits.merge (nuts);
+                else if (test_value < t_css_ellipse_pos > (knots, v, pos))
+                    nits.merge (knots);
+                else
+                {   nits.merge (nuts); nits.merge (knots); res = s_invalid; } } } }
+    return res; }
+
+e_status set_css_shape_value_n (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   e_status res = s_invalid;
+    const ::std::string s (trim_the_lot_off (ss));
+    if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "arguments required");
+    else if (v.css_module (c_shape) < 3)
+        nits.pick (nit_css_version, es_error, ec_css, "Shape functions require CSS Shapes");
+    else
+    {   res = s_good;
+        int count = 0;
+        ::std::string pos;
+        e_byto ebyto = bt_by;
+        nitpick nets, nuts;
+        typedef enum {  ss_context,
+                        ss_arc, ss_close, ss_curve, ss_hline, ss_line, ss_move, ss_smooth, ss_vline, // these MUST correspond to e_shape_cmd + 1
+                        ss_lm_by, ss_lm_to,
+                        ss_hvl_by, ss_hl_to, ss_vl_to,
+                        ss_done,
+                        ss_error } sh_status;
+        sh_status stage = ss_context;
+        if (! s.empty ())
+        {   vstr_t vr (split_by_space (s));
+            for (auto vs : vr)
+                switch (stage)
+                {   case ss_context :
+                    {   const e_shape_cmd shape = examine_value < t_shape_cmd > (nits, v, vr.at (0));
+                        if (nits.worst () <= es_error) return s_invalid;
+                        stage = static_cast < sh_status > (static_cast < int > (shape) + 1);
+                        break; }
+                    case ss_done :
+                        nits.pick (nit_shape, es_error, ec_type, quote (vs), ": too many parameters");
+                        return s_invalid;
+                    case ss_close :
+                        nits.pick (nit_shape, es_error, ec_type, quote (vs), ": 'close' takes no parameters");
+                        return s_invalid;
+                    case ss_line :
+                    case ss_move :
+                        ebyto = examine_value < t_byto > (nits, v, vs);
+                        if (nits.worst () <= es_error) return s_invalid;
+                        if (ebyto == bt_by) stage = ss_lm_by;
+                        else stage = ss_lm_to;
+                        count = 0;
+                        break;
+                    case ss_lm_by :
+                        if (! test_value < t_css_length_percent > (nits, v, vs)) return s_invalid;
+                        if (count++ == 2) stage = ss_done;
+                        break;
+                    case ss_lm_to :
+                        if (! pos.empty ()) pos += " ";
+                        pos += vs;
+                        break;
+                    case ss_hline :
+                        ebyto = examine_value < t_byto > (nits, v, vs);
+                        if (nits.worst () <= es_error) return s_invalid;
+                        if (ebyto == bt_by) stage = ss_hvl_by;
+                        else stage = ss_hl_to;
+                        break;
+                    case ss_vline :
+                        ebyto = examine_value < t_byto > (nits, v, vs);
+                        if (nits.worst () <= es_error) return s_invalid;
+                        if (ebyto == bt_by) stage = ss_hvl_by;
+                        else stage = ss_vl_to;
+                        break;
+                    case ss_hvl_by :
+                        if (! test_value < t_css_length_percent > (nits, v, vs)) return s_invalid;
+                        stage = ss_done;
+                        break;
+                    case ss_hl_to :
+                        if (! test_value < t_hline > (nets, v, vs))
+                            if (! test_value < t_css_length_percent > (nuts, v, vs))
+                            {   nits.merge (nets); nits.merge (nuts); return s_invalid; }
+                        stage = ss_done;
+                        break;
+                    case ss_vl_to :
+                        if (! test_value < t_vline > (nets, v, vs))
+                            if (! test_value < t_css_length_percent > (nuts, v, vs))
+                            {   nits.merge (nets); nits.merge (nuts); return s_invalid; }
+                        stage = ss_done;
+                        break;
+                    case ss_arc :
+                    case ss_curve :
+                    case ss_smooth :
+                        return s_good;
+                    default :
+                        GRACEFUL_CRASH (__FILE__, __LINE__);
+                        break; } 
+            if (! pos.empty ())
+                if (! test_value < t_css_ellipse_pos > (nits, v, pos))
+                    res = s_invalid; } }
+    return res; }
 
 e_status set_css_speak_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box)
 {   if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "must be empty ... NOT");

@@ -63,7 +63,7 @@ PASS ../toast/SVG/1.2-full/prefetch.svg
 0 title_required
 1 xhtml_1_1
 4 svg_version
-22 newline_in_string newline_in_string unrecognised_value unrecognised_value unrecognised_value
+22 newline_in_string newline_in_string unrecognised_value property unrecognised_value property unrecognised_value property
 
 PASS ../toast/SVG/1.2-full/progress.svg
 0 title_required
@@ -156,8 +156,8 @@ PASS ../toast/SVG/1.2-full/xa.svg
 0 charset_mismatch charset_used
 1 xhtml_1_1
 2 svg_version
-6 bad_namespace attribute_unrecognised bad_namespace attribute_unrecognised unrecognised_attribute unrecognised_attribute
-8 bad_namespace attribute_unrecognised bad_namespace attribute_unrecognised unrecognised_attribute unrecognised_attribute
+6 bad_namespace attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute
+8 bad_namespace attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute
 14 bad_namespace attribute_unrecognised unrecognised_attribute
 15 attribute_required
 17 bad_namespace attribute_unrecognised unrecognised_attribute

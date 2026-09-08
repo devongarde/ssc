@@ -219,7 +219,7 @@ PASS ../toast/SVG/1.0/path-4.xhtml
 PASS ../toast/SVG/1.0/path-5.xhtml
 0 title_required
 1 xhtml_1_0
-7 path_spec path_spec
+7 path_spec
 
 PASS ../toast/SVG/1.0/pattern-2.svg
 0 title_required

@@ -46,12 +46,12 @@ n_string_entry < e_namespace, 3 > namespace_name_entries [] =
     { { HTML_JUL15 }, { HTML_UNDEF }, ns_ebutts, 0, { "ebutts", "urn:ebu:tt:style", "european broadcasting union TECH 3380 (subtitles)" } },  // http://xmlns.com/foaf/spec/
     { { HTML_JAN05 }, { HTML_UNDEF }, ns_err, 0, { "err", HTTP_W3 "/2005/xqt-errirs", "xqt errors" } },  // http://xmlns.com/foaf/spec/
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_ex, 0, { "ex", HTTP DEFAULT_DOMAIN "/", "example" } },
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_exsl, 0, { "exsl", "http://xmlns.opentechnology.org/xslt-extensions/common", "Extensions to XSLT 1.0" } },
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_exsl, 0, { "exsl", "http://xmlns.opentechnology.org/xslt-extensions/functions", "Extensions to XSLT 1.0 (functions)" } },
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_exsl, 0, { "exsl", "http://xmlns.opentechnology.org/xslt-extensions/math", "Extensions to XSLT 1.0 (math)" } },
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_exsl, 0, { "exsl", "http://xmlns.opentechnology.org/xslt-extensions/sets", "Extensions to XSLT 1.0 (sets)" } },
+    { { XHTML_1_0 }, { HTML_SEP26 }, ns_exsl, 0, { "exsl", "http://xmlns.opentechnology.org/xslt-extensions/common", "Extensions to XSLT 1.0" } },
+    { { XHTML_1_0 }, { HTML_SEP26 }, ns_exsl, 0, { "exsl", "http://xmlns.opentechnology.org/xslt-extensions/functions", "Extensions to XSLT 1.0 (functions)" } },
+    { { XHTML_1_0 }, { HTML_SEP26 }, ns_exsl, 0, { "exsl", "http://xmlns.opentechnology.org/xslt-extensions/math", "Extensions to XSLT 1.0 (math)" } },
+    { { XHTML_1_0 }, { HTML_SEP26 }, ns_exsl, 0, { "exsl", "http://xmlns.opentechnology.org/xslt-extensions/sets", "Extensions to XSLT 1.0 (sets)" } },
     { { HTML_JAN05 }, { HTML_UNDEF }, ns_fn, 0, { "fn", HTTP_W3 "/2005/xpath-functions", "XPath functions" } },  // http://xmlns.com/foaf/spec/
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_fo, 0, { "fo", HTTP_W3 "/1999/XSL/Format", "XSL Formatting Objects" } },
+    { { XHTML_1_0 }, { HTML_SEP26 }, ns_fo, 0, { "fo", HTTP_W3 "/1999/XSL/Format", "XSL Formatting Objects" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_foaf, 0, { "foaf", HTTP XCOM "/foaf/0.1/", "friend of a friend" } },  // http://xmlns.com/foaf/spec/
     { { HTML_GEO }, { HTML_UNDEF }, ns_geo, 0, { "geo", HTTP_W3 "/2003/01/geo/wgs84_pos#", "W3 Geo" } },
     { { HTML_GEO }, { HTML_UNDEF }, ns_geo, 0, { "geo", HTTPS_W3 "/2003/01/geo/wgs84_pos#", "W3 Geoe" } },
@@ -153,7 +153,7 @@ n_string_entry < e_namespace, 3 > namespace_name_entries [] =
     { { HTML_RSS }, { HTML_UNDEF }, ns_rss, 0, { NS_RSS, NSLS_RSS "modules/content/", "Really Simple Syndication" } },
     { { HTML_RSS }, { HTML_UNDEF }, ns_rss, 0, { NS_RSS, NSL_RSS "modules/syndication/", "Really Simple Syndication" } },
     { { HTML_RSS }, { HTML_UNDEF }, ns_rss, 0, { NS_RSS, NSLS_RSS "modules/syndication/", "Really Simple Syndication" } },
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_saxon, 0, { "saxon", "http://icl.com/saxon", "Saxon XSLT Extensions" } }, // http://saxon.sourceforge.net/saxon6.5/extensions.html
+    { { XHTML_1_0 }, { HTML_SEP26 }, ns_saxon, 0, { "saxon", "http://icl.com/saxon", "Saxon XSLT Extensions" } }, // http://saxon.sourceforge.net/saxon6.5/extensions.html
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_smil, 0, { "smil", HTTP_W3 "/2001/SMIL20", "Synchronized Multimedia Integration Language" } },
     { { HTML_JAN13 }, { HTML_UNDEF }, ns_smpte, 0, { "smpte", "http://www.smpte-ra.org/schemas/2052-1/2013/smpte-tt", "Society of Motion Pictures and Television Engineers" } },
     { { HTML_SPDX10 }, { HTML_UNDEF }, ns_spdx, 0, { "spdx", HTTP "spdx.org/rdf/terms#", "System Package Data Exchange" } },
@@ -176,8 +176,8 @@ n_string_entry < e_namespace, 3 > namespace_name_entries [] =
     { { HTML_V }, { HTML_UNDEF }, ns_v, 0, { "v", HTTPS "rdf.data-vocabulary.org/#", "data-vocabulary" } },
     { { HTML_VCARD_2001 }, { HTML_UNDEF }, ns_vcard, NS_DEPRECATED, { "vcard",  HTTP_W3 "/2001/vcard-rdf/3.0#", "vcard (deprecated)" } },
     { { HTML_VCARD_2006 }, { HTML_UNDEF }, ns_vcard, 0, { "vcard",  HTTP_W3 "/2006/vcard/ns#", "vcard" } },
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_xalan, 0, { "xalan", "http://xml.apache.org/xslt", "Xalan XSLT Extensions" } },
-    { { XHTML_1_0 }, { HTML_UNDEF }, ns_xalan, 0, { "lxslt", "http://xml.apache.org/xslt", "Xalan XSLT Extensions" } },
+    { { XHTML_1_0 }, { HTML_SEP26 }, ns_xalan, 0, { "xalan", "http://xml.apache.org/xslt", "Xalan XSLT Extensions" } },
+    { { XHTML_1_0 }, { HTML_SEP26 }, ns_xalan, 0, { "lxslt", "http://xml.apache.org/xslt", "Xalan XSLT Extensions" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_xf, 0, { "xf", HTTP_W3 "/2001/08/xquery-operators", "XQuery 1.0" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_xhtml, NS_PREDECLARED, { XHTMLNS, HTTP_W3 "/1999/xhtml", "XHTML 1.0" } },
     { { XHTML_1_0, HV_DEPRECATEDX10 }, { HTML_UNDEF }, ns_xhtml, NS_DEPRECATED, { XHTMLNS, HTTP_W3 "/TR/xhtml1/strict", "XHTML 1.0" } },

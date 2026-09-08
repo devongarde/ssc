@@ -40,7 +40,7 @@ PASS ../toast/mdn/moz-property/moz-image-rect.html
 
 PASS ../toast/mdn/moz-property/moz-image-region.html
 2 naughty_lang
-5 abandoned abandoned abandoned abandoned abandoned abandoned css_value_fn isnt isnt isnt isnt isnt isnt abandoned css_value_fn isnt isnt isnt isnt isnt isnt
+5 abandoned abandoned abandoned abandoned abandoned abandoned abandoned
 
 PASS ../toast/mdn/moz-property/moz-last-node.html
 2 naughty_lang

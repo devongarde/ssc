@@ -39,6 +39,8 @@ type_cvf a_tc [] =
     { t_css_fn_calc, cvf_calc },
     { t_css_fn_calc_size, cvf_calc_size },
     { t_css_fn_character_variant, cvf_character_variant },
+    { t_css_fn_conic_gradient, cvf_conic_gradient },
+    { t_css_fn_repeating_conic_gradient, cvf_repeating_conic_gradient },
     { t_css_fn_counter, cvf_counter },
     { t_css_fn_counters, cvf_counters },
     { t_css_fn_cross_fade, cvf_cross_fade },
@@ -64,11 +66,13 @@ type_cvf a_tc [] =
     { t_css_fn_ornaments, cvf_ornaments },
     { t_css_fn_param, cvf_param },
     { t_css_fn_radial_gradient, cvf_radial_gradient },
+    { t_css_fn_ray, cvf_ray },
     { t_css_fn_rect, cvf_rect },
     { t_css_fn_repeat, cvf_repeat },
     { t_css_fn_repeating_linear_gradient, cvf_linear_gradient },
     { t_css_fn_repeating_radial_gradient, cvf_repeating_radial_gradient },
     { t_css_fn_round_t, cvf_round },
+    { t_css_fn_shape, cvf_shape },
     { t_css_fn_snap_block, cvf_snap_block },
     { t_css_fn_snap_inline, cvf_snap_inline },
     { t_css_fn_steps, cvf_steps },
@@ -384,19 +388,19 @@ e_status set_fn_calc_args_value (nitpick& nits, const html_version& v, const ::s
                     if (! fnn.empty ())
                     {   if (cvf > cvf_none)
                         {   if ((type_master < t_css_val_fn > :: flags (cvf) & CF_CALC) == 0)
-                                nits.pick (nit_css_type, ed_mdn, "calc ()", es_warning, ec_css, quote (fnn), ": may be unsuitable here");
+                                nits.pick (nit_css_type, ed_mdn, "functions", es_warning, ec_css, quote (fnn), ": may be unsuitable here");
                             if (mct.empty ())
                                 for (int i = 0; GSL_AT (a_tc, i).type_ != t_error; ++i)
                                     mct.insert (m_cvf_t::value_type (GSL_AT (a_tc, i).cvf_, GSL_AT (a_tc, i).type_));
                             auto t = mct.find (cvf);
                             if (t == mct.cend ())
-                            {   nits.pick (nit_css_type, ed_mdn, "calc ()", es_warning, ec_css, "cannot convert ", fnn, " to internal type"); 
+                            {   nits.pick (nit_css_type, ed_mdn, "functions", es_warning, ec_css, "cannot convert ", fnn, " to internal type"); 
                                 st = s_invalid; }
                             else fn_by_type < SSC_TYPES_CSS_FN_1, SSC_TYPES_CSS_FN_2, SSC_TYPES_CSS_FN_3, t_error > :: check (t -> second, nits, v, fna); }
                         fnn.clear ();
                         n.clear (); }
                 if (rounds == 0)
-                {   nits.pick (nit_css_type, ed_mdn, "calc ()", es_error, ec_css, quote (ss), ": is a '(' missing?");
+                {   nits.pick (nit_css_type, ed_mdn, "functions", es_error, ec_css, quote (ss), ": is a '(' missing?");
                     st = s_invalid; }
                 else --rounds;
                 break;
@@ -405,7 +409,7 @@ e_status set_fn_calc_args_value (nitpick& nits, const html_version& v, const ::s
                 set_calc_ex (nits, v, s, st, n, had_op);
                 break; } }
     if (rounds > 0)
-    {   nits.pick (nit_css_type, ed_mdn, "calc ()", es_error, ec_css, quote (ss), ": '(' and ')' appear to be imbalanced.");
+    {   nits.pick (nit_css_type, ed_mdn, "functions", es_error, ec_css, quote (ss), ": '(' and ')' appear to be imbalanced.");
         st = s_invalid; }
     return st; }
 
@@ -473,13 +477,14 @@ e_status set_fn_type_args_value (nitpick& nits, const html_version& v, const ::s
                 if (s <= ' ')
                 {   if (! n.empty ()) had_word = true;
                     break; }
-                if (had_word || had_type)
+                if (((s >= '0') && (s <= '9')) || ((s >= 'a') && (s <= 'z')) || ((s >= 'A') && (s <= 'Z')) || (s == '-') || (s == '_'))
+                {   had_word = true;
+                    n += s; }
+                else if (had_word || had_type)
                 {   nits.pick (nit_css_type, ed_mdn, "type ()", es_error, ec_css, "is a '|' missing after ", quote (n), " (", quote (s), ")");
                     n.clear ();
                     st = s_invalid;
                     had_word = had_type = false; }
-                if (((s >= '0') && (s <= '9')) || ((s >= 'a') && (s <= 'z')) || ((s >= 'A') && (s <= 'Z')) || (s == '-') || (s == '_'))
-                    n += s;
                 else
                 {   nits.pick (nit_css_type, ed_mdn, "type ()", es_error, ec_css, quote (s), ": unexpected when processing type ()");
                     st = s_invalid; }

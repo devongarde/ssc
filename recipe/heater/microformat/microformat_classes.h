@@ -119,7 +119,7 @@ typedef microformat < rel, r_cc_legalcode, c_cc, ela_ok, ela_ok, cc_legalcode_rt
 typedef microformat < rel, r_cc_deprecatedon, c_cc, ela_ok, ela_ok, cc_deprecatedon_rt > mf_cc_deprecatedon;
 typedef microformat < rel, r_cc_licence, c_cc, ela_ok, ela_ok, cc_licence_rt > mf_cc_licence;
 typedef microformat < rel, r_cc_morepermissions, c_cc, ela_ok, ela_ok, cc_morepermissions_rt > mf_cc_morepermissions;
-typedef microformat < rel, r_cc_attributionname, c_cc, ela_ok, ela_ok, cc_attributionname_rt > mf_cc_attributionname;   // illustrates ssc design issue; mf needs reworking
+typedef microformat < rel, r_cc_attributionname, c_cc, ela_ok, ela_ok, cc_attributionname_rt > mf_cc_attributionname;
 typedef microformat < rel, r_cc_attributionurl, c_cc, ela_ok, ela_ok, cc_attributionurl_rt > mf_cc_attributionurl;
 typedef microformat < rel, r_cc_useguidelines, c_cc, ela_ok, ela_ok, cc_useguidelines_rt > mf_cc_useguidelines;
 

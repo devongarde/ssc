@@ -806,9 +806,7 @@ html_version bracs_ket::parse (const ::std::string& content, const html_version&
                                 aftercab = true;
                                 if (comment_start) status = s_start; else status = s_dull;
                                 comment_start = doubledashed = false; text = twas = i+1; break;
-                    case ' ' :  if (res < html_2) break;
-                                // HTML 1 permits white space here!
-                                // otherwise drop thru'
+                    case ' ' :  if (res < html_2) break; // HTML 1 permits white space here!
                                 FALLTHROUGH;
                     default :   if (! doubledashed)
                                 {   nits.set_context (line_, b, e, i);

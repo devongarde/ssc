@@ -54,11 +54,11 @@ PASS ../toast/aria/1-3/role.html
 42 bad_role
 49 inserted_missing_closure
 50 missing_open
-73 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave double_angular_open naughty_grave
+73 use_quote_code naughty_grave double_angular_open
 75 use_double_quote_code
 77 use_double_quote_code
-87 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure bad_id
-93 inserted_missing_closure inserted_missing_closure bad_id
+87 inserted_missing_closure inserted_missing_closure bad_id
+93 inserted_missing_closure bad_id
 97 no_such_folder url_not_found
 104 no_such_folder url_not_found
 108 inserted_missing_closure

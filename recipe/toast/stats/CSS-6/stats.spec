@@ -17,35 +17,36 @@ Class/Element:
 
 Content-Name:
     chapter
+    header
     heading
     page
-  Used thrice
+  Used fourfold
 
 Element:
-    (undefined): 4 times
-    a: 5 times
+    (undefined): fourfold
+    a: fivefold
     blockquote: thrice
-    h1: 4 times
+    h1: fourfold
     h2: once
     ol: once
     p: thrice
-    q: 4 times
+    q: fourfold
     section: once
-  11 elements used 44 times
+  11 elements used 44fold
 
 Property:
-    content: 19 times
+    content: 19fold
     margin: once
-    quotes: 6 times
-    string-set: 4 times
-  4 properties used 30 times
+    quotes: sixfold
+    string-set: fourfold
+  4 properties used 30fold
 
 Statement:
     page: once
     top-center: once
     top-left: once
     top-right: once
-  4 statements used 4 times
+  4 statements used fourfold
 ===
 
 PASS ../toast/stats/CSS-6/cs-3-3.css
@@ -53,31 +54,31 @@ PASS ../toast/stats/CSS-6/cs-3-3.css
 STAT
 Property:
     additive-symbols: once
-    suffix: 6 times
-    symbols: 6 times
-    system: 8 times
-  4 properties used 21 times
+    suffix: sixfold
+    symbols: sixfold
+    system: eightfold
+  4 properties used 21fold
 
 Statement:
-    counter-style: 8 times
-  1 statements used 8 times
+    counter-style: eightfold
+  1 statements used eightfold
 ===
 
 PASS ../toast/stats/CSS-6/custom-3.css
-3 css_syntax unrecognised_value
+3 unrecognised_value css_version
 8 css_custom
 11 css_custom
 
 STAT
 Class:
   component declared thrice
-  foo declared 4 times
+  foo declared fourfold
   header declared once
   text declared once
 
 Class/Element:
   *.component declared thrice
-  *.foo declared 4 times
+  *.foo declared fourfold
   *.header declared once
   *.text declared once
 
@@ -94,14 +95,14 @@ Custom-Property:
 
 Element:
     p: thrice
-  2 elements used 14 times
+  2 elements used 14fold
 
 Property:
-    (custom): 10 times
+    (custom): tenfold
     background-color: thrice
     color: twice
     margin-top: twice
-  4 properties used 17 times
+  4 properties used 17fold
 ===
 
 PASS ../toast/stats/CSS-6/extra.css
@@ -130,7 +131,7 @@ Element:
     html: twice
     nav: twice
     p: thrice
-  7 elements used 20 times
+  7 elements used 20fold
 
 Font:
     Ignoble: once
@@ -148,8 +149,8 @@ Property:
     background-color: thrice
     block-size: twice
     color: once
-    flow-from: 4 times
-    flow-into: 4 times
+    flow-from: fourfold
+    flow-into: fourfold
     font-family: thrice
     font-variant-alternates: thrice
     height: once
@@ -160,14 +161,14 @@ Property:
     scroll-timeline-name: once
     transform: twice
     view-transition-name: once
-  15 properties used 30 times
+  15 properties used 30fold
 
 Region:
     article-flow
     breaking-news
     my-flow
     nav-link-flow
-  Used 4 times
+  Used fourfold
 
 Scroll-Anim:
     --squareTimeline
@@ -175,12 +176,12 @@ Scroll-Anim:
 Statement:
     font-feature-values: thrice
     historical-forms: once
-    keyframes: 4 times
+    keyframes: fourfold
     layer: twice
     ornaments: once
     stylistic: once
     page: thrice
-  7 statements used 15 times
+  7 statements used 15fold
 ===
 
 PASS ../toast/stats/CSS-6/font-4-6.css
@@ -226,15 +227,15 @@ Class/Element:
   span.alt-U declared once
 
 Element:
-    (undefined): 6 times
+    (undefined): sixfold
     annotation: once
     blockquote: twice
     body: thrice
-    p: 6 times
+    p: sixfold
     span: twice
     sub: twice
     sup: once
-  9 elements used 29 times
+  9 elements used 29fold
 
 Font:
     Mercury Serif: once
@@ -242,32 +243,32 @@ Font:
     Otaru Kisa: once
     Taisho Gothic: once
     serif: once
-  5 Font used 5 times
+  5 Font used fivefold
 
 Property:
     font-family: thrice
-    font-feature-settings: 13 times
+    font-feature-settings: 13fold
     font-language-override: once
     font-size: twice
     font-style: once
     font-variant: thrice
-    font-variant-alternates: 10 times
+    font-variant-alternates: tenfold
     font-variant-caps: twice
     font-variant-numeric: twice
     font-variant-position: thrice
     line-height: twice
     vertical-align: twice
-  12 properties used 44 times
+  12 properties used 44fold
 
 Statement:
     annotation: twice
-    character-variant: 9 times
-    font-feature-values: 15 times
+    character-variant: ninefold
+    font-feature-values: 15fold
     ornaments: once
-    styleset: 6 times
-    swash: 12 times
+    styleset: sixfold
+    swash: twelvefold
     supports: once
-  7 statements used 46 times
+  7 statements used 46fold
 ===
 
 PASS ../toast/stats/CSS-6/font-4-9.css
@@ -296,30 +297,30 @@ Element:
     h1: once
     h2: once
     h3: once
-  4 elements used 4 times
+  4 elements used fourfold
 
 Font:
     Banner Flag: once
     Bixa: once
-    Bixxxa: 4 times
-    Bungeehee: 4 times
+    Bixxxa: fourfold
+    Bungeehee: fourfold
     Custom Emoji: once
     Handover Sans: twice
-  6 Font used 13 times
+  6 Font used 13fold
 
 Property:
-    base-palette: 6 times
-    font-family: 12 times
-    font-palette: 4 times
+    base-palette: sixfold
+    font-family: twelvefold
+    font-palette: fourfold
     override-colors: thrice
     src: thrice
-  5 properties used 28 times
+  5 properties used 28fold
 
 Statement:
     font-face: thrice
-    font-palette-values: 6 times
+    font-palette-values: sixfold
     media: once
-  3 statements used 10 times
+  3 statements used tenfold
 ===
 
 PASS ../toast/stats/CSS-6/media-5-10.css
@@ -342,8 +343,8 @@ Property:
 
 Statement:
     custom-media: twice
-    media: 5 times
-  2 statements used 7 times
+    media: fivefold
+  2 statements used sevenfold
 ===
 
 PASS ../toast/stats/CSS-6/index.html
@@ -357,7 +358,7 @@ Element:
     head: once
     html: once
     title: once
-  9 elements used 17 times
+  9 elements used 17fold
 ===
 
 GRAND
@@ -386,10 +387,10 @@ Character:
     silly
     zeta
     zeta-2
-  Used 15 times
+  Used 15fold
 
 Class:
-  a declared 6 times
+  a declared sixfold
   alt-N declared twice
   alt-U declared twice
   amount declared twice
@@ -399,9 +400,9 @@ Class:
   breaking-news declared twice
   chem declared twice
   codeblock declared twice
-  component declared 6 times
+  component declared sixfold
   fleep declared twice
-  foo declared 8 times
+  foo declared eightfold
   frontmatter declared twice
   header declared twice
   ordinal declared twice
@@ -422,7 +423,7 @@ Class/Element:
   *.chem declared once
   *.component declared thrice
   *.fleep declared once
-  *.foo declared 4 times
+  *.foo declared fourfold
   *.frontmatter declared once
   *.header declared once
   *.ordinal declared once
@@ -438,9 +439,10 @@ Class/Element:
 
 Content-Name:
     chapter
+    header
     heading
     page
-  Used thrice
+  Used fourfold
 
 Counter-Style:
     box-corner
@@ -451,14 +453,14 @@ Counter-Style:
     triangle
     trinary
     upper-alpha-legal
-  Used 8 times
+  Used eightfold
 
 Custom-Media:
     --modern: once, (color), (hover)
     --narrow-window: once, (max-width: 30em)
 
 Custom-Property:
-  --gap declared twice, used 4 times
+  --gap declared twice, used fourfold
   --looks-valid declared once, used twice
   --not-a-color declared once, used twice
   --prop1 declared once, used thrice
@@ -469,28 +471,28 @@ Custom-Property:
   --text-color declared once, used once
 
 Element:
-    (undefined): 13 times
+    (undefined): 13fold
     !doctype: once
-    a: 6 times
+    a: sixfold
     annotation: once
     article: once
-    blockquote: 5 times
-    body: 4 times
-    h1: 6 times
+    blockquote: fivefold
+    body: fourfold
+    h1: sixfold
     h2: twice
     h3: once
     head: once
     html: thrice
     nav: twice
     ol: once
-    p: 15 times
-    q: 4 times
+    p: 15fold
+    q: fourfold
     section: once
     span: twice
     sub: twice
     sup: once
     title: once
-  26 elements used 131 times
+  26 elements used 131fold
 
 Nits Reported:
     Warnings: once
@@ -502,8 +504,8 @@ File Info:
 Font:
     Banner Flag: once
     Bixa: once
-    Bixxxa: 4 times
-    Bungeehee: 4 times
+    Bixxxa: fourfold
+    Bungeehee: fourfold
     Custom Emoji: once
     Handover Sans: twice
     Ignoble: once
@@ -514,7 +516,7 @@ Font:
     fireplace: once
     serif: once
     the70s: once
-  14 Font used 21 times
+  14 Font used 21fold
 
 Font-Family:
     Athena Ruby 
@@ -529,31 +531,31 @@ Font-Family:
     fireplace 
     foo 
     the70s 
-  Used 12 times
+  Used twelvefold
 
 Function:
   annotation declared never, used twice
   attr declared never, used twice
   calc declared never, used twice
-  character-variant declared never, used 12 times
-  content declared never, used 6 times
+  character-variant declared never, used twelvefold
+  content declared never, used sixfold
   counter declared never, used twice
   highlight declared never, used thrice
   historical-forms declared never, used twice
-  lang declared never, used 6 times
-  leader declared never, used 6 times
+  lang declared never, used sixfold
+  leader declared never, used sixfold
   ornaments declared never, used twice
   rgb declared never, used twice
   rgba declared never, used once
-  string declared never, used 6 times
-  styleset declared never, used 4 times
+  string declared never, used sixfold
+  styleset declared never, used fourfold
   stylistic declared never, used twice
-  swash declared never, used 4 times
-  target-counter declared never, used 8 times
+  swash declared never, used fourfold
+  target-counter declared never, used eightfold
   target-text declared never, used twice
-  translateX declared never, used 4 times
+  translateX declared never, used fourfold
   url declared never, used once
-  var declared never, used 24 times
+  var declared never, used 24fold
 
 Highlight:
     bar
@@ -571,13 +573,12 @@ Keyframe:
     fade-out
     slide-from-right
     slide-to-left
-  Used 4 times
+  Used fourfold
 
 Layer:
     base
     plain
-    support
-  Used thrice
+  Used twice
 
 Ornament:
     doe
@@ -595,26 +596,26 @@ Palette:
     Cooler 
     Festival 
     ToxicGreen 
-  Used 4 times
+  Used fourfold
 
 Property:
-    (custom): 10 times
+    (custom): tenfold
     additive-symbols: once
-    background-color: 6 times
-    base-palette: 6 times
+    background-color: sixfold
+    base-palette: sixfold
     block-size: twice
-    color: 6 times
-    content: 19 times
-    flow-from: 4 times
-    flow-into: 4 times
-    font-family: 18 times
-    font-feature-settings: 13 times
+    color: sixfold
+    content: 19fold
+    flow-from: fourfold
+    flow-into: fourfold
+    font-family: 18fold
+    font-feature-settings: 13fold
     font-language-override: once
-    font-palette: 4 times
+    font-palette: fourfold
     font-size: twice
     font-style: once
     font-variant: thrice
-    font-variant-alternates: 13 times
+    font-variant-alternates: 13fold
     font-variant-caps: twice
     font-variant-numeric: twice
     font-variant-position: thrice
@@ -627,17 +628,17 @@ Property:
     overflow-y: once
     override-colors: thrice
     position: once
-    quotes: 6 times
+    quotes: sixfold
     scroll-timeline-name: once
     src: thrice
-    string-set: 4 times
-    suffix: 6 times
-    symbols: 6 times
-    system: 8 times
+    string-set: fourfold
+    suffix: sixfold
+    symbols: sixfold
+    system: eightfold
     transform: twice
     vertical-align: twice
     view-transition-name: once
-  39 properties used 173 times
+  39 properties used 173fold
 
 Reference:
     HTML 5.0: once
@@ -647,33 +648,33 @@ Region:
     breaking-news
     my-flow
     nav-link-flow
-  Used 4 times
+  Used fourfold
 
 Scroll-Anim:
     --squareTimeline
 
 Statement:
     annotation: twice
-    character-variant: 9 times
-    counter-style: 8 times
+    character-variant: ninefold
+    counter-style: eightfold
     custom-media: twice
-    font-feature-values: 18 times
+    font-feature-values: 18fold
     font-face: thrice
-    font-palette-values: 6 times
+    font-palette-values: sixfold
     historical-forms: once
-    keyframes: 4 times
+    keyframes: fourfold
     layer: twice
-    media: 6 times
+    media: sixfold
     ornaments: twice
-    styleset: 6 times
+    styleset: sixfold
     stylistic: once
-    swash: 12 times
-    page: 4 times
+    swash: twelvefold
+    page: fourfold
     supports: once
     top-center: once
     top-left: once
     top-right: once
-  20 statements used 90 times
+  20 statements used 90fold
 
 Styleset:
     alt-g
@@ -685,7 +686,7 @@ Styleset:
     sharp-terminals
     stacked-a
     stacked-g
-  Used 9 times
+  Used ninefold
 
 Stylistic:
     brand-new
@@ -699,8 +700,8 @@ Swash:
     ornate
     pretty
     swishy
-  Used 6 times
+  Used sixfold
 
 Version:
-    HTML-5/20230701/SVG-2.1/MathML-core/CSS-6/WhatWG: 8 times
+    HTML-5/20230701/SVG-2.1/MathML-core/CSS-6/WhatWG: eightfold
 ===

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<HTML>
+ <HEAD>
+ <TITLE>CSS web content access guidelines chapter 22 example</TITLE>
+ <STYLE type="text/css">
+code { font-family:"Courier New", Courier, monospace }
+.right { text-align: right; }
+strong.largersize { font-size: 1.5em; }
+.highlight{ color: red; }
+.featuredsite{ font-style:italic; }
+.highlight { font-weight:bold; color:#990000; }
+.caps { text-transform:uppercase; }
+p { line-height:2em; }
+.overlap { line-height:0.2em;  }
+.upper { text-transform:uppercase; }
+.byline { color:red; font-style:italic; font-weight:bold; padding-left:3em; }
+.overlap { line-height:0.2em;  }
+.upper { text-transform:uppercase; }
+.byline { color:red; font-style:italic; font-weight:bold; padding-left:3em; letter-spacing:-0.1em; }
+.upper2 { text-transform:uppercase; letter-spacing:1em; }
+
+#banner { 
+  color:white; 
+  background-image:url(banner-bg.gif); 
+  background-repeat:no-repeat; 
+  background-color:#003399; 
+  width:29em; 
+}
+
+#bannerstyle1 { 
+  text-transform:uppercase; 
+  font-weight:bold; 
+  font-size:2.5em;
+}
+
+#bannerstyle2 { 
+  font-style:italic; 
+  font-weight:bold; 
+  letter-spacing:-0.1em;
+  font-size:1.5em; 
+}
+
+.startline:first-line { font-size:2em; color:#990000; }
+.startletter:first-letter { font-size:2em; color:#990000; vertical-align:middle; }
+
+</STYLE>
+</HEAD>
+
+ <BODY>
+
+<p>The Javascript method to convert a string to uppercase is <code>toUpperCase()</code>.</p>
+<p class="right">This text should be to the right of the viewport.</p>  
+<p>09 <strong class="largersize">March</strong> 2008</p>  
+<p>09 <em class="highlight">March</em> 2008</p>  
+<p>The article is available in the <a href="http://www.example.com" class="featuredsite">Endocrinology 
+Blog</a>.</p>
+<p>This deal is available <span class="highlight">now!</span></p> 
+<p>09 <span class="caps">March</span> 2008</p>  
+<p>Concern for man and his fate must always form the<br />  
+chief interest of all technical endeavors. <br />
+Never forget this in the  midst of your diagrams and equations. </p>
+
+<h1 class="overlap"><span class="upper">News</span><br />
+<span class="byline">today</span></h1>
+
+<h1 class="overlap"><span class="upper">News</span><br />
+<span class="byline">today</span></h1>
+
+<h1 class="upper2">News</h1>
+
+<div id="banner"><span id="bannerstyle1">Welcome</span> 
+<span id="bannerstyle2">to your local city council</span></div>
+<p class="startline">Once upon a time...<br />
+...in a land far, far away...  </p>  
+<p class="startletter">Once upon a time...</p>  
+
+</BODY>
+
+</HTML>

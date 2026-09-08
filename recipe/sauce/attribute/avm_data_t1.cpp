@@ -124,7 +124,8 @@ hav_t havt_td [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_template [] =
-{   { { HTML_AUG25 }, { HTML_UNDEF }, elem_template, a_shadowrootmode },
+{   { { HTML_SEP26 }, { HTML_UNDEF }, elem_template, a_for },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_template, a_shadowrootmode },
     { { HTML_AUG25 }, { HTML_UNDEF }, elem_template, a_shadowrootdelegatesfocus },
     { { HTML_AUG25 }, { HTML_UNDEF }, elem_template, a_shadowrootclonable },
     { { HTML_AUG25 }, { HTML_UNDEF }, elem_template, a_shadowrootserialisable },

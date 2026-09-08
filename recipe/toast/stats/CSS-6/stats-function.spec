@@ -5,7 +5,7 @@ PASS ../toast/stats/CSS-6/content-3-2.css
 8 pseud
 
 PASS ../toast/stats/CSS-6/custom-3.css
-3 css_syntax unrecognised_value
+3 unrecognised_value css_version
 8 css_custom
 11 css_custom
 
@@ -60,23 +60,23 @@ Function:
   annotation declared never, used twice
   attr declared never, used twice
   calc declared never, used twice
-  character-variant declared never, used 12 times
-  content declared never, used 6 times
+  character-variant declared never, used twelvefold
+  content declared never, used sixfold
   counter declared never, used twice
   highlight declared never, used thrice
   historical-forms declared never, used twice
-  lang declared never, used 6 times
-  leader declared never, used 6 times
+  lang declared never, used sixfold
+  leader declared never, used sixfold
   ornaments declared never, used twice
   rgb declared never, used twice
   rgba declared never, used once
-  string declared never, used 6 times
-  styleset declared never, used 4 times
+  string declared never, used sixfold
+  styleset declared never, used fourfold
   stylistic declared never, used twice
-  swash declared never, used 4 times
-  target-counter declared never, used 8 times
+  swash declared never, used fourfold
+  target-counter declared never, used eightfold
   target-text declared never, used twice
-  translateX declared never, used 4 times
+  translateX declared never, used fourfold
   url declared never, used once
-  var declared never, used 24 times
+  var declared never, used 24fold
 ===

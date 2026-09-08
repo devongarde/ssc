@@ -1,0 +1,39 @@
+﻿#Header h1 {
+	background-image: url(pufferfish-logo.png);
+	height: 195px;
+	width: 290px;
+	background-repeat: no-repeat;
+	margin-top: 0;
+	position: absolute;
+	}
+#Header h1 span {
+	position: absolute;
+        left: -999em;
+	}
+#Header h2 {
+	background-image: url(beauty.png);
+	background-repeat: no-repeat;
+	height: 234px;
+	width: 33px;
+	margin-left: 8px;
+	position: absolute;
+	margin-top: 250px;
+	}
+#Header h2 span {
+	position: absolute;
+        left: -999em;
+	}
+
+#Header h1 {
+	font: normal 200%/100% Garamond, "Times New Roman", serif;
+	margin-bottom: 0;
+	color: #000099;
+	background: #ffffff;
+	}
+
+#Header h2 {
+	font: normal 160%/100% Garamond, "Times New Roman", serif;
+	margin-bottom: 0;
+	color: #336600;
+	background: #ffffff;
+	}

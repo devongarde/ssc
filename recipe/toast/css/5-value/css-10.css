@@ -1,0 +1,24 @@
+﻿#target {
+  /* Based on the sibling-index() of #target */
+  width: calc(sibling-index() * 10px);
+}
+#target::before {
+  /* Based on the sibling-index() of #target */
+  width: calc(sibling-index() * 10px);
+}
+#target::before::marker {
+  /* Based on the sibling-index() of #target */
+  width: calc(sibling-index() * 10px);
+}
+::slotted(*)::before {
+  /* Based on the sibling-index() of the slotted element in the outer tree */
+  width: calc(sibling-index() * 10px);
+}
+::part(my-part) {
+  /* Returns 0px, because referencing a shadow tree */
+  width: calc(sibling-index() * 10px);
+}
+:host {
+  /* Based on the host's sibling-index() in the outer tree */
+  width: calc(sibling-index() * 10px);
+}

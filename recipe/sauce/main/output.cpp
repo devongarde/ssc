@@ -165,7 +165,6 @@ void outstream::out (const ::std::string& s) const
         *fos_ << ss;
 #ifdef WX
     else if (wx_)
-//        app -> console (ss);
         app -> append (ss);
 #endif // WX
     else 

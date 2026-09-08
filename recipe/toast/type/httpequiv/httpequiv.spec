@@ -47,8 +47,8 @@ PASS ../toast/type/httpequiv/link.html
 9 too_many
 10 too_many too_many
 11 nocando
-15 unrecognised_value
-16 bad_link_pragma unrecognised_value
+15 unrecognised_value property
+16 bad_link_pragma unrecognised_value property
 
 PASS ../toast/type/httpequiv/origin.html
 2 naughty_lang

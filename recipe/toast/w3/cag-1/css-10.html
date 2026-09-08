@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<HTML>
+ <HEAD>
+ <TITLE>CSS web content access guidelines chapter 10 example</TITLE>
+<STYLE type="text/css">
+    UL, OL { counter-reset: item }
+    LI { display: block }
+    LI:before { content: counters(item, "."); counter-increment: item }
+</STYLE>
+</HEAD>
+
+ <BODY>
+
+ <STYLE type="text/css">
+      .endoflist { display: none }
+  </STYLE>
+  <UL>
+     <LI>Paper:
+        <UL>
+           <LI>Envelopes
+           <LI>Notepaper
+           <LI>Letterhead
+           <LI>Poster paper 
+           <span class="endoflist">(End of Paper)</span>
+        </UL>
+     <LI>Pens:
+        <UL>
+           <LI>Blue writing pens
+           <LI>whiteboard pens 
+           <span class="endoflist">(End of Pens)</span>
+        </UL>
+     <LI>Fasteners:
+        <UL>
+           <LI>paper clips
+           <LI>staples
+           <LI>Big lengths of rope. 
+           <span class="endoflist">(End of Fasteners)</span>
+        </UL> 
+     <span class="endoflist">(End of Office Supplies)</span>
+  </UL>
+
+</BODY>
+
+</HTML>

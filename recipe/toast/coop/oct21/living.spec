@@ -125,7 +125,7 @@ PASS ../toast/coop/oct21/a/autofocus.html
 6 autofocus
 9 missing_close autofocus
 9 missing_close
-11 inserted_missing_closure inserted_missing_closure
+11 inserted_missing_closure
 
 PASS ../toast/coop/oct21/b/b-1.html
 3 missing_close
@@ -1202,10 +1202,8 @@ PASS ../toast/coop/oct21/l/links-noopener.html
 14 tabnab
 
 PASS ../toast/coop/oct21/l/links-noreferrer.html
-10 missing_close url_not_found rel_requires_href chocolate_teapot
-10 missing_close url_not_found wrong_parent wrong_parent rel_requires_href chocolate_teapot
-10 wrong_parent wrong_parent interactive
-12 inserted_missing_closure inserted_missing_closure
+10 missing_close url_not_found rel_requires_href chocolate_teapot missing_close url_not_found wrong_parent rel_requires_href chocolate_teapot wrong_parent interactive
+12 inserted_missing_closure
 
 PASS ../toast/coop/oct21/l/links-tag2.html
 19 unrecognised_value
@@ -1700,9 +1698,9 @@ PASS ../toast/coop/oct21/s/strange-1.html
 24 inserted_missing_closure
 24 missing_close
 26 missing_close chocolate_teapot
-26 inserted_missing_closure missing_close wrong_parent wrong_parent chocolate_teapot
+26 inserted_missing_closure missing_close wrong_parent chocolate_teapot
 34 nuts
-57 inserted_missing_closure inserted_missing_closure inserted_missing_closure
+57 inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/coop/oct21/s/strange-2.html
 0 title_required
@@ -1712,16 +1710,9 @@ PASS ../toast/coop/oct21/s/strange-2.html
 2 unrecognised_value
 2 unrecognised_value
 2 unrecognised_value
-3 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure
-4 inserted_missing_closure
-4 unrecognised_value
-5 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
-5 missing_open
-5 missing_open
-5 missing_open
-5 missing_open
-5 missing_open
-5 missing_open
+3 inserted_missing_closure inserted_missing_closure
+4 inserted_missing_closure unrecognised_value
+5 inserted_missing_closure inserted_missing_closure missing_close missing_open missing_open missing_open missing_open missing_open missing_open
 
 PASS ../toast/coop/oct21/s/strange-3.html
 0 title_required

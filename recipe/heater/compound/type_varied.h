@@ -106,9 +106,9 @@ template < > struct type_master < t_align > : varied < t_align >
                         case 2 :    validate_type < type_master < t_align2070 > > (nits, v);
                                     break;
                         case 3 :    if (v.mnr () == 2) validate_type < type_master < t_tbalign > > (nits, v);
-                                    else validate_type < type_master < t_captionalign > > (nits, v);
+                                    else validate_type < type_master < t_blrt > > (nits, v);
                                     break;
-                        case 4 :    validate_type < type_master < t_captionalign > > (nits, v);  break;
+                        case 4 :    validate_type < type_master < t_blrt > > (nits, v);  break;
                         default :   validate_type < type_master < t_lcralign > > (nits, v); break; }
                     return;
                 case elem_div :
@@ -123,7 +123,7 @@ template < > struct type_master < t_align > : varied < t_align >
                     if (v == html_plus) { validate_type < type_master < t_alignfig > > (nits, v); return; }
                     validate_type < type_master < t_figalign > > (nits, v); return;
                 case elem_legend :
-                    validate_type < type_master < t_captionalign > > (nits, v); return;
+                    validate_type < type_master < t_blrt > > (nits, v); return;
                 case elem_image :
                     if (v == html_plus) { validate_type < type_master < t_valign_tmb > > (nits, v); return; }
                     return;
@@ -379,7 +379,7 @@ template < > struct type_master < t_frame > : varied < t_frame >
             {   case elem_mtable :
                     validate_type < type_master < t_nsd > > (nits, v); break;
                 case elem_table :
-                    validate_type < type_master < t_tableframe > > (nits, v); break; // maybe 2 only
+                    validate_type < type_master < t_tableframe > > (nits, v); break;
                 default :
                     validate_type < type_master < t_frame4 > > (nits, v); } } } };
 

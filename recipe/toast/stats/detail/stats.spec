@@ -29,7 +29,7 @@ Element:
   Attribute count:
     class: thrice
     lang: once
-  10 elements used 27 times
+  10 elements used 27fold
 ===
 
 PASS ../toast/stats/detail/index.html
@@ -50,7 +50,7 @@ Element:
   Attribute count:
     content: thrice
     name: thrice
-  11 elements used 26 times
+  11 elements used 26fold
 
 Header:
   metadata:
@@ -71,12 +71,12 @@ STATS
 Element:
     !doctype: once
     body: once
-    div: 7 times
+    div: sevenfold
       id: thrice
       itemid: once
       itemprop: once
       itemref: thrice
-      itemscope: 6 times
+      itemscope: sixfold
       itemtype: thrice
     h1: once
     head: once
@@ -87,20 +87,20 @@ Element:
       itemprop: once
     p: thrice
       id: once
-    span: 4 times
+    span: fourfold
       id: once
-      itemprop: 4 times
+      itemprop: fourfold
     title: once
   Attribute count:
     href: once
-    id: 5 times
+    id: fivefold
     itemid: once
-    itemprop: 6 times
+    itemprop: sixfold
     itemref: thrice
-    itemscope: 6 times
+    itemscope: sixfold
     itemtype: thrice
     lang: once
-  13 elements used 60 times
+  13 elements used 60fold
 
 Id:
   a declared never, used once
@@ -152,24 +152,24 @@ Element:
     abbr: once
       title: once
     body: once
-    dfn: 5 times
+    dfn: fivefold
       title: twice
     h1: once
     head: once
     html: once
-    meta: 4 times
-      content: 4 times
+    meta: fourfold
+      content: fourfold
       http-equiv: once
       name: thrice
-    p: 5 times
+    p: fivefold
     span: once
     title: once
   Attribute count:
-    content: 4 times
+    content: fourfold
     http-equiv: once
     name: thrice
     title: thrice
-  14 elements used 54 times
+  14 elements used 54fold
 
 Header:
   pragma:
@@ -195,26 +195,26 @@ Element:
     abbr: once
       title: once
     body: once
-    dd: 7 times
+    dd: sevenfold
     dl: once
-    dt: 8 times
+    dt: eightfold
     h1: once
     head: once
     html: once
-    meta: 4 times
-      content: 4 times
+    meta: fourfold
+      content: fourfold
       http-equiv: once
       name: thrice
     p: once
       lang: once
     title: once
   Attribute count:
-    content: 4 times
+    content: fourfold
     http-equiv: once
     lang: once
     name: thrice
     title: once
-  16 elements used 82 times
+  16 elements used 82fold
 
 Header:
   pragma:
@@ -263,24 +263,24 @@ Element:
     link: thrice
       href: thrice
       itemprop: thrice
-    meta: 7 times
-      content: 5 times
-      itemprop: 7 times
+    meta: sevenfold
+      content: fivefold
+      itemprop: sevenfold
       itemref: twice
       itemscope: twice
       itemtype: twice
     title: once
   Attribute count:
-    content: 5 times
+    content: fivefold
     hidden: once
     href: thrice
     id: once
-    itemprop: 12 times
+    itemprop: twelvefold
     itemref: twice
-    itemscope: 4 times
-    itemtype: 4 times
+    itemscope: fourfold
+    itemtype: fourfold
     lang: once
-  12 elements used 46 times
+  12 elements used 46fold
 
 Id:
   tid declared never, used once
@@ -302,7 +302,7 @@ Ontology:
     founder: twice
     name: twice
     url: twice
-  2 itemtypes used 4 times
+  2 itemtypes used fourfold
 ===
 
 itemids
@@ -338,66 +338,66 @@ Definition:
     Tiddles: once, "Tiddles, no siamese, likes to miaow."
 
 Element:
-    !doctype: 6 times
+    !doctype: sixfold
     abbr: twice
       title: twice
-    body: 6 times
-    dd: 7 times
-    dfn: 5 times
+    body: sixfold
+    dd: sevenfold
+    dfn: fivefold
       title: twice
-    div: 10 times
+    div: tenfold
       hidden: once
-      id: 4 times
+      id: fourfold
       itemid: once
       itemprop: thrice
       itemref: thrice
-      itemscope: 8 times
-      itemtype: 5 times
+      itemscope: eightfold
+      itemtype: fivefold
     dl: once
-    dt: 8 times
-    h1: 6 times
-    head: 6 times
-    html: 6 times
+    dt: eightfold
+    h1: sixfold
+    head: sixfold
+    html: sixfold
       lang: thrice
-    link: 4 times
-      href: 4 times
-      itemprop: 4 times
-    meta: 18 times
-      content: 16 times
+    link: fourfold
+      href: fourfold
+      itemprop: fourfold
+    meta: 18fold
+      content: 16fold
       http-equiv: twice
-      itemprop: 7 times
+      itemprop: sevenfold
       itemref: twice
       itemscope: twice
       itemtype: twice
-      name: 9 times
-    p: 13 times
+      name: ninefold
+    p: 13fold
       class: thrice
       id: once
       lang: once
-    span: 5 times
+    span: fivefold
       id: once
-      itemprop: 4 times
-    title: 6 times
+      itemprop: fourfold
+    title: sixfold
   Attribute count:
     class: thrice
-    content: 16 times
+    content: 16fold
     hidden: once
-    href: 4 times
+    href: fourfold
     http-equiv: twice
-    id: 6 times
+    id: sixfold
     itemid: once
-    itemprop: 18 times
-    itemref: 5 times
-    itemscope: 10 times
-    itemtype: 7 times
-    lang: 4 times
-    name: 9 times
-    title: 4 times
-  20 elements used 295 times
+    itemprop: 18fold
+    itemref: fivefold
+    itemscope: tenfold
+    itemtype: sevenfold
+    lang: fourfold
+    name: ninefold
+    title: fourfold
+  20 elements used 295fold
 
 Nits Reported:
     Errors: once
-    Warnings: 10 times
+    Warnings: tenfold
 
 File Info:
     4025 bytes read in 6 files, with an average of roughly 671 bytes per file
@@ -460,7 +460,7 @@ Ontology:
     name: twice
     publisher: once
     url: twice
-  3 itemtypes used 7 times
+  3 itemtypes used sevenfold
 
 Reference:
     HTML 5.0: thrice
@@ -480,5 +480,5 @@ Name/Value Pair:
     sausage: once, "in Irish breakfast"
 
 Version:
-    HTML-5/20210101/SVG-2.0/MathML-core/CSS-2.1/WhatWG: 6 times
+    HTML-5/20210101/SVG-2.0/MathML-core/CSS-2.1/WhatWG: sixfold
 ===

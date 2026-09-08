@@ -12,7 +12,7 @@ PASS ../toast/microdata/schema-hijkl/hotelroom.html
 19 attribute_required attempted_escape no_such_folder url_not_found naughty_alt
 
 PASS ../toast/microdata/schema-hijkl/howto.html
-17 invalid_attribute_version wrong_version svg_rdf duration duration
+17 invalid_attribute_version wrong_version svg_rdf duration
 22 url_not_found
 27 url_not_found
 31 url_not_found
@@ -25,7 +25,7 @@ PASS ../toast/microdata/schema-hijkl/howto.html
 109 use_quote_code
 
 PASS ../toast/microdata/schema-hijkl/howtodirection.html
-17 invalid_attribute_version wrong_version svg_rdf duration duration
+17 invalid_attribute_version wrong_version svg_rdf duration
 22 url_not_found
 27 url_not_found
 31 url_not_found
@@ -38,7 +38,7 @@ PASS ../toast/microdata/schema-hijkl/howtodirection.html
 109 use_quote_code
 
 PASS ../toast/microdata/schema-hijkl/howtosection.html
-17 invalid_attribute_version wrong_version svg_rdf duration duration
+17 invalid_attribute_version wrong_version svg_rdf duration
 22 url_not_found
 27 url_not_found
 31 url_not_found
@@ -51,7 +51,7 @@ PASS ../toast/microdata/schema-hijkl/howtosection.html
 109 use_quote_code
 
 PASS ../toast/microdata/schema-hijkl/howtostep.html
-17 invalid_attribute_version wrong_version svg_rdf duration duration
+17 invalid_attribute_version wrong_version svg_rdf duration
 22 url_not_found
 27 url_not_found
 31 url_not_found
@@ -64,7 +64,7 @@ PASS ../toast/microdata/schema-hijkl/howtostep.html
 109 use_quote_code
 
 PASS ../toast/microdata/schema-hijkl/howtotip.html
-17 invalid_attribute_version wrong_version svg_rdf duration duration
+17 invalid_attribute_version wrong_version svg_rdf duration
 22 url_not_found
 27 url_not_found
 31 url_not_found
@@ -95,17 +95,17 @@ PASS ../toast/microdata/schema-hijkl/interactioncounter.html
 65 url_not_found
 66 url_not_found url_not_found url_not_found url_not_found url_not_found url_not_found
 92 track_missing
-109 invalid_attribute_version wrong_version svg_rdf not_an_integer not_an_integer not_an_integer not_an_integer
-117 invalid_attribute_version wrong_version svg_rdf not_an_integer not_an_integer not_an_integer not_an_integer
+109 invalid_attribute_version wrong_version svg_rdf not_an_integer not_an_integer
+117 invalid_attribute_version wrong_version svg_rdf not_an_integer not_an_integer
 125 invalid_attribute_version wrong_version svg_rdf
-130 invalid_attribute_version wrong_version svg_rdf not_an_integer not_an_integer not_an_integer not_an_integer
+130 invalid_attribute_version wrong_version svg_rdf not_an_integer not_an_integer
 
 PASS ../toast/microdata/schema-hijkl/investmentfund.html
 11 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_ontology_property unrecognised_value bad_itemprop invalid_attribute_version wrong_version svg_rdf not_ontology_property unrecognised_value bad_itemprop
 12 invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-hijkl/investmentordeposit.html
-11 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf sunk sunk invalid_attribute_version wrong_version svg_rdf sunk sunk
+11 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf sunk invalid_attribute_version wrong_version svg_rdf sunk
 12 invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-hijkl/itemlist.html
@@ -162,10 +162,10 @@ PASS ../toast/microdata/schema-hijkl/loanorcredit.html
 15 use_quote_code
 16 invalid_attribute_version wrong_version svg_rdf
 17 invalid_attribute_version wrong_version svg_rdf
-24 invalid_attribute_version wrong_version svg_rdf sunk sunk
-25 invalid_attribute_version wrong_version svg_rdf sunk sunk
-30 invalid_attribute_version wrong_version svg_rdf sunk sunk
-31 invalid_attribute_version wrong_version svg_rdf sunk sunk
+24 invalid_attribute_version wrong_version svg_rdf sunk
+25 invalid_attribute_version wrong_version svg_rdf sunk
+30 invalid_attribute_version wrong_version svg_rdf sunk
+31 invalid_attribute_version wrong_version svg_rdf sunk
 35 invalid_attribute_version wrong_version svg_rdf
 36 invalid_attribute_version wrong_version svg_rdf
 41 invalid_attribute_version wrong_version svg_rdf

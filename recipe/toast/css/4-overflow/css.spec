@@ -9,7 +9,7 @@ PASS ../toast/css/4-overflow/css-4.html
 25 missing_close data_type
 33 missing_close data_type
 43 missing_close data_type
-59 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure
+59 inserted_missing_closure
 
 PASS ../toast/css/4-overflow/css-5.html
 2 naughty_lang

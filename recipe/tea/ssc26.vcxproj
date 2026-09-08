@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="packages\vcpkg.D.project.lib.vcpkg.1.0.0\build\native\vcpkg.D.project.lib.vcpkg.props" Condition="Exists('packages\vcpkg.D.project.lib.vcpkg.1.0.0\build\native\vcpkg.D.project.lib.vcpkg.props')" />
   <ItemGroup Label="ProjectConfigurations">
@@ -778,6 +778,7 @@
     <ClCompile Include="..\sauce\css\value_types_css_b_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_b_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_b_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_b_5.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_c_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_c_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_c_3.cpp" />
@@ -3199,6 +3200,15 @@
     <None Include="..\toast\css\4-background\css.conf" />
     <None Include="..\toast\css\4-background\css.spec" />
     <None Include="..\toast\css\4-background\index.html" />
+    <None Include="..\toast\css\4-border\css-2.css" />
+    <None Include="..\toast\css\4-border\css-3.css" />
+    <None Include="..\toast\css\4-border\css-4.css" />
+    <None Include="..\toast\css\4-border\css-5.css" />
+    <None Include="..\toast\css\4-border\css-6.css" />
+    <None Include="..\toast\css\4-border\css-7.css" />
+    <None Include="..\toast\css\4-border\css.conf" />
+    <None Include="..\toast\css\4-border\css.spec" />
+    <None Include="..\toast\css\4-border\index.html" />
     <None Include="..\toast\css\4-box-model\css-3.css" />
     <None Include="..\toast\css\4-box-model\css-4.css" />
     <None Include="..\toast\css\4-box-model\css.conf" />
@@ -3456,6 +3466,10 @@
     <None Include="..\toast\css\4-transform\css.conf" />
     <None Include="..\toast\css\4-transform\css.spec" />
     <None Include="..\toast\css\4-transform\index.html" />
+    <None Include="..\toast\css\4-transition\css-3.css" />
+    <None Include="..\toast\css\4-transition\css.conf" />
+    <None Include="..\toast\css\4-transition\css.spec" />
+    <None Include="..\toast\css\4-transition\index.html" />
     <None Include="..\toast\css\4-ui\css-3.css" />
     <None Include="..\toast\css\4-ui\css-4.css" />
     <None Include="..\toast\css\4-ui\css-5.css" />
@@ -3530,10 +3544,12 @@
     <None Include="..\toast\css\5-cr\css.conf" />
     <None Include="..\toast\css\5-cr\css.spec" />
     <None Include="..\toast\css\5-cr\index.html" />
-    <None Include="..\toast\css\5-font\css-2.css" />
     <None Include="..\toast\css\5-font\css-2.html" />
     <None Include="..\toast\css\5-font\css-3.css" />
     <None Include="..\toast\css\5-font\css-3.html" />
+    <None Include="..\toast\css\5-font\css-4.css" />
+    <None Include="..\toast\css\5-font\css-4.html" />
+    <None Include="..\toast\css\5-font\css-8.css" />
     <None Include="..\toast\css\5-font\css.conf" />
     <None Include="..\toast\css\5-font\css.spec" />
     <None Include="..\toast\css\5-font\index.html" />
@@ -3596,6 +3612,17 @@
     <None Include="..\toast\css\5-sel\css.conf" />
     <None Include="..\toast\css\5-sel\css.spec" />
     <None Include="..\toast\css\5-sel\index.html" />
+    <None Include="..\toast\css\5-value\css-10.css" />
+    <None Include="..\toast\css\5-value\css-11.css" />
+    <None Include="..\toast\css\5-value\css-3.css" />
+    <None Include="..\toast\css\5-value\css-4.css" />
+    <None Include="..\toast\css\5-value\css-7.css" />
+    <None Include="..\toast\css\5-value\css-8.css" />
+    <None Include="..\toast\css\5-value\css-9.css" />
+    <None Include="..\toast\css\5-value\css-a.css" />
+    <None Include="..\toast\css\5-value\css.conf" />
+    <None Include="..\toast\css\5-value\css.spec" />
+    <None Include="..\toast\css\5-value\index.html" />
     <None Include="..\toast\css\6-cascade\css-2.css" />
     <None Include="..\toast\css\6-cascade\css-2.html" />
     <None Include="..\toast\css\6-cascade\css.conf" />
@@ -3697,6 +3724,17 @@
     <None Include="..\toast\external\vik.tf\ext.spec" />
     <None Include="..\toast\external\vik.tf\index.html" />
     <None Include="..\toast\external\vik.tf\style.css" />
+    <None Include="..\toast\external\w3-sheets\chocolate.css" />
+    <None Include="..\toast\external\w3-sheets\ext.conf" />
+    <None Include="..\toast\external\w3-sheets\ext.spec" />
+    <None Include="..\toast\external\w3-sheets\index.html" />
+    <None Include="..\toast\external\w3-sheets\midnight.css" />
+    <None Include="..\toast\external\w3-sheets\modernist.css" />
+    <None Include="..\toast\external\w3-sheets\oldstyle.css" />
+    <None Include="..\toast\external\w3-sheets\steely.css" />
+    <None Include="..\toast\external\w3-sheets\swiss.css" />
+    <None Include="..\toast\external\w3-sheets\traditional.css" />
+    <None Include="..\toast\external\w3-sheets\ultramarine.css" />
     <None Include="..\toast\HTML\1.0\html1-bad.html" />
     <None Include="..\toast\HTML\1.0\html1-bad2.html" />
     <None Include="..\toast\HTML\1.0\html1-good.html" />
@@ -17030,6 +17068,55 @@
     <None Include="..\toast\w3\bogus\index.html" />
     <None Include="..\toast\w3\bogus\w3.conf" />
     <None Include="..\toast\w3\bogus\w3.spec" />
+    <None Include="..\toast\w3\cag-1\css-10.html" />
+    <None Include="..\toast\w3\cag-1\css-11.html" />
+    <None Include="..\toast\w3\cag-1\css-12-1.html" />
+    <None Include="..\toast\w3\cag-1\css-12-2.html" />
+    <None Include="..\toast\w3\cag-1\css-13-1.html" />
+    <None Include="..\toast\w3\cag-1\css-13-2.html" />
+    <None Include="..\toast\w3\cag-1\css-15.css" />
+    <None Include="..\toast\w3\cag-1\css-16.css" />
+    <None Include="..\toast\w3\cag-1\css-2.css" />
+    <None Include="..\toast\w3\cag-1\css-3.css" />
+    <None Include="..\toast\w3\cag-1\css-4.css" />
+    <None Include="..\toast\w3\cag-1\css-5.css" />
+    <None Include="..\toast\w3\cag-1\css-5.html" />
+    <None Include="..\toast\w3\cag-1\css-7.html" />
+    <None Include="..\toast\w3\cag-1\css-8.html" />
+    <None Include="..\toast\w3\cag-1\css-9.css" />
+    <None Include="..\toast\w3\cag-1\w3.conf" />
+    <None Include="..\toast\w3\cag-1\w3.spec" />
+    <None Include="..\toast\w3\cag-1\index.html" />
+    <None Include="..\toast\w3\cag-2\c12.html" />
+    <None Include="..\toast\w3\cag-2\c13.html" />
+    <None Include="..\toast\w3\cag-2\c14.html" />
+    <None Include="..\toast\w3\cag-2\c15-1.html" />
+    <None Include="..\toast\w3\cag-2\c15-2.html" />
+    <None Include="..\toast\w3\cag-2\c15.css" />
+    <None Include="..\toast\w3\cag-2\c17.css" />
+    <None Include="..\toast\w3\cag-2\c17.html" />
+    <None Include="..\toast\w3\cag-2\c18.html" />
+    <None Include="..\toast\w3\cag-2\c19.html" />
+    <None Include="..\toast\w3\cag-2\c20.html" />
+    <None Include="..\toast\w3\cag-2\c21.html" />
+    <None Include="..\toast\w3\cag-2\c22.html" />
+    <None Include="..\toast\w3\cag-2\c28.css" />
+    <None Include="..\toast\w3\cag-2\c29.css" />
+    <None Include="..\toast\w3\cag-2\c29.html" />
+    <None Include="..\toast\w3\cag-2\c30.css" />
+    <None Include="..\toast\w3\cag-2\c30.html" />
+    <None Include="..\toast\w3\cag-2\c6.css" />
+    <None Include="..\toast\w3\cag-2\c6.html" />
+    <None Include="..\toast\w3\cag-2\c7-1.xhtml" />
+    <None Include="..\toast\w3\cag-2\c7-2.xhtml" />
+    <None Include="..\toast\w3\cag-2\c8.css" />
+    <None Include="..\toast\w3\cag-2\c8.html" />
+    <None Include="..\toast\w3\cag-2\c9-1.html" />
+    <None Include="..\toast\w3\cag-2\c9-2.html" />
+    <None Include="..\toast\w3\cag-2\c9.css" />
+    <None Include="..\toast\w3\cag-2\index.html" />
+    <None Include="..\toast\w3\cag-2\w3.conf" />
+    <None Include="..\toast\w3\cag-2\w3.spec" />
     <None Include="..\toast\w3\charset\charset-xmldecl.xhtml" />
     <None Include="..\toast\w3\charset\charset_mismatch-http_meta.html.utf8" />
     <None Include="..\toast\w3\charset\charset_mismatch-http_xmldec.xhtml.utf8" />
@@ -17073,6 +17160,7 @@
     <None Include="..\toast\w3\imnop\outline.html" />
     <None Include="..\toast\w3\imnop\w3.conf" />
     <None Include="..\toast\w3\imnop\w3.spec" />
+    <None Include="..\toast\w3\mathml\default.css" />
     <None Include="..\toast\w3\mathml\index.html" />
     <None Include="..\toast\w3\mathml\mathml2.html" />
     <None Include="..\toast\w3\mathml\mathml2.mml" />
@@ -17955,7 +18043,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;crypto.lib;ssl.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <HeapReserveSize>33554432</HeapReserveSize>

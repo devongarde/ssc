@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.2.35
+version 0.2.36
 (c) 2020-2026 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notices
 https://dylanharris.org/ssc/
@@ -137,6 +137,16 @@ of the world. In other words, many of my potential readers use ancient
 kit. I want my website to work on ancient browsers, as well as modern
 ones. In terms of SSC, that means it's useful to check my code against
 old standards.
+
+
+
+English vs. English
+Most web specifications are written in American English, however a
+significant number use standard English instead. These two sometimes
+contradict. Since I speak British English, which is pretty close to
+standard English, ssc itself uses standard English. Given ssc is meant
+to encourage sticking to standards, this feels right to me.
+
 
 
 

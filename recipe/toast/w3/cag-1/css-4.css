@@ -1,0 +1,10 @@
+﻿ 
+DIV.example:after {     
+  content: End Example  
+}
+ 
+P:before {     
+  content: counter(paragraph) ". " ;
+    counter-increment: paragraph  
+}
+

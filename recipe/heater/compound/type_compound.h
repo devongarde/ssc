@@ -142,6 +142,9 @@ template < e_type T, e_type A, e_type B, e_type C, e_type D, e_type E > struct t
 template < e_type T, e_type A, e_type B, class SZ > struct type_one_two : type_all_of < T, SZ, A, B >
 {   using type_all_of < T, SZ, A, B > :: type_all_of; };
 
+template < e_type T, e_type A, e_type B, class SZ > struct type_one_two_blah : type_all_flagged_of < T, SZ, BS_FN | UQ_BLAH, A, B >
+{   using type_all_flagged_of < T, SZ, BS_FN | UQ_BLAH, A, B > :: type_all_flagged_of; };
+
 template < e_type T, e_type A, e_type B, e_type C, class SZ > struct type_one_two_three : type_all_of < T, SZ, A, B, C >
 {   using type_all_of < T, SZ, A, B, C > :: type_all_of; };
 
@@ -475,10 +478,40 @@ template < e_type T, e_type U, class SZ, e_type P, int F = 0 > struct type_eithe
                 both_ = true;
                 res = test_value < P > (nits, v, vs.at (1), tidy_string < T > :: id ()); }
             if ((! both_) && (vs.size () > 1))
-                nits.pick (nit_too_many, es_warning, ec_type, "one or two values expected; ignoring values from ", quote (vs.at (1)), " (7)");
+                nits.pick (nit_too_many, es_error, ec_type, "one or two values expected; ignoring values from ", quote (vs.at (1)), " (7)");
             else if (vs.size () > 2)
-                nits.pick (nit_too_many, es_warning, ec_type, "one or two values expected; ignoring values from ", quote (vs.at (2)), " (8)");
-            if (res) return; }
+                nits.pick (nit_too_many, es_error, ec_type, "one or two values expected; ignoring values from ", quote (vs.at (2)), " (8)");
+            else if (res) return; }
+        uq4 < T, SZ, F > :: status (s_invalid); }
+    ::std::size_t size () const noexcept { return both_ ? 2 : 1; } };
+
+template < e_type T, e_type U, class SZ, e_type P, int F = 0 > struct type_either_or_both_unordered : uq4 < T, SZ, F >
+{   bool both_ = false;
+    using uq4 < T, SZ, F > :: uq4;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   vstr_t vs (uq4 < T, SZ, F > :: set_value (nits, v, s));
+        if ((vs.size () > 0) && uq4 < T, SZ, F > :: good ())
+        {   nitpick nuts, nets, knots;
+            bool res = test_value < U > (nuts, v, vs.at (0), tidy_string < T > :: id ());
+            if (! res)
+            {   res = test_value < P > (nets, v, vs.at (0), tidy_string < T > :: id ());
+                if (! res)
+                {   nits.merge (nuts); nits.merge (nets); }
+                else if (vs.size () == 1) return;
+                else
+                {   res = test_value < U > (knots, v, vs.at (1), tidy_string < T > :: id ());
+                    if (! res) nits.merge (knots);
+                    both_ = true; } }
+            else
+            {   nits.merge (nuts);
+                if (vs.size () == 1) return;
+                both_ = true;
+                res = test_value < P > (nits, v, vs.at (1), tidy_string < T > :: id ()); }
+            if ((! both_) && (vs.size () > 1))
+                nits.pick (nit_too_many, es_error, ec_type, "one or two values expected; ignoring values from ", quote (vs.at (1)), " (10)");
+            else if (vs.size () > 2)
+                nits.pick (nit_too_many, es_error, ec_type, "one or two values expected; ignoring values from ", quote (vs.at (2)), " (11)");
+            else if (res) return; }
         uq4 < T, SZ, F > :: status (s_invalid); }
     ::std::size_t size () const noexcept { return both_ ? 2 : 1; } };
 
@@ -512,6 +545,30 @@ template < e_type T, class SZ, e_type U, e_type P, int F = 0 > struct type_ab_ba
                     good = (vs.size () == 1) || test_value < U > (nits, v, vs.at (1), tidy_string < T > :: id ());
             if (vs.size () > 2)
                 nits.pick (nit_too_many, es_warning, ec_type, "ignoring values from ", quote (vs.at (2)), " (", type_name (T), ")");
+            if (good) return; }
+        uq4 < T, SZ, F > :: status (s_invalid); }
+    ::std::size_t size () const noexcept { return 2; } };
+
+template < e_type T, class SZ, e_type A, e_type B, e_type C, int F = 0 > struct type_abc_cba : uq4 < T, SZ, F >
+{   using uq4 < T, SZ, F > :: uq4;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   vstr_t vs (uq4 < T, SZ, F > :: set_value (nits, v, s));
+        if (uq4 < T, SZ, F > :: empty ()) nits.pick (nit_empty, es_warning, ec_type, "bit minimalist, that (", type_name (T), ")");
+        else
+        {   PRESUME (vs.size () > 0, __FILE__, __LINE__);
+            bool good = true, a = false, b = false, c = false;
+            for (auto x : vs)
+            {   nitpick gnats, nets, knots;
+                if ((! a) && test_value < A > (gnats, v, x, tidy_string < T > :: id ()))
+                {   nits.merge (gnats); a = true; }
+                else if ((! b) && test_value < B > (nets, v, x, tidy_string < T > :: id ()))
+                {   nits.merge (nets); b = true; }
+                else if ((! c) && test_value < C > (knots, v, x, tidy_string < T > :: id ()))
+                {   nits.merge (knots); c = true; }
+                else
+                {   good = false; nits.merge (gnats); nits.merge (nets); nits.merge (knots); } }
+            if (vs.size () > 3)
+                nits.pick (nit_too_many, es_warning, ec_type, "ignoring values from ", quote (vs.at (3)), " (", type_name (T), ")");
             if (good) return; }
         uq4 < T, SZ, F > :: status (s_invalid); }
     ::std::size_t size () const noexcept { return 2; } };
@@ -612,7 +669,7 @@ template < e_type T, e_type P, e_type Q, class SZ, int F = 0 > struct both_types
             if (vs.size () > 2)
                 if (! compare_complain (nits, v, SZ :: sz (), vs.at (2))) good = false;
             if (vs.size () < 3) { good = false; nits.pick (nit_too_few, es_error, ec_type, "three values expected"); }
-            else if (vs.size () > 3) nits.pick (nit_too_many, es_warning, ec_type, "ignoring values from ", quote (vs.at (3)), " (2)");
+            else if (vs.size () > 3) nits.pick (nit_too_many, es_warning, ec_type, "ignoring values from ", quote (vs.at (3)), " (", ::boost::lexical_cast < ::std::string > (vs.size ()), ",2)");
             if (good) return; }
         uq4 < T, sz_space_char, F > :: status (s_invalid); }
     ::std::size_t size () const noexcept { return 3; } };
@@ -629,7 +686,7 @@ template < e_type T, e_type A, class SZ, e_type B, int F = 0 > struct type_opt_t
             else
             {   res = test_value < A > (nits, v, vs.at (0), uq4 < T, SZ, F > :: id ());
                 if (! test_value < B > (nits, v, vs.at (1), uq4 < T, SZ, F > :: id ())) res = false;
-                if (vs.size () > 2) nits.pick (nit_too_many, es_warning, ec_type, "one or two values expected; ignoring additional values from ", quote (vs.at (2)), " (6)"); }
+                if (vs.size () > 2) nits.pick (nit_too_many, es_warning, ec_type, "one or two values expected; ignoring additional values from ", quote (vs.at (2)), " (", ::boost::lexical_cast < ::std::string > (vs.size ()), ",6)"); }
             if (res) return; }
         uq4 < T, SZ, F > :: status (s_invalid); }
     ::std::size_t size () const { return both_ ? 2 : 1; } };
@@ -864,7 +921,6 @@ template < e_type T, e_type N, class SZ, bool REQ > struct type_number_unit : ty
             nits.pick (nit_bad_units, es_error, ec_type, "Expecting '", SZ::sz (), "' units"); }
         type_master < N > :: status (s_invalid); } };
 
-// would be better with various unit types and a concatenated type
 template < e_type T, e_type N, class SZ1, class SZ2 > struct type_number_unit_2 : type_master < N >
 {   using type_master < N > :: type_master;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

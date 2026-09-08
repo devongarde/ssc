@@ -420,7 +420,7 @@ PASS ../toast/SVG/1.2/20_01.svg
 1 xhtml_5_0
 3 svg_version
 8 fontname
-11 path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec
+11 path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec
 12 path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec path_spec
 18 fontname
 
@@ -699,7 +699,7 @@ PASS ../toast/SVG/1.2/prefetch01.svg
 0 title_required
 1 xhtml_5_0
 4 svg_version
-22 newline_in_string newline_in_string unrecognised_value unrecognised_value unrecognised_value
+22 newline_in_string newline_in_string unrecognised_value property unrecognised_value property unrecognised_value property
 
 PASS ../toast/SVG/1.2/prefetch02.svg
 0 title_required

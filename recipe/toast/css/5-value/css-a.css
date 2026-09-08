@@ -1,0 +1,69 @@
+﻿.foo {
+  --one: var(--two);
+  --two: var(--three, baz);
+  --three: var(--one);
+}
+
+.foo {
+  --color: if(media(width >= 600px): blue; else: var(--color));
+}
+
+.random-fonts {
+  --foo: Courier, monospace;
+  --bar: Arial, serif;
+  font-family: random-item(auto, var(--foo), var(--bar));
+  /* equivalent to: */
+  font-family: random-item(auto, {Courier, monospace}, {Arial, serif});
+
+  /* and thus, randomly, equivalent to either */
+  font-family: Courier, monospace;
+  /* or */
+  font-family: Arial, serif;
+}
+
+.invalid-if {
+  --if-clause: media(width >= 600px): blue;
+  color: if(var(--if-clause); else: green;);
+}
+
+.valid-if {
+  --if-clause: media(width >= 600px): blue;
+  color: if(...var(--if-clause); else: green;);
+}
+
+.foo {
+  --side: margin-top;
+  var(--side): 20px;
+}
+
+:root { --looks-valid: 20px; }
+p { background-color: var(--looks-valid); }
+
+p { color: var(--does-not-exist, initial); }
+
+.foo {
+  --gap: 20;
+  margin-top: var(--gap)px;
+}
+
+.foo {
+  --gap: 20;
+  margin-top: calc(var(--gap) * 1px);
+}
+
+.foo {
+  --gap: 20;
+  --not-px-length: var(--gap)px;
+}
+
+:root { --not-a-color: 20px; }
+p { background-color: red; }
+p { background-color: var(--not-a-color); }
+
+.foo {
+  --prop1: lol;
+  --prop2: var(--prop1) var(--prop1);
+  --prop3: var(--prop2) var(--prop2);
+  --prop4: var(--prop3) var(--prop3);
+  /* etc */
+}

@@ -6,9 +6,9 @@ PASS ../toast/css/custom/index.html
 PASS ../toast/css/custom/css-2.css
 1 css_version
 11 css_syntax css_syntax
-12 css_syntax css_syntax css_syntax css_syntax
-13 css_syntax css_syntax css_syntax css_syntax css_syntax css_syntax
-16 css_custom css_custom css_custom css_custom
+12 css_syntax css_syntax
+13 css_syntax css_syntax
+16 css_custom
 19 css_version
 25 css_version
 30 css_version
@@ -25,7 +25,7 @@ PASS ../toast/css/custom/css-2.html
 17 unknown_element unknown_element unknown_element unknown_element unknown_element
 
 PASS ../toast/css/custom/css-3.css
-3 css_syntax unrecognised_value
+3 unrecognised_value css_version
 8 css_custom
 11 css_custom
 32 css_version

@@ -26,7 +26,7 @@ CONSTEXPR ::std::size_t max_statii = static_cast < ::std::size_t > (sii_max);
 static vsstr_t vsesii;
 #else // NO_FRED
 
-struct fred_tls  // thread local storage, not sorted ssl
+struct fred_tls  // thread local storage, not ssl
 {   const e_fred fred_;
     ::std::atomic_int lox_;
     ::std::atomic_bool empty_;

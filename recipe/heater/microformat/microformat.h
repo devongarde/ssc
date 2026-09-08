@@ -23,7 +23,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microformat/microformat_properties.h"
 #include "element/elem.h"
 
-// categories
 CONSTEXPR int c_generic = 0;
 CONSTEXPR int c_html3 = 0x00000001;
 CONSTEXPR int c_microformat = 0x00000002;
@@ -46,14 +45,9 @@ CONSTEXPR int c_rejected = 0x10000000;
 CONSTEXPR int c_dropped = 0x20000000;
 CONSTEXPR int c_draft = 0x40000000;
 
-// effects on link, a, area
-typedef enum
-{   ela_no, ela_ok, ela_external, ela_hyperlink, ela_popup, c_annotation, ela_external_contextual }
-e_linkaarea;
-
 #ifdef _MSC_VER
 #pragma warning (push, 3)
-#pragma warning (disable : 26440 26433) // For VS2019, at least, the linter and compiler disagree over signatures of noexcept on virtual
+#pragma warning (disable : 26440 26433) // For VS2019, at least, the linter and compiler disagree over signatures of noexcept on virtual --- CHECK AGAINST 2022
 #endif // _MSC_VER
 
 class microformat_base
@@ -133,7 +127,7 @@ public:
     virtual ::std::string report () const; };
 
 template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaarea LINK, e_linkaarea A_AREA, class... PROPERTIES >
-    bool microformat < ENUM, VOCAB, CATEGORY, LINK, A_AREA, PROPERTIES... > :: has_prop (const e_property p) const  // I can do better here
+    bool microformat < ENUM, VOCAB, CATEGORY, LINK, A_AREA, PROPERTIES... > :: has_prop (const e_property p) const
 {   bool res = false;
     for_each_attribute (p_, [&](auto t)
     {   res = res || (t.whoami () == p); } );

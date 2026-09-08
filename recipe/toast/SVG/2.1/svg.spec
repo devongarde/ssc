@@ -79,7 +79,7 @@ PASS ../toast/SVG/2.1/fedropshadow.html
 2 naughty_lang
 13 sunk unrecognised_value bad_result
 14 immeasurable immeasurable
-15 dialect unrecognised_value dialect unrecognised_value bad_colour sunk sunk
+15 dialect unrecognised_value dialect unrecognised_value bad_colour sunk
 19 unrecognised_value bad_result
 
 PASS ../toast/SVG/2.1/feimage.html
@@ -219,7 +219,7 @@ PASS ../toast/SVG/2.1/path-4.xhtml
 PASS ../toast/SVG/2.1/path-5.xhtml
 0 title_required
 1 xhtml_5_0
-5 path_spec path_spec
+5 path_spec
 
 PASS ../toast/SVG/2.1/pattern-2.svg
 1 xhtml_5_0

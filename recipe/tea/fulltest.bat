@@ -28,6 +28,7 @@ ssc.exe -f ../toast/css/3-anchor-positioning/css.conf
 ssc.exe -f ../toast/css/4-anchor-positioning/css.conf
 ssc.exe -f ../toast/css/3-animation/css.conf
 ssc.exe -f ../toast/css/4-animation/css.conf
+ssc.exe -f ../toast/css/4-border/css.conf
 ssc.exe -f ../toast/css/3-background/css.conf
 ssc.exe -f ../toast/css/4-background/css.conf
 ssc.exe -f ../toast/css/3-box-model/css.conf
@@ -135,6 +136,7 @@ ssc.exe -f ../toast/css/4-textdec/css.conf
 ssc.exe -f ../toast/css/3-transform/css.conf
 ssc.exe -f ../toast/css/4-transform/css.conf
 ssc.exe -f ../toast/css/3-transition/css.conf
+ssc.exe -f ../toast/css/4-transition/css.conf
 ssc.exe -f ../toast/css/3-ui/css.conf
 ssc.exe -f ../toast/css/4-ui/css.conf
 ssc.exe -f ../toast/css/3-value/css.conf
@@ -160,6 +162,7 @@ ssc.exe -f ../toast/external/rdf/ext.conf
 ssc.exe -f ../toast/external/rss/ext.conf
 ssc.exe -f ../toast/external/ukarim.com/ext.conf
 ssc.exe -f ../toast/external/vik.tf/ext.conf
+ssc.exe -f ../toast/external/w3-sheets/ext.conf
 ssc.exe -f ../toast/HTML/1.0/html1.conf
 ssc.exe -f ../toast/HTML/2.0/html2.conf
 ssc.exe -f ../toast/HTML/3.0/html3.conf
@@ -483,6 +486,8 @@ ssc.exe -f ../toast/w3/3663/w3.conf
 ssc.exe -f ../toast/w3/12458/w3.conf
 ssc.exe -f ../toast/w3/acefh/w3.conf
 ssc.exe -f ../toast/w3/bogus/w3.conf
+ssc.exe -f ../toast/w3/cag-1/w3.conf
+ssc.exe -f ../toast/w3/cag-2/w3.conf
 ssc.exe -f ../toast/w3/charset/w3.conf
 ssc.exe -f ../toast/w3/html20/w3.conf
 ssc.exe -f ../toast/w3/html40/w3.conf

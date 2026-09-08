@@ -88,12 +88,7 @@ PASS ../toast/webapps/jul05/mbc.html
 PASS ../toast/webapps/jul05/menu.html
 6 missing_close
 8 missing_close
-10 inserted_missing_closure inserted_missing_closure
-
-PASS ../toast/webapps/jul05/menu.html
-6 missing_close
-8 missing_close
-10 inserted_missing_closure inserted_missing_closure
+10 inserted_missing_closure
 
 PASS ../toast/webapps/jul05/samp.html
 7 use_quote_code

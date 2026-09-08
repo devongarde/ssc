@@ -32,7 +32,7 @@ void media_t::parse (arguments& args, const int from, const int to)
     int b = -1; int prev = -1;
     fiddlesticks < media_t > f (&args.media_, this);
     for (int i = from; i >= 0; i = next_token_at (args.t_, i, to))
-    {   if (args.t_.at (i).t_ == ct_semicolon)
+    {   if ((args.t_.at (i).t_ == ct_semicolon) || (args.t_.at (i).t_ == ct_vu5_semicolon))
         {   if (b != i) mdm_.emplace_back (args, b, prev);
             b = -1; }
         else if (b == -1) b = i;

@@ -1,2 +1,5 @@
 ﻿/* make option elements align together */
 option { text-align: match-parent; }
+
+/* Avoid hanging punctuation inheriting into preformatted blocks */
+pre { hanging-punctuation: none; }

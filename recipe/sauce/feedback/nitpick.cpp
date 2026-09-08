@@ -52,7 +52,9 @@ void nitpick::merge (const nitpick& np)
 {   lox l (lox_nits);
     if (mote_.empty ())
     {   before_ = np.before_; after_ = np.after_; mote_ = np.mote_; }
-    nits_.insert (nits_.end (), np.nits_.cbegin (), np.nits_.cend ());
+    for (auto n : np.nits_)
+        if (! deja_vu (n.code (), n.severity (), n.msg (), n.mention ()))
+            nits_.insert (nits_.end (), np.nits_.cbegin (), np.nits_.cend ());
     np.accumulate (*this); }
 
 template < class T > ::std::string nitpick::inner_review (const e_nit_section& entry, const T& t, const mmac_t& mac, mmac_t& outer, bool& quote, bool& dq, bool& infoed, bool& eol, bool& hasns, const bool unfiltered) const
@@ -149,16 +151,25 @@ nitpick nitpick::nick ()
 void nitpick::pick (const nit& n) noexcept
 {   try
     {   lox l (lox_nits);
-        nits_.emplace_back (n); }
+        if (! deja_vu (n.code (), n.severity (), n.msg (), n.mention ()))
+            nits_.emplace_back (n); }
     catch (...)
     {   stuffed_ = true; } }
 
 void nitpick::pick (nit&& n) noexcept
 {   try
     {   lox l (lox_nits);
-        nits_.emplace_back (n); }
+        if (! deja_vu (n.code (), n.severity (), n.msg (), n.mention ()))
+            nits_.emplace_back (n); }
     catch (...)
     {   stuffed_ = true; } }
+
+bool nitpick::deja_vu (const e_nit code, const e_severity severity, const ::std::string& msg, const int m)
+{   for (auto n : nits_) 
+        if (n.deja_vu (code, severity, msg))
+        {   if (m > 0) n.mention (m);
+            return true; }
+    return false; }
 
 bool nitpick::modify_severity (const ::std::string& name, const e_severity s)
 {   const e_nit code = lookup_code (name);

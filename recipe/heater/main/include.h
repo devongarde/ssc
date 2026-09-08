@@ -51,27 +51,21 @@ z
 
 */
 
-#define SCRUFF_DOMAIN "dylanharris.org"
-#define EMAIL_BAH "ssc@" SCRUFF_DOMAIN
-
 #define PROG "ssc"
 #define TESTPROG PROG "-test"
 #define FULLNAME "Static Site Checker"
 #define LCFULLNAME "static site checker"
 #define FORMALNAME "The " FULLNAME
+#define SCRUFF_DOMAIN "dylanharris.org"
 #define WEBADDR "https://" SCRUFF_DOMAIN "/" PROG "/"
 
-#define VERSION_MAJOR 0
-#define VERSION_MINOR 2
-#define VERSION_RELEASE 35
-#define VERSION_STRING "0.2.35"
-
-#define BUILD_YEAR              "2026"
-#define BUILD_MONTH             "July"
-#define BUILD_DAY_ISH BUILD_YEAR "-07-01"
-#define LATEST_CSS              "2026"
+#define VERSION_MAJOR   0
+#define VERSION_MINOR   2
+#define VERSION_RELEASE 36
+#define VERSION_STRING  "0.2.36"
 
 #define NBSP "&nbsp;"
+#define BUILD_YEAR "2026"
 #define COPYRIGHT_AMP "&copy;"
 #define COPYRIGHT_SYMBOL "(c)"
 #define COPYRIGHT_FORENAME "Dylan"
@@ -84,10 +78,7 @@ z
 #define COPYRIGHT COPYRIGHT_TEXT COPYRIGHT_BRADDR
 #define COPYRIGHT_HTML_FULL COPYRIGHT_AMP NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME COPYRIGHT_BRADDR
 
-#define SSC_PUBLIC_KEY ""
-
 #define UPDATE_URL_1 WEBADDR "ssc.ver"
-// #define UPDATE_URL_2 "https://dylanharris.org/ssc/ssc.ver"
 
 #define DEFAULT_LINE_LENGTH 132
 #define MIN_LINE_LENGTH 72
@@ -96,9 +87,7 @@ z
 #define DEFAULT_MAX_FILE_SIZE 4
 #define DMFS_BYTES (DEFAULT_MAX_FILE_SIZE * 1024 * 1024)
 
-#define DEFAULT_PORT    10438
 #define DEFAULT_PORT_S  "10438"
-#define DEFAULT_ADDRESS "127.0.0.1"
 
 // include homages to literature and the arts
 #define HOMAGE
@@ -132,7 +121,7 @@ z
 #include <codeanalysis\warnings.h>
 
 #ifdef _MSC_VER
-#define WINDOZE // WINDOZE? Will rename this once VS 2022 stops trying to enforce its inefficient source layout.
+#define WINDOZE // WINDOZE? Will rename this once VS 2022 stops trying to enforce its inefficient source layout. Bah: VS 2026 is *worse*!
 #endif
 
 #ifdef WIN32
@@ -167,7 +156,7 @@ z
 #error ssc only builds with VS 2022 / 2026.
 #endif // _MSC_VER
 
-    // The MSVC linter is generally useful, but it has (had?) some serious problems.
+    // The MSVC linter is generally useful, but it has (had?) some serious problems. (this was with early VS 2022)
     // General problem 1: the msvc linter provides no clean mechanism to suppress a spurious warning in place, except through the #...
     //      mechanism. Those #... have to be wrapped in #ifdefs to avoid confusing other compilers. In the worst case, this requires 7 #...
     //      statements to suppress one spurious warning. That is ridiculously clunky, and I'm most definitely NOT going there for specific
@@ -724,7 +713,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define HTTPS_MF HTTPS MICROFORMATS_ORG
 
 #define NOFLAGS 0
-typedef uint64_t flags_t; // at least 64 bits
+typedef uint64_t flags_t; // at least 64 bits; if expansion needed, consider boost's new int128.
 
 #include "main/abort.h"
 

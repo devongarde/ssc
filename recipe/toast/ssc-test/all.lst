@@ -30,6 +30,7 @@
 ../toast/css/4-animation/css.spec
 ../toast/css/3-background/css.spec
 ../toast/css/4-background/css.spec
+../toast/css/4-border/css.spec
 ../toast/css/3-box-model/css.spec
 ../toast/css/4-box-model/css.spec
 ../toast/css/3-box-sizing/css.spec
@@ -137,6 +138,7 @@
 ../toast/css/3-transform/css.spec
 ../toast/css/4-transform/css.spec
 ../toast/css/3-transition/css.spec
+../toast/css/4-transition/css.spec
 ../toast/css/3-ui/css.spec
 ../toast/css/4-ui/css.spec
 ../toast/css/3-value/css.spec
@@ -162,6 +164,7 @@
 ../toast/external/rss/ext.spec
 ../toast/external/ukarim.com/ext.spec
 ../toast/external/vik.tf/ext.spec
+../toast/external/w3-sheets/ext.spec
 ../toast/HTML/1.0/html1.spec
 ../toast/HTML/2.0/html2.spec
 ../toast/HTML/3.0/html3.spec
@@ -485,6 +488,8 @@
 ../toast/w3/12458/w3.spec
 ../toast/w3/acefh/w3.spec
 ../toast/w3/bogus/w3.spec
+../toast/w3/cag-1/w3.spec
+../toast/w3/cag-2/w3.spec
 ../toast/w3/charset/w3.spec
 ../toast/w3/html20/w3.spec
 ../toast/w3/html40/w3.spec

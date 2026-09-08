@@ -125,6 +125,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
         case ct_dot :
         case ct_hash :
         case ct_square_brac :
+        case ct_vu5_colon :
             {   css_element e (elem_css_all);
                 ::std::swap (*this, e); }
             break;
@@ -187,6 +188,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
         case ct_square_ket :
         case ct_curly_ket :
         case ct_semicolon :
+        case ct_vu5_semicolon :
             if (context.css_module (c_nesting) >= 3) return;
             FALLTHROUGH;
         default :
@@ -202,6 +204,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                 case ct_coco :
                 case ct_colon :
                 case ct_square_brac :
+                case ct_vu5_colon :
                     if (context.css_module (c_nesting) < 3)
                         nits.pick (nit_naughty_decoration, es_error, ec_css, quote (tkn_rpt (args.t_.at (b))), " cannot be decorated");
                     break;
@@ -232,6 +235,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                 break;
             case ct_coco :
             case ct_colon :
+            case ct_vu5_colon :
                 {   int j = next_non_whitespace (args.t_, i, to);
                     if (j < 0)
                         nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": unexpected here");
@@ -261,6 +265,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
             case ct_comma :
             case ct_square_ket :
             case ct_semicolon :
+            case ct_vu5_semicolon :
                 if (context.css_module (c_nesting) >= 3) return;
                 FALLTHROUGH;
             default :

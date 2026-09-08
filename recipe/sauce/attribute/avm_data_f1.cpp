@@ -90,7 +90,6 @@ hav_t havt_feconvolvematrix [] =
     SVG_PRESENTATION_ATTRIBUTES (elem_feconvolvematrix),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-// elem_fecustom
 hav_t havt_fecustom [] =
 {   { { HTML_OCT11, 0, 0, H2_CSS_SHADER }, { HTML_UNDEF }, elem_fecustom, a_fragmentshader },
     { { HTML_OCT11, 0, 0, H2_CSS_SHADER }, { HTML_UNDEF }, elem_fecustom, a_params },

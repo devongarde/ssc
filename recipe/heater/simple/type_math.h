@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "base/type_master.h"
 
-template < > struct type_master < t_hunit > : tidy_string < t_hunit > // verify against HTML 5.0, 2.4.4.4
+template < > struct type_master < t_hunit > : tidy_string < t_hunit >
 {   using tidy_string < t_hunit > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_hunit > :: set_value (nits, v, s);
@@ -55,7 +55,7 @@ template < > struct type_master < t_hunit > : tidy_string < t_hunit > // verify 
         nits.pick (nit_bad_hunit, es_error, ec_type, quote (s), ": a horizontal length is an integer or a real, optionally followed immediately by one of '%', 'cm', 'em', 'in', 'mm', 'pc', 'pt', or 'px'");
         tidy_string < t_hunit > :: status (s_invalid); } };
 
-template < > struct type_master < t_vunit > : tidy_string < t_vunit > // verify against HTML 5.0, 2.4.4.4
+template < > struct type_master < t_vunit > : tidy_string < t_vunit >
 {   using tidy_string < t_vunit > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_vunit > :: set_value (nits, v, s);
@@ -96,7 +96,7 @@ template < > struct type_master < t_vunit > : tidy_string < t_vunit > // verify 
         nits.pick (nit_bad_vunit, es_error, ec_type, quote (s), ": a vertical length is an integer or a real, optionally followed immediately by one of '%', 'cm', 'ex', 'in', 'mm', 'pc', 'pt', or 'px'");
         tidy_string < t_vunit > :: status (s_invalid); } };
 
-template < > struct type_master < t_pseudo > : string_vector < t_pseudo, sz_space_char > // verify against HTML 5.0, 2.4.4.4
+template < > struct type_master < t_pseudo > : string_vector < t_pseudo, sz_space_char >
 {   using string_vector < t_pseudo, sz_space_char > :: string_vector;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_pseudo, sz_space_char > :: set_value (nits, v, s);

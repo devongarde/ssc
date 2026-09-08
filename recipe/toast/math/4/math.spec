@@ -208,7 +208,7 @@ PASS ../toast/math/4/mover.html
 
 PASS ../toast/math/4/mpadded.html
 2 naughty_lang
-23 bad_vunit bad_vunit
+23 bad_vunit
 31 bad_vunit
 
 PASS ../toast/math/4/mphantom.html

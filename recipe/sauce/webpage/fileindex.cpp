@@ -83,7 +83,7 @@ typedef ssc_map < ::std::string, fileindex_t > mxp_t;
 typedef ::std::map < crc_t, fileindex_t > mcrc_t;
 
 vx_t vx;
-mxp_t site_x, disk_x;  // note ::boost::filesystem::path and ::std::map are not pals
+mxp_t site_x, disk_x;
 mcrc_t mcrc;
 
 ::boost::filesystem::path index_t::disk_path () const
@@ -369,8 +369,7 @@ crc_t calc_crc (nitpick& nits, const ::boost::filesystem::path& dp)
 	return crc.checksum (); }
 
 crc_t get_crc (nitpick& nits, const fileindex_t ndx)
-{   //PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-	if (! inner_get_any_flag (ndx, FX_CRC)) // only one thread looks at a file, once in scanning, once in examining; so this shouldn't need locking
+{   if (! inner_get_any_flag (ndx, FX_CRC)) // only one thread looks at a file, once in scanning, once in examining; so this shouldn't need locking
 	{   const crc_t crc = calc_crc (nits, GSL_AT (vx, ndx).disk_path ());
 		set_crc (ndx, crc);
 		return crc; }
@@ -471,7 +470,7 @@ void set_crc (const fileindex_t ndx, const crc_t& crc)
 {   return ::boost::replace_all_copy (inner_join_site_paths (lhs, rhs), "//", "/"); }
 
 ::std::string::size_type crap_find_last_of_that_works (const ::std::string& s, const ::std::string& ss, const ::std::string::size_type pos = ::std::string::npos)
-	// I don't understand why some systems' find_last_of returns 0 when failing to find "/.." ; I would expect npos.
+	// Buggy systems exist that return 0, not npos, when failing to find "/..".
 {   ::std::string::size_type smax = pos;
 	if (smax == ::std::string::npos) smax = s.length ();
 	const ::std::string::size_type ssmax = ss.length ();

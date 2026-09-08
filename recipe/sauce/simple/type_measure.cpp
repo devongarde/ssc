@@ -114,3 +114,25 @@ bool set_css_rate_value (nitpick& nits, const html_version& v, const ::std::stri
     if (absolute) nits.pick (nit_immeasurable, es_error, ec_type, quote (ss), ": a rate is a number immediately followed a standard unit of rate measurement, such as tmbl");
     else nits.pick (nit_immeasurable, es_error, ec_type, quote (ss), ": a rate is a percentage or a number immediately followed a standard unit of rate measurement, such as tmbl");
     return false; }
+
+bool set_css_flex_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   ::std::string s (ss);
+    if (! s.empty ())
+    {   ::std::string units;
+        if (s == "0") return true;
+        const ::std::string::size_type pos = s.find_first_not_of (SIGNEDDECIMAL " ");
+        if (pos != ::std::string::npos)
+        {   units = s.substr (pos);
+            s = s.substr (0, pos);
+            if (s.empty ())
+            {   nits.pick (nit_missing_value, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_type, quote (units), ": got the units but not how many");
+                return false; } }
+        else if (context.html_ver ().is_css_compatible (v.ext2 (), v.ext3 (), v.ext4 (), v.ext5 ())) return true;
+        else
+        {   nits.pick (nit_missing_units, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_type, quote (ss), ": units must be specified");
+            return false; }
+        if (test_value < t_fixedpoint > (nits, v, s))
+        {   if (units.empty ()) return true;
+            if (v.svg () || v.is_5 () || v.has_css ()) if (compare_no_case (units, "fr")) return true; } }
+    nits.pick (nit_immeasurable, es_error, ec_type, quote (ss), ": a flex is a number immediately followed a standard unit of rate measurement, such as fr");
+    return false; }

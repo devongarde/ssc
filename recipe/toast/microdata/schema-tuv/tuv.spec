@@ -3,7 +3,7 @@
 PASS ../toast/microdata/schema-tuv/theatreevent.html
 12 use_quote_code
 19 no_such_folder url_not_found
-21 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+21 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 
 PASS ../toast/microdata/schema-tuv/touristattraction.html
 0 charset_mismatch charset_used charset_invalid
@@ -17,7 +17,7 @@ PASS ../toast/microdata/schema-tuv/touristattraction.html
 123 use_quote_code use_double_quote_code use_quote_code
 138 not_ontology_property
 139 not_ontology_property
-140 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+140 bad_property
 196 not_ontology_property
 197 not_ontology_property
 203 not_ontology_property
@@ -29,7 +29,7 @@ PASS ../toast/microdata/schema-tuv/touristdestination.html
 
 PASS ../toast/microdata/schema-tuv/touristtrip.html
 0 charset_mismatch charset_used charset_invalid
-18 tld tld
+18 tld
 84 not_ontology_property
 125 not_ontology_property
 163 use_quote_code
@@ -55,8 +55,8 @@ PASS ../toast/microdata/schema-tuv/tvepisode.html
 54 invalid_attribute_version wrong_version svg_rdf
 62 invalid_attribute_version wrong_version svg_rdf
 63 invalid_attribute_version wrong_version svg_rdf
-76 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
-77 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague rather_too_vague bad_year bad_year bad_year
+76 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
+77 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 
 PASS ../toast/microdata/schema-tuv/tvseason.html
 54 invalid_attribute_version wrong_version svg_rdf
@@ -71,7 +71,7 @@ PASS ../toast/microdata/schema-tuv/tvseries.html
 PASS ../toast/microdata/schema-tuv/unitpricespecification.html
 0 charset_mismatch charset_used charset_invalid
 15 invalid_attribute_version wrong_version svg_rdf
-17 invalid_attribute_version wrong_version svg_rdf sunk sunk
+17 invalid_attribute_version wrong_version svg_rdf sunk
 22 invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-tuv/videogame-1.html
@@ -117,10 +117,10 @@ PASS ../toast/microdata/schema-tuv/videoobject.html
 65 url_not_found
 66 url_not_found url_not_found url_not_found url_not_found url_not_found url_not_found
 75 track_missing
-92 invalid_attribute_version wrong_version svg_rdf not_an_integer not_an_integer not_an_integer not_an_integer
-100 invalid_attribute_version wrong_version svg_rdf not_an_integer not_an_integer not_an_integer not_an_integer
+92 invalid_attribute_version wrong_version svg_rdf not_an_integer not_an_integer
+100 invalid_attribute_version wrong_version svg_rdf not_an_integer not_an_integer
 108 invalid_attribute_version wrong_version svg_rdf
-113 invalid_attribute_version wrong_version svg_rdf not_an_integer not_an_integer not_an_integer not_an_integer
+113 invalid_attribute_version wrong_version svg_rdf not_an_integer not_an_integer
 
 PASS ../toast/microdata/schema-tuv/visualartwork.html
 0 charset_mismatch charset_used charset_invalid

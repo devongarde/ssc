@@ -930,7 +930,7 @@ element_init_t ei [] =
     { elem_tbody, { a_bgcolour, a_rowgroup, ALIGNCHAR, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_tbreak, { SVG_COND, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_td, { a_axes, a_axis, a_background, a_bgcolour, a_cell, a_colspan, a_dp, a_headers, a_nowrap, a_rowspan, a_scope, WIDEHIGH, ALIGNCHAR, LIVING_STANDARD_PLUS, a_unknown } },
-    { elem_template, {  a_shadowrootmode, a_shadowrootdelegatesfocus, a_shadowrootclonable, a_shadowrootserialisable, a_shadowrootcustomelementregistry,        
+    { elem_template, {  a_for, a_shadowrootmode, a_shadowrootdelegatesfocus, a_shadowrootclonable, a_shadowrootserialisable, a_shadowrootcustomelementregistry,        
                         METADATA, LIVING_STANDARD, a_unknown } },
     { elem_text, {  a_editable, a_externalresourcesrequired, a_hyphens, a_inline_size, a_lengthadjust, a_line_break, a_line_height, a_overflow_wrap, a_rotate,
                     a_shape_image_threshold, a_shape_inside, a_shape_margin, a_shape_padding, a_shape_subtract, a_text_justify, a_textlength, a_word_break, a_word_wrap, a_will_change,

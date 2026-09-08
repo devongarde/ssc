@@ -25,8 +25,9 @@ bool set_measure_value (nitpick& nits, const html_version& v, const ::std::strin
 bool set_css_measure_value (nitpick& nits, const html_version& v, const ::std::string& ss, const bool absolute, const bool positive = false);
 bool set_css_dimension_value (nitpick& nits, const html_version& v, const ::std::string& ss, const bool absolute);
 bool set_css_rate_value (nitpick& nits, const html_version& v, const ::std::string& ss, const bool absolute);
+bool set_css_flex_value (nitpick& nits, const html_version& v, const ::std::string& ss);
 
-template < > struct type_master < t_measure > : tidy_string < t_measure > // verify against HTML 5.0, 2.4.4.4
+template < > struct type_master < t_measure > : tidy_string < t_measure >
 {   using tidy_string < t_measure > :: tidy_string;
     static e_animation_type animation_type () noexcept { return at_length; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -85,3 +86,13 @@ template < > struct type_master < t_css_tmbl > : tidy_string < t_css_tmbl >
             if (set_css_rate_value (nits, v, tidy_string < t_css_tmbl > :: get_string (), true))
                 return;
         tidy_string < t_css_tmbl > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_flex > : tidy_string < t_css_flex >
+{   using tidy_string < t_css_flex > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_none; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_flex > :: set_value (nits, v, s);
+        if (tidy_string < t_css_flex > :: good ())
+            if (set_css_flex_value (nits, v, tidy_string < t_css_flex > :: get_string ()))
+                return;
+        tidy_string < t_css_flex > :: status (s_invalid); } };

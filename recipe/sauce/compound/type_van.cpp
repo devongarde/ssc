@@ -509,3 +509,70 @@ e_status set_css_place_items (const e_status es, nitpick& nits, const html_versi
 
 e_status set_css_place_self (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s)
 {   return set_css_place < t_css_box_alignself_acs, t_css_box_justself > (es, nits, v, s); }
+
+e_status set_xywh_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s)
+{   e_status res = es;
+    if (es == s_empty) nits.pick (nit_empty, es_error, ec_type, "value expected");
+    else if (v.css_module (c_shape) < 3)
+    {   nits.pick (nit_css_version, es_error, ec_css, "Shape functions require CSS Shapes");
+        res = s_invalid; }
+    else if (es == s_good)
+    {   res = s_good;
+        int count = 0;
+        typedef enum {  xs_l, xs_lp, xs_r,
+                        xs_bl1, xs_slash, xs_bl2,
+                        xs_done,
+                        xs_error } sh_status;
+        sh_status stage = xs_l;
+        vstr_t vr (split_by_space (s));
+        for (auto vs : vr)
+            switch (stage)
+            {   case xs_l :
+                    if (! test_value < t_css_length_percent > (nits, v, vs)) return s_invalid;
+                    count += 1;
+                    if (count < 2) break;
+                    count = 0;
+                    stage = xs_lp;
+                    break;
+                case xs_lp :
+                    if (! test_value < t_css_length_percent_inf > (nits, v, vs)) return s_invalid;
+                    count += 1;
+                    if (count < 2) break;
+                    count = 0;
+                    stage = xs_r;
+                    break;
+                case xs_r :
+                    if (! compare_no_case (vs, "round"))
+                    {   nits.pick (nit_shape, es_error, ec_type, quote (vs), ": 'round' expected");
+                        return s_invalid; }
+                    count = 0;
+                    stage = xs_bl1;
+                    break;
+                case xs_bl1 :
+                    if (vs != "/")
+                    {   if (! test_value < t_css_length_percent_inf > (nits, v, vs)) return s_invalid;   
+                        count += 1;
+                        if (count >= 4) stage = xs_slash;
+                        break; }
+                    FALLTHROUGH;
+                case xs_slash :
+                    if (vs != "/")
+                    {   nits.pick (nit_shape, es_error, ec_type, quote (vs), ": '/' expected");
+                        return s_invalid; }
+                    count = 0;
+                    stage = xs_bl2;
+                    break;
+                case xs_bl2 :
+                    if (count >= 4)
+                    {   nits.pick (nit_shape, es_error, ec_type, quote (vs), ": too many parameters");
+                        return s_invalid; }
+                    if (! test_value < t_css_length_percent_inf > (nits, v, vs)) return s_invalid;   
+                    count += 1;
+                    break;
+                default :
+                    nits.pick (nit_internal_parsing_error, es_catastrophic, ec_type, "internal error parsing xywh ()");
+                    return s_invalid; }
+        if (stage < xs_r)               
+        {   nits.pick (nit_shape, es_error, ec_type, "xywh (): missing parameters (", stage, ",", quote (s), ")");
+            res = s_invalid; } }
+    return res; }

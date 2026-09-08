@@ -27,7 +27,7 @@ inline void parse_json_ld (::std::ostringstream& , mmac_t& , nitpick& , const ht
 #else // NO_JSONIC
 #include "parser/jsonic.h"
 
-// this is not, and not intended to be, a full json-ld interpreter. It exists, mostly, to enable schema testing.
+// this is not, nor is it intended to be, a full json-ld interpreter. It exists, mostly, to enable schema testing.
 
 typedef ::std::vector < ::boost::json::value > vjv_t;
 typedef ::std::vector < vjv_t > vk_t;

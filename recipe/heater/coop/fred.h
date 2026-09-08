@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "coop/tls.h"
 
 class fred_t
-{   mid_t tls_; // must not be modified once threading starts
+{   mid_t tls_; // must NOT be modified once threading starts
     vtls_t vtls_;
     ::std::atomic_uint count_;
     ::std::atomic_uint inactive_;

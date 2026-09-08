@@ -249,7 +249,7 @@ template < > struct type_master < t_cursor_f > : type_many_then_must < t_cursor_
 {   using type_many_then_must < t_cursor_f, t_urifn, sz_comma, t_cursor > :: type_many_then_must;
     static e_animation_type animation_type () noexcept { return at_other; } };
 
-template < > struct type_master < t_svg_profile_name > : tidy_string < t_svg_profile_name > // check against SVG colour profile statements
+template < > struct type_master < t_svg_profile_name > : tidy_string < t_svg_profile_name >
 {   using tidy_string < t_svg_profile_name > :: tidy_string;
     static e_animation_type animation_type () noexcept { return at_other; } };
 

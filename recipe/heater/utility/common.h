@@ -77,7 +77,6 @@ inline vstr_t split_by_newline (const ::std::string& s)
 vstr_t split_by_string (const ::std::string& s, const ::std::string& splitter);
 vstr_t separate_by_whitespace_and (const ::std::string& s, const char* charset, const bool blank = false);
 
-int pos_de (const ::std::string& s, const char* charset, vint_t& vf, vint_t& vt, const bool empties = false);
 bool contains (const vstr_t& con, const ::std::string& val);
 
 inline bool cnc_test (unsigned char a, unsigned char b) noexcept
@@ -165,16 +164,12 @@ inline ::std::string decolonise (::std::string& sauce)
 
 ::std::string template_path (nitpick& nits, const ::std::string& fn);
 ::std::string template_path (nitpick& nits, const ::std::string& def, const ::std::string& arg);
+::std::string fold (const unsigned long x);
 
 template < class T, T MAX = UINT_MAX > ::std::string once_twice_thrice (const T x)
-{   switch (x)
-    {   case 0 : return "never";
-        case 1 : return "once";
-        case 2 : return "twice";
-        case 3 : return "thrice";
-        default :
-            if (x >= MAX) return "many times";
-            return ::boost::lexical_cast < ::std::string > (x) + " times"; } }
+{   PRESUME (x >= 0, __FILE__, __LINE__);
+    if (x >= MAX) return "manyfold";
+    return fold (static_cast < unsigned long > (x)); }
 
 inline ::std::string x_dot_y (int x, int y)
 {   ::std::string res;

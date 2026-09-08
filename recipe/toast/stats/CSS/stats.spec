@@ -21,14 +21,14 @@ Element:
     (undefined): once
     body: twice
     p: twice
-  3 elements used 5 times
+  3 elements used fivefold
 
 Font:
     Baskerville: once
     Mincho: once
     Symbol: once
     serif: once
-  4 Font used 4 times
+  4 Font used fourfold
 
 Property:
     background-color: once
@@ -39,7 +39,7 @@ Property:
     font-variant: twice
     letter-spacing: once
     text-align: once
-  8 properties used 9 times
+  8 properties used ninefold
 
 Statement:
     page: once
@@ -55,17 +55,17 @@ PASS ../toast/stats/CSS/cool.css
 
 STATS
 Element:
-    (undefined): 4 times 
+    (undefined): fourfold 
     br: once 
     h1: once 
     i: twice 
-    p: 5 times 
-  5 elements used 13 times
+    p: fivefold 
+  5 elements used 13fold
 Property:
     background: once 
     color: thrice 
     text-align: once 
-  3 properties used 5 times 
+  3 properties used fivefold 
 ===
 
 PASS ../toast/stats/CSS/css-1.css
@@ -83,16 +83,16 @@ Class/Element:
 
 Element:
     (undefined): twice
-    b: 4 times
+    b: fourfold
     body: once
     code: once
     div: twice
-    em: 7 times
-    h1: 12 times
-    h2: 5 times
+    em: sevenfold
+    h1: twelvefold
+    h2: fivefold
     h3: once
     p: thrice
-  11 elements used 40 times
+  11 elements used 40fold
 
 Font:
     helvetica: twice
@@ -110,7 +110,7 @@ ItemId:
 
 Property:
     background: twice
-    color: 12 times
+    color: twelvefold
     font: twice
     font-family: twice
     font-size: thrice
@@ -119,7 +119,7 @@ Property:
     font-weight: once
     letter-spacing: twice
     line-height: twice
-  10 properties used 28 times
+  10 properties used 28fold
 ===
 
 PASS ../toast/stats/CSS/css-2.css
@@ -134,17 +134,17 @@ Class/Element:
   p.initial declared once
 
 Element:
-    a: 7 times
+    a: sevenfold
     body: once
     img: once
-    p: 5 times
-  5 elements used 15 times
+    p: fivefold
+  5 elements used 15fold
 
 Property:
     border: once
-    color: 12 times
+    color: twelvefold
     font-size: twice
-  3 properties used 15 times
+  3 properties used 15fold
 ===
 
 PASS ../toast/stats/CSS/css-3.css
@@ -162,7 +162,7 @@ Property:
     color: twice
     font-size: once
     font-style: once
-  4 properties used 5 times
+  4 properties used fivefold
 
 Statement:
     import: twice
@@ -172,7 +172,7 @@ Statement:
 PASS ../toast/stats/CSS/css-5.css
 1 fontname
 2 fontname
-143 unrecognised_value
+143 unrecognised_value property css_colour
 
 STATS
 Class:
@@ -188,21 +188,21 @@ Class/Element:
 Element:
     (undefined): once
     a: thrice
-    blockquote: 9 times
-    body: 14 times
-    div: 4 times
-    em: 7 times
-    h1: 21 times
+    blockquote: ninefold
+    body: 14fold
+    div: fourfold
+    em: sevenfold
+    h1: 21fold
     h2: once
     h3: twice
-    img: 4 times
+    img: fourfold
     li: twice
     ol: thrice
-    p: 15 times
+    p: 15fold
     pre: once
     strong: once
-    ul: 5 times
-  16 elements used 93 times
+    ul: fivefold
+  16 elements used 93fold
 
 Font:
     gill: once
@@ -210,37 +210,37 @@ Font:
     new century schoolbook: once
     sans-serif: once
     serif: once
-  5 Font used 5 times
+  5 Font used fivefold
 
 Property:
-    background: 9 times
+    background: ninefold
     background-attachment: twice
     background-color: once
     background-image: thrice
     background-position: once
     background-repeat: twice
-    border: 5 times
+    border: fivefold
     border-bottom: thrice
     border-color: once
     border-left: twice
     border-right: once
     border-style: once
     border-top: once
-    border-width: 4 times
+    border-width: fourfold
     clear: once
     color: thrice
-    display: 4 times
+    display: fourfold
     float: once
-    font: 5 times
+    font: fivefold
     font-family: twice
-    font-size: 7 times
+    font-size: sevenfold
     font-style: thrice
     font-variant: once
     font-weight: thrice
     height: once
     letter-spacing: thrice
     line-height: thrice
-    list-style: 4 times
+    list-style: fourfold
     list-style-image: once
     margin: thrice
     margin-bottom: twice
@@ -259,7 +259,7 @@ Property:
     white-space: twice
     width: once
     word-spacing: once
-  46 properties used 104 times
+  46 properties used 104fold
 ===
 
 PASS ../toast/stats/CSS/css-6.css
@@ -268,23 +268,23 @@ PASS ../toast/stats/CSS/css-6.css
 
 STATS
 Element:
-    body: 4 times 
-    em: 7 times 
-    h1: 5 times 
+    body: fourfold 
+    em: sevenfold 
+    h1: fivefold 
     h2: twice 
     h3: once 
     h4: twice 
     p: twice 
-  7 elements used 23 times
+  7 elements used 23fold
 Property:
     background: thrice 
-    color: 10 times 
-    font-size: 5 times 
+    color: tenfold 
+    font-size: fivefold 
     line-height: twice 
     margin: thrice 
     text-indent: once 
     word-spacing: once 
-  7 properties used 25 times
+  7 properties used 25fold
 ===
 
 PASS ../toast/stats/CSS/css-7.css
@@ -297,22 +297,22 @@ PASS ../toast/stats/CSS/css-7.css
 
 STATS
 Element:
-    em: 6 times 
-    h1: 8 times 
-    img: 8 times 
-    p: 5 times 
+    em: sixfold 
+    h1: eightfold 
+    img: eightfold 
+    p: fivefold 
     ul: once 
-  5 elements used 28 times
+  5 elements used 28fold
 Property:
     background: once 
     border-width: once 
-    color: 11 times 
+    color: elevenfold 
     float: thrice 
     font-size: once 
     font-style: thrice 
     font-variant: twice 
     font-weight: twice 
-  8 properties used 24 times 
+  8 properties used 24fold 
 ===
 
 PASS ../toast/stats/CSS/html2.css
@@ -320,7 +320,7 @@ PASS ../toast/stats/CSS/html2.css
 STATS
 Element:
     (undefined): once
-    a: 6 times
+    a: sixfold
     address: thrice
     b: twice
     blockquote: thrice
@@ -335,15 +335,15 @@ Element:
     dt: twice
     em: twice
     form: once
-    h1: 5 times
-    h2: 4 times
-    h3: 4 times
+    h1: fivefold
+    h2: fourfold
+    h3: fourfold
     h4: thrice
     h5: thrice
     h6: thrice
     hr: twice
     i: twice
-    img: 4 times
+    img: fourfold
     kbd: twice
     li: twice
     menu: twice
@@ -355,7 +355,7 @@ Element:
     tt: twice
     ul: twice
     var: twice
-  36 elements used 84 times
+  36 elements used 84fold
 
 Font:
     monospace: once
@@ -366,7 +366,7 @@ Property:
     background: once
     border: thrice
     border-top: once
-    color: 4 times
+    color: fourfold
     display: thrice
     font-family: twice
     font-size: thrice
@@ -376,12 +376,12 @@ Property:
     list-style: twice
     margin: twice
     margin-bottom: twice
-    margin-left: 4 times
+    margin-left: fourfold
     margin-right: once
     margin-top: thrice
     text-align: once
     white-space: once
-  18 properties used 38 times
+  18 properties used 38fold
 ===
 
 PASS ../toast/stats/CSS/css-1.html
@@ -398,7 +398,7 @@ Class/Element:
   p.center declared once
 
 Element:
-    (undefined): 6 times
+    (undefined): sixfold
     !doctype: once
     body: thrice
     br: once
@@ -411,7 +411,7 @@ Element:
       rel: once
       title: once
       type: once
-    p: 8 times
+    p: eightfold
       style: once
     style: once
       type: once
@@ -422,26 +422,26 @@ Element:
     style: once
     title: once
     type: twice
-  15 elements used 45 times
+  15 elements used 45fold
 
 Font:
     Baskerville: once
     Mincho: once
     Symbol: once
     serif: once
-  4 Font used 4 times
+  4 Font used fourfold
 
 Property:
     background: once
     background-color: once
-    color: 6 times
+    color: sixfold
     font: once
     font-family: once
     font-size: once
     font-variant: twice
     letter-spacing: once
     text-align: twice
-  9 properties used 16 times
+  9 properties used 16fold
 
 Statement:
     import: once
@@ -472,7 +472,7 @@ Class/Element:
 Element:
     (undefined): once
     !doctype: once
-    a: 8 times
+    a: eightfold
       class: once
       href: once
     body: twice
@@ -485,7 +485,7 @@ Element:
       href: once
       rel: once
       type: once
-    p: 11 times
+    p: elevenfold
       class: once
       id: once
     span: twice
@@ -498,7 +498,7 @@ Element:
     id: once
     rel: once
     type: twice
-  18 elements used 68 times
+  18 elements used 68fold
 
 Id:
   z98y declared never, used once
@@ -512,10 +512,10 @@ ItemId:
 
 Property:
     border: once
-    color: 12 times
+    color: twelvefold
     font-size: twice
     font-variant: once
-  4 properties used 16 times
+  4 properties used 16fold
 ===
 
 PASS ../toast/stats/CSS/css-3.html
@@ -556,7 +556,7 @@ Element:
     rel: once
     style: once
     type: thrice
-  13 elements used 32 times
+  13 elements used 32fold
 
 Id:
   x97z declared never, used once
@@ -570,10 +570,10 @@ ItemId:
 
 Property:
     background: once
-    color: 5 times
+    color: fivefold
     font-size: once
     font-style: once
-  4 properties used 8 times
+  4 properties used eightfold
 
 Statement:
     import: twice
@@ -610,24 +610,24 @@ Element:
       style: once
     img: thrice
       src: once
-    li: 7 times
-    p: 7 times
+    li: sevenfold
+    p: sevenfold
     span: twice
     strong: once
-    style: 4 times
-      type: 4 times
+    style: fourfold
+      type: fourfold
     title: once
-    ul: 6 times
+    ul: sixfold
       class: once
   Attribute count:
     class: once
     src: once
     style: twice
-    type: 4 times
-  16 elements used 83 times
+    type: fourfold
+  16 elements used 83fold
 
 Property:
-    background: 4 times
+    background: fourfold
     color: once
     float: twice
     font-size: twice
@@ -636,7 +636,7 @@ Property:
     margin: thrice
     padding: twice
     text-transform: once
-  9 properties used 18 times
+  9 properties used 18fold
 ===
 
 PASS ../toast/stats/CSS/css-5.html
@@ -664,38 +664,38 @@ Element:
     (undefined): once
     !doctype: once
     a: thrice
-    blockquote: 9 times
-    body: 15 times
+    blockquote: ninefold
+    body: 15fold
       style: once
-    div: 4 times
-    em: 7 times
-    h1: 21 times
+    div: fourfold
+    em: sevenfold
+    h1: 21fold
     h2: once
     h3: twice
     head: once
     html: once
-    img: 4 times
-    li: 6 times
+    img: fourfold
+    li: sixfold
     link: once
       href: once
       rel: once
       type: once
-    ol: 5 times
+    ol: fivefold
       class: once
-    p: 15 times
+    p: 15fold
     pre: once
     strong: once
     style: once
       type: once
     title: once
-    ul: 7 times
+    ul: sevenfold
   Attribute count:
     class: once
     href: once
     rel: once
     style: once
     type: twice
-  25 elements used 126 times
+  25 elements used 126fold
 
 Font:
     My own font: once
@@ -705,37 +705,37 @@ Font:
     new century schoolbook: once
     sans-serif: once
     serif: once
-  7 Font used 7 times
+  7 Font used sevenfold
 
 Property:
-    background: 9 times
+    background: ninefold
     background-attachment: twice
     background-color: once
     background-image: thrice
     background-position: once
     background-repeat: twice
-    border: 5 times
+    border: fivefold
     border-bottom: thrice
     border-color: once
     border-left: twice
     border-right: once
     border-style: once
     border-top: once
-    border-width: 4 times
+    border-width: fourfold
     clear: once
     color: thrice
-    display: 4 times
+    display: fourfold
     float: once
-    font: 5 times
+    font: fivefold
     font-family: thrice
-    font-size: 7 times
+    font-size: sevenfold
     font-style: thrice
     font-variant: once
     font-weight: thrice
     height: once
     letter-spacing: thrice
     line-height: thrice
-    list-style: 6 times
+    list-style: sixfold
     list-style-image: once
     margin: thrice
     margin-bottom: twice
@@ -754,7 +754,7 @@ Property:
     white-space: twice
     width: once
     word-spacing: once
-  46 properties used 107 times
+  46 properties used 107fold
 ===
 
 PASS ../toast/stats/CSS/css-6.html
@@ -763,9 +763,9 @@ PASS ../toast/stats/CSS/css-6.html
 STATS
 Element:
     !doctype: once
-    body: 5 times
-    em: 7 times
-    h1: 5 times
+    body: fivefold
+    em: sevenfold
+    h1: fivefold
     h2: twice
     h3: once
     h4: twice
@@ -781,17 +781,17 @@ Element:
     href: once
     rel: once
     type: once
-  15 elements used 39 times
+  15 elements used 39fold
 
 Property:
     background: thrice
-    color: 10 times
-    font-size: 5 times
+    color: tenfold
+    font-size: fivefold
     line-height: twice
     margin: thrice
     text-indent: once
     word-spacing: once
-  7 properties used 25 times
+  7 properties used 25fold
 ===
 
 PASS ../toast/stats/CSS/import.css
@@ -815,37 +815,37 @@ Class/Element:
   p.center declared once
 
 Element:
-    (undefined): 5 times
+    (undefined): fivefold
     body: twice
     br: once
     h1: once
     i: twice
-    p: 7 times
-  6 elements used 18 times
+    p: sevenfold
+  6 elements used 18fold
 
 Font:
     Baskerville: once
     Mincho: once
     Symbol: once
     serif: once
-  4 Font used 4 times
+  4 Font used fourfold
 
 Property:
     background: once
     background-color: once
-    color: 4 times
+    color: fourfold
     font: once
     font-family: once
     font-size: once
     font-variant: twice
     letter-spacing: once
     text-align: twice
-  9 properties used 14 times
+  9 properties used 14fold
 
 Statement:
     import: thrice
     page: once
-  2 statements used 4 times
+  2 statements used fourfold
 ===
 
 PASS ../toast/stats/CSS/index.html
@@ -859,13 +859,13 @@ Element:
     head: once 
     html: once 
     title: once 
-  9 elements used 17 times
+  9 elements used 17fold
 ===
 
 GRAND
 Category:
-    Attribute: 7 times
-    Element: 28 times
+    Attribute: sevenfold
+    Element: 28fold
     Namespace: twice
     Parser: once
     Type: twice
@@ -874,16 +874,16 @@ Category:
 Class:
   COMPACT declared never, used once
   alpha declared twice, used twice
-  center declared 6 times
-  centre declared 4 times
+  center declared sixfold
+  centre declared fourfold
   compact declared twice
-  external declared 4 times, used twice
-  icon declared 12 times
-  initial declared 4 times, used twice
+  external declared fourfold, used twice
+  icon declared twelvefold
+  initial declared fourfold, used twice
   pastoral declared twice, used once
   reddish declared twice
   sidenote declared twice
-  square declared 4 times
+  square declared fourfold
 
 Class/Element:
   *.pastoral declared once
@@ -892,7 +892,7 @@ Class/Element:
   div.centre declared twice
   div.sidenote declared once
   h1.pastoral declared never, used once
-  img.icon declared 6 times
+  img.icon declared sixfold
   li.square declared twice
   ol.alpha declared once, used once
   p.center declared thrice
@@ -901,79 +901,79 @@ Class/Element:
   ul.compact declared once
 
 Element:
-    (undefined): 24 times
-    !doctype: 7 times
-    a: 27 times
+    (undefined): 24fold
+    !doctype: sevenfold
+    a: 27fold
       class: once
       href: once
     address: thrice
-    b: 6 times
-    blockquote: 21 times
-    body: 54 times
+    b: sixfold
+    blockquote: 21fold
+    body: 54fold
       style: twice
-    br: 4 times
+    br: fourfold
     cite: twice
     code: thrice
     dd: twice
     dir: twice
-    div: 11 times
+    div: elevenfold
     dl: once
     dt: twice
-    em: 46 times
+    em: 46fold
     form: once
-    h1: 89 times
+    h1: 89fold
       class: once
-    h2: 15 times
-    h3: 11 times
-    h4: 7 times
+    h2: 15fold
+    h3: elevenfold
+    h4: sevenfold
     h5: thrice
     h6: thrice
-    head: 7 times
+    head: sevenfold
     hr: twice
-    html: 7 times
+    html: sevenfold
       style: once
-    i: 8 times
-    img: 25 times
+    i: eightfold
+    img: 25fold
       src: once
     kbd: twice
-    li: 17 times
-    link: 5 times
-      href: 5 times
-      rel: 5 times
+    li: 17fold
+    link: fivefold
+      href: fivefold
+      rel: fivefold
       title: once
-      type: 5 times
+      type: fivefold
     menu: twice
-    ol: 10 times
+    ol: tenfold
       class: once
-    p: 91 times
+    p: 91fold
       class: once
       id: twice
       style: twice
-    pre: 5 times
+    pre: fivefold
     samp: twice
-    span: 4 times
-    strong: 5 times
-    style: 9 times
-      type: 9 times
-    title: 7 times
+    span: fourfold
+    strong: fivefold
+    style: ninefold
+      type: ninefold
+    title: sevenfold
     tt: twice
-    ul: 21 times
+    ul: 21fold
       class: once
     var: twice
   Attribute count:
-    class: 5 times
-    href: 6 times
+    class: fivefold
+    href: sixfold
     id: twice
-    rel: 5 times
+    rel: fivefold
     src: once
-    style: 5 times
+    style: fivefold
     title: once
-    type: 14 times
-  47 elements used 732 times
+    type: 14fold
+  47 elements used 732fold
 
 Nits Reported:
-    Errors: 4 times
-    Warnings: 37 times
+    Errors: fourfold
+    Warnings: 37fold
     Info: once
 
 File Info:
@@ -987,12 +987,12 @@ Font:
     Symbol: thrice
     fantasy: once
     gill: twice
-    helvetica: 4 times
+    helvetica: fourfold
     monospace: once
     new century schoolbook: twice
     sans-serif: twice
-    serif: 6 times
-  11 Font used 28 times
+    serif: sixfold
+  11 Font used 28fold
 
 Id:
   x97z declared never, used once
@@ -1009,65 +1009,65 @@ ItemId:
   2 ItemId used twice
 
 Property:
-    background: 37 times
-    background-attachment: 4 times
-    background-color: 5 times
-    background-image: 6 times
+    background: 37fold
+    background-attachment: fourfold
+    background-color: fivefold
+    background-image: sixfold
     background-position: twice
-    background-repeat: 4 times
-    border: 15 times
-    border-bottom: 6 times
+    background-repeat: fourfold
+    border: 15fold
+    border-bottom: sixfold
     border-color: twice
-    border-left: 4 times
+    border-left: fourfold
     border-right: twice
     border-style: twice
     border-top: thrice
-    border-width: 9 times
+    border-width: ninefold
     clear: twice
-    color: 99 times
-    display: 11 times
-    float: 7 times
-    font: 15 times
-    font-family: 12 times
-    font-size: 42 times
-    font-style: 14 times
-    font-variant: 12 times
-    font-weight: 11 times
+    color: 99fold
+    display: elevenfold
+    float: sevenfold
+    font: 15fold
+    font-family: twelvefold
+    font-size: 42fold
+    font-style: 14fold
+    font-variant: twelvefold
+    font-weight: elevenfold
     height: twice
-    letter-spacing: 11 times
-    line-height: 14 times
-    list-style: 14 times
+    letter-spacing: elevenfold
+    line-height: 14fold
+    list-style: 14fold
     list-style-image: twice
-    margin: 17 times
-    margin-bottom: 6 times
-    margin-left: 10 times
-    margin-right: 5 times
-    margin-top: 7 times
-    padding: 6 times
+    margin: 17fold
+    margin-bottom: sixfold
+    margin-left: tenfold
+    margin-right: fivefold
+    margin-top: sevenfold
+    padding: sixfold
     padding-bottom: twice
     padding-left: twice
     padding-right: twice
     padding-top: twice
-    text-align: 9 times
+    text-align: ninefold
     text-decoration: twice
-    text-indent: 4 times
+    text-indent: fourfold
     text-transform: thrice
-    white-space: 5 times
+    white-space: fivefold
     width: twice
-    word-spacing: 4 times
-  46 properties used 457 times
+    word-spacing: fourfold
+  46 properties used 457fold
 
 Reference:
     HTML 4.0: once
-    HTML 5.0: 8 times
+    HTML 5.0: eightfold
     HTML 5, Jun 23: thrice
 
 Statement:
-    import: 8 times
+    import: eightfold
     page: thrice
-  2 statements used 11 times
+  2 statements used elevenfold
 
 Version:
-    HTML-3.2/CSS-1: 10 times
-    HTML-5/20260701/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times
+    HTML-3.2/CSS-1: tenfold
+    HTML-5/20260701/SVG-2.1/MathML-core/CSS-1/WhatWG: sevenfold
 ===

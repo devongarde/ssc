@@ -5,7 +5,7 @@ PASS ../toast/stats/CSS-6/content-3-2.css
 8 pseud
 
 PASS ../toast/stats/CSS-6/custom-3.css
-3 css_syntax unrecognised_value
+3 unrecognised_value css_version
 8 css_custom
 11 css_custom
 
@@ -61,6 +61,6 @@ Region:
     breaking-news
     my-flow
     nav-link-flow
-  Used 4 times
+  Used fourfold
 
 ===

@@ -124,7 +124,7 @@ bool equivalent_rfc3986 (const vc_t& lhs, const vc_t& rhs)
 ::std::string absolute_rfc3986 (const vc_t& component, bool can_use_index, bool defaulted)
 {   ::std::string res;
     PRESUME (component.size () > last_component, __FILE__, __LINE__);
-    if (! defaulted)  // perhaps rewrite with boost path??
+    if (! defaulted)
     {   res += component.at (es_scheme);
         if (! component.at (es_path).empty () || ! component.at (es_file).empty ()) res += COLON_SLASH_SLASH;
         else res += COLON; }

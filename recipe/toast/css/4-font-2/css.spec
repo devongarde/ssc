@@ -6,7 +6,6 @@ PASS ../toast/css/4-font-2/css-2.css
 9 fontname weight
 19 fontname
 21 fontname fontname
-23 deprecated
 34 unrecognised_value
 72 font_enum
 

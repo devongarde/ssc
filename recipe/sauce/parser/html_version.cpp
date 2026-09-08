@@ -2851,7 +2851,7 @@ bool has_css_crossover (const e_css_version c, const html_version& lhs, const ht
 
 bool comparable (const html_version& lhs, const html_version& rhs) noexcept
 {   if (lhs.is_css () != rhs.is_css ()) return false;
-    return comparable (static_cast < version > (lhs), static_cast < version > (rhs)); }
+    return ((lhs.ao () == rhs.ao ()) && (! lhs.unknown ()) && (! rhs.unknown ())); }
 
 int which_standard (const html_version& v)
 {   for (int i = 0; i < GSL_NARROW_CAST < int > (standard_html_ver.size ()); ++i)

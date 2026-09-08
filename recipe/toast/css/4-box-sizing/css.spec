@@ -21,4 +21,3 @@ PASS ../toast/css/4-box-sizing/css-6.html
 
 PASS ../toast/css/4-box-sizing/index.html
 2 naughty_lang
-4 long_title

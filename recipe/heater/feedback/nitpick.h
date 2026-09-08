@@ -64,6 +64,7 @@ public:
     static e_severity get_severity (const e_nit code)
     {   return user_severity (code, es_undefined); }
     static void reset_severities () noexcept { mns_.clear (); }
+    bool deja_vu (const e_nit nit, const e_severity severity, const ::std::string& msg, const int mention = 0);
     void swap (nitpick& np) noexcept;
     void reset () noexcept;
     void reset (const nitpick& np);
@@ -74,22 +75,28 @@ public:
 
     template < typename... Ts > void pick (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, Ts... msg) noexcept
     try
-    {   lox l (lox_nits);
-        nits_.emplace_back (code, doc, ref, user_severity (code, severity), category, com < Ts... > :: bine (msg...)); }
+    {   const ::std::string wot (com < Ts... > :: bine (msg...));
+        lox l (lox_nits);
+        if (! deja_vu (code, severity, wot, 1))
+            nits_.emplace_back (code, doc, ref, user_severity (code, severity), category, wot); }
     catch (...)
     {   stuffed_ = true; }
 
     template < typename... Ts > void pick (const e_nit code, const e_doc doc, const e_severity severity, const e_category category, Ts... msg) noexcept
     try
-    {   lox l (lox_nits);
-        nits_.emplace_back (code, doc, ::std::string (), user_severity (code, severity), category, com < Ts... > :: bine (msg...)); }
+    {   const ::std::string wot (com < Ts... > :: bine (msg...));
+        lox l (lox_nits);
+        if (! deja_vu (code, severity, wot, 1))
+            nits_.emplace_back (code, doc, ::std::string (), user_severity (code, severity), category, wot); }
     catch (...)
     {   stuffed_ = true; }
 
     template < typename... Ts > void pick (const e_nit code, const e_severity severity, const e_category category, Ts... msg) noexcept
     try
-    {   lox l (lox_nits);
-        nits_.emplace_back (code, user_severity (code, severity), category, com < Ts... > :: bine (msg...)); }
+    {   const ::std::string wot (com < Ts... > :: bine (msg...));
+        lox l (lox_nits);
+        if (! deja_vu (code, severity, wot, 1))
+            nits_.emplace_back (code, user_severity (code, severity), category, wot); }
     catch (...)
     {   stuffed_ = true; }
 

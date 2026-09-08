@@ -27,6 +27,7 @@ PASS ../toast/mdn/function/atan2.html
 
 PASS ../toast/mdn/function/attr.html
 2 naughty_lang
+5 vtn
 139 attribute_barred
 
 PASS ../toast/mdn/function/brightness.html
@@ -48,7 +49,7 @@ PASS ../toast/mdn/function/calc.html
 
 PASS ../toast/mdn/function/calc-size.html
 2 naughty_lang
-5 css_value_fn css_keyframes
+5 css_keyframes
 167 bad_ancestor
 178 unrecognised_value
 195 unrecognised_value
@@ -77,7 +78,7 @@ PASS ../toast/mdn/function/contrast.html
 
 PASS ../toast/mdn/function/contrast-colour.html
 2 naughty_lang
-5 css_custom
+5 experimental experimental experimental experimental
 
 PASS ../toast/mdn/function/cos.html
 2 naughty_lang
@@ -93,7 +94,7 @@ PASS ../toast/mdn/function/cross-fade.html
 
 PASS ../toast/mdn/function/cubic-bezier.html
 2 naughty_lang
-5 sunk sunk zero_to_one zero_to_one css_value_param zero_to_one zero_to_one
+5 sunk sunk zero_to_one css_value_param zero_to_one
 
 PASS ../toast/mdn/function/device-cmyk.html
 2 naughty_lang
@@ -114,7 +115,6 @@ PASS ../toast/mdn/function/ellipse.html
 
 PASS ../toast/mdn/function/env.html
 2 naughty_lang
-5 experimental experimental experimental experimental experimental experimental experimental
 94 use_quote_code
 99 only_once
 
@@ -133,7 +133,6 @@ PASS ../toast/mdn/function/hsl.html
 
 PASS ../toast/mdn/function/hue-rotate.html
 2 naughty_lang
-5 angle
 61 inserted_missing_closure
 67 id_exists
 
@@ -150,7 +149,7 @@ PASS ../toast/mdn/function/hypot.html
 
 PASS ../toast/mdn/function/if.html
 2 naughty_lang
-5 css_syntax unrecognised_value css_value_fn css_value_fn css_value_fn
+5 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value css_syntax property unrecognised_value unrecognised_value unrecognised_value css_value_fn unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
 
 PASS ../toast/mdn/function/image.html
 2 naughty_lang
@@ -178,7 +177,6 @@ PASS ../toast/mdn/function/lab.html
 
 PASS ../toast/mdn/function/lch.html
 2 naughty_lang
-5 css_custom
 
 PASS ../toast/mdn/function/light-dark.html
 2 naughty_lang
@@ -186,7 +184,7 @@ PASS ../toast/mdn/function/light-dark.html
 
 PASS ../toast/mdn/function/linear.html
 2 naughty_lang
-5 unrecognised_value unrecognised_value unrecognised_value
+5 unrecognised_value unrecognised_value
 
 PASS ../toast/mdn/function/linear-gradient.html
 2 naughty_lang
@@ -218,14 +216,13 @@ PASS ../toast/mdn/function/mod.html
 
 PASS ../toast/mdn/function/moz-image-rect.html
 2 naughty_lang
-5 bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete
+5 bespoke_obsolete bespoke_obsolete bespoke_obsolete bespoke_obsolete
 
 PASS ../toast/mdn/function/oklab.html
 2 naughty_lang
 
 PASS ../toast/mdn/function/oklch.html
 2 naughty_lang
-5 css_custom
 
 PASS ../toast/mdn/function/opacity.html
 2 naughty_lang
@@ -248,7 +245,7 @@ PASS ../toast/mdn/function/pow.html
 
 PASS ../toast/mdn/function/progress.html
 2 naughty_lang
-5 css_custom css_custom unrecognised_value css_syntax css_custom css_custom css_custom css_custom css_custom css_custom
+5 css_custom css_value_fn css_custom css_custom css_custom css_custom css_custom
 
 PASS ../toast/mdn/function/radial-gradient.html
 2 naughty_lang
@@ -357,14 +354,13 @@ PASS ../toast/mdn/function/sqrt.html
 
 PASS ../toast/mdn/function/steps.html
 2 naughty_lang
-5 not_an_integer unsigned out_of_range
 
 PASS ../toast/mdn/function/superellipse.html
 2 naughty_lang
 
 PASS ../toast/mdn/function/symbols.html
 2 naughty_lang
-5 unrecognised_value not_n
+5 not_n unrecognised_value
 
 PASS ../toast/mdn/function/tan.html
 2 naughty_lang
@@ -393,7 +389,7 @@ PASS ../toast/mdn/function/url.html
 
 PASS ../toast/mdn/function/var.html
 2 naughty_lang
-8 css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_colour
+8 css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom css_custom
 
 PASS ../toast/mdn/function/xywh.html
 2 naughty_lang

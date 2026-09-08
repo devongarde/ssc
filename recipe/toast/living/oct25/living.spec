@@ -79,32 +79,32 @@ PASS ../toast/living/oct25/4.3.11-1.html
 
 PASS ../toast/living/oct25/4.3.11-4.html
 2 inefficient
-3 inserted_missing_parent inefficient inefficient
+3 inserted_missing_parent inefficient
 4 inserted_missing_parent inefficient
 18 inefficient
 20 use_quote_code
 
 PASS ../toast/living/oct25/4.3.11-5.html
 2 inefficient
-3 inserted_missing_parent inefficient inefficient
+3 inserted_missing_parent inefficient
 4 inserted_missing_parent inefficient
 
 PASS ../toast/living/oct25/4.3.11-6.html
 0 charset_mismatch charset_used charset_invalid
-3 inserted_missing_parent inefficient inefficient long_title use_quote_code
+3 inserted_missing_parent inefficient long_title use_quote_code
 4 inserted_missing_parent inefficient use_quote_code
 12 use_quote_code
 16 use_quote_code
 
 PASS ../toast/living/oct25/4.3.11-7.html
 2 inefficient
-3 inserted_missing_parent inefficient inefficient
+3 inserted_missing_parent inefficient
 4 inserted_missing_parent inefficient
 5 h1_h6
 
 PASS ../toast/living/oct25/4.3.11-8.html
 2 inefficient
-3 inserted_missing_parent inefficient inefficient long_title
+3 inserted_missing_parent inefficient long_title
 4 inserted_missing_parent inefficient h1_h6
 5 use_quote_code
 
@@ -404,7 +404,7 @@ PASS ../toast/living/oct25/5.3.3.html
 
 PASS ../toast/living/oct25/5.3.4.html
 2 inefficient
-3 inserted_missing_parent inefficient inefficient
+3 inserted_missing_parent inefficient
 4 inserted_missing_parent inefficient
 13 use_quote_code
 16 unrecognised_ontology unrecognised_ontology
@@ -456,22 +456,22 @@ PASS ../toast/living/oct25/7.2-2.html
 
 PASS ../toast/living/oct25/7.2-3.html
 3 inefficient
-4 inserted_missing_parent inefficient inefficient
+4 inserted_missing_parent inefficient
 5 inserted_missing_parent inefficient
 
 PASS ../toast/living/oct25/7.2-4.html
 3 inefficient
-4 inserted_missing_parent inefficient inefficient
+4 inserted_missing_parent inefficient
 5 inserted_missing_parent inefficient
 
 PASS ../toast/living/oct25/7.3-1.html
 3 inefficient
-4 inserted_missing_parent inefficient inefficient
+4 inserted_missing_parent inefficient
 6 inserted_missing_parent inefficient url_not_found
 
 PASS ../toast/living/oct25/7.3-2.html
 3 inefficient
-4 inserted_missing_parent inefficient inefficient
+4 inserted_missing_parent inefficient
 6 inserted_missing_parent inefficient url_not_found
 
 PASS ../toast/living/oct25/7.5-1.html
@@ -492,18 +492,18 @@ PASS ../toast/living/oct25/7.5-4.html
 
 PASS ../toast/living/oct25/8.1-1.html
 3 inefficient
-4 inserted_missing_parent inefficient inefficient
+4 inserted_missing_parent inefficient
 6 inserted_missing_parent inefficient
 
 PASS ../toast/living/oct25/8.1-2.html
 3 inefficient
-4 inserted_missing_parent inefficient inefficient
+4 inserted_missing_parent inefficient
 6 inserted_missing_parent inefficient url_not_found
 7 url_not_found
 
 PASS ../toast/living/oct25/8.1-3.html
 3 inefficient
-4 inserted_missing_parent inefficient inefficient
+4 inserted_missing_parent inefficient
 15 inserted_missing_parent inefficient url_not_found
 
 PASS ../toast/living/oct25/8.1-4.html
@@ -538,7 +538,7 @@ PASS ../toast/living/oct25/10-1.html
 
 PASS ../toast/living/oct25/10-2.html
 2 inefficient
-3 inserted_missing_parent inefficient inefficient
+3 inserted_missing_parent inefficient
 6 inserted_missing_parent inefficient
 11 inefficient
 12 inefficient
@@ -546,23 +546,23 @@ PASS ../toast/living/oct25/10-2.html
 
 PASS ../toast/living/oct25/10-3.html
 2 inefficient
-3 inserted_missing_parent inefficient inefficient
+3 inserted_missing_parent inefficient
 5 inserted_missing_parent inefficient
 
 PASS ../toast/living/oct25/10-4.html
 2 inefficient
-3 inserted_missing_parent inefficient inefficient
+3 inserted_missing_parent inefficient
 5 inserted_missing_parent inefficient
 
 PASS ../toast/living/oct25/10-5.html
 2 inefficient
-3 inserted_missing_parent inefficient inefficient
+3 inserted_missing_parent inefficient
 5 inserted_missing_parent inefficient
 15 url_not_found
 
 PASS ../toast/living/oct25/10-6.html
 2 inefficient
-3 inserted_missing_parent inefficient inefficient
+3 inserted_missing_parent inefficient
 4 long_title
 5 inserted_missing_parent inefficient
 
@@ -637,20 +637,20 @@ PASS ../toast/living/oct25/13.1-8.html
 1 naughty_lang
 
 PASS ../toast/living/oct25/13.1-9.html
-1 inserted_missing_parent inefficient naughty_lang inserted_missing_parent inefficient inefficient inserted_missing_parent inefficient
+1 inserted_missing_parent inefficient naughty_lang inserted_missing_parent inefficient inserted_missing_parent inefficient
 
 PASS ../toast/living/oct25/13.1-10.html
-2 inserted_missing_parent inefficient naughty_lang inserted_missing_parent inefficient inefficient
+2 inserted_missing_parent inefficient naughty_lang inserted_missing_parent inefficient
 3 inserted_missing_parent inefficient
 
 PASS ../toast/living/oct25/13.1-11.html
 2 naughty_lang
 
 PASS ../toast/living/oct25/13.1-12.html
-1 inserted_missing_parent inefficient naughty_lang inserted_missing_parent inefficient inefficient inserted_missing_parent inefficient inefficient
+1 inserted_missing_parent inefficient naughty_lang inserted_missing_parent inefficient inserted_missing_parent inefficient inefficient
 
 PASS ../toast/living/oct25/13.1-13.html
-1 inserted_missing_parent inefficient naughty_lang inserted_missing_parent inefficient inefficient inserted_missing_parent inefficient inefficient
+1 inserted_missing_parent inefficient naughty_lang inserted_missing_parent inefficient inserted_missing_parent inefficient inefficient
 
 PASS ../toast/living/oct25/13.1-14.html
 1 inefficient inserted_missing_parent inefficient inefficient unrecognised_value inefficient
@@ -658,14 +658,14 @@ PASS ../toast/living/oct25/13.1-14.html
 PASS ../toast/living/oct25/13.2-1.html
 19 slash_gt inserted_missing_closure
 21 mixed_mess inserted_missing_closure
-23 attribute_name_unexpected_character attribute_name_unexpected_character inserted_missing_closure
-25 enquote_value enquote_value enquote_value enquote_value attribute_unrecognised inserted_missing_closure unrecognised_attribute
+23 attribute_name_unexpected_character inserted_missing_closure
+25 enquote_value attribute_unrecognised inserted_missing_closure unrecognised_attribute
 27 attribute_unrecognised attribute_name_unexpected_character inserted_missing_closure unrecognised_attribute
 52 missing_open
 54 inserted_missing_closure missing_open
 56 inserted_missing_closure missing_close inserted_missing_closure inefficient inefficient inserted_missing_closure
 71 inserted_missing_closure inserted_missing_closure
-73 inserted_missing_closure chocolate_teapot inserted_missing_closure inserted_missing_closure wrong_parent wrong_parent chocolate_teapot
+73 inserted_missing_closure chocolate_teapot inserted_missing_closure inserted_missing_closure wrong_parent chocolate_teapot
 84 nuts
 
 PASS ../toast/living/oct25/13.2-2.html
@@ -784,7 +784,7 @@ PASS ../toast/living/oct25/article-1.html
 
 PASS ../toast/living/oct25/article-2.html
 2 inefficient
-3 inserted_missing_parent inefficient inefficient
+3 inserted_missing_parent inefficient
 4 no_such_folder url_not_found
 5 no_such_folder url_not_found
 6 inserted_missing_parent inefficient nuts
@@ -995,7 +995,7 @@ PASS ../toast/living/oct25/figure-1.html
 
 PASS ../toast/living/oct25/figure-2.html
 2 inefficient
-3 inserted_missing_parent inefficient inefficient long_title
+3 inserted_missing_parent inefficient long_title
 4 inserted_missing_parent inefficient
 7 newline_in_string newline_in_string url_not_found
 10 url_not_found url_not_found
@@ -1087,7 +1087,7 @@ PASS ../toast/living/oct25/iframe.html
 24 no_such_folder url_not_found
 25 inserted_missing_parent inefficient inefficient inefficient inefficient mixed_mess missing_open
 28 no_such_folder url_not_found
-30 newline_in_string newline_in_string inserted_missing_parent inefficient inefficient inefficient inefficient use_quote_code inefficient
+30 newline_in_string newline_in_string inserted_missing_parent inefficient inefficient inefficient inefficient use_quote_code
 33 use_quote_code
 37 overallowed
 39 url_not_found
@@ -1316,7 +1316,7 @@ PASS ../toast/living/oct25/link.html
 35 url_not_found
 
 PASS ../toast/living/oct25/main-1.html
-3 inserted_missing_parent inefficient inefficient
+3 inserted_missing_parent inefficient
 14 inserted_missing_parent inefficient
 18 attempted_escape no_such_folder url_not_found
 19 attempted_escape no_such_folder url_not_found
@@ -1326,7 +1326,7 @@ PASS ../toast/living/oct25/main-1.html
 
 PASS ../toast/living/oct25/main-2.html
 2 inefficient
-3 inserted_missing_parent inefficient inefficient
+3 inserted_missing_parent inefficient
 5 url_not_found
 6 url_not_found
 7 inserted_missing_parent inefficient
@@ -1337,7 +1337,7 @@ PASS ../toast/living/oct25/main-2.html
 
 PASS ../toast/living/oct25/map.html
 2 inefficient
-3 inserted_missing_parent inefficient inefficient
+3 inserted_missing_parent inefficient
 4 inserted_missing_parent inefficient
 8 no_such_folder url_not_found
 14 no_such_folder url_not_found
@@ -1430,7 +1430,7 @@ PASS ../toast/living/oct25/nav-3.html
 45 url_not_found
 
 PASS ../toast/living/oct25/noreferrer.html
-11 inserted_missing_closure url_not_found rel_requires_href chocolate_teapot inserted_missing_closure url_not_found wrong_parent wrong_parent rel_requires_href chocolate_teapot
+11 inserted_missing_closure url_not_found rel_requires_href chocolate_teapot inserted_missing_closure url_not_found wrong_parent rel_requires_href chocolate_teapot
 
 PASS ../toast/living/oct25/noopener.html
 11 tabnab
@@ -1786,7 +1786,7 @@ PASS ../toast/living/oct25/template-1.html
 
 PASS ../toast/living/oct25/template-2.html
 2 inefficient
-3 inserted_missing_parent inefficient inefficient
+3 inserted_missing_parent inefficient
 11 inserted_missing_parent inefficient
 12 inefficient
 13 inserted_missing_closure

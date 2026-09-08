@@ -19,10 +19,10 @@ PASS ../toast/json-ld/as/ex-103.jld
 0 unrecognised_ontology
 
 PASS ../toast/json-ld/as/ex-144.jld
-0 unrecognised_ontology unrecognised_ontology
+0 unrecognised_ontology
 
 PASS ../toast/json-ld/as/ex-145.jld
-0 unrecognised_ontology unrecognised_ontology
+0 unrecognised_ontology
 
 PASS ../toast/json-ld/as/index.html
 2 naughty_lang

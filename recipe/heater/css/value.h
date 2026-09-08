@@ -25,7 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 typedef ::std::pair < int, int > t_param;
 typedef ::std::vector < t_param > t_params;
 
-void add_param (const arguments& args, t_params& params, int& from, const int i);
+::std::string rpt_params (const t_params& params);
+int add_param (const arguments& args, t_params& params, const int from, const int i);
 int check_typed_identifier (arguments& args, nitpick& nits, const int start, const int to, const e_type t);
 int check_typed_feature (arguments& args, nitpick& nits, const int start, const int to, const e_css_statement cs, const char* const sz);
 bool maybe_anchor (nitpick& nits, const e_css_property id);

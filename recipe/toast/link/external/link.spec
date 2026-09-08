@@ -4,7 +4,7 @@ PASS ../toast/link/external/index.html
 2 naughty_lang
 12 example
 15 example 404
-16 404
+16 403
 20 example
 21 example
 22 report

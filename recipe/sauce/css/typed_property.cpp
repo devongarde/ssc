@@ -149,6 +149,32 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                         nits.pick (nit_css_value, es_error, ec_css, quote (cvf.name ()), " requires CSS Generated Content or CSS Values and Units 5");
                     else e = cvf.get ();
                     break;
+                case cvf_calc_interpolate :
+                case cvf_calc_mix :
+                case cvf_cross_origin :
+                case cvf_cycle :
+                case cvf_ident :
+                case cvf_if :
+                case cvf_inherit :
+                case cvf_integrity :
+                case cvf_interpolate :
+                case cvf_interpolate_size :
+                case cvf_media :
+                case cvf_palette_mix :
+                case cvf_progress :
+                case cvf_random :
+                case cvf_random_item :
+                case cvf_referrer_policy :
+                case cvf_sibling_count :
+                case cvf_sibling_index :
+                case cvf_style :
+                case cvf_supports :
+                case cvf_transform_interpolate :
+                case cvf_transform_mix :
+                    if (context.css_module (c_value_unit) < 5)
+                        nits.pick (nit_css_version, es_error, ec_css, quote (cvf.name ()), " requires CSS Values and Units 5");
+                    else e = cvf.get ();
+                    break;
                 case cvf_colour :
                 case cvf_hwb :
                 case cvf_lab :
@@ -191,11 +217,6 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                 case cvf_url :
                     e = cvf.get ();
                     break;
-                case cvf_url_pattern :
-                    if (context.css_module (c_route) < 3)
-                        nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Route 3");
-                    else e = cvf.get ();
-                    break;
                 case cvf_superellipse :
                     if (context.css_module (c_border_box) < 4)
                         nits.pick (nit_css_version, es_error, ec_css, quote (cvf.name ()), " requires CSS Borders and Box Decorations 4");
@@ -204,6 +225,11 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                 case cvf_tech :
                     if (context.css_module (c_font) < 4)
                         nits.pick (nit_css_font, es_error, ec_css, quote (cvf.name ()), " requires CSS Font 4");
+                    else e = cvf.get ();
+                    break;
+                case cvf_url_pattern :
+                    if (context.css_module (c_route) < 3)
+                        nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Route 3");
                     else e = cvf.get ();
                     break;
                 case cvf_var :

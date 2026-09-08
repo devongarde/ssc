@@ -80,12 +80,14 @@ inline ::std::string uq0 (const ::std::string& str, const ::std::string& qs = ::
 #define UQ_UNIFY    0x00040000
 #define UQ_BLANK    0x00080000
 
-#define UQ_1        0x00100000
-#define UQ_2        0x00200000
-#define UQ_3        0x00300000
-#define UQ_4        0x00400000
-#define UQ_COUNT    0x00F00000
-#define UQ_DECOUNT  20
+#define UQ_BLAH     0x00100000
+
+#define UQ_1        0x01000000
+#define UQ_2        0x02000000
+#define UQ_3        0x03000000
+#define UQ_4        0x04000000
+#define UQ_COUNT    0x0F000000
+#define UQ_DECOUNT  24
 #define UQ_MAX(NNN) ((NNN) << UQ_DECOUNT)
 
 #define BS_NUMERIC  ( UQ_8 | UQ_10 | UQ_16 | UQ_36 )

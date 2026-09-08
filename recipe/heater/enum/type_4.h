@@ -164,6 +164,9 @@ template < > struct type_master < t_bihv > : four_value < t_bihv, e_bihv, sz_blo
 template < > struct type_master < t_bixy > : four_value < t_bixy, e_bixy, sz_block, sz_inline, sz_x, sz_y >
 { using four_value < t_bixy, e_bixy, sz_block, sz_inline, sz_x, sz_y > :: four_value; };
 
+template < > struct type_master < t_blrt > : four_value < t_blrt, e_captionalign, sz_bottom, sz_left, sz_right, sz_top >
+{ using four_value < t_blrt, e_captionalign, sz_bottom, sz_left, sz_right, sz_top > :: four_value; };
+
 template < > struct type_master < t_btyy > : four_value < t_btyy, e_btyy, sz_bottom, sz_top, sz_y_end, sz_y_start >
 { using four_value < t_btyy, e_btyy, sz_bottom, sz_top, sz_y_end, sz_y_start > :: four_value; };
 
@@ -172,9 +175,6 @@ template < > struct type_master < t_buffered_rendering > : four_value < t_buffer
 
 template < > struct type_master < t_calcmode > : four_value < t_calcmode, e_calcmode, sz_discrete, sz_linear, sz_paced, sz_spline >
 { using four_value < t_calcmode, e_calcmode, sz_discrete, sz_linear, sz_paced, sz_spline > :: four_value; };
-
-template < > struct type_master < t_captionalign > : four_value < t_captionalign, e_captionalign, sz_bottom, sz_left, sz_right, sz_top >
-{ using four_value < t_captionalign, e_captionalign, sz_bottom, sz_left, sz_right, sz_top > :: four_value; };
 
 template < > struct type_master < t_cc_requires > : four_value < t_cc_requires, e_cc_requires, sz_cc_attribution, sz_cc_notice, sz_cc_sharealike, sz_cc_sourcecode >
 { using four_value < t_cc_requires, e_cc_requires, sz_cc_attribution, sz_cc_notice, sz_cc_sharealike, sz_cc_sourcecode > :: four_value; };
@@ -260,6 +260,9 @@ template < > struct type_master < t_css_initial_letter_align > : four_value < t_
 template < > struct type_master < t_css_initial_letter_wrap_e > : four_value < t_css_initial_letter_wrap_e, e_css_initial_letter_wrap_e, sz_all, sz_first, sz_grid, sz_none >
 { using four_value < t_css_initial_letter_wrap_e, e_css_initial_letter_wrap_e, sz_all, sz_first, sz_grid, sz_none > :: four_value; };
 
+template < > struct type_master < t_css_line_width_e > : four_value < t_css_line_width_e, e_css_line_width_e, sz_hairline, sz_medium, sz_thick, sz_thin >
+{ using four_value < t_css_line_width_e, e_css_line_width_e, sz_hairline, sz_medium, sz_thick, sz_thin > :: four_value; };
+
 template < > struct type_master < t_css_margin_trim_inner > : four_value < t_css_margin_trim_inner, e_css_margin_trim_inner, sz_block_end, sz_block_start, sz_inline_end, sz_inline_start >
 { using four_value < t_css_margin_trim_inner, e_css_margin_trim_inner, sz_block_end, sz_block_start, sz_inline_end, sz_inline_start > :: four_value; };
 
@@ -295,10 +298,6 @@ template < > struct type_master < t_css_synthesis > : four_value < t_css_synthes
 
 template < > struct type_master < t_css_textemph_skip > : four_value < t_css_textemph_skip, e_css_textemph_skip, sz_narrow, sz_punctuation, sz_spaces, sz_symbols >
 { using four_value < t_css_textemph_skip, e_css_textemph_skip, sz_narrow, sz_punctuation, sz_spaces, sz_symbols > :: four_value; };
-
-//template < > struct type_master < t_css_text_wrap_style > : four_value < t_css_text_wrap_style, e_css_text_wrap_style, sz_auto, sz_balance, sz_pretty, sz_stable >
-//{ using four_value < t_css_text_wrap_style, e_css_text_wrap_style, sz_auto, sz_balance, sz_pretty, sz_stable > :: four_value; };
-// typedef enum { ctws_auto, ctws_avoid_orphans, ctws_balance, ctws_pretty, ctws_stable } e_css_text_wrap_style;
 
 template < > struct type_master < t_css_val_con > : four_value < t_css_val_con, e_css_val_con, sz_e, sz_infinity, sz_nan, sz_pi >
 { using four_value < t_css_val_con, e_css_val_con, sz_e, sz_infinity, sz_nan, sz_pi > :: four_value; };

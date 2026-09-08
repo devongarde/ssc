@@ -42,7 +42,7 @@ PASS ../toast/microdata/microformats/hnews.html
 
 PASS ../toast/microdata/microformats/hproduct.html
 8 deprecated_ontology
-16 bad_property bad_property bad_property
+16 bad_property
 
 PASS ../toast/microdata/microformats/hrecipe.html
 7 deprecated_ontology

@@ -124,6 +124,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
     if (t <= SSC_TYPES_CSS_B_2_MAX) return test_typed_value < SSC_TYPES_CSS_B_2, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_CSS_B_3_MAX) return test_typed_value < SSC_TYPES_CSS_B_3, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_CSS_B_4_MAX) return test_typed_value < SSC_TYPES_CSS_B_4, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_B_5_MAX) return test_typed_value < SSC_TYPES_CSS_B_5, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_CSS_C_1_MAX) return test_typed_value < SSC_TYPES_CSS_C_1, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_CSS_C_2_MAX) return test_typed_value < SSC_TYPES_CSS_C_2, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_CSS_C_3_MAX) return test_typed_value < SSC_TYPES_CSS_C_3, t_unknown > :: test (nits, v, t, s);

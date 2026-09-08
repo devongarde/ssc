@@ -168,7 +168,6 @@ typedef typed_attribute < t_border, a_border > attr_border;
 typedef typed_attribute < t_unsigned, a_bottommargin > attr_bottommargin;
 typedef typed_attribute < t_existential, a_box > attr_box;
 typedef typed_attribute < t_existential, a_browsingtopics > attr_browsingtopics;
-// a_browsingtopics
 typedef typed_attribute < t_existential, a_bubbles > attr_bubbles;
 typedef typed_attribute < t_text, a_buffered > attr_buffered;
 typedef typed_attribute < t_buffered_rendering, a_buffered_rendering > attr_buffered_rendering;
@@ -541,7 +540,6 @@ typedef typed_attribute < t_bool, a_movablelimits > attr_movablelimits;
 typedef typed_attribute < t_mah, a_mozactionhint > attr_mozactionhint;
 typedef typed_attribute < t_existential, a_mozbrowser > attr_mozbrowser;
 typedef typed_attribute < t_existential, a_moz_opaque > attr_moz_opaque;
-// a_moz_opaque
 typedef typed_attribute < t_text, a_mrss_algo > attr_mrss_algo;
 typedef typed_attribute < t_real, a_mrss_average > attr_mrss_average;
 typedef typed_attribute < t_unsigned, a_mrss_bitrate > attr_mrss_bitrate;
@@ -856,7 +854,7 @@ typedef typed_attribute < t_url_9309, a_rsl_url > attr_rsl_url;
 typedef typed_attribute < t_generic, a_rss_domain > attr_rss_domain;
 typedef typed_attribute < t_bool, a_rss_ispermalink > attr_rss_ispermalink;
 typedef typed_attribute < t_unsigned, a_rss_length > attr_rss_length;
-typedef typed_attribute < t_text, a_rss_path > attr_rss_path; // for procedure to dislike, not SSC
+typedef typed_attribute < t_text, a_rss_path > attr_rss_path;
 typedef typed_attribute < t_port, a_rss_port > attr_rss_port;
 typedef typed_attribute < t_rss_protocol, a_rss_protocol > attr_rss_protocol;
 typedef typed_attribute < t_text, a_rss_registerprocedure > attr_rss_registerprocedure;

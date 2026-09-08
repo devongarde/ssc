@@ -1,16 +1,2 @@
-../toast/css/3-cssom/css.spec
-../toast/css/3-img-anim/css.spec
-../toast/css/3-linkparam/css.spec
-../toast/css/3-overflow/css.spec
-../toast/css/4-overflow/css.spec
-../toast/css/5-overflow/css.spec
-../toast/css/4-snap/css.spec
-../toast/css/4-textdec/css.spec
-../toast/css/4-view/css.spec
-../toast/mdn/at/mdn.spec
+../toast/css/5-value/css.spec
 ../toast/mdn/function/mdn.spec
-../toast/mdn/overflow/mdn.spec
-../toast/mdn/text/mdn.spec
-../toast/mdn/view-property/mdn.spec
-../toast/other/lists/lists.spec
-../toast/output/stylesheet/output.spec

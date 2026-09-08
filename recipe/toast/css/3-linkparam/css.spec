@@ -11,7 +11,6 @@ PASS ../toast/css/3-linkparam/css-1.html
 
 PASS ../toast/css/3-linkparam/css-3.html
 2 naughty_lang
-10 unrecognised_value
 11 path_spec
 
 PASS ../toast/css/3-linkparam/index.html

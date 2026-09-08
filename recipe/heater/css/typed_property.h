@@ -117,9 +117,10 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
                                 test_value < TYPE > (nits, args.v_, s); } }
                         else if (e != cvf_none)
                         {   args.use (cic_fn_name, s);
-                            if (ok && ((! params) || listed < cvf_url, cvf_colour, cvf_hsl, cvf_hsla, cvf_hwb, cvf_lab, cvf_lch, cvf_oklab, cvf_oklch, cvf_rgb, cvf_rgba > :: yes (e))) return true;
+                            if (ok && ((! params) || listed < cvf_url, cvf_colour, cvf_hsl, cvf_hsla, cvf_hwb, cvf_lab, cvf_lch, cvf_oklab, cvf_oklch, cvf_rgb, cvf_rgba > :: yes (e)))
+                                return true;
                             nits.merge (nuts);
-                            start = i = test_value_fns (args, fns, i, nits, TYPE, e, IDENTITY); }
+                            start = i = test_value_fns (args, fns, i, nits, TYPE, e, IDENTITY);  }
                         if ((bro > start) && (bro < i-1))
                             check_fn (args, bro, i-1, nits, ok);
                         maybefn = false;

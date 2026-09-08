@@ -41,7 +41,7 @@ PASS ../toast/mdn/font/font-smooth.html
 
 PASS ../toast/mdn/font/font-stretch.html
 2 naughty_lang
-5 deprecated deprecated deprecated deprecated deprecated deprecated deprecated deprecated deprecated deprecated deprecated deprecated fontname deprecated deprecated deprecated
+5 fontname
 
 PASS ../toast/mdn/font/font-style.html
 2 naughty_lang
@@ -113,4 +113,4 @@ PASS ../toast/mdn/font/font-weight.html
 
 PASS ../toast/mdn/font/font-width.html
 2 naughty_lang
-5 fontname deprecated
+5 fontname

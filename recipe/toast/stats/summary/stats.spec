@@ -35,7 +35,7 @@ Definition:
 
 Nits Reported:
     Errors: once
-    Warnings: 6 times
+    Warnings: sixfold
 
 File Info:
     3783 bytes read in 5 files, with an average of roughly 757 bytes per file
@@ -68,7 +68,7 @@ Ontology:
       name: twice
       url: twice
     http://schema.org/Person: twice
-  3 itemtypes used 7 times
+  3 itemtypes used sevenfold
 
 Reference:
     HTML 5.0: twice

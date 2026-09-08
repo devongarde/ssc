@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<HTML>
+ <HEAD>
+ <LINK REL=STYLESHEET TYPE="text/css" HREF="c29.css">
+ <TITLE>CSS web content access guidelines chapter C29 example</TITLE>
+  <link href="main.css" rel="stylesheet" type="text/css" />
+  <link id="currentCSS" href="defaultColors.css" rel="stylesheet" type="text/css" />
+</HEAD>
+
+ <BODY>
+
+<div id="colorswitch">
+<p>Change colors:</p>
+  <ul class="inline">
+    <li><a href="#" onClick="javascript:changeColors('altColors1.css');return false;" 
+      id="altColors1">dark blue on white</a></li>
+    <li><a href="#" onClick="javascript:changeColors('altColors2.css');return false;" 
+      id="altColors2">yellow on black</a></li>
+    <li><a href="#" onClick="javascript:changeColors('altColors3.css');return false;" 
+      id="altColors3">black on pale yellow</a></li>
+    <li><a href="#" onClick="javascript:changeColors('altColors4.css');return false;" 
+      id="altColors4">black on white</a></li>
+    <li><a href="#" onClick="javascript:changeColors('defaultColors.css');return false;" 
+      id="default">Reset to default</a></li>
+  </ul>
+</div>
+<div id="mainbody">
+  <h1>Conference report</h1>
+  <p>Last week's conference presented an impressive line-up of speakers...</p>
+</div>
+
+<h1>Product comparison</h1>
+<p>The products you selected to compare are listed below. 
+Any differences between the products are highlighted and italicized.</p>
+<p class="inlinePara">Change hightlight color: </p>
+<ul class="inline">
+  <li><a href="#" onClick="changeColor('hghltLightYellow');return false;" 
+    class="hghltLightYellow">light yellow</a></li>
+  <li><a href="#" onClick="changeColor('hghltBrightYellow');return false;" 
+    class="hghltBrightYellow">bright yellow</a></li>
+  <li><a href="#" onClick="changeColor('hghltLightBlue');return false;" 
+    class="hghltLightBlue">light blue</a></li>
+  <li><a href="#" onClick="changeColor('hghltBrightBlue');return false;" 
+    class="hghltBrightBlue">bright blue</a></li>
+  <li><a href="#" onClick="changeColor('hghltLightRed');return false;" 
+    class="hghltLightRed">light red</a></li>
+  <li><a href="#" onClick="changeColor('hghltDrkRed');return false;" 
+    class="hghltDrkRed">dark red</a></li>
+</ul>
+<table width="400" border="1">
+  <tr>
+    <td> </td>
+    <th scope="col">Product 1</th>
+    <th scope="col">Product 2</th>
+  </tr>
+  <tr>
+    <th scope="row">Aspect 1</th>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <th scope="row">Aspect 2</th>
+    <td class="hghltLightYellow">Yes</td>
+    <td class="hghltLightYellow">No</td>
+  </tr>
+  <tr>
+    <th scope="row">Aspect 3</th>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+</table>
+
+</BODY>
+
+</HTML>

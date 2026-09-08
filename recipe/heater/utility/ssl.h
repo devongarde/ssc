@@ -218,10 +218,6 @@ public:
         return ss_ -> nits (); } };
 
 typedef signature_file < evp_key, evf_key, EVP_sha256, EVP_MD_CTX, EVP_MD_CTX_free > svf_sha256;
-//typedef signature_file < evp_key, evf_key, EVP_sha384, EVP_MD_CTX, EVP_MD_CTX_free > svf_sha384;
-//typedef signature_file < evp_key, evf_key, EVP_sha512, EVP_MD_CTX, EVP_MD_CTX_free > svf_sha512;
 typedef ::std::shared_ptr < svf_sha256 > svf_sha256_ptr;
-//typedef ::std::shared_ptr < svf_sha384 > svf_sha384_ptr;
-//typedef ::std::shared_ptr < svf_sha512 > svf_sha512_ptr;
 
 #endif // SIGNING

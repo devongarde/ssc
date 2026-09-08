@@ -805,10 +805,8 @@ PASS ../toast/living/jan20/links-noopener.html
 14 tabnab
 
 PASS ../toast/living/jan20/links-noreferrer.html
-10 missing_close url_not_found rel_requires_href chocolate_teapot
-10 missing_close url_not_found wrong_parent wrong_parent rel_requires_href chocolate_teapot
-10 wrong_parent wrong_parent interactive
-12 inserted_missing_closure inserted_missing_closure
+10  missing_close url_not_found rel_requires_href chocolate_teapot missing_close url_not_found wrong_parent rel_requires_href chocolate_teapot wrong_parent interactive
+12 inserted_missing_closure
 
 PASS ../toast/living/jan20/links-tag2.html
 19 unrecognised_value

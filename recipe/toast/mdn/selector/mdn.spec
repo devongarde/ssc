@@ -9,9 +9,9 @@ PASS ../toast/mdn/selector/attribute.html
 2 naughty_lang
 129 url_id_unfound
 131 url_id_unfound
-148 naughty_grave naughty_grave
-151 naughty_grave naughty_grave
-156 naughty_grave naughty_grave
+148 naughty_grave
+151 naughty_grave
+156 naughty_grave
 
 PASS ../toast/mdn/selector/class.html
 2 naughty_lang

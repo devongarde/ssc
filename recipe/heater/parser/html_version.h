@@ -23,8 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "ontology/ontology_version.h"
 
-#define LATEST_HTML_STR "Apr 2026"
-#define LATEST_CSS_STR  "2025"
+#define LATEST_HTML_STR "Jul 2026"
+#define LATEST_CSS_STR  "2026"
 
 #define HV_LEVEL1       0x0000000000000001
 #define HV_LEVEL2       0x0000000000000002
@@ -354,7 +354,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_SELECTOR   ( H2_CSS_SELECTOR_34 | H2_CSS_SELECTOR_5 ) 
 #define H2_CSS_SELECTOR_MASK H2_CSS_SELECTOR  
 
-#define H2_CSS_SVG_ABANDONED 0x0000000800000000 // plus code
+#define H2_CSS_SVG_ABANDONED 0x0000000800000000
 
 #define H2_CSS_SVG_10       0x0000001000000000
 #define H2_CSS_SVG_11       0x0000002000000000
@@ -487,10 +487,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_2025_1     ( H2_CSS_MEDIA_4 | H2_CSS_CASCADE_5 | H2_CSS_COND_RULE_4 )
 #define H2_CSS_2025_2     ( H2_CSS_FRAG_3 )
 #define H2_CSS_2025_3     ( H2_CSS_ANIM_3 | H2_CSS_CASCADE_5 | H2_CSS_FONT_4 | H2_CSS_SELECTOR_4 )
-#define H2_CSS_2026       ( H2_CSS_2025 )
-#define H2_CSS_2026_1     ( H2_CSS_MEDIA_4 | H2_CSS_CASCADE_5 | H2_CSS_COND_RULE_4 )
+#define H2_CSS_2026       ( H2_CSS_ANIM_3 | H2_CSS_2025 | H2_CSS_COND_RULE_4 )
+#define H2_CSS_2026_1     ( H2_CSS_MEDIA_4 | H2_CSS_CASCADE_5 )
 #define H2_CSS_2026_2     ( H2_CSS_FRAG_3 )
-#define H2_CSS_2026_3     ( H2_CSS_ANIM_3 | H2_CSS_CASCADE_5 | H2_CSS_FONT_4 | H2_CSS_SELECTOR_4 )
+#define H2_CSS_2026_3     ( H2_CSS_CASCADE_5 | H2_CSS_FONT_4 | H2_CSS_SELECTOR_4 )
 
 #define H2_CSS_LS_2024   ( H2_CSS_2024 | H2_CSS_2024_1 | H2_CSS_2024_2 | H2_CSS_2024_3 | H2_CSS_MEDIA | H2_CSS_UI )
 #define H2_CSS_LS_2025   ( H2_CSS_2025 | H2_CSS_2025_1 | H2_CSS_2025_2 | H2_CSS_2025_3 | H2_CSS_MEDIA | H2_CSS_UI )
@@ -822,10 +822,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H4_CSS_2025_1     ( 0 )
 #define H4_CSS_2025_2     ( 0 )
 #define H4_CSS_2025_3     ( H4_CSS_TRANSITION_3 )
-#define H4_CSS_2026       ( H4_CSS_2025 | H4_CSS_SAFE_2026 )
+#define H4_CSS_2026       ( H4_CSS_TRANSITION_3 | H4_CSS_2025 | H4_CSS_SAFE_2026 )
 #define H4_CSS_2026_1     ( 0 )
 #define H4_CSS_2026_2     ( 0 )
-#define H4_CSS_2026_3     ( H4_CSS_TRANSITION_3 )
+#define H4_CSS_2026_3     ( 0 )
 
 #define H4_CSS_LS_2024    ( H4_CSS_2024 | H4_CSS_2024_1 | H4_CSS_2024_2 | H4_CSS_2024_3 | H4_CSS_FCS | H4_CSS_LIVING_STANDARD | H4_CSS_MATH_CORE )
 #define H4_CSS_LS_2025    ( H4_CSS_2025 | H4_CSS_2025_1 | H4_CSS_2025_2 | H4_CSS_2025_3 | H4_CSS_FCS | H4_CSS_LIVING_STANDARD | H4_CSS_MATH_CORE )

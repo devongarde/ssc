@@ -31,7 +31,7 @@ void descriptors::parse (arguments& args, const e_css_statement cs, const int fr
     PRESUME ((to < len) || (to < 0), __FILE__, __LINE__);
     int b = -1; int prev = -1;
     for (int i = from; i > 0; i = next_token_at (args.t_, i, to))
-    {   if (args.t_.at (i).t_ == ct_semicolon)
+    {   if ((args.t_.at (i).t_ == ct_semicolon) || (args.t_.at (i).t_ == ct_vu5_semicolon))
         {   if (b != i) dsc_.emplace_back (args, cs, b, prev);
             b = -1; }
         else if (b == -1) b = i;

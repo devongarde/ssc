@@ -49,6 +49,7 @@ e_status set_ratio_value (const e_status es, nitpick& nits, const html_version& 
 e_status set_roman_dsc_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s, element* box);
 e_status set_sandboxen_value (const e_status es, nitpick& nits, const html_version& v, const vstr_t& args, element* box);
 e_status set_shape3_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
+e_status set_xywh_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
 
 template < > struct type_master < t_1_more_i > : type_or_string < t_1_more_i, t_1_more, sz_inherit >
 { using type_or_string < t_1_more_i, t_1_more, sz_inherit > :: type_or_string; };
@@ -296,7 +297,7 @@ template < > struct type_master < t_roles > : string_vector < t_roles, sz_space_
 
 template < > struct type_master < t_roman_dsc > : tidy_string < t_roman_dsc >
 {   using tidy_string < t_roman_dsc > :: tidy_string;
-    void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_roman_dsc > :: set_value (nits, v, s);
         tidy_string < t_roman_dsc > :: status (set_roman_dsc_value (tidy_string < t_roman_dsc > :: status (), nits, v, tidy_string < t_roman_dsc > :: get_string (), box ())); } };
 
@@ -404,3 +405,10 @@ template < > struct type_master < t_css_place_self > : tidy_string < t_css_place
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_place_self > :: set_value (nits, v, s);
         tidy_string < t_css_place_self > :: status (set_css_place_self (tidy_string < t_css_place_self > :: status (), nits, v, tidy_string < t_css_place_self > :: get_string ())); } };
+
+template < > struct type_master < t_xywh > : tidy_string < t_xywh >
+{   using tidy_string < t_xywh > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_none; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_xywh > :: set_value (nits, v, s);
+        tidy_string < t_xywh > :: status (set_xywh_value (tidy_string < t_xywh > :: status (), nits, v, tidy_string < t_xywh > :: get_string ())); } };

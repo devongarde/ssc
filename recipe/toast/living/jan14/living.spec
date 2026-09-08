@@ -228,8 +228,8 @@ PASS ../toast/living/jan14/example-2.html
 36 mime
 50 use_quote_code
 64 use_quote_code
-68 bad_property bad_property bad_property bad_property bad_property bad_property
-78 bad_property bad_property bad_property bad_property bad_property bad_property
+68 bad_property bad_property
+78 bad_property bad_property
 109 unrecognised_value
 124 use_quote_code
 134 use_quote_code
@@ -299,7 +299,7 @@ PASS ../toast/living/jan14/example.html
 179 only_elements
 183 unrecognised_value
 185 unrecognised_value
-198 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave
+198 use_quote_code naughty_grave
 200 use_double_quote_code
 202 use_double_quote_code
 

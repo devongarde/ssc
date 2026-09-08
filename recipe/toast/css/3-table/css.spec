@@ -31,8 +31,8 @@ PASS ../toast/css/3-table/css-10.css
 107 property
 109 css_attribute
 111 css_syntax
-112 css_attribute css_attribute
-113 property property
+112 css_attribute
+113 property
 117 dialect css_attribute
 118 property
 120 dialect
@@ -48,21 +48,12 @@ PASS ../toast/css/3-table/css-10.css
 128 css_attribute
 129 property
 143 unrecognised_value pseud
-143 unrecognised_value pseud
-146 unrecognised_value pseud
 146 unrecognised_value pseud
 149 unrecognised_value pseud
-149 unrecognised_value pseud
-152 unrecognised_value pseud
 152 unrecognised_value pseud
 156 unrecognised_value pseud
-156 unrecognised_value pseud
-160 unrecognised_value pseud
 160 unrecognised_value pseud
 164 unrecognised_value pseud
-164 unrecognised_value pseud
-165 unrecognised_value pseud
-165 unrecognised_value pseud
 165 unrecognised_value pseud
 
 PASS ../toast/css/3-table/css-2.html

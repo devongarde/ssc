@@ -1,0 +1,6 @@
+﻿H1 {     
+  voice-family: paul;     
+  stress: 20;     
+  richness: 90;     
+  cue-before: url("ping.au")     
+}

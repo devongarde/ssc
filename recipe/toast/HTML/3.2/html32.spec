@@ -8,17 +8,17 @@ PASS ../toast/HTML/3.2/html32.html
 32 missing_close
 33 missing_close
 34 missing_close
-35 inserted_missing_closure inserted_missing_closure inserted_missing_closure
+35 inserted_missing_closure
 38 missing_close
 39 missing_close
-40 inserted_missing_closure inserted_missing_closure
+40 inserted_missing_closure
 43 inserted_missing_closure missing_close
 44 inserted_missing_closure missing_close
-45 inserted_missing_closure inserted_missing_closure
+45 inserted_missing_closure
 47 deprecated_element
 57 missing_close missing_close missing_close wrong_parent
 58 missing_close
-59 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure
+59 inserted_missing_closure inserted_missing_closure
 67 inserted_missing_closure
 68 inserted_missing_closure
 69 inserted_missing_closure missing_close

@@ -23,11 +23,11 @@ PASS ../toast/mdn/at/document.html
 
 PASS ../toast/mdn/at/font-face.html
 2 naughty_lang
-5 fontname fontname fontname fontname fontname
+5 fontname fontname naughty_page fontname fontname fontname
 
 PASS ../toast/mdn/at/font-feature-values.html
 2 naughty_lang
-5 unrecognised_value
+5 unrecognised_value css_syntax css_element css_syntax css_element
 
 PASS ../toast/mdn/at/font-palette-values.html
 2 naughty_lang
@@ -83,7 +83,7 @@ PASS ../toast/mdn/at/starting-style.html
 
 PASS ../toast/mdn/at/supports.html
 2 naughty_lang
-5 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value css_syntax unrecognised_value unrecognised_value css_syntax fontname fontname fontname fontname fontname fontname fontname fontname fontname fontname fontname fontname
+5 unrecognised_value unrecognised_value unrecognised_value css_syntax unrecognised_value css_syntax fontname fontname fontname fontname fontname fontname fontname fontname fontname fontname fontname fontname
 
 PASS ../toast/mdn/at/view-transition.html
 2 naughty_lang

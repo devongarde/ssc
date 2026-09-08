@@ -56,9 +56,10 @@ void decoration::parse (arguments& args, const int from, const int to, const boo
             else sparkle_ = css_fn (args, b, to, true, knotted);
             break;
         case ct_colon :
+        case ct_vu5_colon :
             b = next_non_whitespace (args.t_, b, to);
             if (b < 0)
-                if (args.v_.css_module (c_selector) < 3) nits.pick (nit_selector, ed_css_20, "5 Selectors", es_error, ec_css, "missing  pseudo element");
+                if (args.v_.css_module (c_selector) < 3) nits.pick (nit_selector, ed_css_20, "5 Selectors", es_error, ec_css, "missing pseudo element");
                 else nits.pick (nit_selector, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "missing pseudo class");
             else if ((args.t_.at (b).t_ != ct_keyword) && (args.t_.at (b).t_ != ct_identifier) && (args.t_.at (b).t_ != ct_colon))
                 if (args.v_.css_module (c_selector) < 3) nits.pick (nit_selector, ed_css_20, "5 Selectors", es_error, ec_css, "invalid pseudo element");

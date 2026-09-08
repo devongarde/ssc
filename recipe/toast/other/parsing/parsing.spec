@@ -10,8 +10,8 @@ PASS ../toast/other/parsing/doctype-missing.html
 PASS ../toast/other/parsing/elementerror.html
 2 missing_close naughty_lang
 11 unrecognised_value
-13 mixed_mess mixed_mess
-14 double_gin_and_tonic double_gin_and_tonic unrecognised_value
+13 mixed_mess
+14 double_gin_and_tonic unrecognised_value
 20 eof_in_element
 
 PASS ../toast/other/parsing/errata28.html
@@ -30,7 +30,7 @@ PASS ../toast/other/parsing/index.html
 PASS ../toast/other/parsing/parsing-bad.html
 2 missing_close naughty_lang
 9 unrecognised_value double_gin_and_tonic
-11 attribute_repeated attribute_repeated unrecognised_value unrecognised_value unrecognised_value
+11 attribute_repeated unrecognised_value unrecognised_value unrecognised_value
 13 bizarre_character_code invalid_character_code denary_too_long mixed_mess
 16 naked_grave missing_close
 26 inserted_missing_closure
@@ -56,8 +56,8 @@ PASS ../toast/other/parsing/scripts.html
 PASS ../toast/other/parsing/stringerror.html
 2 missing_close naughty_lang
 9 missing_close
-13 mixed_mess mixed_mess
-14 double_gin_and_tonic double_gin_and_tonic unrecognised_value
+13 mixed_mess
+14 double_gin_and_tonic unrecognised_value
 26 newline_in_string eof_in_element
 
 PASS ../toast/other/parsing/ssi.html

@@ -15,7 +15,7 @@ PASS ../toast/css/2.0/aargh.css
 11 css_colour
 13 naughty_page
 14 unrecognised_value naughty_page
-18 css_version css_version
+18 css_version
 
 PASS ../toast/css/2.0/css-2-1.html
 0 charset_mismatch charset_used
@@ -460,7 +460,7 @@ PASS ../toast/css/2.0/css-17-5-1.html
 31 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 33 invalid_element_version missing_close unknown_element missing_close unknown_element missing_close unknown_element missing_close unknown_element missing_close
 34 invalid_element_version missing_close unknown_element missing_close
-35 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure
+35 inserted_missing_closure inserted_missing_closure
 39 inserted_missing_parent missing_close
 40 inserted_missing_closure wrong_parent inserted_missing_closure
 41 inserted_missing_closure wrong_parent inserted_missing_closure

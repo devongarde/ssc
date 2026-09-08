@@ -24,7 +24,7 @@ PASS ../toast/css/3-media/css-3.css
 4 css_syntax css_version
 6 unrecognised_value css_syntax css_syntax
 8 illegal_value
-10 unrecognised_value css_syntax css_syntax css_syntax
+10 unrecognised_value css_syntax css_syntax
 11 css_version unrecognised_value css_syntax css_syntax
 15 css_syntax css_syntax unrecognised_value
 

@@ -1932,6 +1932,24 @@
     <Filter Include="Toast\CSS\3-img-anim">
       <UniqueIdentifier>{2bdac3df-2718-4142-9ff3-cfe97b04390f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\External\w3-sheets">
+      <UniqueIdentifier>{0d60ec14-95c4-4ee9-a46f-ccab1a45ce5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\W3\cag-1">
+      <UniqueIdentifier>{51458875-d5cc-4d51-b2d1-cfe8b29b2964}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\W3\cag-2">
+      <UniqueIdentifier>{b45204fe-55c5-4568-be52-3c699255f2ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\4-transition">
+      <UniqueIdentifier>{5532a0fe-8966-4d9b-9878-ad59042e9ab4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\4-border">
+      <UniqueIdentifier>{2a4ff8d3-64ea-4bb4-95d9-dbb0c07a36f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\5-value">
+      <UniqueIdentifier>{5cf6c9ad-a3c5-4fe3-acd7-b486fdc6938a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -3668,6 +3686,9 @@
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_e_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_b_5.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32676,19 +32697,19 @@
     <None Include="..\toast\css\5-font\css.spec">
       <Filter>Toast\CSS\5-font</Filter>
     </None>
-    <None Include="..\toast\css\5-font\css-2.css">
+    <None Include="..\toast\css\5-font\css-3.css">
       <Filter>Toast\CSS\5-font</Filter>
     </None>
-    <None Include="..\toast\css\5-font\css-2.html">
+    <None Include="..\toast\css\5-font\css-3.html">
       <Filter>Toast\CSS\5-font</Filter>
     </None>
     <None Include="..\toast\css\5-font\index.html">
       <Filter>Toast\CSS\5-font</Filter>
     </None>
-    <None Include="..\toast\css\5-font\css-3.css">
+    <None Include="..\toast\css\5-font\css-4.css">
       <Filter>Toast\CSS\5-font</Filter>
     </None>
-    <None Include="..\toast\css\5-font\css-3.html">
+    <None Include="..\toast\css\5-font\css-4.html">
       <Filter>Toast\CSS\5-font</Filter>
     </None>
     <None Include="..\toast\coop\css\css.conf">
@@ -50747,6 +50768,267 @@
     </None>
     <None Include="..\toast\css\3-img-anim\index.html">
       <Filter>Toast\CSS\3-img-anim</Filter>
+    </None>
+    <None Include="..\toast\external\w3-sheets\ext.conf">
+      <Filter>Toast\External\w3-sheets</Filter>
+    </None>
+    <None Include="..\toast\external\w3-sheets\ext.spec">
+      <Filter>Toast\External\w3-sheets</Filter>
+    </None>
+    <None Include="..\toast\external\w3-sheets\index.html">
+      <Filter>Toast\External\w3-sheets</Filter>
+    </None>
+    <None Include="..\toast\external\w3-sheets\modernist.css">
+      <Filter>Toast\External\w3-sheets</Filter>
+    </None>
+    <None Include="..\toast\external\w3-sheets\chocolate.css">
+      <Filter>Toast\External\w3-sheets</Filter>
+    </None>
+    <None Include="..\toast\external\w3-sheets\midnight.css">
+      <Filter>Toast\External\w3-sheets</Filter>
+    </None>
+    <None Include="..\toast\external\w3-sheets\oldstyle.css">
+      <Filter>Toast\External\w3-sheets</Filter>
+    </None>
+    <None Include="..\toast\external\w3-sheets\steely.css">
+      <Filter>Toast\External\w3-sheets</Filter>
+    </None>
+    <None Include="..\toast\external\w3-sheets\swiss.css">
+      <Filter>Toast\External\w3-sheets</Filter>
+    </None>
+    <None Include="..\toast\external\w3-sheets\traditional.css">
+      <Filter>Toast\External\w3-sheets</Filter>
+    </None>
+    <None Include="..\toast\external\w3-sheets\ultramarine.css">
+      <Filter>Toast\External\w3-sheets</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\css-2.css">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\css-3.css">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\css-4.css">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\css-5.css">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\css-5.html">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\css-7.html">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\css-8.html">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\css-9.css">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\css-10.html">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\css-11.html">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\css-12-1.html">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\css-12-2.html">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\css-13-1.html">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\css-13-2.html">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\css-15.css">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\css-16.css">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\index.html">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\w3.conf">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-1\w3.spec">
+      <Filter>Toast\W3\cag-1</Filter>
+    </None>
+    <None Include="..\toast\w3\mathml\default.css">
+      <Filter>Toast\W3\mathml</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c6.css">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c6.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\index.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\w3.conf">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\w3.spec">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c7-1.xhtml">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c7-2.xhtml">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c8.css">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c8.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c9.css">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c9-1.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c9-2.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c12.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c13.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c14.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c15.css">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c15-1.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c15-2.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c17.css">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c17.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c18.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c19.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c20.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c21.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c22.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c28.css">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c29.css">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c29.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c30.css">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\w3\cag-2\c30.html">
+      <Filter>Toast\W3\cag-2</Filter>
+    </None>
+    <None Include="..\toast\css\5-font\css-2.html">
+      <Filter>Toast\CSS\5-font</Filter>
+    </None>
+    <None Include="..\toast\css\5-font\css-8.css">
+      <Filter>Toast\CSS\5-font</Filter>
+    </None>
+    <None Include="..\toast\css\4-transition\css.conf">
+      <Filter>Toast\CSS\4-transition</Filter>
+    </None>
+    <None Include="..\toast\css\4-transition\css.spec">
+      <Filter>Toast\CSS\4-transition</Filter>
+    </None>
+    <None Include="..\toast\css\4-transition\css-3.css">
+      <Filter>Toast\CSS\4-transition</Filter>
+    </None>
+    <None Include="..\toast\css\4-transition\index.html">
+      <Filter>Toast\CSS\4-transition</Filter>
+    </None>
+    <None Include="..\toast\css\4-border\css.conf">
+      <Filter>Toast\CSS\4-border</Filter>
+    </None>
+    <None Include="..\toast\css\4-border\css.spec">
+      <Filter>Toast\CSS\4-border</Filter>
+    </None>
+    <None Include="..\toast\css\4-border\css-2.css">
+      <Filter>Toast\CSS\4-border</Filter>
+    </None>
+    <None Include="..\toast\css\4-border\index.html">
+      <Filter>Toast\CSS\4-border</Filter>
+    </None>
+    <None Include="..\toast\css\4-border\css-3.css">
+      <Filter>Toast\CSS\4-border</Filter>
+    </None>
+    <None Include="..\toast\css\4-border\css-4.css">
+      <Filter>Toast\CSS\4-border</Filter>
+    </None>
+    <None Include="..\toast\css\4-border\css-5.css">
+      <Filter>Toast\CSS\4-border</Filter>
+    </None>
+    <None Include="..\toast\css\4-border\css-6.css">
+      <Filter>Toast\CSS\4-border</Filter>
+    </None>
+    <None Include="..\toast\css\4-border\css-7.css">
+      <Filter>Toast\CSS\4-border</Filter>
+    </None>
+    <None Include="..\toast\css\5-value\css.conf">
+      <Filter>Toast\CSS\5-value</Filter>
+    </None>
+    <None Include="..\toast\css\5-value\css.spec">
+      <Filter>Toast\CSS\5-value</Filter>
+    </None>
+    <None Include="..\toast\css\5-value\index.html">
+      <Filter>Toast\CSS\5-value</Filter>
+    </None>
+    <None Include="..\toast\css\5-value\css-3.css">
+      <Filter>Toast\CSS\5-value</Filter>
+    </None>
+    <None Include="..\toast\css\5-value\css-4.css">
+      <Filter>Toast\CSS\5-value</Filter>
+    </None>
+    <None Include="..\toast\css\5-value\css-7.css">
+      <Filter>Toast\CSS\5-value</Filter>
+    </None>
+    <None Include="..\toast\css\5-value\css-8.css">
+      <Filter>Toast\CSS\5-value</Filter>
+    </None>
+    <None Include="..\toast\css\5-value\css-9.css">
+      <Filter>Toast\CSS\5-value</Filter>
+    </None>
+    <None Include="..\toast\css\5-value\css-10.css">
+      <Filter>Toast\CSS\5-value</Filter>
+    </None>
+    <None Include="..\toast\css\5-value\css-11.css">
+      <Filter>Toast\CSS\5-value</Filter>
+    </None>
+    <None Include="..\toast\css\5-value\css-a.css">
+      <Filter>Toast\CSS\5-value</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -36,5 +36,5 @@ GRAND
 Reference:
     HTML 5.0: thrice
     WhatWG HTML 5, Jul 20: twice
-    Aria in HTML: 9 times
+    Aria in HTML: ninefold
 ===

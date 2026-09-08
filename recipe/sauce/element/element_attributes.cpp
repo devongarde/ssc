@@ -180,7 +180,7 @@ bool element::examine_class (const lingo& lang)
                             if (! bro.invalid ())
                             {   if (bro.is_microformat_vocabulary ()) continue;
                                 if (bro.get () == c.get ()) continue;
-                                const prop sis (bro); // my family's weird!
+                                const prop sis (bro);
                                 if (! is_plausible_sibling (p.get (), sis.get ())) continue;
                                 mf_ -> set_mf_value (nits (), node_.version (), c.get (), p.get (), *this);
                                 if (context.mf_verify ())

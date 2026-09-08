@@ -1,0 +1,85 @@
+﻿.box {
+  width: random(???, 100px, 200px);
+  height: random(???, 100px, 200px);
+  border: thin solid;
+}
+
+.foo {
+  width: random(--foo, 100px, 200px);
+  animation: --pulse linear random(--foo, 1s, 2s);
+}
+
+.same-tb-same-rl {
+  margin: random(0px, 10px) random(0px, 10px);
+}
+
+.different-tb-same-rl {
+  margin: random(0px, 10px) random(0px, 10px);
+  margin-bottom: random(0px, 10px);
+}
+
+.square-or-rect {
+  --size: random(100px, 500px);
+  width: var(--size);
+  height: var(--size);
+}
+
+@function --ex(--arg <length>) returns <length> {
+  --local: random(2px, 3px);
+  result: calc(var(--arg) + var(--local) + random(3px, 4px));
+}
+.foo {
+  width: --ex(random(1px, 2px));
+}
+
+@function --no-types(--arg) {
+  result: calc(var(--arg) + random(2px, 3px));
+}
+.foo {
+  width: --no-types(random(1px, 2px));
+}
+
+.foo {
+  width: calc(
+    if(
+      style(/*eA*/random(auto, ...) < 0.5): 
+        /*lA*/random(auto, ...);
+      else: 
+        /*lB*/random(auto, ...))
+    )
+    + 
+    if(
+      style(/*eB*/random(auto, ...) < 0.5): 
+        /*lC*/random(auto, ...);
+      else: 
+        /*lD*/random(auto, ...))
+    )
+  );
+}
+
+.foo {
+  width: calc(
+    if(
+      style(/*eA*/random(element-scoped ua-early-width-1, ...) < 0.5): 
+        /*lA*/random(auto, ...);
+      else: 
+        /*lB*/random(auto, ...))
+    )
+    + 
+    if(
+      style(/*eB*/random(element-scoped ua-early-width-2, ...) < 0.5): 
+        /*lC*/random(auto, ...);
+      else: 
+        /*lD*/random(auto, ...))
+    )
+  );
+}
+
+.foo {
+  width: calc(
+    /*lA*/random(element-scoped ua-width-1, ...)
+    + 
+    /*lD*/random(element-scoped ua-width-2, ...)
+    )
+  );
+}

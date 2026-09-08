@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/pattern.h"
 #include "css/flags.h"
 
-// unspecified attributes that will not be detailed
+// unspecified attributes that will not be detailed;
 // WHILE and IF appear in the XHTML2 spec in the technical docs, not in the discussion
 
 bool invalid_exportparts (nitpick& nits, const html_version& v, element* box, const vstr_t& s);

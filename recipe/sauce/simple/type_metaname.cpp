@@ -335,6 +335,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MN_STARTVER "startver"
 #define MN_SUBJECT_DATETIME "subject-datetime"
 #define MN_SUBJECT_SYSTEM "subject-system"
+#define MN_TEXT_SCALE "text-scale"
 #define MN_THEME_COLOUR "theme-color"
 #define MN_THUMBNAIL "thumbnail"
 #define MN_TOPPER "topper"
@@ -944,6 +945,8 @@ struct symbol_entry < html_version, e_metaname > metaname_symbol_table [] =
     { { HTML_2_0, HV_DINOSAUR }, { HTML_4_01 }, "mathmdc.abstract", mn_mathdmv_abstract },
     { { HTML_2_0, HV_DINOSAUR }, { HTML_4_01 }, "mathmdc.notes", mn_mathdmv_notes },
 
+   { { HTML_JUL26, 0, 0, H2_CSS_FONT_5 }, { HTML_UNDEF }, MN_TEXT_SCALE, mn_text_scale },
+
    { { HTML_4_0 }, { HTML_UNDEF }, "og:audio", mn_og_audio },      // url
    { { HTML_4_0 }, { HTML_UNDEF }, "og:determiner", mn_og_determiner },  // a word
    { { HTML_4_0 }, { HTML_UNDEF }, "og:locale:alternate", mn_og_locale_alternate },    // array of locales
@@ -1150,6 +1153,11 @@ void validate_metaname_content (nitpick& nits, const html_version& v, const bool
                 ref.set_value (nits, v, content);
                 if (! ref.good ())
                     nits.pick (nit_theme_colour, ed_jul20, "4.2.5.1 Standard metadata names", es_error, ec_attribute, "When using <META> NAME=\"referrer\", CONTENT should be a referrer policy"); }
+            break;
+        case mn_text_scale :
+            if (context.css_module (c_font) < 5)
+                    nits.pick (nit_css_version, es_error, ec_css, "<META> NAME=\"" MN_TEXT_SCALE "\" requires CSS Fonts 5");
+            else test_value < t_legacy_scale > (nits, v, content);
             break;
         case mn_theme_colour :
             {   if (stts) p.mark_meta (mn);

@@ -35,7 +35,7 @@ PASS ../toast/stats/detail/md-ref.html
 GRAND
 Category:
     Attribute: thrice
-    Element: 11 times
+    Element: elevenfold
     Microdata: twice
     Type: thrice
     URx: once

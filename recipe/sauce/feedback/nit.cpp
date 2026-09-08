@@ -47,6 +47,7 @@ void nit::swap (nit& n) noexcept
 {   ::std::swap (code_, n.code_);
     ::std::swap (severity_, n.severity_);
     ::std::swap (category_, n.category_);
+    ::std::swap (count_, n.count_);
     ::std::swap (doc_, n.doc_);
     ::std::swap (ref_, n.ref_);
     msg_.swap (n.msg_); }
@@ -118,6 +119,8 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
 ::std::string nit::review (const e_nit_section& entry, const mmac_t& mac, const mmac_t& outer) const
 {   mmac_t values;
     values.emplace (nm_nit_code, nitcode (code_, severity_));
+    if (count_ > 0) values.emplace (nm_nit_count, ::boost::lexical_cast < ::std::string > (count_ + 1));
+    else values.emplace (nm_nit_count, "");
     values.emplace (nm_nit_explanation, msg_);
     values.emplace (nm_level_name, type_master < t_severity > :: name (severity_));
     values.emplace (nm_level_symbol, level_symbol ());
@@ -277,6 +280,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_css_ui_4 : return "CSS UI 4";
         case ed_css_value_3 : return "CSS Value 3";
         case ed_css_value_4 : return "CSS Value 4";
+        case ed_css_value_5 : return "CSS Value 5";
         case ed_json : return "JSON";
         case ed_jsonld_1_0 : return "JSON-LD 1.0";
         case ed_jsonld_1_1 : return "JSON-LD 1.1";
@@ -427,6 +431,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_css_ui_4 : return "CSS Basic User Interface Level 4, March 2021 draft";
         case ed_css_value_3 : return "CSS Values and Units 3, December 2022";
         case ed_css_value_4 : return "CSS Values and Units 4, October 2022 draft";
+        case ed_css_value_5 : return "CSS Values and Units 5, August 2026 draft";
         case ed_json : return "RFC 4627, JSON";
         case ed_jsonld_1_0 : return "JSON-LD 1.0, January 2014";
         case ed_jsonld_1_1 : return "JSON-LD 1.1, July 2020";

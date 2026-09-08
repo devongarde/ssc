@@ -27,15 +27,15 @@ PASS ../toast/microdata/schema-mno/medicalwebpage.html
 PASS ../toast/microdata/schema-mno/monetaryamount-1.html
 0 charset_mismatch charset_used charset_invalid
 15 invalid_attribute_version wrong_version svg_rdf
-17 invalid_attribute_version wrong_version svg_rdf sunk sunk
+17 invalid_attribute_version wrong_version svg_rdf sunk
 22 invalid_attribute_version wrong_version svg_rdf
 39 use_quote_code
 40 invalid_attribute_version wrong_version svg_rdf
 41 invalid_attribute_version wrong_version svg_rdf
-48 invalid_attribute_version wrong_version svg_rdf sunk sunk
-49 invalid_attribute_version wrong_version svg_rdf sunk sunk
-54 invalid_attribute_version wrong_version svg_rdf sunk sunk
-55 invalid_attribute_version wrong_version svg_rdf sunk sunk
+48 invalid_attribute_version wrong_version svg_rdf sunk
+49 invalid_attribute_version wrong_version svg_rdf sunk
+54 invalid_attribute_version wrong_version svg_rdf sunk
+55 invalid_attribute_version wrong_version svg_rdf sunk
 59 invalid_attribute_version wrong_version svg_rdf
 60 invalid_attribute_version wrong_version svg_rdf
 65 invalid_attribute_version wrong_version svg_rdf
@@ -43,13 +43,13 @@ PASS ../toast/microdata/schema-mno/monetaryamount-1.html
 
 PASS ../toast/microdata/schema-mno/monetaryamount-2.html
 0 charset_mismatch charset_used charset_invalid
-19 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf sunk sunk
-26 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf sunk sunk
-33 invalid_attribute_version wrong_version svg_rdf sunk sunk invalid_attribute_version wrong_version svg_rdf sunk sunk
+19 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf sunk
+26 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf sunk
+33 invalid_attribute_version wrong_version svg_rdf sunk invalid_attribute_version wrong_version svg_rdf sunk
 
 PASS ../toast/microdata/schema-mno/mortgageloan.html
 0 charset_mismatch charset_used charset_invalid
-20 sunk sunk
+20 sunk
 24 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_ontology_property
 35 invalid_attribute_version wrong_version svg_rdf not_ontology_property
 
@@ -82,7 +82,7 @@ PASS ../toast/microdata/schema-mno/musicevent.html
 54 no_such_folder url_not_found
 59 no_such_folder url_not_found
 61 no_such_folder url_not_found
-25 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+25 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 
 PASS ../toast/microdata/schema-mno/musicgroup.html
 20 data_type
@@ -99,7 +99,7 @@ PASS ../toast/microdata/schema-mno/musicgroup.html
 65 url_not_found
 66 url_not_found url_not_found url_not_found url_not_found url_not_found url_not_found
 76 no_such_folder url_not_found
-83 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+83 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 108 no_such_folder url_not_found
 112 no_such_folder url_not_found
 117 no_such_folder url_not_found
@@ -145,29 +145,29 @@ PASS ../toast/microdata/schema-mno/offer-1.html
 78 no_such_folder url_not_found
 79 use_quote_code
 85 unrecognised_value
-86 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+86 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 89 unrecognised_value
 92 unrecognised_value
 94 unrecognised_value
 99 unrecognised_value
 101 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 106 unrecognised_value
-107 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+107 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 110 unrecognised_value
 114 unrecognised_value
 116 unrecognised_value
 121 unrecognised_value
 123 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 129 unrecognised_value
-130 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+130 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 133 unrecognised_value
-136 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year
+136 invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 137 unrecognised_value
 139 unrecognised_value
 144 unrecognised_value
 148 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 153 unrecognised_value
-154 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague bad_year bad_year rather_too_vague bad_year
+154 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_year rather_too_vague
 157 unrecognised_value
 160 unrecognised_value
 162 unrecognised_value
@@ -217,16 +217,16 @@ PASS ../toast/microdata/schema-mno/orderitem.html
 
 PASS ../toast/microdata/schema-mno/organisation.html
 16 use_quote_code
-39 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
-40 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+39 bad_property bad_property
+40 bad_property
 64 forgotten_name use_double_quote_code missing_open
 81 no_itemscope
 94 invalid_attribute_version wrong_version svg_rdf bad_zone
 
 PASS ../toast/microdata/schema-mno/organisationrole.html
-14 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
-16 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+14 bad_property bad_property
+16 bad_property
 26 bad_property
 27 bad_property
-37 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
-38 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+37 bad_property bad_property
+38 bad_property

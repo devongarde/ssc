@@ -34,21 +34,21 @@ PASS ../toast/stats/detail/md-ref.html
 
 GRAND
 Element:
-    !doctype: 6 times
+    !doctype: sixfold
     abbr: twice
-    body: 6 times
-    dd: 7 times
-    dfn: 5 times
-    div: 10 times
+    body: sixfold
+    dd: sevenfold
+    dfn: fivefold
+    div: tenfold
     dl: once
-    dt: 8 times
-    h1: 6 times
-    head: 6 times
-    html: 6 times
-    link: 4 times
-    meta: 18 times
-    p: 13 times
-    span: 5 times
-    title: 6 times
-  20 elements used 295 times
+    dt: eightfold
+    h1: sixfold
+    head: sixfold
+    html: sixfold
+    link: fourfold
+    meta: 18fold
+    p: 13fold
+    span: fivefold
+    title: sixfold
+  20 elements used 295fold
 ===

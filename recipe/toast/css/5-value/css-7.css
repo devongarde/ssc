@@ -1,0 +1,58 @@
+﻿.boo
+{
+background: color-interpolate(100vw in lch,
+  200px: palegoldenrod,
+  800px: palegreen,
+  2000px: powderblue);
+);
+}
+
+html {
+  --font-scale: progress(100vw, 200px, 2000px) ease-in-out;
+  font-size: calc-interpolate(var(--font-scale),
+    0%: 16px,
+    70%: 20px,
+    100%: 24px);
+}
+h1 {
+  font-size: calc-interpolate(var(--font-scale),
+    0%: 1.2rem,
+    40%: 2rem,
+    100%: 3rem);
+}
+
+.thud
+{
+    background-color: color-interpolate(300px in hsl, 200px: red, 500px: green, 600px: blue);
+
+    background-color: color-interpolate(25% in hsl, 0%: red, 75%: green, 100%: blue);
+}
+
+.fud
+{
+    color: interpolate(90%, 0: red, 1: blue);
+    /* via simple interpolation,
+       computes to: */
+    color: rgb(10% 0 90%);
+
+    color: interpolate(90%, 0: currentcolor, 1: black);
+    /* can't be fully resolved at computed-value time,
+       but still has a defined representation: */
+    color: color-mix(currentcolor 90%, black 10%);
+
+    float: interpolate(90%, 0: left, 1: right);
+    /* discretely animatable */
+    float: right;
+}
+
+.fop
+{
+    /* Invalid start value */
+    color: interpolate(90%, 0: #invalid, 1: #F00);
+
+    /* Function is mixed with other values */
+    background: url(ocean) interpolate(10%, 0: blue, 1: yellow);
+
+    /* 'animation-*' is not animatable */
+    animation-delay: interpolate(0%, 0: 0s, 1: 2s);
+}

@@ -32,7 +32,7 @@ void font_features::parse (arguments& args, const e_css_statement cs, const int 
     int b = -1; int prev = -1;
     fiddlesticks < font_features > f (&args.ffs_, this);
     for (int i = from; i > 0; i = next_token_at (args.t_, i, to))
-    {   if (args.t_.at (i).t_ == ct_semicolon)
+    {   if ((args.t_.at (i).t_ == ct_semicolon) || (args.t_.at (i).t_ == ct_vu5_semicolon))
         {   if (b != i) ff_.emplace_back (args, cs, b, prev);
             b = -1; }
         else if (b == -1) b = i;

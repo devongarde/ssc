@@ -5,7 +5,7 @@ PASS ../toast/stats/CSS-6/content-3-2.css
 8 pseud
 
 PASS ../toast/stats/CSS-6/custom-3.css
-3 css_syntax unrecognised_value
+3 unrecognised_value css_version
 8 css_custom
 11 css_custom
 
@@ -57,23 +57,23 @@ PASS ../toast/stats/CSS-6/index.html
 
 GRAND
 Property:
-    (custom): 10 times
+    (custom): tenfold
     additive-symbols: once
-    background-color: 6 times
-    base-palette: 6 times
+    background-color: sixfold
+    base-palette: sixfold
     block-size: twice
-    color: 6 times
-    content: 19 times
-    flow-from: 4 times
-    flow-into: 4 times
-    font-family: 18 times
-    font-feature-settings: 13 times
+    color: sixfold
+    content: 19fold
+    flow-from: fourfold
+    flow-into: fourfold
+    font-family: 18fold
+    font-feature-settings: 13fold
     font-language-override: once
-    font-palette: 4 times
+    font-palette: fourfold
     font-size: twice
     font-style: once
     font-variant: thrice
-    font-variant-alternates: 13 times
+    font-variant-alternates: 13fold
     font-variant-caps: twice
     font-variant-numeric: twice
     font-variant-position: thrice
@@ -86,15 +86,15 @@ Property:
     overflow-y: once
     override-colors: thrice
     position: once
-    quotes: 6 times
+    quotes: sixfold
     scroll-timeline-name: once
     src: thrice
-    string-set: 4 times
-    suffix: 6 times
-    symbols: 6 times
-    system: 8 times
+    string-set: fourfold
+    suffix: sixfold
+    symbols: sixfold
+    system: eightfold
     transform: twice
     vertical-align: twice
     view-transition-name: once
-  39 properties used 173 times
+  39 properties used 173fold
 ===

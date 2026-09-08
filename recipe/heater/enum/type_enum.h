@@ -822,6 +822,9 @@ template < > struct type_master < t_formaturi > : ENUM_N (formaturi)
 template < > struct type_master < t_halign > : ENUM_N (halign)
 { using ENUM_N (halign) :: enum_n; };
 
+template < > struct type_master < t_hline > : ENUM_N (hline)
+{ using ENUM_N (hline) :: enum_n; };
+
 template < > struct type_master < t_httpequiv > : ENUM_N (httpequiv)
 { using ENUM_N (httpequiv) :: enum_n; };
 
@@ -1170,6 +1173,9 @@ template < > struct type_master < t_shadow > : ENUM_N (shadow)
 template < > struct type_master < t_shape7 > : ENUM_N (shape7)
 { using ENUM_N (shape7) :: enum_n; };
 
+template < > struct type_master < t_shape_cmd > : ENUM_N (shape_cmd)
+{ using ENUM_N (shape_cmd) :: enum_n; };
+
 template < > struct type_master < t_sgml > : ENUM_N (sgml)
 { using ENUM_N (sgml) :: enum_n; };
 
@@ -1316,6 +1322,9 @@ template < > struct type_master < t_vertical_align_enum > : ENUM_N (vertical_ali
 
 template < > struct type_master < t_vgender > : ENUM_N (vgender)
 { using ENUM_N (vgender) :: enum_n; };
+
+template < > struct type_master < t_vline > : ENUM_N (vline)
+{ using ENUM_N (vline) :: enum_n; };
 
 template < > struct type_master < t_vrel > : ENUM_N (vrel)
 { using ENUM_N (vrel) :: enum_n; };

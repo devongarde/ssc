@@ -1,0 +1,51 @@
+﻿em { font-style: cycle(italic, normal); }
+
+ul { list-style-type: cycle(disc, circle, square, box); }
+
+.oops
+{
+    background-position: 10px cycle(50px, 100px);
+    /* cycle() must be the sole value of the property */
+
+    list-style-type: cycle(disc, 50px);
+    /* ''50px'' isn't a valid value of 'list-style-type' */
+}
+
+.sid
+{
+    margin: cycle(1px 2px, 4px, 1px 5px 4px);
+
+    margin-top:    cycle(1px, 4px, 1px);
+    margin-right:  cycle(2px, 4px, 5px);
+    margin-bottom: cycle(1px, 4px, 4px);
+    margin-left:   cycle(2px, 4px, 5px);
+
+    margin-top:    cycle(1px, 4px);
+    margin-right:  cycle(2px, 4px, 5px);
+    margin-bottom: cycle(1px, 4px);
+    margin-left:   cycle(2px, 4px, 5px);
+}
+
+.item {
+  /* vtl-1, vtl-2, vtl-3, … */
+  view-timeline-name: ident("vtl-" sibling-index());
+}
+
+.card[id] {
+  /* E.g. card1, card2, card3, … */
+  --id: attr(id);
+
+  view-transition-name: ident(var(--id));
+  view-transition-class: card;
+
+  h1 {
+    /* E.g. card1-title, card2-title, card3-title, … */
+    view-transition-name: ident(var(--id) "-title");
+    view-transition-class: card-title;
+  }
+}
+
+.element {
+  anchor-name: ident(-- attr(id));
+}
+

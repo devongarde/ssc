@@ -5,7 +5,7 @@ PASS ../toast/stats/CSS-6/content-3-2.css
 8 pseud
 
 PASS ../toast/stats/CSS-6/custom-3.css
-3 css_syntax unrecognised_value
+3 unrecognised_value css_version
 8 css_custom
 11 css_custom
 
@@ -59,8 +59,8 @@ GRAND
 Font:
     Banner Flag: once
     Bixa: once
-    Bixxxa: 4 times
-    Bungeehee: 4 times
+    Bixxxa: fourfold
+    Bungeehee: fourfold
     Custom Emoji: once
     Handover Sans: twice
     Ignoble: once
@@ -71,6 +71,6 @@ Font:
     fireplace: once
     serif: once
     the70s: once
-  14 Font used 21 times
+  14 Font used 21fold
 
 ===

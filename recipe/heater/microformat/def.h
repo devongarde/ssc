@@ -59,7 +59,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H_REVIEW "h-review"
 #define H_AGGREGATE "h-review-aggregate"
 
-// for those who habitually spell correctly (unlike me)
 #define H_CV "h-cv"
 #define H_ADDR "h-addr"
 #define H_CALENDAR "h-calendar"

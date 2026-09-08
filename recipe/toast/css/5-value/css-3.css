@@ -1,0 +1,10 @@
+﻿.fod
+{   
+    font-family: random-item(--x, serif, sans-serif, monospace);
+
+    font-family: random-item(--x, {Times, serif}, {Arial, sans-serif}, {Courier, monospace});
+
+    font-family: random-item(--x, {Times, serif}, sans-serif, {monospace});
+
+    background-image: linear-gradient(to left, {red}, magenta);
+}

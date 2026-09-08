@@ -5,7 +5,7 @@ PASS ../toast/stats/CSS-6/content-3-2.css
 8 pseud
 
 PASS ../toast/stats/CSS-6/custom-3.css
-3 css_syntax unrecognised_value
+3 unrecognised_value css_version
 8 css_custom
 11 css_custom
 
@@ -58,24 +58,24 @@ PASS ../toast/stats/CSS-6/index.html
 GRAND
 Statement:
     annotation: twice
-    character-variant: 9 times
-    counter-style: 8 times
+    character-variant: ninefold
+    counter-style: eightfold
     custom-media: twice
-    font-feature-values: 18 times
+    font-feature-values: 18fold
     font-face: thrice
-    font-palette-values: 6 times
+    font-palette-values: sixfold
     historical-forms: once
-    keyframes: 4 times
+    keyframes: fourfold
     layer: twice
-    media: 6 times
+    media: sixfold
     ornaments: twice
-    styleset: 6 times
+    styleset: sixfold
     stylistic: once
-    swash: 12 times
-    page: 4 times
+    swash: twelvefold
+    page: fourfold
     supports: once
     top-center: once
     top-left: once
     top-right: once
-  20 statements used 90 times
+  20 statements used 90fold
 ===

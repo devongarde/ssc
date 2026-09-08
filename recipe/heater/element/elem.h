@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EP_CLOSED           0x0000000000000100
 #define EP_SIMPLE           0x0000000000000200 // open, but only text content
 #define EP_TOP              0x0000000000000400 // cannot have parents
-#define EP_IGNORE           0x0000000000000800 // ignore if found
+#define EP_IGNORE           0x0000000000000800 // ignore if encountered
 #define EP_ONLYELEMENTS     0x0000000000001000 // no text etc. inside, only elements
 #define EP_XMP              0x0000000000002000 // like XMP, content is ignored until corresponding close is encountered
 #define EP_LAZY             0x0000000000004000

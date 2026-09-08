@@ -10,7 +10,7 @@ PASS ../toast/XHTML/2.0/x2-bad.xhtml
 1 xhtml_2_0
 6 xhtml_element_lc
 8 xhtml_element_lc
-11 xhtml_quote_values xhtml_quote_values missing_close xhtml_enum_lc
+11 xhtml_quote_values missing_close xhtml_enum_lc
 12 xhtml_missing_slash
 14 xhtml_hex_lc invalid_attribute_version wrong_version
 15 missing_close xhtml_existential_makework attribute_required

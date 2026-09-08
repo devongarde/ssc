@@ -139,37 +139,31 @@ void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name,
 
 bool write_text_file (nitpick& nits, const ::boost::filesystem::path& n, const ::std::string& content)
 {   using namespace ::boost::filesystem;
-    if (n.empty ())
-    {   //context.os () -> err ("No filename to write\n");
-        nits.pick (nit_cannot_open, es_catastrophic, ec_io, "No filename to write"); }
+    if (n.empty ()) nits.pick (nit_cannot_open, es_catastrophic, ec_io, "No filename to write");
     else
     {   path p (n);
         p += ".tmp";
         try
         {   BOOST_OFSTREAM_CNSTR (f, p);
             if (f.bad ())
-            {   //context.os () -> err ("Cannot open temporary file ", p.string (), "\n");
-                nits.pick (nit_cannot_open, es_catastrophic, ec_io, "Cannot open temporary file ", p.string ()); 
+            {   nits.pick (nit_cannot_open, es_catastrophic, ec_io, "Cannot open temporary file ", p.string ()); 
                 return false; }
             try
             {   f << content; }
             catch (...)
-            {   //context.os () -> err ("Cannot write to temporary file ", p.string (), "\n");
-                nits.pick (nit_cannot_write, es_catastrophic, ec_io, "Cannot write to temporary file ", p.string ());
+            {   nits.pick (nit_cannot_write, es_catastrophic, ec_io, "Cannot write to temporary file ", p.string ());
                 return false; }
             f.close ();
             if (file_exists (n))
                 if (! delete_file (n))
-                {   //context.os () -> err ("Cannot delete existing file ", p.string (), "\n");
-                    nits.pick (nit_cannot_delete, es_catastrophic, ec_io, "Cannot delete existing file ", p.string ());
+                {   nits.pick (nit_cannot_delete, es_catastrophic, ec_io, "Cannot delete existing file ", p.string ());
                     return false; }
             rename_file (p, n);
             return true; }
         catch (...) { }
         if (file_exists (p)) delete_file (p);
         if (context.tell (es_error))
-        {   //context.os () -> err ("Cannot update ", p.string (), "\n");
-            nits.pick (nit_cannot_update, es_catastrophic, ec_io, "Cannot update ", p.string ()); } }
+            nits.pick (nit_cannot_update, es_catastrophic, ec_io, "Cannot update ", p.string ()); }
     return false; }
 
 bool write_text_file (nitpick& nits, const ::std::string& name, const ::std::string& content)

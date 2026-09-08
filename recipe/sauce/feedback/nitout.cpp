@@ -106,7 +106,7 @@ vstr_t sections;
     "[itemid-foot]\n" \
     "\n" \
     "[init]\n" \
-    "{{nit-explanation}} [{{nit-id}}]\n" \
+    "{{nit-explanation}} [{{nit-id}}]{{nit-count: (x:)}}\n" \
     "\n" \
     "[init-head]\n" \
     "\n" \
@@ -262,7 +262,7 @@ vstr_t sections;
     "[itemid-foot]\n" \
     "\n" \
     "[init]\n" \
-    "{{nit-explanation}} [{{nit-id}}]\n" \
+    "{{nit-explanation}} [{{nit-id}}]{{nit-count: (x:)}}\n" \
     "\n" \
     "[init-head]\n" \
     "\n" \
@@ -396,7 +396,7 @@ vstr_t sections;
     "[doc-foot]\n" \
     "\n" \
     "[export]\n" \
-    "{{nit-explanation}} [{{nit-id}}]\n" \
+    "{{nit-explanation}} [{{nit-id}}]{{nit-count: (x:)}}\n" \
     "\n" \
     "[export-head]\n" \
     "\n" \
@@ -420,7 +420,7 @@ vstr_t sections;
     "[itemid-foot]\n" \
     "\n" \
     "[init]\n" \
-    "{{nit-explanation}} [{{nit-id}}]\n" \
+    "{{nit-explanation}} [{{nit-id}}]{{nit-count: (x:)}}\n" \
     "\n" \
     "[init-head]\n" \
     "\n" \
@@ -429,7 +429,7 @@ vstr_t sections;
     "[init-foot]\n" \
     "\n" \
     "[link]\n" \
-    "{{nit-explanation}} [{{nit-id}}]\n" \
+    "{{nit-explanation}} [{{nit-id}}]{{nit-count: (x:)}}\n" \
     "\n" \
     "[link-head]\n" \
     "\n" \
@@ -438,7 +438,7 @@ vstr_t sections;
     "[link-foot]\n" \
     "\n" \
     "[nit]\n" \
-    "{{level-symbol}} {{nit-explanation}}{{nit-ref: (:}}{{nit-doc:, :)}}{{nit-id: [:]}}\n" \
+    "{{level-symbol}} {{nit-explanation}}{{nit-ref: (:}}{{nit-doc:, :)}}{{nit-id: [:]}}{{nit-count: (x:)}}\n" \
     "\n" \
     "[nits-head]\n" \
     "\n" \
@@ -489,7 +489,7 @@ vstr_t sections;
     "[stats-subfoot]\n" \
     "\n" \
     "[update]\n" \
-    "{{nit-explanation}} [{{nit-id}}]\n" \
+    "{{nit-explanation}} [{{nit-id}}]{{nit-count: (x:)}}\n" \
     "\n" \
     "[update-head]\n" \
     "\n" \
@@ -622,7 +622,7 @@ vstr_t sections;
     "</P>\n" \
     "\n" \
     "[init]\n" \
-    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]{{nit-count: (x:)}}</SPAN><BR>\n" \
     "\n" \
     "[init-head]\n" \
     "\n" \
@@ -632,7 +632,7 @@ vstr_t sections;
     "</P>\n" \
     "\n" \
     "[link]\n" \
-    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]{{nit-count: (x:)}}</SPAN><BR>\n" \
     "\n" \
     "[link-head]\n" \
     "<H2 class=\"nit-section\">" REPORT_LINK " Errors</H2>\n" \
@@ -671,7 +671,7 @@ vstr_t sections;
     "<BR><BR>\n" \
     "\n" \
     "[shadow]\n" \
-    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]{{nit-count: (x:)}}</SPAN><BR>\n" \
     "\n" \
     "[shadow-head]\n" \
     "<H2 class=\"nit-section\">" REPORT_SHADOW "</H2>\n" \
@@ -702,7 +702,7 @@ vstr_t sections;
     "</P>\n" \
     "\n" \
     "[update]\n" \
-    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]{{nit-count: (x:)}}</SPAN><BR>\n" \
     "\n" \
     "[update-head]\n" \
     "<H2 class=\"nit-section\">" REPORT_UPDATE "</H2>\n" \
@@ -836,7 +836,7 @@ vstr_t sections;
     "</P>\n" \
     "\n" \
     "[init]\n" \
-    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR/>\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]{{nit-count: (x:)}}</SPAN><BR/>\n" \
     "\n" \
     "[init-head]\n" \
     "\n" \
@@ -846,7 +846,7 @@ vstr_t sections;
     "</P>\n" \
     "\n" \
     "[link]\n" \
-    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR/>\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]{{nit-count: (x:)}}</SPAN><BR/>\n" \
     "\n" \
     "[link-head]\n" \
     "<H2 class=\"nit-section\">" REPORT_LINK " Errors</H2>\n" \
@@ -885,7 +885,7 @@ vstr_t sections;
     "<BR/><BR/>\n" \
     "\n" \
     "[shadow]\n" \
-    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR/>\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]{{nit-count: (x:)}}</SPAN><BR/>\n" \
     "\n" \
     "[shadow-head]\n" \
     "<H2 class=\"nit-section\">" REPORT_SHADOW "</H2>\n" \
@@ -916,7 +916,7 @@ vstr_t sections;
     "</P>\n" \
     "\n" \
     "[update]\n" \
-    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR/>\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]{{nit-count: (x:)}}</SPAN><BR/>\n" \
     "\n" \
     "[update-head]\n" \
     "<H2 class=\"nit-section\">" REPORT_UPDATE "</H2>\n" \
@@ -1030,7 +1030,7 @@ vstr_t sections;
     "</P>\n" \
     "\n" \
     "[init]\n" \
-    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]{{nit-count: (x:)}}</SPAN><BR>\n" \
     "\n" \
     "[init-head]\n" \
     "\n" \
@@ -1040,7 +1040,7 @@ vstr_t sections;
     "</P>\n" \
     "\n" \
     "[link]\n" \
-    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]{{nit-count: (x:)}}</SPAN><BR>\n" \
     "\n" \
     "[link-head]\n" \
     "<H2 class=\"nit-section\">" REPORT_LINK " Errors</H2>\n" \
@@ -1086,7 +1086,7 @@ vstr_t sections;
     "<BR><BR>\n" \
     "\n" \
     "[shadow]\n" \
-    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]{{nit-count: (x:)}}</SPAN><BR>\n" \
     "\n" \
     "[shadow-head]\n" \
     "<H2 class=\"nit-section\">" REPORT_SHADOW "</H2>\n" \
@@ -1117,7 +1117,7 @@ vstr_t sections;
     "</P>\n" \
     "\n" \
     "[update]\n" \
-    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]{{nit-count: (x:)}}</SPAN><BR>\n" \
     "\n" \
     "[update-head]\n" \
     "<H2 class=\"nit-section\">" REPORT_UPDATE "</H2>\n" \

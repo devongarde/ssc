@@ -993,6 +993,8 @@ const nitname nitnames [] =
     { nit_grid, "grid" },
     { nit_archaic, "archaic" },
     { nit_refcomb, "refcomb" },
+    { nit_gradient, "gradient" },
+    { nit_shape, "shape" },
 
     { nit_incompatible, "incompatible" },
 

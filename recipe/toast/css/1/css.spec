@@ -24,7 +24,7 @@ PASS ../toast/css/1/css-3.css
 PASS ../toast/css/1/css-5.css
 1 fontname
 2 fontname
-143 unrecognised_value
+143 unrecognised_value property css_colour
 
 PASS ../toast/css/1/css-6.css
 29 bad_rgb

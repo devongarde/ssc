@@ -142,7 +142,6 @@ template < > struct type_master < t_auto_smooth > : two_value < t_auto_smooth, e
 template < > struct type_master < t_auto_stable > : two_value < t_auto_stable, e_auto_smooth, sz_auto, sz_stable >
 { using two_value < t_auto_stable, e_auto_smooth, sz_auto, sz_stable > :: two_value; };
 
-// typedef enum { bgfg_bg, bgfg_fg } e_bgfg;
 template < > struct type_master < t_bgfg > : two_value < t_bgfg, e_bgfg, sz_tbd_bg, sz_tbd_fg >
 { using two_value < t_bgfg, e_bgfg, sz_tbd_bg, sz_tbd_fg > :: two_value; };
 
@@ -157,6 +156,9 @@ template < > struct type_master < t_block_inline > : two_value < t_block_inline,
 
 template < > struct type_master < t_bool > : two_value < t_bool, e_bool, sz_false, sz_true >
 { using two_value < t_bool, e_bool, sz_false, sz_true > :: two_value; };
+
+template < > struct type_master < t_byto > : two_value < t_byto, e_byto, sz_by, sz_to >
+{ using two_value < t_byto, e_byto, sz_by, sz_to > :: two_value; };
 
 template < > struct type_master < t_capture > : two_value < t_capture, ev_capture, sz_user, sz_environment >
 { using two_value < t_capture, ev_capture, sz_user, sz_environment > :: two_value; };
@@ -184,6 +186,9 @@ template < > struct type_master < t_connect > : two_value < t_connect, e_connect
 
 template < > struct type_master < t_contain_cover > : two_value < t_contain_cover, e_contain_cover, sz_contain, sz_cover >
 { using two_value < t_contain_cover, e_contain_cover, sz_contain, sz_cover > :: two_value; };
+
+template < > struct type_master < t_corners_sides > : two_value < t_corners_sides, e_corners_sides, sz_corners, sz_sides >
+{ using two_value < t_corners_sides, e_corners_sides, sz_corners, sz_sides > :: two_value; };
 
 template < > struct type_master < t_css_content_fixed > : two_value < t_css_content_fixed, e_css_content_fixed, sz_content, sz_fixed >
 { using two_value < t_css_content_fixed, e_css_content_fixed, sz_content, sz_fixed > :: two_value; };
@@ -222,7 +227,8 @@ template < > struct type_master < t_css_display_flow > : two_value < t_css_displ
 { using two_value < t_css_display_flow, e_css_display_flow, sz_flow, sz_flow_root > :: two_value; };
 
 template < > struct type_master < t_css_isolation > : two_value < t_css_isolation, e_css_isolation, sz_auto, sz_isolate >
-{ using two_value < t_css_isolation, e_css_isolation, sz_auto, sz_isolate > :: two_value; };
+{   static e_animation_type animation_type () noexcept { return at_discrete; }
+    using two_value < t_css_isolation, e_css_isolation, sz_auto, sz_isolate > :: two_value; };
 
 template < > struct type_master < t_css_mark > : two_value < t_css_mark, e_css_mark, sz_crop, sz_cross >
 { using two_value < t_css_mark, e_css_mark, sz_crop, sz_cross > :: two_value; };
@@ -323,11 +329,17 @@ template < > struct type_master < t_inline > : two_value < t_inline, e_inline, s
 template < > struct type_master < t_inverted_colours > : two_value < t_inverted_colours, e_inverted_colours, sz_inverted, sz_none >
 { using two_value < t_inverted_colours, e_inverted_colours, sz_inverted, sz_none > :: two_value; };
 
+template < > struct type_master < t_io > : two_value < t_io, e_io, sz_inset, sz_outset >
+{ using two_value < t_io, e_io, sz_inset, sz_outset > :: two_value; };
+
 template < > struct type_master < t_js_version > : two_value < t_js_version, e_jsonld_version, sz_1_0, sz_1_1 >
 { using two_value < t_js_version, e_jsonld_version, sz_1_0, sz_1_1 > :: two_value; };
 
 template < > struct type_master < t_layout > : two_value < t_layout, e_layout, sz_irrelevant, sz_relevant >
 { using two_value < t_layout, e_layout, sz_irrelevant, sz_relevant > :: two_value; };
+
+template < > struct type_master < t_legacy_scale > : two_value < t_legacy_scale, e_legacy_scale, sz_legacy, sz_scale >
+{ using two_value < t_legacy_scale, e_legacy_scale, sz_legacy, sz_scale > :: two_value; };
 
 template < > struct type_master < t_lengthadjust > : two_value < t_lengthadjust, e_lengthadjust, sz_spacing, sz_spacingandglyphs >
 { using two_value < t_lengthadjust, e_lengthadjust, sz_spacing, sz_spacingandglyphs > :: two_value; };

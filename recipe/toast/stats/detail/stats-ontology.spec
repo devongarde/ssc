@@ -41,5 +41,5 @@ Ontology:
       name: twice
       url: twice
     http://schema.org/Person: twice
-  3 itemtypes used 7 times
+  3 itemtypes used sevenfold
 ===

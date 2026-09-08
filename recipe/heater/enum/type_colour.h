@@ -25,7 +25,7 @@ template < > struct type_master < t_colour > : tidy_string < t_colour >
 {   using tidy_string < t_colour > :: tidy_string;
     static e_animation_type animation_type () noexcept { return at_colour; }
     static bool is_colourful () { return true; }
-    void set_value (nitpick& nits, const html_version& v, const ::std::string& s) // sanity test only
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_colour > :: set_value (nits, v, s);
         if (tidy_string < t_colour > :: good ())
         {   const ::std::string& val (tidy_string < t_colour > :: get_string ());

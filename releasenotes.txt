@@ -3,6 +3,14 @@ static site checker
 https://dylanharris.org/ssc/
 (c) 2020-2026 Dylan Harris
 
+0.2.36
+- added CSS Borders and Box Decorations 4
+- update CSS 2026 snapshot to June draft
+- updated CSS Fonts 5 and others
+- reduced nit repetivity
+- various bug fixes
+- underlying work
+
 0.2.35
 - Added CSSs Animation Triggers, Colour HDR, Image Animation, Multicolumn
     Layout 2, Selector 5

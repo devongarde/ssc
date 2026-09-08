@@ -39,6 +39,7 @@ void property::parse (arguments& args, const int from, const int to)
     from_ = b;
     nitpick& nits = args.t_.at (b).nits_;
     const int brac = token_find (args.t_, ct_curly_brac, b);
+    int roubrac = -1;
     if (brac == b)
     {   nits.pick (nit_nesting, ed_css_nesting, "2.1. Syntax", es_error, ec_css, "unexpected { (30)");
         return; }
@@ -172,10 +173,17 @@ void property::parse (arguments& args, const int from, const int to)
             return;
     const int k = b;
     b = next_non_whitespace (args.t_, b, to);
-    if ((b > 0) && (args.t_.at (b).t_ == ct_colon)) b = next_token_at (args.t_, b, to);
-    else if (b < 0) nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (k)), ": missing colon after property name (zilch)");
+    if ((b > 0) && (args.t_.at (b).t_ == ct_round_brac))
+    {   roubrac = b;
+        b = close_bracket_for (args.t_, b, to);
+        b = next_token_at (args.t_, b, to); }
+    if ((b > 0) && ((args.t_.at (b).t_ == ct_colon) || (args.t_.at (b).t_ == ct_vu5_colon)))
+        b = next_token_at (args.t_, b, to);
+    else if (b < 0)
+        nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (k)), ": missing colon after property name (zilch)");
     else
-        nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (k)), ": missing colon after property name (", tkn_rpt (args.t_.at (b)), ", ", b, ")");
+        nits.pick (nit_css_syntax, es_error, ec_css,
+            tkn_rpt (args.t_.at (k)), ": missing colon after property name (", tkn_rpt (args.t_.at (b)), ", ", b, ")");
     b = first_non_whitespace (args.t_, b, to);
     if ((b < 0) || ((b > 0) && (args.t_.at (b).t_ == ct_curly_ket)))
         nits.pick (nit_property, es_error, ec_css, tkn_rpt (args.t_.at (k)), ": missing property value");
@@ -199,6 +207,15 @@ void property::parse (arguments& args, const int from, const int to)
                 else
                     nits.pick (nit_css_custom, es_comment, ec_css, quote (name_), " noted");
                 args.dcl (cic_custom_property, name_); }
+            flags_ = ppp.flags ();
+            if (roubrac > 0)
+                if (context.css_module (c_value_unit) < 5)
+                    nits.pick (nit_css_version, ed_mdn, "if ()", es_error, ec_css, "a property with a bracketed expression requires CSS Values & Units 5");
+                else if (((flags_ & CF_IF) != CF_IF) || ((flags_ & CF_FUNCTION) != CF_FUNCTION))
+                    nits.pick (nit_css_version, ed_mdn, "if ()", es_error, ec_css, quote (ppp.name ()), " does not accept bracketed expressions");
+                else
+                {   // analyse bracket content
+                }
             flags_ = pp.flags ();
             args.check_flags (nits, flags_, pp.name ());
             args.check_flags (nits, flags_, pp.name (), xk, xi, xn, xs, fn, kc, args.t_.at (k).val_, val_);

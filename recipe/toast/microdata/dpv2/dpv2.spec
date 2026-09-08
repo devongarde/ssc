@@ -28,7 +28,7 @@ PASS ../toast/microdata/dpv2/just-1.html
 23 bad_property
 24 bad_property
 25 not_ontology_property
-26 not_ontology_property unrecognised_value bad_itemprop not_ontology_property unrecognised_value bad_itemprop
+26 not_ontology_property unrecognised_value bad_itemprop
 
 PASS ../toast/microdata/dpv2/just-2.html
 12 bad_property
@@ -41,7 +41,7 @@ PASS ../toast/microdata/dpv2/just-2.html
 
 PASS ../toast/microdata/dpv2/tech-2.html
 12 bad_property
-13 not_ontology_property unrecognised_value bad_itemprop not_ontology_property unrecognised_value bad_itemprop
+13 not_ontology_property unrecognised_value bad_itemprop
 
 PASS ../toast/microdata/dpv2/tech-3.html
 18 unrecognised_ontology

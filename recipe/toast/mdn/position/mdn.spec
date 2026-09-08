@@ -37,3 +37,4 @@ PASS ../toast/mdn/position/position-try-order.html
 
 PASS ../toast/mdn/position/position-visibility.html
 2 naughty_lang
+5 unrecognised_value

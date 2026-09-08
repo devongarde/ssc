@@ -108,71 +108,92 @@ typedef typed_property < t_css_content_base, ec_bookmark_label > prop_bookmark_l
 typedef typed_property < t_integer_n, ec_bookmark_level > prop_bookmark_level;
 typedef typed_property < t_closed_open, ec_bookmark_state > prop_bookmark_state;
 typedef typed_property < t_generic, ec_bookmark_target > prop_bookmark_target;
-typedef typed_property < t_css_border_wsc, ec_border > prop_border;
-typedef typed_property < t_css_column_rule, ec_border_block > prop_border_block;
+typedef typed_property < t_css_border_juice_4, ec_border > prop_border;
+typedef typed_property < t_css_border_juice_4, ec_border_block > prop_border_block;
+typedef typed_property < t_css_border_clips, ec_border_clip > prop_border_clip;
+typedef typed_property < t_css_border_clips, ec_border_block_clip > prop_border_block_clip;
 typedef typed_property < t_css_cols_2, ec_border_block_colour > prop_border_block_colour;
-typedef typed_property < t_css_column_rule, ec_border_block_end > prop_border_block_end;
+typedef typed_property < t_css_border_juice, ec_border_block_end > prop_border_block_end;
+typedef typed_property < t_css_border_clips, ec_border_block_end_clip > prop_border_block_end_clip;
 typedef typed_property < t_css_col, ec_border_block_end_colour > prop_border_block_end_colour;
+typedef typed_property < t_css_border_radius, ec_border_block_end_radius > prop_border_block_end_radius;
 typedef typed_property < t_css_border_style, ec_border_block_end_style > prop_border_block_end_style;
-typedef typed_property < t_css_border_measure, ec_border_block_end_width > prop_border_block_end_width;
-typedef typed_property < t_css_column_rule, ec_border_block_start > prop_border_block_start;
+typedef typed_property < t_css_line_width_border, ec_border_block_end_width > prop_border_block_end_width;
+typedef typed_property < t_css_border_juice, ec_border_block_start > prop_border_block_start;
+typedef typed_property < t_css_border_clips, ec_border_block_start_clip > prop_border_block_start_clip;
 typedef typed_property < t_css_col, ec_border_block_start_colour > prop_border_block_start_colour;
+typedef typed_property < t_css_border_radius, ec_border_block_start_radius > prop_border_block_start_radius;
 typedef typed_property < t_css_border_style, ec_border_block_start_style > prop_border_block_start_style;
-typedef typed_property < t_css_border_measure, ec_border_block_start_width > prop_border_block_start_width;
+typedef typed_property < t_css_line_width_border, ec_border_block_start_width > prop_border_block_start_width;
 typedef typed_property < t_css_border_styles_2, ec_border_block_style > prop_border_block_style;
-typedef typed_property < t_css_borders_measure_2, ec_border_block_width > prop_border_block_width;
-typedef typed_property < t_css_border_wsc, ec_border_bottom > prop_border_bottom;
+typedef typed_property < t_css_line_width_border_2, ec_border_block_width > prop_border_block_width;
+typedef typed_property < t_css_border_juice, ec_border_bottom > prop_border_bottom;
+typedef typed_property < t_css_border_clips, ec_border_bottom_clip > prop_border_bottom_clip;
 typedef typed_property < t_css_col, ec_border_bottom_colour > prop_border_bottom_colour;
-typedef typed_property < t_css_length_2, ec_border_bottom_left_radius > prop_border_bottom_left_radius;
-typedef typed_property < t_css_length_2, ec_border_bottom_right_radius > prop_border_bottom_right_radius;
+typedef typed_property < t_css_border_radius, ec_border_bottom_left_radius > prop_border_bottom_left_radius;
+typedef typed_property < t_css_border_radius, ec_border_bottom_radius > prop_border_bottom_radius;
+typedef typed_property < t_css_border_radius, ec_border_bottom_right_radius > prop_border_bottom_right_radius;
 typedef typed_property < t_css_border_style, ec_border_bottom_style > prop_border_bottom_style;
-typedef typed_property < t_css_border_measure, ec_border_bottom_width > prop_border_bottom_width;
+typedef typed_property < t_css_line_width_border, ec_border_bottom_width > prop_border_bottom_width;
 typedef typed_property < t_display_none_parent, ec_border_boundary > prop_border_boundary;
 typedef typed_property < t_generic, ec_border_break > prop_border_break;
 typedef typed_property < t_css_border_collapse, ec_border_collapse > prop_border_collapse;
+typedef typed_property < t_css_border_clips, ec_border_inline_clip > prop_border_inline_clip;
 typedef typed_property < t_css_cols, ec_border_colour > prop_border_colour;
-typedef typed_property < t_css_length_2, ec_border_end_end_radius > prop_border_end_end_radius;
-typedef typed_property < t_css_length_2, ec_border_end_start_radius > prop_border_end_start_radius;
+typedef typed_property < t_css_border_radius, ec_border_end_end_radius > prop_border_end_end_radius;
+typedef typed_property < t_css_border_radius, ec_border_end_start_radius > prop_border_end_start_radius;
 typedef typed_property < t_css_border_image, ec_border_image > prop_border_image;
-typedef typed_property < t_css_length_4, ec_border_image_outset > prop_border_image_outset;
+typedef typed_property < t_css_length_reals, ec_border_image_outset > prop_border_image_outset;
 typedef typed_property < t_css_border_images_repeat, ec_border_image_repeat > prop_border_image_repeat;
 typedef typed_property < t_css_border_image_slice, ec_border_image_slice > prop_border_image_slice;
 typedef typed_property < t_css_border_image_src, ec_border_image_source > prop_border_image_source;
 typedef typed_property < t_generic, ec_border_image_transform > prop_border_image_transform;
-typedef typed_property < t_css_lengths_a, ec_border_image_width > prop_border_image_width;
-typedef typed_property < t_css_column_rule, ec_border_inline > prop_border_inline;
+typedef typed_property < t_css_border_image_width, ec_border_image_width > prop_border_image_width;
+typedef typed_property < t_css_border_juice_4, ec_border_inline > prop_border_inline;
 typedef typed_property < t_css_cols_2, ec_border_inline_colour > prop_border_inline_colour;
-typedef typed_property < t_css_column_rule, ec_border_inline_end > prop_border_inline_end;
+typedef typed_property < t_css_border_juice, ec_border_inline_end > prop_border_inline_end;
+typedef typed_property < t_css_border_clips, ec_border_inline_end_clip > prop_border_inline_end_clip;
 typedef typed_property < t_css_col, ec_border_inline_end_colour > prop_border_inline_end_colour;
+typedef typed_property < t_css_border_radius, ec_border_inline_end_radius > prop_border_inline_end_radius;
 typedef typed_property < t_css_border_style, ec_border_inline_end_style > prop_border_inline_end_style;
-typedef typed_property < t_css_border_measure, ec_border_inline_end_width > prop_border_inline_end_width;
-typedef typed_property < t_css_column_rule, ec_border_inline_start > prop_border_inline_start;
+typedef typed_property < t_css_line_width_border, ec_border_inline_end_width > prop_border_inline_end_width;
+typedef typed_property < t_css_border_juice, ec_border_inline_start > prop_border_inline_start;
+typedef typed_property < t_css_border_clips, ec_border_inline_start_clip > prop_border_inline_start_clip;
 typedef typed_property < t_css_col, ec_border_inline_start_colour > prop_border_inline_start_colour;
+typedef typed_property < t_css_border_radius, ec_border_inline_start_radius > prop_border_inline_start_radius;
 typedef typed_property < t_css_border_style, ec_border_inline_start_style > prop_border_inline_start_style;
-typedef typed_property < t_css_border_measure, ec_border_inline_start_width > prop_border_inline_start_width;
+typedef typed_property < t_css_line_width_border, ec_border_inline_start_width > prop_border_inline_start_width;
 typedef typed_property < t_css_border_styles_2, ec_border_inline_style > prop_border_inline_style;
-typedef typed_property < t_css_borders_measure_2, ec_border_inline_width > prop_border_inline_width;
-typedef typed_property < t_css_border_wsc, ec_border_left > prop_border_left;
+typedef typed_property < t_css_line_width_border_2, ec_border_inline_width > prop_border_inline_width;
+typedef typed_property < t_css_border_juice, ec_border_left > prop_border_left;
+typedef typed_property < t_css_border_clips, ec_border_left_clip > prop_border_left_clip;
 typedef typed_property < t_css_col, ec_border_left_colour > prop_border_left_colour;
+typedef typed_property < t_css_border_radius, ec_border_left_radius > prop_border_left_radius;
 typedef typed_property < t_css_border_style, ec_border_left_style > prop_border_left_style;
-typedef typed_property < t_css_border_measure, ec_border_left_width > prop_border_left_width;
+typedef typed_property < t_css_line_width_border, ec_border_left_width > prop_border_left_width;
 typedef typed_property < t_generic, ec_border_length > prop_border_length;
+typedef typed_property < t_css_border_limit, ec_border_limit > prop_border_limit;
 typedef typed_property < t_css_border_radius, ec_border_radius > prop_border_radius;
-typedef typed_property < t_css_border_wsc, ec_border_right > prop_border_right;
+typedef typed_property < t_css_border_juice, ec_border_right > prop_border_right;
+typedef typed_property < t_css_border_clips, ec_border_right_clip > prop_border_right_clip;
 typedef typed_property < t_css_col, ec_border_right_colour > prop_border_right_colour;
+typedef typed_property < t_css_border_radius, ec_border_right_radius > prop_border_right_radius;
 typedef typed_property < t_css_border_style, ec_border_right_style > prop_border_right_style;
-typedef typed_property < t_css_border_measure, ec_border_right_width > prop_border_right_width;
+typedef typed_property < t_css_line_width_border, ec_border_right_width > prop_border_right_width;
+typedef typed_property < t_generic, ec_border_shape > prop_border_shape;
 typedef typed_property < t_css_border_spacing, ec_border_spacing > prop_border_spacing;
-typedef typed_property < t_css_length_2, ec_border_start_end_radius > prop_border_start_end_radius;
-typedef typed_property < t_css_length_2, ec_border_start_start_radius > prop_border_start_start_radius;
+typedef typed_property < t_css_border_radius, ec_border_start_end_radius > prop_border_start_end_radius;
+typedef typed_property < t_css_border_radius, ec_border_start_start_radius > prop_border_start_start_radius;
 typedef typed_property < t_css_border_styles_l, ec_border_style > prop_border_style;
-typedef typed_property < t_css_border_wsc, ec_border_top > prop_border_top;
+typedef typed_property < t_css_border_juice, ec_border_top > prop_border_top;
+typedef typed_property < t_css_border_clips, ec_border_top_clip > prop_border_top_clip;
 typedef typed_property < t_css_col, ec_border_top_colour > prop_border_top_colour;
-typedef typed_property < t_css_length_2, ec_border_top_left_radius > prop_border_top_left_radius;
-typedef typed_property < t_css_length_2, ec_border_top_right_radius > prop_border_top_right_radius;
+typedef typed_property < t_css_border_radius, ec_border_top_left_radius > prop_border_top_left_radius;
+typedef typed_property < t_css_border_radius, ec_border_top_radius > prop_border_top_radius;
+typedef typed_property < t_css_border_radius, ec_border_top_right_radius > prop_border_top_right_radius;
 typedef typed_property < t_css_border_style, ec_border_top_style > prop_border_top_style;
-typedef typed_property < t_css_border_measure, ec_border_top_width > prop_border_top_width;
-typedef typed_property < t_css_borders_measure_l, ec_border_width > prop_border_width;
+typedef typed_property < t_css_line_width_border, ec_border_top_width > prop_border_top_width;
+typedef typed_property < t_css_line_width_border_4, ec_border_width > prop_border_width;
 typedef typed_property < t_css_length_aia, ec_bottom > prop_bottom;
 typedef typed_property < t_bcess, ec_box_align > prop_box_align;
 typedef typed_property < t_generic, ec_box_break > prop_box_break;
@@ -185,7 +206,12 @@ typedef typed_property < t_multiple_single, ec_box_lines > prop_box_lines;
 typedef typed_property < t_integer, ec_box_ordinal_group > prop_box_ordinal_group;
 typedef typed_property < t_css_box_orient, ec_box_orient > prop_box_orient;
 typedef typed_property < t_css_box_pack, ec_box_pack > prop_box_pack;
-typedef typed_property < t_css_box_shadows_n, ec_box_shadow > prop_box_shadow;
+typedef typed_property < t_css_shadow_spread, ec_box_shadow > prop_box_shadow;
+typedef typed_property < t_css_length_infs, ec_box_shadow_blur > prop_box_shadow_blur;
+typedef typed_property < t_css_cols_comma, ec_box_shadow_colour > prop_box_shadow_colour;
+typedef typed_property < t_css_lengths_n_comma, ec_box_shadow_offset > prop_box_shadow_offset;
+typedef typed_property < t_ios, ec_box_shadow_position > prop_box_shadow_position;
+typedef typed_property < t_css_lengths_comma, ec_box_shadow_spread > prop_box_shadow_spread;
 typedef typed_property < t_css_box_sizing, ec_box_sizing > prop_box_sizing;
 typedef typed_property < t_css_box_snap, ec_box_snap > prop_box_snap;
 typedef typed_property < t_generic, ec_box_suppress > prop_box_suppress;
@@ -355,7 +381,7 @@ typedef typed_property < t_css_palette_nld, ec_font_palette > prop_font_palette;
 typedef typed_property < t_css_font_size_4, ec_font_size > prop_font_size;
 typedef typed_property < t_css_font_size_adjust, ec_font_size_adjust > prop_font_size_adjust;
 typedef typed_property < t_css_font_smooth, ec_font_smooth > prop_font_smooth;
-typedef typed_property < t_css_font_stretch, ec_font_stretch > prop_font_stretch;
+typedef typed_property < t_css_font_width, ec_font_stretch > prop_font_stretch;
 typedef typed_property < t_css_font_style_a, ec_font_style > prop_font_style;
 typedef typed_property < t_font_synthesis_n, ec_font_synthesis > prop_font_synthesis;
 typedef typed_property < t_auto_none, ec_font_synthesis_position > prop_font_synthesis_position;
@@ -2378,21 +2404,29 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_bookmark_target, \
     prop_border, \
     prop_border_block, \
+    prop_border_clip, \
+    prop_border_block_clip, \
     prop_border_block_colour, \
     prop_border_block_end, \
+    prop_border_block_end_clip, \
     prop_border_block_end_colour, \
+    prop_border_block_end_radius, \
     prop_border_block_end_style, \
     prop_border_block_end_width, \
     prop_border_block_start, \
+    prop_border_block_start_clip, \
     prop_border_block_start_colour, \
+    prop_border_block_start_radius, \
     prop_border_block_start_style, \
     prop_border_block_start_width, \
     prop_border_block_style, \
     prop_border_block_width, \
     prop_border_break, \
     prop_border_bottom, \
+    prop_border_bottom_clip, \
     prop_border_bottom_colour, \
     prop_border_bottom_left_radius, \
+    prop_border_bottom_radius, \
     prop_border_bottom_right_radius, \
     prop_border_bottom_style, \
     prop_border_bottom_width, \
@@ -2409,34 +2443,47 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_border_image_transform, \
     prop_border_image_width, \
     prop_border_inline, \
+    prop_border_inline_clip, \
     prop_border_inline_colour, \
     prop_border_inline_end, \
+    prop_border_inline_end_clip, \
     prop_border_inline_end_colour, \
+    prop_border_inline_end_radius, \
     prop_border_inline_end_style, \
     prop_border_inline_end_width, \
     prop_border_inline_start, \
+    prop_border_inline_start_clip, \
     prop_border_inline_start_colour, \
+    prop_border_inline_start_radius, \
     prop_border_inline_start_style, \
     prop_border_inline_start_width, \
     prop_border_inline_style, \
     prop_border_inline_width, \
     prop_border_left, \
+    prop_border_left_clip, \
     prop_border_left_colour, \
+    prop_border_left_radius, \
     prop_border_left_style, \
     prop_border_left_width, \
     prop_border_length, \
+    prop_border_limit, \
     prop_border_radius, \
     prop_border_right, \
+    prop_border_right_clip, \
     prop_border_right_colour, \
+    prop_border_right_radius, \
     prop_border_right_style, \
     prop_border_right_width, \
+    prop_border_shape, \
     prop_border_spacing, \
     prop_border_start_end_radius, \
     prop_border_start_start_radius, \
     prop_border_style, \
     prop_border_top, \
+    prop_border_top_clip, \
     prop_border_top_colour, \
     prop_border_top_left_radius, \
+    prop_border_top_radius, \
     prop_border_top_right_radius, \
     prop_border_top_style, \
     prop_border_top_width, \
@@ -2454,6 +2501,11 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_box_orient, \
     prop_box_pack, \
     prop_box_shadow, \
+    prop_box_shadow_blur, \
+    prop_box_shadow_colour, \
+    prop_box_shadow_offset, \
+    prop_box_shadow_position, \
+    prop_box_shadow_spread, \
     prop_box_sizing, \
     prop_box_snap, \
     prop_box_suppress, \

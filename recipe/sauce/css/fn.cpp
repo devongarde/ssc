@@ -250,6 +250,7 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                         start = -1; }
                     break;
                 case ct_colon :
+                case ct_vu5_colon :
                     pf = true;
                     break;
                 default :

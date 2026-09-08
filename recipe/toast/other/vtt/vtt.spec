@@ -34,7 +34,7 @@ PASS ../toast/other/vtt/ex22i.vtt
 19 vtt_region 
 
 PASS ../toast/other/vtt/ex22c.css
-1 selector  selector selector selector selector selector
+1 selector
 
 PASS ../toast/other/vtt/ex22e.css
 9 css_syntax pseud
@@ -67,5 +67,5 @@ Class:
 
 Nits Reported:
     Abhorrences: twice
-    Errors: 28 times
-    Warnings: 35 times
+    Errors: 28fold
+    Warnings: 35fold

@@ -1259,6 +1259,7 @@ void medium_t::parse (arguments& args , const int from, const int to)
                 if (brackets < 1) expecting = me_after_id;
                 break;
             case ct_colon :
+            case ct_vu5_colon :
                 if (expecting != me_after_prop)
                 {   valid_ = false;
                     nits.pick (nit_css_syntax, es_error, ec_mql, "malplaced colon"); }

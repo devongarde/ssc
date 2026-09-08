@@ -153,7 +153,6 @@ typedef typed_mf_value < t_generic, mf1_website > website_at1;
 typedef typed_mf_value < t_generic, mf1_worst > worst_at1;
 typedef typed_mf_value < t_generic, mf1_yield > yield_at1;
 
-// remove non-MF rels
 typedef typed_mf_value < t_illegal, c_error > unknown_at;
 typedef typed_mf_value < t_datetime, dt_accessed > accessed_at;
 typedef typed_mf_value < t_rel, r_acquaintance > acquaintance_rt;
