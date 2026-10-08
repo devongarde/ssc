@@ -244,6 +244,7 @@ class element
     void examine_img ();
     void examine_input ();
     void examine_label ();
+    void examine_layout ();
     void examine_lambda ();
     void examine_legend ();
     void examine_li ();
@@ -314,6 +315,8 @@ class element
     void examine_select ();
     void examine_selectedcontent ();
     void examine_share ();
+    void examine_smil_alt ();
+    void examine_smil_title ();
     void examine_source ();
     void examine_style ();
     void examine_svg ();

@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "ontology/ontology_version.h"
 
-#define LATEST_HTML_STR "Jul 2026"
+#define LATEST_HTML_STR "Oct 2026"
 #define LATEST_CSS_STR  "2026"
 
 #define HV_LEVEL1       0x0000000000000001
@@ -495,6 +495,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_LS_2024   ( H2_CSS_2024 | H2_CSS_2024_1 | H2_CSS_2024_2 | H2_CSS_2024_3 | H2_CSS_MEDIA | H2_CSS_UI )
 #define H2_CSS_LS_2025   ( H2_CSS_2025 | H2_CSS_2025_1 | H2_CSS_2025_2 | H2_CSS_2025_3 | H2_CSS_MEDIA | H2_CSS_UI )
 #define H2_CSS_LS_2026   ( H2_CSS_2026 | H2_CSS_2026_1 | H2_CSS_2026_2 | H2_CSS_2026_3 | H2_CSS_MEDIA | H2_CSS_UI )
+#define H2_CSS_AE          H2_CSS_LS_2026
 
 
 #define H3_CSS_POSITION_3     0x0000000000000001
@@ -711,6 +712,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_LS_2024   ( H3_CSS_2024 | H3_CSS_2024_1 | H3_CSS_2024_2 | H3_CSS_2024_3 | H3_CSS_CONTAIN | H3_CSS_RUBY | H3_CSS_SCOPE | H3_CSS_SHAPE | H3_CSS_TEXT | H3_CSS_TEXTDEC )
 #define H3_CSS_LS_2025   ( H3_CSS_2025 | H3_CSS_2025_1 | H3_CSS_2025_2 | H3_CSS_2025_3 | H3_CSS_CONTAIN | H3_CSS_RUBY | H3_CSS_SCOPE | H3_CSS_SHAPE | H3_CSS_TEXT | H3_CSS_TEXTDEC )
 #define H3_CSS_LS_2026   ( H3_CSS_2026 | H3_CSS_2026_1 | H3_CSS_2026_2 | H3_CSS_2026_3 | H3_CSS_CONTAIN | H3_CSS_RUBY | H3_CSS_SCOPE | H3_CSS_SHAPE | H3_CSS_TEXT | H3_CSS_TEXTDEC )
+#define H3_CSS_AE          H3_CSS_LS_2026
 
 #define H4_CSS_COLOUR_3     0x0000000000000001  
 #define H4_CSS_COLOUR_4     0x0000000000000002  
@@ -830,6 +832,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H4_CSS_LS_2024    ( H4_CSS_2024 | H4_CSS_2024_1 | H4_CSS_2024_2 | H4_CSS_2024_3 | H4_CSS_FCS | H4_CSS_LIVING_STANDARD | H4_CSS_MATH_CORE )
 #define H4_CSS_LS_2025    ( H4_CSS_2025 | H4_CSS_2025_1 | H4_CSS_2025_2 | H4_CSS_2025_3 | H4_CSS_FCS | H4_CSS_LIVING_STANDARD | H4_CSS_MATH_CORE )
 #define H4_CSS_LS_2026    ( H4_CSS_2026 | H4_CSS_2026_1 | H4_CSS_2026_2 | H4_CSS_2026_3 | H4_CSS_FCS | H4_CSS_LIVING_STANDARD | H4_CSS_MATH_CORE )
+#define H4_CSS_AE         ( H4_CSS_LS_2026 | H4_CSS_VIEWPORT )
 
 #define H4_RSL              0x0000100000000000
 #define H4_RSS              0x0000200000000000
@@ -952,6 +955,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H5_CSS_GRID           H5_CSS_GRID_345  
 #define H5_CSS_GRID_MASK      H5_CSS_GRID
 
+#define H5_SMIL_1_0           0x1000000000000000
+#define H5_SMIL_2_0           0x2000000000000000
+#define H5_SMIL_2_1           0x4000000000000000
+#define H5_SMIL_3_0           0x8000000000000000
+#define H5_SMIL            (  H5_SMIL_1_0 | H5_SMIL_2_0 | H5_SMIL_2_1 | H5_SMIL_3_0 )
+
 #define H5_CSS_3          ( H5_CSS_ANCHOR_POS_3 | H5_CSS_BACKGROUND_3 | H5_CSS_DISPLAY_3 | H5_CSS_EASE_3 | H5_CSS_FILTER_3 | H5_CSS_GRID_3 | H5_CSS_MULTCOL_3 | \
                             H5_CSS_OVERFLOW_3 | H5_CSS_PSEUDO_3 | H5_CSS_PTR_EV_3 | H5_CSS_VALUE_3 | H5_CSS_VIEWTRAN_3 )
 #define H5_CSS_4          ( H5_CSS_ANCHOR_POS_4 | H5_CSS_BACKGROUND_4 | H5_CSS_BORD_BOX_4 | H5_CSS_DISPLAY_4 | H5_CSS_EASE_4 | H5_CSS_FILTER_4 | H5_CSS_GRID_4 | \
@@ -1016,6 +1025,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H5_CSS_LS_2024   ( H5_CSS_2024 | H5_CSS_2024_1 | H5_CSS_2024_2 | H5_CSS_2024_3 | H5_CSS_OVERFLOW_34 )
 #define H5_CSS_LS_2025   ( H5_CSS_2025 | H5_CSS_2025_1 | H5_CSS_2025_2 | H5_CSS_2025_3 | H5_CSS_OVERFLOW_34 )
 #define H5_CSS_LS_2026   ( H5_CSS_2026 | H5_CSS_2026_1 | H5_CSS_2026_2 | H5_CSS_2026_3 | H5_CSS_OVERFLOW_34 )
+#define H5_CSS_AE          H5_CSS_LS_2026
 
 class html_version : public version
 {   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS, ext3_ = NOFLAGS, ext4_ = NOFLAGS, ext5_ = NOFLAGS;
@@ -1247,6 +1257,12 @@ public:
     bool rfc_2070 () const noexcept { return all_flags (HV_RFC_2070); }
     bool safari () const noexcept { return any_ext (HE_SAFARI); }
     bool strict () const noexcept { return all_flags (HV_STRICT); }
+    e_smil_version smil_version () const noexcept
+    {   if (any_ext5 (H5_SMIL_3_0)) return smv_3_0; 
+        if (any_ext5 (H5_SMIL_2_1)) return smv_2_1; 
+        if (any_ext5 (H5_SMIL_2_0)) return smv_2_0; 
+        return smv_1_0; }
+    bool smil () const noexcept { return any_ext5 (H5_SMIL); }
     bool transitional () const noexcept { return all_flags (HV_TRANSITIONAL); }
     bool w3 () const noexcept { return all_flags (HV_W3); }
     bool webcomponents () const noexcept { return any_ext (HE_WEBCOMP); }
@@ -1392,6 +1408,11 @@ const html_version html_rdfs (ao_rdf, HTML_RDFS);
 const html_version html_rsl (aox_rsl, HTML_RSL, HV_XHTML, 0, 0, 0, H4_RSL);
 
 const html_version html_rss (aox_rss, HTML_RSS, HV_XHTML, 0, 0, 0, H4_RSS);
+
+const html_version html_smil_1_0 (HTML_SMIL_1_0, css_1, 0, 0, 0, 0, 0, H5_SMIL);
+const html_version html_smil_2_0 (HTML_SMIL_2_0, css_2_0, 0, 0, 0, 0, 0, H5_SMIL);
+const html_version html_smil_2_1 (HTML_SMIL_2_1, css_2_0, 0, 0, 0, 0, 0, H5_SMIL);
+const html_version html_smil_3_0 (HTML_SMIL_3_0, css_2_0, 0, 0, 0, 0, 0, H5_SMIL);
 
 const html_version xhtml_svg_1_0 (HTML_SVG10, css_2_0, HV_XHTML, HE_SVG_10);
 const html_version xhtml_svg_1_1 (HTML_SVG11, css_2_0, HV_XHTML, HE_SVG_11);
@@ -1625,6 +1646,7 @@ const html_version html_schema_29_3 (aoo_schema, HTML_SCHEMA_29_3);
 const html_version html_schema_29_4 (aoo_schema, HTML_SCHEMA_29_4);
 const html_version html_schema_30_0 (aoo_schema, HTML_SCHEMA_30_0);
 const html_version html_schema_30_1 (aoo_schema, HTML_SCHEMA_30_1);
+const html_version html_schema_30_2 (aoo_schema, HTML_SCHEMA_30_2);
 const html_version html_sd (aoo_sd, HTML_SD);
 const html_version html_sioc (aoo_sioc, HTML_SIOC);
 const html_version html_sioc_s (aoo_sioc, HTML_SIOC);
@@ -1747,11 +1769,12 @@ const html_version html_dec25 (HTML_DEC25, css_ls_2025, HV_WHATWG, HE_MICRODATA 
 const html_version html_jan26 (HTML_JAN26, css_ls_2025, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_2025, H3_CSS_LS_2025, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_2025, H5_CSS_LS_2025);
 const html_version html_apr26 (HTML_APR26, css_ls_2026, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_2026, H3_CSS_LS_2026, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_2026, H5_CSS_LS_2026);
 const html_version html_jul26 (HTML_JUL26, css_ls_2026, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_2026, H3_CSS_LS_2026, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_2026, H5_CSS_LS_2026);
+const html_version html_oct26 (HTML_OCT26, css_ls_2026, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_2026, H3_CSS_LS_2026, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_2026, H5_CSS_LS_2026);
 const html_version html_5_0 (HTML_5_0, css_2010, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_1 (HTML_5_1, css_2015, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_2 (HTML_5_2, css_2017, HV_W3, HE_SVG_11, H2_MATH_3);
 const html_version html_5_3 (HTML_5_3, css_2018, HV_W3, HE_SVG_11, H2_MATH_3);
-const html_version html_current (html_jul26);
+const html_version html_current (html_oct26);
 const html_version html_default (html_current);
 const html_version html_max (HTML_DEC99, css_6, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_FULL_CSS_MASK, H3_FULL_CSS_MASK, H4_RUBY | H4_ARIA_FULL | H4_FULL_CSS_MASK, H5_FULL_CSS_MASK);
 

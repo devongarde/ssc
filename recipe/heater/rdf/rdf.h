@@ -29,8 +29,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class rdf_t;
 class page;
 
-typedef ssc_variant < rdf_t*, ::std::string > prop_value;
-typedef ssc_mm < prop_index, prop_value > mrv_t;
+typedef ssc_variant < rdf_t*, ::std::string > rdf_prop_value;
+typedef ssc_mm < prop_index, rdf_prop_value > mrv_t;
 
 class rdf_t
 {   mrv_t prop_;

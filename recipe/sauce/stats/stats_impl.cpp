@@ -374,6 +374,7 @@ const char* str_name [] =
     res += saybe (table, category_.at (ec_security), "Security");
     res += saybe (table, category_.at (ec_shadow), "Shadow");
     res += saybe (table, category_.at (ec_signing), "Signing");
+    res += saybe (table, category_.at (ec_smil), "SMIL");
     res += saybe (table, category_.at (ec_spell), "Spelling");
     res += saybe (table, category_.at (ec_ssi), "SSI");
     res += saybe (table, category_.at (ec_ssl), "SSL");

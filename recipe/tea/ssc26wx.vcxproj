@@ -823,8 +823,10 @@
     <ClCompile Include="..\sauce\css\value_types_c_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_c_4.cpp" />
     <ClCompile Include="..\sauce\css\value_types_c_5.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_c_6.cpp" />
     <ClCompile Include="..\sauce\css\value_types_d_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_d_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_d_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_e.cpp" />
     <ClCompile Include="..\sauce\css\value_types_f_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_f_2.cpp" />
@@ -862,6 +864,7 @@
     <ClCompile Include="..\sauce\css\value_types_s_4.cpp" />
     <ClCompile Include="..\sauce\css\value_types_s_5.cpp" />
     <ClCompile Include="..\sauce\css\value_types_s_6.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_s_7.cpp" />
     <ClCompile Include="..\sauce\css\value_types_t_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_t_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_u_1.cpp" />

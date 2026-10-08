@@ -602,7 +602,7 @@ PASS ../toast/SVG/1.1/svg11.html
 257 svg_version
 261 svg_version
 268 svg_version
-273 inserted_missing_parent missing_close unrecognised_value
+273 unrecognised_value
 274 unrecognised_value
 275 unrecognised_value
 277 unrecognised_value
@@ -825,7 +825,6 @@ PASS ../toast/SVG/1.1/svg11.html
 1593 svg_version
 1595 fontname
 1603 fontname
-1607 inserted_missing_closure
 
 PASS ../toast/SVG/1.1/svg11.xhtml
 1 xhtml_1_1

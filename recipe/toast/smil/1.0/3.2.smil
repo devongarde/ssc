@@ -1,0 +1,17 @@
+<smil>
+<head>
+<switch>
+<layout type="text/css">
+[region="r"] { top: 20px; left: 20px }
+</layout>
+<layout>
+<region id="r" top="20" left="20" />
+</layout>
+</switch>
+</head>
+<body>
+<seq>
+<img region="r" src="http://www.w3.org/test" dur="10s" />
+</seq>
+</body>
+</smil>

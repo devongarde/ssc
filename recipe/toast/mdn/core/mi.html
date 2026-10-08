@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN mathml mi tests</title>
+</head>
+
+<body>
+
+<h1>MDN mathml mi Tests</h1>
+
+<math display="block">
+  <!-- Multiple characters render as "normal" text -->
+  <mi>sin</mi>
+</math>
+<hr />
+<math display="block">
+  <!-- Single characters render as italic by default (i.e. "A" renders as "𝐴") -->
+  <mi>A</mi>
+</math>
+<hr />
+<math display="block">
+  <!-- Use mathvariant="normal" to make single character render as normal text -->
+  <mi mathvariant="normal">F</mi>
+</math>
+<hr />
+<math display="block">
+  <!-- To use a specific variant, such as "B" in Fraktur -->
+  <mi>𝔅</mi>
+</math>
+
+</body>
+</html>

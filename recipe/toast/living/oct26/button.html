@@ -1,0 +1,52 @@
+﻿<!doctype html>
+<html lang=en>
+ <head>
+  <title>button</title>
+ </head>
+
+<body>
+  <h1>button</h1>
+
+<button type=button
+        onclick="alert('This 15-20 minute piece was composed by George Gershwin.')">
+ Show hint
+</button>
+
+<button type=button
+        commandfor="the-popover"
+        command="show-popover">
+ Show menu
+</button>
+<div popover
+     id="the-popover">
+ <button commandfor="the-popover"
+         command="hide-popover">
+  Hide menu
+ </button>
+</div>
+    
+<button type=button
+        commandfor="the-image"
+        command="--rotate-landscape">
+ Rotate Left
+</button>
+<button type=button
+        commandfor="the-image"
+        command="--rotate-portrait">
+ Rotate Right
+</button>
+<img id="the-image"
+     src="photo.jpg">
+<script>
+  const image = document.getElementById("the-image");
+  image.addEventListener("command", (event) => {
+   if ( event.command == "--rotate-landscape" ) {
+    event.target.style.rotate = "-90deg"
+   } else if ( event.command == "--rotate-portrait" ) {
+    event.target.style.rotate = "0deg"
+   }
+  });
+</script>
+
+</body>
+</html>

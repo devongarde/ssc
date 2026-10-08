@@ -93,7 +93,11 @@ void element::post_examine_element ()
         case elem_abbr : examine_abbr (); break;
         case elem_address : examine_address (); break;
         case elem_altglyphdef : examine_altglyphdef (); break;
+        case elem_anchor : examine_smil_title (); break;
         case elem_animatemotion : examine_animatemotion (); break;
+        case elem_animation :
+        case elem_ref :
+        case elem_textstream : examine_smil_alt (); break;
         case elem_apply : examine_equation (); break;
         case elem_article : examine_article (); break;
         case elem_aside : examine_aside (); break;
@@ -151,7 +155,6 @@ void element::post_examine_element ()
         case elem_polyline :
         case elem_rect :
         case elem_symbol :
-        case elem_text :
         case elem_textpath :
         case elem_tspan :
         case elem_use : check_inclusion_criteria (); break;
@@ -215,6 +218,7 @@ void element::post_examine_element ()
              FALLTHROUGH;
         case elem_piece :   check_math_children (2); break;
         case elem_label : examine_label (); break;
+        case elem_layout : examine_layout (); break;
         case elem_legend : examine_legend (); break;
         case elem_math : examine_math (); break;
         case elem_menu : examine_menu (); break;
@@ -246,6 +250,8 @@ void element::post_examine_element ()
         case elem_ol : examine_ol (); break;
         case elem_option : examine_option (); break;
         case elem_output : examine_output (); break;
+        case elem_par : 
+        case elem_seq : examine_smil_title (); break;
         case elem_piecewise : examine_piecewise (); break;
         case elem_picture : examine_picture (); break;
         case elem_reln : examine_equation (); break;
@@ -255,8 +261,7 @@ void element::post_examine_element ()
         case elem_rsl_custom :
         case elem_rsl_schema :
         case elem_rsl_standard :
-        case elem_rsl_terms :
-            examine_rsl_standard (); break;
+        case elem_rsl_terms : examine_rsl_standard (); break;
         case elem_rsl_licence : examine_rsl_licence (); break;
         case elem_rsl_payment : examine_rsl_payment (); break;
         case elem_rsl_permits : examine_rsl_permits (); break;
@@ -293,6 +298,10 @@ void element::post_examine_element ()
         case elem_switch : examine_switch (); break;
         case elem_table : examine_table (); break;
         case elem_td : examine_td (); break;
+        case elem_text :
+            if ((page_ != nullptr) && (page_ -> dot_smil ())) examine_smil_alt ();
+            else check_inclusion_criteria ();
+            break;
         case elem_th : examine_th (); break;
         case elem_time : examine_time (); break;
         case elem_trackback_about :

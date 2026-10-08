@@ -64,6 +64,46 @@ bool numend (nitpick& nits, const html_version& v, const e_d cmd, const unsigned
         args.clear (); }
     return res; }
 
+bool parse_beginvalue (nitpick& nits, const html_version& v, const ::std::string& s, ::std::string& ref)
+{   nitpick nuts, gnats;
+    ref.clear ();
+    if (v.is_svg_12 ()) return true;
+    if (compare_no_case (s, "indefinite")) return true;
+    if (test_value < t_svg_begin_event > (gnats, v, s))
+    {   nits.merge (gnats); return true; }
+    if (test_value < t_svg_duration > (nuts, v, s))
+    {   nits.merge (nuts); return true; }
+    const ::std::string::size_type pos = s.find ('.');
+    if ((pos == 0) || (pos == ::std::string::npos) || (pos == s.length () - 1))
+        nits.pick (nit_svg_begin, ed_mdn, "SVG attributes begin", es_error, ec_type, "A begin value is either a duration or an ID followed by a '.' and a reference");
+    else
+    {   ref = s.substr (0, pos);
+        const ::std::string::size_type brac = s.find_first_of ('(');
+        const ::std::string::size_type ket = s.find_first_of (')');
+        if (brac == ::std::string::npos)
+        {   if (test_value < t_svg_begin_event > (nits, v, s)) return true; 
+            ::std::string wrof (s.substr (pos+1));
+            if (test_value < t_svg_begin_event > (nits, v, wrof)) return true; }
+        else if ((ket < brac) || (ket < pos) || (ket == ::std::string::npos))
+            nits.pick (nit_svg_begin, ed_mdn, "SVG attributes begin", es_error, ec_type, "malformed value");
+        else
+        {   const ::std::string fn = s.substr (pos+1, brac-pos-1);
+            const ::std::string arg = s.substr (brac+1, ket-brac-1);
+            const e_svg_begin_fn f = examine_value < t_svg_begin_fn > (nits, v, fn);
+            switch (f)
+            {   case svbf_accesskey :
+                    if (arg.length () == 1) return true;
+                    break;
+                case svbf_repeat :
+                    if (test_value < t_unsigned > (nits, v, arg)) return true;
+                    break;
+                case svbf_wallclock :
+                    if (test_value < t_datetime > (nits, v, arg)) return true;
+                    break;
+                default :
+                    break; } } }
+    return false; }
+
 bool parse_d (nitpick& nits, const html_version& v, const ::std::string& d)
 {   e_d cmd = d_nowt;
     unsigned int expected = 0, was = 0;

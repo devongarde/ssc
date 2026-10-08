@@ -26,6 +26,7 @@ typedef typed_attribute < t_generic, a_custom > attr_custom;
 typedef typed_attribute < t_generic, a_abbr > attr_abbr;
 typedef typed_attribute < t_about, a_about > attr_about;
 typedef typed_attribute < t_idref, a_above > attr_above;
+typedef typed_attribute < t_text, a_abstract > attr_abstract;
 typedef typed_attribute < t_bool, a_accent > attr_accent;
 typedef typed_attribute < t_real, a_accent_height > attr_accentheight;
 typedef typed_attribute < t_bool, a_accentunder > attr_accentunder;
@@ -136,6 +137,7 @@ typedef typed_attribute < t_attributetype, a_attributetype > attr_attributetype;
 typedef typed_attribute < t_urls, a_attributionsrc > attr_attributionsrc;
 typedef typed_attribute < t_html_boolean, a_audio > attr_audio;
 typedef typed_attribute < t_audio_level, a_audio_level > attr_audio_level;
+typedef typed_attribute < t_text, a_author > attr_author;
 typedef typed_attribute < t_html_boolean, a_autobuffer > attr_autobuffer;
 typedef typed_attribute < t_autocapitalise, a_autocapitalise > attr_autocapitalise;
 typedef typed_attribute < t_autocompletevaried, a_autocomplete > attr_autocomplete;
@@ -148,6 +150,7 @@ typedef typed_attribute < t_generic, a_axes > attr_axes;
 typedef typed_attribute < t_generic, a_axis > attr_axis;
 typedef typed_attribute < t_angle_a, a_azimuth > attr_azimuth;
 typedef typed_attribute < t_background, a_background > attr_background;
+typedef typed_attribute < t_css_colour, a_background_colour > attr_background_colour;
 typedef typed_attribute < t_paint, a_background_fill > attr_background_fill;
 typedef typed_attribute < t_integer, a_balance > attr_balance;
 typedef typed_attribute < t_bandwidth, a_bandwidth > attr_bandwidth;
@@ -157,7 +160,7 @@ typedef typed_attribute < t_measure, a_baseline > attr_baseline;
 typedef typed_attribute < t_svg_baselineshift, a_baseline_shift > attr_baselineshift;
 typedef typed_attribute < t_svg_baseprofile, a_baseprofile > attr_baseprofile;
 typedef typed_attribute < t_text, a_bbox > attr_bbox;
-typedef typed_attribute < t_beginvaluelist, a_begin > attr_begin;
+typedef typed_attribute < t_begins, a_begin > attr_begin;
 typedef typed_attribute < t_behaviour, a_behaviour > attr_behaviour;
 typedef typed_attribute < t_idref, a_below > attr_below;
 typedef typed_attribute < t_bool, a_bevelled > attr_bevelled;
@@ -194,6 +197,8 @@ typedef typed_attribute < t_class, a_class > attr_class;
 typedef typed_attribute < t_url, a_classid > attr_classid;
 typedef typed_attribute < t_clear, a_clear > attr_clear;
 typedef typed_attribute < t_clip, a_clip > attr_clip;
+typedef typed_attribute < t_smilclip, a_clip_begin > attr_clip_begin;
+typedef typed_attribute < t_smilclip, a_clip_end > attr_clip_end;
 typedef typed_attribute < t_css_clip_path, a_clip_path > attr_clip_path;
 typedef typed_attribute < t_fill_rule, a_clip_rule > attr_clip_rule;
 typedef typed_attribute < t_tfi, a_clip_to_self > attr_clip_to_self;
@@ -236,6 +241,7 @@ typedef typed_attribute < t_existential, a_continue > attr_continue;
 typedef typed_attribute < t_html_boolean, a_controls > attr_controls;
 typedef typed_attribute < t_controlslist, a_controlslist > attr_controlslist;
 typedef typed_attribute < t_coords, a_coords > attr_coords;
+typedef typed_attribute < t_text, a_copyright > attr_copyright;
 typedef typed_attribute < t_coords, a_credentialless > attr_credentialless;
 typedef typed_attribute < t_cors, a_crossorigin > attr_crossorigin;
 typedef typed_attribute < t_crossout, a_crossout > attr_crossout;
@@ -280,7 +286,7 @@ typedef typed_attribute < t_maybe_filename, a_download > attr_download;
 typedef typed_attribute < t_char, a_dp > attr_dp;
 typedef typed_attribute < t_truefalseempty, a_draggable > attr_draggable;
 typedef typed_attribute < t_text, a_dropzone > attr_dropzone;
-typedef typed_attribute < t_dur, a_dur > attr_dur;
+typedef typed_attribute < t_durs, a_dur > attr_dur;
 typedef typed_attribute < t_real, a_duration > attr_duration;
 typedef typed_attribute < t_measure_or_more, a_dx > attr_dx;
 typedef typed_attribute < t_measure_or_more, a_dy > attr_dy;
@@ -296,6 +302,7 @@ typedef typed_attribute < t_enctype, a_enctype > attr_enctype;
 typedef typed_attribute < t_enable_background, a_enable_background > attr_enablebackground;
 typedef typed_attribute < t_end, a_end > attr_end;
 typedef typed_attribute < t_zero_to_one, a_endprogress > attr_endprogress;
+typedef typed_attribute < t_smilendsync, a_endsync > attr_endsync;
 typedef typed_attribute < t_enterkeyhint, a_enterkeyhint > attr_enterkeyhint;
 typedef typed_attribute < t_generic, a_equalcolumns > attr_equalcolumns;
 typedef typed_attribute < t_generic, a_equalrows > attr_equalrows;
@@ -321,6 +328,7 @@ typedef typed_attribute < t_fill_rule, a_fill_rule > attr_fill_rule;
 typedef typed_attribute < t_urifn_ni, a_filter > attr_filter;
 typedef typed_attribute < t_filterres, a_filterres > attr_filterres;
 typedef typed_attribute < t_coordinatesystem, a_filterunits > attr_filterunits;
+typedef typed_attribute < t_fit, a_fit > attr_fit;
 typedef typed_attribute < t_measure, a_flatness > attr_flatness;
 typedef typed_attribute < t_colour_cii, a_flood_colour > attr_flood_colour;
 typedef typed_attribute < t_opacity, a_flood_opacity > attr_flood_opacity;
@@ -509,8 +517,8 @@ typedef typed_attribute < t_coordinatesystem, a_maskcontentunits > attr_maskcont
 typedef typed_attribute < t_css_mask_border_mode, a_masktype > attr_masktype;
 typedef typed_attribute < t_coordinatesystem, a_maskunits > attr_maskunits;
 typedef typed_attribute < t_existential, a_math > attr_math;
-typedef typed_attribute < t_colour, a_mathbackground > attr_mathbackground;
-typedef typed_attribute < t_colour, a_mathcolour > attr_mathcolour;
+typedef typed_attribute < t_css_colour_4, a_mathbackground > attr_mathbackground;
+typedef typed_attribute < t_css_colour_4, a_mathcolour > attr_mathcolour;
 typedef typed_attribute < t_real, a_mathematical > attr_mathematical;
 typedef typed_attribute < t_mathsize, a_mathsize > attr_mathsize;
 typedef typed_attribute < t_mathvariant, a_mathvariant > attr_mathvariant;
@@ -744,7 +752,7 @@ typedef typed_attribute < t_open, a_open > attr_open;
 typedef typed_attribute < t_operator, a_operator > attr_operator;
 typedef typed_attribute < t_real, a_optimum > attr_optimum;
 typedef typed_attribute < t_order, a_order > attr_order;
-typedef typed_attribute < t_angle_a, a_orient > attr_orient;
+typedef typed_attribute < t_angle_asr, a_orient > attr_orient;
 typedef typed_attribute < t_orientation, a_orientation > attr_orientation;
 typedef typed_attribute < t_origin, a_origin > attr_origin;
 typedef typed_attribute < t_text, a_other > attr_other;
@@ -813,10 +821,12 @@ typedef typed_attribute < t_refx, a_refx > attr_refx;
 typedef typed_attribute < t_refy, a_refy > attr_refy;
 typedef typed_attribute < t_url, a_ref > attr_ref;
 typedef typed_attribute < t_referrer, a_referrerpolicy > attr_referrerpolicy;
+typedef typed_attribute < t_idref, a_region > attr_region;
 typedef typed_attribute < t_text, a_registrationmark > attr_registrationmark;
 typedef typed_attribute < t_rel, a_rel > attr_rel;
 typedef typed_attribute < t_rendering_colour_space, a_rendering_colour_space > attr_rendering_colour_space;
 typedef typed_attribute < t_rendering_in_tents, a_rendering_in_tents > attr_rendering_in_tents;
+typedef typed_attribute < t_smilrepeat, a_repeat > attr_repeat;
 typedef typed_attribute < t_repeatcount, a_repeatcount > attr_repeatcount;
 typedef typed_attribute < t_dur_repeat, a_repeatdur > attr_repeatdur;
 typedef typed_attribute < t_existential, a_required > attr_required;
@@ -902,10 +912,12 @@ typedef typed_attribute < t_html_boolean, a_shadowrootclonable > attr_shadowroot
 typedef typed_attribute < t_html_boolean, a_shadowrootserialisable > attr_shadowrootserialisable;
 typedef typed_attribute < t_html_boolean, a_shadowrootcustomelementregistry > attr_shadowrootcustomelementregistry;
 typedef typed_attribute < t_integer, a_shift > attr_shift;
+typedef typed_attribute < t_npr, a_show > attr_show;
 typedef typed_attribute < t_side, a_side > attr_side;
 typedef typed_attribute < t_size, a_size > attr_size;
 typedef typed_attribute < t_sizes, a_sizes > attr_sizes;
 typedef typed_attribute < t_un_ex, a_skip > attr_skip;
+typedef typed_attribute < t_bool, a_skip_content > attr_skip_content;
 typedef typed_attribute < t_real, a_slope > attr_slope;
 typedef typed_attribute < t_idref, a_slot > attr_slot;
 typedef typed_attribute < t_tfa, a_snap > attr_snap;
@@ -969,7 +981,14 @@ typedef typed_attribute < t_bool, a_syncmaster > attr_syncmaster;
 typedef typed_attribute < t_svg_time_default, a_synctolerance > attr_synctolerance;
 typedef typed_attribute < t_svg_time_inherit, a_synctolerancedefault > attr_synctolerancedefault;
 typedef typed_attribute < t_existential, a_system > attr_system;
+typedef typed_attribute < t_unsigned, a_system_bitrate > attr_system_bitrate;
+typedef typed_attribute < t_onoff, a_system_captions > attr_system_captions;
 typedef typed_attribute < t_langs, a_systemlanguage > attr_systemlanguage;
+typedef typed_attribute < t_langs, a_system_language > attr_system_language;
+typedef typed_attribute < t_caption_overdub, a_system_overdub_or_caption > attr_system_overdub_or_caption;
+typedef typed_attribute < t_bool, a_system_required > attr_system_required;
+typedef typed_attribute < t_unsigned, a_system_screen_depth > attr_system_screendepth;
+typedef typed_attribute < t_smilscreensize, a_system_screen_size > attr_system_screensize;
 typedef typed_attribute < t_integer, a_tabindex > attr_tabindex;
 typedef typed_attribute < t_tablevalues, a_tablevalues > attr_tablevalues;
 typedef typed_attribute < t_not_empty, a_tag > attr_tag;
@@ -1096,6 +1115,7 @@ typedef typed_attribute < t_measure, a_y2 > attr_y2;
 typedef typed_attribute < t_measure_or_more, a_y > attr_y;
 typedef typed_attribute < t_channelselector, a_ychannelselector > attr_ychannelselector;
 typedef typed_attribute < t_measure, a_z > attr_z;
+typedef typed_attribute < t_integer_ai, a_z_index > attr_z_index;
 typedef typed_attribute < t_unsigned, a_zindex > attr_zindex;
 typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
 
@@ -1104,6 +1124,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_abbr, \
     attr_about, \
     attr_above, \
+    attr_abstract, \
     attr_accent, \
     attr_accentheight, \
     attr_accentunder, \
@@ -1214,6 +1235,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_attributionsrc, \
     attr_audio, \
     attr_audio_level, \
+    attr_author, \
     attr_autobuffer, \
     attr_autocapitalise, \
     attr_autocomplete, \
@@ -1225,6 +1247,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_axis, \
     attr_azimuth, \
     attr_background, \
+    attr_background_colour, \
     attr_background_fill, \
     attr_balance, \
     attr_bandwidth, \
@@ -1271,6 +1294,8 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_classid, \
     attr_clear, \
     attr_clip, \
+    attr_clip_begin, \
+    attr_clip_end, \
     attr_clip_path, \
     attr_clip_rule, \
     attr_clippathunits, \
@@ -1311,6 +1336,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_controls, \
     attr_controlslist, \
     attr_coords, \
+    attr_copyright, \
     attr_credentialless, \
     attr_crossorigin, \
     attr_crossout, \
@@ -1371,6 +1397,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_enablebackground, \
     attr_end, \
     attr_endprogress, \
+    attr_endsync, \
     attr_enterkeyhint, \
     attr_equalcolumns, \
     attr_equalrows, \
@@ -1396,6 +1423,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_filter, \
     attr_filterres, \
     attr_filterunits, \
+    attr_fit, \
     attr_flatness, \
     attr_flood_colour, \
     attr_flood_opacity, \
@@ -1898,10 +1926,12 @@ const e_attribute last_2 = a_overlay_host;
     attr_refx, \
     attr_refy, \
     attr_referrerpolicy, \
+    attr_region, \
     attr_registrationmark, \
     attr_rel, \
     attr_rendering_colour_space, \
     attr_rendering_in_tents, \
+    attr_repeat, \
     attr_repeatcount, \
     attr_repeatdur, \
     attr_required, \
@@ -1987,10 +2017,12 @@ const e_attribute last_2 = a_overlay_host;
     attr_shape_rendering, \
     attr_shape_subtract, \
     attr_shift, \
+    attr_show, \
     attr_side, \
     attr_size, \
     attr_sizes, \
     attr_skip, \
+    attr_skip_content, \
     attr_slope, \
     attr_slot, \
     attr_snap, \
@@ -2054,7 +2086,14 @@ const e_attribute last_2 = a_overlay_host;
     attr_synctolerance, \
     attr_synctolerancedefault, \
     attr_system, \
+    attr_system_bitrate, \
+    attr_system_captions, \
     attr_systemlanguage, \
+    attr_system_language, \
+    attr_system_overdub_or_caption, \
+    attr_system_required, \
+    attr_system_screensize, \
+    attr_system_screendepth, \
     attr_tabindex, \
     attr_tablevalues, \
     attr_tag, \
@@ -2181,5 +2220,6 @@ const e_attribute last_2 = a_overlay_host;
     attr_y, \
     attr_ychannelselector, \
     attr_z, \
+    attr_z_index, \
     attr_zindex, \
     attr_zoomandpan

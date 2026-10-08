@@ -154,6 +154,7 @@ n_string_entry < e_namespace, 3 > namespace_name_entries [] =
     { { HTML_RSS }, { HTML_UNDEF }, ns_rss, 0, { NS_RSS, NSL_RSS "modules/syndication/", "Really Simple Syndication" } },
     { { HTML_RSS }, { HTML_UNDEF }, ns_rss, 0, { NS_RSS, NSLS_RSS "modules/syndication/", "Really Simple Syndication" } },
     { { XHTML_1_0 }, { HTML_SEP26 }, ns_saxon, 0, { "saxon", "http://icl.com/saxon", "Saxon XSLT Extensions" } }, // http://saxon.sourceforge.net/saxon6.5/extensions.html
+    { { XHTML_1_0 }, { HTML_UNDEF }, ns_smil, 0, { "smil", HTTP_W3 "/TR/REC-smil", "Synchronized Multimedia Integration Language" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_smil, 0, { "smil", HTTP_W3 "/2001/SMIL20", "Synchronized Multimedia Integration Language" } },
     { { HTML_JAN13 }, { HTML_UNDEF }, ns_smpte, 0, { "smpte", "http://www.smpte-ra.org/schemas/2052-1/2013/smpte-tt", "Society of Motion Pictures and Television Engineers" } },
     { { HTML_SPDX10 }, { HTML_UNDEF }, ns_spdx, 0, { "spdx", HTTP "spdx.org/rdf/terms#", "System Package Data Exchange" } },
@@ -206,7 +207,6 @@ n_string_entry < e_namespace, 3 > namespace_name_entries [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_xslt, 0, { "transform", HTTP_W3 "/1999/XSL/Transform", "XML Stylesheet Language Transformations" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_xtm, 0, { "xtm", "http://www.topicmaps.org/xtm/1.0/", "XML Topic Maps" } },
     { { XHTML_1_0 }, { HTML_UNDEF }, ns_error, 0, { nullptr, nullptr, nullptr } } };
-
     
 n_string_entry < e_port_name, 3 > port_name_entries [] =
 {   { { HTML_TAGS }, { HTML_UNDEF }, port_afpovertcp, 0, { "afpovertcp", "548", "AFP over TCP" } },

@@ -41,7 +41,7 @@ CONSTEXPR bool def_absolute_path = true, def_ads = true, def_aria = true, def_ar
     def_presume_tags = false, def_pretty = true, def_progress = false, def_rdfa = false, def_rel = false, def_revoke = false, def_rfc_1867 = true,
     def_rfc_1942 = true, def_rfc_1980 = true, def_rfc_2070 = true, def_robots = true, def_rpt_opens = false, def_rsl_verify = true, def_rss_verify = true,
     def_ruby = false, def_ontology = true, def_safari = false, def_sectxt = true, def_serve = false, def_shadow_changed = false, def_shadow_comment = true,
-    def_shadow_enable = false, def_shadow_space = true, def_shadow_ssi = true, def_sign = false, def_sloven = false, def_spec = false,
+    def_shadow_enable = false, def_shadow_space = true, def_shadow_ssi = true, def_sign = false, def_sloven = false, def_smil_verify = false, def_spec = false,
     def_special = true, def_spell = true, def_spell_deduced = false, def_ssi = true, def_ssi_exec_run = false, def_test = false,
     def_unknown_class = true, def_update = false, def_update_check = true, def_valid = false, def_vcs = false, def_verify = false,
     def_versioned = false, def_wx = false, def_yggdrisil = false;
@@ -85,7 +85,7 @@ class context_t
                     rpt_opens_ = def_rpt_opens, rsl_verify_ = def_rsl_verify, rss_verify_ = def_rss_verify, ruby_ = def_ruby, safari_ = def_safari,
                     sectxt_ = def_sectxt, serve_ = def_serve, shadow_changed_ = def_shadow_changed, shadow_comment_ = def_shadow_comment,
                     shadow_enable_ = def_shadow_enable, shadow_space_ = def_shadow_space, shadow_ssi_ = def_shadow_ssi, sign_ = def_sign,
-                    sloven_ = def_sloven, spec_ = def_spec, special_ = def_special, spell_ = def_spell, spell_deduced_ = def_spell_deduced,
+                    sloven_ = def_sloven, smil_verify_ = def_smil_verify, spec_ = def_spec, special_ = def_special, spell_ = def_spell, spell_deduced_ = def_spell_deduced,
                     ssi_ = def_ssi, ssi_exec_run_ = def_ssi_exec_run, test_ = def_test, unknown_class_ = def_unknown_class, update_ = def_update,
                     update_check_ = def_update_check, verify_ = def_verify, valid_ = def_valid, vcs_ = def_vcs, versioned_ = def_versioned, wx_ = def_wx,
                     yggdrisil_ = def_yggdrisil;
@@ -103,7 +103,7 @@ class context_t
                                 proot_, output_signature_, spell_path_, stylesheet_ = def_stylesheet;
     static ::boost::filesystem::path cwd_;
     sstr_t          atomic_ext_ = { ATOMIC_EXT }, css_ext_ = { CSS_EXT }, custom_elements_, extensions_ = { HTML_EXT }, jsonld_ext_ = { JSONLD_EXT },
-                    no_ex_check_, rsl_ext_ = { RSL_EXT }, rss_ext_ = { RSS_EXT }, site_, vtt_ext_ = { VTT_EXT };
+                    no_ex_check_, rsl_ext_ = { RSL_EXT }, rss_ext_ = { RSS_EXT }, site_, smil_ext_ = { SMIL_EXT }, vtt_ext_ = { VTT_EXT };
     vstr_t          abhorrent_, attrib_, catastrophe_, cmd_, comment_, debug_, dict_, dlang_, elem_, elem_attrib_, environment_, error_, exclude_,
                     exports_, inform_, ignore_, jsonld_key_, jsonld_ont_, jsonld_val_, output_description_, naughty_, nice_, note_,
                     pretend_, replace_, report_, shadow_ignore_, shadows_, silent_, spell_list_, spellings_, url_var_, virtuals_, vont_, warning_;
@@ -120,6 +120,7 @@ class context_t
     wblist          tim_;
     vreg_t          silence_;
     e_rss_version   rss_version_ = rv_2011;
+    e_smil_version  smil_version_ = smv_3_0;
     mutable ads_ptr         ads_;
     mutable robotic_ptr     robbie_;
     mutable sec_ptr         security_;
@@ -332,6 +333,9 @@ public:
     context_t& site (const vstr_t& s) { site_ = vtos (s); mac (nm_context_site, s); return *this; }
     context_t& site (const sstr_t& s) { site_ = s; mac (nm_context_site, s); return *this; }
     context_t& sloven (const bool b) { sloven_ = b; mac (nm_context_sloven, b); return *this; }
+    context_t& smil_ext (const vstr_t& s) { smil_ext_ = vtos (s); mac (nm_context_smil_exts, s); return *this; }
+    context_t& smil_verify (const bool b) { smil_verify_ = b; mac (nm_context_smil_ver, b); return *this; }
+    context_t& smil_version (const e_smil_version v) { smil_version_ = v; mac < int > (nm_context_smil_version, v); return *this; }
     context_t& snippet (const ::std::string& s);
     context_t& spec (const bool b) { spec_ = b; return *this; }
     context_t& special (const bool b) { special_ = b; mac (nm_context_special, b); return *this; }
@@ -586,6 +590,9 @@ public:
     const vstr_t& silent () const { return silent_; }
     const sstr_t& site () const { return site_; }
     bool sloven () const noexcept { return sloven_; }
+    const sstr_t& smil_ext () const { return smil_ext_; }
+    bool smil_verify () const noexcept { return smil_verify_; }
+    e_smil_version smil_version () const { return smil_version_; }
     bool spell () const noexcept { return spell_; }
     context_t& spell (const bool b) { spell_ = b; mac (nm_context_spell, b); return *this; }
     bool spell_deduced () const noexcept { return spell_deduced_; }
@@ -684,6 +691,7 @@ public:
     bool is_rsl (const ::std::string& name) const;
     bool is_rss (const ::std::string& name) const;
     bool is_sec_txt (const ::std::string& name) const;
+    bool is_smil (const ::std::string& name) const;
     bool is_vtt (const ::std::string& name) const;
     bool is_webpage (const ::std::string& name) const;
     bool loop () const noexcept { return (iterate () || serve ()); }

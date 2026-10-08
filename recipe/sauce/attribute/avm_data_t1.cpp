@@ -159,6 +159,8 @@ hav_t havt_text [] =
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_text, a_word_break },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_text, a_word_wrap },
     HTML3_CLID_ATTRIBUTES (elem_text),
+    SMIL_MEDOBJ (elem_text),
+    SMIL_MEDTOO (elem_text),
     SVG_CONDITIONAL_ATTRIBUTES (elem_text),
     SVG_DXY_ATTRIBUTES (elem_text),
     SVG_DOCUMENT_EVENT_ATTRIBUTES_EX (elem_text, HE_SVG_2),
@@ -213,6 +215,12 @@ hav_t havt_textarea [] =
     SVG_CONDITIONAL_ATTRIBUTES (elem_textarea),
     SVG_HTML_ATTRIBUTES (elem_textarea),
     SVG_PRESENTATION_ATTRIBUTES (elem_textarea),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_textstream [] =
+{   SMIL_MEDOBJ (elem_textstream),
+    SMIL_MEDTOO (elem_textstream),
+    SMIL_ATTRIBUTES (elem_textstream),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_textpath [] =

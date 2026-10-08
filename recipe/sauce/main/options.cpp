@@ -372,6 +372,12 @@ options::options (const context_t& c)
     INSERT_SSTR (WEBSITE, SITE, site);
     INSERT_VSTR (WEBSITE, VIRTUAL, virtuals);
 
+    if (c.smil_ext () != def.smil_ext ())
+        INSERT_SSTR (SMIL, EXTENSION, smil_ext);
+
+    INSERT_BOOL (SMIL, VERIFY, smil_verify);
+    INSERT_ENUM (t_smil_version, SMIL, VERSION, smil_version);
+
 #ifndef NOSPELL
     INSERT_VSTR (SPELL, ACCEPT, spellings);
     INSERT_BOOL (SPELL, CASED, cased);
@@ -1189,12 +1195,12 @@ void options::init (context_t& c)
         (OUTPUT DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify signed output (verification cannot be blocked when signing)")
 
         (RSL EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for RSL files (default rsl); may be repeated.")
-        (RSL VERIFY, ::boost::program_options::bool_switch (), "Verify signed output (requires --" OUTPUT PUBLIC " and --" OUTPUT SIGNATURE ")")
-        (RSL DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify signed output (verification cannot be blocked when signing)")
+        (RSL VERIFY, ::boost::program_options::bool_switch (), "Validate RSL files")
+        (RSL DONT VERIFY, ::boost::program_options::bool_switch (), "Do not validate RSL files")
 
         (RSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for RSS files (default rss); may be repeated.")
-        (RSS VERIFY, ::boost::program_options::bool_switch (), "Verify signed output (requires --" OUTPUT PUBLIC " and --" OUTPUT SIGNATURE ")")
-        (RSS DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify signed output (verification cannot be blocked when signing)")
+        (RSS VERIFY, ::boost::program_options::bool_switch (), "Validate RSS files")
+        (RSS DONT VERIFY, ::boost::program_options::bool_switch (), "Do not validate RSS files")
         (RSS VERSION, ::boost::program_options::value < ::std::string > (), "Presume this version of RSS (default 2.0).")
 
         (SHADOW CHANGED, ::boost::program_options::bool_switch (),
@@ -1239,6 +1245,11 @@ void options::init (context_t& c)
         (WEBSITE ROOT ARGSEP ROOT_SW_, ::boost::program_options::value < ::std::string > (), "Website root directory (default: current directory).")
         (WEBSITE SITE ARGSEP SITE_SW_, ::boost::program_options::value < vstr_t > () -> composing (), "Domain name(s) for local site (default none); may be repeated.")
         (WEBSITE VIRTUAL ARGSEP VIRTUAL_SW_, ::boost::program_options::value < vstr_t > () -> composing (), "Define virtual directory, arg syntax virtual=physical; may be repeated.")
+
+        (SMIL EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for SMIL files (default smil); may be repeated.")
+        (SMIL VERIFY, ::boost::program_options::bool_switch (), "Validate smil files")
+        (SMIL DONT VERIFY, ::boost::program_options::bool_switch (), "Do not validate smil files")
+        (SMIL VERSION, ::boost::program_options::value < ::std::string > (), "Presume this version of SMIL (default 3.0).")
 
 #ifndef NOSPELL
         (SPELL ACCEPT, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore this word in spell checks; may be repeated.")
@@ -2128,6 +2139,14 @@ void options::contextualise (context_t& c, nitpick& nits)
 
         if (var_.count (WEBSITE VIRTUAL)) c.virtuals (var_ [WEBSITE VIRTUAL].as < vstr_t > ());
 
+        yea_nay (c, &context_t::smil_verify, nits, SMIL VERIFY, SMIL DONT VERIFY);
+        if (var_.count (SMIL EXTENSION)) c.smil_ext (var_ [SMIL EXTENSION].as < vstr_t > ());
+        else { vstr_t ex; ex.push_back (SMIL_EXT); c.smil_ext (ex); }
+
+        if (var_.count (SMIL VERSION))
+        {   const e_smil_version smv = examine_value < t_smil_version > (nits, html_tags, var_ [SMIL VERSION].as < ::std::string > ());
+            if (smv != smv_none) c.smil_version (smv); }
+
 #ifdef NOSPELL
         c.spell (false);
 #else // NOSPELL
@@ -2587,7 +2606,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
 
     int atomic = 0, corpus = 0, css = 0, env = 0, general = 0, html = 0,
         jsonld = 0, lynx = 0, math = 0, mf = 0, nitty = 0, ontology = 0, output = 0,
-        rsl = 0, rss = 0, shadow = 0, site = 0, ssc = 0, ssi = 0, stats = 0, svg = 0,
+        rsl = 0, rss = 0, shadow = 0, site = 0, smil = 0, ssc = 0, ssi = 0, stats = 0, svg = 0,
         validate = 0, vtt = 0;
 #ifndef NOSPELL
     int spell = 0;
@@ -2988,6 +3007,11 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, vstr_t, WEBSITE, SITE, site);
     RG (gr, res, vstr_t, WEBSITE, VIRTUAL, site);
     REOS (site, res);
+
+    RG (gr, res, vstr_t, SMIL, EXTENSION, smil);
+    RB (gr, res, SMIL, VERIFY, smil);
+    RG (gr, res, ::std::string, SMIL, VERSION, smil);
+    REOS (smil, res);
 
 #ifndef NOSPELL
     RG (gr, res, vstr_t, SPELL, ACCEPT, spell);

@@ -141,7 +141,7 @@ bool set_coords_value (nitpick& nits, const html_version& v, const ::std::string
                         whoops = true; }
                     break;
                 case 4 :
-                    if ((val.at (0) >= val.at (2)) || (val.at (1) >= val.at (3)))
+                    if ((val.at (0) > val.at (2)) || (val.at (1) > val.at (3)))
                     {   nits.pick (nit_bad_coords, es_error, ec_attribute, "the x and y values of a rectangle's first coordinate must be less than those of the second");
                         whoops = true; }
                     break;
@@ -253,3 +253,69 @@ e_status check_fediverse_account (nitpick& nits, const html_version& , const ::s
     {   nits.pick (nit_fediverse, es_error, ec_attribute, "Fediverse account names are @ server name @ user account, such as @looking_glass@alice");
         return s_invalid; }
     return s_good; }
+
+bool set_smilclip_value (nitpick& , const html_version& , const ::std::string& )
+{
+    return true; }
+
+bool set_smilendsync_value (nitpick& nits, const html_version& v, const ::std::string& s, ::std::string& ref)
+{   PRESUME (! s.empty (), __FILE__, __LINE__);
+    nitpick nuts;
+    if (test_value < t_first_last > (nuts, v, s)) { nits.merge (nuts); return true; }
+    if (s.length () > 4)
+        if (compare_no_case (s.substr (0, 3), "id("))
+        {   const ::std::string::size_type open1 = s.find_first_of ('(');
+            const ::std::string::size_type close1 = s.find_first_of (')');
+            if (close1 > open1 + 1)
+            {   ref = trim_the_lot_off (s.substr (open1+1, close1-open1-1));
+                if (! ref.empty ()) return true; } }
+    return false; }
+
+bool set_smilmoment_value (nitpick& nits, const html_version& v, const ::std::string& s, ::std::string& ref)
+{   PRESUME (! s.empty (), __FILE__, __LINE__);
+    nitpick nuts, nets, knots;
+    if (test_value < t_smilclock > (nuts, v, s)) { nits.merge (nuts); return true; }
+    if (s.length () >= 6)
+    {   const ::std::string::size_type open1 = s.find_first_of ('(');
+        const ::std::string::size_type close1 = s.find_first_of (')');
+        const ::std::string::size_type open2 = s.find_last_of ('(');
+        const ::std::string::size_type close2 = s.find_last_of (')');
+        if (compare_no_case (s.substr (0, 3), "id("))
+            if (close1 > open1+1)
+            {   ref = trim_the_lot_off (s.substr (open1+1, close1-open1-1));
+                if (! ref.empty ())
+                    if (open2 > close1)
+                        if (trim_the_lot_off (s.substr (open2 + 1, close2 - open2 - 1)).empty ())
+                            if (close2 > open2 + 1)
+                            {   const ::std::string clocked = trim_the_lot_off (s.substr (open2 + 1, close2 - open2 - 1));
+                                if (! clocked.empty ())
+                                if (test_value < t_begin_end > (nets, v, clocked)) { nits.merge (nets); return true; }
+                                if (test_value < t_smilclock > (knots, v, clocked)) { nits.merge (knots); return true; }
+                                nits.merge (nets);
+                                nits.merge (knots); } } }
+    nits.merge (nuts);
+    nits.pick (nit_smil, ed_smil_1, "4.2.1 The par Element: Attribute Values", es_error, ec_smil, "An SMIL event value consists of 'id(ID)(clock)");
+    return false; }
+
+e_status set_smilscreensize_value (nitpick& nits, const html_version& , const ::std::string& s)
+{   ::std::string ss (trim_the_lot_off (s));
+    if (ss.empty ())
+        nits.pick (nit_empty, ed_smil_1, "4.4 Test Attributes", es_error, ec_smil, "SMIL screen size cannot be empty.");
+    else
+    {   const ::std::string::size_type pos = ss.find_first_of ("xX");
+        if ((pos == ::std::string::npos) || (pos == 0) || (pos == ss.size () - 1))
+            nits.pick (nit_smil, ed_smil_1, "4.4 Test Attributes", es_error, ec_smil, "SMIL screen size must be expressed as two positive integers separated by an 'x' (1).");
+        else
+        {   const ::std::string ls = ss.substr (0, pos-1);
+            const ::std::string rs = ss.substr (pos+1);
+            if ((ls.find_first_not_of (DENARY) != ::std::string::npos) || (rs.find_first_not_of (DENARY) != ::std::string::npos))
+                nits.pick (nit_smil, ed_smil_1, "4.4 Test Attributes", es_error, ec_smil, "SMIL screen size must be expressed as two positive integers separated by an 'x' (2).");
+            else
+            {   const int lhs = ::boost::lexical_cast < int > (ls);
+                const int rhs = ::boost::lexical_cast < int > (rs);
+                if ((lhs > 0) && (rhs > 0))
+                {   if ((lhs < 640) || (rhs < 480))
+                        nits.pick (nit_smil, es_warning, ec_smil, "That screen size looks a little wee.");
+                    return s_good; }
+                nits.pick (nit_smil, ed_smil_1, "4.4 Test Attributes", es_error, ec_smil, "SMIL screen size must be expressed as two positive integers separated by an 'x' (3)."); } } }
+    return s_invalid; }

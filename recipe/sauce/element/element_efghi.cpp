@@ -446,7 +446,8 @@ void element::examine_image ()
                     pick (nit_colour_profile, es_info, ec_attribute, "colour profile ", quote (naam), " might not have been declared"); } }
 
 void element::examine_img ()
-{   const bool alt_known = a_.known (a_alt);
+{   if ((page_ != nullptr) && (page_ -> dot_smil ())) { examine_smil_alt (); return; }
+    const bool alt_known = a_.known (a_alt);
     const bool alt_empty = alt_known ? a_.get_string (a_alt).empty () : false;
     const bool ancestor_a = ancestral_elements_.test (elem_a);
     const bool ancestor_figure = ancestral_elements_.test (elem_figure);

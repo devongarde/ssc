@@ -1,0 +1,165 @@
+﻿<!doctype html>
+<html lang=en>
+ <head>
+  <title>script</title>
+ </head>
+
+<body>
+  <h1>script</h1>
+
+<script src="game-engine.js"></script>
+<script type="text/x-game-map">
+........U.........e
+o............A....e
+.....A.....AAA....e
+.A..AAA...AAAAA...e
+</script>
+
+<script>
+ function calculate(form) {
+   var price = 52000;
+   if (form.elements.brakes.checked)
+     price += 1000;
+   if (form.elements.radio.checked)
+     price += 2500;
+   if (form.elements.turbo.checked)
+     price += 5000;
+   if (form.elements.sticker.checked)
+     price += 250;
+   form.elements.result.value = price;
+ }
+</script>
+<form name="pricecalc" onsubmit="return false" onchange="calculate(this)">
+ <fieldset>
+  <legend>Work out the price of your car</legend>
+  <p>Base cost: £52000.</p>
+  <p>Select additional options:</p>
+  <ul>
+   <li><label><input type=checkbox name=brakes> Ceramic brakes (£1000)</label></li>
+   <li><label><input type=checkbox name=radio> Satellite radio (£2500)</label></li>
+   <li><label><input type=checkbox name=turbo> Turbo charger (£5000)</label></li>
+   <li><label><input type=checkbox name=sticker> "XZ" sticker (£250)</label></li>
+  </ul>
+  <p>Total: £<output name=result></output></p>
+ </fieldset>
+ <script>
+  calculate(document.forms.pricecalc);
+ </script>
+</form>
+
+<script type="module" src="app.mjs"></script>
+
+<script type="module" src="app.mjs"></script>
+<script nomodule defer src="classic-app-bundle.js"></script>
+
+<script type="module">
+ import { walkAllTextNodeDescendants } from "./dom-utils.mjs";
+
+ const substitutions = new Map([
+   ["witnesses", "these dudes I know"]
+   ["allegedly", "kinda probably"]
+   ["new study", "Tumblr post"]
+   ["rebuild", "avenge"]
+   ["space", "spaaace"]
+   ["Google glass", "Virtual Boy"]
+   ["smartphone", "Pokédex"]
+   ["electric", "atomic"]
+   ["Senator", "Elf-Lord"]
+   ["car", "cat"]
+   ["election", "eating contest"]
+   ["Congressional leaders", "river spirits"]
+   ["homeland security", "Homestar Runner"]
+   ["could not be reached for comment", "is guilty and everyone knows it"]
+ ]);
+
+ function substitute(textNode) {
+   for (const [before, after] of substitutions.entries()) {
+     textNode.data = textNode.data.replace(new RegExp(`\\b${before}\\b`, "ig"), after);
+   }
+ }
+
+ walkAllTextNodeDescendants(document.body, substitute);
+</script>
+
+<script type="module">
+ import peopleInSpace from "http://api.open-notify.org/astros.json" with { type: "json" };
+
+ const list = document.querySelector("#people-in-space");
+ for (const { craft, name } of peopleInSpace.people) {
+   const li = document.createElement("li");
+   li.textContent = `${name} / ${craft}`;
+   list.append(li);
+ }
+</script>
+
+    <script>
+    const script1 = document.createElement('script');
+    script1.innerText = `
+      document.querySelector('#script2').remove();
+    `;
+
+    const script2 = document.createElement('script');
+    script2.id = 'script2';
+    script2.textContent = `console.log('script#2 running')`;
+
+    document.body.append(script1, script2);
+    </script>
+
+<script id=outer-script></script>
+
+<script>
+  const outerScript = document.querySelector('#outer-script');
+
+  const start = new Text('console.log(1);');
+  const innerScript = document.createElement('script');
+  innerScript.textContent = `console.log('inner script executing')`;
+  const end = new Text('console.log(2);');
+
+  outerScript.append(start, innerScript, end);
+
+  // Logs:
+  // 1
+  // 2
+  // inner script executing
+</script>
+
+<script>
+  const example = 'Consider this string: <!-- <script>';
+  console.log(example);
+</script>
+
+The bigger problem, though, and the reason why it would violate those restrictions, is that actually the script would get parsed weirdly: the script block above is not terminated. That is, what looks like a "</script>" end tag in this snippet is actually still part of the script block. The script doesn't execute (since it's not terminated); if it somehow were to execute, as it might if the markup looked as follows, it would fail because the script (highlighted here) is not valid JavaScript:
+
+<script>
+  const example = 'Consider this string: <!-- <script>';
+  console.log(example);
+</script>
+<!-- despite appearances, this is actually part of the script still! -->
+<script>
+ ... // this is the same script block still...
+</script>
+
+What is going on here is that for legacy reasons, "<!--" and "<script" strings in script elements in HTML need to be balanced in order for the parser to consider closing the block.
+
+By escaping the problematic strings as mentioned at the top of this section, the problem is avoided entirely:
+
+<script>
+  // Note: `\x3C` is an escape sequence for `<`.
+  const example = 'Consider this string: \x3C!-- \x3Cscript>';
+  console.log(example);
+</script>
+<!-- this is just a comment between script blocks -->
+<script>
+ ... // this is a new script block
+</script>
+
+<script src="cool-effects.js">
+ // create new instances using:
+ //    var e = new Effect();
+ // start the effect using .play, stop using .stop:
+ //    e.play();
+ //    e.stop();
+</script>
+
+</body>
+</html>

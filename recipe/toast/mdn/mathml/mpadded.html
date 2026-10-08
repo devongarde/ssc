@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN mathml mpadded tests</title>
+<style>
+mpadded {
+  background: lightblue;
+}
+
+mpadded:nth-child(1) {
+  background: lightblue;
+}
+mpadded:nth-child(2) {
+  background: lightgreen;
+}
+mpadded:nth-child(3) {
+  background: lightyellow;
+}
+mpadded:nth-child(4) {
+  background: pink;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>MDN mathml mpadded Tests</h1>
+
+<math display="block">
+  <mpadded width="400px" height="5em" depth="4em" lspace="300px" voffset="-2em">
+    <mi>x</mi>
+    <mo>+</mo>
+    <mi>y</mi>
+  </mpadded>
+</math>
+
+<math display="block">
+  <!-- increment by a length -->
+  <mpadded width="+20px">
+    <mtext>+20px</mtext>
+  </mpadded>
+
+  <!-- set to a pseudo-unit -->
+  <mpadded width="2width">
+    <mtext>2width</mtext>
+  </mpadded>
+
+  <!-- increment by a percent of a pseudo-unit -->
+  <mpadded width="+400%height">
+    <mtext>+400%height</mtext>
+  </mpadded>
+
+  <!-- decrement to a multiple of a namedspace -->
+  <mpadded width="-1thickmathspace">
+    <mtext>-1thickmathspace</mtext>
+  </mpadded>
+</math>
+
+</body>
+</html>

@@ -1,7 +1,8 @@
-Among the Visual Studio solutions, only the ssc project under Visual
-Studio 2022 has an up-to-date reference to the tests. The test utility
-(ssc-test) can always run a full set of tests under all versions of
-Visual Studio. To update tests using Visual Studio, use VS 2022.
+Among the Visual Studio solutions, only the ssc command line project
+under Visual Studio 2026 has an up-to-date reference to the tests. The
+test utility (ssc-test) can always run a full set of tests under all
+versions of Visual Studio. To update tests using Visual Studio, use VS
+2026.
 
 (Note: DOS BAT files are used rather than powershell scripts because,
 in some versions, setting a file's last write time to the current time

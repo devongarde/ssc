@@ -995,6 +995,14 @@ const nitname nitnames [] =
     { nit_refcomb, "refcomb" },
     { nit_gradient, "gradient" },
     { nit_shape, "shape" },
+    { nit_css_if, "css_if" },
+    { nit_bad_layout, "bad_layout" },
+    { nit_smil_1_0, "smil_1_0" },
+    { nit_missing_doctype, "missing_doctype" },
+    { nit_smil, "smil" },
+    { nit_smil_clock, "smil_clock" },
+    { nit_svg_begin, "svg_begin" },
+    { nit_naughty_title, "naughty_title" },
 
     { nit_incompatible, "incompatible" },
 

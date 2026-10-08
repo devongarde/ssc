@@ -1950,6 +1950,30 @@
     <Filter Include="Toast\CSS\5-value">
       <UniqueIdentifier>{5cf6c9ad-a3c5-4fe3-acd7-b486fdc6938a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\smil">
+      <UniqueIdentifier>{f5d06c65-79d7-4bd7-8a95-700b4eb87ee8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\smil\1.0">
+      <UniqueIdentifier>{b692ca41-6ad3-443b-9ed8-578418ba0227}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\smil\2.0">
+      <UniqueIdentifier>{3b8d670f-52cd-42d1-906a-6e852947357c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\smil\2.1">
+      <UniqueIdentifier>{7d555078-441d-4186-b3c8-73767791267a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\smil\3.0">
+      <UniqueIdentifier>{f77a5e82-e54c-4494-ba33-aca724669c79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\mdn\svg">
+      <UniqueIdentifier>{8483cfe2-8a24-4dbe-9049-38d80442be41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\mdn\core">
+      <UniqueIdentifier>{ec3cbcf2-c8dd-4be2-928b-cb1ed716996a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\mdn\mathml">
+      <UniqueIdentifier>{b19a708e-7476-4954-8c1f-e8d63e015a1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -3689,6 +3713,15 @@
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_b_5.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_s_7.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_d_3.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_c_6.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
   </ItemGroup>
@@ -51029,6 +51062,483 @@
     </None>
     <None Include="..\toast\css\5-value\css-a.css">
       <Filter>Toast\CSS\5-value</Filter>
+    </None>
+    <None Include="..\toast\smil\1.0\index.html">
+      <Filter>Toast\smil\1.0</Filter>
+    </None>
+    <None Include="..\toast\smil\1.0\smil.conf">
+      <Filter>Toast\smil\1.0</Filter>
+    </None>
+    <None Include="..\toast\smil\1.0\smil.spec">
+      <Filter>Toast\smil\1.0</Filter>
+    </None>
+    <None Include="..\toast\smil\2.0\index.html">
+      <Filter>Toast\smil\2.0</Filter>
+    </None>
+    <None Include="..\toast\smil\2.0\smil.conf">
+      <Filter>Toast\smil\2.0</Filter>
+    </None>
+    <None Include="..\toast\smil\2.0\smil.spec">
+      <Filter>Toast\smil\2.0</Filter>
+    </None>
+    <None Include="..\toast\smil\2.1\index.html">
+      <Filter>Toast\smil\2.1</Filter>
+    </None>
+    <None Include="..\toast\smil\2.1\smil.conf">
+      <Filter>Toast\smil\2.1</Filter>
+    </None>
+    <None Include="..\toast\smil\2.1\smil.spec">
+      <Filter>Toast\smil\2.1</Filter>
+    </None>
+    <None Include="..\toast\smil\3.0\index.html">
+      <Filter>Toast\smil\3.0</Filter>
+    </None>
+    <None Include="..\toast\smil\3.0\smil.conf">
+      <Filter>Toast\smil\3.0</Filter>
+    </None>
+    <None Include="..\toast\smil\3.0\smil.spec">
+      <Filter>Toast\smil\3.0</Filter>
+    </None>
+    <None Include="..\toast\smil\1.0\3.2.smil">
+      <Filter>Toast\smil\1.0</Filter>
+    </None>
+    <None Include="..\toast\smil\1.0\3.3.css">
+      <Filter>Toast\smil\1.0</Filter>
+    </None>
+    <None Include="..\toast\smil\1.0\3.3.1.smil">
+      <Filter>Toast\smil\1.0</Filter>
+    </None>
+    <None Include="..\toast\smil\1.0\4.2.1.smil">
+      <Filter>Toast\smil\1.0</Filter>
+    </None>
+    <None Include="..\toast\smil\1.0\4.4.smil">
+      <Filter>Toast\smil\1.0</Filter>
+    </None>
+    <None Include="..\toast\smil\1.0\4.5.1.smil">
+      <Filter>Toast\smil\1.0</Filter>
+    </None>
+    <None Include="..\toast\smil\1.0\4.5.2.smil">
+      <Filter>Toast\smil\1.0</Filter>
+    </None>
+    <None Include="..\toast\smil\1.0\5.smil">
+      <Filter>Toast\smil\1.0</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\mdn.conf">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\mdn.spec">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\animatertansform.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\circle.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\clippath.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\defs.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\desc.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\ellpse.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\feblend.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\fecolourmatrix.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\fecomponenttransfer.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\fecomposite.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\feconvolvematrix.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\fediffuselighting.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\fedisplacementmap.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\fedropshadow.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\feflood.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\fegaussianblur.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\feimage.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\femerge.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\femergenode.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\femorphology.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\feoffset.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\fepointlight.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\fespecularlighting.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\fespotlight.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\fetile.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\feturbulence.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\filter.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\foreignobjcet.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\g.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\image.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\line.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\lineargradient.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\marker.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\mask.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\metadata.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\mpath.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\path.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\pattern.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\polygon.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\polyline.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\radialgradient.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\rect.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\script.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\set.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\stop.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\style.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\svg.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\switch.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\symbol.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\text.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\textpath.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\title.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\tspan.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\use.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\view.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\a.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\animate.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\animatemotion.xhtml">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\svg\index.html">
+      <Filter>Toast\mdn\svg</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mfenced.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mfrac.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mi.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mmultiscripts.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mn.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mo.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mover.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mpadded.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mphantom.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mprescripts.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mroot.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mrow.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\ms.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mspace.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\msqrt.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mstyle.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\msub.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\msup.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\msupsub.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mtable.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mtd.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mtext.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\munder.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\munderover.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\semantics.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\a.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\annotation.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\annotation-xml.xhtml">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\data-star.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\dir.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\displaystyle.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\index.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\maction.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\math.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mathbackground.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mathcolour.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mathsize.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mdn.conf">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\mdn.spec">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\mathml\memerror.html">
+      <Filter>Toast\mdn\mathml</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\displaystyle.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\index.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\maction.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\math.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mathbackground.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mathcolour.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mathsize.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mdn.conf">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mdn.spec">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\memclose.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\memerror.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mfrac.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mi.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mmultiscripts.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mn.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mo.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mover.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mpadded.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mphantom.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mprescripts.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mroot.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mrow.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mspace.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\msqrt.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\msub.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\msup.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\msupsub.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mtd.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\mtext.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\munder.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\munderover.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\scriptlevel.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\semantics.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\a.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\annotation.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\annotation-xml.xhtml">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\data-star.html">
+      <Filter>Toast\mdn\core</Filter>
+    </None>
+    <None Include="..\toast\mdn\core\dir.html">
+      <Filter>Toast\mdn\core</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

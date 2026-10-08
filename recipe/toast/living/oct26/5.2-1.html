@@ -1,0 +1,73 @@
+﻿<!doctype html>
+<html lang=en>
+ <head>
+  <title>5.2</title>
+ </head>
+
+ <body>
+     <h1>5.2</h1>
+
+     <dl itemscope itemtype="https://md.example.com/loco
+                        https://md.example.com/lighting">
+         <dt>Name:
+         <dd itemprop="name">Tank Locomotive (DB 80)
+         <dt>Product code:
+         <dd itemprop="product-code">33041
+         <dt>Scale:
+         <dd itemprop="scale">HO
+         <dt>Digital:
+         <dd itemprop="digital">Delta
+     </dl>
+
+     <dl itemscope itemtype="https://md.example.com/track
+                        https://md.example.com/lighting">
+         <dt>Name:
+         <dd itemprop="name">Turnout Lantern Kit
+         <dt>Product code:
+         <dd itemprop="product-code">74470
+         <dt>Purpose:
+         <dd>
+             For retrofitting 2 <span itemprop="track-type">C</span> Track
+             turnouts. <meta itemprop="scale" content="HO">
+     </dl>
+
+     <dl itemscope itemtype="https://md.example.com/passengers">
+         <dt>Name:
+         <dd itemprop="name">Express Train Passenger Car (DB Am 203)
+         <dt>Product code:
+         <dd itemprop="product-code">8710
+         <dt>Scale:
+         <dd itemprop="scale">Z
+     </dl>
+
+     <div itemscope>
+         <p itemprop="a">1</p>
+         <p itemprop="a">2</p>
+         <p itemprop="b">test</p>
+     </div>
+
+     <div itemscope>
+         <p itemprop="b">test</p>
+         <p itemprop="a">1</p>
+         <p itemprop="a">2</p>
+     </div>
+
+     <div itemscope>
+         <p itemprop="a">1</p>
+         <p itemprop="b">test</p>
+         <p itemprop="a">2</p>
+     </div>
+
+     <div id="x">
+         <p itemprop="a">1</p>
+     </div>
+     <div itemscope itemref="x">
+         <p itemprop="b">test</p>
+         <p itemprop="a">2</p>
+     </div>
+
+     <p itemscope></p> <!-- this is an item (with no properties and no type) -->
+     <svg itemscope></svg> <!-- this is not, it's just an SVG svg element with an invalid unknown attribute -->
+
+ </body>
+</html>

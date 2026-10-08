@@ -113,6 +113,10 @@ struct symbol_entry < html_version, e_sgml > doctype_symbol_table [] =
 
     { { HTML_1_0, 0, 0, 0, 0, H4_RSS }, { HTML_UNDEF }, HTTP "my.netscape.com/publish/formats/rss-0.91.dtd", doc_rss_91 },
 
+    { { HTML_SMIL_1_0, 0, 0, 0, 0, 0, H5_SMIL }, { HTML_UNDEF }, "-//W3C//DTD SMIL 1.0//EN", doc_smil_1_0 },
+    { { HTML_SMIL_1_0, 0, 0, 0, 0, 0, H5_SMIL }, { HTML_UNDEF }, HTTP_W3 "/TR/REC-smil/SMIL10.dtd", doc_smil_1_0 },
+    { { HTML_SMIL_1_0, 0, 0, 0, 0, 0, H5_SMIL }, { HTML_UNDEF }, HTTPS_W3 "/TR/REC-smil/SMIL10.dtd", doc_smil_1_0 },
+
     { { XHTML_1_0, HV_XHTML }, { HTML_UNDEF }, "-//W3C//DTD XHTML Basic 1.0//EN", doc_xhtml10_basic },
     { { XHTML_1_0, HV_XHTML }, { HTML_UNDEF }, HTTP_W3 "/TR/xhtml-basic/xhtml-basic10.dtd", doc_xhtml10_basic },
     { { XHTML_1_0, HV_XHTML }, { HTML_UNDEF }, HTTPS_W3 "/TR/xhtml-basic/xhtml-basic10.dtd", doc_xhtml10_basic },

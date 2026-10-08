@@ -158,7 +158,7 @@ typedef enum { att_text, att_html, att_xhtml } e_atom_type; // text first
 
 typedef enum
 {   a_unknown, a_custom,
-        a_abbr, a_about, a_above, a_accent, a_accent_height, a_accentunder, a_accept, a_accept_charset, a_accesskey, a_accumulate, a_action, a_actiontype,
+        a_abbr, a_about, a_above, a_abstract, a_accent, a_accent_height, a_accentunder, a_accept, a_accept_charset, a_accesskey, a_accumulate, a_action, a_actiontype,
         a_activate, a_active, a_additive, a_airplay, a_align, a_alignment_baseline, a_alignmentscope, a_alink, a_allow, a_allow_zoom_and_pan, a_allowfullscreen,
         a_allowpaymentrequest, a_allowusermedia, a_alpha, a_alphabetic, a_alt, a_altimg, a_altimg_height, a_altimg_width, a_altimg_valign, a_alttext,
         a_amplitude, a_anchor, a_animate, a_arabic_form, a_archive, a_arg, a_aria_activedescendant, a_aria_atomic, a_aria_autocomplete, a_aria_braillelabel,
@@ -169,26 +169,27 @@ typedef enum
         a_aria_pressed, a_aria_readonly, a_aria_relevant, a_aria_required, a_aria_roledescription, a_aria_rowcount, a_aria_rowindex, a_aria_rowindextext,
         a_aria_rowspan, a_aria_selected, a_aria_setsize, a_aria_sort, a_aria_valuemax, a_aria_valuemin, a_aria_valuenow, a_aria_valuetext, a_as, a_ascent,
         a_async, a_at, a_atom_href, a_atom_hreflang, a_atom_label, a_atom_length, a_atom_rel, a_atom_scheme, a_atom_src, a_atom_term, a_atom_title,
-        a_atom_type, a_atom_uri, a_atom_version, a_attributename, a_attributetype, a_attributionsrc, a_audio, a_audio_level, a_autobuffer,
+        a_atom_type, a_atom_uri, a_atom_version, a_attributename, a_attributetype, a_attributionsrc, a_audio, a_audio_level, a_author, a_autobuffer,
         a_autocapitalise, a_autocomplete, a_autocorrect, a_autofocus, a_autopictureinpicture, a_autoplay, a_autosubmit, a_axes, a_axis, a_azimuth,
-    a_background, a_background_fill, a_balance, a_bandwidth, a_base, a_basefrequency, a_baseline, a_baseline_shift, a_baseprofile, a_bbox, a_begin,
-        a_behaviour, a_below, a_bevelled, a_bgcolour, a_bias, a_blocking, a_border, a_bottommargin, a_box, a_browsingtopics, a_bubbles, a_buffered,
-        a_buffered_rendering, a_by,
+    a_background, a_background_colour, a_background_fill, a_balance, a_bandwidth, a_base, a_basefrequency, a_baseline, a_baseline_shift, a_baseprofile,
+        a_bbox, a_begin, a_behaviour, a_below, a_bevelled, a_bgcolour, a_bias, a_blocking, a_border, a_bottommargin, a_box, a_browsingtopics, a_bubbles,
+        a_buffered, a_buffered_rendering, a_by,
     a_cache, a_calcmode, a_cancelable, a_cap_height, a_capture, a_cd, a_cdgroup, a_cell, a_cellpadding, a_cellspacing, a_challenge, a_char, a_charalign,
-        a_charoff, a_charset, a_charspacing, a_checked, a_cite, a_class, a_classid, a_clear, a_clip, a_clip_path, a_clip_rule, a_clippathunits, a_clip_to_self,
-        a_close, a_closedby, a_closure, a_code, a_codebase, a_codetype, a_coldef, a_colour, a_colour_interpolation, a_colour_interpolation_filters,
-        a_colour_profile, a_colour_rendering, a_colourspace, a_cols, a_colspan, a_colspec, a_columnalign, a_columnlines, a_columnspacing, a_columnspan,
-        a_columnwidth, a_command, a_commandfor, a_compact, a_comp_op, a_compositing, a_condition, a_connect, a_content, a_contenteditable, a_contentlength,
-        a_contentscripttype, a_contentstyletype, a_contextmenu, a_continue, a_controls, a_controlslist, a_coords, a_credentialless, a_crossorigin,
-        a_crossout, a_csp, a_currenttime, a_cursor, a_cx, a_cy,
+        a_charoff, a_charset, a_charspacing, a_checked, a_cite, a_class, a_classid, a_clear, a_clip, a_clip_begin, a_clip_end, a_clip_path, a_clip_rule,
+        a_clippathunits, a_clip_to_self, a_close, a_closedby, a_closure, a_code, a_codebase, a_codetype, a_coldef, a_colour, a_colour_interpolation,
+        a_colour_interpolation_filters, a_colour_profile, a_colour_rendering, a_colourspace, a_cols, a_colspan, a_colspec, a_columnalign, a_columnlines,
+        a_columnspacing, a_columnspan, a_columnwidth, a_command, a_commandfor, a_compact, a_comp_op, a_compositing, a_condition, a_connect, a_content,
+        a_contenteditable, a_contentlength, a_contentscripttype, a_contentstyletype, a_contextmenu, a_continue, a_controls, a_controlslist, a_coords,
+        a_copyright, a_credentialless, a_crossorigin, a_crossout, a_csp, a_currenttime, a_cursor, a_cx, a_cy,
     a_d, a_data, a_datafld, a_dataformatas, a_datasrc, a_datatype, a_datawild, a_datetime, a_decimalcharacter, 
         a_decimalpoint, a_declare, a_decoding, a_default, a_defaultaction, a_defer, a_definitionurl, a_denomalign, a_depth, a_descent, a_dh,
         a_diffuseconstant, a_dingbat, a_dir, a_direction, a_dirname, a_disabled, a_disablepictureinpicture, a_disableremoteplayback, a_display,
         a_display_align, a_displaystyle, a_divisor, a_dominant_baseline, a_download, a_dp, a_draggable, a_dropzone, a_dur, a_duration, a_dw, a_dx, a_dy,
     a_edge, a_edgemode, a_edit, a_editable, a_effect, a_elementtiming, a_elevation, a_enable_background, a_encoding, a_enctype, a_end, a_endprogress,
-        a_enterkeyhint, a_equalcolumns, a_equalrows, a_error, a_event, a_eventtarget, a_evevent, a_exponent, a_exportparts, a_externalresourcesrequired,
+        a_endsync, a_enterkeyhint, a_equalcolumns, a_equalrows, a_error, a_event, a_eventtarget, a_evevent, a_exponent, a_exportparts,
+        a_externalresourcesrequired,
     a_face, a_fadecolour, a_fecolourmatrix, a_fecomposite, a_fegaussianblur, a_femorphology, a_fence, a_fetchpriority, a_fetile, a_fill, a_fill_opacity,
-        a_fill_rule, a_filter, a_filterres, a_filterunits, a_flatness, a_flood_colour, a_flood_opacity, a_focusable, a_focushighlight, a_font,
+        a_fill_rule, a_filter, a_filterres, a_filterunits, a_fit, a_flatness, a_flood_colour, a_flood_opacity, a_focusable, a_focushighlight, a_font,
         a_font_feature_settings, a_font_family, a_font_kerning, a_font_size,
         a_font_size_adjust, a_font_stretch, a_font_style, a_font_variant, a_font_variant_caps, a_font_variant_east_asian, a_font_variant_ligatures,
         a_font_variant_numeric, a_font_variant_position, a_font_weight, a_fontfamily, a_fontsize, a_fontstretch, a_fontstyle, a_fontvariant,
@@ -244,24 +245,25 @@ typedef enum
         a_preload, a_preservealpha, a_preserveaspectratio, a_prevfocus, a_primitiveunits, a_print, a_privatetoken, a_profile, a_prompt, a_propagate,
         a_property, a_pubdate, a_public,
     a_r, a_radiogroup, a_radius, a_rdelim, a_rdf_about, a_rdf_datatype, a_rdf_id, a_rdf_nodeid, a_rdf_parsetype, a_rdf_resource, a_readonly, a_ref,
-        a_referrerpolicy, a_refx, a_refy, a_registrationmark, a_rel, a_rendering_colour_space, a_rendering_in_tents, a_repeatcount, a_repeatdur,
-        a_required, a_requiredextensions, a_requiredfeatures, a_requiredfonts, a_requiredformats, a_resource, a_restart, a_result, a_results, a_rev,
-        a_reverse, a_reversed, a_rightmargin, a_rightoverhang, a_role, a_rotate, a_row, a_rowalign, a_rowgroup, a_rowlines, a_rows, a_rowspacing,
-        a_rowspan, a_rquote, a_rspace, a_rsl_contactemail, a_rsl_contacturl, a_rsl_currency, a_rsl_encrypted, a_rsl_lastmod, a_rsl_server, a_rsl_type,
-        a_rsl_url, a_rss_domain, a_rss_ispermalink, a_rss_length, a_rss_path, a_rss_port, a_rss_protocol, a_rss_registerprocedure, a_rss_url,
-        a_rss_type, a_rss_version, a_rules, a_rx, a_ry,
+        a_referrerpolicy, a_refx, a_refy, a_region, a_registrationmark, a_rel, a_rendering_colour_space, a_rendering_in_tents, a_repeat, a_repeatcount,
+        a_repeatdur, a_required, a_requiredextensions, a_requiredfeatures, a_requiredfonts, a_requiredformats, a_resource, a_restart, a_result,
+        a_results, a_rev, a_reverse, a_reversed, a_rightmargin, a_rightoverhang, a_role, a_rotate, a_row, a_rowalign, a_rowgroup, a_rowlines, a_rows,
+        a_rowspacing, a_rowspan, a_rquote, a_rspace, a_rsl_contactemail, a_rsl_contacturl, a_rsl_currency, a_rsl_encrypted, a_rsl_lastmod,
+        a_rsl_server, a_rsl_type, a_rsl_url, a_rss_domain, a_rss_ispermalink, a_rss_length, a_rss_path, a_rss_port, a_rss_protocol,
+        a_rss_registerprocedure, a_rss_url, a_rss_type, a_rss_version, a_rules, a_rx, a_ry,
     a_sandbox, a_scale, a_scheme, a_scope, a_scoped, a_script, a_scriptlevel, a_scriptminsize, a_scriptsizemultiplier, a_scrollamount, a_scrolldelay,
         a_scrolling, a_seamless, a_seed, a_seethru, a_select, a_selected, a_selection, a_separator, a_separators, a_seqnum, a_setback_offset,
         a_several, a_shadowinherit, a_shadowrootmode, a_shadowrootdelegatesfocus, a_shadowrootclonable, a_shadowrootserialisable,
         a_shadowrootcustomelementregistry, a_shape, a_shape_image_threshold, a_shape_inside, a_shape_margin, a_shape_padding, a_shape_rendering,
-        a_shape_subtract, a_shift, a_side, a_size, a_sizes, a_skip, a_slope, a_slot, a_snap, a_snapshottime, a_solid_colour, a_solid_opacity,
+        a_shape_subtract, a_shift, a_show, a_side, a_size, a_sizes, a_skip, a_skip_content, a_slope, a_slot, a_snap, a_snapshottime, a_solid_colour, a_solid_opacity,
         a_sortable, a_sorted, a_spacing, a_span, a_specularconstant, a_specularexponent, a_spellcheck, a_spreadmethod, a_src, a_srcdoc, a_srclang,
         a_srcset, a_srctype, a_stackalign, a_standalone, a_standby, a_start, a_startoffset, a_startprogress, a_static, a_stddeviation, a_stemh,
         a_stemv, a_step, a_stitchtiles, a_stop_colour, a_stop_opacity, a_streamedcontents, a_stretchy, a_strikethrough_position,
         a_strikethrough_thickness, a_string, a_stroke, a_stroke_dasharray, a_stroke_dashoffset, a_stroke_linecap, a_stroke_linejoin,
         a_stroke_miterlimit, a_stroke_opacity, a_stroke_width, a_style, a_subtype, a_subject, a_subscriptshift, a_summary, a_superscriptshift,
         a_surfacescale, a_svg, a_sym, a_svg_transform, a_symmetric, a_syncbehaviour, a_syncbehaviourdefault, a_syncmaster, a_synctolerance,
-        a_synctolerancedefault, a_system, a_systemlanguage,
+        a_synctolerancedefault, a_system, a_system_bitrate, a_system_captions, a_system_language, a_system_overdub_or_caption, a_system_required,
+        a_system_screen_size, a_system_screen_depth, a_systemlanguage,
     a_tabindex, a_tablevalues, a_tag, a_target, a_targetid, a_targetrole, a_targetx, a_targety, a_template, a_text, a_text_align, a_text_align_last,
         a_text_anchor, a_text_decoration, a_text_decoration_colour, a_text_decoration_fill, a_text_decoration_line, a_text_decoration_stroke,
         a_text_decoration_style, a_text_indent, a_text_justify, a_text_orientation, a_text_overflow, a_text_rendering, a_textlength, a_thickmathspace,
@@ -278,7 +280,7 @@ typedef enum
     a_x, a_x1, a_x2, a_xchannelselector, a_x_height, a_xlinkactuate, a_xlinkarcrole, a_xlinkhref, a_xlinkrole, a_xlinkshow, a_xlinktitle, a_xlinktype,
         a_xmlbase, a_xmlid, a_xmllang, a_xmllink, a_xmlns, a_xmlns_xlink, a_xmlspace, a_xref, a_xsischemaloc, a_x_webkit_airplay,
     a_y, a_y1, a_y2, a_ychannelselector,
-    a_z, a_zindex, a_zoomandpan,
+    a_z, a_z_index, a_zindex, a_zoomandpan,
     a_illegal
  } e_attribute;
 CONSTEXPR e_attribute first_attribute = a_abbr;
@@ -375,6 +377,7 @@ typedef enum { bsb_baseline, bsb_bottom, bsb_centre, bsb_top, bsb_sub, bsb_super
 typedef enum { bce_baseline, bce_centre, bce_end, bce_start, bce_stretch } e_bcess;
 typedef enum { bcs_bounding_box, bcs_clone, bcs_slice } e_bcs;
 typedef enum { bdn_balance, bdn_dense, bdn_normal } e_bdn;
+typedef enum { be_begin, be_end } e_begin_end; // t_begin_end
 typedef enum { be_alternative, be_scroll, be_slide } e_behaviour;
 typedef enum { bens_trim_both, bens_trim_end, bens_none, bens_trim_start } e_bens;
 typedef enum { benrs_both, benrs_end, benrs_normal, benrs_start } e_benrs;
@@ -396,12 +399,13 @@ typedef enum { bt_by, bt_to } e_byto;
 typedef enum { ck_maxage, ck_maxstale, ck_minfresh, ck_nocache, ck_nostore, ck_notransform, ck_onlyifcached } e_cachekey;
 typedef enum { cs_free, cs_loading, cs_empty, cs_content, cs_error } e_cache_state;
 typedef enum { cm_discrete, cm_linear, cm_paced, cm_spline } e_calcmode;
+typedef enum { co_caption, co_overdub } e_caption_overdub;
 typedef enum { ca_bottom, cap_left, ca_right, ca_top } e_captionalign;
 typedef enum { cv_user, cv_environment } ev_capture;
 typedef enum {  ec_undefined, ec_aria, ec_atom, ec_attribute, ec_browser, ec_cache, ec_con, ec_corpus, ec_crc, ec_css, ec_directory, ec_element, ec_file, ec_fred,
                 ec_icu, ec_incorrectness, ec_init, ec_io, ec_ip, ec_json, ec_link, ec_microdata, ec_microformat, ec_mime, ec_mql, ec_namespace, ec_naughty,
-                ec_page, ec_parser, ec_program, ec_rdfa, ec_regex, ec_robotic, ec_rsl, ec_rss, ec_rudeness, ec_schema, ec_security, ec_shadow, ec_signing, ec_spell,
-                ec_ssi, ec_ssl, ec_tidyness, ec_type, ec_url, ec_utility, ec_vtt } e_category;
+                ec_page, ec_parser, ec_program, ec_rdfa, ec_regex, ec_robotic, ec_rsl, ec_rss, ec_rudeness, ec_schema, ec_security, ec_shadow, ec_signing, ec_smil,
+                ec_spell, ec_ssi, ec_ssl, ec_tidyness, ec_type, ec_url, ec_utility, ec_vtt } e_category;
 CONSTEXPR e_category last_category = ec_vtt;
 typedef enum { ccp_derivativeworks, ccp_distribution, ccp_reproduction } e_cc_permits;
 typedef enum { ccr_attribution, ccr_notice, ccr_sharealike, ccr_sourcecode } e_cc_requires;
@@ -806,7 +810,7 @@ typedef enum {  evp_keyboard_inset_bottom, evp_keyboard_inset_height, evp_keyboa
                 evp_viewport_segment_bottom, evp_viewport_segment_height, evp_viewport_segment_left, evp_viewport_segment_right, evp_viewport_segment_top, evp_viewport_segment_width
              } e_css_env_var_predef;
 typedef enum { fca_auto, fca_none, fca_preserve } e_css_fca;
-typedef enum { fit_fill, fit_hidden, fit_meet, fit_slice } e_css_fit;
+typedef enum { cfit_fill, cfit_hidden, cfit_meet, cfit_slice } e_css_fit;
 typedef enum { cfc_content, cfc_fit_content, cfc_max_content, cfc_min_content } e_css_flex_content;
 typedef enum {  cf_block_end, cf_block_start, cf_bottom, cf_inherit, cf_inline_end, cf_inline_start, cf_left, cf_none, cf_right,
                 cf_snap_block, cf_snap_inline, cf_top } e_css_float;
@@ -1011,206 +1015,13 @@ typedef enum { pas_nearest, pas_self, pas_source } e_css_pointer_source;
 typedef enum { ecp_absolute, ecp_fixed, ecp_inherit, ecp_relative, ecp_static, ecp_sticky, ecp_webkit_sticky } e_css_position;
 typedef enum { vvs_anchors_valid, vvs_anchors_visible, vvs_no_overflow } e_css_position_vvo;
 typedef enum { cps_unknown, cps_required, cps_partial, cps_optional, cps_similar } e_css_print_status;
-typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
-                ec_and, ec_not, ec_or,
-                ec_accent_colour, ec_additive_symbols, ec_align_content, ec_align_items, ec_align_self, ec_alignment_baseline, ec_all,
-                    ec_all_space_treatment, ec_altglyph, ec_anchor_default, ec_anchor_name, ec_anchor_scope, ec_anchor_scroll, ec_animation,
-                    ec_animation_composition, ec_animation_delay, ec_animation_delay_end, ec_animation_delay_start, ec_animation_direction,
-                    ec_animation_duration, ec_animation_fill_mode, ec_animation_iteration_count, ec_animation_name, ec_animation_play_state,
-                    ec_animation_range, ec_animation_range_centre, ec_animation_range_end, ec_animation_range_start, ec_animation_timeline,
-                    ec_animation_timing_function, ec_animation_trigger, ec_appearance, ec_ascent, ec_ascent_override, ec_aspect_ratio,
-                    ec_audio_level, ec_available_content, ec_azimuth,
-                ec_backdrop_filter, ec_backface_visibility, ec_background, ec_background_attachment, ec_background_blend_mode, ec_background_break,
-                    ec_background_clip, ec_background_colour, ec_background_image, ec_background_image_transform, ec_background_origin,
-                    ec_background_origin_x, ec_background_origin_y, ec_background_position, ec_background_position_block, ec_background_position_inline,
-                    ec_background_position_x, ec_background_position_y, ec_background_quantity, ec_background_repeat, ec_background_repeat_block,
-                    ec_background_repeat_inline, ec_background_repeat_x, ec_background_repeat_y, ec_background_size, ec_background_spacing, ec_background_tbd,
-                    ec_baseline, ec_baseline_shift, ec_baseline_source, ec_base_palette, ec_base_url, ec_bbox, ec_bikeshedding, ec_bleed, ec_block_ellipsis,
-                    ec_block_overflow, ec_block_progression, ec_block_size, ec_block_step, ec_block_step_align, ec_block_step_insert, ec_block_step_round,
-                    ec_block_step_size, ec_bookmark_label, ec_bookmark_level, ec_bookmark_state, ec_bookmark_target, ec_border, ec_border_block,
-                    ec_border_block_clip, ec_border_block_colour, ec_border_block_end, ec_border_block_end_clip, ec_border_block_end_colour,
-                    ec_border_block_end_radius, ec_border_block_end_style, ec_border_block_end_width, ec_border_block_start, ec_border_block_start_clip,
-                    ec_border_block_start_colour, ec_border_block_start_radius, ec_border_block_start_style, ec_border_block_start_width, ec_border_block_style,
-                    ec_border_block_width, ec_border_bottom, ec_border_bottom_clip, ec_border_bottom_colour, ec_border_bottom_left_radius, ec_border_bottom_radius,
-                    ec_border_bottom_right_radius, ec_border_bottom_style, ec_border_bottom_width, ec_border_boundary, ec_border_break, ec_border_clip,
-                    ec_border_collapse, ec_border_colour, ec_border_end_end_radius, ec_border_end_start_radius, ec_border_image, ec_border_image_outset,
-                    ec_border_image_repeat, ec_border_image_slice, ec_border_image_source, ec_border_image_transform, ec_border_image_width, ec_border_inline,
-                    ec_border_inline_clip, ec_border_inline_colour, ec_border_inline_end, ec_border_inline_end_clip, ec_border_inline_end_colour,
-                    ec_border_inline_end_radius, ec_border_inline_end_style, ec_border_inline_end_width, ec_border_inline_start, ec_border_inline_start_clip,
-                    ec_border_inline_start_colour, ec_border_inline_start_radius, ec_border_inline_start_style, ec_border_inline_start_width, ec_border_inline_style,
-                    ec_border_inline_width, ec_border_left, ec_border_left_clip, ec_border_left_colour, ec_border_left_radius, ec_border_left_style,
-                    ec_border_left_width, ec_border_length, ec_border_limit, ec_border_radius, ec_border_right, ec_border_right_clip, ec_border_right_colour,
-                    ec_border_right_radius, ec_border_right_style, ec_border_right_width, ec_border_shape, ec_border_spacing, ec_border_start_end_radius,
-                    ec_border_start_start_radius, ec_border_style, ec_border_top, ec_border_top_clip, ec_border_top_colour, ec_border_top_left_radius,
-                    ec_border_top_radius, ec_border_top_right_radius, ec_border_top_style, ec_border_top_width, ec_border_width, ec_bottom, ec_box_align,
-                    ec_box_decoration_break, ec_box_break, ec_box_direction, ec_box_flex, ec_box_flex_group, ec_box_height, ec_box_lines, ec_box_ordinal_group,
-                    ec_box_orient, ec_box_pack, ec_box_shadow, ec_box_shadow_blur, ec_box_shadow_colour, ec_box_shadow_offset, ec_box_shadow_position,
-                    ec_box_shadow_spread, ec_box_suppress, ec_box_width, ec_box_sizing, ec_box_snap, ec_break_after, ec_break_before, ec_break_inside,
-                    ec_buffered_rendering,
-                ec_cap_height, ec_caption_side, ec_caret, ec_caret_animation, ec_caret_colour, ec_caret_shape, ec_centre_line, ec_chains, ec_clear,
-                    ec_clear_after, ec_clip, ec_clip_path, ec_clippath, ec_clip_rule, ec_cliprule, ec_colour, ec_colour_adjust, ec_colour_interpolation,
-                    ec_colour_interpolation_filters, ec_colour_profile, ec_colour_rendering, ec_colour_scheme, ec_column_break_after,
-                    ec_column_break_before, ec_column_count, ec_column_fill, ec_column_gap, ec_column_height, ec_column_rule, ec_column_rule_break,
-                    ec_column_rule_colour, ec_column_rule_inset, ec_column_rule_inset_cap, ec_column_rule_inset_cap_start, ec_column_rule_inset_cap_end,
-                    ec_column_rule_inset_end, ec_column_rule_inset_junction, ec_column_rule_inset_junction_start, ec_column_rule_inset_junction_end,
-                    ec_column_rule_inset_start, ec_column_rule_style, ec_column_rule_visibility_items, ec_column_rule_width, ec_column_span,
-                    ec_column_width, ec_column_wrap, ec_columns, ec_contain, ec_contain_intrinsic_block_size, ec_contain_intrinsic_height,
-                    ec_contain_intrinsic_inline_size, ec_contain_intrinsic_size, ec_contain_intrinsic_width, ec_container, ec_container_name,
-                    ec_container_type, ec_content, ec_content_order, ec_content_visibility, ec_continue, ec_copy_into, ec_corner_block_end_shape,
-                    ec_corner_block_start_shape, ec_corner_bottom_left_shape, ec_corner_bottom_right_shape, ec_corner_bottom_shape, ec_corner_end_end_shape,
-                    ec_corner_end_start_shape, ec_corner_inline_end_shape, ec_corner_inline_start_shape, ec_corner_left_shape, ec_corner_right_shape,
-                    ec_corner_shape, ec_corner_start_end_shape, ec_corner_start_start_shape, ec_corner_top_left_shape, ec_corner_top_right_shape,
-                    ec_corner_top_shape, ec_counter_increment, ec_counter_reset, ec_counter_set, ec_crop, ec_cue, ec_cue_after, ec_cue_before,
-                    ec_cursor, ec_cx, ec_cy,
-                ec_d, ec_definition_src, ec_descent, ec_descent_override, ec_direction, ec_display, ec_display_align, ec_dominant_baseline,
-                    ec_dynamic_range_limit,
-                ec_elevation, ec_else, ec_empty_cells, ec_enable_background, ec_event_trigger_name, ec_event_trigger_source, ec_event_trigger,
-                    ec_expansion, ec_extend_to_zoom,
-                ec_fallback, ec_field_sizing, ec_fill, ec_fill_break, ec_fill_colour, ec_fill_image, ec_fill_opacity, ec_fill_origin, ec_fill_params,
-                    ec_fill_position, ec_fill_repeat, ec_fillrule, ec_fill_rule, ec_fill_size, ec_filter, ec_flex, ec_flex_basis, ec_flex_direction,
-                    ec_flex_flow, ec_flex_grow, ec_flex_shrink, ec_flex_wrap, ec_float, ec_float_defer, ec_float_offset, ec_float_reference,
-                    ec_flood_colour, ec_flood_opacity, ec_flow, ec_flow_from, ec_flow_into, ec_flow_tolerance, ec_font, ec_font_display, ec_font_family,
-                    ec_font_feature_settings, ec_font_kerning, ec_font_language_override, ec_font_named_instance, ec_font_optical_sizing,
-                    ec_font_palette, ec_font_size, ec_font_size_adjust, ec_font_smooth, ec_font_stretch, ec_font_style, ec_font_synthesis,
-                    ec_font_synthesis_position, ec_font_synthesis_small_caps, ec_font_synthesis_style, ec_font_synthesis_weight, ec_font_variant,
-                    ec_font_variant_alternatives, ec_font_variant_caps, ec_font_variant_east_asian, ec_font_variant_emoji, ec_font_variant_ligatures,
-                    ec_font_variant_numeric, ec_font_variant_position, ec_font_variation_settings, ec_font_weight, ec_font_width, ec_footnote_display,
-                    ec_footnote_policy, ec_forced_colour_adjust,
-                ec_gap, ec_glyph_orientation_horizontal, ec_glyph_orientation_vertical, ec_grid, ec_grid_area, ec_grid_auto_columns, ec_grid_auto_flow,
-                    ec_grid_auto_rows, ec_grid_column, ec_grid_column_end, ec_grid_column_start, ec_grid_row, ec_grid_row_end, ec_grid_row_start,
-                    ec_grid_template, ec_grid_template_areas, ec_grid_template_columns, ec_grid_template_rows,
-                ec_hanging_punctuation, ec_hash, ec_height, ec_hostname, ec_hyphenate_character, ec_hyphenate_limit_chars, ec_hyphenate_limit_last,
-                    ec_hyphenate_limit_lines, ec_hyphenate_limit_zone, ec_hyphens,
-                ec_icc_profile, ec_if, ec_image_animation, ec_image_orientation, ec_image_rendering, ec_image_resolution, ec_initial, ec_initial_letter,
-                    ec_initial_letter_align, ec_initial_letter_wrap, ec_inline_size, ec_inline_sizing, ec_input_security, ec_inset, ec_inset_block,
-                    ec_inset_block_end, ec_inset_block_start, ec_inset_inline, ec_inset_inline_end, ec_inset_inline_start, ec_interactive_widget,
-                    ec_interactivity, ec_interest_delay, ec_interest_delay_start, ec_interest_delay_end, ec_interpolate_size, ec_isolation,
-                    ec_item_cross, ec_item_direction, ec_item_flow, ec_item_pack, ec_item_track, ec_item_wrap,
-                ec_justify_content, ec_justify_items, ec_justify_self,
-                ec_kerning,
-                ec_leading_trim, ec_left, ec_letter_spacing, ec_lighting_colour, ec_line_break, ec_line_clamp, ec_line_gap_override, ec_line_grid,
-                    ec_line_height, ec_line_height_step, ec_line_increment, ec_line_padding, ec_line_snap, ec_link_parameters, ec_list_style,
-                    ec_list_style_image, ec_list_style_position, ec_list_style_type,
-                ec_margin, ec_margin_block, ec_margin_block_end, ec_margin_block_start, ec_margin_bottom, ec_margin_break, ec_margin_inline,
-                    ec_margin_inline_end, ec_margin_inline_start, ec_margin_left, ec_margin_right, ec_margin_top, ec_margin_trim, ec_marker,
-                    ec_marker_end, ec_marker_knockout_left, ec_marker_knockout_right, ec_marker_mid, ec_marker_offset, ec_marker_pattern, ec_marker_segment,
-                    ec_marker_side, ec_marker_start, ec_marks, ec_mask, ec_mask_border, ec_mask_border_mode, ec_mask_border_outset, ec_mask_border_repeat,
-                    ec_mask_border_slice, ec_mask_border_source, ec_mask_border_width, ec_mask_clip, ec_mask_composite, ec_mask_image, ec_mask_mode,
-                    ec_mask_origin, ec_mask_position, ec_mask_repeat, ec_mask_size, ec_mask_type, ec_math_depth, ec_mathline, ec_math_shift, ec_math_style,
-                    ec_max_block_size, ec_max_height, ec_max_inline_size, ec_max_lines, ec_max_width, ec_max_zoom, ec_media, ec_min_block_size,
-                    ec_min_height, ec_min_inline_size, ec_min_intrinsic_sizing, ec_min_width, ec_min_zoom, ec_mix_blend_mode,
-                ec_name, ec_negative, ec_nav_down, ec_nav_left, ec_nav_right, ec_nav_up, ec_navigation,
-                ec_object_fit, ec_object_position, ec_object_view_box, ec_offset, ec_offset_anchor, ec_offset_distance, ec_offset_path, ec_offset_position,
-                    ec_offset_rotate, ec_orientation, ec_opacity, ec_order, ec_orphans, ec_outline, ec_outline_colour, ec_outline_offset, ec_outline_style,
-                    ec_outline_width, ec_overflow, ec_overflow_anchor, ec_overflow_block, ec_overflow_clip_box, ec_overflow_clip_box_block, ec_overflow_clip_box_inline,
-                    ec_overflow_clip_margin, ec_overflow_clip_margin_block, ec_overflow_clip_margin_block_end, ec_overflow_clip_margin_block_start,
-                    ec_overflow_clip_margin_bottom, ec_overflow_clip_margin_inline,ec_overflow_clip_margin_inline_end, ec_overflow_clip_margin_inline_start,
-                    ec_overflow_clip_margin_left, ec_overflow_clip_margin_right, ec_overflow_clip_margin_top, ec_overflow_inline, ec_overflow_wrap, ec_overflow_x,
-                    ec_overflow_y, ec_overlay, ec_override_colours, ec_overscroll_behavior, ec_overscroll_behavior_block, ec_overscroll_behavior_inline,
-                    ec_overscroll_behavior_x, ec_overscroll_behavior_y,
-                ec_pad, ec_padding, ec_padding_block, ec_padding_block_end, ec_padding_block_start, ec_padding_bottom, ec_padding_inline, ec_padding_inline_end,
-                    ec_padding_inline_start, ec_padding_left, ec_padding_right, ec_padding_top, ec_page_break_after, ec_page_break_before, ec_page_break_inside,
-                    ec_page_property, ec_page_orientation, ec_paint_order, ec_panose_1, ec_path_length, ec_pathname, ec_pattern, ec_pause, ec_pause_after,
-                    ec_pause_before, ec_perspective, ec_perspective_origin, ec_pitch, ec_pitch_range, ec_place_content, ec_place_items, ec_place_self, ec_play_during,
-                    ec_pointer_events, ec_pointer_timeline, ec_pointer_timeline_axis, ec_pointer_timeline_name, ec_port, ec_position, ec_position_anchor,
-                    ec_position_area, ec_position_fallback, ec_position_fallback_bounds, ec_position_try, ec_position_try_fallbacks, ec_position_try_order,
-                    ec_position_visibility, ec_prefix, ec_presentation_level, ec_print_colour_adjust, ec_protocol,
-                ec_quotes,
-                ec_r, ec_range, ec_reading_flow, ec_reading_order, ec_region_fragment, ec_required_flow, ec_rendering_intent, ec_resize, ec_rest, ec_rest_after,
-                    ec_rest_before, ec_result, ec_richness, ec_right, ec_rotate, ec_row_gap, ec_row_rule, ec_row_rule_break, ec_row_rule_colour, ec_row_rule_inset,
-                    ec_row_rule_inset_cap, ec_row_rule_inset_cap_start, ec_row_rule_inset_cap_end, ec_row_rule_inset_end, ec_row_rule_inset_junction,
-                    ec_row_rule_inset_junction_start, ec_row_rule_inset_junction_end, ec_row_rule_inset_start, ec_row_rule_style, ec_row_rule_width,
-                    ec_row_rule_visibility_items, ec_ruby_align, ec_ruby_merge, ec_ruby_overhang, ec_ruby_position, ec_rule_colour, ec_rule, ec_rule_inset, ec_rule_inset_cap,
-                    ec_rule_inset_junction, ec_rule_overlap, ec_rule_style, ec_rule_width, ec_rule_visibility_items, ec_running, ec_rule_break, ec_rx, ec_ry,
-                ec_scale, ec_scope, ec_scroll_behaviour, ec_scroll_initial_target, ec_scroll_margin, ec_scroll_margin_block, ec_scroll_margin_block_end,
-                    ec_scroll_margin_block_start, ec_scroll_margin_bottom, ec_scroll_margin_inline, ec_scroll_margin_inline_end, ec_scroll_margin_inline_start,
-                    ec_scroll_margin_left, ec_scroll_margin_right, ec_scroll_margin_top, ec_scroll_marker_group, ec_scroll_padding, ec_scroll_padding_block,
-                    ec_scroll_padding_block_end, ec_scroll_padding_block_start, ec_scroll_padding_bottom, ec_scroll_padding_inline, ec_scroll_padding_inline_end,
-                    ec_scroll_padding_inline_start, ec_scroll_padding_left, ec_scroll_padding_right, ec_scroll_padding_top, ec_scroll_snap_align,
-                    ec_scroll_snap_stop, ec_scroll_snap_type, ec_scroll_target_group, ec_scroll_timeline, ec_scroll_timeline_axis, ec_scroll_timeline_name, ec_scrollbar_colour,
-                    ec_scrollbar_gutter, ec_scrollbar_width, ec_search, ec_shape_image_threshold, ec_shape_inside, ec_shape_margin, ec_shape_outside, ec_shape_padding,
-                    ec_shape_rendering, ec_shape_subtract, ec_size, ec_size_adjust, ec_slider_orientation, ec_slope, ec_solid_colour, ec_solid_opacity,
-                    ec_spatial_navigation_action, ec_spatial_navigation_contain, ec_spatial_navigation_function, ec_speak, ec_speak_as, ec_speak_header, ec_speak_numeral,
-                    ec_speak_punctuation, ec_specificity, ec_speech_rate, ec_src, ec_stemh, ec_stemv, ec_stress, ec_string_set, ec_stop_colour, ec_stop_opacity, ec_stroke,
-                    ec_stroke_align, ec_stroke_alignment, ec_stroke_break, ec_stroke_colour, ec_stroke_dashadjust, ec_stroke_dasharray, ec_stroke_dashcorner,
-                    ec_stroke_dash_corner, ec_stroke_dash_justify, ec_stroke_dashoffset, ec_stroke_image, ec_stroke_linecap, ec_stroke_linejoin, ec_stroke_miterlimit,
-                    ec_stroke_opacity, ec_stroke_origin, ec_stroke_params, ec_stroke_position, ec_stroke_repeat, ec_stroke_size, ec_stroke_width, ec_style,
-                    ec_subscript_position_override, ec_subscript_size_override, ec_suffix, ec_superscript_position_override, ec_superscript_size_override, ec_supports,
-                    ec_symbols, ec_system,
-                ec_tab_size, ec_table_layout, ec_template_set, ec_text_align, ec_text_align_all, ec_text_align_last, ec_text_anchor, ec_text_autospace, ec_text_box,
-                    ec_text_box_edge, ec_text_box_trim, ec_text_combine_upright, ec_text_decoration, ec_text_decoration_colour, ec_text_decoration_inset,
-                    ec_text_decoration_line, ec_text_decoration_skip, ec_text_decoration_skip_box, ec_text_decoration_skip_edges, ec_text_decoration_skip_ink,
-                    ec_text_decoration_skip_inset, ec_text_decoration_skip_self, ec_text_decoration_skip_spaces, ec_text_decoration_style, ec_text_decoration_thickness,
-                    ec_text_definition, ec_text_emphasis, ec_text_emphasis_colour, ec_text_emphasis_position, ec_text_emphasis_skip, ec_text_emphasis_style, ec_text_fit,
-                    ec_text_group_align, ec_text_indent, ec_text_justify, ec_text_orientation, ec_text_overflow, ec_text_rendering, ec_text_resize, ec_text_shadow,
-                    ec_text_size_adjust, ec_text_spacing, ec_text_spacing_trim, ec_text_transform, ec_text_underline_offset, ec_text_underline_position, ec_text_wrap,
-                    ec_text_wrap_mode, ec_text_wrap_style, ec_timeline_scope, ec_timeline_trigger_active_range, ec_timeline_trigger_active_range_start,
-                    ec_timeline_trigger_active_range_end, ec_timeline_trigger_activation_range, ec_timeline_trigger_activation_range_start,
-                    ec_timeline_trigger_activation_range_end, ec_timeline_trigger_name, ec_timeline_trigger_source, ec_timeline_trigger, ec_top, ec_topline,
-                    ec_touch_action, ec_transform, ec_transform_box, ec_transform_origin, ec_transform_style, ec_transition, ec_transition_behaviour,
-                    ec_transition_delay, ec_transition_duration, ec_transition_property,ec_transition_timing_function, ec_translate, ec_trigger_scope, ec_types,
-                ec_unicode_bidi, ec_unicode_range, ec_units_per_em, ec_user_modify, ec_user_select, ec_user_zoom,
-                ec_value, ec_vector_effect, ec_vertical_align, ec_view_timeline, ec_view_timeline_axis, ec_view_timeline_inset, ec_view_timeline_name,
-                    ec_view_transition_class, ec_view_transition_group, ec_view_transition_name, ec_view_transition_scope, ec_viewport_fill, ec_viewport_fill_opacity,
-                    ec_viewport_fit, ec_visibility, ec_voice_balance, ec_voice_duration, ec_voice_family, ec_voice_pitch, ec_voice_range, ec_voice_rate,
-                    ec_voice_stress, ec_voice_volume, ec_volume,
-                ec_white_space, ec_white_space_collapse, ec_white_space_trim, ec_widows, ec_width, ec_widths, ec_will_change, ec_word_boundary_detection,
-                    ec_word_boundary_expansion, ec_word_break, ec_word_space_transform, ec_word_spacing, ec_word_wrap, ec_wrap_after, ec_wrap_before,
-                    ec_wrap_flow, ec_wrap_inside, ec_wrap_through, ec_writing_mode,
-                ec_x, ec_x_height,
-                ec_y,
-                ec_z_index, ec_zoom,
+typedef enum {  ec_unknown, ec_context, 
 
-                // old abandoned properties from https://www.w3.org/Style/CSS/all-properties.en.html
-                ec_display_box, ec_display_extras, ec_display_inside, ec_display_list, ec_display_model, ec_display_outside, ec_display_role,
-                ec_feBlend, ec_feColorMatrix, ec_feComponentTransfer, ec_feComposite, ec_feConvolveMatrix, ec_feCustom, ec_feCustomParam, ec_feCustomSource,
-                ec_feDiffuseLighting, ec_feDisplacementMap, ec_feDistantLight, ec_feDropShadow, ec_feFlood, ec_feFuncA, ec_feFuncB, ec_feFuncG, ec_feFuncR,
-                ec_feGaussianBlur, ec_feImage, ec_feMerge, ec_feMergeNode, ec_feMorphology, ec_feOffset, ec_fePointLight, ec_feSpecularLighting, ec_feSpotLight,
-                ec_feTile, ec_feTurbulence, ec_feUnsharpMask, ec_filter_margin, ec_filter_margin_bottom, ec_filter_margin_left, ec_filter_margin_right,
-                ec_filter_margin_top, ec_fit, ec_fit_position, ec_flex_align, ec_flex_item_align, ec_flex_line_pack, ec_flex_order, ec_flex_pack, ec_float_displace,
-                ec_float_displace_alternative_2, ec_float_displace_alternative_3, ec_font_max_size, ec_font_min_size, ec_font_presentation,
-                ec_grid_after, ec_grid_auto_position, ec_grid_before, ec_grid_cell, ec_grid_cell_stacking, ec_grid_column_align,
-                ec_grid_column_gap, ec_grid_column_position, ec_grid_column_sizing, ec_grid_column_span, ec_grid_columns, ec_grid_definition_columns,
-                ec_grid_definition_rows, ec_grid_end, ec_grid_flow, ec_grid_gap, ec_grid_position, ec_grid_row_align, ec_grid_row_gap, ec_grid_row_position,
-                ec_grid_row_sizing, ec_grid_row_span, ec_grid_rows, ec_grid_span, ec_grid_start,
-                ec_hyphenate, ec_hyphenate_after, ec_hyphenate_before, ec_hyphenate_dictionary, ec_hyphenate_limit_after, ec_hyphenate_limit_before,
-                ec_hyphenate_lines, ec_hyphenate_resource,
-                ec_icon, ec_ime_mode, ec_indent_edge_reset, ec_initial_letters, ec_initial_letters_align, ec_initial_letters_wrap,
-                ec_kerning_mode, ec_kerning_pair_threshold, ec_key_equivalent,
-                ec_leading_trim_over, ec_leading_trim_under, ec_line_grid_mode, ec_line_grid_progression, ec_line_sizing, ec_line_slack,
-                ec_linefeed_treatment,
-                ec_mark, ec_mark_after, ec_mark_before, ec_marquee, ec_marquee_direction, ec_marquee_loop, ec_marquee_play_count, ec_marquee_repetition,
-                ec_marquee_speed, ec_marquee_style, ec_mask_box, ec_mask_box_image, ec_mask_box_image_outset, ec_mask_box_image_repeat, ec_mask_box_image_slice,
-                ec_mask_box_image_source, ec_mask_box_image_width, ec_mask_box_outset, ec_mask_box_repeat, ec_mask_box_slice, ec_mask_box_source, ec_mask_box_width,
-                ec_mask_source_type, ec_max_font_size, ec_min_font_size, ec_motion, ec_motion_offset, ec_motion_path, ec_motion_rotation,
-                ec_move_to,
-                ec_nav_index,
-                ec_offset_after, ec_offset_before, ec_offset_end, ec_offset_start, ec_overflow_clip, ec_overflow_style,
-                ec_page_policy, ec_page_transition_tag, ec_phonemes, ec_polar_anchor, ec_polar_angle, ec_polar_distance, ec_polar_origin,
-                ec_punctuation_trim,
-                ec_region_overflow, ec_resizer, ec_resolution, ec_rotation, ec_rotation_point,
-                ec_scroll_snap_coordinate, ec_scroll_snap_destination, ec_scroll_snap_margin, ec_scroll_snap_margin_block, ec_scroll_snap_margin_block_end,
-                ec_scroll_snap_margin_block_start, ec_scroll_snap_margin_bottom, ec_scroll_snap_margin_inline, ec_scroll_snap_margin_inline_end,
-                ec_scroll_snap_margin_inline_start, ec_scroll_snap_margin_left, ec_scroll_snap_margin_right, ec_scroll_snap_margin_top, ec_scroll_snap_padding,
-                ec_scroll_snap_padding_block, ec_scroll_snap_padding_block_end, ec_scroll_snap_padding_block_start, ec_scroll_snap_padding_bottom,
-                ec_scroll_snap_padding_inline, ec_scroll_snap_padding_inline_end, ec_scroll_snap_padding_inline_start, ec_scroll_snap_padding_left,
-                ec_scroll_snap_padding_right, ec_scroll_snap_padding_top, ec_scroll_snap_points_x, ec_scroll_snap_points_y, ec_scroll_timeline_attachment,
-                ec_something_or_other, ec_speakability,
-                ec_tab_side, ec_target, ec_target_name, ec_target_new, ec_target_position, ec_text_align_first, ec_text_blink, ec_text_block_indent,
-                ec_text_combine, ec_text_combine_horizontal, ec_text_combine_mode, ec_text_decoration_width, ec_text_edge, ec_text_first_indent,
-                ec_text_justify_trim, ec_text_kashida_space, ec_text_line_through, ec_text_line_through_colour, ec_text_line_through_mode,
-                ec_text_line_through_style, ec_text_line_through_width, ec_text_outline, ec_text_overflow_ellipsis, ec_text_overflow_mode, ec_text_overline,
-                ec_text_overline_colour, ec_text_overline_mode, ec_text_overline_style, ec_text_overline_width, ec_text_replace, ec_text_script,
-                ec_text_space_collapse, ec_text_space_trim, ec_text_trim, ec_text_underline, ec_text_underline_colour, ec_text_underline_mode,
-                ec_text_underline_style, ec_text_underline_width,
-                ec_var, ec_vertical_position, ec_view_timeline_attachment, ec_voice_pitch_range,
-                ec_white_space_collapsing, ec_white_space_treatment, ec_word_break_cjk,
-                ec_word_break_inside, ec_wrap, ec_wrap_margin, ec_wrap_option, ec_wrap_padding,
-
+                // most properties come from w3 CSS specs
+    
                 // additional abandoned properties per https://developer.mozilla.org/en-US/docs/Web/CSS/Reference#index
-                ec_align_tracks,
 
-                // sources for the properties below include
+                // sources for browser properties include
                 // https://developer.mozilla.org/en-US/docs/Web/CSS/Webkit_Extensions
                 // https://developer.mozilla.org/en-US/docs/Web/CSS/Mozilla_Extensions
                 // https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariCSSRef/Articles/StandardCSSProperties.html
@@ -1220,258 +1031,333 @@ typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                 // https://litmus.com/community/learning/8-outlook-overview
 
                 // some extras from https://gist.github.com/ryboe/bb95223148e486acbe7a
-                ec_apple_align_content, ec_apple_align_items, ec_apple_align_self, ec_apple_alt, ec_apple_animation, ec_apple_animation_delay, ec_apple_animation_direction,
-                    ec_apple_animation_duration, ec_apple_animation_fill_mode, ec_apple_animation_iteration_count, ec_apple_animation_name, ec_apple_animation_play_state,
-                    ec_apple_animation_timing_function, ec_apple_animation_trigger, ec_apple_app_region, ec_apple_appearance, ec_apple_aspect_ratio,
-                    ec_apple_backdrop_filter, ec_apple_backface_visibility, ec_apple_background_clip, ec_apple_background_composite, ec_apple_background_origin, ec_apple_background_size,
-                    ec_apple_border_after, ec_apple_border_after_colour, ec_apple_border_after_style, ec_apple_border_after_width, ec_apple_border_before, ec_apple_border_before_colour,
-                    ec_apple_border_before_style, ec_apple_border_before_width, ec_apple_border_bottom_left_radius, ec_apple_border_bottom_right_radius, ec_apple_border_end,
-                    ec_apple_border_end_colour, ec_apple_border_end_style, ec_apple_border_end_width, ec_apple_border_fit, ec_apple_border_horizontal_spacing, ec_apple_border_image,
-                    ec_apple_border_radius, ec_apple_border_start, ec_apple_border_start_colour, ec_apple_border_start_style, ec_apple_border_start_width, ec_apple_border_top_left_radius,
-                    ec_apple_border_top_right_radius, ec_apple_border_vertical_spacing, ec_apple_box_align, ec_apple_box_decoration_break, ec_apple_box_direction, ec_apple_box_flex,
-                    ec_apple_box_flex_group, ec_apple_box_lines, ec_apple_box_ordinal_group, ec_apple_box_orient, ec_apple_box_pack, ec_apple_box_reflect, ec_apple_box_shadow,
-                    ec_apple_box_sizing,
-                    ec_apple_clip_path, ec_apple_colour_correction, ec_apple_column_axis, ec_apple_column_break_after, ec_apple_column_break_before, ec_apple_column_break_inside,
-                    ec_apple_column_count, ec_apple_column_fill, ec_apple_column_gap, ec_apple_column_progression, ec_apple_column_rule, ec_apple_column_rule_colour,
-                    ec_apple_column_rule_style, ec_apple_column_rule_width, ec_apple_column_span, ec_apple_column_width, ec_apple_columns, ec_apple_cursor_visibility,
-                    ec_apple_dashboard_region, ec_apple_device_pixel_ratio,
-                    ec_apple_filter, ec_apple_flex, ec_apple_flex_basis, ec_apple_flex_direction, ec_apple_flex_flow, ec_apple_flex_grow, ec_apple_flex_shrink, ec_apple_flex_wrap,
-                    ec_apple_flow_from, ec_apple_flow_into, ec_apple_font_feature_settings, ec_apple_font_kerning, ec_apple_font_size_delta, ec_apple_font_smoothing,
-                    ec_apple_font_variant_ligatures,
-                    ec_apple_grid, ec_apple_grid_area, ec_apple_grid_auto_columns, ec_apple_grid_auto_flow, ec_apple_grid_auto_rows, ec_apple_grid_column, ec_apple_grid_column_end,
-                    ec_apple_grid_column_gap, ec_apple_grid_column_start, ec_apple_grid_columns, ec_apple_grid_gap, ec_apple_grid_row, ec_apple_grid_row_end, ec_apple_grid_row_gap,
-                    ec_apple_grid_row_start, ec_apple_grid_rows, ec_apple_grid_template, ec_apple_grid_template_areas, ec_apple_grid_template_columns, ec_apple_grid_template_rows,
-                    ec_apple_highlight, ec_apple_hyphenate_character, ec_apple_hyphenate_charset, ec_apple_hyphenate_limit_after, ec_apple_hyphenate_limit_before,
-                    ec_apple_hyphenate_limit_lines, ec_apple_hyphens,
-                    ec_apple_image_set, ec_apple_initial_letter,
-                    ec_apple_justify_content, ec_apple_justify_items, ec_apple_justify_self,
-                    ec_apple_line_align, ec_apple_line_box_contain, ec_apple_line_break, ec_apple_line_clamp, ec_apple_line_grid, ec_apple_line_snap, ec_apple_locale,
-                    ec_apple_logical_height, ec_apple_logical_width,
-                    ec_apple_margin_after, ec_apple_margin_after_collapse, ec_apple_margin_before, ec_apple_margin_before_collapse, ec_apple_margin_bottom_collapse,
-                    ec_apple_margin_collapse, ec_apple_margin_end, ec_apple_margin_start, ec_apple_margin_top_collapse, ec_apple_marquee, ec_apple_marquee_direction,
-                    ec_apple_marquee_increment, ec_apple_marquee_repetition, ec_apple_marquee_speed, ec_apple_marquee_style, ec_apple_mask, ec_apple_mask_attachment,
-                    ec_apple_mask_border_outset, ec_apple_mask_border_repeat, ec_apple_mask_border_source, ec_apple_mask_box_image, ec_apple_mask_box_image_outset,
-                    ec_apple_mask_box_image_repeat, ec_apple_mask_box_image_slice, ec_apple_mask_box_image_source, ec_apple_mask_box_image_width, ec_apple_mask_clip,
-                    ec_apple_mask_composite, ec_apple_mask_image, ec_apple_mask_origin, ec_apple_mask_position, ec_apple_mask_position_x, ec_apple_mask_position_y,
-                    ec_apple_mask_repeat, ec_apple_mask_repeat_x, ec_apple_mask_repeat_y, ec_apple_mask_size, ec_apple_mask_source_type,
-                    ec_apple_match_nearest_mail_blockquote_colour, ec_apple_max_logical_height, ec_apple_max_logical_width, ec_apple_media_text_track_container,
-                    ec_apple_min_logical_height, ec_apple_min_logical_width,
-                    ec_apple_nbsp_mode,
-                    ec_apple_opacity, ec_apple_order, ec_apple_overflow_scrolling,
-                    ec_apple_padding_after, ec_apple_padding_before, ec_apple_padding_end, ec_apple_padding_start, ec_apple_perspective, ec_apple_perspective_origin,
-                    ec_apple_perspective_origin_x, ec_apple_perspective_origin_y, ec_apple_print_colour_adjust,
-                    ec_apple_region_break_after, ec_apple_region_break_before, ec_apple_region_break_inside, ec_apple_region_fragment, ec_apple_rtl_ordering,
-                    ec_apple_ruby_position,
-                    ec_apple_scroll_snap_type, ec_apple_shape_image_threshold, ec_apple_shape_inside, ec_apple_shape_margin, ec_apple_shape_outside, ec_apple_svg_shadow,
-                    ec_apple_tap_highlight_colour, ec_apple_text_colour_decoration, ec_apple_text_combine, ec_apple_text_decoration_line, ec_apple_text_decoration_skip,
-                    ec_apple_text_decoration_style, ec_apple_text_decorations_in_effect, ec_apple_text_emphasis, ec_apple_text_emphasis_colour,
-                    ec_apple_text_emphasis_position, ec_apple_text_emphasis_style, ec_apple_text_fill_colour, ec_apple_text_justify, ec_apple_text_orientation,
-                    ec_apple_text_security, ec_apple_text_size_adjust, ec_apple_text_stroke, ec_apple_text_stroke_colour, ec_apple_text_stroke_width,
-                    ec_apple_text_underline_position, ec_apple_text_zoom, ec_apple_touch_callout, ec_apple_transform, ec_apple_transform_2d, ec_apple_transform_3d,
-                    ec_apple_transform_origin, ec_apple_transform_origin_x, ec_apple_transform_origin_y, ec_apple_transform_origin_z, ec_apple_transform_style,
-                    ec_apple_transition, ec_apple_transition_delay, ec_apple_transition_duration, ec_apple_transition_property, ec_apple_transition_timing_function,
-                    ec_apple_user_drag, ec_apple_user_modify, ec_apple_user_select,
-                ec_epub_caption_side, ec_epub_hyphens, ec_epub_text_combine, ec_epub_text_decoration, ec_epub_text_emphasis, ec_epub_text_emphasis_colour,
-                    ec_epub_text_emphasis_style, ec_epub_text_orientation, ec_epub_text_transform, ec_epub_word_break, ec_epub_writing_mode, ec_khtml_align_content,
-                ec_khtml_align_items, ec_khtml_align_self, ec_khtml_alt, ec_khtml_animation, ec_khtml_animation_delay, ec_khtml_animation_direction, ec_khtml_animation_duration,
-                    ec_khtml_animation_fill_mode, ec_khtml_animation_iteration_count, ec_khtml_animation_name, ec_khtml_animation_play_state, ec_khtml_animation_timing_function,
-                    ec_khtml_animation_trigger, ec_khtml_app_region, ec_khtml_appearance, ec_khtml_aspect_ratio,
-                    ec_khtml_backdrop_filter, ec_khtml_backface_visibility, ec_khtml_background_clip, ec_khtml_background_composite, ec_khtml_background_origin, ec_khtml_background_size,
-                    ec_khtml_border_after, ec_khtml_border_after_colour, ec_khtml_border_after_style, ec_khtml_border_after_width, ec_khtml_border_before, ec_khtml_border_before_colour,
-                    ec_khtml_border_before_style, ec_khtml_border_before_width, ec_khtml_border_bottom_left_radius, ec_khtml_border_bottom_right_radius, ec_khtml_border_end,
-                    ec_khtml_border_end_colour, ec_khtml_border_end_style, ec_khtml_border_end_width, ec_khtml_border_fit, ec_khtml_border_horizontal_spacing, ec_khtml_border_image,
-                    ec_khtml_border_radius, ec_khtml_border_radius_bottomleft, ec_khtml_border_radius_bottomright, ec_khtml_border_radius_topleft, ec_khtml_border_radius_topright,
-                    ec_khtml_border_start, ec_khtml_border_start_colour, ec_khtml_border_start_style, ec_khtml_border_start_width, ec_khtml_border_top_left_radius,
-                    ec_khtml_border_top_right_radius, ec_khtml_border_vertical_spacing, ec_khtml_box_align, ec_khtml_box_decoration_break, ec_khtml_box_direction, ec_khtml_box_flex,
-                    ec_khtml_box_flex_group, ec_khtml_box_lines, ec_khtml_box_ordinal_group, ec_khtml_box_orient, ec_khtml_box_pack, ec_khtml_box_reflect, ec_khtml_box_shadow,
-                    ec_khtml_box_sizing,
-                    ec_khtml_clip_path, ec_khtml_colour_correction, ec_khtml_column_axis, ec_khtml_column_break_after, ec_khtml_column_break_before, ec_khtml_column_break_inside,
-                    ec_khtml_column_count, ec_khtml_column_fill, ec_khtml_column_gap, ec_khtml_column_progression, ec_khtml_column_rule, ec_khtml_column_rule_colour,
-                    ec_khtml_column_rule_style, ec_khtml_column_rule_width, ec_khtml_column_span, ec_khtml_column_width, ec_khtml_columns, ec_khtml_cursor_visibility,
-                    ec_khtml_dashboard_region, ec_khtml_device_pixel_ratio,
-                    ec_khtml_filter, ec_khtml_flex, ec_khtml_flex_basis, ec_khtml_flex_direction, ec_khtml_flex_flow, ec_khtml_flex_grow, ec_khtml_flex_shrink, ec_khtml_flex_wrap,
-                    ec_khtml_flow_from, ec_khtml_flow_into, ec_khtml_font_feature_settings, ec_khtml_font_kerning, ec_khtml_font_size_delta, ec_khtml_font_smoothing,
-                    ec_khtml_font_variant_ligatures,
-                    ec_khtml_grid, ec_khtml_grid_area, ec_khtml_grid_auto_columns, ec_khtml_grid_auto_flow, ec_khtml_grid_auto_rows, ec_khtml_grid_column, ec_khtml_grid_column_end,
-                    ec_khtml_grid_column_gap, ec_khtml_grid_column_start, ec_khtml_grid_columns, ec_khtml_grid_gap, ec_khtml_grid_row, ec_khtml_grid_row_end, ec_khtml_grid_row_gap,
-                    ec_khtml_grid_row_start, ec_khtml_grid_rows, ec_khtml_grid_template, ec_khtml_grid_template_areas, ec_khtml_grid_template_columns, ec_khtml_grid_template_rows,
-                    ec_khtml_highlight, ec_khtml_hyphenate_character, ec_khtml_hyphenate_charset, ec_khtml_hyphenate_limit_after, ec_khtml_hyphenate_limit_before,
-                    ec_khtml_hyphenate_limit_lines, ec_khtml_hyphens,
-                    ec_khtml_image_set, ec_khtml_initial_letter,
-                    ec_khtml_justify_content, ec_khtml_justify_items, ec_khtml_justify_self,
-                    ec_khtml_line_align, ec_khtml_line_box_contain, ec_khtml_line_break, ec_khtml_line_clamp, ec_khtml_line_grid, ec_khtml_line_snap, ec_khtml_locale,
-                    ec_khtml_logical_height, ec_khtml_logical_width,
-                    ec_khtml_margin_after, ec_khtml_margin_after_collapse, ec_khtml_margin_before, ec_khtml_margin_before_collapse, ec_khtml_margin_bottom_collapse,
-                    ec_khtml_margin_collapse, ec_khtml_margin_end, ec_khtml_margin_start, ec_khtml_margin_top_collapse, ec_khtml_marquee, ec_khtml_marquee_direction,
-                    ec_khtml_marquee_increment, ec_khtml_marquee_repetition, ec_khtml_marquee_speed, ec_khtml_marquee_style, ec_khtml_mask, ec_khtml_mask_attachment,
-                    ec_khtml_mask_border_outset, ec_khtml_mask_border_repeat, ec_khtml_mask_border_source, ec_khtml_mask_box_image, ec_khtml_mask_box_image_outset,
-                    ec_khtml_mask_box_image_repeat, ec_khtml_mask_box_image_slice, ec_khtml_mask_box_image_source, ec_khtml_mask_box_image_width, ec_khtml_mask_clip,
-                    ec_khtml_mask_composite, ec_khtml_mask_image, ec_khtml_mask_origin, ec_khtml_mask_position, ec_khtml_mask_position_x, ec_khtml_mask_position_y, ec_khtml_mask_repeat,
-                    ec_khtml_mask_repeat_x, ec_khtml_mask_repeat_y, ec_khtml_mask_size, ec_khtml_mask_source_type, ec_khtml_match_nearest_mail_blockquote_colour,
-                    ec_khtml_max_logical_height, ec_khtml_max_logical_width, ec_khtml_media_text_track_container, ec_khtml_min_logical_height, ec_khtml_min_logical_width,
-                    ec_khtml_nbsp_mode,
-                    ec_khtml_opacity, ec_khtml_order, ec_khtml_overflow_scrolling,
-                    ec_khtml_padding_after, ec_khtml_padding_before, ec_khtml_padding_end, ec_khtml_padding_start, ec_khtml_perspective, ec_khtml_perspective_origin,
-                    ec_khtml_perspective_origin_x, ec_khtml_perspective_origin_y, ec_khtml_print_colour_adjust,
-                    ec_khtml_region_break_after, ec_khtml_region_break_before, ec_khtml_region_break_inside, ec_khtml_region_fragment, ec_khtml_rtl_ordering, ec_khtml_ruby_position,
-                    ec_khtml_scroll_snap_type, ec_khtml_shape_image_threshold, ec_khtml_shape_inside, ec_khtml_shape_margin, ec_khtml_shape_outside, ec_khtml_svg_shadow,
-                    ec_khtml_tap_highlight_colour, ec_khtml_text_colour_decoration, ec_khtml_text_combine, ec_khtml_text_decoration_line, ec_khtml_text_decoration_skip,
-                    ec_khtml_text_decoration_style, ec_khtml_text_decorations_in_effect, ec_khtml_text_emphasis, ec_khtml_text_emphasis_colour, ec_khtml_text_emphasis_position,
-                    ec_khtml_text_emphasis_style, ec_khtml_text_fill_colour, ec_khtml_text_justify, ec_khtml_text_orientation, ec_khtml_text_security, ec_khtml_text_size_adjust,
-                    ec_khtml_text_stroke, ec_khtml_text_stroke_colour, ec_khtml_text_stroke_width, ec_khtml_text_underline_position, ec_khtml_text_zoom, ec_khtml_touch_callout,
-                    ec_khtml_transform, ec_khtml_transform_2d, ec_khtml_transform_3d, ec_khtml_transform_origin, ec_khtml_transform_origin_x, ec_khtml_transform_origin_y,
-                    ec_khtml_transform_origin_z, ec_khtml_transform_style, ec_khtml_transition, ec_khtml_transition_delay, ec_khtml_transition_duration, ec_khtml_transition_property,
-                    ec_khtml_transition_timing_function,
-                    ec_khtml_user_drag, ec_khtml_user_modify, ec_khtml_user_select,
-                ec_moz_animation, ec_moz_animation_delay, ec_moz_animation_direction, ec_moz_animation_duration, ec_moz_animation_fill_mode, ec_moz_animation_iteration_count,
-                    ec_moz_animation_name, ec_moz_animation_play_state, ec_moz_animation_timing_function, ec_moz_appearance,
-                    ec_moz_backface_visibility, ec_moz_background_clip, ec_moz_background_inline_policy, ec_moz_background_origin, ec_moz_background_size, ec_moz_binding,
-                    ec_moz_border_bottom_colours, ec_moz_border_end, ec_moz_border_end_colour, ec_moz_border_end_style, ec_moz_border_end_width, ec_moz_border_image,
-                    ec_moz_border_left_colours, ec_moz_border_radius, ec_moz_border_radius_bottomleft, ec_moz_border_radius_bottomright, ec_moz_border_radius_topleft,
-                    ec_moz_border_radius_topright, ec_moz_border_right_colours, ec_moz_border_start, ec_moz_border_start_colour, ec_moz_border_start_style, ec_moz_border_start_width,
-                    ec_moz_border_top_colours, ec_moz_box_align, ec_moz_box_direction, ec_moz_box_flex, ec_moz_box_ordinal_group, ec_moz_box_orient, ec_moz_box_pack,
-                    ec_moz_box_shadow, ec_moz_box_sizing, ec_moz_column_count, ec_moz_column_fill, ec_moz_column_gap, ec_moz_column_rule, ec_moz_column_rule_colour,
-                    ec_moz_column_rule_style, ec_moz_column_rule_width, ec_moz_column_width, ec_moz_context_properties,
-                    ec_moz_float_edge, ec_moz_font_feature_settings, ec_moz_font_language_override, ec_moz_force_broken_image_icon,
-                    ec_moz_hyphens,
-                    ec_moz_image_region,
-                    ec_moz_margin_end, ec_moz_margin_start,
-                    ec_moz_opacity, ec_moz_orient, ec_moz_osx_font_smoothing, ec_moz_outline, ec_moz_outline_colour, ec_moz_outline_offset, ec_moz_outline_radius,
-                    ec_moz_outline_radius_bottomleft, ec_moz_outline_radius_bottomright, ec_moz_outline_radius_topleft, ec_moz_outline_radius_topright, ec_moz_outline_style,
-                    ec_moz_outline_width,
-                    ec_moz_padding_end, ec_moz_padding_start, ec_moz_perspective, ec_moz_perspective_origin,
-                    ec_moz_stack_sizing,
-                    ec_moz_tab_size, ec_moz_text_align_last, ec_moz_text_blink, ec_moz_text_decoration_colour, ec_moz_text_decoration_line, ec_moz_text_decoration_style,
-                    ec_moz_text_size_adjust, ec_moz_transform, ec_moz_transform_origin, ec_moz_transform_style, ec_moz_transition, ec_moz_transition_delay, ec_moz_transition_duration,
-                    ec_moz_transition_property, ec_moz_transition_timing_function,
-                    ec_moz_user_focus, ec_moz_user_input, ec_moz_user_modify, ec_moz_user_select,
-                    ec_moz_window_dragging, ec_moz_window_shadow,
-                ec_ms_animation, ec_ms_animation_delay, ec_ms_animation_direction, ec_ms_animation_duration, ec_ms_animation_fill_mode, ec_ms_animation_iteration_count,
-                    ec_ms_animation_name, ec_ms_animation_play_state, ec_ms_animation_timing_function,
-                    ec_ms_block_progression,
-                    ec_ms_content_zoom_chaining, ec_ms_content_zoom_limit, ec_ms_content_zoom_limit_max, ec_ms_content_zoom_limit_min, ec_ms_content_zoom_snap,
-                    ec_ms_content_zoom_snap_points, ec_ms_content_zoom_snap_type, ec_ms_content_zooming,
-                    ec_ms_flex_align, ec_ms_flex_item_align, ec_ms_flex_line_pack, ec_ms_flex_negative, ec_ms_flex_order, ec_ms_flex_pack, ec_ms_flex_positive, ec_ms_flex_preferred_size,
-                    ec_ms_font_feature_settings,
-                    ec_ms_grid_columns, ec_ms_grid_rows,
-                    ec_ms_high_contrast_adjust, ec_ms_hyphenate_limit_chars, ec_ms_hyphenate_limit_lines, ec_ms_hyphenate_limit_zone,
-                    ec_ms_ime_align, ec_ms_interpolation_mode,
-                    ec_ms_scroll_chaining, ec_ms_scroll_limit, ec_ms_scroll_limit_x_max, ec_ms_scroll_limit_x_min, ec_ms_scroll_limit_y_max, ec_ms_scroll_limit_y_min, ec_ms_scroll_rails,
-                    ec_ms_scroll_snap_points_x, ec_ms_scroll_snap_points_y, ec_ms_scroll_snap_type, ec_ms_scroll_snap_x, ec_ms_scroll_snap_y, ec_ms_scroll_translation,
-                    ec_ms_text_combine_horizontal, ec_ms_touch_action, ec_ms_touch_select, ec_ms_transition, ec_ms_transition_delay, ec_ms_transition_duration, ec_ms_transition_property,
-                    ec_ms_transition_timing_function,
-                    ec_ms_wrap_margin,
-                ec_mso_ansi_font_size, ec_mso_ansi_font_style, ec_mso_ansi_font_weight, ec_mso_ansi_language, ec_mso_arabic_font_family, ec_mso_armenian_font_family,
-                    ec_mso_ascii_font_family, ec_mso_ascii_theme_font,
-                    ec_mso_background_source, ec_mso_bengali_font_family, ec_mso_bidi_font_family, ec_mso_bidi_font_size, ec_mso_bidi_font_style, ec_mso_bidi_font_weight,
-                    ec_mso_bidi_language, ec_mso_bidi_theme_font, ec_mso_bookmark, ec_mso_bopomofo_font_family, ec_mso_border_alt, ec_mso_border_bottom_alt, ec_mso_border_colour_alt,
-                    ec_mso_border_insideh, ec_mso_border_insidev, ec_mso_border_left_alt, ec_mso_border_right_alt, ec_mso_border_shadow, ec_mso_border_style_alt, ec_mso_border_top_alt,
-                    ec_mso_border_width_alt, ec_mso_break_type,
-                    ec_mso_cell_special, ec_mso_cellspacing, ec_mso_char_indent_count, ec_mso_char_indent_size, ec_mso_char_tracking, ec_mso_char_type, ec_mso_char_wrap,
-                    ec_mso_colour_alt, ec_mso_colour_index, ec_mso_column_margin, ec_mso_currency_font_family, ec_mso_cyrillic_font_family,
-                    ec_mso_data_placement, ec_mso_default_font_family, ec_mso_default_props, ec_mso_devanagari_font_family, ec_mso_displayed_decimal_separator,
-                    ec_mso_displayed_thousand_separator,
-                    ec_mso_element, ec_mso_element_anchor_horizontal, ec_mso_element_anchor_vertical, ec_mso_element_frame_height, ec_mso_element_frame_hspace,
-                    ec_mso_element_frame_width, ec_mso_element_left, ec_mso_element_top, ec_mso_element_wrap, ec_mso_endnote_continuation_separator, ec_mso_endnote_numbering_style,
-                    ec_mso_endnote_separator, ec_mso_eudc_font_family, ec_mso_even_footer,
-                    ec_mso_fareast_font_family, ec_mso_fareast_language, ec_mso_fareast_theme_font, ec_mso_field_code, ec_mso_font_alt, ec_mso_font_charset, ec_mso_font_format,
-                    ec_mso_font_kerning, ec_mso_font_pitch, ec_mso_font_signature, ec_mso_font_width, ec_mso_footer, ec_mso_footer_margin, ec_mso_footnote_continuation_separator,
-                    ec_mso_footnote_id, ec_mso_footnote_separator, ec_mso_generic_font_family,
-                    ec_mso_georgian_font_family, ec_mso_gram_e, ec_mso_greek_font_family, ec_mso_gurmukhi_font_family,
-                    ec_mso_halfwidthkana_font_family, ec_mso_han_font_family, ec_mso_hangul_font_family, ec_mso_hansi_font_family, ec_mso_hansi_theme_font, ec_mso_header,
-                    ec_mso_header_margin, ec_mso_hebrew_font_family, ec_mso_height_rule, ec_mso_height_source, ec_mso_hide, ec_mso_highlight, ec_mso_hyphenate,
-                    ec_mso_ignore,
-                    ec_mso_kana_font_family, ec_mso_kannada_font_family, ec_mso_kinsoku_overflow,
-                    ec_mso_lao_font_family, ec_mso_latin_font_family, ec_mso_latinext_font_family, ec_mso_layout_grid_align, ec_mso_level_font_family, ec_mso_level_indent,
-                    ec_mso_level_legacy, ec_mso_level_legacy_indent, ec_mso_level_legacy_space, ec_mso_level_number_format, ec_mso_level_number_position, ec_mso_level_size,
-                    ec_mso_level_start_at, ec_mso_level_style_link, ec_mso_level_tab_stop, ec_mso_level_text, ec_mso_line_height_alt, ec_mso_line_height_rule, ec_mso_line_spacing,
-                    ec_mso_linked_frame, ec_mso_list, ec_mso_list_id, ec_mso_list_template_ids, ec_mso_list_type,
-                    ec_mso_malayalam_font_family, ec_mso_margin_bottom_alt, ec_mso_margin_left_alt, ec_mso_margin_top_alt,
-                    ec_mso_no_proof, ec_mso_number_format,
-                    ec_mso_oriya_font_family, ec_mso_outline_level,
-                    ec_mso_padding_alt, ec_mso_page_border_surround_footer, ec_mso_page_border_surround_header, ec_mso_page_orientation, ec_mso_pagination, ec_mso_paper_source,
-                    ec_mso_para_margin, ec_mso_para_margin_bottom, ec_mso_para_margin_left, ec_mso_para_margin_right, ec_mso_para_margin_top, ec_mso_pattern,
-                    ec_mso_position_horizontal, ec_mso_position_horizontal_relative, ec_mso_position_vertical, ec_mso_position_vertical_relative, ec_mso_protection,
-                    ec_mso_rotate, ec_mso_row_margin_left, ec_mso_row_margin_right,
-                    ec_mso_shading, ec_mso_spacerun, ec_mso_special_character, ec_mso_special_format, ec_mso_spl_e, ec_mso_style_id, ec_mso_style_link, ec_mso_style_locked,
-                    ec_mso_style_name, ec_mso_style_next, ec_mso_style_noshow, ec_mso_style_parent, ec_mso_style_priority, ec_mso_style_qformat, ec_mso_style_type,
-                    ec_mso_style_unhide, ec_mso_style_update, ec_mso_symbol_font_family, ec_mso_syriac_font_family,
-                    ec_mso_tab_count, ec_mso_table_anchor_horizontal, ec_mso_table_anchor_vertical, ec_mso_table_layout_alt, ec_mso_table_left, ec_mso_table_lspace,
-                    ec_mso_table_overlap, ec_mso_table_rspace, ec_mso_table_top, ec_mso_tamil_font_family, ec_mso_telugu_font_family, ec_mso_text_animation, ec_mso_text_raise,
-                    ec_mso_thaana_font_family, ec_mso_thai_font_family, ec_mso_themecolour, ec_mso_themeshade, ec_mso_title_page, ec_mso_tstyle_colband_size,
-                    ec_mso_tstyle_rowband_size,
-                    ec_mso_width_alt, ec_mso_width_source, ec_mso_wrap_distance_bottom, ec_mso_wrap_distance_left, ec_mso_wrap_distance_right, ec_mso_wrap_distance_top,
-                    ec_mso_wrap_edited,
-                    ec_mso_yfti_firstrow, ec_mso_yfti_irow, ec_mso_yfti_lastrow, ec_mso_yfti_tbllook,
-                ec_o_animation,
-                    ec_o_border_image, ec_o_box_shadow,
-                    ec_o_device_pixel_ratio,
-                    ec_o_focus_opacity,
-                    ec_o_link, ec_o_link_source,
-                    ec_o_mini_fold,
-                    ec_o_object_fit, ec_o_object_position,
-                    ec_o_tab_size, ec_o_table_baseline, ec_o_text_overflow, ec_o_transform, ec_o_transform_origin, ec_o_transition, ec_o_transition_delay,
-                    ec_o_transition_duration, ec_o_transition_property,
-                    ec_o_transition_timing_function,
-                ec_wap_accesskey,
-                    ec_wap_input_format, ec_wap_input_required,
-                    ec_wap_marquee_dir, ec_wap_marquee_loop, ec_wap_marquee_speed, ec_wap_marquee_style,
-                ec_webkit_align_content, ec_webkit_align_items, ec_webkit_align_self, ec_webkit_alt, ec_webkit_animation, ec_webkit_animation_delay, ec_webkit_animation_direction,
-                    ec_webkit_animation_duration, ec_webkit_animation_fill_mode, ec_webkit_animation_iteration_count, ec_webkit_animation_name, ec_webkit_animation_play_state,
-                    ec_webkit_animation_timing_function, ec_webkit_animation_trigger, ec_webkit_app_region, ec_webkit_appearance, ec_webkit_aspect_ratio,
-                    ec_webkit_backdrop_filter, ec_webkit_backface_visibility, ec_webkit_background_clip, ec_webkit_background_composite, ec_webkit_background_origin,
-                    ec_webkit_background_size, ec_webkit_border_after, ec_webkit_border_after_colour, ec_webkit_border_after_style, ec_webkit_border_after_width,
-                    ec_webkit_border_before, ec_webkit_border_before_colour, ec_webkit_border_before_style, ec_webkit_border_before_width, ec_webkit_border_bottom_left_radius,
-                    ec_webkit_border_bottom_right_radius, ec_webkit_border_end, ec_webkit_border_end_colour, ec_webkit_border_end_style, ec_webkit_border_end_width, ec_webkit_border_fit,
-                    ec_webkit_border_horizontal_spacing, ec_webkit_border_image, ec_webkit_border_radius, ec_webkit_border_start, ec_webkit_border_start_colour,
-                    ec_webkit_border_start_style, ec_webkit_border_start_width, ec_webkit_border_top_left_radius, ec_webkit_border_top_right_radius, ec_webkit_border_vertical_spacing,
-                    ec_webkit_box_align, ec_webkit_box_decoration_break, ec_webkit_box_direction, ec_webkit_box_flex, ec_webkit_box_flex_group, ec_webkit_box_lines,
-                    ec_webkit_box_ordinal_group, ec_webkit_box_orient, ec_webkit_box_pack, ec_webkit_box_reflect, ec_webkit_box_shadow, ec_webkit_box_sizing,
-                    ec_webkit_clip_path, ec_webkit_colour_correction, ec_webkit_column_axis, ec_webkit_column_break_after, ec_webkit_column_break_before, ec_webkit_column_break_inside,
-                    ec_webkit_column_count, ec_webkit_column_fill, ec_webkit_column_gap, ec_webkit_column_progression, ec_webkit_column_rule, ec_webkit_column_rule_colour,
-                    ec_webkit_column_rule_style, ec_webkit_column_rule_width, ec_webkit_column_span, ec_webkit_column_width, ec_webkit_columns, ec_webkit_cursor_visibility,
-                    ec_webkit_dashboard_region, ec_webkit_device_pixel_ratio,
-                    ec_webkit_filter, ec_webkit_flex, ec_webkit_flex_basis, ec_webkit_flex_direction, ec_webkit_flex_flow, ec_webkit_flex_grow, ec_webkit_flex_shrink,
-                    ec_webkit_flex_wrap, ec_webkit_flow_from, ec_webkit_flow_into, ec_webkit_font_feature_settings, ec_webkit_font_kerning, ec_webkit_font_size_delta,
-                    ec_webkit_font_smoothing, ec_webkit_font_variant_ligatures,
-                    ec_webkit_grid, ec_webkit_grid_area, ec_webkit_grid_auto_columns, ec_webkit_grid_auto_flow, ec_webkit_grid_auto_rows, ec_webkit_grid_column, ec_webkit_grid_column_end,
-                    ec_webkit_grid_column_gap, ec_webkit_grid_column_start, ec_webkit_grid_columns, ec_webkit_grid_gap, ec_webkit_grid_row, ec_webkit_grid_row_end, ec_webkit_grid_row_gap,
-                    ec_webkit_grid_row_start, ec_webkit_grid_rows, ec_webkit_grid_template, ec_webkit_grid_template_areas, ec_webkit_grid_template_columns, ec_webkit_grid_template_rows,
-                    ec_webkit_highlight, ec_webkit_hyphenate_character, ec_webkit_hyphenate_charset, ec_webkit_hyphenate_limit_after, ec_webkit_hyphenate_limit_before,
-                    ec_webkit_hyphenate_limit_lines, ec_webkit_hyphens,
-                    ec_webkit_image_set, ec_webkit_initial_letter,
-                    ec_webkit_justify_content, ec_webkit_justify_items, ec_webkit_justify_self,
-                    ec_webkit_line_align, ec_webkit_line_box_contain, ec_webkit_line_break, ec_webkit_line_clamp, ec_webkit_line_grid, ec_webkit_line_snap, ec_webkit_locale,
-                    ec_webkit_logical_height, ec_webkit_logical_width,
-                    ec_webkit_margin_after, ec_webkit_margin_after_collapse, ec_webkit_margin_before, ec_webkit_margin_before_collapse, ec_webkit_margin_bottom_collapse,
-                    ec_webkit_margin_collapse, ec_webkit_margin_end, ec_webkit_margin_start, ec_webkit_margin_top_collapse, ec_webkit_marquee, ec_webkit_marquee_direction,
-                    ec_webkit_marquee_increment, ec_webkit_marquee_repetition, ec_webkit_marquee_speed, ec_webkit_marquee_style, ec_webkit_mask, ec_webkit_mask_attachment,
-                    ec_webkit_mask_border_outset, ec_webkit_mask_border_repeat, ec_webkit_mask_border_source, ec_webkit_mask_box_image, ec_webkit_mask_box_image_outset,
-                    ec_webkit_mask_box_image_repeat, ec_webkit_mask_box_image_slice, ec_webkit_mask_box_image_source, ec_webkit_mask_box_image_width, ec_webkit_mask_clip,
-                    ec_webkit_mask_composite, ec_webkit_mask_image, ec_webkit_mask_origin, ec_webkit_mask_position, ec_webkit_mask_position_x, ec_webkit_mask_position_y,
-                    ec_webkit_mask_repeat, ec_webkit_mask_repeat_x, ec_webkit_mask_repeat_y, ec_webkit_mask_size, ec_webkit_mask_source_type,
-                    ec_webkit_match_nearest_mail_blockquote_colour, ec_webkit_max_logical_height, ec_webkit_max_logical_width, ec_webkit_media_text_track_container,
-                    ec_webkit_min_logical_height, ec_webkit_min_logical_width,
-                    ec_webkit_nbsp_mode,
-                    ec_webkit_opacity, ec_webkit_order, ec_webkit_overflow_scrolling,
-                    ec_webkit_padding_after, ec_webkit_padding_before, ec_webkit_padding_end, ec_webkit_padding_start, ec_webkit_perspective, ec_webkit_perspective_origin,
-                    ec_webkit_perspective_origin_x, ec_webkit_perspective_origin_y, ec_webkit_print_colour_adjust,
-                    ec_webkit_region_break_after, ec_webkit_region_break_before, ec_webkit_region_break_inside, ec_webkit_region_fragment, ec_webkit_rtl_ordering,
-                    ec_webkit_ruby_position,
-                    ec_webkit_scroll_snap_type, ec_webkit_shape_image_threshold, ec_webkit_shape_inside, ec_webkit_shape_margin, ec_webkit_shape_outside, ec_webkit_svg_shadow,
-                    ec_webkit_tap_highlight_colour, ec_webkit_text_colour_decoration, ec_webkit_text_combine, ec_webkit_text_decoration_line, ec_webkit_text_decoration_skip,
-                    ec_webkit_text_decoration_style, ec_webkit_text_decorations_in_effect, ec_webkit_text_emphasis, ec_webkit_text_emphasis_colour, ec_webkit_text_emphasis_position,
-                    ec_webkit_text_emphasis_style, ec_webkit_text_fill_colour, ec_webkit_text_justify, ec_webkit_text_orientation, ec_webkit_text_security,
-                    ec_webkit_text_size_adjust, ec_webkit_text_stroke, ec_webkit_text_stroke_colour, ec_webkit_text_stroke_width, ec_webkit_text_underline_position,
-                    ec_webkit_text_zoom, ec_webkit_touch_callout, ec_webkit_transform, ec_webkit_transform_2d, ec_webkit_transform_3d, ec_webkit_transform_origin,
-                    ec_webkit_transform_origin_x, ec_webkit_transform_origin_y, ec_webkit_transform_origin_z, ec_webkit_transform_style, ec_webkit_transition,
-                    ec_webkit_transition_delay, ec_webkit_transition_duration, ec_webkit_transition_property, ec_webkit_transition_timing_function,
-                    ec_webkit_user_drag, ec_webkit_user_modify, ec_webkit_user_select,
-                ec_xv_interpret_as,
-                    ec_xv_phonemes,
-                    ec_xv_voice_balance, ec_xv_voice_duration, ec_xv_voice_pitch, ec_xv_voice_pitch_range, ec_xv_voice_rate, ec_xv_voice_stress, ec_xv_voice_volume,
-                ecp_clip_path,
-                ecp_filter,
+    
+                ec_accent_colour, ec_additive_symbols, ec_align_content, ec_align_items, ec_align_self, ec_align_tracks, ec_alignment_baseline, ec_all, ec_all_space_treatment, ec_altglyph, ec_anchor_default,
+                ec_anchor_name, ec_anchor_scope, ec_anchor_scroll, ec_and, ec_animation, ec_animation_composition, ec_animation_delay, ec_animation_delay_end, ec_animation_delay_start, ec_animation_direction,
+                ec_animation_duration, ec_animation_fill_mode, ec_animation_iteration_count, ec_animation_name, ec_animation_play_state, ec_animation_range, ec_animation_range_centre, ec_animation_range_end,
+                ec_animation_range_start, ec_animation_timeline, ec_animation_timing_function, ec_animation_trigger, ec_appearance, ec_apple_align_content, ec_apple_align_items, ec_apple_align_self, ec_apple_alt,
+                ec_apple_animation, ec_apple_animation_delay, ec_apple_animation_direction, ec_apple_animation_duration, ec_apple_animation_fill_mode, ec_apple_animation_iteration_count, ec_apple_animation_name,
+                ec_apple_animation_play_state, ec_apple_animation_timing_function, ec_apple_animation_trigger, ec_apple_app_region, ec_apple_appearance, ec_apple_aspect_ratio, ec_apple_backdrop_filter,
+                ec_apple_backface_visibility, ec_apple_background_clip, ec_apple_background_composite, ec_apple_background_origin, ec_apple_background_size, ec_apple_border_after, ec_apple_border_after_colour,
+                ec_apple_border_after_style, ec_apple_border_after_width, ec_apple_border_before, ec_apple_border_before_colour, ec_apple_border_before_style, ec_apple_border_before_width,
+                ec_apple_border_bottom_left_radius, ec_apple_border_bottom_right_radius, ec_apple_border_end, ec_apple_border_end_colour, ec_apple_border_end_style, ec_apple_border_end_width, ec_apple_border_fit,
+                ec_apple_border_horizontal_spacing, ec_apple_border_image, ec_apple_border_radius, ec_apple_border_start, ec_apple_border_start_colour, ec_apple_border_start_style, ec_apple_border_start_width,
+                ec_apple_border_top_left_radius, ec_apple_border_top_right_radius, ec_apple_border_vertical_spacing, ec_apple_box_align, ec_apple_box_decoration_break, ec_apple_box_direction, ec_apple_box_flex,
+                ec_apple_box_flex_group, ec_apple_box_lines, ec_apple_box_ordinal_group, ec_apple_box_orient, ec_apple_box_pack, ec_apple_box_reflect, ec_apple_box_shadow, ec_apple_box_sizing, ec_apple_clip_path,
+                ec_apple_colour_correction, ec_apple_column_axis, ec_apple_column_break_after, ec_apple_column_break_before, ec_apple_column_break_inside, ec_apple_column_count, ec_apple_column_fill,
+                ec_apple_column_gap, ec_apple_column_progression, ec_apple_column_rule, ec_apple_column_rule_colour, ec_apple_column_rule_style, ec_apple_column_rule_width, ec_apple_column_span,
+                ec_apple_column_width, ec_apple_columns, ec_apple_cursor_visibility, ec_apple_dashboard_region, ec_apple_device_pixel_ratio, ec_apple_filter, ec_apple_flex, ec_apple_flex_basis, ec_apple_flex_direction,
+                ec_apple_flex_flow, ec_apple_flex_grow, ec_apple_flex_shrink, ec_apple_flex_wrap, ec_apple_flow_from, ec_apple_flow_into, ec_apple_font_feature_settings, ec_apple_font_kerning, ec_apple_font_size_delta,
+                ec_apple_font_smoothing, ec_apple_font_variant_ligatures, ec_apple_grid, ec_apple_grid_area, ec_apple_grid_auto_columns, ec_apple_grid_auto_flow, ec_apple_grid_auto_rows, ec_apple_grid_column,
+                ec_apple_grid_column_end, ec_apple_grid_column_gap, ec_apple_grid_column_start, ec_apple_grid_columns, ec_apple_grid_gap, ec_apple_grid_row, ec_apple_grid_row_end, ec_apple_grid_row_gap,
+                ec_apple_grid_row_start, ec_apple_grid_rows, ec_apple_grid_template, ec_apple_grid_template_areas, ec_apple_grid_template_columns, ec_apple_grid_template_rows, ec_apple_highlight,
+                ec_apple_hyphenate_character, ec_apple_hyphenate_charset, ec_apple_hyphenate_limit_after, ec_apple_hyphenate_limit_before, ec_apple_hyphenate_limit_lines, ec_apple_hyphens, ec_apple_image_set,
+                ec_apple_initial_letter, ec_apple_justify_content, ec_apple_justify_items, ec_apple_justify_self, ec_apple_line_align, ec_apple_line_box_contain, ec_apple_line_break, ec_apple_line_clamp,
+                ec_apple_line_grid, ec_apple_line_snap, ec_apple_locale, ec_apple_logical_height, ec_apple_logical_width, ec_apple_margin_after, ec_apple_margin_after_collapse, ec_apple_margin_before,
+                ec_apple_margin_before_collapse, ec_apple_margin_bottom_collapse, ec_apple_margin_collapse, ec_apple_margin_end, ec_apple_margin_start, ec_apple_margin_top_collapse, ec_apple_marquee,
+                ec_apple_marquee_direction, ec_apple_marquee_increment, ec_apple_marquee_repetition, ec_apple_marquee_speed, ec_apple_marquee_style, ec_apple_mask, ec_apple_mask_attachment, ec_apple_mask_border_outset,
+                ec_apple_mask_border_repeat, ec_apple_mask_border_source, ec_apple_mask_box_image, ec_apple_mask_box_image_outset, ec_apple_mask_box_image_repeat, ec_apple_mask_box_image_slice,
+                ec_apple_mask_box_image_source, ec_apple_mask_box_image_width, ec_apple_mask_clip, ec_apple_mask_composite, ec_apple_mask_image, ec_apple_mask_origin, ec_apple_mask_position, ec_apple_mask_position_x,
+                ec_apple_mask_position_y, ec_apple_mask_repeat, ec_apple_mask_repeat_x, ec_apple_mask_repeat_y, ec_apple_mask_size, ec_apple_mask_source_type, ec_apple_match_nearest_mail_blockquote_colour,
+                ec_apple_max_logical_height, ec_apple_max_logical_width, ec_apple_media_text_track_container, ec_apple_min_logical_height, ec_apple_min_logical_width, ec_apple_nbsp_mode, ec_apple_opacity,
+                ec_apple_order, ec_apple_overflow_scrolling, ec_apple_padding_after, ec_apple_padding_before, ec_apple_padding_end, ec_apple_padding_start, ec_apple_perspective, ec_apple_perspective_origin,
+                ec_apple_perspective_origin_x, ec_apple_perspective_origin_y, ec_apple_print_colour_adjust, ec_apple_region_break_after, ec_apple_region_break_before, ec_apple_region_break_inside,
+                ec_apple_region_fragment, ec_apple_rtl_ordering, ec_apple_ruby_position, ec_apple_scroll_snap_type, ec_apple_shape_image_threshold, ec_apple_shape_inside, ec_apple_shape_margin, ec_apple_shape_outside,
+                ec_apple_svg_shadow, ec_apple_tap_highlight_colour, ec_apple_text_colour_decoration, ec_apple_text_combine, ec_apple_text_decoration_line, ec_apple_text_decoration_skip, ec_apple_text_decoration_style,
+                ec_apple_text_decorations_in_effect, ec_apple_text_emphasis, ec_apple_text_emphasis_colour, ec_apple_text_emphasis_position, ec_apple_text_emphasis_style, ec_apple_text_fill_colour, ec_apple_text_justify,
+                ec_apple_text_orientation, ec_apple_text_security, ec_apple_text_size_adjust, ec_apple_text_stroke, ec_apple_text_stroke_colour, ec_apple_text_stroke_width, ec_apple_text_underline_position,
+                ec_apple_text_zoom, ec_apple_touch_callout, ec_apple_transform, ec_apple_transform_2d, ec_apple_transform_3d, ec_apple_transform_origin, ec_apple_transform_origin_x, ec_apple_transform_origin_y,
+                ec_apple_transform_origin_z, ec_apple_transform_style, ec_apple_transition, ec_apple_transition_delay, ec_apple_transition_duration, ec_apple_transition_property, ec_apple_transition_timing_function,
+                ec_apple_user_drag, ec_apple_user_modify, ec_apple_user_select, ec_ascent, ec_ascent_override, ec_aspect_ratio, ec_audio_level, ec_available_content, ec_azimuth,
+
+                ec_backdrop_filter, ec_backface_visibility, ec_background, ec_background_attachment, ec_background_blend_mode, ec_background_break, ec_background_clip, ec_background_colour, ec_background_image,
+                ec_background_image_transform, ec_background_origin, ec_background_origin_x, ec_background_origin_y, ec_background_position, ec_background_position_block, ec_background_position_inline,
+                ec_background_position_x, ec_background_position_y, ec_background_quantity, ec_background_repeat, ec_background_repeat_block, ec_background_repeat_inline, ec_background_repeat_x, ec_background_repeat_y,
+                ec_background_size, ec_background_spacing, ec_background_tbd, ec_base_palette, ec_base_url, ec_baseline, ec_baseline_shift, ec_baseline_source, ec_bbox, ec_bikeshedding, ec_bleed, ec_block_ellipsis,
+                ec_block_overflow, ec_block_progression, ec_block_size, ec_block_step, ec_block_step_align, ec_block_step_insert, ec_block_step_round, ec_block_step_size, ec_bookmark_label, ec_bookmark_level,
+                ec_bookmark_state, ec_bookmark_target, ec_border, ec_border_block, ec_border_block_clip, ec_border_block_colour, ec_border_block_end, ec_border_block_end_clip, ec_border_block_end_colour,
+                ec_border_block_end_radius, ec_border_block_end_style, ec_border_block_end_width, ec_border_block_start, ec_border_block_start_clip, ec_border_block_start_colour, ec_border_block_start_radius,
+                ec_border_block_start_style, ec_border_block_start_width, ec_border_block_style, ec_border_block_width, ec_border_bottom, ec_border_bottom_clip, ec_border_bottom_colour, ec_border_bottom_left_radius,
+                ec_border_bottom_radius, ec_border_bottom_right_radius, ec_border_bottom_style, ec_border_bottom_width, ec_border_boundary, ec_border_break, ec_border_clip, ec_border_collapse, ec_border_colour,
+                ec_border_end_end_radius, ec_border_end_start_radius, ec_border_image, ec_border_image_outset, ec_border_image_repeat, ec_border_image_slice, ec_border_image_source, ec_border_image_transform,
+                ec_border_image_width, ec_border_inline, ec_border_inline_clip, ec_border_inline_colour, ec_border_inline_end, ec_border_inline_end_clip, ec_border_inline_end_colour, ec_border_inline_end_radius,
+                ec_border_inline_end_style, ec_border_inline_end_width, ec_border_inline_start, ec_border_inline_start_clip, ec_border_inline_start_colour, ec_border_inline_start_radius, ec_border_inline_start_style,
+                ec_border_inline_start_width, ec_border_inline_style, ec_border_inline_width, ec_border_left, ec_border_left_clip, ec_border_left_colour, ec_border_left_radius, ec_border_left_style,
+                ec_border_left_width, ec_border_length, ec_border_limit, ec_border_radius, ec_border_right, ec_border_right_clip, ec_border_right_colour, ec_border_right_radius, ec_border_right_style,
+                ec_border_right_width, ec_border_shape, ec_border_spacing, ec_border_start_end_radius, ec_border_start_start_radius, ec_border_style, ec_border_top, ec_border_top_clip, ec_border_top_colour,
+                ec_border_top_left_radius, ec_border_top_radius, ec_border_top_right_radius, ec_border_top_style, ec_border_top_width, ec_border_width, ec_bottom, ec_box_align, ec_box_break, ec_box_decoration_break,
+                ec_box_direction, ec_box_flex, ec_box_flex_group, ec_box_height, ec_box_lines, ec_box_ordinal_group, ec_box_orient, ec_box_pack, ec_box_shadow, ec_box_shadow_blur, ec_box_shadow_colour,
+                ec_box_shadow_offset, ec_box_shadow_position, ec_box_shadow_spread, ec_box_sizing, ec_box_snap, ec_box_suppress, ec_box_width, ec_break_after, ec_break_before, ec_break_inside, ec_buffered_rendering,
+
+                ec_cap_height, ec_caption_side, ec_caret, ec_caret_animation, ec_caret_colour, ec_caret_shape, ec_centre_line, ec_chains, ec_clear, ec_clear_after, ec_clip, ec_clip_path, ec_clip_rule, ec_clippath,
+                ec_cliprule, ec_colour, ec_colour_adjust, ec_colour_interpolation, ec_colour_interpolation_filters, ec_colour_profile, ec_colour_rendering, ec_colour_scheme, ec_column_break_after,
+                ec_column_break_before, ec_column_count, ec_column_fill, ec_column_gap, ec_column_height, ec_column_rule, ec_column_rule_break, ec_column_rule_colour, ec_column_rule_inset, ec_column_rule_inset_cap,
+                ec_column_rule_inset_cap_end, ec_column_rule_inset_cap_start, ec_column_rule_inset_end, ec_column_rule_inset_junction, ec_column_rule_inset_junction_end, ec_column_rule_inset_junction_start,
+                ec_column_rule_inset_start, ec_column_rule_style, ec_column_rule_visibility_items, ec_column_rule_width, ec_column_span, ec_column_width, ec_column_wrap, ec_columns, ec_contain,
+                ec_contain_intrinsic_block_size, ec_contain_intrinsic_height, ec_contain_intrinsic_inline_size, ec_contain_intrinsic_size, ec_contain_intrinsic_width, ec_container, ec_container_name,
+                ec_container_type, ec_content, ec_content_order, ec_content_visibility, ec_continue, ec_copy_into, ec_corner_block_end_shape, ec_corner_block_start_shape, ec_corner_bottom_left_shape,
+                ec_corner_bottom_right_shape, ec_corner_bottom_shape, ec_corner_end_end_shape, ec_corner_end_start_shape, ec_corner_inline_end_shape, ec_corner_inline_start_shape, ec_corner_left_shape,
+                ec_corner_right_shape, ec_corner_shape, ec_corner_start_end_shape, ec_corner_start_start_shape, ec_corner_top_left_shape, ec_corner_top_right_shape, ec_corner_top_shape, ec_counter_increment,
+                ec_counter_reset, ec_counter_set, ec_crop, ec_cue, ec_cue_after, ec_cue_before, ec_cursor, ec_custom, ec_cx, ec_cy,
+
+                ec_d, ec_definition_src, ec_descent, ec_descent_override, ec_direction, ec_display, ec_display_align, ec_display_box, ec_display_extras, ec_display_inside, ec_display_list, ec_display_model,
+                ec_display_outside, ec_display_role, ec_dominant_baseline, ec_dynamic_range_limit,
+
+                ec_elevation, ec_else, ec_empty_cells, ec_enable_background, ec_epub_caption_side, ec_epub_hyphens, ec_epub_text_combine, ec_epub_text_decoration, ec_epub_text_emphasis, ec_epub_text_emphasis_colour,
+                ec_epub_text_emphasis_style, ec_epub_text_orientation, ec_epub_text_transform, ec_epub_word_break, ec_epub_writing_mode, ec_event_trigger, ec_event_trigger_name, ec_event_trigger_source,
+                ec_expansion, ec_extend_to_zoom,
+
+                ec_fallback, ec_feBlend, ec_feColorMatrix, ec_feComponentTransfer, ec_feComposite, ec_feConvolveMatrix, ec_feCustom, ec_feCustomParam, ec_feCustomSource, ec_feDiffuseLighting, ec_feDisplacementMap,
+                ec_feDistantLight, ec_feDropShadow, ec_feFlood, ec_feFuncA, ec_feFuncB, ec_feFuncG, ec_feFuncR, ec_feGaussianBlur, ec_feImage, ec_feMerge, ec_feMergeNode, ec_feMorphology, ec_feOffset,
+                ec_fePointLight, ec_feSpecularLighting, ec_feSpotLight, ec_feTile, ec_feTurbulence, ec_feUnsharpMask, ec_field_sizing, ec_fill, ec_fill_break, ec_fill_colour, ec_fill_image, ec_fill_opacity,
+                ec_fill_origin, ec_fill_params, ec_fill_position, ec_fill_repeat, ec_fill_rule, ec_fill_size, ec_fillrule, ec_filter, ec_filter_margin, ec_filter_margin_bottom, ec_filter_margin_left,
+                ec_filter_margin_right, ec_filter_margin_top, ec_fit, ec_fit_position, ec_flex, ec_flex_align, ec_flex_basis, ec_flex_direction, ec_flex_flow, ec_flex_grow, ec_flex_item_align, ec_flex_line_pack,
+                ec_flex_order, ec_flex_pack, ec_flex_shrink, ec_flex_wrap, ec_float, ec_float_defer, ec_float_displace, ec_float_displace_alternative_2, ec_float_displace_alternative_3, ec_float_offset,
+                ec_float_reference, ec_flood_colour, ec_flood_opacity, ec_flow, ec_flow_from, ec_flow_into, ec_flow_tolerance, ec_font, ec_font_display, ec_font_family, ec_font_feature_settings, ec_font_kerning,
+                ec_font_language_override, ec_font_max_size, ec_font_min_size, ec_font_named_instance, ec_font_optical_sizing, ec_font_palette, ec_font_presentation, ec_font_size, ec_font_size_adjust,
+                ec_font_smooth, ec_font_stretch, ec_font_style, ec_font_synthesis, ec_font_synthesis_position, ec_font_synthesis_small_caps, ec_font_synthesis_style, ec_font_synthesis_weight,
+                ec_font_variant, ec_font_variant_alternatives, ec_font_variant_caps, ec_font_variant_east_asian, ec_font_variant_emoji, ec_font_variant_ligatures, ec_font_variant_numeric, ec_font_variant_position,
+                ec_font_variation_settings, ec_font_weight, ec_font_width, ec_footnote_display, ec_footnote_policy, ec_forced_colour_adjust,
+
+                ec_gap, ec_glyph_orientation_horizontal, ec_glyph_orientation_vertical, ec_grid, ec_grid_after, ec_grid_area, ec_grid_auto_columns, ec_grid_auto_flow, ec_grid_auto_position, ec_grid_auto_rows,
+                ec_grid_before, ec_grid_cell, ec_grid_cell_stacking, ec_grid_column, ec_grid_column_align, ec_grid_column_end, ec_grid_column_gap, ec_grid_column_position, ec_grid_column_sizing,
+                ec_grid_column_span, ec_grid_column_start, ec_grid_columns, ec_grid_definition_columns, ec_grid_definition_rows, ec_grid_end, ec_grid_flow, ec_grid_gap, ec_grid_position, ec_grid_row,
+                ec_grid_row_align, ec_grid_row_end, ec_grid_row_gap, ec_grid_row_position, ec_grid_row_sizing, ec_grid_row_span, ec_grid_row_start, ec_grid_rows, ec_grid_span, ec_grid_start, ec_grid_template,
+                ec_grid_template_areas, ec_grid_template_columns, ec_grid_template_rows,
+
+                ec_hanging_punctuation, ec_hash, ec_height, ec_hostname, ec_hyphenate, ec_hyphenate_after, ec_hyphenate_before, ec_hyphenate_character, ec_hyphenate_dictionary, ec_hyphenate_limit_after,
+                ec_hyphenate_limit_before, ec_hyphenate_limit_chars, ec_hyphenate_limit_last, ec_hyphenate_limit_lines, ec_hyphenate_limit_zone, ec_hyphenate_lines, ec_hyphenate_resource, ec_hyphens,
+
+                ec_icc_profile, ec_icon, ec_if, ec_image_animation, ec_image_orientation, ec_image_rendering, ec_image_resolution, ec_ime_mode, ec_indent_edge_reset, ec_inherit, ec_initial, ec_initial_letter,
+                ec_initial_letter_align, ec_initial_letter_wrap, ec_initial_letters, ec_initial_letters_align, ec_initial_letters_wrap, ec_inline_size, ec_inline_sizing, ec_input_security, ec_inset,
+                ec_inset_block, ec_inset_block_end, ec_inset_block_start, ec_inset_inline, ec_inset_inline_end, ec_inset_inline_start, ec_interactive_widget, ec_interactivity, ec_interest_delay,
+                ec_interest_delay_end, ec_interest_delay_start, ec_interpolate_size, ec_isolation, ec_item_cross, ec_item_direction, ec_item_flow, ec_item_pack, ec_item_track, ec_item_wrap,
+
+                ec_justify_content, ec_justify_items, ec_justify_self,
+
+                ec_kerning, ec_kerning_mode, ec_kerning_pair_threshold, ec_key_equivalent, ec_khtml_align_content, ec_khtml_align_items, ec_khtml_align_self, ec_khtml_alt, ec_khtml_animation,
+                ec_khtml_animation_delay, ec_khtml_animation_direction, ec_khtml_animation_duration, ec_khtml_animation_fill_mode, ec_khtml_animation_iteration_count, ec_khtml_animation_name,
+                ec_khtml_animation_play_state, ec_khtml_animation_timing_function, ec_khtml_animation_trigger, ec_khtml_app_region, ec_khtml_appearance, ec_khtml_aspect_ratio, ec_khtml_backdrop_filter,
+                ec_khtml_backface_visibility, ec_khtml_background_clip, ec_khtml_background_composite, ec_khtml_background_origin, ec_khtml_background_size, ec_khtml_border_after,
+                ec_khtml_border_after_colour, ec_khtml_border_after_style, ec_khtml_border_after_width, ec_khtml_border_before, ec_khtml_border_before_colour, ec_khtml_border_before_style,
+                ec_khtml_border_before_width, ec_khtml_border_bottom_left_radius, ec_khtml_border_bottom_right_radius, ec_khtml_border_end, ec_khtml_border_end_colour, ec_khtml_border_end_style,
+                ec_khtml_border_end_width, ec_khtml_border_fit, ec_khtml_border_horizontal_spacing, ec_khtml_border_image, ec_khtml_border_radius, ec_khtml_border_radius_bottomleft,
+                ec_khtml_border_radius_bottomright, ec_khtml_border_radius_topleft, ec_khtml_border_radius_topright, ec_khtml_border_start, ec_khtml_border_start_colour, ec_khtml_border_start_style,
+                ec_khtml_border_start_width, ec_khtml_border_top_left_radius, ec_khtml_border_top_right_radius, ec_khtml_border_vertical_spacing, ec_khtml_box_align, ec_khtml_box_decoration_break,
+                ec_khtml_box_direction, ec_khtml_box_flex, ec_khtml_box_flex_group, ec_khtml_box_lines, ec_khtml_box_ordinal_group, ec_khtml_box_orient, ec_khtml_box_pack, ec_khtml_box_reflect,
+                ec_khtml_box_shadow, ec_khtml_box_sizing, ec_khtml_clip_path, ec_khtml_colour_correction, ec_khtml_column_axis, ec_khtml_column_break_after, ec_khtml_column_break_before,
+                ec_khtml_column_break_inside, ec_khtml_column_count, ec_khtml_column_fill, ec_khtml_column_gap, ec_khtml_column_progression, ec_khtml_column_rule, ec_khtml_column_rule_colour,
+                ec_khtml_column_rule_style, ec_khtml_column_rule_width, ec_khtml_column_span, ec_khtml_column_width, ec_khtml_columns, ec_khtml_cursor_visibility, ec_khtml_dashboard_region,
+                ec_khtml_device_pixel_ratio, ec_khtml_filter, ec_khtml_flex, ec_khtml_flex_basis, ec_khtml_flex_direction, ec_khtml_flex_flow, ec_khtml_flex_grow, ec_khtml_flex_shrink,
+                ec_khtml_flex_wrap, ec_khtml_flow_from, ec_khtml_flow_into, ec_khtml_font_feature_settings, ec_khtml_font_kerning, ec_khtml_font_size_delta, ec_khtml_font_smoothing,
+                ec_khtml_font_variant_ligatures, ec_khtml_grid, ec_khtml_grid_area, ec_khtml_grid_auto_columns, ec_khtml_grid_auto_flow, ec_khtml_grid_auto_rows, ec_khtml_grid_column,
+                ec_khtml_grid_column_end, ec_khtml_grid_column_gap, ec_khtml_grid_column_start, ec_khtml_grid_columns, ec_khtml_grid_gap, ec_khtml_grid_row, ec_khtml_grid_row_end,
+                ec_khtml_grid_row_gap, ec_khtml_grid_row_start, ec_khtml_grid_rows, ec_khtml_grid_template, ec_khtml_grid_template_areas, ec_khtml_grid_template_columns, ec_khtml_grid_template_rows,
+                ec_khtml_highlight, ec_khtml_hyphenate_character, ec_khtml_hyphenate_charset, ec_khtml_hyphenate_limit_after, ec_khtml_hyphenate_limit_before, ec_khtml_hyphenate_limit_lines,
+                ec_khtml_hyphens, ec_khtml_image_set, ec_khtml_initial_letter, ec_khtml_justify_content, ec_khtml_justify_items, ec_khtml_justify_self, ec_khtml_line_align, ec_khtml_line_box_contain,
+                ec_khtml_line_break, ec_khtml_line_clamp, ec_khtml_line_grid, ec_khtml_line_snap, ec_khtml_locale, ec_khtml_logical_height, ec_khtml_logical_width, ec_khtml_margin_after,
+                ec_khtml_margin_after_collapse, ec_khtml_margin_before, ec_khtml_margin_before_collapse, ec_khtml_margin_bottom_collapse, ec_khtml_margin_collapse, ec_khtml_margin_end,
+                ec_khtml_margin_start, ec_khtml_margin_top_collapse, ec_khtml_marquee, ec_khtml_marquee_direction, ec_khtml_marquee_increment, ec_khtml_marquee_repetition, ec_khtml_marquee_speed,
+                ec_khtml_marquee_style, ec_khtml_mask, ec_khtml_mask_attachment, ec_khtml_mask_border_outset, ec_khtml_mask_border_repeat, ec_khtml_mask_border_source, ec_khtml_mask_box_image,
+                ec_khtml_mask_box_image_outset, ec_khtml_mask_box_image_repeat, ec_khtml_mask_box_image_slice, ec_khtml_mask_box_image_source, ec_khtml_mask_box_image_width, ec_khtml_mask_clip,
+                ec_khtml_mask_composite, ec_khtml_mask_image, ec_khtml_mask_origin, ec_khtml_mask_position, ec_khtml_mask_position_x, ec_khtml_mask_position_y, ec_khtml_mask_repeat,
+                ec_khtml_mask_repeat_x, ec_khtml_mask_repeat_y, ec_khtml_mask_size, ec_khtml_mask_source_type, ec_khtml_match_nearest_mail_blockquote_colour, ec_khtml_max_logical_height,
+                ec_khtml_max_logical_width, ec_khtml_media_text_track_container, ec_khtml_min_logical_height, ec_khtml_min_logical_width, ec_khtml_nbsp_mode, ec_khtml_opacity, ec_khtml_order,
+                ec_khtml_overflow_scrolling, ec_khtml_padding_after, ec_khtml_padding_before, ec_khtml_padding_end, ec_khtml_padding_start, ec_khtml_perspective, ec_khtml_perspective_origin,
+                ec_khtml_perspective_origin_x, ec_khtml_perspective_origin_y, ec_khtml_print_colour_adjust, ec_khtml_region_break_after, ec_khtml_region_break_before, ec_khtml_region_break_inside,
+                ec_khtml_region_fragment, ec_khtml_rtl_ordering, ec_khtml_ruby_position, ec_khtml_scroll_snap_type, ec_khtml_shape_image_threshold, ec_khtml_shape_inside, ec_khtml_shape_margin,
+                ec_khtml_shape_outside, ec_khtml_svg_shadow, ec_khtml_tap_highlight_colour, ec_khtml_text_colour_decoration, ec_khtml_text_combine, ec_khtml_text_decoration_line,
+                ec_khtml_text_decoration_skip, ec_khtml_text_decoration_style, ec_khtml_text_decorations_in_effect, ec_khtml_text_emphasis, ec_khtml_text_emphasis_colour,
+                ec_khtml_text_emphasis_position, ec_khtml_text_emphasis_style, ec_khtml_text_fill_colour, ec_khtml_text_justify, ec_khtml_text_orientation, ec_khtml_text_security,
+                ec_khtml_text_size_adjust, ec_khtml_text_stroke, ec_khtml_text_stroke_colour, ec_khtml_text_stroke_width, ec_khtml_text_underline_position, ec_khtml_text_zoom, ec_khtml_touch_callout,
+                ec_khtml_transform, ec_khtml_transform_2d, ec_khtml_transform_3d, ec_khtml_transform_origin, ec_khtml_transform_origin_x, ec_khtml_transform_origin_y, ec_khtml_transform_origin_z,
+                ec_khtml_transform_style, ec_khtml_transition, ec_khtml_transition_delay, ec_khtml_transition_duration, ec_khtml_transition_property, ec_khtml_transition_timing_function,
+                ec_khtml_user_drag, ec_khtml_user_modify, ec_khtml_user_select,
+
+                ec_leading_trim, ec_leading_trim_over, ec_leading_trim_under, ec_left, ec_letter_spacing, ec_lighting_colour, ec_line_break, ec_line_clamp, ec_line_gap_override, ec_line_grid,
+                ec_line_grid_mode, ec_line_grid_progression, ec_line_height, ec_line_height_step, ec_line_increment, ec_line_padding, ec_line_sizing, ec_line_slack, ec_line_snap,
+                ec_linefeed_treatment, ec_link_parameters, ec_list_style, ec_list_style_image, ec_list_style_position, ec_list_style_type,
+
+                ec_margin, ec_margin_block, ec_margin_block_end, ec_margin_block_start, ec_margin_bottom, ec_margin_break, ec_margin_inline, ec_margin_inline_end, ec_margin_inline_start,
+                ec_margin_left, ec_margin_right, ec_margin_top, ec_margin_trim, ec_mark, ec_mark_after, ec_mark_before, ec_marker, ec_marker_end, ec_marker_knockout_left, ec_marker_knockout_right,
+                ec_marker_mid, ec_marker_offset, ec_marker_pattern, ec_marker_segment, ec_marker_side, ec_marker_start, ec_marks, ec_marquee, ec_marquee_direction, ec_marquee_loop,
+                ec_marquee_play_count, ec_marquee_repetition, ec_marquee_speed, ec_marquee_style, ec_mask, ec_mask_border, ec_mask_border_mode, ec_mask_border_outset, ec_mask_border_repeat,
+                ec_mask_border_slice, ec_mask_border_source, ec_mask_border_width, ec_mask_box, ec_mask_box_image, ec_mask_box_image_outset, ec_mask_box_image_repeat, ec_mask_box_image_slice,
+                ec_mask_box_image_source, ec_mask_box_image_width, ec_mask_box_outset, ec_mask_box_repeat, ec_mask_box_slice, ec_mask_box_source, ec_mask_box_width, ec_mask_clip, ec_mask_composite,
+                ec_mask_image, ec_mask_mode, ec_mask_origin, ec_mask_position, ec_mask_repeat, ec_mask_size, ec_mask_source_type, ec_mask_type, ec_math_depth, ec_math_shift, ec_math_style,
+                ec_mathline, ec_max_block_size, ec_max_font_size, ec_max_height, ec_max_inline_size, ec_max_lines, ec_max_width, ec_max_zoom, ec_media, ec_min_block_size, ec_min_font_size,
+                ec_min_height, ec_min_inline_size, ec_min_intrinsic_sizing, ec_min_width, ec_min_zoom, ec_mix_blend_mode, ec_motion, ec_motion_offset, ec_motion_path, ec_motion_rotation, ec_move_to,
+                ec_moz_animation, ec_moz_animation_delay, ec_moz_animation_direction, ec_moz_animation_duration, ec_moz_animation_fill_mode, ec_moz_animation_iteration_count, ec_moz_animation_name,
+                ec_moz_animation_play_state, ec_moz_animation_timing_function, ec_moz_appearance, ec_moz_backface_visibility, ec_moz_background_clip, ec_moz_background_inline_policy,
+                ec_moz_background_origin, ec_moz_background_size, ec_moz_binding, ec_moz_border_bottom_colours, ec_moz_border_end, ec_moz_border_end_colour, ec_moz_border_end_style,
+                ec_moz_border_end_width, ec_moz_border_image, ec_moz_border_left_colours, ec_moz_border_radius, ec_moz_border_radius_bottomleft, ec_moz_border_radius_bottomright,
+                ec_moz_border_radius_topleft, ec_moz_border_radius_topright, ec_moz_border_right_colours, ec_moz_border_start, ec_moz_border_start_colour, ec_moz_border_start_style,
+                ec_moz_border_start_width, ec_moz_border_top_colours, ec_moz_box_align, ec_moz_box_direction, ec_moz_box_flex, ec_moz_box_ordinal_group, ec_moz_box_orient, ec_moz_box_pack,
+                ec_moz_box_shadow, ec_moz_box_sizing, ec_moz_column_count, ec_moz_column_fill, ec_moz_column_gap, ec_moz_column_rule, ec_moz_column_rule_colour, ec_moz_column_rule_style,
+                ec_moz_column_rule_width, ec_moz_column_width, ec_moz_context_properties, ec_moz_float_edge, ec_moz_font_feature_settings, ec_moz_font_language_override, ec_moz_force_broken_image_icon,
+                ec_moz_hyphens, ec_moz_image_region, ec_moz_margin_end, ec_moz_margin_start, ec_moz_opacity, ec_moz_orient, ec_moz_osx_font_smoothing, ec_moz_outline, ec_moz_outline_colour,
+                ec_moz_outline_offset, ec_moz_outline_radius, ec_moz_outline_radius_bottomleft, ec_moz_outline_radius_bottomright, ec_moz_outline_radius_topleft, ec_moz_outline_radius_topright,
+                ec_moz_outline_style, ec_moz_outline_width, ec_moz_padding_end, ec_moz_padding_start, ec_moz_perspective, ec_moz_perspective_origin, ec_moz_stack_sizing, ec_moz_tab_size,
+                ec_moz_text_align_last, ec_moz_text_blink, ec_moz_text_decoration_colour, ec_moz_text_decoration_line, ec_moz_text_decoration_style, ec_moz_text_size_adjust, ec_moz_transform,
+                ec_moz_transform_origin, ec_moz_transform_style, ec_moz_transition, ec_moz_transition_delay, ec_moz_transition_duration, ec_moz_transition_property, ec_moz_transition_timing_function,
+                ec_moz_user_focus, ec_moz_user_input, ec_moz_user_modify, ec_moz_user_select, ec_moz_window_dragging, ec_moz_window_shadow, ec_ms_animation, ec_ms_animation_delay,
+                ec_ms_animation_direction, ec_ms_animation_duration, ec_ms_animation_fill_mode, ec_ms_animation_iteration_count, ec_ms_animation_name, ec_ms_animation_play_state,
+                ec_ms_animation_timing_function, ec_ms_block_progression, ec_ms_content_zoom_chaining, ec_ms_content_zoom_limit, ec_ms_content_zoom_limit_max, ec_ms_content_zoom_limit_min,
+                ec_ms_content_zoom_snap, ec_ms_content_zoom_snap_points, ec_ms_content_zoom_snap_type, ec_ms_content_zooming, ec_ms_flex_align, ec_ms_flex_item_align, ec_ms_flex_line_pack,
+                ec_ms_flex_negative, ec_ms_flex_order, ec_ms_flex_pack, ec_ms_flex_positive, ec_ms_flex_preferred_size, ec_ms_font_feature_settings, ec_ms_grid_columns, ec_ms_grid_rows,
+                ec_ms_high_contrast_adjust, ec_ms_hyphenate_limit_chars, ec_ms_hyphenate_limit_lines, ec_ms_hyphenate_limit_zone, ec_ms_ime_align, ec_ms_interpolation_mode, ec_ms_scroll_chaining,
+                ec_ms_scroll_limit, ec_ms_scroll_limit_x_max, ec_ms_scroll_limit_x_min, ec_ms_scroll_limit_y_max, ec_ms_scroll_limit_y_min, ec_ms_scroll_rails, ec_ms_scroll_snap_points_x,
+                ec_ms_scroll_snap_points_y, ec_ms_scroll_snap_type, ec_ms_scroll_snap_x, ec_ms_scroll_snap_y, ec_ms_scroll_translation, ec_ms_text_combine_horizontal, ec_ms_touch_action,
+                ec_ms_touch_select, ec_ms_transition, ec_ms_transition_delay, ec_ms_transition_duration, ec_ms_transition_property, ec_ms_transition_timing_function, ec_ms_wrap_margin,
+                ec_mso_ansi_font_size, ec_mso_ansi_font_style, ec_mso_ansi_font_weight, ec_mso_ansi_language, ec_mso_arabic_font_family, ec_mso_armenian_font_family, ec_mso_ascii_font_family,
+                ec_mso_ascii_theme_font, ec_mso_background_source, ec_mso_bengali_font_family, ec_mso_bidi_font_family, ec_mso_bidi_font_size, ec_mso_bidi_font_style, ec_mso_bidi_font_weight,
+                ec_mso_bidi_language, ec_mso_bidi_theme_font, ec_mso_bookmark, ec_mso_bopomofo_font_family, ec_mso_border_alt, ec_mso_border_bottom_alt, ec_mso_border_colour_alt,
+                ec_mso_border_insideh, ec_mso_border_insidev, ec_mso_border_left_alt, ec_mso_border_right_alt, ec_mso_border_shadow, ec_mso_border_style_alt, ec_mso_border_top_alt,
+                ec_mso_border_width_alt, ec_mso_break_type, ec_mso_cell_special, ec_mso_cellspacing, ec_mso_char_indent_count, ec_mso_char_indent_size, ec_mso_char_tracking, ec_mso_char_type,
+                ec_mso_char_wrap, ec_mso_colour_alt, ec_mso_colour_index, ec_mso_column_margin, ec_mso_currency_font_family, ec_mso_cyrillic_font_family, ec_mso_data_placement,
+                ec_mso_default_font_family, ec_mso_default_props, ec_mso_devanagari_font_family, ec_mso_displayed_decimal_separator, ec_mso_displayed_thousand_separator, ec_mso_element,
+                ec_mso_element_anchor_horizontal, ec_mso_element_anchor_vertical, ec_mso_element_frame_height, ec_mso_element_frame_hspace, ec_mso_element_frame_width, ec_mso_element_left,
+                ec_mso_element_top, ec_mso_element_wrap, ec_mso_endnote_continuation_separator, ec_mso_endnote_numbering_style, ec_mso_endnote_separator, ec_mso_eudc_font_family, ec_mso_even_footer,
+                ec_mso_fareast_font_family, ec_mso_fareast_language, ec_mso_fareast_theme_font, ec_mso_field_code, ec_mso_font_alt, ec_mso_font_charset, ec_mso_font_format, ec_mso_font_kerning,
+                ec_mso_font_pitch, ec_mso_font_signature, ec_mso_font_width, ec_mso_footer, ec_mso_footer_margin, ec_mso_footnote_continuation_separator, ec_mso_footnote_id,
+                ec_mso_footnote_separator, ec_mso_generic_font_family, ec_mso_georgian_font_family, ec_mso_gram_e, ec_mso_greek_font_family, ec_mso_gurmukhi_font_family,
+                ec_mso_halfwidthkana_font_family, ec_mso_han_font_family, ec_mso_hangul_font_family, ec_mso_hansi_font_family, ec_mso_hansi_theme_font, ec_mso_header, ec_mso_header_margin,
+                ec_mso_hebrew_font_family, ec_mso_height_rule, ec_mso_height_source, ec_mso_hide, ec_mso_highlight, ec_mso_hyphenate, ec_mso_ignore, ec_mso_kana_font_family,
+                ec_mso_kannada_font_family, ec_mso_kinsoku_overflow, ec_mso_lao_font_family, ec_mso_latin_font_family, ec_mso_latinext_font_family, ec_mso_layout_grid_align, ec_mso_level_font_family,
+                ec_mso_level_indent, ec_mso_level_legacy, ec_mso_level_legacy_indent, ec_mso_level_legacy_space, ec_mso_level_number_format, ec_mso_level_number_position, ec_mso_level_size,
+                ec_mso_level_start_at, ec_mso_level_style_link, ec_mso_level_tab_stop, ec_mso_level_text, ec_mso_line_height_alt, ec_mso_line_height_rule, ec_mso_line_spacing, ec_mso_linked_frame,
+                ec_mso_list, ec_mso_list_id, ec_mso_list_template_ids, ec_mso_list_type, ec_mso_malayalam_font_family, ec_mso_margin_bottom_alt, ec_mso_margin_left_alt, ec_mso_margin_top_alt,
+                ec_mso_no_proof, ec_mso_number_format, ec_mso_oriya_font_family, ec_mso_outline_level, ec_mso_padding_alt, ec_mso_page_border_surround_footer, ec_mso_page_border_surround_header,
+                ec_mso_page_orientation, ec_mso_pagination, ec_mso_paper_source, ec_mso_para_margin, ec_mso_para_margin_bottom, ec_mso_para_margin_left, ec_mso_para_margin_right,
+                ec_mso_para_margin_top, ec_mso_pattern, ec_mso_position_horizontal, ec_mso_position_horizontal_relative, ec_mso_position_vertical, ec_mso_position_vertical_relative, ec_mso_protection,
+                ec_mso_rotate, ec_mso_row_margin_left, ec_mso_row_margin_right, ec_mso_shading, ec_mso_spacerun, ec_mso_special_character, ec_mso_special_format, ec_mso_spl_e, ec_mso_style_id,
+                ec_mso_style_link, ec_mso_style_locked, ec_mso_style_name, ec_mso_style_next, ec_mso_style_noshow, ec_mso_style_parent, ec_mso_style_priority, ec_mso_style_qformat, ec_mso_style_type,
+                ec_mso_style_unhide, ec_mso_style_update, ec_mso_symbol_font_family, ec_mso_syriac_font_family, ec_mso_tab_count, ec_mso_table_anchor_horizontal, ec_mso_table_anchor_vertical,
+                ec_mso_table_layout_alt, ec_mso_table_left, ec_mso_table_lspace, ec_mso_table_overlap, ec_mso_table_rspace, ec_mso_table_top, ec_mso_tamil_font_family, ec_mso_telugu_font_family,
+                ec_mso_text_animation, ec_mso_text_raise, ec_mso_thaana_font_family, ec_mso_thai_font_family, ec_mso_themecolour, ec_mso_themeshade, ec_mso_title_page, ec_mso_tstyle_colband_size,
+                ec_mso_tstyle_rowband_size, ec_mso_width_alt, ec_mso_width_source, ec_mso_wrap_distance_bottom, ec_mso_wrap_distance_left, ec_mso_wrap_distance_right, ec_mso_wrap_distance_top,
+                ec_mso_wrap_edited, ec_mso_yfti_firstrow, ec_mso_yfti_irow, ec_mso_yfti_lastrow, ec_mso_yfti_tbllook,
+
+                ec_name, ec_nav_down, ec_nav_index, ec_nav_left, ec_nav_right, ec_nav_up, ec_navigation, ec_negative, ec_not,
+
+                ec_o_animation, ec_o_border_image, ec_o_box_shadow, ec_o_device_pixel_ratio, ec_o_focus_opacity, ec_o_link, ec_o_link_source, ec_o_mini_fold, ec_o_object_fit, ec_o_object_position,
+                ec_o_tab_size, ec_o_table_baseline, ec_o_text_overflow, ec_o_transform, ec_o_transform_origin, ec_o_transition, ec_o_transition_delay, ec_o_transition_duration,
+                ec_o_transition_property, ec_o_transition_timing_function, ec_object_fit, ec_object_position, ec_object_view_box, ec_offset, ec_offset_after, ec_offset_anchor, ec_offset_before,
+                ec_offset_distance, ec_offset_end, ec_offset_path, ec_offset_position, ec_offset_rotate, ec_offset_start, ec_opacity, ec_or, ec_order, ec_orientation, ec_orphans, ec_outline,
+                ec_outline_colour, ec_outline_offset, ec_outline_style, ec_outline_width, ec_overflow, ec_overflow_anchor, ec_overflow_block, ec_overflow_clip, ec_overflow_clip_box,
+                ec_overflow_clip_box_block, ec_overflow_clip_box_inline, ec_overflow_clip_margin, ec_overflow_clip_margin_block, ec_overflow_clip_margin_block_end,
+                ec_overflow_clip_margin_block_start, ec_overflow_clip_margin_bottom, ec_overflow_clip_margin_inline, ec_overflow_clip_margin_inline_end, ec_overflow_clip_margin_inline_start,
+                ec_overflow_clip_margin_left, ec_overflow_clip_margin_right, ec_overflow_clip_margin_top, ec_overflow_inline, ec_overflow_style, ec_overflow_wrap, ec_overflow_x, ec_overflow_y,
+                ec_overlay, ec_override_colours, ec_overscroll_behaviour, ec_overscroll_behaviour_block, ec_overscroll_behaviour_inline, ec_overscroll_behaviour_x, ec_overscroll_behaviour_y,
+
+                ec_pad, ec_padding, ec_padding_block, ec_padding_block_end, ec_padding_block_start, ec_padding_bottom, ec_padding_inline, ec_padding_inline_end, ec_padding_inline_start,
+                ec_padding_left, ec_padding_right, ec_padding_top, ec_page_break_after, ec_page_break_before, ec_page_break_inside, ec_page_orientation, ec_page_policy, ec_page_property,
+                ec_page_transition_tag, ec_paint_order, ec_panose_1, ec_path_length, ec_pathname, ec_pattern, ec_pause, ec_pause_after, ec_pause_before, ec_perspective, ec_perspective_origin,
+                ec_phonemes, ec_pitch, ec_pitch_range, ec_place_content, ec_place_items, ec_place_self, ec_play_during, ec_pointer_events, ec_pointer_timeline, ec_pointer_timeline_axis,
+                ec_pointer_timeline_name, ec_polar_anchor, ec_polar_angle, ec_polar_distance, ec_polar_origin, ec_port, ec_position, ec_position_anchor, ec_position_area, ec_position_fallback,
+                ec_position_fallback_bounds, ec_position_try, ec_position_try_fallbacks, ec_position_try_order, ec_position_visibility, ec_prefix, ec_presentation_level, ec_print_colour_adjust,
+                ec_protocol, ec_punctuation_trim,
+
+                ec_quotes,
+
+                ec_r, ec_range, ec_reading_flow, ec_reading_order, ec_region_fragment, ec_region_overflow, ec_rendering_intent, ec_required_flow, ec_resize, ec_resizer, ec_resolution, ec_rest,
+                ec_rest_after, ec_rest_before, ec_result, ec_richness, ec_right, ec_rotate, ec_rotation, ec_rotation_point, ec_row_gap, ec_row_rule, ec_row_rule_break, ec_row_rule_colour,
+                ec_row_rule_inset, ec_row_rule_inset_cap, ec_row_rule_inset_cap_end, ec_row_rule_inset_cap_start, ec_row_rule_inset_end, ec_row_rule_inset_junction, ec_row_rule_inset_junction_end,
+                ec_row_rule_inset_junction_start, ec_row_rule_inset_start, ec_row_rule_style, ec_row_rule_visibility_items, ec_row_rule_width, ec_ruby_align, ec_ruby_merge, ec_ruby_overhang,
+                ec_ruby_position, ec_rule, ec_rule_break, ec_rule_colour, ec_rule_inset, ec_rule_inset_cap, ec_rule_inset_junction, ec_rule_overlap, ec_rule_style, ec_rule_visibility_items,
+                ec_rule_width, ec_running, ec_rx, ec_ry,
+
+                ec_scale, ec_scope, ec_scroll_behaviour, ec_scroll_initial_target, ec_scroll_margin, ec_scroll_margin_block, ec_scroll_margin_block_end, ec_scroll_margin_block_start,
+                ec_scroll_margin_bottom, ec_scroll_margin_inline, ec_scroll_margin_inline_end, ec_scroll_margin_inline_start, ec_scroll_margin_left, ec_scroll_margin_right, ec_scroll_margin_top,
+                ec_scroll_marker_group, ec_scroll_padding, ec_scroll_padding_block, ec_scroll_padding_block_end, ec_scroll_padding_block_start, ec_scroll_padding_bottom, ec_scroll_padding_inline,
+                ec_scroll_padding_inline_end, ec_scroll_padding_inline_start, ec_scroll_padding_left, ec_scroll_padding_right, ec_scroll_padding_top, ec_scroll_snap_align, ec_scroll_snap_coordinate,
+                ec_scroll_snap_destination, ec_scroll_snap_margin, ec_scroll_snap_margin_block, ec_scroll_snap_margin_block_end, ec_scroll_snap_margin_block_start, ec_scroll_snap_margin_bottom,
+                ec_scroll_snap_margin_inline, ec_scroll_snap_margin_inline_end, ec_scroll_snap_margin_inline_start, ec_scroll_snap_margin_left, ec_scroll_snap_margin_right,
+                ec_scroll_snap_margin_top, ec_scroll_snap_padding, ec_scroll_snap_padding_block, ec_scroll_snap_padding_block_end, ec_scroll_snap_padding_block_start, ec_scroll_snap_padding_bottom,
+                ec_scroll_snap_padding_inline, ec_scroll_snap_padding_inline_end, ec_scroll_snap_padding_inline_start, ec_scroll_snap_padding_left, ec_scroll_snap_padding_right,
+                ec_scroll_snap_padding_top, ec_scroll_snap_points_x, ec_scroll_snap_points_y, ec_scroll_snap_stop, ec_scroll_snap_type, ec_scroll_target_group, ec_scroll_timeline,
+                ec_scroll_timeline_attachment, ec_scroll_timeline_axis, ec_scroll_timeline_name, ec_scrollbar_colour, ec_scrollbar_gutter, ec_scrollbar_width, ec_search, ec_shape_image_threshold,
+                ec_shape_inside, ec_shape_margin, ec_shape_outside, ec_shape_padding, ec_shape_rendering, ec_shape_subtract, ec_size, ec_size_adjust, ec_slider_orientation, ec_slope,
+                ec_solid_colour, ec_solid_opacity, ec_something_or_other, ec_spatial_navigation_action, ec_spatial_navigation_contain, ec_spatial_navigation_function, ec_speak, ec_speak_as,
+                ec_speak_header, ec_speak_numeral, ec_speak_punctuation, ec_speakability, ec_specificity, ec_speech_rate, ec_src, ec_stemh, ec_stemv, ec_stop_colour, ec_stop_opacity, ec_stress,
+                ec_string_set, ec_stroke, ec_stroke_align, ec_stroke_alignment, ec_stroke_break, ec_stroke_colour, ec_stroke_dash_corner, ec_stroke_dash_justify, ec_stroke_dashadjust,
+                ec_stroke_dasharray, ec_stroke_dashcorner, ec_stroke_dashoffset, ec_stroke_image, ec_stroke_linecap, ec_stroke_linejoin, ec_stroke_miterlimit, ec_stroke_opacity, ec_stroke_origin,
+                ec_stroke_params, ec_stroke_position, ec_stroke_repeat, ec_stroke_size, ec_stroke_width, ec_style, ec_subscript_position_override, ec_subscript_size_override, ec_suffix,
+                ec_superscript_position_override, ec_superscript_size_override, ec_supports, ec_symbols, ec_system,
+
+                ec_tab_side, ec_tab_size, ec_table_layout, ec_target, ec_target_name, ec_target_new, ec_target_position, ec_template_set, ec_text_align, ec_text_align_all, ec_text_align_first,
+                ec_text_align_last, ec_text_anchor, ec_text_autospace, ec_text_blink, ec_text_block_indent, ec_text_box, ec_text_box_edge, ec_text_box_trim, ec_text_combine, ec_text_combine_horizontal,
+                ec_text_combine_mode, ec_text_combine_upright, ec_text_decoration, ec_text_decoration_colour, ec_text_decoration_inset, ec_text_decoration_line, ec_text_decoration_skip,
+                ec_text_decoration_skip_box, ec_text_decoration_skip_edges, ec_text_decoration_skip_ink, ec_text_decoration_skip_inset, ec_text_decoration_skip_self, ec_text_decoration_skip_spaces,
+                ec_text_decoration_style, ec_text_decoration_thickness, ec_text_decoration_width, ec_text_definition, ec_text_edge, ec_text_emphasis, ec_text_emphasis_colour,
+                ec_text_emphasis_position, ec_text_emphasis_skip, ec_text_emphasis_style, ec_text_first_indent, ec_text_fit, ec_text_group_align, ec_text_indent, ec_text_justify, ec_text_justify_trim,
+                ec_text_kashida_space, ec_text_line_through, ec_text_line_through_colour, ec_text_line_through_mode, ec_text_line_through_style, ec_text_line_through_width, ec_text_orientation,
+                ec_text_outline, ec_text_overflow, ec_text_overflow_ellipsis, ec_text_overflow_mode, ec_text_overline, ec_text_overline_colour, ec_text_overline_mode, ec_text_overline_style,
+                ec_text_overline_width, ec_text_rendering, ec_text_replace, ec_text_resize, ec_text_script, ec_text_shadow, ec_text_size_adjust, ec_text_space_collapse, ec_text_space_trim,
+                ec_text_spacing, ec_text_spacing_trim, ec_text_transform, ec_text_trim, ec_text_underline, ec_text_underline_colour, ec_text_underline_mode, ec_text_underline_offset,
+                ec_text_underline_position, ec_text_underline_style, ec_text_underline_width, ec_text_wrap, ec_text_wrap_mode, ec_text_wrap_style, ec_timeline_scope, ec_timeline_trigger,
+                ec_timeline_trigger_activation_range, ec_timeline_trigger_activation_range_end, ec_timeline_trigger_activation_range_start, ec_timeline_trigger_active_range,
+                ec_timeline_trigger_active_range_end, ec_timeline_trigger_active_range_start, ec_timeline_trigger_name, ec_timeline_trigger_source, ec_top, ec_topline, ec_touch_action, ec_transform,
+                ec_transform_box, ec_transform_origin, ec_transform_style, ec_transition, ec_transition_behaviour, ec_transition_delay, ec_transition_duration, ec_transition_property,
+                ec_transition_timing_function, ec_translate, ec_trigger_scope, ec_types,
+
+                ec_unicode_bidi, ec_unicode_range, ec_units_per_em, ec_user_modify, ec_user_select, ec_user_zoom,
+
+                ec_value, ec_var, ec_vector_effect, ec_vertical_align, ec_vertical_position, ec_view_timeline, ec_view_timeline_attachment, ec_view_timeline_axis, ec_view_timeline_inset,
+                ec_view_timeline_name, ec_view_transition_class, ec_view_transition_group, ec_view_transition_name, ec_view_transition_scope, ec_viewport_fill, ec_viewport_fill_opacity,
+                ec_viewport_fit, ec_visibility, ec_voice_balance, ec_voice_duration, ec_voice_family, ec_voice_pitch, ec_voice_pitch_range, ec_voice_range, ec_voice_rate, ec_voice_stress,
+                ec_voice_volume, ec_volume,
+
+                ec_wap_accesskey, ec_wap_input_format, ec_wap_input_required, ec_wap_marquee_dir, ec_wap_marquee_loop, ec_wap_marquee_speed, ec_wap_marquee_style, ec_webkit_align_content,
+                ec_webkit_align_items, ec_webkit_align_self, ec_webkit_alt, ec_webkit_animation, ec_webkit_animation_delay, ec_webkit_animation_direction, ec_webkit_animation_duration,
+                ec_webkit_animation_fill_mode, ec_webkit_animation_iteration_count, ec_webkit_animation_name, ec_webkit_animation_play_state, ec_webkit_animation_timing_function,
+                ec_webkit_animation_trigger, ec_webkit_app_region, ec_webkit_appearance, ec_webkit_aspect_ratio, ec_webkit_backdrop_filter, ec_webkit_backface_visibility, ec_webkit_background_clip,
+                ec_webkit_background_composite, ec_webkit_background_origin, ec_webkit_background_size, ec_webkit_border_after, ec_webkit_border_after_colour, ec_webkit_border_after_style,
+                ec_webkit_border_after_width, ec_webkit_border_before, ec_webkit_border_before_colour, ec_webkit_border_before_style, ec_webkit_border_before_width,
+                ec_webkit_border_bottom_left_radius, ec_webkit_border_bottom_right_radius, ec_webkit_border_end, ec_webkit_border_end_colour, ec_webkit_border_end_style, ec_webkit_border_end_width,
+                ec_webkit_border_fit, ec_webkit_border_horizontal_spacing, ec_webkit_border_image, ec_webkit_border_radius, ec_webkit_border_start, ec_webkit_border_start_colour,
+                ec_webkit_border_start_style, ec_webkit_border_start_width, ec_webkit_border_top_left_radius, ec_webkit_border_top_right_radius, ec_webkit_border_vertical_spacing,
+                ec_webkit_box_align, ec_webkit_box_decoration_break, ec_webkit_box_direction, ec_webkit_box_flex, ec_webkit_box_flex_group, ec_webkit_box_lines, ec_webkit_box_ordinal_group,
+                ec_webkit_box_orient, ec_webkit_box_pack, ec_webkit_box_reflect, ec_webkit_box_shadow, ec_webkit_box_sizing, ec_webkit_clip_path, ec_webkit_colour_correction, ec_webkit_column_axis,
+                ec_webkit_column_break_after, ec_webkit_column_break_before, ec_webkit_column_break_inside, ec_webkit_column_count, ec_webkit_column_fill, ec_webkit_column_gap,
+                ec_webkit_column_progression, ec_webkit_column_rule, ec_webkit_column_rule_colour, ec_webkit_column_rule_style, ec_webkit_column_rule_width, ec_webkit_column_span,
+                ec_webkit_column_width, ec_webkit_columns, ec_webkit_cursor_visibility, ec_webkit_dashboard_region, ec_webkit_device_pixel_ratio, ec_webkit_filter, ec_webkit_flex,
+                ec_webkit_flex_basis, ec_webkit_flex_direction, ec_webkit_flex_flow, ec_webkit_flex_grow, ec_webkit_flex_shrink, ec_webkit_flex_wrap, ec_webkit_flow_from, ec_webkit_flow_into,
+                ec_webkit_font_feature_settings, ec_webkit_font_kerning, ec_webkit_font_size_delta, ec_webkit_font_smoothing, ec_webkit_font_variant_ligatures, ec_webkit_grid, ec_webkit_grid_area,
+                ec_webkit_grid_auto_columns, ec_webkit_grid_auto_flow, ec_webkit_grid_auto_rows, ec_webkit_grid_column, ec_webkit_grid_column_end, ec_webkit_grid_column_gap,
+                ec_webkit_grid_column_start, ec_webkit_grid_columns, ec_webkit_grid_gap, ec_webkit_grid_row, ec_webkit_grid_row_end, ec_webkit_grid_row_gap, ec_webkit_grid_row_start,
+                ec_webkit_grid_rows, ec_webkit_grid_template, ec_webkit_grid_template_areas, ec_webkit_grid_template_columns, ec_webkit_grid_template_rows, ec_webkit_highlight,
+                ec_webkit_hyphenate_character, ec_webkit_hyphenate_charset, ec_webkit_hyphenate_limit_after, ec_webkit_hyphenate_limit_before, ec_webkit_hyphenate_limit_lines, ec_webkit_hyphens,
+                ec_webkit_image_set, ec_webkit_initial_letter, ec_webkit_justify_content, ec_webkit_justify_items, ec_webkit_justify_self, ec_webkit_line_align, ec_webkit_line_box_contain,
+                ec_webkit_line_break, ec_webkit_line_clamp, ec_webkit_line_grid, ec_webkit_line_snap, ec_webkit_locale, ec_webkit_logical_height, ec_webkit_logical_width, ec_webkit_margin_after,
+                ec_webkit_margin_after_collapse, ec_webkit_margin_before, ec_webkit_margin_before_collapse, ec_webkit_margin_bottom_collapse, ec_webkit_margin_collapse, ec_webkit_margin_end,
+                ec_webkit_margin_start, ec_webkit_margin_top_collapse, ec_webkit_marquee, ec_webkit_marquee_direction, ec_webkit_marquee_increment, ec_webkit_marquee_repetition,
+                ec_webkit_marquee_speed, ec_webkit_marquee_style, ec_webkit_mask, ec_webkit_mask_attachment, ec_webkit_mask_border_outset, ec_webkit_mask_border_repeat, ec_webkit_mask_border_source,
+                ec_webkit_mask_box_image, ec_webkit_mask_box_image_outset, ec_webkit_mask_box_image_repeat, ec_webkit_mask_box_image_slice, ec_webkit_mask_box_image_source,
+                ec_webkit_mask_box_image_width, ec_webkit_mask_clip, ec_webkit_mask_composite, ec_webkit_mask_image, ec_webkit_mask_origin, ec_webkit_mask_position, ec_webkit_mask_position_x,
+                ec_webkit_mask_position_y, ec_webkit_mask_repeat, ec_webkit_mask_repeat_x, ec_webkit_mask_repeat_y, ec_webkit_mask_size, ec_webkit_mask_source_type,
+                ec_webkit_match_nearest_mail_blockquote_colour, ec_webkit_max_logical_height, ec_webkit_max_logical_width, ec_webkit_media_text_track_container, ec_webkit_min_logical_height,
+                ec_webkit_min_logical_width, ec_webkit_nbsp_mode, ec_webkit_opacity, ec_webkit_order, ec_webkit_overflow_scrolling, ec_webkit_padding_after, ec_webkit_padding_before,
+                ec_webkit_padding_end, ec_webkit_padding_start, ec_webkit_perspective, ec_webkit_perspective_origin, ec_webkit_perspective_origin_x, ec_webkit_perspective_origin_y,
+                ec_webkit_print_colour_adjust, ec_webkit_region_break_after, ec_webkit_region_break_before, ec_webkit_region_break_inside, ec_webkit_region_fragment, ec_webkit_rtl_ordering,
+                ec_webkit_ruby_position, ec_webkit_scroll_snap_type, ec_webkit_shape_image_threshold, ec_webkit_shape_inside, ec_webkit_shape_margin, ec_webkit_shape_outside, ec_webkit_svg_shadow,
+                ec_webkit_tap_highlight_colour, ec_webkit_text_colour_decoration, ec_webkit_text_combine, ec_webkit_text_decoration_line, ec_webkit_text_decoration_skip,
+                ec_webkit_text_decoration_style, ec_webkit_text_decorations_in_effect, ec_webkit_text_emphasis, ec_webkit_text_emphasis_colour, ec_webkit_text_emphasis_position,
+                ec_webkit_text_emphasis_style, ec_webkit_text_fill_colour, ec_webkit_text_justify, ec_webkit_text_orientation, ec_webkit_text_security, ec_webkit_text_size_adjust,
+                ec_webkit_text_stroke, ec_webkit_text_stroke_colour, ec_webkit_text_stroke_width, ec_webkit_text_underline_position, ec_webkit_text_zoom, ec_webkit_touch_callout,
+                ec_webkit_transform, ec_webkit_transform_2d, ec_webkit_transform_3d, ec_webkit_transform_origin, ec_webkit_transform_origin_x, ec_webkit_transform_origin_y,
+                ec_webkit_transform_origin_z, ec_webkit_transform_style, ec_webkit_transition, ec_webkit_transition_delay, ec_webkit_transition_duration, ec_webkit_transition_property,
+                ec_webkit_transition_timing_function, ec_webkit_user_drag, ec_webkit_user_modify, ec_webkit_user_select, ec_white_space, ec_white_space_collapse, ec_white_space_collapsing,
+                ec_white_space_treatment, ec_white_space_trim, ec_widows, ec_width, ec_widths, ec_will_change, ec_word_boundary_detection, ec_word_boundary_expansion, ec_word_break,
+                ec_word_break_cjk, ec_word_break_inside, ec_word_space_transform, ec_word_spacing, ec_word_wrap, ec_wrap, ec_wrap_after, ec_wrap_before, ec_wrap_flow, ec_wrap_inside,
+                ec_wrap_margin, ec_wrap_option, ec_wrap_padding, ec_wrap_through, ec_writing_mode,
+
+                ec_x, ec_x_height, ec_xv_interpret_as, ec_xv_phonemes, ec_xv_voice_balance, ec_xv_voice_duration, ec_xv_voice_pitch, ec_xv_voice_pitch_range, ec_xv_voice_rate, ec_xv_voice_stress,
+                ec_xv_voice_volume,
+
+                ec_y,
+
+                ec_z_index, ec_zoom,
 
                 ec_error } e_css_property;
 
@@ -1603,8 +1489,9 @@ typedef enum {  css_none, css_bespoke, css_1, css_2_0, css_2_1, css_2_2, css_3, 
                 css_2021, css_2021_1, css_2021_2, css_2022, css_2022_1, css_2022_2, css_2023, css_2023_1, css_2023_2, css_2024, css_2024_1, css_2024_2, css_2024_3,
                 css_2025, css_2025_1, css_2025_2, css_2025_3, css_2026, css_2026_1, css_2026_2, css_2026_3,
                 css_ls_2024, css_ls_2025, css_ls_2026,
+                css_arts_ego,
                 css_unknown } e_css_version;
-CONSTEXPR e_css_version css_version_max = css_ls_2026;
+CONSTEXPR e_css_version css_version_max = css_arts_ego;
 typedef enum { ecva_inherit, ecv_baseline, ecv_bottom, ecv_middle, ecv_sub, ecv_super, ecv_text_bottom, ecv_text_top, ecv_top } e_css_vertical_align;
 typedef enum { eccl_border_area, eccl_border_box, eccl_clip, eccl_content_box, eccl_padding_box, eccl_text } e_css_visual_box;
 typedef enum { cva_child, cva_old, cva_young  } e_css_voice_age;
@@ -1716,6 +1603,7 @@ typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32,
                 ed_vtt,
                 ed_rel, ed_con, ed_robotic, ed_rsl, ed_rss, ed_atom, ed_mrss, ed_ccrss,
                 ed_security,
+                ed_smil_1, ed_smil_2_0, ed_smil_2_1, ed_smil_3,
                 ed_imaginary } e_doc;
 CONSTEXPR e_doc last_doc = ed_imaginary;
 typedef enum { dnd_drag, dnd_no_drag } e_drag_nodrag;
@@ -1745,7 +1633,7 @@ typedef enum {
     elem_custom,
 
     elem_a, elem_abbr, elem_abbrev, elem_above, elem_abs, elem_abstract, elem_access, elem_acronym, elem_action, elem_added, elem_addeventlistener,
-        elem_address, elem_altglyph, elem_altglyphdef, elem_altglyphitem, elem_and, elem_animate, elem_animatecolour, elem_animatemotion,
+        elem_address, elem_altglyph, elem_altglyphdef, elem_altglyphitem, elem_anchor, elem_and, elem_animate, elem_animatecolour, elem_animatemotion,
         elem_animatetransform, elem_animation, elem_annotation, elem_annotation_xml, elem_applet, elem_apply, elem_approx, elem_arccos, elem_arcsin,
         elem_arctan, elem_arccosh, elem_arccot, elem_arccoth, elem_arccsc, elem_arccsch, elem_arcsec, elem_arcsech, elem_arcsinh, elem_arctanh,
         elem_area, elem_arg, elem_array, elem_article, elem_aside, elem_atom_author, elem_atom_category, elem_atom_content, elem_atom_contributor,
@@ -1780,7 +1668,7 @@ typedef enum {
     elem_i, elem_ident, elem_iframe, elem_ilayer, elem_image, elem_imaginary, elem_imaginaryi, elem_img, elem_implies, elem_in, elem_infinity, elem_integers,
         elem_input, elem_ins, elem_int, elem_intersect, elem_interval, elem_inverse, elem_isindex, elem_item,
     elem_kbd, elem_keygen,
-    elem_l, elem_label, elem_lambda, elem_lang, elem_laplacian, elem_layer, elem_lcm, elem_left, elem_legend, elem_leq, elem_lh, elem_li, elem_limit,
+    elem_l, elem_label, elem_lambda, elem_lang, elem_laplacian, elem_layer, elem_layout, elem_lcm, elem_left, elem_legend, elem_leq, elem_lh, elem_li, elem_limit,
         elem_line, elem_lineargradient, elem_link, elem_list, elem_listener, elem_listing, elem_lit, elem_ln, elem_loc, elem_log, elem_logbase, elem_lowlimit,
         elem_lt,
     elem_m, elem_maction, elem_main, elem_maligngroup, elem_malignmark, elem_map, elem_margin, elem_mark, elem_marker, elem_marquee, elem_mask, elem_math,
@@ -1798,26 +1686,27 @@ typedef enum {
     elem_naturalnumbers, elem_nav, elem_navigation, elem_neq, elem_nest, elem_nextid, elem_nl, elem_nobr, elem_noembed, elem_noframes, elem_none,
         elem_noscript, elem_not, elem_notanumber, elem_note, elem_notin, elem_notprsubset, elem_notsubset,
     elem_object, elem_of, elem_ol, elem_online, elem_optgroup, elem_option, elem_or, elem_otherwise, elem_outerproduct, elem_output, elem_over, elem_overlay,
-    elem_p, elem_page, elem_pageset, elem_param, elem_partialdiff, elem_path, elem_pattern, elem_person, elem_pi, elem_picture, elem_piece, elem_piecewise,
+    elem_p, elem_page, elem_pageset, elem_par, elem_param, elem_partialdiff, elem_path, elem_pattern, elem_person, elem_pi, elem_picture, elem_piece, elem_piecewise,
         elem_plaintext, elem_plus, elem_polygon, elem_polyline, elem_power, elem_pre, elem_prefetch, elem_preventdefault, elem_primes, elem_printed,
         elem_product, elem_progress, elem_prototype, elem_prsubset,
     elem_q, elem_quote, elem_quotient,
     elem_radialgradient, elem_range, elem_rationals, elem_rb, elem_rbc, elem_rdf_1, elem_rdf_2, elem_rdf_3, elem_rdf_4, elem_rdf_5, elem_rdf_6, elem_rdf_7,
         elem_rdf_8, elem_rdf_9, elem_rdf_about, elem_rdf_abouteach, elem_rdf_abouteachprefix, elem_rdf_alt, elem_rdf_bag, elem_rdf_bagid, elem_rdf_datatype,
         elem_rdf_description, elem_rdf_id, elem_rdf_li, elem_rdf_nodeid, elem_rdf_parsetype, elem_rdf_rdf, elem_rdf_resource, elem_rdf_seq, elem_real,
-        elem_reals, elem_rect, elem_refcontent, elem_reln, elem_rem, elem_removed, elem_removeeventlistener, elem_render, elem_right, elem_root, elem_row,
-        elem_rp, elem_rsl, elem_rsl_amount, elem_rsl_content, elem_rsl_copyright, elem_rsl_custom, elem_rsl_legal, elem_rsl_licence, elem_rsl_payment,
-        elem_rsl_permits, elem_rsl_prohibits, elem_rsl_schema, elem_rsl_standard, elem_rsl_terms, elem_rss, elem_rss_author, elem_rss_category,
+        elem_reals, elem_rect, elem_ref, elem_refcontent, elem_region, elem_reln, elem_rem, elem_removed, elem_removeeventlistener, elem_render, elem_right, elem_root,
+        elem_root_layout, elem_row, elem_rp, elem_rsl, elem_rsl_amount, elem_rsl_content, elem_rsl_copyright, elem_rsl_custom, elem_rsl_legal, elem_rsl_licence,
+        elem_rsl_payment, elem_rsl_permits, elem_rsl_prohibits, elem_rsl_schema, elem_rsl_standard, elem_rsl_terms, elem_rss, elem_rss_author, elem_rss_category,
         elem_rss_channel, elem_rss_cloud, elem_rss_comments, elem_rss_copyright, elem_rss_day, elem_rss_description, elem_rss_docs, elem_rss_enclosure,
         elem_rss_generator, elem_rss_guid, elem_rss_height, elem_rss_hour, elem_rss_image, elem_rss_item, elem_rss_language, elem_rss_lastbuilddate,
         elem_rss_link, elem_rss_managingeditor, elem_rss_name, elem_rss_pubdate, elem_rss_rating, elem_rss_skipdays, elem_rss_skiphours, elem_rss_source,
         elem_rss_textinput, elem_rss_title, elem_rss_ttl, elem_rss_url, elem_rss_webmaster, elem_rss_width, elem_rt, elem_rtc, elem_ruby, elem_rule,
     elem_s, elem_samp, elem_sarcasm, elem_scalarproduct, elem_script, elem_sdev, elem_search, elem_sec, elem_sech, elem_section, elem_select,
-        elem_selectedcontent, elem_selector, elem_semantics, elem_sep, elem_separator, elem_set, elem_setdiff, elem_shadow, elem_share, elem_sidebar,
-        elem_sin, elem_sinh, elem_slot, elem_small, elem_solidcolour, elem_source, elem_spacer, elem_span, elem_spot, elem_sqrt, elem_standby, elem_stop,
-        elem_stoppropagation, elem_strike, elem_strong, elem_style, elem_sub, elem_subset, elem_sum, elem_summary, elem_sup, elem_svg, elem_switch, elem_symbol,
+        elem_selectedcontent, elem_selector, elem_semantics, elem_sep, elem_separator, elem_seq, elem_set, elem_setdiff, elem_shadow, elem_share, elem_sidebar,
+        elem_sin, elem_sinh, elem_slot, elem_small, elem_smil, elem_solidcolour, elem_source, elem_spacer, elem_span, elem_spot, elem_sqrt, elem_standby,
+        elem_stop, elem_stoppropagation, elem_strike, elem_strong, elem_style, elem_sub, elem_subset, elem_sum, elem_summary, elem_sup, elem_svg,
+        elem_switch, elem_symbol,
     elem_t, elem_tab, elem_tabbox, elem_table, elem_tan, elem_tanh, elem_tbody, elem_tbreak, elem_td, elem_template, elem_tendsto, elem_text, elem_textarea,
-        elem_textpath, elem_tfoot, elem_th, elem_thead, elem_think, elem_tilde, elem_time, elem_times, elem_title, elem_tr, elem_track, elem_trackback_about,
+        elem_textpath, elem_textstream, elem_tfoot, elem_th, elem_thead, elem_think, elem_tilde, elem_time, elem_times, elem_title, elem_tr, elem_track, elem_trackback_about,
         elem_trackback_ping, elem_traitdef, elem_transition, elem_transformer, elem_transpose, elem_tref, elem_true, elem_tspan, elem_tt,
     elem_u, elem_ul, elem_union, elem_uplimit, elem_use,
     elem_var, elem_variance, elem_veaffine, elem_vec, elem_vector, elem_vectoreffect, elem_vectorproduct, elem_veexclude, elem_vefill, elem_veintersect,
@@ -1856,6 +1745,7 @@ typedef enum { fr_nonzero, fr_evenodd, fr_inherit } e_fill_rule;
 typedef enum { fv_strokepaint, fv_fillpaint } e_fill_ve;
 typedef enum { fi_sourcegraphic, fi_sourcealpha, fi_backgroundimage, fi_backgroundalpha, fi_fillpaint, fi_strokepaint } e_filter_in;
 typedef enum { fl_first, fl_last } e_first_last;
+typedef enum { fit_hidden, fit_meet, fit_scroll, fit_slice } e_fit;
 
 typedef enum {
     fc_aliceblue, fc_antiquewhite, fc_aqua, fc_aquamarine, fc_azure, fc_beige, fc_bisque, fc_black, fc_blanchedalmond, fc_blue,
@@ -2629,6 +2519,8 @@ typedef enum {
     mn_googlebot_news, mn_adbots_google,
     // https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers
     mn_googlebot_image, mn_googlebot_video, mn_storebot_google, mn_google_inspection_tool, mn_googleother,
+    // smil
+    mn_base, mn_pics_label, mn_title,
     // harvested
     mn_360spider,
     mn_ahrefsbot, mn_apache_httpclient, mn_applebot, mn_archive_org_bot,
@@ -3157,7 +3049,7 @@ typedef enum {
     mime_text_markdown, mime_text_mizar, mime_text_n3, mime_text_parameters, mime_text_parityfec, mime_text_ping, mime_text_plain,
     mime_text_provenance_notation, mime_text_prs_fallenstein_rst, mime_text_prs_lines_tag, mime_text_prs_prop_logic, mime_text_raptorfec,
     mime_text_RED, mime_text_rfc822_headers, mime_text_richtext, mime_text_rsl, mime_text_rtf, mime_text_rtp_enc_aescm128, mime_text_rtploopback,
-    mime_text_rtx, mime_text_SGML, mime_text_strings, mime_text_t140, mime_text_tab_separated_values, mime_text_tcl,
+    mime_text_rtx, mime_text_SGML, mime_text_smil_basic_layout, mime_text_strings, mime_text_t140, mime_text_tab_separated_values, mime_text_tcl,
     mime_text_troff, mime_text_turtle, mime_text_ulpfec, mime_text_uri_list, mime_text_vbscript,
     mime_text_vcard, mime_text_vnd_a, mime_text_vnd_abc, mime_text_vnd_ascii_art, mime_text_vnd_curl, mime_text_vnd_debian_copyright,
     mime_text_vnd_DMClientScript, mime_text_vnd_dvb_subtitle, mime_text_vnd_esmertec_theme_descriptor, mime_text_vnd_ficlab_flt,
@@ -3410,7 +3302,8 @@ typedef enum
     nit_local_datetime, nit_absolute_datetime, nit_bad_value, nit_cc, nit_mrss, nit_rdfa, nit_ipv4, nit_ipv6, nit_root_cert,
     nit_cert, nit_et, nit_input_type, nit_known_insecure, nit_borked, nit_anchor, nit_css_position_try, nit_css_type,
     nit_negative, nit_css_function, nit_naughty, nit_pagination_template, nit_print_profile, nit_css_vendor, nit_konqueror,
-    nit_route, nit_gap, nit_grid, nit_archaic, nit_refcomb, nit_gradient, nit_shape,
+    nit_route, nit_gap, nit_grid, nit_archaic, nit_refcomb, nit_gradient, nit_shape, nit_css_if, nit_bad_layout,
+    nit_smil_1_0, nit_missing_doctype, nit_smil, nit_smil_clock, nit_svg_begin, nit_naughty_title,
 
     nit_incompatible,
 
@@ -3456,7 +3349,8 @@ typedef enum
         nm_context_server_port, nm_context_server_root, nm_context_schema, nm_context_ontology_version, nm_context_shadow_comment,
         nm_context_shadow_changed, nm_context_shadow_enable, nm_context_shadow_ignore, nm_context_shadow_persist, nm_context_shadow_root,
         nm_context_shadow_ssi, nm_context_shadow_space, nm_context_shadows, nm_context_sign, nm_context_signature, nm_context_site,
-        nm_context_sloven, nm_context_spec, nm_context_special, nm_context_spell, nm_context_spell_path, nm_context_spellings,
+        nm_context_sloven, nm_context_smil_exts, nm_context_smil_ver, nm_context_smil_version, nm_context_spec, nm_context_special, nm_context_spell,
+        nm_context_spell_path, nm_context_spellings,
         nm_context_ssi, nm_context_ssi_date, nm_context_ssi_doc_args, nm_context_ssi_echomsg, nm_context_ssi_errmsg, nm_context_ssi_exec_run,
         nm_context_ssi_exec_text, nm_context_ssi_lastmod, nm_context_ssi_query_string, nm_context_ssi_timefmt, nm_context_ssi_user_name,
         nm_context_stats_export, nm_context_stats_page, nm_context_stats_summary, nm_context_stats_abbr, nm_context_stats_anchor, nm_context_stats_annotation,
@@ -3521,6 +3415,7 @@ typedef enum { nw_none, nw_wrap } e_none_wrap;
 typedef enum { ens_normal, ens_spell_out } e_normal_spell;
 typedef enum { ns_normal, ns_stretch } e_normal_stretch;
 typedef enum { no_dsssl, no_w3c } e_notations;
+typedef enum { npr_new, npr_pause, npr_replace } e_npr;
 typedef enum { nsd_none, nsd_space, nsd_dashed } e_nsd;
 typedef enum { nss_none, nss_self, nss_src } e_nss;
 typedef enum { nuf_refurbished, nuf_new, nuf_used } e_nuf;
@@ -8514,6 +8409,7 @@ typedef enum {  doc_unknown, doc_context, doc_html, doc_public, doc_system, doc_
                 doc_html20, doc_html20_strict, doc_html20_int, doc_html21, doc_html21_strict, doc_html22, doc_html1, doc_html_tags,
                 doc_htmlplus, doc_sqopen, doc_sqclose,
                 doc_rss_91,
+                doc_smil_1_0,
                 doc_compound_m, doc_compound_1_0, doc_compound_1_1 } e_sgml;
 CONSTEXPR e_sgml last_sgml = doc_compound_1_1;
 
@@ -8530,6 +8426,9 @@ typedef enum { sis_unknown, sis_none, sis_signing, sis_verifying, sis_borked } e
 typedef enum { siz_normal, siz_medium, siz_large, siz_huge } e_size3;
 typedef enum { esi_inline_size, esi_size } e_size_inlinesize;
 typedef enum { smei_start, smei_middle, smei_end, smei_inherit } e_smei;
+typedef enum { smfi_freeze, smfi_remove } e_smilfill; // t_smilfill, SMIL 3 has 6 values
+typedef enum { smil_css, smil_smil } e_smiltype;
+typedef enum { smv_none, smv_1_0, smv_2_0, smv_2_1, smv_3_0 } e_smil_version;
 typedef enum {  // mostly from SVG 1.1 17.1.4 Processing of IRI references
                 se_any, se_glyph_alt, se_clippath, se_icc_profile, se_colour_profile, se_image_file, se_paint_server, se_filter, se_gradient, se_marker, se_mask, se_pattern,
                 se_script, se_path, se_svg, se_animation, se_error } e_sought_category;
@@ -8560,6 +8459,22 @@ typedef enum { stt_stitch, stt_nostitch } e_stitchtiles;
 typedef enum { sc_keep, sc_discard } e_streamedcontents;
 typedef enum { str_moderate, str_none, str_normal, str_reduced, str_strong } e_stress;
 typedef enum { su_none, su_font_format, su_font_tech, su_selector } e_supports;
+typedef enum {
+    svbe_abort, svbe_auxclick,
+    svbe_beforeinput, svbe_beginevent, svbe_blur,
+    svbe_click, svbe_compositionend, svbe_compositionstart, svbe_compositionupdate,
+    svbe_dblclick, svbe_domactivate,
+    svbe_endevent, svbe_error,
+    svbe_focus, svbe_focusin, svbe_focusout,
+    svbe_input,
+    svbe_keydown, svbe_keyup,
+    svbe_load,
+    svbe_mousedown, svbe_mouseenter, svbe_mouseleave, svbe_mousemove, svbe_mouseout, svbe_mouseover, svbe_mouseup,
+    svbe_repeatevent, svbe_resize,
+    svbe_scroll, svbe_select,
+    svbe_unload,
+    svbe_wheel } e_svg_begin_event;
+typedef enum { svbf_accesskey, svbf_repeat, svbf_wallclock } e_svg_begin_fn;
 typedef enum { sov_visible, sov_hidden, sov_scroll, sov_auto, sov_inherit } e_svg_overflow;
 typedef enum { spm_none, spm_dynamic, spm_animated, spm_secure_animated, spm_static, spm_secure_static } e_svg_processing_mode;
 typedef enum { sa_none, sa_xmin_ymin, sa_xmid_ymin, sa_xmax_ymin, sa_xmin_ymid, sa_xmid_ymid, sa_xmax_ymid, sa_xmin_ymax, sa_xmid_ymax, sa_xmax_ymax } e_svg_align;
@@ -8798,7 +8713,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_A_2_MAX t_always_normal
 
 #define SSC_TYPES_A_3 \
-        t_analysis, t_anchor_centre, t_angle, t_angle_0, t_angle_a, t_angle_ai, t_angle_ar, t_angle_ars, t_angle_i, \
+        t_analysis, t_anchor_centre, t_angle, t_angle_0, t_angle_a, t_angle_ai, t_angle_ar, t_angle_ars, t_angle_asr, t_angle_i, \
         t_angle_n, t_angle_p, t_angular_colour_more, t_angular_colour_stop, t_anw, t_anywhere_break_normal, t_arabicenum, \
         t_arabic_form, t_aria_autocomplete, t_aria_current, t_aria_invalidity, t_aria_live, t_aria_popup 
 #define SSC_TYPES_A_3_MAX t_aria_popup
@@ -8816,43 +8731,46 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_B_1 \
     t_b64, t_background, t_bandwidth, t_base, t_baseline, t_baseline_contain_none, t_baselineshift, t_bb, t_bcess, t_bcs, t_bdn, t_bdns, \
-        t_beginvalue, t_beginvalues, t_beginvaluelist, t_behaviour, t_bens, t_benrs, t_bgfg, t_bihv, t_bixies, t_bixy, t_bixys, t_blink_none
-#define SSC_TYPES_B_1_MAX t_blink_none
+        t_begin_end, t_begins, t_beginvalue, t_beginvalues, t_beginvaluelist, t_behaviour, t_bens, t_benrs, t_bgfg
+#define SSC_TYPES_B_1_MAX t_bgfg
 
 #define SSC_TYPES_B_2 \
-        t_blocking, t_block, t_block_inline, t_block_inline_2, t_blrt, t_bns, t_bool, t_bools, t_border, t_braille, t_braille_or_not, t_brs, t_btyy, \
-        t_buffered_rendering, t_button, t_byto, \
-    t_cache, t_cachekey, t_calcmode, t_capture, t_cc_permits, t_cc_prohibits, t_cc_requires
-#define SSC_TYPES_B_2_MAX t_cc_requires
+        t_bihv, t_bixies, t_bixy, t_bixys, t_blink_none, t_blocking, t_block, t_block_inline, t_block_inline_2, t_blrt, t_bns, t_bool, t_bools, \
+        t_border, t_braille, t_braille_or_not, t_brs, t_btyy, t_buffered_rendering, t_button, t_byto
+#define SSC_TYPES_B_2_MAX t_byto
 
 #define SSC_TYPES_C_1 \
-        t_ccee, t_celnrs, t_celrs, t_cens, t_centre_space, t_ces, t_channelselector, t_char, t_charset, t_charsets, t_charspacing, t_cio, t_cipr, \
-        t_circle_ellipse, t_citype, t_class, t_clear, t_clear30, t_clip, t_clip_path_rule, t_clllr, t_closedby, t_closed_open
-#define SSC_TYPES_C_1_MAX t_closed_open
+    t_cache, t_cachekey, t_calcmode, t_caption_overdub, t_capture, t_cc_permits, t_cc_prohibits, \
+        t_cc_requires, t_ccee, t_celnrs, t_celrs, t_cens, t_centre_space, t_ces, t_channelselector, t_char, t_charset, t_charsets, t_charspacing
+#define SSC_TYPES_C_1_MAX t_charspacing
 
 #define SSC_TYPES_C_2 \
-        t_closure, t_cmx_1, t_cmx_2, t_cmx_12, t_cnn, t_cntype, t_coden, t_colour, t_colour_a, t_colour_ci, t_colour_cii, t_colour_i, t_colour_ii, \
-        t_colour_interpolation, t_colour_ni, t_colour_profile, t_colour_profile_name, t_colour_profile_name_or_uri, t_colour_rendering, \
-        t_colour_scheme, t_colour_scheme_o, t_colour_schemes, t_colour_schemes_n, t_colour_schemes_o
-#define SSC_TYPES_C_2_MAX t_colour_schemes_o
+        t_cio, t_cipr, t_circle_ellipse, t_citype, t_class, t_clear, t_clear30, t_clip, t_clip_path_rule, t_clllr, t_closedby, t_closed_open, \
+        t_closure, t_cmx_1, t_cmx_2, t_cmx_12, t_cnn, t_cntype, t_coden, t_colour, t_colour_a, t_colour_ci, t_colour_cii, t_colour_i, t_colour_ii
+#define SSC_TYPES_C_2_MAX t_colour_ii
 
 #define SSC_TYPES_C_3 \
-        t_colour_space, t_colour_trans, t_colour_trans_i, t_colour_v, t_colourfn, t_colourspace, t_command, t_command2, t_command3, t_compact, \
-        t_compact_normal, t_comp_op, t_composite_operator, t_compositing, t_conlit, t_conic_1, t_conic_2, t_conic_12, t_connect, t_contain, \
-        t_contain_cover, t_contain_cover_sd, t_container_condition
-#define SSC_TYPES_C_3_MAX t_container_condition
+        t_colour_interpolation, t_colour_ni, t_colour_profile, t_colour_profile_name, t_colour_profile_name_or_uri, t_colour_rendering, \
+        t_colour_scheme, t_colour_scheme_o, t_colour_schemes, t_colour_schemes_n, t_colour_schemes_o, t_colour_space, t_colour_trans, t_colour_trans_i, \
+        t_colour_v, t_colourfn, t_colourspace, t_command, t_command2, t_command3, t_compact
+#define SSC_TYPES_C_3_MAX t_compact
 
 #define SSC_TYPES_C_4 \
-        t_content_encoding, t_content_encodings, t_content_type, t_context_menu, t_contents, t_controlslist, t_cookie, t_cookieid, t_cookies, \
-        t_coordinatesystem, t_coords, t_copy, t_corners_sides, t_corp, t_cors, t_countries, t_country, t_cpp, t_create_parent, t_cr_fileproperty, \
-        t_crossout, t_crs_tonecurvename, t_crs_whitebalance
-#define SSC_TYPES_C_4_MAX t_crs_whitebalance
+        t_compact_normal, t_comp_op, t_composite_operator, t_compositing, t_conlit, t_conic_1, t_conic_2, t_conic_12, t_connect, t_contain, \
+        t_contain_cover, t_contain_cover_sd, t_container_condition, t_content_encoding, t_content_encodings, t_content_type, t_context_menu, t_contents, \
+        t_controlslist, t_cookie, t_cookieid, t_cookies
+#define SSC_TYPES_C_4_MAX t_cookies
 
 #define SSC_TYPES_C_5 \
-        t_cs, t_csp, t_csp_ancestor, t_csp_directive, t_csp_keyword, t_csp_sauce, t_csp_source, t_csvw_direction, t_curie, t_curie_safe, t_curies, t_currency, \
+        t_coordinatesystem, t_coords, t_copy, t_corners_sides, t_corp, t_cors, t_countries, t_country, t_cpp, t_create_parent, t_cr_fileproperty, \
+        t_crossout, t_crs_tonecurvename, t_crs_whitebalance, t_cs, t_csp, t_csp_ancestor, t_csp_directive, t_csp_keyword, t_csp_sauce, t_csp_source, \
+        t_csvw_direction, t_curie, t_curie_safe, t_curies, t_currency
+#define SSC_TYPES_C_5_MAX t_currency
+
+#define SSC_TYPES_C_6 \
         t_current_colour_sz, t_cursor, t_cursor_f, t_cursor_i, t_custom_element, t_custom_element_old, t_custom_element_new, t_custom_id, \
         t_custom_ids, t_custom_ids_n, t_custom_property
-#define SSC_TYPES_C_5_MAX t_custom_property
+#define SSC_TYPES_C_6_MAX t_custom_property
 
 #define SSC_TYPES_CSS_A_1 \
         t_css, t_css_aaalri, t_css_aai, t_css_absolute_size, t_css_act_nav, t_css_act_navs, t_css_add_fn, t_css_addsym, t_css_addsyms, t_css_align_content, \
@@ -9048,7 +8966,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_CSS_M_2_MAX t_css_module
 
 #define SSC_TYPES_CSS_N_O \
-            t_css_navigation_keyword, t_css_nth, t_css_nth_oe, \
+            t_css_navigation_keyword,  t_css_nth, t_css_nth_oe, \
             t_css_object_fit, t_css_object_view_box, t_css_object_view_box_n, t_css_offset, t_css_offset_path, t_css_offset_path_basic, \
             t_css_offset_path_n, t_css_opacity, t_css_orientation, t_css_outline, t_css_outline_i, t_css_outline_style, t_css_outlines, \
             t_css_overflow, t_css_overflow_style, t_css_overflows, t_css_override_colour, t_css_override_colours
@@ -9148,15 +9066,18 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_D_1 \
     t_d, t_dashes, t_data, t_dataformatas, t_datetime, t_datetime_absolute, t_datetime_auto, t_datetime_autos, t_datetime_http, t_datetime_local, \
-        t_datetime_4, t_datetime_5, t_day, t_dcmitype, t_ddny, t_decalign, t_decibel, t_decoding, t_defaultaction, t_default_none, t_depth, t_determiner, \
-        t_device, t_device_or_height
-#define SSC_TYPES_D_1_MAX t_device_or_height
+        t_datetime_4, t_datetime_5, t_day, t_dcmitype, t_ddny, t_decalign, t_decibel, t_decoding, t_defaultaction, t_default_none, t_depth, t_determiner
+#define SSC_TYPES_D_1_MAX t_determiner
 
 #define SSC_TYPES_D_2 \
-        t_device_or_width, t_dg, t_digits, t_dingbat, t_dir, t_direction, t_directive, t_display, t_display_align, t_display_none_parent, t_dnu, t_dominantbaseline, \
-        t_dosh, t_drop_raise, t_drag_nodrag, t_dsc, t_dsc2, t_dss, t_dsss, t_dur, t_dur_repeat, t_duration, t_duration_a, t_duration_media, \
+        t_device, t_device_or_height, t_device_or_width, t_dg, t_digits, t_dingbat, t_dir, t_direction, t_directive, t_display, t_display_align, \
+        t_display_none_parent, t_dnu, t_dominantbaseline, t_dosh, t_drop_raise, t_drag_nodrag
+#define SSC_TYPES_D_2_MAX t_drag_nodrag
+
+#define SSC_TYPES_D_3 \
+        t_dsc, t_dsc2, t_dss, t_dsss, t_dur, t_dur_repeat, t_duration, t_duration_a, t_duration_media, t_durs, \
         t_dynamic_range
-#define SSC_TYPES_D_2_MAX t_dynamic_range
+#define SSC_TYPES_D_3_MAX t_dynamic_range
 
 #define SSC_TYPES_E \
     t_e_w, t_economy_exact, t_edgemode, t_edi, t_edit, t_editable, t_effect, t_email, t_emails, t_empty, t_ems, t_enable_background, t_enctype, \
@@ -9165,7 +9086,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_F_1 \
     t_fallback, t_fediverse_id, t_ffls, t_figalign, t_filename, t_filesize, t_fill, t_fill_v, t_fillanim, t_filled_open, t_fill_opacity, \
-        t_fill_rule, t_fill_ve, t_filter_in, t_filterres, t_first_last, t_fixedcolour, t_fixedpoint, t_fixedpoint_inf, t_fixed_zoom, \
+        t_fill_rule, t_fill_ve, t_filter_in, t_filterres, t_fit, t_first_last, t_fixedcolour, t_fixedpoint, t_fixedpoint_inf, t_fixed_zoom, \
         t_fnrs, t_fns, t_font
 #define SSC_TYPES_F_1_MAX t_font
 
@@ -9262,12 +9183,12 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_M_6 \
         t_mrss_ntp, t_mrss_price_type, t_mrss_reltype, t_mrss_role, t_mrss_state, t_mrss_status, t_mrss_type, t_mtt, t_multiple_single, t_musickey, \
         t_myersbriggs, \
-    t_n_s, t_name, t_nameref, t_namespace, t_namedspace, t_naughty
-#define SSC_TYPES_M_6_MAX t_naughty
+    t_n_s, t_name, t_nameref, t_namespace, t_namedspace, t_naughty, t_nav_controls, t_navigation, t_nearest_none
+#define SSC_TYPES_M_6_MAX t_nearest_none
 
 #define SSC_TYPES_N \
-    t_nav_controls, t_navigation, t_nearest_none, t_negative, t_nit_macro, t_nit_section, t_no_braille, t_none_objects, t_none, t_none_wrap, t_normal, t_normal_spell, \
-        t_normal_stretch, t_not_0, t_not_empty, t_not_neg, t_not_pos, t_notation, t_notations, t_nsd, t_nsds, t_nss, t_nuf, t_num
+    t_negative, t_nit_macro, t_nit_section, t_no_braille, t_none_objects, t_none, t_none_wrap, t_normal, t_normal_spell, \
+        t_normal_stretch, t_not_0, t_not_empty, t_not_neg, t_not_pos, t_notation, t_notations, t_npr, t_nsd, t_nsds, t_nss, t_nuf, t_num
 #define SSC_TYPES_N_MAX t_num
 
 #define SSC_TYPES_O \
@@ -9323,11 +9244,12 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_R_4_MAX t_rfc822_zone
 
 #define SSC_TYPES_R_5 \
-        t_rgbafn, t_rgbfn, t_robotic, t_role, t_roles, t_roman_dsc, t_root_url, t_rotate, t_rotate_anim, t_rotate_upright, t_round, t_row_column, t_rowscols, \
-        t_rsl_copyright, t_rsl_disclaimer, t_rsl_legal, t_rsl_payment, t_rsl_permits, t_rsl_type, t_rsl_usage, t_rsl_usages, t_rsl_user, t_rsl_users
-#define SSC_TYPES_R_5_MAX t_rsl_users
+        t_rgbafn, t_rgbfn, t_rgbfn_3, t_rgbfn_4, t_rgbfn_5, t_robotic, t_role, t_roles, t_roman_dsc, t_root_url, t_rotate, t_rotate_anim, t_rotate_upright, \
+        t_round, t_row_column, t_rowscols
+#define SSC_TYPES_R_5_MAX t_rowscols
 
 #define SSC_TYPES_R_6 \
+        t_rsl_copyright, t_rsl_disclaimer, t_rsl_legal, t_rsl_payment, t_rsl_permits, t_rsl_type, t_rsl_usage, t_rsl_usages, t_rsl_user, t_rsl_users, \
         t_rsl_warranty, t_rss_protocol, t_rss_version, t_rsvp, t_rule_over, t_rules
 #define SSC_TYPES_R_6_MAX t_rules
 
@@ -9343,27 +9265,31 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_S_2_MAX t_size3
 
 #define SSC_TYPES_S_3 \
-        t_size_inlinesize, t_sizes, t_sizex, t_slash, t_smei, t_snap, t_source_target, t_spacer, t_spacing, t_speculationrules, t_spreadmethod, \
-        t_srcset, t_ssi, t_ssi_comparison, t_ssi_config, t_ssi_echo, t_ssi_encoding, t_ssi_env, t_ssi_exec, t_ssi_f, t_ssi_include, t_ssi_set
-#define SSC_TYPES_S_3_MAX t_ssi_set
+        t_size_inlinesize, t_sizes, t_sizex, t_slash, t_smei, t_smilclip, t_smilclock, t_smilclocki, t_smilendsync, t_smilfill, t_smilmoment, t_smilrepeat, \
+        t_smilscreensize, t_smiltype, t_smil_version,  t_snap, t_source_target, t_spacer, t_spacing, t_speculationrules
+#define SSC_TYPES_S_3_MAX t_speculationrules
 
 #define SSC_TYPES_S_4 \
-        t_ssi_sizefmt, t_start, t_startend, t_startends, t_step, t_step_position, t_stitchtiles, t_streamedcontents, t_stress, t_stretch, t_stripe, t_style, t_supports, \
-        t_sym, t_syncbehaviour, t_syncbehaviourdefault, t_svg_align, t_svg_baselineshift, t_svg_baseprofile, t_svg_clip, t_svg_colour_profile, t_svg_content, \
-        t_svg_direction
-#define SSC_TYPES_S_4_MAX t_svg_direction
+        t_spreadmethod, t_srcset, t_ssi, t_ssi_comparison, t_ssi_config, t_ssi_echo, t_ssi_encoding, t_ssi_env, t_ssi_exec, t_ssi_f, t_ssi_include, t_ssi_set, \
+        t_ssi_sizefmt, t_start, t_startend, t_startends, t_step, t_step_position, t_stitchtiles, t_streamedcontents, t_stress, t_stretch
+#define SSC_TYPES_S_4_MAX t_stretch
 
 #define SSC_TYPES_S_5 \
+        t_stripe, t_style, t_supports, t_sym, t_syncbehaviour, t_syncbehaviourdefault, t_svg_align, t_svg_baselineshift, t_svg_baseprofile, \
+        t_svg_begin_event, t_svg_begin_fn, t_svg_clip, t_svg_colour_profile, t_svg_content, t_svg_direction
+#define SSC_TYPES_S_5_MAX t_svg_direction
+
+#define SSC_TYPES_S_6 \
         t_svg_display, t_svg_duration, t_svg_feature, t_svg_features, t_svg_fontstretch, t_svg_fontstretch_ff, t_svg_fontstyle, t_svg_fontstyle_ff, \
         t_svg_fontvariant, t_svg_fontvariant_ff, t_svg_fontweight, t_svg_fontweight_ff, t_svg_fontweights, t_svg_host, t_svg_method, t_svg_mode, \
         t_svg_name_iri, t_svg_overflow, t_svg_phase, t_svg_playbackorder, t_svg_profile_name
-#define SSC_TYPES_S_5_MAX t_svg_profile_name
+#define SSC_TYPES_S_6_MAX t_svg_profile_name
 
-#define SSC_TYPES_S_6 \
+#define SSC_TYPES_S_7 \
         t_svg_rendering_intent, t_svg_shape, t_svg_shapefn, t_svg_side, t_svg_src, t_svg_svg, t_svg_time, t_svg_time_default, t_svg_time_inherit, \
         t_svg_time_none, t_svg_timelinebegin, t_svg_transform, t_svg_two_profile, t_svg_type, t_svg_units, t_svg_values, t_svg_version, t_svg_version_grand, \
         t_svg_viewbox, t_svg_viewboxrect
-#define SSC_TYPES_S_6_MAX t_svg_viewboxrect
+#define SSC_TYPES_S_7_MAX t_svg_viewboxrect
 
 #define SSC_TYPES_T_1 \
     t_tableframe, t_tablevalues, t_target, t_tbalign, t_tblri, t_tcbalign, t_tdscope, t_tel, t_tendstotype, t_text, t_text_2, t_text_2n, t_text_a, \
@@ -9419,19 +9345,19 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_Y_Z_MAX t_zoompan
 
 #define SSC_TYPES   SSC_TYPES_0_1, SSC_TYPES_2_9, SSC_TYPES_A_1, SSC_TYPES_A_2, SSC_TYPES_A_3, SSC_TYPES_A_4, SSC_TYPES_A_5, SSC_TYPES_B_1, SSC_TYPES_B_2, \
-                    SSC_TYPES_C_1, SSC_TYPES_C_2, SSC_TYPES_C_3, SSC_TYPES_C_4, SSC_TYPES_C_5, SSC_TYPES_CSS_A_1, SSC_TYPES_CSS_A_2, SSC_TYPES_CSS_A_3, \
+                    SSC_TYPES_C_1, SSC_TYPES_C_2, SSC_TYPES_C_3, SSC_TYPES_C_4, SSC_TYPES_C_5, SSC_TYPES_C_6, SSC_TYPES_CSS_A_1, SSC_TYPES_CSS_A_2, SSC_TYPES_CSS_A_3, \
                     SSC_TYPES_CSS_B_1, SSC_TYPES_CSS_B_2, SSC_TYPES_CSS_B_3, SSC_TYPES_CSS_B_4, SSC_TYPES_CSS_B_5, SSC_TYPES_CSS_C_1, SSC_TYPES_CSS_C_2, SSC_TYPES_CSS_C_3, \
                     SSC_TYPES_CSS_C_4, SSC_TYPES_CSS_C_5, SSC_TYPES_CSS_D, SSC_TYPES_CSS_E_1, SSC_TYPES_CSS_E_2, SSC_TYPES_CSS_F_1, SSC_TYPES_CSS_F_2, \
                     SSC_TYPES_CSS_F_3, SSC_TYPES_CSS_FN_1, SSC_TYPES_CSS_FN_2, SSC_TYPES_CSS_FN_3, SSC_TYPES_CSS_G_H, SSC_TYPES_CSS_I_1, SSC_TYPES_CSS_I_2, \
                     SSC_TYPES_CSS_J_K, SSC_TYPES_CSS_L_1, SSC_TYPES_CSS_L_2, SSC_TYPES_CSS_L_3, SSC_TYPES_CSS_M_1, SSC_TYPES_CSS_M_2, SSC_TYPES_CSS_N_O, \
                     SSC_TYPES_CSS_P_1, SSC_TYPES_CSS_P_Q, SSC_TYPES_CSS_R_1, SSC_TYPES_CSS_R_2, SSC_TYPES_CSS_S_1, SSC_TYPES_CSS_S_2, SSC_TYPES_CSS_S_3, \
-                    SSC_TYPES_CSS_T_1, SSC_TYPES_CSS_T_2, SSC_TYPES_CSS_T_3, SSC_TYPES_CSS_T_4, SSC_TYPES_CSS_T_5, SSC_TYPES_CSS_U, \
-                    SSC_TYPES_CSS_V, SSC_TYPES_CSS_W_Z, SSC_TYPES_D_1, SSC_TYPES_D_2, SSC_TYPES_E, SSC_TYPES_F_1, SSC_TYPES_F_2, SSC_TYPES_F_3, SSC_TYPES_G, \
+                    SSC_TYPES_CSS_T_1, SSC_TYPES_CSS_T_2, SSC_TYPES_CSS_T_3, SSC_TYPES_CSS_T_4, SSC_TYPES_CSS_T_5, SSC_TYPES_CSS_U, SSC_TYPES_CSS_V, \
+                    SSC_TYPES_CSS_W_Z, SSC_TYPES_D_1, SSC_TYPES_D_2, SSC_TYPES_D_3, SSC_TYPES_E, SSC_TYPES_F_1, SSC_TYPES_F_2, SSC_TYPES_F_3, SSC_TYPES_G, \
                     SSC_TYPES_H, SSC_TYPES_I_1, SSC_TYPES_I_2, SSC_TYPES_I_3, SSC_TYPES_J_K, SSC_TYPES_L_1, SSC_TYPES_L_2, SSC_TYPES_L_3, SSC_TYPES_M_1, \
                     SSC_TYPES_M_2, SSC_TYPES_M_3, SSC_TYPES_M_4, SSC_TYPES_M_5, SSC_TYPES_M_6, SSC_TYPES_N, SSC_TYPES_O, SSC_TYPES_P_1, SSC_TYPES_P_2, \
                     SSC_TYPES_P_3, SSC_TYPES_P_4, SSC_TYPES_R_1, SSC_TYPES_R_2, SSC_TYPES_R_3, SSC_TYPES_R_4, SSC_TYPES_R_5, SSC_TYPES_R_6, SSC_TYPES_S_1, \
-                    SSC_TYPES_S_2, SSC_TYPES_S_3, SSC_TYPES_S_4, SSC_TYPES_S_5, SSC_TYPES_S_6, SSC_TYPES_T_1, SSC_TYPES_T_2, SSC_TYPES_U_1, SSC_TYPES_U_2, \
-                    SSC_TYPES_V_1, SSC_TYPES_V_2, SSC_TYPES_W, SSC_TYPES_X_1, SSC_TYPES_X_2, SSC_TYPES_Y_Z
+                    SSC_TYPES_S_2, SSC_TYPES_S_3, SSC_TYPES_S_4, SSC_TYPES_S_5, SSC_TYPES_S_6, SSC_TYPES_S_7, SSC_TYPES_T_1, SSC_TYPES_T_2, SSC_TYPES_U_1, \
+                    SSC_TYPES_U_2, SSC_TYPES_V_1, SSC_TYPES_V_2, SSC_TYPES_W, SSC_TYPES_X_1, SSC_TYPES_X_2, SSC_TYPES_Y_Z
 
 typedef enum {
     t_unknown, SSC_TYPES, t_error } e_type;
@@ -9458,7 +9384,7 @@ typedef enum { vt_data, vt_object, vt_ref } e_valuetype;
 typedef enum { vt_mobile, vt_fax, vt_pager, vt_sms, vt_textphone, vt_video, vt_voice } e_vctelecomms;
 typedef enum { v12_inherit, v12_none, v12_nonscalingstroke } e_vector_effect_12;
 typedef enum { v2_fixedposition, v2_none, v2_nonrotation, v2_nonscalingstroke, v2_nonscalingsize } e_vector_effect_2;
-typedef enum { vf_none, vf_ads, vf_atomic, vf_css, vf_directory, vf_jsonld, vf_markup, vf_rdf, vf_robotic, vf_rsl, vf_rss, vf_security, vf_vtt, vf_error } e_verifiable_file;
+typedef enum { vf_none, vf_ads, vf_atomic, vf_css, vf_directory, vf_jsonld, vf_markup, vf_rdf, vf_robotic, vf_rsl, vf_rss, vf_security, vf_smil, vf_vtt, vf_error } e_verifiable_file;
 typedef enum { eva_baseline, eva_sub, eva_super, eva_top, eva_text_top, eva_middle, eva_bottom, eva_text_bottom, eva_inherit } e_vertical_align_enum;
 typedef enum { vg_female, vg_male, vg_none, vg_other, vg_unknown } e_vgender;
 typedef enum { vs_viewport, vs_screen } e_viewportscreen;

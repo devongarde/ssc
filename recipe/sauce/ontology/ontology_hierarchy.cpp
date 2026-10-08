@@ -16553,7 +16553,6 @@ microdata_hierachy ontology_hierarchy [] =
     { { 3, 6 }, { 5, 0 }, sch_carusagetype, sch_taxivehicleusage },
     { { 3, 5 }, { 0, 0 }, sch_categorycode, sch_medicalcode },
     { { 30, 1 }, { 0, 0 }, sch_certification, sch_declarationofconformity },
-    { { 30, 1 }, { 0, 0 }, sch_certification, sch_digitalproductpassport },
     { { 30, 1 }, { 0, 0 }, sch_certification, sch_environmentalproductdeclaration },
     { { 25, 0 }, { 0, 0 }, sch_certificationstatusenumeration, sch_certificationactive },
     { { 25, 0 }, { 0, 0 }, sch_certificationstatusenumeration, sch_certificationinactive },
@@ -17316,7 +17315,6 @@ microdata_hierachy ontology_hierarchy [] =
     { { 3, 5 }, { 0, 0 }, sch_medicalbusiness, sch_nursing },
     { { 3, 5 }, { 0, 0 }, sch_medicalbusiness, sch_obstetric },
     { { 3, 5 }, { 0, 0 }, sch_medicalbusiness, sch_oncologic },
-    { { 30, 1 }, { 0, 0 }, sch_medicalbusiness, sch_ophthalmology },
     { { 3, 5 }, { 0, 0 }, sch_medicalbusiness, sch_optician },
     { { 3, 5 }, { 0, 0 }, sch_medicalbusiness, sch_optometric },
     { { 3, 5 }, { 0, 0 }, sch_medicalbusiness, sch_otolaryngologic },
@@ -17447,6 +17445,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 0, 95 }, { 0, 0 }, sch_medicalspeciality, sch_nursing },
     { { 0, 95 }, { 0, 0 }, sch_medicalspeciality, sch_obstetric },
     { { 0, 95 }, { 0, 0 }, sch_medicalspeciality, sch_oncologic },
+    { { 30, 1 }, { 0, 0 }, sch_medicalspeciality, sch_ophthalmology },
     { { 0, 95 }, { 0, 0 }, sch_medicalspeciality, sch_optometric },
     { { 0, 95 }, { 0, 0 }, sch_medicalspeciality, sch_otolaryngologic },
     { { 0, 95 }, { 0, 0 }, sch_medicalspeciality, sch_pathology },
@@ -18654,11 +18653,12 @@ void hierarchy_init (nitpick& nits)
             continue; }
         hierarchy.insert (vmap_t::value_type (ontology_hierarchy [x].general_, &ontology_hierarchy [x]));
         if (generalisations.find (ontology_hierarchy [x].specific_) != generalisations.cend ())
-            for (vmap_t::const_iterator vi = hierarchy.find (ontology_hierarchy [x].general_); (vi != hierarchy.cend ()) && (vi -> first == ontology_hierarchy [x].general_); ++vi)
+        {   const auto range = hierarchy.equal_range (ontology_hierarchy [x].general_);
+            for (vmap_t::const_iterator vi = range.first; vi != range.second; ++vi)
                 if (vi -> second != nullptr)
                     if ((vi -> second -> specific_ == ontology_hierarchy [x].specific_) && (vi -> second -> general_ != ontology_hierarchy [x].general_))
                         if (overlap (ontology_hierarchy [x].from_, ontology_hierarchy [x].to_, vi -> second -> from_, vi -> second -> to_))
-                            nits.pick (nit_ontology_hierarchy, es_catastrophic, ec_schema, "multiple generalisations for ", sch::name (ontology_hierarchy [x].specific_), " (", ontology_hierarchy [x].specific_, ")");
+                            nits.pick (nit_ontology_hierarchy, es_catastrophic, ec_schema, "multiple generalisations for ", sch::name (ontology_hierarchy [x].specific_), " (", ontology_hierarchy [x].specific_, ")"); }
         if (context.tell (es_all)) nits.pick (nit_all, es_all, ec_schema, sch::name (ontology_hierarchy [x].general_), " : ", sch::name (ontology_hierarchy [x].specific_)); 
         generalisations.emplace (vss_t::value_type (ontology_hierarchy [x].specific_, ontology_hierarchy [x].general_)); }
     PRESUME (sizeof (aot_non) == sizeof (aot_nonable), __FILE__, __LINE__);
@@ -18762,7 +18762,8 @@ void int_generalise  (nitpick& nits, const html_version& v, const e_ontology_typ
     const vmap_t::const_iterator hi = hierarchy.find (s);
     const bool c = ((hi != hierarchy.cend ()) && ((hi -> second -> flags_ & MH_CIRCULAR) == MH_CIRCULAR));
     if (circular && c) return;
-    for (vss_t::const_iterator i = generalisations.find (s); (i != generalisations.cend ()) && (i -> first == s); ++i)
+    const auto range = generalisations.equal_range (s);
+    for (vss_t::const_iterator i = range.first; i != range.second; ++i)
 #ifndef _DEBUG
         if (! find_ssch (ssch, i -> second))
 #else // _DEBUG
@@ -18775,11 +18776,12 @@ void int_generalise  (nitpick& nits, const html_version& v, const e_ontology_typ
             nits.pick (nit_circular_hierarchy, es_comment, ec_microdata, "possible circular hierarchy between ontology types ", sch::name (s), " and ", sch::name (i -> second) , " (", circ, ")" ); }
         else
 #endif // _DEBUG
-            for (vmap_t::const_iterator vi = hierarchy.find (i -> second); (vi != hierarchy.cend ()) && (vi -> first == i -> second); ++vi)
+        {   const auto rover = hierarchy.equal_range (i -> second);
+            for (vmap_t::const_iterator vi = rover.first; vi != rover.second; ++vi)
                 if (vi -> second != nullptr)
                     if (vi -> second -> specific_ == s)
                         if (does_apply < ontology_version > (v, vi -> second -> from_, vi -> second -> to_))
-                            int_generalise (nits, v, i -> second, ssch, c || circular); }
+                            int_generalise (nits, v, i -> second, ssch, c || circular); } }
 
 ssch_t generalise (nitpick& nits, const html_version& v, const e_ontology_type s)
 {   ssch_t res;
@@ -18787,7 +18789,8 @@ ssch_t generalise (nitpick& nits, const html_version& v, const e_ontology_type s
     return res; }
 
 bool is_specific_type_of (const e_ontology_type general, const e_ontology_type specific)
-{   for (vss_t::const_iterator x = generalisations.find (specific); x != generalisations.cend (); ++x)
+{   const auto range = generalisations.equal_range (specific);
+    for (vss_t::const_iterator x = range.first; x != range.second; ++x)
     {   if (x -> first != specific) break;
         if (x -> second == general) return true;
         if (x -> first == general) break;

@@ -49,6 +49,9 @@ template < > struct type_master < t_angle_ar > : type_or_either_string < t_angle
 template < > struct type_master < t_angle_ars > : type_range < t_angle_ars, sz_space_char, t_angle_ar, 1, 2 >
 { using type_range < t_angle_ars, sz_space_char, t_angle_ar, 1, 2 > :: type_range; };
 
+template < > struct type_master < t_angle_asr > : type_or_either_string < t_angle_asr, t_angle, sz_auto, sz_auto_start_reverse >
+{ using type_or_either_string < t_angle_asr, t_angle, sz_auto, sz_auto_start_reverse > :: type_or_either_string; };
+
 template < > struct type_master < t_angle_n > : type_or_string < t_angle_n, t_angle, sz_none >
 { using  type_or_string < t_angle_n, t_angle, sz_none > :: type_or_string; };
 
@@ -403,8 +406,17 @@ template < > struct type_master < t_radial_start > : type_one_or_both < t_radial
 template < > struct type_master < t_ratio_a > : string_or_type_or_both < t_ratio_a, t_ratio, sz_auto >
 { using string_or_type_or_both < t_ratio_a, t_ratio, sz_auto > :: string_or_type_or_both; };
 
-template < > struct type_master < t_rgbfn > : type_function_3_4 < t_rgbfn, sz_rgb, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_zero_to_one >
-{ using type_function_3_4 < t_rgbfn, sz_rgb, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_zero_to_one > :: type_function_3_4; };
+template < > struct type_master < t_rgbfn_3 > : type_function_3_4 < t_rgbfn_3, sz_rgb, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_zero_to_one >
+{ using type_function_3_4 < t_rgbfn_3, sz_rgb, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_zero_to_one > :: type_function_3_4; };
+
+template < > struct type_master < t_rgbfn_4 > : type_function_3_5 < t_rgbfn_4, sz_rgb, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_slash, t_css_alpha >
+{ using type_function_3_5 < t_rgbfn_4, sz_rgb, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_slash, t_css_alpha > :: type_function_3_5; };
+
+template < > struct type_master < t_rgbfn_5 > : type_function_5_7 < t_rgbfn_5, sz_rgb, t_from, t_css_col, t_real_percent_n_r, t_real_percent_n_g, t_real_percent_n_b, t_slash, t_css_alpha >
+{ using type_function_5_7 < t_rgbfn_5, sz_rgb, t_from, t_css_col, t_real_percent_n_r, t_real_percent_n_g, t_real_percent_n_b, t_slash, t_css_alpha > :: type_function_5_7; };
+
+template < > struct type_master < t_rgbfn > : type_one_of_three < t_rgbfn, t_rgbfn_3, t_rgbfn_4, t_rgbfn_5 >
+{ using type_one_of_three < t_rgbfn,  t_rgbfn_3, t_rgbfn_4, t_rgbfn_5 > :: type_one_of_three; };
 
 template < > struct type_master < t_real_angle_h > : either_type_or_either_string < t_real_angle_h, t_real_360, t_angle, sz_h, sz_none >
 { using either_type_or_either_string < t_real_angle_h, t_real_360, t_angle, sz_h, sz_none > :: either_type_or_either_string; };
@@ -420,6 +432,9 @@ template < > struct type_master < t_refys > : type_at_least_one < t_refys, sz_co
 
 template < > struct type_master < t_rgbafn > : type_function_all < t_rgbafn, sz_rgba, t_integer_or_percent, t_integer_or_percent, t_integer_or_percent, t_zero_to_one >
 { using type_function_all < t_rgbafn, sz_rgba, t_integer_or_percent, t_integer_or_percent, t_integer_or_percent, t_zero_to_one > :: type_function_all; };
+
+template < > struct type_master < t_smilclocki > : type_or_string < t_smilclocki, t_smilclock, sz_indefinite >
+{ using type_or_string < t_smilclocki, t_smilclock, sz_indefinite > :: type_or_string; };
 
 template < > struct type_master < t_snap > : type_string < t_snap, sz_snap >
 { using type_string < t_snap, sz_snap > :: type_string; };

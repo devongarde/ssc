@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN mathml semantics tests</title>
+</head>
+
+<body>
+
+<h1>MDN mathml semantics Tests</h1>
+
+<math display="block">
+  <semantics>
+    <!-- The first child is the MathML expression rendered by default. -->
+    <mrow>
+      <msup>
+        <mi>x</mi>
+        <mn>2</mn>
+      </msup>
+      <mo>+</mo>
+      <mi>y</mi>
+    </mrow>
+
+    <!--
+      Annotate with content MathML, a dedicated XML dialect
+      to express the meaning of mathematical formulas.
+    -->
+    <annotation-xml encoding="application/mathml-content+xml">
+      <apply>
+        <plus />
+        <apply>
+          <power />
+          <ci>x</ci>
+          <cn type="integer">2</cn>
+        </apply>
+        <ci>y</ci>
+      </apply>
+    </annotation-xml>
+
+    <!--
+      Annotate with LaTeX, a lightweight markup language
+      to write mathematical formulas.
+    -->
+    <annotation encoding="application/x-tex">x^{2} + y</annotation>
+  </semantics>
+</math>
+
+</body>
+</html>

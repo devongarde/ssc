@@ -45,6 +45,27 @@ hav_t havt_pageset [] =
     SVG_PRESENTATION_ATTRIBUTES (elem_pageset),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_par [] =
+{   { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_abstract, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_author, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_begin, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_copyright, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_dur, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_end, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_endsync, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_region, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_repeat, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_system_bitrate, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_system_captions, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_system_language, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_system_overdub_or_caption, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_system_required, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_system_screen_depth, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_system_screen_size, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, a_title, EP_SMIL },
+    SMIL_ATTRIBUTES (elem_par),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_param [] =
 {   { { HTML_4_0 }, { XHTML_2_0 }, elem_param, a_id },
     { { HTML_3_2, HV_REQUIRED }, { HTML_UNDEF }, elem_param, a_name },
@@ -110,6 +131,10 @@ hav_t havt_piece [] =
 
 hav_t havt_piecewise [] =
 {   MATH3_STANDARD_ATTRIBUTES (elem_piecewise),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_plaintext [] =
+{   HTML23_CLID_ATTRIBUTES (elem_plaintext),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_plus [] =

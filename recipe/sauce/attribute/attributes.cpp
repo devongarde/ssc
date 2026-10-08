@@ -54,6 +54,9 @@ bool attributes :: parse (nitpick& nits, const html_version& v, const attributes
             else if (elem (tag ()).wild_attributes (v))
             {   nits.pick (nit_wild_attribute, es_info, ec_attribute, "apologies, but ", PROG, " cannot validate ", ::boost::to_upper_copy (a.get_key ()));
                 continue; }
+            if ((flags & EP_SMIL) != 0)
+                if (! v.smil ())
+                    nits.pick (nit_smil, es_error, ec_element, ::boost::to_upper_copy (a.get_key ()), " requires SMIL");
             if (tag () == elem_undefined)
                 nits.pick (nit_custom, es_comment, ec_attribute, PROG, " cannot check attributes of custom elements");
             else if (a.id () == a_custom)

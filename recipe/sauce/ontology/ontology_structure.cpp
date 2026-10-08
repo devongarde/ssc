@@ -7793,27 +7793,30 @@ void microdata_init (nitpick& )
         else
         {   mmd_key k (p -> record_, p -> property_);
             micromap.insert (mmd_t::value_type (k, p));
-#if defined (_DEBUG)
+#ifdef _DEBUG
             bool found = false;
             if (! check_ontology_property_version (p -> from_, p -> to_, p -> property_, found))
                 if (found)
-                    context.os () -> err ("microdata_init reports ", sch::name (p -> record_), " (", p -> record_, "), ",
+                {   context.os () -> err ("  microdata_init reports ", sch::name (p -> record_), " (", p -> record_, "), ",
                                                                 ontology_property_name (p -> property_), " (", p -> property_, ") is incompatible with version in property table\n");
+                }
                 else
-                    context.os () -> err ("microdata_init reports ", sch::name (p -> record_), " (", p -> record_, "), ",
+                    context.os () -> err ("  microdata_init reports ", sch::name (p -> record_), " (", p -> record_, "), ",
                                                                 ontology_property_name (p -> property_), " (", p -> property_, ") is not found in property table\n");
 #endif // _DEBUG
 } } }
 
 bool is_ontology_property (const e_ontology_type s, const e_ontology_property p)
-{   for (mmd_t::const_iterator i = micromap.find (mmd_key (s, p)); i != micromap.cend (); ++i)
+{   const auto range = micromap.equal_range (mmd_key (s, p));
+    for (mmd_t::const_iterator i = range.first; i != range.second; ++i)
     {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
         if ((i -> second -> record_ != s) || (i -> second -> property_ != p)) break;
         if (does_apply < ontology_version > (context.ontology_ver (sch::root (s)), i -> second -> from_, i -> second -> to_)) return true; }
     return false; }
 
 bool is_ontology_property (const html_version& v, const e_ontology_type s, const e_ontology_property p)
-{   for (mmd_t::const_iterator i = micromap.find (mmd_key (s, p)); i != micromap.cend (); ++i)
+{   const auto range = micromap.equal_range (mmd_key (s, p));
+    for (mmd_t::const_iterator i = range.first; i != range.second; ++i)
     {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
         if ((i -> second -> record_ != s) || (i -> second -> property_ != p)) break;
         if (does_apply < ontology_version > (context.ontology_ver (v, sch::root (s)), i -> second -> from_, i -> second -> to_)) return true; }

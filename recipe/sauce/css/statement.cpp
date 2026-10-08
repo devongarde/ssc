@@ -934,7 +934,8 @@ void statement::parse_namespace (arguments& args, nitpick& nits, const int from,
         {   if (name.empty ())
                 nits.pick (nit_empty, es_warning, ec_css, quote (prefix), ": the @namespace long form is empty");
             VERIFY_NOT_NULL (args.ns_, __FILE__, __LINE__);
-            args.ns_ -> declare (nits, args.v_, empty_namespace_names, prefix, name); } } }
+            args.ns_ -> declare (nits, args.v_, namespace_names, prefix, name); } } }
+//            args.ns_ -> declare (nits, args.v_, empty_namespace_names, prefix, name); } } }
 
 void statement::parse_navigation (arguments& args, nitpick& nits, const int from, const int to)
 {   int i = next_non_whitespace (args.t_, from, to); 

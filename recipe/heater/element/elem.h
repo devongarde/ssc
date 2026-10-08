@@ -78,9 +78,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define EP_ATOM             0x0010000000000000
 #define EP_NODOCTYPE        0x0020000000000000
-// bleugh
 #define EP_CAN_BE_TOP       0x0040000000000000
+// bit
 
+#define EP_SMIL             0x0100000000000000
 #define EP_CCRSS            0x0200000000000000
 #define EP_MRSS             0x0400000000000000
 #define EP_TRACKBACK        0x0800000000000000
@@ -222,6 +223,8 @@ public:
     {   return ((flags () & EP_RSL) != 0); }
     bool is_rss () const noexcept
     {   return ((flags () & EP_RSS) != 0); }
+    bool is_smil () const noexcept
+    {   return ((flags () & EP_SMIL) != 0); }
     bool is_svg () const noexcept
     {   return ((categories () & EF_SVG_CATMASK) != 0); }
     bool is_transparent (const html_version& v) const noexcept;

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>MDN SVG feMorphology tests</title>
+<style>
+text {
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 3em;
+}
+
+#thin {
+  filter: url("#erode");
+}
+
+#thick {
+  filter: url("#dilate");
+}
+
+p {
+  margin: 0;
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 3em;
+}
+
+#thin {
+  filter: url("#erode");
+}
+
+#thick {
+  filter: url("#dilate");
+}
+</style>
+</head>
+
+<body>
+
+<h1>MDN SVG feMorphology Tests</h1>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180">
+  <filter id="erode">
+    <feMorphology operator="erode" radius="1" />
+  </filter>
+  <filter id="dilate">
+    <feMorphology operator="dilate" radius="2" />
+  </filter>
+  <text y="1em">Normal text</text>
+  <text id="thin" y="2em">Thinned text</text>
+  <text id="thick" y="3em">Fattened text</text>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
+  <filter id="erode">
+    <feMorphology operator="erode" radius="1" />
+  </filter>
+  <filter id="dilate">
+    <feMorphology operator="dilate" radius="2" />
+  </filter>
+</svg>
+
+<p>Normal text</p>
+<p id="thin">Thinned text</p>
+<p id="thick">Fattened text</p>
+
+</body>
+</html>

@@ -370,6 +370,7 @@ sh_t sh [] =  // latest first
     { rif_schema, html_rif },
     { role_schema, html_role },
     { rr_schema, html_rr },
+    { schema_30_2, html_schema_30_2 },
     { schema_30_1, html_schema_30_1 },
     { schema_30_0, html_schema_30_0 },
     { schema_29_4, html_schema_29_4 },
@@ -754,7 +755,8 @@ ontology_version corresponding_ontology_version (const e_ontology es, const html
     if (es == s_none) return default_ontology;
     if (! va.at (es).invalid ()) return va.at (es);
     PRESUME (! mss.empty (), __FILE__, __LINE__);
-    for (mss_t::const_iterator i = mss.find (es); (i != mss.cend ()) && (i -> first == es); ++i)
+    const auto range = mss.equal_range (es);
+    for (mss_t::const_iterator i = range.first; i != range.second; ++i)
     {   sh_t& x = *(i -> second);
         if (ge (v, x.html_))
             return x.ontology_; }
@@ -1228,10 +1230,10 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
         case 3 : break;
         case 7 : return (mnr < 5);
         case 11 :
-        case 28 :
-        case 30 : return (mnr < 2);
-        case 27 : return (mnr == 1) || (mnr == 2); 
+        case 28 : return (mnr < 2);
+        case 27 : return (mnr == 1) || (mnr == 2);
         case 29 : return (mnr < 5);
+        case 30 : return (mnr < 3);
         default : return (mnr == 0); }
     switch (mnr) // 3.x
     {   case 0 : return ((oflags & SV_NOT_30) == 0);
@@ -1247,7 +1249,7 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
         default : break; }
     return false; }
 template < > ontology_version ontology_detail < s_schema > :: from () noexcept { return ontology_version (s_schema, MIN_SCHEMA_ORG_MAJOR, MIN_SCHEMA_ORG_MINOR); }
-template < > int ontology_detail < s_schema > :: count () noexcept { return 90; }
+template < > int ontology_detail < s_schema > :: count () noexcept { return 91; }
 template < > ontology_version ontology_detail < s_schema > :: to () noexcept { return ontology_version (s_schema, MAX_SCHEMA_ORG_MAJOR, MAX_SCHEMA_ORG_MINOR); }
 template < > ::std::string ontology_detail < s_schema > :: ver (const unsigned short mjr, const unsigned short mnr)
 {   switch (mjr)
@@ -1421,6 +1423,10 @@ void ontology_version::init (nitpick& DEBUGONLY (nits))
 {   switch (root ())
     {   case s_none : return "(UNKNOWN SCHEMA)";
         case s_error : return "*** ERROR ***";
+        case s_schema :
+            if ((mjr () == 0) && (mnr () == 0))
+                return "*";
+            break;
         default : break; }
     return schemas < ONTOLOGIES > :: name (root (), mjr (), mnr ()); }
 
@@ -1449,10 +1455,7 @@ bool does_ontology_apply (const ontology_version& v, const ontology_version& fro
     if (v.root () != from.root ()) return true;
     switch (v.root ())
     {   case s_faux :
-        case s_example :
-            return true;
-        case s_none :
-            return false;
-        default :
-            break; }
+        case s_example : return true;
+        case s_none : return false;
+        default : break; }
     return does_apply < version > (v, from, to); }

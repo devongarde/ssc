@@ -1,7 +1,6 @@
 -Y 1 -7 original -f ../toast/css/4-text/css.conf
 
 PASS ../toast/css/4-text/css-4.css
-1 namespace_unknown
 10 pseud
 
 PASS ../toast/css/4-text/css-5.css

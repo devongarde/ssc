@@ -1,2 +1,4 @@
-../toast/css/5-value/css.spec
+../toast/SVG/1.2/svg.spec
 ../toast/mdn/function/mdn.spec
+../toast/type/atom/atom.spec
+../toast/XHTML/1.0/xhtml1.spec

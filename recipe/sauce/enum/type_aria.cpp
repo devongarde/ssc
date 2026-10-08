@@ -808,7 +808,10 @@ void role_init (nitpick& nits)
         if (GSL_AT (furq, r) == 0) GSL_AT (furq, r) = i; } }
 
 bool is_role_lookup (const rolemap& rm, const html_version& v, const e_element elem, const e_aria_role role, flags_t* flags = nullptr)
-{   for (   rmi i = rm.find (role_key (elem, role));
+{   
+//    const auto range = rm.equal_range (role_key (elem, role));
+//    for (rmi i = range.first; i != range.second; ++i)
+    for (   rmi i = rm.find (role_key (elem, role));
             (i != rm.cend ());
             ++i)
         if (does_apply < html_version > (v, i -> second.from_, i -> second.to_))

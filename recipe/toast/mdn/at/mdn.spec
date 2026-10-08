@@ -57,7 +57,7 @@ PASS ../toast/mdn/at/media.html
 
 PASS ../toast/mdn/at/namespace.html
 2 naughty_lang
-5 namespace_unknown css_namespace css_namespace
+5 css_namespace css_namespace
 
 PASS ../toast/mdn/at/page.html
 2 naughty_lang

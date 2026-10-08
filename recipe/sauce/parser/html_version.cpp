@@ -104,7 +104,8 @@ html_ver_vt standard_html_ver =
     html_oct25,
     html_jan26,
     html_apr26,
-    html_jul26 };
+    html_jul26,
+    html_oct26 };
 
 html_version::html_version (const ::boost::gregorian::date& d)
         :   version (0, 0, HV_WHATWG, ao_html), ext_ (NOFLAGS), ext2_ (NOFLAGS), ext3_ (NOFLAGS), ext4_ (NOFLAGS), ext5_ (NOFLAGS)
@@ -386,6 +387,14 @@ void html_version::init (const unsigned short mjr)
         res << "RSL";
     else if (known () && rss ())
         res << "RSS";
+    else if (known () && smil ())
+    {   res << "SMIL";
+        switch (smil_version ())
+        {   case smv_1_0 : res << "-1.0"; break;
+            case smv_2_0 : res << "-2.0"; break;
+            case smv_2_1 : res << "-2.1"; break;
+            case smv_3_0 : res << "-3.0"; break;
+            default: break; } }
     else
     {   res << "HTML";
         if (known ())
@@ -414,7 +423,7 @@ void html_version::init (const unsigned short mjr)
     return res.str (); }
 
 ::std::string html_version::nice_name () const
-{   if (mjr () < 5) return name ();
+{   if ((mjr () < 5) || smil ()) return name ();
     ::std::ostringstream res;
     if (known () && xhtml ()) res << "X";
     res << "HTML-5";
@@ -770,10 +779,15 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     break;
                 case doc_html_tags :
                     note_parsed_version (nits, nit_html_tags, html_tags, "HTML Tags");
-                        found_html = true;
+                    found_html = true;
                     break;
                 case doc_rss_91 :
+                    note_parsed_version (nits, nit_rss, html_rss, "RSS");
                     set_ext4 (H4_RSS);
+                    return true;
+                case doc_smil_1_0 :
+                    note_parsed_version (nits, nit_smil_1_0, html_smil_1_0, "SMIL 1.0");
+                    set_ext5 (H5_SMIL_1_0);
                     return true;
                 case doc_sqclose :
                     break;
@@ -1045,6 +1059,7 @@ e_css_version html_version::css_version () const noexcept
     else if (has_this_css (H2_CSS_5_FULL, H3_CSS_5_FULL, H4_CSS_5_FULL, H5_CSS_5_FULL)) css_ = css_5;
     else if (has_this_css (H2_CSS_4_FULL, H3_CSS_4_FULL, H4_CSS_4_FULL, H4_CSS_4_FULL)) css_ = css_4;
     else if (has_this_css (H2_CSS_3_FULL, H3_CSS_3_FULL, H4_CSS_3_FULL, H5_CSS_3_FULL)) css_ = css_3;
+    else if (has_this_css (H2_CSS_AE, H3_CSS_AE, H4_CSS_AE, H5_CSS_AE)) css_ = css_arts_ego;
     else if (has_this_css (H2_CSS_LS_2026, H3_CSS_LS_2026, H4_CSS_LS_2026, H5_CSS_LS_2026)) css_ = css_ls_2026;
     else if (has_this_css (H2_CSS_2026_3, H3_CSS_2026_3, H4_CSS_2026_3, H5_CSS_2026_3)) css_ = css_2026_3;
     else if (has_this_css (H2_CSS_2026_2, H3_CSS_2026_2, H4_CSS_2026_2, H5_CSS_2026_2)) css_ = css_2026_2;
@@ -1137,15 +1152,16 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     else if (compare_css (H2_CSS_5, H3_CSS_5, H4_CSS_5, H5_CSS_5, e2, e3, e4, e5)) res = big_small_start (b, "5", "level 5");
     else if (compare_css (H2_CSS_4, H3_CSS_4, H4_CSS_4, H5_CSS_4, e2, e3, e4, e5)) res = big_small_start (b, "4", "level 4");
     else if (compare_css (H2_CSS_3, H3_CSS_3, H4_CSS_3, H5_CSS_4, e2, e3, e4, e5)) res = big_small_start (b, "3", "level 3");
+    else if (compare_css (H2_CSS_AE, H3_CSS_AE, H4_CSS_AE, H5_CSS_AE, e2, e3, e4, e5)) res = big_small_start (b, "ae", "arts\\ego");
     else if (compare_css (H2_CSS_LS_2026, H3_CSS_LS_2026, H4_CSS_LS_2026, H5_CSS_LS_2026, e2, e3, e4, e5)) res = big_small_start (b, "5/26", "HTML5 CSS/26");
-    else if (compare_css (H2_CSS_2026_3, H3_CSS_2026_3, H4_CSS_2026_3, H5_CSS_LS_2026, e2, e3, e4, e5)) res = big_small_start (b, "26+++", "2026+++ snapshot");
-    else if (compare_css (H2_CSS_2026_2, H3_CSS_2026_2, H4_CSS_2026_2, H5_CSS_LS_2026, e2, e3, e4, e5)) res = big_small_start (b, "26++", "2026++ snapshot");
-    else if (compare_css (H2_CSS_2026_1, H3_CSS_2026_1, H4_CSS_2026_1, H5_CSS_LS_2026, e2, e3, e4, e5)) res = big_small_start (b, "26+", "2026+ snapshot");
+    else if (compare_css (H2_CSS_2026_3, H3_CSS_2026_3, H4_CSS_2026_3, H5_CSS_2026_3, e2, e3, e4, e5)) res = big_small_start (b, "26+++", "2026+++ snapshot");
+    else if (compare_css (H2_CSS_2026_2, H3_CSS_2026_2, H4_CSS_2026_2, H5_CSS_2026_2, e2, e3, e4, e5)) res = big_small_start (b, "26++", "2026++ snapshot");
+    else if (compare_css (H2_CSS_2026_1, H3_CSS_2026_1, H4_CSS_2026_1, H5_CSS_2026_1, e2, e3, e4, e5)) res = big_small_start (b, "26+", "2026+ snapshot");
     else if (compare_css (H2_CSS_2026, H3_CSS_2026, H4_CSS_2026, H5_CSS_2026, e2, e3, e4, e5)) res = big_small_start (b, "26", "2026 snapshot");
     else if (compare_css (H2_CSS_LS_2025, H3_CSS_LS_2025, H4_CSS_LS_2025, H5_CSS_LS_2025, e2, e3, e4, e5)) res = big_small_start (b, "5/25", "HTML5 CSS/25");
-    else if (compare_css (H2_CSS_2025_3, H3_CSS_2025_3, H4_CSS_2025_3, H5_CSS_LS_2025, e2, e3, e4, e5)) res = big_small_start (b, "25+++", "2025+++ snapshot");
-    else if (compare_css (H2_CSS_2025_2, H3_CSS_2025_2, H4_CSS_2025_2, H5_CSS_LS_2025, e2, e3, e4, e5)) res = big_small_start (b, "25++", "2025++ snapshot");
-    else if (compare_css (H2_CSS_2025_1, H3_CSS_2025_1, H4_CSS_2025_1, H5_CSS_LS_2025, e2, e3, e4, e5)) res = big_small_start (b, "25+", "2025+ snapshot");
+    else if (compare_css (H2_CSS_2025_3, H3_CSS_2025_3, H4_CSS_2025_3, H5_CSS_2025_3, e2, e3, e4, e5)) res = big_small_start (b, "25+++", "2025+++ snapshot");
+    else if (compare_css (H2_CSS_2025_2, H3_CSS_2025_2, H4_CSS_2025_2, H5_CSS_2025_2, e2, e3, e4, e5)) res = big_small_start (b, "25++", "2025++ snapshot");
+    else if (compare_css (H2_CSS_2025_1, H3_CSS_2025_1, H4_CSS_2025_1, H5_CSS_2025_1, e2, e3, e4, e5)) res = big_small_start (b, "25+", "2025+ snapshot");
     else if (compare_css (H2_CSS_2025, H3_CSS_2025, H4_CSS_2025, H5_CSS_2025, e2, e3, e4, e5)) res = big_small_start (b, "25", "2025 snapshot");
     else if (compare_css (H2_CSS_LS_2024, H3_CSS_LS_2024, H4_CSS_LS_2024, H5_CSS_LS_2024, e2, e3, e4, e5)) res = big_small_start (b, "5/24", "HTML5 CSS/24");
     else if (compare_css (H2_CSS_2024_3, H3_CSS_2024_3, H4_CSS_2024_3, H5_CSS_2024_3, e2, e3, e4, e5)) res = big_small_start (b, "24+++", "2024+++ snapshot");
@@ -1500,6 +1516,11 @@ void html_version::css_version (const e_css_version v) noexcept
                             set_ext3 (H3_CSS_LS_2026);
                             set_ext4 (H4_CSS_LS_2026);
                             set_ext5 (H5_CSS_LS_2026);
+                            break;
+        case css_arts_ego : set_ext2 (H2_CSS_AE);
+                            set_ext3 (H3_CSS_AE);
+                            set_ext4 (H4_CSS_AE);
+                            set_ext5 (H5_CSS_AE);
                             break;
         default :           break; }
     set_ext4 (H4_CSS_VER_MASK, v, H4_CSS_VER_SHIFT); }
@@ -2847,6 +2868,7 @@ bool has_css_crossover (const e_css_version c, const html_version& lhs, const ht
         case css_2026_2 : return has_css_crossover (lhs, rhs, H2_CSS_2026_2, H3_CSS_2026_2, H4_CSS_2026_2, H5_CSS_2026_2);
         case css_2026_3 : return has_css_crossover (lhs, rhs, H2_CSS_2026_3, H3_CSS_2026_3, H4_CSS_2026_3, H5_CSS_2026_3);
         case css_ls_2026 : return has_css_crossover (lhs, rhs, H2_CSS_LS_2026, H3_CSS_LS_2026, H4_CSS_LS_2026, H5_CSS_LS_2026);
+        case css_arts_ego : return has_css_crossover (lhs, rhs, H2_CSS_AE, H3_CSS_AE, H4_CSS_AE, H5_CSS_AE);
         default : return false; } } 
 
 bool comparable (const html_version& lhs, const html_version& rhs) noexcept

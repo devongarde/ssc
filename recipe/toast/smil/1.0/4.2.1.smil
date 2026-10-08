@@ -1,0 +1,15 @@
+<smil>
+<body>
+  <par>
+    <audio id="a" begin="6s" src="audio" />
+  </par>
+  <seq>
+    <audio src="audio1" />
+    <audio begin="5s" src="audio2" />
+  </seq>
+  <par>
+    <audio id="a" begin="6s" ...="" />
+    <img begin="id(a)(4s)" ...="" />
+  </par>
+</body>
+</smil>

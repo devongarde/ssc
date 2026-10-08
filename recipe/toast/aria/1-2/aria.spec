@@ -9,7 +9,7 @@ PASS ../toast/aria/1-2/4.html
 22 inserted_missing_closure
 
 PASS ../toast/aria/1-2/5.html
-65 inserted_missing_parent missing_close invalid_attribute_version wrong_version
+65 inserted_missing_parent missing_close
 68 inserted_missing_closure
 70 url_not_found attribute_required
 88 unknown_element

@@ -57,13 +57,13 @@ PASS ../toast/stats/CSS-6/index.html
 
 GRAND
 Property:
-    (custom): tenfold
     additive-symbols: once
     background-color: sixfold
     base-palette: sixfold
     block-size: twice
     color: sixfold
     content: 19fold
+    (custom): tenfold
     flow-from: fourfold
     flow-into: fourfold
     font-family: 18fold

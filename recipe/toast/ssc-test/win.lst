@@ -229,6 +229,7 @@
 ../toast/living/jan26/living.spec
 ../toast/living/apr26/living.spec
 ../toast/living/jul26/living.spec
+../toast/living/oct26/living.spec
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec
@@ -246,6 +247,7 @@
 ../toast/mdn/caret/mdn.spec
 ../toast/mdn/colour/mdn.spec
 ../toast/mdn/column/mdn.spec
+../toast/mdn/core/mdn.spec
 ../toast/mdn/corner/mdn.spec
 ../toast/mdn/combinator/mdn.spec
 ../toast/mdn/counter/mdn.spec
@@ -267,6 +269,7 @@
 ../toast/mdn/marker/mdn.spec
 ../toast/mdn/mask/mdn.spec
 ../toast/mdn/math/mdn.spec
+../toast/mdn/mathml/mdn.spec
 ../toast/mdn/max/mdn.spec
 ../toast/mdn/meta/mdn.spec
 ../toast/mdn/min/mdn.spec
@@ -293,6 +296,7 @@
 ../toast/mdn/selector/mdn.spec
 ../toast/mdn/shape/mdn.spec
 ../toast/mdn/stroke/mdn.spec
+../toast/mdn/svg/mdn.spec
 ../toast/mdn/target/mdn.spec
 ../toast/mdn/text/mdn.spec
 ../toast/mdn/transform/mdn.spec
@@ -405,6 +409,7 @@
 ../toast/signing/verify/verify.spec
 ../toast/signing/sign-pw/sign-pw.spec
 ../toast/signing/verify-pw/verify-pw.spec
+../toast/smil/1.0/smil.spec
 ../toast/snippet/conf/snippet.spec
 ../toast/snippet/kiwi/snippet.spec
 ../toast/stats/CSS/stats.spec

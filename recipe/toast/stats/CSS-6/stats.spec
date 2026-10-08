@@ -98,9 +98,9 @@ Element:
   2 elements used 14fold
 
 Property:
-    (custom): tenfold
     background-color: thrice
     color: twice
+    (custom): tenfold
     margin-top: twice
   4 properties used 17fold
 ===
@@ -599,13 +599,13 @@ Palette:
   Used fourfold
 
 Property:
-    (custom): tenfold
     additive-symbols: once
     background-color: sixfold
     base-palette: sixfold
     block-size: twice
     color: sixfold
     content: 19fold
+    (custom): tenfold
     flow-from: fourfold
     flow-into: fourfold
     font-family: 18fold

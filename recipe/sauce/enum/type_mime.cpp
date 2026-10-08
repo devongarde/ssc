@@ -1798,6 +1798,7 @@ struct symbol_entry < html_version, e_mimetype > mimetype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "text/rtploopback", mime_text_rtploopback, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/rtx", mime_text_rtx, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/SGML", mime_text_SGML, ns_default, MIME_TEXT },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, "text/smil-basic-layout", mime_text_smil_basic_layout, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/strings", mime_text_strings, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/t140", mime_text_t140, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/tab-separated-values", mime_text_tab_separated_values, ns_default, MIME_TEXT },

@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "main/version.h"
+#include "main/context.h"
 
 ::std::string version::name () const
 {   ::std::ostringstream res;
@@ -36,12 +37,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 bool eq (const version& lhs, const version& rhs) noexcept
 {   if (lhs.mjr () != rhs.mjr ()) return false;
-    return (lhs.mnr () == rhs.mnr ()); }
+    return lhs.mnr () == rhs.mnr (); }
 
 bool lt (const version& lhs, const version& rhs) noexcept
 {   if (lhs.mjr () > rhs.mjr ()) return false;
     if (lhs.mjr () < rhs.mjr ()) return true;
-    return (lhs.mnr () < rhs.mnr ()); }
+    return lhs.mnr () < rhs.mnr (); }
 
 bool comparable (const version& lhs, const version& rhs) noexcept
 {   return ((lhs.ao () == rhs.ao ()) && (! lhs.unknown ()) && (! rhs.unknown ())); }
@@ -56,3 +57,12 @@ bool version::ml () const noexcept
         default :
             break; }
     return ao_ <= aox_xtm; }
+
+bool does_version_apply (const version& v, const version& from, const version& to) MSVC_NOEXCEPT
+{   if (! comparable (v, from)) 
+        return true;
+    if (! from.unknown () && lt (v, from)) 
+        return false;
+    if (! to.unknown () && gt (v, to)) 
+        return false;
+    return true; }

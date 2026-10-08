@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>MDN SVG set tests</title>
+</head>
+
+<body>
+
+<h1>MDN SVG set Tests</h1>
+
+<svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    rect {
+      cursor: pointer;
+    }
+    .round {
+      rx: 5px;
+      fill: green;
+    }
+  </style>
+
+  <rect id="me" width="10" height="10">
+    <set attributeName="class" to="round" begin="me.click" dur="2s" />
+  </rect>
+</svg>
+
+</body>
+</html>

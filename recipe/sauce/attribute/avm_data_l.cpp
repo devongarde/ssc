@@ -38,8 +38,17 @@ hav_t havt_lambda [] =
 {   MATH3_STANDARD_ATTRIBUTES (elem_lambda),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_lang [] =
+{   HTML3_CLID_ATTRIBUTES (elem_lang),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_laplacian [] =
 {   MATH3_DEFS_ATTRIBUTES (elem_laplacian),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_layout [] =
+{   { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_layout, a_type, EP_SMIL },
+    SMIL_ATTRIBUTES (elem_layout),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_layer [] =

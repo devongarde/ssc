@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>MDN SVG fePointLight tests</title>
+</head>
+
+<body>
+
+<h1>MDN SVG fePointLight Tests</h1>
+
+<svg
+  width="200"
+  height="200"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <filter id="spotlight">
+      <feSpecularLighting
+        result="spotlight"
+        specularConstant="1.5"
+        specularExponent="80"
+        lighting-color="white">
+        <fePointLight x="50" y="50" z="220" />
+      </feSpecularLighting>
+      <feComposite
+        in="SourceGraphic"
+        in2="spotlight"
+        operator="arithmetic"
+        k1="0"
+        k2="1"
+        k3="1"
+        k4="0" />
+    </filter>
+  </defs>
+
+  <image
+    href="mdn_logo_only_color.png"
+    x="10%"
+    y="10%"
+    width="80%"
+    height="80%"
+    filter="url(#spotlight)" />
+</svg>
+</body>
+</html>

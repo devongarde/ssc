@@ -51,6 +51,10 @@ hav_t havt_rb [] =
 {   STANDARD_HTML5_ATTRIBUTES (elem_rb),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_rbc [] =
+{   XHTML2_ATTRIBUTES (elem_rbc),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_real [] =
 {   MATH3_DEFS_ATTRIBUTES (elem_real),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
@@ -74,11 +78,30 @@ hav_t havt_rect [] =
     SVG_RXY_ATTRIBUTES (elem_rect),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_ref [] =
+{   SMIL_MEDOBJ (elem_ref),
+    SMIL_MEDTOO (elem_ref),
+    SMIL_ATTRIBUTES (elem_ref),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_refcontent [] =
 {   { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_refcontent, a_select },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_refcontent, a_transform },
     SVG_XLINK_ATTRIBUTES (elem_refcontent),
     SVG_HTML_ATTRIBUTES (elem_refcontent),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_region [] =
+{   { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_region, a_background_colour, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_region, a_fit, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_region, a_height, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_region, a_left, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_region, a_skip_content, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_region, a_title, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_region, a_top, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_region, a_width, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_region, a_z_index, EP_SMIL },
+    SMIL_ATTRIBUTES (elem_region),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_reln [] =
@@ -106,6 +129,15 @@ hav_t havt_render [] =
 hav_t havt_root [] =
 {   HTML3_CLID_ATTRIBUTES (elem_root),
     MATH3_DEFS_ATTRIBUTES (elem_root),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_root_layout [] =
+{   { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_root_layout, a_background_colour, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_root_layout, a_height, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_root_layout, a_skip_content, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_root_layout, a_title, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_root_layout, a_width, EP_SMIL },
+    SMIL_ATTRIBUTES (elem_root_layout),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_rp [] =

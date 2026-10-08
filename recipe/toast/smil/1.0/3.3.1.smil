@@ -1,0 +1,10 @@
+<smil>
+  <head>
+    <layout>
+      <region id="a" top="5" />
+    </layout>
+  </head>
+  <body>
+    <text region="a" src="text.html" dur="10s" />
+  </body>
+</smil>

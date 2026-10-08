@@ -50,7 +50,7 @@ class page
     microdata_export md_export_;
     microformat_export mf_export_;
     const directory* directory_ = nullptr;
-    bool has_title_ = false, style_css_ = true, check_links_ = true, snippet_ = false, outsider_ = false, dot_css_ = false, dot_vtt_ = false, xxx_ = false;
+    bool has_title_ = false, style_css_ = true, check_links_ = true, snippet_ = false, outsider_ = false, dot_css_ = false, dot_smil_ = false, dot_vtt_ = false, xxx_ = false;
     stats_t stats_;
     ssi_compedium ssi_;
     nitpick nits_;
@@ -113,6 +113,7 @@ public:
     bool style_css () const noexcept { return style_css_; }
     bool dot_css () const noexcept { return dot_css_; }
     bool dot_vtt () const noexcept { return dot_vtt_; }
+    bool dot_smil () const noexcept { return dot_smil_; }
     stats_t& stats () { return stats_; }
     const stats_t& stats () const { return stats_; }
     css_group& css () { return css_; }

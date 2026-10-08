@@ -46,6 +46,7 @@ hav_t havt_a [] =
     { { HTML_2_0, 0, HE_MOZILLA | HE_NETSCAPE }, { HTML_3_2 }, elem_a, a_shape },
     { { HTML_PLUS, HV_NOT2 | HV_NOT32 }, { XHTML_2_0 }, elem_a, a_shape },
     { { HTML_PLUS }, { HTML_PLUS }, elem_a, a_size },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_a, a_show, EP_SMIL },
     { { HTML_PLUS }, { HTML_PLUS }, elem_a, a_style },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_a, a_target, EP_WX },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_a, a_target },
@@ -151,6 +152,17 @@ hav_t havt_altglyphitem [] =
 {   SVG_HTML_ATTRIBUTES (elem_altglyphitem),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_anchor [] =
+{   { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_anchor, a_begin },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_anchor, a_coords },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_anchor, a_end },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_anchor, a_href }, // undefined in the SMIL 1.0 spec's list of ANCHOR attributes, but mentioned in text
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_anchor, a_show },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_anchor, a_skip_content },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_anchor, a_title },
+    SMIL_ATTRIBUTES (elem_anchor),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_and [] =
 {   MATH3_DEFS_ATTRIBUTES (elem_and),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
@@ -220,6 +232,7 @@ hav_t havt_animation [] =
 {   { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_animation, a_externalresourcesrequired },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_animation, a_initialvisibility },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_animation, a_preserveaspectratio },
+    SMIL_MEDOBJ (elem_animation),
     SVG_ANIMATION_TIMING_ATTRIBUTES (elem_animation),
     SVG_BOX_ATTRIBUTES (elem_animation),
     SVG_CONDITIONAL_ATTRIBUTES (elem_animation),
@@ -232,7 +245,7 @@ hav_t havt_animation [] =
 hav_t havt_annotation [] =
 {   { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_annotation, a_cd },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, elem_annotation, a_definitionurl },
-    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_annotation, a_encoding },
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, elem_annotation, a_encoding },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_annotation, a_name },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_annotation, a_src },
     MATH3_STANDARD_ATTRIBUTES (elem_annotation),
@@ -502,6 +515,7 @@ hav_t havt_audio [] =
     { { HTML_JUL07 }, { HTML_DEC08 }, elem_audio, a_start },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_audio, a_type },
     { { HTML_SEP12 }, { HTML_UNDEF }, elem_audio, a_x_webkit_airplay },
+    SMIL_MEDOBJ (elem_audio),
     SVG_ANIMATION_TIMING_ATTRIBUTES (elem_audio),
     SVG_CONDITIONAL_ATTRIBUTES (elem_audio),
     SVG_HTML_ATTRIBUTES (elem_audio),

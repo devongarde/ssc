@@ -791,6 +791,17 @@ e_nit verify_svg_duration (const ::std::string& str) noexcept
                 return nit_svg_duration;
     return nit_free; }
 
+e_nit verify_smil_duration (const ::std::string& str) noexcept
+{   ::std::string::const_iterator i = str.cbegin ();
+    ::std::string::const_iterator e = str.cend ();
+    const int len = GSL_NARROW_CAST < int > (str.length ());
+    int  h = 0, mn = 0, s = 0, ms = 0, c = 0;
+    if (verify_svg_duration (e, i, h, mn, s, ms) != nit_free)
+        if (verify_svg_duration (e, i, mn, s, ms) != nit_free)
+            if (grab_digits < int > (e, i, len, 0, true, c) != nit_free)
+                return nit_smil_clock;
+    return nit_free; }
+
 e_nit verify_coarse_time_tz (const ::std::string& str) noexcept
 {   ::std::string::const_iterator i = str.cbegin ();
     ::std::string::const_iterator e = str.cend ();
@@ -942,6 +953,12 @@ bool verify_svg_duration (nitpick& nits, const html_version& , const ::std::stri
 {   const e_nit n = verify_svg_duration (s);
     if (n == nit_free) return true;
     nits.pick (n, ed_svg_1_1, "19.2.8.1 Clock values", es_error, ec_type, quote (s), " is an invalid duration");
+    return false; }
+
+bool verify_smil_duration (nitpick& nits, const html_version& , const ::std::string& s)
+{   const e_nit n = verify_smil_duration (s);
+    if (n == nit_free) return true;
+    nits.pick (n, ed_smil_1, "4.2.1 The par Element Attribute Values", es_error, ec_type, quote (s), " is an invalid smil clock value");
     return false; }
 
 time_t string_to_time (nitpick& nits, const ::std::string& s)

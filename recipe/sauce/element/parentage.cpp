@@ -70,6 +70,8 @@ parentage parent_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_a },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_a, elem_a, DENY },
     { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_a, elem_altglyphdef },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_a, elem_animation, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_a, elem_audio, EP_SMIL },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_clippath },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_colour_profile },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_cursor },
@@ -79,14 +81,23 @@ parentage parent_table [] =
     { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_a, elem_foreignobject },
     { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_a, elem_iframe },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_image },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_a, elem_img, EP_SMIL },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_marker },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_mask },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_a, elem_par, EP_SMIL },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_pattern },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_a, elem_ref, EP_SMIL },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_script },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_a, elem_seq, EP_SMIL },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_style },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_switch },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_a, elem_switch, EP_SMIL },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_text },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_a, elem_text, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_a, elem_textstream, EP_SMIL },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_view },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_a, elem_video, EP_SMIL },
+    { { HTML_MATH1 }, { HTML_UNDEF }, elem_a, elem_undefined, 0, EF_M_PRESEXPR },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_a, elem_undefined, 0, EF_SVG_DESC | EF_SVG_ANIM | EF_SVG_SHAPE | EF_SVG_STR | EF_SVG_PSGRAD },
     { { HTML_SVG12, 0, HE_SVG_12 }, { XHTML_2_0 }, elem_a, elem_undefined, EP_5_TRANSPARENT },
     { { HTML_4_0 }, { XHTML_1_1 }, elem_abbr, elem_undefined, 0, EF_4_INLINE },
@@ -146,6 +157,7 @@ parentage parent_table [] =
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_animatetransform, elem_script },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_animatetransform, elem_switch },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_animatetransform, elem_undefined, 0, EF_SVG_DESC },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_animation, elem_anchor, EP_SMIL },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, elem_annotation_xml, elem_undefined },
     { { HTML_3_2 }, { HTML_JUN22 }, elem_applet, elem_param },
     { { HTML_3_2 }, { HTML_3_2 }, elem_applet, elem_undefined, 0, EF_32_TEXTIN },
@@ -232,6 +244,7 @@ parentage parent_table [] =
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_summary, elem_div },
     { { HTML_ATOM }, { HTML_UNDEF }, elem_atom_title, elem_div },
     { { HTML_3_0 }, { HTML_3_0 }, elem_au, elem_undefined, 0, EF_3_TEXTIN },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_audio, elem_anchor, EP_SMIL },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_audio, elem_discard },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_audio, elem_handler },
     { { HTML_JUL10, 0, HE_NOT_SVG_12 }, { HTML_UNDEF }, elem_audio, elem_track },
@@ -271,6 +284,8 @@ parentage parent_table [] =
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_blockcode, elem_undefined, 0, EF_X2_FLOWLIST },
     { { HTML_1_0 }, { HTML_1_0 }, elem_body, elem_a },
     { { HTML_2_0, HV_NOT30 }, { HTML_3_2 }, elem_body, elem_address },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_body, elem_animation, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_body, elem_audio, EP_SMIL },
     { { HTML_3_0 }, { HTML_3_0 }, elem_body, elem_banner },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_body, elem_del },
     { { HTML_2_0 }, { HTML_2_0 }, elem_body, elem_dl },
@@ -282,7 +297,14 @@ parentage parent_table [] =
     { { HTML_4_0 }, { XHTML_2_0 }, elem_body, elem_ins },
     { { XHTML_1_0 }, { XHTML_2_0 }, elem_body, elem_math },
     { { HTML_2_0 }, { HTML_2_0 }, elem_body, elem_p },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_body, elem_par, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_body, elem_ref, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_body, elem_seq, EP_SMIL },
     { { HTML_3_0 }, { HTML_3_0 }, elem_body, elem_spot },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_body, elem_switch, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_body, elem_text, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_body, elem_textstream, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_body, elem_video, EP_SMIL },
     { { HTML_1_0 }, { HTML_1_0 }, elem_body, elem_undefined, 0, EF_EMPH | EF_HEAD | EF_PRE | EF_BODY | EF_LL },
     { { HTML_PLUS }, { HTML_PLUS }, elem_body, elem_undefined, 0, EF_HEAD | EF_BLOK | EF_LIST | EF_PARA | EF_TEXT | EF_MISC | EF_EMPH },
     { { HTML_2_0 }, { HTML_2_0 }, elem_body, elem_undefined, 0, EF_HEAD | EF_TEXT | EF_PHRASE | EF_FONT | EF_BLOK | EF_BODY | EF_LIT | EF_LIST },
@@ -526,6 +548,7 @@ parentage parent_table [] =
     { { HTML_RDF10 }, { HTML_UNDEF }, elem_faux_document, elem_rdf_rdf },
     { { HTML_RSL }, { HTML_UNDEF }, elem_faux_document, elem_rsl },
     { { HTML_RSS }, { HTML_UNDEF }, elem_faux_document, elem_rss },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_faux_document, elem_smil },
     { { HTML_SVG10 }, { HTML_UNDEF }, elem_faux_document, elem_svg },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_faux_document, elem_math },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_faux_document, elem_faux_xml },
@@ -796,6 +819,8 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_glyph, elem_undefined, 0, EF_SVG_DESC },
     { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, elem_glyphref, elem_glyphref },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_glyphref, elem_altglyphitem },
+    { { HTML_GML }, { HTML_UNDEF }, elem_gml_linearring, elem_gml_poslist },
+    { { HTML_GML }, { HTML_UNDEF }, elem_gml_linestring, elem_gml_poslist },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_h, elem_undefined, 0, EF_X2_TEXT },
     { { HTML_PLUS }, { HTML_PLUS }, elem_h1, elem_undefined, 0, EF_EMPH },
     { { HTML_2_0 }, { HTML_2_0 }, elem_h1, elem_undefined, 0, EF_TEXT | EF_PHRASE | EF_FONT },
@@ -837,9 +862,11 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_handler, elem_switch },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_handler, elem_undefined, 0, EF_SVG_DESC },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_head, elem_action },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_head, elem_layout, EP_SMIL },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_head, elem_listener },
     { { HTML_3_0 }, { HTML_3_0 }, elem_head, elem_range },
     { { HTML_JAN05 }, { HTML_OCT07 }, elem_head, elem_noscript, DENY },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_head, elem_switch, EP_SMIL },
     { { HTML_1_0 }, { HTML_UNDEF }, elem_head, elem_undefined, 0, EF_METADATA },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_header, elem_footer, DENY },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_header, elem_header, DENY },
@@ -889,6 +916,7 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_image, elem_switch },
     { { HTML_PLUS }, { HTML_PLUS }, elem_image, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_image, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_img, elem_anchor, EP_SMIL },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_img, elem_caption },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_img, elem_undefined, 0, EF_X2_TEXT },
     { { HTML_3_0 }, { HTML_3_0 }, elem_ins, elem_undefined, 0, EF_3_TEXTIN },
@@ -903,17 +931,19 @@ parentage parent_table [] =
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_kbd, elem_undefined, 0, EF_X2_TEXT },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_kbd, elem_undefined, 0, EF_5_PHRASE },
     { { HTML_PLUS }, { HTML_PLUS }, elem_l, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
-    { { HTML_5_2 }, { HTML_UNDEF }, elem_lambda, elem_undefined, 0, EF_M_DQ },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_lambda, elem_undefined, 0, EF_M_CONTENTEXPR },
-    { { HTML_3_0 }, { HTML_UNDEF }, elem_lang, elem_undefined, 0, EF_3_TEXTIN },
+    { { XHTML_2_0 }, { XHTML_2_0 }, elem_l, elem_undefined, 0, EF_X2_TEXT },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_label, elem_label, DENY },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_label, elem_undefined, 0, EF_4_INLINE },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_label, elem_undefined, 0, EF_5_PHRASE },
+    { { HTML_5_2 }, { HTML_UNDEF }, elem_lambda, elem_undefined, 0, EF_M_DQ },
+    { { XHTML_1_0 }, { HTML_UNDEF }, elem_lambda, elem_undefined, 0, EF_M_CONTENTEXPR },
+    { { HTML_3_0 }, { HTML_UNDEF }, elem_lang, elem_undefined, 0, EF_3_TEXTIN },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_layout, elem_region, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_layout, elem_root_layout, EP_SMIL },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_legend, elem_undefined, 0, EF_4_INLINE },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_legend, elem_undefined, 0, EF_5_PHRASE },
     { { HTML_5_2, HV_W3 }, { HTML_5_3 }, elem_legend, elem_undefined, 0, EF_HEAD },
     { { HTML_JUL20 }, { HTML_UNDEF }, elem_legend, elem_undefined, 0, EF_HEAD },
-    { { XHTML_2_0 }, { XHTML_2_0 }, elem_l, elem_undefined, 0, EF_X2_TEXT },
     { { HTML_PLUS }, { HTML_2_0 }, elem_li, elem_dl },
     { { HTML_PLUS }, { HTML_2_0 }, elem_li, elem_p },
     { { HTML_TAGS }, { HTML_1_0 }, elem_li, elem_undefined, EP_UNCLOSED12 },
@@ -944,8 +974,6 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_lineargradient, elem_switch },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_lineargradient, elem_undefined, 0, EF_SVG_DESC },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_lineargradient, elem_undefined, 0, EF_SVG_DESC | EF_SVG_ANIM },
-    { { HTML_GML }, { HTML_UNDEF }, elem_gml_linearring, elem_gml_poslist },
-    { { HTML_GML }, { HTML_UNDEF }, elem_gml_linestring, elem_gml_poslist },
     { { HTML_5_2 }, { HTML_UNDEF }, elem_list, elem_undefined, 0, EF_M_DQ },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_list, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_listing, elem_undefined },
@@ -1093,6 +1121,7 @@ parentage parent_table [] =
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_mpath, elem_undefined, 0, EF_SVG_DESC },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_mphantom, elem_undefined, 0, EF_M_PRESEXPR },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_mroot, elem_undefined, 0, EF_M_PRESEXPR },
+    { { HTML_MATH1 }, { HTML_UNDEF }, elem_mrow, elem_a },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_mrow, elem_undefined, 0, EF_M_PRESEXPR },
     { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_backlinks, elem_mrss_backlink, EP_MRSS },
     { { HTML_MRSS, 0, 0, 0, 0, H4_MRSS }, { HTML_UNDEF }, elem_mrss_comments, elem_mrss_comment, EP_MRSS },
@@ -1252,6 +1281,17 @@ parentage parent_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_p, elem_undefined, 0, EF_5_PHRASE },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_page, elem_undefined, 0, EF_SVG_GRAPH },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_pageset, elem_page },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, elem_a, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, elem_animation, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, elem_audio, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, elem_img, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, elem_par, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, elem_ref, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, elem_seq, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, elem_switch, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, elem_text, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, elem_textstream, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_par, elem_video, EP_SMIL },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_pattern, elem_a },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_pattern, elem_altglyphdef },
     { { HTML_SVG20, 0, HE_SVG_20 }, { HTML_UNDEF }, elem_pattern, elem_audio },
@@ -1404,6 +1444,7 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_rect, elem_switch },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_rect, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_rect, elem_undefined, 0, EF_SVG_PSGRAD },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_ref, elem_anchor, EP_SMIL },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_refcontent, elem_undefined, 0, EF_SVG_DESC },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_reln, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_PLUS }, { HTML_PLUS }, elem_removed, elem_undefined, 0, EF_TEXT | EF_MISC | EF_EMPH },
@@ -1584,6 +1625,17 @@ parentage parent_table [] =
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_semantics, elem_annotation },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_semantics, elem_annotation_xml },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_semantics, elem_undefined, 0, EF_M_CONTENTEXPR },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, elem_a, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, elem_animation, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, elem_audio, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, elem_img, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, elem_par, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, elem_ref, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, elem_seq, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, elem_switch, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, elem_text, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, elem_textstream, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, elem_video, EP_SMIL },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_set, elem_handler },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_set, elem_script },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_set, elem_switch },
@@ -1596,6 +1648,8 @@ parentage parent_table [] =
     { { HTML_3_2 }, { HTML_3_2 }, elem_small, elem_undefined, 0, EF_32_TEXTIN },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_small, elem_undefined, 0, EF_4_INLINE },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_small, elem_undefined, 0, EF_5_PHRASE },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_smil, elem_body },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_smil, elem_head },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_solidcolour, elem_discard },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_solidcolour, elem_handler },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_solidcolour, elem_undefined, 0, EF_SVG_DESC | EF_SVG_ANIM },
@@ -1673,17 +1727,29 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12_20 }, { HTML_UNDEF }, elem_svg, elem_video },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_svg, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE | EF_SVG_PSGRAD | EF_SVG_STR },
     { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_switch, elem_a },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_switch, elem_a, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_switch, elem_animation, EP_SMIL },
     { { HTML_SVG12, 0, HE_SVG_12_20 }, { HTML_UNDEF }, elem_switch, elem_audio },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_switch, elem_audio, EP_SMIL },
     { { HTML_SVG20, 0, HE_SVG_20 }, { HTML_UNDEF }, elem_switch, elem_canvas },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_switch, elem_foreignobject },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_switch, elem_g },
     { { HTML_SVG20, 0, HE_SVG_20 }, { HTML_UNDEF }, elem_switch, elem_iframe },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_switch, elem_image },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_switch, elem_img, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_switch, elem_layout, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_switch, elem_par, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_switch, elem_ref, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_switch, elem_seq, EP_SMIL },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_switch, elem_svg },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_switch, elem_switch },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_switch, elem_switch, EP_SMIL },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_switch, elem_text },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_switch, elem_text, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_switch, elem_textstream, EP_SMIL },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_switch, elem_use },
     { { HTML_SVG12, 0, HE_SVG_12_20 }, { HTML_UNDEF }, elem_switch, elem_video },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_switch, elem_video, EP_SMIL },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_switch, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_DESC | EF_SVG_SHAPE },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_switch, elem_undefined, 0, EF_SVG_ANIM | EF_SVG_SHAPE },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_switch, elem_undefined },
@@ -1764,6 +1830,7 @@ parentage parent_table [] =
     { { HTML_JUL13 }, { HTML_DEC16 }, elem_template, elem_undefined, 0, EF_METADATA | EF_5_FLOW | EF_5_SCRIPT },
     { { HTML_JAN17 }, { HTML_UNDEF }, elem_template, elem_undefined },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_text, elem_a },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_text, elem_anchor, EP_SMIL },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_text, elem_xa },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_text, elem_clippath },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_text, elem_discard },
@@ -1798,6 +1865,7 @@ parentage parent_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_textpath, elem_tspan },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_textpath, elem_undefined, 0, EF_SVG_DESC },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_textpath, elem_undefined, 0, EF_SVG_PSGRAD },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_textstream, elem_anchor, EP_SMIL },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_tfoot, elem_tr },
     { { HTML_JUL13 }, { HTML_UNDEF }, elem_tfoot, elem_undefined, 0, EF_5_SCRIPT },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_th, elem_footer, DENY },
@@ -1896,6 +1964,7 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vectoreffect, elem_vestrokepath },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vectoreffect, elem_veunion },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_vepath, elem_vepathref },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_video, elem_anchor, EP_SMIL },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_video, elem_discard },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_video, elem_handler },
     { { HTML_JUL07, 0, HE_NOT_SVG_12 }, { HTML_UNDEF }, elem_video, elem_source },
@@ -2011,7 +2080,8 @@ bool is_permitted_parent (nitpick& nits, const html_version& v, const elem& self
         return false; }
     if (is_permitted_parent_child (nits, v, self, self.get (), parent)) return true;
     if (is_permitted_parent_child (nits, v, self, elem_undefined, parent)) return true;
-    for (parentage_t::const_iterator i = parents.find (parent_key (elem_undefined, self.get ())); (i != parents.cend ()) && (i -> second.child_ == self); ++i)
+    const auto range = parents.equal_range (parent_key (elem_undefined, self.get ()));
+    for (parentage_t::const_iterator i = range.first; i != range.second; ++i)
         if (does_apply < html_version > (v, i -> second.first_, i -> second.last_))
             if ((i -> second.categories_ == 0) || ((self.categories () & i -> second.categories_) != 0))
             {   if ((i -> second.flags_ & DENY) == 0) return true;
@@ -2029,7 +2099,8 @@ bool is_permitted_parent (const html_version& v, const elem& self, const elem& p
     if ((self.flags () & EP_TOP) != 0) return ((parent.flags () & EP_HOLDS_ALL) != 0);
     if (is_permitted_parent_child (v, self, self.get (), parent)) return true;
     if (is_permitted_parent_child (v, self, elem_undefined, parent)) return true;
-    for (parentage_t::const_iterator i = parents.find (parent_key (elem_undefined, self.get ())); (i != parents.cend ()) && (i -> second.child_ == self); ++i)
+    const auto range = parents.equal_range (parent_key (elem_undefined, self.get ()));
+    for (parentage_t::const_iterator i = range.first; i != range.second; ++i)
         if (does_apply < html_version > (v, i -> second.first_, i -> second.last_))
             if ((i -> second.categories_ == 0) || ((self.categories () & i -> second.categories_) != 0))
                 return ((i -> second.flags_ & DENY) == 0);
@@ -2045,12 +2116,15 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
         case elem_rdf_rdf :
         case elem_rsl :
         case elem_rss :
+        case elem_smil :
             return elem_faux_document;
         case elem_head :
         case elem_body :
             if (v == html_plus) return elem_htmlplus;
+            if (v == html_smil_1_0) return elem_smil;
             return elem_html;
         case elem_a :
+            if (v.smil ()) return elem_body;
             return elem_p;
         case elem_above :
         case elem_apply :
@@ -2253,6 +2327,8 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
         case elem_altglyphitem :
         case elem_glyphref :
             return elem_altglyphdef;
+        case elem_anchor :
+            return elem_ref;
         case elem_animate :
         case elem_animatecolour :
         case elem_animatemotion :
@@ -2278,7 +2354,6 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
         case elem_rect :
         case elem_refcontent :
         case elem_solidcolour :
-        case elem_switch :
         case elem_transition :
         case elem_vectoreffect :
         case elem_view :
@@ -2458,6 +2533,8 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
             return elem_form;
         case elem_item :
             return elem_row;
+        case elem_layout :
+            return elem_head;
         case elem_li :
             return elem_ul;
         case elem_mh :
@@ -2552,6 +2629,9 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
         case elem_rdf_parsetype :
         case elem_rdf_resource :
             return elem_rdf_rdf;
+        case elem_region :
+        case elem_root_layout :
+            return elem_layout;
         case elem_rsl_amount :
         case elem_rsl_custom :
         case elem_rsl_standard :
@@ -2638,6 +2718,9 @@ e_element default_parent (const html_version& v, const elem& self, const elem& c
             return elem_button;
         case elem_source :
             return elem_video;
+        case elem_switch :
+            if (v.smil ()) return elem_body;
+            return elem_svg;
         case elem_t :
             if (v.is_5 ()) return elem_body;
             return elem_math;

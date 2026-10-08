@@ -1,8 +1,5 @@
 -Y 1 -7 original -f ../toast/css/4-writing/css.conf
 
-PASS ../toast/css/4-writing/css-3.css
-1 namespace_unknown
-
 PASS ../toast/css/4-writing/css-2.html
 2 naughty_lang
 16 invalid_element_version invalid_element_version

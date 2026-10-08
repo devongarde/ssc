@@ -23,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 
 bool test_reals (nitpick& nits, const html_version& v, const ::std::string& s, const ::std::size_t expected, const bool pts, const int max)
-{   //vstr_t args (split_by_comma_space (trim_the_lot_off (s)));
-    vstr_t args (uq2 (s, ( UQ_ROUND | UQ_TRIM | BS_NUMERIC ), ", \n")); 
+{   vstr_t args (uq2 (s, ( UQ_ROUND | UQ_TRIM | BS_NUMERIC ), ", \n")); 
     if (expected == 0)
     {   if (pts)
             if (args.size () % 2 != 0)

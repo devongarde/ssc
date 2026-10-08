@@ -149,7 +149,7 @@ PASS ../toast/mdn/function/hypot.html
 
 PASS ../toast/mdn/function/if.html
 2 naughty_lang
-5 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value css_syntax property unrecognised_value unrecognised_value unrecognised_value css_value_fn unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
+5 css_syntax property css_if css_value_fn
 
 PASS ../toast/mdn/function/image.html
 2 naughty_lang

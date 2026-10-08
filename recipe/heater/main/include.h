@@ -61,8 +61,8 @@ z
 
 #define VERSION_MAJOR   0
 #define VERSION_MINOR   2
-#define VERSION_RELEASE 36
-#define VERSION_STRING  "0.2.36"
+#define VERSION_RELEASE 37
+#define VERSION_STRING  "0.2.37"
 
 #define NBSP "&nbsp;"
 #define BUILD_YEAR "2026"
@@ -93,7 +93,6 @@ z
 #define HOMAGE
 
 #ifdef __clang__
-#define CPP17
 #pragma clang diagnostic push
 #pragma GCC diagnostic ignored "-Wall"
 #pragma GCC diagnostic ignored "-Wextra"
@@ -103,7 +102,6 @@ z
 #define PROCSIZE "64"
 #define STR_IT_BYTE
 #elif defined (__GNUC__)
-#define CPP17
 #define COMPILER "g"
 #define COMPNAME "gcc"
 #define MSVC_NOEXCEPT
@@ -131,9 +129,7 @@ z
 #define PROCSIZE "64"
 #endif // WIN32
 
-#if _MSVC_LANG == 201703L
-#define CPP17
-#elif _MSVC_LANG == 202002L 
+#if _MSVC_LANG == 202002L 
 #define CPP20
 #else // _MSVC_LANG
 #error ssc prefers C++ 17 or C++ 20.
@@ -656,6 +652,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define CSS_TYPE "text/css"
 #define HTML_TYPE "text/html"
 #define PLAIN_TYPE "text/plain"
+#define SMIL_TYPE "text/smil-basic-layout"
 
 #define EXPORT_EXTENSION ".json"
 #define NONE "none"
@@ -985,6 +982,7 @@ typedef ::std::vector < bool > faux_vb_t;
 #define JSONLD_EXT                "jld"
 #define RSL_EXT                   "rsl"
 #define RSS_EXT                   "rss"
+#define SMIL_EXT                  "smil"
 #define VTT_EXT                   "vtt"
 #define XHTML_EXT                 "xhtml"
 

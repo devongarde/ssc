@@ -482,13 +482,31 @@ int tokens_find (const vtok_t& vt, const vctk_t& t, const int from, const int to
         if (prev != nullptr) *prev = i; }
     return -1; }
 
-int token_find (const vtok_t& vt, const e_token t, const int from, const int to, int* prev)
+int token_find (const vtok_t& vt, const e_token t, const int from, const int to, int* prev, const bool bracketed)
 {   PRESUME ((from >= 0) && (from < GSL_NARROW_CAST < int > (vt.size ())), __FILE__, __LINE__);
     PRESUME ((from <= to) || (to < 0), __FILE__, __LINE__);
+    int depth = 0;
     if (prev != nullptr) *prev = -1;
     for (int i = from; (i >= 0) && (i < GSL_NARROW_CAST < int > (vt.size ())); i = next_token_at (vt, i, to))
     {   if ((to >= 0) && (i > to)) break;
-        else if (vt.at (i).t_ == t) return i;
+        else switch (vt.at (i).t_)
+        {   case ct_round_brac :
+            case ct_square_brac :
+            case ct_curly_brac :
+            case ct_vu5_curly_brac :
+                if ((depth == 0) && (vt.at (i).t_ == t)) return i;
+                if (bracketed) depth += 1;
+                break;
+            case ct_round_ket :
+            case ct_square_ket :
+            case ct_curly_ket :
+            case ct_vu5_curly_ket :
+                if (bracketed && (depth > 0)) depth -= 1;
+                if ((depth == 0) && (vt.at (i).t_ == t)) return i;
+                break;
+            default :
+                if ((depth == 0) && (vt.at (i).t_ == t)) return i;
+                break; }
         if (prev != nullptr) *prev = i; }
     return -1; }
  

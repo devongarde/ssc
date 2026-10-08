@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "compound/compound.h"
 
 bool invalid_context_menu_id (nitpick& nits, const html_version& v, ids_t& ids, element* pe, element* box, const ::std::string& s);
+e_status set_begins_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s, element* box);
 e_status set_clear30_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s, element* box);
 e_status set_css_place_content (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_css_place_items (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
@@ -37,6 +38,7 @@ e_status set_custom_element_value (const e_status es, nitpick& nits, const html_
 e_status set_duration_media_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_enable_background_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_fallback (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s);
+e_status set_rgbfn_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s, element* box);
 e_status set_hidden_ex_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s, element* box);
 e_status set_inputaccept_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s, element* box);
 e_status set_lcrdss_value (nitpick& nits, const html_version& v, const ::std::string& s);
@@ -68,6 +70,13 @@ template < > struct type_master < t_4string_ni > : any_type_or_any_string < t_4s
 
 template < > struct type_master < t_bandwidth > : type_or_string < t_bandwidth, t_real, sz_auto >
 { using type_or_string < t_bandwidth, t_real, sz_auto > :: type_or_string; };
+
+template < > struct type_master < t_begins > : tidy_string < t_begins >
+{   using tidy_string < t_begins > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_colour; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_begins > :: set_value (nits, v, s);
+        tidy_string < t_begins > :: status (set_begins_value (status (), nits, v, s, box ())); } };
 
 template < > struct type_master < t_bools > : type_at_least_one < t_bools, sz_space_char, t_bool >
 { using type_at_least_one < t_bools, sz_space_char, t_bool > :: type_at_least_one; };

@@ -1,0 +1,34 @@
+<smil>
+  <body>
+
+    <video src="http://www.w3.org/CoolStuff">
+  <anchor href="http://www.w3.org/AudioVideo" coords="0%,0%,50%,50%"/>
+  <anchor href="http://www.w3.org/Style" coords="50%,50%,100%,100%"/>
+</video>
+
+<video src="http://www.w3.org/CoolStuff">
+  <anchor href="http://www.w3.org/AudioVideo" begin="0s" end="5s"/>
+  <anchor href="http://www.w3.org/Style" begin="5s" end="10s"/>
+</video>
+
+<a href="http://www.cwi.nl/mm/presentationB#tim">
+  <video id="graph" src="rtsp://foo.com/graph.imf" region="l_window"/>
+</a>
+
+<video src="http://www.w3.org/CoolStuff">
+  <anchor id="joe" begin="0s" end="5s"/>
+  <anchor id="tim" begin="5s" end="10s"/>
+</video>
+
+<a href="http://www.cwi.nl/mm/presentationB#tim">
+  <video id="graph" src="rtsp://foo.com/graph.imf" region="l_window"/>
+</a>
+
+<video src="http://www.w3.org/CoolStuff">
+  <anchor id="joe" begin="0s" end="5s" coords="0%,0%,50%,50%"
+  href="http://www.w3.org/"/>
+  <anchor id="tim" begin="5s" end="10s" coords="0%,0%,50%,50%"
+  href="http://www.w3.org/Tim"/>
+</video>
+  </body>
+</smil>

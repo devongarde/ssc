@@ -15,4 +15,5 @@ PASS ../toast/mdn/list/list-style-position.html
 
 PASS ../toast/mdn/list/list-style-type.html
 2 naughty_lang
+5 css_syntax
 76 use_quote_code

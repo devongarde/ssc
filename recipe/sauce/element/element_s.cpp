@@ -261,6 +261,19 @@ void element::examine_share ()
                     {   pick (nit_bad_share, ed_math_3, "4.2.7.2 An Acyclicity Constraint", es_error, ec_attribute, quote (i), " is recursive");
                         break; } } } } }
 
+void element::examine_smil_alt ()
+{   if ((page_ == nullptr) || (! page_ -> dot_smil ())) return;
+    examine_smil_title ();
+    if (! a_.known (a_title))
+        pick (nit_naughty_alt, ed_smil_1, "Synchronized Multimedia Integration Language (SMIL) 1.0 Specification",
+            es_warning, ec_smil, "Missing ALT attribute: the SMIL specifications strongly recommend its consistent and complete use."); }
+
+void element::examine_smil_title ()
+{   if ((page_ == nullptr) || (! page_ -> dot_smil ())) return;
+    if (! a_.known (a_title))
+        pick (nit_naughty_title, ed_smil_1, "Synchronized Multimedia Integration Language (SMIL) 1.0 Specification",
+            es_warning, ec_smil, "Missing TITLE attribute: the SMIL specifications strongly recommend its consistent and complete use."); }
+
 void element::examine_source ()
 {   test_no_role_no_aria ();
     const bool has_src = a_.known (a_src);
@@ -383,7 +396,8 @@ void element::examine_svg ()
         default : break; } }
 
 void element::examine_switch ()
-{   if (! has_child ())
+{   if (node_.id ().is_smil ()) { examine_smil_title (); return; }
+    if (! has_child ())
     {   pick (nit_switch, es_comment, ec_element, "bit of a useless <SWITCH>, that"); return; }
     if (node_.version ().is_svg_12 ()) return;
     const flags_t cat = (elem :: categories (parent_ -> tag ()) & EF_SVG_CATMASK);

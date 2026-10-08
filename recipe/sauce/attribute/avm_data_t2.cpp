@@ -70,7 +70,10 @@ hav_t havt_thead [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_think [] =
-{   HTML3_CLID_ATTRIBUTES (elem_think),
+{   { { HTML_JAN25 }, { HTML_UNDEF }, elem_think, a_datafld },
+    { { HTML_JAN25 }, { HTML_UNDEF }, elem_think, a_dataformatas },
+    { { HTML_JAN25 }, { HTML_UNDEF }, elem_think, a_style },
+    HTML3_CLID_ATTRIBUTES (elem_think),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_think),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 

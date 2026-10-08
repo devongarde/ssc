@@ -450,6 +450,9 @@ template < > struct type_master < t_mrss_state > : three_value < t_mrss_state, e
 template < > struct type_master < t_mtt > : three_value < t_mtt, e_mtt, sz_medium, sz_thick, sz_thin >
 { using three_value < t_mtt, e_mtt, sz_medium, sz_thick, sz_thin > :: three_value; };
 
+template < > struct type_master < t_npr > : three_value < t_npr, e_npr, sz_new, sz_pause, sz_replace >
+{ using three_value < t_npr, e_npr, sz_new, sz_pause, sz_replace > :: three_value; };
+
 template < > struct type_master < t_nsd > : three_value < t_nsd, e_nsd, sz_none, sz_spaced, sz_dashed >
 { using three_value < t_nsd, e_nsd, sz_none, sz_spaced, sz_dashed > :: three_value; };
 
@@ -512,6 +515,9 @@ template < > struct type_master < t_ssi_echo > : three_value < t_ssi_echo, e_ssi
 
 template < > struct type_master < t_ssi_include > : three_value < t_ssi_include, e_ssi_include, sz_file, sz_onerror, sz_virtual >
 { using three_value < t_ssi_include, e_ssi_include, sz_file, sz_onerror, sz_virtual > :: three_value; };
+
+template < > struct type_master < t_svg_begin_fn > : three_value < t_svg_begin_fn, e_svg_begin_fn, sz_accesskey, sz_repeat, sz_wallclock >
+{ using three_value < t_svg_begin_fn, e_svg_begin_fn, sz_accesskey, sz_repeat, sz_wallclock > :: three_value; };
 
 template < > struct type_master < t_svg_direction > : three_value < t_svg_direction, e_svg_direction, sz_ltr, sz_rtl, sz_inherit >
 { using three_value < t_svg_direction, e_svg_direction, sz_ltr, sz_rtl, sz_inherit > :: three_value; };

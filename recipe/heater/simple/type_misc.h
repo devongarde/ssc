@@ -35,6 +35,10 @@ bool set_coords_value (nitpick& nits, const html_version& v, const ::std::string
 bool set_exportpart_value (nitpick& nits, const html_version& v, const vstr_t& s, element* box);
 bool set_imgsizes_value (nitpick& nits, const html_version& v, const ::std::string& s);
 bool set_keychar_value (nitpick& nits, const html_version& v, const ::std::string& s);
+bool set_smilclip_value (nitpick& nits, const html_version& v, const ::std::string& s);
+bool set_smilendsync_value (nitpick& nits, const html_version& v, const ::std::string& s, ::std::string& ref);
+bool set_smilmoment_value (nitpick& nits, const html_version& v, const ::std::string& s, ::std::string& ref);
+e_status set_smilscreensize_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status check_fediverse_account (nitpick& nits, const html_version& v, const ::std::string& s);
 
 template < > struct type_master < t_arxiv > : public tidy_string < t_arxiv >
@@ -438,6 +442,53 @@ template < > struct type_master < t_semitone > : type_master < t_real >
         {   type_master < t_real > :: set_value (nits, v, ss.substr (0, ss.length () - 2));
             if (good ()) return; }
         type_master < t_real > :: status (s_invalid); } };
+
+template < > struct type_master < t_smilclip > : tidy_string < t_smilclip >
+{   using tidy_string < t_smilclip > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_smilclip > :: set_value (nits, v, s);
+        const ::std::string& ss = trim_the_lot_off (tidy_string < t_smilclip > :: get_string ());
+        if (tidy_string < t_smilclip > :: empty ())
+            nits.pick (nit_nuts, es_error, ec_type, "an SMIL clip cannot be empty");
+        else if (tidy_string < t_smilclip > :: good ())
+            if (set_smilclip_value (nits, v, ss)) return;
+    tidy_string < t_smilclip > :: status (s_invalid); } };
+
+template < > struct type_master < t_smilendsync > : tidy_string < t_smilendsync >
+{   ::std::string ref_;
+    using tidy_string < t_smilendsync > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_smilendsync > :: set_value (nits, v, s);
+        const ::std::string& ss = trim_the_lot_off (tidy_string < t_smilendsync > :: get_string ());
+        if (tidy_string < t_smilendsync > :: empty ())
+            nits.pick (nit_nuts, es_error, ec_type, "ENDSYNC cannot be empty");
+        else if (tidy_string < t_smilendsync > :: good ())
+            if (set_smilendsync_value (nits, v, ss, ref_)) return;
+    tidy_string < t_smilendsync > :: status (s_invalid); }
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* box)
+    {   if (! good () || (box == nullptr)) return false;
+        return ! test_value < t_idref > (nits, v, ref_); } };
+
+template < > struct type_master < t_smilmoment > : tidy_string < t_smilmoment >
+{   ::std::string ref_;
+    using tidy_string < t_smilmoment > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_smilmoment > :: set_value (nits, v, s);
+        const ::std::string& ss = trim_the_lot_off (tidy_string < t_smilmoment > :: get_string ());
+        if (tidy_string < t_smilmoment > :: empty ())
+            nits.pick (nit_nuts, es_error, ec_type, "Neither BEGIN nor END can be empty");
+        else if (tidy_string < t_smilmoment > :: good ())
+            if (set_smilmoment_value (nits, v, ss, ref_)) return;
+        tidy_string < t_smilmoment > :: status (s_invalid); }
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* box)
+    {   if (! good () || (box == nullptr)) return false;
+        return ! test_value < t_idref > (nits, v, ref_); } };
+
+template < > struct type_master < t_smilscreensize > : tidy_string < t_smilscreensize >
+{   using tidy_string < t_smilscreensize > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_smilscreensize > :: set_value (nits, v, s);
+        tidy_string < t_smilscreensize > :: status (set_smilscreensize_value (nits, v, tidy_string < t_smilscreensize > :: get_string ())); } };
 
 template < > struct type_master < t_sym > : public tidy_string < t_sym >
 {   using tidy_string < t_sym > :: tidy_string;

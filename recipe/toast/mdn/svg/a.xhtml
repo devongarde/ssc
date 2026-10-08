@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>MDN SVG a tests</title>
+<style>
+/* As SVG does not provide a default visual style for links,
+   it's considered best practice to add some */
+
+@namespace svg url("http://www.w3.org/2000/svg");
+/* Necessary to select only SVG <a> elements, and not also HTML's.
+   See warning below */
+
+svg|a:link,
+svg|a:visited {
+  cursor: pointer;
+}
+
+svg|a text,
+text svg|a {
+  fill: blue; /* Even for text, SVG uses fill over color */
+  text-decoration: underline;
+}
+
+svg|a:hover,
+svg|a:active {
+  outline: dotted 1px blue;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>MDN SVG a Tests</h1>
+
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- A link around a shape -->
+  <a href="/docs/Web/SVG/Reference/Element/circle">
+    <circle cx="50" cy="40" r="35" />
+  </a>
+
+  <!-- A link around a text -->
+  <a href="/docs/Web/SVG/Reference/Element/text">
+    <text x="50" y="90" text-anchor="middle">&lt;circle&gt;</text>
+  </a>
+</svg>
+
+</body>
+</html>

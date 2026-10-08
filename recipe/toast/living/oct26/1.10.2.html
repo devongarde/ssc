@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <title>1.10.2</title>
+ </head>
+ <body>
+<p>This <em>is <strong>correct</strong>.</em></p>
+
+<a href="demo.html">simple</a>
+
+<!-- empty attributes -->
+<input name=address disabled>
+<input name=address disabled="">
+
+<!-- attributes with a value -->
+<input name=address maxlength=200>
+<input name=address maxlength='200'>
+<input name=address maxlength="200">
+
+<form name="main">
+ Result: <output name="result"></output>
+ <script>
+  document.forms.main.elements.result.value = 'Hello World';
+ </script>
+</form>
+
+<ul>
+ <li><a href="message.cgi?say=Hello">Say Hello</a>
+ <li><a href="message.cgi?say=Welcome">Say Welcome</a>
+ <li><a href="message.cgi?say=Kittens">Say Kittens</a>
+</ul>
+
+<img src="games.png" alt="Games" onload="gamesLogoHasLoaded(event)">
+
+<script>
+ var img = new Image();
+ img.src = 'games.png';
+ img.alt = 'Games';
+ img.onload = gamesLogoHasLoaded;
+ // img.addEventListener('load', gamesLogoHasLoaded, false); // would work also
+</script>
+
+ </body>
+</html>

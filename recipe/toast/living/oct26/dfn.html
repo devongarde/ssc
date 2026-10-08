@@ -1,0 +1,25 @@
+﻿<!doctype html>
+<html lang=en>
+ <head>
+  <title>dfn</title>
+ </head>
+
+<body>
+  <h1>dfn</h1>
+
+<p>The <dfn><abbr title="Garage Door Opener">GDO</abbr></dfn>
+is a device that allows off-world teams to open the iris.</p>
+<!-- ... later in the document: -->
+<p>Teal'c activated his <abbr title="Garage Door Opener">GDO</abbr>
+and so Hammond ordered the iris to be opened.</p>
+
+With the addition of an a element, the reference can be made explicit:
+
+<p>The <dfn id=gdo><abbr title="Garage Door Opener">GDO</abbr></dfn>
+is a device that allows off-world teams to open the iris.</p>
+<!-- ... later in the document: -->
+<p>Teal'c activated his <a href=#gdo><abbr title="Garage Door Opener">GDO</abbr></a>
+and so Hammond ordered the iris to be opened.</p>
+
+</body>
+</html>

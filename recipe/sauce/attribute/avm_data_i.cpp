@@ -149,6 +149,7 @@ hav_t havt_img [] =
     { { HTML_2_0, HV_RFC_1942 }, { HTML_2_0 }, elem_img, a_valign },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_img, a_vspace },
     { { HTML_3_0 }, { HTML_UNDEF }, elem_img, a_width, EP_WX },
+    SMIL_MEDOBJ (elem_img),
     HTMLPLUS_ATTRIBUTES (elem_img),
     HTML23_CLID_ATTRIBUTES (elem_img),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_img),

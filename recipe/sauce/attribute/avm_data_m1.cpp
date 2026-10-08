@@ -203,6 +203,7 @@ hav_t havt_meta [] =
     { { HTML_JUL21 }, { HTML_UNDEF }, elem_meta, a_media },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_meta, a_name },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_meta, a_scheme },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_meta, a_skip_content, EP_SMIL },
     HTML23_CLID_ATTRIBUTES (elem_meta),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_meta),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

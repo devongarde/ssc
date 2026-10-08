@@ -40,7 +40,7 @@ inline ::std::string tkn_rpt (const token_t& t)
 { return tkn_rpt (t.t_, t.val_); }
 ::std::string assemble_string (vtok_t& vt, const int from, const int to = -1, const bool inclusive = false);
 int tokens_find (const vtok_t& vt, const vctk_t& t, const int from = 0, const int to = -1, int* prev = nullptr);
-int token_find (const vtok_t& vt, const e_token t, const int from = 0, const int to = -1, int* prev = nullptr);
+int token_find (const vtok_t& vt, const e_token t, const int from = 0, const int to = -1, int* prev = nullptr, const bool bracketed = false);
 int ident_find (const vtok_t& vt, const ::std::string& kw, const int from = 0, const int to = -1, int* prev = nullptr);
 int first_non_whitespace (const vtok_t& vt, int from, const int to = -1);
 int next_non_whitespace (const vtok_t& vt, const int from, const int to = -1);

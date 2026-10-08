@@ -347,7 +347,9 @@ void element::examine_atom_uri ()
     u.verify (nits (), node_.version (), *this); }
 
 void element::examine_audio ()
-{   if (! node_.version ().is_5 () && ! node_.version ().is_svg_12 ())
+{   if ((page_ != nullptr) && (page_ -> dot_smil ()))
+        examine_smil_alt ();
+    else if (! node_.version ().is_5 () && ! node_.version ().is_svg_12 ())
         pick (nit_invalid_element_version, es_error, ec_element, "<AUDIO> requires HTML 5 or SVG 1.2");
     else
     {   examine_media_element (elem_audio, "4.7.7 The audio element", "<AUDIO>", MIME_AUDIO);

@@ -1,0 +1,24 @@
+﻿a {display:block}
+anchor {display:block}
+animation {display: block;
+    position: absolute}
+body {display: block}
+head {display: none}
+img {display: block;
+    position: absolute}
+layout {display: none}
+meta {display: none}
+par {display: block}
+region {display: none}
+ref {display: block;
+    position: absolute}
+root-layout {display: none}
+seq {display: block}
+smil {display: block}
+switch {display:block}
+text {display: block;
+    position: absolute}
+textstream {display: block;
+    position: absolute}
+video {display: block;
+    position: absolute}

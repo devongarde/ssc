@@ -106,10 +106,19 @@ bool type_master < t_srcset > :: parse (nitpick& nits, const html_version& v, co
                         return false; } }
     return res; }
 
+e_status set_begins_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s, element* box)
+{   VERIFY_NOT_NULL (box, __FILE__, __LINE__);
+    if (es == s_empty) nits.pick (nit_empty, es_error, ec_type, "value required");
+    else if (es == s_good)
+    {   if (box -> node ().id ().is_smil ())
+        {   if (test_value < t_smilmoment > (nits, v, s)) return s_good; }
+        else if (test_value < t_beginvaluelist > (nits, v, s)) return s_good; }
+    return s_invalid; }
+
 e_status set_clear30_value (const e_status es, nitpick& nits, const html_version& v, const ::std::string& s, element* box)
 {   VERIFY_NOT_NULL (box, __FILE__, __LINE__);
     if (es == s_empty) nits.pick (nit_empty, es_error, ec_type, "CLEAR requires a value");
-    else if (es == s_good )
+    else if (es == s_good)
     {   vstr_t args (split_by_space (s));
         PRESUME (args.size () > 0, __FILE__, __LINE__);
         ::std::string::size_type start = 0;

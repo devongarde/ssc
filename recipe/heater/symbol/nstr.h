@@ -99,17 +99,20 @@ private:
         return &data_ [i -> second]; }
     ::std::size_t ll_find_lower (const html_version& v, const ::std::size_t n, const ::std::string& s) const
     {   if (! s.empty ())
-            for (typename mnse_t::const_iterator pos = GSL_AT (lower_, n).find (s.c_str ()); pos != GSL_AT (lower_, n).cend (); ++pos)
+        {   ::std::string ss (::boost::to_lower_copy (s));
+            const auto range = GSL_AT (lower_, n).equal_range (ss.c_str ());
+            for (mnse_t::const_iterator pos = range.first; pos != range.second; ++pos)
             {   PRESUME (pos -> second < max_, __FILE__, __LINE__);
                 const data_t& d = data_ [pos -> second];
-                if (may_apply (v, d.from_, d.to_)) return pos -> second; }
+                if (may_apply (v, d.from_, d.to_)) return pos -> second; } }
         return cend (); }
     ::std::size_t ll_find_mixed (const html_version& v, const ::std::size_t n, const ::std::string& s) const
     {   if (! s.empty ())
-            for (typename mnse_t::const_iterator pos = GSL_AT (mixed_, n).find (s.c_str ()); pos != GSL_AT (mixed_, n).cend (); ++pos)
+        {   const auto range = GSL_AT (mixed_, n).equal_range (s.c_str ());
+            for (mnse_t::const_iterator pos = range.first; pos != range.second; ++pos)
             {   PRESUME (pos -> second < max_, __FILE__, __LINE__);
                 const data_t& d = data_ [pos -> second];
-                if (may_apply (v, d.from_, d.to_)) return pos -> second; }
+                if (may_apply (v, d.from_, d.to_)) return pos -> second; } }
         return cend (); }
     s_ns& presume ()
     {   static s_ns p;
@@ -162,7 +165,8 @@ public:
     ENUM find_mixed (const html_version& v, const ::std::size_t n, const ::std::string& s) const
     {   PRESUME (n < INDICES, __FILE__, __LINE__);
         ENUM id = ERROR_VALUE;
-        for (typename mnse_t::const_iterator pos = GSL_AT (mixed_, n).find (s.c_str ()); pos != GSL_AT (mixed_, n).cend (); ++pos)
+        const auto range = GSL_AT (mixed_, n).equal_range (s.c_str ());
+        for (mnse_t::const_iterator pos = range.first; pos != range.second; ++pos)
         {   PRESUME (pos -> second < max_, __FILE__, __LINE__);
             const data_t& d = data_ [pos -> second];
             if (id == ERROR_VALUE) id = d.id_;
@@ -173,7 +177,8 @@ public:
     {   PRESUME (n < INDICES, __FILE__, __LINE__);
         ::std::string ss (::boost::to_lower_copy (s));
         ENUM id = ERROR_VALUE;
-        for (typename mnse_t::const_iterator pos = GSL_AT (lower_, n).find (ss.c_str ()); pos != GSL_AT (lower_, n).cend (); ++pos)
+        const auto range = GSL_AT (lower_, n).equal_range (ss.c_str ());
+        for (mnse_t::const_iterator pos = range.first; pos != range.second; ++pos)
         {   PRESUME (pos -> second < max_, __FILE__, __LINE__);
             const data_t& d = data_ [pos -> second];
             if (id == ERROR_VALUE) id = d.id_;

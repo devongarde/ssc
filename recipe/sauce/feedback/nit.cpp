@@ -291,6 +291,10 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_con : return "ads.txt, iab.tech lab";
         case ed_robotic : return "RFC 9309";
         case ed_security : return "RFC 9116";
+        case ed_smil_1 : return "SMIL 1.0";
+        case ed_smil_2_0 : return "SMIL 2.0";
+        case ed_smil_2_1 : return "SMIL 2.1";
+        case ed_smil_3 : return "SMIL 3.0";
         case ed_rsl : return "really simple licensing";
         case ed_rss : return "really simple syndication";
         case ed_ccrss : return "Creative Commons RSS";
@@ -442,6 +446,10 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_con : return "iab.tech lab, ads.txt, August 2022";
         case ed_robotic : return "RFC 9309, Robots Exclusion Protocol, September 2022";
         case ed_security : return "RFC 9116, Security Vulnerability Disclosure, April 2022";
+        case ed_smil_1 : return "Synchronized Multimedia Integration Language (SMIL) 1.0 Specification, June 1998";
+        case ed_smil_2_0 : return "Synchronized Multimedia Integration Language (SMIL 2.0), January 2005";
+        case ed_smil_2_1 : return "Synchronized Multimedia Integration Language (SMIL 2.1), December 2005";
+        case ed_smil_3 : return "Synchronized Multimedia Integration Language (SMIL 3.0), December 2008";
         case ed_rsl : return "Really Simple Licensing, September 2025 draft";
         case ed_rss : return "Really Simple Syndication 2.0.11, March 2009";
         case ed_ccrss : return "Creative Commons Namespace for RSS, June 2023";
@@ -461,6 +469,7 @@ e_nit_link_type doc_link (const e_doc doc, ::std::string& link)
 #define ONTSPEX SPEX "ontology/"
 #define RFC SPEX "rfc/"
 #define RDFSPEX SPEX "rdf/"
+#define SMILSPEX SPEX "smil/"
 #define SVGSPEX SPEX "svg/"
 #define XHTMLSPEX SPEX "xhtml/"
     link.clear ();
@@ -596,6 +605,10 @@ e_nit_link_type doc_link (const e_doc doc, ::std::string& link)
         case ed_rsl : link = NSLS_RSL; return nlt_html;
         case ed_rss : link = HTTPS RSS_BOARD "/rss-specification"; return nlt_html;
         case ed_security : link = "https://www.rfc-editor.org/rfc/rfc9116.html"; return nlt_html;
+        case ed_smil_1 : link = SMILSPEX "smil10.pdf"; return nlt_pdf;
+        case ed_smil_2_0 : link = SMILSPEX "smil20.pdf"; return nlt_pdf;
+        case ed_smil_2_1 : link = SMILSPEX "smil21.pdf"; return nlt_pdf;
+        case ed_smil_3 : link = SMILSPEX "smil30.pdf"; return nlt_pdf;
         case ed_so_11 : link = ONTSPEX "schemas-11.0.zip"; return nlt_zip;
         case ed_svg_1_0 : link = SVGSPEX "svg.pdf"; return nlt_pdf;
         case ed_svg_1_1 : link = SVGSPEX "svg11.pdf"; return nlt_pdf;

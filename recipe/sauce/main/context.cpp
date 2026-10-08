@@ -856,6 +856,9 @@ bool context_t::is_rss (const ::std::string& name) const
 bool context_t::is_sec_txt (const ::std::string& name) const
 {   return ::boost::filesystem::path (name).filename ().string () == "security.txt"; }
 
+bool context_t::is_smil (const ::std::string& name) const
+{   return has_extension (name, smil_ext ()); }
+
 bool context_t::is_vtt (const ::std::string& name) const
 {   return has_extension (name, vtt_extension ()); }
 
@@ -873,6 +876,8 @@ e_verifiable_file context_t::verifiable_file_type (const ::std::string& name) co
         return jsonld () ? vf_jsonld : vf_none;
     if (is_vtt (name))
         return load_vtt () ? vf_vtt : vf_none;
+    if (is_smil (name))
+        return smil_verify () ? vf_smil : vf_none;
     if (is_rsl (name))
         return rsl_verify () ? vf_rsl : vf_none;
     if (is_rss (name))

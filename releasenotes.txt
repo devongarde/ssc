@@ -3,6 +3,13 @@ static site checker
 https://dylanharris.org/ssc/
 (c) 2020-2026 Dylan Harris
 
+0.2.37
+- Living Standard october 2026
+- schema.org 30.1
+- SMIL 1
+- various bug fixes
+- underlying work
+
 0.2.36
 - added CSS Borders and Box Decorations 4
 - update CSS 2026 snapshot to June draft

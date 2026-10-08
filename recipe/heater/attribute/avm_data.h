@@ -33,6 +33,35 @@ struct hav_t
     { { HTML_PLUS }, { HTML_PLUS }, ELEM, a_index }, \
     { { HTML_PLUS }, { HTML_PLUS }, ELEM, a_lang }
 
+#define SMIL_ATTRIBUTES(ELEM) \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_id, EP_SMIL }
+
+#define SMIL_MEDOBJ(ELEM) \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_abstract, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_author, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_begin, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_clip_begin, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_clip_end, EP_SMIL },  \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_copyright, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_dur, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_end, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_fill, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_longdesc, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_region, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_src, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_system_bitrate, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_system_captions, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_system_language, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_system_overdub_or_caption, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_system_required, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_system_screen_depth, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_system_screen_size, EP_SMIL }
+
+#define SMIL_MEDTOO(ELEM) \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_alt, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_title, EP_SMIL }, \
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, ELEM, a_type, EP_SMIL }
+
 #define HTML_CID_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM, MAJOR_TO, MINOR_TO) \
     { { MAJOR_FROM, MINOR_FROM, HV_RFC_1942 | HV_RFC_2070 }, { MAJOR_TO, MINOR_TO }, ELEM, a_class }, \
     { { MAJOR_FROM, MINOR_FROM, HV_RFC_1942 | HV_RFC_2070 }, { MAJOR_TO, MINOR_TO }, ELEM, a_id }
@@ -241,7 +270,7 @@ struct hav_t
     MATH3_STANDARD_ATTRIBUTES_EX (ELEM, 0)
 
 #define MATH3_DEFS_ATTRIBUTES_EX(ELEM, FLAGS) \
-    MATH2_DEFS_ATTRIBUTES_EX (ELEM, FLAGS, H2_MATH_3_4), \
+    MATH2_DEFS_ATTRIBUTES_EX (ELEM, FLAGS, H2_MATH_3_4_C), \
     MATH3_STANDARD_ATTRIBUTES_EX (ELEM, FLAGS)
 
 #define MATH3_DEFS_ATTRIBUTES(ELEM) \
@@ -289,11 +318,14 @@ struct hav_t
 
 #define MATH4_PRES_ATTRIBUTES_EX(ELEM, FLAGS) \
     { { HTML_MATH4, 0, FLAGS, H2_MATH_4_C }, { HTML_UNDEF }, ELEM, a_arg }, \
+    { { HTML_MATH4, 0, FLAGS, H2_MATH_4_C }, { HTML_UNDEF }, ELEM, a_autofocus }, \
+    { { HTML_MATH4, 0, FLAGS, H2_MATH_4_C }, { HTML_UNDEF }, ELEM, a_datawild }, \
     { { HTML_JAN26, 0, 0, H2_MATH_4 }, { HTML_UNDEF }, ELEM, a_decimalcharacter }, \
     { { HTML_MATH4, 0, 0, H2_MATH_4 | H2_M4_DEPRECAT }, { HTML_DEC25 }, ELEM, a_decimalpoint }, \
     { { HTML_MATH4, 0, 0, H2_MATH_4 }, { HTML_UNDEF }, ELEM, a_displaystyle }, \
     { { HTML_MATH4, 0, 0, H2_MATH_4 }, { HTML_UNDEF }, ELEM, a_infixlinebreakstyle }, \
     { { HTML_MATH4, 0, FLAGS, H2_MATH_4_C }, { HTML_UNDEF }, ELEM, a_intent }, \
+    { { HTML_MATH4, 0, FLAGS, H2_MATH_4_C }, { HTML_UNDEF }, ELEM, a_numberonce }, \
     { { HTML_MATH4, 0, 0, H2_MATH_4 }, { HTML_UNDEF }, ELEM, a_scriptminsize }, \
     { { HTML_MATH4, 0, 0, H2_MATH_4 }, { HTML_UNDEF }, ELEM, a_scriptsizemultiplier }, \
     MATH3_PRES_ATTRIBUTES_EX (ELEM, FLAGS)
@@ -896,15 +928,10 @@ struct hav_t
 #define XHTML2_COMMON_ATTRIBUTES(ELEM) \
     { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { XHTML_2_0 }, ELEM, a_about }, \
     { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { XHTML_2_0 }, ELEM, a_content }, \
-    { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { XHTML_2_0 }, ELEM, a_datatype }, \
-    { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { XHTML_2_0 }, ELEM, a_property }, \
-    { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { XHTML_2_0 }, ELEM, a_rel }, \
-    { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { XHTML_2_0 }, ELEM, a_resource }, \
-    { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { XHTML_2_0 }, ELEM, a_rev }, \
-    { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { XHTML_2_0 }, ELEM, a_typeof }, \
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_cite }, \
     { { XHTML_2_0, 0, HE_NOT_SVG_10_11 }, { XHTML_2_0 }, ELEM, a_class }, \
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_coords }, \
+    { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { XHTML_2_0 }, ELEM, a_datatype }, \
     { { HTML_SVG12, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_defaultaction }, \
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_dir }, \
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_edit }, \
@@ -927,12 +954,17 @@ struct hav_t
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_phase }, \
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_prevfocus }, \
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_propagate }, \
+    { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { XHTML_2_0 }, ELEM, a_property }, \
+    { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { XHTML_2_0 }, ELEM, a_rel }, \
+    { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { XHTML_2_0 }, ELEM, a_resource }, \
+    { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { XHTML_2_0 }, ELEM, a_rev }, \
     { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { XHTML_2_0 }, ELEM, a_role }, \
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_shape }, \
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_srctype }, \
     { { XHTML_2_0, 0, HE_NOT_SVG_1 }, { XHTML_2_0 }, ELEM, a_style }, \
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_target }, \
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_title }, \
+    { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { XHTML_2_0 }, ELEM, a_typeof }, \
     { { XHTML_2_0, 0, HE_NOT_SVG }, { XHTML_2_0 }, ELEM, a_usemap }, \
     { { XHTML_1_0, 0, HE_NOT_SVG_20 }, { HTML_UNDEF }, ELEM, a_xmlbase }, \
     { { XHTML_2_0, 0, HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_xmlid }
@@ -982,13 +1014,9 @@ struct hav_t
     { { HTML_JAN18, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_autocapitalise }, \
     { { HTML_SEP24, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_autocorrect }, \
     { { HTML_JAN20, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_autofocus }, \
-    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onbeforeinput }, \
-    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onbeforematch }, \
-    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onbeforetoggle }, \
     { { HTML_JAN07, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_contenteditable }, \
-    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_oncontextlost }, \
     { { HTML_JAN06, HV_NOT50 | HV_NOT52 | HV_NOT53, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_contextmenu }, \
-    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_oncontextrestored }, \
+    { { HTML_JUL08 }, { HTML_UNDEF }, ELEM, a_datawild }, \
     { { HTML_JAN07, HV_NOT50, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_draggable }, \
     { { HTML_JAN11, HV_NOT50, HE_NOT_SVG }, { HTML_DEC16, HV_NOT52 | HV_NOT53 }, ELEM, a_dropzone }, \
     { { HTML_DEC25 }, { HTML_UNDEF }, ELEM, a_elementtiming }, \
@@ -1013,6 +1041,9 @@ struct hav_t
     { { HTML_JUL14, HV_WHATWG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onautocomplete }, \
     { { HTML_JUL14, HV_WHATWG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onautocompleteerror }, \
     { { HTML_JAN17, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onauxclick }, \
+    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onbeforeinput }, \
+    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onbeforematch }, \
+    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onbeforetoggle }, \
     { { HTML_JUL07, 0, HE_NOT_SVG_1 }, { HTML_JUN09 }, ELEM, a_onbeforeunload }, \
     { { HTML_JUL07, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onblur }, \
     { { HTML_JUL12, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_oncancel }, \
@@ -1022,12 +1053,14 @@ struct hav_t
     { { HTML_JUL12, HV_NOT50, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onclose }, \
     { { HTML_MAR25, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_oncommand }, \
     { { HTML_JUL07, HV_NOT50, HE_NOT_SVG_1 | HV_NOT52 | HV_NOT53 }, { HTML_UNDEF }, ELEM, a_oncontextmenu }, \
+    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_oncontextrestored }, \
     { { HTML_5_1, 0, HE_NOT_SVG_1 }, { HTML_5_1 }, ELEM, a_oncopy }, \
     { { HTML_JUL19, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_oncopy }, \
     { { HTML_JUL10, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_oncuechange }, \
     { { HTML_5_1, 0, HE_NOT_SVG_1 }, { HTML_5_1 }, ELEM, a_oncut }, \
     { { HTML_JUL19, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_oncut }, \
-    { { HTML_JAN05, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_datawild }, \
+    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_oncontextlost }, \
+    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_oncontextrestored }, \
     { { HTML_JUL07, HV_NOT50, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ondrag }, \
     { { HTML_JUL07, HV_NOT50, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ondragend }, \
     { { HTML_JUL07, HV_NOT50, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ondragenter }, \

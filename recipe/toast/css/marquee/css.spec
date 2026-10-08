@@ -4,7 +4,7 @@ PASS ../toast/css/marquee/css-2.css
 1 abandoned
 
 PASS ../toast/css/marquee/css-7.css
-1 abandoned abandoned
+1 abandoned unrecognised_value abandoned positive
 2 abandoned
 
 PASS ../toast/css/marquee/index.html

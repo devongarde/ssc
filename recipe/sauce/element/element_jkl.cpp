@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "element/element.h"
+#include "parser/text.h"
 #include "webpage/page.h"
 
 bool element::naughty_label_descendents (const element* e, const uid_t uid, bool& first)
@@ -62,6 +63,19 @@ void element::examine_label ()
                     pick (nit_label_parentage, ed_50, "4.10.4 The label element", es_error, ec_element, "a <LABEL> without FOR can only have one form control descendant"); }
             else if (naughty_label_descendents (this, uid, first))
                 pick (nit_label_parentage, ed_50, "4.10.4 The label element", es_error, ec_element, "a <LABEL> cannot have any form control descendants, except that indicated by FOR"); } }
+
+void element::examine_layout ()
+{   if ((node_.version ().ext5 () & H5_SMIL) != H5_SMIL) return;
+    if (a_.known (a_type))
+        if (a_.good (a_type))
+        {   ::std::string ty (a_.get_string (a_type));
+            if (compare_no_case (ty, CSS_TYPE))
+                page_ -> css ().parse (interpret_string (node_.nits (), node_.version (), text (), true), node_.version (), node_.namespaces (), (ancestral_elements_ | tag ()), false, node_.line ());
+            if (descendant_elements_ != empty_element_bitset)
+            {   const element_bitset kids = (descendant_elements_ & ~non_standard_bitset);
+                if (kids != empty_element_bitset)
+                    if (! compare_no_case (ty, SMIL_TYPE))
+                        pick (nit_bad_layout, ed_smil_1, "3.2 The layout Element", es_error, ec_smil, "<LAYOUT> can only have child elements if TYPE is omitted or set to " SMIL_TYPE "."); } } }
 
 void element::examine_lambda ()
 {   if (node_.version ().math () < math_2) return;

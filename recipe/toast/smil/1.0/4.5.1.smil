@@ -1,0 +1,31 @@
+<smil>
+<body>
+
+  <a href="http://www.cwi.nl/somewhereelse.smi">
+    <video src="rtsp://example.com/graph.imf" region="l_window"/>
+  </a>
+
+  <a href="http://www.cwi.nl/somewhereelse.smi" show="new">
+    <video src="rtsp://example.com/graph.imf" region="l_window"/>
+  </a>
+
+  <a href="http://www.cwi.nl/somewhereelse.smi" show="pause">
+    <video src="rtsp://example.com/graph.imf" region="l_window"/>
+  </a>
+
+  <a href="http://www.cwi.nl/presentationB#next">
+    <video src="rtsp://example.com/graph.imf"/>
+  </a>
+
+  <seq>
+    <video src="rtsp://example.com/graph.imf"/>
+    <par>
+      <video src="rtsp://example.com/timbl.rm" region="l_window"/>
+      <video id="next" src="rtsp://example.com/v1.rm" region="r_window"/>
+      ^^^^^^^^^
+      <text src="rtsp://example.com/caption1.html" region="l_2_title"/>
+      <text src="rtsp://example.com/caption2.rtx" region="r_2_title"/>
+    </par>
+  </seq>
+</body>
+</smil>

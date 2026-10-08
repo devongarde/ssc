@@ -947,6 +947,10 @@ struct symbol_entry < html_version, e_metaname > metaname_symbol_table [] =
 
    { { HTML_JUL26, 0, 0, H2_CSS_FONT_5 }, { HTML_UNDEF }, MN_TEXT_SCALE, mn_text_scale },
 
+   { { HTML_SMIL_1_0, 0, 0, 0, 0, 0, H5_SMIL }, { HTML_UNDEF }, "base", mn_base },
+   { { HTML_SMIL_1_0, 0, 0, 0, 0, 0, H5_SMIL }, { HTML_UNDEF }, "pics-label", mn_pics_label },
+   { { HTML_SMIL_1_0, 0, 0, 0, 0, 0, H5_SMIL }, { HTML_UNDEF }, "title", mn_title },
+
    { { HTML_4_0 }, { HTML_UNDEF }, "og:audio", mn_og_audio },      // url
    { { HTML_4_0 }, { HTML_UNDEF }, "og:determiner", mn_og_determiner },  // a word
    { { HTML_4_0 }, { HTML_UNDEF }, "og:locale:alternate", mn_og_locale_alternate },    // array of locales

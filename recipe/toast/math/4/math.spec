@@ -161,6 +161,20 @@ PASS ../toast/math/4/logs.html
 PASS ../toast/math/4/maligngroup.html
 2 naughty_lang
 13 invalid_attribute_version wrong_version
+19 invalid_element_version
+22 invalid_element_version
+25 invalid_element_version
+28 invalid_element_version
+31 invalid_element_version
+35 invalid_element_version
+37 invalid_element_version
+47 invalid_element_version
+50 invalid_element_version
+53 invalid_element_version
+56 invalid_element_version
+59 invalid_element_version
+63 invalid_element_version
+65 invalid_element_version
 
 PASS ../toast/math/4/matrix.html
 2 naughty_lang
@@ -223,6 +237,8 @@ PASS ../toast/math/4/ms.html
 
 PASS ../toast/math/4/mspace.html
 2 naughty_lang
+17 invalid_element_version
+24 invalid_element_version
 
 PASS ../toast/math/4/msqrt-mroot.html
 2 naughty_lang

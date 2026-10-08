@@ -186,7 +186,8 @@ void element::examine_ul ()
         pick (nit_bad_descendant, ed_aug25, "4.4.6 The ul element", es_error, ec_element, "<UL> may only have <LI>, <TEMPLATE>, and <SCRIPT> children"); }
 
 void element::examine_video ()
-{   if (! node_.version ().is_5 () && ! node_.version ().is_svg_12 ())
+{   if ((page_ != nullptr) && (page_ -> dot_smil ())) examine_smil_alt ();
+    else if (! node_.version ().is_5 () && ! node_.version ().is_svg_12 ())
         pick (nit_invalid_element_version, es_error, ec_element, "<VIDEO> requires HTML 5 or SVG 1.2");
     else
     {   examine_media_element (elem_video, "4.7.6 The video element", "<VIDEO>", MIME_VIDEO);

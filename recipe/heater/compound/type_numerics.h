@@ -158,6 +158,10 @@ template < > struct type_master < t_integer_1_up_inf_aaa > : type_or_any_string_
 template < > struct type_master < t_integer_1_up_inf_aan > : type_or_any_string_4 < t_integer_1_up_inf_aan, t_integer_1_up, sz_infinity, sz_all, sz_auto, sz_none >
 {   using type_or_any_string_4 < t_integer_1_up_inf_aan, t_integer_1_up, sz_infinity, sz_all, sz_auto, sz_none > :: type_or_any_string_4; };
 
+template < > struct type_master < t_smilrepeat > : type_or_string < t_smilrepeat, t_integer, sz_indefinite >
+{   static bool is_numeric () { return true; }
+    using type_or_string < t_smilrepeat, t_integer, sz_indefinite > :: type_or_string; };
+
 template < > struct type_master < t_real_int_1_up > : type_one_two < t_real_int_1_up, t_real_1_up_inf, t_integer_1_up_inf, sz_space_char >
 {   static bool is_numeric () { return true; }
     using type_one_two < t_real_int_1_up, t_real_1_up_inf, t_integer_1_up_inf, sz_space_char > :: type_one_two; };

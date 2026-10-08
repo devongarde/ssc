@@ -12,7 +12,6 @@ PASS ../toast/css/3-ns/css-2.css
 2 prefix_again
 
 PASS ../toast/css/3-ns/css-3.css
-2 namespace_unknown
 4 namespace_unknown
 5 namespace_unknown prefix_again
 

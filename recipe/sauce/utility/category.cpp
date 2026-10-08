@@ -87,7 +87,8 @@ const category categorical::get (const ::std::string& s) const
 void categorical::erase (const ::std::size_t& n)
 {   mcic_t::iterator i = cics_.find (n);
     if (i != cics_.end ())
-    {   for (mmcid_t::iterator m = cid_.find (i -> second.cic_); (m != cid_.end ()) && (m -> first == i -> second.cic_); ++m)
+    {   const auto range = cid_.equal_range (i -> second.cic_);
+        for (mmcid_t::const_iterator m = range.first; m != range.second; ++m)
             if (m -> second == i -> second.id_)
             {   cid_.erase (m); break; }
         smsid_t::iterator r = rev_.find (i -> second.s_);

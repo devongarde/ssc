@@ -225,6 +225,9 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
                 nits.pick (nit_non_standard_value, es_warning, ec_type, quote (s), " is non-standard in ", v.report (), ", and unlikely to be supported by many browsers");
             else if (f.bespoke ())
                 nits.pick (nit_bespoke_obsolete, es_comment, ec_type, quote (s), " is bespoke, obsolete, or both, so is unlikely to be supported by every browser.");
+            else if (f.smil ())
+                if (! v.smil ())
+                    nits.pick (nit_smil, es_error, ec_smil, quote (s), " requires SMIL.");
             enum_base < ENUM, E > :: status (s_good);
             enum_base < ENUM, E > :: post_set_value (nits, v);
             return; } }
@@ -791,6 +794,9 @@ template < > struct type_master < t_figalign > : ENUM_N (figalign)
 template < > struct type_master < t_filter_in > : ENUM_N (filter_in)
 { using ENUM_N (filter_in) :: enum_n; };
 
+template < > struct type_master < t_fit > : ENUM_N (fit)
+{ using ENUM_N (fit) :: enum_n; };
+
 template < > struct type_master < t_fixedcolour > : ENUM_N (fixedcolour)
 {   static bool is_colourful () { return true; }
     using ENUM_N (fixedcolour) :: enum_n; };
@@ -1188,6 +1194,12 @@ template < > struct type_master < t_css_slider_orientation > : ENUM_N (css_slide
 template < > struct type_master < t_smei > : ENUM_N (smei)
 { using ENUM_N (smei) :: enum_n; };
 
+template < > struct type_master < t_smil_version > : ENUM_N (smil_version)
+{ using ENUM_N (smil_version) :: enum_n; };
+
+template < > struct type_master < t_smilfill > : ENUM_N (smilfill)
+{ using ENUM_N (smilfill) :: enum_n; };
+
 template < > struct type_master < t_speculationrules > : ENUM_N (speculationrules)
 { using ENUM_N (speculationrules) :: enum_n; };
 
@@ -1217,6 +1229,9 @@ template < > struct type_master < t_supports > : ENUM_N (supports)
 
 template < > struct type_master < t_svg_align > : ENUM_N (svg_align)
 { using ENUM_N (svg_align) :: enum_n; };
+
+template < > struct type_master < t_svg_begin_event > : ENUM_N (svg_begin_event)
+{ using ENUM_N (svg_begin_event) :: enum_n; };
 
 template < > struct type_master < t_svg_display > : ENUM_N (svg_display)
 { using ENUM_N (svg_display) :: enum_n; };

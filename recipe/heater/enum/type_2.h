@@ -142,6 +142,9 @@ template < > struct type_master < t_auto_smooth > : two_value < t_auto_smooth, e
 template < > struct type_master < t_auto_stable > : two_value < t_auto_stable, e_auto_smooth, sz_auto, sz_stable >
 { using two_value < t_auto_stable, e_auto_smooth, sz_auto, sz_stable > :: two_value; };
 
+template < > struct type_master < t_begin_end > : two_value < t_begin_end, e_begin_end, sz_begin, sz_end >
+{ using two_value < t_begin_end, e_begin_end, sz_begin, sz_end > :: two_value; };
+
 template < > struct type_master < t_bgfg > : two_value < t_bgfg, e_bgfg, sz_tbd_bg, sz_tbd_fg >
 { using two_value < t_bgfg, e_bgfg, sz_tbd_bg, sz_tbd_fg > :: two_value; };
 
@@ -159,6 +162,9 @@ template < > struct type_master < t_bool > : two_value < t_bool, e_bool, sz_fals
 
 template < > struct type_master < t_byto > : two_value < t_byto, e_byto, sz_by, sz_to >
 { using two_value < t_byto, e_byto, sz_by, sz_to > :: two_value; };
+
+template < > struct type_master < t_caption_overdub > : two_value < t_caption_overdub, e_caption_overdub, sz_caption, sz_overdub >
+{ using two_value < t_caption_overdub, e_caption_overdub, sz_caption, sz_overdub > :: two_value; };
 
 template < > struct type_master < t_capture > : two_value < t_capture, ev_capture, sz_user, sz_environment >
 { using two_value < t_capture, ev_capture, sz_user, sz_environment > :: two_value; };
@@ -526,6 +532,9 @@ template < > struct type_master < t_ltr_rtl > : two_value < t_ltr_rtl, e_svg_dir
 
 template < > struct type_master < t_scan > : two_value < t_scan, e_scan, sz_interlace, sz_progressive >
 { using two_value < t_scan, e_scan, sz_interlace, sz_progressive > :: two_value; };
+
+template < > struct type_master < t_smiltype > : two_value < t_smiltype, e_smiltype, sz_text_css, sz_text_smil_basic_layout >
+{ using two_value < t_smiltype, e_smiltype, sz_text_css, sz_text_smil_basic_layout > :: two_value; };
 
 template < > struct type_master < t_svg_fontvariant_ff > : two_value < t_svg_fontvariant_ff, e_svg_fontvariant_ff, sz_normal, sz_small_caps >
 { using two_value < t_svg_fontvariant_ff, e_svg_fontvariant_ff, sz_normal, sz_small_caps > :: two_value; };

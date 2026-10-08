@@ -15,8 +15,6 @@ PASS ../toast/math/4-core/core-3.html
 129 bad_vunit
 134 bad_vunit
 142 use_double_quote_code
-375 invalid_attribute_version wrong_version
-432 invalid_attribute_version wrong_version
 
 PASS ../toast/math/4-core/core-4.html
 2 naughty_lang

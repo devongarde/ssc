@@ -30,6 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/typed_property.h"
 #include "css/value.h"
 
+int examine_if_arg (arguments& args, nitpick& nits, const int from, const int to);
+
 template < e_css_val_fn T > int split_fn_params (t_params& params, arguments& args, const int start, const int to, nitpick& nits)
 {   int round = 0, square = 0, curly = 0, p = start;
     e_token last = ct_error, prev = ct_error;
@@ -107,7 +109,7 @@ template < e_css_val_fn T > int split_fn_params (t_params& params, arguments& ar
                 break;
             case ct_vu5_semicolon :
                 if ((square == 0) && (curly == 0) && in_list < T, cvf_if, cvf_mix > :: yes ())
-                    p = i = add_param (args, params, p, i) - 1;
+                    p = i = add_param (args, params, p, i); // no - 1
                 prev = last = ct_error;
                 break;
             case ct_semicolon :
@@ -267,6 +269,9 @@ template < > inline int check_typed_property < t_css_feature_stylistic > (argume
 
 template < > inline int check_typed_property < t_css_feature_swash > (arguments& args, nitpick& nits, const int start, const int to)
 {   return check_typed_feature (args, nits, start, to, css_swash, "swash"); }
+
+template < > inline int check_typed_property < t_css_if > (arguments& args, nitpick& nits, const int start, const int to)
+{   return examine_if_arg (args, nits, start, to);  }
 
 template < e_type TYPE, e_css_val_fn T, e_type PARAM, int MAX > struct fancy_max
 {   static void check (arguments& args, nitpick& nits, const t_params& p, const unsigned n)

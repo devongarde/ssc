@@ -81,12 +81,22 @@ typedef enum
 void bracs_ket::nodoctype (nitpick& nits, html_version& v, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, bool foresee)
 {   if (! v.unknown ()) return;
     if (foresee)
-        if (compare_no_case (::std::string (i, i+strlen (ELEM_FEED)), ELEM_FEED))
-        { v = html_atom; return; }
-        else if (compare_no_case (::std::string (i, i+strlen (ELEM_RSL)), ELEM_RSL))
-        { v = html_rsl; return; }
-        else if (compare_no_case (::std::string (i, i+strlen (ELEM_RSS)), ELEM_RSS))
-        { v = html_rss; return; }
+    {   if (compare_no_case (::std::string (i, i+strlen (ELEM_FEED)), ELEM_FEED))
+        {   v = html_atom;
+            nits.pick (nit_missing_doctype, es_comment, ec_parser, "No <!DOCTYPE ... > found at the beginning of the content; am presuming an atom feed");
+            return; }
+        if (compare_no_case (::std::string (i, i+strlen (ELEM_RSL)), ELEM_RSL))
+        {   v = html_rsl;
+            nits.pick (nit_missing_doctype, es_comment, ec_parser, "No <!DOCTYPE ... > found at the beginning of the content; am presuming RSL");
+            return; }
+        if (compare_no_case (::std::string (i, i+strlen (ELEM_RSS)), ELEM_RSS))
+        {   v = html_rss;
+            nits.pick (nit_missing_doctype, es_comment, ec_parser, "No <!DOCTYPE ... > found at the beginning of the content; am presuming RSS");
+            return; }
+        if (compare_no_case (::std::string (i, i+strlen (ELEM_SMIL)), ELEM_SMIL))
+        {   v = html_smil_1_0;
+            nits.pick (nit_smil_1_0, es_warning, ec_parser, "No <!DOCTYPE ... > found at the beginning of the content; am presuming SMIL 1.0");
+            return; } }
     if (v.any_ext4 (H4_NODOCTYPE)) return;
     nits.set_context (line_, b, e, i);
     if (context.force_version ()) 

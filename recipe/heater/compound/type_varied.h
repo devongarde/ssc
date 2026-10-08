@@ -265,6 +265,17 @@ template < > struct type_master < t_display > : varied < t_display >
             if (id.is_svg () || (id.get () == elem_a)) validate_type < type_master < t_svg_display > > (nits, v);
             else if (id.is_math ()) validate_type < type_master < t_block_inline > > (nits, v); } };
 
+template < > struct type_master < t_durs > : varied < t_durs >
+{   using varied < t_durs > :: varied;
+    void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
+    {   if (good () || empty ())
+            switch (e.get ())
+            {   case elem_par :
+                case elem_seq :
+                    validate_type < type_master < t_smilclocki > > (nits, v); break;
+                default :
+                    validate_type < type_master < t_dur > > (nits, v); } } };
+
 template < > struct type_master < t_end > : varied < t_end >
 {   using varied < t_end > :: varied;
     static e_animation_type animation_type () noexcept { return at_time; }
@@ -274,6 +285,9 @@ template < > struct type_master < t_end > : varied < t_end >
             {   case elem_audio :
                 case elem_video :
                     validate_type < type_master < t_just_time > > (nits, v); break;
+                case elem_par :
+                case elem_seq :
+                    validate_type < type_master < t_smilmoment > > (nits, v); break;
                 default :
                     validate_type < type_master < t_endvaluelist > > (nits, v); } } };
 
@@ -286,6 +300,8 @@ template < > struct type_master < t_fill_v > : varied < t_fill_v >
                 validate_type < type_master < t_fill_ve > > (nits, v);
             else if (((elem :: categories (e) & EF_SVG_ANIM) != 0) || (e.get () == elem_animation))
                 validate_type < type_master < t_fillanim > > (nits, v);
+            else if (v.smil ())
+                validate_type < type_master < t_smilfill > > (nits, v);
             else if (context.css_module (c_fill_stroke) >= 3)
                 validate_type < type_master < t_css_background > > (nits, v);
             else validate_type < type_master < t_paint > > (nits, v); } };
@@ -828,6 +844,8 @@ template < > struct type_master < t_type > : varied < t_type >
                     break;
                 case elem_keygen :
                     validate_type < type_master < t_keygentype > > (nits, v); break;
+                case elem_layout :
+                    validate_type < type_master < t_smiltype > > (nits, v); break;
                 case elem_li :
                     validate_type < type_master < t_roman_dsc > > (nits, v); break;
                 case elem_ul :

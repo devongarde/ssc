@@ -25,6 +25,13 @@ hav_t havt_xa [] =
 {   SVG_HTML_ATTRIBUTES (elem_xa),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_xml [] =
+{   { { HTML_2_0, 0, HTML_4_01 }, { HTML_UNDEF }, elem_xml, a_encoding },
+    { { HTML_2_0, 0, HTML_4_01 }, { HTML_UNDEF }, elem_xml, a_id },
+    { { HTML_2_0, 0, HTML_4_01 }, { HTML_UNDEF }, elem_xml, a_standalone },
+    { { HTML_2_0, 0, HTML_4_01 }, { HTML_UNDEF }, elem_xml, a_src },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_xmp [] =
 {   HTML23_CLID_ATTRIBUTES (elem_xmp),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

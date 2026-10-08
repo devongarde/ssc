@@ -1,0 +1,24 @@
+﻿<!doctype html>
+<html lang=en>
+ <head>
+  <title>4.8.11.3</title>
+ </head>
+
+<body>
+  <h1>4.8.11.3</h1>
+
+<section id="video">
+ <p><a href="playing-cats.nfv">Download video</a></p>
+</section>
+<script>
+ const videoSection = document.getElementById('video');
+ const videoElement = document.createElement('video');
+ const support = videoElement.canPlayType('video/x-new-fictional-format;codecs="kittens,bunnies"');
+ if (support === "probably") {
+   videoElement.setAttribute("src", "playing-cats.nfv");
+   videoSection.replaceChildren(videoElement);
+ }
+</script>
+
+</body>
+</html>

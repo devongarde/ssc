@@ -47,19 +47,29 @@ void page::init (const ::std::string& name, ::std::string& content, const filein
     names_.ndx (x, false);
     const ::std::string& xx = context.x ();
     if (! xx.empty ()) xxx_ = find_no_case (name, xx) != ::std::string::npos;
-    if (vf == vf_css)
-    {   dot_css_ = true;
-        if (context.load_css () && (context.css_version () >= css_1))
-        {   css_.parse_file (nits_, namespaces_ptr (), url (nits (), context.html_ver (), get_site_path ()), true, true, true);
-            stats_.mark (context.html_ver ()); }
-        stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ())); }
-    else if (vf == vf_vtt)
-    {   dot_vtt_ = true;
-        if (context.load_vtt ())
-        {   vtt_ = ptr_vtt (new vtt_t (nits_, context.html_ver (), content, css ()));   
-            stats_.mark (context.html_ver ()); }
-        stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ())); }
-    else parse (content); }
+    switch (vf)
+    {   case vf_css :
+            dot_css_ = true;
+            if (context.load_css () && (context.css_version () >= css_1))
+            {   css_.parse_file (nits_, namespaces_ptr (), url (nits (), context.html_ver (), get_site_path ()), true, true, true);
+                stats_.mark (context.html_ver ()); }
+            stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ()));
+            break;
+        case vf_smil :
+            dot_smil_ = true;
+            parse (content);
+            stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ()));
+            break;
+        case vf_vtt :
+            dot_vtt_ = true;
+            if (context.load_vtt ())
+            {   vtt_ = ptr_vtt (new vtt_t (nits_, context.html_ver (), content, css ()));   
+                stats_.mark (context.html_ver ()); }
+            stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ()));
+            break;
+        default :
+            parse (content);
+            break; } }
 
 page::page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t x, const e_verifiable_file vf, const directory* d)
     :   name_ (name), directory_ (d), updated_ (updated), css_ (*this)

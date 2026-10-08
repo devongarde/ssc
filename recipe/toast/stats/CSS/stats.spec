@@ -242,6 +242,7 @@ Property:
     line-height: thrice
     list-style: fourfold
     list-style-image: once
+    list-style-type: thrice
     margin: thrice
     margin-bottom: twice
     margin-left: thrice
@@ -259,7 +260,7 @@ Property:
     white-space: twice
     width: once
     word-spacing: once
-  46 properties used 104fold
+  47 properties used 107fold
 ===
 
 PASS ../toast/stats/CSS/css-6.css
@@ -737,6 +738,7 @@ Property:
     line-height: thrice
     list-style: sixfold
     list-style-image: once
+    list-style-type: thrice
     margin: thrice
     margin-bottom: twice
     margin-left: thrice
@@ -754,7 +756,7 @@ Property:
     white-space: twice
     width: once
     word-spacing: once
-  46 properties used 107fold
+  47 properties used 110fold
 ===
 
 PASS ../toast/stats/CSS/css-6.html
@@ -1038,6 +1040,7 @@ Property:
     line-height: 14fold
     list-style: 14fold
     list-style-image: twice
+    list-style-type: sixfold
     margin: 17fold
     margin-bottom: sixfold
     margin-left: tenfold
@@ -1055,7 +1058,7 @@ Property:
     white-space: fivefold
     width: twice
     word-spacing: fourfold
-  46 properties used 457fold
+  47 properties used 463fold
 
 Reference:
     HTML 4.0: once
@@ -1069,5 +1072,5 @@ Statement:
 
 Version:
     HTML-3.2/CSS-1: tenfold
-    HTML-5/20260701/SVG-2.1/MathML-core/CSS-1/WhatWG: sevenfold
+    HTML-5/20261001/SVG-2.1/MathML-core/CSS-1/WhatWG: sevenfold
 ===

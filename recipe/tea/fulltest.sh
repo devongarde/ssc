@@ -239,6 +239,7 @@
 ./ssc -f ../toast/living/jan26/living.conf
 ./ssc -f ../toast/living/apr26/living.conf
 ./ssc -f ../toast/living/jul26/living.conf
+./ssc -f ../toast/living/oct26/living.conf
 ./ssc -f ../toast/math/1/math.conf
 ./ssc -f ../toast/math/2/math.conf
 ./ssc -f ../toast/math/3/math.conf

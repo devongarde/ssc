@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "base/type_master.h"
 
 void svg_feature_init (nitpick& nits);
+bool parse_beginvalue (nitpick& nits, const html_version& v, const ::std::string& d, ::std::string& ref);
 bool parse_d (nitpick& nits, const html_version& v, const ::std::string& d);
 bool parse_paint (nitpick& nits, const html_version& v, const ::std::string& d, bool recheck = false);
 bool parse_transform (nitpick& nits, const html_version& v, const ::std::string& d);
@@ -72,6 +73,21 @@ template < > struct type_master < t_attributename > : tidy_string < t_attributen
         {   value_ = identify_svg_animation_attribute (nits, v, *pe, tidy_string < t_attributename > :: get_string (), attnam);
             if (value_ == a_unknown)
                 tidy_string < t_attributename > :: status (s_invalid); } } };
+
+template < > struct type_master < t_beginvalue > : tidy_string < t_beginvalue >
+{   ::std::string ref_;
+    using tidy_string < t_beginvalue > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_list; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_beginvalue > :: set_value (nits, v, s);
+        if (tidy_string < t_beginvalue > :: empty ())
+            nits.pick (nit_path_spec, ed_mdn, "SVG attributes begin", es_error, ec_type, "begin cannot be empty");
+        else if (tidy_string < t_beginvalue > :: good ())
+            if (parse_beginvalue (nits, v, tidy_string < t_beginvalue > :: get_string (), ref_)) return;
+        tidy_string < t_beginvalue > :: status (s_invalid); }
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* box)
+    {   if (! good () || (box == nullptr)) return false;
+        return ! test_value < t_idref > (nits, v, ref_); } };
 
 template < > struct type_master < t_d > : tidy_string < t_d >
 {   using tidy_string < t_d > :: tidy_string;

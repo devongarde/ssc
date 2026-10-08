@@ -6037,7 +6037,8 @@ void ontology_name_init (nitpick& nits)
 #endif // _MSC_VER
         if (p -> name_ != nullptr)
         {   ::std::string n (::boost::to_lower_copy (::std::string (p -> name_)));
-            for (mpn_t::const_iterator ci = mpn.find (n); (ci != mpn.cend ()) && compare_no_case (ci -> first, n); ++ci)
+            const auto range = mpn.equal_range (n);
+            for (mpn_t::const_iterator ci = range.first; ci != range.second; ++ci)
                 if (ci -> second -> root_ == p -> root_)
                 {   nits.pick (nit_symbol_aleady_defined, es_catastrophic, ec_init, "property name ", n, " (", p -> root_, ") defined more than once");
                     break; }

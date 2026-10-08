@@ -384,7 +384,7 @@ bool rdf_t::note_prop (nitpick& nits, const html_version& v, const ::std::string
     for (auto prop : ii)
         for (auto i : type ())
         {   if (is_valid_property (nits, v, i, prop, value, is_link))
-            {   prop_.emplace (prop, prop_value (value));
+            {   prop_.emplace (prop, rdf_prop_value (value));
                 p.mark (static_cast < e_ontology_type > (i), static_cast < e_ontology_property > (prop));
                 return true; } }
    world_wide_wombat_web (nits, v, xpan);

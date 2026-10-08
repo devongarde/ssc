@@ -62,23 +62,27 @@ public:
     {   return vabb_.at (n).id_; }
     ::std::size_t atmost () const
     {   return vabb_.size (); }
-    ident_t find_shortform (const html_version& v, const STANDARD& predefined, const ::std::string& shortform, const bool standard = true) const
+    ident_t find_shortform (const html_version& v, const STANDARD& predefined, const ::std::string& shortform, const bool standard = true, bool* predef = nullptr) const
     {   PRESUME (! shortform.empty (), __FILE__, __LINE__);
         msab_t::const_iterator i = shorts_.find (shortform);
         if (i != shorts_.cend ()) return i -> second;
-        if (up_ != nullptr) return up_ -> find_shortform (v, predefined, shortform, standard);
+        if (up_ != nullptr) return up_ -> find_shortform (v, predefined, shortform, standard, predef);
         if (standard)
         {   const ident_t res = predefined.find (v, ABB_SHORTFORM, shortform, lower_);
-            if (res != ERR) return res; }
+            if (res != ERR)
+            {   if (predef != nullptr) *predef = true;
+                return res; } }
         return DEFAULT; }
-    ident_t find_longform (const html_version& v, const STANDARD& predefined, const ::std::string& longform, const bool standard = true) const
+    ident_t find_longform (const html_version& v, const STANDARD& predefined, const ::std::string& longform, const bool standard = true, bool* predef = nullptr) const
     {   PRESUME (! longform.empty (), __FILE__, __LINE__);
         msab_t::const_iterator i = longs_.find (longform);
         if (i != longs_.cend ()) return i -> second;
-        if (up_ != nullptr) return up_ -> find_longform (v, predefined, longform, standard);
+        if (up_ != nullptr) return up_ -> find_longform (v, predefined, longform, standard, predef);
         if (standard)
         {   const ident_t res = predefined.find (v, ABB_LONGFORM, longform, lower_);
-            if (res != ERR) return res; }
+            if (res != ERR)
+            {   if (predef != nullptr) *predef = true;
+                return res; } }
         return DEFAULT; }
     ::std::string shortform (const STANDARD& predefined, const ident_t id) const
     {   PRESUME (id < offset_ + vabb_.size (), __FILE__, __LINE__);
@@ -110,14 +114,17 @@ public:
     {   if (shortform.empty () && longform.empty ())
             nits.pick (nit_empty, es_error, ec_rdfa, "At least one of the short or long form must have content");
         else
-        {   if (! shortform.empty ())
-                if (find_shortform (v, predefined, shortform, standard) != DEFAULT)
-                    nits.pick (nit_prefix_again, es_error, ec_rdfa, "repeated definition of ", quote (shortform));
+        {   bool predef = false;
+            if (! shortform.empty ())
+                if (find_shortform (v, predefined, shortform, standard, &predef) != DEFAULT)
+                {   if ((! standard) || (! predef))
+                        nits.pick (nit_prefix_again, es_error, ec_rdfa, "repeated definition of ", quote (shortform)); }
                 else
                     nits.pick (nit_namespace_unknown, es_info, ec_rdfa, quote (shortform), " is not a standard prefix (by convention), so " PROG " cannot verify its usage");
             if (! longform.empty ())
-                if (find_longform (v, predefined, longform, standard) != DEFAULT)
-                    nits.pick (nit_prefix_again, es_error, ec_rdfa, "repeated definition of ", quote (longform));
+                if (find_longform (v, predefined, longform, standard, &predef) != DEFAULT)
+                    if ((! standard) || (! predef))
+                        nits.pick (nit_prefix_again, es_error, ec_rdfa, "repeated definition of ", quote (longform));
             lower_ = ! v.xhtml ();
             return declare (v, predefined, shortform, longform); }
         return 0; }

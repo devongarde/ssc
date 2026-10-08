@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MDN mathml mmultiscripts tests</title>
+</head>
+
+<body>
+
+<h1>MDN mathml mmultiscripts Tests</h1>
+
+<math display="block">
+  <mmultiscripts>
+    <mi>X</mi> <!-- base expression -->
+    <mi>a</mi> <!-- post-sub-script -->
+    <mi>b</mi> <!-- post-sup-script -->
+    <mprescripts />
+    <mi>c</mi> <!-- pre-sub-script -->
+    <mi>d</mi> <!-- pre-sup-script -->
+  </mmultiscripts>
+</math>
+
+<math display="block">
+  <mmultiscripts>
+    <mi>X</mi>    <!-- base expression -->
+    <mrow></mrow> <!-- post-sub-script -->
+    <mi>b</mi>    <!-- post-sup-script -->
+    <mprescripts />
+    <mi>c</mi>    <!-- pre-sub-script -->
+    <mrow></mrow> <!-- pre-sup-script -->
+  </mmultiscripts>
+</math>
+
+<math display="block">
+  <mmultiscripts>
+    <mi>X</mi> <!-- base expression -->
+    <mn>1</mn> <!-- post-sub-script-1 -->
+    <mn>2</mn> <!-- post-sup-script-1 -->
+    <mn>3</mn> <!-- post-sub-script-2 -->
+    <mn>4</mn> <!-- post-sup-script-2 -->
+    <mprescripts />
+    <mn>5</mn> <!-- pre-sub-script-1 -->
+    <mn>6</mn> <!-- pre-sup-script-1 -->
+    <mn>7</mn> <!-- pre-sub-script-2 -->
+    <mn>8</mn> <!-- pre-sup-script-2 -->
+  </mmultiscripts>
+</math>
+
+</body>
+</html>

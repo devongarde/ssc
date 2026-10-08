@@ -1,7 +1,10 @@
 -Y 1 -7 original -f ../toast/css/3-list/css.conf
 
 PASS ../toast/css/3-list/css-3.css
+10 css_syntax
 13 class_microformat_property
+15 css_syntax
+24 css_syntax
 
 PASS ../toast/css/3-list/css-4.css
 36 class_microformat_property

@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.2.36
+version 0.2.37
 (c) 2020-2026 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notices
 https://dylanharris.org/ssc/
@@ -9,17 +9,18 @@ https://github.com/devongarde/ssc
 
 
 ssc analyses static websites at source:
-- HTML living standard, Jan 2005 to Jul 2026
+- HTML living standard, Jan 2005 to Oct 2026
 - HTML Tags/1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
 - CSS 1/2.0/2.1/2.2-draft, 2007-2026 snapshots, more
-- SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x-draft
 - MathML 1/2/3/core/4-draft
+- SMIL 1.0
+- SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x-draft
 - XHTML 1.0/1.1/2.0/5.x
 - ads.txt, robots.txt, security.txt, WebVTT
 - most of ATOM, JSON-LD, RSL, RSS
 - finds broken links
 - server side includes, mostly
-- many ontologies
+- many ontologies, including schema.org
 
 with loud opinions on:
 - dialects of english

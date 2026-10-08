@@ -254,6 +254,10 @@ hav_t havt_mrss_subtitle [] =
     RDFa_META_ATTRIBUTES (elem_mrss_subtitle),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_mrss_tags [] =
+{   RDFa_META_ATTRIBUTES (elem_mrss_tags),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_mrss_thumbnail [] =
 {   { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_thumbnail, a_mrss_height },
     { { HTML_MRSS }, { HTML_UNDEF }, elem_mrss_thumbnail, a_mrss_time },
@@ -440,6 +444,14 @@ hav_t havt_mtr [] =
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mtr, a_rowalign },
     MATH4_PRES_ATTRIBUTES (elem_mtr),
     STANDARD_MATH_CORE_ATTRIBUTES (elem_mtr),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_multicol [] =
+{   { { HTML_2_0 }, { HTML_UNDEF }, elem_multicol, a_cols },
+    { { HTML_2_0 }, { HTML_UNDEF }, elem_multicol, a_gutter },
+    { { HTML_2_0 }, { HTML_UNDEF }, elem_multicol, a_style },
+    { { HTML_2_0 }, { HTML_UNDEF }, elem_multicol, a_width },
+    HTML_CID_ATTRIBUTES (elem_multicol, MAJOR_2_0, MINOR_2_0, MAJOR_4_01, MINOR_4_01),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_munder [] =

@@ -289,3 +289,31 @@ element* arguments::get_document () const
     static element el (::std::string ("faux"), en, nullptr, &g_.get_page ());    
     return &el; }
  
+
+bool examine_if_arg_lhs (arguments& , nitpick& , const int , const int to)
+{
+    return to;
+}
+
+bool examine_if_arg_rhs (arguments& , nitpick& , const int , const int to)
+{
+    return to;
+}
+
+int examine_if_arg (arguments& args, nitpick& nits, const int from, const int to)
+{   int sep = token_find (args.t_, ct_vu5_colon, from, to, nullptr, true);
+    if (sep < 0)
+        sep = token_find (args.t_, ct_colon, from, to, nullptr, true);
+    if (sep < from)
+        nits.pick (nit_css_if, es_error, ec_css, "if (): missing ':'");
+    else if (sep == from)
+        nits.pick (nit_css_if, es_error, ec_css, "if (): missing condition (before ':')");
+    else if ((to > from) && (sep == to))
+        nits.pick (nit_css_if, es_error, ec_css, "if (): missing consequence (after ':')");
+    else
+    {   nitpick nuts, nets;
+        const int lhs = examine_if_arg_lhs (args, nuts, from, sep-1);
+        const int rhs = examine_if_arg_rhs (args, nets, sep+1, to);
+        if ((lhs > from) && (rhs > sep+1) && (rhs > lhs))
+        {   nits.merge (nuts); nits.merge (nets); return rhs; } }
+    return from; }

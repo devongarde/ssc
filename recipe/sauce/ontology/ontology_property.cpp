@@ -9206,15 +9206,43 @@ vsp_t identify_ontology_properties (const ::std::string& name, const e_ontology 
             res = get_ontology_properties (n, x); } }
     return res; }
 
+#ifdef _DEBUG
 bool check_ontology_property_version (const ontology_version& from, const ontology_version& to, const e_ontology_property prop, bool& found)
 {   bool f = false, t = false;
-    for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
+    const auto range = mpp.equal_range (prop);
+    for (mpp_t::const_iterator i = range.first; i!= range.second; ++i)
     {   found = true;
         VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
         if (! f) f = does_apply < ontology_version > (from, i -> second -> from_, i -> second -> to_);
         if (! t) t = does_apply < ontology_version > (to, i -> second -> from_, i -> second -> to_);
         if (f && t) return true; }
     return false; }
+
+::std::string report_property_version_range (const e_ontology_property prop, const ::std::string& sep)
+{   ::std::string res;
+    auto range = mpp.equal_range (prop);
+    for (mpp_t::const_iterator i = range.first; i!= range.second; ++i)
+    {   PRESUME (i != mpp.cend (), __FILE__, __LINE__);
+        VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
+        res += sep;
+        res += i -> second -> from_.report ();
+        res += " : ";
+        res += i -> second -> to_.report ();
+        res += "\n"; }
+    return res; }
+
+::std::string report_all_property_versions ()
+{   ::std::string res;
+    for (mpp_t::const_iterator i = mpp.cbegin (); i != mpp.cend (); ++i)
+    {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
+        res += ontology_property_name (i -> second -> prop_);
+        res += " ";
+        res += i -> second -> from_.report ();
+        res += " : ";
+        res += i -> second -> to_.report ();
+        res += "\n"; }
+return res; }
+#endif // _DEBUG
 
 bool test_enumerated_type (nitpick& nits, const html_version& v, const bool ex, const ::std::string& value)
 {   if (value.empty ()) return false;
@@ -9252,7 +9280,8 @@ bool is_valid_ontology_property_int (nitpick& nits, const html_version& v, const
     ssch_t ssch (generalise (nits, v, schema));
     for (const e_ontology_type gen : ssch)
     {   if (is_ontology_property (v, gen, prop))
-            for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
+        {   const auto range = mpp.equal_range (prop);
+            for (mpp_t::const_iterator i = range.first; i != range.second; ++i)
             {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
                 if (i -> second -> field_type_ == t_ontology)
                 {   if ((i -> second -> flags_ & SP_VALUE_TYPENAME) == SP_VALUE_TYPENAME)
@@ -9296,7 +9325,7 @@ bool is_valid_ontology_property_int (nitpick& nits, const html_version& v, const
                         {   nits.merge (nuts);
                             return true; }
                         valid_type = true;
-                        knots.merge (nuts); } }
+                        knots.merge (nuts); } } }
         if (! expected.empty ())
         {   ::std::string msg ("consider specifying ");
             nitpick nuts;
@@ -9340,7 +9369,8 @@ bool is_valid_ontology_property_int (nitpick& nits, const html_version& v, const
             ts += sch::name (gen); }   
         if (is_ontology_property (v, gen, prop))
         {   notprop = false;
-            for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
+            const auto range = mpp.equal_range (prop);
+            for (mpp_t::const_iterator i = range.first; i != range.second; ++i)
             {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
                 if (i -> second -> field_type_ == t_ontology)
                     if (    (i -> second -> field_ontology_ == value) || (i -> second -> field_ontology_ == ont_context) ||
@@ -9374,7 +9404,8 @@ bool is_valid_ontology_property (const html_version& v, const e_ontology_type sc
 
 vit_t sought_ontology_types (const ontology_version& sv, const e_ontology_property prop)
 {   vit_t res;
-    for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
+    const auto range = mpp.equal_range (prop);
+    for (mpp_t::const_iterator i = range.first; i != range.second; ++i)
     {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
         if (i -> second -> field_type_ == t_ontology)
             if (does_apply < ontology_version > (sv, i -> second -> from_, i -> second -> to_))
@@ -9386,7 +9417,8 @@ vit_t sought_ontology_types (const e_ontology_property prop)
 
 vt_t sought_types (const ontology_version& sv, const e_ontology_property prop)
 {   vt_t res;
-    for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
+    const auto range = mpp.equal_range (prop);
+    for (mpp_t::const_iterator i = range.first; i != range.second; ++i)
     {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
         if (i -> second -> field_type_ != t_ontology)
             if (does_apply < ontology_version > (sv, i -> second -> from_, i -> second -> to_))
@@ -9401,6 +9433,7 @@ e_ontology property_root (const e_ontology_property prop)
 
 bool does_property_apply (const ontology_version& sv, const e_ontology_property prop)
 {   PRESUME ((prop != op_context) && (prop != op_illegal), __FILE__, __LINE__);
-    for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> second -> prop_ == prop); ++i)
+    const auto range = mpp.equal_range (prop);
+    for (mpp_t::const_iterator i = range.first; i != range.second; ++i)
         if (does_ontology_apply (sv, i -> second -> from_, i -> second -> to_)) return true;
     return false; }

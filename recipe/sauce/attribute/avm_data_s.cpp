@@ -140,6 +140,26 @@ hav_t havt_separator [] =
 {   XHTML2_ATTRIBUTES (elem_separator),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_seq [] =
+{   { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, a_abstract, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, a_author, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, a_begin, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, a_copyright, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, a_dur, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, a_end, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, a_region, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, a_repeat, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, a_system_bitrate, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, a_system_captions, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, a_system_language, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, a_system_overdub_or_caption, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, a_system_required, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, a_system_screen_depth, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, a_system_screen_size, EP_SMIL },
+    { { HTML_SMIL_1_0 }, { HTML_UNDEF }, elem_seq, a_title, EP_SMIL },
+    SMIL_ATTRIBUTES (elem_seq),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_set [] =
 {   { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_set, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_set, a_href },
@@ -191,6 +211,10 @@ hav_t havt_small [] =
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_small),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_smil [] =
+{   SMIL_ATTRIBUTES (elem_smil),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_solidcolour [] =
 {   SVG_HTML_ATTRIBUTES (elem_solidcolour),
     SVG_PRESENTATION_ATTRIBUTES (elem_solidcolour),
@@ -206,6 +230,14 @@ hav_t havt_source [] =
     { { HTML_JUL07 }, { HTML_UNDEF }, elem_source, a_type },
     { { HTML_APR21 }, { HTML_UNDEF }, elem_source, a_width },
     STANDARD_HTML5_ATTRIBUTES (elem_source),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_spacer [] =
+{   { { HTML_2_0 }, { HTML_4_01 }, elem_spacer, a_align },
+    { { HTML_2_0 }, { HTML_4_01 }, elem_spacer, a_height },
+    { { HTML_2_0 }, { HTML_4_01 }, elem_spacer, a_size },
+    { { HTML_2_0 }, { HTML_4_01 }, elem_spacer, a_type },
+    { { HTML_2_0 }, { HTML_4_01 }, elem_spacer, a_width },
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_span [] =
@@ -224,6 +256,10 @@ hav_t havt_spot [] =
 
 hav_t havt_sqrt [] =
 {   HTML3_CLID_ATTRIBUTES (elem_sqrt),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_standby [] =
+{   XHTML2_ATTRIBUTES (elem_standby),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_stop [] =

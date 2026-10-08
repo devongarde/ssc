@@ -2818,7 +2818,8 @@ struct symbol_entry < html_version, e_css_version > css_version_symbol_table [] 
     { { HTML_TAGS }, { HTML_UNDEF }, "html5/24", css_ls_2024 },
     { { HTML_TAGS }, { HTML_UNDEF }, "html5/25", css_ls_2025 },
     { { HTML_TAGS }, { HTML_UNDEF }, "html5/26", css_ls_2026 },
-    { { HTML_TAGS }, { HTML_UNDEF }, "html5", css_ls_2026 } };
+    { { HTML_TAGS }, { HTML_UNDEF }, "html5", css_ls_2026 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "ae", css_arts_ego } };
 
 struct symbol_entry < html_version, e_css_vertical_align > css_vertical_align_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "inherit", ecva_inherit },
@@ -3124,6 +3125,12 @@ struct symbol_entry < html_version, e_filter_in > filter_in_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "BackgroundAlpha", fi_backgroundalpha },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "FillPaint", fi_fillpaint },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "StrokePaint", fi_strokepaint } };
+
+struct symbol_entry < html_version, e_fit > fit_symbol_table [] =
+{   { { HTML_SMIL_1_0, 0, 0, 0, 0, 0, H5_SMIL }, { HTML_UNDEF }, "hidden", fit_hidden },
+    { { HTML_SMIL_1_0, 0, 0, 0, 0, 0, H5_SMIL }, { HTML_UNDEF }, "meet", fit_meet },
+    { { HTML_SMIL_1_0, 0, 0, 0, 0, 0, H5_SMIL }, { HTML_UNDEF }, "scroll", fit_scroll },
+    { { HTML_SMIL_1_0, 0, 0, 0, 0, 0, H5_SMIL }, { HTML_UNDEF }, "slice", fit_slice } };
 
 struct symbol_entry < html_version, e_font_enum > font_enum_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG, H2_CSS_2 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "caption",  fe_caption },
@@ -5049,6 +5056,9 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-signature", nm_context_signature },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-site", nm_context_site },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-sloven", nm_context_sloven },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-smil-exts", nm_context_smil_exts },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-smil-verify", nm_context_smil_ver },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-smil-version", nm_context_smil_version },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-spec", nm_context_spec },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-special", nm_context_special },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-spell", nm_context_spell },
@@ -6372,6 +6382,20 @@ struct symbol_entry < html_version, e_smei > smei_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "end", smei_end },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", smei_inherit } };
 
+struct symbol_entry < html_version, e_smil_version > smil_version_symbol_table [] =
+{   { { HTML_UNDEF }, { HTML_UNDEF }, "0", smv_none },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "1.0", smv_1_0 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "1", smv_1_0 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "2.0", smv_2_0 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "2", smv_2_0 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "2.1", smv_2_1 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "3.0", smv_3_0 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "3", smv_3_0 } };
+
+struct symbol_entry < html_version, e_smilfill > smilfill_symbol_table [] =
+{   { { HTML_SMIL_1_0, 0, 0, 0, 0, 0, H5_SMIL }, { HTML_UNDEF }, "freeze", smfi_freeze },
+    { { HTML_SMIL_1_0, 0, 0, 0, 0, 0, H5_SMIL }, { HTML_UNDEF }, "remove", smfi_remove } };
+
 struct symbol_entry < html_version, e_speculationrules > speculationrules_symbol_table [] =
 {   { { HTML_DEC25, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, "eagerness", spc_eagerness },
     { { HTML_DEC25, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, "expects_no_vary_search", spc_expectsnovarysearch },
@@ -6474,6 +6498,41 @@ struct symbol_entry < html_version, e_svg_align > svg_align_symbol_table [] =
     { { HTML_SVG10 }, { HTML_UNDEF }, "xMinYMax", sa_xmin_ymax },
     { { HTML_SVG10 }, { HTML_UNDEF }, "xMidYMax", sa_xmid_ymax },
     { { HTML_SVG10 }, { HTML_UNDEF }, "xMaxYMax", sa_xmax_ymax } };
+
+struct symbol_entry < html_version, e_svg_begin_event > svg_begin_event_symbol_table [] =
+{   { { HTML_SVG10 }, { HTML_UNDEF }, "abort", svbe_abort },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "auxclick", svbe_auxclick },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "beforeinput", svbe_beforeinput },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "beginEvent", svbe_beginevent },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "blur", svbe_blur },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "click", svbe_click },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "compositionend", svbe_compositionend },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "compositionstart", svbe_compositionstart },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "compositionupdate", svbe_compositionupdate },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "dblclick", svbe_dblclick },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "DOMActivate", svbe_domactivate },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "endEvent", svbe_endevent },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "error", svbe_error },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "focus", svbe_focus },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "focusin", svbe_focusin },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "focusout", svbe_focusout },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "input", svbe_input },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "keydown", svbe_keydown },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "keyup", svbe_keyup },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "load", svbe_load },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "mousedown", svbe_mousedown },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "mouseenter", svbe_mouseenter },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "mouseleave", svbe_mouseleave },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "mousemove", svbe_mousemove },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "mouseout", svbe_mouseout },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "mouseover", svbe_mouseover },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "mouseup", svbe_mouseup },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "repeatEvent", svbe_repeatevent },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "resize", svbe_resize },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "scroll", svbe_scroll },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "select", svbe_select },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "unload", svbe_unload },
+    { { HTML_SVG10 }, { HTML_UNDEF }, "wheel", svbe_wheel } };
 
 struct symbol_entry < html_version, e_svg_display > svg_display_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "inline",  ds_inline },
@@ -9031,6 +9090,8 @@ void enum_init (nitpick& nits)
     INIT_ENUM (shape7);
     INIT_ENUM (shape_rendering);
     INIT_ENUM (smei);
+    INIT_ENUM (smil_version);
+    INIT_ENUM (smilfill);
     INIT_ENUM (speculationrules);
     INIT_ENUM (ssi);
     INIT_ENUM (ssi_comparison);
@@ -9041,6 +9102,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (stress);
     INIT_ENUM (supports);
     INIT_ENUM (svg_align);
+    INIT_ENUM (svg_begin_event);
     INIT_ENUM (svg_display);
     INIT_ENUM (svg_fontstretch);
     INIT_ENUM (svg_fontstretch_ff);
@@ -9439,6 +9501,8 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (shape7);
         RETURN_SIZE (shape_rendering);
         RETURN_SIZE (smei);
+        RETURN_SIZE (smil_version);
+        RETURN_SIZE (smilfill);
         RETURN_SIZE (speculationrules);
         RETURN_SIZE (ssi);
         RETURN_SIZE (ssi_comparison);
@@ -9449,6 +9513,7 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (stress);
         RETURN_SIZE (supports);
         RETURN_SIZE (svg_align);
+        RETURN_SIZE (svg_begin_event);
         RETURN_SIZE (svg_display);
         RETURN_SIZE (svg_fontstretch);
         RETURN_SIZE (svg_fontstretch_ff);

@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.24)
 set (FULLNAME "Static-Site-Checker")
-set (VER 0.2.36)
+set (VER 0.2.37)
 project (ssc VERSION ${VER} DESCRIPTION ${FULLNAME} LANGUAGES CXX HOMEPAGE_URL "https://dylanharris.org/ssc/")
 message (NOTICE "preparing " ${FULLNAME} " ${VER}" )
 
@@ -139,7 +139,7 @@ set (SAUCE
             ${S}/css/value.cpp ${S}/css/value2.cpp ${S}/css/value_types_0_1.cpp ${S}/css/value_types_2_9.cpp ${S}/css/value_types_a_1.cpp
             ${S}/css/value_types_a_2.cpp ${S}/css/value_types_a_3.cpp ${S}/css/value_types_a_4.cpp ${S}/css/value_types_a_5.cpp ${S}/css/value_types_b_1.cpp
 			${S}/css/value_types_b_2.cpp ${S}/css/value_types_c_1.cpp ${S}/css/value_types_c_2.cpp ${S}/css/value_types_c_3.cpp ${S}/css/value_types_c_4.cpp
-            ${S}/css/value_types_c_5.cpp ${S}/css/value_types_css_a_1.cpp ${S}/css/value_types_css_a_2.cpp ${S}/css/value_types_css_a_3.cpp
+            ${S}/css/value_types_c_5.cpp ${S}/css/value_types_c_6.cpp ${S}/css/value_types_css_a_1.cpp ${S}/css/value_types_css_a_2.cpp ${S}/css/value_types_css_a_3.cpp
 			${S}/css/value_types_css_b_1.cpp ${S}/css/value_types_css_b_2.cpp ${S}/css/value_types_css_b_3.cpp ${S}/css/value_types_css_b_4.cpp ${S}/css/value_types_css_b_5.cpp
 			${S}/css/value_types_css_c_1.cpp ${S}/css/value_types_css_c_2.cpp ${S}/css/value_types_css_c_3.cpp ${S}/css/value_types_css_c_4.cpp
 			${S}/css/value_types_css_c_5.cpp ${S}/css/value_types_css_d.cpp ${S}/css/value_types_css_e_1.cpp ${S}/css/value_types_css_e_2.cpp ${S}/css/value_types_css_f_1.cpp
@@ -150,7 +150,7 @@ set (SAUCE
 			${S}/css/value_types_css_p_q.cpp ${S}/css/value_types_css_r_1.cpp ${S}/css/value_types_css_r_2.cpp ${S}/css/value_types_css_s_1.cpp
 			${S}/css/value_types_css_s_2.cpp ${S}/css/value_types_css_s_3.cpp ${S}/css/value_types_css_t_1.cpp ${S}/css/value_types_css_t_2.cpp
 			${S}/css/value_types_css_t_3.cpp ${S}/css/value_types_css_t_4.cpp ${S}/css/value_types_css_t_5.cpp ${S}/css/value_types_css_u.cpp
-			${S}/css/value_types_css_v.cpp ${S}/css/value_types_css_w_z.cpp ${S}/css/value_types_d_1.cpp ${S}/css/value_types_d_2.cpp
+			${S}/css/value_types_css_v.cpp ${S}/css/value_types_css_w_z.cpp ${S}/css/value_types_d_1.cpp ${S}/css/value_types_d_2.cpp ${S}/css/value_types_d_3.cpp
 			${S}/css/value_types_e.cpp ${S}/css/value_types_f_1.cpp ${S}/css/value_types_f_2.cpp ${S}/css/value_types_f_3.cpp ${S}/css/value_types_g.cpp
             ${S}/css/value_types_h.cpp ${S}/css/value_types_i_1.cpp ${S}/css/value_types_i_2.cpp ${S}/css/value_types_i_3.cpp ${S}/css/value_types_j_k.cpp
 			${S}/css/value_types_l_1.cpp ${S}/css/value_types_l_2.cpp ${S}/css/value_types_l_3.cpp ${S}/css/value_types_m_1.cpp ${S}/css/value_types_m_2.cpp
@@ -158,9 +158,9 @@ set (SAUCE
             ${S}/css/value_types_o.cpp ${S}/css/value_types_p_1.cpp ${S}/css/value_types_p_2.cpp ${S}/css/value_types_p_3.cpp ${S}/css/value_types_p_4.cpp
 			${S}/css/value_types_r_1.cpp ${S}/css/value_types_r_2.cpp ${S}/css/value_types_r_3.cpp ${S}/css/value_types_r_4.cpp ${S}/css/value_types_r_5.cpp
 			${S}/css/value_types_r_6.cpp ${S}/css/value_types_s_1.cpp ${S}/css/value_types_s_2.cpp ${S}/css/value_types_s_3.cpp ${S}/css/value_types_s_4.cpp
-			${S}/css/value_types_s_5.cpp ${S}/css/value_types_s_6.cpp ${S}/css/value_types_t_1.cpp ${S}/css/value_types_t_2.cpp ${S}/css/value_types_u_1.cpp
-			${S}/css/value_types_u_2.cpp ${S}/css/value_types_v_1.cpp ${S}/css/value_types_v_2.cpp ${S}/css/value_types_w.cpp ${S}/css/value_types_x_1.cpp
-			${S}/css/value_types_x_2.cpp ${S}/css/value_types_y_z.cpp ${S}/css/weight.cpp 
+			${S}/css/value_types_s_5.cpp ${S}/css/value_types_s_6.cpp ${S}/css/value_types_s_7.cpp ${S}/css/value_types_t_1.cpp ${S}/css/value_types_t_2.cpp
+			${S}/css/value_types_u_1.cpp ${S}/css/value_types_u_2.cpp ${S}/css/value_types_v_1.cpp ${S}/css/value_types_v_2.cpp ${S}/css/value_types_w.cpp
+			${S}/css/value_types_x_1.cpp ${S}/css/value_types_x_2.cpp ${S}/css/value_types_y_z.cpp ${S}/css/weight.cpp 
         ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_aria.cpp ${S}/element/element_attributes.cpp
             ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp
             ${S}/element/element_jkl.cpp ${S}/element/element_microdata.cpp ${S}/element/element_microformats.cpp ${S}/element/element_mno.cpp
@@ -294,7 +294,7 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     set (LD ${LIBS} "/usr/lib64/")
     if (${LSB_RELEASE_ID_SHORT} MATCHES "Fedora")
         set (Boost_USE_STATIC_LIBS OFF)
-        message ("Boost it'll find 'em if you're lucky libraries")
+        message ("Boost (it'll find 'em if you're lucky) libraries")
     else ()
         set (Boost_USE_STATIC_LIBS ON)
         message ("Boost static libraries")
@@ -311,11 +311,20 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set (MC ${CMAKE_BINARY_DIR}/${XAPP2}/Contents)
     set (Boost_USE_STATIC_LIBS ON)
     set (NOX "0")
-    if (${CMAKE_SYSTEM} MATCHES "Darwin-25")
+    if (${CMAKE_SYSTEM} MATCHES "Darwin-27")
+        set (TARGET_OS "GG")
+        set (CDEF_PROD ${CDEF_PROD} CLEAN_SHAREDPTR_ARRAY ORDERED)
+        set (BV "1.89")
+        set (NO_BOO_SYS "1")
+        if (${ARCHITECTURE} MATCHES "x86_64")
+            set (NJ "1")
+        endif ()
+        set (SIGNING "1")
+    elseif (${CMAKE_SYSTEM} MATCHES "Darwin-25")
         set (TARGET_OS "Tahoe")
         set (CDEF_PROD ${CDEF_PROD} CLEAN_SHAREDPTR_ARRAY ORDERED)
-		set (BV "1.89") # CMake on MacOS Tacky annoyingly barfs on old versions of boost::system
-		set (NO_BOO_SYS "1")
+        set (BV "1.89") # CMake on MacOS Tacky annoyingly barfs on old versions of boost::system
+        set (NO_BOO_SYS "1")
         if (${ARCHITECTURE} MATCHES "x86_64")
             set (NJ "1")
         endif ()
@@ -349,7 +358,7 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         set (NJ "1")
         set (NS "1")
     elseif (${CMAKE_SYSTEM_VERSION} VERSION_LESS_EQUAL "17")
-        message (FATAL_ERROR "apologies, but ssc requires one of MacOS versions Tahoe to Mojave")
+        message (FATAL_ERROR "apologies, but ssc requires one of MacOS versions Golden Grate to Mojave")
     else ()
         message (WARNING "unknown, untested MacOS")
         set (TARGET_OS "Darwin?")
@@ -585,14 +594,14 @@ elseif (${NOX} MATCHES "0")
 endif ()
 
 # uninstall target ( https://gitlab.kitware.com/cmake/community/-/wikis/FAQ#can-i-do-make-uninstall-with-cmake )
-if (NOT TARGET uninstall)
-  configure_file (
-    "${TEA}/cmake_uninstall.cmake.in"
-    "${TEA}/cmake_uninstall.cmake"
-    IMMEDIATE @ONLY)
-  add_custom_target (uninstall
-    COMMAND ${CMAKE_COMMAND} -P ${TEA}/cmake_uninstall.cmake)
-endif()
+#if (NOT TARGET uninstall)
+#  configure_file (
+#    "${TEA}/cmake_uninstall.cmake.in"
+#    "${TEA}/cmake_uninstall.cmake"
+#    IMMEDIATE @ONLY)
+#  add_custom_target (uninstall
+#    COMMAND ${CMAKE_COMMAND} -P ${TEA}/cmake_uninstall.cmake)
+#endif()
 
 enable_testing ()
 

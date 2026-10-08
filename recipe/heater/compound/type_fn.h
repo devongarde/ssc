@@ -142,6 +142,12 @@ template < e_type T, class NAME, e_type P, e_type Q, e_type R > struct type_func
 template < e_type T, class NAME, e_type A, e_type B, e_type C, e_type D > struct type_function_3_4 : type_function_m_n < T, NAME, sz_space_slash, 3, 4, A, B, C, D >
 {   using type_function_m_n < T, NAME, sz_space_slash, 3, 4, A, B, C, D > :: type_function_m_n; };
 
+template < e_type T, class NAME, e_type A, e_type B, e_type C, e_type D, e_type E > struct type_function_3_5 : type_function_m_n < T, NAME, sz_space_slash, 3, 5, A, B, C, D, E >
+{   using type_function_m_n < T, NAME, sz_space_slash, 3, 5, A, B, C, D, E > :: type_function_m_n; };
+
+template < e_type T, class NAME, e_type A, e_type B, e_type C, e_type D, e_type E, e_type F, e_type G > struct type_function_5_7 : type_function_m_n < T, NAME, sz_space_slash, 5, 7, A, B, C, D, E, F, G >
+{   using type_function_m_n < T, NAME, sz_space_slash, 5, 7, A, B, C, D, E, F, G > :: type_function_m_n; };
+
 template < e_type T, class NAME, e_type A, e_type B, e_type C, e_type D, e_type E >
         struct type_function_1_4_5 : type_function_m_n_o < T, NAME, sz_space_slash, 1, 4, 5, A, B, C, D, E >
 {   using type_function_m_n_o < T, NAME, sz_space_slash, 1, 4, 5, A, B, C, D, E > :: type_function_m_n_o; };

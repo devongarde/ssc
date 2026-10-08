@@ -28,7 +28,6 @@ typedef ::std::vector < e_type > vt_t;
 void ontology_property_init (nitpick& nits);
 e_ontology_property identify_ontology_property (const ::std::string& name, const e_ontology root = s_none);
 vsp_t identify_ontology_properties (const ::std::string& name, const e_ontology root = s_none);
-bool check_ontology_property_version (const ontology_version& from, const ontology_version& to, const e_ontology_property prop, bool& found);
 ::std::string ontology_property_name (const e_ontology_property prop);
 bool is_valid_ontology_property (nitpick& nits, const html_version& v, const e_ontology_type schema, const e_ontology_property prop, const ::std::string& value, const bool is_link);
 bool is_valid_ontology_property (nitpick& nits, const html_version& v, const e_ontology_type schema, const e_ontology_property prop, const e_ontology_type value);
@@ -38,3 +37,8 @@ vit_t sought_ontology_types (const ontology_version& sv, const e_ontology_proper
 vt_t sought_types (const ontology_version& sv, const e_ontology_property prop);
 e_ontology property_root (const e_ontology_property prop);
 bool does_property_apply (const ontology_version& sv, const e_ontology_property prop);
+#ifdef _DEBUG
+bool check_ontology_property_version (const ontology_version& from, const ontology_version& to, const e_ontology_property prop, bool& found);
+::std::string report_all_property_versions ();
+::std::string report_property_version_range (const e_ontology_property prop, const ::std::string& sep);
+#endif // _DEBUG

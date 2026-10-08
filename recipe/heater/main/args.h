@@ -135,6 +135,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define RSS_        "rss"
 #define SP          "shadow"
 #define SHADOW_     SP
+#define SMIL_       "smil"
 #define SPELL_      "spell"
 #define SSI_        "ssi"
 #define STATS_      "stats"
@@ -161,6 +162,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define RSL         RSL_ JOIN
 #define RSS         RSS_ JOIN
 #define SHADOW      SHADOW_ JOIN
+#define SMIL        SMIL_ JOIN
 #define SPELL       SPELL_ JOIN
 #define SSC         PROG JOIN
 #define SSI         SSI_ JOIN
@@ -540,6 +542,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ELEM_FEED       "feed"
 #define ELEM_RSL        "rsl"
 #define ELEM_RSS        "rss"
+#define ELEM_SMIL       "smil"
 #define MAX_NODOC_LEN   4
 
 #define NS_ATOM         "atom"

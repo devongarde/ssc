@@ -1,0 +1,80 @@
+<smil>
+<body>
+
+  <par>
+    <text ...=""/>
+    <switch>
+      <par system-bitrate="40000">
+        ...
+      </par>
+      <par system-bitrate="24000">
+        Synchronized Multimedia Integration Language https://www.w3.org/TR/SMIL1/
+        25 of 39 11/12/2020, 05:14
+        ...
+      </par>
+      <par system-bitrate="10000">
+        ........
+      </par>
+    </switch>
+  </par>
+
+  <switch>
+    <audio src="joe-audio-better-quality" system-bitrate="16000" />
+    <audio src="joe-audio" system-bitrate="8000" />
+  </switch>
+
+  <switch>
+    <audio src="joe-audio-french" system-language="fr"/>
+    <audio src="joe-audio-english" system-language="en"/>
+  </switch>
+
+  <par>
+    <text ...=""/>
+    <switch>
+      <par system-screen-size="1280X1024" system-screen-depth="16">
+        ........
+      </par>
+      <par system-screen-size="640X480" system-screen-depth="32">
+        ...
+      </par>
+      <par system-screen-size="640X480" system-screen-depth="16">
+        ...
+      </par>
+    </switch>
+  </par>
+
+  <seq>
+    <par>
+      <audio src="audio.rm"/>
+      <video src="video.rm"/>
+      <textstream src="stockticker.rtx"/>
+      <textstream src="closed-caps.rtx" system-captions="on"/>
+    </par>
+  </seq>
+
+  <par>
+    <switch>
+      <audio src="movie-aud-en.rm" system-language="en"
+      system-overdub-or-caption="overdub"/>
+      <audio src="movie-aud-de.rm" system-language="de"
+      system-overdub-or-caption="overdub"/>
+      <audio src="movie-aud-nl.rm" system-language="nl"
+      system-overdub-or-caption="overdub"/>
+      <!-- French for everyone else -->
+      <audio src="movie-aud-fr.rm"/>
+    </switch>
+    <video src="movie-vid.rm"/>
+    <switch>
+      <textstream src="movie-caps-en.rtx" system-language="en"
+      system-overdub-or-caption="caption"/>
+      <textstream src="movie-caps-de.rtx" system-language="de"
+      system-overdub-or-caption="caption"/>
+      <textstream src="movie-caps-nl.rtx" system-language="nl"
+      system-overdub-or-caption="caption"/>
+      <!-- French captions for those that really want them -->
+      <textstream src="movie-caps-fr.rtx" system-captions="on"/>
+    </switch>
+  </par>
+
+</body>
+</smil>

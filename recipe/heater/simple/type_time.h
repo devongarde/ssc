@@ -27,6 +27,7 @@ bool verify_time_5 (nitpick& nits, const html_version& v, const ::std::string& s
 bool verify_absolute (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_duration (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_svg_duration (nitpick& nits, const html_version& v, const ::std::string& s);
+bool verify_smil_duration (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_day (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_http_time (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_month (nitpick& nits, const html_version& v, const ::std::string& s);
@@ -38,6 +39,7 @@ bool verify_year (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_yearmonth (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_plain_date (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_coarse_time (nitpick& nits, const html_version& v, const ::std::string& s);
+bool verify_smilclock_time (nitpick& nits, const html_version& v, const ::std::string& s);
 e_nit verify_english_day_name (nitpick& nits, const html_version& v, const ::std::string& s);
 e_nit verify_english_month_name (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_rfc822_zone (nitpick& nits, const html_version& v, const ::std::string& s);
@@ -219,3 +221,12 @@ template < > struct type_master < t_rfc822 > : public tidy_string < t_rfc822 >
         if (! tidy_string < t_rfc822 > :: good ()) return;
         if (! verify_rfc822 (nits, v, tidy_string < t_rfc822 > :: get_string (), false))
             tidy_string < t_rfc822 > :: status (s_invalid); } };
+
+template < > struct type_master < t_smilclock > : public tidy_string < t_smilclock >
+{   using tidy_string < t_smilclock > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_smilclock > :: set_value (nits, v, s);
+        if (! tidy_string < t_smilclock > :: good ()) return;
+        if (! verify_smil_duration (nits, v, tidy_string < t_smilclock > :: get_string ()))
+            tidy_string < t_smilclock > :: status (s_invalid); } };
+

@@ -330,15 +330,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_JUL26  HTML_2026, HTML_JUL
 #define HTML_AUG26  HTML_2026, HTML_AUG
 #define HTML_SEP26  HTML_2026, HTML_SEP
+#define HTML_OCT26  HTML_2026, HTML_OCT
+#define HTML_DEC26  HTML_2026, HTML_DEC
 #define HTML_DEC99  HTML_2099, (HTML_DEC + HTML_31ST)
 
 #define HTML_5_EARLIEST_YEAR    HTML_2005
 #define HTML_5_EARLIEST_MONTH   1
 
 #define HTML_LATEST_YEAR        HTML_2026
-#define HTML_LATEST_MONTH       7
+#define HTML_LATEST_MONTH       12
 
-#define HTML_CURRENT            HTML_JUL26
+#define HTML_CURRENT            HTML_OCT26
 
 #define HTML_UNDEF      0, 0
 
@@ -645,12 +647,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_SCHEMA_29_3  HTML_2025, ( HTML_SEP + HTML_6TH )
 #define HTML_SCHEMA_29_4  HTML_2025, ( HTML_SEP + HTML_30TH )
 #define HTML_SCHEMA_30_0  HTML_2026, ( HTML_MAR + HTML_20TH )
-#define HTML_SCHEMA_30_1  HTML_2026, ( HTML_JUL + HTML_1ST )
+#define HTML_SCHEMA_30_1  HTML_2026, ( HTML_SEP + HTML_15TH )
+#define HTML_SCHEMA_30_2  HTML_2026, ( HTML_DEC + HTML_1ST )
 #define HTML_SCHEMA       HTML_SCHEMA_0
 #define HTML_SD         HTML_RDF10_CON
 #define HTML_SIOC       HTML_RDF10
 #define HTML_SKOS       HTML_JUN08
 #define HTML_SKOSXL     HTML_JUN08
+#define HTML_SMIL_1_0   HTML_4_0
+#define HTML_SMIL_2_0   HTML_JAN05
+#define HTML_SMIL_2_1   HTML_DEC05
+#define HTML_SMIL_3_0   HTML_DEC08
 #define HTML_SSN        HTML_RDF10_CON
 #define HTML_SPDX10     HTML_AUG11
 #define HTML_SPDX11     HTML_AUG12
@@ -747,6 +754,7 @@ inline bool le (const version& lhs, const version& rhs) noexcept { return ! gt (
 inline bool ge (const version& lhs, const version& rhs) noexcept { return ! lt (lhs, rhs); }
 
 bool comparable (const version& lhs, const version& rhs) noexcept;
+bool does_version_apply (const version& v, const version& from, const version& to) MSVC_NOEXCEPT;
 
 inline bool operator == (const version& lhs, const version& rhs) noexcept { return (comparable (lhs, rhs) && eq (lhs, rhs)); }
 inline bool operator != (const version& lhs, const version& rhs) noexcept { return (comparable (lhs, rhs) && ne (lhs, rhs)); }
@@ -755,11 +763,11 @@ inline bool operator > (const version& lhs, const version& rhs) noexcept { retur
 inline bool operator <= (const version& lhs, const version& rhs) noexcept { return (comparable (lhs, rhs) && le (lhs, rhs)); }
 inline bool operator >= (const version& lhs, const version& rhs) noexcept { return (comparable (lhs, rhs) && ge (lhs, rhs)); }
 
-template < class V > inline bool does_apply (const V& v, const V& from, const V& to) MSVC_NOEXCEPT
-{   if (! comparable (v, from)) return true;
-    if (! from.unknown () && lt (v, from)) return false;
-    if (! to.unknown () && gt (v, to)) return false;
-    return true; }
+template < class V > inline bool does_apply (const V& , const V& , const V& ) MSVC_NOEXCEPT
+{   GRACELESS_CRASH (__FILE__, __LINE__); }
+
+template < > inline bool does_apply < version > (const version& v, const version& from, const version& to) MSVC_NOEXCEPT
+{   return does_version_apply (v, from, to); }
 
 #ifdef _MSC_VER
 #pragma warning (disable : 26440)
